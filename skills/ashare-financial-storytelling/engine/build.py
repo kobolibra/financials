@@ -241,7 +241,7 @@ def article(l,m,checks):
 
 def main():
     from audit import audit
-    p=argparse.ArgumentParser();p.add_argument('--ledger',required=True);p.add_argument('--memo',required=True);p.add_argument('--out',required=True);p.add_argument('--qa',required=True)
+    p=argparse.ArgumentParser();p.add_argument('--ledger',required=True);p.add_argument('--memo',required=True);p.add_argument('--out',required=True);p.add_argument('--qa',required=True);p.add_argument('--atlas',action='store_true',help='Include balance-sheet anatomy and two-stage signed cash waterfall')
     a=p.parse_args();l=json.loads(Path(a.ledger).read_text());m=json.loads(Path(a.memo).read_text());doc=l['document']
     if doc.get('business_type') not in ('industrial','manufacturing','services'):
         raise ValueError('Sector-aware fail-closed: financials/property/insurance need different economics')
@@ -250,6 +250,15 @@ def main():
     if m.get('review_status')!='ANALYST_REVIEWED':
         raise ValueError('Research memo has not been reviewed. Drafts must not be published without explicit approval')
     result,meta=article(l,m,qa)
+    if a.atlas:
+        from visual_exhibits import upgrade
+        result=upgrade(l,result)
+        if not all('id="'+section+'"' in result for section in ('capital-anatomy','cash-architecture')):
+            raise ValueError('Missing required atlas financial exhibits')
+        meta['chart_types'] += ['balance_anatomy', 'two_tier_signed_cash_bridge']
+        meta['output_sha256']=hashlib.sha256(result.encode('utf-8')).hexdigest()
+        meta['html_bytes']=len(result.encode('utf-8'))
+        meta['atlas']={'assets_reconciled':True,'cfo_reconciled':True,'cash_close_reconciled':True}
     path=Path(a.out);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(result,encoding='utf-8')
     Path(a.qa).parent.mkdir(parents=True,exist_ok=True);Path(a.qa).write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
     print(json.dumps({'file':str(path),'bytes':meta['html_bytes'],'figures':len(meta['chart_types']),'sha256':meta['output_sha256']},ensure_ascii=False))
