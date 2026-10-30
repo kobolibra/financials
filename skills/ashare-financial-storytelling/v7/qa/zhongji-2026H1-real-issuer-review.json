@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-30",
+  "report": "中际旭创股份有限公司2026年半年度报告",
+  "ticker": "300308.SZ",
+  "source": {
+    "url": "https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf",
+    "pages": 184,
+    "issued": "2026-08-22",
+    "audited": false,
+    "sha256": null,
+    "web_pdf_text_verified": true,
+    "pdf_page_images_checked": [
+      8,
+      26
+    ],
+    "all_cells_image_verified": false
+  },
+  "ledger": {
+    "structured_facts": 64,
+    "indirect_cash_flow_adjustments": 15,
+    "financial_checks": {
+      "pass": 10,
+      "fail": 0,
+      "not_checked": 0
+    },
+    "status": "CONDITIONAL_DRAFT__SOURCE_REVIEW_PENDING",
+    "source_review_pending": 59
+  },
+  "visualization": {
+    "based_on": "Financials Research Edition 7",
+    "source_preview_sha": "174ed1d22200b92e360a373d4d5a83e318c9ba59",
+    "full_page_figures": 10,
+    "analytical_figures": 9,
+    "unavailable_concentration": "explicitly-not-plotted",
+    "true_ribbons": 6,
+    "local_chromium_widths": [
+      1440,
+      768,
+      390
+    ],
+    "browser_tests_pass": true,
+    "svg_exports_pass": true,
+    "console_errors": 0,
+    "external_asset_calls": 0
+  },
+  "tests": {
+    "regression_existing_issuer": 12,
+    "regression_fails": 0,
+    "real_second_issuer": true,
+    "fixed_defects": [
+      "generic static Tianfu passive business heading",
+      "inventory indirect CFO label variant",
+      "negative FCF was blank graphic",
+      "incorrect gross-profit cost-change prose",
+      "missing concentration would create empty figure"
+    ]
+  },
+  "disclosure": {
+    "fundamental_result": "Revenue +182.49% and parent net profit +241.70%; CFO -44.08%",
+    "net_income_yuan": "14733426763.13",
+    "cfo_yuan": "1799674832.02",
+    "inventory_cfo_adjustment_yuan": "-7239286403.36",
+    "operating_receivables_cfo_adjustment_yuan": "-9241842184.65",
+    "operating_payables_cfo_adjustment_yuan": "2555941200.83",
+    "capex_paid_yuan": "4802161195.37",
+    "simple_fcf_yuan": "-3002486363.35"
+  },
+  "publication": {
+    "status": "STAGED_PREVIEW_NOT_PRODUCTION",
+    "repo": "kobolibra/financials",
+    "preview_path": "public/preview/300308/2026-H1-research-v7/index.html",
+    "git_preview_verified": true,
+    "home_has_preview_card": true,
+    "existing_tianfu_production_preserved": true,
+    "live_http_verified": false
+  },
+  "blockers": [
+    "Full PDF bytes unavailable; cannot calculate and verify SHA256",
+    "59 reported fields not all independently rechecked against original rendered PDF table cells",
+    "Research memo still DRAFT_NEEDS_SECOND_REVIEW, not final analyst approval",
+    "Preview public HTTP/Cloudflare build not independently verified"
+  ]
+}
