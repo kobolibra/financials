@@ -1,94 +1,106 @@
 ---
 name: ashare-financial-storytelling
-version: 3.0-preview
-summary: Evidence-first visual financial storytelling from a Chinese A-share company's disclosed PDF annual, half-year, or quarterly report to one self-contained, browser-tested HTML study.
+description: Source-verifiable institutional-grade financial research and editorial visualization for Chinese A-share listed-company financial reports. Turn one or more issuer PDF filings into an evidence-based, analytically deep, responsive, self-contained HTML equity-research story; includes forensic accounting, industry-aware business economics, adversarial thesis review, publication QA and provenance.
+version: 4.0.0
 ---
 
-# A-Share Financial Storytelling · Publishing Skill (3.0 Preview)
+# A-SHARE FINANCIAL STORYTELLING — RESEARCH DESK v4
 
-## Purpose and non-goals
+## Mission / what success means
 
-**Input:** an original A-share financial-report PDF. **Primary output:** ONE publication-quality, responsive, stand-alone **HTML** report that does not load external fonts, libraries or assets. The PDF is source material, **not** an output. No stock prices, macro dashboards, bulk market scraping, subscriptions, valuation, automatic stock picking or PDF exports unless explicitly requested. Never claim this skill reproduces or is affiliated with App Economy Insights; use its publicly described approach to business-model-first, three-statement, cash-conversion-oriented financial explanation as an editorial inspiration.
+Think like a buy-side sector analyst, an accounting-forensics reviewer, and a financial-information designer working together. Explain **how the business creates value, why financial performance changed, whether the earnings and cash are sustainable, what could invalidate the thesis**, and what the filings genuinely do not answer. An excellent report makes the reader **understand and question** the company, not simply admire an attractive graphic.
 
-The system is not finished merely because a ledger validates, SVG renders or the GitHub commit succeeds. It is finished only after the actual published page has passed visual, semantic, source and browser tests. The present project contains a *verified single-company demonstration*, not proof of reliable zero-touch extraction for arbitrary A-share PDFs.
+**Input:** an original issuer annual/H1/quarterly PDF. Optionally separately authorized past filings, peers, market and operating data, with each source and as-of date explicitly segregated. **Final deliverable:** one original, polished, self-contained, offline HTML report. No PDF output, bulk dashboard, simulated prices, stock rating, fabricated targets or unsourced projections. The skill is **a disciplined research workflow**, not a promise of automatic generic PDF understanding. Do not imply affiliation with, reproduce artwork from, or copy the house style of App Economy Insights. Borrow its publicly documented principles: start with business model; analyze economics, risk, profitability, balance and liquidity; show the money; use visual explanations as part of a narrative.
 
-## Non-negotiable principles
+Read these references before execution:
+- \`references/research-method.md\`: investment-research architecture, working hypotheses, disconfirmation, memo contract.
+- \`references/ashare-accounting.md\`: Chinese accounting, period, disclosure and forensic checks.
+- \`references/sector-playbooks.md\`: select an appropriate industry model and KPIs.
+- \`references/visual-editorial.md\`: original visual language and chart semantics.
+- \`references/quality-gates.md\`: objective QA, red-team review and release decision.
+- \`references/tianfu-research-case.md\`: known single-company regression and its evidence limitations.
 
-1. **First ask what changed, not which chart to draw.** Choose one primary company-specific thesis, two or three crucial supporting observations, a plausible alternative explanation, and the remaining unanswered questions. A generic retelling of the three tables is not enough.
-2. **Fact ≠ management claim ≠ calculation ≠ inference.** Label them separately in the narrative, visualization tooltip and source ledger. Never present management interpretation as independently verified causality.
-3. **No fabricated segmentation.** Subtracting disclosed product revenue from total consolidated revenue gives a mathematically calculated *undisclosed residual*, not a new business segment. Label this clearly. Missing segment cost is never assumed to be zero.
-4. **Consolidated vs. parent-company statements must never be mixed.** Flow statements are periods; balance sheets are dates. H1 is six months; Q3 often year-to-date nine months. Derive a single quarter only if proper comparable YTD periods and their source versions are available. Never sum point-in-time balances as if flows.
-5. **Don't turn a balance sheet into cash flow.** A balance-sheet Sankey or composition graph represents stocks and accounting identity. Net income ↔ CFO uses an indirect-method reconciliation if disclosed, not guesses from balance sheet balances.
-6. **True Sankey, honest geometry.** Its thick paths MUST be continuous curves/polygons with widths proportional to magnitudes. A row of bars and connecting hairlines is not a Sankey. Signed amounts and non-conserving profit adjustments require a waterfall/bridge or a *clearly separated* injection/adjustment step, never abs(negative) masquerading as a positive flow.
-7. **Publication is contingent upon browser inspection.** Validate full-size desktop and mobile, labels and scroll, keyboard/tooltips, download buttons and console errors. Do not publish based on static HTML syntax alone.
-8. **No cross-project actions.** Only write to the repo and branch explicitly authorized for this project. New editions go to a preview path first. Never replace a production report or homepage without the user's express approval.
+## Operating modes: source integrity first
 
-## Workflow
+**PDF-only** (default): company filings only, with strictly source-dependent conclusions. No outside company- or industry-specific factual claim unless verified and separately cited. Market share, TAM, competitive rank, peers and valuations usually remain "not established by supplied filing."
 
-### A. PDF intake and evidence extraction
+**Expanded institutional research** (only if requested / authorized and sources available): append dated independent regulator, supplier/customer, peer, policy, industry, exchange and market evidence. Separate company-reported numbers from independent evidence and mark source date, market-data currency and confidence. Perform peer matching on business model and financial definitions, not just ticker or sector.
 
-1. Identify company, exchange/ticker, statement date, report period, accounting basis, whether audited, currencies, date/version, and source PDF SHA-256. If the report is a scan, inspect page images. Otherwise extract text AND inspect complex table images/headers manually.
-2. Read *together* (a) Business model and key products, (b) MD&A and operating/market drivers, (c) consolidated income statement, (d) consolidated balance sheet, (e) cash flow statement plus indirect-method notes when disclosed, (f) business/product/geography revenue and cost segment disclosures, (g) risk factors and significant accounting notes.
-3. Create a typed evidence ledger (`field`, original amount in CNY yuan Decimal, reporting period, stock/flow, consolidated/parent, source table, page, reported/calculated status, original Chinese field label, original PDF/version and extraction confidence). Keep the row's exact date and **do not** mistake unit 万元 or 千元 for 元.
-4. For disclosed segments with rounding, keep raw exact amounts. If disclosed product sums differ from consolidated totals, use a labeled residual with sign and formula. If material but unexplained, block the full breakdown rather than fake a tidy third segment.
+**No invented precision.** Use Decimal in yuan for underlying amounts and only round at display time. Never infer customer names from anonymized tables, order backlog from unsatisfied performance obligations, or unit economics from consolidated data. \`未披露\` is not zero.
 
-### B. Deterministic calculations and accounting gates
+## Seven mandatory analytic questions (run BEFORE chart selection)
 
-Before rendering, run exact-Decimal checks on whichever fields apply:
+1. **Business:** What exactly is sold, to whom and through what value-chain position? Revenue recognition, sales model, contracting, pricing mechanism, product mix, geographic/currency exposure, working capital needs, fixed-cost intensity.
+2. **Differentiation & durability:** What evidence indicates a moat, switching costs, cost advantage, patents, scale, quality or customer integration? Separate management's claims from demonstrated margins/retention/returns. What can erode it?
+3. **Growth decomposition:** For revenue, differentiate **volume × price × mix × FX × M&A × accounting** ONLY where data permit. Study product-level revenue and gross profit contributions, market demand vs capacity/supply bottlenecks; never attribute a change to a cause without identifiable evidence. Compare same periods with restatement and share-base adjustments.
+4. **Profitability:** Revenue → gross profit → operating profit → pretax → total/parent net profit → reported and扣非; decompose margins, S&M, G&A, R&D, financial FX, credit/asset impairment, government aid, investment/fair-value gains, deferred tax and unusual items. Prefer economic drivers to ratio catalogues.
+5. **Cash and working capital:** Reconcile net profit → CFO using **all reported signed indirect adjustments**, CFO+CFI+CFF+FX → cash equivalents, simple analyst FCF = CFO−cash CapEx with limitations. Read receivables, prepayments, bills, contract assets/liabilities, payables, inventory categories/ages and provisions, restricted cash; ask whether cash generation is funded by counterparties or inventory changes. Never assume balance-sheet changes equal indirect-CFO adjustments.
+6. **Capital allocation and risk:** Growth/maintenance CapEx distinction only if disclosed; PP&E, CIP, overseas capacity, dividends, buybacks, financing, dilution, pledges, related parties, shareholder alignment, currency/commodity/tech/regulatory/customer concentration, audit qualifications and contingencies. Judge returns on incremental capital only with comparable denominator and asset scope; avoid mechanically annualizing H1 ROIC.
+7. **What matters next:** Form **1 principal thesis + 2–4 observations + 1 serious alternative explanation + 3–5 falsifiable monitoring indicators**. State observations that would change the conclusion and exact unavailable disclosures necessary to resolve material uncertainty. If valuation is not supported by authorized price/forecast inputs, exclude "price is right" and state out-of-scope.
 
-- `assets = liabilities + total equity`; current + non-current asset/liability subtotals when available.
-- `revenue − COGS = gross profit` (industrial reporters only; never force this on banks/insurance).
-- `operating profit = revenue − total operating costs + other gains/losses` with exact CSRC income-statement line signs, including tax/surcharges, impairment, investment, fair value, FX if present.
-- `total profit − income tax = consolidated net income`; `parent net income + minority interest = consolidated net income`.
-- `cash_close = cash_open + CFO + CFI + CFF + FX effect` for same period and cash-equivalents scope.
-- When indirect reconciliation is disclosed, `net income + SUM(all signed adjustments) = CFO` to the yuan. **Do not** lump uncollected adjustments into an arbitrary balancing number.
-- `simple FCF = CFO − cash spent acquiring/building long-term assets` is clearly an analyst-defined metric and **not** necessarily management's definition of FCF.
-- Compare like periods, indicate when prior figures are restated, and keep balance-sheet YoY distinct from changes vs. prior FY end.
+## Required source-reading route
 
-Report every gate as `PASS`, `FAIL`, or `NOT_CHECKED`. A materially missing / incongruent source blocks its dependent chart. **10/10 arithmetic checks passed does not prove the research content or graphics are publication-ready.**
+A. Intake: original PDF fingerprint SHA-256; issuer legal name, ticker/exchange, reporting period/date, currency, units, audited status, consolidated/parent and publication/version/revisions; make a PDF physical-page ↔ printed-page map. Read risk notice and the restatement note before comparisons.
 
-### C. Story selection by relevance, not chart quota
+B. Read in pairs, not isolated snippets: management discussion **against** business and risk paragraphs; P&L **against** segment revenue/cost; balance **against** AR aging/inventory categorization and provisions; CFO **against** indirect reconciliation and investment/financing detail; EPS/ROE **against** share movements and equity changes; management strategy **against** actual CapEx and R&D. Check notes for related parties, revenue policies, share payments, government grants, FX, overseas subsidiaries, audit and subsequent events.
 
-Identify the company's value chain, revenue concentration, margin direction, profitability drivers, working capital, capex and funding. Select **2–4 major visuals**; a fifth only if it adds independent information. Pick charts by evidence and materiality:
+C. Build a *machine-readable evidence ledger* with fields:
+\`id, amount_decimal_yuan, currency, printed_page, pdf_page, page_anchor/quote, document_sha, table, current/comparative_period, flow_or_stock, consolidated_or_parent, disclosed_or_derived, formula, source_quality, confidence, reviewer, notes\`. Also store qualitative statements as separately attributed assertions with page anchors. Preserve exact original labels. Every material sentence and figure must link to one or several ledger facts.
 
-| Evidence | Correct graphic | Must not do |
-|---|---|---|
-| Product revenue and COGS verified | Product → cost / gross-profit proportional ribbons; explain margin and mix | Fake product lines, fabricated distribution, hairline-only “Sankey” |
-| Other signed income statement terms | Signed profit waterfall bridge alongside flow | Negative terms as positive Sankey flows |
-| CFO indirect reconciliation disclosed | Exact signed bridge from net income to CFO | Infer note-level changes only from balance sheet stocks |
-| Assets, debt, equity | Two-sided components / balanced stocks graph | Suggest asset nodes are actual cash transfers |
-| Operating volumes, prices, customers disclosed | Drivers visual with unit-specific denominators | Infer price-volume contributions without comparable evidence |
-| Material missing financial segments | Declare limitation and select other chart | Invent values to meet a visual quota |
+D. Elicit competing explanations: not merely "growth strong" but "mix shift vs underlying unit economics"; not merely "CFO improved" but "CFO improved while inventory and AR absorb cash"; not merely "high cash" but "cash equivalents versus monetary assets and restricted balances." Label management explanations as **management statement**, not proof.
 
-Write a story plan with: thesis; evidence; one counter-hypothesis; chart purpose; source pages; why alternative charts were rejected; what the source PDF cannot establish. One chart must answer one question in five seconds.
+E. Select thesis-centric visuals AFTER all calculations: typically 1 signature money-flow/chart, 1 growth/mix profitability diagnostic, 1 earnings-to-cash/working capital chart, 1 capital/risk chart. For companies where Sankey is ill-suited, omit Sankey. No minimum chart quota. Small multiples and short tables can be better.
 
-### D. Original financial visual design
+F. Draft an **analyst memo**, then build visual narrative, then red-team the memo, then run financial + visual + browser gates. Never write charts first and attach boilerplate explanation later.
 
-- Visual hierarchy: company/period + one strong headline → 3–4 central metrics → flagship money-flow graphic → signed profit/cash explanation → capital/caveats. Not a generic investor terminal.
-- Use an original editorial design system; readable Chinese fonts, controlled palette, abundant white space, direct labels, short source notes. Maintain meaningful color semantics (teal for profit, warm/coral for cost/outflow, neutral for sources, yellow for signed adjustments).
-- True Sankey requires sum of bands into node = the node's displayed magnitude (at full precision). Label source groups, outcomes, raw units, scale and residuals. Use SVG `path` with real polygon/curve area, not disconnected thin connectors.
-- Hover/focus must show original number/units and where it came from (PDF page); optional export of original SVG. The graph must remain readable without a hover. Support horizontal scroll where necessary on narrow screens; do not shrink a complex diagram until labels are unreadable.
-- Main HTML is self-contained. `svg`, CSS, JS must be inline; no CDN, external fonts, runtime API calls, chart images or network dependency. Do not copy App Economy Insights illustrations or trademarks.
-- Cite page numbers close to each chart; distinguish original reported amount from derived amount. Use numerical values in yuan and round *only at display time*. Summaries must not contradict the exact ledger.
+## Financial invariants & materiality
 
-### E. Browser and editorial quality gates
+Use all appropriate tests in \`references/ashare-accounting.md\`, each reported PASS / FAIL / NOT_CHECKED with numbers, source and tolerance. Checks include:
+- Assets = liabilities + equity; line-subtotals and scope consistency.
+- P&L reconciliation incl tax, minority interests, signed other gains/impairments; use CAS labels, not a generic US GAAP schema.
+- Consolidated CFO, CFI, CFF and FX → cash equivalents.
+- Net income + **each signed disclosed** indirect adjustment → CFO, with omission audit.
+- Segment/subsegment revenue + residual → consolidated; related COGS **only** if segment COGS reported; no arbitrary zero gap.
+- Cash equity/dividend/share changes (do not mix CFF dividend payment with total financing).
+- For comparatives, restated values and stock vs flow time basis, EPS adjusted for stock split/bonus, weighted equity in ROE.
+- Reporting annualized / half-year / YTD scopes never conflated.
+- Reasonable scale and materiality thresholds: investigate any material change (>10% relative or financially thesis-material) and note when percentage is misleading near zero; **threshold is a heuristic, not a regulator-mandated threshold**.
 
-1. Inspect the rendered page with desktop viewport (1440 px) and narrow/mobile viewport (390 px); screenshots must show no overlaps, cut-off numbers, bad contrast, impossible scroll, empty charts or missing icons.
-2. Browser acceptance: no JS exceptions, no requests to external assets, at least one genuine nonzero-width SVG ribbon in flagship Sankey, tooltips work, SVG export works, keyboard focus has meaningful labels, navigation targets exist.
-3. Research acceptance: headline supported by facts, alternative interpretation considered, management claims attributed, at least one important source gap acknowledged, all appropriate numbers source-linked by page, and none misrepresented by the chosen graph.
-4. Mathematical acceptance: all applicable invariants PASS and any NOT_CHECKED/FAIL blocking conditions respected.
-5. Deployment acceptance: **first upload a new preview path under the user's authorized GitHub repository**. Verify the GitHub blob/commit. If public Pages URL cannot be independently fetched or rendered, explicitly say “GitHub 已提交，公网部署未验证”. Request approval before replacing production HTML.
+Hard blocker: source mismatch or critical reconciliation FAIL, material unsigned negative flow, fabricated segment/cause, unrecoverable source amount, or unverified accounting scope. A successful sum **does not validate an economic inference**.
 
-## Failure responses
+## Forensic review is mandatory, not optional
 
-If extraction is incomplete, describe precisely what is missing and produce only those well-supported parts, or a labeled working draft. Never invent data or announce “已正式发布” on the strength of an HTML file alone. If no suitable true Sankey can be constructed from evidence, use the strongest truthful alternative and explain why.
+Score evidence on recurring profit quality and concentration without alleging wrongdoing from a red flag. Require direct review of: receivables balance/age, top counterparty concentration, inventory raw/WIP/finished and provisions, contract liabilities and prepayments, restricted funds, revenue recognition, FX/hedges, capitalized development, related-party transactions, government subsidies, impairment, tax, share compensation and dilution. Explain what the pattern could mean, what it cannot establish, and what future disclosure would validate it. Prioritize anomalous changes, not rote line-item coverage.
 
-## Tianfu 2026 H1 regression case
+## Industry routing
 
-- PDF: `苏州天孚光通信股份有限公司 2026 年半年度报告`, 185 pages, consolidated, unaudited.
-- Product figures: PDF p.22: passive and active product revenue/COGS/margins. Consolidated revenue/COGS: p.61. Positive unnamed residual must be labeled **calculated undisclosed difference**.
-- Cash conversion: p.147–148 indirect CFO bridge with **all 15 items**, not guessed balance-sheet delta. Profit and tax: p.61–62. Cash/net cash: p.65. Balance-sheet funding: p.56–58.
-- Narrative: p.14 management attributes active-product capacity constraint partly to material shortages, but never quantifies its revenue impact.
-- Test the adversarial cases: change 1 cent; substitute parent data; remove a key indirect CFO line; mismatch reporting period; sum of segments > consolidated total; source page non-existent; a negative term passed to a positive Sankey path; missing font / tooltip / broken SVG export.
+Before ratios/plots, classify business into non-financial industrial/services, financial bank, insurer, securities/asset manager, property, utilities, platform, commodity or other. Choose the industry-specific accounting template from sector playbooks. **Never impose manufacturing COGS/EBITDA/CFO/FCF charts on banks/insurers.** For company-specific operations only use KPIs actually disclosed (e.g. optical component shipments/production, yield, customer concentration, geographic collections) and do not substitute general market assumptions.
 
-**Template invocation:** “阅读并审计所附 A 股财报 PDF，先建立可追溯证据账本和分析假设，再选择最有意义的 2–4 张图。严格按照 A-Share Financial Storytelling Skill 3.0 输出一个可离线运行、经过浏览器视觉验收的 HTML 财务研究页面；不要生成 PDF，不要覆盖任何已发布网站。”
+## Deliverable HTML contract
+
+At desktop width 1360–1440px, first screen must deliver a **sharp, evidence-supported one-sentence thesis**, a 2–3 sentence executive verdict, key results and the anchor figure. Structure:
+1. Executive synthesis: verdict with uncertainty, not a rating.
+2. Business/value-chain anatomy: who pays and for what, with explicit confidence.
+3. Growth/margin engine: revenue and GP contributions, bridge where feasible, counter-case.
+4. Earnings quality / CFO / working capital: include relevant notes and cash identities.
+5. Capital allocation, capacity and financial risks, scoped to source.
+6. Watchlist: leading indicators, scenarios **conditional, not fabricated probability forecasts**.
+7. Sources & methods, company statements versus independent facts, calculations, non-coverage.
+
+Every visual: question-form title, one-line interpretive answer, explicit unit/period, data provenance and materiality of residuals. Hover/focus reveals exact values/formulas/source pages, but key figures **always** appear without hover. No externally loaded JS/fonts/images/CDN; accessible fallback. Charts have correct geometric semantics; Sankey conservation + nonnegative flows, waterfalls for signed P&L adjustments, trend for time series, not a "flow" between unrelated balance stocks. Apply responsive typography and editorial review before release. Consult \`references/visual-editorial.md\`.
+
+## Release gates and consent
+
+1. **Evidence gate:** every material quantitative statement source or formula traceable; if chart source lacks enough data, downgrade/no-plot.
+2. **Accounting gate:** applicable equations PASS and intentionally unavailable checks explicitly NOT_CHECKED; no unjustified "10/10" blanket claim.
+3. **Reasoning gate:** critique major inference; strongest rival explanation; evidence needed to discriminate; sector logic defensible.
+4. **Editorial gate:** 5-second takeaway per exhibit, hierarchy, original aesthetics, chart count by insight not quota; hand-check mobile text.
+5. **Browser gate:** HTML at 1440px and 390px; JS errors, network calls, keyboard focus, tooltips, export, headings, anchor links, screenshots inspected.
+6. **Deployment gate:** only user's authorized repository; preview first; verify actual GitHub blob; **independently** verify production URL (not GitHub commit alone). Never overwrite production/homepage without user's approval for the specific release.
+7. **Honesty gate:** distinguish (a) local calculations validated, (b) local browser tests passed, (c) GitHub commit verified, (d) public Cloudflare deployment verified, and (e) general-PDF robustness proven. These are independent.
+
+Return a **publication-readiness status** and list all remaining blockers. Do not claim "institutional-grade" on the basis of SVG rendering or one case. **One HTML output, not a PDF.**
+
+## Demonstration and current technical boundary
+
+The Tianfu 2026H1 example in this repository is a verified single-company dataset and reproducible HTML renderer, NOT a universal arbitrary-PDF engine. Existing production output is not automatically replaced by installing this new skill. Full autonomous extraction and multi-sector regression require separate implementation/verification. See \`references/tianfu-research-case.md\`.
