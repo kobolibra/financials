@@ -8,8 +8,8 @@
   "charts": 10,
   "money_flow_ribbons": 7,
   "accounting_status": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
-  "hash_sha256": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90",
-  "bytes": 64895,
+  "hash_sha256": "24989f842a69105c490b4291a0f7928dc4a8160bd5f135fc5b341df5e21398b9",
+  "bytes": 65180,
   "browser_status": "NOT_CHECKED",
   "public_http_status": "NOT_CHECKED",
   "source_quality": "CASE_SOURCE_REVIEWED; NOT UNIVERSAL_PDF_AUTO_EXTRACTION"
