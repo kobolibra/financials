@@ -10,7 +10,36 @@
   "accounting_status": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
   "hash_sha256": "24989f842a69105c490b4291a0f7928dc4a8160bd5f135fc5b341df5e21398b9",
   "bytes": 65180,
-  "browser_status": "NOT_CHECKED",
-  "public_http_status": "NOT_CHECKED",
-  "source_quality": "CASE_SOURCE_REVIEWED; NOT UNIVERSAL_PDF_AUTO_EXTRACTION"
+  "browser_status": "UNVERIFIED_CURRENT_PREVIEW",
+  "public_http_status": "UNVERIFIED_REMOTE_FETCH_UNAVAILABLE",
+  "source_quality": "CASE_SOURCE_REVIEWED; NOT UNIVERSAL_PDF_AUTO_EXTRACTION",
+  "github": {
+    "preview_path": "public/preview/300394/2026-H1-research-v7/index.html",
+    "preview_blob_sha": "65fa9eff8589ce6b70de8b139a0d0915f660dafb",
+    "preview_exists": true,
+    "production_path": "public/300394/2026-H1/index.html",
+    "production_blob_sha": "65fa9eff8589ce6b70de8b139a0d0915f660dafb",
+    "production_unchanged_this_research_pass": true,
+    "skill_v7_blob_sha": "efc694c41b59ed20329d74580e86e34d3ca48c1d"
+  },
+  "editorial": {
+    "research_tracks_present": true,
+    "AEI_original_public_sources_reviewed": true,
+    "PRC_regulatory_sources_reviewed": true,
+    "static_svg_count": 8,
+    "local_browser_acceptance": "NOT_CHECKED_FOR_THIS_FINAL_PREVIEW",
+    "manual_publication_design_review": "NOT_CHECKED",
+    "second_real_issuer_end_to_end": "NOT_CHECKED",
+    "publish_decision": "PREVIEW_ONLY_NOT_CLEARED_FOR_PRODUCTION"
+  },
+  "release_gates": {
+    "SOURCE_PDF": "CASE_REVIEWED_MANUAL_CAVEATS",
+    "ACCOUNTING": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
+    "RESEARCH": "DOCUMENTED_TWO_TRACKS",
+    "GRAPHICS": "EIGHT_INLINE_SVG_REVIEW_PENDING",
+    "BROWSER": "NOT_CHECKED",
+    "GIT": "PASS",
+    "LIVE_CLOUDFLARE": "NOT_CHECKED",
+    "SECOND_REAL_COMPANY": "NOT_CHECKED"
+  }
 }
