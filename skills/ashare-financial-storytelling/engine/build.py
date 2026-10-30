@@ -200,6 +200,7 @@ def article(l,m,checks):
     groupbars=cmpbars(l,[('营业收入',num(l,'revenue_prior'),rev,factmeta(l,'revenue','revenue_prior')),('营业成本',num(l,'cogs_prior'),cogs,factmeta(l,'cogs','cogs_prior')),('毛利润（计算）',priorgp,gp,'收入－成本'),('经营现金流',num(l,'cfo_prior'),cfo,factmeta(l,'cfo','cfo_prior'))])
     kpis=[('营业收入',money(rev),f'同比 {pc((rev-num(l,"revenue_prior"))/num(l,"revenue_prior"))}' if num(l,'revenue_prior') else '对比数据不足','revenue'),('综合毛利率',pc(gp/rev),f'同比 {pp(gp/rev-priorgp/priorrev)}' if priorgp is not None and priorrev else '同比不可计算','revenue'),('合并净利润',money(net),'合并口径','net_profit'),('经营现金流',money(cfo),f'净利现金转化 {pc(cfo/net)}','cfo')]
     kpihtml=''.join(f'<div class="kpi"><span>{esc(label)}</span><strong>{esc(value)}</strong><small>{esc(delta)}</small></div>' for label,value,delta,_ in kpis)
+    forensic=''.join('<div class="forensic-item '+('caution' if x.get('tone')=='caution' else '')+'"><small>'+esc(x.get('label',''))+'</small><strong>'+esc(x.get('metric',''))+'</strong><span>'+esc(x.get('comparison',''))+'</span><p>'+esc(x.get('insight',''))+'</p><em>来源：'+esc(x.get('source',''))+'</em></div>' for x in m.get('forensic_lenses',[]))
     memo_watch=m.get('watchlist',[])
     watch=''.join(f'<div class="watch-card"><small>{i+1:02d} / TESTABLE SIGNAL</small><h3>{esc(x["topic"])}</h3><p>{esc(x["test"])}</p><span>原文 {esc(x.get("page","页码待核"))}</span></div>' for i,x in enumerate(memo_watch))
     support=''.join('<li>'+esc(x)+'</li>' for x in m.get('support',[]))
@@ -225,7 +226,7 @@ def article(l,m,checks):
       'cash_adj_table':indrows, 'adj_count':len(adjustments),
       'fcf':money(cfo-capex),'fcf_prior':money(num(l,'cfo_prior')-num(l,'capex_cash_prior')) if None not in (num(l,'cfo_prior'),num(l,'capex_cash_prior')) else '上期未提供',
       'working':stockbars(l,riskpairs),'concentration':circles,'risk_explanation':esc(m.get('risk_explanation','')),
-      'balance':balance(l),'capital_explanation':esc(m.get('capital_explanation','')),
+      'balance':balance(l),'capital_explanation':esc(m.get('capital_explanation','')), 'forensic':forensic,
       'support':support,'counter':counter,'watch':watch,'limits':limits,
       'ticker_source':esc(doc['source_sha256']),'ledger_table':snapshot,
       'source_notes':esc(m.get('required_reviewer','')),
