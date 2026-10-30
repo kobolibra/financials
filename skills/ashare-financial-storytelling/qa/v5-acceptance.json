@@ -1,0 +1,75 @@
+{
+  "schema": "financials-acceptance-v5.0",
+  "issuer": "苏州天孚光通信股份有限公司",
+  "ticker": "300394.SZ",
+  "period": "2026H1",
+  "report_input": {
+    "type": "issuer-half-year-pdf",
+    "pages": 185,
+    "sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+    "audited": false
+  },
+  "evidence_review": {
+    "structured_facts": 59,
+    "indirect_cash_flow_adjustments": 15,
+    "pdf_values_found_in_parsed_text": 53,
+    "values_not_located_due_to_fragmented_pdf_table_text": 5,
+    "derived_field_not_expected_in_source": 1,
+    "source_image_review_required_for_fragmented_rows": true
+  },
+  "accounting": {
+    "checks_passed": 10,
+    "checks_failed": 0,
+    "report_status": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED"
+  },
+  "regression": {
+    "tests_passed": 19,
+    "tests_failed": 0,
+    "includes_synthetic_second_industrial_issuer": true,
+    "includes_second_real_issuer": false
+  },
+  "browser": {
+    "mode": "local Chromium",
+    "viewports": [
+      1440,
+      768,
+      390
+    ],
+    "each_passed": true,
+    "checks": [
+      "6 genuine flow ribbons",
+      "hover-tooltip",
+      "keyboard focus",
+      "SVG export",
+      "internal links",
+      "no page overflow",
+      "no JS exceptions",
+      "no remote requests"
+    ],
+    "html_sha256": "ce8569cd3ff81862e0d6ab960ee11005b133750e5bd1b7527b0ed95c362ccc11"
+  },
+  "deployment": {
+    "repo": "kobolibra/financials",
+    "git_preview_path": "public/preview/300394/2026-H1-research-v5/index.html",
+    "git_blob_sha": "abeeaee71e37ab1160942a7642204662e7a0e6da",
+    "git_verified": true,
+    "cloudflare_live_verified": false,
+    "cloudflare_verification_error": "External web fetch inaccessible; deployment not independently verified.",
+    "production_overwritten": false
+  },
+  "gates": {
+    "basic_html_pass": true,
+    "material_source_accuracy": "reviewed case / fragmented-value source-text remains manual",
+    "generic_pdf_extraction": "candidate-only, does not autoapprove evidence",
+    "generic_industrial_render": "tested with synthetic second issuer",
+    "multi_sector_coverage": "not verified; bank and insurer fail closed",
+    "visual_browser_local": "passed",
+    "public_web": "not verified"
+  },
+  "scope_and_limits": [
+    "This is an evidence-gated industrial financial research pipeline, not zero-touch analysis of arbitrary A-share PDFs",
+    "A synthetic second issuer tests code reuse but cannot establish robustness on other actual filings",
+    "A passing accounting identity does not validate qualitative business causality or full professional peer review",
+    "No live-site claims until external HTTP/browser verification"
+  ]
+}
