@@ -1,0 +1,16 @@
+{
+  "issuer": "苏州天孚光通信股份有限公司",
+  "period": "2026H1",
+  "pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+  "pdf_pages": 185,
+  "facts": 59,
+  "indirect_cash_adjustments": 15,
+  "charts": 10,
+  "money_flow_ribbons": 7,
+  "accounting_status": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
+  "hash_sha256": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90",
+  "bytes": 64895,
+  "browser_status": "NOT_CHECKED",
+  "public_http_status": "NOT_CHECKED",
+  "source_quality": "CASE_SOURCE_REVIEWED; NOT UNIVERSAL_PDF_AUTO_EXTRACTION"
+}
