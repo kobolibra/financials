@@ -1,0 +1,351 @@
+{
+  "schema": "case-specific-addendum-v4.0",
+  "original_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+  "issuer": "苏州天孚光通信股份有限公司 2026 半年度报告",
+  "scope": "consolidated, except ownership attributable and note-specific items",
+  "currency": "CNY",
+  "amounts": [
+    {
+      "id": "AR_GROSS",
+      "amount_decimal": "1528182068.40",
+      "reported_page": 102,
+      "source_label": "应收账款/期末账面余额",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "AR_ALLOWANCE",
+      "amount_decimal": "76409103.42",
+      "reported_page": 102,
+      "source_label": "应收账款/坏账准备",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "AR_TOP5_BALANCE",
+      "amount_decimal": "1287923163.36",
+      "reported_page": 103,
+      "source_label": "应收账款和合同资产/前五名/合计",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "AR_TOP5_SHARE_PCT",
+      "amount_decimal": "84.27",
+      "reported_page": 103,
+      "source_label": "应收账款和合同资产/前五名/占比合计",
+      "period": "2026-06-30",
+      "kind": "stock_percent",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "RAW_MATERIAL_NET",
+      "amount_decimal": "574812595.29",
+      "reported_page": 112,
+      "source_label": "存货分类/原材料/期末账面价值",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "RAW_MATERIAL_NET_PRIOR",
+      "amount_decimal": "177416358.15",
+      "reported_page": 112,
+      "source_label": "存货分类/原材料/期初账面价值",
+      "period": "2025-12-31",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "WIP_NET",
+      "amount_decimal": "183984782.92",
+      "reported_page": 112,
+      "source_label": "存货分类/在产品/期末账面价值",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "FINISHED_GOODS_NET",
+      "amount_decimal": "140786168.66",
+      "reported_page": 112,
+      "source_label": "存货分类/库存商品/期末账面价值",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "SHIPPED_GOODS_NET",
+      "amount_decimal": "29247143.24",
+      "reported_page": 112,
+      "source_label": "存货分类/发出商品/期末账面价值",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "INVENTORY_GROSS",
+      "amount_decimal": "981119698.61",
+      "reported_page": 112,
+      "source_label": "存货/期末账面余额",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "INVENTORY_PROVISION",
+      "amount_decimal": "52289008.50",
+      "reported_page": 112,
+      "source_label": "存货跌价准备/期末",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "INVENTORY_PROVISION_PRIOR",
+      "amount_decimal": "57053591.91",
+      "reported_page": 112,
+      "source_label": "存货跌价准备/年初",
+      "period": "2025-12-31",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "PREPAYMENT",
+      "amount_decimal": "95547995.56",
+      "reported_page": 111,
+      "source_label": "预付款项/期末",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "PREPAYMENT_PRIOR",
+      "amount_decimal": "20774384.67",
+      "reported_page": 111,
+      "source_label": "预付款项/年初",
+      "period": "2025-12-31",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "TOP_PREPAY_SUPPLIER",
+      "amount_decimal": "79682681.06",
+      "reported_page": 112,
+      "source_label": "预付款项/供应商1/期末余额",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "TOP_PREPAY_SUPPLIER_SHARE_PCT",
+      "amount_decimal": "83.40",
+      "reported_page": 112,
+      "source_label": "预付账款前五名/供应商1/占比",
+      "period": "2026-06-30",
+      "kind": "stock_percent",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "RND_EXPENSES",
+      "amount_decimal": "194927204.07",
+      "reported_page": 61,
+      "source_label": "研发费用/2026 半年",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "RND_EXPENSES_PRIOR",
+      "amount_decimal": "125502253.16",
+      "reported_page": 61,
+      "source_label": "研发费用/2025 半年",
+      "period": "2025H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "FX_PNL_LOSS",
+      "amount_decimal": "85846526.99",
+      "reported_page": 142,
+      "source_label": "财务费用明细/汇兑损失/本期",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "FX_CASH_EFFECT",
+      "amount_decimal": "-113356734.33",
+      "reported_page": 65,
+      "source_label": "汇率变动对现金及现金等价物的影响",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "FX_OCI_FOREIGN",
+      "amount_decimal": "-42898300.53",
+      "reported_page": 139,
+      "source_label": "归属母公司/外币财务报表折算差额",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "WA_ROE_PCT",
+      "amount_decimal": "19.60",
+      "reported_page": 10,
+      "source_label": "加权平均净资产收益率/本期",
+      "period": "2026H1",
+      "kind": "period_percent",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "WA_ROE_PRIOR_PCT",
+      "amount_decimal": "20.13",
+      "reported_page": 10,
+      "source_label": "加权平均净资产收益率/同期调整后",
+      "period": "2025H1",
+      "kind": "period_percent",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "PARENT_EX_NONREC",
+      "amount_decimal": "1186263481.07",
+      "reported_page": 10,
+      "source_label": "扣非归母净利润/本期",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "PARENT_EX_NONREC_PRIOR",
+      "amount_decimal": "867385099.27",
+      "reported_page": 10,
+      "source_label": "扣非归母净利润/上期",
+      "period": "2025H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "NONREC_TOTAL",
+      "amount_decimal": "18021623.07",
+      "reported_page": 11,
+      "source_label": "非经常性损益/合计",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "SHARE_BASED_COMP",
+      "amount_decimal": "7105879.55",
+      "reported_page": 170,
+      "source_label": "本期以权益结算的股份支付费用总额",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "DIVIDEND_PROFIT_AND_INTEREST_PAID",
+      "amount_decimal": "545412546.70",
+      "reported_page": 65,
+      "source_label": "分配股利、利润或偿付利息支付的现金",
+      "period": "2026H1",
+      "kind": "flow",
+      "status": "issuer_reported"
+    },
+    {
+      "id": "RD_SALES_RATIO_NOTE",
+      "amount_decimal": "55.32",
+      "reported_page": 21,
+      "source_label": "研发投入/同比增长率",
+      "period": "2026H1",
+      "kind": "period_percent",
+      "status": "issuer_reported"
+    }
+  ],
+  "computations": [
+    {
+      "id": "GP_CHANGE",
+      "expression": "(revenue - cogs) - (revenue_prior - cogs_prior)",
+      "amount_decimal": "474046957.66",
+      "sources": [
+        "p61"
+      ]
+    },
+    {
+      "id": "RAW_MATERIAL_CHANGE",
+      "expression": "RAW_MATERIAL_NET - RAW_MATERIAL_NET_PRIOR",
+      "amount_decimal": "397396237.14",
+      "sources": [
+        "p112"
+      ]
+    },
+    {
+      "id": "AR_NET_CHANGE",
+      "expression": "accounts_receivable - accounts_receivable_prior",
+      "amount_decimal": "329787636.47",
+      "sources": [
+        "p23"
+      ]
+    },
+    {
+      "id": "INVENTORY_NET_CHANGE",
+      "expression": "inventory - inventory_prior",
+      "amount_decimal": "471634760.41",
+      "sources": [
+        "p23"
+      ]
+    },
+    {
+      "id": "FCF_SIMPLE",
+      "expression": "cfo - capex_cash",
+      "amount_decimal": "692539617.23",
+      "sources": [
+        "p65"
+      ],
+      "notes": "analyst-defined, not management measure"
+    }
+  ],
+  "qualitative": [
+    {
+      "type": "management_statement",
+      "text": "个别物料阶段性供给紧缺对有源光器件产品提产带来较大影响",
+      "page": 14,
+      "quantified": false
+    },
+    {
+      "type": "reported_risk",
+      "text": "客户集中风险以及部分上游关键物料交期和价格波动",
+      "page": 36
+    },
+    {
+      "type": "analyst_hypothesis",
+      "text": "原材料净额增加可能反映主动备货或供应链约束，但无法独立确证原因",
+      "pages": [
+        14,
+        112
+      ],
+      "confidence": "unresolved"
+    },
+    {
+      "type": "analyst_hypothesis",
+      "text": "前五客户占应收账款及合同资产余额84.27%，不能推导其收入占比",
+      "pages": [
+        103
+      ],
+      "confidence": "accounting distinction"
+    }
+  ],
+  "blacklisted_inferences": [
+    "84.27% of revenue comes from top-5 customers",
+    "FX_PNL_LOSS + FX_CASH_EFFECT + FX_OCI_FOREIGN is total FX loss",
+    "material shortage quantifies lost active-product revenue",
+    "all inventory buildup is strategic stocking",
+    "half-year ROE is annual ROE"
+  ],
+  "source_warning": "These facts are from the issuer's unaudited 185-page 2026 H1 report; external demand, sales order data and sector peer verification have not been supplied."
+}
