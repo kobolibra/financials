@@ -20,7 +20,7 @@ Three of AEI's six pre-investment chart lenses **cannot be defensibly implemente
 ```bash
 python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-h1-v6.html --qa qa/v6.json
 python -m unittest discover -s tests -p test_engine.py -v
-python tests/browser.py
+python tests/browser_v6.py
 ```
 
 The renderer uses only Python standard library. Local browser acceptance uses installed Playwright/Chromium. The HTML needs no dependencies or external URLs when opened.
