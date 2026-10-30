@@ -73,3 +73,13 @@ The renderer **does not automatically perform full independent research or parse
 Mandatory outcomes: `SOURCE_CHECKED`, `FINANCIAL_PASS`, `RESEARCH_REVIEWED`, `CHART_SEMANTICS_PASS`, `BROWSER_PASS`, `GIT_BLOB_VERIFIED`, `LIVE_HTTP_VERIFIED`. Any missing gate appears explicitly in QA JSON/readme; never silently label fully released. Verify fingerprint and unchanged source pages, exact cash/gross-profit reconciliations, all visual geometry, static chart sizes, the final live web page, and whether Cloudflare Git-to-Pages corresponds to the intended repository/branch and public domain.
 
 Only write to expressly authorized repository; stage preview before replacing production. Production replacement requires explicit authorization in this conversation. Do not touch unrelated repos, Cloudflare settings or origin PDF. **Best practices mean demonstrated quality and truthful limits, not the version number or a self-assigned 'top-tier' label.**
+
+## Full App Economy Insights benchmark (not merely one Sankey)
+
+Read [the complete, source-linked visual research atlas](references/app-economy-visual-atlas.md) BEFORE selecting any financial figures. It documents publicly verifiable: income statement diagrams, balance-sheet compositions, complete cash-statement bridges, FCF/CapEx charts, growth and margin trends, leverage, indexed price/fundamentals, valuation history and peer comparisons, along with MD&A/risk analysis and original publishing craftsmanship. Do not claim to have examined paid images not publicly available.
+
+Required selection sequence: company value-chain and full issuer income story → financial structure and debt/liquidity → earnings/working-capital cash bridge → reinvestment/FCF and dilution → multiyear trend or peer/valuation analyses **only if comparable historical filings and dated outside inputs exist**. Use proper independent visualization grammar; no imposed Sankey quota, no made-up peers or prices.
+
+The original open-source, Decimal-ledger financial exhibits are implemented in `engine/visual_exhibits.py`; see `/preview/300394/2026-H1-visual-atlas/` for two added, tested case exhibits (capital anatomy and two-tier signed cash waterfall). The preview demonstrates an extension, **not** full arbitrary-PDF multi-sector production validation. The upstream main company report has not been overwritten by this atlas work.
+
+Before publication: verify every source label/period and amount, no issuer-specific page or date literals in shared drawing code, three viewport tests (1440/768/390), zero JS errors/overflow, actual production HTTP body and manual visual-editor critique. A Git commit or passing arithmetic alone does not establish editorial quality.
