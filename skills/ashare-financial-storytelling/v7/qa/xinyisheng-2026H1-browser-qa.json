@@ -1,0 +1,74 @@
+{
+  "sha256": "5e5dea09b377d182d69fb587f8a30b9cce8928194fe0358c0b0fe8f2a16125b4",
+  "checks": [
+    {
+      "viewport": 1440,
+      "passed": true,
+      "checks": {
+        "w": 1440,
+        "scroll": 1440,
+        "svg": 9,
+        "fig": 11,
+        "ribbons": 6,
+        "volume": true,
+        "correctCompany": true,
+        "wrongCompany": false,
+        "wrongSource": false,
+        "badLinks": [],
+        "sourceHash": true
+      },
+      "tooltip": true,
+      "escape": true,
+      "svg_export": true,
+      "page_errors": [],
+      "external_requests": [],
+      "screenshot": "/mnt/data/financials_xinyisheng_2026H1/qa/preview-1440.png"
+    },
+    {
+      "viewport": 768,
+      "passed": true,
+      "checks": {
+        "w": 768,
+        "scroll": 768,
+        "svg": 9,
+        "fig": 11,
+        "ribbons": 6,
+        "volume": true,
+        "correctCompany": true,
+        "wrongCompany": false,
+        "wrongSource": false,
+        "badLinks": [],
+        "sourceHash": true
+      },
+      "tooltip": true,
+      "escape": true,
+      "svg_export": true,
+      "page_errors": [],
+      "external_requests": [],
+      "screenshot": "/mnt/data/financials_xinyisheng_2026H1/qa/preview-768.png"
+    },
+    {
+      "viewport": 390,
+      "passed": true,
+      "checks": {
+        "w": 390,
+        "scroll": 390,
+        "svg": 9,
+        "fig": 11,
+        "ribbons": 6,
+        "volume": true,
+        "correctCompany": true,
+        "wrongCompany": false,
+        "wrongSource": false,
+        "badLinks": [],
+        "sourceHash": true
+      },
+      "tooltip": true,
+      "escape": true,
+      "svg_export": true,
+      "page_errors": [],
+      "external_requests": [],
+      "screenshot": "/mnt/data/financials_xinyisheng_2026H1/qa/preview-390.png"
+    }
+  ]
+}
