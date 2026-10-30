@@ -1,0 +1,538 @@
+{
+  "pdf_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+  "checks": [
+    {
+      "key": "revenue",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "20909746962.20",
+      "kind": "flow"
+    },
+    {
+      "key": "revenue_prior",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "10437170265.50",
+      "kind": "flow"
+    },
+    {
+      "key": "cogs",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "10781121465.77",
+      "kind": "flow"
+    },
+    {
+      "key": "cogs_prior",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "5487204465.82",
+      "kind": "flow"
+    },
+    {
+      "key": "total_operating_costs",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "12157574697.76",
+      "kind": "flow"
+    },
+    {
+      "key": "operating_profit",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "8681997325.50",
+      "kind": "flow"
+    },
+    {
+      "key": "other_income",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "17637940.64",
+      "kind": "flow"
+    },
+    {
+      "key": "investment_income",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "2107562.11",
+      "kind": "flow"
+    },
+    {
+      "key": "fair_value_income",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "1813616.72",
+      "kind": "flow"
+    },
+    {
+      "key": "credit_impairment",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-3959549.01",
+      "kind": "flow"
+    },
+    {
+      "key": "asset_impairment",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-87768756.47",
+      "kind": "flow"
+    },
+    {
+      "key": "disposal_income",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-5752.93",
+      "kind": "flow"
+    },
+    {
+      "key": "nonop_income",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "8254273.59",
+      "kind": "flow"
+    },
+    {
+      "key": "nonop_expense",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "2589.89",
+      "kind": "flow"
+    },
+    {
+      "key": "income_tax",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "1123934313.06",
+      "kind": "flow"
+    },
+    {
+      "key": "net_profit",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7566314696.14",
+      "kind": "flow"
+    },
+    {
+      "key": "net_profit_prior",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "3942294268.37",
+      "kind": "flow"
+    },
+    {
+      "key": "parent_profit",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7529168039.39",
+      "kind": "flow"
+    },
+    {
+      "key": "parent_profit_prior",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "3942294268.37",
+      "kind": "flow"
+    },
+    {
+      "key": "minority_profit",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "37146656.75",
+      "kind": "flow"
+    },
+    {
+      "key": "research_expenses",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "439990921.22",
+      "kind": "flow"
+    },
+    {
+      "key": "research_expenses_prior",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "333715619.54",
+      "kind": "flow"
+    },
+    {
+      "key": "financial_expenses",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "644111402.42",
+      "kind": "flow"
+    },
+    {
+      "key": "financial_expenses_prior",
+      "page": 41,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-207953652.17",
+      "kind": "flow"
+    },
+    {
+      "key": "gross_profit",
+      "page": 41,
+      "status": "DERIVED_NO_LITERAL_REQUIRED",
+      "reported_value": "10128625496.43",
+      "kind": "flow"
+    },
+    {
+      "key": "cfo",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "1616408524.15",
+      "kind": "flow"
+    },
+    {
+      "key": "cfo_prior",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "952686853.97",
+      "kind": "flow"
+    },
+    {
+      "key": "cfi",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-1291763240.60",
+      "kind": "flow"
+    },
+    {
+      "key": "cff",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-977920856.08",
+      "kind": "flow"
+    },
+    {
+      "key": "fx_effect",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "-28953927.26",
+      "kind": "flow"
+    },
+    {
+      "key": "cash_open",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7866344058.19",
+      "kind": "flow"
+    },
+    {
+      "key": "cash_close",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7184114558.40",
+      "kind": "flow"
+    },
+    {
+      "key": "capex_cash",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "1263841519.77",
+      "kind": "flow"
+    },
+    {
+      "key": "capex_cash_prior",
+      "page": 44,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "544767766.96",
+      "kind": "flow"
+    },
+    {
+      "key": "assets",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "36646979659.62",
+      "kind": "stock"
+    },
+    {
+      "key": "assets_prior",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "25881071176.47",
+      "kind": "stock"
+    },
+    {
+      "key": "current_assets",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "28311389226.60",
+      "kind": "stock"
+    },
+    {
+      "key": "noncurrent_assets",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "8335590433.02",
+      "kind": "stock"
+    },
+    {
+      "key": "liabilities",
+      "page": 38,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "12180639783.72",
+      "kind": "stock"
+    },
+    {
+      "key": "equity",
+      "page": 38,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "24466339875.90",
+      "kind": "stock"
+    },
+    {
+      "key": "inventory",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "11655392245.35",
+      "kind": "stock"
+    },
+    {
+      "key": "inventory_prior",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7234333468.99",
+      "kind": "stock"
+    },
+    {
+      "key": "raw_material",
+      "page": 88,
+      "status": "NOT_FOUND_TEXT_EXTRACTION_REVIEW_IMAGE",
+      "reported_value": "5133818803.27",
+      "kind": "stock"
+    },
+    {
+      "key": "raw_material_prior",
+      "page": 88,
+      "status": "NOT_FOUND_TEXT_EXTRACTION_REVIEW_IMAGE",
+      "reported_value": "1979006180.34",
+      "kind": "stock"
+    },
+    {
+      "key": "accounts_receivable",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7548269870.50",
+      "kind": "stock"
+    },
+    {
+      "key": "accounts_receivable_prior",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "4437509481.09",
+      "kind": "stock"
+    },
+    {
+      "key": "prepayment",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "869541267.52",
+      "kind": "stock"
+    },
+    {
+      "key": "prepayment_prior",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "16958737.82",
+      "kind": "stock"
+    },
+    {
+      "key": "monetary_funds",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7240070490.39",
+      "kind": "stock"
+    },
+    {
+      "key": "monetary_funds_prior",
+      "page": 36,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "8155613938.09",
+      "kind": "stock"
+    },
+    {
+      "key": "fixed_assets",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "4109019972.04",
+      "kind": "stock"
+    },
+    {
+      "key": "fixed_assets_prior",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "3353862638.20",
+      "kind": "stock"
+    },
+    {
+      "key": "construction_in_progress",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "556998528.16",
+      "kind": "stock"
+    },
+    {
+      "key": "construction_in_progress_prior",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "326835237.75",
+      "kind": "stock"
+    },
+    {
+      "key": "accounts_payable",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7125196010.21",
+      "kind": "stock"
+    },
+    {
+      "key": "accounts_payable_prior",
+      "page": 37,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "3726372179.54",
+      "kind": "stock"
+    },
+    {
+      "key": "top_five_ar",
+      "page": 82,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "4645791511.90",
+      "kind": "stock"
+    },
+    {
+      "key": "top_prepay",
+      "page": 87,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "289148616.00",
+      "kind": "stock"
+    },
+    {
+      "key": "top_five_prepay",
+      "page": 87,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "748444830.62",
+      "kind": "stock"
+    },
+    {
+      "key": "inventory_gross",
+      "page": 88,
+      "status": "NOT_FOUND_TEXT_EXTRACTION_REVIEW_IMAGE",
+      "reported_value": "12255777145.48",
+      "kind": "stock"
+    },
+    {
+      "key": "inventory_allowance",
+      "page": 88,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "600384900.13",
+      "kind": "stock"
+    },
+    {
+      "key": "inventory_allowance_prior",
+      "page": 88,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "532898861.62",
+      "kind": "stock"
+    },
+    {
+      "key": "exchange_loss",
+      "page": 106,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "744066330.98",
+      "kind": "flow"
+    },
+    {
+      "key": "eps_basic",
+      "page": 7,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "5.41",
+      "kind": "flow"
+    },
+    {
+      "key": "eps_adjusted_prior",
+      "page": 7,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "2.84",
+      "kind": "flow"
+    },
+    {
+      "key": "eps_unadjusted_prior",
+      "page": 7,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "3.97",
+      "kind": "flow"
+    },
+    {
+      "key": "wa_roe_percent",
+      "page": 7,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "34.86",
+      "kind": "flow"
+    },
+    {
+      "key": "wa_roe_percent_prior",
+      "page": 7,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "38.12",
+      "kind": "flow"
+    },
+    {
+      "key": "parent_adjusted",
+      "page": 7,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "7510738801.54",
+      "kind": "flow"
+    },
+    {
+      "key": "revenue_optics",
+      "page": 14,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "20882640848.88",
+      "kind": "flow"
+    },
+    {
+      "key": "cogs_optics",
+      "page": 14,
+      "status": "PDF_PAGE_VALUE_FOUND_NORMALIZED",
+      "reported_value": "10763586516.02",
+      "kind": "flow"
+    },
+    {
+      "key": "product_volume_wan",
+      "page": 12,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "1119",
+      "kind": "flow"
+    },
+    {
+      "key": "product_volume_wan_prior",
+      "page": 12,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "695",
+      "kind": "flow"
+    },
+    {
+      "key": "product_capacity_wan",
+      "page": 12,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "2836",
+      "kind": "flow"
+    },
+    {
+      "key": "product_capacity_wan_prior",
+      "page": 12,
+      "status": "PDF_PAGE_VALUE_FOUND",
+      "reported_value": "1520",
+      "kind": "flow"
+    },
+    {
+      "key": "product_revenue_prior",
+      "page": 12,
+      "status": "NOT_FOUND_TEXT_EXTRACTION_REVIEW_IMAGE",
+      "reported_value": "10409361941.41",
+      "kind": "flow"
+    }
+  ],
+  "caveat": "A text-literal match does not prove label or financial scope; page-image validation and analytical review are independent."
+}
