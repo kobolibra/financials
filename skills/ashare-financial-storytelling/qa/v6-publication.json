@@ -16,7 +16,9 @@
     "cash_close_bridge",
     "stock_balance_pair",
     "working_capital_compare",
-    "concentration_radial"
+    "concentration_radial",
+    "multi_level_balance_anatomy",
+    "two_tier_signed_cash_waterfall"
   ],
   "browser_acceptance": {
     "html_sha256": "8200ddf74bb8949e8bbb747fea40999835d223190da3c9dee03c446d0d011344",
@@ -126,24 +128,39 @@
     "real_second_issuer": false
   },
   "source_pdf_verified_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
-  "live_cloudflare_verification": "NOT_CHECKED",
-  "publication_status": "SOURCE_AND_LOCAL_BROWSER_PASS_GITHUB_PRODUCTION_VERIFIED_CLOUDFLARE_REMOTE_UNVERIFIED",
+  "live_cloudflare_verification": "UNAVAILABLE_IN_CURRENT_ENVIRONMENT",
+  "publication_status": "GIT_VERIFIED_ATLAS_PROMOTED__LOCAL_BROWSER_PASS__CLOUDFLARE_REMOTE_UNVERIFIED",
   "production": {
     "repository": "kobolibra/financials",
     "branch": "main",
     "primary_domain": "https://financials-in-visuals.pages.dev/",
     "report_path": "/300394/2026-H1/",
-    "git_blob_sha": "5f1bebaf32beba16b171f1b4a6718f9f8fdd5b6e",
+    "git_blob_sha": "947a651c9831218b254ba29df964d1701424bc62",
     "homepage_git_blob_sha": "f996df5b130aedc55a488c8b646fa8a8a54dd7e0",
     "home_redirects": false,
     "git_production_updated": true,
     "live_cloudflare_http_checked": false,
-    "live_check_reason": "Remote Pages domains inaccessible via available web fetch; independent external check not claimed"
+    "live_check_reason": "Remote Pages domains inaccessible via available web fetch; independent external check not claimed",
+    "research_library_homepage_blob_sha": "f996df5b130aedc55a488c8b646fa8a8a54dd7e0",
+    "main_report_preview_identical": true,
+    "components": [
+      "v6 nine analytic chart types",
+      "balance-sheet capital anatomy",
+      "signed two-tier earnings-to-cash/cash movement waterfall"
+    ]
   },
   "forensic_diligence": [
     "R&D intensity and growth",
     "parent adjusted net profit & nonrecurring proportion",
     "weighted average ROE half-year comparison",
     "FX income statement vs cash FX vs OCI distinction"
-  ]
+  ],
+  "rebuild": {
+    "command": "python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --atlas --out outputs/tianfu-h1-v6-atlas.html --qa qa/v6-atlas.json",
+    "tested_local": true,
+    "unit_tests_passed": 13,
+    "desktop_tablet_mobile_local_tests_passed": true,
+    "live_http_verified": false
+  },
+  "revision_note": "Source preview and production Git blob verified identical; local Chromium 1440/768/390 tested; original report historical data limitations remain. Deployment to pages.dev not independently fetched."
 }
