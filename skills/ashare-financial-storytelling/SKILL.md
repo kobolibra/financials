@@ -1,61 +1,75 @@
 ---
 name: ashare-financial-storytelling
-version: 5.0.0
-summary: A-share fundamental research, forensic accounting, sourced finance visuals and reproducible offline HTML publishing. Real cross-issuer industrial ledger renderer, PDF candidate extractor, source SHA audit and browser gate; fail-closed for missing or sector-incompatible evidence.
+version: 6.0.0
+summary: Evidence-gated A-share equity fundamental analysis and original financial information design, with a reproducible multi-chart industrial research HTML publisher and explicit PDF/financial/visual/browser/release QA.
 ---
-
-# Financials Research Desk · A-Share Financial Storytelling Skill 5
+# FINANCIALS IN VISUALS · Research & Publishing Skill v6
 
 ## Mission
 
-From an **original Chinese listed issuer PDF** to an **institutionally defensible fundamental research narrative and excellent self-contained HTML**. Draw original explainers inspired by App Economy Insights' publicly described **business-model-first** inquiry, not its copyright-protected designs. The PDF is input, **not an output file**. Only publish what is supported by original disclosures, transparent calculations and explicit uncertainty. Never treat a chart as proof of a causal conclusion.
+Read the original A-share annual, semiannual or quarterly PDF as an analyst, **not** as a dashboard exporter. Answer in this order: (i) how the issuer earns money and where it sits in the value chain; (ii) why revenue and profit changed; (iii) how reported profit translates to operating cash; (iv) which capital commitments, balance-sheet items and financial-statement notes change the quality of profit; (v) best opposing explanation and **falsifiable follow-up indicators**; (vi) visualization that communicates these results without misrepresenting accounting.
 
-## Actual, tested capabilities
+**Output**: one responsive, independent, self-contained HTML research publication, with original plots/graphics and inline JS/CSS/SVG; no PDF output. The original PDF remains the source. Do not claim App Economy Insights affiliation or reproduce third-party diagrams. Publicly disclosed AEI work is an editorial/research **benchmark across all chart families**, not just a Sankey style reference.
 
-- `engine/probe_pdf.py`: scans a **searchable** PDF (any issuer or reporting period) for 14 categories of financial source *candidates*, with original nearby text, physical and printed page numbers, source SHA, and explicit `UNREVIEWED` flag. Does **not** auto-approve data, overcome scanned pages or choose consolidated vs parent columns autonomously.
-- `engine/source_audit.py`: compares original source SHA and checks whether ledger numbers can be located on claimed pages. Split/damaged PDF table cells can be flagged, not silently considered verified.
-- `engine/audit.py`: Decimal ledger validation (asset identity, P&L, minority/parent, cash-flow movement, indirect CFO adjustments, segment remainder, simple FCF, period & scope); **does not** validate investment thesis.
-- `engine/render.py`: cross-issuer renderer for industrial/service ledgers with approved source facts, real proportional Sankey (nonnegative conserved flows), revenue/gross-profit comparison, ALL signed disclosed CFO indirect adjustments, working capital, capital structure, counter-case, falsifiable watchlist, inline financial traces, keyboard/tooltips and SVG export. Banks, insurers and brokers **fail closed** until a separate sector renderer exists.
-- `tests/test_engine.py` plus `tests/browser_acceptance.py`: unit/adversarial + actual 1440/768/390 Chromium screenshot and interaction tests. Source PDF is **not shipped inside the bundle**; case sample requires the original supplied report for source checks.
+## Mandatory source and research discipline
 
-## Required workflow, no shortcuts
+1. Register document legal name/ticker/exchange, report type, current and comparative periods, financial statement **flow vs. stock**, consolidation basis, currency and original scale, revision status, audit opinion, original PDF SHA-256, PDF page index and printed page mapping.
+2. Read business model/industry/revenue policy, management report, consolidated P&L, consolidated balance sheet, consolidated CFO and note, change of equity, product/geographic revenue+cost, credit-loss allowance and AR aging, inventory composition/write-down, prepayments, other receivables, relevant associated parties, capex/constructed assets, R&D/SBC/impairment, FX/hedges, contingencies and material event notes. Do not use partial extracted text when a table is broken: inspect original rendered PDF page and record reviewer/source.
+3. Exact typed **evidence ledger** in original yuan Decimal (not rounded/display units) for each used material figure. Each cell has source original label, PDF page, table, period, stock/flow, currency, reporting scope, source quality and reported/derived label. A displayed derived metric includes a formula. Do not treat missing data as 0.
+4. Write a research memo **before charting**: the specific company economic model; current principal thesis; material quantified facts; competing explanation of equal sophistication; evidence that would confirm or falsify the thesis; three to five watch indicators and unresolved gaps. Distinguish `reported fact`, `management claim`, `reproducible calculation`, `analyst inference`, `unknown`.
+5. For the A-share framework, check changed share counts / bonus/adjusted EPS, nonrecurring gains after taxes, parent versus consolidated profits, tax, working capital net versus gross, AR top-five vs **revenue** concentration, supplier prepayment versus purchase concentration, FX P&L versus cash FX vs foreign translation OCI. An error in denominator is a blocker.
+6. Key sector routing. Generic industrial profitability is **invalid** for banks, insurers, brokers and some property developers. Fail closed, select sector-specific notes and standards. Avoid forcing positive Sankey flows for loss makers or signed items.
+7. If external public sources are explicitly authorized, get dated industry/peer/market data and cite separately. Do not infer peer valuations, price history, growth estimates, shipment quantities or operating KPIs from a single filing.
 
-1. **PDF intake:** source fingerprint, legal issuer identity, market board, printed page map, first-party disclosure vintage, reporting period, audit, units, currency, consolidation scope, restatements, annual vs H1/YTD. Run `probe_pdf.py` and check the table images for important candidates. If scanned/no text, clearly request manual/OCR source inspection before approval. Distinguish PDF page index from the printed page number.
-2. **Research question:** before charting, explain the value chain, who pays whom, segment economics, pricing/volume/mix/currency supply constraints, geography and business risks. Start from the biggest **financially material** change, not a fixed chart list. Compare MD&A with notes and statements; check audited opinions if annual.
-3. **Typed evidence:** build `examples/*-ledger.json` with original yuan Decimal strings, reporting period, stock/flow, consolidated/parent, source page, original Chinese field label, status and verification level. Critical qualitative explanations must be tagged `management_claim`, `reported_fact`, `derived` or `analyst_hypothesis` in the research memo. Need explicit company name and source SHA.
-4. **Analytical accounting:** run `audit.py` against the approved ledger with exact original values. Important mandatory reading: revenue/cost product margins, weighted ROE and share-adjusted EPS, recurring vs nonrecurring parent profit, net profit→CFO, cash movements, inventory composition and provision, AR aging and counterparty concentration, prepayments, tax, subsidies, R&D and FX distinctions, equity and capital allocation. Period labels and CAS identities are not optional.
-5. **Adversarial thesis:** describe what changed, strongest cause that is **supported**, most credible alternative, information that cannot be established from the PDF, and 3–5 measurable next-disclosure falsifiers. Do not infer unit/volume/price, client identities or peer advantage without appropriate evidence. AR concentration cannot be called revenue concentration; prepayment concentration cannot be called purchases concentration.
-6. **Sector routing:** industrial/service renderer only with valid consolidated revenue and COGS. Banks/insurers/securities/property need their own appropriate validated renderers; no generic gross-profit/FCF Sankey. If material chart inputs missing, omit chart instead of drawing false values.
-7. **Rendering:** author/review `examples/*-memo.json`; run `render.py`. Memo without `review_status: ANALYST_REVIEWED` is visibly marked as a draft. A valid memo remains a record of an analyst review, not an autonomous AI truth guarantee. Never claim independent verification of management's explanations.
-8. **Math QA:** exact Decimal at source (yuan), rounded only at display; signed CFO adjustments positive/negative, flow conservation per node, ratio comparison basis, residual disclosure. Hard block when a source is missing, period mixed, or core identities fail.
-9. **Editorial QA:** original high-quality research publication: one incisive thesis, editorial typography, meaningful palette, proportional flows, negative-value waterfall/bridge, readable original source captions, evidence and rival view near claims. No decorative dashboards or chart quotas. No unconsented copied publisher visual.
-10. **Browser QA:** build HTML as single offline file with *no* remote assets/CDNs/fonts/scripts. Inspect 1440 desktop, 768 tablet, 390 mobile *and* chart horizontal scroll. Confirm tooltips on hover/focus, navigation, export, no JS errors or requests; keep screenshots and machine-readable QA JSON. Visual review is human, not replaceable by tests alone.
-11. **Release:** stage new version at `public/preview/` in the expressly authorized GitHub repo, verify blob SHA. Only replace production report/homepage with user's explicit release authorization. Distinguish **locally rendered**, **browser-tested**, **Git committed**, **Cloudflare live URL independently tested**. Never equate these.
+## App Economy Insights benchmark: the FULL chart grammar
 
-## One-company acceptance and honest generalization
+The AEI's publicly available *6 Charts Before You Buy*, P&L, balance-sheet, cash-flow and FCF analyses teach different graphics for different research questions. Select by available evidence, never by quota:
 
-The 2026 H1 Tianfu 185-page filing is a source-matched, audited **regression case**. Automated PDF candidate discovery and cross-issuer *ledger-to-HTML* rendering now run, including a second synthetic industrial fixture. This is NOT the same as zero-touch report-grade analysis of every A-share filing. Banks/insurance are intentionally blocked. Full annual/hybrid/OCR inputs require manual source review and sector-specific adapters. Do not call the entire platform universally automatic.
+| Research question | Preferred graphic | Accounting/analytical blocker |
+|---|---|---|
+| How the business makes money? | **Conserved true Sankey**: disclosed product revenue → consolidated revenue → COGS/gross profit → operating core/spend; *separate signed profit bridge* to net income | Product costs must exist; no negative ribbons; no invented product classification |
+| Which drivers explain profit change? | **Gross-profit delta waterfall**, comparable period bars and, if defensible, within-product vs mix decomposition | Do not label accounting revenue/cost bridge a price-volume causal explanation |
+| Is growth accelerating? | 8–12 comparable **quarterly** revenue and YoY line + segment mix only if historical filings exist | H1 versus H1 is not 12-quarter trend; no interpolated missing periods |
+| Are margins and returns durable? | GAAP/CAS gross, operating and FCF margin lines, ROE/ROIC with correct denominators and comparable years | No annualizing half-year ROE as a proven yearly return; SBC not free |
+| Does profit convert to cash? | **Signed bridge**: consolidated NP + every disclosed indirect CFO adjustment (grouped with expandable raw 15 or actual count) → CFO | Do not conflate balance-sheet delta with indirect cash adjustments |
+| Where did cash go? | Cash opening + CFO + CFI + CFF + FX → cash closing **waterfall**; FCF = CFO−cash capex separately | Cash equivalents ≠ monetary funds; financing dividend + interest differs from dividends |
+| What finances operations? | **Equal-total asset stocks and funding/liabilities/equity columns**; net cash/debt maturity when available | Balance-sheet components are stocks, NOT money moving through the company |
+| Working capital/concentration | Same-scope stock pair or grouped bars; concentration part-to-whole radial with **actual denominators** | AR concentration ≠ revenue concentration, prepayments ≠ total procurement |
+| Peer context/valuation/price vs fundamentals | Dated comparison, valuation bands, indexed fundamentals/market price ONLY when approved external price/peer data present | Missing prices/multiples or incomparable peers → show source gap, **no pretend chart** |
 
-## Usage
+Reference studies: https://www.appeconomyinsights.com/p/6-charts-before-you-buy ; https://www.appeconomyinsights.com/p/how-to-analyze-an-income-statement ; https://www.appeconomyinsights.com/p/how-to-analyze-a-cash-flow-statement ; https://www.appeconomyinsights.com/p/how-to-analyze-a-balance-sheet ; https://www.appeconomyinsights.com/p/free-cash-flow-explained ; https://www.appeconomyinsights.com/p/how-to-analyze-a-10-k . The specific issuer original PDF—not third-party screenshots—is the source for published values.
+
+## Figure and editorial quality contract
+
+- **No cookie-cutter KPI terminal.** A useful cover and sharp quantified claim, strong first money-flow page, then visually varied earnings, growth, cash, stock/working capital, risk and counterargument chapters. Layout has intentional whitespace, legible Chinese and numerical hierarchy. Every figure must explain one question in five seconds.
+- Use an original restrained palette (ink, neutral money, green profit, coral costs/outflows). Don't copy logos, individual graphics, page composition, or trademarks from AEI.
+- Every displayed number linked to source page, correct reported period, decimal formula and note; major figure titles contain explicit question/answer. Important numbers readable without hover. Tooltips reveal exact yuan/page. Enable keyboard, accessible alt/role text, SVG export.
+- Do not use CDN, remotely loaded fonts, APIs, external JS/SVG, stock photos, runtime finance feeds. Offline HTML must stand alone. Browser test 1440px, 768px, 390px: zero document horizontal overflow, meaningful chart scroll affordance, hover/focus, downloads, headings, no page errors, no remote requests, screenshots visually inspected.
+- Reject repetitive generic charts, vague “增长很好” captions, insufficient/too small chart labels, broken page anchors, false negative/positive area geometries and overselling of unavailable evidence.
+- Use clear notes for stock vs flow, reported vs derived, segment residual, management explanation and research hypothesis.
+
+## Reproducible implementation (what actually works)
+
+- Source examples: `examples/tianfu-ledger.json` and `examples/tianfu-memo.json` contain the manually reviewed case.
+- `engine/audit.py`: exact yuan, accounting scope, sign, reporting period and evidence gates.
+- `engine/probe_pdf.py` and `engine/source_audit.py`: **candidate-only** PDF extraction and page checking, not autonomous evidence approval. Broken cell extraction must be manually reviewed.
+- `engine/build.py` + `template.html`: **data-driven**, self-contained editorial engine for industrial and manufacturing sources meeting required fields. It must not embed any issuer, old date, product class or PDF source page from the original demo; new issuer changes are injected only via ledger/memo. Financial-institution cases fail closed.
+- `tests/test_engine.py`: arithmetic, source conservation, missing-period, corruption, changed-issuer and sector-safety tests.
+- `tests/browser.py`: local Chromium browser and responsive acceptance; screenshots in QA.
+
+Example (from skill root):
 
 ```bash
-python engine/probe_pdf.py company.pdf --out output/candidates.json
-# MANUALLY inspect source candidate pages and approve a normalized ledger + memo
-python engine/source_audit.py --pdf company.pdf --ledger examples/company-ledger.json --out qa/source.json
-python engine/audit.py examples/company-ledger.json --pdf company.pdf --out qa/accounting.json
-python engine/render.py --ledger examples/company-ledger.json --memo examples/company-memo.json --out output/research.html --qa qa/finance.json
-python -m unittest discover -s tests -p 'test_*.py' -v
-python tests/browser_acceptance.py output/research.html qa/browser
+python engine/audit.py examples/tianfu-ledger.json --out qa/ledger-check.json
+python -m unittest discover -s tests -p 'test_engine.py' -v
+python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-h1-v6.html --qa qa/v6.json
+python tests/browser.py
 ```
 
-Read detailed domain research from the existing `references/research-method.md`, `references/ashare-accounting.md`, `references/sector-playbooks.md`, `references/visual-editorial.md`, `references/quality-gates.md` and `references/tianfu-research-case.md` in the `financials` repo. The above commands assume this bundle's root directory and installed `PyMuPDF` + `Playwright/Chromium` for analysis/QA (the HTML output itself requires no Python/Node/CDN).
+The renderer **does not automatically perform full independent research or parse an arbitrary PDF perfectly**. A human-reviewed memo and evidence ledger are prerequisites. This is a multi-chart **industrial** engine, not a guaranteed universal A-share PDF-to-institutional-report model. Cross-sector full automation requires separate design, real multi-company regression and specialist sector templates.
 
-## Conditions that block 'publication-ready'
+## Release gates and authorization
 
-- Source PDF SHA mismatch, misread unit/period/reporting scope, critical reconciliation failure, unsigned or fabricated financial segment, any invented causal assertion or misleading graphic.
-- Unresolved major source image/text issue, inappropriate sector renderer, inability to establish actual figure data or broken browser interactions.
-- Public Pages address not independently verified, even when GitHub push succeeded; cite link as *expected* rather than proven until measured.
+Mandatory outcomes: `SOURCE_CHECKED`, `FINANCIAL_PASS`, `RESEARCH_REVIEWED`, `CHART_SEMANTICS_PASS`, `BROWSER_PASS`, `GIT_BLOB_VERIFIED`, `LIVE_HTTP_VERIFIED`. Any missing gate appears explicitly in QA JSON/readme; never silently label fully released. Verify fingerprint and unchanged source pages, exact cash/gross-profit reconciliations, all visual geometry, static chart sizes, the final live web page, and whether Cloudflare Git-to-Pages corresponds to the intended repository/branch and public domain.
 
-## Regulatory/version awareness
-
-Follow issuer's actual accounting rules **as of report period**, not today's future-effective CAS changes. CSRC 2025 annual report format revisions effective July 2025; MOF CAS30 issued Aug 2026 with future staggered effective dates (some listed firms 2027, other mainland issuers 2029 unless early adoption). New regulator guidance is not automatically applicable retroactively. See official regulator links in `references/ashare-accounting.md`.
+Only write to expressly authorized repository; stage preview before replacing production. Production replacement requires explicit authorization in this conversation. Do not touch unrelated repos, Cloudflare settings or origin PDF. **Best practices mean demonstrated quality and truthful limits, not the version number or a self-assigned 'top-tier' label.**
