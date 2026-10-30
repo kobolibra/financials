@@ -1,4 +1,32 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>公司研究入口 · Financials in Visuals</title><style>body{margin:0;background:#f5f6f2;color:#1b3438;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;display:grid;min-height:100vh;place-items:center}main{max-width:720px;padding:35px}h1{font-size:clamp(27px,5vw,45px);letter-spacing:-.02em}p{line-height:1.8;color:#566d69}a{color:#00765d;font-weight:700;display:inline-block;margin:8px 18px 8px 0;text-underline-offset:4px}</style>
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>未找到页面 · Financials in Visuals</title>
+<meta name="robots" content="noindex">
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:#1a393b;background:#f5f6f2}
+body{margin:0;min-height:100vh;display:grid;place-items:center}
+main{max-width:730px;margin:0 auto;padding:40px 24px}
+small{color:#098369;letter-spacing:.18em;font-weight:700}
+h1{font-size:clamp(32px,5vw,52px);letter-spacing:-.04em;font-weight:600}
+p{line-height:1.8;color:#55736b}
+nav{display:flex;gap:15px;flex-wrap:wrap;margin-top:25px}
+a{color:#08795d;text-decoration:none;border:1px solid #a9c8bb;border-radius:4px;padding:12px 15px;font-weight:700}
+a:hover,a:focus-visible{background:#e5efe9}
+</style>
 <script>
-(()=>{let x=location.pathname.match(/\/(300394|300308|300502)\//);if(x){location.replace('/#company-'+x[1]);}})();
-</script></head><body><main><p>FINANCIALS IN VISUALS / COMPANY RESEARCH</p><h1>报告位置已更新</h1><p>如果旧的公司网址没有正确打开，我们会尽可能转到相应公司的完整研究。你也可以使用下面的直接定位入口。</p><nav><a href="/#company-300502">新易盛 · 300502</a><a href="/#company-300308">中际旭创 · 300308</a><a href="/#company-300394">天孚通信 · 300394</a><a href="/">返回研究目录</a></nav></main></body></html>
+/* Only a missing legacy report route redirects. A missing root report file displays an honest 404. */
+(()=>{const match=location.pathname.match(/^\/(300394|300308|300502)\/2026-H1(?:\/index\.html|\/?)$/);
+if(match) location.replace("/"+match[1]+".html");})();
+</script>
+</head>
+<body><main><small>FINANCIALS IN VISUALS / PAGE NOT FOUND</small>
+<h1>这个网址没有找到报告</h1>
+<p>网站已经恢复独立报告页面。请选择下方公司的完整研报；若仍显示本页，说明当前 Cloudflare 部署还没有包含对应 HTML 文件，而不是让你继续在首页滚动。</p>
+<nav aria-label="上市公司研究报告">
+<a href="/300502.html">新易盛 300502</a>
+<a href="/300308.html">中际旭创 300308</a>
+<a href="/300394.html">天孚通信 300394</a>
+<a href="/">返回研究目录</a>
+</nav>
+</main></body></html>
