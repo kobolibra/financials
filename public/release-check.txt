@@ -1,0 +1,9 @@
+FINANCIALS_IN_VISUALS_STATIC_MULTIPAGE_OK
+date=2026-10-30
+home_file=public/index.html
+homepage_links=300502.html,300308.html,300394.html
+report_300502=public/300502.html
+report_300308=public/300308.html
+report_300394=public/300394.html
+source_branch=main
+note=If visiting /release-check.txt returns the homepage instead of this text, this Cloudflare Pages deployment has not published the new static files or is pointing at a different build output.
