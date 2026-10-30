@@ -1,0 +1,131 @@
+{
+  "source_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+  "source_facts": 59,
+  "indirect_adjustments": 15,
+  "sankey_groups": 3,
+  "accounting": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
+  "output_sha256": "02a7c37d0392e020443e0e7b2fc4d5adb9b5997f3dd894c8760cca67b962afc4",
+  "html_bytes": 54770,
+  "status": "LOCAL_SOURCE_REVIEWED_NEEDS_BROWSER_AND_PUBLIC_HTTP",
+  "chart_types": [
+    "true_money_flow",
+    "signed_profit_waterfall",
+    "gross_profit_delta_bridge",
+    "same_period_comparison",
+    "net_income_to_cfo_bridge",
+    "cash_close_bridge",
+    "stock_balance_pair",
+    "working_capital_compare",
+    "concentration_radial"
+  ],
+  "browser_acceptance": {
+    "html_sha256": "02a7c37d0392e020443e0e7b2fc4d5adb9b5997f3dd894c8760cca67b962afc4",
+    "cases": [
+      {
+        "viewport": 1440,
+        "inner": 1440,
+        "scroll": 1440,
+        "stage": 5,
+        "ribbons": 7,
+        "waterfalls": 4,
+        "headings": [
+          "一份好财报研究，应该回答利润为何增长，以及它能否持续。",
+          "从产品收入出发，利润究竟流向哪里？",
+          "毛利润为什么增长得比收入更快？",
+          "账面净利润，到底有多少变成了现金？",
+          "财务安全垫之下，哪些经营资产正在占用资金？",
+          "研究判断必须经得起反面解释。",
+          "下一份报告，哪些信息最可能推翻今天的判断？",
+          "证据、数据口径与研究边界"
+        ],
+        "links": [],
+        "svgWidths": [
+          1150,
+          1154,
+          1040,
+          1150,
+          1154
+        ],
+        "hover": true,
+        "focus": true,
+        "export": true,
+        "errors": [],
+        "requests": [],
+        "passed": true
+      },
+      {
+        "viewport": 768,
+        "inner": 768,
+        "scroll": 768,
+        "stage": 5,
+        "ribbons": 7,
+        "waterfalls": 4,
+        "headings": [
+          "一份好财报研究，应该回答利润为何增长，以及它能否持续。",
+          "从产品收入出发，利润究竟流向哪里？",
+          "毛利润为什么增长得比收入更快？",
+          "账面净利润，到底有多少变成了现金？",
+          "财务安全垫之下，哪些经营资产正在占用资金？",
+          "研究判断必须经得起反面解释。",
+          "下一份报告，哪些信息最可能推翻今天的判断？",
+          "证据、数据口径与研究边界"
+        ],
+        "links": [],
+        "svgWidths": [
+          1040,
+          1040,
+          1040,
+          1040,
+          1040
+        ],
+        "hover": true,
+        "focus": true,
+        "export": true,
+        "errors": [],
+        "requests": [],
+        "passed": true
+      },
+      {
+        "viewport": 390,
+        "inner": 390,
+        "scroll": 390,
+        "stage": 5,
+        "ribbons": 7,
+        "waterfalls": 4,
+        "headings": [
+          "一份好财报研究，应该回答利润为何增长，以及它能否持续。",
+          "从产品收入出发，利润究竟流向哪里？",
+          "毛利润为什么增长得比收入更快？",
+          "账面净利润，到底有多少变成了现金？",
+          "财务安全垫之下，哪些经营资产正在占用资金？",
+          "研究判断必须经得起反面解释。",
+          "下一份报告，哪些信息最可能推翻今天的判断？",
+          "证据、数据口径与研究边界"
+        ],
+        "links": [],
+        "svgWidths": [
+          950,
+          950,
+          950,
+          950,
+          950
+        ],
+        "hover": true,
+        "focus": true,
+        "export": true,
+        "errors": [],
+        "requests": [],
+        "passed": true
+      }
+    ]
+  },
+  "unit_tests": {
+    "run": 13,
+    "passed": 13,
+    "synthetic_second_issuer": true,
+    "real_second_issuer": false
+  },
+  "source_pdf_verified_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+  "live_cloudflare_verification": "NOT_CHECKED",
+  "publication_status": "LOCAL_ACCOUNTING_AND_BROWSER_PASS_GITHUB_AND_LIVE_PENDING"
+}
