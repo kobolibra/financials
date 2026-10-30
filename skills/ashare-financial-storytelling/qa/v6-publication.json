@@ -4,8 +4,8 @@
   "indirect_adjustments": 15,
   "sankey_groups": 3,
   "accounting": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
-  "output_sha256": "02a7c37d0392e020443e0e7b2fc4d5adb9b5997f3dd894c8760cca67b962afc4",
-  "html_bytes": 54770,
+  "output_sha256": "8200ddf74bb8949e8bbb747fea40999835d223190da3c9dee03c446d0d011344",
+  "html_bytes": 57224,
   "status": "LOCAL_SOURCE_REVIEWED_NEEDS_BROWSER_AND_PUBLIC_HTTP",
   "chart_types": [
     "true_money_flow",
@@ -19,7 +19,7 @@
     "concentration_radial"
   ],
   "browser_acceptance": {
-    "html_sha256": "02a7c37d0392e020443e0e7b2fc4d5adb9b5997f3dd894c8760cca67b962afc4",
+    "html_sha256": "8200ddf74bb8949e8bbb747fea40999835d223190da3c9dee03c446d0d011344",
     "cases": [
       {
         "viewport": 1440,
@@ -127,19 +127,23 @@
   },
   "source_pdf_verified_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
   "live_cloudflare_verification": "NOT_CHECKED",
-  "publication_status": "GITHUB_V6_PRODUCTION_COMMITTED_LOCAL_BROWSER_PASS_CLOUDFLARE_REMOTE_UNVERIFIED",
+  "publication_status": "SOURCE_AND_LOCAL_BROWSER_PASS_GITHUB_PRODUCTION_VERIFIED_CLOUDFLARE_REMOTE_UNVERIFIED",
   "production": {
     "repository": "kobolibra/financials",
     "branch": "main",
-    "primary_domain_user_provided": "https://financials-in-visuals.pages.dev/",
+    "primary_domain": "https://financials-in-visuals.pages.dev/",
     "report_path": "/300394/2026-H1/",
-    "git_blob_sha": "893c4f20b4f56ca314cb057d70b8bd4c26b06739",
-    "equals_staged_preview": true,
+    "git_blob_sha": "5f1bebaf32beba16b171f1b4a6718f9f8fdd5b6e",
     "homepage_git_blob_sha": "f996df5b130aedc55a488c8b646fa8a8a54dd7e0",
-    "homepage_redirects_to_issuer": false,
-    "git_promoted": true,
-    "cloudflare_public_url_independently_verified": false,
-    "external_fetch_failure": "web fetch: cache miss / inaccessible",
-    "browser_qa_mode": "local Chromium page.set_content, not Cloudflare remote"
-  }
+    "home_redirects": false,
+    "git_production_updated": true,
+    "live_cloudflare_http_checked": false,
+    "live_check_reason": "Remote Pages domains inaccessible via available web fetch; independent external check not claimed"
+  },
+  "forensic_diligence": [
+    "R&D intensity and growth",
+    "parent adjusted net profit & nonrecurring proportion",
+    "weighted average ROE half-year comparison",
+    "FX income statement vs cash FX vs OCI distinction"
+  ]
 }
