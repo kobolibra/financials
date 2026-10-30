@@ -1,45 +1,38 @@
-# FINANCIALS · Research Desk v5
+# FINANCIALS IN VISUALS · Skill v6 & Tianfu case
 
-> From publicly filed Chinese A-share financial reports to an evidence-backed, audited, distinctive **single-file HTML research publication**.
+This directory contains a **reproducible** offline HTML research article generator for A-share industrial issuers. It is an original design drawing on the *complete* App Economy Insights research/chart framework, not an App Economy Insights graphic clone.
 
-This package fixes two concrete gaps in prior versions: (1) the financial HTML renderer is no longer hardcoded for Tianfu; it accepts typed ledgers and curated memos from different industrial issuers, with fail-closed financial industry routing; (2) browser screenshot and interactions are actually tested on 3 viewports. It also provides a real PDF evidence **candidate extractor**. **It does not hallucinate full autonomous institutional analysis** from an unseen PDF; human approval of the accounting statement cells and analyst thesis remains part of the quality contract.
+## Actual delivered charts (Tianfu 2026 H1)
+1. True conserved product → consolidated revenue → cost/gross profit → operating-core flow diagram.
+2. Gross profit → net income signed P&L waterfall, including operating expense, signed other operating gains, nonoperating losses and income tax.
+3. Prior/current revenue, COGS, GP, CFO comparative proportional bar panel.
+4. GP-change signed bridge separating revenue growth from cost change (not causal price-volume attribution).
+5. Net income → CFO signed indirect-method bridge, with all 15 original lines expanded below.
+6. Opening → closing cash equivalents bridge across CFO, CFI, CFF and FX.
+7. Strictly equal-total consolidated assets vs liabilities/equity stock diagram.
+8. Operating asset trends on correct year-end vs half-year-end dates.
+9. Top-five AR+contract assets and largest-supplier prepayment concentration (correct denominators).
 
-## What is included
+Three of AEI's six pre-investment chart lenses **cannot be defensibly implemented** with the provided single half-year PDF alone: multi-quarter trends, share price vs fundamentals and valuation/peer comparisons. Their absence is intentional, not an unfinished placeholder to fill with invented data.
 
-- `SKILL.md`: full workflow contract and gatekeeping.
-- `engine/probe_pdf.py`: generic searchable-PDF candidate extraction, including raw passages and page provenance.
-- `engine/source_audit.py`: original PDF SHA and exact/fragmented source value presence check.
-- `engine/audit.py`: source-ledger financial identities and scope.
-- `engine/render.py`: industrial issuer ledger + research memo → original fully self-contained HTML.
-- `examples/tianfu-ledger.json`: reviewed 59 structured financial facts, including 10 newly added working-capital concentration lines and 15 separately signed indirect-CFO adjustments.
-- `examples/tianfu-memo.json`: editorial research thesis, alternative and falsifiable follow-up, manually reviewed.
-- `tests/test_engine.py`: 9 unit and adversarial tests including second synthetic issuer, mismatched arithmetic, inappropriate bank template and incomplete segmentation.
-- `tests/browser_acceptance.py`: actual Chromium offline browser smoke + screenshot + SVG export/interaction.
-- `outputs/tianfu-2026H1-v5.html`: independently browser-rendered deliverable; the PDF itself is deliberately not included.
-- `qa/`: original ledger audit, source-text cross check, viewport screenshot and acceptance JSON; separated publication states.
-
-## Reproduce the Tianfu case
+## Build and test
 
 ```bash
-python -m pip install pymupdf playwright
-# Browser QA uses installed system Chromium: /usr/bin/chromium
-python engine/probe_pdf.py original_report.pdf --out outputs/candidates.json
-python engine/source_audit.py --pdf original_report.pdf --ledger examples/tianfu-ledger.json --out qa/source-audit.json
-python engine/audit.py examples/tianfu-ledger.json --pdf original_report.pdf --out qa/audit.json
-python engine/render.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-2026H1-v5.html --qa qa/finance.json
-python -m unittest discover -s tests -p 'test_*.py' -v
-python tests/browser_acceptance.py outputs/tianfu-2026H1-v5.html qa/browser
+python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-h1-v6.html --qa qa/v6.json
+python -m unittest discover -s tests -p test_engine.py -v
+python tests/browser.py
 ```
 
-If using a different report, **replace** the sample ledger and memo with a reviewed issuer-specific pair, not merely the issuer's name. Changes in source period, accounting scope or product dimensions must trigger a new audit. For a bank/insurer, do not reuse industrial charts.
+The renderer uses only Python standard library. Local browser acceptance uses installed Playwright/Chromium. The HTML needs no dependencies or external URLs when opened.
 
-## Truth-in-publishing
+## Important limits
 
-- `PDF_INTAKE`: source candidates, not approved data.
-- `ARITHMETIC_AUDITED`: sourced figures internally reconcile, not equivalent to investment thesis verification.
-- `ANALYST_REVIEWED`: reviewer has checked key original note/table lines, causal and rival arguments, and limits.
-- `BROWSER_VERIFIED`: attached local Chromium tests and screenshots pass, visible layout inspected.
-- `GIT_VERIFIED`: actual GitHub source blob SHA checked.
-- `LIVE_VERIFIED`: independently fetched/rendered Cloudflare URL. Without it, do not assert public deployment works.
+- Original source: user's 185-page Tianfu 2026 H1 issuer report (unaudited) with SHA-256 `6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5`.
+- Financial checks are Decimal/yuan reconciliation. A PDF table scanner produces candidates only; manual cell/page review remains mandatory.
+- 13 regression checks (including a deliberately *synthetic* alternate issuer and missing comparisons) and desktop/tablet/mobile browser tests show this **industrial report generator** works for the tested cases; they cannot establish the quality of independent fundamental research for arbitrary A-share issuers, nor that financial sector companies are supported.
+- Data extraction for another genuine issuer and second-industry acceptance are **not** yet established. Banks/insurers/brokers fail closed. No market prices/valuation/peer estimates are invented.
+- Only a verified GitHub commit and live Cloudflare fetched HTML would establish public website publication. A commit by itself is not a live test.
 
-**Design provenance:** independent original design informed by publicly described App Economy Insights methodology (business anatomy, three-statement integration, earnings-to-cash and visual storytelling). No affiliation and no reused proprietary graphic.
+## Publishing layout
+
+The HTML is published at `/300394/2026-H1/`. Preserve `public/index.html` as the independent **research library homepage**, without forced redirects to any company. Do not create duplicate v6 preview/production versions without a release record.
