@@ -1,0 +1,208 @@
+{
+  "status": "CONDITIONAL_DRAFT",
+  "summary": {
+    "PASS": 10,
+    "FAIL": 0,
+    "NOT_CHECKED": 0
+  },
+  "issues": [],
+  "verification_pending": [
+    "revenue",
+    "revenue_prior",
+    "cogs",
+    "cogs_prior",
+    "total_operating_costs",
+    "operating_profit",
+    "other_income",
+    "investment_income",
+    "fair_value_income",
+    "credit_impairment",
+    "asset_impairment",
+    "disposal_income",
+    "nonop_income",
+    "nonop_expense",
+    "income_tax",
+    "net_profit",
+    "net_profit_prior",
+    "parent_profit",
+    "parent_profit_prior",
+    "minority_profit",
+    "research_expenses",
+    "research_expenses_prior",
+    "financial_expenses",
+    "financial_expenses_prior",
+    "cfo",
+    "cfo_prior",
+    "cfi",
+    "cff",
+    "fx_effect",
+    "cash_open",
+    "cash_close",
+    "capex_cash",
+    "capex_cash_prior",
+    "assets",
+    "assets_prior",
+    "current_assets",
+    "noncurrent_assets",
+    "liabilities",
+    "equity",
+    "inventory",
+    "inventory_prior",
+    "raw_material",
+    "raw_material_prior",
+    "accounts_receivable",
+    "accounts_receivable_prior",
+    "prepayment",
+    "prepayment_prior",
+    "monetary_funds",
+    "monetary_funds_prior",
+    "fixed_assets",
+    "fixed_assets_prior",
+    "construction_in_progress",
+    "construction_in_progress_prior",
+    "accounts_payable",
+    "accounts_payable_prior",
+    "top_five_ar",
+    "top_prepay",
+    "top_five_prepay",
+    "inventory_gross",
+    "inventory_allowance",
+    "inventory_allowance_prior",
+    "exchange_loss",
+    "eps_basic",
+    "eps_adjusted_prior",
+    "eps_unadjusted_prior",
+    "wa_roe_percent",
+    "wa_roe_percent_prior",
+    "parent_adjusted",
+    "revenue_optics",
+    "cogs_optics",
+    "product_volume_wan",
+    "product_volume_wan_prior",
+    "product_capacity_wan",
+    "product_capacity_wan_prior",
+    "product_revenue_prior"
+  ],
+  "checks": [
+    {
+      "id": "assets=liabilities+equity",
+      "status": "PASS",
+      "expected": "36646979659.62",
+      "computed": "36646979659.62",
+      "residual": "0.00",
+      "inputs": [
+        "assets",
+        "liabilities",
+        "equity"
+      ]
+    },
+    {
+      "id": "assets=current+noncurrent",
+      "status": "PASS",
+      "expected": "36646979659.62",
+      "computed": "36646979659.62",
+      "residual": "0.00",
+      "inputs": [
+        "assets",
+        "current_assets",
+        "noncurrent_assets"
+      ]
+    },
+    {
+      "id": "operating-profit-reconciliation",
+      "status": "PASS",
+      "expected": "8681997325.50",
+      "computed": "8681997325.50",
+      "residual": "0.00",
+      "inputs": [
+        "operating_profit",
+        "revenue",
+        "total_operating_costs",
+        "other_income",
+        "investment_income",
+        "fair_value_income",
+        "credit_impairment",
+        "asset_impairment",
+        "disposal_income"
+      ]
+    },
+    {
+      "id": "net-profit-reconciliation",
+      "status": "PASS",
+      "expected": "7566314696.14",
+      "computed": "7566314696.14",
+      "residual": "0.00",
+      "inputs": [
+        "net_profit",
+        "operating_profit",
+        "nonop_income",
+        "nonop_expense",
+        "income_tax"
+      ]
+    },
+    {
+      "id": "parent+minority=net-profit",
+      "status": "PASS",
+      "expected": "7566314696.14",
+      "computed": "7566314696.14",
+      "residual": "0.00",
+      "inputs": [
+        "net_profit",
+        "parent_profit",
+        "minority_profit"
+      ]
+    },
+    {
+      "id": "cash-close=open+net-flows+fx",
+      "status": "PASS",
+      "expected": "7184114558.40",
+      "computed": "7184114558.40",
+      "residual": "0.00",
+      "inputs": [
+        "cash_close",
+        "cash_open",
+        "cfo",
+        "cfi",
+        "cff",
+        "fx_effect"
+      ]
+    },
+    {
+      "id": "gross-profit=revenue-cogs",
+      "status": "PASS",
+      "expected": "10128625496.43",
+      "computed": "10128625496.43",
+      "residual": "0.00",
+      "inputs": [
+        "gross_profit",
+        "revenue",
+        "cogs"
+      ]
+    },
+    {
+      "id": "product-coverage",
+      "status": "PASS",
+      "disclosed_products": [
+        "revenue_optics"
+      ],
+      "residual_not_a_segment": "27106113.32",
+      "message": "Residual must be labeled as undisclosed difference, not a named disclosed segment."
+    },
+    {
+      "id": "indirect-cfo-reconciliation",
+      "status": "PASS",
+      "residual": "0.00",
+      "computed": "1616408524.15",
+      "expected": "1616408524.15",
+      "adjustment_count": 15
+    },
+    {
+      "id": "simple-fcf-calculation",
+      "status": "PASS",
+      "formula": "CFO - cash paid to acquire/build long-term assets",
+      "derived_fcf": "352567004.38",
+      "note": "Simplified derived metric, not explicitly reported by issuer"
+    }
+  ],
+  "warning": "A computational PASS is not a publication sign-off; verify page images, original cells, scope, narrative and rendered outputs."
+}
