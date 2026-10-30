@@ -1,9 +1,9 @@
 {
   "schema": "v4-research-qa",
-  "status": "ACCOUNTING_AND_MARKUP_CHECKS_PASS_BROWSER_AND_LIVE_UNVERIFIED",
+  "status": "ACCOUNTING_AND_STATIC_MARKUP_PASS_CURRENT_V4_BROWSER_UNVERIFIED",
   "issuer": "苏州天孚光通信股份有限公司",
   "source_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
-  "preview_git_blob_sha": "176aa183b4402e83a8122ba12e19ca56f797eca5",
+  "preview_git_blob_sha": "f633fb9451b73997485281655eda3fb9a89c552a",
   "source_addendum_blob_sha": "d9a76ffdb74071904ed62cfb1f8d9a45809a3b13",
   "checks": [
     {
@@ -81,5 +81,19 @@
   "count": {
     "passed": 13,
     "failed": 0
+  },
+  "static_review": {
+    "sankey_ribbons": 6,
+    "internal_anchors_checked": 7,
+    "missing_anchors": 0,
+    "remote_asset_refs": 0,
+    "verified_text": [
+      "Top five customer balance concentration is not revenue concentration",
+      "Supplier #1 prepayment concentration is not total purchase concentration",
+      "FX P&L, cash FX and OCI distinct",
+      "Adjusted EPS comparison is correctly described"
+    ],
+    "browser_render_qa": "NOT_CHECKED_CURRENT_V4",
+    "cloudflare_live_http_qa": "UNAVAILABLE"
   }
 }
