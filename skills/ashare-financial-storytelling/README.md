@@ -18,12 +18,14 @@ Three of AEI's six pre-investment chart lenses **cannot be defensibly implemente
 ## Build and test
 
 ```bash
-python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-h1-v6.html --qa qa/v6.json
+python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --atlas --out outputs/tianfu-h1-v6-atlas.html --qa qa/v6-atlas.json
 python -m unittest discover -s tests -p test_engine.py -v
 python tests/browser_v6.py
 ```
 
 The renderer uses only Python standard library. Local browser acceptance uses installed Playwright/Chromium. The HTML needs no dependencies or external URLs when opened.
+
+The `--atlas` flag uses `engine/visual_exhibits.py` to integrate the multi-component asset composition and two-stage signed cash waterfall into the primary builder in **one run**. Without `--atlas` the original v6 nine-exhibit output is preserved. The full published case now has seven inline SVGs including both new diagrams. Both module and HTML are original creations, not copies of App Economy Insights.
 
 ## Important limits
 
@@ -35,4 +37,4 @@ The renderer uses only Python standard library. Local browser acceptance uses in
 
 ## Publishing layout
 
-The HTML is published at `/300394/2026-H1/`. Preserve `public/index.html` as the independent **research library homepage**, without forced redirects to any company. Do not create duplicate v6 preview/production versions without a release record.
+The **verified GitHub HTML** (base v6 plus atlas) is committed at `public/300394/2026-H1/index.html` on `main`. The report is intended to be published at `/300394/2026-H1/` after Cloudflare Git deployment; independent live HTTP verification is still unavailable. Preserve `public/index.html` as the independent **research library homepage**, without forced redirects to any company. Do not create duplicate v6 preview/production versions without a release record.
