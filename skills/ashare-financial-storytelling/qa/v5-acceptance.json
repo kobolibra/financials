@@ -15,7 +15,24 @@
     "pdf_values_found_in_parsed_text": 53,
     "values_not_located_due_to_fragmented_pdf_table_text": 5,
     "derived_field_not_expected_in_source": 1,
-    "source_image_review_required_for_fragmented_rows": true
+    "source_image_review_required_for_fragmented_rows": true,
+    "manual_visual_reinspection": {
+      "performed": "2026-10-30",
+      "source_pdf": "788b066c-b687-4f11-8ae4-c6197f019370.pdf",
+      "fields": [
+        "raw_material",
+        "raw_material_prior",
+        "top_five_ar",
+        "inventory_gross",
+        "inventory_provision"
+      ],
+      "reviewed_pages": [
+        103,
+        112
+      ],
+      "status": "ALL_FIVE_NUMERICAL_VALUES_CONFIRMED_BY_PAGE_IMAGES",
+      "limitation": "This corrects PDF text extraction's NOT_LOCATED flags; it does not automatically validate qualitative interpretation, customer identity, or other report pages."
+    }
   },
   "accounting": {
     "checks_passed": 10,
@@ -54,8 +71,15 @@
     "git_blob_sha": "abeeaee71e37ab1160942a7642204662e7a0e6da",
     "git_verified": true,
     "cloudflare_live_verified": false,
-    "cloudflare_verification_error": "External web fetch inaccessible; deployment not independently verified.",
-    "production_overwritten": false
+    "cloudflare_verification_error": "Neither .pages.dev endpoint could be independently fetched by current web retrieval. Deployment/asset freshness and old-domain status are UNVERIFIED.",
+    "production_overwritten": true,
+    "git_production_path": "public/300394/2026-H1/index.html",
+    "production_git_blob_sha": "abeeaee71e37ab1160942a7642204662e7a0e6da",
+    "production_matches_v5_preview": true,
+    "homepage_path": "public/index.html",
+    "homepage_auto_redirect_removed": true,
+    "current_user_named_primary_domain": "https://financials-in-visuals.pages.dev/",
+    "legacy_domain": "https://financials-8d4.pages.dev/"
   },
   "gates": {
     "basic_html_pass": true,
@@ -71,5 +95,23 @@
     "A synthetic second issuer tests code reuse but cannot establish robustness on other actual filings",
     "A passing accounting identity does not validate qualitative business causality or full professional peer review",
     "No live-site claims until external HTTP/browser verification"
-  ]
+  ],
+  "design_review": {
+    "date": "2026-10-30",
+    "status": "FAIL_PUBLICATION_GRADE",
+    "reference": "App Economy Insights publicly available How They Make Money financial-flow diagrams and 10-K analysis framework",
+    "failures": [
+      "Only one elementary product→GP/COGS two-stage Sankey; no true multi-stage earnings bridge",
+      "Static bar presentation dominates rather than data-dense financial story figures",
+      "Cash bridge is a list of signed bars, not a balanced analytic money-movement diagram",
+      "Small typography and lengthy repetitive chapter blocks reduce at-a-glance visual comprehension",
+      "No independent expert editorial review or screenshot-to-reference design benchmark"
+    ],
+    "engineering_failures": [
+      "Fixed 2026H1, p22/p61/p147-148, 15 CFO adjustment count and product titles in generic renderer",
+      "Missing prior revenue silently displayed as 0.00% growth in generic renderer",
+      "Top-five receivables aria label includes fixed 84.27% even for other issuers"
+    ],
+    "release_label": "RESEARCH_DEMO_LOCAL_BROWSER_VERIFIED_NOT_PUBLICATION_GRADE"
+  }
 }
