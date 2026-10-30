@@ -1,40 +1,26 @@
-# FINANCIALS IN VISUALS · Skill v6 & Tianfu case
+# Financials in Visuals · Dual-Track Research & Publication System v7
 
-This directory contains a **reproducible** offline HTML research article generator for A-share industrial issuers. It is an original design drawing on the *complete* App Economy Insights research/chart framework, not an App Economy Insights graphic clone.
+The skill is no longer a one-chart Sankey imitation. It has **two independent research foundations** and one source-audited original visual reporting implementation.
 
-## Actual delivered charts (Tianfu 2026 H1)
-1. True conserved product → consolidated revenue → cost/gross profit → operating-core flow diagram.
-2. Gross profit → net income signed P&L waterfall, including operating expense, signed other operating gains, nonoperating losses and income tax.
-3. Prior/current revenue, COGS, GP, CFO comparative proportional bar panel.
-4. GP-change signed bridge separating revenue growth from cost change (not causal price-volume attribution).
-5. Net income → CFO signed indirect-method bridge, with all 15 original lines expanded below.
-6. Opening → closing cash equivalents bridge across CFO, CFI, CFF and FX.
-7. Strictly equal-total consolidated assets vs liabilities/equity stock diagram.
-8. Operating asset trends on correct year-end vs half-year-end dates.
-9. Top-five AR+contract assets and largest-supplier prepayment concentration (correct denominators).
+## Read the two research pillars separately
 
-Three of AEI's six pre-investment chart lenses **cannot be defensibly implemented** with the provided single half-year PDF alone: multi-quarter trends, share price vs fundamentals and valuation/peer comparisons. Their absence is intentional, not an unfinished placeholder to fill with invented data.
+1. [App Economy Insights complete visual research analysis](research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md) — original first-party research, business-first framing, full P&L / balance / cash / FCF visual grammar, 6 pre-investment charts and their evidence requirements.
+2. [Professional A-share institutional financial research framework](research/02_ASHARE_INSTITUTIONAL_RESEARCH.md) — PRC accounting and CSRC disclosure, material financial-note interrogation, industry-specific ratios, cash-quality/valuation/risks, counter-hypotheses and provenance.
 
-## Build and test
+[Execution Skill v7](SKILL.md) binds these two independently researched pillars to the publication gates.
 
-```bash
-python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --atlas --out outputs/tianfu-h1-v6-atlas.html --qa qa/v6-atlas.json
-python -m unittest discover -s tests -p test_engine.py -v
-python tests/browser_v6.py
-```
+## Working v7 issuer case
 
-The renderer uses only Python standard library. Local browser acceptance uses installed Playwright/Chromium. The HTML needs no dependencies or external URLs when opened.
+- **Published GitHub path:** `public/300394/2026-H1/index.html` (the Pages project must independently deploy this Git commit).
+- **Sources:** Tianfu Communications 2026 H1 unaudited PDF, 185 pages, SHA-256 `6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5`, 59 structured source facts, 15 original signed indirect CFO adjustments.
+- **Editorial output:** 10 original exhibits: product economics / income allocation, complete P&L bridge, gross-profit change bridge, two-period margins, net earnings→CFO, opening→closing cash, analyst-defined FCF, balance-sheet anatomy, working-capital comparisons and properly denominated concentration.
+- **Reproducible v7 package:** [v7](v7/) with `engine/render_v7.py`, ledger, research memo, chart primitives, tests, local-browser QA, HTML build and instructions.
+- **Verification:** 12 regression tests PASS; local Chromium at 1440/768/390 PASS, keyboard, SVG export, no JS exception or page overflow. GitHub content SHA re-read matches preview and production.
 
-The `--atlas` flag uses `engine/visual_exhibits.py` to integrate the multi-component asset composition and two-stage signed cash waterfall into the primary builder in **one run**. Without `--atlas` the original v6 nine-exhibit output is preserved. The full published case now has seven inline SVGs including both new diagrams. Both module and HTML are original creations, not copies of App Economy Insights.
+## The unresolved professional boundary
 
-## Important limits
+The user-facing site is `https://financials-in-visuals.pages.dev/`. The GitHub production HTML has been updated and verified; **its Cloudflare live HTTP body has not been independently verified in this execution environment.** Neither a GitHub commit nor a screenshot of a local HTML file can substitute for a public site verification.
 
-- Original source: user's 185-page Tianfu 2026 H1 issuer report (unaudited) with SHA-256 `6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5`.
-- Financial checks are Decimal/yuan reconciliation. A PDF table scanner produces candidates only; manual cell/page review remains mandatory.
-- 13 regression checks (including a deliberately *synthetic* alternate issuer and missing comparisons) and desktop/tablet/mobile browser tests show this **industrial report generator** works for the tested cases; they cannot establish the quality of independent fundamental research for arbitrary A-share issuers, nor that financial sector companies are supported.
-- Data extraction for another genuine issuer and second-industry acceptance are **not** yet established. Banks/insurers/brokers fail closed. No market prices/valuation/peer estimates are invented.
-- Only a verified GitHub commit and live Cloudflare fetched HTML would establish public website publication. A commit by itself is not a live test.
+The second issuer regression is synthetic; cross-sector automatic PDF research, historical price/valuation/peer research and 8–12Q comparisons need their own verified inputs. The system deliberately refuses banking/insurance/real-estate industrial-style accounting rather than hallucinate universal support.
 
-## Publishing layout
-
-The **verified GitHub HTML** (base v6 plus atlas) is committed at `public/300394/2026-H1/index.html` on `main`. The report is intended to be published at `/300394/2026-H1/` after Cloudflare Git deployment; independent live HTTP verification is still unavailable. Preserve `public/index.html` as the independent **research library homepage**, without forced redirects to any company. Do not create duplicate v6 preview/production versions without a release record.
+**Publication quality has several independent gates. No self-awarded 'top-tier' labels from code tests alone.**
