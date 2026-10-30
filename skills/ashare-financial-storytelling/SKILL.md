@@ -62,7 +62,7 @@ Example (from skill root):
 ```bash
 python engine/audit.py examples/tianfu-ledger.json --out qa/ledger-check.json
 python -m unittest discover -s tests -p 'test_engine.py' -v
-python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-h1-v6.html --qa qa/v6.json
+python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --atlas --out outputs/tianfu-h1-v6-atlas.html --qa qa/v6-atlas.json
 python tests/browser_v6.py
 ```
 
@@ -80,6 +80,6 @@ Read [the complete, source-linked visual research atlas](references/app-economy-
 
 Required selection sequence: company value-chain and full issuer income story → financial structure and debt/liquidity → earnings/working-capital cash bridge → reinvestment/FCF and dilution → multiyear trend or peer/valuation analyses **only if comparable historical filings and dated outside inputs exist**. Use proper independent visualization grammar; no imposed Sankey quota, no made-up peers or prices.
 
-The original open-source, Decimal-ledger financial exhibits are implemented in `engine/visual_exhibits.py`; see `/preview/300394/2026-H1-visual-atlas/` for two added, tested case exhibits (capital anatomy and two-tier signed cash waterfall). The preview demonstrates an extension, **not** full arbitrary-PDF multi-sector production validation. The upstream main company report has not been overwritten by this atlas work.
+The original open-source, Decimal-ledger financial exhibits are implemented in `engine/visual_exhibits.py`; see `/preview/300394/2026-H1-visual-atlas/` for two added, tested case exhibits (capital anatomy and two-tier signed cash waterfall). The preview demonstrates an extension, **not** full arbitrary-PDF multi-sector production validation. The additional assets/earnings-to-cash exhibits have now been **promoted to the authorized production GitHub path**, with an exact blob SHA match to the reviewed preview. Cloudflare's actual public response remains unverified; do not describe that last gate as passed.
 
 Before publication: verify every source label/period and amount, no issuer-specific page or date literals in shared drawing code, three viewport tests (1440/768/390), zero JS errors/overflow, actual production HTTP body and manual visual-editor critique. A Git commit or passing arithmetic alone does not establish editorial quality.
