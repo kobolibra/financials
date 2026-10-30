@@ -22,6 +22,23 @@
 
 > 使用 financials 仓库下 ashare-financial-storytelling Skill v4 分析这份 A 股财报。先完成公司商业模式与价值链研究、全三表与重要附注复核、精确会计校验、营运资本与盈利质量分析、管理层解释与事实的证据分级；提出核心投资研究假设与最强反面解释；按行业选择信息量最高的原创图表。输出一个响应式、离线、自包含 HTML 深度财务研究；提供页码、计算、未知项、观察指标和浏览器验收。不要生成 PDF，不要编造股价/估值/行业数据，不要修改生产站点，先上传 preview。
 
+## 可执行的会计校验与图表选择（在仓库根目录运行）
+
+~~~bash
+python skills/ashare-financial-storytelling/scripts/audit.py \
+  skills/ashare-financial-storytelling/examples/tianfu-2026h1-ledger.json \
+  --out /tmp/tianfu-financial-qa.json
+
+python skills/ashare-financial-storytelling/scripts/select_story.py \
+  skills/ashare-financial-storytelling/examples/tianfu-2026h1-ledger.json \
+  --out /tmp/tianfu-chart-plan.json
+
+python -m unittest discover \
+  -s skills/ashare-financial-storytelling/tests -v
+~~~
+
+以上仅验证源账本、会计勾稽和图表适用性，不是自动解析任意 PDF。新增的 \`examples/tianfu-2026h1-research-addendum.json\` 含客户应收、预付款集中、原材料库存与外汇等 29 项来源字段；\`outputs/tianfu-2026h1-v4-research-qa.json\` 为本轮附注/静态 HTML 复核记录。当前 v4 预览的独立浏览器测试及 Cloudflare 公网 HTTP 验收仍未完成，不能把本地 / GitHub 校验结果等同于线上质量验收。
+
 ## 下一阶段工程优先级
 1. 从任意 PDF 自动建立页码/版面核实的 typed ledger，含人工核查队列；
 2. 各行业模板与 A 股季度/半年度/年度一致性测试；
