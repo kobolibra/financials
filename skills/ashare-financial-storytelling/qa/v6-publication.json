@@ -127,5 +127,19 @@
   },
   "source_pdf_verified_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
   "live_cloudflare_verification": "NOT_CHECKED",
-  "publication_status": "LOCAL_ACCOUNTING_AND_BROWSER_PASS_GITHUB_AND_LIVE_PENDING"
+  "publication_status": "GITHUB_V6_PRODUCTION_COMMITTED_LOCAL_BROWSER_PASS_CLOUDFLARE_REMOTE_UNVERIFIED",
+  "production": {
+    "repository": "kobolibra/financials",
+    "branch": "main",
+    "primary_domain_user_provided": "https://financials-in-visuals.pages.dev/",
+    "report_path": "/300394/2026-H1/",
+    "git_blob_sha": "893c4f20b4f56ca314cb057d70b8bd4c26b06739",
+    "equals_staged_preview": true,
+    "homepage_git_blob_sha": "f996df5b130aedc55a488c8b646fa8a8a54dd7e0",
+    "homepage_redirects_to_issuer": false,
+    "git_promoted": true,
+    "cloudflare_public_url_independently_verified": false,
+    "external_fetch_failure": "web fetch: cache miss / inaccessible",
+    "browser_qa_mode": "local Chromium page.set_content, not Cloudflare remote"
+  }
 }
