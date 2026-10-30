@@ -4,16 +4,16 @@
     "branch": "main",
     "primary_host": "https://financials-in-visuals.pages.dev",
     "report_path": "/300394/2026-H1/",
-    "production_blob_sha": "4cd4e16a41cad80115947c7bb6faaf4b64ce2648",
-    "preview_blob_sha": "4cd4e16a41cad80115947c7bb6faaf4b64ce2648",
+    "production_blob_sha": "65fa9eff8589ce6b70de8b139a0d0915f660dafb",
+    "preview_blob_sha": "65fa9eff8589ce6b70de8b139a0d0915f660dafb",
     "identical": true,
     "home_no_redirect": true,
     "root_has_report_link": true
   },
   "artifact": {
     "version": "7.0.0",
-    "html_bytes_utf8": 64895,
-    "sha256": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90",
+    "html_bytes_utf8": 65180,
+    "sha256": "24989f842a69105c490b4291a0f7928dc4a8160bd5f135fc5b341df5e21398b9",
     "exhibits": 10,
     "svg": 8,
     "containsSourceFingerprint": true,
@@ -48,7 +48,7 @@
         "remote_requests": 0
       }
     ],
-    "browser_qa_hash": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90"
+    "browser_qa_hash": "24989f842a69105c490b4291a0f7928dc4a8160bd5f135fc5b341df5e21398b9"
   },
   "scope": {
     "real_case": "Tianfu Communications 2026H1",
@@ -65,5 +65,11 @@
     "public_http_error": "External web returned inaccessible/cache miss; container curl DNS failed",
     "site_visual_live_verified": false
   },
-  "release_judgment": "GITHUB_PUBLISHED_SOURCE_AND_LOCAL_BROWSER_PASS; EXTERNAL_LIVE_NOT_VERIFIED; GENERAL_PDF_ROBUSTNESS_NOT_PROVEN"
+  "release_judgment": "GITHUB_FINAL_CORRECTED_VISUALS_VERIFIED; LOCAL_BROWSER_PASS; CLOUDFLARE_HTTP_UNVERIFIED; AUTOMATIC_MULTI_SECTOR_NOT_PROVEN",
+  "editorial_review": {
+    "balance_small_category_labels": "collision corrected and screenshot-reviewed",
+    "corrected_svg_count": 8,
+    "figure_count": 10,
+    "figure_screenshots_locally_verified": true
+  }
 }
