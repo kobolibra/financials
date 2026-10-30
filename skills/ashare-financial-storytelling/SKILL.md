@@ -29,14 +29,14 @@ Never treat these pillars as interchangeable. A well-designed chart is not proof
 
 ## Implementation in this repository
 
-- `engine/render_v7.py`: version 7 standalone offline HTML editorial renderer (industrial/services only) with dynamically bound source fields and validated cash/profit bridges.
-- `engine/editorial_charts.py`: asset=liabilities+equity composition, analyst-defined CFO/CapEx/FCF, paired margin comparison. The charts use ledger-sourced page and period labels.
-- `engine/audit.py`, `engine/probe_pdf.py`, `engine/source_audit.py`: source/candidate and accounting controls. They DO NOT mean arbitrary PDF extraction is fully autonomous.
-- `engine/sample-ledger.json`, `engine/sample-memo.json`: source-reviewed Tianfu H1 real case. No price, valuation, market share or unsupported sector data.
-- `tests/test_v7.py`: 12 real arithmetic, semantic and synthetic cross-issuer/adversarial tests; `tests/browser_acceptance.py`: 1440/768/390. Browser implementation uses installed Chromium when available and does not require access to the public site.
-- `outputs/tianfu-research-v7.html`: actual standalone publication output.
+- `v7/engine/render_v7.py`: version 7 standalone offline HTML editorial renderer (industrial/services only) with dynamically bound source fields and validated cash/profit bridges.
+- `v7/engine/editorial_charts.py`: asset=liabilities+equity composition, analyst-defined CFO/CapEx/FCF, paired margin comparison. The charts use ledger-sourced page and period labels.
+- `v7/engine/audit.py`, `engine/probe_pdf.py`, `engine/source_audit.py`: source/candidate and accounting controls. They DO NOT mean arbitrary PDF extraction is fully autonomous.
+- `v7/engine/sample-ledger.json`, `v7/engine/sample-memo.json`: source-reviewed Tianfu H1 real case. No price, valuation, market share or unsupported sector data.
+- `v7/tests/test_v7.py`: 12 real arithmetic, semantic and synthetic cross-issuer/adversarial tests; `v7/tests/browser_acceptance.py`: 1440/768/390. Browser implementation uses installed Chromium when available and does not require access to the public site.
+- `v7/outputs/tianfu-research-v7.html`: actual standalone publication output.
 
-Run from the skill v7 directory:
+Run from `skills/ashare-financial-storytelling/v7/` (the following paths are relative to v7):
 
 ```bash
 python engine/render_v7.py --ledger engine/sample-ledger.json --memo engine/sample-memo.json --out outputs/tianfu-research-v7.html --qa qa/v7.json
