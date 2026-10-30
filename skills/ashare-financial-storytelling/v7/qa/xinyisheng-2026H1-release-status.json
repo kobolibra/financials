@@ -1,0 +1,112 @@
+{
+  "schema": "financials-v7-third-real-issuer-acceptance",
+  "issuer": "成都新易盛通信技术股份有限公司",
+  "ticker": "300502.SZ",
+  "period": "2026H1",
+  "original_pdf": {
+    "filename": "H2_AN202608240006746577_1.pdf",
+    "pages": 134,
+    "sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+    "verified_original_upload": true
+  },
+  "evidence": {
+    "fields": 76,
+    "cash_adjustments": 15,
+    "text-literal_matches": 71,
+    "derived": 1,
+    "fragmented_cells_image_checked": [
+      {
+        "key": "raw_material",
+        "page": 88,
+        "status": "MANUAL_PDF_IMAGE_REVIEWED"
+      },
+      {
+        "key": "raw_material_prior",
+        "page": 88,
+        "status": "MANUAL_PDF_IMAGE_REVIEWED"
+      },
+      {
+        "key": "inventory_gross",
+        "page": 88,
+        "status": "MANUAL_PDF_IMAGE_REVIEWED"
+      },
+      {
+        "key": "product_revenue_prior",
+        "page": 12,
+        "status": "MANUAL_PDF_IMAGE_REVIEWED"
+      }
+    ]
+  },
+  "arithmetic": {
+    "PASS": 10,
+    "FAIL": 0,
+    "NOT_CHECKED": 0
+  },
+  "accounting_status": "CONDITIONAL_DRAFT",
+  "browser": {
+    "viewports": [
+      1440,
+      768,
+      390
+    ],
+    "all_passed": true,
+    "figure_count": 11,
+    "svg_count": 9,
+    "money_flow_ribbons": 6,
+    "html_sha256": "5e5dea09b377d182d69fb587f8a30b9cce8928194fe0358c0b0fe8f2a16125b4"
+  },
+  "research_limitations": [
+    "financials statements are unaudited half-year issuer disclosures",
+    "company management assertions are not independent industry validation",
+    "rounded unit volume prevents exact selling price vs mix attribution",
+    "no multi-year quarterly trend or peer valuation without added sources",
+    "accounting math pass does not equal independent investment-research review"
+  ],
+  "publication": {
+    "git_status": "COMMITTED_VERIFIED",
+    "git_primary_report": "public/300502/2026-H1/index.html",
+    "git_report_sha": "bc2c49a320fd5fecbf7685841f84e82ccefe6f37",
+    "git_home_sha": "0711573667e473826a1c2e96069d4af6fa1ed24c",
+    "git_source_sha": "2378f137cfe43c42f611cab301dd9181fd3d3819",
+    "git_ledger_sha": "14b0809fea62cd63b429d4fb3790d1bba8c67f57",
+    "git_memo_sha": "d85131d474bef2549995cbbdc58e5b26c6841468",
+    "git_browser_qa_sha": "71dae31c5e41da39f498aecc05070dd8f32a77ec",
+    "git_accounting_qa_sha": "666792b00575027952dedc8589a0d3d09c216e44",
+    "git_shared_renderer_sha": "71f7138fb9c8923f7001509a73f13ec2a6e7490b",
+    "html_contains_original_sha": true,
+    "homepage_lists_case": true,
+    "homepage_does_not_redirect": true,
+    "production_promotion": true,
+    "planned_primary_url": "https://financials-in-visuals.pages.dev/300502/2026-H1/",
+    "cloudflare_http_verified": false,
+    "cloudflare_http_check": "WEB_FETCH_FAILED_IN_ENVIRONMENT",
+    "editorial_second_reviewer_cleared": false
+  },
+  "regression": {
+    "tests_passed": 12,
+    "tests_failed": 0,
+    "regression_fixtures_repaired_locally": true,
+    "method": "unittest on case-compatible shared renderer with sample issuer fixtures"
+  },
+  "final_status": "GITHUB_PUBLISHED_SOURCE_ARITHMETIC_BROWSER_PASS__LIVE_DEPLOYMENT_AND_SECOND_EDITOR_PENDING",
+  "open_items": [
+    {
+      "priority": "P0",
+      "item": "Live Cloudflare pages.dev HTTP/asset verification",
+      "status": "UNVERIFIED",
+      "why": "Available webpage retrieval could not fetch the deployed URL"
+    },
+    {
+      "priority": "P1",
+      "item": "Independent second-person financial/editorial review",
+      "status": "NOT_COMPLETED",
+      "why": "Source checks and arithmetic do not replace external research peer review"
+    },
+    {
+      "priority": "P2",
+      "item": "Real multi-sector validation",
+      "status": "OUT_OF_SCOPE_FOR_THIS_CASE",
+      "why": "Company is third optical/communications issuer; bank/insurance/property models require other engines"
+    }
+  ]
+}
