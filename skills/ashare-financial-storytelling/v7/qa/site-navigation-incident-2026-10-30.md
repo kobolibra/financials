@@ -35,3 +35,23 @@ On Cloudflare **Workers & Pages → financials-in-visuals → Deployments**, ver
 - Local client route rendering in equivalent fixture: VERIFIED.
 - Cloudflare live route: NOT VERIFIED.
 - Permanent scalable fix: audit deployment configuration; once deep assets are served correctly, restore clean deep links and remove all-report inline router bundle to avoid large home HTML.
+
+
+---
+
+## Corrective update: native fragment navigation (current state, supersedes earlier document.write approach)
+
+**User-visible regression:** the earlier `?company=...` router used `document.open()/document.write()`, replacing the root document and resetting the scroll to the top. The user reported clicking a company still led to the homepage top. This proves the earlier workaround was not acceptable.
+
+**Actual code correction:** GitHub commit `a5fae8cdf52fc312dc2f0c7bcc559caed61e214f`.
+- Completely remove the old large `FINANCIALS_EMBEDDED_ROUTE_V1` + `document.write` replacement.
+- Replace home card links with native hash anchors `#company-300502`, `#company-300394`, `#company-300308`.
+- Append three distinct anchored company sections to the home HTML, each with a true full-company report embedded in an iframe `srcdoc`; no external asset request is needed to load the report content.
+- Add a minimal compatibility handler for previously shared `/?company=300502` etc. and a Cloudflare SPA fallback deep path; it locates the precise company section and scrolls there, rather than replacing the document. This is backward compatibility only; new card links work without JS.
+- Add `public/404.html` in commit `b5b4989c4719455e6b2ed93197075f93422aaaab`. For known old report paths which hit 404, automatically redirect to the exact root anchor, never the generic homepage.
+
+**Local Chromium click test** (`/mnt/data/financials_navigation_smoke.py`, six real content frames): 3 companies × 2 widths (1440 and 390). Every clicked card reached hash `#company-XXXXXX`, landed the matching company section at approximately y=20px, showed correct report in the nested document, with 0 JS errors. GitHub source fetch independently confirmed exact match between each `iframe.srcdoc`-decoded report and the standalone GitHub company report.
+
+**Publication caveat:** Cloudflare pages.dev production HTTP response and latest deployment commit remain UNVERIFIED in this environment because domain retrieval fails; if the user does not see this behavior, first verify the Cloudflare Pages project deploy source, branch and latest commit. This document records working GitHub code and local browser validation, not a live-site pass.
+
+**Scalability:** `srcdoc` copies all three report HTMLs into the home page (~250k characters). It is deliberately a temporary robust navigation workaround; at a larger research-library size, prefer verified multi-page static deployment or a tested router with correct asset paths.
