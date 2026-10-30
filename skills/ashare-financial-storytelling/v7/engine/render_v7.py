@@ -62,7 +62,7 @@ def concentration(l,m):
   q=D(str(share));
   if not 0<=q<=100:raise ValueError('Bad reported concentration')
   arr.append(f'''<div class="concentration-item"><div class="ci-top"><span>{esc(title)}</span><strong>{q:.2f}%</strong></div><div class="ci-track"><div style="width:{q:.2f}%"></div></div><small>{esc(denom)} · {esc(caveat)} · {page(l,key)}</small></div>''')
- return '<div class="concentration-set">'+''.join(arr)+'</div>'
+ return '<div class="concentration-set">'+''.join(arr)+'</div>' if arr else '<div class="no-data">未获得足以验证的对手方集中度分母和百分比；不绘制虚构比例图。</div>'
 
 def original_profit_bridge(l):
  v=lambda k:num(l,k)
@@ -85,7 +85,7 @@ def cash_bridges(l):
  for item in l.get('indirect_cfo_adjustments',[]):
   name=item['source_label'];z=D(item['amount'])
   match=None
-  if '存货减少' in name:match='存货变化'
+  if ('存货减少' in name or '存货的减少' in name):match='存货变化'
   elif '经营性应收' in name:match='经营性应收'
   elif '经营性应付' in name:match='经营性应付'
   if match:
@@ -121,7 +121,7 @@ def build(l,m):
  delta=gp_delta_bridge(l)
  cash1,cash2=cash_bridges(l)
  bal=balance_identity(l)
- fcfsvg=operating_cash_allocation(l)
+ fcfsvg=(waterfall(l,[('经营现金流',cfo,src(l,'cfo'),'start'),('现金资本开支',-capex,src(l,'capex_cash'),'step'),('简化自由现金流',cfo-capex,src(l,'cfo','capex_cash'),'total')],'简化自由现金流：经营现金流减资本开支') if cfo<capex else operating_cash_allocation(l))
  marg=profitability_change(l)
  im=journal_figure(l);con=concentration(l,m)
  issuer=esc(m.get('issuer_short',doc['issuer'])); ticker=esc(doc['ticker']); period=esc(doc['period_key']); cmp=esc(doc['comparative_period_key']);unit='人民币亿元'
@@ -156,7 +156,7 @@ def build(l,m):
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 '''
  js=r'''(()=>{const tip=document.querySelector('#floatTip');let last=null;const hide=()=>{tip.style.display='none'};function show(el,evt){let value=el.getAttribute('data-tip')||el.getAttribute('aria-label')||el.querySelector('title')?.textContent||'';if(!value)return;tip.textContent=value;tip.style.display='block';last=el;move(evt,el)}function move(evt,el){let x=12,y=12;if(evt&&typeof evt.clientX==='number'){x=evt.clientX+16;y=evt.clientY+20}else{let box=el.getBoundingClientRect();x=box.left+10;y=box.top-68}tip.style.left=Math.max(8,Math.min(window.innerWidth-325,x))+'px';tip.style.top=Math.max(8,Math.min(window.innerHeight-100,y))+'px'}document.querySelectorAll('[data-tip],svg[role="img"] [tabindex],.ed-band').forEach(el=>{el.addEventListener('pointerenter',e=>show(el,e));el.addEventListener('pointermove',e=>move(e,el));el.addEventListener('pointerleave',hide);el.addEventListener('focus',e=>show(el,null));el.addEventListener('blur',hide)});document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});document.querySelectorAll('button.svg-save').forEach((b,i)=>{b.addEventListener('click',()=>{let svg=b.closest('.exhibit')?.querySelector('svg');if(!svg)return;let txt=new XMLSerializer().serializeToString(svg);let blob=new Blob([txt],{type:'image/svg+xml;charset=utf-8'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='Financials-Research-Exhibit-'+(i+1)+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(url),2500)})});document.querySelectorAll('.money-ribbon').forEach(el=>{let root=el.closest('svg');let dim=on=>{root?.querySelectorAll('.money-ribbon').forEach(x=>x.classList.toggle('is-dim',on&&x.getAttribute('data-group')!==el.getAttribute('data-group')))};el.addEventListener('pointerenter',()=>dim(true));el.addEventListener('pointerleave',()=>dim(false));el.addEventListener('focus',()=>dim(true));el.addEventListener('blur',()=>dim(false))});})();'''
- gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期增加 {n(gross_delta)} 亿元。该变化来自收入增加与营业成本下降的会计合计，但产品级价格、销量、良率没有独立披露。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
+ gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期变动 {n(gross_delta)} 亿元；收入变动 {n(rev-prevrev)} 亿元，营业成本变动 {n(cogs-prevcogs)} 亿元。该桥是会计拆分而非价格、销量或良率的因果归因。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
  lens=m.get('forensic_lenses') or []
  r_and_d_context=lens[0].get('insight','') if lens else '未提供可验证的研究与开发成本深度附注。'
  # full page assembly
@@ -166,26 +166,26 @@ def build(l,m):
 <header class="hero"><span class="eyebrow">Equity research / {ticker} / {period} · filing-first</span><h1>{thesis}</h1><p class="hero-deck">{summary}</p><div class="hero-meta"><span>{issuer} · {ticker}</span><span>{period} · {esc(doc['period_start'])} 至 {esc(doc['period_end'])}</span><span>{'已审计' if doc['audited'] else '未经审计'} · 合并报表</span><span>原始 PDF {doc['pages']} 页</span></div><div class="hero-figure"></div></header></div></div>
 <div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>
 <main id="main" class="wrap paper"><div class="lead"><aside>THE CENTRAL QUESTION<br>本期研究判断</aside><p>一家公司能把收入变成利润，并不等于它已经把利润变成了<strong>可持续的现金回报</strong>。这份研究将收入、成本、现金、营运资本和资本投入放在同一条会计逻辑中检验。</p></div>
-<section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','无源业务更快增长，但公司的盈利引擎究竟如何运转？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。图中的未列示产品差额仅为合并收入和已披露业务的计算残余，不代表新业务。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,'passive_revenue','active_revenue','revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div></section>
+<section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','披露的业务收入如何形成毛利润与经营盈余？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。图中的未列示产品差额仅为合并收入和已披露业务的计算残余，不代表新业务。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension')=='product'],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div></section>
 <section class="chapter" id="profit">{section_head('02','PROFIT & DURABILITY / QUALITY OF EARNINGS','利润增长究竟来自收入增长，还是成本与费用变化？','把完整利润形成、毛利润变动、利润率和真实同期比较分开处理；明确“会计桥”不等于销量、价格和良率的因果拆解。')}
 {exhibit('从毛利润到合并净利润：完整有符号会计桥','02 / P&L',pnl,src(l,'revenue','cogs','total_operating_costs','operating_profit','income_tax','net_profit'),'营业总成本中的非营业成本项目、其他经营损益净额、营业外净额及税费均保留正负号。')}
 {exhibit('毛利润同比多出多少？收入与成本变化分别起了什么算术作用？','03 / Δ GROSS PROFIT',delta,src(l,'revenue','revenue_prior','cogs','cogs_prior'),growth_unit+'；该分解不构成价格/销量因果归因。')}
 {exhibit('毛利率、经营现金流率、简化 FCF 率：两期比较','04 / MARGIN PROFILE',marg,src(l,'revenue','cogs','cfo','capex_cash')+'；上期同口径见原报表比较列','仅比较两个半年同期，不冒充 8–12 个季度的长期趋势。简化 FCF 率是分析师定义。')}
 <div class="readout">{qualitative('主要解释',gp_analysis_text)}{qualitative('技术、研发与利润质量',r_and_d_context+' 研发费用率变化并不直接证明定价权或技术壁垒。','rust')}</div></section>
-<section class="chapter" id="cash">{section_head('03','CASH CONVERSION / CAPITAL ALLOCATION','经营现金流增长，不等于每一元利润都已经收回。','先完整勾稽合并净利润到经营现金流，再解释经营、投资、融资及汇率因素怎样改变期末现金。两层关系不能混成一张误导性的资金流图。')}
+<section class="chapter" id="cash">{section_head('03','CASH CONVERSION / CAPITAL ALLOCATION','利润能否真正转化为现金？','先完整勾稽合并净利润到经营现金流，再解释经营、投资、融资及汇率因素怎样改变期末现金。两层关系不能混成一张误导性的资金流图。')}
 {exhibit('合并净利润经过哪些调整，才成为经营现金流？','05 / NET INCOME → CFO',cash1,'现金流量表补充资料 '+(' / '.join(sorted({'p.'+str(x['page']) for x in l['indirect_cfo_adjustments'] if x.get('page')})))+'，合并净利润 '+page(l,'net_profit')+'，CFO '+page(l,'cfo'),'间接法全部 '+str(ind)+' 项逐一参与原值校验；图中合并了其中的非营运资本调整，原文项目可于后面的审计表查看。')}
 {exhibit('经营现金流形成后，期末现金为什么反而减少？','06 / CASH MOVEMENT',cash2,src(l,'cash_open','cfo','cfi','cff','fx_effect','cash_close'),'现金及现金等价物不同于资产负债表的货币资金，汇率对现金的影响不同于利润表汇兑损益。')}
 {exhibit('经营现金流扣除现金资本开支，留下多少简化 FCF？','07 / REINVESTMENT & FCF',fcfsvg,src(l,'cfo','capex_cash'),'这是一项分析定义，不表示 CFO 逐笔流向资本开支，也不等于股东可以自由分配的现金。')}
 <div class="callout"><strong>现金质量的反证</strong>{esc(m.get('cash_explanation',''))}</div></section>
-<section class="chapter" id="capital">{section_head('04','FINANCIAL POSITION / FORENSIC NOTES','现金创造之外，资产负债表正在承担怎样的增长成本？','从资产、负债和股东权益的期末结构出发，再回到原材料、应收、预付款与对手方集中度。不能用时点余额推断真实现金流方向。')}
+<section class="chapter" id="capital">{section_head('04','FINANCIAL POSITION / FORENSIC NOTES','现金创造之外，资产负债表正在承担怎样的增长成本？','从资产、负债和股东权益的期末结构出发，检查存货、应收、预付款与财务风险。不能用时点余额推断真实现金流方向。')}
 {exhibit('总资产由哪些部分构成，并由负债和股东权益如何支撑？','08 / BALANCE SHEET ANATOMY',bal,src(l,'assets','current_assets','noncurrent_assets','liabilities','equity','inventory','accounts_receivable'),'同一时点的资产=负债+权益；流动资产差额为计算值，这不是把资产转换成负债的实际现金流。')}
-{exhibit('哪些营运资本项目比年初增加得更快？','09 / WORKING CAPITAL',im,src(l,'inventory','raw_material','accounts_receivable','prepayment'),'年初/期末时点余额比较；净额和毛额不得混用。',False)}
-{exhibit('“客户集中”究竟集中在哪个会计分母上？','10 / COUNTERPARTY CONCENTRATION',con,src(l,'top_five_ar','top_prepay')+'；披露的比例依据公司附注','前五名占应收账款及合同资产余额，第一大供应商占预付款项余额；均不是营业收入或采购总额份额。',False)}
+{exhibit('哪些营运资本项目比年初增加得更快？','09 / WORKING CAPITAL',im,src(l,'inventory','accounts_receivable','prepayment'),'年初/期末时点余额比较；净额和毛额不得混用。',False)}
+{exhibit('“客户集中”究竟集中在哪个会计分母上？','10 / COUNTERPARTY CONCENTRATION',con,src(l,'top_five_ar','top_prepay')+'；披露的比例依据公司附注','只有具有明确分母和原文来源的集中度才会绘图；资料不足的项目不编造百分比。',False)}
 <div class="callout rust"><strong>风险不等于舞弊判断</strong>{esc(m.get('risk_explanation',''))}</div></section>
 <section class="chapter" id="watch">{section_head('05','THE OTHER SIDE / FALSIFIABLE RESEARCH','什么证据支持这个判断，又有什么证据可能推翻它？','对同一组事实给予积极与谨慎两种解释。专业研究不是把风险放到页脚，而是设计具体可以验证的下一期指标。')}
 <div class="brief-compare"><div><h3>支持 / Positive evidence</h3><ul>{support}</ul></div><div><h3>反面 / Counter evidence</h3><ul>{counter}</ul></div></div>
 <div class="watchlist">{watch_html}</div></section>
-</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告源自 {esc(doc['issuer'])}《{period} 财务报告》原始 PDF，SHA-256：<code>{esc(doc['source_sha256'])}</code>；全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
+</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告源自 {esc(doc['issuer'])}《{period} 财务报告》原始 PDF，{('SHA-256：'+esc(doc['source_sha256'])) if not str(doc.get('source_sha256','')).startswith('NOT_VERIFIED') else '文件 SHA-256 尚未核验（在线 PDF 解析来源，仍需完整源文件复核）'}{('；<a href="'+esc(doc['source_url'])+'">查看原始 PDF</a>') if doc.get('source_url') else ''}；全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
 <details><summary>展开：关键来源与精确原始金额（人民币元）</summary>{evidence_table(l)}</details>
 <details><summary>展开：净利润到经营现金流的全部 {ind} 项附注调节</summary><div class="table-scroll"><table class="indtable"><thead><tr><th>补充资料原文</th><th>带符号金额（元）</th><th>页码</th></tr></thead><tbody>{''.join(f'<tr><td>{esc(x["source_label"])}</td><td>{D(x["amount"]):,.2f}</td><td>p.{esc(x.get("page","—"))}</td></tr>' for x in l['indirect_cfo_adjustments'])}</tbody></table></div></details>
 <details><summary>展开：研究限制与未决问题</summary><ul>{''.join('<li>'+esc(x)+'</li>' for x in m.get('limits',[]))}</ul></details></div></div>
