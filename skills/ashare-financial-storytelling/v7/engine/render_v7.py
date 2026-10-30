@@ -62,7 +62,7 @@ def concentration(l,m):
   q=D(str(share));
   if not 0<=q<=100:raise ValueError('Bad reported concentration')
   arr.append(f'''<div class="concentration-item"><div class="ci-top"><span>{esc(title)}</span><strong>{q:.2f}%</strong></div><div class="ci-track"><div style="width:{q:.2f}%"></div></div><small>{esc(denom)} · {esc(caveat)} · {page(l,key)}</small></div>''')
- return '<div class="concentration-set">'+''.join(arr)+'</div>' if arr else '<div class="no-data">未获得足以验证的对手方集中度分母和百分比；不绘制虚构比例图。</div>'
+ return '<div class="concentration-set">'+''.join(arr)+'</div>' if arr else '<div class="no-data">原报告尚未确认可比的前五客户应收余额占比或最大供应商预付款占比；不绘制未经披露的比例图。应收和预付款金额见营运资本章节。</div>'
 
 def original_profit_bridge(l):
  v=lambda k:num(l,k)
@@ -100,6 +100,40 @@ def cash_bridges(l):
  chart2=waterfall(l,[('期初现金',v('cash_open'),page(l,'cash_open'),'start'),('经营现金流',cfo,page(l,'cfo'),'step'),('投资活动',v('cfi'),page(l,'cfi'),'step'),('筹资活动',v('cff'),page(l,'cff'),'step'),('汇率变动',v('fx_effect'),page(l,'fx_effect'),'step'),('期末现金',v('cash_close'),page(l,'cash_close'),'total')],'期初现金到期末现金及现金等价物')
  return chart1,chart2
 
+def volume_intensity(l):
+ """Three comparable period panels for volume, revenue and *blended* revenue per unit.
+
+ Approximate because report discloses rounded ten-thousand-unit volumes.
+ Must never be labeled actual selling price / product ASP.
+ """
+ v=lambda k:num(l,k)
+ keys=('revenue_optics','product_revenue_prior','product_volume_wan','product_volume_wan_prior')
+ if any(v(k) is None for k in keys):return ''
+ rev0,rev1=v('product_revenue_prior'),v('revenue_optics')
+ q0,q1=v('product_volume_wan_prior'),v('product_volume_wan')
+ if min(rev0,rev1,q0,q1)<=0:return ''
+ unit0=rev0/q0/D('10000');unit1=rev1/q1/D('10000')
+ series=[('光互联产品收入 / 亿元',rev0/B,rev1/B,'亿元'),('披露销量 / 万只',q0,q1,'万只'),('计算：平均收入 / 只',unit0,unit1,'元/只')]
+ buf=['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1110 490" role="img" aria-label="光互联产品同期收入销量及平均收入每只的结构对比；平均收入每只为近似计算而不是固定型号售价">',
+ '<rect x="0" y="0" width="1110" height="490" fill="#fffefb"/>',
+ '<text x="40" y="42" font-size="13" fill="#536f67">2025H1 与 2026H1，同期比较；销量以公司披露的万只取整量计算</text>']
+ for i,(label,old,new,unit) in enumerate(series):
+  x=36+i*362;y=70;h=370
+  norm=max(old,new)
+  w0=float(old/norm)*293;w1=float(new/norm)*293
+  delta=(new/old-1)*100
+  buf.append(f'<g><rect x="{x}" y="{y}" width="333" height="350" fill="{["#edf3ed","#eff0eb","#f4eee8"][i]}" rx="4"/>')
+  buf.append(f'<text x="{x+18}" y="{y+35}" font-size="18" fill="#183b3c" font-weight="700">{label}</text>')
+  buf.append(f'<text x="{x+18}" y="{y+71}" font-size="14" fill="#637a73">2025H1</text>')
+  buf.append(f'<rect x="{x+18}" y="{y+86}" width="{w0:.2f}" height="24" fill="#aabbb1"/>')
+  buf.append(f'<text x="{x+18}" y="{y+139}" font-size="23" fill="#344d48">{old:,.2f}</text>')
+  buf.append(f'<text x="{x+18}" y="{y+193}" font-size="14" fill="#637a73">2026H1</text>')
+  buf.append(f'<rect x="{x+18}" y="{y+207}" width="{w1:.2f}" height="24" fill="{["#067c68","#378d91","#bf806b"][i]}"/>')
+  buf.append(f'<text x="{x+18}" y="{y+260}" font-size="25" font-weight="700" fill="#12393b">{new:,.2f}</text>')
+  buf.append(f'<text x="{x+18}" y="{y+313}" font-size="16" font-weight="700" fill="#087d67">同比约 {delta:+.1f}%</text></g>')
+ buf.append('<text x="40" y="463" font-size="14" fill="#695d50">注意：最后一栏是营业收入 ÷ 披露销量的混合均值，不是同型号光模块售价，也不能识别型号升级与价格变化各自贡献。</text></svg>')
+ return ''.join(buf)
+
 def evidence_table(l):
  keys=['revenue','cogs','gross_profit','operating_profit','net_profit','cfo','capex_cash','cash_open','cash_close','assets','liabilities','equity','inventory','raw_material','accounts_receivable','prepayment','top_five_ar']
  rows=[]
@@ -121,6 +155,7 @@ def build(l,m):
  delta=gp_delta_bridge(l)
  cash1,cash2=cash_bridges(l)
  bal=balance_identity(l)
+ volume_fig=volume_intensity(l)
  fcfsvg=(waterfall(l,[('经营现金流',cfo,src(l,'cfo'),'start'),('现金资本开支',-capex,src(l,'capex_cash'),'step'),('简化自由现金流',cfo-capex,src(l,'cfo','capex_cash'),'total')],'简化自由现金流：经营现金流减资本开支') if cfo<capex else operating_cash_allocation(l))
  marg=profitability_change(l)
  im=journal_figure(l);con=concentration(l,m)
@@ -156,7 +191,7 @@ def build(l,m):
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 '''
  js=r'''(()=>{const tip=document.querySelector('#floatTip');let last=null;const hide=()=>{tip.style.display='none'};function show(el,evt){let value=el.getAttribute('data-tip')||el.getAttribute('aria-label')||el.querySelector('title')?.textContent||'';if(!value)return;tip.textContent=value;tip.style.display='block';last=el;move(evt,el)}function move(evt,el){let x=12,y=12;if(evt&&typeof evt.clientX==='number'){x=evt.clientX+16;y=evt.clientY+20}else{let box=el.getBoundingClientRect();x=box.left+10;y=box.top-68}tip.style.left=Math.max(8,Math.min(window.innerWidth-325,x))+'px';tip.style.top=Math.max(8,Math.min(window.innerHeight-100,y))+'px'}document.querySelectorAll('[data-tip],svg[role="img"] [tabindex],.ed-band').forEach(el=>{el.addEventListener('pointerenter',e=>show(el,e));el.addEventListener('pointermove',e=>move(e,el));el.addEventListener('pointerleave',hide);el.addEventListener('focus',e=>show(el,null));el.addEventListener('blur',hide)});document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});document.querySelectorAll('button.svg-save').forEach((b,i)=>{b.addEventListener('click',()=>{let svg=b.closest('.exhibit')?.querySelector('svg');if(!svg)return;let txt=new XMLSerializer().serializeToString(svg);let blob=new Blob([txt],{type:'image/svg+xml;charset=utf-8'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='Financials-Research-Exhibit-'+(i+1)+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(url),2500)})});document.querySelectorAll('.money-ribbon').forEach(el=>{let root=el.closest('svg');let dim=on=>{root?.querySelectorAll('.money-ribbon').forEach(x=>x.classList.toggle('is-dim',on&&x.getAttribute('data-group')!==el.getAttribute('data-group')))};el.addEventListener('pointerenter',()=>dim(true));el.addEventListener('pointerleave',()=>dim(false));el.addEventListener('focus',()=>dim(true));el.addEventListener('blur',()=>dim(false))});})();'''
- gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期变动 {n(gross_delta)} 亿元；收入变动 {n(rev-prevrev)} 亿元，营业成本变动 {n(cogs-prevcogs)} 亿元。该桥是会计拆分而非价格、销量或良率的因果归因。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
+ gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期变动 {n(gross_delta)} 亿元；收入变动 {n(rev-prevrev)} 亿元、营业成本变动 {n(cogs-prevcogs)} 亿元，二者仅为会计加减关系，不构成价格、销量、良率的因果归因。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
  lens=m.get('forensic_lenses') or []
  r_and_d_context=lens[0].get('insight','') if lens else '未提供可验证的研究与开发成本深度附注。'
  # full page assembly
@@ -166,31 +201,31 @@ def build(l,m):
 <header class="hero"><span class="eyebrow">Equity research / {ticker} / {period} · filing-first</span><h1>{thesis}</h1><p class="hero-deck">{summary}</p><div class="hero-meta"><span>{issuer} · {ticker}</span><span>{period} · {esc(doc['period_start'])} 至 {esc(doc['period_end'])}</span><span>{'已审计' if doc['audited'] else '未经审计'} · 合并报表</span><span>原始 PDF {doc['pages']} 页</span></div><div class="hero-figure"></div></header></div></div>
 <div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>
 <main id="main" class="wrap paper"><div class="lead"><aside>THE CENTRAL QUESTION<br>本期研究判断</aside><p>一家公司能把收入变成利润，并不等于它已经把利润变成了<strong>可持续的现金回报</strong>。这份研究将收入、成本、现金、营运资本和资本投入放在同一条会计逻辑中检验。</p></div>
-<section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','披露的业务收入如何形成毛利润与经营盈余？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。图中的未列示产品差额仅为合并收入和已披露业务的计算残余，不代表新业务。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension')=='product'],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div></section>
+<section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','核心产品如何将销售额转化为盈利？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。图中的未列示产品差额仅为合并收入和已披露业务的计算残余，不代表新业务。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension')=='product'],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div>{exhibit('为什么收入翻倍而销量只增加约六成？','02 / SALES VOLUME & MIX',volume_fig,src(l,'revenue_optics','product_revenue_prior','product_volume_wan','product_volume_wan_prior'),'三个比较面板的最后一栏为平均收入/只的近似值，不等于产品型号价格。只有量价组合的数学关系，缺少规格级别因果证据。') if volume_fig else ''}</section>
 <section class="chapter" id="profit">{section_head('02','PROFIT & DURABILITY / QUALITY OF EARNINGS','利润增长究竟来自收入增长，还是成本与费用变化？','把完整利润形成、毛利润变动、利润率和真实同期比较分开处理；明确“会计桥”不等于销量、价格和良率的因果拆解。')}
-{exhibit('从毛利润到合并净利润：完整有符号会计桥','02 / P&L',pnl,src(l,'revenue','cogs','total_operating_costs','operating_profit','income_tax','net_profit'),'营业总成本中的非营业成本项目、其他经营损益净额、营业外净额及税费均保留正负号。')}
-{exhibit('毛利润同比多出多少？收入与成本变化分别起了什么算术作用？','03 / Δ GROSS PROFIT',delta,src(l,'revenue','revenue_prior','cogs','cogs_prior'),growth_unit+'；该分解不构成价格/销量因果归因。')}
-{exhibit('毛利率、经营现金流率、简化 FCF 率：两期比较','04 / MARGIN PROFILE',marg,src(l,'revenue','cogs','cfo','capex_cash')+'；上期同口径见原报表比较列','仅比较两个半年同期，不冒充 8–12 个季度的长期趋势。简化 FCF 率是分析师定义。')}
+{exhibit('从毛利润到合并净利润：完整有符号会计桥','03 / P&L',pnl,src(l,'revenue','cogs','total_operating_costs','operating_profit','income_tax','net_profit'),'营业总成本中的非营业成本项目、其他经营损益净额、营业外净额及税费均保留正负号。')}
+{exhibit('毛利润同比多出多少？收入与成本变化分别起了什么算术作用？','04 / Δ GROSS PROFIT',delta,src(l,'revenue','revenue_prior','cogs','cogs_prior'),growth_unit+'；该分解不构成价格/销量因果归因。')}
+{exhibit('毛利率、经营现金流率、简化 FCF 率：两期比较','05 / MARGIN PROFILE',marg,src(l,'revenue','cogs','cfo','capex_cash')+'；上期同口径见原报表比较列','仅比较两个半年同期，不冒充 8–12 个季度的长期趋势。简化 FCF 率是分析师定义。')}
 <div class="readout">{qualitative('主要解释',gp_analysis_text)}{qualitative('技术、研发与利润质量',r_and_d_context+' 研发费用率变化并不直接证明定价权或技术壁垒。','rust')}</div></section>
 <section class="chapter" id="cash">{section_head('03','CASH CONVERSION / CAPITAL ALLOCATION','利润能否真正转化为现金？','先完整勾稽合并净利润到经营现金流，再解释经营、投资、融资及汇率因素怎样改变期末现金。两层关系不能混成一张误导性的资金流图。')}
-{exhibit('合并净利润经过哪些调整，才成为经营现金流？','05 / NET INCOME → CFO',cash1,'现金流量表补充资料 '+(' / '.join(sorted({'p.'+str(x['page']) for x in l['indirect_cfo_adjustments'] if x.get('page')})))+'，合并净利润 '+page(l,'net_profit')+'，CFO '+page(l,'cfo'),'间接法全部 '+str(ind)+' 项逐一参与原值校验；图中合并了其中的非营运资本调整，原文项目可于后面的审计表查看。')}
-{exhibit('经营现金流形成后，期末现金为什么反而减少？','06 / CASH MOVEMENT',cash2,src(l,'cash_open','cfo','cfi','cff','fx_effect','cash_close'),'现金及现金等价物不同于资产负债表的货币资金，汇率对现金的影响不同于利润表汇兑损益。')}
-{exhibit('经营现金流扣除现金资本开支，留下多少简化 FCF？','07 / REINVESTMENT & FCF',fcfsvg,src(l,'cfo','capex_cash'),'这是一项分析定义，不表示 CFO 逐笔流向资本开支，也不等于股东可以自由分配的现金。')}
+{exhibit('合并净利润经过哪些调整，才成为经营现金流？','06 / NET INCOME → CFO',cash1,'现金流量表补充资料 '+(' / '.join(sorted({'p.'+str(x['page']) for x in l['indirect_cfo_adjustments'] if x.get('page')})))+'，合并净利润 '+page(l,'net_profit')+'，CFO '+page(l,'cfo'),'间接法全部 '+str(ind)+' 项逐一参与原值校验；图中合并了其中的非营运资本调整，原文项目可于后面的审计表查看。')}
+{exhibit('经营现金流形成后，期末现金为什么反而减少？','07 / CASH MOVEMENT',cash2,src(l,'cash_open','cfo','cfi','cff','fx_effect','cash_close'),'现金及现金等价物不同于资产负债表的货币资金，汇率对现金的影响不同于利润表汇兑损益。')}
+{exhibit('经营现金流扣除现金资本开支，留下多少简化 FCF？','08 / REINVESTMENT & FCF',fcfsvg,src(l,'cfo','capex_cash'),'这是一项分析定义，不表示 CFO 逐笔流向资本开支，也不等于股东可以自由分配的现金。')}
 <div class="callout"><strong>现金质量的反证</strong>{esc(m.get('cash_explanation',''))}</div></section>
-<section class="chapter" id="capital">{section_head('04','FINANCIAL POSITION / FORENSIC NOTES','现金创造之外，资产负债表正在承担怎样的增长成本？','从资产、负债和股东权益的期末结构出发，检查存货、应收、预付款与财务风险。不能用时点余额推断真实现金流方向。')}
-{exhibit('总资产由哪些部分构成，并由负债和股东权益如何支撑？','08 / BALANCE SHEET ANATOMY',bal,src(l,'assets','current_assets','noncurrent_assets','liabilities','equity','inventory','accounts_receivable'),'同一时点的资产=负债+权益；流动资产差额为计算值，这不是把资产转换成负债的实际现金流。')}
-{exhibit('哪些营运资本项目比年初增加得更快？','09 / WORKING CAPITAL',im,src(l,'inventory','accounts_receivable','prepayment'),'年初/期末时点余额比较；净额和毛额不得混用。',False)}
-{exhibit('“客户集中”究竟集中在哪个会计分母上？','10 / COUNTERPARTY CONCENTRATION',con,src(l,'top_five_ar','top_prepay')+'；披露的比例依据公司附注','只有具有明确分母和原文来源的集中度才会绘图；资料不足的项目不编造百分比。',False)}
+<section class="chapter" id="capital">{section_head('04','FINANCIAL POSITION / FORENSIC NOTES','资本投入与营运资产结构如何改变财务韧性？','从资产、负债和股东权益的期末结构出发，审查库存、应收、预付款及融资风险；不以时点余额直接替代现金流量。')}
+{exhibit('总资产由哪些部分构成，并由负债和股东权益如何支撑？','09 / BALANCE SHEET ANATOMY',bal,src(l,'assets','current_assets','noncurrent_assets','liabilities','equity','inventory','accounts_receivable'),'同一时点的资产=负债+权益；流动资产差额为计算值，这不是把资产转换成负债的实际现金流。')}
+{exhibit('哪些营运资本项目比年初增加得更快？','10 / WORKING CAPITAL',im,src(l,'inventory','accounts_receivable','prepayment'),'年初/期末时点余额比较；净额和毛额不得混用。',False)}
+{exhibit('“客户集中”究竟集中在哪个会计分母上？','11 / COUNTERPARTY CONCENTRATION',con,src(l,'top_five_ar','top_prepay')+'；披露的比例依据公司附注','只有披露明确分母和金额时才能绘制集中度图；本期未获得同口径集中度数据的项目不绘制，不得由应收占比推导收入占比。',False)}
 <div class="callout rust"><strong>风险不等于舞弊判断</strong>{esc(m.get('risk_explanation',''))}</div></section>
 <section class="chapter" id="watch">{section_head('05','THE OTHER SIDE / FALSIFIABLE RESEARCH','什么证据支持这个判断，又有什么证据可能推翻它？','对同一组事实给予积极与谨慎两种解释。专业研究不是把风险放到页脚，而是设计具体可以验证的下一期指标。')}
 <div class="brief-compare"><div><h3>支持 / Positive evidence</h3><ul>{support}</ul></div><div><h3>反面 / Counter evidence</h3><ul>{counter}</ul></div></div>
 <div class="watchlist">{watch_html}</div></section>
-</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告源自 {esc(doc['issuer'])}《{period} 财务报告》原始 PDF，{('SHA-256：'+esc(doc['source_sha256'])) if not str(doc.get('source_sha256','')).startswith('NOT_VERIFIED') else '文件 SHA-256 尚未核验（在线 PDF 解析来源，仍需完整源文件复核）'}{('；<a href="'+esc(doc['source_url'])+'">查看原始 PDF</a>') if doc.get('source_url') else ''}；全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
+</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告依据用户上传的 {esc(doc['source_filename'])} PDF 原文件（{doc['pages']} 页），原文件 SHA-256：<code>{esc(doc['source_sha256'])}</code>；已经计算原始字节指纹并复核了主要合并报表及关键附注。来源为用户上传的原始 PDF；全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
 <details><summary>展开：关键来源与精确原始金额（人民币元）</summary>{evidence_table(l)}</details>
 <details><summary>展开：净利润到经营现金流的全部 {ind} 项附注调节</summary><div class="table-scroll"><table class="indtable"><thead><tr><th>补充资料原文</th><th>带符号金额（元）</th><th>页码</th></tr></thead><tbody>{''.join(f'<tr><td>{esc(x["source_label"])}</td><td>{D(x["amount"]):,.2f}</td><td>p.{esc(x.get("page","—"))}</td></tr>' for x in l['indirect_cfo_adjustments'])}</tbody></table></div></details>
 <details><summary>展开：研究限制与未决问题</summary><ul>{''.join('<li>'+esc(x)+'</li>' for x in m.get('limits',[]))}</ul></details></div></div>
 <footer class="page-footer"><div class="wrap"><span>FINANCIALS IN VISUALS · INDEPENDENT RESEARCH / {ticker}</span><span>研究辅助材料，非证券投资建议 · PDF SHA + 页码可追溯</span></div></footer><script>{js}</script></body></html>'''
- return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':10,'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'CASE_SOURCE_REVIEWED; NOT UNIVERSAL_PDF_AUTO_EXTRACTION'}
+ return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':(9 if not m.get('source_notes',{}).get('top5_ar_percent') and not m.get('source_notes',{}).get('top1_prepay_percent') else 10)+int(bool(volume_fig)),'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'UPLOADED_SOURCE_PDF_SHA_VERIFIED__CORE_FINANCIAL_NUMBERS_CHECKED__EDITORIAL_SECOND_REVIEW_PENDING'}
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--ledger',required=True);p.add_argument('--memo',required=True);p.add_argument('--out',required=True);p.add_argument('--qa',required=True);a=p.parse_args()
