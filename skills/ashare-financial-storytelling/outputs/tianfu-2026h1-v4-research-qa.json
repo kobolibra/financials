@@ -1,0 +1,85 @@
+{
+  "schema": "v4-research-qa",
+  "status": "ACCOUNTING_AND_MARKUP_CHECKS_PASS_BROWSER_AND_LIVE_UNVERIFIED",
+  "issuer": "苏州天孚光通信股份有限公司",
+  "source_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+  "preview_git_blob_sha": "176aa183b4402e83a8122ba12e19ca56f797eca5",
+  "source_addendum_blob_sha": "d9a76ffdb74071904ed62cfb1f8d9a45809a3b13",
+  "checks": [
+    {
+      "name": "AR net reconciles gross less loss allowance",
+      "status": "PASS",
+      "details": "p102 → p23"
+    },
+    {
+      "name": "inventory category net balances sum to total",
+      "status": "PASS",
+      "details": "p112 → p23"
+    },
+    {
+      "name": "inventory gross less allowance balances net",
+      "status": "PASS",
+      "details": "p112"
+    },
+    {
+      "name": "nonrec adjusted profit reconciles parent profit",
+      "status": "PASS",
+      "details": "p10-11"
+    },
+    {
+      "name": "revenue + cost prior gross profit delta",
+      "status": "PASS",
+      "details": "p61"
+    },
+    {
+      "name": "raw inventory change",
+      "status": "PASS",
+      "details": "p112"
+    },
+    {
+      "name": "simple FCF reconciles CFO less cash capital expenditure",
+      "status": "PASS",
+      "details": "p65"
+    },
+    {
+      "name": "reported top-5 AR share within rounding tolerance",
+      "status": "PASS",
+      "details": "as reported 84.27%; recomputed 84.278%, slight table rounded-cell sum difference, p103"
+    },
+    {
+      "name": "reported top supplier share within rounding tolerance",
+      "status": "PASS",
+      "details": "as reported 83.40%; recomputed 83.395%, p112"
+    },
+    {
+      "name": "v4 storyline references concentration correctly",
+      "status": "PASS",
+      "details": "No top-5 AR misrepresented as top-5 revenue"
+    },
+    {
+      "name": "v4 actual six Sankey ribbons from base case",
+      "status": "PASS",
+      "details": "Inherited 6 proportional SVG ribbons"
+    },
+    {
+      "name": "v4 independent source and caveat visible",
+      "status": "PASS",
+      "details": "Qualifiers and report source present"
+    },
+    {
+      "name": "v4 external font/image CDN check",
+      "status": "PASS",
+      "details": "No linked remote assets; narrative may cite plain URL absent here"
+    }
+  ],
+  "qa_limitations": [
+    "This tests arithmetic and static markup/semantic clues; it does NOT prove cross-browser rendering",
+    "Cloudflare public deployment is not independently accessible from current environment",
+    "External competitive claims, price-volume mechanism and operational causality remain unverified",
+    "General-PDF extraction and research synthesis not automatically tested"
+  ],
+  "count": {
+    "passed": 13,
+    "failed": 0
+  }
+}
