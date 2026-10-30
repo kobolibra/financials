@@ -21,7 +21,7 @@ class EoptolinkReleaseQA(unittest.TestCase):
 
     def test_report_is_exactly_reproducible(self):
         generated, metadata = build(LEDGER, MEMO)
-        published = (ROOT / "outputs/xinyisheng-2026H1-research-preview.html").read_text(encoding="utf-8")
+        published = (ROOT.parents[2] / "public/300502/2026-H1/index.html").read_text(encoding="utf-8")
         self.assertEqual(generated, published)
         self.assertEqual(hashlib.sha256(generated.encode()).hexdigest(), "5e5dea09b377d182d69fb587f8a30b9cce8928194fe0358c0b")
         self.assertEqual(metadata["charts"], 11)
