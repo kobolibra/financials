@@ -19,8 +19,9 @@
     "preview_exists": true,
     "production_path": "public/300394/2026-H1/index.html",
     "production_blob_sha": "65fa9eff8589ce6b70de8b139a0d0915f660dafb",
-    "production_unchanged_this_research_pass": true,
-    "skill_v7_blob_sha": "efc694c41b59ed20329d74580e86e34d3ca48c1d"
+    "production_unchanged_this_research_pass": false,
+    "skill_v7_blob_sha": "efc694c41b59ed20329d74580e86e34d3ca48c1d",
+    "production_matches_v7_preview": true
   },
   "editorial": {
     "research_tracks_present": true,
@@ -30,7 +31,7 @@
     "local_browser_acceptance": "NOT_CHECKED_FOR_THIS_FINAL_PREVIEW",
     "manual_publication_design_review": "NOT_CHECKED",
     "second_real_issuer_end_to_end": "NOT_CHECKED",
-    "publish_decision": "PREVIEW_ONLY_NOT_CLEARED_FOR_PRODUCTION"
+    "publish_decision": "PRODUCTION_GIT_CONTENT_MATCHES_V7_PREVIEW_BUT_BROWSER_AND_LIVE_NOT_VERIFIED"
   },
   "release_gates": {
     "SOURCE_PDF": "CASE_REVIEWED_MANUAL_CAVEATS",
@@ -38,7 +39,7 @@
     "RESEARCH": "DOCUMENTED_TWO_TRACKS",
     "GRAPHICS": "EIGHT_INLINE_SVG_REVIEW_PENDING",
     "BROWSER": "NOT_CHECKED",
-    "GIT": "PASS",
+    "GIT": "PASS_PRODUCTION_MATCHES_PREVIEW",
     "LIVE_CLOUDFLARE": "NOT_CHECKED",
     "SECOND_REAL_COMPANY": "NOT_CHECKED"
   }
