@@ -40,5 +40,5 @@ class TestFinance(unittest.TestCase):
   # Actual CLI rejects bank before chart logic, sector requires own template
   self.assertNotIn(l['document']['business_type'],('industrial','manufacturing','services'))
  def test_render_includes_full_five_chapter_visuals(self):
-  h,meta=article(LEDGER,MEMO,audit(LEDGER));self.assertEqual(meta['source_facts'],len(LEDGER['facts']));self.assertEqual(meta['indirect_adjustments'],15);self.assertEqual(h.count('class="waterfall"'),4);self.assertGreater(h.count('class="money-ribbon"'),6);self.assertIn('WORKING CAPITAL',h);self.assertIn('BALANCE SHEET',h);self.assertNotRegex(h, r'''(?:src|href)=[\"']https?://''')
+  h,meta=article(LEDGER,MEMO,audit(LEDGER));self.assertEqual(meta['source_facts'],len(LEDGER['facts']));self.assertEqual(meta['indirect_adjustments'],15);self.assertEqual(h.count('class="waterfall"'),4);self.assertGreater(h.count('class="money-ribbon"'),6);self.assertIn('WORKING CAPITAL',h);self.assertIn('BALANCE SHEET',h);self.assertIn('研发强度',h);self.assertIn('汇率波动',h);self.assertIn('ROE',h);self.assertNotRegex(h, r'''(?:src|href)=[\"']https?://''')
 if __name__=='__main__':unittest.main()
