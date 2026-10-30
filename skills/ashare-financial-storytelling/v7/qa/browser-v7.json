@@ -1,0 +1,161 @@
+{
+  "html_sha256": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90",
+  "cases": [
+    {
+      "viewport": 1440,
+      "passed": true,
+      "geom": {
+        "viewport": 1440,
+        "scroll": 1440,
+        "svg": 8,
+        "ribbons": 7,
+        "chapters": 5,
+        "figures": 10,
+        "links": [],
+        "svgSizes": [
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          },
+          {
+            "w": 1190,
+            "scroll": 1190
+          }
+        ]
+      },
+      "svg_export": true,
+      "keyboard_tooltip": true,
+      "errors": [],
+      "requests": [],
+      "screenshot": "/mnt/data/financials_v7/qa/v7-1440-full.png"
+    },
+    {
+      "viewport": 768,
+      "passed": true,
+      "geom": {
+        "viewport": 768,
+        "scroll": 768,
+        "svg": 8,
+        "ribbons": 7,
+        "chapters": 5,
+        "figures": 10,
+        "links": [],
+        "svgSizes": [
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 1040,
+            "scroll": 1040
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 1040,
+            "scroll": 1040
+          },
+          {
+            "w": 1040,
+            "scroll": 1040
+          }
+        ]
+      },
+      "svg_export": true,
+      "keyboard_tooltip": true,
+      "errors": [],
+      "requests": [],
+      "screenshot": "/mnt/data/financials_v7/qa/v7-768-full.png"
+    },
+    {
+      "viewport": 390,
+      "passed": true,
+      "geom": {
+        "viewport": 390,
+        "scroll": 390,
+        "svg": 8,
+        "ribbons": 7,
+        "chapters": 5,
+        "figures": 10,
+        "links": [],
+        "svgSizes": [
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 1040,
+            "scroll": 1040
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 930,
+            "scroll": 930
+          },
+          {
+            "w": 1040,
+            "scroll": 1040
+          },
+          {
+            "w": 1040,
+            "scroll": 1040
+          }
+        ]
+      },
+      "svg_export": true,
+      "keyboard_tooltip": true,
+      "errors": [],
+      "requests": [],
+      "screenshot": "/mnt/data/financials_v7/qa/v7-390-full.png"
+    }
+  ]
+}
