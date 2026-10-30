@@ -1,0 +1,69 @@
+{
+  "github": {
+    "official_repo": "kobolibra/financials",
+    "branch": "main",
+    "primary_host": "https://financials-in-visuals.pages.dev",
+    "report_path": "/300394/2026-H1/",
+    "production_blob_sha": "4cd4e16a41cad80115947c7bb6faaf4b64ce2648",
+    "preview_blob_sha": "4cd4e16a41cad80115947c7bb6faaf4b64ce2648",
+    "identical": true,
+    "home_no_redirect": true,
+    "root_has_report_link": true
+  },
+  "artifact": {
+    "version": "7.0.0",
+    "html_bytes_utf8": 64895,
+    "sha256": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90",
+    "exhibits": 10,
+    "svg": 8,
+    "containsSourceFingerprint": true,
+    "appEconomyAndAsharesResearchedSeparately": true
+  },
+  "tests": {
+    "accounting": "CALCULATION_PASS_MANUAL_REVIEW_REQUIRED",
+    "unit_cases_passed": 12,
+    "viewport_cases": [
+      {
+        "px": 1440,
+        "passed": true,
+        "overflow_px": 0,
+        "figures": 10,
+        "js_errors": 0,
+        "remote_requests": 0
+      },
+      {
+        "px": 768,
+        "passed": true,
+        "overflow_px": 0,
+        "figures": 10,
+        "js_errors": 0,
+        "remote_requests": 0
+      },
+      {
+        "px": 390,
+        "passed": true,
+        "overflow_px": 0,
+        "figures": 10,
+        "js_errors": 0,
+        "remote_requests": 0
+      }
+    ],
+    "browser_qa_hash": "5a590c39b74d5301f8b9f1d107c1a80802761b8e384239532a88013e02779a90"
+  },
+  "scope": {
+    "real_case": "Tianfu Communications 2026H1",
+    "facts": 59,
+    "indirect_cfo_adjustments": 15,
+    "supports_all_sectors": false,
+    "second_real_company_validated": false,
+    "price_peer_valuation": "NO_MADE_UP_DATA",
+    "source_review": "manual-reviewed case; fragmented PDF tables still need cell-level verification"
+  },
+  "deployment": {
+    "github_commit_verified": true,
+    "cloudflare_public_http_verified": false,
+    "public_http_error": "External web returned inaccessible/cache miss; container curl DNS failed",
+    "site_visual_live_verified": false
+  },
+  "release_judgment": "GITHUB_PUBLISHED_SOURCE_AND_LOCAL_BROWSER_PASS; EXTERNAL_LIVE_NOT_VERIFIED; GENERAL_PDF_ROBUSTNESS_NOT_PROVEN"
+}
