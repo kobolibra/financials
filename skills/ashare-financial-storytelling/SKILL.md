@@ -55,7 +55,7 @@ Reference studies: https://www.appeconomyinsights.com/p/6-charts-before-you-buy 
 - `engine/probe_pdf.py` and `engine/source_audit.py`: **candidate-only** PDF extraction and page checking, not autonomous evidence approval. Broken cell extraction must be manually reviewed.
 - `engine/build.py` + `template.html`: **data-driven**, self-contained editorial engine for industrial and manufacturing sources meeting required fields. It must not embed any issuer, old date, product class or PDF source page from the original demo; new issuer changes are injected only via ledger/memo. Financial-institution cases fail closed.
 - `tests/test_engine.py`: arithmetic, source conservation, missing-period, corruption, changed-issuer and sector-safety tests.
-- `tests/browser.py`: local Chromium browser and responsive acceptance; screenshots in QA.
+- `tests/browser_v6.py`: local Chromium browser and responsive acceptance; screenshots in QA.
 
 Example (from skill root):
 
@@ -63,7 +63,7 @@ Example (from skill root):
 python engine/audit.py examples/tianfu-ledger.json --out qa/ledger-check.json
 python -m unittest discover -s tests -p 'test_engine.py' -v
 python engine/build.py --ledger examples/tianfu-ledger.json --memo examples/tianfu-memo.json --out outputs/tianfu-h1-v6.html --qa qa/v6.json
-python tests/browser.py
+python tests/browser_v6.py
 ```
 
 The renderer **does not automatically perform full independent research or parse an arbitrary PDF perfectly**. A human-reviewed memo and evidence ledger are prerequisites. This is a multi-chart **industrial** engine, not a guaranteed universal A-share PDF-to-institutional-report model. Cross-sector full automation requires separate design, real multi-company regression and specialist sector templates.
