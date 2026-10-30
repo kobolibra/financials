@@ -69,7 +69,15 @@ def balance_identity(l):
         elements.append(_txt(1145,rightcur+h/2-4,name,'ed-label'))
         elements.append(_txt(1145,rightcur+h/2+21,_n(v)+' 亿元','ed-value'))
         rightcur+=h
-    for name,v,key,col,y in leftitems:
+    # Financial editorial QA: thin categories need label lanes, not colliding text.
+    label_ys=[]
+    for _,_,_,_,natural_y in leftitems:
+        label_ys.append(max(float(natural_y), label_ys[-1]+47 if label_ys else float(natural_y)))
+    overflow=max(0,label_ys[-1]-524) if label_ys else 0
+    if overflow:label_ys=[a-overflow for a in label_ys]
+    for (name,v,key,col,natural_y),y in zip(leftitems,label_ys):
+        if abs(y-natural_y)>6:
+            elements.append(f'<path d="M 282 {y:.1f} L 290 {y:.1f} L 295 {natural_y:.1f}" fill="none" stroke="#97aaa5" stroke-width="1.1"/>')
         elements.append(_txt(279,y-5,name,'ed-label','end'))
         elements.append(_txt(279,y+20,_n(v)+' 亿 · '+_p(l,key),'ed-sub','end'))
     elements.append(_txt(710,90,'资产总额','ed-label'))
