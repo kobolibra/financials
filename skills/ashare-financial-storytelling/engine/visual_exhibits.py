@@ -34,7 +34,7 @@ def svg_balance(data):
     items=[('货币资金',val(data,'monetary_funds'),BLUE,'monetary_funds'),('应收账款净额',val(data,'accounts_receivable'),TEAL,'accounts_receivable'),('存货净额',val(data,'inventory'),LITE,'inventory'),('其他流动资产（计算）',cur-val(data,'monetary_funds')-val(data,'accounts_receivable')-val(data,'inventory'),GREY,None),('非流动资产',noncur,'#99a6a9','noncurrent_assets')]
     assert sum(i[1] for i in items)==A and min(i[1] for i in items)>0
     k=5; a_y=145; dest_y=145; out=[]
-    out += [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" role="img" aria-label="资产构成与负债权益配平，按2026年6月30日金额比例，图形表示资产负债的时点组成而非现金流动" style="font-family:-apple-system,PingFang SC,Microsoft YaHei,sans-serif;min-width:980px;width:100%;height:auto;background:#fffefb">',
+    out += [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 700" role="img" aria-label="资产构成与负债权益配平，按{escape(data["document"]["period_end"])}金额比例，图形表示资产负债的时点组成而非现金流动" style="font-family:-apple-system,PingFang SC,Microsoft YaHei,sans-serif;min-width:980px;width:100%;height:auto;background:#fffefb">',
             text(24,50,'ASSET COMPOSITION   /   ACCOUNTING IDENTITY',15,TEAL,True), text(24,87,'金额对应面积 · 亿元人民币 · 期末余额，不是资金实际转移',16,'#647775')]
     for i,(name,amount,col,key) in enumerate(items):
         w=float(amount/C)*k; a=a_y; b=dest_y; label=f'{name} {cy(amount)}亿元 '+(src(data,key) if key else '计算残余')
@@ -69,7 +69,7 @@ def svg_cash(data):
     assert NP+other+inv+ar+ap==CFO
     assert OPEN+CFO+CFI+CFF+FX==CLOSE
     out=['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 870" role="img" aria-label="从净利润到经营现金流，再从期初现金到期末现金的两层有符号财务瀑布，原值来源于现金流表及间接法附注" style="font-family:-apple-system,PingFang SC,Microsoft YaHei,sans-serif;min-width:1020px;width:100%;height:auto;background:#fffefb">',
-        text(30,46,'I    EARNINGS → OPERATING CASH',15,TEAL,True),text(30,77,'合并净利润 + 15 项有符号调整 = CFO',15,'#647775')]
+        text(30,46,'I    EARNINGS → OPERATING CASH',15,TEAL,True),text(30,77,f'合并净利润 + {len(ADJ)} 项有符号调整 = CFO',15,'#647775')]
     def row(ybase,top,scale,labels,values,start=0,width=100,x_start=36,step=210):
         current=D(start)
         for i,(label,v) in enumerate(zip(labels,values)):
@@ -128,8 +128,8 @@ EXTRA_CSS='''\n.atlas-exhibit{border-top:1px solid #cbd9ce;padding:45px 0 58px}.
 
 def upgrade(data,original):
     b=svg_balance(data);c=svg_cash(data)
-    b_sec=f'''<section class="atlas-exhibit" id="capital-anatomy"><div class="atlas-eyebrow">07 / CAPITAL ANATOMY · FINANCIAL POSITION</div><h3>这 75.88 亿元资产，由哪些经营要素构成，又由谁提供资本？</h3><p class="explainer">不是把“资产”画成一根柱。将货币资金、应收、存货和剩余流动/长期资产按实际金额流带汇入总资产，再显示与负债及股东权益的会计恒等关系。<strong>这是一张时点资产构成图，不代表负债真的流进了哪类资产。</strong></p><div class="atlas-sheet"><div class="atlas-scroll">{b}</div><p class="atlas-note">来源：原始半年报合并资产负债表 p56–58；货币资金等科目参见附注。流动资产其他项由流动资产减去货币资金、应收账款净额及存货净额计算，不能据此认定是一项披露业务。资产＝负债＋所有者权益，以人民币原值精确校验。</p></div></section>'''
-    c_sec=f'''<section class="atlas-exhibit" id="cash-architecture"><div class="atlas-eyebrow">08 / EARNINGS, REINVESTMENT & LIQUIDITY</div><h3>从净利润到经营现金，再到期末现金：两层桥接缺一不可。</h3><p class="explainer">第一层用报告附注完整的 15 项有符号调整，区分非现金调整和营运资本变化；第二层以经营、投资、筹资和汇率变动解释现金净减少。<strong>不能把负值冒充正向桑基流带，也不能把利润表汇兑损益和现金汇率影响混为一谈。</strong></p><div class="atlas-sheet"><div class="atlas-scroll">{c}</div><p class="atlas-note">来源：原始半年报 p62、p65、p147–148。两座瀑布分别精确勾稽到 CFO 与现金及现金等价物期末余额。其他非现金净调整＝除存货、经营性应收、经营性应付外的全部剩余附注项目之和，不是任意平衡项。</p></div></section>'''
+    b_sec=f'''<section class="atlas-exhibit" id="capital-anatomy"><div class="atlas-eyebrow">07 / CAPITAL ANATOMY · FINANCIAL POSITION</div><h3>这 {cy(val(data,'assets'))} 亿元资产，由哪些经营要素构成，又由谁提供资本？</h3><p class="explainer">不是把“资产”画成一根柱。将货币资金、应收、存货和剩余流动/长期资产按实际金额流带汇入总资产，再显示与负债及股东权益的会计恒等关系。<strong>这是一张时点资产构成图，不代表负债真的流进了哪类资产。</strong></p><div class="atlas-sheet"><div class="atlas-scroll">{b}</div><p class="atlas-note">来源：原始半年报合并资产负债表 p56–58；货币资金等科目参见附注。流动资产其他项由流动资产减去货币资金、应收账款净额及存货净额计算，不能据此认定是一项披露业务。资产＝负债＋所有者权益，以人民币原值精确校验。</p></div></section>'''
+    c_sec=f'''<section class="atlas-exhibit" id="cash-architecture"><div class="atlas-eyebrow">08 / EARNINGS, REINVESTMENT & LIQUIDITY</div><h3>从净利润到经营现金，再到期末现金：两层桥接缺一不可。</h3><p class="explainer">第一层用报告附注完整的 {len(data['indirect_cfo_adjustments'])} 项有符号调整，区分非现金调整和营运资本变化；第二层以经营、投资、筹资和汇率变动解释现金净减少。<strong>不能把负值冒充正向桑基流带，也不能把利润表汇兑损益和现金汇率影响混为一谈。</strong></p><div class="atlas-sheet"><div class="atlas-scroll">{c}</div><p class="atlas-note">来源：原始半年报 p62、p65、p147–148。两座瀑布分别精确勾稽到 CFO 与现金及现金等价物期末余额。其他非现金净调整＝除存货、经营性应收、经营性应付外的全部剩余附注项目之和，不是任意平衡项。</p></div></section>'''
     if '<section class="method" id="methods">' not in original or '</style>' not in original: raise ValueError('Unknown template, no mutation')
     # Present dedicated exhibits beside related existing sections, not as unrelated dashboard cards.
     original=original.replace('</style>',EXTRA_CSS+'</style>')
