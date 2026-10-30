@@ -1,16 +1,11 @@
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
-from functools import partial
-import threading
 import json, hashlib
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'outputs/tianfu-h1-v6.html';OUT=ROOT/'qa/browser';OUT.mkdir(parents=True,exist_ok=True)
 res={'html_sha256':hashlib.sha256(TARGET.read_bytes()).hexdigest(),'cases':[]}
-server=ThreadingHTTPServer(('127.0.0.1',18765),partial(SimpleHTTPRequestHandler,directory=str(ROOT)))
-threading.Thread(target=server.serve_forever,daemon=True).start()
 with sync_playwright() as p:
-    browser=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+    browser=p.chromium.launch(headless=True,**({'executable_path':'/usr/bin/chromium','args':['--no-sandbox']} if Path('/usr/bin/chromium').exists() else {}))
     for w,h in [(1440,900),(768,900),(390,844)]:
         page=browser.new_page(viewport={'width':w,'height':h},device_scale_factor=1)
         errors=[];requests=[];page.on('pageerror',lambda e:errors.append(str(e)));page.on('request',lambda r:requests.append(r.url) if r.url.startswith('http') else None)
@@ -40,6 +35,5 @@ with sync_playwright() as p:
         res['cases'].append({'viewport':w,**doc})
         page.close()
     browser.close()
-server.shutdown()
 (OUT/'acceptance.json').write_text(json.dumps(res,ensure_ascii=False,indent=2))
 print(json.dumps(res,ensure_ascii=False,indent=2))
