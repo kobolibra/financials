@@ -1,0 +1,728 @@
+{
+  "schema_version": "2.0",
+  "document": {
+    "issuer": "苏州天孚光通信股份有限公司",
+    "ticker": "300394.SZ",
+    "report_type": "H1",
+    "business_type": "industrial",
+    "period_start": "2026-01-01",
+    "period_end": "2026-06-30",
+    "period_key": "2026H1",
+    "comparative_period_key": "2025H1",
+    "previous_stock_date": "2025-12-31",
+    "currency": "CNY",
+    "pages": 185,
+    "scope": "consolidated",
+    "audited": false,
+    "source_filename": "788b066c-b687-4f11-8ae4-c6197f019370.pdf",
+    "source_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5"
+  },
+  "facts": {
+    "cogs": {
+      "amount": "1106583801.94",
+      "page": 61,
+      "source_label": "营业成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "total_operating_costs": {
+      "amount": "1452787281.51",
+      "page": 61,
+      "source_label": "营业总成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "operating_profit": {
+      "amount": "1380532835.09",
+      "page": 61,
+      "source_label": "营业利润",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "other_income": {
+      "amount": "30623274.41",
+      "page": 61,
+      "source_label": "其他收益",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "investment_income": {
+      "amount": "959062.84",
+      "page": 61,
+      "source_label": "投资收益",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "fair_value_income": {
+      "amount": "2166569.86",
+      "page": 61,
+      "source_label": "公允价值变动收益",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "credit_impairment": {
+      "amount": "-18008370.09",
+      "page": 61,
+      "source_label": "信用减值损失",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "asset_impairment": {
+      "amount": "-10359168.79",
+      "page": 61,
+      "source_label": "资产减值损失",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "nonop_income": {
+      "amount": "778047.13",
+      "page": 61,
+      "source_label": "营业外收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "nonop_expense": {
+      "amount": "4030407.23",
+      "page": 61,
+      "source_label": "营业外支出",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "income_tax": {
+      "amount": "172866914.13",
+      "page": 62,
+      "source_label": "所得税费用",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "parent_profit": {
+      "amount": "1204285104.14",
+      "page": 62,
+      "source_label": "归属于母公司股东的净利润",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "net_profit": {
+      "amount": "1204413560.86",
+      "page": 62,
+      "source_label": "净利润",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "revenue": {
+      "amount": "2827938748.37",
+      "page": 61,
+      "source_label": "营业收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cfo": {
+      "amount": "1000881668.42",
+      "page": 65,
+      "source_label": "经营活动产生的现金流量净额",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cfi": {
+      "amount": "-591061830.37",
+      "page": 65,
+      "source_label": "投资活动产生的现金流量净额",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cff": {
+      "amount": "-527613020.98",
+      "page": 65,
+      "source_label": "筹资活动产生的现金流量净额",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "fx_effect": {
+      "amount": "-113356734.33",
+      "page": 65,
+      "source_label": "汇率变动对现金及现金等价物的影响",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cash_open": {
+      "amount": "2863743000.22",
+      "page": 65,
+      "source_label": "期初现金及现金等价物余额",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cash_close": {
+      "amount": "2632593082.96",
+      "page": 65,
+      "source_label": "期末现金及现金等价物余额",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "assets": {
+      "amount": "7587829694.94",
+      "page": 57,
+      "source_label": "资产总计",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "current_assets": {
+      "amount": "5707752776.84",
+      "page": 56,
+      "source_label": "流动资产合计",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "noncurrent_assets": {
+      "amount": "1880076918.10",
+      "page": 57,
+      "source_label": "非流动资产合计",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "liabilities": {
+      "amount": "1332641849.19",
+      "page": 58,
+      "source_label": "负债合计",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "equity": {
+      "amount": "6255187845.75",
+      "page": 58,
+      "source_label": "所有者权益合计",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "capex_cash": {
+      "amount": "308342051.19",
+      "page": 65,
+      "source_label": "购建固定资产、无形资产和其他长期资产支付的现金",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "passive_revenue": {
+      "amount": "1530364516.33",
+      "page": 22,
+      "source_label": "无源光器件营业收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "business_segments",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "active_revenue": {
+      "amount": "1259923042.78",
+      "page": 22,
+      "source_label": "有源光器件营业收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "business_segments",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "passive_cogs": {
+      "amount": "430094548.84",
+      "page": 22,
+      "source_label": "无源光器件营业成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "business_segments",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "active_cogs": {
+      "amount": "667401874.53",
+      "page": 22,
+      "source_label": "有源光器件营业成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "business_segments",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "accounts_receivable": {
+      "amount": "1451772964.98",
+      "page": 56,
+      "source_label": "应收账款",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "inventory": {
+      "amount": "928830690.11",
+      "page": 56,
+      "source_label": "存货",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "monetary_funds": {
+      "amount": "2905778868.53",
+      "page": 56,
+      "source_label": "货币资金",
+      "period": "2026-06-30",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "financial_expenses": {
+      "amount": "37455373.59",
+      "page": 61,
+      "source_label": "财务费用",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "research_expenses": {
+      "amount": "194927204.07",
+      "page": 61,
+      "source_label": "研发费用",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "gross_profit": {
+      "amount": "1721354946.43",
+      "page": 61,
+      "source_label": "营业收入减营业成本（计算值）",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "calculated",
+      "image_checked": true,
+      "formula": "revenue-cogs",
+      "inputs": [
+        "revenue",
+        "cogs"
+      ],
+      "source_confidence": "calculation_verified"
+    },
+    "minority_profit": {
+      "amount": "128456.72",
+      "page": 62,
+      "source_label": "少数股东损益",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "disposal_income": {
+      "amount": "0.00",
+      "page": 61,
+      "source_label": "资产处置收益",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "revenue_prior": {
+      "amount": "2455890299.50",
+      "page": 61,
+      "source_label": "营业收入（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cogs_prior": {
+      "amount": "1208582310.73",
+      "page": 61,
+      "source_label": "营业成本（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "parent_profit_prior": {
+      "amount": "899241294.92",
+      "page": 62,
+      "source_label": "归属于母公司股东的净利润（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "net_profit_prior": {
+      "amount": "899424956.59",
+      "page": 62,
+      "source_label": "净利润（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "cfo_prior": {
+      "amount": "608178009.04",
+      "page": 65,
+      "source_label": "经营活动产生的现金流量净额（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "capex_cash_prior": {
+      "amount": "204814446.69",
+      "page": 65,
+      "source_label": "购建固定资产、无形资产和其他长期资产支付的现金（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "cash_flow",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "research_expenses_prior": {
+      "amount": "125502253.16",
+      "page": 61,
+      "source_label": "研发费用（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "financial_expenses_prior": {
+      "amount": "-25142792.62",
+      "page": 61,
+      "source_label": "财务费用（上年同期）",
+      "period": "2025H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "income_statement",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "assets_prior": {
+      "amount": "6449302312.06",
+      "page": 57,
+      "source_label": "资产总计（上年末）",
+      "period": "2025-12-31",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "accounts_receivable_prior": {
+      "amount": "1121985328.51",
+      "page": 56,
+      "source_label": "应收账款（上年末）",
+      "period": "2025-12-31",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "inventory_prior": {
+      "amount": "457195929.70",
+      "page": 56,
+      "source_label": "存货（上年末）",
+      "period": "2025-12-31",
+      "kind": "stock",
+      "scope": "consolidated",
+      "table": "balance_sheet",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    }
+  },
+  "segments": [
+    {
+      "dimension": "product",
+      "name": "无源光器件",
+      "revenue_key": "passive_revenue",
+      "cost_key": "passive_cogs",
+      "disclosure": "partial"
+    },
+    {
+      "dimension": "product",
+      "name": "有源光器件",
+      "revenue_key": "active_revenue",
+      "cost_key": "active_cogs",
+      "disclosure": "partial"
+    }
+  ],
+  "indirect_cfo_adjustments": [
+    {
+      "source_label": "资产减值准备",
+      "amount": "28367538.88",
+      "page": 148
+    },
+    {
+      "source_label": "固定资产折旧",
+      "amount": "98737008.93",
+      "page": 148
+    },
+    {
+      "source_label": "使用权资产折旧",
+      "amount": "801133.62",
+      "page": 148
+    },
+    {
+      "source_label": "无形资产摊销",
+      "amount": "2018241.73",
+      "page": 148
+    },
+    {
+      "source_label": "长期待摊费用摊销",
+      "amount": "2229924.39",
+      "page": 148
+    },
+    {
+      "source_label": "固定资产报废损失",
+      "amount": "2694918.21",
+      "page": 148
+    },
+    {
+      "source_label": "公允价值变动损失",
+      "amount": "-2166569.86",
+      "page": 148
+    },
+    {
+      "source_label": "财务费用",
+      "amount": "93936385.23",
+      "page": 148
+    },
+    {
+      "source_label": "投资损失",
+      "amount": "-959062.84",
+      "page": 148
+    },
+    {
+      "source_label": "递延所得税资产减少",
+      "amount": "-11074056.54",
+      "page": 148
+    },
+    {
+      "source_label": "递延所得税负债增加",
+      "amount": "-171378.09",
+      "page": 148
+    },
+    {
+      "source_label": "存货减少（增加）",
+      "amount": "-481305251.18",
+      "page": 148
+    },
+    {
+      "source_label": "经营性应收项目减少（增加）",
+      "amount": "-372601134.59",
+      "page": 148
+    },
+    {
+      "source_label": "经营性应付项目增加（减少）",
+      "amount": "422925206.40",
+      "page": 148
+    },
+    {
+      "source_label": "其他",
+      "amount": "13035203.27",
+      "page": 148
+    }
+  ],
+  "qualitative": [
+    {
+      "claim": "个别物料阶段性供给紧缺对有源光器件产品提产带来影响",
+      "page": 14,
+      "status": "management_claim",
+      "limitation": "未披露该因素对销量、单价、收入的独立金额贡献"
+    },
+    {
+      "claim": "无源光器件业务上半年同比增长超过77%",
+      "page": 14,
+      "status": "management_claim",
+      "limitation": "具体增长率由第22页分产品财务表支持"
+    }
+  ],
+  "limitations": [
+    "本报告为未经审计半年度财报",
+    "主营业务两个产品分部未覆盖全部合并收入：差额需标计算残余，不能命名第三独立业务",
+    "无源与有源业务盈利差异不能直接断言全部来自产品组合变化",
+    "货币资金和现金及现金等价物口径不同"
+  ]
+}
