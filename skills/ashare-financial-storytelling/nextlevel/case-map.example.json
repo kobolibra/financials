@@ -1,0 +1,14 @@
+{
+  "300308": {
+    "ledger": "path/to/zhongji-ledger.json",
+    "pdf": "path/to/zhongji-2026h1.pdf"
+  },
+  "300394": {
+    "ledger": "path/to/tianfu-ledger.json",
+    "pdf": "path/to/tianfu-2026h1.pdf"
+  },
+  "300502": {
+    "ledger": "path/to/xinyisheng-ledger.json",
+    "pdf": "path/to/xinyisheng-2026h1.pdf"
+  }
+}
