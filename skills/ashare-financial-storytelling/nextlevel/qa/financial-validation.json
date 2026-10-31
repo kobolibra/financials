@@ -1,0 +1,54 @@
+{
+  "version": "nextlevel-research-2026-11-01",
+  "doc_type": "industry_comparative",
+  "issuers": {
+    "300394": {
+      "name": "天孚通信",
+      "source_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+      "h1_revenue_yuan": "2827938748.37",
+      "h1_gross_margin": "0.6086959795088116553441488074",
+      "h1_cfo_ni": "0.8310116233707382071496813286",
+      "h1_cash_capex_yuan": "308342051.19",
+      "h1_simple_fcf_yuan": "692539617.23",
+      "stock_wc_share_dec": "0.2448607898651267865403938275",
+      "stock_wc_share_jun": "0.3137397320181715522703346985"
+    },
+    "300308": {
+      "name": "中际旭创",
+      "source_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+      "h1_revenue_yuan": "41777861795.03",
+      "h1_gross_margin": "0.4625218434919695570000446672",
+      "h1_cfo_ni": "0.1221491008815163998033037135",
+      "h1_cash_capex_yuan": "4802161195.37",
+      "h1_simple_fcf_yuan": "-3002486363.35",
+      "stock_wc_share_dec": "0.4185916189997858746703688820",
+      "stock_wc_share_jun": "0.5051594142546285960664368279"
+    },
+    "300502": {
+      "name": "新易盛",
+      "source_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+      "h1_revenue_yuan": "20909746962.20",
+      "h1_gross_margin": "0.4843973250723798278255570233",
+      "h1_cfo_ni": "0.2136322092146947479687464926",
+      "h1_cash_capex_yuan": "1263841519.77",
+      "h1_simple_fcf_yuan": "352567004.38",
+      "stock_wc_share_dec": "0.4509799022805345514702257763",
+      "stock_wc_share_jun": "0.5240175941978058959578434803"
+    }
+  },
+  "pdf_hash_pass": true,
+  "accounting_checks": "PASS_GROSS_PROFIT_AND_BASES",
+  "chart_count": 6,
+  "chart_types": [
+    "ranked_zero_baseline_growth_bars",
+    "margin_dumbbell",
+    "cash_conversion_bar",
+    "signed_fcf_diverging",
+    "working_capital_share_dumbbell",
+    "asset_composition_100pct_stacked"
+  ],
+  "chart_full_source": true,
+  "valuation_data": "NOT_PROVIDED",
+  "live_http": "NOT_CHECKED",
+  "html_sha256": "682f80133a4be339c1aaeebfd4c7c3f7800b842b2fd212ba2b19a712b017e1f1"
+}
