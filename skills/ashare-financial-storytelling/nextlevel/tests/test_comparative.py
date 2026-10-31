@@ -1,4 +1,4 @@
-import unittest, json, subprocess, tempfile, sys, hashlib
+import unittest, json, subprocess, tempfile, sys, hashlib, os
 from pathlib import Path
 from decimal import Decimal as D
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'engine'))
@@ -6,7 +6,15 @@ import build_comparative as m
 
 class EditorialTests(unittest.TestCase):
  @classmethod
- def setUpClass(cls):cls.f=m.checked();cls.page=m.render(cls.f)
+ def setUpClass(cls):
+  source_map=os.environ.get('FINANCIALS_SOURCE_MAP')
+  if source_map:
+   fp=Path(source_map).resolve();mapping=json.loads(fp.read_text())
+   m.DEFAULT_CASES={k:(fp.parent/v['ledger']).resolve() for k,v in mapping.items()}
+   m.PDF_PATHS={k:(fp.parent/v['pdf']).resolve() for k,v in mapping.items()}
+  if not all(p.exists() for p in list(m.DEFAULT_CASES.values())+list(m.PDF_PATHS.values())):
+   raise unittest.SkipTest('Requires 3 user-owned original PDFs and normalized ledgers; set FINANCIALS_SOURCE_MAP to test')
+  cls.f=m.checked();cls.page=m.render(cls.f)
  def test_all_3_original_pdf_hashes(self):
   self.assertEqual(set(self.f),{'300394','300308','300502'})
   self.assertEqual(self.f['300308']['pdf_sha256'],'e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf')
