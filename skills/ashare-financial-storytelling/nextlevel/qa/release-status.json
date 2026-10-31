@@ -1,0 +1,61 @@
+{
+  "edition": "Research & Visual Editorial v8",
+  "date": "2026-11-01",
+  "repository": "kobolibra/financials",
+  "branch": "main",
+  "two_independent_pillars": {
+    "AEI_and_FT_visual_research": "RESEARCH_DOCUMENT_VERIFIED_IN_GIT",
+    "CSRC_CAS_Ashare_forensic_research": "RESEARCH_DOCUMENT_VERIFIED_IN_GIT"
+  },
+  "artifact": {
+    "path": "public/optical-2026h1.html",
+    "form": "standalone self-contained HTML, not homepage iframe",
+    "source_issuers": [
+      "300394",
+      "300308",
+      "300502"
+    ],
+    "distinct_svg_figures": 6
+  },
+  "validation": {
+    "primary_pdf_sha256_count": 3,
+    "local_financial_regressions": {
+      "passed": 13,
+      "failed": 0
+    },
+    "local_browser": {
+      "viewports": [
+        1440,
+        768,
+        390
+      ],
+      "status": "PASS"
+    },
+    "github_blob_file_roundtrip": "PASS",
+    "github_site_homepage": {
+      "standalone_links": [
+        "optical-2026h1.html",
+        "300394.html",
+        "300308.html",
+        "300502.html"
+      ],
+      "iframes": false
+    },
+    "cloudflare_public_live_HTTP": "NOT_VERIFIED",
+    "independent_second_financial_editor": "NOT_CHECKED",
+    "other_industries_bank_insurer_property": "NOT_VALIDATED",
+    "historical_8_to_12_quarters_or_price_valuation": "NOT_IN_SOURCE_SCOPE"
+  },
+  "source_git_blobs": {
+    "public/index.html": "4611eaf56dc2f772d9064c51a1d2cf2cd3fbd867",
+    "public/optical-2026h1.html": "1d927e310ec7bc380500b2ba9a181840a94f4e60",
+    "public/300394.html": "c1f3fd4c607687b2620aef8c70dfa11d01fc8a02",
+    "public/300308.html": "a79a64d425bb6a18f571d88710b4ae510b0ffa5b",
+    "public/300502.html": "429531b9a8ded0de878305d959f276579c4be603",
+    "skills/ashare-financial-storytelling/SKILL.md": "5e15f7df0a34f669307fb4b730a8e2a818348a47",
+    "skills/ashare-financial-storytelling/research/03_VISUAL_EDITORIAL_SYSTEM.md": "1ed49507c412f0b8f69fac68aa072aa34e68ee0d",
+    "skills/ashare-financial-storytelling/research/04_ASHARE_FORENSIC_DEEP_DIVE.md": "e82597d23f79cd462306710d38e11ac006a042b7"
+  },
+  "release_class": "GITHUB_SOURCE_VERIFIED_NOT_LIVE_DEPLOYMENT_VERIFIED",
+  "limitation": "The research methodology and a cross-company manufacturing-sector example are delivered; the industrial template does not automatically replace analyst judgement or establish regulatory, sector, public-deployment, or valuation coverage."
+}
