@@ -1,0 +1,131 @@
+{
+  "version": "2026-11-01",
+  "issuer_set": [
+    "300394.SZ",
+    "300308.SZ",
+    "300502.SZ"
+  ],
+  "period": "2026H1",
+  "scope": "consolidated",
+  "comparability": "same dates and currency; different value-chain positions; no stock ranking",
+  "original_pdf_required": true,
+  "figures": [
+    {
+      "id": "01",
+      "question": "Which issuer's reported sales grew faster?",
+      "relationship": "relative YoY magnitude",
+      "fields": [
+        "revenue",
+        "revenue_prior"
+      ],
+      "form": "zero-baseline horizontal growth bars",
+      "formula": "revenue_2026H1/revenue_2025H1-1",
+      "period": "two H1 flows",
+      "units": "% growth; RMB 100m underlying",
+      "denominator": "respective issuer 2025 H1 revenue",
+      "zero": "0% required",
+      "source": "each issuer consolidated income statement",
+      "alternative": "M&A/mix/FX may explain growth; not same-SKU pricing"
+    },
+    {
+      "id": "02",
+      "question": "How did gross margin change, in pp?",
+      "relationship": "change between comparable rates",
+      "fields": [
+        "revenue",
+        "cogs",
+        "revenue_prior",
+        "cogs_prior"
+      ],
+      "form": "two-point dumbbell",
+      "formula": "(revenue-COGS)/revenue by year, delta in percentage points",
+      "period": "2025H1 vs 2026H1",
+      "units": "% and pp",
+      "denominator": "same-issuer period revenue",
+      "zero": "non-zero interval 35%-70%, explicitly labelled; no bar area",
+      "source": "income statements",
+      "alternative": "mix/cost/FX effects not separately disclosed"
+    },
+    {
+      "id": "03",
+      "question": "What share of consolidated earnings converted to operating cash?",
+      "relationship": "ratio of two flows",
+      "fields": [
+        "cfo",
+        "net_profit"
+      ],
+      "form": "common-scale horizontal ratio bars",
+      "formula": "CFO/consolidated NI",
+      "period": "2026H1",
+      "units": "%, RMB 100m",
+      "denominator": "consolidated net profit, not parent-attributable",
+      "zero": "0% baseline",
+      "source": "cash flow statement and income statement",
+      "alternative": "working capital and noncash adjustments may reverse"
+    },
+    {
+      "id": "04",
+      "question": "What cash remains after long-term asset purchases?",
+      "relationship": "signed deviation from zero",
+      "fields": [
+        "cfo",
+        "capex_cash"
+      ],
+      "form": "diverging zero-line bar",
+      "formula": "CFO-cash paid to acquire PP&E/intangibles/other long-term assets",
+      "period": "2026H1",
+      "units": "RMB 100m signed",
+      "denominator": "not applicable",
+      "zero": "required zero line and equal RMB scale",
+      "source": "cash flow statement",
+      "alternative": "lumpy growth CapEx and timing; not maintenance FCF/FCFF"
+    },
+    {
+      "id": "05",
+      "question": "How much total-asset capacity is tied in net AR and inventory?",
+      "relationship": "change over two stock dates",
+      "fields": [
+        "accounts_receivable",
+        "inventory",
+        "assets",
+        "accounts_receivable_prior",
+        "inventory_prior",
+        "assets_prior"
+      ],
+      "form": "two-date share dumbbell",
+      "formula": "(net AR + net inventory)/same-date total assets",
+      "period": "2025-12-31 vs 2026-06-30",
+      "units": "% of same-date assets",
+      "denominator": "each balance-sheet date total assets",
+      "zero": "0-72% labelled domain; no area encoding",
+      "source": "consolidated balance sheets",
+      "alternative": "stock movement is not the same as indirect CFO adjustment"
+    },
+    {
+      "id": "06",
+      "question": "How do AR and inventory contribute to same-date assets?",
+      "relationship": "part-to-whole stock composition",
+      "fields": [
+        "accounts_receivable",
+        "inventory",
+        "assets"
+      ],
+      "form": "100% stacked composition",
+      "formula": "net AR/assets + net inventory/assets + other assets/assets = 100%",
+      "period": "2026-06-30 stock only",
+      "units": "share of assets",
+      "denominator": "same-date assets",
+      "zero": "from zero to 100%",
+      "source": "consolidated balance sheets",
+      "alternative": "other assets is a calculated aggregate, not a disclosed single business unit"
+    }
+  ],
+  "release": {
+    "source": "PASS local original PDF SHA",
+    "accounting": "PASS Decimal",
+    "design": "PASS 6 actual screenshots examined; 1440/768/390 browser",
+    "git": "to be checked",
+    "cloudflare": "NOT_CHECKED",
+    "independent_peer_review": "NOT_CHECKED"
+  }
+}
