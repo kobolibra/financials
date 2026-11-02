@@ -1,4 +1,6 @@
 # FINANCIALS IN VISUALS / PROJECT_STATE.md
+
+> **LATEST CHECKPOINT IS BELOW**: read the v8.2.0-RC1 section at bottom; earlier v8.1 references are historical.
 Updated: 2026-11-02 · Working branch: `pdf-source-validation-2026h1` · **Not merged to main**
 
 > This is the **first file** every new ChatGPT session must fetch. Next read `skills/ashare-financial-storytelling/SKILL.md` from the CURRENT branch and its four `research/01...04` dependencies. Never claim project familiarity before reading the actual latest sources and code.
@@ -70,3 +72,42 @@ The files are currently generated **conversation artifacts**, **not yet in main 
 4. Independent red-team analyst and financial editor; acknowledge material unresolved claims.
 5. Real HTTP routing test on Cloudflare preview, not just local Chromium `set_content`. Preview first, then production after passing all hard gates.
 6. At every milestone update this file with exact HEAD, Skill blob, source inventory, tests and blockers. A new conversation should **not** reread the old long conversation to reconstruct the status.
+
+## 2026-11-02 · v8.2.0-RC1 cross-sector generalization checkpoint (newer than earlier sections)
+
+**Latest candidate Skill:** `skills/ashare-financial-storytelling/SKILL.md` on the working branch, version `8.2.0-rc1`, blob SHA `4deb260c34185b94211544a3f170987e8ecc8756`. Required additional reference: `skills/ashare-financial-storytelling/research/05_CROSS_SECTOR_GENERALIZATION.md`. Both files committed on working branch; `main` remains unchanged. Recheck branch and blobs before using.
+
+**Three new real original issuer reports validated via GitHub Actions:** successful run https://github.com/kobolibra/financials/actions/runs/41417826429 (first access-blocked source run failed). The stable document identities and checks:
+| Ticker | Sector | Pages | PDF SHA256 | Original canonical PDF |
+|---|---|---:|---|---|
+| `600036` 招商银行 | Commercial bank | 247 | `0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c` | https://static.cninfo.com.cn/finalpage/2026-08-28/1225531453.PDF |
+| `601318` 中国平安 | Insurance/bank/AM holding | 176 | `f42140b5ad6ca7577d746dad57fd43a7bbc11ee0e360f61c2ed52bd7a4f4a54b` | https://static.cninfo.com.cn/finalpage/2026-08-21/1225487480.PDF |
+| `000002` 万科 | Property developer | 234 | `50813d4f08f812bab70d14fc257638b46d1b5ae138b91db7d11b1845f31c649a` | https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-28/f8d56d6e-4a78-464f-8f31-79d70275b258.PDF |
+
+**Persistent cross-conversation archive (Library upload SUCCESS):**
+`/Financials-in-Visuals/2026H1-universal-validation-v8.2.zip`, Library ID `libfile_50a95412f6a88191a8693c52834019f6`, ZIP SHA256 `d81340ee80bebcdde3a58a07f07de7d1c1cdb33d39e3a66204aa00943b4b1f9d`. Contains five original PDFs (3 new bank/insurance/property + prior Midea/Moutai required for mixed-revenue tests); prior Kingsoft original PDF is in the **earlier** archive in the same Library folder. Also contains:
+- `sector_profiles.json` (12 distinct economic/accounting routing contracts),
+- `engine.py` (typed fact and period/scope validation, sector routing, diagram restrictions, sign and taxonomy checks),
+- `test_engine.py` 18 synthetic adversarial tests,
+- `test_hybrid_revenue.py` original PDF economic/finance-overlay test for Midea p98 (RMB thousands) and Moutai p30 (RMB yuan),
+- `real_corpus.py`, `qa_real_sources.json` (44 selected PDF-page numbers and 7 targeted identities),
+- `render_sector_cases.py`, `reports/index.html` + `reports/600036.html`, `601318.html`, `000002.html`,
+- `browser_verify.py`, `qa_browser.json`, 1440/390 screenshots of 3 companies and each flagship chart,
+- `GENERALIZATION_AUDIT.md`, `README_REPRODUCE.md`.
+Python experimental code is in this **Library ZIP**, not yet Git-tracked. DO NOT assume scripts live in the repo.
+
+**Current actual gates:**
+- PDF original bytes/identity/pages/SHA new sectors: `PASS 3/3` (six original issuers across two archived packages including prior cases).
+- Selected literal PDF physical-page numerical string matches: `PASS 44/44` **new sectors only**; earlier cases 92 selected matches. **NOT** full semantic three-statement verification.
+- Bank/insurer/property targeted accounting identity and Vanke review emphasis tests: `PASS 7/7`.
+- Hybrid ordinary-revenue vs total-revenue identity from Midea and Moutai physical original PDF pages: `PASS 1/1` test with two real source cases. Midea 260,042,490+1,009,683+206=261,052,379 (RMB thousand); Moutai 90,703,260,964.48+1,574,811,118.73=92,278,072,083.21 (RMB yuan).
+- Sector routing and unsafe chart tests: `PASS 18/18` synthetic; including hybrid overlays, signed cash, stock vs flow and additivity.
+- Standalone three new evidence-driven HTML previews (3 research relationship exhibits each) with self-contained SVG and accessible values: `DONE` **in persistent Library only**, not main Git or Cloudflare.
+- Chromium **render-only** at 1440, 768 and 390: `PASS 9/9`, checked text orphan/overflow and SVG export; first-figure screenshots reviewed. **Actual file/HTTP site navigation NOT_CHECKED** due environment policy.
+- Complete all-three-statement semantic and note-level review for all industries, proper independent equity-research multi-period analyses, second real issuer per industry, second financial editor and publication-level figure critique: `NOT_CHECKED`.
+- Cloudflare preview/production live serving & identity: `NOT_CHECKED`. Do not claim deployed or institutional-production-ready.
+
+**Crucial quality lesson / generalization gate:** A list of 12 sector profiles is **not** 12 production adapters. At most first-case Level-1 prototypes are supported for new bank, insurance-group and property examples. An actual supported industry needs independent real-source tests on 2 issuers and full relevant statement/research/editorial/browser gates. The user expects excellence; maintain visible failing tests and gaps rather than hiding them under version numbers.
+
+**Next uncompleted work:** (1) move Library source code into source-controlled `nextlevel` or a dedicated universal engine (do not disturb existing company HTML), (2) two or more real issuers per significant accounting sector and a restatement example, (3) exact full consolidated statements and material notes plus independent second-pass source review, (4) financial figure data schema and tests for impossible economic claims, (5) accessible real-served URL navigation with screenshot review of every diagram, (6) compare editorial quality against public AEI research without copying, (7) Cloudflare preview followed by intentional promotion only after evidence-backed acceptance. Always update this state file after further verified changes.
+
