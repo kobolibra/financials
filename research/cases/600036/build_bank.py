@@ -50,7 +50,7 @@ def cash_signed_bars(rows,title):
         out+=rect(x,y,max(w,3),30,color)
         sign='+' if v>0 else ('−' if v<0 else '')
         value=sign+fmt(abs(v))+' 亿元'
-        out+=label(x+w+10 if v>=0 else x-10,y+23,value,16,'#21443c','start' if v>=0 else 'end',700)
+        out+=label(x+w+10,y+23,value,16,'#21443c','start',700) if v>=0 else label(x+w/2,y-11,value,16,'#21443c','middle',700)
     out+=label(560,height-10,'右侧＝现金净流入  |  左侧＝现金净流出',13,'#60766e','middle')
     return base(out,height=height,desc=title+'，同一基准线展示真实净流向')
 
