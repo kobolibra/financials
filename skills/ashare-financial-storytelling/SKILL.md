@@ -1,10 +1,10 @@
 ---
 name: ashare-financial-storytelling
-version: 8.2.0-rc2
+version: 8.2.0-rc3
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC2
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC3
 
 ## The two independent research foundations (MANDATORY)
 
@@ -86,6 +86,16 @@ The **independent research foundations** are now implemented in two additional f
 **Demand clean-room repeatability:** after generating, package original PDFs, SHA manifest, source-spec JSON, scripts, test suite, static pages, screenshot QA and version/state file. Extract the archive into a new directory and rerun the generator+tests; any implicit sibling path, network dependency or untracked data blocks release. Confirm that the generic engine contains no issuer-name/ticker branches. Record all negative tests that rejected wrong pages/SHA/units/period/reconciliation.
 
 **2026-11-02 implementation evidence (first prototype, Library not Git):** `PROJECT_STATE.md` points to the latest reproducible archive `2026H1-generalization-v8.2-verified.zip`. Five issuer original filings (bank, insurer/bank group, developer, manufacturer-finance hybrid, consumer-finance hybrid) generated separate evidence-figure HTML pages from ONE declarative publisher with 17 exact source-matched figure fields; `26/26` regression/negative tests PASS; `15/15` Chromium render-only viewports PASS. The independently unpacked ZIP reran generator+tests successfully. Actual served-page navigation, comprehensive three financial statements, independent finance editor, and full-sector second issuer tests are **NOT_CHECKED**. This is a publication-core prototype, NOT finished institutional reports or a production v8.2 release.
+
+## Pharma and utilities: cross-period financial publishing contract (v8.2-RC3)
+
+Do not make strong causal or valuation conclusions from two H1 snapshots. `period_comparison` is a fourth **implemented** basic figure grammar requiring 2025H1 and 2026H1 originally reported flows, exact source pages, normalized units and explicit comparison scope. A period-comparison chart is not an 8–12-quarter series or proof of normalized earning power. Restatement and consolidation changes require a separate semantic reviewer before publication approval.
+
+**Pharma adapter:** separate core recognized medicine sales, innovative-drug sales, licensing/royalty/milestone revenues and contract performance obligations, one-off collaboration receipts, revenue and cash recognition, expenses vs capitalized development and clinical/regulatory risk. A line of licensing revenue should not be called sustainable medicine sales. Do not assign 2026 operating-cash decline to R&D or receivables without the signed indirect CFO and cash timing notes.
+
+**Hydro utility adapter:** reported revenue, applicable generation/dispatch/sold-electricity denominators, tariffs and regulated rules, seasonal hydrology, maintenance vs construction CapEx, and capital returns. The period's electricity generation volume need not equal the revenue-recognized electricity sales volume, and revenue growth does not identify a tariff change.
+
+**Actual new original-PDF source corpus:** 恒瑞医药 600276 2026H1 182p SHA `ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa` and 长江电力 600900 2026H1 214p SHA `738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2`; official report bytes downloaded and validated (GitHub Action 41421012539). Seven distinct original PDF issuers are now used by ONE source-driven figure publisher with four graph families (composition, signed bridge, stock comparison, period comparison), 21 source-bound figure values, 28/28 local adversarial tests and 21/21 **render-only** Chromium tests. ZIP was independently clean-extracted and generator + all tests rerun successfully. **Not checked:** semantic full-statement/notes, consistent historical restatement scope, independent financial reviewer, actual site HTTP and Cloudflare publication. These seven FIGURE studies are not certified full equity research reports. See the latest `PROJECT_STATE.md` and Library source archive for reproducible source code.
 
 ## Required operating sequence
 
