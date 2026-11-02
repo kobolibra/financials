@@ -137,7 +137,7 @@ jobs:
           import json,pathlib
           out=pathlib.Path('browser-qa-screenshots');out.mkdir(exist_ok=True)
           host='https://financials-in-visuals.pages.dev'
-          articles={'688111':7,'600519':6,'000333':7}
+          articles={'600036':9,'688111':7,'600519':6,'000333':7}
           failures=[]
           with sync_playwright() as p:
               browser=p.chromium.launch(headless=True)
