@@ -80,6 +80,11 @@ jobs:
                   if attempt==4: raise
                   time.sleep(12)
           PY
+      - name: Install Chinese font family for faithful visual screenshots
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+          fc-match 'Noto Sans CJK SC'
       - name: Install browser QA dependencies
         run: |
           python -m pip install --disable-pip-version-check playwright
@@ -116,13 +121,57 @@ jobs:
               page.locator('a[href="./research-lab/2026-h1/index.html"]').first.click()
               assert '/research-lab/2026-h1/' in page.url, page.url
               page.locator('a[href="./600036.html"]').first.click()
-              assert page.url.endswith('/600036.html'),page.url
+              assert page.url.endswith('/600036.html') or page.url.endswith('/600036'),page.url
               page.locator('a[href="./index.html"]').first.click()
               assert page.url.endswith('/index.html'),page.url
               print('LIVE_NAVIGATION_CLICK_PASS homepage-to-lab-to-company-to-lab',flush=True)
               browser.close()
           assert not errors,f'Browser JS errors: {errors}'
           (out/'summary.json').write_text(json.dumps({'viewports':[1440,768,390],'issuers':ids,'passed':21,'js_errors':errors,'real_navigation':'PASS','site':base},indent=2))
+          PY
+      - name: Validate published multi-figure research articles on the real website
+        shell: bash
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          import json,pathlib
+          out=pathlib.Path('browser-qa-screenshots');out.mkdir(exist_ok=True)
+          host='https://financials-in-visuals.pages.dev'
+          articles={'688111':7,'600519':6,'000333':7}
+          failures=[]
+          with sync_playwright() as p:
+              browser=p.chromium.launch(headless=True)
+              for width,height in [(1440,900),(768,1024),(390,844)]:
+                  page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
+                  page.on('pageerror',lambda error:failures.append(str(error)))
+                  for ticker,required in articles.items():
+                      url=f'{host}/research/2026-h1/{ticker}.html'
+                      response=page.goto(url,wait_until='networkidle',timeout=45000)
+                      assert response and response.status==200,(ticker,'HTTP',response.status if response else None)
+                      n=page.locator('figure').count()
+                      assert n>=required,(ticker,'figures',n)
+                      assert page.locator('svg').count()>=required,(ticker,'svg',page.locator('svg').count())
+                      assert page.locator('table').count()>=required,(ticker,'data tables',page.locator('table').count())
+                      assert page.locator('a[href*=".PDF#page="]').count()>=2,(ticker,'PDF links absent')
+                      assert page.locator('a[href="#cash"]').count()>=1,(ticker,'analyst cash chapter missing')
+                      measure=page.evaluate("({scrollWidth:document.documentElement.scrollWidth,client:document.documentElement.clientWidth})")
+                      assert measure['scrollWidth']<=width+1,(ticker,width,measure)
+                      page.screenshot(path=str(out/f'research_{ticker}_{width}.png'),full_page=True)
+                      print('RESEARCH_LIVE_BROWSER_PASS',ticker,'width',width,'figures',n,'scroll',measure['scrollWidth'],flush=True)
+                  page.close()
+              page=browser.new_page(viewport={'width':1440,'height':900})
+              response=page.goto(host,wait_until='networkidle')
+              assert response and response.status==200
+              page.locator('a[href="./research/2026-h1/index.html"]').first.click()
+              assert '/research/2026-h1/' in page.url,page.url
+              page.locator('a[href="./688111.html"]').first.click()
+              assert '/research/2026-h1/688111' in page.url,page.url
+              page.locator('a[href="#cash"]').first.click()
+              assert page.url.endswith('#cash'),page.url
+              print('RESEARCH_ACTUAL_NAV_PASS home-to-index-to-report-to-cash',flush=True)
+              browser.close()
+          assert not failures,failures
+          (out/'research-summary.json').write_text(json.dumps({'issuers':list(articles),'viewport_widths':[1440,768,390],'render_checks':9,'navigation':'PASS','js_errors':[]},indent=2))
           PY
       - name: Archive visual QA screenshots
         if: always()
