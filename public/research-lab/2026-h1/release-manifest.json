@@ -1,0 +1,228 @@
+{
+  "edition": "2026-11-02-beta1",
+  "claims": "Seven source-backed single-relationship financial visual explainers. NOT complete institutional equity research.",
+  "source_issuer_count": 7,
+  "source_original_pdf_verified": true,
+  "accounting_relation_types": [
+    "additive_composition",
+    "signed_bridge",
+    "same_date_stock_comparison",
+    "period_comparison"
+  ],
+  "status": "BETA",
+  "published_scope": "main branch static files",
+  "actual_live_cloudflare_http": "NOT_CHECKED",
+  "original_archive_library_path": "/Financials-in-Visuals/2026H1-seven-issuer-generalization-v8.2.zip",
+  "cases": [
+    {
+      "ticker": "600036",
+      "company": "招商银行",
+      "article": "600036.html",
+      "original_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225531453.PDF",
+      "sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+      "pdf_pages": 247,
+      "relation": "composition",
+      "period": "2026H1",
+      "original_fields": [
+        {
+          "label": "营业收入",
+          "raw": "178,181",
+          "unit": "million",
+          "pdf_page": 8
+        },
+        {
+          "label": "净利息收入",
+          "raw": "112,022",
+          "unit": "million",
+          "pdf_page": 13
+        },
+        {
+          "label": "净手续费及佣金收入",
+          "raw": "39,855",
+          "unit": "million",
+          "pdf_page": 13
+        },
+        {
+          "label": "其他净收入",
+          "raw": "26,304",
+          "unit": "million",
+          "pdf_page": 13
+        }
+      ]
+    },
+    {
+      "ticker": "601318",
+      "company": "中国平安",
+      "article": "601318.html",
+      "original_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-21/1225487480.PDF",
+      "sha256": "f42140b5ad6ca7577d746dad57fd43a7bbc11ee0e360f61c2ed52bd7a4f4a54b",
+      "pdf_pages": 176,
+      "relation": "bridge",
+      "period": "2026H1",
+      "original_fields": [
+        {
+          "label": "合并营运利润",
+          "raw": "99,050",
+          "unit": "million",
+          "pdf_page": 39
+        },
+        {
+          "label": "短期投资波动",
+          "raw": "4,166",
+          "unit": "million",
+          "pdf_page": 39
+        },
+        {
+          "label": "非日常重大项目",
+          "raw": "4,297",
+          "unit": "million",
+          "pdf_page": 39
+        },
+        {
+          "label": "合并净利润",
+          "raw": "107,513",
+          "unit": "million",
+          "pdf_page": 39
+        }
+      ]
+    },
+    {
+      "ticker": "000002",
+      "company": "万科",
+      "article": "000002.html",
+      "original_pdf": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-28/f8d56d6e-4a78-464f-8f31-79d70275b258.PDF",
+      "sha256": "50813d4f08f812bab70d14fc257638b46d1b5ae138b91db7d11b1845f31c649a",
+      "pdf_pages": 234,
+      "relation": "stock",
+      "period": "2026-06-30",
+      "original_fields": [
+        {
+          "label": "一年内有息债务",
+          "raw": "1,788.6",
+          "unit": "100million",
+          "pdf_page": 85
+        },
+        {
+          "label": "期末现金及现金等价物",
+          "raw": "53,082,936,232.13",
+          "unit": "yuan",
+          "pdf_page": 197
+        }
+      ]
+    },
+    {
+      "ticker": "000333",
+      "company": "美的集团",
+      "article": "000333.html",
+      "original_pdf": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-29/df25443f-d67a-4cc5-8bd6-6c3e681a9575.PDF",
+      "sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+      "pdf_pages": 205,
+      "relation": "composition",
+      "period": "2026H1",
+      "original_fields": [
+        {
+          "label": "合并营业总收入",
+          "raw": "261,052,379",
+          "unit": "thousand",
+          "pdf_page": 98
+        },
+        {
+          "label": "营业收入",
+          "raw": "260,042,490",
+          "unit": "thousand",
+          "pdf_page": 98
+        },
+        {
+          "label": "利息收入",
+          "raw": "1,009,683",
+          "unit": "thousand",
+          "pdf_page": 98
+        },
+        {
+          "label": "手续费及佣金收入",
+          "raw": "206",
+          "unit": "thousand",
+          "pdf_page": 98
+        }
+      ]
+    },
+    {
+      "ticker": "600519",
+      "company": "贵州茅台",
+      "article": "600519.html",
+      "original_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475868.PDF",
+      "sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+      "pdf_pages": 110,
+      "relation": "composition",
+      "period": "2026H1",
+      "original_fields": [
+        {
+          "label": "合并营业总收入",
+          "raw": "92,278,072,083.21",
+          "unit": "yuan",
+          "pdf_page": 30
+        },
+        {
+          "label": "营业收入",
+          "raw": "90,703,260,964.48",
+          "unit": "yuan",
+          "pdf_page": 30
+        },
+        {
+          "label": "利息收入",
+          "raw": "1,574,811,118.73",
+          "unit": "yuan",
+          "pdf_page": 30
+        }
+      ]
+    },
+    {
+      "ticker": "600276",
+      "company": "恒瑞医药",
+      "article": "600276.html",
+      "original_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483600.PDF",
+      "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+      "pdf_pages": 182,
+      "relation": "period",
+      "period": "2025H1/2026H1",
+      "original_fields": [
+        {
+          "label": "2025H1 经营现金流",
+          "raw": "4,300,453,251.40",
+          "unit": "yuan",
+          "pdf_page": 6
+        },
+        {
+          "label": "2026H1 经营现金流",
+          "raw": "1,987,003,872.34",
+          "unit": "yuan",
+          "pdf_page": 6
+        }
+      ]
+    },
+    {
+      "ticker": "600900",
+      "company": "长江电力",
+      "article": "600900.html",
+      "original_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-31/1225534923.PDF",
+      "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+      "pdf_pages": 214,
+      "relation": "period",
+      "period": "2025H1/2026H1",
+      "original_fields": [
+        {
+          "label": "2025H1 营业收入",
+          "raw": "36,697,614,066.72",
+          "unit": "yuan",
+          "pdf_page": 6
+        },
+        {
+          "label": "2026H1 营业收入",
+          "raw": "37,929,268,927.18",
+          "unit": "yuan",
+          "pdf_page": 6
+        }
+      ]
+    }
+  ]
+}
