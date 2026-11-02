@@ -21,6 +21,14 @@ Transform ORIGINAL Chinese A-share financial filings into independent, offline-c
 
 **Crucial:** The previous original optical-sector cases were 300394 (Tianfu), 300308 (Zhongji), 300502 (Xinyisheng). These three newly fetched sources are cross-sector stress tests, not replacement for the existing HTML pages.
 
+## Persistent cross-chat archive (confirmed 2026-11-02)
+
+The verified complete local artifact package has been uploaded to the user's **ChatGPT Library** folder `/Financials-in-Visuals` (not temporary conversation attachment alone):
+- `/Financials-in-Visuals/2026H1-cross-sector-verified-package.zip` — original 3 PDFs, SHA manifest, source ledgers, exact-source/finance/browser QA logs, 3 HTML reports, directory, rebuild scripts and research/handoff documents; Library ID `libfile_5e4b9c46a2c0819192f683807ca874f2`.
+- `/Financials-in-Visuals/2026H1-html-previews.zip` — 3 HTML reports and directory; Library ID `libfile_c89e84f6260081919db467937a996211`.
+
+A new ChatGPT conversation should use `files__list` or `files__search` scoped to Library to locate these files, then `files__materialize` for raw ZIP bytes if rebuilding. A future session must NEVER assume `/mnt/data/...` paths persist across conversations. Re-validate SHA after extraction. This archive snapshot is **work-in-progress**, not released production.
+
 ## Current local artifact status
 During the session that authored this file, a separate local package `financials_v8_case_study/` was created, containing:
 - `sources/<ticker>_2026H1_original.pdf` and `sources/source-manifest.json`;
