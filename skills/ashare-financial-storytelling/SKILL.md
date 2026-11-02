@@ -1,10 +1,10 @@
 ---
 name: ashare-financial-storytelling
-version: 8.2.0-rc3
+version: 8.2.0-rc4
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC3
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC4
 
 ## The two independent research foundations (MANDATORY)
 
@@ -108,6 +108,22 @@ INSTITUTIONAL_PUBLICATION also requires full relevant 3-statements-plus-notes ev
 Real visual review cannot be replaced by screenshot file counts. Actual earlier Ubuntu Chromium screenshots of seven one-chart reports showed Chinese text rendered as empty squares: font assets were missing from the CI browser image, while the width/JS assertions still passed. Install a CJK font in CI, inspect real screenshots and test content legibility and narrative quality. Cloudflare can canonicalize /article.html to /article and /index.html to /directory/; accept both in URL navigation assertions, then verify the destination contents, not only the string.
 
 Observed source regression: seven one-figure prototypes were promoted to the homepage while earlier three-issuer 20-figure source-backed editorial studies were ignored. The corrective main release now features these three RESEARCH_PREVIEW pages in public/research/2026-h1 and demotes one-chart pages to a clearly labeled technical research-lab directory. The three restored articles remain previews pending exhaustive source and independent financial/editorial approval. This repair is a first publication correction, NOT a claim of App Economy Insights-level or institutional completeness.
+
+## P0 editorial and visual publication control (2026-11-02, v8.2-RC4)
+
+**Observed production regression, not hypothetical:** The first public `/research-lab/2026-h1/` release had seven independent but *one-figure* issuer pages. They passed actual HTTP 200, responsive geometry and source-page numeric checks, yet failed this Skill's institutional analysis and graphic editorial mandate. Such pages are **engineering fixtures**, not issuer-level equity research. Their HTML carries `<meta name="robots" content="noindex,follow">`, and must never be marketed as finished analysis.
+
+**Public article scope must be explicit.** `ENGINEERING_FIXTURE` = one accounting relation, visibly isolated in the lab; `RESEARCH_PREVIEW` = coherent company-specific thesis, business model, earnings, balance/risk, cash or industry-equivalent, alternatives, primary facts and full-page charts; `RESEARCH_RELEASE` = all primary-source semantic, material-note, independent finance/editor, actual site navigation and visual gates PASS. A quality label is earned only from evidenced gates, not from number of SVGs.
+
+**Must personally inspect the rendered final publication, not only code or one screenshot.** Inspect every figure at realistic 1440px and 390px, from first title to appendix. Check graphics for value relationships, zero and signs; direct labels and distinct visual hierarchy; typography, card density and mobile reading; coherent thesis, evidence and industry causal alternatives. No score based purely on quantity or screenshot existence.
+
+**Signed financial graphics:** A bank's CFO inflow positive, investing/financing outflow negative; never turn cash outflows into positive bars labeled as 'absolute magnitude' merely for convenience if signed directions are analytically material. Prefer one clear zero, rightward net inflow and leftward net outflow. Figure text labels must not overlap the bars, row headings, axis, or each other. Preserve a signed source table and an explicit note that CFO+CFI+CFF is not a full cash-equivalent closure without FX and relevant accounting adjustments.
+
+**Real route browser behavior:** Cloudflare may normalize `/report.html` to `/report`. Test both actual navigation and **document identity**, not string-exact URLs alone. Homepage -> section index -> report -> chapter anchor and back must work. Distinguish code-source checking, static local HTTP, publicly deployed HTTP and actual Chromium clickable routes as separate gates.
+
+**Per-company editorial checklist:** (a) meaningful question and industry value chain, (b) compatible revenue/earnings statement fields and causal guard, (c) balance/capital/credit/inventory and cash, (d) report material notes and auditor conclusion, (e) alternative explanations and next disclosure to falsify, (f) each figure's source/period/scope and a readable mobile first-order answer, (g) financially meaningful and nonrepetitive figure grammar, (h) second-reviewer state and genuine release class. **A visible absence is NOT_CHECKED/FAIL, never silently passed.**
+
+The first four richer public previews now have **9 招商银行 / 7 金山办公 / 6 贵州茅台 / 7 美的集团** company-specific figures. They are markedly better than single-chart fixtures, but the full independent note-by-note audit, external valuation/quarterly inputs and independent financial editor are **NOT_CHECKED**. The initial bank cash-flow exhibit used absolute positive bar lengths for signed cash outflows and was subsequently replaced by a true signed zero-centered graphic, including source generator, reviewer screenshot and browser regression. Record the limitations; do not claim 'App Economy exceeded'.
 
 ## Required operating sequence
 
