@@ -55,7 +55,7 @@ jobs:
                   pages=len(reader.pages)
                   assert pages==expected_pages, f"Wrong page count {pages}; expected {expected_pages}"
                   first=" ".join((p.extract_text() or "") for p in reader.pages[:2])
-                  assert ticker in first and "2026" in first, "Ticker/report year missing in first pages"
+                  assert "2026" in first and (ticker in first or (ticker=="000333" and "美的集团股份有限公司" in first)), "Issuer identity/year missing in extracted front matter"
                   status.update(status="PASS",file=path.name,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw),pages=pages,first_page_text=first[:400])
                   print(f"PASS {ticker} pages={pages} bytes={len(raw)} sha256={status['sha256']}",flush=True)
               except Exception as e:
