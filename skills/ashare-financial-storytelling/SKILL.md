@@ -1,10 +1,10 @@
 ---
 name: ashare-financial-storytelling
-version: 8.1.0-rc1
+version: 8.2.0-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.1-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC1
 
 ## The two independent research foundations (MANDATORY)
 
@@ -53,6 +53,24 @@ The **independent research foundations** are now implemented in two additional f
 10. **PERSISTENT INTER-CONVERSATION HANDOFF.** The repository root `PROJECT_STATE.md` is the authoritative handoff pointer, updated at the end of each verified iteration with Git SHA, current Skill blob SHA, source manifest, sample status, local/remote gate states, unresolved P0/P1 issues, current deliverable paths, exact reproduction commands and next action. A new chat must fetch that file and the **latest** main/working-branch Skill before claiming project understanding. Do not rely on old chat summary or a temporary ZIP alone.
 
 **Observed v8.1-RC1 tests:** 3 original files verified by SHA, 92/92 selected amounts matched to correct PDF physical pages, 11/11 targeted arithmetic checks, 20 original SVG figures in independent prototype HTML, Chromium render-only viewport tests at 1440/768/390 with zero page overflow and JS errors. **Still NOT_CHECKED:** complete audited three-statement and CFO indirect-note reconstruction, independent analyst/editor, production route HTTP, live Cloudflare serving, full visual critique of all figures as a publication, 8–12Q market/valuation data. This upgrade cannot be approved to v8.1 release merely from these counts.
+
+## Cross-sector generalization must be real, not a generic template (v8.2-RC1)
+
+**MANDATORY REFERENCE:** Read [05_CROSS_SECTOR_GENERALIZATION.md](research/05_CROSS_SECTOR_GENERALIZATION.md) in addition to Research 01–04. This is a distinct layer governing the actual economic model of each issuer, and must drive whether each figure is permitted.
+
+**Universal proof kernel + typed sector adapters.** First determine the issuer's reported business models, consolidation perimeter, ownership, regulated subsidiaries, accounting regime, disclosures and core risks. Choose the primary model and zero or more material overlays. Domain profiles include manufacturing, software/platform, consumption/retail, commercial banks, insurers, insurance/bank holding groups, real estate developers, securities/asset management, pharma, construction, utilities and conglomerates. An industry in the routing catalog is NOT automatically an implemented real-data analytical and publication capability.
+
+**Typed source graph.** Every fact must preserve physical page and original label, exact unit and currency, stock versus flow and date/period, accounting standard, report revision, consolidated/parent/subsidiary reporting scope, whether it is disclosed/derived/management-adjusted, signed original presentation, denominator and calculation. `营业收入` versus `营业总收入`, bank NII, gross premium versus insurance service revenue, recognized revenue versus backlog/presales and GAAP net versus company operating earnings are distinct field definitions. Missing is unknown, never zero.
+
+**Industry financial quality contracts.** Bank: interest income minus interest expense, NIM, loan ECL/NPL, loan quality stages, deposits, RWA and CET1; reject industrial COGS/FCF interpretation. Insurer: insurance service + insurance finance result, contractual service margin roll-forward, claims, actuarial sensitivity, asset/liability duration, solvency ratios; reject premium as recognized services and CSM stock as flow. Developer: property delivery recognition, inventories and impairments, restricted cash, contracts, maturity ladder, review/audit going-concern qualification; reject presales=recognized revenue and headline monetary funds=free cash. Mixed insurer/bank: parent profit + NCI, ownership and intra-group elimination; separate management operating metrics from statutory profits. Other sectors follow their own specified accounting contracts, never the industrial default.
+
+**High-priority audit/review finding gate.** Scan the actual audit or review report and relevant note for emphasis of matter, going-concern material uncertainty, scope limitation, audit review/no-audit distinction, restatements, legal contingencies, covenant and liquidity. A material going-concern matter must appear in the principal research narrative and risk visual, not only in the source appendix.
+
+**Evidence-to-figure policy.** No fixed chart quota. Same-period only for additive financial flow; assets/liabilities use date-specific stocks; nonexclusive and hierarchical segments cannot be stacked together; signed totals and minority profit require exact bridges. The visual type is chosen by analytical relation, not sector logo/theme. On mobile, direct answer visible without swiping while only the complex SVG itself may scroll horizontally.
+
+**Generalization certification, no inflated claims:** Level 0 = planned domain only; Level 1 = one real original-PDF verified issuer with sector figures; Level 2 = two materially different real issuers with complete sector statements/core note semantic accounting QA and audited or reviewed period comparisons; Level 3 = cross-domain mixed-regime cases, external financial editorial audit and true served-URL browser QA. A synthetic test only proves guard behavior, not Level 2 implementation.
+
+**Current 2026H1 sector stress cases (first pass only):** new bank 招商银行 600036 (247p), insurance group 中国平安 601318 (176p), property 万科 000002 (234p) all original PDF SHA validated; 44 selected original-page numeric matches and seven targeted accounting/qualitative checks passed. Eighteen synthetic routing tests passed. Three offline standalone evidence-pilot HTML reports rendered on desktop/tablet/mobile (9 render-only tests pass). Actual route navigation, full three-statement semantics, independent editor and Cloudflare production remain NOT_CHECKED. The case input files, code and results must be retrieved from the persistent Library archive indexed by `PROJECT_STATE.md`, not assumed to exist in future chats.
 
 ## Required operating sequence
 
