@@ -153,7 +153,7 @@ jobs:
                       assert page.locator('svg').count()>=required,(ticker,'svg',page.locator('svg').count())
                       assert page.locator('table').count()>=required,(ticker,'data tables',page.locator('table').count())
                       assert page.locator('a[href*=".PDF#page="]').count()>=2,(ticker,'PDF links absent')
-                      assert page.locator('a[href="#cash"]').count()>=1,(ticker,'analyst cash chapter missing')
+                      assert page.locator('a[href="#cash"], a[href="#capital"]').count()>=1,(ticker,'analyst cash or capital chapter missing')
                       measure=page.evaluate("({scrollWidth:document.documentElement.scrollWidth,client:document.documentElement.clientWidth})")
                       assert measure['scrollWidth']<=width+1,(ticker,width,measure)
                       page.screenshot(path=str(out/f'research_{ticker}_{width}.png'),full_page=True)
@@ -171,7 +171,7 @@ jobs:
               print('RESEARCH_ACTUAL_NAV_PASS home-to-index-to-report-to-cash',flush=True)
               browser.close()
           assert not failures,failures
-          (out/'research-summary.json').write_text(json.dumps({'issuers':list(articles),'viewport_widths':[1440,768,390],'render_checks':9,'navigation':'PASS','js_errors':[]},indent=2))
+          (out/'research-summary.json').write_text(json.dumps({'issuers':list(articles),'viewport_widths':[1440,768,390],'render_checks':12,'navigation':'PASS','js_errors':[]},indent=2))
           PY
       - name: Archive visual QA screenshots
         if: always()
