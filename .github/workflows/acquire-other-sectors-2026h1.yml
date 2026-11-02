@@ -23,7 +23,7 @@ jobs:
           root=pathlib.Path('financial-filings');root.mkdir(exist_ok=True)
           sources=[
             dict(code='600036',name='招商银行',role='bank',url='https://static.cninfo.com.cn/finalpage/2026-08-28/1225531453.PDF'),
-            dict(code='601318',name='中国平安',role='insurer_group',url='https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-21/601318_20260821_9DJ8.pdf'),
+            dict(code='601318',name='中国平安',role='insurer_group',url='https://static.cninfo.com.cn/finalpage/2026-08-21/1225487480.PDF'),
             dict(code='000002',name='万科企业',role='property',url='https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-28/f8d56d6e-4a78-464f-8f31-79d70275b258.PDF')
           ]
           output=[]
