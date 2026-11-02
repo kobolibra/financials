@@ -1,0 +1,62 @@
+name: Acquire real bank insurance property reports 2026 H1
+on:
+  push:
+    branches: [pdf-source-validation-2026h1]
+    paths: [.github/workflows/acquire-other-sectors-2026h1.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF parser
+        run: python -m pip install pymupdf --disable-pip-version-check
+      - name: Fetch, identify, SHA and inspect real filings
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.request, pathlib, json, hashlib, datetime, time
+          import fitz
+          root=pathlib.Path('financial-filings');root.mkdir(exist_ok=True)
+          sources=[
+            dict(code='600036',name='招商银行',role='bank',url='https://static.cninfo.com.cn/finalpage/2026-08-28/1225531453.PDF'),
+            dict(code='601318',name='中国平安',role='insurer_group',url='https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-21/601318_20260821_9DJ8.pdf'),
+            dict(code='000002',name='万科企业',role='property',url='https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-28/f8d56d6e-4a78-464f-8f31-79d70275b258.PDF')
+          ]
+          output=[]
+          for s in sources:
+            item=s.copy()
+            for attempt in range(3):
+              try:
+                q=urllib.request.Request(s['url'],headers={'User-Agent':'Mozilla/5.0','Accept':'application/pdf,*/*'})
+                with urllib.request.urlopen(q,timeout=75) as f: raw=f.read()
+                assert raw[:5]==b'%PDF-' and len(raw)>100000, f'Invalid PDF bytes {len(raw)}'
+                doc=fitz.open(stream=raw,filetype='pdf')
+                assert len(doc)>=50,'Unreasonably short; maybe summary only'
+                parts=[p.get_text() for p in list(doc)[:min(6,len(doc))]]
+                front=''.join(parts).replace(' ','').replace('\n','')
+                yearok='2026' in front or '二〇二六' in front
+                nameok=s['name'] in front or (s['code']=='601318' and '中国平安' in front)
+                assert yearok and nameok, f'Could not corroborate identity or year: {front[:200]!r}'
+                fn=f"{s['code']}_2026H1_original.pdf";(root/fn).write_bytes(raw)
+                item.update(status='PASS',pages=len(doc),bytes=len(raw),sha256=hashlib.sha256(raw).hexdigest(),file=fn,front_extract=front[:400])
+                print(f"PASS {s['code']}: {len(raw)} bytes {len(doc)} pages SHA256 {item['sha256']}",flush=True)
+                break
+              except Exception as e:
+                item.update(status='FAIL',error=str(e)); print(f"FAIL {s['code']} #{attempt+1}: {e}",flush=True);time.sleep(2)
+            output.append(item)
+          manifest={'generated_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'sources':output,'pass':all(x['status']=='PASS' for x in output)}
+          (root/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2))
+          if not manifest['pass']:raise SystemExit(1)
+          PY
+      - name: Upload original PDFs plus manifest even on failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2026H1-bank-insurance-property-originals
+          path: financial-filings/
+          retention-days: 30
+          if-no-files-found: error
