@@ -32,7 +32,7 @@ jobs:
               assert ticker in page and "PDF SHA256" in page and "原始完整 PDF" in page
               assert "BETA" in page and "<svg" in page and "物理页" in page
               assert "<iframe" not in page.lower() and "<script src=" not in page.lower()
-              assert "返回" in page and 'href="./index.html"' in page
+              assert 'href="./index.html"' in page and "研究实验室目录" in page, f"Back-link missing {ticker}"
           class Server(http.server.SimpleHTTPRequestHandler):
               def __init__(self,*a,**k): super().__init__(*a,directory=str(root),**k)
               def log_message(self,*args): pass
