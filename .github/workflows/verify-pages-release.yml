@@ -39,7 +39,7 @@ jobs:
           httpd=http.server.ThreadingHTTPServer(("127.0.0.1",0),Server)
           threading.Thread(target=httpd.serve_forever,daemon=True).start()
           base=f"http://127.0.0.1:{httpd.server_address[1]}"
-          for path,needle in [("/", "research-lab/2026-h1/index.html"),("/research-lab/2026-h1/","同一套研究证据")]+[(f"/research-lab/2026-h1/{t}.html",t) for t in expected]:
+          for path,needle in [("/", "research-lab/2026-h1/index.html"),("/research-lab/2026-h1/","工程验证样本")]+[(f"/research-lab/2026-h1/{t}.html",t) for t in expected]:
               with urllib.request.urlopen(base+path,timeout=8) as res:
                   body=res.read().decode()
                   assert res.status==200 and needle in body, f"Bad served HTML {path}"
@@ -55,7 +55,7 @@ jobs:
           host="https://financials-in-visuals.pages.dev"
           urls=[
             ("/","research-lab/2026-h1/index.html"),
-            ("/research-lab/2026-h1/index.html","同一套研究证据"),
+            ("/research-lab/2026-h1/index.html","工程验证样本"),
             ("/research-lab/2026-h1/600036.html","银行的收入"),
             ("/research-lab/2026-h1/601318.html","保险集团的营运利润"),
             ("/research-lab/2026-h1/000002.html","流动性风险"),
