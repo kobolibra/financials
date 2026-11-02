@@ -30,6 +30,30 @@ def horizontal(rows,title,unit='亿元',colors=None,width=1000):
         out+=label(min(910,358+490*max(0,float(n(v)))/maxv),y+22,fmt(v)+' '+unit,16,weight=700)
     return base(out,height=100+len(rows)*72,desc=title)
 
+def cash_signed_bars(rows,title):
+    """One zero-based axis: signed net inflows extend right, outflows left."""
+    zero=560.0
+    width=300.0
+    vals=[float(n(q[1])) for q in rows]
+    mx=max(max(abs(v) for v in vals),1)
+    height=125+len(rows)*88
+    out=label(38,30,title,19,weight=650)
+    out+='<line x1="560" y1="57" x2="560" y2="'+str(height-40)+'" stroke="#59766f" stroke-width="2"/>'
+    out+=label(zero,54,'0',13,'#4f6d65','middle')
+    for i,(name,v,desc) in enumerate(rows):
+        y=73+i*88
+        v=float(n(v))
+        w=abs(v)/mx*width
+        x=zero if v>=0 else zero-w
+        color='#087f69' if v>=0 else '#b47c64'
+        out+=label(285,y+23,name,16,anchor='end')
+        out+=rect(x,y,max(w,3),30,color)
+        sign='+' if v>0 else ('−' if v<0 else '')
+        value=sign+fmt(abs(v))+' 亿元'
+        out+=label(x+w+10 if v>=0 else x-10,y+23,value,16,'#21443c','start' if v>=0 else 'end',700)
+    out+=label(560,height-10,'右侧＝现金净流入  |  左侧＝现金净流出',13,'#60766e','middle')
+    return base(out,height=height,desc=title+'，同一基准线展示真实净流向')
+
 def waterfall(start,steps,final,subtitle,unit='亿元'):
     points=[('期初',n(start), 'total')]+[(str(a),n(b),'step') for a,b in steps]+[('期末',n(final),'total')]
     cumul=n(start)
@@ -183,10 +207,10 @@ f8=figure(8,'CAPITAL','capital','资本在增长，核心一级资本率为何�
 # 9: CFO (bank-native caveat)
 f9=figure(9,'CASH FLOW','cash','现金流为何猛增，却不能等于利润质量改善？','银行经营现金流、投资现金流和筹资现金流的方向如何？',
    '合并经营活动现金净流入由1,344.61亿元升至3,046.11亿元，管理层指出主要因同业往来净流入增加。银行的存放同业、客户存款与贷款等是经营资产负债，不应按工业企业“经营现金流/净利润”直接评分。',
-   horizontal([('经营现金流净流入',3046.11,'+'),('投资现金净流出绝对额',1662.44,'-'),('筹资现金净流出绝对额',72.46,'-')],'三类现金流的规模（图示使用绝对值，正负以文字注明）',colors=['#087f69','#ba8868','#7b94a7']),
+   cash_signed_bars([('经营现金流净流入',3046.11,'+'),('投资现金净流出',-1662.44,'-'),('筹资现金净流出',-72.46,'-')],'三类现金净流向：同一零基准、保留正负号'),
    raw(('2026H1 CFO净额',304611,8),('2025H1 CFO净额',134461,8),('2026H1 CFI净额',-166244,34),('2026H1 CFF净额',-7246,34)),
    34,'CFO +126.54%主要不是零售手续费同比增长的结果，不能等价于主营现金创造“翻倍”。',
-   '图使用绝对柱长并独立标明现金流方向，不是可加总的现金余额闭合桥。完整现金及现金等价物闭合尚需原表汇率影响及货币资金口径。')
+   '以零为中心，净流入与净流出沿相反方向绘制；三类现金净流量并不单独构成期初期末现金等价物的完整闭合桥，仍需考虑汇率影响及报表口径。')
 
 assert n(112022)+n(39855)+n(26304)==n(178181)
 assert n(178181)-sum(map(n,[52912,1508,29177,14,3787,46]))==n(90737)
