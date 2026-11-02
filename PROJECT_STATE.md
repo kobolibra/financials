@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS / PROJECT_STATE.md
 
-> **LATEST CHECKPOINT IS AT THE BOTTOM**: use the schema-driven publisher validation and latest Library archive; older paragraphs are retained as historical evidence.
+> **LATEST CHECKPOINT IS AT THE BOTTOM**: use the v8.2.0-RC2 Skill and schema-driven publisher validation; older versions are historical.
 Updated: 2026-11-02 · Working branch: `pdf-source-validation-2026h1` · **Not merged to main**
 
 > This is the **first file** every new ChatGPT session must fetch. Next read `skills/ashare-financial-storytelling/SKILL.md` from the CURRENT branch and its four `research/01...04` dependencies. Never claim project familiarity before reading the actual latest sources and code.
@@ -128,3 +128,9 @@ Small HTML-only archive:
 **New gates:** `PASS 5/5` cases through the same schema-driven renderer; `PASS 17/17` identified original PDF page values and identity formulas; `PASS 26/26` local unit/adversarial tests (18 sector, 7 generic, 1 hybrid covering two prior real PDFs); `PASS 15/15` 5 issuer × 1440/768/390 Chromium render-only checks. Visual human critique detected that original insurer GAAP/operating profit adjustments were almost invisible because of ratio compression; fixed by separating zero-start profit scale and an EXPLICIT independently labeled adjustment scale. The final screenshot was visually inspected. **Actual served-URL/browser navigation, independent financial-editor, full 3-statement material-note analyses, all-sector source extraction, year/quarter history, and deployed Cloudflare status remain NOT_CHECKED.**
 
 **Original repo state:** As of this checkpoint candidate `Skill v8.2.0-rc1` (blob `4deb260c34185b94211544a3f170987e8ecc8756`) and fifth research manual are on working branch only. Experimental five-sector Python publisher and assets are stored in this Library archive, not Git. Do not claim the user has a complete v8.2 production release. Never merge code or deploy without verifying real independent production routes. For future session: read this `PROJECT_STATE.md`, branch Skill, manuals 01–05, materialize this latest archive with `files__materialize`, run documented exact tests, and follow unresolved checkpoints.
+
+## 2026-11-02 · latest Skill rules and version pointers
+
+- Working branch **Skill v8.2.0-RC2**: `skills/ashare-financial-storytelling/SKILL.md`, Git blob SHA **`e51dbc091d2daabdf0bd6cb6af25b186949b1170`** (committed `94d628244a6859aa2a17fa1a19de2c7223d79322`). **This supersedes old v8.2-RC1 and v8.1 candidates** on this branch.
+- Mandatory fifth cross-sector reference `research/05_CROSS_SECTOR_GENERALIZATION.md` updated with a declared source-to-figure contract, visual two-scale critique, actual five-source proofs; blob **`f3c576e94c3b544bea4d376ee85bd37c6c560daa`** (commit `7ecabdbd7a52da666476a5ed67b472258cc9e7d6`).
+- Reproduction baseline is the exact Library ZIP `/Financials-in-Visuals/2026H1-generalization-v8.2-verified.zip` and its SHA `18de1a39afdb9f733587c6891ebe0744ff4e39fdd4d4aa37b6014bdaa9e600da`. No repository main release and no Cloudflare deployment have been made by this checkpoint.
