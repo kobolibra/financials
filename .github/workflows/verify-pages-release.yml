@@ -58,6 +58,11 @@ jobs:
             ("/research-lab/2026-h1/index.html","同一套研究证据"),
             ("/research-lab/2026-h1/600036.html","银行的收入"),
             ("/research-lab/2026-h1/601318.html","保险集团的营运利润"),
+            ("/research-lab/2026-h1/000002.html","流动性风险"),
+            ("/research-lab/2026-h1/000333.html","制造企业的合并收入"),
+            ("/research-lab/2026-h1/600519.html","消费龙头的总收入"),
+            ("/research-lab/2026-h1/600276.html","创新药增长"),
+            ("/research-lab/2026-h1/600900.html","电力收入增长"),
           ]
           for attempt in range(1,5):
               try:
@@ -75,3 +80,55 @@ jobs:
                   if attempt==4: raise
                   time.sleep(12)
           PY
+      - name: Install browser QA dependencies
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install chromium
+      - name: Browser acceptance on actual Cloudflare live pages
+        shell: bash
+        run: |
+          python - <<'PY'
+          from playwright.sync_api import sync_playwright
+          import json,pathlib
+          base='https://financials-in-visuals.pages.dev'
+          ids=['600036','601318','000002','000333','600519','600276','600900']
+          errors=[]
+          out=pathlib.Path('browser-qa-screenshots');out.mkdir(exist_ok=True)
+          with sync_playwright() as p:
+              browser=p.chromium.launch(headless=True)
+              for width,height in [(1440,900),(768,1000),(390,844)]:
+                  page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1)
+                  page.on('pageerror',lambda error: errors.append(str(error)))
+                  for id in ids:
+                      u=f'{base}/research-lab/2026-h1/{id}.html'
+                      resp=page.goto(u,wait_until='networkidle',timeout=30000)
+                      assert resp and resp.status==200,(u,resp.status if resp else None)
+                      assert page.locator('svg').count()>=1,(id,'no graph')
+                      check=page.evaluate("({sw:document.documentElement.scrollWidth,cw:document.documentElement.clientWidth,body:document.body.scrollWidth})")
+                      assert check['sw']<=width+1,(id,width,check)
+                      assert page.locator('a[href="./index.html"]').count()>=1,(id,'missing back link')
+                      page.screenshot(path=str(out/f'{id}_{width}.png'),full_page=True)
+                      print('LIVE_BROWSER_PASS',id,width,'body_width',check['sw'],flush=True)
+                  page.close()
+              page=browser.new_page(viewport={'width':1440,'height':900})
+              resp=page.goto(base,wait_until='domcontentloaded')
+              assert resp.status==200
+              page.locator('a[href="./research-lab/2026-h1/index.html"]').first.click()
+              assert '/research-lab/2026-h1/' in page.url, page.url
+              page.locator('a[href="./600036.html"]').first.click()
+              assert page.url.endswith('/600036.html'),page.url
+              page.locator('a[href="./index.html"]').first.click()
+              assert page.url.endswith('/index.html'),page.url
+              print('LIVE_NAVIGATION_CLICK_PASS homepage-to-lab-to-company-to-lab',flush=True)
+              browser.close()
+          assert not errors,f'Browser JS errors: {errors}'
+          (out/'summary.json').write_text(json.dumps({'viewports':[1440,768,390],'issuers':ids,'passed':21,'js_errors':errors,'real_navigation':'PASS','site':base},indent=2))
+          PY
+      - name: Archive visual QA screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-cloudflare-beta-browser-qa
+          path: browser-qa-screenshots/
+          retention-days: 30
+          if-no-files-found: warn
