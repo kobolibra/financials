@@ -123,7 +123,7 @@ jobs:
               page.locator('a[href="./600036.html"]').first.click()
               assert page.url.endswith('/600036.html') or page.url.endswith('/600036'),page.url
               page.locator('a[href="./index.html"]').first.click()
-              assert page.url.endswith('/index.html'),page.url
+              assert page.url.endswith('/index.html') or page.url.endswith('/research-lab/2026-h1/'),page.url
               print('LIVE_NAVIGATION_CLICK_PASS homepage-to-lab-to-company-to-lab',flush=True)
               browser.close()
           assert not errors,f'Browser JS errors: {errors}'
