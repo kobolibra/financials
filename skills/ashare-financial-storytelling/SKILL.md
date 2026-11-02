@@ -1,10 +1,10 @@
 ---
 name: ashare-financial-storytelling
-version: 8.2.0-rc1
+version: 8.2.0-rc2
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC2
 
 ## The two independent research foundations (MANDATORY)
 
@@ -71,6 +71,21 @@ The **independent research foundations** are now implemented in two additional f
 **Generalization certification, no inflated claims:** Level 0 = planned domain only; Level 1 = one real original-PDF verified issuer with sector figures; Level 2 = two materially different real issuers with complete sector statements/core note semantic accounting QA and audited or reviewed period comparisons; Level 3 = cross-domain mixed-regime cases, external financial editorial audit and true served-URL browser QA. A synthetic test only proves guard behavior, not Level 2 implementation.
 
 **Current 2026H1 sector stress cases (first pass only):** new bank 招商银行 600036 (247p), insurance group 中国平安 601318 (176p), property 万科 000002 (234p) all original PDF SHA validated; 44 selected original-page numeric matches and seven targeted accounting/qualitative checks passed. Eighteen synthetic routing tests passed. Three offline standalone evidence-pilot HTML reports rendered on desktop/tablet/mobile (9 render-only tests pass). Actual route navigation, full three-statement semantics, independent editor and Cloudflare production remain NOT_CHECKED. The case input files, code and results must be retrieved from the persistent Library archive indexed by `PROJECT_STATE.md`, not assumed to exist in future chats.
+
+## Universal declarative publication contract — v8.2-RC2 checkpoint
+
+**Do not confuse industry-specific analysis with issuer-specific hardcoding.** Any new renderer must read a typed source-reviewed ledger and an explicit figure brief/relationship specification. Adding a `if ticker == 600036` block for every company is a demonstration, not generalization. Keep independent source review separate from chart implementation.
+
+**Graph contract, not example-specific values:** Each figure declares (a) `family` e.g. `additive_composition | signed_bridge | stock_comparison`, (b) original PDF SHA, physical PDF page, reported original amount/unit, reporting scope and period/as-of date for **every field**, (c) exact identity and exclusivity test when additive, (d) analyst-reviewed financial meaning and rival explanation, (e) accessible direct summary/table, (f) responsive chart policy, (g) QC status.
+
+**Three first implemented common financial relations (NOT 22 implementation claims):**
+- Nonnegative exclusive additive composition: `parent = sum(children)` exact in yuan; reject overlapping product/channel/region/parent-child rows and negative mixed ribbons. Source PDF text matching alone is not proof of correct row label.
+- Signed reported-to-adjusted accounting bridge: `statutory total = disclosed start + SUM(signed, individually sourced adjustments)` at consistent consolidated/parent basis. A small adjustment must remain legible even against a large profit base; a **separate zero-start scale clearly identified as different** is preferable to 4px near-invisible steps. Never visually imply scales are comparable.
+- Same-date non-additive asset/liquidity stock comparison: date and scope must match and original cash restrictions are disclosed. Do not subtract two heterogeneous balances and report a precise liquidity gap.
+
+**Demand clean-room repeatability:** after generating, package original PDFs, SHA manifest, source-spec JSON, scripts, test suite, static pages, screenshot QA and version/state file. Extract the archive into a new directory and rerun the generator+tests; any implicit sibling path, network dependency or untracked data blocks release. Confirm that the generic engine contains no issuer-name/ticker branches. Record all negative tests that rejected wrong pages/SHA/units/period/reconciliation.
+
+**2026-11-02 implementation evidence (first prototype, Library not Git):** `PROJECT_STATE.md` points to the latest reproducible archive `2026H1-generalization-v8.2-verified.zip`. Five issuer original filings (bank, insurer/bank group, developer, manufacturer-finance hybrid, consumer-finance hybrid) generated separate evidence-figure HTML pages from ONE declarative publisher with 17 exact source-matched figure fields; `26/26` regression/negative tests PASS; `15/15` Chromium render-only viewports PASS. The independently unpacked ZIP reran generator+tests successfully. Actual served-page navigation, comprehensive three financial statements, independent finance editor, and full-sector second issuer tests are **NOT_CHECKED**. This is a publication-core prototype, NOT finished institutional reports or a production v8.2 release.
 
 ## Required operating sequence
 
