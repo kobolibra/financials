@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS / PROJECT_STATE.md
 
-> **LATEST CHECKPOINT IS AT THE BOTTOM**: use the v8.2.0-RC2 Skill and schema-driven publisher validation; older versions are historical.
+> **LATEST CHECKPOINT IS AT THE BOTTOM**: use the v8.2.0-RC3 Skill and 7 original issuers; older versions are historical.
 Updated: 2026-11-02 · Working branch: `pdf-source-validation-2026h1` · **Not merged to main**
 
 > This is the **first file** every new ChatGPT session must fetch. Next read `skills/ashare-financial-storytelling/SKILL.md` from the CURRENT branch and its four `research/01...04` dependencies. Never claim project familiarity before reading the actual latest sources and code.
@@ -134,3 +134,19 @@ Small HTML-only archive:
 - Working branch **Skill v8.2.0-RC2**: `skills/ashare-financial-storytelling/SKILL.md`, Git blob SHA **`e51dbc091d2daabdf0bd6cb6af25b186949b1170`** (committed `94d628244a6859aa2a17fa1a19de2c7223d79322`). **This supersedes old v8.2-RC1 and v8.1 candidates** on this branch.
 - Mandatory fifth cross-sector reference `research/05_CROSS_SECTOR_GENERALIZATION.md` updated with a declared source-to-figure contract, visual two-scale critique, actual five-source proofs; blob **`f3c576e94c3b544bea4d376ee85bd37c6c560daa`** (commit `7ecabdbd7a52da666476a5ed67b472258cc9e7d6`).
 - Reproduction baseline is the exact Library ZIP `/Financials-in-Visuals/2026H1-generalization-v8.2-verified.zip` and its SHA `18de1a39afdb9f733587c6891ebe0744ff4e39fdd4d4aa37b6014bdaa9e600da`. No repository main release and no Cloudflare deployment have been made by this checkpoint.
+
+## 2026-11-02 · LATEST: v8.2-RC3 seven-issuer source-driven publisher
+
+**Canonical branch:** `pdf-source-validation-2026h1`; main NOT changed; no Cloudflare deployment. Current candidate Skill v8.2.0-RC3: `skills/ashare-financial-storytelling/SKILL.md`, exact blob SHA `a56380f100d1a65a5074b7812720c8eb4fb6117f`; fifth research manual blob `b0629a563361696589441102bd9c99cb2e296ef7`. In a new conversation check the branch/ref again before claiming anything about most recent Skill.
+
+**NEW two full original 2026H1 PDF sources:** successful GitHub Actions https://github.com/kobolibra/financials/actions/runs/41421012539:
+- 恒瑞医药 600276, 182 pages, SHA `ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa`, original official PDF https://static.cninfo.com.cn/finalpage/2026-08-20/1225483600.PDF.
+- 长江电力 600900, 214 pages, SHA `738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2`, original official PDF https://static.cninfo.com.cn/finalpage/2026-08-31/1225534923.PDF.
+
+**LATEST persistent complete snapshot:** Library path `/Financials-in-Visuals/2026H1-seven-issuer-generalization-v8.2.zip`, Library ID `libfile_975eb3a753708191a27057ae41801389`, ZIP SHA `6b53880e1ef4e1e4bab7eb7e4865c133a9a4f890b33eaeb4158b85a9851d5aba`. Contains **seven** original fully downloaded PDFs (bank 600036, insurer group 601318, property 000002, pharma 600276, utility 600900, manufacturer/finance 000333, consumer/finance 600519), original source and SHA manifest files, 12 sector model profiles, generic publisher and specs, earlier evidence reports, 7 independent generic HTML pages plus index, source fact/financial checks, tests and screenshots. Independently extracted to a clean directory and executed `python generic_publisher.py` and `python -m unittest test_engine test_generic_publisher test_hybrid_revenue` successfully: **28/28 tests**. `browser_verify_generic.py` render-only suite yielded **21/21** pass at 1440/768/390. Data-driven figure relation types now **four**: additive composition, signed bridge, stock comparison, 2025H1 vs 2026H1 level comparison. Exact original page numbers and per-field amount/unit are linked; **21 total graphic source fields**. Source facts are analyst-curated, not auto-extracted full statements. Report generation is based on relationship types, not per-issuer code branches.
+
+Small seven HTML snapshot: `/Financials-in-Visuals/2026H1-seven-issuer-html.zip`, Library ID `libfile_dfc00b2542f08191928ac00c3ef5b301`.
+
+**Not passed / not done:** full institutional three-statement, complete material notes and expert interpretation for all seven, 8–12Q histories and dated valuation/peers, second real issuer per economic sector, all 22 AEI-like figure families implemented, independent second financial analyst/editor, true HTTP file navigation (browser runtime policy), Cloudflare preview and public site verification. **This is the first reusable original-source publishing kernel, NOT a finished top-tier cross-sector equity research platform**. The 12 sector profiles are research contracts, not certified implementations. Do not merge to main or claim production live.
+
+**Next verified work:** manual source semantic line/column reviews beyond PDF literal matching; implement robust table extraction and consolidated/parent typed ledger for the broadest real sectors; add a second issuer and second reporting period per domain; use separate income/balance/cash and sector-specific notes/ratios, sustained narrative red-team; publish rich multi-exhibit report with every figure reviewed visually/mobile; test actual public routes/Cloudflare before production promotion. Update state on every completed milestone.
