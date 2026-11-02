@@ -4,7 +4,7 @@ Each substantial task starts with a 5-minute source check and ends with durable 
 
 ## At the beginning
 1. Fetch `PROJECT_STATE.md` from the actual current branch and verify HEAD; inspect main/working branches and recent commits.
-2. Read real `skills/ashare-financial-storytelling/SKILL.md`, its mandatory four research files, implementation READMEs, source/QA manifests. If these were changed, do not rely on old summaries.
+2. Read real `skills/ashare-financial-storytelling/SKILL.md`, all mandatory research files 01–05, including 05_CROSS_SECTOR_GENERALIZATION.md, implementation READMEs, source/QA manifests. If these were changed, do not rely on old summaries.
 3. Check original issuer PDF bytes, SHA/page count and archive location. If missing, use the pinned Actions acquisition workflow; fail closed rather than substituting web snippets.
 4. Classify claims and artifacts as verified Git state, CI artifact, local workspace, remote deployed site, or not checked.
 
@@ -16,3 +16,7 @@ Update `PROJECT_STATE.md` with (a) mission and invariants, (b) branch+HEAD+SKILL
 
 ## Branch/release discipline
 Use a feature branch for sample tests and Skill proposals, keep the existing three independent optical reports intact, preserve directory homepage, no iframe workarounds, and do not edit unrelated repositories. Promotion requires explicit verification of output and public route, not only GitHub commit success.
+
+## Additional 2026-11-02 v8.2 checkpoint
+
+The latest multi-sector candidate state and stable ChatGPT Library ZIP location are in `PROJECT_STATE.md`. Read the latest checkpoint there. The bank, insurance-group, and property real-source engine + HTML previews are in the Library ZIP (not automatically present in Git); materialize them if you need executable scripts. Re-download the three original PDFs if necessary and verify SHA. Industry catalog entries are not production-approved until two real issuers per sector with complete sector financials, semantic PDF source review, full website routing, and editorial/financial gates. Do not merge the candidate to main by default.
