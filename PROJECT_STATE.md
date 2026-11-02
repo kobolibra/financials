@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS / PROJECT_STATE.md
 
-> **LATEST CHECKPOINT IS BELOW**: read the v8.2.0-RC1 section at bottom; earlier v8.1 references are historical.
+> **LATEST CHECKPOINT IS AT THE BOTTOM**: use the schema-driven publisher validation and latest Library archive; older paragraphs are retained as historical evidence.
 Updated: 2026-11-02 · Working branch: `pdf-source-validation-2026h1` · **Not merged to main**
 
 > This is the **first file** every new ChatGPT session must fetch. Next read `skills/ashare-financial-storytelling/SKILL.md` from the CURRENT branch and its four `research/01...04` dependencies. Never claim project familiarity before reading the actual latest sources and code.
@@ -111,3 +111,20 @@ Python experimental code is in this **Library ZIP**, not yet Git-tracked. DO NOT
 
 **Next uncompleted work:** (1) move Library source code into source-controlled `nextlevel` or a dedicated universal engine (do not disturb existing company HTML), (2) two or more real issuers per significant accounting sector and a restatement example, (3) exact full consolidated statements and material notes plus independent second-pass source review, (4) financial figure data schema and tests for impossible economic claims, (5) accessible real-served URL navigation with screenshot review of every diagram, (6) compare editorial quality against public AEI research without copying, (7) Cloudflare preview followed by intentional promotion only after evidence-backed acceptance. Always update this state file after further verified changes.
 
+
+## 2026-11-02 · LATEST shared-publisher generalization checkpoint
+
+**The hardcoding gap was partially fixed and proven on 5 real companies.** Earlier `render_sector_cases.py` had issuer-specific branching. The newer `generic_publisher.py` takes `generic_case_specs.json` and selects figures *only* from three generic accounting relationship families (`additive_composition`, `signed_bridge`, `stock_comparison`). The renderer has no company-name or ticker-specific branches; per-company fact mapping remains human curated. Five original verified reports were used: 招商银行 600036, 中国平安 601318, 万科 000002, 美的集团 000333, 贵州茅台 600519; 17 original PDF-bound graph source fields verified. This is a bounded technical success **NOT a general arbitrary-PDF to institutional full-research system**.
+
+**Latest persistent reproducible archive:**
+`/Financials-in-Visuals/2026H1-generalization-v8.2-verified.zip`
+Library ID `libfile_3198bde6d9b48191a09cdcc2768fac8e`.
+Exact ZIP SHA256 `18de1a39afdb9f733587c6891ebe0744ff4e39fdd4d4aa37b6014bdaa9e600da`.
+Contains all five original PDFs necessary for the demonstrated generic examples, industry type rules, previous 3 sector-specific webpages, 5 NEW schema-driven webpages plus index, screenshots, source ledgers, 26 unit tests, browser QA and reproduction instructions. **A clean extraction of the ZIP in a new directory regenerated all five HTML files and ran all 26 tests successfully.**
+
+Small HTML-only archive:
+`/Financials-in-Visuals/2026H1-five-sector-html.zip`, Library ID `libfile_3a49c80e945c8191bb4ec6e4b817d3f9`.
+
+**New gates:** `PASS 5/5` cases through the same schema-driven renderer; `PASS 17/17` identified original PDF page values and identity formulas; `PASS 26/26` local unit/adversarial tests (18 sector, 7 generic, 1 hybrid covering two prior real PDFs); `PASS 15/15` 5 issuer × 1440/768/390 Chromium render-only checks. Visual human critique detected that original insurer GAAP/operating profit adjustments were almost invisible because of ratio compression; fixed by separating zero-start profit scale and an EXPLICIT independently labeled adjustment scale. The final screenshot was visually inspected. **Actual served-URL/browser navigation, independent financial-editor, full 3-statement material-note analyses, all-sector source extraction, year/quarter history, and deployed Cloudflare status remain NOT_CHECKED.**
+
+**Original repo state:** As of this checkpoint candidate `Skill v8.2.0-rc1` (blob `4deb260c34185b94211544a3f170987e8ecc8756`) and fifth research manual are on working branch only. Experimental five-sector Python publisher and assets are stored in this Library archive, not Git. Do not claim the user has a complete v8.2 production release. Never merge code or deploy without verifying real independent production routes. For future session: read this `PROJECT_STATE.md`, branch Skill, manuals 01–05, materialize this latest archive with `files__materialize`, run documented exact tests, and follow unresolved checkpoints.
