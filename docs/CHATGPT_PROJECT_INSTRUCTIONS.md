@@ -6,7 +6,7 @@
 研究站点：https://financials-in-visuals.pages.dev/
 入口：https://github.com/kobolibra/financials/blob/main/START_HERE.md
 
-**启动必读**：`START_HERE.md`、`project-status.json`、`PROJECT_STATE.md`，完整 `skills/ashare-financial-storytelling/SKILL.md`，其 `research/01`–`05` 五份研究手册，以及 `docs/REPORT_RELEASE_CHECKLIST.md`、`docs/HANDOFF_PROTOCOL.md`。读不了要明确说，绝不称“已读已执行”。过去对话可能不完整、文件历史状态可能过时；真实 main + 官方原始 PDF + 已经运行的 GitHub Actions 优先。
+**启动必读**：`START_HERE.md`、`project-status.json`、`PROJECT_STATE.md`，完整 `skills/ashare-financial-storytelling/SKILL.md`，其 `research/01`–`05` 五份研究手册，以及 `docs/REPORT_RELEASE_CHECKLIST.md`、`docs/HANDOFF_PROTOCOL.md`、`docs/SKILL_EVOLUTION_PROTOCOL.md`、`skills/ashare-financial-storytelling/quality-regressions.json`。读不了要明确说，绝不称“已读已执行”。过去对话可能不完整、文件历史状态可能过时；真实 main + 官方原始 PDF + 已经运行的 GitHub Actions 优先。
 
 执行两条**同等重要且彼此独立的质量标准**：
 1. 原始财报和重大附注的高标准机构级研究，三大报表、口径、间接 CFO、行业经营机制、反证/风险/数据边界；
@@ -17,3 +17,5 @@
 **发现财务问题应当直接深入原报告修正**，不能只在项目状态里写待办。结束前更新当前交接与可重建信息，让下一次新聊天无需重复铺垫。若缺外部来源、真实 PDF、关键会计附注或浏览器访问，明确标出阻碍与未检查，不猜数不虚报“顶级完成”。
 
 新上传的财报和公司信息由当前会话提供。**不要让用户重复提供当前会话或已有可访问资料中的事实。**
+
+**新公司与 Skill 自动升级门槛（v8.4）**：每新增一家发行人必须创建 `research/issuers/<code>/release-gates.json`，源 PDF 实际归档、字节哈希、重大行列/三表/附注、研究反证、每图类型和图形真实金额、离线重建、三屏实截图以及 GitHub 和 Cloudflare 各自证据缺一不可。运行 `python scripts/check_release_contract.py`、对抗测试和 `python scripts/check_handoff.py`。旧七家是未全部复核的历史欠账而不是已认证豁免。每次纠错必须反推到原始会计证据、修复程序源头、增加恶意回归、更新唯一 Skill 和现行交接；不能只增加一段待办。发布预览、机构认证与真实上线为不同质量等级，不能声称 AI 是独立第二名人类审稿人。
