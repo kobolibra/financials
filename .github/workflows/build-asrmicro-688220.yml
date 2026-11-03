@@ -59,7 +59,7 @@ jobs:
         run: |
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
-          git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json
+          git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json research/issuers/688220/source-images/p135.png research/issuers/688220/source-images/p146.png
           if ! git diff --cached --quiet; then
             git commit -m "Generate ASR 688220 independent source-limited research HTML and ledger QA"
             git pull --rebase origin "${{ github.ref_name }}"
@@ -74,5 +74,7 @@ jobs:
             public/688220.html
             research/issuers/688220/qa.json
             research/issuers/688220/visual-qa/
+            research/issuers/688220/source-images/p135.png
+            research/issuers/688220/source-images/p146.png
           if-no-files-found: warn
           retention-days: 30
