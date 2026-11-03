@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "report_period": "2026H1",
+  "sources": [
+    {
+      "code": "600900",
+      "company": "中国长江电力股份有限公司",
+      "domain": "hydropower_utility",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-31/1225534923.PDF",
+      "reference_sina": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12574728&stockid=600900",
+      "expected_pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+      "expected_pages": 214,
+      "source_path": "research/issuers/600900/source/600900_2026H1_complete_original.pdf"
+    },
+    {
+      "code": "600276",
+      "company": "江苏恒瑞医药股份有限公司",
+      "domain": "innovative_pharma",
+      "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483600.PDF",
+      "reference_sina": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12506905&stockid=600276",
+      "expected_pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+      "expected_pages": 182,
+      "source_path": "research/issuers/600276/source/600276_2026H1_complete_original.pdf"
+    }
+  ]
+}
