@@ -64,4 +64,7 @@
 
 ## 2026-11-03 方法增量：Skill 持续迭代和第 N 家公司的强制发布门槛
 
-从 v8.4.1-RC1 开始，必须同时阅读 [Skill 进化/错误闭环协议](docs/SKILL_EVOLUTION_PROTOCOL.md) 与 [可执行回归登记](skills/ashare-financial-storytelling/quality-regressions.json)。每次新增公司提供本公司 `research/issuers/<code>/release-gates.json`，实际 PDF SHA/字节、各项 PASS/FAIL/NOT_CHECKED、对应证据、预览/最终研究类型；运行 `python scripts/check_release_contract.py` 和对应恶意反例。旧七公司仍是历史来源审阅欠账，不获得自动追溯认证；翱捷科技已按来源限制研究预览记录，Cloudflare 本次版本 LIVE FAIL 不能虚报上线。每个用户反馈都要从 PDF/会计/图形源头修复并写入可迁移回归，独立核对真正生产网站。详见 `PROJECT_STATE.md` 和 `project-status.json` 最新记录。
+从 v8.4.2-RC1 开始，必须同时阅读 [Skill 进化/错误闭环协议](docs/SKILL_EVOLUTION_PROTOCOL.md) 与 [可执行回归登记](skills/ashare-financial-storytelling/quality-regressions.json)。每次新增公司提供本公司 `research/issuers/<code>/release-gates.json`，实际 PDF SHA/字节、各项 PASS/FAIL/NOT_CHECKED、对应证据、预览/最终研究类型；运行 `python scripts/check_release_contract.py` 和对应恶意反例。旧七公司仍是历史来源审阅欠账，不获得自动追溯认证；翱捷科技已按来源限制研究预览记录，Cloudflare 本次版本 LIVE FAIL 不能虚报上线。每个用户反馈都要从 PDF/会计/图形源头修复并写入可迁移回归，独立核对真正生产网站。详见 `PROJECT_STATE.md` 和 `project-status.json` 最新记录。
+
+
+**v8.4.2 出版漂移反例**：源账本的原始证据说明不同于已发布公司页内嵌的 `ledger-data`，即使财务和浏览器各项通过，仍会让重建失败。必须验证账本/全部来源/事实/分组与实际离线 HTML 一致；独立重建 [41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) 检出问题、修复后 [41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) 已通过。新的技术门槛见 Skill v8.4.2 与 `scripts/check_release_contract.py`。

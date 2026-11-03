@@ -102,6 +102,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "ACCOUNTING_CORE",
       "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "PUB-011",
+      "root_cause": "源 ledger 文本证据说明更新后，发布 HTML 内嵌原始账本仍是旧字段；三表、桑基几何及浏览器校验通过，但 GitHub clean rebuild 的发布 HTML 逐字节比对失败。",
+      "correction": "原始账本保留与已经校验并发布相一致的真来源说明；此后任意更改源事实或来源说明必须同步真实重新生成离线 HTML、通过逐字节重建；通用质量检查对内嵌 ledger-data 的已发布正文交叉验证 issuer/source/facts/segments。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_embedded_html_source_reason_cannot_silently_lag_source_ledger",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "OFFLINE_REBUILD",
+      "status": "NEW_CONTRACT"
     }
   ]
 }

@@ -1,10 +1,18 @@
 ---
 name: ashare-financial-storytelling
-version: 8.4.1-rc1
+version: 8.4.2-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.4.1-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.4.2-RC1
+
+## v8.4.2-RC1 · 真实离线 HTML 也是财务来源账本，禁止源与出版静默分叉
+
+The actual main workflow of 2026-11-03 failed **bit-for-bit clean rebuild** after v8.4.1 corrected the ledger PDF source note. All 29 core accounting checks and source geometry browser tests passed; the published HTML's embedded `ledger-data` still contained the older `source.reason`, so the last source-to-published-artifact identity gate correctly failed. This is an **actual release regression, not hypothetical style nit**.
+
+**Global future-issuer rule:** after any original ledger source/fact/semantic edit, rebuild the **same standalone offline HTML** from the checked-in version, compare the actual generated article byte for byte to the exact tracked `public/<issuer>.html` and retain original sourced `qa.json` where applicable. If the report embeds a `ledger-data` JSON script, directly compare the published data's `issuer`, `source`, `facts` and `segments` to the original input ledger in the generic release checker; any mismatch is `PUBLISHED_LEDGER_FIELD_DRIFT`. This validation is structural, not a claim that a real auditor read every original PDF note. Do not “fix CI” by removing byte-exact rebuild, weakening the test or forging SOURCE PASS.
+
+The 688220 source note was restored to its accurate already published wording while keeping its newly verified **complete mirror PDF SHA and 224-page byte proof**. No issuer financial fact amount or public HTML was changed by this release fix. Future changes to original source **must be accompanied by genuinely re-generated web pages**, a live deployment identity check and updated handoff, rather than a hidden state-only correction. Regressions `PUB-011` and source mutation tests enforce this when an embedded original ledger exists.
 
 ## v8.4.1-RC1 · 三重来源一致性门槛与行业错路拦截
 

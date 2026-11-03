@@ -222,6 +222,26 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
     except (ValueError, KeyError, json.JSONDecodeError) as exc:
         errors.append(f"ISSUER_FIGURE_BRIEFS_INVALID {code}: {exc}")
 
+    # The published offline file is itself a financial dataset. When an issuer
+    # embeds a machine-readable source ledger, it must match the checked-in
+    # source file, even for narrative provenance fields. The ASR clean rebuild
+    # caught this: updating source.reason without regenerating the published
+    # HTML changed one huge JSON line while all accounting/geometry passed.
+    if ledger_data is not None:
+        try:
+            html = (root / expected).read_text(encoding="utf-8")
+            match = re.search(
+                r'<script\s+id="ledger-data"\s+type="application/json">([\s\S]*?)</script>',
+                html,
+            )
+            if match:
+                rendered = json.loads(match.group(1))
+                for field in ("issuer", "source", "facts", "segments"):
+                    if rendered.get(field) != ledger_data.get(field):
+                        errors.append(f"PUBLISHED_LEDGER_FIELD_DRIFT {code}/{field}")
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            errors.append(f"PUBLISHED_LEDGER_EMBED_INVALID {code}: {exc}")
+
     sankey = record.get("sankey", {})
     if sankey.get("decision") not in {"USED_CONSERVED", "OMITTED_WITH_SOURCE_REASON"}:
         errors.append(f"SANKEY_RESEARCH_DECISION_MISSING {code}")
