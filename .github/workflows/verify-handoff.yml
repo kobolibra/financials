@@ -30,6 +30,8 @@ on:
       - 'scripts/test_check_release_contract.py'
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
       - 'research/issuers/**/release-gates.json'
+      - 'research/issuers/**/source-ledger.json'
+      - 'research/issuers/**/figure-briefs.json'
       - 'research/shared/**'
   pull_request:
     branches: [main]
