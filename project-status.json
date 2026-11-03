@@ -249,18 +249,18 @@
       "SHARED_TYPED_FINANCE_FLOW_CONTRACT": "PASS_4_SOURCE_8_TYPED_EDGES_7_NONZERO_ONE_ZERO_GP_8_HOSTILE_CASES_ON_ACTUAL_ASR_FACTS"
     },
     "technical_gates": {
-      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_RETESTED_BRANCH_41657555061_9_FIGURES_9_TABLES_ALL_THREE_VIEWPORTS",
+      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_MAIN_41667953097_9_FIGURES_AND_SOURCE_TABLES",
       "ORIGINAL_VISUAL_QA": "PARTIAL_MANUALLY_OPENED_SCREENSHOTS_FIXED_3_ISSUES_AWAIT_FINAL_ASSESSMENT",
-      "CLEAN_REBUILD": "PASS_RETESTED_BRANCH_41657555061",
-      "GITHUB_MAIN_ROUTE": "PASS_FOR_PRE_EXISTING_NINE_FIGURE_REPORT__NEW_SOURCE_CELL_MERGE_PENDING",
-      "CLOUDFLARE_LIVE_ROUTE": "PASS_FOR_PRE_EXISTING_NINE_FIGURE_REPORT__NEW_SOURCE_CELL_MERGE_PENDING",
+      "CLEAN_REBUILD": "PASS_MAIN_41667953097_BYTE_IDENTICAL_REPORT_AND_QA",
+      "GITHUB_MAIN_ROUTE": "PASS_MAIN_41667953097_AND_UNIFIED_CATALOG_41667952839",
+      "CLOUDFLARE_LIVE_ROUTE": "PASS_REAL_41667952839_EIGHT_ISSUERS_PLUS_ACTUAL_NEW_SVG_GEOMETRY",
       "AEI_FT_VISUAL_EDITORIAL": "PARTIAL_SELF_REVIEWED_ALL_FIGURE_DESKTOP_SHEET_AND_MOBILE_HEADLINES__NOT_INDEPENDENT_EDITORIAL_CERTIFICATION",
       "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES",
       "LOCAL_SOURCE_GEOMETRY": "PASS_FINAL_MAIN_3a1878fa_29_EXACT_FINANCIAL_CHECKS_9_FIGURES_1440_768_390",
       "LOCAL_DESKTOP_FIGURE_CLIPPING": "PASS_FINAL_MAIN_3a1878fa_FLOW_PNL_BALANCE_CASH_NOT_SCROLL_HIDDEN_1440",
-      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "PASS_CURRENT_REAL_CLOUDFLARE_41667952839_ALL_4_TRUE_SOURCE_RECTS",
+      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "PASS_REAL_41667952839_TINY_SOURCE_RECT_EXACT_PROPORTION_NO_FAKE_GP",
       "PUBLIC_EIGHT_ISSUER_ROUTES": "PASS_PRE_EXISTING_DEPLOYMENT_41660215201_24_ROUTE_VIEWPORTS",
-      "CLOUDFLARE_PAGES_NEW_COMMIT": "PASS_STRICT_ROUTE_AND_SOURCE_GEOMETRY_41667952839__INDEPENDENT_PROVIDER_PIPELINE_DETAIL_NOT_CHECKED",
+      "CLOUDFLARE_PAGES_NEW_COMMIT": "PASS_REAL_41667952839_ON_ISSUER_SVG_RENDERING__PROVIDER_DEPLOY_STATUS_NOT_PROVEN",
       "INDEPENDENT_VISUAL_EDITOR": "NOT_CHECKED_ASSISTANT_SCREENSHOT_CRITIQUE_NOT_HUMAN_SECOND_REVIEW"
     },
     "latest_branch_qa": {
@@ -359,6 +359,18 @@
         "did_not_relax_assertion": true,
         "code_original_sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0"
       }
+    },
+    "latest_verified_source_qa": {
+      "commit": "f1e2343cb0b4c76d68b2c386218dde7a3d5bd403",
+      "run_id": 41667953097,
+      "conclusion": "success",
+      "scope": "mirror 224p hash, 29 exact accounting, nine figures 1440/768/390, clean offline bit-identical rebuild"
+    },
+    "latest_verified_live_qa": {
+      "commit": "f1e2343cb0b4c76d68b2c386218dde7a3d5bd403",
+      "run_id": 41667952839,
+      "conclusion": "success",
+      "scope": "actual Cloudflare real 8 issuer routes, 24 viewport checks, ASR 4 proportional source rects, 7 real positive flow edges, zero-margin no fake positive ribbon"
     }
   },
   "last_redesign_internal_checkpoint": {
@@ -428,14 +440,14 @@
   "skill_quality_upgrade": {
     "date": "2026-11-03",
     "branch": "work/skill-quality-loop-20261103",
-    "pr": "NOT_CHECKED_PENDING_PR",
-    "commit": "NOT_CHECKED_PENDING_MERGE",
-    "checks": "NOT_CHECKED_PENDING_ACTIONS",
+    "pr": "https://github.com/kobolibra/financials/pull/9",
+    "commit": "ffb57ac6142546a66233fa01741b54812422f40e",
+    "checks": "PASS_PR_41666080981_AND_MAIN_41666262463",
     "intro": "v8.4.0-RC1 new issuer proof capsule, byte-SHA truth, explicit historical seven debt, feedback-to-poison tests, GitHub handoff CI",
     "first_issuer_capsule": "research/issuers/688220/release-gates.json",
     "company_count": 8,
     "public_html_modified": false,
-    "cloudflare_outstanding": "FAIL_STRICT_LIVE_ASR_GEOMETRY_41660682930",
+    "cloudflare_outstanding": "RESOLVED_STRICT_LIVE_CLOUDFLARE_CHECK_PASS_41667952839__EARLIER_FAIL_41660682930_SUPERSEDED",
     "limitations": "No automatic human editor or full industry generalization; regression registry references source tests, execution via Actions",
     "version": "8.4.2-rc1",
     "v840_merged_pr": "https://github.com/kobolibra/financials/pull/9",
@@ -454,7 +466,7 @@
     ],
     "v841_branch": "work/skill-typed-evidence-20261103",
     "v841_pr": "https://github.com/kobolibra/financials/pull/10",
-    "v841_checks": "NOT_CHECKED_PENDING_ACTIONS",
+    "v841_checks": "PASS_PR_41667418424_AND_41667418874__MAIN_SOURCE_FIX_41667953097_PASS",
     "v841_scope": "SOURCE_LEDGER_SHA_PERIOD_AND_9_FIGURE_BRIEFS_CURRENT_PDF_CROSS_FILE_VALIDATION_PLUS_SECTOR_WRONG_ROUTE_GUARD",
     "v840_pr": "https://github.com/kobolibra/financials/pull/9",
     "v840_pr_ci": [
@@ -483,8 +495,8 @@
       "scope": "strict source geometry and 8-company real Cloudflare route Chromium evidence; not full material note or independent editorial approval"
     },
     "v842_branch": "work/skill-generated-ledger-anti-drift-20261103",
-    "v842_pr": "NOT_CHECKED_PENDING_PR",
-    "v842_ci": "NOT_CHECKED_PENDING_PR_ACTIONS",
+    "v842_pr": "https://github.com/kobolibra/financials/pull/11",
+    "v842_ci": "PASS_PR_41668925315_41668925267__MAIN_HANDOFF_41669011190_PASS",
     "v842_reason": "PUBLISHED_LEDGER_EMBED_DRIFT_HARD_GATE_AND_2_HOSTILE_SOURCE_MUTATION_TESTS",
     "research_unfinished": [
       "REVIEW_ALL_MATERIAL_NOTES",
@@ -492,6 +504,25 @@
       "INDEPENDENT_SECOND_HUMAN_ANALYST",
       "EXTERNAL_8_TO_12_QUARTERS_AND_VALUATION"
     ],
-    "production_note": "LATEST_CLOUDFLARE_GEOMETRY_PASS_CHECK_41667952839__NOT_A_PROOF_OF_INDEPENDENT_FINANCIAL_EDITORIAL_CERTIFICATION"
+    "production_note": "LATEST_CLOUDFLARE_GEOMETRY_PASS_CHECK_41667952839__NOT_A_PROOF_OF_INDEPENDENT_FINANCIAL_EDITORIAL_CERTIFICATION",
+    "v842_merged_commit": "c2c8b15ab67cb91770b0e04818b181d38f567cfa",
+    "v842_main_live": "RUN_41669011093_PENDING_CONCLUSION_AS_OF_THIS_RECORD__PREVIOUS_REAL_STRICT_LIVE_41667952839_SUCCESS",
+    "v842_main_legacy_routes": "RUN_41669011100_PENDING_CONCLUSION_AS_OF_THIS_RECORD",
+    "all_skill_pull_requests_merged": [
+      {
+        "pr": 9,
+        "sha": "ffb57ac6142546a66233fa01741b54812422f40e"
+      },
+      {
+        "pr": 10,
+        "sha": "d0eed02f7c3bb5bdffb3cb7cea6f4620d0e1bc96"
+      },
+      {
+        "pr": 11,
+        "sha": "c2c8b15ab67cb91770b0e04818b181d38f567cfa"
+      }
+    ],
+    "new_issuer_release_contract_status": "PASS_PR_TESTED__REAL_688220_FULL_PDF_MIRROR_BYTE_SHA_SOURCE_LEDGER_FIGURE_BRIEFS_PUBLISHED_EMBED_STRUCTURAL_TESTS_20_HOSTILE_CASES_AND_HANDOFF",
+    "new_issuer_quality_boundary": "DOES_NOT_AUTONOMOUSLY_CERTIFY_ARBITRARY_A_SHARE_PDF_READABILITY_SEMANTIC_PAGES_FULL_MATERIAL_NOTES_HUMAN_SECOND_REVIEW"
   }
 }
