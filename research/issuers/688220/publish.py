@@ -34,6 +34,15 @@ ck("BS_2026_06_30",val("liabilities")+val("equity"),val("assets"))
 ck("BS_2025_12_31",val("liabilities_prior")+val("equity_prior"),val("assets_prior"))
 ck("INVENTORY_GROSS_TO_NET",val("inventory_gross")-val("inventory_reserve"),val("inventory_net"))
 ck("INVENTORY_PRIOR_GROSS_TO_NET",val("inventory_gross_prior")-val("inventory_reserve_prior"),val("inventory_net_prior"))
+ck("ACCOUNTS_RECEIVABLE_NET",val("ar_gross")-val("ar_allowance"),val("ar"))
+ck("ACCOUNTS_RECEIVABLE_AGING_TOTAL",sum((val(k) for k in ("ar_aging_lt3m","ar_aging_3m1yr","ar_aging_1to2yr")),D(0)),val("ar_gross"))
+ck("CONTRACT_LIABILITY_COMPONENTS",sum((val(k) for k in ("contract_advance_custom","contract_advance_product","contract_advance_ip")),D(0)),val("contract_liabilities"))
+ck("REVENUE_RECOGNITION_TIME_SPLIT",val("revenue_point_time")+val("revenue_over_time"),val("rev"))
+# Original p.137 discloses a 90.50% top-5 AR & contract asset concentration ratio,
+# yet p.135+138 original gross denominator gives ~89.17%; do not silently repair.
+derived_ar_top5=(val("ar_top5_with_contract_assets")/(val("ar_gross")+D("1113000.00"))*100).quantize(D("0.01"))
+assert derived_ar_top5!=val("ar_top5_ratio"),"Unexpected raw-note denominator reconciliation change"
+unresolved_ratio={"reported_pct":str(val("ar_top5_ratio")),"derived_pct_from_gross_AR_plus_gross_contract_assets":str(derived_ar_top5),"numerator_yuan":str(val("ar_top5_with_contract_assets")),"reported_denominator":"NOT_DISCLOSED_IN_THE_SAME_NOTE_TABLE","status":"FAIL_BOUNDED_NOTE_DENOMINATOR_RECONCILIATION","scope":"Consolidated AR+contract assets p135,p137,p138; parent p213 is incompatible."}
 ck("INDIRECT_CFO_ALL_17_ORIGINAL_SIGNED_ROWS",val("consolidated_net_profit")+sum((D(q["yuan"]) for q in data["cfo_indirect"]["parts"]),D(0)),val("cash_cfo"))
 ck("CASH_SECTION_CLOSURE",val("cash_start")+sum((val(k) for k in ("cash_cfo","cash_cfi","cash_cff","cash_fx")),D(0)),val("cash_end"))
 ck("RPO_SPLIT_ONE_CENT_SOURCE_PRECISION_BOUNDARY",val("rpo_one_year")+val("rpo_over_one_year")-val("rpo"),D("0.01"))
@@ -57,10 +66,11 @@ data["source"]["original_bytes_sha256"]=actual_sha
 data["source"]["original_bytes_gate"]=source_status
 template=(ROOT/"report-template.html").read_text(encoding="utf-8")
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
-output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_status).replace("__SOURCE_SHA__",actual_sha))
+source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
+output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display).replace("__SOURCE_SHA__",actual_sha))
 assert "<script src=" not in output and "<iframe" not in output and "https://fonts" not in output
 a.out.parent.mkdir(parents=True,exist_ok=True)
 a.out.write_text(output,encoding="utf-8")
 a.qa.parent.mkdir(parents=True,exist_ok=True)
-a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","source_screenshots":"SELECTED_PAGES_SCREENED","article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print("ASR_PUBLICATION_REBUILD",a.out,"bytes",a.out.stat().st_size,"ACCOUNTING_PASS",len(checks)-int(source_status=="NOT_CHECKED"),"source_bytes",source_status,flush=True)
