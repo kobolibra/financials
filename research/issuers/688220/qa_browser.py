@@ -33,6 +33,54 @@ with sync_playwright() as p:
         })""")
         assert info["scrollWidth"]<=width+1,(width,"page overflow",info)
         assert info["figures"]==7 and info["svg"]==7 and info["evidenceTables"]==7,(width,info)
+        # Verify the actual rendered graphic's semantic edges, NOT just an SVG count
+        # or a separate ledger reconciliation. Any aggregate trunk is rejected.
+        flow=page.evaluate("""() => {
+          const data=JSON.parse(document.getElementById('ledger-data').textContent);
+          const edges=[...document.querySelectorAll('#chart-flow svg path[data-flow-role="edge"]')];
+          const source=[...document.querySelectorAll('#chart-flow svg rect[data-flow-role="source"]')];
+          const sinks=[...document.querySelectorAll('#chart-flow svg rect[data-flow-role="sink"]')];
+          const toCents=s => {const parts=String(s).split('.'),neg=parts[0][0]==='-';
+            const whole=BigInt(parts[0]); const fraction=BigInt((parts[1]||'').padEnd(2,'0'));
+            return whole*100n+(neg?-fraction:fraction);};
+          const centsToStr=n=>n.toString();
+          const total=toCents(data.facts.rev.yuan);
+          let sourceTotal=0n, costTotal=0n,gpTotal=0n;
+          const actual={};
+          const failures=[];
+          for(const x of source){ const key=x.dataset.business; sourceTotal+=toCents(x.dataset.yuan);
+            if(!data.facts[key]) failures.push('source key missing: '+key);
+          }
+          for(const link of edges){
+            const key=link.dataset.business; const segment=data.segments.find(s=>s.rev===key);
+            if(!segment){failures.push('unmatched segment: '+key);continue;}
+            const revenue=toCents(data.facts[segment.rev].yuan);
+            const cost=toCents(data.facts[segment.cost].yuan);
+            const expected=link.dataset.kind==='cost'?cost:revenue-cost;
+            const amount=toCents(link.dataset.yuan);
+            if(amount!==expected) failures.push(key+'/'+link.dataset.kind+' wrong ribbon amount');
+            const height=Number(link.dataset.width);
+            const expHeight=Number(expected)/Number(total)*338;
+            if(Math.abs(height-expHeight)>0.00001) failures.push(key+'/'+link.dataset.kind+' falsely scaled width '+height+' versus '+expHeight);
+            if(link.dataset.to!==(link.dataset.kind==='cost'?'cogs':'gross_profit')) failures.push('wrong target for '+key);
+            if(link.dataset.sourcePage!=='178'||link.dataset.period!=='2026H1'||link.dataset.scope!=='consolidated')failures.push('unverifiable source/scope');
+            actual[key+'::'+link.dataset.kind]=(actual[key+'::'+link.dataset.kind]||0)+1;
+            if(link.dataset.kind==='cost')costTotal+=amount;else gpTotal+=amount;
+          }
+          for(const item of data.segments)
+            for(const type of ['cost','gp'])if(actual[item.rev+'::'+type]!==1)failures.push('missing/duplicate '+item.rev+'/'+type);
+          if(sourceTotal!==total)failures.push('source total mismatch');
+          if(costTotal!==toCents(data.facts.cogs.yuan))failures.push('sink cost mismatch');
+          if(costTotal+gpTotal!==total)failures.push('all sink mismatch');
+          if(sinks.length!==2)failures.push('sink node count '+sinks.length);
+          return {edges:edges.length,sources:source.length,sinks:sinks.length,
+            costYuan:centsToStr(costTotal),gpYuan:centsToStr(gpTotal),sumYuan:centsToStr(total),
+            microscale:edges.filter(x=>x.dataset.business==='other_service_rev').map(x=>Number(x.dataset.width)),
+            failures};
+        }""")
+        assert flow["edges"]==8 and flow["sources"]==4 and flow["sinks"]==2,(width,"real Sankey graph roles",flow)
+        assert not flow["failures"],(width,"rendered Sankey invariant violated",flow)
+        assert max(flow["microscale"])<0.02,(width,"tiny disclosed test business inflated for visual effect",flow)
         assert info["exportButtons"]==7 and info["externalScripts"]==0 and info["amounts"]>=10
         assert info["mobileFactPanels"]==7,(width,"each graphic requires independent first-order values on mobile",info)
         assert info["mobileFactsVisible"]==(0 if width==1440 else 7),(width,"missing visible amount headlines for mobile/tablet",info)
