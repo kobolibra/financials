@@ -15,6 +15,10 @@
     "BS_2025_12_31": "PASS",
     "INVENTORY_GROSS_TO_NET": "PASS",
     "INVENTORY_PRIOR_GROSS_TO_NET": "PASS",
+    "ACCOUNTS_RECEIVABLE_NET": "PASS",
+    "ACCOUNTS_RECEIVABLE_AGING_TOTAL": "PASS",
+    "CONTRACT_LIABILITY_COMPONENTS": "PASS",
+    "REVENUE_RECOGNITION_TIME_SPLIT": "PASS",
     "INDIRECT_CFO_ALL_17_ORIGINAL_SIGNED_ROWS": "PASS",
     "CASH_SECTION_CLOSURE": "PASS",
     "RPO_SPLIT_ONE_CENT_SOURCE_PRECISION_BOUNDARY": "PASS",
@@ -25,5 +29,13 @@
   "second_independent_human": "NOT_CHECKED",
   "industry": "semiconductor-chip-design",
   "source_screenshots": "SELECTED_PAGES_SCREENED",
+  "ar_top5_concentration_denominator": {
+    "reported_pct": "90.50",
+    "derived_pct_from_gross_AR_plus_gross_contract_assets": "89.17",
+    "numerator_yuan": "414844022.57",
+    "reported_denominator": "NOT_DISCLOSED_IN_THE_SAME_NOTE_TABLE",
+    "status": "FAIL_BOUNDED_NOTE_DENOMINATOR_RECONCILIATION",
+    "scope": "Consolidated AR+contract assets p135,p137,p138; parent p213 is incompatible."
+  },
   "article": "RESEARCH_PREVIEW"
 }
