@@ -1,0 +1,70 @@
+name: Build and audit ASR 688220 source-limited standalone research
+on:
+  push:
+    branches: ['work/asrmicro-688220-2026h1']
+    paths:
+      - 'research/issuers/688220/**'
+      - '.github/workflows/build-asrmicro-688220.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  research-accounting-and-offline-article:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Source ledger accounting + adversarial invariants
+        run: |
+          python research/issuers/688220/test_accounting.py
+          python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
+          test -s public/688220.html
+          python - <<'PY'
+          from pathlib import Path
+          x=Path('public/688220.html').read_text()
+          assert x.count('class="figure"')==7
+          assert 'FINANCIALS IN VISUALS' in x
+          assert '<script src=' not in x
+          assert '"rev":"chip_rev"' in x or '"rev": "chip_rev"' in x
+          assert 'NOT_CHECKED' in Path('research/issuers/688220/qa.json').read_text(), 'Do not certify external reviewer'
+          print('SOURCE_LED_RESEARCH_RENDER_PASS',len(x))
+          PY
+      - name: Install Chromium, Playwright and real Chinese font
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=zh family | grep -qi 'Noto'
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Local 1440, 768, 390 fully rendered browser QA, source tables and SVG downloads
+        run: python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa
+      - name: Clean independent rebuild of exactly the published article
+        run: |
+          sha256sum public/688220.html
+          cp public/688220.html /tmp/asr-688220-generated.html
+          python research/issuers/688220/publish.py --out /tmp/asr-second-generation.html --qa /tmp/asr-second-generation-qa.json
+          cmp /tmp/asr-688220-generated.html /tmp/asr-second-generation.html
+      - name: Commit standalone article and technical QA (not homepage promotion)
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/688220.html research/issuers/688220/qa.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate ASR 688220 independent source-limited research HTML and ledger QA"
+            git pull --rebase origin work/asrmicro-688220-2026h1
+            git push origin HEAD:work/asrmicro-688220-2026h1
+          fi
+      - name: Archive readable actual 1440/768/390 browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asrmicro-688220-2026h1-offline-original-visual-qa
+          path: |
+            public/688220.html
+            research/issuers/688220/qa.json
+            research/issuers/688220/visual-qa/
+          if-no-files-found: warn
+          retention-days: 30
