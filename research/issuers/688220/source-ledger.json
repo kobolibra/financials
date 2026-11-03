@@ -945,6 +945,198 @@
       "unit": "元",
       "currency": "CNY",
       "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_gross": {
+      "yuan": "464113067.29",
+      "page": 135,
+      "label": "合并应收账款期末账面余额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_allowance": {
+      "yuan": "8175303.66",
+      "page": 135,
+      "label": "合并应收账款坏账准备期末余额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_aging_lt3m": {
+      "yuan": "404860020.98",
+      "page": 135,
+      "label": "合并应收账款三个月内期末余额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_aging_3m1yr": {
+      "yuan": "50662511.11",
+      "page": 135,
+      "label": "合并应收账款三个月至一年期末余额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_aging_1to2yr": {
+      "yuan": "8590535.20",
+      "page": 135,
+      "label": "合并应收账款一年至二年期末余额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_top5_with_contract_assets": {
+      "yuan": "414844022.57",
+      "page": 137,
+      "label": "合并应收账款和合同资产期末前五名余额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "ar_top5_ratio": {
+      "yuan": "90.50",
+      "page": 137,
+      "label": "合并应收账款及合同资产前五名占合计数比例",
+      "type": "ratio",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "%",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "contract_advance_custom": {
+      "yuan": "291867010.73",
+      "page": 166,
+      "label": "合同负债预收芯片定制业务服务费",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "contract_advance_product": {
+      "yuan": "171870048.96",
+      "page": 166,
+      "label": "合同负债预收货款",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "contract_advance_ip": {
+      "yuan": "2174451.18",
+      "page": 166,
+      "label": "合同负债预收半导体IP授权费",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "revenue_point_time": {
+      "yuan": "2449003919.23",
+      "page": 178,
+      "label": "营业收入按某一时点确认",
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "revenue_over_time": {
+      "yuan": "2271183.04",
+      "page": 178,
+      "label": "营业收入按某一时段确认",
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "one_year_contractual_financial_liabilities": {
+      "yuan": "1148869935.61",
+      "page": 201,
+      "label": "金融负债未折现合同现金流一年内到期",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "short_term_debt_contractual": {
+      "yuan": "503115557.48",
+      "page": 201,
+      "label": "金融负债未折现短期借款一年内到期",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "fair_value_level3": {
+      "yuan": "748525532.49",
+      "page": 203,
+      "label": "持续以公允价值计量资产第三层次金额",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "contract_assets_net": {
+      "yuan": "1093368.56",
+      "page": 138,
+      "label": "合同资产期末账面价值",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
     }
   },
   "segments": [
@@ -1182,6 +1374,54 @@
       "status": "DISCLOSED",
       "pages": [
         87
+      ]
+    },
+    {
+      "claim": "合并应收账款和合同资产期末前五名占比90.50%，不等于客户销售收入占比；母公司前五名95.01%是不同报表范围，不得混入合并图",
+      "status": "DISCLOSED_AND_SEMANTIC_GUARD",
+      "pages": [
+        137,
+        213
+      ]
+    },
+    {
+      "claim": "合同负债三类预收互斥分类：ASIC设计服务291,867,010.73元，货款171,870,048.96元，IP授权费2,174,451.18元；其和精确等于合并合同负债期末金额",
+      "status": "DISCLOSED",
+      "pages": [
+        166
+      ]
+    },
+    {
+      "claim": "2026H1芯片定制设计服务工程样片交付并通过功能验收时一次性确认收入；IP授权可能在一段时间确认。合并收入按确认时点2,449,003,919.23元与按时段2,271,183.04元正好组成总收入",
+      "status": "DISCLOSED_ACCOUNTING_POLICY",
+      "pages": [
+        125,
+        126,
+        178
+      ]
+    },
+    {
+      "claim": "截至2026-06-30一年内金融负债未折现合同现金流1,148,869,935.61元，其中短期借款503,115,557.48元；不等于银行式现金流或全部债务",
+      "status": "DISCLOSED",
+      "pages": [
+        201
+      ]
+    },
+    {
+      "claim": "2026-06-30第三层次公允价值资产748,525,532.49元，估值依赖不可观察输入，需与当期损益和其他综合收益分开",
+      "status": "DISCLOSED",
+      "pages": [
+        202,
+        203,
+        204
+      ]
+    },
+    {
+      "claim": "合并附注披露一个经营分部，四项收入商品类型为合同分类而非四个管理报告分部；无披露重大或有事项及期后事项的适用项目",
+      "status": "DISCLOSED",
+      "pages": [
+        209,
+        210
       ]
     }
   ],
