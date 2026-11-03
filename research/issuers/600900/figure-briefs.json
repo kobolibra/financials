@@ -192,15 +192,17 @@
         "cfi",
         "cff",
         "fx_cash",
-        "cash_end"
+        "cash_end",
+        "restricted_non_cash"
       ],
       "source_pages": [
         55,
-        56
+        56,
+        162
       ],
       "identity": "Opening CE + CFO + CFI + CFF + FX = closing CE",
       "zero": "SIGNED_ZERO_AXIS",
-      "counter": "汇率影响现金并不等于利润表汇兑损益；大额筹资不是经营来源。",
+      "counter": "汇率影响现金并不等于利润表汇兑损益；大额筹资不是经营来源。 原始附注p.162披露受限保证金4637.26万元不属于期末现金及现金等价物。",
       "mobile": "期初/期末直接标注，真实有符号四分量在移动端也可以读出。",
       "quality": {
         "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
@@ -218,10 +220,12 @@
       "facts": [
         "cfo",
         "cash_capex",
-        "dividend_interest_cash"
+        "dividend_interest_cash",
+        "water_resource_tax"
       ],
       "source_pages": [
-        55
+        55,
+        154
       ],
       "identity": "simple FCF = CFO − cash long-term asset acquisitions; NOT a maintenance cash claim",
       "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
@@ -248,10 +252,12 @@
         "nci_equity",
         "assets_prior",
         "liabilities_prior",
-        "equity_prior"
+        "equity_prior",
+        "restricted_non_cash"
       ],
       "source_pages": [
-        48
+        48,
+        162
       ],
       "identity": "Same-date assets = liabilities + consolidated total equity, parent + NCI",
       "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
