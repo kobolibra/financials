@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "scope": "known failures; prevent repetition, not universal-industry certification",
+  "rules": "Every new material issue must enter here with root cause, correction, executable regression reference and transfer boundary; false PASS forbidden.",
+  "cases": [
+    {
+      "id": "SRC-001",
+      "root_cause": "数字出现在正确物理页，却落在比较期列而不是本期列。",
+      "correction": "元数据保存原 PDF 行列物理位置；不能把空白当前列自动当已披露零。",
+      "proof_file": "research/issuers/688220/verify_pages.py",
+      "assertion_marker": "p87",
+      "scope": "single_issuer",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "FIN-002",
+      "root_cause": "把不同分组维度（业务、地区、渠道）或父子收入层级累计成一个集团收入。",
+      "correction": "精确 yuan + 同一互斥维度 + 单一期间和合并口径方允许桑基。",
+      "proof_file": "research/shared/test_conserved_flow.py",
+      "assertion_marker": "mixed_product_geography",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-003",
+      "root_cause": "将差额命名为新业务，或者将真正亏损分部塑造成正利润流。",
+      "correction": "未知保留未解释，负毛利用有符号图，禁止占位其他与假绿流。",
+      "proof_file": "research/shared/test_conserved_flow.py",
+      "assertion_marker": "fabricated_other",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-004",
+      "root_cause": "极小业务来源按精确金额应为 0.011 SVG 单位，却被 1px 最小线条放大约92倍。",
+      "correction": "验证可见 SVG 路径几何和 source rect 原始高度，微小值只在旁边文字标注。",
+      "proof_file": "research/issuers/688220/qa_browser.py",
+      "assertion_marker": "money-source",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-005",
+      "root_cause": "整页无横向溢出但图内 scrollWidth 超过桌面容器、右侧财务金额被隐藏。",
+      "correction": "1440 每张核心图的自身可视边界检查；390/768 保证结论文字在图外可读。",
+      "proof_file": "research/issuers/688220/qa_browser.py",
+      "assertion_marker": "scrollWidth",
+      "scope": "single_issuer",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PUB-006",
+      "root_cause": "GitHub/main 与 Actions 绿色不等于 Cloudflare 新版已经发布，旧版页面仍能通过弱路由测试。",
+      "correction": "真生产路由需校验本次图形独有语义/结构并单列 LIVE FAIL。",
+      "proof_file": ".github/workflows/verify-unified-research-library.yml",
+      "assertion_marker": "ASR source amounts not represented as geometric nodes",
+      "scope": "single_issuer",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "FAIL_LIVE_STILL_OPEN"
+    },
+    {
+      "id": "SYS-007",
+      "root_cause": "单家公司被修补后，反馈未被锁成跨发行人可执行门槛和新对话共同交接。",
+      "correction": "发行人 release-gates.json + 全局问题登记 + main CI 机器检测新发行人；旧七公司明确历史欠账。",
+      "proof_file": "scripts/check_release_contract.py",
+      "assertion_marker": "UNREGISTERED_NEW_ISSUER",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "OFFLINE_REBUILD",
+      "status": "NEW_CONTRACT"
+    }
+  ]
+}
