@@ -229,7 +229,13 @@
       "GITHUB_MAIN_ROUTE": "PASS_FOR_PRE_EXISTING_NINE_FIGURE_REPORT__NEW_SOURCE_CELL_MERGE_PENDING",
       "CLOUDFLARE_LIVE_ROUTE": "PASS_FOR_PRE_EXISTING_NINE_FIGURE_REPORT__NEW_SOURCE_CELL_MERGE_PENDING",
       "AEI_FT_VISUAL_EDITORIAL": "PARTIAL_SELF_REVIEWED_ALL_FIGURE_DESKTOP_SHEET_AND_MOBILE_HEADLINES__NOT_INDEPENDENT_EDITORIAL_CERTIFICATION",
-      "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES"
+      "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES",
+      "LOCAL_SOURCE_GEOMETRY": "PASS_FINAL_MAIN_3a1878fa_29_EXACT_FINANCIAL_CHECKS_9_FIGURES_1440_768_390",
+      "LOCAL_DESKTOP_FIGURE_CLIPPING": "PASS_FINAL_MAIN_3a1878fa_FLOW_PNL_BALANCE_CASH_NOT_SCROLL_HIDDEN_1440",
+      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "FAIL_LIVE_41660682930_OLD_CLOUDFLARE_PAGE_MISSING_MONEY_SOURCE_RECT",
+      "PUBLIC_EIGHT_ISSUER_ROUTES": "PASS_PRE_EXISTING_DEPLOYMENT_41660215201_24_ROUTE_VIEWPORTS",
+      "CLOUDFLARE_PAGES_NEW_COMMIT": "NOT_CHECKED_PENDING_PROVIDER_CONCLUSION_3a1878fa",
+      "INDEPENDENT_VISUAL_EDITOR": "NOT_CHECKED_ASSISTANT_SCREENSHOT_CRITIQUE_NOT_HUMAN_SECOND_REVIEW"
     },
     "latest_branch_qa": {
       "workflow": "Verify AEI-inspired 688220 financial-flow and source-linked research",
@@ -239,7 +245,7 @@
       "source_git_commit": "d5e42a40becf8226de7be3f2a85d00095db3fa13",
       "scope": "224p source SHA, p87 original comparative column x-position check, 29 signed accounting assertions, 8 adversarial negative cases, 9 financial charts/9 source tables, 21 Chromium screenshots on 1440 768 390, 7 source-specific nonzero product cost+GP Sankey ribbons, 3 SVG download tests, clean regenerated HTML"
     },
-    "next_step": "Merge minimal source-cell and catalog metadata PR only after exact branch QA; confirm new main GitHub and Cloudflare eight issuer real navigation/1440-768-390; preserve main nine-figure Skill v8.3.3, original HTML and independent review caveats.",
+    "next_step": "P0: Diagnose Cloudflare Pages stalled GitHub integration/old 688220 public asset; after real deployment run actual strict new SVG source-node check for 8 issuer x3 viewports. Never mark LIVE as passed using older 9-figure site.",
     "latest_main_release": {
       "original_redesign_merge": "5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8",
       "source_accuracy_live_workflow_fix": "f9f3ac4377c98fb5d9390716531c023a4def1393",
@@ -278,6 +284,46 @@
       "revised_688220_figure_count": 9,
       "stage": "VALIDATED_BRANCH_PENDING_MAIN_RELEASE",
       "important": "This source evidence release is distinct from previously successful nine-figure live main. No external second analyst certified."
+    },
+    "latest_geometry_fix": {
+      "source_commit": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0",
+      "enforcement_workflow_commit": "ac588ebab444ec4510747ddcb46395b397ca9699",
+      "pull_request": 8,
+      "original_source_file": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+      "actual_2026h1_micro_source_yuan": "79769.92",
+      "old_minimum_visual_source_height": "1 SVG unit (FAKE visual magnitude)",
+      "new_real_visual_source_height": "approximately 0.01086 SVG units",
+      "source_nodes": 4,
+      "positive_income_to_cost_gp_ribbons": 7,
+      "true_zero_gp_ribbons": 0,
+      "sinks": 2,
+      "figure_count": 9,
+      "branch_browser_run": {
+        "id": 41659486482,
+        "conclusion": "success",
+        "capture": "21 screenshots, exact actual SVG Bézier path geometry, 1440/768/390"
+      },
+      "main_accounting_browser_run": {
+        "id": 41660215226,
+        "conclusion": "success",
+        "sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0"
+      },
+      "main_old_route_browser_run": {
+        "id": 41660215201,
+        "conclusion": "success",
+        "sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0",
+        "limit": "Navigation and generic 9 figures only; cannot certify new source-node deployment"
+      },
+      "main_strict_live_run": {
+        "id": 41660682930,
+        "conclusion": "failure",
+        "sha": "ac588ebab444ec4510747ddcb46395b397ca9699",
+        "reason": "Production HTML still lacks money-source node"
+      },
+      "official_pdf_vs_mirror": "NOT_CHECKED",
+      "financial_material_note_review": "NOT_CHECKED_FULL_REPORT",
+      "independent_second_human": "NOT_CHECKED",
+      "final_live_deployment": "FAIL_PENDING_CLOUDFLARE_NEW_ASSET"
     }
   },
   "last_redesign_internal_checkpoint": {
@@ -289,5 +335,50 @@
     "live_ci": 41653304202,
     "financial_ci": 41653197855,
     "notes": "9 figures after source-specific actual PDF p87 correction; all 8 original issuer routes retained"
+  },
+  "latest_visual_geometry_release": {
+    "source_commit": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0",
+    "enforcement_workflow_commit": "ac588ebab444ec4510747ddcb46395b397ca9699",
+    "pull_request": 8,
+    "original_source_file": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+    "actual_2026h1_micro_source_yuan": "79769.92",
+    "old_minimum_visual_source_height": "1 SVG unit (FAKE visual magnitude)",
+    "new_real_visual_source_height": "approximately 0.01086 SVG units",
+    "source_nodes": 4,
+    "positive_income_to_cost_gp_ribbons": 7,
+    "true_zero_gp_ribbons": 0,
+    "sinks": 2,
+    "figure_count": 9,
+    "branch_browser_run": {
+      "id": 41659486482,
+      "conclusion": "success",
+      "capture": "21 screenshots, exact actual SVG Bézier path geometry, 1440/768/390"
+    },
+    "main_accounting_browser_run": {
+      "id": 41660215226,
+      "conclusion": "success",
+      "sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0"
+    },
+    "main_old_route_browser_run": {
+      "id": 41660215201,
+      "conclusion": "success",
+      "sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0",
+      "limit": "Navigation and generic 9 figures only; cannot certify new source-node deployment"
+    },
+    "main_strict_live_run": {
+      "id": 41660682930,
+      "conclusion": "failure",
+      "sha": "ac588ebab444ec4510747ddcb46395b397ca9699",
+      "reason": "Production HTML still lacks money-source node"
+    },
+    "official_pdf_vs_mirror": "NOT_CHECKED",
+    "financial_material_note_review": "NOT_CHECKED_FULL_REPORT",
+    "independent_second_human": "NOT_CHECKED",
+    "final_live_deployment": "FAIL_PENDING_CLOUDFLARE_NEW_ASSET",
+    "site_path": "/688220.html",
+    "canonical_home": "/",
+    "legacy_7_report_blobs_unchanged": true,
+    "checklist": "docs/REPORT_RELEASE_CHECKLIST.md",
+    "skill": "skills/ashare-financial-storytelling/SKILL.md"
   }
 }
