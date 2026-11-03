@@ -44,6 +44,15 @@ jobs:
               assert 'UNVERIFIED_REVENUE_PARTITION' not in h
               print('SOURCE_CLASSIFICATION_HTML_PASS',code,len(h),hashlib.sha256(h.encode()).hexdigest(),flush=True)
           PY
+      - name: Hard gate exact published byte identity (canonical and historic stable URL)
+        shell: bash
+        run: |
+          cmp optical-rebuilt/300394.html public/300394.html
+          cmp optical-rebuilt/300394.html public/300394/2026-H1/index.html
+          cmp optical-rebuilt/300502.html public/300502.html
+          cmp optical-rebuilt/300502.html public/300502/2026-H1/index.html
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_xinyisheng_case.py -v
+          echo 'OPTICAL_PUBLISHED_SOURCE_IDENTITY_PASS'
       - name: Archive newly generated sources for release
         uses: actions/upload-artifact@v4
         with:

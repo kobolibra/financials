@@ -16,14 +16,14 @@ MEMO = json.loads((ROOT / "examples/xinyisheng-2026H1-memo.json").read_text(enco
 class EoptolinkReleaseQA(unittest.TestCase):
     def test_financial_reconciliations(self):
         self.assertNotEqual(check(LEDGER)["status"], "BLOCKED")
-        self.assertEqual(len(LEDGER["facts"]), 76)
+        self.assertEqual(len(LEDGER["facts"]), 80)
         self.assertEqual(len(LEDGER["indirect_cfo_adjustments"]), 15)
 
     def test_report_is_exactly_reproducible(self):
         generated, metadata = build(LEDGER, MEMO)
         published = (ROOT.parents[2] / "public/300502/2026-H1/index.html").read_text(encoding="utf-8")
         self.assertEqual(generated, published)
-        self.assertEqual(hashlib.sha256(generated.encode()).hexdigest(), "5e5dea09b377d182d69fb587f8a30b9cce8928194fe0358c0b")
+        self.assertEqual(hashlib.sha256(generated.encode()).hexdigest(), "fa0242815c415c5d18800c1550a5eae4ebacac3801f4f7fec9a732b2c509a6b9")
         self.assertEqual(metadata["charts"], 11)
 
     def test_identity_and_source(self):
