@@ -1,0 +1,5 @@
+# Financials in Visuals repository instructions
+
+Before any action, read root \`AGENTS.md\`, \`START_HERE.md\`, \`PROJECT_STATE.md\`, \`project-status.json\`, the **complete** \`skills/ashare-financial-storytelling/SKILL.md\` and five \`skills/ashare-financial-storytelling/research/01..05\` research manuals.
+
+Treat Skill as a **must-execute research AND visualization quality contract**, not a list of optional ideas. One unified seven-company catalogue, independent full HTML per company, source-ledger-based figures, exact accounting, no fabricated income residuals, true monetary Sankey when supported, distinct sector adapters, full material-note review scope and original editorial design; independent finance human signoff is \`NOT_CHECKED\` unless documented. Check actual GitHub main/CI/Cloudflare status, preserve URLs, and update the handoff record and release checks. \`docs/NEW_SESSION_PROMPT.md\` is the ChatGPT new-chat boot instruction; GitHub repo files do NOT guarantee automatic Skill loading in an ordinary ChatGPT conversation.

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "updated_date": "2026-11-03",
+  "repository": "kobolibra/financials",
+  "production_branch": "main",
+  "production_url": "https://financials-in-visuals.pages.dev/",
+  "canonical_company_directory": "/",
+  "latest_publication_state": "UNIFIED_SEVEN_ISSUER_RESEARCH_LIBRARY",
+  "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
+  "skill": {
+    "path": "skills/ashare-financial-storytelling/SKILL.md",
+    "version": "8.3.2-rc1",
+    "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
+    "read_required": true,
+    "required_manuals": [
+      "skills/ashare-financial-storytelling/research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md",
+      "skills/ashare-financial-storytelling/research/02_ASHARE_INSTITUTIONAL_RESEARCH.md",
+      "skills/ashare-financial-storytelling/research/03_VISUAL_EDITORIAL_SYSTEM.md",
+      "skills/ashare-financial-storytelling/research/04_ASHARE_FORENSIC_DEEP_DIVE.md",
+      "skills/ashare-financial-storytelling/research/05_CROSS_SECTOR_GENERALIZATION.md"
+    ]
+  },
+  "entrypoints": {
+    "human": "START_HERE.md",
+    "agent": "AGENTS.md",
+    "handoff": "docs/HANDOFF_PROTOCOL.md",
+    "new_session": "docs/NEW_SESSION_PROMPT.md",
+    "releases": "docs/REPORT_RELEASE_CHECKLIST.md",
+    "history": "docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md"
+  },
+  "site": {
+    "catalog": "site/research_catalog.json",
+    "builder": "site/portal_builder.py",
+    "root_html": "public/index.html",
+    "company_count": 7,
+    "company_codes": [
+      "300394",
+      "300308",
+      "300502",
+      "600036",
+      "688111",
+      "600519",
+      "000333"
+    ],
+    "topic": "/optical-2026h1.html",
+    "new_issuer_policy": "ADD_TO_SAME_CATALOG_NO_NEW_VERSION_SUBSITE"
+  },
+  "source_engines": {
+    "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
+    "cross_sector": "research/rebuild-v10/publisher.py",
+    "source_ledgers": [
+      "skills/ashare-financial-storytelling/v7/engine/sample-ledger.json",
+      "skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json",
+      "skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json",
+      "research/rebuild-v10/input-ledgers/"
+    ]
+  },
+  "resolved_accounting_issues": [
+    {
+      "issuer": "300394",
+      "issue": "computed revenue residual",
+      "resolution": "披露其他业务收入37651189.26元及成本9087378.57元",
+      "source": "issuer half-year report physical page 140",
+      "proof": "docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md"
+    },
+    {
+      "issuer": "300502",
+      "issue": "computed revenue residual",
+      "resolution": "按业务类型的其他收入27106113.32元及成本17534949.75元；不可混同另一维度其他业务",
+      "source": "issuer half-year report physical page 104",
+      "proof": "docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md"
+    }
+  ],
+  "last_verified_release": {
+    "source_git_commit": "4a734d60a40839c90d12a295c61be917783b7187",
+    "checks": [
+      {
+        "name": "original note classifications & rebuilt optical issuer pages",
+        "run_id": 41599963892,
+        "conclusion": "success"
+      },
+      {
+        "name": "unified seven issuer live Cloudflare browser",
+        "run_id": 41599963800,
+        "conclusion": "success"
+      },
+      {
+        "name": "historical routes and report QA",
+        "run_id": 41599963891,
+        "conclusion": "success"
+      }
+    ],
+    "warning": "Historical QA evidence, not a claim that subsequent commits or new issuers have passed; check latest actual CI and public site independently."
+  },
+  "limitations": {
+    "all_seven_full_material_note_reviews": "NOT_CHECKED",
+    "independent_second_human_analyst": "NOT_CHECKED",
+    "multi_period_peers_valuation_all_issuers": "NOT_CHECKED",
+    "fully_automatic_industry_generalization": "NOT_PROVEN",
+    "every_new_report": "GATE_INDEPENDENTLY_REQUIRED"
+  },
+  "source_archive": "ChatGPT Library /Financials-in-Visuals/ ; do not assume a new session has original PDF bytes mounted; retrieve and recheck SHA, dates, periods and issuer before claiming PDF_HASH PASS."
+}

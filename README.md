@@ -1,19 +1,33 @@
-# financials
+# Financials in Visuals · A 股财报深度研究与可视化出版
 
-A 股上市公司财务报告可视化静态网站。所有财报作品为独立 HTML，网站部署目录为 `public/`。
+**现在的正式入口：[START_HERE.md](START_HERE.md)。** 新 ChatGPT 对话、电脑代理、协作分析师都应从该文件开始，而不是从本项目历史对话或旧版样例推断现状。
 
-## Cloudflare Pages 首次部署
+**生产站点：** https://financials-in-visuals.pages.dev/ · **GitHub：** \`kobolibra/financials\` / \`main\`。
 
-1. Cloudflare Dashboard → Workers & Pages → Create application → Pages → Connect to Git。
-2. 选择 GitHub 仓库 `kobolibra/financials`，生产分支 `main`。
-3. Framework preset: `None`；Build command：留空（如必须填写，使用 `exit 0`）；Build output directory：`public`；Root directory 保持仓库根目录。
-4. 点击 Save and Deploy。以 Cloudflare 实际生成的 `.pages.dev` 地址为准。
+## 这是一个研究出版系统，不只是图表网站
 
-首页：`public/index.html`。
-天孚通信 2026 H1：`public/300394/2026-H1/index.html`，部署后相对地址为 `/300394/2026-H1/`。
+独立研读上市公司原始披露与重大附注，精确勾稽三大报表，形成公司特有商业模式和反证分析，再采用受 [App Economy Insights](https://www.appeconomyinsights.com/) 和 FT 等公开方法启发的**原创**财务视觉叙事。严格执行 [完整 Skill](skills/ashare-financial-storytelling/SKILL.md) 及 [01–05 研究规范](skills/ashare-financial-storytelling/research/)；账户记忆不能代替实际读取这些文件。
 
-## 后续报告发布
+目前统一首页包含七家真实独立研究：天孚通信 300394、中际旭创 300308、新易盛 300502、招商银行 600036、金山办公 688111、贵州茅台 600519、美的集团 000333。光通信跨公司比较位于独立专题，不是第八家。旧实验和四家公司版本目录仅为历史兼容，**不得重新当首页主导航**。
 
-将通过核验的单文件 HTML 上传到 `public/{证券代码}/{YYYY}-{H1|FY|Q1|Q3}/index.html`，更新首页列表并提交至 `main`；首次绑定 Cloudflare Pages GitHub 集成后可自动部署。禁止上传未经财务核验或尚未通过浏览器测试的作品。
+## 第一次加入公司 / 新对话继续工作
 
-不需要 GitHub Actions、Cloudflare API Token 或对其他现有项目进行任何修改。
+1. [新会话复制启动指令](docs/NEW_SESSION_PROMPT.md)；也可将新的公司原始 PDF 上传至新会话。
+2. 读取 [现行状态](PROJECT_STATE.md)、[机器校验清单](project-status.json)、[Skill](skills/ashare-financial-storytelling/SKILL.md)、其五份手册、[交接规范](docs/HANDOFF_PROTOCOL.md) 和 [财报发布门槛](docs/REPORT_RELEASE_CHECKLIST.md)。
+3. 先验证报告原始 PDF 字节/SHA/期别与来源，再生成精确账本、行业论文式财务解读、每张图的数据约束与反证。
+4. 生成**独立离线 HTML**，实际查看桌面、平板、手机和来源表，再在当前唯一研究库增加公司。不能因为 CI 绿灯就说“超越 AEI”。
+5. 结束前更新状态/证据，执行：\`python scripts/check_handoff.py\`，并核查新报告的独立财务及浏览器验收。
+
+**已解决**：300394 p.140 其他业务与 300502 p.104 “按业务类型/其他”的真实收入分类，不能再把它们叫未知收入差额。详见 [附注复核报告](docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md)。
+
+**仍未完成**：七家全部重大附注系统复核、真正独立人类二次审阅、所有公司的多季度/同业估值，以及任意行业的完全自动复现。请以 \`NOT_CHECKED\` 标明，不可冒充已通过。
+
+## 维护及部署
+
+- \`site/research_catalog.json\` 定义唯一公司研究库；\`site/portal_builder.py\` 生成 \`public/index.html\`。修改公司目录后执行 \`python site/portal_builder.py --out /tmp/financials-portal\` 并与发布 HTML 比较。
+- 旧光通信报告生成器在 \`skills/ashare-financial-storytelling/v7/engine/\`；后四家来源驱动研究引擎在 \`research/rebuild-v10/\`。
+- 发布目录为 \`public/\`；Cloudflare Pages：\`main\`、Framework \`None\`、无构建命令、输出目录 \`public\`。
+- GitHub Actions 已配置真实站点、财报来源与浏览器检查；**严禁**再根据历史 README 说“不需要 GitHub Actions”。
+- CI 和完整发布准则见 [docs/REPORT_RELEASE_CHECKLIST.md](docs/REPORT_RELEASE_CHECKLIST.md)；旧项目状态留档于 [docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md](docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md)。
+
+\`skills/ashare-financial-storytelling/SKILL.md\` 是仓库中的项目 Skill，**不是自动安装到 ChatGPT 的全局 Skills**。普通新对话应使用 [新会话指令](docs/NEW_SESSION_PROMPT.md) 明确要求读 GitHub；安装或连接能力依 ChatGPT 实际当前功能决定，不在本仓库内虚构“已安装成功”。
