@@ -1,0 +1,296 @@
+{
+  "ticker": "600519",
+  "name": "贵州茅台",
+  "industry": "品牌消费品与集团财务公司",
+  "source": {
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475868.PDF",
+    "report": "2026年半年度报告",
+    "period": "2026H1",
+    "audit": "未经审计（部分文件正文复核）",
+    "pdf_total_pages": 110,
+    "pdf_sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+    "source_validation": "ORIGINAL_PDF_SHA256_VERIFIED_AND_AUTOMATED_FIELD_REVIEW_PARTIAL",
+    "reviewed_at": "2026-11-02",
+    "audit_file": "../qa/600519_source_check.json"
+  },
+  "facts": {
+    "rev": {
+      "yuan": "90703260964.48",
+      "page": 5,
+      "label": "合并营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "rev_prior": {
+      "yuan": "89389354416.84",
+      "page": 5,
+      "label": "上年同期营业收入",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cogs": {
+      "yuan": "9473762565.88",
+      "page": 73,
+      "label": "合并营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cogs_prior": {
+      "yuan": "7777491083.93",
+      "page": 73,
+      "label": "上年同期营业成本",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "parent_ni": {
+      "yuan": "44516880421.86",
+      "page": 5,
+      "label": "归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "parent_ni_prior": {
+      "yuan": "45402962298.10",
+      "page": 5,
+      "label": "上年同期归母净利润",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "reg_ni": {
+      "yuan": "44464207646.01",
+      "page": 5,
+      "label": "扣非归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cfo": {
+      "yuan": "70690750119.06",
+      "page": 34,
+      "label": "经营活动现金流净额",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cfo_prior": {
+      "yuan": "13119061031.33",
+      "page": 34,
+      "label": "上年同期经营现金流净额",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "maotai_rev": {
+      "yuan": "77724437925.48",
+      "page": 74,
+      "label": "茅台酒营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "maotai_cogs": {
+      "yuan": "6000884228.70",
+      "page": 74,
+      "label": "茅台酒营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "series_rev": {
+      "yuan": "12934186511.82",
+      "page": 74,
+      "label": "其他系列酒营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "series_cogs": {
+      "yuan": "3415795490.58",
+      "page": 74,
+      "label": "其他系列酒营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "other_rev": {
+      "yuan": "44636527.18",
+      "page": 74,
+      "label": "其他业务营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "other_cogs": {
+      "yuan": "57082846.60",
+      "page": 74,
+      "label": "其他业务成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "direct_rev": {
+      "yuan": "52006683587.88",
+      "page": 74,
+      "label": "直销收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wholesale_rev": {
+      "yuan": "38696577376.60",
+      "page": 74,
+      "label": "批发代理收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "sales_cash": {
+      "yuan": "98421697395.39",
+      "page": 33,
+      "label": "销售商品、提供劳务收到现金",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "sales_cash_prior": {
+      "yuan": "95086614960.23",
+      "page": 33,
+      "label": "上年同期销售商品现金",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "member_deposit_delta": {
+      "yuan": "7383004563.78",
+      "page": 33,
+      "label": "客户存款及同业存放净增加额（现金流入项）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "member_deposit_delta_prior": {
+      "yuan": "-2516653584.50",
+      "page": 33,
+      "label": "上年同期客户存款及同业存放净增加额",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "interbank_placed_change": {
+      "yuan": "-21895452284.18",
+      "page": 34,
+      "label": "存放央行和同业款项净增加额（现金流出项；负值减少流出）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "interbank_placed_change_prior": {
+      "yuan": "25410788169.25",
+      "page": 34,
+      "label": "上年同期存放央行和同业款项净增加额",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "assets": {
+      "yuan": "309050784569.31",
+      "page": 5,
+      "label": "总资产",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "assets_prior": {
+      "yuan": "303834844021.44",
+      "page": 5,
+      "label": "去年年末总资产",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "interbank_assets": {
+      "yuan": "141084158124.01",
+      "page": 8,
+      "label": "拆出资金余额",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "interbank_assets_prior": {
+      "yuan": "99096188059.75",
+      "page": 8,
+      "label": "上年末拆出资金",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "monetary_funds": {
+      "yuan": "53518798979.08",
+      "page": 8,
+      "label": "货币资金",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cash_contract": {
+      "yuan": "3177561597.07",
+      "page": 74,
+      "label": "期末剩余履约义务交易价格",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    }
+  },
+  "analyst": {
+    "headline": "现金流跃升，白酒主业真的更好了吗？",
+    "deck": "半年度收入只增长1.47%，营业成本却上升21.81%。经营现金流同比飙升438.84%，但控股财务公司的资金收付改变了这条曲线的解释方式。",
+    "thesis": "主要产品的毛利结构和金融子公司的现金流同时决定了财务画像；对合并现金流的解读必须先剥离资金业务的性质。",
+    "counter": "现金流增长也包含真实销售回款，但仅从合并 CFO 的同比变化无法证明白酒主营现金转化有同等幅度改善。",
+    "watch": [
+      "茅台酒与系列酒毛利率及成本结构变化",
+      "直销及经销渠道销售变化、合同负债",
+      "集团财务公司同业资产及成员存款对合并现金流的影响"
+    ],
+    "limits": [
+      "财务公司客户存款和同业资金往来不是白酒销售回款",
+      "资产负债表拆出资金为时点余额，不应等同经营流量",
+      "2026H1/2025H1是流量同比，2026-06-30/2025-12-31是存量比较"
+    ]
+  },
+  "figures": []
+}
