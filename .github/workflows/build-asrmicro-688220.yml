@@ -21,6 +21,7 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check -q pymupdf
           python research/issuers/688220/verify_pages.py
+          python research/shared/test_conserved_flow.py
           python research/issuers/688220/test_accounting.py
           python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
           test -s public/688220.html
