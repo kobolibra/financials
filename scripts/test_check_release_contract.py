@@ -166,5 +166,30 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertTrue(any("LEDGER_RATIO_WRONGLY_MONEY" in x for x in errors))
 
 
+    def test_embedded_html_source_reason_cannot_silently_lag_source_ledger(self):
+        read_actual = mod.read_json
+        def changed_source(path):
+            data = read_actual(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["source"]["reason"] = "changed in original ledger but not yet rebuilt into published HTML"
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=changed_source):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("PUBLISHED_LEDGER_FIELD_DRIFT 688220/source" in x for x in errors), errors)
+
+    def test_embedded_html_financial_fact_cannot_silently_lag_source_ledger(self):
+        read_actual = mod.read_json
+        def changed_fact(path):
+            data = read_actual(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["facts"]["rev"]["yuan"] = "2451275102.26"
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=changed_fact):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("PUBLISHED_LEDGER_FIELD_DRIFT 688220/facts" in x for x in errors), errors)
+
+
 if __name__ == "__main__":
     unittest.main()
