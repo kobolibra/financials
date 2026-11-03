@@ -12,6 +12,8 @@ on:
       - 'public/600900.html'
       - 'public/600276.html'
       - '.github/workflows/build-two-sectors-2026h1.yml'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: write
@@ -68,7 +70,7 @@ jobs:
         if: github.ref_name == 'main'
         run: git diff --exit-code -- public/600900.html public/600276.html research/issuers/600900/qa.json research/issuers/600276/qa.json
       - name: Commit TWO independent complete issuer HTML research reports to candidate branch
-        if: github.ref_name != 'main'
+        if: github.event_name == 'push' && github.ref_name != 'main'
         run: |
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
