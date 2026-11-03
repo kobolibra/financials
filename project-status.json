@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.4.1-rc1",
+    "version": "8.4.2-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -46,7 +46,9 @@
         "original archived PDF SHA and real bytes",
         "source-ledger.json issuer/period/source SHA and 93 disclosed typed facts",
         "figure-briefs.json issuer/period/source SHA and cited fact IDs"
-      ]
+      ],
+      "published_embedded_data_identity": "CHECK_PUBLISHED_LEDGER_ISSUER_SOURCE_FACTS_SEGMENTS_EQUALS_ORIGINAL_SOURCE_LEDGER_IF_EMBEDDED",
+      "clean_rebuild_strict": "NO_BYTE_FOR_BYTE_DIFF_FOR_PUBLIC_REPORT_AND_QA"
     }
   },
   "entrypoints": {
@@ -256,9 +258,9 @@
       "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES",
       "LOCAL_SOURCE_GEOMETRY": "PASS_FINAL_MAIN_3a1878fa_29_EXACT_FINANCIAL_CHECKS_9_FIGURES_1440_768_390",
       "LOCAL_DESKTOP_FIGURE_CLIPPING": "PASS_FINAL_MAIN_3a1878fa_FLOW_PNL_BALANCE_CASH_NOT_SCROLL_HIDDEN_1440",
-      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "FAIL_STRICT_RETRY_ATTEMPT_2_41660682930_ASR_SOURCE_NODES_STILL_MISSING_LIVE",
+      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "PASS_CURRENT_REAL_CLOUDFLARE_41667952839_ALL_4_TRUE_SOURCE_RECTS",
       "PUBLIC_EIGHT_ISSUER_ROUTES": "PASS_PRE_EXISTING_DEPLOYMENT_41660215201_24_ROUTE_VIEWPORTS",
-      "CLOUDFLARE_PAGES_NEW_COMMIT": "NOT_CHECKED_PENDING_PROVIDER_CONCLUSION_3a1878fa",
+      "CLOUDFLARE_PAGES_NEW_COMMIT": "PASS_STRICT_ROUTE_AND_SOURCE_GEOMETRY_41667952839__INDEPENDENT_PROVIDER_PIPELINE_DETAIL_NOT_CHECKED",
       "INDEPENDENT_VISUAL_EDITOR": "NOT_CHECKED_ASSISTANT_SCREENSHOT_CRITIQUE_NOT_HUMAN_SECOND_REVIEW"
     },
     "latest_branch_qa": {
@@ -435,7 +437,7 @@
     "public_html_modified": false,
     "cloudflare_outstanding": "FAIL_STRICT_LIVE_ASR_GEOMETRY_41660682930",
     "limitations": "No automatic human editor or full industry generalization; regression registry references source tests, execution via Actions",
-    "version": "8.4.1-rc1",
+    "version": "8.4.2-rc1",
     "v840_merged_pr": "https://github.com/kobolibra/financials/pull/9",
     "v840_merged_commit": "ffb57ac6142546a66233fa01741b54812422f40e",
     "v840_actual_pr_ci": [
@@ -451,8 +453,45 @@
       }
     ],
     "v841_branch": "work/skill-typed-evidence-20261103",
-    "v841_pr": "NOT_CHECKED_PENDING_PR",
+    "v841_pr": "https://github.com/kobolibra/financials/pull/10",
     "v841_checks": "NOT_CHECKED_PENDING_ACTIONS",
-    "v841_scope": "SOURCE_LEDGER_SHA_PERIOD_AND_9_FIGURE_BRIEFS_CURRENT_PDF_CROSS_FILE_VALIDATION_PLUS_SECTOR_WRONG_ROUTE_GUARD"
+    "v841_scope": "SOURCE_LEDGER_SHA_PERIOD_AND_9_FIGURE_BRIEFS_CURRENT_PDF_CROSS_FILE_VALIDATION_PLUS_SECTOR_WRONG_ROUTE_GUARD",
+    "v840_pr": "https://github.com/kobolibra/financials/pull/9",
+    "v840_pr_ci": [
+      41666080981,
+      41666080935
+    ],
+    "v841_merged_commit": "d0eed02f7c3bb5bdffb3cb7cea6f4620d0e1bc96",
+    "v841_pr_ci": [
+      41667418424,
+      41667418874
+    ],
+    "v841_source_regression_detected": {
+      "run_id": 41667517537,
+      "conclusion": "failure",
+      "reason": "source.reason updated in original ledger while public/688220.html embedded data remained the older text; real clean rebuild detected drift"
+    },
+    "v841_source_regression_corrected": {
+      "main_commit": "f1e2343cb0b4c76d68b2c386218dde7a3d5bd403",
+      "run_id": 41667953097,
+      "conclusion": "success",
+      "method": "restore accurate preexisting source.reason while retaining SHA in original source ledger; no public HTML changes"
+    },
+    "v841_real_live": {
+      "run_id": 41667952839,
+      "conclusion": "success",
+      "scope": "strict source geometry and 8-company real Cloudflare route Chromium evidence; not full material note or independent editorial approval"
+    },
+    "v842_branch": "work/skill-generated-ledger-anti-drift-20261103",
+    "v842_pr": "NOT_CHECKED_PENDING_PR",
+    "v842_ci": "NOT_CHECKED_PENDING_PR_ACTIONS",
+    "v842_reason": "PUBLISHED_LEDGER_EMBED_DRIFT_HARD_GATE_AND_2_HOSTILE_SOURCE_MUTATION_TESTS",
+    "research_unfinished": [
+      "REVIEW_ALL_MATERIAL_NOTES",
+      "VERIFY_SSE_PDF_EQUALS_MIRROR_BYTES",
+      "INDEPENDENT_SECOND_HUMAN_ANALYST",
+      "EXTERNAL_8_TO_12_QUARTERS_AND_VALUATION"
+    ],
+    "production_note": "LATEST_CLOUDFLARE_GEOMETRY_PASS_CHECK_41667952839__NOT_A_PROOF_OF_INDEPENDENT_FINANCIAL_EDITORIAL_CERTIFICATION"
   }
 }
