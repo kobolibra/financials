@@ -1,5 +1,19 @@
 # 翱捷科技-U 688220｜2026H1 证据导向研究札记与实质审查记录
 
+## 2026-11-03 source–visual adversarial reconstruction (Skill v8.3.3-RC1)
+
+**Actual source error discovered during full signed P&L rebuild:** On complete original PDF **physical p.87**, the '减：营业外支出' row displays **15.30 元 in the 2025H1 comparative (right) column**. The **2026H1 current (middle) cell is empty**. The previous source-ledger wrongly tagged 15.30 as disclosed 2026H1 expense; the older check passed because 15.30 appeared somewhere on the same page. The physically inspected source text-coordinate proof is x≈502 for the prior-year 15.30 vs the current middle column x≈300–450 blank. The 2026H1 zero *contribution* is DERIVED from 54,945,406.18 + 256,125.37 − 55,201,531.55 = 0.00, **NOT original issuer-reported 0.00**. Ledger, publishing, visual source table and physical column verification were corrected. A local/literal-only gate had failed to detect this until the signed full-GAAP bridge was introduced.
+
+**Visualization diagnostic:** The former 4→1→2 conserved plot actually was a group-only COGS accounting allocation. Its inputs and GP matched to cents, yet it masked product-level cost/economics despite the exact four cost rows appearing at p.178. The rewritten original SVG traces every positive source→its OWN disclosed COGS and derived GP; 4 cost ribbons + 3 strictly positive GP ribbons, one genuinely 0-GP test-service branch, no minimum-size fake money flow. Every source and both sinks have independently checked original-yuan conservation. The P&L signed waterfall now begins with H1 GP and explicitly includes R&D, the four other CAS operating expenses/surcharges, investment/other, fair value, asset/credit impairment, disposal, nonoperating, tax benefit and consolidated NI. Tiny nonzero signed amounts are labeled 万元 and represented by source-scale hairlines, not incorrectly rounded to +0.00/-0.00 亿. A separate dated balance-stock composition displays exact A=L+E at 2025-12-31 and 2026-06-30. These are **three different financial relationships**, not three variants of an arbitrary favorite chart.
+
+**Decision-useful economics:** Product GP now visibly separates chip sales GP (CNY 586,889,184.37) and ASIC GP (CNY 118,983,630.02). GP total CNY 721,516,109.28 includes IP GP CNY 15,643,294.89 and zero test-service GP. R&D CNY 663,322,721.74 consumes most GP, while reported investment and fair-value gains support the statutory net result. This does NOT prove pricing power, normalized EBITDA or recurring CFO. Continue tracking acceptance-based ASIC revenue vs booked order, contract costs, inventory/AR risk and subsequent cash conversion.
+
+**Qualitative interpretation gate:** The issuer's p.137 top-five receivables-and-contract-assets 90.50% remains source-disclosure inconsistent with the naive p.135+p.138 gross denominator 89.17%; cannot claim independent denominator closure. p.179 RPO time portions exceed reported RPO total by one cent. Both remain explicit **FAIL bounded**; no dummy "unallocated" financial stream may balance them. SSE primary URL vs full mirrored PDF byte-equivalence, full every-material-note review, true 8–12Q/peer/market prices and external independent second human editor remain **NOT_CHECKED**.
+
+**Current acceptance of redesign:** This memo and code define source and graphic invariants, not self-certification of a live release. Check latest run of \`.github/workflows/verify-aei-finance-redesign.yml\` on the exact branch/commit and actually inspect every 1440/390 PNG before calling visual editorial PASS. Only merge current verified HTML into original \`/688220.html\`; never change prior seven company pages or add a versioned aggregate homepage. Update SHA/results in PROJECT_STATE and project-status after actual deployment.
+
+
+
 **研究产品**：`RESEARCH_PREVIEW`，不是投资评级或已经由第二名独立人类分析师审核的机构正式报告。研究完成日：2026-11-03。编制依据：仓库当前 Skill v8.3.2-RC1、research/01–05、`docs/REPORT_RELEASE_CHECKLIST.md`。
 
 ## 原始来源与范围
