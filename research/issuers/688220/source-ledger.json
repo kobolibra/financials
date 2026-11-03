@@ -239,16 +239,17 @@
       "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
     },
     "nonoperating_expense": {
-      "yuan": "15.30",
+      "yuan": "0.00",
       "page": 87,
-      "label": "营业外支出",
+      "label": "营业外支出（2026H1 本期列空白；计算调节结果为零，非原文列示的零金额）",
       "type": "flow",
       "period": "2026H1",
       "scope": "consolidated",
-      "classification": "DISCLOSED",
+      "classification": "DERIVED_BLANK_CURRENT_CELL",
       "unit": "元",
       "currency": "CNY",
-      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+      "page_semantic_review": "PASS_REVIEWED_PHYSICAL_P87_CURRENT_COLUMN_IS_BLANK__ZERO_DERIVED_FROM_OP_PLUS_OTHER_INCOME_EQUALS_PRETAX",
+      "formula": "reported operating_profit + reported nonoperating_income - reported pretax_profit = 0.00; prior year has nonoperating_expense=15.30 yuan"
     },
     "pretax_profit": {
       "yuan": "55201531.55",
@@ -1137,6 +1138,18 @@
       "unit": "元",
       "currency": "CNY",
       "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "nonoperating_expense_prior": {
+      "yuan": "15.30",
+      "page": 87,
+      "label": "营业外支出（2025H1 上年同期比较列，原表第 87 物理页）",
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "PASS_MANUALLY_VERIFIED_RIGHTHAND_PRIOR_YEAR_COLUMN_P87"
     }
   },
   "segments": [
@@ -1422,6 +1435,13 @@
       "pages": [
         209,
         210
+      ]
+    },
+    {
+      "claim": "物理 p.87 原本将“减：营业外支出”右侧上年同期 15.30 元误摘为 2026H1，本期列实际上空白；以本期营业利润54,945,406.18+营业外收入256,125.37=利润总额55,201,531.55作等式说明本期该行计算贡献为0.00元。不能把空白写成公司原文披露的0.00。",
+      "status": "CORRECTED_SOURCE_COLUMN_ERROR_2026_11_03",
+      "pages": [
+        87
       ]
     }
   ],
