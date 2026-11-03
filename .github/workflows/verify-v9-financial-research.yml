@@ -1,0 +1,104 @@
+name: Verify v9 rebuilt financial research on real Cloudflare site
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-v9-financial-research.yml'
+      - 'public/research/2026-h1-v9/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source-level publication quality gates
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root=Path('public/research/2026-h1-v9')
+          expected={'600036':8,'688111':9,'600519':9,'000333':10}
+          assert (root/'index.html').exists()
+          idx=(root/'index.html').read_text()
+          for id,n in expected.items():
+              s=(root/f'{id}.html').read_text()
+              assert f'./{id}.html' in idx,id
+              assert s.startswith('<!doctype html>') and s.endswith('</html>'),id
+              assert s.count('<figure class="graphic"')==n,id
+              assert s.count('<table class="evidence-table"')==n,id
+              figures=[int(x) for x in re.findall(r'EXHIBIT (\d+) / ',s)]
+              assert figures==list(range(1,n+1)),(id,figures)
+              assert 'SHA-256' in s and 'CASH' in s and '反方观点' in s,id
+              assert '<iframe' not in s.lower(),id
+              assert s.count('PDF ')>n,id
+              print('SOURCE_REPORT_PASS',id,n,'figures',flush=True)
+          PY
+      - name: Install Chromium and Python Playwright
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install chromium
+      - name: Real Cloudflare browser multi-screen and per-figure QA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          import json
+          site='https://financials-in-visuals.pages.dev'
+          prefix='/research/2026-h1-v9'
+          expected={'600036':8,'688111':9,'600519':9,'000333':10}
+          out=Path('qa-v9-live');out.mkdir(exist_ok=True)
+          passed=[]; errors=[]
+          with sync_playwright() as p:
+            browser=p.chromium.launch(headless=True)
+            for width,height in [(1440,900),(768,1024),(390,844)]:
+              pg=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1,accept_downloads=True)
+              pg.on('pageerror',lambda e: errors.append(str(e)))
+              for code,num in expected.items():
+                url=f'{site}{prefix}/{code}.html'
+                r=pg.goto(url,wait_until='networkidle',timeout=45000)
+                assert r and r.status==200,(code,'http',r.status if r else None)
+                assert code in pg.title(),(code,pg.title())
+                assert pg.locator('figure.graphic').count()==num,(code,'figures')
+                assert pg.locator('table.evidence-table').count()==num,(code,'data tables')
+                assert pg.locator('a[href="#cash"]').count()==1,(code,'cash chapter')
+                assert pg.locator('a[href*=".PDF#page="]').count()>=num,(code,'source links')
+                doc=pg.evaluate('''() => ({total:document.documentElement.scrollWidth,body:document.body.scrollWidth,client:document.documentElement.clientWidth})''')
+                assert doc['total']<=width+1 and doc['body']<=width+1,(code,width,doc)
+                pg.screenshot(path=str(out/f'{code}_{width}_hero.png'),full_page=False)
+                if width==1440:
+                  for i in range(num):
+                    pg.locator('figure.graphic').nth(i).screenshot(path=str(out/f'{code}_fig{i+1:02d}.png'))
+                  with pg.expect_download() as item:
+                    pg.locator('button.export').first.click()
+                  assert item.value.suggested_filename.endswith('.svg'),code
+                passed.append({'issuer':code,'viewport':width,'figures':num,'page_width':doc['total']})
+                print('LIVE_BROWSER_QA_PASS',code,width,'figures',num,flush=True)
+              pg.close()
+            pg=browser.new_page(viewport={'width':1440,'height':900})
+            pg.goto(site+prefix+'/index.html',wait_until='networkidle')
+            assert pg.locator('a[href="./600036.html"]').count()==1
+            pg.locator('a[href="./600036.html"]').click()
+            assert '/research/2026-h1-v9/600036' in pg.url,pg.url
+            pg.locator('a[href="#cash"]').click()
+            assert pg.url.endswith('#cash'),pg.url
+            pg.locator('a.brand[href="./index.html"]').click()
+            assert '/research/2026-h1-v9/' in pg.url,pg.url
+            pg.close()
+            browser.close()
+          assert len(passed)==12,len(passed)
+          assert not errors,errors
+          (out/'qa_summary.json').write_text(json.dumps({'live_browser_viewports':passed,'all_per_figure_1440_screenshots':36,'navigation':'PASS','svg_export':'PASS','js_errors':errors,'result':'PASS'},ensure_ascii=False,indent=2))
+          print('PUBLICATION_QA_PASS 12 viewports, 36 per-figure screens, navigation, SVG export',flush=True)
+          PY
+      - name: Archive complete visual acceptance evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: financials-v9-live-browser-evidence
+          path: qa-v9-live/
+          if-no-files-found: warn
+          retention-days: 30
