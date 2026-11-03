@@ -54,6 +54,7 @@ jobs:
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_xinyisheng_case.py -v
           echo 'OPTICAL_PUBLISHED_SOURCE_IDENTITY_PASS'
       - name: Archive newly generated sources for release
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: audited-optical-source-partitions-300394-300502

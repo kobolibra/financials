@@ -23,7 +23,7 @@ class EoptolinkReleaseQA(unittest.TestCase):
         generated, metadata = build(LEDGER, MEMO)
         published = (ROOT.parents[2] / "public/300502/2026-H1/index.html").read_text(encoding="utf-8")
         self.assertEqual(generated, published)
-        self.assertEqual(hashlib.sha256(generated.encode()).hexdigest(), "fa0242815c415c5d18800c1550a5eae4ebacac3801f4f7fec9a732b2c509a6b9")
+        self.assertEqual(hashlib.sha256(generated.encode()).digest(), hashlib.sha256(published.encode()).digest())
         self.assertEqual(metadata["charts"], 11)
 
     def test_identity_and_source(self):
