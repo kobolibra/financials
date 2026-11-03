@@ -2,7 +2,7 @@ from pathlib import Path
 from html.parser import HTMLParser
 import unittest,json,subprocess,sys,tempfile
 HERE=Path(__file__).resolve().parent
-ROOT=HERE/'unified_site'
+ROOT=HERE.parent/'public'
 class Parser(HTMLParser):
  def __init__(self): super().__init__();self.links=[];self.company=[];self.filters=[];self.ids=[]
  def handle_starttag(self,t,a):
