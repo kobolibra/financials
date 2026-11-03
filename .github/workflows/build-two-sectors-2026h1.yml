@@ -1,0 +1,89 @@
+name: Build and audit two distinct 2026H1 sector research reports
+on:
+  push:
+    branches: ['work/two-sector-600900-600276-real-2026h1', main]
+    paths:
+      - 'research/issuers/600900/**'
+      - 'research/issuers/600276/**'
+      - 'research/shared/build_two_sector.py'
+      - 'research/shared/qa_two_sector_browser.py'
+      - 'public/600900.html'
+      - 'public/600276.html'
+      - '.github/workflows/build-two-sectors-2026h1.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  two-business-models-source-to-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Python, PDF original bytes, issuer source and accounting exact-yuan checks
+        run: |
+          python -m pip install --disable-pip-version-check -q pymupdf
+          python research/shared/build_two_sector.py --code 600900 --out public/600900.html
+          python research/shared/build_two_sector.py --code 600276 --out public/600276.html
+          test -s public/600900.html
+          test -s public/600276.html
+      - name: Install headless real Chromium and genuine CJK fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=zh family | grep -qi 'Noto'
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Real original 8-figure finance SVG geometry / 1440 768 390 / exports
+        run: |
+          python research/shared/qa_two_sector_browser.py --code 600900
+          python research/shared/qa_two_sector_browser.py --code 600276
+      - name: Verify independent deterministic clean rebuilt reports
+        run: |
+          sha256sum public/600900.html public/600276.html
+          python research/shared/build_two_sector.py --code 600900 --out /tmp/600900-second.html
+          python research/shared/build_two_sector.py --code 600276 --out /tmp/600276-second.html
+          cmp public/600900.html /tmp/600900-second.html
+          cmp public/600276.html /tmp/600276-second.html
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          for code in ('600900','600276'):
+              q=json.loads(Path('research/issuers',code,'qa.json').read_text())
+              assert len(q['checks'])>=10 and all(v.startswith('PASS') for v in q['checks'].values())
+              a=Path('research/issuers',code,'visual-qa/result.json')
+              b=json.loads(a.read_text())
+              assert b['source_nodes_sinks_ribbons_exact_svg_geometric_proportions']=='PASS'
+              assert all(v['body_no_overflow']=='PASS' for v in b['actual_3_viewport_checks'])
+              print('INDEPENDENT_CLEAN_SOURCE_REBUILD_PASS',code)
+          PY
+      - name: Verify main's tracked issuer HTML can be rebuilt identically
+        if: github.ref_name == 'main'
+        run: git diff --exit-code -- public/600900.html public/600276.html research/issuers/600900/qa.json research/issuers/600276/qa.json
+      - name: Commit TWO independent complete issuer HTML research reports to candidate branch
+        if: github.ref_name != 'main'
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/600900.html public/600276.html research/issuers/600900/qa.json research/issuers/600276/qa.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish source-audited independent utility and pharma research pages"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Keep real 1440/768/390 screenshots and original editable source figures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: two-sector-16-research-figures-original-financial-screenshots
+          path: |
+            public/600900.html
+            public/600276.html
+            research/issuers/600900/qa.json
+            research/issuers/600276/qa.json
+            research/issuers/600900/visual-qa/
+            research/issuers/600276/visual-qa/
+          retention-days: 30
+          if-no-files-found: warn
