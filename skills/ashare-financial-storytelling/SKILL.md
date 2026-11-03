@@ -1,10 +1,10 @@
 ---
 name: ashare-financial-storytelling
-version: 8.3.0-rc1
+version: 8.3.1-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.3-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.3.1-RC1
 
 ## The two independent research foundations (MANDATORY)
 
@@ -142,6 +142,19 @@ The prior 2026H1 four-company pages were rejected for superficial chart repetiti
 10. After every small release update `PROJECT_STATE.md`, reproduction scripts, ZIP source archive hash, exact production URL, Git SHA, CI run, screenshots and blocked next tasks. Do not use prior conversation memory as the authoritative version.
 
 **Observed release candidate v9 evidence (2026-11-03):** four complete original 2026H1 issuer PDFs; 191 selected source facts or explicitly labeled derived items; exact significant signed full cash/BS/P&L reconciliations; 36 distinct sourced figure slots (8 bank / 9 software / 9 spirits / 10 manufacturing); standalone HTML and code with 12/12 local responsive checks; real Cloudflare public-browser checks 12/12, all 36 desktop per-figure screenshot captures, SVG export and real navigation PASS after installing CJK fonts in CI. Source/rebuild package at Library `/Financials-in-Visuals/2026H1-v9.1-rebuilt-complete.zip`. Original publisher and typed input data also tracked under `research/rebuild-v9/` in main. This is **not** a blanket claim of autonomous arbitrary-PDF-to-institutional-research or superiority to App Economy Insights; 8–12Q external financial/market context, independent second finance editor and comprehensive material-note review remain `NOT_CHECKED`.
+
+## v8.3.1-RC1 — App Economy Insights flow grammar is a mandatory *execution* gate
+
+**Observed failure:** Previous v9 had no Sankey despite mandatory research/01 and research/03 requiring money-conserving income flow. The system verified many PDF numbers, then silently substituted ordinary bar charts for the core AEI-inspired financial-flow explanation. This is a failure to execute an existing Skill, not evidence that the user needed to restate the requirement.
+
+1. **Read and execute, don't paraphrase.** Before constructing every company report, check the complete latest SKILL.md, five required manuals, source-ledger dossier and current PROJECT_STATE. Maintain two independent pass/fail columns: institutional financial research AND original AEI/FT-inspired editorial/visual narrative. Never call a technical/browser pass an overall publication pass.
+2. **Explicit Sankey decision for each issuer.** When the source supplies exclusive nonnegative revenue components, a matching consolidated total, and positive matching costs/profit (or bank-compatible operating expense/profit), make a true **amount-weighted finance Sankey** the leading economics exhibit. If the evidence fails an exact original-yuan conservation identity or contains negative signed flows, print `FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON` and use a signed waterfall or another truthful figure; never draw decorative ribbons. No number of generic bars can silently satisfy this visual grammar requirement.
+3. **Diagram contracts must match the accounting model.** 688111: WPS product incomes→operating revenue→COGS/gross profit. 600519: non-overlapping wine/product revenue→operating revenue→COGS/GP; financial-company interest is excluded, and a negative small product GP must never be drawn as a positive product-profit ribbon. 000333: exactly 3 exclusive top-level segments→industrial operating revenue→industrial COGS/GP; embedded child segments are not additional revenue, and finance subsidiary interest/commissions belong to `营业总收入` outside industrial operating scope. 600036: net interest, net fees and other net→bank operating income→admin/credit/other operating costs plus operating profit; never subtract interest expense twice.
+4. **Precision and perception.** Every ribbon's thickness is exactly proportional to original disclosed nonnegative amounts on the same scale, checked with signed `Decimal` yuan before rounding. Fail if any source or target total differs. Each figure supplies physical PDF pages, original metric/period/scope and an accessible source data table. On mobile, keep the real Sankey inside a figure-only scroll area with visible hint, while the key answer and exact data remain readable without scrolling. Full-size 1440 and 390px screenshots, clipping, CJK typography and actual visual inspection are release blockers.
+5. **Automation enforces Skill requirements.** `.github/workflows/verify-v10-sankey-research.yml` downloads four real original PDFs, checks SHA/page/issuer, verifies signed accounting facts and Sankey invariants, checks clean-room generated HTML against tracked published bytes, and runs live Cloudflare Chromium 1440/768/390 with screenshot, mobile horizontal-scroll, source tables, navigation and SVG export. Failed checks block homepage promotion; do not manually override and then assert success.
+6. **Important boundary:** four true Sankeys do not establish full AEI-level excellence, 12 industry adapters, independently certified full note-level semantic review, peer/valuation, or 8–12 quarters. Record those separately as `NOT_CHECKED`. The user should not need to repeatedly name a requirement already written in the Skill.
+
+**Observed V10 first release:** 2026-11-03, `/research/2026-h1-v10/` includes 4 proportional flow graphs integrated into the existing 8/9/9/10-figure company narratives; 7 Sankey adversarial regression tests; actual clean rebuilt PDF download and real public-browser CI verified in GitHub Actions run 41588330309. This specifically fixes the missing central AEI financial flow; remaining deeper editorial comparison and independent finance reviewer are not complete.
 
 ## Required operating sequence
 
