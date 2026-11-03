@@ -10,6 +10,16 @@ on:
       - 'public/research/2026-h1-v10/**'
       - 'site/**'
       - '.github/workflows/verify-unified-research-library.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'public/index.html'
+      - 'public/300394.html'
+      - 'public/300308.html'
+      - 'public/300502.html'
+      - 'public/research/2026-h1-v10/**'
+      - 'site/**'
+      - '.github/workflows/verify-unified-research-library.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,6 +36,7 @@ jobs:
           cmp public/index.html /tmp/financials-rebuilt-portal/index.html
           python scripts/check_handoff.py
       - name: Install Chromium, Playwright and Chinese fonts
+        if: github.event_name != 'pull_request'
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq fonts-noto-cjk
@@ -33,7 +44,8 @@ jobs:
           fc-list :lang=zh family | grep -qi 'Noto'
           python -m pip install --disable-pip-version-check -q playwright
           python -m playwright install chromium
-      - name: Real Cloudflare unified seven-company acceptance
+      - name: Real Cloudflare unified issuer-library acceptance
+        if: github.event_name != 'pull_request'
         run: |
           python - <<'PY'
           import json,pathlib
