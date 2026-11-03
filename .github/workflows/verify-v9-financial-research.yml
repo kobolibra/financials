@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/verify-v9-financial-research.yml'
       - 'public/research/2026-h1-v9/**'
+      - 'public/index.html'
   workflow_dispatch:
 permissions:
   contents: read
@@ -88,7 +89,11 @@ jobs:
                 print('LIVE_BROWSER_QA_PASS',code,width,'figures',num,flush=True)
               pg.close()
             pg=browser.new_page(viewport={'width':1440,'height':900})
-            pg.goto(site+prefix+'/index.html',wait_until='networkidle')
+            pg.goto(site,wait_until='networkidle')
+            assert pg.locator('a[href="./research/2026-h1-v9/index.html"]').count()>=1,'Live homepage does not feature latest V9'
+            pg.locator('a[href="./research/2026-h1-v9/index.html"]').first.click()
+            assert '/research/2026-h1-v9/' in pg.url,pg.url
+            print('HOMEPAGE_LIVE_LATEST_V9_PASS',pg.url,flush=True)
             assert pg.locator('a[href="./600036.html"]').count()==1
             pg.locator('a[href="./600036.html"]').click()
             assert '/research/2026-h1-v9/600036' in pg.url,pg.url
