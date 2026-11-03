@@ -4,6 +4,30 @@
 
 > **唯一正式站点：首页统一八家公司研究库（本提交为候选，按当前 main 实际发布状态验收）。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
+## 2026-11-03 · 当前最新执行：AEI/FT 源证据重构及实质财报纠错（v8.3.3-RC1）
+
+**当前工作分支**：`work/688220-aei-financial-flow-redesign-20261103`，基于真实 main `54fa99ab29227f0aadb08f63da92c16955233381`。新规范 `skills/ashare-financial-storytelling/SKILL.md` v8.3.3-RC1 和 `research/03_VISUAL_EDITORIAL_SYSTEM.md` 已提交分支。**正式 main 和 Cloudflare 中的重构是否发布尚不能依据分支成功推断**；会以 PR + 主分支 Actions + 公开站点浏览器重新确认为准。
+
+**原文会计问题已经直接修复（非状态挂起）**：224 页完整披露镜像 PDF（SHA-256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`）物理 p.87，`营业外支出 15.30 元` 属于**2025H1 上年同期列**，2026H1 当前列**空白**。前一账本错误把该数列为 2026H1 来源金额（原来的数字在该页出现的自动检查未能识别列）。已经在 `source-ledger.json` 把 15.30 迁到 `nonoperating_expense_prior`，2026H1 的同名项目作为**计算所得零、非原文披露零**保留；`verify_pages.py` 用原始 PDF p.87 坐标及营业利润+营业外收入=税前利润三方检查。原“15.30 当期现金损益”解释不得重复使用。
+
+**重构不是机械增加图表**：旧桑基只把四项收入合并到全公司，再分成总成本/总毛利；虽然总额守恒，但缺乏真实单业务成本和毛利的财务解释。新桑基来自 p.178 四类相互排斥、同期、合并的真实收入及原始成本，每一类拆为自身披露的 COGS + 推导的 GP，7 条非零真实权重带、测试服务确实为零 GP 不生成虚假正流。新完整**合并毛利→营业利润→税前→合并净利润的带符号瀑布**依 p.86–87 展示研发、四项费用及税费、投资及其他收益、公允价值、减值和税项；与税后扣非归母、OCI 和现金相区分。两时点 **资产＝负债＋所有者权益** 图明确存量关系而非伪现金流。整个报告九张语义不同的图、九张来源表、九条移动端数值摘要。具体关系见 `research/issuers/688220/figure-briefs.json`。
+
+**确切技术验证**：GitHub Actions `Verify AEI-inspired 688220 financial-flow and source-linked research` 运行 [41651927501](https://github.com/kobolibra/financials/actions/runs/41651927501) 对提交 `d5e42a40becf8226de7be3f2a85d00095db3fa13` 成功，包含完整 PDF 原始字节 224 页/1,449,510 字节/SHA、p.87 比较列核对、约 29 项 Decimal 财报恒等式、8 个会计错误注入反例、九图和来源表的 1440/768/390 Playwright、21 个实际截图、3 个 SVG 文件下载、清洁环境生成 HTML 字节对比。我在当前会话已**实际打开** 1440 桑基、带符号 P&L、资产结构、390 桑基截图，并发现/改正过固定导航压住图题和 `+0.00` 亿微项目误读问题。CI 成功**不是**独立视觉主编签字。
+
+**并列质量门槛状态**：`PDF_MIRROR_SHA+PAGES:PASS`；`SSE_URL_BYTE_EQUALITY:NOT_CHECKED`；`SELECTED_PHYSICAL_ROW_COLUMN:p87_PASS;OTHER_MATERIAL_ROWS_PARTIAL`；`ACCOUNTING_IDENTITIES:PASS`；`FULL_GAAP_PNL_SIGNED:PASS`；`4_SOURCE_COST_GP_SANKEY_EXACT:PASS`；`AGGREGATE_CFO_17_SIGNED:PASS`；`FULL_MATERIAL_NOTES:NOT_CHECKED`；`ORIGINAL_AEI_FT_EDITORIAL:PARTIAL_SELF_REVIEW`；`BROWSER_LOCAL_1440_768_390:PASS`；`GITHUB_PUBLIC_MAIN_NEW_VERSION:NOT_CHECKED`；`CLOUDFLARE_LIVE_NEW_VERSION:NOT_CHECKED`；`INDEPENDENT_SECOND_HUMAN:NOT_CHECKED`；`FULL_PEERS_VALUATION:NOT_CHECKED`。
+
+**仍存在的原始披露不一致**：p.137 应收/合同资产前五名原文 90.50% 与 p.135+p.138 原值重算 89.17% 分母不闭合；p.179 RPO 期限分拆与合计存在 0.01 元披露差。仅对这些关系保留 `FAIL_BOUNDED_SOURCE_NOTE`，不生成残差业务图，不把它们伪称财务舞弊。单 PDF 不支持多季外部估值/同行。
+
+**下一次精确操作**：检查 PR 合并版本与生产网页 1440/768/390 的真实图形/导航/中文字体，再同步此处的准确 git SHA、CI run 和正式 URL；不要另建公司入口或改动老七家报告。重建命令：
+
+```bash
+python research/issuers/688220/verify_pages.py
+python research/issuers/688220/test_accounting.py
+python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
+python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa
+python scripts/check_handoff.py
+```
+
 ## 2026-11-03 · 688220 翱捷科技-U · 第八家公司源限定研究预览
 
 **发行人**：翱捷科技股份有限公司 688220.SH，2026H1，未经审计，2026-08-29 上交所公告。完整 224 物理页披露副本（新浪公告镜像、非上交所原始服务器字节认证），1,449,510 字节，SHA256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`。原件、源页文字/坐标、截图、原始附注行列证据：`research/issuers/688220/source/`、`extracted/`、`source-blocks/`、`source-images/`；`source-manifest.json` 和 `source-verification.json`。上交所静态直链在 GitHub runner 返回 3.8KB HTML，官方 URL vs 镜像完整字节同一性：**NOT_CHECKED**。
