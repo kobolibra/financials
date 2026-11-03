@@ -195,6 +195,11 @@ def build(l,m):
  gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期变动 {n(gross_delta)} 亿元；收入变动 {n(rev-prevrev)} 亿元、营业成本变动 {n(cogs-prevcogs)} 亿元，二者仅为会计加减关系，不构成价格、销量、良率的因果归因。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
  lens=m.get('forensic_lenses') or []
  r_and_d_context=lens[0].get('insight','') if lens else '未提供可验证的研究与开发成本深度附注。'
+ # A separately-built link keeps source-specific page metadata out of inline f-string expressions.
+ source_link='原文件另行保存'
+ if doc.get('source_url'):
+  note_page=esc(l.get('revenue_partition_assertion',{}).get('source_page','—'))
+  source_link='<a href="'+esc(doc['source_url'])+'" target="_blank" rel="noopener noreferrer">查看深交所原始半年报（本图收入附注 p.'+note_page+'）</a>'
  # full page assembly
  html_page=f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="{esc(issuer)} {period} 深度财务研究：商业模式、利润形成、现金转换、资产结构、风险与反证。原始财报可追溯。"><title>{issuer} · {period} | Financials in Visuals Research Edition</title><style>{css}</style></head><body>
 <a class="skip" href="#main">跳到正文</a><div class="tooltip" id="floatTip" role="status" aria-live="polite"></div>
@@ -221,7 +226,7 @@ def build(l,m):
 <section class="chapter" id="watch">{section_head('05','THE OTHER SIDE / FALSIFIABLE RESEARCH','什么证据支持这个判断，又有什么证据可能推翻它？','对同一组事实给予积极与谨慎两种解释。专业研究不是把风险放到页脚，而是设计具体可以验证的下一期指标。')}
 <div class="brief-compare"><div><h3>支持 / Positive evidence</h3><ul>{support}</ul></div><div><h3>反面 / Counter evidence</h3><ul>{counter}</ul></div></div>
 <div class="watchlist">{watch_html}</div></section>
-</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告依据用户上传的 {esc(doc['source_filename'])} PDF 原文件（{doc['pages']} 页），原文件 SHA-256：<code>{esc(doc['source_sha256'])}</code>；已经计算原始字节指纹并复核了主要合并报表及关键附注。{('<a href="'+esc(doc['source_url'])+'" target="_blank" rel="noopener noreferrer">查看深交所原始半年报（本图收入附注 p.{esc(l.get('revenue_partition_assertion',{}).get('source_page','—'))}）</a>') if doc.get('source_url') else '原文件另行保存'}。原文件 SHA 仅证明此前上传文件身份，不能默认等于交易所另一个公开文件版本的字节 SHA；本次已在公开报告核对图一的收入和成本分类。全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
+</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告依据用户上传的 {esc(doc['source_filename'])} PDF 原文件（{doc['pages']} 页），原文件 SHA-256：<code>{esc(doc['source_sha256'])}</code>；已经计算原始字节指纹并复核了主要合并报表及关键附注。{source_link}。原文件 SHA 仅证明此前上传文件身份，不能默认等于交易所另一个公开文件版本的字节 SHA；本次已在公开报告核对图一的收入和成本分类。全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
 <details><summary>展开：关键来源与精确原始金额（人民币元）</summary>{evidence_table(l)}</details>
 <details><summary>展开：净利润到经营现金流的全部 {ind} 项附注调节</summary><div class="table-scroll"><table class="indtable"><thead><tr><th>补充资料原文</th><th>带符号金额（元）</th><th>页码</th></tr></thead><tbody>{''.join(f'<tr><td>{esc(x["source_label"])}</td><td>{D(x["amount"]):,.2f}</td><td>p.{esc(x.get("page","—"))}</td></tr>' for x in l['indirect_cfo_adjustments'])}</tbody></table></div></details>
 <details><summary>展开：研究限制与未决问题</summary><ul>{''.join('<li>'+esc(x)+'</li>' for x in m.get('limits',[]))}</ul></details></div></div>
