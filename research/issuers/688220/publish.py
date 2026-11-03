@@ -15,6 +15,16 @@ ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
 ap.add_argument("--qa",type=Path,default=ROOT/"qa.json")
 a=ap.parse_args()
 data=json.loads((ROOT/"source-ledger.json").read_text(encoding="utf-8"))
+briefs=json.loads((ROOT/"figure-briefs.json").read_text(encoding="utf-8"))
+REQUIRED_FIGURES=("flow","segment","gp","pnl","earnings","cfo","cash","balance","capital")
+assert briefs["issuer"]==data["issuer"]["code"],"FIGURE_BRIEF_WRONG_ISSUER"
+assert tuple(q["id"] for q in briefs["figure_briefs"])==REQUIRED_FIGURES,"FIGURE_BRIEF_ORDER_OR_MISSING"
+for q in briefs["figure_briefs"]:
+    for field in ("family","question","takeaway","facts","source_pages","identity","zero","counter","mobile","quality"):
+        assert q.get(field),("INCOMPLETE_FIGURE_BRIEF",q["id"],field)
+    for fact_id in q["facts"]:
+        assert fact_id in data["facts"],("UNKNOWN_SOURCE_FACT",q["id"],fact_id)
+    assert q["quality"]["human_second_editor"]=="NOT_CHECKED","FALSE_HUMAN_EDITORIAL_CERTIFICATION"
 f=data["facts"]
 val=lambda k:D(f[k]["yuan"])
 checks={}
