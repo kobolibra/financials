@@ -31,6 +31,8 @@ on:
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
       - 'research/issuers/**/release-gates.json'
       - 'research/shared/**'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
