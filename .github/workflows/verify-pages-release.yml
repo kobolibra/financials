@@ -25,7 +25,7 @@ jobs:
           expected=["600036","601318","000002","000333","600519","600276","600900"]
           index=(root/"index.html").read_text()
           labindex=(root/"research-lab/2026-h1/index.html").read_text()
-          assert 'research-lab/2026-h1/index.html' in index, "homepage missing lab"
+          assert 'id="companies"' in index and index.count('class="company"')==7, "unified homepage must show seven companies"
           for ticker in expected:
               assert f"./{ticker}.html" in labindex, f"Lab directory missing {ticker}"
               page=(root/"research-lab/2026-h1"/f"{ticker}.html").read_text()
@@ -54,7 +54,7 @@ jobs:
           import urllib.request, urllib.error, socket, time
           host="https://financials-in-visuals.pages.dev"
           urls=[
-            ("/","research-lab/2026-h1/index.html"),
+            ("/","id=\"companies\""),
             ("/research-lab/2026-h1/index.html","工程验证样本"),
             ("/research-lab/2026-h1/600036.html","银行的收入"),
             ("/research-lab/2026-h1/601318.html","保险集团的营运利润"),
@@ -116,9 +116,8 @@ jobs:
                       print('LIVE_BROWSER_PASS',id,width,'body_width',check['sw'],flush=True)
                   page.close()
               page=browser.new_page(viewport={'width':1440,'height':900})
-              resp=page.goto(base,wait_until='domcontentloaded')
+              resp=page.goto(base+'/research-lab/2026-h1/index.html',wait_until='domcontentloaded')
               assert resp.status==200
-              page.locator('a[href="./research-lab/2026-h1/index.html"]').first.click()
               assert '/research-lab/2026-h1/' in page.url, page.url
               page.locator('a[href="./600036.html"]').first.click()
               assert page.url.endswith('/600036.html') or page.url.endswith('/600036'),page.url
@@ -160,9 +159,8 @@ jobs:
                       print('RESEARCH_LIVE_BROWSER_PASS',ticker,'width',width,'figures',n,'scroll',measure['scrollWidth'],flush=True)
                   page.close()
               page=browser.new_page(viewport={'width':1440,'height':900})
-              response=page.goto(host,wait_until='networkidle')
+              response=page.goto(host+'/research/2026-h1/index.html',wait_until='networkidle')
               assert response and response.status==200
-              page.locator('a[href="./research/2026-h1/index.html"]').first.click()
               assert '/research/2026-h1/' in page.url,page.url
               page.locator('a[href="./688111.html"]').first.click()
               assert '/research/2026-h1/688111' in page.url,page.url
