@@ -104,6 +104,22 @@ jobs:
                     assert page.locator('#chart-pnl svg').count()==1,'ASR full signed GAAP P&L missing'
                     assert page.locator('#chart-balance svg').count()==1,'ASR equal-total BS funding composition missing'
                     assert page.locator('#chart-flow path.money-ribbon').count()==7,'ASR source-to-cost+GP seven actually positive weighted edges missing'
+                    # Live release identity: test the real rendered proportional
+                    # source geometry, not a stale page with the same 9 SVG counts.
+                    assert page.locator('#chart-flow rect.money-source').count()==4,'ASR source amounts not represented as geometric nodes'
+                    assert page.locator('#chart-flow rect.money-sink').count()==2,'ASR cost/GP sink geometry absent'
+                    tiny=page.locator('#chart-flow rect.money-source[data-source-key="other_service_rev"]')
+                    assert tiny.count()==1,'new original-source geometry release missing on production'
+                    tiny_height=float(tiny.get_attribute('height'))
+                    assert 0<tiny_height<0.02,(ticker,width,'source tiny real amount was visually inflated',tiny_height)
+                    assert page.locator('#chart-flow path.money-ribbon[data-source-key="other_service_rev"][data-target-key="cogs"]').count()==1
+                    assert page.locator('#chart-flow path.money-ribbon[data-source-key="other_service_rev"][data-target-key="gross_profit"]').count()==0,'real zero GP must not become fake green ribbon'
+                    if width==1440:
+                      v=page.evaluate("""() => ['flow','pnl','balance','cash'].map(id=>{
+                        let c=document.querySelector('#chart-'+id);
+                        return {id,inner:c.scrollWidth,visible:c.clientWidth};
+                      })""")
+                      assert all(x['inner']<=x['visible']+2 for x in v),(ticker,width,'desktop clip in published finance chart',v)
                 assert page.evaluate('document.documentElement.scrollWidth')<=width+1,(ticker,width,'body overflow')
                 page.screenshot(path=str(out/f'{ticker}_{width}.png'),full_page=True)
                 records.append({'ticker':ticker,'width':width,'figures':page.locator('figure').count(),'status':'PASS'})
