@@ -1,0 +1,640 @@
+{
+  "issuer": "688220",
+  "report": "2026H1",
+  "pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "pdf_bytes": 1449510,
+  "physical_pages": 224,
+  "source_file": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+  "source_get": "COMPLETE_PDF_MIRROR_BYTES_AND_ORIGINAL_REPORT_IDENTITY_PASS",
+  "sse_mirror_byte_equivalence": "NOT_CHECKED",
+  "page_literal_matched": 94,
+  "page_literal_total": 102,
+  "critical_source_row_literal_missing": [],
+  "missing_page_literals": [
+    "inventory_gross",
+    "inventory_reserve",
+    "inventory_gross_prior",
+    "inventory_reserve_prior",
+    "inventory_outsourced_net",
+    "inventory_finished_net",
+    "inventory_raw_net",
+    "inventory_contract_cost"
+  ],
+  "page_amount_check_not_row_col_semantics": "The fact a number occurs on a cited physical page does NOT prove table row, column, consolidation scope or currency.",
+  "manual_semantic_review": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_COMPLETE_MATERIAL_NOTES",
+  "full_independent_human_review": "NOT_CHECKED",
+  "facts": {
+    "rev": {
+      "physical_page": 86,
+      "original_label_in_ledger": "合并利润表 营业收入",
+      "amount_yuan": "2451275102.27",
+      "literal_match": true
+    },
+    "rev_prior": {
+      "physical_page": 86,
+      "original_label_in_ledger": "2025H1 营业收入",
+      "amount_yuan": "1898066392.20",
+      "literal_match": true
+    },
+    "cogs": {
+      "physical_page": 86,
+      "original_label_in_ledger": "合并利润表 营业成本",
+      "amount_yuan": "1729758992.99",
+      "literal_match": true
+    },
+    "cogs_prior": {
+      "physical_page": 86,
+      "original_label_in_ledger": "2025H1 营业成本",
+      "amount_yuan": "1428913940.77",
+      "literal_match": true
+    },
+    "operating_total_cost": {
+      "physical_page": 86,
+      "original_label_in_ledger": "营业总成本",
+      "amount_yuan": "2472940669.53",
+      "literal_match": true
+    },
+    "sell": {
+      "physical_page": 86,
+      "original_label_in_ledger": "销售费用",
+      "amount_yuan": "11054020.44",
+      "literal_match": true
+    },
+    "admin": {
+      "physical_page": 86,
+      "original_label_in_ledger": "管理费用",
+      "amount_yuan": "60427176.85",
+      "literal_match": true
+    },
+    "rnd_expense": {
+      "physical_page": 86,
+      "original_label_in_ledger": "研发费用",
+      "amount_yuan": "663322721.74",
+      "literal_match": true
+    },
+    "finance_expense": {
+      "physical_page": 86,
+      "original_label_in_ledger": "财务费用",
+      "amount_yuan": "5562926.66",
+      "literal_match": true
+    },
+    "tax_surcharge": {
+      "physical_page": 86,
+      "original_label_in_ledger": "税金及附加",
+      "amount_yuan": "2814830.85",
+      "literal_match": true
+    },
+    "other_income": {
+      "physical_page": 86,
+      "original_label_in_ledger": "其他收益",
+      "amount_yuan": "8318389.30",
+      "literal_match": true
+    },
+    "investment_income": {
+      "physical_page": 86,
+      "original_label_in_ledger": "投资收益",
+      "amount_yuan": "20007277.63",
+      "literal_match": true
+    },
+    "fair_value_income": {
+      "physical_page": 87,
+      "original_label_in_ledger": "公允价值变动收益",
+      "amount_yuan": "69402297.53",
+      "literal_match": true
+    },
+    "credit_impairment": {
+      "physical_page": 87,
+      "original_label_in_ledger": "信用减值损失",
+      "amount_yuan": "-837631.81",
+      "literal_match": true
+    },
+    "asset_impairment": {
+      "physical_page": 87,
+      "original_label_in_ledger": "资产减值损失",
+      "amount_yuan": "-20107044.52",
+      "literal_match": true
+    },
+    "asset_disposal_gain": {
+      "physical_page": 87,
+      "original_label_in_ledger": "资产处置收益",
+      "amount_yuan": "-172314.69",
+      "literal_match": true
+    },
+    "operating_profit": {
+      "physical_page": 87,
+      "original_label_in_ledger": "营业利润",
+      "amount_yuan": "54945406.18",
+      "literal_match": true
+    },
+    "nonoperating_income": {
+      "physical_page": 87,
+      "original_label_in_ledger": "营业外收入",
+      "amount_yuan": "256125.37",
+      "literal_match": true
+    },
+    "nonoperating_expense": {
+      "physical_page": 87,
+      "original_label_in_ledger": "营业外支出",
+      "amount_yuan": "15.30",
+      "literal_match": true
+    },
+    "pretax_profit": {
+      "physical_page": 87,
+      "original_label_in_ledger": "利润总额",
+      "amount_yuan": "55201531.55",
+      "literal_match": true
+    },
+    "income_tax_expense": {
+      "physical_page": 87,
+      "original_label_in_ledger": "所得税费用（负数：所得税收益）",
+      "amount_yuan": "-29042237.12",
+      "literal_match": true
+    },
+    "consolidated_net_profit": {
+      "physical_page": 87,
+      "original_label_in_ledger": "合并净利润",
+      "amount_yuan": "84243768.67",
+      "literal_match": true
+    },
+    "parent_ni": {
+      "physical_page": 87,
+      "original_label_in_ledger": "归属于母公司股东的净利润",
+      "amount_yuan": "84243768.67",
+      "literal_match": true
+    },
+    "parent_ni_prior": {
+      "physical_page": 87,
+      "original_label_in_ledger": "2025H1 归母净利润",
+      "amount_yuan": "-245404285.87",
+      "literal_match": true
+    },
+    "deducted_parent_ni": {
+      "physical_page": 8,
+      "original_label_in_ledger": "扣非归母净利润",
+      "amount_yuan": "-58670616.13",
+      "literal_match": true
+    },
+    "nonrec_parent_net": {
+      "physical_page": 10,
+      "original_label_in_ledger": "非经常性损益合计（所得税影响后）",
+      "amount_yuan": "142914384.80",
+      "literal_match": true
+    },
+    "chip_rev": {
+      "physical_page": 178,
+      "original_label_in_ledger": "芯片产品销售营业收入",
+      "amount_yuan": "2113622293.11",
+      "literal_match": true
+    },
+    "chip_cost": {
+      "physical_page": 178,
+      "original_label_in_ledger": "芯片产品销售营业成本",
+      "amount_yuan": "1526733108.74",
+      "literal_match": true
+    },
+    "asic_rev": {
+      "physical_page": 178,
+      "original_label_in_ledger": "芯片定制业务营业收入",
+      "amount_yuan": "321902456.53",
+      "literal_match": true
+    },
+    "asic_cost": {
+      "physical_page": 178,
+      "original_label_in_ledger": "芯片定制业务营业成本",
+      "amount_yuan": "202918826.51",
+      "literal_match": true
+    },
+    "ip_rev": {
+      "physical_page": 178,
+      "original_label_in_ledger": "半导体 IP 授权收入",
+      "amount_yuan": "15670582.71",
+      "literal_match": true
+    },
+    "ip_cost": {
+      "physical_page": 178,
+      "original_label_in_ledger": "半导体 IP 授权成本",
+      "amount_yuan": "27287.82",
+      "literal_match": true
+    },
+    "other_service_rev": {
+      "physical_page": 178,
+      "original_label_in_ledger": "测试服务与其他收入",
+      "amount_yuan": "79769.92",
+      "literal_match": true
+    },
+    "other_service_cost": {
+      "physical_page": 178,
+      "original_label_in_ledger": "测试服务与其他成本",
+      "amount_yuan": "79769.92",
+      "literal_match": true
+    },
+    "cash_cfo": {
+      "physical_page": 90,
+      "original_label_in_ledger": "经营活动现金流量净额",
+      "amount_yuan": "-377185378.31",
+      "literal_match": true
+    },
+    "cash_cfo_prior": {
+      "physical_page": 90,
+      "original_label_in_ledger": "2025H1 经营活动现金流量净额",
+      "amount_yuan": "-266453216.22",
+      "literal_match": true
+    },
+    "cash_cfi": {
+      "physical_page": 91,
+      "original_label_in_ledger": "投资活动现金流量净额",
+      "amount_yuan": "134772753.64",
+      "literal_match": true
+    },
+    "cash_cff": {
+      "physical_page": 91,
+      "original_label_in_ledger": "筹资活动现金流量净额",
+      "amount_yuan": "191824115.94",
+      "literal_match": true
+    },
+    "cash_fx": {
+      "physical_page": 91,
+      "original_label_in_ledger": "汇率变动对现金及现金等价物影响",
+      "amount_yuan": "-65719613.93",
+      "literal_match": true
+    },
+    "cash_start": {
+      "physical_page": 91,
+      "original_label_in_ledger": "期初现金及现金等价物",
+      "amount_yuan": "3031228133.94",
+      "literal_match": true
+    },
+    "cash_end": {
+      "physical_page": 92,
+      "original_label_in_ledger": "期末现金及现金等价物",
+      "amount_yuan": "2914920011.28",
+      "literal_match": true
+    },
+    "capex_cash": {
+      "physical_page": 91,
+      "original_label_in_ledger": "购建长期资产支付的现金",
+      "amount_yuan": "58014682.68",
+      "literal_match": true
+    },
+    "cfo_cash_received": {
+      "physical_page": 90,
+      "original_label_in_ledger": "销售商品提供劳务收到的现金",
+      "amount_yuan": "2620041121.61",
+      "literal_match": true
+    },
+    "cfo_cash_purchases": {
+      "physical_page": 90,
+      "original_label_in_ledger": "购买商品接受劳务支付现金",
+      "amount_yuan": "2685885384.33",
+      "literal_match": true
+    },
+    "assets": {
+      "physical_page": 82,
+      "original_label_in_ledger": "合并资产总额",
+      "amount_yuan": "7793957327.97",
+      "literal_match": true
+    },
+    "liabilities": {
+      "physical_page": 83,
+      "original_label_in_ledger": "合并负债总额",
+      "amount_yuan": "1949876414.53",
+      "literal_match": true
+    },
+    "equity": {
+      "physical_page": 83,
+      "original_label_in_ledger": "合并所有者权益总额",
+      "amount_yuan": "5844080913.44",
+      "literal_match": true
+    },
+    "assets_prior": {
+      "physical_page": 82,
+      "original_label_in_ledger": "合并资产总额",
+      "amount_yuan": "6980220212.65",
+      "literal_match": true
+    },
+    "liabilities_prior": {
+      "physical_page": 83,
+      "original_label_in_ledger": "合并负债总额",
+      "amount_yuan": "1522389629.31",
+      "literal_match": true
+    },
+    "equity_prior": {
+      "physical_page": 83,
+      "original_label_in_ledger": "合并所有者权益总额",
+      "amount_yuan": "5457830583.34",
+      "literal_match": true
+    },
+    "cash_bs": {
+      "physical_page": 81,
+      "original_label_in_ledger": "货币资金",
+      "amount_yuan": "2915255456.79",
+      "literal_match": true
+    },
+    "cash_bs_prior": {
+      "physical_page": 81,
+      "original_label_in_ledger": "货币资金",
+      "amount_yuan": "3032450392.35",
+      "literal_match": true
+    },
+    "inventory_net": {
+      "physical_page": 81,
+      "original_label_in_ledger": "存货账面价值",
+      "amount_yuan": "2155358442.83",
+      "literal_match": true
+    },
+    "inventory_net_prior": {
+      "physical_page": 81,
+      "original_label_in_ledger": "存货账面价值",
+      "amount_yuan": "1703714026.61",
+      "literal_match": true
+    },
+    "inventory_gross": {
+      "physical_page": 146,
+      "original_label_in_ledger": "存货账面余额",
+      "amount_yuan": "2295213429.38",
+      "literal_match": false
+    },
+    "inventory_reserve": {
+      "physical_page": 146,
+      "original_label_in_ledger": "存货跌价准备",
+      "amount_yuan": "139854986.55",
+      "literal_match": false
+    },
+    "inventory_gross_prior": {
+      "physical_page": 146,
+      "original_label_in_ledger": "存货账面余额",
+      "amount_yuan": "1856782419.98",
+      "literal_match": false
+    },
+    "inventory_reserve_prior": {
+      "physical_page": 146,
+      "original_label_in_ledger": "存货跌价准备",
+      "amount_yuan": "153068393.37",
+      "literal_match": false
+    },
+    "inventory_outsourced_net": {
+      "physical_page": 146,
+      "original_label_in_ledger": "委托加工物资账面价值",
+      "amount_yuan": "1101338596.59",
+      "literal_match": false
+    },
+    "inventory_finished_net": {
+      "physical_page": 146,
+      "original_label_in_ledger": "库存商品账面价值",
+      "amount_yuan": "589353179.44",
+      "literal_match": false
+    },
+    "inventory_raw_net": {
+      "physical_page": 146,
+      "original_label_in_ledger": "原材料账面价值",
+      "amount_yuan": "350783679.98",
+      "literal_match": false
+    },
+    "inventory_contract_cost": {
+      "physical_page": 146,
+      "original_label_in_ledger": "合同履约成本",
+      "amount_yuan": "92343348.77",
+      "literal_match": false
+    },
+    "inventory_contract_amort": {
+      "physical_page": 147,
+      "original_label_in_ledger": "芯片定制设计服务合同履约成本摊销（当期）",
+      "amount_yuan": "157643639.62",
+      "literal_match": true
+    },
+    "inventory_reserve_add": {
+      "physical_page": 147,
+      "original_label_in_ledger": "当期存货跌价准备新增计提",
+      "amount_yuan": "55097071.34",
+      "literal_match": true
+    },
+    "ar": {
+      "physical_page": 81,
+      "original_label_in_ledger": "应收账款净额",
+      "amount_yuan": "455937763.63",
+      "literal_match": true
+    },
+    "ar_prior": {
+      "physical_page": 81,
+      "original_label_in_ledger": "应收账款净额",
+      "amount_yuan": "308828487.98",
+      "literal_match": true
+    },
+    "prepayments": {
+      "physical_page": 81,
+      "original_label_in_ledger": "预付款项",
+      "amount_yuan": "446727159.69",
+      "literal_match": true
+    },
+    "prepayments_prior": {
+      "physical_page": 81,
+      "original_label_in_ledger": "预付款项",
+      "amount_yuan": "256991973.05",
+      "literal_match": true
+    },
+    "contract_liabilities": {
+      "physical_page": 82,
+      "original_label_in_ledger": "合同负债",
+      "amount_yuan": "465911510.87",
+      "literal_match": true
+    },
+    "contract_liabilities_prior": {
+      "physical_page": 82,
+      "original_label_in_ledger": "合同负债",
+      "amount_yuan": "231346748.89",
+      "literal_match": true
+    },
+    "rpo": {
+      "physical_page": 179,
+      "original_label_in_ledger": "已签约尚未履约义务对应收入总额",
+      "amount_yuan": "2364139874.78",
+      "literal_match": true
+    },
+    "rpo_one_year": {
+      "physical_page": 179,
+      "original_label_in_ledger": "预计一年内确认履约义务对应收入",
+      "amount_yuan": "1878194944.41",
+      "literal_match": true
+    },
+    "rpo_over_one_year": {
+      "physical_page": 179,
+      "original_label_in_ledger": "预计一年后确认履约义务对应收入",
+      "amount_yuan": "485944930.38",
+      "literal_match": true
+    },
+    "other_equity_instruments": {
+      "physical_page": 82,
+      "original_label_in_ledger": "其他权益工具投资期末余额",
+      "amount_yuan": "356890469.93",
+      "literal_match": true
+    },
+    "other_equity_instruments_prior": {
+      "physical_page": 82,
+      "original_label_in_ledger": "其他权益工具投资期初余额",
+      "amount_yuan": "50073697.72",
+      "literal_match": true
+    },
+    "oci_nonreclass": {
+      "physical_page": 87,
+      "original_label_in_ledger": "其他权益工具投资公允价值变动（税后其他综合收益）",
+      "amount_yuan": "242329305.73",
+      "literal_match": true
+    },
+    "cash_restricted_within_equivalents": {
+      "physical_page": 189,
+      "original_label_in_ledger": "已披露受限但仍列入现金等价物的租赁保证金",
+      "amount_yuan": "335445.51",
+      "literal_match": true
+    },
+    "cfo_signed_part_01": {
+      "physical_page": 187,
+      "original_label_in_ledger": "资产减值准备",
+      "amount_yuan": "20107044.52",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_02": {
+      "physical_page": 187,
+      "original_label_in_ledger": "信用减值损失",
+      "amount_yuan": "837631.81",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_03": {
+      "physical_page": 188,
+      "original_label_in_ledger": "固定资产折旧",
+      "amount_yuan": "22371019.08",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_04": {
+      "physical_page": 188,
+      "original_label_in_ledger": "使用权资产摊销",
+      "amount_yuan": "11528014.44",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_05": {
+      "physical_page": 188,
+      "original_label_in_ledger": "无形资产摊销",
+      "amount_yuan": "127985357.66",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_06": {
+      "physical_page": 188,
+      "original_label_in_ledger": "长期待摊费用摊销",
+      "amount_yuan": "2349753.07",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_07": {
+      "physical_page": 188,
+      "original_label_in_ledger": "使用权资产处置收益（原表调节项）",
+      "amount_yuan": "172314.69",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_08": {
+      "physical_page": 188,
+      "original_label_in_ledger": "公允价值变动损失/收益",
+      "amount_yuan": "-69402297.53",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_09": {
+      "physical_page": 188,
+      "original_label_in_ledger": "财务费用/收益",
+      "amount_yuan": "8742972.83",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_10": {
+      "physical_page": 188,
+      "original_label_in_ledger": "投资损失/收益",
+      "amount_yuan": "-20007277.63",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_11": {
+      "physical_page": 188,
+      "original_label_in_ledger": "递延所得税资产减少",
+      "amount_yuan": "3076511.81",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_12": {
+      "physical_page": 188,
+      "original_label_in_ledger": "递延所得税负债增加",
+      "amount_yuan": "-46204056.46",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_13": {
+      "physical_page": 188,
+      "original_label_in_ledger": "递延收益摊销",
+      "amount_yuan": "-5377657.92",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_14": {
+      "physical_page": 188,
+      "original_label_in_ledger": "存货减少/增加",
+      "amount_yuan": "-470674114.66",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_15": {
+      "physical_page": 188,
+      "original_label_in_ledger": "经营性应收减少/增加",
+      "amount_yuan": "-354719186.49",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_16": {
+      "physical_page": 188,
+      "original_label_in_ledger": "经营性应付增加/减少",
+      "amount_yuan": "263953630.51",
+      "signed_literal_match": true
+    },
+    "cfo_signed_part_17": {
+      "physical_page": 188,
+      "original_label_in_ledger": "其他（原表未进一步分解）",
+      "amount_yuan": "43831193.29",
+      "signed_literal_match": true
+    },
+    "nonrec_part_01": {
+      "physical_page": 9,
+      "original_label_in_ledger": "非流动资产处置损益",
+      "amount_yuan": "-172314.69",
+      "literal_match": true
+    },
+    "nonrec_part_02": {
+      "physical_page": 9,
+      "original_label_in_ledger": "政府补助（扣非表分类）",
+      "amount_yuan": "6132765.32",
+      "literal_match": true
+    },
+    "nonrec_part_03": {
+      "physical_page": 9,
+      "original_label_in_ledger": "金融资产/负债公允价值与处置损益",
+      "amount_yuan": "72487499.12",
+      "literal_match": true
+    },
+    "nonrec_part_04": {
+      "physical_page": 9,
+      "original_label_in_ledger": "单项测试应收坏账准备转回",
+      "amount_yuan": "4524238.51",
+      "literal_match": true
+    },
+    "nonrec_part_05": {
+      "physical_page": 10,
+      "original_label_in_ledger": "现金结算股权激励负债公允价值变化",
+      "amount_yuan": "-2783041.33",
+      "literal_match": true
+    },
+    "nonrec_part_06": {
+      "physical_page": 10,
+      "original_label_in_ledger": "其他营业外损益",
+      "amount_yuan": "256125.37",
+      "literal_match": true
+    },
+    "nonrec_part_07": {
+      "physical_page": 10,
+      "original_label_in_ledger": "其他非经常项目",
+      "amount_yuan": "19705117.37",
+      "literal_match": true
+    },
+    "nonrec_part_08": {
+      "physical_page": 10,
+      "original_label_in_ledger": "减：所得税影响额（原表为负，故净影响为正）",
+      "amount_yuan": "42763995.13",
+      "literal_match": true
+    }
+  }
+}
