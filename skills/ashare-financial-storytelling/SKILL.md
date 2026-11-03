@@ -1,10 +1,23 @@
 ---
 name: ashare-financial-storytelling
-version: 8.3.3-rc1
+version: 8.4.0-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.3.3-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.4.0-RC1
+
+## v8.4.0-RC1 · 每家公司的质量是可验证产物，反馈必须变成跨公司回归（2026-11-03）
+
+**First read:** the complete financial + visual methods in this canonical Skill and research/01–05. **Then run** `python scripts/check_release_contract.py` and `python scripts/check_handoff.py`. Read [SKILL_EVOLUTION_PROTOCOL](../../docs/SKILL_EVOLUTION_PROTOCOL.md) and [quality-regressions.json](quality-regressions.json). This section is the **operational gate**, not permission to skip any research chapter or invent a chart quota.
+
+1. **Every future issuer has its own proof capsule:** `research/issuers/<code>/release-gates.json` paired with real PDF archive and exact SHA256 bytes, source row/column evidence, 3 statements and applicable notes, source accounting QA, thesis and disconfirmation, figure briefs, original figures, offline renderer, 1440/768/390 screenshots, and one stable route in the existing company catalog. No unregistered newly added issuer may pass CI. The historical seven pre-contract pages are NOT retroactively certified. The 688220 existing source-limited preview is the first issued capsule and must retain its note exceptions, Cloudflare LIVE FAIL and incomplete external review.
+2. **Two quality pillars cannot trade off:** original CAS/industry institutional investigation (financial facts and causality) AND original AEI/FT-informed research information design. Source amount on a PDF page is not row/column proof; true audited yuan amounts in SVG metadata are not necessarily correct visible geometry; browser green is not finance and external production validation. Tests for one semiconductor case do not establish banking/insurance sector capability.
+3. **Tri-state and release class are machine contracts:** PASS/FAIL/NOT_CHECKED on provenance, cell semantics, statements, countercase, visual semantics, original screenshot critique, standalone offline reproducibility, true Cloudflare source fingerprint, external history and second human reviewer. A source-limited preview can disclose non-P0 note exceptions but cannot present itself as verified institutional research. `verified_research` requires every declared gate PASS including real source, deployment, complete material notes and an actually independent human reviewer; do not simulate this certification.
+4. **Per failure, fix root then prevent recurrence:** original PDF/page evidence → smallest reproducible case → repair typed ledger/parser/visual source (not status-only) → add a hostile mutation test → run cross-issuer regression → record `quality-regressions.json` with transfer scope (issuer-only vs generic) and discovered false positive → update this Skill and checklists → commit real QA and current handoff. A regression registry text marker is only traceability; the referenced *actual tests* must also run in CI. No 'we will improve next time' without a concrete failure/test.
+5. **Future issuer's publishable preview MUST PASS P0:** original archived PDF byte/SHA, salient row+column source meaning, core accounting, business-specific research and countercase, figure semantics, self-opened actual screenshots, local responsive/browser and exact offline rebuild. Other untested/failed evidence must be clearly disclosed in the same report and handoff. A blocked Cloudflare deployment remains LIVE FAIL, never inferred from main SHA or an earlier production route.
+6. **Generality is earned, not asserted:** for each new industry route compare both its original statement model and sector-specific adverse notes with at least two real distinct issuers before marking a sector L2, then cross-sector regression and independent review before L3. A shared contract is not a generic 'universal dashboard' and does not imply that automated PDF understanding or full institutional coverage is solved.
+
+**Repeatable commands:** `python scripts/check_release_contract.py`, `python -m unittest discover -s scripts -p test_check_release_contract.py -v`, `python research/shared/test_conserved_flow.py`, `python scripts/check_handoff.py`. The release workflow checks actual deployed pages separately. These commands check machine invariants and narrow accounting relationships; they cannot replace full source notes, a human editor or actual live URL screenshots.
 
 ## v8.3.3-RC1 · 源头节点几何与桌面完整阅读约束（2026-11-03 九图实测补充）
 
