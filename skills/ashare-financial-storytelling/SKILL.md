@@ -1,10 +1,19 @@
 ---
 name: ashare-financial-storytelling
-version: 8.4.0-rc1
+version: 8.4.1-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.4.0-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.4.1-RC1
+
+## v8.4.1-RC1 · 三重来源一致性门槛与行业错路拦截
+
+An issuer's report release capsule can pass its PDF hash while its **actual source ledger still embeds a stale NOT_CHECKED file identity**; a copied figure brief can silently cite the wrong period or a non-existent fact. The v8.4 mandatory checker now reads all three real artifacts: `release-gates.json` → original PDF byte SHA → `source-ledger.json` + `figure-briefs.json`, and demands the same issuer code, cumulative reporting period, source hash and meaningful figure facts. All disclosed source facts need numeric precision, real physical page within the report, original row label, period, reporting scope and monetary/ratio type; a 90.50% receivable concentration **must not be accepted as 90.50 yuan** merely because an older ledger stores it under a generic `yuan` key.
+
+- Require `sector_adapter` and an explicit accounting-basis explanation per new company. A bank or insurer's recognized income and reported cash economics are **not** an industrial revenue−COGS/FCF template. A static token-based industry guard blocks obvious wrong contracts, but is *not* proof of complete CAS, industry note semantics or two independent issuer tests.
+- Reject 1-chart repackaging of a full report: a publication's authored figure briefs must cite exact original fact IDs/pages, contain meaningful question + nonredundant family + accounting identity + counterview + mobile plan. Graphic output must still undergo original-image geometry and full-browser professional review.
+- For every observed field drift, correct the **real original ledger** and re-run the publisher/clean rebuild; writing a newer claim in `project-status.json` does not repair the source. Retain explicit official-vs-mirror PDF byte-equivalence NOT_CHECKED until the exchange PDF is truly verified.
+- Regressions `SRC-008`, `FIG-009`, `IND-010` in the canonical quality registry carry hostile tests and scope limitations. This is reusable future-issuer evidence validation; it does not retroactively certify the original seven reports.
 
 ## v8.4.0-RC1 · 每家公司的质量是可验证产物，反馈必须变成跨公司回归（2026-11-03）
 
