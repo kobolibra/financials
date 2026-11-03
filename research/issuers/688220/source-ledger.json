@@ -238,18 +238,6 @@
       "currency": "CNY",
       "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
     },
-    "nonoperating_expense": {
-      "yuan": "15.30",
-      "page": 87,
-      "label": "营业外支出",
-      "type": "flow",
-      "period": "2026H1",
-      "scope": "consolidated",
-      "classification": "DISCLOSED",
-      "unit": "元",
-      "currency": "CNY",
-      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
-    },
     "pretax_profit": {
       "yuan": "55201531.55",
       "page": 87,
@@ -1137,6 +1125,20 @@
       "unit": "元",
       "currency": "CNY",
       "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED"
+    },
+    "nonoperating_expense_prior": {
+      "yuan": "15.30",
+      "page": 87,
+      "label": "2025 年半年度营业外支出（仅比较列披露 15.30 元；2026H1 该栏为空）",
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "SELECTED_PDF_PAGE_VISUALLY_CHECKED_OR_TEXT_NOTED",
+      "original_table_column": "2025 年半年度",
+      "source_semantic_correction": "2026H1 reported column is blank. Never treat 15.30 as 2026H1."
     }
   },
   "segments": [
@@ -1422,6 +1424,13 @@
       "pages": [
         209,
         210
+      ]
+    },
+    {
+      "claim": "合并利润表 p.87 营业外支出 15.30 元只列在 2025 年半年度比较列，2026 年半年度该行为空；2026H1 利润总额=营业利润+营业外收入精确成立。旧账本曾错误标成 2026H1，已纠正并新增营业利润到利润总额的独立核算门槛。",
+      "status": "SOURCE_SEMANTIC_COLUMN_CORRECTION",
+      "pages": [
+        87
       ]
     }
   ],
