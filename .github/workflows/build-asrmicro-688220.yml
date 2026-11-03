@@ -27,7 +27,7 @@ jobs:
           python - <<'PY'
           from pathlib import Path
           x=Path('public/688220.html').read_text()
-          assert x.count('class="figure"')==7
+          assert x.count('class="figure"')==8
           assert 'FINANCIALS IN VISUALS' in x
           assert '<script src=' not in x
           assert '"rev":"chip_rev"' in x or '"rev": "chip_rev"' in x
