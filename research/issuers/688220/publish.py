@@ -26,12 +26,33 @@ cost=sum((val(i["cost"]) for i in data["segments"]),D(0))
 ck("REVENUE_PARTITION_EXACT_YUAN",rev,val("rev"))
 ck("COST_PARTITION_EXACT_YUAN",cost,val("cogs"))
 ck("GROSS_PROFIT_COMPONENTS",sum((val(i["rev"])-val(i["cost"]) for i in data["segments"]),D(0)),val("rev")-val("cogs"))
+# Unlike a superficial total-revenue Sankey, every original business stream
+# splits into *its own* original disclosed COGS and derived positive gross profit.
+# Reject any segment whose ribbons would be negative or outside the same scope.
+for q in data["segments"]:
+    r,c=val(q["rev"]),val(q["cost"])
+    assert r>=0 and c>=0 and r>=c,("SEGMENT_RIBBON_MUST_BE_NONNEGATIVE",q["label"],r,c)
+    for k in (q["rev"],q["cost"]):
+        row=f[k]
+        assert row["scope"]=="consolidated" and row["period"]=="2026H1" and row["unit"]=="元",("SCOPE_UNIT_CROSSOVER",k,row)
+    ck("PRODUCT_COST_GP_FLOW_"+q["rev"],c+(r-c),r)
+checks["SANKEY_EACH_SOURCE_COST_GP_NONNEGATIVE"]="PASS"
 ck("CONSOLIDATED_PNL_OPERATING",val("rev")-val("operating_total_cost")+sum((val(k) for k in ("other_income","investment_income","fair_value_income","credit_impairment","asset_impairment","asset_disposal_gain")),D(0)),val("operating_profit"))
 ck("PARENT_PROFIT",val("pretax_profit")-val("income_tax_expense"),val("consolidated_net_profit"))
+# Full signed CAS P&L bridge makes the economic path visible. One compact
+# full-amount waterfall replaces the earlier omission (GP→GAAP NP).
+op_expenses=sum((val(k) for k in ("tax_surcharge","sell","admin","rnd_expense","finance_expense")),D(0))
+ck("FULL_PNL_OPERATING_EXPENSE_IDENTITIES",val("cogs")+op_expenses,val("operating_total_cost"))
+op_signed=(val("rev")-val("cogs"))-op_expenses+sum((val(k) for k in ("other_income","investment_income","fair_value_income","credit_impairment","asset_impairment","asset_disposal_gain")),D(0))
+ck("FULL_PNL_GROSS_TO_OPERATING_SIGNED",op_signed,val("operating_profit"))
+ck("FULL_PNL_OPERATING_TO_PRETAX",op_signed+val("nonoperating_income")-val("nonoperating_expense"),val("pretax_profit"))
+ck("FULL_PNL_PRETAX_TO_GAAP_NET",val("pretax_profit")-val("income_tax_expense"),val("consolidated_net_profit"))
 ck("PARENT_VS_DEDUCTED",val("deducted_parent_ni")+val("nonrec_parent_net"),val("parent_ni"))
 ck("NONRECURRING_SIGNED_SCHEDULE",sum((D(q["yuan"]) for q in data["nonrecurring"]["parts"]),D(0)),val("nonrec_parent_net"))
 ck("BS_2026_06_30",val("liabilities")+val("equity"),val("assets"))
 ck("BS_2025_12_31",val("liabilities_prior")+val("equity_prior"),val("assets_prior"))
+assert val("assets")>0 and val("assets_prior")>0
+checks["EQUAL_TOTAL_BALANCE_STOCK_COMPOSITION_TWO_DATES"]="PASS"
 ck("INVENTORY_GROSS_TO_NET",val("inventory_gross")-val("inventory_reserve"),val("inventory_net"))
 ck("INVENTORY_PRIOR_GROSS_TO_NET",val("inventory_gross_prior")-val("inventory_reserve_prior"),val("inventory_net_prior"))
 ck("ACCOUNTS_RECEIVABLE_NET",val("ar_gross")-val("ar_allowance"),val("ar"))
@@ -64,6 +85,17 @@ else:
     checks["PDF_MIRROR_FULL_BYTES_SHA_224P"]="NOT_CHECKED"
 data["source"]["original_bytes_sha256"]=actual_sha
 data["source"]["original_bytes_gate"]=source_status
+# Reviewed independent semantic contracts that the client JS is required to
+# obey. This is a factual source contract, not self-awarded design approval.
+data["graphic_contract"]={
+ "flow":{"family":"sankey","source":"p.178","period":"2026H1","scope":"consolidated",
+         "sources":len(data["segments"]),"nonzero_ribbons":sum((int(val(q["cost"])>0)+int(val(q["rev"])-val(q["cost"])>0) for q in data["segments"])),
+         "yuan_identity":"sum(segment revenue)=sum(segment original COGS)+sum(segment derived GP)"},
+ "pnl":{"family":"signed_waterfall","source":"p.86-87","period":"2026H1","scope":"consolidated",
+        "base":"gross_profit","end":"consolidated_net_profit","negative_and_positive_steps":True},
+ "balance":{"family":"same_date_equal_total_stock","source":"p.81-83",
+           "dates":["2025-12-31","2026-06-30"],"scope":"consolidated"}
+}
 template=(ROOT/"report-template.html").read_text(encoding="utf-8")
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
 source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
