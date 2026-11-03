@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "code": "600276",
+  "company": "江苏恒瑞医药股份有限公司",
+  "period": "2026H1",
+  "release_class": "source_limited_preview",
+  "report_route": "/600276.html",
+  "report_file": "public/600276.html",
+  "status_label": "原创原始财报分析预览 · 原报告关键附注边界与第二名人类审稿未全部复核",
+  "sector_adapter": "pharma",
+  "accounting_basis": "pharma_goods_vs_IP_license_p145_independent_contract_earnings_and_non_cash_bill_endorsement_vs_CFO",
+  "source_pdf": {
+    "path": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+    "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+    "bytes": 4594202,
+    "physical_pages": 182,
+    "official_original_byte_equivalence": "NOT_CHECKED",
+    "note": "Exact complete issuer PDF downloaded directly from official CNINFO disclosure URL and SHA verified. Independent SSE endpoint byte comparison not checked."
+  },
+  "ledger_file": "research/issuers/600276/source-ledger.json",
+  "figure_briefs_file": "research/issuers/600276/figure-briefs.json",
+  "sankey": {
+    "decision": "USED_CONSERVED",
+    "source_scope": "p145 mutually-exclusive contract income types: goods, license, others; NOT geographic/time or management innovative sales nested subset",
+    "omission_reason": null
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+      "scope": "Complete official CNINFO downloaded PDF magic, SHA256, full archive bytes, physical pages and issuer cover checked"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/600276/source-critical-cells.json",
+      "scope": "Selected 20/26 critical original physical page x/y and row-anchor cells validated by PyMuPDF; not all PDF note cells"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/600276/qa.json",
+      "scope": "Full signed CAS P&L, BS, cash flow and all signed CFO supplemental rows exact yuan, 14-17 invariants"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/600276/story.json",
+      "scope": "Company-specific operating model, strong alternative explanations, research caveats and next period falsification"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/600276/figure-briefs.json",
+      "scope": "8 authored chart briefs and original weighted revenue to cost/gross profit ribbons; negative fields in signed waterfall"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
+      "scope": "Actual desktop 1440 and mobile 390 source screenshots opened and reviewed; independent second editor NOT_CHECKED"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
+      "scope": "8 real figures, 8 source tables, 1440/768/390 screenshots, source-to-ribbon SVG path geometry and no body overflow"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
+      "scope": "Real standalone HTML generated twice and byte-for-byte compared by successful Actions"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Not all full 214/182 physical pages and material notes certified by a separate professional reviewer"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Several core original cash/restricted/contract notes checked; exhaustive issuer notes reconciliation is not completed"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Direct CNINFO PDF archive SHA PASS; separate SSE versus CNINFO byte-identity not separately reproduced"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "External rolling 8 to 12 quarters industry peer valuation and original market pricing NOT_CHECKED"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "No genuine second independent human finance and visual editor approval"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Source branch HTML approved locally; main and actual Cloudflare route not yet published and validated"
+    }
+  },
+  "blockers": [
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "DRUG_SALES_INNOVATIVE_SUBSET_NOT_ADDITIVE"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "LICENSE_CONTRACT_PERFORMANCE_OBLIGATION_INCOME_TIMING"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "NONCASH_ACCEPTANCE_BILL_ENDORSEMENT_P153_19_94BN"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "BMS_CONTRACT_EFFECTIVE_2026_JULY_NOT_H1_REVENUE"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "FAIR_VALUE_KAILERA_NOT_PRODUCT_CASH"
+    }
+  ],
+  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY",
+  "live_release_fingerprint": null
+}
