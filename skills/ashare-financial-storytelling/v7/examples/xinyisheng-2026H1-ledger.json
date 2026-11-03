@@ -860,6 +860,54 @@
       "table": "industry_disclosure",
       "status": "reported",
       "source_confidence": "checked_against_uploaded_pdf"
+    },
+    "disclosed_other_contract_revenue": {
+      "amount": "27106113.32",
+      "page": 104,
+      "source_label": "按业务类型：其他/营业收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "checked_against_uploaded_pdf"
+    },
+    "disclosed_other_contract_cogs": {
+      "amount": "17534949.75",
+      "page": 104,
+      "source_label": "按业务类型：其他/营业成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "checked_against_uploaded_pdf"
+    },
+    "disclosed_other_business_revenue": {
+      "amount": "21528572.02",
+      "page": 104,
+      "source_label": "按主营/其他业务：其他业务/收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "checked_against_uploaded_pdf"
+    },
+    "disclosed_other_business_cogs": {
+      "amount": "13530348.16",
+      "page": 104,
+      "source_label": "按主营/其他业务：其他业务/成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "checked_against_uploaded_pdf"
     }
   },
   "segments": [
@@ -868,6 +916,17 @@
       "name": "光互联产品",
       "revenue_key": "revenue_optics",
       "cost_key": "cogs_optics"
+    },
+    {
+      "dimension": "product",
+      "name": "其他（业务类型）",
+      "revenue_key": "disclosed_other_contract_revenue",
+      "cost_key": "disclosed_other_contract_cogs",
+      "disclosure": "reported",
+      "source_section": "37、营业收入和营业成本，按业务类型分类",
+      "page": 104,
+      "parent_group": "revenue_by_business_type",
+      "classification_note": "另一个维度的“其他业务”21,528,572.02元不是本次27,106,113.32元；二者不能叠加"
     }
   ],
   "indirect_cfo_adjustments": [
@@ -955,5 +1014,12 @@
     "财报内行业供需/市场规模及竞争排名均为公司报告中的外部引用或管理层判断，未经研究者独立核实",
     "报告未披露足以重建各速率型号价格/销量与利润的独立数据"
   ],
-  "source_integrity_status": "UPLOADED_ORIGINAL_PDF_SHA_VERIFIED__KEY_FINANCIAL_TABLES_PAGE_CHECKED"
+  "source_integrity_status": "UPLOADED_ORIGINAL_PDF_SHA_VERIFIED__KEY_FINANCIAL_TABLES_PAGE_CHECKED",
+  "revenue_partition_assertion": {
+    "completeness": "exact_original_reported",
+    "source_section": "37、营业收入和营业成本，按业务类型分类",
+    "source_page": 104,
+    "scope": "光互联产品+业务类型其他；不可混入主营/其他业务分类",
+    "source_amounts": "original yuan"
+  }
 }

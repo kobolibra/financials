@@ -113,6 +113,23 @@ def audit(data):
     else:
         checks.append({'id':'product-coverage','status':'NOT_CHECKED'})
 
+    # Published exact partitions are classified on the SAME basis; original disclosure rules,
+    # not guessed balancing categories. Other_business may be combined with detailed
+    # product lines only when the primary business lines exactly form the disclosed main business.
+    contract = data.get('revenue_partition_assertion')
+    if contract and contract.get('completeness') == 'exact_original_reported':
+        parts = [s for s in data.get('segments', []) if s.get('dimension') in ('product','other_business')]
+        rv = [number(s.get('revenue_key')) for s in parts]
+        cv = [number(s.get('cost_key')) for s in parts]
+        if not parts or any(v is None for v in rv+cv) or number('revenue') is None or number('cogs') is None:
+            issues.append('source-backed revenue partition incomplete')
+        else:
+            d_rev=number('revenue')-sum(rv,D(0))
+            d_cost=number('cogs')-sum(cv,D(0))
+            if d_rev != D(0) or d_cost != D(0):
+                issues.append('source-backed revenue partition does not reconcile exactly')
+            checks.append({'id':'revenue-and-cogs-by-disclosed-source','status':'PASS' if d_rev == D(0) and d_cost == D(0) else 'FAIL','revenue_residual':str(d_rev),'cost_residual':str(d_cost),'physical_page':contract.get('source_page'),'classification':contract.get('scope')})
+
     adj = data.get('indirect_cfo_adjustments')
     if adj is not None:
         if number('net_profit') is None or number('cfo') is None or not adj:

@@ -50,7 +50,7 @@ def moneyflow(l):
     if core<0: return '<div class="no-data">经营盈余为负，本期不适合绘制正值连续流带，改用带符号利润桥。</div>',0
     groups=[]
     for g in l.get('segments',[]):
-        if g.get('dimension')!='product' or not g.get('cost_key'):continue
+        if g.get('dimension') not in ('product','other_business') or not g.get('cost_key'):continue
         rv,cv=num(l,g['revenue_key']),num(l,g['cost_key'])
         if rv is None or cv is None or rv<0 or cv<0 or rv<cv:raise ValueError('Invalid product revenue/cost')
         if not rv: continue
@@ -58,8 +58,9 @@ def moneyflow(l):
     if not groups:return '<div class="no-data">分部收入与成本不足，改用真实可用的比较图。</div>',0
     diff_rev=rev-add(g['r'] for g in groups);diff_cost=cogs-add(g['c'] for g in groups)
     if diff_rev<0 or diff_cost<0 or diff_cost>diff_rev:raise ValueError('Product totals do not reconcile')
-    if diff_rev:
-        groups.append({'name':'未列示差额（计算）','r':diff_rev,'c':diff_cost,'gp':diff_rev-diff_cost,'p':factmeta(l,'revenue','cogs'),'derived':True})
+    # NO fake economic category. Exact flow requires a disclosed partition.
+    if diff_rev != 0 or diff_cost != 0:
+        raise ValueError('UNVERIFIED_REVENUE_PARTITION: revenue/cost have an unclassified residual; use the original note, or omit the Sankey. Never invent a balancing business.')
     scale=285/dot(rev);start=126; rev_y=120; gp_y=125;cost_y=gp_y+dot(gp)*scale+54
     group_gaps=27;out=[];labels=[];colors=['#6ca8c4','#a19ad1','#b0b5ac','#b1b7c6','#73978d']
     # stage 1: all product revenue to consolidated revenue
@@ -81,7 +82,7 @@ def moneyflow(l):
     nodes=[node(465,rev_y,rheight,'#445e6c'),node(702,gp_y,gh,'#0b936f'),node(702,cost_y,ch,'#c77769'),node(x2,core_y,dot(core)*scale,'#0c8d75'),node(x2,opex_y,dot(opex)*scale,'#bf9375')]
     labels += [f'<text x="503" y="{rev_y+34}" class="svg-label">合并收入</text><text x="503" y="{rev_y+56}" class="svg-value">{y(rev)} 亿</text>', f'<text x="731" y="{gp_y+28}" class="svg-label">毛利润</text><text x="731" y="{gp_y+50}" class="svg-value">{y(gp)} 亿</text>', f'<text x="731" y="{cost_y+25}" class="svg-label">营业成本</text><text x="731" y="{cost_y+47}" class="svg-value">{y(cogs)} 亿</text>', f'<text x="1002" y="{core_y+26}" class="svg-label">经营盈余*</text><text x="1002" y="{core_y+50}" class="svg-value">{y(core)} 亿</text>', f'<text x="1002" y="{opex_y+24}" class="svg-label">其他营业总成本</text><text x="1002" y="{opex_y+45}" class="svg-value">{y(opex)} 亿</text>']
     height=max(555, math.ceil(max(maxend,opex_y+dot(opex)*scale,cost_y+ch)+65))
-    svg=f'<svg class="hero-svg" role="group" aria-label="产品收入经合并收入分解为营业成本、毛利润，毛利润进一步分解为经营盈余和其余营业总成本；所有流带与金额保持一致" viewBox="0 0 1250 {height}" xmlns="http://www.w3.org/2000/svg"><text x="33" y="61" class="svg-kicker">01 / PRODUCT MIX</text><text x="465" y="61" class="svg-kicker">02 / CONSOLIDATED</text><text x="702" y="61" class="svg-kicker">03 / GROSS PROFIT</text><text x="973" y="61" class="svg-kicker">04 / OPERATING CORE</text>{"".join(out+nodes+labels)}</svg>'
+    svg=f'<svg class="hero-svg" role="group" aria-label="已披露且不重叠的收入分类汇入合并收入，再分解为营业成本、毛利润，毛利润进一步分解为经营盈余和其余营业总成本；所有流带与金额保持一致" viewBox="0 0 1250 {height}" xmlns="http://www.w3.org/2000/svg"><text x="33" y="61" class="svg-kicker">01 / DISCLOSED REVENUE SOURCES</text><text x="465" y="61" class="svg-kicker">02 / CONSOLIDATED</text><text x="702" y="61" class="svg-kicker">03 / GROSS PROFIT</text><text x="973" y="61" class="svg-kicker">04 / OPERATING CORE</text>{"".join(out+nodes+labels)}</svg>'
     return svg,len(groups)*1+4
 
 def waterfall(l,series,title,units='亿元',maximum=None):

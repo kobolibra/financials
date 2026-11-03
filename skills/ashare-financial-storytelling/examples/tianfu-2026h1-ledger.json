@@ -610,6 +610,54 @@
       "status": "reported",
       "image_checked": true,
       "source_confidence": "pdf_page_checked"
+    },
+    "disclosed_other_business_revenue": {
+      "amount": "37651189.26",
+      "page": 140,
+      "source_label": "其他业务/营业收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "disclosed_other_business_cogs": {
+      "amount": "9087378.57",
+      "page": 140,
+      "source_label": "其他业务/营业成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "disclosed_main_business_revenue": {
+      "amount": "2790287559.11",
+      "page": 140,
+      "source_label": "主营业务/营业收入",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
+    },
+    "disclosed_main_business_cogs": {
+      "amount": "1097496423.37",
+      "page": 140,
+      "source_label": "主营业务/营业成本",
+      "period": "2026H1",
+      "kind": "flow",
+      "scope": "consolidated",
+      "table": "revenue_cost_note",
+      "status": "reported",
+      "image_checked": true,
+      "source_confidence": "pdf_page_checked"
     }
   },
   "segments": [
@@ -626,6 +674,17 @@
       "revenue_key": "active_revenue",
       "cost_key": "active_cogs",
       "disclosure": "partial"
+    },
+    {
+      "dimension": "other_business",
+      "name": "其他业务（附注）",
+      "revenue_key": "disclosed_other_business_revenue",
+      "cost_key": "disclosed_other_business_cogs",
+      "disclosure": "reported",
+      "source_section": "61、营业收入和营业成本",
+      "page": 140,
+      "parent_group": "main_other_business",
+      "classification_note": "两类光器件合计严格对应主营业务；其他业务另行列报，同口径相加可覆盖合并营业收入"
     }
   ],
   "indirect_cfo_adjustments": [
@@ -724,5 +783,12 @@
     "主营业务两个产品分部未覆盖全部合并收入：差额需标计算残余，不能命名第三独立业务",
     "无源与有源业务盈利差异不能直接断言全部来自产品组合变化",
     "货币资金和现金及现金等价物口径不同"
-  ]
+  ],
+  "revenue_partition_assertion": {
+    "completeness": "exact_original_reported",
+    "source_section": "61、营业收入和营业成本",
+    "source_page": 140,
+    "scope": "主营业务（两类光器件）+其他业务",
+    "source_amounts": "original yuan"
+  }
 }
