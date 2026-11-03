@@ -1,7 +1,7 @@
 name: Build and audit ASR 688220 source-limited standalone research
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1', main]
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', main]
     paths:
       - 'research/issuers/688220/**'
       - 'public/688220.html'
@@ -21,6 +21,7 @@ jobs:
         run: |
           python -m pip install --disable-pip-version-check -q pymupdf
           python research/issuers/688220/verify_pages.py
+          python research/shared/test_conserved_flow.py
           python research/issuers/688220/test_accounting.py
           python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
           test -s public/688220.html
@@ -68,11 +69,11 @@ jobs:
         run: |
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
-          git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json
+          git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json research/issuers/688220/source-images/p135.png research/issuers/688220/source-images/p146.png
           if ! git diff --cached --quiet; then
             git commit -m "Generate ASR 688220 independent source-limited research HTML and ledger QA"
-            git pull --rebase origin work/asrmicro-688220-2026h1
-            git push origin HEAD:work/asrmicro-688220-2026h1
+            git pull --rebase origin "${{ github.ref_name }}"
+            git push origin "HEAD:${{ github.ref_name }}"
           fi
       - name: Archive readable actual 1440/768/390 browser evidence
         if: always()

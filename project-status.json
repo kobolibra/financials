@@ -188,12 +188,15 @@
       "source_verification": "research/issuers/688220/source-verification.json",
       "research_memo": "research/issuers/688220/research-memo.md",
       "figure_count": 9,
-      "figure_briefs": "research/issuers/688220/figure-briefs.json"
+      "figure_briefs": "research/issuers/688220/figure-briefs.json",
+      "source_cell_evidence": "research/issuers/688220/source-cells.json",
+      "reusable_flow_kernel": "research/shared/conserved_flow.py",
+      "reusable_flow_adversarial": "research/shared/test_conserved_flow.py"
     },
     "financial_gates": {
       "PDF_MIRROR_FULL_BYTES_SHA_224P": "PASS",
       "SSE_OFFICIAL_BYTE_EQUIVALENCE": "NOT_CHECKED",
-      "SOURCE_PAGE_LITERAL": "109_OF_118_PAGE_LITERALS_MATCH;9_FRAGMENTED_INVENTORY_ECL_TABLE_ITEMS_REQUIRE_SEMANTIC_ROW_REVIEW",
+      "SOURCE_PAGE_LITERAL": "PASS_109_ORIGINAL_CONTIGUOUS_TEXT_AMOUNTS_PLUS_9_EXACT_PHYSICAL_SOURCE_CELLS_118_OF_118_SELECTED_ITEMS",
       "IMPORTANT_ORIGINAL_PAGE_COLUMN": "PASS_SELECTED_PAGES_ONLY",
       "FULL_MATERIAL_NOTES": "NOT_CHECKED",
       "STATEMENT_IDENTITY": "PASS",
@@ -214,14 +217,17 @@
       "SANKEY_EACH_BUSINESS_COGS_GP": "PASS_4_COST_3_POSITIVE_GP_AND_ONE_ZERO_GP_NO_FAKE_RIBBON",
       "FULL_GAAP_SIGNED_PNL": "PASS_FROM_GP_VIA_OPERATING_PNL_AND_TAX_TO_CONSOLIDATED_NI",
       "BALANCE_TWO_DATES_EQUAL_TOTAL": "PASS_20251231_20260630",
-      "MATERIAL_NOTE_ROW_COLUMN_COVERAGE": "PARTIAL_SELECTED_NOT_FULL_109_OF_118_PAGE_LITERAL_AND_9_FRAGMENTED_TEXT_ITEMS"
+      "MATERIAL_NOTE_ROW_COLUMN_COVERAGE": "PARTIAL_SELECTED_NOT_FULL_109_OF_118_PAGE_LITERAL_AND_9_FRAGMENTED_TEXT_ITEMS",
+      "SOURCE_P135_P146_ROW_COLUMN_WORD_COORDINATES": "PASS_NINE_ACTUAL_PDF_TABLE_CELLS_FROM_ORIGINAL_MIRROR_BYTES",
+      "P87_PRIOR_CURRENT_COLUMN_ORIGINAL_WORD_PROOF": "PASS_PRESERVED_2025H1_15_30_PRIOR_COLUMN",
+      "SHARED_TYPED_FINANCE_FLOW_CONTRACT": "PASS_4_SOURCE_8_TYPED_EDGES_7_NONZERO_ONE_ZERO_GP_8_HOSTILE_CASES_ON_ACTUAL_ASR_FACTS"
     },
     "technical_gates": {
-      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_MAIN_9_FIGURES_9_SOURCE_TABLES_21_SCREENSHOTS",
+      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_RETESTED_BRANCH_41657555061_9_FIGURES_9_TABLES_ALL_THREE_VIEWPORTS",
       "ORIGINAL_VISUAL_QA": "PARTIAL_MANUALLY_OPENED_SCREENSHOTS_FIXED_3_ISSUES_AWAIT_FINAL_ASSESSMENT",
-      "CLEAN_REBUILD": "PASS_MAIN_41653197855",
-      "GITHUB_MAIN_ROUTE": "PASS_MAIN_5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8",
-      "CLOUDFLARE_LIVE_ROUTE": "PASS_GITHUB_ACTIONS_REAL_CLOUDFLARE_CHROMIUM_41653304202_8_ISSUERS_3_VIEWPORTS",
+      "CLEAN_REBUILD": "PASS_RETESTED_BRANCH_41657555061",
+      "GITHUB_MAIN_ROUTE": "PASS_FOR_PRE_EXISTING_NINE_FIGURE_REPORT__NEW_SOURCE_CELL_MERGE_PENDING",
+      "CLOUDFLARE_LIVE_ROUTE": "PASS_FOR_PRE_EXISTING_NINE_FIGURE_REPORT__NEW_SOURCE_CELL_MERGE_PENDING",
       "AEI_FT_VISUAL_EDITORIAL": "PARTIAL_SELF_REVIEWED_ALL_FIGURE_DESKTOP_SHEET_AND_MOBILE_HEADLINES__NOT_INDEPENDENT_EDITORIAL_CERTIFICATION",
       "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES"
     },
@@ -233,7 +239,7 @@
       "source_git_commit": "d5e42a40becf8226de7be3f2a85d00095db3fa13",
       "scope": "224p source SHA, p87 original comparative column x-position check, 29 signed accounting assertions, 8 adversarial negative cases, 9 financial charts/9 source tables, 21 Chromium screenshots on 1440 768 390, 7 source-specific nonzero product cost+GP Sankey ribbons, 3 SVG download tests, clean regenerated HTML"
     },
-    "next_step": "Do not treat as independently certified institution-level equity research. If pursuing additional audit, prioritize PDF p137 top-five AR denominator (reported 90.50% vs derived 89.17%) and all material notes, official SSE original vs mirror bytes, 8-12Q and peers. Maintain same eight-issuer company library.",
+    "next_step": "Merge minimal source-cell and catalog metadata PR only after exact branch QA; confirm new main GitHub and Cloudflare eight issuer real navigation/1440-768-390; preserve main nine-figure Skill v8.3.3, original HTML and independent review caveats.",
     "latest_main_release": {
       "original_redesign_merge": "5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8",
       "source_accuracy_live_workflow_fix": "f9f3ac4377c98fb5d9390716531c023a4def1393",
@@ -260,6 +266,18 @@
         "commit": "5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8"
       },
       "reasons_for_initial_failed_main_runs": "Initial main 41653016669 and 41653016654 were stale hardcoded 7 figures after the nine-figure redesign, not accounting/HTTP failures. Replaced with figure-brief count and original source quality contract; reran 41653197855 and 41653304202 success."
+    },
+    "latest_incremental_source_evidence": {
+      "branch": "work/688220-source-cells-verified-nine-figures",
+      "financial_action_run_id": 41657555061,
+      "financial_action_conclusion": "success",
+      "original_pdf_224_pages_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "selected_source_facts_verified": 118,
+      "literal_original_pdf_values": 109,
+      "original_pdf_bbox_row_column_cells": 9,
+      "revised_688220_figure_count": 9,
+      "stage": "VALIDATED_BRANCH_PENDING_MAIN_RELEASE",
+      "important": "This source evidence release is distinct from previously successful nine-figure live main. No external second analyst certified."
     }
   },
   "last_redesign_internal_checkpoint": {

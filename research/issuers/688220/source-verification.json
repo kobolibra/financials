@@ -8,20 +8,158 @@
   "source_get": "COMPLETE_PDF_MIRROR_BYTES_AND_ORIGINAL_REPORT_IDENTITY_PASS",
   "sse_mirror_byte_equivalence": "NOT_CHECKED",
   "page_literal_matched": 109,
+  "page_coordinate_reconstructed": 9,
+  "page_amount_or_cell_matched": 118,
   "page_literal_total": 118,
+  "verified_source_cells": {
+    "inventory_gross": {
+      "physical_page": 146,
+      "row_label": "合计",
+      "column_heading": "账面余额",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        135,
+        315,
+        194,
+        350
+      ],
+      "extracted_original_cell": "2,295,213,429.38",
+      "original_yuan": "2,295,213,429.38",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_reserve": {
+      "physical_page": 146,
+      "row_label": "合计",
+      "column_heading": "存货跌价准备",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        198,
+        315,
+        262,
+        350
+      ],
+      "extracted_original_cell": "139,854,986.55",
+      "original_yuan": "139,854,986.55",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_gross_prior": {
+      "physical_page": 146,
+      "row_label": "合计",
+      "column_heading": "账面余额",
+      "top_heading": "期初余额",
+      "bbox_pdf_pt": [
+        325,
+        315,
+        384,
+        350
+      ],
+      "extracted_original_cell": "1,856,782,419.98",
+      "original_yuan": "1,856,782,419.98",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_reserve_prior": {
+      "physical_page": 146,
+      "row_label": "合计",
+      "column_heading": "存货跌价准备",
+      "top_heading": "期初余额",
+      "bbox_pdf_pt": [
+        387,
+        315,
+        452,
+        350
+      ],
+      "extracted_original_cell": "153,068,393.37",
+      "original_yuan": "153,068,393.37",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_outsourced_net": {
+      "physical_page": 146,
+      "row_label": "委托加工物资",
+      "column_heading": "账面价值",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        264,
+        268,
+        323,
+        295
+      ],
+      "extracted_original_cell": "1,101,338,596.59",
+      "original_yuan": "1,101,338,596.59",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_finished_net": {
+      "physical_page": 146,
+      "row_label": "库存商品",
+      "column_heading": "账面价值",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        264,
+        176,
+        323,
+        207
+      ],
+      "extracted_original_cell": "589,353,179.44",
+      "original_yuan": "589,353,179.44",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_raw_net": {
+      "physical_page": 146,
+      "row_label": "原材料",
+      "column_heading": "账面价值",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        264,
+        138,
+        323,
+        168
+      ],
+      "extracted_original_cell": "350,783,679.98",
+      "original_yuan": "350,783,679.98",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "inventory_contract_cost": {
+      "physical_page": 146,
+      "row_label": "合同履约成本",
+      "column_heading": "账面余额",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        135,
+        243,
+        194,
+        268
+      ],
+      "extracted_original_cell": "92,343,348.77",
+      "original_yuan": "92,343,348.77",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    },
+    "ar_allowance": {
+      "physical_page": 135,
+      "row_label": "合计",
+      "column_heading": "坏账准备",
+      "top_heading": "期末余额",
+      "bbox_pdf_pt": [
+        172,
+        711,
+        213,
+        744
+      ],
+      "extracted_original_cell": "8,175,303.66",
+      "original_yuan": "8,175,303.66",
+      "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+      "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+    }
+  },
   "physical_row_column_exception_p87": "PASS_PRIOR_2025H1_EXPENSE_15_30_IN_RIGHT_COLUMN__2026H1_BLANK_DERIVED_0",
   "critical_source_row_literal_missing": [],
-  "missing_page_literals": [
-    "inventory_gross",
-    "inventory_reserve",
-    "inventory_gross_prior",
-    "inventory_reserve_prior",
-    "inventory_outsourced_net",
-    "inventory_finished_net",
-    "inventory_raw_net",
-    "inventory_contract_cost",
-    "ar_allowance"
-  ],
+  "missing_page_literals": [],
   "page_amount_check_not_row_col_semantics": "The fact a number occurs on a cited physical page does NOT prove table row, column, consolidation scope or currency.",
   "manual_semantic_review": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_COMPLETE_MATERIAL_NOTES",
   "full_independent_human_review": "NOT_CHECKED",
@@ -355,49 +493,185 @@
       "physical_page": 146,
       "original_label_in_ledger": "存货账面余额",
       "amount_yuan": "2295213429.38",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "合计",
+        "column_heading": "账面余额",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          135,
+          315,
+          194,
+          350
+        ],
+        "extracted_original_cell": "2,295,213,429.38",
+        "original_yuan": "2,295,213,429.38",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_reserve": {
       "physical_page": 146,
       "original_label_in_ledger": "存货跌价准备",
       "amount_yuan": "139854986.55",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "合计",
+        "column_heading": "存货跌价准备",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          198,
+          315,
+          262,
+          350
+        ],
+        "extracted_original_cell": "139,854,986.55",
+        "original_yuan": "139,854,986.55",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_gross_prior": {
       "physical_page": 146,
       "original_label_in_ledger": "存货账面余额",
       "amount_yuan": "1856782419.98",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "合计",
+        "column_heading": "账面余额",
+        "top_heading": "期初余额",
+        "bbox_pdf_pt": [
+          325,
+          315,
+          384,
+          350
+        ],
+        "extracted_original_cell": "1,856,782,419.98",
+        "original_yuan": "1,856,782,419.98",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_reserve_prior": {
       "physical_page": 146,
       "original_label_in_ledger": "存货跌价准备",
       "amount_yuan": "153068393.37",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "合计",
+        "column_heading": "存货跌价准备",
+        "top_heading": "期初余额",
+        "bbox_pdf_pt": [
+          387,
+          315,
+          452,
+          350
+        ],
+        "extracted_original_cell": "153,068,393.37",
+        "original_yuan": "153,068,393.37",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_outsourced_net": {
       "physical_page": 146,
       "original_label_in_ledger": "委托加工物资账面价值",
       "amount_yuan": "1101338596.59",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "委托加工物资",
+        "column_heading": "账面价值",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          264,
+          268,
+          323,
+          295
+        ],
+        "extracted_original_cell": "1,101,338,596.59",
+        "original_yuan": "1,101,338,596.59",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_finished_net": {
       "physical_page": 146,
       "original_label_in_ledger": "库存商品账面价值",
       "amount_yuan": "589353179.44",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "库存商品",
+        "column_heading": "账面价值",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          264,
+          176,
+          323,
+          207
+        ],
+        "extracted_original_cell": "589,353,179.44",
+        "original_yuan": "589,353,179.44",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_raw_net": {
       "physical_page": 146,
       "original_label_in_ledger": "原材料账面价值",
       "amount_yuan": "350783679.98",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "原材料",
+        "column_heading": "账面价值",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          264,
+          138,
+          323,
+          168
+        ],
+        "extracted_original_cell": "350,783,679.98",
+        "original_yuan": "350,783,679.98",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_contract_cost": {
       "physical_page": 146,
       "original_label_in_ledger": "合同履约成本",
       "amount_yuan": "92343348.77",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 146,
+        "row_label": "合同履约成本",
+        "column_heading": "账面余额",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          135,
+          243,
+          194,
+          268
+        ],
+        "extracted_original_cell": "92,343,348.77",
+        "original_yuan": "92,343,348.77",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "inventory_contract_amort": {
       "physical_page": 147,
@@ -499,7 +773,24 @@
       "physical_page": 135,
       "original_label_in_ledger": "合并应收账款坏账准备期末余额",
       "amount_yuan": "8175303.66",
-      "literal_match": false
+      "literal_match": false,
+      "positional_source_cell_match": true,
+      "source_cell": {
+        "physical_page": 135,
+        "row_label": "合计",
+        "column_heading": "坏账准备",
+        "top_heading": "期末余额",
+        "bbox_pdf_pt": [
+          172,
+          711,
+          213,
+          744
+        ],
+        "extracted_original_cell": "8,175,303.66",
+        "original_yuan": "8,175,303.66",
+        "method": "REVIEWED_PHYSICAL_PAGE_COORDINATE_AND_TABLE_ROW_COLUMN",
+        "semantic_limit": "Source table coordinates and same-page header verified, not an independent second human review."
+      }
     },
     "ar_aging_lt3m": {
       "physical_page": 135,

@@ -4,6 +4,18 @@
 
 > **唯一正式站点：首页统一八家公司研究库（本提交为候选，按当前 main 实际发布状态验收）。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
+## 2026-11-03 · 九图正式版增量原始 PDF 行列证据与图形通用财务关系
+
+以实际 main 九图、Skill v8.3.3-RC1 为基准；不将旧开发八图版本覆盖九图发布页。原始 224 页 PDF 副本 SHA256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`，1,449,510 字节。交易所源文件 vs 镜像原字节同一性 NOT_CHECKED。
+
+**原始源页重点**：`research/issuers/688220/source-cells.json` 定位 p.135 应收坏账准备，以及 p.146 八项库存原值、跌价、库存商品、委托加工及履约成本，包含原始 PDF words bbox、行名、列标题、2025-12-31 或 2026-06-30 日期。`verify_pages.py` 在完整 PDF 原字节直接复原，109 项连续原数字 + 9 项物理单元格 = **118/118 选定原金额可定位**。仍保留 p.87 上期列 15.30 元营业外支出的 x 坐标、本期空格核验。绝不等于全部 224 页重大附注独立全文审阅。
+
+**可重用守恒与反例**：`research/shared/conserved_flow.py` 和 `research/shared/test_conserved_flow.py` 是一个源分类关系内核，要求同一分类轴、原币种、同合并期间、原始物理页，精确 Decimal 验证四类来源→成本/毛利，七条非零带与一条真实零毛利（不捏造可见面积）。八种故意错误的源关系必须被拒绝。单公司实例和合成反例并不认证跨行业 Level 2/3。
+
+**旧目录元数据修复**：`site/research_catalog.json` 中 688220 原留七图，当前正式研究正文和 `figure-briefs.json` 为九图，已纠正为九图并用唯一 `site/portal_builder.py` 重新生成原 `public/index.html`；原七公司 HTML 未改动。
+
+**独立门槛**：PDF 镜像 SHA、指定源金额/源格、三报表/全部 17 CFO 会计身份、九图本地源表、真实浏览器响应式分别 PASS（在对应运行的确切 SHA 上）；原 p.137 应收及合同资产集中度披露 90.50% vs 直接重算 89.17% 仍 FAIL_UNRECONCILED，p.179 RPO 拆分 0.01 元不闭合；SSE 与镜像原字节一致性、完整附注系统审阅、外部估值及第二名独立人类财务／设计审核 NOT_CHECKED。正式 Cloudflare 需以合并后最新 commit + GitHub Actions 真实八公司导航和 1440/768/390 为准，绝不从分支成功推定线上成功。
+
 ## 2026-11-03 · 现行正式状态：AEI/FT 源证据重构已上线；财务源边界仍明确保留
 
 **唯一正式站点**：<https://financials-in-visuals.pages.dev/>，目前八家公司**在同一个**目录下各有完整独立 HTML。翱捷科技-U 688220：<https://financials-in-visuals.pages.dev/688220.html>。没有新增另一版四公司入口、没有改写旧七家 HTML。本次 AEI/FT 重构已通过 [PR #6](https://github.com/kobolibra/financials/pull/6) 合并真实 `main`，研究/HTML 源提交 `5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8`，Skill 为 **v8.3.3-RC1**。主分支新发布回归适配提交 `f9f3ac4377c98fb5d9390716531c023a4def1393` 与 `52c4a6f166451ef3a132f929ab1e776a1521e130`。
