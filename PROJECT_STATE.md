@@ -1,5 +1,7 @@
+> **LATEST ACTUAL PRODUCTION IS 2026-11-03 V9**, not the historical v8.2 lab below. Read the **last checkpoint** first, plus the v8.3-RC1 Skill and the v9 release audit. Old lab fixtures are not research articles.
+
 # Financials in Visuals · Current Project State
-Updated: 2026-11-02
+Updated: 2026-11-03
 Production branch: `main`
 Current main release: seven source-backed 2026H1 cross-sector **BETA** pages, published to the Cloudflare Pages project.
 Last feature release commit: `3edfddcbbfb2a5ef56ad42a446110ca213f5edbc`
@@ -57,3 +59,17 @@ Current actual first substantive new-sector report: public URL `https://financia
 - `main` Skill is now v8.2.0-RC4 with publication classes and signed cash chart hard gate. Other six one-figure prototypes are engineering fixtures and `noindex`, NOT completed research.
 - The bank full 9-exhibit preview signed cash-flow Figure 09 corrected, reviewed in the produced SVG screenshot, labels repositioned after first overlap. Generator and published page updated together (commit `18c524b901914933b814f3c1347cecc66ef7e4dc`); original PDF SHA, 31 page-located source numbers, multiwidth/figures/tables and SVG export tests passed locally. Real-site deployment checked through GitHub Actions, inspect most recent CI before reporting its final result.
 - Public research pages are `/research/2026-h1/{600036,688111,600519,000333}.html`; 9/7/6/7 figures. All remain `RESEARCH_PREVIEW`, not institutionally fully independently reviewed.
+
+## 2026-11-03 · LATEST: v9 REBUILT SOURCE-LIMITED RESEARCH RELEASE
+
+Production index: `https://financials-in-visuals.pages.dev/research/2026-h1-v9/`, company URLs `.../600036.html`, `.../688111.html`, `.../600519.html`, `.../000333.html`. The old `/research/2026-h1/` pages are retained as archive; seven single-figure `/research-lab/` routes are engineering fixtures and not evidence of research publication.
+
+**What actually changed:** Four complete original PDFs download & SHA match; restored consolidated current/prior balance sheets, cash closure, major income/segment identities; for Kingsoft, Moutai and Midea every original 16/15/13 signed indirect net-profit-to-CFO adjustment (44 total) was checked against exact PDF physical pages and reconciled to the yuan. The bank's entire statutory income-to-parent profit including tax/credit/NCI was rebuilt as a signed bridge. The Midea hierarchy unit bug, misleading signs and small nonzero commission rounded to zero were corrected. Four different industry-led article scripts yield **8+9+9+10=36** distinct sourced figures/data tables.
+
+**Public browser:** GitHub Actions `41576887193` https://github.com/kobolibra/financials/actions/runs/41576887193 **PASS**: 12 real company/viewport checks at 1440/768/390, 36 source graph screenshots, CJK font availability, no body horizontal overflow or JavaScript errors, actual index→report→#cash→index navigation, SVG export. CI artifact `financials-v9-live-browser-evidence`, 30-day retention. Initial QA run failed because it falsely demanded ticker inside editorial title, fixed to inspect issuer metadata. Another browser run showed tofu Chinese glyphs without CJK fonts, fixed by installing font and rechecking actual screenshot. The final screenshot was opened and visually reviewed.
+
+**Current Skill:** `skills/ashare-financial-storytelling/SKILL.md` version **8.3.0-RC1** in main, adding source-to-story and font/nonzero/sign/metric-type release gates. Native evidence scripts and source ledgers in `research/rebuild-v9/`. Source bytes and executable clean-room kit in the persistent ChatGPT Library `/Financials-in-Visuals/2026H1-v9.1-rebuilt-complete.zip` (Library ID `libfile_07d0b8f629688191a38dd1a3f733e96d`). Full code/doc screenshot archive is saved there; exact ZIP SHA from local current artifact `589e6b8ac944073fcda4a0ff2034f94987a17aabe74ae6c9a7c068b5aff4ad14`. Verified clean-unzip `python verify.py && python publisher.py` both PASS. HTML-only zip also saved in same Library folder.
+
+**Publication classification:** `SOURCE_BASED_RESEARCH_PREVIEW` with strong accounting proof, NOT independent investment-rating equity research. **Still not complete**: all material notes independently reviewed by a second financial analyst, 8–12Q history and dated peer/valuation data, other sectors validated at full depth, real reproducible browser QA on non-CJK platforms, controlled quantitative scenario model. Do NOT infer full generalization from 4 examples.
+
+**Next substantive increments:** (1) source-complete two more companies per material sector; (2) full appendix semantic verification of every figure row and relevant MD&A; (3) independent expert financial/editor review & true visual comparison to first-party AEI methods; (4) richer 8–12 quarter chart and peer valuation ONLY from original dated external evidence; (5) revisit four distinct issuer reports with new insight rather than increasing chart counts. Always retain URLs and run GitHub real Cloudflare CI after each release. Never fabricate tests or manual reviewer signoff.

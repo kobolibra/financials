@@ -1,10 +1,10 @@
 ---
 name: ashare-financial-storytelling
-version: 8.2.0-rc4
+version: 8.3.0-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.2-RC4
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.3-RC1
 
 ## The two independent research foundations (MANDATORY)
 
@@ -124,6 +124,24 @@ Observed source regression: seven one-figure prototypes were promoted to the hom
 **Per-company editorial checklist:** (a) meaningful question and industry value chain, (b) compatible revenue/earnings statement fields and causal guard, (c) balance/capital/credit/inventory and cash, (d) report material notes and auditor conclusion, (e) alternative explanations and next disclosure to falsify, (f) each figure's source/period/scope and a readable mobile first-order answer, (g) financially meaningful and nonrepetitive figure grammar, (h) second-reviewer state and genuine release class. **A visible absence is NOT_CHECKED/FAIL, never silently passed.**
 
 The first four richer public previews now have **9 招商银行 / 7 金山办公 / 6 贵州茅台 / 7 美的集团** company-specific figures. They are markedly better than single-chart fixtures, but the full independent note-by-note audit, external valuation/quarterly inputs and independent financial editor are **NOT_CHECKED**. The initial bank cash-flow exhibit used absolute positive bar lengths for signed cash outflows and was subsequently replaced by a true signed zero-centered graphic, including source generator, reviewer screenshot and browser regression. Record the limitations; do not claim 'App Economy exceeded'.
+
+## 2026-11-03: Evidence-led full-article rebuild · v8.3-RC1 (MANDATORY)
+
+The prior 2026H1 four-company pages were rejected for superficial chart repetition, inadequate original-statement reading and weak visual storytelling. The independently reconstructed source-limited edition `/research/2026-h1-v9/` is a **source-tested RESEARCH_PREVIEW**, not an independently certified buy/sell recommendation. Production review must inspect **actual public browser screenshots with CJK fonts**, not merely a screenshot of an empty tofu-glyph fallback or HTTP-200.
+
+**New source-to-narrative compulsory pipeline:**
+1. Download original complete issuer PDFs and verify cryptographic SHA and page count; do not substitute third-party extracted web summaries. Define source hierarchy, period, audited flag, reporting scope and exact original unit.
+2. Rebuild the **actual original consolidated P&L, balance and cash identities** for material issuer-specific mechanics before choosing what chart to draw. Industrial total revenue, bank net interest income, insurance contract income, market/financial subsidiary and other revenue are distinct; never shove them into one industrial template.
+3. Full note-level indirect cash bridge where actually disclosed: start **consolidated net profit**, use every **original signed adjustment** including non-cash investment/fair-value, tax and all indirect working-capital movements, and reconcile to **actual CFO without residuals**. Do not reverse inferred BS stock changes into CFO adjustments. The actual v9 corpus reconciled 16, 15 and 13 original items for Kingsoft, Moutai and Midea, respectively, exactly to yuan with source physical-page signed literal checks. This is not a claim that all issuers have such an appendix; banks require regulated-sector treatment.
+4. For a bank, disclose **net interest = interest income − interest expense**, the actual fee and other net components, P&L expenses and credit impairment through statutory parent earnings; compare cash and BS without labeling bank CFO/NI an industrial cash-conversion score.
+5. Check hierarchy/metric types *at renderer boundaries*: Midea's parent and child industry lines are NOT additive beyond their own levels; `already_normalized_亿元` MUST NEVER pass through a yuan→亿元 conversion a second time (a real zero-value graphic failure occurred). Make type/units explicit and reject mismatches. If the actual nonzero amount would display `0.00 亿元`, switch to 万元/千元 with an explicit unit. Zero is a fact, not the result of a lossy rounding function.
+6. Profit/volume/margin, credit risk and regulatory capital differences must not all share a meaningless axis. Percent and yuan cannot share one price/amount scale; some metrics require standalone exact labelled change panels. Signed cash inflows/outflows need a real zero axis and true sign, with dollar change independent of unrelated stocks.
+7. **Visual truthfulness must beat figure count.** Build a specific research story for each issuer, not four copies of an identical template. One executive thesis, industry value-chain constraints, earnings vs cash/BS rebuttal, competing explanations and falsifiable future disclosures must be present. Editorial review all figures and headlines at 1440/768/390; Chinese heading orphan and numeric-unit orphan are release blockers.
+8. Full-page HTML must be self-contained, maintain independent published URLs and source tables, and carry readable mobile data summaries even if dense SVG is replaced by a mobile editorial table. Check actual click sequence `index → report → #cash → index` and SVG export in a *live public browser*. A browser missing installed Chinese glyphs is not a legitimate visual pass; CI must explicitly install/check the relevant CJK font family before taking screenshots.
+9. Keep **separate quality gates**: `ORIGINAL_BYTES`, `PAGE_NUMBER_LITERAL`, `ROW_COL_SEMANTIC`, `COMPLETE_MATERIAL_NOTES`, `STATEMENT_IDENTITY`, `SIGNED_CFO_RECONCILIATION`, `INDUSTRY_ROUTE`, `GRAPHIC_MEANING`, `FULL_ARTICLE_DESIGN`, `LIVE_BROWSER_NAV`, `INDEPENDENT_FINANCIAL_EDITOR`, `EXTERNAL_MULTIPERIOD_EVIDENCE`. Missing gates are `NOT_CHECKED`, not hidden inside a completion percent.
+10. After every small release update `PROJECT_STATE.md`, reproduction scripts, ZIP source archive hash, exact production URL, Git SHA, CI run, screenshots and blocked next tasks. Do not use prior conversation memory as the authoritative version.
+
+**Observed release candidate v9 evidence (2026-11-03):** four complete original 2026H1 issuer PDFs; 191 selected source facts or explicitly labeled derived items; exact significant signed full cash/BS/P&L reconciliations; 36 distinct sourced figure slots (8 bank / 9 software / 9 spirits / 10 manufacturing); standalone HTML and code with 12/12 local responsive checks; real Cloudflare public-browser checks 12/12, all 36 desktop per-figure screenshot captures, SVG export and real navigation PASS after installing CJK fonts in CI. Source/rebuild package at Library `/Financials-in-Visuals/2026H1-v9.1-rebuilt-complete.zip`. Original publisher and typed input data also tracked under `research/rebuild-v9/` in main. This is **not** a blanket claim of autonomous arbitrary-PDF-to-institutional-research or superiority to App Economy Insights; 8–12Q external financial/market context, independent second finance editor and comprehensive material-note review remain `NOT_CHECKED`.
 
 ## Required operating sequence
 
