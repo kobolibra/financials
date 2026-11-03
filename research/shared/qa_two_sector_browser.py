@@ -30,7 +30,7 @@ def main():
             assert page.locator("iframe").count()==0
             assert page.locator("script[src]").count()==0
             if page.evaluate("document.documentElement.scrollWidth")>width+1:
-                overflow=page.evaluate("""() => [...document.querySelectorAll('body *')].map(x=>({name:x.tagName,cls:x.className?.baseVal||x.className||'',id:x.id,rect:x.getBoundingClientRect().toJSON()})).filter(x=>x.rect.right>innerWidth+1||x.rect.left< -1).slice(0,25)""")
+                overflow=page.evaluate("""() => [...document.querySelectorAll('body *')].filter(x=>{const r=x.getBoundingClientRect(); if(r.right<=innerWidth+1&&r.left>=-1)return false;for(let p=x.parentElement;p;p=p.parentElement){if(['auto','scroll','hidden','clip'].includes(getComputedStyle(p).overflowX))return false}return true}).slice(0,30).map(x=>({name:x.tagName,cls:typeof x.className==='string'?x.className:'svg',id:x.id,right:x.getBoundingClientRect().right,width:x.getBoundingClientRect().width,parent:x.parentElement?.className}))""")
                 raise AssertionError((a.code,width,"BODY_OVERFLOW",page.evaluate("document.documentElement.scrollWidth"),overflow))
             q=page.locator("#chart-flow")
             assert q.locator("rect.money-source").count()==len(d["segments"])
