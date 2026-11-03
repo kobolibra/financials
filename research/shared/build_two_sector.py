@@ -75,6 +75,12 @@ def check(d,briefs,story,pdf_path):
     ck("SECTOR_FLOW_GROSS_PROFIT",sum((val(d,s["rev"])-val(d,s["cost"]) for s in d["segments"]),D(0)),gp)
     if "rpo" in f and "contract_liab" in f:
         ck("PHARMA_RPO_NOT_UNRECOGNIZED_FORECAST",val(d,"rpo")-val(d,"rpo_over_year"),val(d,"contract_liab"))
+    if "bill_endorse_total" in f:
+        ck("NONCASH_BILLS_MATERIAL_PLUS_CAPEX",val(d,"bill_endorse_material")+val(d,"bill_endorse_capex"),val(d,"bill_endorse_total"))
+        assert val(d,"bill_endorse_capex")>0 and val(d,"cash_capex")>0,"NONCASH_CAPEX_HAS_TO_BE_SEPARATE_FROM_CASH_FCF"
+    if "restricted_non_cash" in f:
+        assert val(d,"restricted_non_cash")>0 and val(d,"cash_end")>0,"CASH_EQUIVALENTS_MUST_BE_SEPARATE_FROM_RESTRICTED_DEPOSITS"
+        checks["RESTRICTED_CASH_NOT_CASH_EQUIVALENTS"]="PASS_SOURCE_NOTE_DIFFERENT_CASH_BASE"
     pdf.close()
     return checks
 
@@ -231,14 +237,18 @@ function trend(){
  return svg(1120,540,out);
 }
 function capital(){
- var cfo=v("cfo"),cap=v("cash_capex"),free=cfo-cap,paid=v("dividend_interest_cash"),max=Math.max(cfo,cap,free,paid),S=315/max,out="";
- var a=[["经营现金",cfo,green],["长期资产现金投入",cap,copper],["简易自由现金",free,blue],["股利利润及利息合计",paid,muted]];
- out+=text(20,35,"现金投资和资金分配必须分口径，不把资本支出当利润表折旧","chart-title");
- a.forEach(function(q,i){var x=118+i*248,hh=Math.max(0,q[1])*S;out+=rect(x,443-hh,117,hh,q[2],"capital-bar");
- out+=text(x+58,430-hh,yi(q[1]),"chart-value",'text-anchor="middle"');out+=text(x+58,477,q[0],"chart-tiny",'text-anchor="middle"');});
- out+=text(20,529,"简易 FCF＝CFO − 购建固定资产、无形资产及其他长期资产所付现金（非公司法定口径）。","chart-tiny");
- out+=text(20,549,"最后一项包含股利、利润或偿付利息，不能在未拆分前称作纯股息。","chart-tiny");
- return svg(1120,570,out);
+ var cfo=v("cfo"),cap=v("cash_capex"),free=cfo-cap,paid=v("dividend_interest_cash"),out="";
+ var a=[["经营现金",cfo,green],["长期资产现金投入",cap,copper],["简易自由现金",free,blue],["股利利润及利息",paid,muted]];
+ if(f["bill_endorse_capex"]){a.push(["非现金票据购建",v("bill_endorse_capex"),"#8a7390"])}
+ var max=Math.max.apply(null,a.map(function(x){return x[1]})),S=308/max;
+ out+=text(20,35,"现金投资、非现金票据结算与利润表费用必须分开，不能伪造资本回报","chart-title");
+ a.forEach(function(q,i){var x=a.length===5?65+i*210:118+i*248,hh=Math.max(0,q[1])*S;
+ out+=rect(x,442-hh,102,hh,q[2],"capital-bar",'data-amount="'+q[1].toFixed(2)+'" data-cash-kind="'+(i===4?"NONCASH_NOT_IN_CFO":"CASH_FLOW_OR_DERIVED")+'"');
+ out+=text(x+51,430-hh,yi(q[1]),"chart-value",'text-anchor="middle"');out+=text(x+51,476,q[0],"chart-tiny",'text-anchor="middle"');});
+ out+=text(20,518,"简易 FCF＝CFO − 购建固定资产、无形资产及其他长期资产所付现金（非公司法定口径）。","chart-tiny");
+ out+=text(20,542,"股利利润及利息支付合并计列，不能在未拆分前称作纯股息。","chart-tiny");
+ if(f["bill_endorse_capex"]){out+=text(20,568,"原始现金附注 p.153：银行承兑汇票背书非现金结算 "+yi(v("bill_endorse_total"))+"，其中用于购建资产 "+yi(v("bill_endorse_capex"))+"，不计入上述现金 FCF。","chart-tiny");}
+ return svg(1120,f["bill_endorse_capex"]?592:567,out);
 }
 function sector(){
  if(story.theme==="hydro"){
