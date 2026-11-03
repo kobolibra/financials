@@ -27,7 +27,7 @@
 - `site/research_catalog.json` 定义唯一公司研究库；`site/portal_builder.py` 生成 `public/index.html`。修改公司目录后执行 `python site/portal_builder.py --out /tmp/financials-portal` 并与发布 HTML 比较。
 - 旧光通信报告生成器在 `skills/ashare-financial-storytelling/v7/engine/`；后四家来源驱动研究引擎在 `research/rebuild-v10/`。
 - 发布目录为 `public/`；Cloudflare Pages：`main`、Framework `None`、无构建命令、输出目录 `public`。
-- GitHub Actions 已配置真实站点、财报来源与浏览器检查；**严禁**再根据历史 README 说“不需要 GitHub Actions”。
+- GitHub Actions 已配置真实站点、财报来源与浏览器检查；**必须执行 GitHub Actions 的实际核验**，不能沿用早期版本的关闭验收说明。
 - CI 和完整发布准则见 [docs/REPORT_RELEASE_CHECKLIST.md](docs/REPORT_RELEASE_CHECKLIST.md)；旧项目状态留档于 [docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md](docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md)。
 
 `skills/ashare-financial-storytelling/SKILL.md` 是仓库中的项目 Skill，**不是自动安装到 ChatGPT 的全局 Skills**。普通新对话应使用 [新会话指令](docs/NEW_SESSION_PROMPT.md) 明确要求读 GitHub；安装或连接能力依 ChatGPT 实际当前功能决定，不在本仓库内虚构“已安装成功”。
