@@ -26,6 +26,7 @@ with sync_playwright() as p:
           title:document.title,
           mobileFactPanels:document.querySelectorAll('.mobile-facts').length,
           mobileFactsVisible:Array.from(document.querySelectorAll('.mobile-facts')).filter(e=>getComputedStyle(e).display!=='none').length,
+          chapterPosition:getComputedStyle(document.querySelector('.chapters')).position,
           images:document.images.length,
           externalScripts:document.querySelectorAll('script[src]').length,
           tofu:document.body.textContent.includes('□')?document.body.textContent.match(/□/g).length:0
@@ -35,6 +36,7 @@ with sync_playwright() as p:
         assert info["exportButtons"]==7 and info["externalScripts"]==0 and info["amounts"]>=10
         assert info["mobileFactPanels"]==7,(width,"each graphic requires independent first-order values on mobile",info)
         assert info["mobileFactsVisible"]==(0 if width==1440 else 7),(width,"missing visible amount headlines for mobile/tablet",info)
+        assert info["chapterPosition"]==("static" if width==390 else "sticky"),(width,"sticky navigation may obscure phone chart titles",info)
         assert page.locator('a.brand[href="/#companies"]').count()==1
         assert page.locator('a[href="#cash"]').count()>=1
         page.screenshot(path=str(out/f"full_{width}.png"),full_page=True)
