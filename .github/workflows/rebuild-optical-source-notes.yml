@@ -27,7 +27,7 @@ jobs:
           mkdir -p optical-rebuilt
           V7=skills/ashare-financial-storytelling/v7
           python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out optical-rebuilt/300394.html --qa optical-rebuilt/300394-qa.json
-          PYTHONPATH="$V7/engine" python "$V7/experiments/second_issuer_render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out optical-rebuilt/300502.html --qa optical-rebuilt/300502-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out optical-rebuilt/300502.html --qa optical-rebuilt/300502-qa.json
       - name: Verify full-generated money ribbons contain real source classifications
         run: |
           python - <<'PY'
@@ -36,7 +36,7 @@ jobs:
           for code,needle,pg in [('300394','其他业务（附注）','140'),('300502','其他（业务类型）','104')]:
               p=root/f'{code}.html'
               h=p.read_text()
-              assert '<figure class="exhibit">' in h,(code,'no figures')
+              assert h.count('<figure class="exhibit">')==(10 if code=='300394' else 11),(code,'expected full editorial exhibit count')
               assert '未列示差额（计算）' not in h,(code,'fake balancing node still present')
               assert needle in h,(code,'source category absent')
               assert 'p.'+pg in h,(code,'source physical page absent')
