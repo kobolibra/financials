@@ -1,0 +1,1123 @@
+{
+  "code": "600276",
+  "issuer_name": "江苏恒瑞医药股份有限公司",
+  "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225483600.PDF",
+  "downloaded_complete_pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+  "bytes": 4594202,
+  "physical_pages": 182,
+  "source_verified": {
+    "pdf_magic": "PASS",
+    "sha_matches_previous_original_corpus": "PASS",
+    "cover_issuer_and_year": "PASS",
+    "physical_pages": "PASS"
+  },
+  "issuer_filings_not_independent_human_review": "NOT_CHECKED",
+  "all_material_notes_reviewed": "NOT_CHECKED",
+  "page_index": [
+    {
+      "physical_page": 1,
+      "characters": 187,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 2,
+      "characters": 671,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 3,
+      "characters": 1136,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 4,
+      "characters": 1566,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 5,
+      "characters": 1498,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 6,
+      "characters": 1892,
+      "keyphrases": [
+        "营业收入",
+        "经营活动产生的现金流量净额",
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 7,
+      "characters": 1676,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 8,
+      "characters": 1088,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 9,
+      "characters": 1324,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 10,
+      "characters": 459,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 11,
+      "characters": 36277,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 12,
+      "characters": 887,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 13,
+      "characters": 1195,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 14,
+      "characters": 1252,
+      "keyphrases": [
+        "研发",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 15,
+      "characters": 1692,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 16,
+      "characters": 2136,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 17,
+      "characters": 2260,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 18,
+      "characters": 2112,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 19,
+      "characters": 1684,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 20,
+      "characters": 1171,
+      "keyphrases": [
+        "营业收入",
+        "研发",
+        "净利润",
+        "创新药",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 21,
+      "characters": 1285,
+      "keyphrases": [
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 22,
+      "characters": 1284,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 23,
+      "characters": 1367,
+      "keyphrases": [
+        "创新药",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 24,
+      "characters": 1342,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 25,
+      "characters": 1282,
+      "keyphrases": [
+        "研发",
+        "创新药",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 26,
+      "characters": 1389,
+      "keyphrases": [
+        "研发",
+        "创新药",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 27,
+      "characters": 1277,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 28,
+      "characters": 2950,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 29,
+      "characters": 681,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 30,
+      "characters": 1992,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 31,
+      "characters": 2078,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 32,
+      "characters": 1755,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 33,
+      "characters": 2097,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 34,
+      "characters": 2359,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 35,
+      "characters": 2027,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 36,
+      "characters": 1932,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 37,
+      "characters": 2963,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 38,
+      "characters": 2464,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 39,
+      "characters": 2517,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 40,
+      "characters": 2702,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 41,
+      "characters": 2193,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 42,
+      "characters": 2521,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 43,
+      "characters": 2184,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 44,
+      "characters": 1270,
+      "keyphrases": [
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 45,
+      "characters": 1383,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 46,
+      "characters": 1167,
+      "keyphrases": [
+        "研发",
+        "净利润",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 47,
+      "characters": 752,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 48,
+      "characters": 962,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 49,
+      "characters": 2562,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 50,
+      "characters": 3162,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 51,
+      "characters": 2757,
+      "keyphrases": [
+        "研发",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 52,
+      "characters": 1990,
+      "keyphrases": [
+        "研发",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 53,
+      "characters": 1690,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 54,
+      "characters": 1596,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 55,
+      "characters": 1450,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 56,
+      "characters": 1866,
+      "keyphrases": [
+        "营业收入",
+        "经营活动产生的现金流量净额",
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 57,
+      "characters": 2947,
+      "keyphrases": [
+        "经营活动产生的现金流量净额",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 58,
+      "characters": 1593,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 59,
+      "characters": 1860,
+      "keyphrases": [
+        "营业收入",
+        "研发",
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 60,
+      "characters": 1327,
+      "keyphrases": [
+        "研发",
+        "创新药",
+        "授权"
+      ]
+    },
+    {
+      "physical_page": 61,
+      "characters": 1361,
+      "keyphrases": [
+        "研发",
+        "净利润",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 62,
+      "characters": 1467,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 63,
+      "characters": 2686,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 64,
+      "characters": 1066,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 65,
+      "characters": 1015,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 66,
+      "characters": 837,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 67,
+      "characters": 237,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 68,
+      "characters": 2061,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 69,
+      "characters": 2406,
+      "keyphrases": [
+        "研发",
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 70,
+      "characters": 354,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 71,
+      "characters": 1811,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 72,
+      "characters": 2065,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 73,
+      "characters": 323,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 74,
+      "characters": 184,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 75,
+      "characters": 2861,
+      "keyphrases": [
+        "合并资产负债表"
+      ]
+    },
+    {
+      "physical_page": 76,
+      "characters": 3144,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 77,
+      "characters": 3194,
+      "keyphrases": [
+        "营业收入",
+        "营业总收入",
+        "合并利润表",
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 78,
+      "characters": 2515,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 79,
+      "characters": 2922,
+      "keyphrases": [
+        "营业收入",
+        "研发",
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 80,
+      "characters": 2837,
+      "keyphrases": [
+        "经营活动产生的现金流量净额",
+        "现金流量表",
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 81,
+      "characters": 2845,
+      "keyphrases": [
+        "经营活动产生的现金流量净额",
+        "现金流量表"
+      ]
+    },
+    {
+      "physical_page": 82,
+      "characters": 2455,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 83,
+      "characters": 2981,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 84,
+      "characters": 3566,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 85,
+      "characters": 1265,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 86,
+      "characters": 1291,
+      "keyphrases": [
+        "营业收入",
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 87,
+      "characters": 1093,
+      "keyphrases": [
+        "合并资产负债表",
+        "合并利润表",
+        "现金流量表"
+      ]
+    },
+    {
+      "physical_page": 88,
+      "characters": 1056,
+      "keyphrases": [
+        "合并资产负债表",
+        "合并利润表"
+      ]
+    },
+    {
+      "physical_page": 89,
+      "characters": 1167,
+      "keyphrases": [
+        "合并资产负债表"
+      ]
+    },
+    {
+      "physical_page": 90,
+      "characters": 1267,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 91,
+      "characters": 1305,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 92,
+      "characters": 1315,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 93,
+      "characters": 1158,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 94,
+      "characters": 756,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 95,
+      "characters": 991,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 96,
+      "characters": 1067,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 97,
+      "characters": 1331,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 98,
+      "characters": 1269,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 99,
+      "characters": 865,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 100,
+      "characters": 1322,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 101,
+      "characters": 1080,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 102,
+      "characters": 1012,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 103,
+      "characters": 966,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 104,
+      "characters": 1174,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 105,
+      "characters": 984,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 106,
+      "characters": 1072,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 107,
+      "characters": 1082,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 108,
+      "characters": 1184,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 109,
+      "characters": 1300,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 110,
+      "characters": 1061,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 111,
+      "characters": 1271,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 112,
+      "characters": 1621,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 113,
+      "characters": 1507,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 114,
+      "characters": 1519,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 115,
+      "characters": 1115,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 116,
+      "characters": 2755,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 117,
+      "characters": 1621,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 118,
+      "characters": 513,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 119,
+      "characters": 933,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 120,
+      "characters": 1628,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 121,
+      "characters": 695,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 122,
+      "characters": 463,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 123,
+      "characters": 2283,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 124,
+      "characters": 1687,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 125,
+      "characters": 1639,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 126,
+      "characters": 806,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 127,
+      "characters": 502,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 128,
+      "characters": 1255,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 129,
+      "characters": 2349,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 130,
+      "characters": 2690,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 131,
+      "characters": 1826,
+      "keyphrases": [
+        "创新药"
+      ]
+    },
+    {
+      "physical_page": 132,
+      "characters": 1213,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 133,
+      "characters": 2669,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 134,
+      "characters": 1242,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 135,
+      "characters": 2130,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 136,
+      "characters": 2059,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 137,
+      "characters": 1116,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 138,
+      "characters": 1396,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 139,
+      "characters": 2406,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 140,
+      "characters": 1453,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 141,
+      "characters": 886,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 142,
+      "characters": 988,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 143,
+      "characters": 1764,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 144,
+      "characters": 2006,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 145,
+      "characters": 1907,
+      "keyphrases": [
+        "营业收入"
+      ]
+    },
+    {
+      "physical_page": 146,
+      "characters": 1866,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 147,
+      "characters": 2387,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 148,
+      "characters": 1763,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 149,
+      "characters": 2036,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 150,
+      "characters": 1811,
+      "keyphrases": [
+        "现金流量表",
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 151,
+      "characters": 2166,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 152,
+      "characters": 1875,
+      "keyphrases": [
+        "现金流量表",
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 153,
+      "characters": 2649,
+      "keyphrases": [
+        "经营活动产生的现金流量净额"
+      ]
+    },
+    {
+      "physical_page": 154,
+      "characters": 2145,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 155,
+      "characters": 2184,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 156,
+      "characters": 1015,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 157,
+      "characters": 1851,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 158,
+      "characters": 1185,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 159,
+      "characters": 897,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 160,
+      "characters": 1132,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 161,
+      "characters": 1391,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 162,
+      "characters": 2050,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 163,
+      "characters": 904,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 164,
+      "characters": 1113,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 165,
+      "characters": 1024,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 166,
+      "characters": 2065,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 167,
+      "characters": 932,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 168,
+      "characters": 1709,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 169,
+      "characters": 1270,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 170,
+      "characters": 640,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 171,
+      "characters": 1180,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 172,
+      "characters": 2621,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 173,
+      "characters": 1463,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 174,
+      "characters": 697,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 175,
+      "characters": 463,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 176,
+      "characters": 2175,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 177,
+      "characters": 1771,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 178,
+      "characters": 2592,
+      "keyphrases": [
+        "研发"
+      ]
+    },
+    {
+      "physical_page": 179,
+      "characters": 1996,
+      "keyphrases": []
+    },
+    {
+      "physical_page": 180,
+      "characters": 1660,
+      "keyphrases": [
+        "营业收入"
+      ]
+    },
+    {
+      "physical_page": 181,
+      "characters": 1701,
+      "keyphrases": [
+        "净利润"
+      ]
+    },
+    {
+      "physical_page": 182,
+      "characters": 857,
+      "keyphrases": [
+        "净利润"
+      ]
+    }
+  ]
+}

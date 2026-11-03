@@ -1,0 +1,1639 @@
+[
+  {
+    "physical_page": 1,
+    "text_length": 189,
+    "topics": {},
+    "word_count": 10
+  },
+  {
+    "physical_page": 2,
+    "text_length": 892,
+    "topics": {},
+    "word_count": 55
+  },
+  {
+    "physical_page": 3,
+    "text_length": 115,
+    "topics": {},
+    "word_count": 7
+  },
+  {
+    "physical_page": 4,
+    "text_length": 859,
+    "topics": {},
+    "word_count": 35
+  },
+  {
+    "physical_page": 5,
+    "text_length": 1460,
+    "topics": {},
+    "word_count": 93
+  },
+  {
+    "physical_page": 6,
+    "text_length": 2148,
+    "topics": {},
+    "word_count": 123
+  },
+  {
+    "physical_page": 7,
+    "text_length": 1465,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下",
+        "减值准备"
+      ]
+    },
+    "word_count": 66
+  },
+  {
+    "physical_page": 8,
+    "text_length": 1448,
+    "topics": {
+      "utility_operation": [
+        "发电量",
+        "境内六座"
+      ]
+    },
+    "word_count": 73
+  },
+  {
+    "physical_page": 9,
+    "text_length": 1754,
+    "topics": {},
+    "word_count": 113
+  },
+  {
+    "physical_page": 10,
+    "text_length": 931,
+    "topics": {},
+    "word_count": 67
+  },
+  {
+    "physical_page": 11,
+    "text_length": 1511,
+    "topics": {},
+    "word_count": 87
+  },
+  {
+    "physical_page": 12,
+    "text_length": 1957,
+    "topics": {},
+    "word_count": 114
+  },
+  {
+    "physical_page": 13,
+    "text_length": 2396,
+    "topics": {},
+    "word_count": 112
+  },
+  {
+    "physical_page": 14,
+    "text_length": 1848,
+    "topics": {
+      "utility_operation": [
+        "来水"
+      ]
+    },
+    "word_count": 80
+  },
+  {
+    "physical_page": 15,
+    "text_length": 2161,
+    "topics": {
+      "utility_operation": [
+        "水资源"
+      ]
+    },
+    "word_count": 61
+  },
+  {
+    "physical_page": 16,
+    "text_length": 1109,
+    "topics": {
+      "utility_operation": [
+        "发电量",
+        "来水"
+      ]
+    },
+    "word_count": 38
+  },
+  {
+    "physical_page": 17,
+    "text_length": 1019,
+    "topics": {
+      "utility_operation": [
+        "发电量"
+      ]
+    },
+    "word_count": 38
+  },
+  {
+    "physical_page": 18,
+    "text_length": 1047,
+    "topics": {},
+    "word_count": 91
+  },
+  {
+    "physical_page": 19,
+    "text_length": 1607,
+    "topics": {
+      "utility_operation": [
+        "水资源"
+      ]
+    },
+    "word_count": 61
+  },
+  {
+    "physical_page": 20,
+    "text_length": 1604,
+    "topics": {},
+    "word_count": 68
+  },
+  {
+    "physical_page": 21,
+    "text_length": 2658,
+    "topics": {},
+    "word_count": 103
+  },
+  {
+    "physical_page": 22,
+    "text_length": 2068,
+    "topics": {},
+    "word_count": 69
+  },
+  {
+    "physical_page": 23,
+    "text_length": 2039,
+    "topics": {},
+    "word_count": 81
+  },
+  {
+    "physical_page": 24,
+    "text_length": 1501,
+    "topics": {},
+    "word_count": 72
+  },
+  {
+    "physical_page": 25,
+    "text_length": 614,
+    "topics": {},
+    "word_count": 37
+  },
+  {
+    "physical_page": 26,
+    "text_length": 1520,
+    "topics": {},
+    "word_count": 105
+  },
+  {
+    "physical_page": 27,
+    "text_length": 844,
+    "topics": {},
+    "word_count": 59
+  },
+  {
+    "physical_page": 28,
+    "text_length": 2575,
+    "topics": {},
+    "word_count": 134
+  },
+  {
+    "physical_page": 29,
+    "text_length": 2697,
+    "topics": {},
+    "word_count": 119
+  },
+  {
+    "physical_page": 30,
+    "text_length": 206,
+    "topics": {},
+    "word_count": 15
+  },
+  {
+    "physical_page": 31,
+    "text_length": 3449,
+    "topics": {},
+    "word_count": 194
+  },
+  {
+    "physical_page": 32,
+    "text_length": 4578,
+    "topics": {},
+    "word_count": 212
+  },
+  {
+    "physical_page": 33,
+    "text_length": 1745,
+    "topics": {},
+    "word_count": 137
+  },
+  {
+    "physical_page": 34,
+    "text_length": 1676,
+    "topics": {},
+    "word_count": 131
+  },
+  {
+    "physical_page": 35,
+    "text_length": 1631,
+    "topics": {},
+    "word_count": 90
+  },
+  {
+    "physical_page": 36,
+    "text_length": 1698,
+    "topics": {},
+    "word_count": 82
+  },
+  {
+    "physical_page": 37,
+    "text_length": 1144,
+    "topics": {},
+    "word_count": 57
+  },
+  {
+    "physical_page": 38,
+    "text_length": 2228,
+    "topics": {},
+    "word_count": 95
+  },
+  {
+    "physical_page": 39,
+    "text_length": 745,
+    "topics": {},
+    "word_count": 38
+  },
+  {
+    "physical_page": 40,
+    "text_length": 1434,
+    "topics": {},
+    "word_count": 66
+  },
+  {
+    "physical_page": 41,
+    "text_length": 1491,
+    "topics": {},
+    "word_count": 66
+  },
+  {
+    "physical_page": 42,
+    "text_length": 5161,
+    "topics": {},
+    "word_count": 292
+  },
+  {
+    "physical_page": 43,
+    "text_length": 2733,
+    "topics": {},
+    "word_count": 159
+  },
+  {
+    "physical_page": 44,
+    "text_length": 228,
+    "topics": {},
+    "word_count": 11
+  },
+  {
+    "physical_page": 45,
+    "text_length": 1407,
+    "topics": {},
+    "word_count": 74
+  },
+  {
+    "physical_page": 46,
+    "text_length": 1581,
+    "topics": {
+      "risk": [
+        "审计报告"
+      ]
+    },
+    "word_count": 106
+  },
+  {
+    "physical_page": 47,
+    "text_length": 1988,
+    "topics": {
+      "pharma_operation": [
+        "开发支出"
+      ],
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 119
+  },
+  {
+    "physical_page": 48,
+    "text_length": 2061,
+    "topics": {},
+    "word_count": 114
+  },
+  {
+    "physical_page": 49,
+    "text_length": 2227,
+    "topics": {
+      "pharma_operation": [
+        "开发支出"
+      ],
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 105
+  },
+  {
+    "physical_page": 50,
+    "text_length": 1975,
+    "topics": {},
+    "word_count": 101
+  },
+  {
+    "physical_page": 51,
+    "text_length": 2245,
+    "topics": {},
+    "word_count": 109
+  },
+  {
+    "physical_page": 52,
+    "text_length": 2333,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 108
+  },
+  {
+    "physical_page": 53,
+    "text_length": 1963,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 87
+  },
+  {
+    "physical_page": 54,
+    "text_length": 1367,
+    "topics": {},
+    "word_count": 79
+  },
+  {
+    "physical_page": 55,
+    "text_length": 2465,
+    "topics": {},
+    "word_count": 103
+  },
+  {
+    "physical_page": 56,
+    "text_length": 2092,
+    "topics": {},
+    "word_count": 93
+  },
+  {
+    "physical_page": 57,
+    "text_length": 1177,
+    "topics": {},
+    "word_count": 50
+  },
+  {
+    "physical_page": 58,
+    "text_length": 3598,
+    "topics": {},
+    "word_count": 118
+  },
+  {
+    "physical_page": 59,
+    "text_length": 3502,
+    "topics": {},
+    "word_count": 120
+  },
+  {
+    "physical_page": 60,
+    "text_length": 2785,
+    "topics": {},
+    "word_count": 76
+  },
+  {
+    "physical_page": 61,
+    "text_length": 2518,
+    "topics": {},
+    "word_count": 89
+  },
+  {
+    "physical_page": 62,
+    "text_length": 2848,
+    "topics": {},
+    "word_count": 88
+  },
+  {
+    "physical_page": 63,
+    "text_length": 1626,
+    "topics": {},
+    "word_count": 44
+  },
+  {
+    "physical_page": 64,
+    "text_length": 1563,
+    "topics": {},
+    "word_count": 92
+  },
+  {
+    "physical_page": 65,
+    "text_length": 1025,
+    "topics": {},
+    "word_count": 57
+  },
+  {
+    "physical_page": 66,
+    "text_length": 1391,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 60
+  },
+  {
+    "physical_page": 67,
+    "text_length": 1163,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 39
+  },
+  {
+    "physical_page": 68,
+    "text_length": 1446,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 40
+  },
+  {
+    "physical_page": 69,
+    "text_length": 1140,
+    "topics": {},
+    "word_count": 36
+  },
+  {
+    "physical_page": 70,
+    "text_length": 1223,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ]
+    },
+    "word_count": 41
+  },
+  {
+    "physical_page": 71,
+    "text_length": 1204,
+    "topics": {},
+    "word_count": 43
+  },
+  {
+    "physical_page": 72,
+    "text_length": 1390,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 39
+  },
+  {
+    "physical_page": 73,
+    "text_length": 1310,
+    "topics": {},
+    "word_count": 39
+  },
+  {
+    "physical_page": 74,
+    "text_length": 1250,
+    "topics": {},
+    "word_count": 39
+  },
+  {
+    "physical_page": 75,
+    "text_length": 1299,
+    "topics": {},
+    "word_count": 39
+  },
+  {
+    "physical_page": 76,
+    "text_length": 1355,
+    "topics": {},
+    "word_count": 40
+  },
+  {
+    "physical_page": 77,
+    "text_length": 1247,
+    "topics": {},
+    "word_count": 40
+  },
+  {
+    "physical_page": 78,
+    "text_length": 1083,
+    "topics": {
+      "utility_operation": [
+        "水电业务"
+      ]
+    },
+    "word_count": 40
+  },
+  {
+    "physical_page": 79,
+    "text_length": 823,
+    "topics": {},
+    "word_count": 44
+  },
+  {
+    "physical_page": 80,
+    "text_length": 1010,
+    "topics": {},
+    "word_count": 40
+  },
+  {
+    "physical_page": 81,
+    "text_length": 1053,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 40
+  },
+  {
+    "physical_page": 82,
+    "text_length": 1295,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 39
+  },
+  {
+    "physical_page": 83,
+    "text_length": 1238,
+    "topics": {},
+    "word_count": 40
+  },
+  {
+    "physical_page": 84,
+    "text_length": 1367,
+    "topics": {},
+    "word_count": 40
+  },
+  {
+    "physical_page": 85,
+    "text_length": 1239,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 57
+  },
+  {
+    "physical_page": 86,
+    "text_length": 1485,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "indirect_cash": [
+        "固定资产折旧"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 86
+  },
+  {
+    "physical_page": 87,
+    "text_length": 1065,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "indirect_cash": [
+        "固定资产折旧"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 39
+  },
+  {
+    "physical_page": 88,
+    "text_length": 1116,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 42
+  },
+  {
+    "physical_page": 89,
+    "text_length": 1357,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "pharma_operation": [
+        "资本化"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 49
+  },
+  {
+    "physical_page": 90,
+    "text_length": 1091,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 41
+  },
+  {
+    "physical_page": 91,
+    "text_length": 1155,
+    "topics": {
+      "risk": [
+        "减值准备",
+        "合同负债"
+      ]
+    },
+    "word_count": 43
+  },
+  {
+    "physical_page": 92,
+    "text_length": 1057,
+    "topics": {},
+    "word_count": 41
+  },
+  {
+    "physical_page": 93,
+    "text_length": 1099,
+    "topics": {
+      "risk": [
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 43
+  },
+  {
+    "physical_page": 94,
+    "text_length": 962,
+    "topics": {
+      "risk": [
+        "减值准备",
+        "履约义务"
+      ]
+    },
+    "word_count": 37
+  },
+  {
+    "physical_page": 95,
+    "text_length": 1196,
+    "topics": {},
+    "word_count": 40
+  },
+  {
+    "physical_page": 96,
+    "text_length": 1142,
+    "topics": {},
+    "word_count": 41
+  },
+  {
+    "physical_page": 97,
+    "text_length": 1174,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ]
+    },
+    "word_count": 39
+  },
+  {
+    "physical_page": 98,
+    "text_length": 1180,
+    "topics": {},
+    "word_count": 65
+  },
+  {
+    "physical_page": 99,
+    "text_length": 1899,
+    "topics": {
+      "utility_operation": [
+        "发电量",
+        "水资源"
+      ]
+    },
+    "word_count": 86
+  },
+  {
+    "physical_page": 100,
+    "text_length": 1311,
+    "topics": {},
+    "word_count": 76
+  },
+  {
+    "physical_page": 101,
+    "text_length": 847,
+    "topics": {},
+    "word_count": 58
+  },
+  {
+    "physical_page": 102,
+    "text_length": 501,
+    "topics": {},
+    "word_count": 22
+  },
+  {
+    "physical_page": 103,
+    "text_length": 2095,
+    "topics": {
+      "utility_operation": [
+        "水电业务"
+      ]
+    },
+    "word_count": 150
+  },
+  {
+    "physical_page": 104,
+    "text_length": 1090,
+    "topics": {},
+    "word_count": 71
+  },
+  {
+    "physical_page": 105,
+    "text_length": 1180,
+    "topics": {},
+    "word_count": 80
+  },
+  {
+    "physical_page": 106,
+    "text_length": 521,
+    "topics": {},
+    "word_count": 44
+  },
+  {
+    "physical_page": 107,
+    "text_length": 943,
+    "topics": {},
+    "word_count": 76
+  },
+  {
+    "physical_page": 108,
+    "text_length": 1209,
+    "topics": {},
+    "word_count": 70
+  },
+  {
+    "physical_page": 109,
+    "text_length": 1092,
+    "topics": {},
+    "word_count": 61
+  },
+  {
+    "physical_page": 110,
+    "text_length": 373,
+    "topics": {},
+    "word_count": 33
+  },
+  {
+    "physical_page": 111,
+    "text_length": 1992,
+    "topics": {},
+    "word_count": 102
+  },
+  {
+    "physical_page": 112,
+    "text_length": 1569,
+    "topics": {},
+    "word_count": 109
+  },
+  {
+    "physical_page": 113,
+    "text_length": 1639,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 105
+  },
+  {
+    "physical_page": 114,
+    "text_length": 1057,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ]
+    },
+    "word_count": 65
+  },
+  {
+    "physical_page": 115,
+    "text_length": 610,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 47
+  },
+  {
+    "physical_page": 116,
+    "text_length": 466,
+    "topics": {},
+    "word_count": 42
+  },
+  {
+    "physical_page": 117,
+    "text_length": 2881,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 105
+  },
+  {
+    "physical_page": 118,
+    "text_length": 2805,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 105
+  },
+  {
+    "physical_page": 119,
+    "text_length": 2643,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 86
+  },
+  {
+    "physical_page": 120,
+    "text_length": 2381,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 79
+  },
+  {
+    "physical_page": 121,
+    "text_length": 2352,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 90
+  },
+  {
+    "physical_page": 122,
+    "text_length": 1670,
+    "topics": {},
+    "word_count": 79
+  },
+  {
+    "physical_page": 123,
+    "text_length": 1632,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 82
+  },
+  {
+    "physical_page": 124,
+    "text_length": 448,
+    "topics": {},
+    "word_count": 23
+  },
+  {
+    "physical_page": 125,
+    "text_length": 2978,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 133
+  },
+  {
+    "physical_page": 126,
+    "text_length": 500,
+    "topics": {},
+    "word_count": 24
+  },
+  {
+    "physical_page": 127,
+    "text_length": 842,
+    "topics": {},
+    "word_count": 51
+  },
+  {
+    "physical_page": 128,
+    "text_length": 2701,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 118
+  },
+  {
+    "physical_page": 129,
+    "text_length": 2927,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 119
+  },
+  {
+    "physical_page": 130,
+    "text_length": 615,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 29
+  },
+  {
+    "physical_page": 131,
+    "text_length": 1721,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 95
+  },
+  {
+    "physical_page": 132,
+    "text_length": 2499,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 127
+  },
+  {
+    "physical_page": 133,
+    "text_length": 1280,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 80
+  },
+  {
+    "physical_page": 134,
+    "text_length": 918,
+    "topics": {
+      "risk": [
+        "业绩承诺"
+      ]
+    },
+    "word_count": 51
+  },
+  {
+    "physical_page": 135,
+    "text_length": 2089,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "indirect_cash": [
+        "固定资产折旧"
+      ],
+      "risk": [
+        "同一控制下",
+        "减值准备"
+      ]
+    },
+    "word_count": 122
+  },
+  {
+    "physical_page": 136,
+    "text_length": 1213,
+    "topics": {},
+    "word_count": 67
+  },
+  {
+    "physical_page": 137,
+    "text_length": 1077,
+    "topics": {},
+    "word_count": 69
+  },
+  {
+    "physical_page": 138,
+    "text_length": 1150,
+    "topics": {},
+    "word_count": 70
+  },
+  {
+    "physical_page": 139,
+    "text_length": 1059,
+    "topics": {
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 72
+  },
+  {
+    "physical_page": 140,
+    "text_length": 2621,
+    "topics": {},
+    "word_count": 137
+  },
+  {
+    "physical_page": 141,
+    "text_length": 1348,
+    "topics": {},
+    "word_count": 74
+  },
+  {
+    "physical_page": 142,
+    "text_length": 927,
+    "topics": {},
+    "word_count": 43
+  },
+  {
+    "physical_page": 143,
+    "text_length": 2756,
+    "topics": {},
+    "word_count": 207
+  },
+  {
+    "physical_page": 144,
+    "text_length": 1048,
+    "topics": {},
+    "word_count": 51
+  },
+  {
+    "physical_page": 145,
+    "text_length": 4875,
+    "topics": {},
+    "word_count": 255
+  },
+  {
+    "physical_page": 146,
+    "text_length": 4389,
+    "topics": {},
+    "word_count": 260
+  },
+  {
+    "physical_page": 147,
+    "text_length": 2073,
+    "topics": {},
+    "word_count": 97
+  },
+  {
+    "physical_page": 148,
+    "text_length": 336,
+    "topics": {},
+    "word_count": 20
+  },
+  {
+    "physical_page": 149,
+    "text_length": 1087,
+    "topics": {},
+    "word_count": 59
+  },
+  {
+    "physical_page": 150,
+    "text_length": 1065,
+    "topics": {},
+    "word_count": 65
+  },
+  {
+    "physical_page": 151,
+    "text_length": 1301,
+    "topics": {},
+    "word_count": 71
+  },
+  {
+    "physical_page": 152,
+    "text_length": 1133,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 60
+  },
+  {
+    "physical_page": 153,
+    "text_length": 1661,
+    "topics": {},
+    "word_count": 92
+  },
+  {
+    "physical_page": 154,
+    "text_length": 1518,
+    "topics": {
+      "utility_operation": [
+        "水资源"
+      ],
+      "risk": [
+        "履约义务"
+      ]
+    },
+    "word_count": 82
+  },
+  {
+    "physical_page": 155,
+    "text_length": 1887,
+    "topics": {},
+    "word_count": 88
+  },
+  {
+    "physical_page": 156,
+    "text_length": 1724,
+    "topics": {},
+    "word_count": 81
+  },
+  {
+    "physical_page": 157,
+    "text_length": 1430,
+    "topics": {},
+    "word_count": 74
+  },
+  {
+    "physical_page": 158,
+    "text_length": 1880,
+    "topics": {},
+    "word_count": 81
+  },
+  {
+    "physical_page": 159,
+    "text_length": 1424,
+    "topics": {},
+    "word_count": 71
+  },
+  {
+    "physical_page": 160,
+    "text_length": 1612,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "indirect_cash": [
+        "净利润调节为经营活动现金流量",
+        "将净利润调节",
+        "固定资产折旧"
+      ],
+      "risk": [
+        "同一控制下",
+        "现金流量表补充资料",
+        "减值准备"
+      ]
+    },
+    "word_count": 76
+  },
+  {
+    "physical_page": 161,
+    "text_length": 2055,
+    "topics": {
+      "indirect_cash": [
+        "经营性应收项目",
+        "经营性应付项目",
+        "存货的减少",
+        "经营活动产生的现金流量净额"
+      ]
+    },
+    "word_count": 88
+  },
+  {
+    "physical_page": 162,
+    "text_length": 1691,
+    "topics": {},
+    "word_count": 91
+  },
+  {
+    "physical_page": 163,
+    "text_length": 2944,
+    "topics": {},
+    "word_count": 165
+  },
+  {
+    "physical_page": 164,
+    "text_length": 1768,
+    "topics": {},
+    "word_count": 107
+  },
+  {
+    "physical_page": 165,
+    "text_length": 867,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "pharma_operation": [
+        "开发支出",
+        "资本化"
+      ],
+      "risk": [
+        "同一控制下",
+        "减值准备"
+      ]
+    },
+    "word_count": 62
+  },
+  {
+    "physical_page": 166,
+    "text_length": 240,
+    "topics": {},
+    "word_count": 14
+  },
+  {
+    "physical_page": 167,
+    "text_length": 2106,
+    "topics": {},
+    "word_count": 176
+  },
+  {
+    "physical_page": 168,
+    "text_length": 2228,
+    "topics": {},
+    "word_count": 197
+  },
+  {
+    "physical_page": 169,
+    "text_length": 655,
+    "topics": {},
+    "word_count": 56
+  },
+  {
+    "physical_page": 170,
+    "text_length": 1473,
+    "topics": {},
+    "word_count": 107
+  },
+  {
+    "physical_page": 171,
+    "text_length": 1829,
+    "topics": {},
+    "word_count": 88
+  },
+  {
+    "physical_page": 172,
+    "text_length": 2372,
+    "topics": {},
+    "word_count": 123
+  },
+  {
+    "physical_page": 173,
+    "text_length": 1589,
+    "topics": {},
+    "word_count": 55
+  },
+  {
+    "physical_page": 174,
+    "text_length": 340,
+    "topics": {},
+    "word_count": 21
+  },
+  {
+    "physical_page": 175,
+    "text_length": 1370,
+    "topics": {},
+    "word_count": 77
+  },
+  {
+    "physical_page": 176,
+    "text_length": 2178,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 83
+  },
+  {
+    "physical_page": 177,
+    "text_length": 3085,
+    "topics": {},
+    "word_count": 124
+  },
+  {
+    "physical_page": 178,
+    "text_length": 975,
+    "topics": {},
+    "word_count": 49
+  },
+  {
+    "physical_page": 179,
+    "text_length": 827,
+    "topics": {},
+    "word_count": 63
+  },
+  {
+    "physical_page": 180,
+    "text_length": 913,
+    "topics": {},
+    "word_count": 53
+  },
+  {
+    "physical_page": 181,
+    "text_length": 1018,
+    "topics": {},
+    "word_count": 51
+  },
+  {
+    "physical_page": 182,
+    "text_length": 1402,
+    "topics": {},
+    "word_count": 80
+  },
+  {
+    "physical_page": 183,
+    "text_length": 2019,
+    "topics": {},
+    "word_count": 106
+  },
+  {
+    "physical_page": 184,
+    "text_length": 1850,
+    "topics": {},
+    "word_count": 102
+  },
+  {
+    "physical_page": 185,
+    "text_length": 2258,
+    "topics": {},
+    "word_count": 133
+  },
+  {
+    "physical_page": 186,
+    "text_length": 2604,
+    "topics": {},
+    "word_count": 153
+  },
+  {
+    "physical_page": 187,
+    "text_length": 1882,
+    "topics": {},
+    "word_count": 102
+  },
+  {
+    "physical_page": 188,
+    "text_length": 1608,
+    "topics": {},
+    "word_count": 101
+  },
+  {
+    "physical_page": 189,
+    "text_length": 3379,
+    "topics": {},
+    "word_count": 201
+  },
+  {
+    "physical_page": 190,
+    "text_length": 3379,
+    "topics": {},
+    "word_count": 201
+  },
+  {
+    "physical_page": 191,
+    "text_length": 3303,
+    "topics": {},
+    "word_count": 201
+  },
+  {
+    "physical_page": 192,
+    "text_length": 2446,
+    "topics": {},
+    "word_count": 156
+  },
+  {
+    "physical_page": 193,
+    "text_length": 2265,
+    "topics": {},
+    "word_count": 143
+  },
+  {
+    "physical_page": 194,
+    "text_length": 2447,
+    "topics": {},
+    "word_count": 133
+  },
+  {
+    "physical_page": 195,
+    "text_length": 2218,
+    "topics": {},
+    "word_count": 125
+  },
+  {
+    "physical_page": 196,
+    "text_length": 2556,
+    "topics": {},
+    "word_count": 126
+  },
+  {
+    "physical_page": 197,
+    "text_length": 2878,
+    "topics": {
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 135
+  },
+  {
+    "physical_page": 198,
+    "text_length": 1531,
+    "topics": {},
+    "word_count": 85
+  },
+  {
+    "physical_page": 199,
+    "text_length": 657,
+    "topics": {},
+    "word_count": 54
+  },
+  {
+    "physical_page": 200,
+    "text_length": 847,
+    "topics": {},
+    "word_count": 68
+  },
+  {
+    "physical_page": 201,
+    "text_length": 1085,
+    "topics": {},
+    "word_count": 64
+  },
+  {
+    "physical_page": 202,
+    "text_length": 1452,
+    "topics": {
+      "utility_operation": [
+        "水电业务"
+      ]
+    },
+    "word_count": 85
+  },
+  {
+    "physical_page": 203,
+    "text_length": 1405,
+    "topics": {},
+    "word_count": 84
+  },
+  {
+    "physical_page": 204,
+    "text_length": 1022,
+    "topics": {},
+    "word_count": 64
+  },
+  {
+    "physical_page": 205,
+    "text_length": 1018,
+    "topics": {},
+    "word_count": 68
+  },
+  {
+    "physical_page": 206,
+    "text_length": 1381,
+    "topics": {},
+    "word_count": 82
+  },
+  {
+    "physical_page": 207,
+    "text_length": 1040,
+    "topics": {},
+    "word_count": 76
+  },
+  {
+    "physical_page": 208,
+    "text_length": 2543,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 97
+  },
+  {
+    "physical_page": 209,
+    "text_length": 2557,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 109
+  },
+  {
+    "physical_page": 210,
+    "text_length": 2754,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 110
+  },
+  {
+    "physical_page": 211,
+    "text_length": 2002,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 78
+  },
+  {
+    "physical_page": 212,
+    "text_length": 1206,
+    "topics": {
+      "risk": [
+        "履约义务"
+      ]
+    },
+    "word_count": 75
+  },
+  {
+    "physical_page": 213,
+    "text_length": 1234,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下",
+        "减值准备"
+      ]
+    },
+    "word_count": 63
+  },
+  {
+    "physical_page": 214,
+    "text_length": 731,
+    "topics": {},
+    "word_count": 42
+  }
+]

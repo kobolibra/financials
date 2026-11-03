@@ -1,7 +1,7 @@
 {
   "edition": "2026H1",
   "primary_home": "/",
-  "published_issuer_count": 8,
+  "published_issuer_count": 10,
   "unified_directory": true,
   "issuers": [
     {
@@ -188,11 +188,53 @@
       "spark_names": null,
       "rank": 8,
       "period": "2026H1"
+    },
+    {
+      "code": "600900",
+      "name": "长江电力",
+      "exchange": "SH",
+      "industry": "公用事业",
+      "sub": "六座梯级水电站与国际业务",
+      "story": "利润增长13%，为什么经营现金只增长0.57%？",
+      "deck": "从1327.44亿千瓦时物理发电量，进入收入确认、成本、融资、财务投资与受限现金；2025H1比较数已按同控合并追溯调整。",
+      "href": "/600900.html",
+      "kind": "研究预览",
+      "stage": "source-review",
+      "note": "水电原报告214页 · 完整三表与全间接法CFO核算 · 不以发电量冒充售电量",
+      "figures": 8,
+      "signal": "241.28亿",
+      "signal_label": "2026H1经营现金流净额",
+      "source": "2026H1 CNINFO完整原始披露214物理页",
+      "spark": null,
+      "spark_names": null,
+      "rank": 9,
+      "period": "2026H1"
+    },
+    {
+      "code": "600276",
+      "name": "恒瑞医药",
+      "exchange": "SH",
+      "industry": "医药",
+      "sub": "创新药销售、许可交易与研发",
+      "story": "法定利润持平，为什么经营现金流下降54%？",
+      "deck": "商品销售、授权许可与创新药销售子集不能重复加总；辨析公允价值、研发资本化、现金回款与非现金背书票据的差异。",
+      "href": "/600276.html",
+      "kind": "研究预览",
+      "stage": "source-review",
+      "note": "医药原报告182页 · 许可与药品分源真实桑基 · 全间接法CFO与票据非现金结算",
+      "figures": 8,
+      "signal": "19.87亿",
+      "signal_label": "2026H1经营现金流净额",
+      "source": "2026H1 CNINFO完整原始披露182物理页",
+      "spark": null,
+      "spark_names": null,
+      "rank": 10,
+      "period": "2026H1"
     }
   ],
   "topic": {
     "name": "光互连产业链比较",
     "href": "/optical-2026h1.html"
   },
-  "research_scope": "SOURCE_LIMITED_PREVIEWS_NOT_INDEPENDENT_EDITOR_CERTIFIED__ASR_NEW_SEMANTIC_NOTE_EXCEPTION"
+  "research_scope": "SOURCE_LIMITED_TEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION"
 }

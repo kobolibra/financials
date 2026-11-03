@@ -1,0 +1,1462 @@
+[
+  {
+    "physical_page": 1,
+    "text_length": 187,
+    "topics": {},
+    "word_count": 10
+  },
+  {
+    "physical_page": 2,
+    "text_length": 671,
+    "topics": {},
+    "word_count": 44
+  },
+  {
+    "physical_page": 3,
+    "text_length": 1136,
+    "topics": {},
+    "word_count": 38
+  },
+  {
+    "physical_page": 4,
+    "text_length": 1566,
+    "topics": {},
+    "word_count": 143
+  },
+  {
+    "physical_page": 5,
+    "text_length": 1498,
+    "topics": {},
+    "word_count": 100
+  },
+  {
+    "physical_page": 6,
+    "text_length": 1892,
+    "topics": {
+      "indirect_cash": [
+        "经营活动产生的现金流量净额"
+      ]
+    },
+    "word_count": 111
+  },
+  {
+    "physical_page": 7,
+    "text_length": 1676,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 84
+  },
+  {
+    "physical_page": 8,
+    "text_length": 1088,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 44
+  },
+  {
+    "physical_page": 9,
+    "text_length": 1324,
+    "topics": {
+      "pharma_operation": [
+        "创新药",
+        "研发投入"
+      ]
+    },
+    "word_count": 52
+  },
+  {
+    "physical_page": 10,
+    "text_length": 459,
+    "topics": {},
+    "word_count": 16
+  },
+  {
+    "physical_page": 11,
+    "text_length": 36277,
+    "topics": {},
+    "word_count": 515
+  },
+  {
+    "physical_page": 12,
+    "text_length": 887,
+    "topics": {},
+    "word_count": 48
+  },
+  {
+    "physical_page": 13,
+    "text_length": 1195,
+    "topics": {},
+    "word_count": 46
+  },
+  {
+    "physical_page": 14,
+    "text_length": 1252,
+    "topics": {},
+    "word_count": 35
+  },
+  {
+    "physical_page": 15,
+    "text_length": 1692,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 96
+  },
+  {
+    "physical_page": 16,
+    "text_length": 2136,
+    "topics": {},
+    "word_count": 108
+  },
+  {
+    "physical_page": 17,
+    "text_length": 2260,
+    "topics": {},
+    "word_count": 97
+  },
+  {
+    "physical_page": 18,
+    "text_length": 2112,
+    "topics": {},
+    "word_count": 106
+  },
+  {
+    "physical_page": 19,
+    "text_length": 1684,
+    "topics": {},
+    "word_count": 101
+  },
+  {
+    "physical_page": 20,
+    "text_length": 1171,
+    "topics": {
+      "pharma_operation": [
+        "创新药销售",
+        "创新药收入",
+        "创新药",
+        "研发投入"
+      ]
+    },
+    "word_count": 54
+  },
+  {
+    "physical_page": 21,
+    "text_length": 1285,
+    "topics": {
+      "pharma_operation": [
+        "创新药销售",
+        "创新药收入",
+        "创新药"
+      ]
+    },
+    "word_count": 43
+  },
+  {
+    "physical_page": 22,
+    "text_length": 1284,
+    "topics": {
+      "pharma_operation": [
+        "创新药",
+        "对外许可",
+        "首付款",
+        "里程碑"
+      ],
+      "risk": [
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 61
+  },
+  {
+    "physical_page": 23,
+    "text_length": 1367,
+    "topics": {
+      "pharma_operation": [
+        "创新药销售",
+        "创新药"
+      ]
+    },
+    "word_count": 44
+  },
+  {
+    "physical_page": 24,
+    "text_length": 1342,
+    "topics": {},
+    "word_count": 61
+  },
+  {
+    "physical_page": 25,
+    "text_length": 1282,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 67
+  },
+  {
+    "physical_page": 26,
+    "text_length": 1389,
+    "topics": {
+      "pharma_operation": [
+        "创新药",
+        "首付款",
+        "里程碑"
+      ]
+    },
+    "word_count": 63
+  },
+  {
+    "physical_page": 27,
+    "text_length": 1277,
+    "topics": {},
+    "word_count": 45
+  },
+  {
+    "physical_page": 28,
+    "text_length": 2950,
+    "topics": {},
+    "word_count": 152
+  },
+  {
+    "physical_page": 29,
+    "text_length": 681,
+    "topics": {},
+    "word_count": 33
+  },
+  {
+    "physical_page": 30,
+    "text_length": 1992,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 134
+  },
+  {
+    "physical_page": 31,
+    "text_length": 2078,
+    "topics": {},
+    "word_count": 138
+  },
+  {
+    "physical_page": 32,
+    "text_length": 1755,
+    "topics": {},
+    "word_count": 120
+  },
+  {
+    "physical_page": 33,
+    "text_length": 2097,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 95
+  },
+  {
+    "physical_page": 34,
+    "text_length": 2359,
+    "topics": {},
+    "word_count": 108
+  },
+  {
+    "physical_page": 35,
+    "text_length": 2027,
+    "topics": {},
+    "word_count": 111
+  },
+  {
+    "physical_page": 36,
+    "text_length": 1932,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 104
+  },
+  {
+    "physical_page": 37,
+    "text_length": 2963,
+    "topics": {},
+    "word_count": 154
+  },
+  {
+    "physical_page": 38,
+    "text_length": 2464,
+    "topics": {},
+    "word_count": 125
+  },
+  {
+    "physical_page": 39,
+    "text_length": 2517,
+    "topics": {},
+    "word_count": 121
+  },
+  {
+    "physical_page": 40,
+    "text_length": 2702,
+    "topics": {},
+    "word_count": 125
+  },
+  {
+    "physical_page": 41,
+    "text_length": 2193,
+    "topics": {},
+    "word_count": 124
+  },
+  {
+    "physical_page": 42,
+    "text_length": 2521,
+    "topics": {},
+    "word_count": 128
+  },
+  {
+    "physical_page": 43,
+    "text_length": 2184,
+    "topics": {},
+    "word_count": 123
+  },
+  {
+    "physical_page": 44,
+    "text_length": 1270,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 71
+  },
+  {
+    "physical_page": 45,
+    "text_length": 1383,
+    "topics": {},
+    "word_count": 73
+  },
+  {
+    "physical_page": 46,
+    "text_length": 1167,
+    "topics": {
+      "pharma_operation": [
+        "创新药",
+        "研发投入"
+      ]
+    },
+    "word_count": 57
+  },
+  {
+    "physical_page": 47,
+    "text_length": 752,
+    "topics": {
+      "pharma_operation": [
+        "对外许可"
+      ]
+    },
+    "word_count": 30
+  },
+  {
+    "physical_page": 48,
+    "text_length": 962,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 38
+  },
+  {
+    "physical_page": 49,
+    "text_length": 2562,
+    "topics": {},
+    "word_count": 112
+  },
+  {
+    "physical_page": 50,
+    "text_length": 3162,
+    "topics": {},
+    "word_count": 131
+  },
+  {
+    "physical_page": 51,
+    "text_length": 2757,
+    "topics": {},
+    "word_count": 92
+  },
+  {
+    "physical_page": 52,
+    "text_length": 1990,
+    "topics": {},
+    "word_count": 66
+  },
+  {
+    "physical_page": 53,
+    "text_length": 1690,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 68
+  },
+  {
+    "physical_page": 54,
+    "text_length": 1596,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 61
+  },
+  {
+    "physical_page": 55,
+    "text_length": 1450,
+    "topics": {},
+    "word_count": 56
+  },
+  {
+    "physical_page": 56,
+    "text_length": 1866,
+    "topics": {
+      "pharma_operation": [
+        "创新药",
+        "对外许可"
+      ],
+      "indirect_cash": [
+        "经营活动产生的现金流量净额"
+      ]
+    },
+    "word_count": 83
+  },
+  {
+    "physical_page": 57,
+    "text_length": 2947,
+    "topics": {
+      "pharma_operation": [
+        "对外许可",
+        "开发支出"
+      ],
+      "indirect_cash": [
+        "经营活动产生的现金流量净额"
+      ],
+      "risk": [
+        "合同负债",
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 155
+  },
+  {
+    "physical_page": 58,
+    "text_length": 1593,
+    "topics": {},
+    "word_count": 108
+  },
+  {
+    "physical_page": 59,
+    "text_length": 1860,
+    "topics": {},
+    "word_count": 123
+  },
+  {
+    "physical_page": 60,
+    "text_length": 1327,
+    "topics": {
+      "pharma_operation": [
+        "创新药",
+        "授权许可",
+        "对外许可",
+        "里程碑"
+      ]
+    },
+    "word_count": 51
+  },
+  {
+    "physical_page": 61,
+    "text_length": 1361,
+    "topics": {
+      "pharma_operation": [
+        "创新药销售",
+        "创新药",
+        "研发投入"
+      ]
+    },
+    "word_count": 74
+  },
+  {
+    "physical_page": 62,
+    "text_length": 1467,
+    "topics": {},
+    "word_count": 110
+  },
+  {
+    "physical_page": 63,
+    "text_length": 2686,
+    "topics": {},
+    "word_count": 75
+  },
+  {
+    "physical_page": 64,
+    "text_length": 1066,
+    "topics": {},
+    "word_count": 59
+  },
+  {
+    "physical_page": 65,
+    "text_length": 1015,
+    "topics": {},
+    "word_count": 73
+  },
+  {
+    "physical_page": 66,
+    "text_length": 837,
+    "topics": {},
+    "word_count": 73
+  },
+  {
+    "physical_page": 67,
+    "text_length": 237,
+    "topics": {},
+    "word_count": 26
+  },
+  {
+    "physical_page": 68,
+    "text_length": 2061,
+    "topics": {},
+    "word_count": 140
+  },
+  {
+    "physical_page": 69,
+    "text_length": 2406,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 151
+  },
+  {
+    "physical_page": 70,
+    "text_length": 354,
+    "topics": {},
+    "word_count": 34
+  },
+  {
+    "physical_page": 71,
+    "text_length": 1811,
+    "topics": {},
+    "word_count": 121
+  },
+  {
+    "physical_page": 72,
+    "text_length": 2065,
+    "topics": {},
+    "word_count": 126
+  },
+  {
+    "physical_page": 73,
+    "text_length": 323,
+    "topics": {},
+    "word_count": 31
+  },
+  {
+    "physical_page": 74,
+    "text_length": 184,
+    "topics": {},
+    "word_count": 13
+  },
+  {
+    "physical_page": 75,
+    "text_length": 2861,
+    "topics": {
+      "pharma_operation": [
+        "开发支出"
+      ],
+      "risk": [
+        "审计报告",
+        "合同负债"
+      ]
+    },
+    "word_count": 155
+  },
+  {
+    "physical_page": 76,
+    "text_length": 3144,
+    "topics": {
+      "pharma_operation": [
+        "开发支出"
+      ]
+    },
+    "word_count": 144
+  },
+  {
+    "physical_page": 77,
+    "text_length": 3194,
+    "topics": {
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 135
+  },
+  {
+    "physical_page": 78,
+    "text_length": 2515,
+    "topics": {},
+    "word_count": 116
+  },
+  {
+    "physical_page": 79,
+    "text_length": 2922,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 122
+  },
+  {
+    "physical_page": 80,
+    "text_length": 2837,
+    "topics": {
+      "indirect_cash": [
+        "经营活动产生的现金流量净额"
+      ]
+    },
+    "word_count": 129
+  },
+  {
+    "physical_page": 81,
+    "text_length": 2845,
+    "topics": {
+      "indirect_cash": [
+        "经营活动产生的现金流量净额"
+      ]
+    },
+    "word_count": 124
+  },
+  {
+    "physical_page": 82,
+    "text_length": 2455,
+    "topics": {},
+    "word_count": 150
+  },
+  {
+    "physical_page": 83,
+    "text_length": 2981,
+    "topics": {},
+    "word_count": 188
+  },
+  {
+    "physical_page": 84,
+    "text_length": 3566,
+    "topics": {},
+    "word_count": 207
+  },
+  {
+    "physical_page": 85,
+    "text_length": 1265,
+    "topics": {},
+    "word_count": 60
+  },
+  {
+    "physical_page": 86,
+    "text_length": 1291,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 80
+  },
+  {
+    "physical_page": 87,
+    "text_length": 1093,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "risk": [
+        "同一控制下"
+      ]
+    },
+    "word_count": 42
+  },
+  {
+    "physical_page": 88,
+    "text_length": 1056,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ]
+    },
+    "word_count": 44
+  },
+  {
+    "physical_page": 89,
+    "text_length": 1167,
+    "topics": {},
+    "word_count": 42
+  },
+  {
+    "physical_page": 90,
+    "text_length": 1267,
+    "topics": {},
+    "word_count": 38
+  },
+  {
+    "physical_page": 91,
+    "text_length": 1305,
+    "topics": {},
+    "word_count": 39
+  },
+  {
+    "physical_page": 92,
+    "text_length": 1315,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 43
+  },
+  {
+    "physical_page": 93,
+    "text_length": 1158,
+    "topics": {},
+    "word_count": 62
+  },
+  {
+    "physical_page": 94,
+    "text_length": 756,
+    "topics": {},
+    "word_count": 58
+  },
+  {
+    "physical_page": 95,
+    "text_length": 991,
+    "topics": {
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 45
+  },
+  {
+    "physical_page": 96,
+    "text_length": 1067,
+    "topics": {},
+    "word_count": 47
+  },
+  {
+    "physical_page": 97,
+    "text_length": 1331,
+    "topics": {},
+    "word_count": 37
+  },
+  {
+    "physical_page": 98,
+    "text_length": 1269,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 69
+  },
+  {
+    "physical_page": 99,
+    "text_length": 865,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "indirect_cash": [
+        "固定资产折旧"
+      ]
+    },
+    "word_count": 47
+  },
+  {
+    "physical_page": 100,
+    "text_length": 1322,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ]
+    },
+    "word_count": 57
+  },
+  {
+    "physical_page": 101,
+    "text_length": 1080,
+    "topics": {
+      "pharma_operation": [
+        "开发支出",
+        "资本化"
+      ]
+    },
+    "word_count": 41
+  },
+  {
+    "physical_page": 102,
+    "text_length": 1012,
+    "topics": {
+      "risk": [
+        "减值准备",
+        "合同负债"
+      ]
+    },
+    "word_count": 47
+  },
+  {
+    "physical_page": 103,
+    "text_length": 966,
+    "topics": {},
+    "word_count": 46
+  },
+  {
+    "physical_page": 104,
+    "text_length": 1174,
+    "topics": {},
+    "word_count": 41
+  },
+  {
+    "physical_page": 105,
+    "text_length": 984,
+    "topics": {
+      "pharma_operation": [
+        "许可收入"
+      ],
+      "risk": [
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 42
+  },
+  {
+    "physical_page": 106,
+    "text_length": 1072,
+    "topics": {
+      "risk": [
+        "减值准备",
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 43
+  },
+  {
+    "physical_page": 107,
+    "text_length": 1082,
+    "topics": {},
+    "word_count": 42
+  },
+  {
+    "physical_page": 108,
+    "text_length": 1184,
+    "topics": {},
+    "word_count": 42
+  },
+  {
+    "physical_page": 109,
+    "text_length": 1300,
+    "topics": {},
+    "word_count": 42
+  },
+  {
+    "physical_page": 110,
+    "text_length": 1061,
+    "topics": {
+      "pharma_operation": [
+        "开发支出",
+        "资本化"
+      ]
+    },
+    "word_count": 42
+  },
+  {
+    "physical_page": 111,
+    "text_length": 1271,
+    "topics": {
+      "pharma_operation": [
+        "开发支出",
+        "资本化"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 39
+  },
+  {
+    "physical_page": 112,
+    "text_length": 1621,
+    "topics": {},
+    "word_count": 79
+  },
+  {
+    "physical_page": 113,
+    "text_length": 1507,
+    "topics": {},
+    "word_count": 78
+  },
+  {
+    "physical_page": 114,
+    "text_length": 1519,
+    "topics": {},
+    "word_count": 92
+  },
+  {
+    "physical_page": 115,
+    "text_length": 1115,
+    "topics": {},
+    "word_count": 90
+  },
+  {
+    "physical_page": 116,
+    "text_length": 2755,
+    "topics": {},
+    "word_count": 176
+  },
+  {
+    "physical_page": 117,
+    "text_length": 1621,
+    "topics": {},
+    "word_count": 115
+  },
+  {
+    "physical_page": 118,
+    "text_length": 513,
+    "topics": {},
+    "word_count": 58
+  },
+  {
+    "physical_page": 119,
+    "text_length": 933,
+    "topics": {},
+    "word_count": 71
+  },
+  {
+    "physical_page": 120,
+    "text_length": 1628,
+    "topics": {},
+    "word_count": 105
+  },
+  {
+    "physical_page": 121,
+    "text_length": 695,
+    "topics": {},
+    "word_count": 67
+  },
+  {
+    "physical_page": 122,
+    "text_length": 463,
+    "topics": {},
+    "word_count": 59
+  },
+  {
+    "physical_page": 123,
+    "text_length": 2283,
+    "topics": {},
+    "word_count": 143
+  },
+  {
+    "physical_page": 124,
+    "text_length": 1687,
+    "topics": {},
+    "word_count": 125
+  },
+  {
+    "physical_page": 125,
+    "text_length": 1639,
+    "topics": {
+      "pharma_operation": [
+        "资本化"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 123
+  },
+  {
+    "physical_page": 126,
+    "text_length": 806,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 65
+  },
+  {
+    "physical_page": 127,
+    "text_length": 502,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 62
+  },
+  {
+    "physical_page": 128,
+    "text_length": 1255,
+    "topics": {},
+    "word_count": 86
+  },
+  {
+    "physical_page": 129,
+    "text_length": 2349,
+    "topics": {},
+    "word_count": 148
+  },
+  {
+    "physical_page": 130,
+    "text_length": 2690,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 158
+  },
+  {
+    "physical_page": 131,
+    "text_length": 1826,
+    "topics": {
+      "pharma_operation": [
+        "创新药"
+      ]
+    },
+    "word_count": 108
+  },
+  {
+    "physical_page": 132,
+    "text_length": 1213,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 93
+  },
+  {
+    "physical_page": 133,
+    "text_length": 2669,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 139
+  },
+  {
+    "physical_page": 134,
+    "text_length": 1242,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 91
+  },
+  {
+    "physical_page": 135,
+    "text_length": 2130,
+    "topics": {
+      "risk": [
+        "减值准备",
+        "合同负债",
+        "业绩承诺"
+      ]
+    },
+    "word_count": 137
+  },
+  {
+    "physical_page": 136,
+    "text_length": 2059,
+    "topics": {
+      "indirect_cash": [
+        "固定资产折旧"
+      ]
+    },
+    "word_count": 131
+  },
+  {
+    "physical_page": 137,
+    "text_length": 1116,
+    "topics": {},
+    "word_count": 88
+  },
+  {
+    "physical_page": 138,
+    "text_length": 1396,
+    "topics": {
+      "pharma_operation": [
+        "对外许可",
+        "首付款"
+      ],
+      "risk": [
+        "合同负债",
+        "履约义务"
+      ]
+    },
+    "word_count": 105
+  },
+  {
+    "physical_page": 139,
+    "text_length": 2406,
+    "topics": {},
+    "word_count": 141
+  },
+  {
+    "physical_page": 140,
+    "text_length": 1453,
+    "topics": {},
+    "word_count": 90
+  },
+  {
+    "physical_page": 141,
+    "text_length": 886,
+    "topics": {},
+    "word_count": 70
+  },
+  {
+    "physical_page": 142,
+    "text_length": 988,
+    "topics": {
+      "risk": [
+        "合同负债"
+      ]
+    },
+    "word_count": 85
+  },
+  {
+    "physical_page": 143,
+    "text_length": 1764,
+    "topics": {},
+    "word_count": 95
+  },
+  {
+    "physical_page": 144,
+    "text_length": 2006,
+    "topics": {},
+    "word_count": 115
+  },
+  {
+    "physical_page": 145,
+    "text_length": 1907,
+    "topics": {
+      "pharma_operation": [
+        "许可收入"
+      ],
+      "risk": [
+        "合同负债",
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 109
+  },
+  {
+    "physical_page": 146,
+    "text_length": 1866,
+    "topics": {
+      "pharma_operation": [
+        "许可收入",
+        "首付款",
+        "里程碑"
+      ],
+      "risk": [
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 97
+  },
+  {
+    "physical_page": 147,
+    "text_length": 2387,
+    "topics": {},
+    "word_count": 113
+  },
+  {
+    "physical_page": 148,
+    "text_length": 1763,
+    "topics": {},
+    "word_count": 96
+  },
+  {
+    "physical_page": 149,
+    "text_length": 2036,
+    "topics": {},
+    "word_count": 111
+  },
+  {
+    "physical_page": 150,
+    "text_length": 1811,
+    "topics": {},
+    "word_count": 89
+  },
+  {
+    "physical_page": 151,
+    "text_length": 2166,
+    "topics": {
+      "pharma_operation": [
+        "开发支出"
+      ]
+    },
+    "word_count": 102
+  },
+  {
+    "physical_page": 152,
+    "text_length": 1875,
+    "topics": {
+      "indirect_cash": [
+        "净利润调节为经营活动现金流量",
+        "将净利润调节"
+      ],
+      "risk": [
+        "现金流量表补充资料"
+      ]
+    },
+    "word_count": 113
+  },
+  {
+    "physical_page": 153,
+    "text_length": 2649,
+    "topics": {
+      "indirect_cash": [
+        "固定资产折旧",
+        "经营性应收项目",
+        "经营性应付项目",
+        "存货的减少",
+        "经营活动产生的现金流量净额"
+      ],
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 120
+  },
+  {
+    "physical_page": 154,
+    "text_length": 2145,
+    "topics": {},
+    "word_count": 129
+  },
+  {
+    "physical_page": 155,
+    "text_length": 2184,
+    "topics": {},
+    "word_count": 156
+  },
+  {
+    "physical_page": 156,
+    "text_length": 1015,
+    "topics": {},
+    "word_count": 74
+  },
+  {
+    "physical_page": 157,
+    "text_length": 1851,
+    "topics": {
+      "utility_operation": [
+        "同一控制下"
+      ],
+      "pharma_operation": [
+        "开发支出",
+        "资本化"
+      ],
+      "risk": [
+        "同一控制下",
+        "减值准备"
+      ]
+    },
+    "word_count": 117
+  },
+  {
+    "physical_page": 158,
+    "text_length": 1185,
+    "topics": {},
+    "word_count": 96
+  },
+  {
+    "physical_page": 159,
+    "text_length": 897,
+    "topics": {},
+    "word_count": 73
+  },
+  {
+    "physical_page": 160,
+    "text_length": 1132,
+    "topics": {},
+    "word_count": 96
+  },
+  {
+    "physical_page": 161,
+    "text_length": 1391,
+    "topics": {},
+    "word_count": 51
+  },
+  {
+    "physical_page": 162,
+    "text_length": 2050,
+    "topics": {},
+    "word_count": 107
+  },
+  {
+    "physical_page": 163,
+    "text_length": 904,
+    "topics": {},
+    "word_count": 81
+  },
+  {
+    "physical_page": 164,
+    "text_length": 1113,
+    "topics": {},
+    "word_count": 65
+  },
+  {
+    "physical_page": 165,
+    "text_length": 1024,
+    "topics": {},
+    "word_count": 79
+  },
+  {
+    "physical_page": 166,
+    "text_length": 2065,
+    "topics": {},
+    "word_count": 141
+  },
+  {
+    "physical_page": 167,
+    "text_length": 932,
+    "topics": {},
+    "word_count": 86
+  },
+  {
+    "physical_page": 168,
+    "text_length": 1709,
+    "topics": {},
+    "word_count": 126
+  },
+  {
+    "physical_page": 169,
+    "text_length": 1270,
+    "topics": {},
+    "word_count": 94
+  },
+  {
+    "physical_page": 170,
+    "text_length": 640,
+    "topics": {},
+    "word_count": 65
+  },
+  {
+    "physical_page": 171,
+    "text_length": 1180,
+    "topics": {},
+    "word_count": 96
+  },
+  {
+    "physical_page": 172,
+    "text_length": 2621,
+    "topics": {},
+    "word_count": 196
+  },
+  {
+    "physical_page": 173,
+    "text_length": 1463,
+    "topics": {},
+    "word_count": 108
+  },
+  {
+    "physical_page": 174,
+    "text_length": 697,
+    "topics": {},
+    "word_count": 67
+  },
+  {
+    "physical_page": 175,
+    "text_length": 463,
+    "topics": {},
+    "word_count": 59
+  },
+  {
+    "physical_page": 176,
+    "text_length": 2175,
+    "topics": {},
+    "word_count": 140
+  },
+  {
+    "physical_page": 177,
+    "text_length": 1771,
+    "topics": {},
+    "word_count": 122
+  },
+  {
+    "physical_page": 178,
+    "text_length": 2592,
+    "topics": {},
+    "word_count": 167
+  },
+  {
+    "physical_page": 179,
+    "text_length": 1996,
+    "topics": {},
+    "word_count": 128
+  },
+  {
+    "physical_page": 180,
+    "text_length": 1660,
+    "topics": {
+      "pharma_operation": [
+        "许可收入"
+      ],
+      "risk": [
+        "确认收入",
+        "履约义务"
+      ]
+    },
+    "word_count": 101
+  },
+  {
+    "physical_page": 181,
+    "text_length": 1701,
+    "topics": {
+      "risk": [
+        "减值准备"
+      ]
+    },
+    "word_count": 89
+  },
+  {
+    "physical_page": 182,
+    "text_length": 857,
+    "topics": {},
+    "word_count": 49
+  }
+]

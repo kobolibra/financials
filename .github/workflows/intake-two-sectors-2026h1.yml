@@ -1,0 +1,46 @@
+name: Intake original PDFs for utility and innovative pharma
+on:
+  push:
+    branches: ['work/two-sector-600900-600276-real-2026h1']
+    paths:
+      - 'research/two-sector-2026H1-sources.json'
+      - 'scripts/intake_two_sector_filings.py'
+      - 'scripts/extract_two_sector_context.py'
+      - '.github/workflows/intake-two-sectors-2026h1.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  original-pdf-bytes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download complete PDFs and verify bytes + physical pages
+        run: |
+          python -m pip install -q pymupdf
+          python scripts/intake_two_sector_filings.py
+          python scripts/extract_two_sector_context.py
+      - name: Commit real source bytes, source verification and selected original text
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add research/issuers/600900/source/ research/issuers/600900/extracted/ research/issuers/600900/source-images/ research/issuers/600900/source-verification.json
+          git add research/issuers/600276/source/ research/issuers/600276/extracted/ research/issuers/600276/source-images/ research/issuers/600276/source-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive complete PDF sources for 600900 and 600276 with verified physical pages"
+            git pull --rebase origin "${{ github.ref_name }}"
+            git push origin "HEAD:${{ github.ref_name }}"
+          fi
+      - name: Archive real PDF bytes as independent evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: two-sector-original-pdf-byte-evidence
+          path: |
+            research/issuers/600900/source/*.pdf
+            research/issuers/600900/source-verification.json
+            research/issuers/600276/source/*.pdf
+            research/issuers/600276/source-verification.json
+          retention-days: 30

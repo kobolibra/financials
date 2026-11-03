@@ -5,11 +5,11 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "EIGHT_ISSUER_MAIN_PUBLISHED_688220_AEI_V833_SOURCE_LIMITED_RESEARCH",
+  "latest_publication_state": "CANDIDATE_TEN_ISSUER_LIBRARY__MAIN_8_AT_START__PRODUCTION_NOT_YET_VERIFIED",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.4.2-rc1",
+    "version": "8.5.0-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -48,7 +48,16 @@
         "figure-briefs.json issuer/period/source SHA and cited fact IDs"
       ],
       "published_embedded_data_identity": "CHECK_PUBLISHED_LEDGER_ISSUER_SOURCE_FACTS_SEGMENTS_EQUALS_ORIGINAL_SOURCE_LEDGER_IF_EMBEDDED",
-      "clean_rebuild_strict": "NO_BYTE_FOR_BYTE_DIFF_FOR_PUBLIC_REPORT_AND_QA"
+      "clean_rebuild_strict": "NO_BYTE_FOR_BYTE_DIFF_FOR_PUBLIC_REPORT_AND_QA",
+      "cross_industry_live_pdf_cases": [
+        "600900 hydroelectric 214 physical source pages 20 original x/y key cells",
+        "600276 innovative pharma 182 physical source pages 26 original x/y key cells"
+      ],
+      "new_source_cell_verifier": "research/shared/verify_two_sector_cells.py",
+      "new_sector_adversarial": "research/shared/test_two_sector_accounting.py",
+      "new_figures_engine": "research/shared/build_two_sector.py",
+      "new_visual_qa": "research/shared/qa_two_sector_browser.py",
+      "method_state": "TWO_REAL_2026H1_INDEPENDENT_PDF_L1_CANDIDATES_IN_BRANCH__NOT_SAME_AS_INDEPENDENT_HUMAN_CERTIFIED"
     }
   },
   "entrypoints": {
@@ -65,7 +74,7 @@
     "catalog": "site/research_catalog.json",
     "builder": "site/portal_builder.py",
     "root_html": "public/index.html",
-    "company_count": 8,
+    "company_count": 10,
     "company_codes": [
       "300394",
       "300308",
@@ -74,10 +83,12 @@
       "688111",
       "600519",
       "000333",
-      "688220"
+      "688220",
+      "600900",
+      "600276"
     ],
     "topic": "/optical-2026h1.html",
-    "new_issuer_policy": "ADD_TO_SAME_CATALOG_N_ANY_PRESERVE_LEGACY_URLS",
+    "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_TEN_ISSUERS_AND_REUSABLE_NEW_ISSUER_RELEASE_GATES",
     "semiconductor_report": "/688220.html"
   },
   "source_engines": {
@@ -529,5 +540,74 @@
     "latest_live_qa_run": 41669011093,
     "latest_research_handoff_run": 41669011190,
     "latest_handoff_sha_at_record": "3969c93109bbfc3b7d83cb96e48a57eb948eb46f"
+  },
+  "two_sector_intake": {
+    "as_of": "2026-11-03",
+    "branch": "work/two-sector-600900-600276-real-2026h1",
+    "pr": "NOT_CHECKED_NOT_YET_OPENED",
+    "main_merge": "NOT_CHECKED",
+    "published_cloudflare": "NOT_CHECKED",
+    "goal": "Two real cross-industry A-share 2026 H1 issuers, one original home, distinct complete offline HTML, source/finance/visual QA and feedback-to-Skill",
+    "source_intake_run": {
+      "run_id": 41671538396,
+      "status": "PASS",
+      "scope": "actual complete CNINFO PDFs physically downloaded, size/SHA/physical pages/covers verified"
+    },
+    "research_build_run": {
+      "run_id": 41677614389,
+      "status": "PASS",
+      "scope": "20+26 actual source physical PDF x/y/label cells; 15+17 CAS/accounting checks; 9 hostile tests; 16 figures 16 original tables; Chromium 1440/768/390; exact SVG money geometry; clean reproducible HTML; actual screenshot artifacts"
+    },
+    "issuers": [
+      {
+        "code": "600900",
+        "name": "长江电力",
+        "model": "hydropower utility",
+        "pdf": "research/issuers/600900/source/600900_2026H1_complete_original.pdf",
+        "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+        "bytes": 1296750,
+        "pages": 214,
+        "critical_x_y_cells": 20,
+        "figures": 8,
+        "accounting_checks": 15,
+        "route": "/600900.html",
+        "qa": "research/issuers/600900/qa.json"
+      },
+      {
+        "code": "600276",
+        "name": "恒瑞医药",
+        "model": "innovative pharma",
+        "pdf": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+        "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+        "bytes": 4594202,
+        "pages": 182,
+        "critical_x_y_cells": 26,
+        "figures": 8,
+        "accounting_checks": 17,
+        "route": "/600276.html",
+        "qa": "research/issuers/600276/qa.json"
+      }
+    ],
+    "quality_boundary": {
+      "complete_material_notes": "NOT_CHECKED",
+      "original_secondary_exchange_bytes": "NOT_CHECKED",
+      "independent_second_human": "NOT_CHECKED",
+      "multi_quarter_external_valuation": "NOT_CHECKED",
+      "new_live_cloudflare_routes": "NOT_CHECKED"
+    },
+    "material_industry_issues": [
+      "2025-10 same-control acquisition requires restated 2025H1 hydro comparatives; power generation kWh not electricity sold",
+      "Hydro water resources tax and investment/fair-value cash differentiation",
+      "Pharma 2026H1 license income 1.4223 bn vs July-effective BMS not included, innovative drugs subset not additive",
+      "Pharma p153 1.99396bn endorsed acceptance bills incl 0.70270bn noncash capex, separate from FCF cash spent",
+      "Mobile 390px overflow physically found and fixed at layout source; no masking clipping"
+    ],
+    "next_third_company": {
+      "code": "601628",
+      "name": "中国人寿",
+      "industry": "life_insurance",
+      "status": "PUBLIC_PDF_URL_FOUND_NOT_DOWNLOADED",
+      "priority": "Insurance contract liability and IFRS17/CAS insurance asset/liability accounting; do not reuse industrial Sankey."
+    }
   }
 }

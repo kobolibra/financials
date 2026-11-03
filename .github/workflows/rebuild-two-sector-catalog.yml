@@ -1,0 +1,50 @@
+name: Candidate 10-issuer one-site release integration and Skill quality gates
+on:
+  push:
+    branches: ['work/two-sector-600900-600276-real-2026h1']
+    paths:
+      - 'site/research_catalog.json'
+      - 'site/portal_builder.py'
+      - 'site/test_portal.py'
+      - '.github/workflows/rebuild-two-sector-catalog.yml'
+      - 'research/issuers/600900/release-gates.json'
+      - 'research/issuers/600276/release-gates.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  ten-issuer-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Generate the real one-root directory and verify both new issuer contracts
+        run: |
+          python site/portal_builder.py --out public
+          python -m unittest discover -s site -p test_portal.py -v
+          python scripts/check_release_contract.py
+          python -m unittest discover -s scripts -p test_check_release_contract.py -v
+          python scripts/check_handoff.py
+          python research/shared/test_conserved_flow.py
+      - name: Commit actual 10-company homepage and machine-readable catalog
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/index.html public/catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate two full source-limited reports into one existing ten-company index"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Upload canonical ten-company root HTML
+        uses: actions/upload-artifact@v4
+        with:
+          name: ten-issuer-homepage-and-release-contract
+          path: |
+            public/index.html
+            public/catalog.json
+            research/issuers/600900/release-gates.json
+            research/issuers/600276/release-gates.json
+          retention-days: 30
