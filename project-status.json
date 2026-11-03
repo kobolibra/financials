@@ -5,7 +5,7 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "UNIFIED_SEVEN_ISSUER_RESEARCH_LIBRARY",
+  "latest_publication_state": "UNIFIED_EIGHT_ISSUER_RESEARCH_LIBRARY_WITH_SOURCE_LIMITED_ASR",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -39,7 +39,7 @@
     "catalog": "site/research_catalog.json",
     "builder": "site/portal_builder.py",
     "root_html": "public/index.html",
-    "company_count": 7,
+    "company_count": 8,
     "company_codes": [
       "300394",
       "300308",
@@ -47,10 +47,12 @@
       "600036",
       "688111",
       "600519",
-      "000333"
+      "000333",
+      "688220"
     ],
     "topic": "/optical-2026h1.html",
-    "new_issuer_policy": "ADD_TO_SAME_CATALOG_NO_NEW_VERSION_SUBSITE"
+    "new_issuer_policy": "ADD_TO_SAME_CATALOG_N_ANY_PRESERVE_LEGACY_URLS",
+    "semiconductor_report": "/688220.html"
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -59,8 +61,10 @@
       "skills/ashare-financial-storytelling/v7/engine/sample-ledger.json",
       "skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json",
       "skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json",
-      "research/rebuild-v10/input-ledgers/"
-    ]
+      "research/rebuild-v10/input-ledgers/",
+      "research/issuers/688220/source-ledger.json"
+    ],
+    "semiconductor": "research/issuers/688220/publish.py"
   },
   "resolved_accounting_issues": [
     {
@@ -104,7 +108,11 @@
     "independent_second_human_analyst": "NOT_CHECKED",
     "multi_period_peers_valuation_all_issuers": "NOT_CHECKED",
     "fully_automatic_industry_generalization": "NOT_PROVEN",
-    "every_new_report": "GATE_INDEPENDENTLY_REQUIRED"
+    "every_new_report": "GATE_INDEPENDENTLY_REQUIRED",
+    "asr_mirror_equals_official_pdf": "NOT_CHECKED",
+    "asr_full_material_notes": "NOT_CHECKED",
+    "asr_ar_top5_note_denominator": "FAIL_REPORTED_90_50_VS_DERIVED_89_17",
+    "asr_second_independent_financial_editor": "NOT_CHECKED"
   },
   "source_archive": "ChatGPT Library /Financials-in-Visuals/ ; do not assume a new session has original PDF bytes mounted; retrieve and recheck SHA, dates, periods and issuer before claiming PDF_HASH PASS.",
   "last_verified_handoff": {
@@ -155,20 +163,60 @@
     }
   },
   "active_new_issuer_intake": {
-    "issuer": "NOT_IDENTIFIED",
-    "report_period": "NOT_IDENTIFIED",
-    "original_pdf_bytes": "NOT_CHECKED",
-    "original_pdf_sha256": "NOT_CHECKED",
-    "source_availability": "No new PDF attachment in current chat; Library search revealed only prior published seven issuer artifacts and earlier sector test outputs",
-    "semantic_pdf_audit": "NOT_CHECKED",
-    "financial_accounting": "NOT_CHECKED",
-    "material_notes": "NOT_CHECKED",
-    "research_thesis_and_red_team": "NOT_CHECKED",
-    "editorial_visual_review": "NOT_CHECKED",
-    "money_flow_conservation": "NOT_CHECKED",
-    "new_issuer_browser": "NOT_CHECKED",
-    "new_issuer_live_deploy": "NOT_CHECKED",
-    "independent_second_human_review": "NOT_CHECKED",
-    "next_step": "Obtain specifically identified new issuer's complete original PDF or official direct PDF URL, check bytes/SHA/physical pages and only then build source-ledger, thesis, offline HTML, unified catalog and separate financial/visual/browser QA"
+    "issuer": "688220",
+    "company": "翱捷科技股份有限公司",
+    "report_period": "2026H1",
+    "original_pdf_provenance": {
+      "canonical_exchange_announcement": "https://www.sse.com.cn/disclosure/listedinfo/summaries/indexDetail.shtml?SEQ=334686886",
+      "full_report_mirror_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "bytes": 1449510,
+      "physical_pages": 224,
+      "publication_date": "2026-08-29",
+      "mirror_pdf_path": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+      "official_mirror_byte_equivalence": "NOT_CHECKED",
+      "original_sse_pdf_host_blocked_by_html_challenge": true
+    },
+    "artifact": {
+      "class": "RESEARCH_PREVIEW_SOURCE_LIMITED",
+      "report": "public/688220.html",
+      "independent_route": "/688220.html",
+      "ledger": "research/issuers/688220/source-ledger.json",
+      "publisher": "research/issuers/688220/publish.py",
+      "quality": "research/issuers/688220/qa.json",
+      "source_verification": "research/issuers/688220/source-verification.json",
+      "research_memo": "research/issuers/688220/research-memo.md",
+      "figure_count": 7
+    },
+    "financial_gates": {
+      "PDF_MIRROR_FULL_BYTES_SHA_224P": "PASS",
+      "SSE_OFFICIAL_BYTE_EQUIVALENCE": "NOT_CHECKED",
+      "SOURCE_PAGE_LITERAL": "PASS_109_OF_118_WITH_9_PDF_TABLE_TEXT_FRAGMENTATIONS_OR_TO_REVIEW",
+      "IMPORTANT_ORIGINAL_PAGE_COLUMN": "PASS_SELECTED_PAGES_ONLY",
+      "FULL_MATERIAL_NOTES": "NOT_CHECKED",
+      "STATEMENT_IDENTITY": "PASS",
+      "SIGNED_CFO_17_ROWS": "PASS",
+      "REVENUE_SAME_SCOPE_SANKEY": "PASS",
+      "INDUSTRY_ROUTE": "PASS_SEMICONDUCTOR_CHIP_DESIGN",
+      "AR_TOP5_NOTE_DENOMINATOR": "FAIL_REPORTED_90_50_VS_DERIVED_89_17",
+      "RPO_ONE_CENT_TIE": "FAIL_MIRRORED_0_01_YUAN_SOURCE_DISCLOSURE_DIFFERENCE",
+      "THESIS_AND_COUNTER": "PASS_SELF_REVIEW",
+      "RESEARCH_MULTIYEAR_PEERS_VALUATION": "NOT_CHECKED",
+      "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED"
+    },
+    "technical_gates": {
+      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_ON_BRANCH_ISSUER_QA",
+      "ORIGINAL_VISUAL_QA": "PARTIAL_MANUALLY_OPENED_SCREENSHOTS_FIXED_3_ISSUES_AWAIT_FINAL_ASSESSMENT",
+      "CLEAN_REBUILD": "PASS_BRANCH",
+      "GITHUB_MAIN_ROUTE": "NOT_CHECKED_UNTIL_MERGE",
+      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_UNTIL_DEPLOY"
+    },
+    "latest_branch_qa": {
+      "workflow": "Build and audit ASR 688220 source-limited standalone research",
+      "branch": "work/asrmicro-688220-2026h1",
+      "run_id": 41620029401,
+      "conclusion": "success",
+      "scope": "source PDF SHA, 93 ledger source items partly validated, signed exact equations, seven hostile accounting cases, 3 viewport local browser screenshots; previous code revision before final note-level text edits"
+    },
+    "next_step": "Verify final SHA branch CI, merge into original site eight-company directory and test actual public Cloudflare on 1440/768/390. Research preview only, material-note/source-ratio limitations remain."
   }
 }
