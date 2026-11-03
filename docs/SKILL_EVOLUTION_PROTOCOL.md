@@ -27,7 +27,7 @@
 ## 三、第 N 家新公司的自动执行合同
 
 - 唯一目录仍为 `site/research_catalog.json` → `public/index.html`。新增公司必须拥有真实 `public/<route>.html`、原始 PDF 归档、研究账本/计算程序、图形简报、测试、`research/issuers/<code>/release-gates.json`。
-- 程序 `python scripts/check_release_contract.py` 在 GitHub Actions 验证**每个新代码**是否存在独立发布记录；核对 PDF 魔数、实际字节数与 SHA，路由、门槛枚举、PASS 的证明路径、来源约束、可复现证据以及研究类别。
+- 程序 `python scripts/check_release_contract.py` 在 GitHub Actions 验证**每个新代码**是否存在独立发布记录；核对 PDF 魔数、实际字节数与 SHA，路由、门槛枚举、PASS 的证明路径、来源约束、可复现证据以及研究类别。**绝不能停在 release JSON：还须检验其 source-ledger.json 的发行人、期间、原 PDF SHA、披露元/比例字段类型与源页标签，并检验 figure-briefs.json 的报告版本、源哈希、所引真实 fact IDs 和多种有效研究问题。** 机器校验元数据一致性不等于源 PDF 具体行列已通过独立语义审阅。
 - `source_limited_preview` 至少要求 PDF、选定重大来源行列、核心会计、研究反论点、图形语义、实际视觉自检、浏览器与离线重建通过；可保留如实披露且不掩盖的附注例外、独立人员未审查和外部估值未覆盖。
 - `verified_research` 在这些门槛之外还需要重大附注、外部历史/同行、线上发布和**真实第二人**完整 PASS；仅由单个助手自动运作时不会自然满足。门槛不是分数，不允许平均折抵。
 - 银行、保险、地产、软件、光通信、芯片和制造等行业必须使用自己的**经济机制与报表定义**。不适用桑基须写源证据原因。行业声称已泛化需有至少两份不同行业/发行人原始报告完整验证及对抗测试，不以一张图覆盖测试代替。
