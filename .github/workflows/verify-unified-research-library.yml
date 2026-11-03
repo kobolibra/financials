@@ -97,9 +97,12 @@ jobs:
                   assert page.locator('a[href="/#companies"]').count()>=1,(ticker,'new issuer lacks library return')
                   if ticker=='688220':
                     assert page.locator('#chart-flow svg').count()==1,'ASR original-source money-flow Sankey missing'
-                    assert page.locator('table.evidence-table').count()==7,'ASR seven source tables missing'
+                    assert page.locator('#chart-flow svg path[data-flow-role="edge"]').count()==8,'Eight actual cost/GP business ribbon paths missing'
+                    assert page.locator('#chart-pnl svg rect[data-pnl-role="step"]').count()==9,'Full signed GAAP earnings bridge absent'
+                    assert '2025H1' in page.content(),'Actual previous-year comparison column guard missing'
+                    assert page.locator('table.evidence-table').count()==8,'ASR eight source tables missing'
                     assert '9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc' in page.content(),'ASR PDF source fingerprint missing'
-                    assert page.locator('[data-export]').count()==7,'ASR SVG export controls missing'
+                    assert page.locator('[data-export]').count()==8,'ASR eight SVG export controls missing'
                 assert page.evaluate('document.documentElement.scrollWidth')<=width+1,(ticker,width,'body overflow')
                 page.screenshot(path=str(out/f'{ticker}_{width}.png'),full_page=True)
                 records.append({'ticker':ticker,'width':width,'figures':page.locator('figure').count(),'status':'PASS'})
