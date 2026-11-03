@@ -61,7 +61,7 @@ jobs:
                 url=f'{site}{prefix}/{code}.html'
                 r=pg.goto(url,wait_until='networkidle',timeout=45000)
                 assert r and r.status==200,(code,'http',r.status if r else None)
-                assert code in pg.title(),(code,pg.title())
+                assert code in pg.locator('.meta-row').inner_text(),(code,pg.locator('.meta-row').inner_text())
                 assert pg.locator('figure.graphic').count()==num,(code,'figures')
                 assert pg.locator('table.evidence-table').count()==num,(code,'data tables')
                 assert pg.locator('a[href="#cash"]').count()==1,(code,'cash chapter')
