@@ -32,7 +32,7 @@ with sync_playwright() as p:
           tofu:document.body.textContent.includes('□')?document.body.textContent.match(/□/g).length:0
         })""")
         assert info["scrollWidth"]<=width+1,(width,"page overflow",info)
-        assert info["figures"]==7 and info["svg"]==7 and info["evidenceTables"]==7,(width,info)
+        assert info["figures"]==8 and info["svg"]==8 and info["evidenceTables"]==8,(width,info)
         # Verify the actual rendered graphic's semantic edges, NOT just an SVG count
         # or a separate ledger reconciliation. Any aggregate trunk is rejected.
         flow=page.evaluate("""() => {
@@ -81,16 +81,34 @@ with sync_playwright() as p:
         assert flow["edges"]==8 and flow["sources"]==4 and flow["sinks"]==2,(width,"real Sankey graph roles",flow)
         assert not flow["failures"],(width,"rendered Sankey invariant violated",flow)
         assert max(flow["microscale"])<0.02,(width,"tiny disclosed test business inflated for visual effect",flow)
-        assert info["exportButtons"]==7 and info["externalScripts"]==0 and info["amounts"]>=10
-        assert info["mobileFactPanels"]==7,(width,"each graphic requires independent first-order values on mobile",info)
-        assert info["mobileFactsVisible"]==(0 if width==1440 else 7),(width,"missing visible amount headlines for mobile/tablet",info)
+        pnl=page.evaluate("""() => {
+          const data=JSON.parse(document.getElementById('ledger-data').textContent),f=data.facts;
+          const N=k=>Number(f[k].yuan);
+          const e=[...document.querySelectorAll('#chart-pnl svg rect[data-pnl-role="step"]')];
+          const expected=[N('rev')-N('cogs'),-N('rnd_expense'),
+            -(N('sell')+N('admin')+N('finance_expense')+N('tax_surcharge')),
+            N('other_income')+N('investment_income')+N('fair_value_income'),
+            N('credit_impairment')+N('asset_impairment')+N('asset_disposal_gain'),
+            N('operating_profit'),N('nonoperating_income'),-N('income_tax_expense'),N('consolidated_net_profit')];
+          const errs=e.map((x,i)=>Math.abs(Number(x.dataset.amountYuan)-expected[i])>.004?'step '+i+' wrong':'').filter(Boolean);
+          const operating=expected[0]+expected[1]+expected[2]+expected[3]+expected[4];
+          const final=operating+expected[6]+expected[7];
+          if(Math.abs(operating-N('operating_profit'))>.004) errs.push('operating subtotal');
+          if(Math.abs(final-N('consolidated_net_profit'))>.004) errs.push('statutory net');
+          if(f.nonoperating_expense||f.nonoperating_expense_prior.period!=='2025H1')errs.push('2025 column leak');
+          return {steps:e.length,errors:errs,hasZero:!!document.querySelector('#chart-pnl svg line[stroke-dasharray="4 4"]')};
+        }""")
+        assert pnl["steps"]==9 and not pnl["errors"] and pnl["hasZero"],(width,"signed full P&L figure incorrect",pnl)
+        assert info["exportButtons"]==8 and info["externalScripts"]==0 and info["amounts"]>=10
+        assert info["mobileFactPanels"]==8,(width,"each graphic requires independent first-order values on mobile",info)
+        assert info["mobileFactsVisible"]==(0 if width==1440 else 8),(width,"missing visible amount headlines for mobile/tablet",info)
         assert info["chapterPosition"]==("static" if width==390 else "sticky"),(width,"sticky navigation may obscure phone chart titles",info)
         assert page.locator('a.brand[href="/#companies"]').count()==1
         assert page.locator('a[href="#cash"]').count()>=1
         page.screenshot(path=str(out/f"full_{width}.png"),full_page=True)
         screenshot_count+=1
         if width in (1440,390):
-            for figure in ("flow","segment","gp","earnings","cfo","cash","capital"):
+            for figure in ("flow","segment","gp","pnl","earnings","cfo","cash","capital"):
                 page.locator("#fig-"+figure).screenshot(path=str(out/f"{figure}_{width}.png"))
                 screenshot_count+=1
         page.locator('a[href="#cash"]').first.click()
