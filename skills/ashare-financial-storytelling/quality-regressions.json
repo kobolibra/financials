@@ -112,6 +112,56 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "OFFLINE_REBUILD",
       "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "SRC-016",
+      "root_cause": "同一 PDF 物理页上存在本期和比较期两列，甚至同一个收入金额出现于营业总收入与营业收入、主/其他业务不同分组；仅检测页面包含数字无法确认对应行列。",
+      "correction": "对两家214/182物理页真实源的20/26个关键单元格保存(x,y)原始列坐标+行标签，按实际 PDF 字节运行PyMuPDF搜索核对，错列/错行必须阻断，不以OCR或页面字串命中替代。",
+      "proof_file": "research/shared/verify_two_sector_cells.py",
+      "assertion_marker": "WRONG_REPORTING_COLUMN",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "HYD-017",
+      "root_cause": "水电企业把发电量（亿千瓦时）当售电量或合同营业收入的可直接除数；或把同一控制下合并追溯调整的2025H1比较数当原历史报表不加说明同比。",
+      "correction": "水电行业拆开物理生产指标、净售电量、价格和财务收入，缺净售电量则严禁倒推ASP；2025年10月同控合并产生2025H1追溯调整时必须标示比较期并固定年份。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_2025_restated_comparative_marked_as_current_rejected",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PHA-018",
+      "root_cause": "医药披露的创新药收入属于药品销售商品收入子集，不能和全部商品收入、许可收入叠加；期后生效BMS潜在美元里程碑对价不能被当本期收入。",
+      "correction": "合同收入分组仅使用原始许可/销售商品/其他同一互斥维度；创新药和仿制药作为销售商品内部子层，许可按履约时点/期间判断；2026年7月BMS生效与可变对价约束单独披露。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_fake_pharma_innovative_sales_as_additional_disjoint_source_rejected",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "CSH-019",
+      "root_cause": "恒瑞约19.94亿元承兑汇票背书支付中7.03亿元购建资产属于非现金结算；简单FCF仅减现金购建资本开支，忽略披露的非现金实际资本投入或错误塞进现金流量表都会误导。",
+      "correction": "现金购建资本支出、票据背书非现金购建、存量开发支出和期末受限资金四种会计维度分开图形；原始p153现金支付附注的12.91+7.03=19.94亿元守恒且不可算作CFO现金流。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_bill_endorsement_cash_spend_blend_rejected",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-020",
+      "root_cause": "长江电力首版390px整页实际scrollWidth429px，普通desktop测试和全部八图存在不等于移动端阅读无剪裁；仅将body设overflow-x:hidden能让测试假绿。",
+      "correction": "根容器无整页横向溢出，逐元素校验标题/正文/表格外壳和每个figure真实BoundingClientRect不出视口；仅图内可横向滚动且金额结论在图外可阅读。",
+      "proof_file": "research/shared/qa_two_sector_browser.py",
+      "assertion_marker": "NON_SCROLLING_MOBILE_CONTENT_CLIPPED",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
