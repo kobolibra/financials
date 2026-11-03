@@ -15,7 +15,9 @@
     "scope": "consolidated",
     "audited": false,
     "source_filename": "788b066c-b687-4f11-8ae4-c6197f019370.pdf",
-    "source_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5"
+    "source_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+    "source_url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-19/788b066c-b687-4f11-8ae4-c6197f019370.PDF",
+    "source_public_url_bytes_sha_verification": "NOT_CHECKED__PUBLIC_REPORT_CONTENT_SEMANTICALLY_MATCHED__DO_NOT_EQUATE_WITH_UPLOADED_SHA"
   },
   "facts": {
     "cogs": {
