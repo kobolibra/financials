@@ -19,13 +19,14 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          import os,threading,http.server,socketserver,urllib.request,pathlib
+          import os,threading,http.server,socketserver,urllib.request,pathlib,json
           from html.parser import HTMLParser
           root=pathlib.Path("public").resolve()
           expected=["600036","601318","000002","000333","600519","600276","600900"]
           index=(root/"index.html").read_text()
           labindex=(root/"research-lab/2026-h1/index.html").read_text()
-          assert 'id="companies"' in index and index.count('class="company"')==7, "unified homepage must show seven companies"
+          catalog=json.loads(pathlib.Path('site/research_catalog.json').read_text())
+          assert 'id="companies"' in index and index.count('class="company"')==len(catalog['issuers']), "unified homepage must match actual issuer catalog"
           for ticker in expected:
               assert f"./{ticker}.html" in labindex, f"Lab directory missing {ticker}"
               page=(root/"research-lab/2026-h1"/f"{ticker}.html").read_text()
