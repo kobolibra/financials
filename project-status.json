@@ -232,7 +232,7 @@
       "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES",
       "LOCAL_SOURCE_GEOMETRY": "PASS_FINAL_MAIN_3a1878fa_29_EXACT_FINANCIAL_CHECKS_9_FIGURES_1440_768_390",
       "LOCAL_DESKTOP_FIGURE_CLIPPING": "PASS_FINAL_MAIN_3a1878fa_FLOW_PNL_BALANCE_CASH_NOT_SCROLL_HIDDEN_1440",
-      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "FAIL_LIVE_41660682930_OLD_CLOUDFLARE_PAGE_MISSING_MONEY_SOURCE_RECT",
+      "PUBLIC_NEW_SVG_SOURCE_GEOMETRY": "FAIL_STRICT_RETRY_ATTEMPT_2_41660682930_ASR_SOURCE_NODES_STILL_MISSING_LIVE",
       "PUBLIC_EIGHT_ISSUER_ROUTES": "PASS_PRE_EXISTING_DEPLOYMENT_41660215201_24_ROUTE_VIEWPORTS",
       "CLOUDFLARE_PAGES_NEW_COMMIT": "NOT_CHECKED_PENDING_PROVIDER_CONCLUSION_3a1878fa",
       "INDEPENDENT_VISUAL_EDITOR": "NOT_CHECKED_ASSISTANT_SCREENSHOT_CRITIQUE_NOT_HUMAN_SECOND_REVIEW"
@@ -323,7 +323,16 @@
       "official_pdf_vs_mirror": "NOT_CHECKED",
       "financial_material_note_review": "NOT_CHECKED_FULL_REPORT",
       "independent_second_human": "NOT_CHECKED",
-      "final_live_deployment": "FAIL_PENDING_CLOUDFLARE_NEW_ASSET"
+      "final_live_deployment": "FAIL_PENDING_CLOUDFLARE_NEW_ASSET",
+      "main_strict_live_recheck": {
+        "run_id": 41660682930,
+        "run_attempt": 2,
+        "status": "FAIL",
+        "checked_utc": "2026-11-03T15:14:11Z",
+        "reason": "PUBLIC_SITE_STILL_MISSING_NEW_MONEY_SOURCE_NODES",
+        "did_not_relax_assertion": true,
+        "code_original_sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0"
+      }
     }
   },
   "last_redesign_internal_checkpoint": {
@@ -379,6 +388,15 @@
     "canonical_home": "/",
     "legacy_7_report_blobs_unchanged": true,
     "checklist": "docs/REPORT_RELEASE_CHECKLIST.md",
-    "skill": "skills/ashare-financial-storytelling/SKILL.md"
+    "skill": "skills/ashare-financial-storytelling/SKILL.md",
+    "main_strict_live_recheck": {
+      "run_id": 41660682930,
+      "run_attempt": 2,
+      "status": "FAIL",
+      "checked_utc": "2026-11-03T15:14:11Z",
+      "reason": "PUBLIC_SITE_STILL_MISSING_NEW_MONEY_SOURCE_NODES",
+      "did_not_relax_assertion": true,
+      "code_original_sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0"
+    }
   }
 }
