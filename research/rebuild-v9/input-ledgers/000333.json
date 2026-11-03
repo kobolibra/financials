@@ -1,0 +1,323 @@
+{
+  "ticker": "000333",
+  "name": "美的集团",
+  "industry": "全球制造与多层业务组合",
+  "source": {
+    "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-29/df25443f-d67a-4cc5-8bd6-6c3e681a9575.PDF",
+    "report": "2026年半年度报告",
+    "period": "2026H1",
+    "audit": "未经审计（部分文件正文复核）",
+    "pdf_total_pages": 205,
+    "pdf_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+    "source_validation": "ORIGINAL_PDF_SHA256_VERIFIED_AND_AUTOMATED_FIELD_REVIEW_PARTIAL",
+    "reviewed_at": "2026-11-02",
+    "audit_file": "../qa/000333_source_check.json"
+  },
+  "facts": {
+    "rev": {
+      "yuan": "260042490000",
+      "page": 7,
+      "label": "合并营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "rev_prior": {
+      "yuan": "251123714000",
+      "page": 7,
+      "label": "上年同期营业收入",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "cogs": {
+      "yuan": "194366771000",
+      "page": 50,
+      "label": "营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "cogs_prior": {
+      "yuan": "186786157000",
+      "page": 50,
+      "label": "上年同期营业成本",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "parent_ni": {
+      "yuan": "26446037000",
+      "page": 7,
+      "label": "归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "parent_ni_prior": {
+      "yuan": "26013690000",
+      "page": 7,
+      "label": "上年同期归母净利润",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "reg_ni": {
+      "yuan": "19595179000",
+      "page": 7,
+      "label": "扣非归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "reg_ni_prior": {
+      "yuan": "26235399000",
+      "page": 7,
+      "label": "上年同期扣非归母净利润",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "cfo": {
+      "yuan": "37552090000",
+      "page": 7,
+      "label": "经营活动现金流净额",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "cfo_prior": {
+      "yuan": "37281015000",
+      "page": 7,
+      "label": "上年同期经营现金流",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "assets": {
+      "yuan": "643101789000",
+      "page": 7,
+      "label": "总资产",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "assets_prior": {
+      "yuan": "608791766000",
+      "page": 7,
+      "label": "上年末总资产",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "home": {
+      "yuan": "174340606000",
+      "page": 51,
+      "label": "智能家居业务营收",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "industrial_solution": {
+      "yuan": "66666119000",
+      "page": 51,
+      "label": "商业及工业解决方案（父层）营收",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "building": {
+      "yuan": "21625109000",
+      "page": 52,
+      "label": "楼宇科技（工业方案子类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "robotics": {
+      "yuan": "16620817000",
+      "page": 52,
+      "label": "机器人与自动化（工业方案子类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "industrial_tech": {
+      "yuan": "13137739000",
+      "page": 52,
+      "label": "工业技术（工业方案子类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "sub_other": {
+      "yuan": "15282454000",
+      "page": 52,
+      "label": "其他业务（工业方案子类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "other_total": {
+      "yuan": "19035765000",
+      "page": 52,
+      "label": "其他（总收入的第三类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "domestic": {
+      "yuan": "146915462000",
+      "page": 52,
+      "label": "境内收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "overseas": {
+      "yuan": "113127028000",
+      "page": 52,
+      "label": "境外收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "overseas_prior": {
+      "yuan": "107192632000",
+      "page": 52,
+      "label": "上年同期境外收入",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "domestic_prior": {
+      "yuan": "143931082000",
+      "page": 52,
+      "label": "上年同期境内收入",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "ar": {
+      "yuan": "61954826000",
+      "page": 53,
+      "label": "期末应收账款",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "ar_prior": {
+      "yuan": "40450097000",
+      "page": 53,
+      "label": "上年末应收账款",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "inventory": {
+      "yuan": "55440969000",
+      "page": 53,
+      "label": "期末存货",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "inventory_prior": {
+      "yuan": "64628834000",
+      "page": 53,
+      "label": "上年末存货",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "financial_exp": {
+      "yuan": "-3273004000",
+      "page": 50,
+      "label": "财务（费用）/收入（公司表内符号）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "investment_income": {
+      "yuan": "3040102000",
+      "page": 50,
+      "label": "投资收益",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "fair_value_income": {
+      "yuan": "4997108000",
+      "page": 50,
+      "label": "公允价值变动收益",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "nonrecurring_net": {
+      "yuan": "6850858000",
+      "page": 8,
+      "label": "非经常性损益税后及少数股东调整后合计",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    },
+    "derivatives_gain_pretax": {
+      "yuan": "6745721000",
+      "page": 8,
+      "label": "非经常性项目金融资产及衍生工具等收益（税前归类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元"
+    }
+  },
+  "analyst": {
+    "headline": "归母微增，扣非为何大幅下滑？",
+    "deck": "收入增长3.55%、归母利润增长1.66%，扣非归母却同比下降25.31%。汇兑损失与风险管理衍生工具收益被划入不同口径；多层业务分部又要求避免重复相加。",
+    "thesis": "一次完整的财务解释需要同时辨认经营、汇兑与套保分类，以及多业务分部的父子层级。",
+    "counter": "扣非净利润下降不能机械解释为主业盈利全面恶化；同样，衍生工具收益不自动等于所有汇兑损失已完全对冲。",
+    "watch": [
+      "汇兑损益与衍生金融工具收益的会计匹配及期限",
+      "全球市场增长、海外毛利率与区域经营弹性",
+      "应收账款增长和存货减少的质量与后续回款"
+    ],
+    "limits": [
+      "商业及工业解决方案是父类，其下四项子业务不另计入总收入",
+      "衍生工具税前收益和税后扣非净利润不可直接相减或抵销",
+      "外汇风险管理的经济套保有效性需要更多原始合同及附注，不可用会计分类直接推定"
+    ]
+  },
+  "figures": []
+}

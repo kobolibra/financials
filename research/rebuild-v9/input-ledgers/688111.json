@@ -1,0 +1,314 @@
+{
+  "ticker": "688111",
+  "name": "金山办公",
+  "industry": "软件与协作平台",
+  "source": {
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482678.PDF",
+    "report": "2026年半年度报告",
+    "period": "2026H1",
+    "audit": "未经审计（部分文件正文复核）",
+    "pdf_total_pages": 199,
+    "pdf_sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+    "source_validation": "ORIGINAL_PDF_SHA256_VERIFIED_AND_AUTOMATED_FIELD_REVIEW_PARTIAL",
+    "reviewed_at": "2026-11-02",
+    "audit_file": "../qa/688111_source_check.json"
+  },
+  "facts": {
+    "rev": {
+      "yuan": "3313262599.20",
+      "page": 6,
+      "label": "营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "rev_prior": {
+      "yuan": "2657121733.79",
+      "page": 6,
+      "label": "上年同期营业收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cogs": {
+      "yuan": "500458107.69",
+      "page": 29,
+      "label": "营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cogs_prior": {
+      "yuan": "397720074.56",
+      "page": 29,
+      "label": "上年同期营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "parent_ni": {
+      "yuan": "2517594330.93",
+      "page": 6,
+      "label": "归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "parent_ni_prior": {
+      "yuan": "747204516.37",
+      "page": 6,
+      "label": "上年同期归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "reg_ni": {
+      "yuan": "2487375431.21",
+      "page": 6,
+      "label": "扣非归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "reg_ni_prior": {
+      "yuan": "727320191.45",
+      "page": 6,
+      "label": "上年同期扣非归母净利润",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "adjusted_ni": {
+      "yuan": "1086796800",
+      "page": 6,
+      "label": "报告披露经调整归母净利润108,679.68万元（公司自定义非GAAP）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币万元"
+    },
+    "investment_income": {
+      "yuan": "1913904465.46",
+      "page": 144,
+      "label": "合并投资收益",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "equity_income": {
+      "yuan": "1755904309.66",
+      "page": 144,
+      "label": "权益法核算投资收益",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cfo": {
+      "yuan": "642693273.51",
+      "page": 63,
+      "label": "经营活动现金流量净额",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cfo_prior": {
+      "yuan": "738347612.83",
+      "page": 63,
+      "label": "上年同期经营现金流",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "capex_cash": {
+      "yuan": "44701541.82",
+      "page": 63,
+      "label": "购建长期资产支付现金",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "rnd": {
+      "yuan": "1151832387.74",
+      "page": 29,
+      "label": "研发费用",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "assets": {
+      "yuan": "20879674684.69",
+      "page": 6,
+      "label": "资产总额",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wps_personal": {
+      "yuan": "2014142306.56",
+      "page": 142,
+      "label": "WPS个人业务营收",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wps_personal_cost": {
+      "yuan": "411342024.15",
+      "page": 142,
+      "label": "WPS个人业务成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wps365": {
+      "yuan": "496654213.27",
+      "page": 142,
+      "label": "WPS365业务营收",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wps365_cost": {
+      "yuan": "45285972.27",
+      "page": 142,
+      "label": "WPS365成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wps_software": {
+      "yuan": "722293544.62",
+      "page": 142,
+      "label": "WPS软件业务营收",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "wps_software_cost": {
+      "yuan": "37600693.78",
+      "page": 142,
+      "label": "WPS软件业务成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "other_rev": {
+      "yuan": "80172534.75",
+      "page": 142,
+      "label": "其他业务收入",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "other_cost": {
+      "yuan": "6229417.49",
+      "page": 142,
+      "label": "其他业务成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "sell_exp": {
+      "yuan": "597855528.16",
+      "page": 29,
+      "label": "销售费用",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "manage_exp": {
+      "yuan": "277130917.74",
+      "page": 29,
+      "label": "管理费用",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cash_begin": {
+      "yuan": "691314784.30",
+      "page": 63,
+      "label": "期初现金及现金等价物",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cash_close": {
+      "yuan": "1385182650.60",
+      "page": 63,
+      "label": "期末现金及现金等价物",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cfi": {
+      "yuan": "174325664.24",
+      "page": 63,
+      "label": "投资现金流净额",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cff": {
+      "yuan": "-118852068.08",
+      "page": 63,
+      "label": "筹资现金流净额",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    },
+    "cash_fx": {
+      "yuan": "-4299003.37",
+      "page": 63,
+      "label": "汇率变动对现金等价物影响",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币元"
+    }
+  },
+  "analyst": {
+    "headline": "利润暴增，经营增长究竟有多少？",
+    "deck": "三套利润口径的分岔是这份半年报最重要的信息。报表归母利润增长236.94%，公司自定义经调整利润仅增长28.29%；与此同时经营现金流下滑。",
+    "thesis": "利润增幅不是经营增长幅度。权益法投资收益拉高了法定利润，须把公司定义的经调整盈利与现金转化并排审视。",
+    "counter": "权益法收益本身属于会计确认且可能来自有价值的投资，不能简单断言“虚假利润”；公司调整利润也不是法定准则的优越替代。",
+    "watch": [
+      "WPS 365收入增速与续费/客单价披露",
+      "权益法投资收益未来是否持续及现金分红实现",
+      "预缴所得税后经营现金流与研发人员支出"
+    ],
+    "limits": [
+      "不能将“扣非”与“公司经调整归母”视作同一概念",
+      "公司经调整口径含股份支付/基金及投资收益/所得税调整，缺少逐项数值细化时不得伪造完整净利润调节瀑布图",
+      "经营现金流/归母净利润是跨归属范围近似比值，不可称作严格现金转化率"
+    ]
+  },
+  "figures": []
+}
