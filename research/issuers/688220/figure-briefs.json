@@ -1,0 +1,249 @@
+{
+  "contract": "Financials in Visuals Skill v8.3.2-rc1 mandatory per-figure relationship and source brief",
+  "notes": "Business grouping is exclusive; source-limited 2026H1 single filing. Same four categories cannot be mixed with region, timing or product management discussion.",
+  "figures": [
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "flow",
+      "family": "conserved_flow",
+      "question": "四类互斥芯片相关业务各自贡献多少成本和毛利？",
+      "answer": "业务类型的四类收入各自分流为对应成本和毛利，合计形成合并收入、营业成本与毛利。",
+      "pages": [
+        86,
+        178
+      ],
+      "fact_ids": [
+        "rev",
+        "cogs",
+        "chip_rev",
+        "chip_cost",
+        "asic_rev",
+        "asic_cost",
+        "ip_rev",
+        "ip_cost",
+        "other_service_rev",
+        "other_service_cost"
+      ],
+      "relation": "for_each_business: revenue_i = cost_i + (revenue_i-cost_i); group: sum(revenue_i)=rev, sum(cost_i)=cogs",
+      "domain_zero": "nonnegative; no min visual width; real area",
+      "color_encoding": "muted gray cost and category green/blue/copper GP",
+      "alternative_hypothesis": "ASIC 设计毛利受项目阶段和验收时点影响；不得从合同类别推出可重复量产收入。",
+      "mobile_policy": "Direct numeric summary visible, full figure may scroll horizontally; raw evidence table.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    },
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "segment",
+      "family": "magnitude_plus_rate",
+      "question": "高毛利率的 IP 业务是否实际贡献大部分毛利？",
+      "answer": "按真实绝对毛利排列，同时给出分母为相同类别收入的毛利率。",
+      "pages": [
+        178
+      ],
+      "fact_ids": [
+        "chip_rev",
+        "chip_cost",
+        "asic_rev",
+        "asic_cost",
+        "ip_rev",
+        "ip_cost",
+        "other_service_rev",
+        "other_service_cost"
+      ],
+      "relation": "GP_i = revenue_i-cost_i, GM_i=GP_i/revenue_i",
+      "domain_zero": "magnitude bars start at zero; margin shown as labels",
+      "color_encoding": "four category identities",
+      "alternative_hypothesis": "IP 合同小分母使百分比不稳定，不能由一期推断软件化利润模式。",
+      "mobile_policy": "Direct amount summary; scrollable figure, source table.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    },
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "gp",
+      "family": "signed_change_bridge",
+      "question": "毛利增长从何而来，是否等同于销量或良率改善？",
+      "answer": "ΔGP=ΔRevenue−ΔCOGS，是带符号会计桥而不是因果拆分。",
+      "pages": [
+        86
+      ],
+      "fact_ids": [
+        "rev_prior",
+        "cogs_prior",
+        "rev",
+        "cogs"
+      ],
+      "relation": "GP_26=GP_25+(Rev_26-Rev_25)-(COGS_26-COGS_25)",
+      "domain_zero": "signed positive and negative contributions, true zero shown",
+      "color_encoding": "positive green negative rust",
+      "alternative_hypothesis": "ASP/组合/成本率贡献须有对应销量与定价披露，暂不能识别。",
+      "mobile_policy": "Direct numeric GP delta; scrollable figure.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    },
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "earnings",
+      "family": "signed_profit_quality",
+      "question": "为什么归母扭亏而扣非仍然亏损？",
+      "answer": "归母净利润 = 扣非归母 + 税后非经常性损益。",
+      "pages": [
+        8,
+        9,
+        10,
+        87
+      ],
+      "fact_ids": [
+        "parent_ni",
+        "deducted_parent_ni",
+        "nonrec_parent_net"
+      ],
+      "relation": "84243768.67=-58670616.13+142914384.80",
+      "domain_zero": "signed comparative bars with visible zero",
+      "color_encoding": "loss rust and profit green",
+      "alternative_hypothesis": "经常性研发投入可能提前发生，非经常项目改变利润方向不代表经营利润率永久改善。",
+      "mobile_policy": "Direct signed amount summary; source schedule.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    },
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "cfo",
+      "family": "signed_indirect_cfo_bridge",
+      "question": "净利润 0.84 亿元为何没有形成经营现金流？",
+      "answer": "合并净利润加 17 项原始带符号调节恰等于 CFO -3.77 亿元；库存、应收与应付分解。",
+      "pages": [
+        90,
+        187,
+        188
+      ],
+      "fact_ids": [
+        "consolidated_net_profit",
+        "cash_cfo"
+      ],
+      "relation": "CFO = consolidated_NP + sum(all_17_signed_note_adjustments)",
+      "domain_zero": "signed waterfall; all 17 rows available, display grouped for reading",
+      "color_encoding": "negative rust positive green",
+      "alternative_hypothesis": "提前备货和验收时差也能导致现金流转负，不必然是需求崩塌。",
+      "mobile_policy": "Direct 4 key numbers and all 17 signed components table.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    },
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "cash",
+      "family": "cash_identity_bridge",
+      "question": "现金等价物期初与期末如何严格闭合？",
+      "answer": "期初+经营+投资+筹资+现金汇率影响=期末现金等价物。",
+      "pages": [
+        90,
+        91,
+        92,
+        189
+      ],
+      "fact_ids": [
+        "cash_start",
+        "cash_cfo",
+        "cash_cfi",
+        "cash_cff",
+        "cash_fx",
+        "cash_end"
+      ],
+      "relation": "cash_end = cash_start+CFO+CFI+CFF+FX",
+      "domain_zero": "signed cash section bridge, not balance sheet stock cash",
+      "color_encoding": "income green and cash use rust",
+      "alternative_hypothesis": "现金汇率影响不是利润表的汇兑收益或权益工具 OCI。",
+      "mobile_policy": "Direct start/end and all four signed changes.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    },
+    {
+      "issuer": "688220.SH",
+      "report": "2026H1",
+      "report_date": "2026-08-29",
+      "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "original_unit": "CNY yuan",
+      "scope": "consolidated",
+      "reviewer": "assistant_source_self_review; no independent human reviewer",
+      "publication_gate": "RESEARCH_PREVIEW",
+      "id": "capital",
+      "family": "paired_balance_stock",
+      "question": "经营资本积压在什么资产负债项目，是否已经形成现金流？",
+      "answer": "存货、应收、预付、合同负债以 2025 年末和 2026 年六月真实时点余额比较。",
+      "pages": [
+        81,
+        82,
+        135,
+        146,
+        147,
+        166
+      ],
+      "fact_ids": [
+        "inventory_net_prior",
+        "inventory_net",
+        "ar_prior",
+        "ar",
+        "prepayments_prior",
+        "prepayments",
+        "contract_liabilities_prior",
+        "contract_liabilities"
+      ],
+      "relation": "paired stocks: no sum into CFO, no inferred DSO",
+      "domain_zero": "paired magnitude bars begin zero",
+      "color_encoding": "prior muted blue, latest green",
+      "alternative_hypothesis": "新增合同负债可佐证预收订单和项目验收储备，但不能等同现金或已确认收入。",
+      "mobile_policy": "Show four comparison amounts above scrollable figure.",
+      "source_class": "DISCLOSED_AND_EXPLICIT_DERIVATION",
+      "chart_title_qa": "REQUIRES_PHYSICAL_SCREENSHOT_REVIEW"
+    }
+  ],
+  "global_gates": {
+    "accounting": "EXACT_YUAN_IN_PUBLISHER",
+    "sankey": "ACTUAL_EIGHT_EDGE_RIBBON_LAYOUT_VERIFIED_IN_BROWSER",
+    "AEI_FT_visual_editorial": "INTERNAL_ITERATION_ONLY_NOT_INDEPENDENT_CLEARED",
+    "independent_human": "NOT_CHECKED"
+  }
+}
