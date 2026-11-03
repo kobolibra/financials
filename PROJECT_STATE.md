@@ -4,21 +4,40 @@
 
 > **唯一正式站点：首页统一八家公司研究库（本提交为候选，按当前 main 实际发布状态验收）。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
-## 2026-11-03 · 当前最新执行：AEI/FT 源证据重构及实质财报纠错（v8.3.3-RC1）
+## 2026-11-03 · 现行正式状态：AEI/FT 源证据重构已上线；财务源边界仍明确保留
 
-**当前工作分支**：`work/688220-aei-financial-flow-redesign-20261103`，基于真实 main `54fa99ab29227f0aadb08f63da92c16955233381`。新规范 `skills/ashare-financial-storytelling/SKILL.md` v8.3.3-RC1 和 `research/03_VISUAL_EDITORIAL_SYSTEM.md` 已提交分支。**正式 main 和 Cloudflare 中的重构是否发布尚不能依据分支成功推断**；会以 PR + 主分支 Actions + 公开站点浏览器重新确认为准。
+**唯一正式站点**：<https://financials-in-visuals.pages.dev/>，目前八家公司**在同一个**目录下各有完整独立 HTML。翱捷科技-U 688220：<https://financials-in-visuals.pages.dev/688220.html>。没有新增另一版四公司入口、没有改写旧七家 HTML。本次 AEI/FT 重构已通过 [PR #6](https://github.com/kobolibra/financials/pull/6) 合并真实 `main`，研究/HTML 源提交 `5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8`，Skill 为 **v8.3.3-RC1**。主分支新发布回归适配提交 `f9f3ac4377c98fb5d9390716531c023a4def1393` 与 `52c4a6f166451ef3a132f929ab1e776a1521e130`。
 
-**原文会计问题已经直接修复（非状态挂起）**：224 页完整披露镜像 PDF（SHA-256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`）物理 p.87，`营业外支出 15.30 元` 属于**2025H1 上年同期列**，2026H1 当前列**空白**。前一账本错误把该数列为 2026H1 来源金额（原来的数字在该页出现的自动检查未能识别列）。已经在 `source-ledger.json` 把 15.30 迁到 `nonoperating_expense_prior`，2026H1 的同名项目作为**计算所得零、非原文披露零**保留；`verify_pages.py` 用原始 PDF p.87 坐标及营业利润+营业外收入=税前利润三方检查。原“15.30 当期现金损益”解释不得重复使用。
+**真实执行并非口号**：从 `research/issuers/688220/source/688220_2026H1_20260829_original.pdf` 完整 PDF 镜像字节（2026-08-29，2026H1，224 物理页，1,449,510 bytes，SHA-256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`）读取合并三表、原始业务收入/成本及现金流全 17 条 signed 调节。4 类互斥业务来源分别以**其自己的 p.178 原始成本和推导毛利**绘制真实比例尺分流（四条正成本 + 三条正毛利；测试服务真实零毛利不制造假流量）；另有完整毛利→法定净利润 signed CAS 瀑布，以及共同金额尺度两期资产＝负债＋权益存量组成。总共九项不同研究问题、九张原始证据表与手机端独立数字结论，这些数目只表示技术覆盖而非审稿认证。逐图独立研究契约：`research/issuers/688220/figure-briefs.json`；发行人独有研究：`research-memo.md`；可重建 HTML：`public/688220.html`、`report-template.html`、`publish.py`。研究依 Skill v8.3.3/完整研究手册 01–05，重构实际插图和原文均已在本会话打开检查。
 
-**重构不是机械增加图表**：旧桑基只把四项收入合并到全公司，再分成总成本/总毛利；虽然总额守恒，但缺乏真实单业务成本和毛利的财务解释。新桑基来自 p.178 四类相互排斥、同期、合并的真实收入及原始成本，每一类拆为自身披露的 COGS + 推导的 GP，7 条非零真实权重带、测试服务确实为零 GP 不生成虚假正流。新完整**合并毛利→营业利润→税前→合并净利润的带符号瀑布**依 p.86–87 展示研发、四项费用及税费、投资及其他收益、公允价值、减值和税项；与税后扣非归母、OCI 和现金相区分。两时点 **资产＝负债＋所有者权益** 图明确存量关系而非伪现金流。整个报告九张语义不同的图、九张来源表、九条移动端数值摘要。具体关系见 `research/issuers/688220/figure-briefs.json`。
+**本轮最关键的已解决源问题**：原始 PDF 物理第 87 页 `减：营业外支出 15.30 元` 在 **2025H1 对比右列**，**非 2026H1 本期**；本期该格空白，经营利润 54,945,406.18 + 营业外收入 256,125.37 = 税前利润 55,201,531.55，故本期贡献为**推导零，非发行人披露的 0.00 元**。旧账本错列已直接更正到 `source-ledger.json` 和 PDF 物理 x 列核验 `verify_pages.py`，完整带符号 P&L 测试使该错误显现并在真实发布前修复。只在同一页找到金额绝不等于行列语义检验。
 
-**确切技术验证**：GitHub Actions `Verify AEI-inspired 688220 financial-flow and source-linked research` 运行 [41651927501](https://github.com/kobolibra/financials/actions/runs/41651927501) 对提交 `d5e42a40becf8226de7be3f2a85d00095db3fa13` 成功，包含完整 PDF 原始字节 224 页/1,449,510 字节/SHA、p.87 比较列核对、约 29 项 Decimal 财报恒等式、8 个会计错误注入反例、九图和来源表的 1440/768/390 Playwright、21 个实际截图、3 个 SVG 文件下载、清洁环境生成 HTML 字节对比。我在当前会话已**实际打开** 1440 桑基、带符号 P&L、资产结构、390 桑基截图，并发现/改正过固定导航压住图题和 `+0.00` 亿微项目误读问题。CI 成功**不是**独立视觉主编签字。
+**实际核实的 GitHub/Cloudflare**：
 
-**并列质量门槛状态**：`PDF_MIRROR_SHA+PAGES:PASS`；`SSE_URL_BYTE_EQUALITY:NOT_CHECKED`；`SELECTED_PHYSICAL_ROW_COLUMN:p87_PASS;OTHER_MATERIAL_ROWS_PARTIAL`；`ACCOUNTING_IDENTITIES:PASS`；`FULL_GAAP_PNL_SIGNED:PASS`；`4_SOURCE_COST_GP_SANKEY_EXACT:PASS`；`AGGREGATE_CFO_17_SIGNED:PASS`；`FULL_MATERIAL_NOTES:NOT_CHECKED`；`ORIGINAL_AEI_FT_EDITORIAL:PARTIAL_SELF_REVIEW`；`BROWSER_LOCAL_1440_768_390:PASS`；`GITHUB_PUBLIC_MAIN_NEW_VERSION:NOT_CHECKED`；`CLOUDFLARE_LIVE_NEW_VERSION:NOT_CHECKED`；`INDEPENDENT_SECOND_HUMAN:NOT_CHECKED`；`FULL_PEERS_VALUATION:NOT_CHECKED`。
+- 完整源/会计/SVG/移动端分支 [41652625378](https://github.com/kobolibra/financials/actions/runs/41652625378)：**PASS**，含 `scripts/check_handoff.py`、同目录单测、PDF SHA、原始 p.87 列坐标、29 项元精度身份、8 项 hostile 错误注入反例，9 图/9 证据表/21 张 1440/768/390 实截图及 3 SVG 导出，干净重建位对位一致。
+- 新版主分支源财报与离线浏览器 [41653197855](https://github.com/kobolibra/financials/actions/runs/41653197855)，SHA `f9f3ac4377c98fb5d9390716531c023a4def1393`：**PASS**。
+- 八家公司统一目录 **真实 Cloudflare 公共页面** Chromium 导航和三尺寸 [41653304202](https://github.com/kobolibra/financials/actions/runs/41653304202)，SHA `52c4a6f166451ef3a132f929ab1e776a1521e130`：**PASS**；原七家旧 URL 未改。
+- 主分支 Skill 与交接 [41653016658](https://github.com/kobolibra/financials/actions/runs/41653016658)：**PASS**。最初主分支运行 `41653016669` 与 `41653016654` 曾因**测试仍硬编码七图**失败，现已直接修改测试为按图形 brief 动态计数，重新实际通过，不掩盖失败历史。
+- 本会话 web 抓取对 Cloudflare 页面返回访问限制；以上 LIVE PASS 特指 GitHub-hosted Chromium **真实线上浏览器访问**，不是当前 web 工具自己直开成功，也不是人工独立设计编审签字。
 
-**仍存在的原始披露不一致**：p.137 应收/合同资产前五名原文 90.50% 与 p.135+p.138 原值重算 89.17% 分母不闭合；p.179 RPO 期限分拆与合计存在 0.01 元披露差。仅对这些关系保留 `FAIL_BOUNDED_SOURCE_NOTE`，不生成残差业务图，不把它们伪称财务舞弊。单 PDF 不支持多季外部估值/同行。
+**两套研究+视觉质量门槛并列，不能合并**：
 
-**下一次精确操作**：检查 PR 合并版本与生产网页 1440/768/390 的真实图形/导航/中文字体，再同步此处的准确 git SHA、CI run 和正式 URL；不要另建公司入口或改动老七家报告。重建命令：
+| 门槛 | 当前实况 |
+|---|---|
+| 完整 224p PDF 镜像 SHA + 报表期间 | **PASS** |
+| 上交所服务器原 PDF vs 归档镜像逐字节完全一致 | **NOT_CHECKED**（交易所静态主机返回挑战/无法取到完整 PDF 字节） |
+| 重大原始行列语义 | **p.87 重大列错 PASS 修复；其他附注 PARTIAL**，9 项 PDF 窄表文字需更大覆盖 |
+| 财务精确恒等式 / CFO 全 17 项 / 同维度真实分流 | **PASS**（元精度） |
+| 机构级行业研究、反证与现金/资本逻辑 | **PASS 自审源限定研究；外部多年同业/估值 NOT_CHECKED** |
+| AEI/FT 真实桑基、signed P&L、BS 语义与实际截图 | **PASS 技术/自审视觉纠错；独立高等级设计编审 NOT_CHECKED** |
+| 原始附注 p.137 前五名应收+合同资产披露占比 90.50% 对 p.135+p.138 原值计算 89.17% | **FAIL（边界明确、不能捏造分母）** |
+| p.179 RPO 拆分对合计差额 0.01 元 | **FAIL 有界原披露精度，禁做假守恒图** |
+| 真实 Cloudflare 八家公司路由 1440/768/390 / 无 iframe | **PASS** |
+| 第二位独立人类财务分析师签核 | **NOT_CHECKED** |
+
+**当前发布类别：RESEARCH_PREVIEW / SOURCE_LIMITED**。不将技术通过或九图当作全附注、同行估值、独立研究签核通过。若进一步推进，按原始报告行列直接解决有争议的 p.137 比例分母、p.179 一分钱与剩余重大附注，再增加有真实披露的 8–12Q/同行数据。不能以这些遗留项为借口放弃已能完成的研究或设计迭代。
+
+**当前可再现命令**：
 
 ```bash
 python research/issuers/688220/verify_pages.py
