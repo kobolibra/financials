@@ -7,8 +7,8 @@
   "source_file": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
   "source_get": "COMPLETE_PDF_MIRROR_BYTES_AND_ORIGINAL_REPORT_IDENTITY_PASS",
   "sse_mirror_byte_equivalence": "NOT_CHECKED",
-  "page_literal_matched": 94,
-  "page_literal_total": 102,
+  "page_literal_matched": 109,
+  "page_literal_total": 118,
   "critical_source_row_literal_missing": [],
   "missing_page_literals": [
     "inventory_gross",
@@ -18,7 +18,8 @@
     "inventory_outsourced_net",
     "inventory_finished_net",
     "inventory_raw_net",
-    "inventory_contract_cost"
+    "inventory_contract_cost",
+    "ar_allowance"
   ],
   "page_amount_check_not_row_col_semantics": "The fact a number occurs on a cited physical page does NOT prove table row, column, consolidation scope or currency.",
   "manual_semantic_review": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_COMPLETE_MATERIAL_NOTES",
@@ -484,6 +485,102 @@
       "physical_page": 189,
       "original_label_in_ledger": "已披露受限但仍列入现金等价物的租赁保证金",
       "amount_yuan": "335445.51",
+      "literal_match": true
+    },
+    "ar_gross": {
+      "physical_page": 135,
+      "original_label_in_ledger": "合并应收账款期末账面余额",
+      "amount_yuan": "464113067.29",
+      "literal_match": true
+    },
+    "ar_allowance": {
+      "physical_page": 135,
+      "original_label_in_ledger": "合并应收账款坏账准备期末余额",
+      "amount_yuan": "8175303.66",
+      "literal_match": false
+    },
+    "ar_aging_lt3m": {
+      "physical_page": 135,
+      "original_label_in_ledger": "合并应收账款三个月内期末余额",
+      "amount_yuan": "404860020.98",
+      "literal_match": true
+    },
+    "ar_aging_3m1yr": {
+      "physical_page": 135,
+      "original_label_in_ledger": "合并应收账款三个月至一年期末余额",
+      "amount_yuan": "50662511.11",
+      "literal_match": true
+    },
+    "ar_aging_1to2yr": {
+      "physical_page": 135,
+      "original_label_in_ledger": "合并应收账款一年至二年期末余额",
+      "amount_yuan": "8590535.20",
+      "literal_match": true
+    },
+    "ar_top5_with_contract_assets": {
+      "physical_page": 137,
+      "original_label_in_ledger": "合并应收账款和合同资产期末前五名余额",
+      "amount_yuan": "414844022.57",
+      "literal_match": true
+    },
+    "ar_top5_ratio": {
+      "physical_page": 137,
+      "original_label_in_ledger": "合并应收账款及合同资产前五名占合计数比例",
+      "amount_yuan": "90.50",
+      "literal_match": true
+    },
+    "contract_advance_custom": {
+      "physical_page": 166,
+      "original_label_in_ledger": "合同负债预收芯片定制业务服务费",
+      "amount_yuan": "291867010.73",
+      "literal_match": true
+    },
+    "contract_advance_product": {
+      "physical_page": 166,
+      "original_label_in_ledger": "合同负债预收货款",
+      "amount_yuan": "171870048.96",
+      "literal_match": true
+    },
+    "contract_advance_ip": {
+      "physical_page": 166,
+      "original_label_in_ledger": "合同负债预收半导体IP授权费",
+      "amount_yuan": "2174451.18",
+      "literal_match": true
+    },
+    "revenue_point_time": {
+      "physical_page": 178,
+      "original_label_in_ledger": "营业收入按某一时点确认",
+      "amount_yuan": "2449003919.23",
+      "literal_match": true
+    },
+    "revenue_over_time": {
+      "physical_page": 178,
+      "original_label_in_ledger": "营业收入按某一时段确认",
+      "amount_yuan": "2271183.04",
+      "literal_match": true
+    },
+    "one_year_contractual_financial_liabilities": {
+      "physical_page": 201,
+      "original_label_in_ledger": "金融负债未折现合同现金流一年内到期",
+      "amount_yuan": "1148869935.61",
+      "literal_match": true
+    },
+    "short_term_debt_contractual": {
+      "physical_page": 201,
+      "original_label_in_ledger": "金融负债未折现短期借款一年内到期",
+      "amount_yuan": "503115557.48",
+      "literal_match": true
+    },
+    "fair_value_level3": {
+      "physical_page": 203,
+      "original_label_in_ledger": "持续以公允价值计量资产第三层次金额",
+      "amount_yuan": "748525532.49",
+      "literal_match": true
+    },
+    "contract_assets_net": {
+      "physical_page": 138,
+      "original_label_in_ledger": "合同资产期末账面价值",
+      "amount_yuan": "1093368.56",
       "literal_match": true
     },
     "cfo_signed_part_01": {
