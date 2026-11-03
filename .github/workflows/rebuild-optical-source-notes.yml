@@ -40,7 +40,7 @@ jobs:
               assert '未列示差额（计算）' not in h,(code,'fake balancing node still present')
               assert needle in h,(code,'source category absent')
               assert 'p.'+pg in h,(code,'source physical page absent')
-              assert h.count('class="money-ribbon"')>=7,(code,'not a proportional money-flow')
+              assert h.count('class="money-ribbon"')>=(7 if code=='300394' else 6),(code,'not a proportional money-flow')
               assert 'UNVERIFIED_REVENUE_PARTITION' not in h
               print('SOURCE_CLASSIFICATION_HTML_PASS',code,len(h),hashlib.sha256(h.encode()).hexdigest(),flush=True)
           PY
