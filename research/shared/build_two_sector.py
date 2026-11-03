@@ -56,6 +56,19 @@ def check(d,briefs,story,pdf_path):
         if not (num in text or amount in text):
             raise AssertionError("SOURCE_LITERAL_NOT_ON_ACTUAL_PHYSICAL_PDF_PAGE "+key+" p"+str(p)+" "+num)
     checks["ACTUAL_ORIGINAL_PDF_PAGE_AMOUNTS"]="PASS_"+str(len(f))+"_PHYSICAL_PAGE_LITERALS"
+    # Sector invariant: original independently disclosed contract categories,
+    # not overlapping management 'innovative drugs' subset or geography axis.
+    src_ids=[x["rev"] for x in d["segments"]]
+    cost_ids=[x["cost"] for x in d["segments"]]
+    assert len(set(src_ids))==len(src_ids) and len(set(cost_ids))==len(cost_ids),"CROSS_DIMENSION_DUPLICATE_SEGMENT"
+    assert len(d["segments"])>=2 and len({x["dimension"] for x in d["segments"]})==1,"GROUPS_DIFFERENT_AXES"
+    for seg in d["segments"]:
+        for k in (seg["rev"],seg["cost"]):
+            vfact=f[k]
+            assert vfact["classification"]=="DISCLOSED" and vfact["unit"]=="元" and vfact["scope"]=="consolidated" and vfact["period"]=="2026H1",(code,"NESTED_OR_WRONG_PERIOD_SEGMENT",k)
+    for prior in ("rev_prior","cogs_prior","cfo_prior"):
+        assert f[prior]["period"]=="2025H1" and f[prior]["type"]=="flow",(code,"COMPARATIVE_PRIOR_PERIOD_CHANGED",prior)
+    assert f["rev"]["period"]=="2026H1" and f["rev"]["type"]=="flow"
     ck("EXCLUSIVE_REVENUE_GROUPS",sum((val(d,s["rev"]) for s in d["segments"]),D(0)),val(d,"rev"))
     ck("EXCLUSIVE_COST_GROUPS",sum((val(d,s["cost"]) for s in d["segments"]),D(0)),val(d,"cogs"))
     for s in d["segments"]:
