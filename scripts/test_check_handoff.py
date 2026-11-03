@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
-from check_handoff import check_skill, check_catalog, check_current_state, check_repo
+from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery
 
 STATUS=json.loads((ROOT/"project-status.json").read_text())
 CATALOG=json.loads((ROOT/"site/research_catalog.json").read_text())
@@ -20,6 +20,17 @@ README=(ROOT/"README.md").read_text()
 class HandoffGateTests(unittest.TestCase):
     def test_current_tree_is_consistent(self):
         self.assertEqual(check_repo(),[])
+    def test_rejects_broken_codex_discovery_entry(self):
+        wrapper=(ROOT/".agents/skills/ashare-financial-storytelling/SKILL.md").read_text()
+        broken=wrapper.replace("description:","missing_description:",1)
+        project=(ROOT/"docs/CHATGPT_PROJECT_INSTRUCTIONS.md").read_text()
+        self.assertTrue(any("CODEX_SKILL_MISSING_DESCRIPTION" in e for e in check_discovery(STATUS,broken,project)))
+    def test_rejects_fake_chatgpt_auto_skill_install(self):
+        m=copy.deepcopy(STATUS)
+        m["skill"]["discovery"]["ordinary_new_chat_auto_installation"]="GUARANTEED"
+        wrapper=(ROOT/".agents/skills/ashare-financial-storytelling/SKILL.md").read_text()
+        project=(ROOT/"docs/CHATGPT_PROJECT_INSTRUCTIONS.md").read_text()
+        self.assertTrue(any("FALSE_CLAIM_SKILL_AUTO_INSTALLED" in e for e in check_discovery(m,wrapper,project)))
     def test_rejects_wrong_skill_version(self):
         m=copy.deepcopy(STATUS);m["skill"]["version"]="0.0.0"
         self.assertTrue(any("SKILL_VERSION_MISMATCH" in e for e in check_skill(m,SKILL)))

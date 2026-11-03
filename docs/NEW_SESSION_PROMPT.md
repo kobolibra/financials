@@ -28,3 +28,5 @@ https://github.com/kobolibra/financials
 **开始时只需报告已经实际读取的关键规范、当前真实项目状态和此次财报如何进入既有系统，然后推进真实研究。** 不要让我重新讲述旧对话，也不要用方案和赞美代替作品。
 
 结束前必须按照 `docs/HANDOFF_PROTOCOL.md` 更新长期交接文件；如果某项需继续追查，直接查原始文件完成，不要无谓地把它推给下一次对话。
+
+> **更短的固定使用方式**：若已把 [Project 固定指令](CHATGPT_PROJECT_INSTRUCTIONS.md) 放进 ChatGPT Project settings，今后在**同一 Project 内**直接上传新 PDF 并说“按 Financials in Visuals Skill 分析并发布这家公司”。但每次仍须显式读取 GitHub main；Project 指令不能保证 GitHub 最新文件自动同步。一次性设置流程见 [SETUP_PERSISTENT_CONTEXT.md](SETUP_PERSISTENT_CONTEXT.md)。

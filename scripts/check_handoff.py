@@ -74,10 +74,30 @@ def check_current_state(state: str, readme: str, manifest: dict) -> list[str]:
     return errors
 
 
+def check_discovery(manifest: dict, wrapper: str, project_instructions: str) -> list[str]:
+    errors = []
+    expected = manifest.get("skill", {}).get("discovery", {})
+    if expected.get("codex_repo_entry") != ".agents/skills/ashare-financial-storytelling/SKILL.md":
+        errors.append("CODEX_STANDARD_SKILL_PATH_NOT_CONFIGURED")
+    if not wrapper.startswith("---\n") or not re.search(r"(?m)^name:\s*ashare-financial-storytelling$", wrapper):
+        errors.append("CODEX_SKILL_MISSING_FRONTMATTER_NAME")
+    if not re.search(r"(?m)^description:\s*\S+", wrapper):
+        errors.append("CODEX_SKILL_MISSING_DESCRIPTION_FOR_DISCOVERY")
+    if "skills/ashare-financial-storytelling/SKILL.md" not in wrapper or "01_APP_ECONOMY" not in wrapper or "05_CROSS_SECTOR" not in wrapper:
+        errors.append("CODEX_SKILL_WRAPPER_NOT_REFERENCING_CANONICAL_FULL_MANDATORY_SKILL")
+    if "START_HERE.md" not in project_instructions or "SKILL.md" not in project_instructions or "NOT_CHECKED" not in project_instructions:
+        errors.append("CHATGPT_PROJECT_INSTRUCTIONS_INCOMPLETE")
+    if expected.get("ordinary_new_chat_auto_installation") != "NOT_PROVEN__EXPLICIT_PROMPT_OR_USER_PROJECT_SETUP_REQUIRED":
+        errors.append("FALSE_CLAIM_SKILL_AUTO_INSTALLED_IN_ORDINARY_CHATGPT")
+    return errors
+
+
 def check_repo() -> list[str]:
     errors = []
     mandatory = [
         "README.md", "START_HERE.md", "AGENTS.md", "PROJECT_STATE.md",
+        ".agents/skills/ashare-financial-storytelling/SKILL.md",
+        "docs/CHATGPT_PROJECT_INSTRUCTIONS.md", "docs/SETUP_PERSISTENT_CONTEXT.md",
         "project-status.json", "docs/HANDOFF_PROTOCOL.md",
         "docs/NEW_SESSION_PROMPT.md", "docs/REPORT_RELEASE_CHECKLIST.md",
         "docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md",
@@ -102,6 +122,8 @@ def check_repo() -> list[str]:
     if manifest.get("last_verified_release", {}).get("warning", "") == "":
         errors.append("STORED_CI_MUST_BE_EXPLICITLY_HISTORICAL")
 
+    errors += check_discovery(manifest, load(".agents/skills/ashare-financial-storytelling/SKILL.md"), load("docs/CHATGPT_PROJECT_INSTRUCTIONS.md"))
+
     skill = load(manifest["skill"]["path"])
     errors += check_skill(manifest, skill)
     for p in manifest["skill"]["required_manuals"]:
@@ -118,10 +140,15 @@ def check_repo() -> list[str]:
     if not all(term in load("docs/NEW_SESSION_PROMPT.md") for term in
                ["START_HERE.md", "SKILL.md", "01", "02", "03", "04", "05", "Cloudflare", "NOT_CHECKED"]):
         errors.append("NEW_CHAT_PROMPT_INCOMPLETE")
-    if manifest.get("limitations", {}).get("independent_second_human_analyst") != "NOT_CHECKED":
-        errors.append("UNSUPPORTED_HUMAN_REVIEW_CLAIM")
-    if manifest.get("limitations", {}).get("all_seven_full_material_note_reviews") != "NOT_CHECKED":
-        errors.append("UNSUPPORTED_SEVEN_ISSUER_NOTE_REVIEW_CLAIM")
+    for gate, label in [
+        ("independent_second_human_analyst", "HUMAN_REVIEW"),
+        ("all_seven_full_material_note_reviews", "SEVEN_ISSUER_NOTE_REVIEW"),
+    ]:
+        verdict = manifest.get("limitations", {}).get(gate)
+        if verdict == "NOT_CHECKED":
+            continue
+        if verdict != "PASS" or not manifest.get("review_evidence", {}).get(gate):
+            errors.append("UNSUPPORTED_" + label + "_CLAIM")
     if "收入 37,651,189.26" not in load("docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md") or "27,106,113.32" not in load("docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md"):
         errors.append("OPTICAL_NOTE_AUDIT_SOURCE_LINK_MISSING")
     if "其他业务（附注）" not in load("public/300394.html"):
@@ -150,4 +177,5 @@ if __name__ == "__main__":
         for problem in problems:
             print("HANDOFF_FAIL", problem, file=sys.stderr)
         sys.exit(2)
-    print("HANDOFF_CONTRACT_PASS: skill v8.3.2, 5 manuals, 7 issuer URLs, 1 homepage, real optical note categories, clear NOT_CHECKED gates and no stale handoff entry")
+    manifest = json.loads(load("project-status.json"))
+    print(f"HANDOFF_CONTRACT_PASS: skill {manifest['skill']['version']}, {len(manifest['skill']['required_manuals'])} manuals, {manifest['site']['company_count']} issuer URLs, 1 homepage, Codex skill discovery wrapper, ChatGPT Project instructions, explicit evidence gates")

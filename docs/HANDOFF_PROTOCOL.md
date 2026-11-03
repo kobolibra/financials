@@ -38,3 +38,7 @@
 ## 状态分级
 
 `PASS`：有当前提交、原始来源/测试结果与真实输出支持；`FAIL`：明确不一致或测试失败；`NOT_CHECKED`：没有检验；`NOT_PROVEN`：通用性等尚缺独立验证。**已显示的 10 图、11 图、36 图或 21 屏检查不能用来暗示全套机构级研究通过。**
+
+## 用户层持久上下文
+
+普通 ChatGPT 请优先在名为 Financials in Visuals 的 Project 内开新会话，并一次性将 `docs/CHATGPT_PROJECT_INSTRUCTIONS.md` 的内容粘贴到 **Project settings**。这项个人账户 UI 配置不能由 GitHub commit 代替；Codex 仓库工作环境使用 `.agents/skills/ashare-financial-storytelling/SKILL.md` 自动发现包装器，仍需实际执行全文 Skill。详见 `docs/SETUP_PERSISTENT_CONTEXT.md`。

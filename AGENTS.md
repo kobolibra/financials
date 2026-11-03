@@ -15,3 +15,5 @@
 **If source or repository access fails:** explain which read/test could not be completed. Do not pretend the Skill is installed or read, do not assert report publication, and do not substitute stale summaries for current code.
 
 Historical project state is archived only at `docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md`.
+
+**Native Codex discovery:** A small standard-frontmatter wrapper exists at `.agents/skills/ashare-financial-storytelling/SKILL.md`. Codex can find it when this repo is open; the wrapper MUST fetch the full canonical Skill rather than duplicating its content. Ordinary ChatGPT account-level installation is not claimed; see `docs/SETUP_PERSISTENT_CONTEXT.md`.

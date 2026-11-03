@@ -45,3 +45,7 @@
 不要重复已存在的行业生成器或过度依赖统一柱状图模板。**有会计守恒的收入流向图是重要表达方式，但不是“做了桑基图=完成所有研究”。**
 
 历史长记录已搬到 [docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md](docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md)，仅供考古，**不可当现行状态使用**。
+
+### 自动发现范围的区别（Codex vs ChatGPT）
+
+仓库已经提供 [Codex 仓库级 Skill 包装器](.agents/skills/ashare-financial-storytelling/SKILL.md)：Codex 在**已打开本仓库**时可以按官方约定发现它，再读取唯一完整 Skill。普通 ChatGPT 不会因为这些 Git 文件自动把它安装成全局 Skill。要让未来每个 ChatGPT 项目聊天具有固定指令，请按 [一次性 Project 设置说明](docs/SETUP_PERSISTENT_CONTEXT.md) 操作，复制 [Project 长期指令](docs/CHATGPT_PROJECT_INSTRUCTIONS.md)。**这一账户级 UI 操作尚未代替用户完成。**

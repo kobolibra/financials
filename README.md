@@ -31,3 +31,7 @@
 - CI 和完整发布准则见 [docs/REPORT_RELEASE_CHECKLIST.md](docs/REPORT_RELEASE_CHECKLIST.md)；旧项目状态留档于 [docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md](docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md)。
 
 `skills/ashare-financial-storytelling/SKILL.md` 是仓库中的项目 Skill，**不是自动安装到 ChatGPT 的全局 Skills**。普通新对话应使用 [新会话指令](docs/NEW_SESSION_PROMPT.md) 明确要求读 GitHub；安装或连接能力依 ChatGPT 实际当前功能决定，不在本仓库内虚构“已安装成功”。
+
+### 自动发现范围的区别（Codex vs ChatGPT）
+
+仓库已经提供 [Codex 仓库级 Skill 包装器](.agents/skills/ashare-financial-storytelling/SKILL.md)：Codex 在**已打开本仓库**时可以按官方约定发现它，再读取唯一完整 Skill。普通 ChatGPT 不会因为这些 Git 文件自动把它安装成全局 Skill。要让未来每个 ChatGPT 项目聊天具有固定指令，请按 [一次性 Project 设置说明](docs/SETUP_PERSISTENT_CONTEXT.md) 操作，复制 [Project 长期指令](docs/CHATGPT_PROJECT_INSTRUCTIONS.md)。**这一账户级 UI 操作尚未代替用户完成。**

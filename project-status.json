@@ -18,7 +18,14 @@
       "skills/ashare-financial-storytelling/research/03_VISUAL_EDITORIAL_SYSTEM.md",
       "skills/ashare-financial-storytelling/research/04_ASHARE_FORENSIC_DEEP_DIVE.md",
       "skills/ashare-financial-storytelling/research/05_CROSS_SECTOR_GENERALIZATION.md"
-    ]
+    ],
+    "discovery": {
+      "codex_repo_entry": ".agents/skills/ashare-financial-storytelling/SKILL.md",
+      "code_agent_compatibility": "AGENTS.md",
+      "chatgpt_project_persistent_instructions": "docs/CHATGPT_PROJECT_INSTRUCTIONS.md",
+      "chatgpt_project_setup": "docs/SETUP_PERSISTENT_CONTEXT.md",
+      "ordinary_new_chat_auto_installation": "NOT_PROVEN__EXPLICIT_PROMPT_OR_USER_PROJECT_SETUP_REQUIRED"
+    }
   },
   "entrypoints": {
     "human": "START_HERE.md",
@@ -99,5 +106,11 @@
     "fully_automatic_industry_generalization": "NOT_PROVEN",
     "every_new_report": "GATE_INDEPENDENTLY_REQUIRED"
   },
-  "source_archive": "ChatGPT Library /Financials-in-Visuals/ ; do not assume a new session has original PDF bytes mounted; retrieve and recheck SHA, dates, periods and issuer before claiming PDF_HASH PASS."
+  "source_archive": "ChatGPT Library /Financials-in-Visuals/ ; do not assume a new session has original PDF bytes mounted; retrieve and recheck SHA, dates, periods and issuer before claiming PDF_HASH PASS.",
+  "last_verified_handoff": {
+    "run_id": 41610923043,
+    "conclusion": "success",
+    "scope": "handoff version, five manuals, seven reports, original optical categories, 6 adversarial tests and 9 portal tests; does not certify investment analysis",
+    "warning": "Historical GitHub Action run: check current HEAD. New discovered Codex wrapper will be validated by the next CI."
+  }
 }
