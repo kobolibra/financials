@@ -38,7 +38,8 @@ with sync_playwright() as p:
     ribbon:[...document.querySelectorAll('#chart-flow path.money-ribbon')].map(e=>{
       const d=e.getAttribute('d')||'';
       const start=d.match(/^M([0-9.]+),([0-9.\-]+) C/);
-      const finish=d.match(/L([0-9.]+),([0-9.\-]+) Z$/);
+      // Last coordinate is the endpoint of the second cubic C, not a standalone L command.
+      const finish=d.match(/ ([0-9.]+),([0-9.\-]+) Z$/);
       return {
         source:e.dataset.source,sourceKey:e.dataset.sourceKey,target:e.dataset.targetKey,
         kind:e.dataset.kind,amount:e.dataset.valueYuan,thickness:Number(e.dataset.thickness),
