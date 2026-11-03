@@ -107,6 +107,10 @@ data["graphic_contract"]={
            "dates":["2025-12-31","2026-06-30"],"scope":"consolidated"}
 }
 template=(ROOT/"report-template.html").read_text(encoding="utf-8")
+for chart in REQUIRED_FIGURES:
+    for selector in ('id="fig-'+chart+'"','id="chart-'+chart+'"','id="table-'+chart+'"','data-export="'+chart+'"'):
+        assert selector in template,("FIGURE_RENDER_OR_EVIDENCE_MISSING",chart,selector)
+
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
 source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display).replace("__SOURCE_SHA__",actual_sha))
@@ -114,5 +118,5 @@ assert "<script src=" not in output and "<iframe" not in output and "https://fon
 a.out.parent.mkdir(parents=True,exist_ok=True)
 a.out.write_text(output,encoding="utf-8")
 a.qa.parent.mkdir(parents=True,exist_ok=True)
-a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","figure_briefs_schema":briefs["schema"],"figures_required":len(REQUIRED_FIGURES),"source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print("ASR_PUBLICATION_REBUILD",a.out,"bytes",a.out.stat().st_size,"ACCOUNTING_PASS",len(checks)-int(source_status=="NOT_CHECKED"),"source_bytes",source_status,flush=True)
