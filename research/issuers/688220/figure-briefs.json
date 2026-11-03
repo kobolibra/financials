@@ -35,7 +35,7 @@
         86,
         178
       ],
-      "identity": "For EACH of 4 exclusive product categories rev_i = cost_i + GP_i, GP_i >=0; Σrev_i = Σcost_i + ΣGP_i; precision 0.01 yuan.",
+      "identity": "For EACH of 4 exclusive product categories rev_i = cost_i + GP_i, GP_i >=0; Σrev_i = Σcost_i + ΣGP_i; precision 0.01 yuan. Each flow route must encode ORIGINAL segment cost and DERIVED GP, not just group-level aggregate split. All values nonnegative; seven positive stream links and one genuine zero GP.",
       "zero": "NONNEGATIVE_PROPORTIONAL_FLOW",
       "counter": "高毛利类别的低收入并不能证明规模经济",
       "mobile": "direct numeric text before independently scrollable SVG",
@@ -106,7 +106,7 @@
     {
       "id": "pnl",
       "family": "full_signed_CAS_PnL_waterfall",
-      "question": "Where did 2026H1 7.22bn? (721m CNY) gross profit go to reach 84m net income?",
+      "question": "How does CNY 721.52 million (7.22 亿元) 2026H1 gross profit become CNY 84.24 million (0.84 亿元) GAAP net profit?",
       "takeaway": "研发消耗大部分毛利，随后公允价值/税项贡献法定正利润",
       "facts": [
         "rev",
@@ -127,13 +127,14 @@
         "nonoperating_expense",
         "pretax_profit",
         "income_tax_expense",
-        "consolidated_net_profit"
+        "consolidated_net_profit",
+        "nonoperating_expense_prior"
       ],
       "source_pages": [
         86,
         87
       ],
-      "identity": "GP-5 expenses+six signed operating gains/losses=operating_profit; + nonoperating net - income_tax_expense=consolidated_ni",
+      "identity": "2026H1 current expense cell is blank, its zero signed contribution is derived; 2025H1 15.30 yuan sits in prior-year column p.87, never subtract it from current profits. Full signed operating cost + gains to operating profit; nonoperating income + zero derived current expense - tax expense to NI.",
       "zero": "SIGNED_ZERO_RETAINED_AND_PAIRS_GROUPED_ONLY_FROM_SOURCE_COMPONENTS",
       "counter": "市场估值及税收益的可持续性未经证明",
       "mobile": "direct multi-line summary + horizontally scrollable 11-step SVG",
@@ -142,7 +143,8 @@
         "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
         "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
         "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
-        "human_second_editor": "NOT_CHECKED"
+        "human_second_editor": "NOT_CHECKED",
+        "original_pnl_column_correction": "PASS_MANUALLY_VERIFIED_PHYSICAL_P87_CURRENT_BLANK_VS_PRIOR_15_30"
       }
     },
     {
