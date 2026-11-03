@@ -109,6 +109,25 @@ jobs:
                   assert page.locator('a.brand[href="/#companies"]').count()==1,(ticker,'v10 back-to-library')
                 else:
                   assert page.locator('a[href="/#companies"]').count()>=1,(ticker,'new issuer lacks library return')
+                  if ticker in ('600900','600276'):
+                    issuer_data=json.loads(pathlib.Path('research/issuers',ticker,'source-ledger.json').read_text())
+                    n_sources=len(issuer_data['segments'])
+                    assert page.locator('figure.figure').count()==8,(ticker,'new sector preview lost any sourced figure')
+                    assert page.locator('table').count()==8,(ticker,'new sector preview source tables missing')
+                    assert page.locator('#chart-flow rect.money-source').count()==n_sources,(ticker,'weighted exclusive source rectangles absent in real live HTML')
+                    assert page.locator('#chart-flow rect.money-sink').count()==2,(ticker,'weighted gross profit and cost sinks absent in live HTML')
+                    assert page.locator('#chart-flow path.money-ribbon').count()==2*n_sources,(ticker,'source-specific cost and GP ribbons missing')
+                    assert issuer_data['source']['original_bytes_sha256'] in page.content(),(ticker,'real PDF identity not printed in live article')
+                    assert page.locator('#chart-cfo svg').count()==1,(ticker,'complete signed indirect CFO exhibit missing')
+                    assert page.locator('#chart-pnl svg').count()==1,(ticker,'signed consolidated P&L bridge missing')
+                    assert page.locator('#chart-balance svg').count()==1,(ticker,'two-date stock composition missing')
+                    assert page.locator('[data-export]').count()==8,(ticker,'eight independently usable SVG exports missing')
+                    if width==1440:
+                      vis=page.evaluate("""() => ['flow','pnl','cfo','cash','balance'].map(id=>{
+                         const node=document.querySelector('#chart-'+id);
+                         return {id,inner:node.scrollWidth,visible:node.clientWidth};
+                      })""")
+                      assert all(z['inner']<=z['visible']+2 for z in vis),(ticker,'new public desktop chart cropped',vis)
                   if ticker=='688220':
                     assert page.locator('#chart-flow svg').count()==1,'ASR original-source money-flow Sankey missing'
                     expected_figures=len(json.loads(pathlib.Path('research/issuers/688220/figure-briefs.json').read_text())['figure_briefs'])
@@ -155,6 +174,13 @@ jobs:
             assert page.url.endswith('#cash'),'ASR real cash-section anchor failed'
             page.locator('a.brand[href="/#companies"]').click()
             assert page.url.endswith('#companies'),'ASR back to unified company library failed'
+            for code in ['600900','600276']:
+              page.goto(home,wait_until='networkidle')
+              page.locator(f'a.company[href="/{code}.html"]').click()
+              assert f'/{code}' in page.url,(code,'new independent company route is not navigable')
+              assert page.locator('#chart-flow svg').count()==1,(code,'new route lost original source flow')
+              page.locator('a[href="/#companies"]').first.click()
+              assert page.url.endswith('#companies'),(code,'new report fails to return to single catalog')
             page.locator('a.feature[href="/optical-2026h1.html"]').click()
             assert 'optical-2026h1' in page.url
             browser.close()
