@@ -42,3 +42,12 @@
 ## 用户层持久上下文
 
 普通 ChatGPT 请优先在名为 Financials in Visuals 的 Project 内开新会话，并一次性将 `docs/CHATGPT_PROJECT_INSTRUCTIONS.md` 的内容粘贴到 **Project settings**。这项个人账户 UI 配置不能由 GitHub commit 代替；Codex 仓库工作环境使用 `.agents/skills/ashare-financial-storytelling/SKILL.md` 自动发现包装器，仍需实际执行全文 Skill。详见 `docs/SETUP_PERSISTENT_CONTEXT.md`。
+
+
+## v8.4 持续迭代的额外交接事务
+
+新增发行人时，除了现行 `PROJECT_STATE.md` 和 `project-status.json`，必须提交该公司的 `research/issuers/<code>/release-gates.json`：实际 PDF 归档及 SHA、源页面行列含义、行业独立会计模型、源附注异常、图形真实宽度、三屏截图、HTML 重建、GitHub main/Actions 与 Cloudflare 本次版本指纹。不可把复制自另一家公司的 PASS 当作本公司的 PASS。
+
+新的研究/会计/视觉/发布失误必须反向更新唯一 Skill、`skills/ashare-financial-storytelling/quality-regressions.json`，新增正常+恶意反例，并在 CI 执行。每次写清 **根因修复是否可迁移到其他公司**（单个发行人测试 ≠ 泛化）。必须跑 `python scripts/check_release_contract.py` 和其对抗测试，再跑 `python scripts/check_handoff.py`。完整流程详见 [SKILL_EVOLUTION_PROTOCOL.md](SKILL_EVOLUTION_PROTOCOL.md)。
+
+上一份报告旧 Cloudflare 的 PASS 不适用于当前代码版本；任何 LIVE FAIL 需保存 exact run id 与尚未部署的实际结构差异，不能在下一次新聊天淡化成 `NOT_CHECKED` 或历史成功。
