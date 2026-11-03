@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-03",
+  "updated_date": "2026-11-04",
   "repository": "kobolibra/financials",
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "CANDIDATE_TEN_ISSUER_LIBRARY__MAIN_8_AT_START__PRODUCTION_NOT_YET_VERIFIED",
+  "latest_publication_state": "TEN_ISSUER_MAIN_SOURCE_LIMITED_2026H1_TWO_NEW_SECTORS_LIVE_30_VIEWPORT_PASS",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -57,7 +57,19 @@
       "new_sector_adversarial": "research/shared/test_two_sector_accounting.py",
       "new_figures_engine": "research/shared/build_two_sector.py",
       "new_visual_qa": "research/shared/qa_two_sector_browser.py",
-      "method_state": "TWO_REAL_2026H1_INDEPENDENT_PDF_L1_CANDIDATES_IN_BRANCH__NOT_SAME_AS_INDEPENDENT_HUMAN_CERTIFIED"
+      "method_state": "TWO_REAL_2026H1_INDEPENDENT_PDF_L1_CANDIDATES_IN_BRANCH__NOT_SAME_AS_INDEPENDENT_HUMAN_CERTIFIED",
+      "real_new_sector_stress": {
+        "models": [
+          "hydropower_utility",
+          "innovative_pharma"
+        ],
+        "code": "research/shared/test_two_sector_accounting.py",
+        "quality_regressions_count": 20,
+        "source_signed_main_run": 41736999153,
+        "actual_cloudflare_main_run": 41736999189,
+        "independent_human_review": "NOT_CHECKED",
+        "each_sector_multiple_issuer_L2": "NOT_ESTABLISHED"
+      }
     }
   },
   "entrypoints": {
@@ -542,11 +554,11 @@
     "latest_handoff_sha_at_record": "3969c93109bbfc3b7d83cb96e48a57eb948eb46f"
   },
   "two_sector_intake": {
-    "as_of": "2026-11-03",
+    "as_of": "2026-11-04",
     "branch": "work/two-sector-600900-600276-real-2026h1",
-    "pr": "NOT_CHECKED_NOT_YET_OPENED",
-    "main_merge": "NOT_CHECKED",
-    "published_cloudflare": "NOT_CHECKED",
+    "pr": "https://github.com/kobolibra/financials/pull/12",
+    "main_merge": "7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511",
+    "published_cloudflare": "PASS_ACTUAL_CLOUDFLARE_10_ISSUER_30_VIEWPORT_41736999189",
     "goal": "Two real cross-industry A-share 2026 H1 issuers, one original home, distinct complete offline HTML, source/finance/visual QA and feedback-to-Skill",
     "source_intake_run": {
       "run_id": 41671538396,
@@ -593,7 +605,7 @@
       "original_secondary_exchange_bytes": "NOT_CHECKED",
       "independent_second_human": "NOT_CHECKED",
       "multi_quarter_external_valuation": "NOT_CHECKED",
-      "new_live_cloudflare_routes": "NOT_CHECKED"
+      "new_live_cloudflare_routes": "PASS_41736999189_REAL_PUBLIC_600900_600276_AND_10_COMPANY_CATALOG"
     },
     "material_industry_issues": [
       "2025-10 same-control acquisition requires restated 2025H1 hydro comparatives; power generation kWh not electricity sold",
@@ -608,6 +620,18 @@
       "industry": "life_insurance",
       "status": "PUBLIC_PDF_URL_FOUND_NOT_DOWNLOADED",
       "priority": "Insurance contract liability and IFRS17/CAS insurance asset/liability accounting; do not reuse industrial Sankey."
-    }
+    },
+    "latest_production_actions": {
+      "source_financial_and_browser": 41736999153,
+      "live_10_issuer": 41736999189,
+      "legacy_public_routes": 41736999101,
+      "v10_financial_flow": 41736999269,
+      "skill_handoff": 41736999465
+    },
+    "public_routes": [
+      "/600900.html",
+      "/600276.html"
+    ],
+    "original_eight_published_html_overwritten": false
   }
 }

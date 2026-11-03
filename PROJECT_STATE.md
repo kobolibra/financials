@@ -1,10 +1,24 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-**状态日期：2026-11-03。生产分支：`main`。现行入口：[START_HERE.md](START_HERE.md)。机器状态：[project-status.json](project-status.json)。**
+**状态日期：2026-11-04。生产分支：`main`。现行入口：[START_HERE.md](START_HERE.md)。机器状态：[project-status.json](project-status.json)。**
 
-> **唯一网站：八家公司的同一研究库，严格的翱捷科技新版桑基几何已在真实 Cloudflare 浏览器运行 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) PASS；完整财报附注与独立审稿仍 NOT_CHECKED。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
+> **唯一网站：十家公司同一目录；长江电力和恒瑞医药两份源限定完整离线HTML已真实上线，10家公司×3视口30条Cloudflare检查 [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189) PASS；完整附注与第二名独立真人审稿仍NOT_CHECKED。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
-## 2026-11-03 · NEW ZERO-MEMORY GENERICITY TEST: v8.5.0-RC1 · 水电+创新药两家真实 PDF / 十公司统一目录候选
+## 2026-11-04 · CURRENT · 两个真实新行业研究 + 十家公司唯一正式网站
+
+**已完成生产合并/真实在线验收**：[PR #12](https://github.com/kobolibra/financials/pull/12) merge `7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511`；只新增 `public/600900.html`、`public/600276.html` 两份各8图/8源证据表的**完整独立离线 HTML**，原八家公司HTML未改，唯一 `site/research_catalog.json`→`public/index.html` 变为**十家公司**。<https://financials-in-visuals.pages.dev/600900.html>（水电长江电力）、<https://financials-in-visuals.pages.dev/600276.html>（创新药恒瑞医药）；唯一入口 <https://financials-in-visuals.pages.dev/>。
+
+**官方披露完整 PDF 字节、源码及样本**：600900 2026H1 完整214页，1,296,750 bytes，SHA256 `738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2`；600276 2026H1 完整182页，4,594,202 bytes，SHA256 `ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa`，真实源获取 [41671538396](https://github.com/kobolibra/financials/actions/runs/41671538396) PASS，全物理页文本索引 [41735314032](https://github.com/kobolibra/financials/actions/runs/41735314032) PASS，原始 PDF/重要行列x-y/账本/图表简报/行业分析均在 `research/issuers/{600900,600276}/`。每家公司都有独立三态 `release-gates.json`；SHA 校验并不代替所有重大附注或第二名专业人类审稿。
+
+**main 实际交付 QA（同源 SHA `7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511`）**：财报原 PDF、选定20+26重大源单元格的物理行/列、签名完整三表及间接 CFO、现金等价物闭合、逐源金额加权桑基/有符号瀑布/两时点BS、16幅原生财务图和16份表、CJK浏览器1440/768/390、真 SVG ribbon 几何、独立HTML双次位对位生成 **PASS** [41736999153](https://github.com/kobolibra/financials/actions/runs/41736999153)。真实公开Cloudflare**10公司×3视口30实际URL检查**，两新页原PDF SHA、来源节点与成本/毛利流带、手机及主页回跳、原七页回归 **PASS** [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189)。老页面/站点规范 [41736999101](https://github.com/kobolibra/financials/actions/runs/41736999101) PASS；原 v10 桑基 [41736999269](https://github.com/kobolibra/financials/actions/runs/41736999269) PASS；零记忆Skill/handoff [41736999465](https://github.com/kobolibra/financials/actions/runs/41736999465) PASS。
+
+**v8.5.0-RC1 原创行业研究/反馈迁移**：长江发电量1327.44亿千瓦时**不是**售电量/收入均价分母，2025H1比较期受2025年10月同控合并影响而追溯调整；投资收益、融资、利息与分红不可当售电现金。恒瑞创新药销售88.09亿元是商品收入**子集**，许可收入独立，7月才生效的BMS不是本期确认，p153非现金银行承兑汇票背书共19.94亿元，其中购建资产7.03亿元不能混入现金CapEx/FCF；研发费用与开发支出资产存量不同。2026版源会计/可视化红队反例存 `research/shared/test_two_sector_accounting.py`、`quality-regressions.json`（共20登记案例）。跨行业实测只足以证明两个L1原始公司样本，**不是**各行业两家L2或全行业自动研究认证。
+
+**仍未完成/不能冒充**：600900/600276各自全部214/182页重大附注的完整独立语义审稿、外部8–12Q同业估值、第二名真正独立人类财务/视觉研究员、交易所SSE与CNINFO原始 PDF 逐字节同一性全部 **NOT_CHECKED**。旧688220 p137/p179原始附注差异仍在以前章节独立标明。发布的是来源限定研究预览，不是独立人类审稿签章的完整机构投资研究。
+
+**下次聊天必须先取得最新实际 main SHA**；以下原始代码路径/执行命令是可重建起点而非仅靠记忆：`python scripts/check_release_contract.py`; `python scripts/check_handoff.py`; `python research/shared/verify_two_sector_cells.py --code 600900` 和 `--code 600276`; `python -m unittest research/shared/test_two_sector_accounting.py -v`; `python research/shared/build_two_sector.py --code <code> --out public/<code>.html`; `python research/shared/qa_two_sector_browser.py --code <code>`; `python site/portal_builder.py --out /tmp/financials-ten-issuer`。实际重跑需PyMuPDF、Playwright/CJK及完整原PDF归档。**未来每家继续按照同样标准验收且有新反馈即新增真实反例，不会自动获得独立研究认证。**
+
+## 2026-11-03 · HISTORICAL CANDIDATE (NOW RELEASED): ZERO-MEMORY GENERICITY TEST: v8.5.0-RC1 · 水电+创新药两家真实 PDF / 十公司统一目录候选
 
 **起始与隔离边界：** 按新聊天场景重新读取 2026-11-03 实际 `main` `2889046506890397082ec3896a057bed0b31d478`、START_HERE/PROJECT_STATE/project-status、唯一完整 Skill 和研究手册 01–05、质量检查和交接。独立分支 `work/two-sector-600900-600276-real-2026h1`，**不是另起四公司网站**；原八公司报告文件未改，本次新增 `public/600900.html`、`public/600276.html`，**十公司首页仍需候选自动生成、PR/main 合并和 Cloudflare 真实逐公司验证**，当前不能冒充线上完成。
 

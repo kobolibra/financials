@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
-> **当前有效版本：统一八家公司研究库（2026-11-03）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
+> **当前有效版本：统一十家公司研究库（2026-11-04）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
 
 ## 0. 新对话 / 新 Agent 必读
 
@@ -16,7 +16,7 @@
 
 **新窗口一键启动文本：** [docs/NEW_SESSION_PROMPT.md](docs/NEW_SESSION_PROMPT.md)。如果新会话无法读取 GitHub，则明确说出阻碍并请求上传必需文件，不能谎称“已执行 Skill”。
 
-## 1. 当前生产的八家独立研究
+## 1. 当前生产的十家独立研究
 
 | 行业 | 公司 | 正式网页 |
 |---|---|---|
@@ -28,16 +28,18 @@
 | 白酒 | 贵州茅台 600519 | `/research/2026-h1-v10/600519.html` |
 | 制造 | 美的集团 000333 | `/research/2026-h1-v10/000333.html` |
 | 半导体 | 翱捷科技-U 688220 | `/688220.html`（源限定研究预览，公开披露的应收集中度比例分母仍有不可勾稽问题） |
+| 公用事业 / 水电 | 长江电力 600900 | `/600900.html`（2026H1完整214页报告；8图源限定研究） |
+| 医药 / 创新药 | 恒瑞医药 600276 | `/600276.html`（2026H1完整182页报告；8图源限定研究） |
 
-产业链横向比较 `/optical-2026h1.html` **属于专题，不是第八家公司**。第八家公司通过 `site/research_catalog.json` 和 `site/portal_builder.py` 接入原有首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
+产业链横向比较 `/optical-2026h1.html` **属于专题，不算入十家公司**。新增公司仍通过唯一 `site/research_catalog.json` 和 `site/portal_builder.py` 接入原有首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
 
 ## 2. 已验证什么，未验证什么
 
 **最近完成的有界修复**：天孚通信 p.140 0.38 亿元对应已披露其他业务；新易盛 p.104 0.27 亿元对应按业务类型“其他”，**不能**与另一维度“其他业务”合并。见 [附注核对报告](docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md)。
 
-**最后一次已知公开验收**（历史报告对应 SHA、并非对将来任何报告的保证）：原始收入分类重建 [41599963892](https://github.com/kobolibra/financials/actions/runs/41599963892)、七家公司实际浏览器 [41599963800](https://github.com/kobolibra/financials/actions/runs/41599963800)、历史链接 [41599963891](https://github.com/kobolibra/financials/actions/runs/41599963891)。每次交接仍要查看 **GitHub 当前 HEAD 的最新 Action 和 Cloudflare 实际页面**。
+**最新真实生产验收**（新加入两家公司，报告源 merge `7704ecc6...`）：两份完整PDF/行列/核心三表/CFO/16图/三屏及离线重建 [41736999153](https://github.com/kobolibra/financials/actions/runs/41736999153) **PASS**；真实Cloudflare十公司×三尺寸30路径 [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189) **PASS**；老页面路由 [41736999101](https://github.com/kobolibra/financials/actions/runs/41736999101) **PASS**；Skill及十公司交接 [41736999465](https://github.com/kobolibra/financials/actions/runs/41736999465) **PASS**。每次交接仍要查看 **GitHub 当前 HEAD 的最新 Action 和 Cloudflare 实际页面**。
 
-**尚未完成**：原有七家及新加入半导体公司的全部重大附注再次逐行审查、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
+**尚未完成**：现有十家公司全部重大附注的完整独立系统语义复核、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
 
 ## 3. 新公司从 PDF 到独立 HTML 的最短正确路径
 
@@ -57,7 +59,7 @@
 2026H1 224 物理页 PDF 镜像原件 SHA256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`（1,449,510 bytes），原始字节保存于 `research/issuers/688220/source/`，账本/出版器/研究证据见同目录；正式研究页 `/688220.html`，首页仍唯一。上交所静态服务器回传 HTML，**交易所直链字节与归档副本是否完全一致尚为 NOT_CHECKED**。原始附注 p.137 的应收集中度 90.50% 与简单原值分母复算 89.17% 不一致，局部源证据门槛 **FAIL**，不可模糊称全部会计问题已解决。参考最新 `PROJECT_STATE.md`、`research/issuers/688220/research-memo.md` 和 CI 记录；本页描述的是代码预期状态，实际生产 URL 与当前 GitHub HEAD 仍需独立验证。
 ## 2026-11-03 AEI/FT 原始业务利润流向与重要行列纠错
 
-现行方法升级为 **Skill v8.3.3-RC1**。翱捷科技 2026H1 的旧收入→集团 COGS/GP 桑基只证明集团守恒，不能解释每类业务利润。修订后的原始 p.178 桑基每类业务分别流向其对应的披露成本与推导毛利，**无最小假流**；毛利到净利润另用有符号瀑布，资产=负债+权益用两时点同尺度存量图。实际重构文件是 `research/issuers/688220/report-template.html`、`publish.py`、`figure-briefs.json`、`qa_browser.py`，生成 `/688220.html`。另发现 p.87 营业外支出 **15.30 元属于 2025H1 右列**，2026H1 当前列是空白（其损益贡献由算术推导为零），已直接更正账本与 PDF 物理坐标验证。不要将先前“页面数字找到即正确”的检查当作行列精确核对。
+当时升级版本为 **Skill v8.3.3-RC1**，当前唯一 Skill 为 **v8.5.0-RC1**。翱捷科技 2026H1 的旧收入→集团 COGS/GP 桑基只证明集团守恒，不能解释每类业务利润。修订后的原始 p.178 桑基每类业务分别流向其对应的披露成本与推导毛利，**无最小假流**；毛利到净利润另用有符号瀑布，资产=负债+权益用两时点同尺度存量图。实际重构文件是 `research/issuers/688220/report-template.html`、`publish.py`、`figure-briefs.json`、`qa_browser.py`，生成 `/688220.html`。另发现 p.87 营业外支出 **15.30 元属于 2025H1 右列**，2026H1 当前列是空白（其损益贡献由算术推导为零），已直接更正账本与 PDF 物理坐标验证。不要将先前“页面数字找到即正确”的检查当作行列精确核对。
 
 此处记录方法与需核实的源码事实，**不能代替最新 GitHub `main` 与 Cloudflare 正式网页的发布成功证明**；具体分支/CI/门槛见 `PROJECT_STATE.md` 顶部和 `project-status.json`。
 

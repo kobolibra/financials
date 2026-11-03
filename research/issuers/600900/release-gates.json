@@ -91,9 +91,9 @@
       "scope": "No genuine second independent human finance and visual editor approval"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "NOT_CHECKED",
-      "proof": null,
-      "scope": "Source branch HTML approved locally; main and actual Cloudflare route not yet published and validated"
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41736999189",
+      "scope": "Actual Cloudflare public 10 issuer x 3 viewports Chromium: 30 successful routes including this issuer's 8 source-backed SVGs, distinct money-source/COGS/GP geometry, original PDF SHA and working back-to-library; no claim of independent financial editor or HTTP byte equality"
     }
   },
   "blockers": [
@@ -119,5 +119,6 @@
     }
   ],
   "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY",
-  "live_release_fingerprint": null
+  "live_release_fingerprint": "600900_SOURCE_PDF_SHA_738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2_MAIN_7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511_LIVE_CI_41736999189",
+  "actual_main_release_commit": "7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511"
 }
