@@ -142,10 +142,10 @@
     },
     {
       "fact_id": "cash_end",
-      "physical_page": 161,
-      "original_x0": 307,
-      "original_y0": 469,
-      "row_anchor": "现金的期末余额",
+      "physical_page": 56,
+      "original_x0": 327.72,
+      "original_y0": 85.03,
+      "row_anchor": "期末现金及现金等价物",
       "coordinate_tolerance": 2.6
     },
     {
