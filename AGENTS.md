@@ -2,7 +2,7 @@
 
 **Read [START_HERE.md](START_HERE.md) and [project-status.json](project-status.json) first.** They override any stale historical checkpoint or past chat memory. Then read [PROJECT_STATE.md](PROJECT_STATE.md) and the COMPLETE [ashare-financial-storytelling SKILL.md](skills/ashare-financial-storytelling/SKILL.md), including the five full `research/01..05` manuals. Do **not** treat this repo Skill as an automatically installed ChatGPT Skill; retrieve it explicitly.
 
-**Product:** one real production homepage `public/index.html` / https://financials-in-visuals.pages.dev/ with seven independent real issuer reports; topical comparison lives separately. New issuers go into `site/research_catalog.json`, NOT a four-company or edition-specific alternate homepage. Preserve all stable issuer URLs and original user work.
+**Product:** one real production homepage `public/index.html` / https://financials-in-visuals.pages.dev/ with eight independent issuer reports (the prior seven plus the source-limited ASR 688220 research preview); topical comparison lives separately. New issuers go into `site/research_catalog.json`, NOT a four-company or edition-specific alternate homepage. Preserve all stable issuer URLs and original user work.
 
 **Do the financial work:** get actual original PDF bytes, issuer/period/revision, SHA, page count, real page row/column, source hierarchy, signed Decimal facts, business/commercial mechanism, fully reconciled statements and material notes, hostile counterevidence, the strongest alternative hypothesis. Document data classifications: disclosed, management, derived, hypothesis, missing. Never invent numbers or claim an entire PDF is independently audited just because raw numbers matched.
 
