@@ -4,6 +4,14 @@
 
 > **唯一网站：首页统一八家公司研究库；公司旧站路由 PASS，但本次 688220 修复图形的 Cloudflare 发布仍受 LIVE FAIL 门槛约束。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
+## 2026-11-03 · v8.4.1-RC1 PDF→账本→九图源证据跨文件一致性（待 PR CI）
+
+- **最新已合并主分支基准**：v8.4.0-RC1 的 [PR #9](https://github.com/kobolibra/financials/pull/9) 合并于 `ffb57ac6142546a66233fa01741b54812422f40e`，PR 同一源版本 Actions [41666080981](https://github.com/kobolibra/financials/actions/runs/41666080981) 与 [41666080935](https://github.com/kobolibra/financials/actions/runs/41666080935) **PASS**，前者执行真实原 PDF SHA/质量合同与恶意反例/交接/目录重建；后者为 PR 本地目录 QA，**不会在 PR 上运行公开 Cloudflare 浏览器**。本项不是原来 Cloudflare 新图部署失败的解决。
+- **新发现的具体源不一致**：翱捷科技 `research/issuers/688220/source-ledger.json` 原文件的 `source.original_bytes_sha256` 仍为历史临时 `NOT_CHECKED_PENDING_ACTION_SOURCE_CAPTURE`，而它对应的 PDF 真正归档与 publisher 完整字节验证已通过。当前候选分支 `work/skill-typed-evidence-20261103` 已从**真实 source ledger** 追源纠正为归档的 `9d2768...814d1bdc`，保留 **上交所原始直链和 PDF 镜像字节同一性 NOT_CHECKED**，未修改 94 项原数值与公司 HTML。
+- **通用防线**：`scripts/check_release_contract.py` 不再仅核对质量摘要；必须交叉验证 PDF 实际字节与 SHA、source ledger 的发行人/期间/真实源 SHA/93 条已披露 typed fact 页码单位/存量流量/比例、全部九图 brief 引用的 fact IDs、期间/来源版本/反解释，并让明显的银行/保险行业工业模式冒用报错。新 6 项恶意反例覆盖陈旧 ledger、跨期冒领、错页/缺标签、借用别家公司图片来源、银行保险错会计、百分比误作元。
+- **状态边界**：源字段存在/期间一致 **不等于**图书馆原始 PDF 每条金额在所称行列语义上已经独立复核；完整重大附注、外部同行估值、人类第二研究员、真生产新图仍独立门槛。PR 尚未建立，Actions 尚未运行，标记 **NOT_CHECKED**。
+- **下一步**：真实 PR CI 运行新合同与 18 个恶意反例及 688220 账目源重建；审阅结果后合并并更新下一会话交接 SHA 和本轮实际 PASS/FAIL。不能在 CI 运行前写 PASS。
+
 ## 2026-11-03 · v8.4.0-RC1 Skill 泛化与问题闭环升级（质量合同，待 CI）
 
 **本项是可复用执行机制的增量，不是新增第九家公司，也不把八家已有财报冒充全量复核。** 当前开发分支 `work/skill-quality-loop-20261103`，从 `main` 真实 `76165c4fb5fcc630c79777fec086cc90fff9976b` 出发；版本 `8.4.0-rc1`。PR/最终合并 SHA 和 GitHub Actions 结果尚未获得，暂为 **NOT_CHECKED**；生产 Cloudflare 在原已知严格检查下仍 **FAIL**，本次不改 `public/*.html`，也不会以新 Skill 文件提交证明新版网站已上线。
