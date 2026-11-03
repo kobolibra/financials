@@ -25,6 +25,8 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Original 224-page PDF complete-byte audit and exact financial accounting
         run: |
+          python scripts/check_handoff.py
+          python -m unittest discover -s scripts -p test_check_handoff.py -v
           python research/issuers/688220/verify_pages.py
           python research/issuers/688220/test_accounting.py
           python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
