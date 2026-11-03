@@ -1,0 +1,177 @@
+{
+  "edition": "2026H1",
+  "primary_home": "/",
+  "published_issuer_count": 7,
+  "unified_directory": true,
+  "issuers": [
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "exchange": "SZ",
+      "industry": "光通信",
+      "sub": "光器件与光连接",
+      "story": "收入增长正在加速，现金与资本约束不能被忽略。",
+      "deck": "无源光器件是毛利增长的关键来源。继续沿着应收、原材料库存与资本投入追问：增长能否真正转成现金？",
+      "href": "/300394.html",
+      "kind": "原有研究",
+      "stage": "research-preview",
+      "note": "原始研究 · 后续独立复核",
+      "figures": 10,
+      "signal": "60.9%",
+      "signal_label": "2026H1 综合毛利率",
+      "source": "原始2026H1完整披露",
+      "spark": [
+        60.9,
+        39.1
+      ],
+      "spark_names": [
+        "毛利",
+        "成本"
+      ],
+      "rank": 1
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "exchange": "SZ",
+      "industry": "光通信",
+      "sub": "光模块与高速互联",
+      "story": "利润增速显著高于收入，经营现金流却下降。",
+      "deck": "高速增长下的利润质量不能只看毛利。与应收、库存、现金资本开支一起读，才知道现金为何出现背离。",
+      "href": "/300308.html",
+      "kind": "原有研究",
+      "stage": "source-review",
+      "note": "待完成独立来源语义复核",
+      "figures": 10,
+      "signal": "46.3%",
+      "signal_label": "2026H1 综合毛利率",
+      "source": "原始2026H1完整披露",
+      "spark": [
+        46.3,
+        53.7
+      ],
+      "spark_names": [
+        "毛利",
+        "成本"
+      ],
+      "rank": 2
+    },
+    {
+      "code": "300502",
+      "name": "新易盛",
+      "exchange": "SZ",
+      "industry": "光通信",
+      "sub": "高速光模块",
+      "story": "销售额翻倍，但高端化能否带来持续的现金回报？",
+      "deck": "收入增速与出货量增速不是同一个指标。研究平均实现收入、产品结构、库存、应收与现金转换之间的关系。",
+      "href": "/300502.html",
+      "kind": "原有研究",
+      "stage": "research-preview",
+      "note": "原始研究 · 后续独立复核",
+      "figures": 11,
+      "signal": "48.4%",
+      "signal_label": "2026H1 综合毛利率",
+      "source": "原始2026H1完整披露",
+      "spark": [
+        48.4,
+        51.6
+      ],
+      "spark_names": [
+        "毛利",
+        "成本"
+      ],
+      "rank": 3
+    },
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "exchange": "SH",
+      "industry": "银行",
+      "sub": "商业银行",
+      "story": "净息差承压，净利息收入为何还能增长？",
+      "deck": "从净利息收入、手续费和其他净收入，进入银行成本、信用减值、监管资本与资金结构，不硬套工业企业利润表。",
+      "href": "/research/2026-h1-v10/600036.html",
+      "kind": "研究预览",
+      "stage": "research-preview",
+      "note": "银行专属会计逻辑",
+      "figures": 8,
+      "signal": "62.9%",
+      "signal_label": "净利息收入占营业收入",
+      "source": "2026H1 原始报告",
+      "spark": [
+        62.9,
+        37.1
+      ],
+      "spark_names": [
+        "净利息",
+        "其他净收入"
+      ],
+      "rank": 4
+    },
+    {
+      "code": "688111",
+      "name": "金山办公",
+      "exchange": "SH",
+      "industry": "软件",
+      "sub": "订阅与办公软件",
+      "story": "利润暴增，软件经营本身增长了多少？",
+      "deck": "拆分个人、企业与软件产品收入，检验毛利与投资收益的影响，并将净利润逐项调节为经营现金流。",
+      "href": "/research/2026-h1-v10/688111.html",
+      "kind": "研究预览",
+      "stage": "research-preview",
+      "note": "非经常收益与现金调节",
+      "figures": 9,
+      "signal": "25.18 亿",
+      "signal_label": "2026H1 合并净利润",
+      "source": "2026H1 原始报告",
+      "spark": null,
+      "spark_names": null,
+      "rank": 5
+    },
+    {
+      "code": "600519",
+      "name": "贵州茅台",
+      "exchange": "SH",
+      "industry": "消费",
+      "sub": "白酒与财务公司",
+      "story": "现金流大幅增长，真的是白酒卖得更好吗？",
+      "deck": "酒类产品与渠道的毛利结构是一回事，财务公司的成员存款与同业资金流又是另一回事。二者必须分开。",
+      "href": "/research/2026-h1-v10/600519.html",
+      "kind": "研究预览",
+      "stage": "research-preview",
+      "note": "财务公司现金流专属口径",
+      "figures": 9,
+      "signal": "706.91 亿",
+      "signal_label": "2026H1 经营现金流",
+      "source": "2026H1 原始报告",
+      "spark": null,
+      "spark_names": null,
+      "rank": 6
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "exchange": "SZ",
+      "industry": "制造",
+      "sub": "综合制造与金融子公司",
+      "story": "归母利润变化不大，扣非表现为何明显分化？",
+      "deck": "先厘清业务分部父子层级与地区口径，再分析毛利、利润调整、金融子公司与营运资本的真实方向。",
+      "href": "/research/2026-h1-v10/000333.html",
+      "kind": "研究预览",
+      "stage": "research-preview",
+      "note": "分部层级及金融业务口径",
+      "figures": 10,
+      "signal": "2,610.52 亿",
+      "signal_label": "2026H1 合并营业总收入",
+      "source": "2026H1 原始报告",
+      "spark": null,
+      "spark_names": null,
+      "rank": 7
+    }
+  ],
+  "topic": {
+    "name": "光互连产业链比较",
+    "href": "/optical-2026h1.html"
+  },
+  "research_scope": "SOURCE_LIMITED_PREVIEWS_NOT_INDEPENDENT_EDITOR_CERTIFIED"
+}

@@ -125,16 +125,15 @@ jobs:
               page.close()
             page=browser.new_page()
             page.goto(home,wait_until='networkidle')
-            assert page.locator('a[href="./research/2026-h1-v10/index.html"]').count()>=1, 'Homepage must feature latest v10 source-audited story'
-            page.locator('a[href="./research/2026-h1-v10/index.html"]').first.click()
-            assert '/research/2026-h1-v10/' in page.url
-            print('PUBLIC_HOMEPAGE_V10_CLICK_PASS',page.url,flush=True)
-            page.locator('a[href="./600036.html"]').click()
+            assert page.locator('a.company').count()==7,'The root must show all seven companies, not a four-company subset'
+            assert page.locator('a.company[href="/research/2026-h1-v10/600036.html"]').count()==1
+            page.locator('a.company[href="/research/2026-h1-v10/600036.html"]').click()
             assert '600036' in page.url
             page.locator('a[href="#cash"]').click()
             assert page.url.endswith('#cash'),page.url
-            page.locator('a.brand[href="./index.html"]').click()
-            assert '/2026-h1-v10/' in page.url
+            page.locator('a.brand[href="/#companies"]').click()
+            assert page.url.startswith(home+'/') and page.url.endswith('#companies'),page.url
+            print('PUBLIC_SEVEN_COMPANY_HOME_TO_BANK_TO_HOME_PASS',page.url,flush=True)
             browser.close()
           assert not issues,issues
           assert len(passed)==12,len(passed)

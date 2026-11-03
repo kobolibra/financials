@@ -1,0 +1,104 @@
+name: Verify unified seven-company research library (live)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/index.html'
+      - 'public/300394.html'
+      - 'public/300308.html'
+      - 'public/300502.html'
+      - 'public/research/2026-h1-v10/**'
+      - 'site/**'
+      - '.github/workflows/verify-unified-research-library.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  unified-route-and-editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clean generator and catalog regression
+        run: |
+          python -m unittest discover -s site -p 'test_portal.py' -v
+          python site/portal_builder.py --out /tmp/financials-rebuilt-portal
+          cmp public/index.html /tmp/financials-rebuilt-portal/index.html
+          test "$(python -c 'import json;print(len(json.load(open("site/research_catalog.json"))["issuers"]))')" = 7
+      - name: Install Chromium, Playwright and Chinese fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=zh family | grep -qi 'Noto'
+          python -m pip install --disable-pip-version-check -q playwright
+          python -m playwright install chromium
+      - name: Real Cloudflare unified seven-company acceptance
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          from playwright.sync_api import sync_playwright
+          home='https://financials-in-visuals.pages.dev'
+          old={'300394':'/300394.html','300308':'/300308.html','300502':'/300502.html'}
+          new={x:f'/research/2026-h1-v10/{x}.html' for x in ['600036','688111','600519','000333']}
+          allroutes={**old,**new}
+          out=pathlib.Path('unified-site-evidence');out.mkdir(exist_ok=True)
+          errors=[];records=[]
+          with sync_playwright() as p:
+            browser=p.chromium.launch(headless=True)
+            for width,height in [(1440,900),(768,1024),(390,844)]:
+              page=browser.new_page(viewport={'width':width,'height':height})
+              page.on('pageerror',lambda e:errors.append(str(e)))
+              res=page.goto(home,wait_until='networkidle',timeout=45000)
+              assert res and res.status==200,'Site root failed'
+              assert page.locator('a.company').count()==7,('unified company count',width)
+              assert page.locator('a.company:visible').count()==7
+              assert page.locator('a.feature[href="/optical-2026h1.html"]').count()==1
+              assert page.evaluate('document.documentElement.scrollWidth')<=width+1
+              page.screenshot(path=str(out/f'home_{width}.png'),full_page=True)
+              page.locator('button[data-filter="光通信"]').click()
+              assert page.locator('a.company:visible').count()==3
+              page.locator('button[data-filter="all"]').click()
+              page.locator('input[type="search"]').fill('600036')
+              assert page.locator('a.company:visible').count()==1
+              page.locator('input[type="search"]').fill('')
+              assert page.locator('a.company:visible').count()==7
+              for ticker,path in allroutes.items():
+                page.goto(home+path,wait_until='networkidle',timeout=45000)
+                assert page.locator('figure').count()>=6,(ticker,'research figures')
+                if ticker in old:
+                  assert page.locator('.money-ribbon').count()>=2,(ticker,'old optical money flows lost')
+                  assert page.locator('a.site-library-link[href="/#companies"]').count()==1,(ticker,'old back-to-library')
+                else:
+                  assert page.locator('.sankey-svg svg').count()>=1,(ticker,'sankey missing')
+                  assert page.locator('a.brand[href="/#companies"]').count()==1,(ticker,'new back-to-library')
+                assert page.evaluate('document.documentElement.scrollWidth')<=width+1,(ticker,width,'body overflow')
+                if width in (1440,390):page.screenshot(path=str(out/f'{ticker}_{width}.png'),full_page=True)
+                records.append({'ticker':ticker,'width':width,'figures':page.locator('figure').count(),'status':'PASS'})
+              page.close()
+            page=browser.new_page(viewport={'width':1440,'height':900})
+            page.goto(home,wait_until='networkidle')
+            page.locator('a.company[href="/300394.html"]').click()
+            assert page.url.endswith('/300394') or page.url.endswith('/300394.html')
+            page.locator('a.site-library-link[href="/#companies"]').click()
+            assert page.url.startswith(home+'/') and page.url.endswith('#companies'),page.url
+            page.locator('a.company[href="/research/2026-h1-v10/688111.html"]').click()
+            assert '/research/2026-h1-v10/688111' in page.url
+            page.locator('a.brand[href="/#companies"]').click()
+            assert page.url.startswith(home+'/') and page.url.endswith('#companies'),page.url
+            page.locator('a.feature[href="/optical-2026h1.html"]').click()
+            assert 'optical-2026h1' in page.url
+            browser.close()
+          assert len(records)==21,len(records)
+          assert not errors,errors
+          (out/'result.json').write_text(json.dumps({'root':'PASS','seven_company_pages':21,'filter_search':'PASS','money_flow':'PASS','live_navigation':'PASS','script_errors':errors},ensure_ascii=False,indent=2))
+          print('UNIFIED_SEVEN_COMPANY_LIVE_PASS',len(records),'all company pages, all widths, original optical + v10 Sankeys, navigation')
+          PY
+      - name: Archive real browser screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unified-seven-company-live-evidence
+          path: unified-site-evidence/
+          retention-days: 30
+          if-no-files-found: warn

@@ -1,233 +1,54 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light">
-<meta name="theme-color" content="#102b31">
-<meta name="description" content="Financials in Visuals — 专注 A 股上市公司基本面与财务报表的深度研究，以可溯源的分析和原创可视化解释企业如何赚钱、现金如何创造、风险如何累积。">
-<title>Financials in Visuals · A 股财务研究</title>
-<style>
-:root{--dark:#102b31;--ink:#18383c;--cream:#f7f6f1;--paper:#fffefa;--green:#08785f;--mint:#a8d4c2;--muted:#607375;--line:#d9e1dc;--warm:#be8766;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
-a{color:inherit}
-a:focus-visible{outline:3px solid #0e967b;outline-offset:4px}
-.shell{width:min(1200px,calc(100% - 72px));margin:0 auto}
-.mast{background:var(--dark);color:#f8faf6}
-.bar{min-height:86px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #365357;gap:22px}
-.brand{display:flex;flex-direction:column;text-decoration:none;font-size:17px;line-height:1.12;letter-spacing:.105em;font-weight:800}
-.brand small{font-size:10px;font-weight:650;letter-spacing:.34em;color:#a6c6bf;margin-top:6px}
-.links{display:flex;gap:29px;font-size:13px;color:#bcd2cc}
-.links a{text-decoration:none}
-.links a:hover{color:#fff}
-.hero{padding:92px 0 110px;position:relative;overflow:hidden}
-.hero:after{content:"";pointer-events:none;position:absolute;width:430px;height:430px;border:75px solid rgba(139,199,178,.06);border-radius:50%;right:-170px;top:20px}
-.kicker{font-size:11px;letter-spacing:.28em;font-weight:800;color:var(--mint);text-transform:uppercase}
-.hero h1{font-size:clamp(42px,6.7vw,86px);line-height:1.12;max-width:950px;letter-spacing:-.045em;font-weight:580;margin:25px 0 27px}
-.hero h1 em{color:#91d8be;font-style:normal}
-.hero p{font-size:clamp(15px,2vw,19px);line-height:1.95;color:#c3d9d1;max-width:760px;margin:0}
-.hero-foot{display:flex;align-items:center;flex-wrap:wrap;gap:20px;margin-top:39px}
-.hero-cta{display:inline-flex;align-items:center;gap:14px;padding:14px 20px;background:#b0e5d0;color:#12382e;font-size:13px;font-weight:750;text-decoration:none;border-radius:3px}
-.hero-cta:hover{background:#c2f0dd}
-.context{font-size:12px;color:#9dbdb5}
-main{padding:66px 0 100px}
-.section-label{color:var(--green);font-weight:800;font-size:12px;letter-spacing:.19em;text-transform:uppercase}
-.section-top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 31px}
-.section-top h2{font-size:clamp(30px,3.9vw,49px);line-height:1.18;letter-spacing:-.035em;font-weight:530;margin:13px 0 0}
-.count{font-size:12px;color:var(--muted);padding-bottom:8px;white-space:nowrap}
-.article-card{display:block;background:var(--paper);border:1px solid var(--line);color:var(--ink);text-decoration:none;overflow:hidden;transition:box-shadow .2s,transform .2s}
-.article-card:hover{box-shadow:0 23px 50px rgba(22,54,46,.1);transform:translateY(-3px)}
-.article-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr)}
-.article-main{padding:45px 46px 42px}
-.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:12px;color:#5c7871}
-.dot{width:6px;height:6px;border-radius:100%;background:#9baea5}
-.article-main h3{font-size:clamp(30px,3.2vw,45px);line-height:1.28;font-weight:570;letter-spacing:-.03em;margin:28px 0 18px}
-.article-main p{font-size:16px;line-height:1.9;color:#62726f;max-width:610px;margin:0}
-.detail{display:flex;gap:28px;flex-wrap:wrap;padding-top:32px;margin-top:36px;border-top:1px solid var(--line)}
-.detail div{min-width:110px}
-.detail small{color:#728580;display:block;font-size:11px;margin-bottom:8px}
-.detail b{font-size:23px;font-weight:650;letter-spacing:-.02em}
-.article-side{background:#e8eee7;padding:46px 34px;display:flex;flex-direction:column;justify-content:space-between;gap:35px;border-left:1px solid #d5e1d7}
-.side-kicker{color:#417565;font-weight:800;font-size:11px;letter-spacing:.2em}
-.visual-mark{border:1px solid #c9dad0;background:#f1f5ef;padding:24px 20px;border-radius:4px}
-.visual-mark svg{width:100%;height:auto;display:block}
-.side-bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;font-size:13px;font-weight:700;color:#096f58}
-.side-bottom span:last-child{font-size:25px}
-.method{margin-top:95px;border-top:1px solid #cbd6cf;padding-top:34px}
-.method-head{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;margin-bottom:32px}
-.method h2{font-size:clamp(27px,3vw,40px);line-height:1.3;font-weight:550;letter-spacing:-.035em;margin:10px 0 0}
-.method-head p{line-height:1.88;color:#647470;margin:0;font-size:15px}
-.values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#d0dcd3}
-.value{padding:29px 26px;background:var(--cream)}
-.value b{display:block;font-size:15px;margin-bottom:11px}
-.value p{font-size:13px;line-height:1.85;margin:0;color:#637872}
-.footer{background:#102b31;color:#c0d5cd;padding:28px 0}
-.footer .shell{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:11px}
-.footer b{font-size:12px;letter-spacing:.1em;color:#fff}
-@media(max-width:900px){.article-grid{grid-template-columns:1fr}.article-side{border-left:0;border-top:1px solid var(--line);flex-direction:row;align-items:center}.visual-mark{max-width:260px}.method-head{grid-template-columns:1fr;gap:15px}}
-@media(max-width:650px){.shell{width:min(100% - 36px,1200px)}.bar{min-height:72px}.links{gap:14px;font-size:12px}.brand{font-size:13px}.brand small{font-size:8px}.hero{padding:66px 0 82px}.hero h1{font-size:clamp(42px,11vw,61px)}main{padding:45px 0 70px}.section-top{align-items:start}.count{margin-top:35px}.article-main{padding:29px 24px}.article-main h3{margin:22px 0 12px}.article-main p{font-size:14px}.detail{gap:20px}.detail b{font-size:20px}.article-side{padding:25px;gap:14px}.visual-mark{width:50%;padding:12px}.values{grid-template-columns:1fr}.method{margin-top:68px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-</style>
-</head>
-<body>
-<div class="mast">
- <div class="shell">
-  <header class="bar">
-   <a class="brand" href="./" aria-label="Financials in Visuals 首页">FINANCIALS<small>IN VISUALS</small></a>
-   <nav class="links" aria-label="网站导航"><a href="#reports">研究报告</a><a href="#approach">研究方法</a></nav>
-  </header>
-  <div class="hero">
-   <div class="kicker">Independent financial research / A-shares</div>
-   <h1>透过财务数字，<br><em>看见企业本质。</em></h1>
-   <p>基于上市公司原始披露，拆解商业模式、盈利驱动、现金创造与财务风险。以可追溯的研究判断和原创可视化，让复杂财报值得深入阅读。</p>
-   <div class="hero-foot"><a class="hero-cta" href="./research/2026-h1-v10/index.html">阅读最新桑基图与财务研究 <span aria-hidden="true">↘</span></a><span class="context">深入研究 · 可核验数据 · 视觉叙事</span></div>
-  </div>
- </div>
-</div>
-<main class="shell">
- <section id="reports" aria-labelledby="reports-title">
-  <div class="section-top">
-   <div><div class="section-label">The research library / 研究档案</div><h2 id="reports-title">上市公司财务研究</h2></div>
-   <span class="count">新版 2026H1 四家公司 · 历史研究与方法实验存档</span>
-  </div>
-  <a class="article-card" href="./research/2026-h1-v10/index.html" aria-label="阅读2026H1四家公司全新财务研究合集" style="margin-bottom:26px;border:1px solid #9bbcaf">
-   <div class="article-grid">
-    <div class="article-main">
-     <div class="meta"><span>NEW RESEARCH · 2026 H1</span><span class="dot"></span><span>四份完整原始 PDF</span><span class="dot"></span><span>2026-11-03 重做版</span></div>
-     <h3>钱从哪里来，又去了哪里？四家公司的财务全景。</h3>
-     <p>招商银行、金山办公、贵州茅台、美的集团。四种商业模式、四条不同的财务叙事：四幅严格守恒的收入—成本—利润桑基图，加上银行利润桥、软件投资收益、白酒财务公司现金流和全球制造业真实毛利拆解。</p>
-     <div class="detail">
-      <div><small>重点</small><b>三表与重要附注</b></div>
-      <div><small>证据</small><b>原披露可追溯</b></div>
-      <div><small>阅读体验</small><b>独立整页文章</b></div>
-     </div>
-    </div>
-    <div class="article-side" style="background:#e6f0e9">
-     <div><div class="side-kicker">V10 · SOURCE-AUDITED FINANCIAL FLOWS</div>
-      <div style="font:550 clamp(32px,3.4vw,49px)/1.29 Georgia,'Songti SC',serif;color:#0c5448;letter-spacing:-.04em;margin:24px 0">不只画财务数字。<br>先还原真实经济机制。</div>
-      <p style="font-size:13px;color:#4e6c63;line-height:1.9">利润表签名勾稽 · 合并资产负债闭合 · 间接经营现金流调节 · 反证与来源索引</p>
-     </div>
-     <div class="side-bottom"><span>进入 V10 财务流向与研究系列</span><span aria-hidden="true">↗</span></div>
-    </div>
-   </div>
-  </a>
-  <a class="article-card" href="./optical-2026h1.html" aria-label="阅读光互连产业链三家上市公司2026年半年度横向财务研究" style="margin-bottom:23px">
-  <div class="article-grid">
-   <div class="article-main">
-    <div class="meta"><span>SECTOR NOTE 01</span><span class="dot"></span><span>300394 · 300308 · 300502</span><span class="dot"></span><span>2026 年半年度</span><span class="dot"></span><span>原始财报交叉比较</span></div>
-    <h3>同样受益于 AI 光互连，利润与现金却走出三种路径。</h3>
-    <p>独立的产业链视角，六张不同财务图形：比较增长、毛利率、经营现金转化、简化自由现金流与期末营运资产占用。明确区分上游器件和光模块厂商，不编造估值或企业间交易关系。</p>
-    <div class="detail">
-      <div><small>研究对象</small><b>3 家企业</b></div>
-      <div><small>原始报告</small><b>3 份 PDF</b></div>
-      <div><small>原创图形</small><b>6 类</b></div>
-    </div>
-   </div>
-   <div class="article-side">
-    <div><div class="side-kicker">CROSS-ISSUER / GROWTH / CASH / CAPITAL</div>
-    <div class="visual-mark" role="img" aria-label="三家企业增长、现金和资本约束的分层比较">
-      <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-       <rect x="8" y="23" width="51" height="14" rx="2" fill="#AC765C"/>
-       <rect x="8" y="71" width="228" height="14" rx="2" fill="#436F87"/>
-       <rect x="8" y="119" width="123" height="14" rx="2" fill="#087F68"/>
-       <line x1="8" y1="156" x2="282" y2="156" stroke="#9AB8AD" stroke-width="1"/>
-      </svg>
-    </div></div>
-    <div class="side-bottom"><span>阅读产业链横向研究</span><span aria-hidden="true">↗</span></div>
-   </div>
-  </div>
-</a>
-<a class="article-card" href="./300502.html" aria-label="阅读新易盛300502 2026年半年度财务研究" style="margin-bottom:22px">
- <div class="article-grid">
- <div class="article-main">
- <div class="meta"><span>300502.SZ</span><span class="dot"></span><span>2026 年半年度</span><span class="dot"></span><span>134 页原始报告复核</span><span class="dot"></span><span>RESEARCH EDITION · V7</span></div>
- <h3>新易盛：营收翻倍，为什么现金转换仍需审视？</h3>
- <p>从销量与综合平均收入、利润形成到经营现金流、原材料库存、应收及预付款集中度，检验高速光互联增长的质量与资金占用。</p>
- <div class="detail">
- <div><small>营业收入</small><b>209.10 亿</b></div>
- <div><small>归母净利润</small><b>75.29 亿</b></div>
- <div><small>经营现金流</small><b>16.16 亿</b></div>
- </div>
- </div>
- <div class="article-side">
- <div><div class="side-kicker">REVENUE / UNIT ECONOMICS / CASH CONVERSION</div>
- <div class="visual-mark" role="img" aria-label="新易盛经营现金流占合并净利润约21.4%">
- <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="27" y="25" width="38" height="120" rx="3" fill="#a7c9bc"/><rect x="83" y="43" width="38" height="102" rx="3" fill="#6fb09d"/><rect x="139" y="118" width="38" height="27" rx="3" fill="#16866b"/><path d="M25 108 L269 108" stroke="#8fa59a" stroke-dasharray="5,5" stroke-width="1"/><text x="195" y="55" fill="#20594d" font-family="sans-serif" font-size="16" font-weight="700">21.4%</text><text x="195" y="73" fill="#4b7366" font-family="sans-serif" font-size="10">CFO / 净利润</text></svg>
- </div></div>
- <div class="side-bottom"><span>阅读完整研究</span><span aria-hidden="true">↗</span></div>
- </div>
- </div>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="theme-color" content="#102e34"><meta name="description" content="Financials in Visuals 统一 A 股财务研究库：天孚通信、中际旭创、新易盛、招商银行、金山办公、贵州茅台、美的集团共七家独立2026H1财报研究，以及光互连产业链专题。"><title>Financials in Visuals · 七家公司，一个财务研究库</title><link rel="canonical" href="https://financials-in-visuals.pages.dev/"><style>
+:root{--ink:#12373b;--muted:#5c7271;--paper:#fffefa;--bg:#f5f6f0;--dark:#102e34;--sage:#c6e5d8;--green:#0b775f;--copper:#b57859;--line:#d7e0d8;--serif:Georgia,'Noto Serif CJK SC','Songti SC',serif;--sans:-apple-system,BlinkMacSystemFont,'PingFang SC','Noto Sans CJK SC',sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.72 var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #16a384;outline-offset:3px}.frame{width:min(1220px,calc(100% - 76px));margin:auto}.skip{position:absolute;left:8px;top:-60px;z-index:100;background:white;padding:9px}.skip:focus{top:8px}.mast{background:var(--dark);color:#f5f9f5}.topbar{border-bottom:1px solid #345458;min-height:79px;display:flex;justify-content:space-between;align-items:center;gap:22px}.logo{display:flex;flex-direction:column;text-decoration:none;font-size:16px;font-weight:850;letter-spacing:.105em;line-height:1}.logo small{font-size:9px;letter-spacing:.32em;font-weight:650;color:#a4cabf;margin-top:8px}.nav{display:flex;gap:26px;align-items:center;font-size:12px;color:#bad2ca}.nav a{text-decoration:none}.nav a:hover{color:#fff}.hero{padding:77px 0 78px;display:grid;grid-template-columns:minmax(0,1.42fr) minmax(260px,.58fr);gap:7%;align-items:end}.eyebrow{font-size:10px;letter-spacing:.25em;text-transform:uppercase;font-weight:800;color:#9bd5bd}.hero h1{font:500 clamp(42px,5.5vw,72px)/1.2 var(--serif);letter-spacing:-.058em;margin:24px 0 23px;max-width:800px}.hero h1 em{font-style:normal;color:#a0dfc4}.hero p{font-size:17px;line-height:1.87;color:#c5dcd5;max-width:705px}.hero-aside{border-left:1px solid #4c6f6d;padding:8px 0 6px 28px}.hero-aside b{font:500 clamp(67px,9vw,113px)/1 var(--serif);letter-spacing:-.07em;display:block;color:#a6e5ca}.hero-aside small{font-size:11px;letter-spacing:.12em;color:#b1d1c5}.flowwords{display:grid;gap:13px;margin-top:24px;color:#d2e3da;font-size:13px}.flowwords span{display:flex;gap:12px;align-items:center}.flowwords span:before{content:'';width:21px;height:2px;background:#8cd6b9}.hero-foot{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:28px}.hero-foot a{display:inline-flex;align-items:center;gap:12px;background:#a4dec5;color:#12392f;padding:11px 20px;text-decoration:none;font-weight:760;font-size:13px}.hero-foot small{font-size:11px;color:#a7c5ba}main{padding:55px 0 100px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:30px}.section-num{color:var(--green);letter-spacing:.17em;text-transform:uppercase;font-size:11px;font-weight:850}.section-head h2{font:550 clamp(29px,3.4vw,45px)/1.2 var(--serif);letter-spacing:-.045em;margin:9px 0 0}.section-head p{color:var(--muted);font-size:13px;max-width:450px}.controls{display:flex;flex-wrap:wrap;gap:9px;align-items:center;border-top:1px solid var(--line);padding:20px 0 25px}.filter{border:1px solid #cbdbd1;background:transparent;color:#526d66;padding:8px 15px;border-radius:2px;font-size:12px;cursor:pointer}.filter[aria-pressed=true]{background:#15594e;color:#f7fffb;border-color:#15594e}.filter:hover{border-color:var(--green)}.query{margin-left:auto;border:1px solid var(--line);background:var(--paper);padding:9px 13px;width:210px;color:var(--ink);font-size:12px}.count{font-size:11px;color:var(--muted);letter-spacing:.08em;margin:0 0 13px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:stretch}.company{display:flex;flex-direction:column;text-decoration:none;position:relative;min-width:0;border:1px solid var(--line);background:var(--paper);padding:27px 29px 24px;min-height:376px;transition:border-color .18s,transform .18s,box-shadow .18s}.company:hover{border-color:#84baab;transform:translateY(-3px);box-shadow:0 16px 38px #193f3510}.company[hidden]{display:none}.card-head{display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:11px;color:var(--muted)}.ticker{font:650 13px/1.4 var(--serif);letter-spacing:.05em;color:#36655a}.card-cat{font-size:11px;color:#76958a}.name{font:560 clamp(27px,3vw,38px)/1.3 var(--serif);letter-spacing:-.035em;margin:25px 0 11px}.company h3{font:600 18px/1.5 var(--sans);letter-spacing:-.02em;margin:0 0 12px}.deck{font-size:13px;color:#617572;line-height:1.82;margin:0;flex:1}.card-viz{margin:24px 0 13px;border-top:1px solid #dce5de;padding-top:17px;min-height:68px}.card-viz .figure-k{font-size:10px;color:var(--muted);letter-spacing:.04em}.card-viz .major{font:500 29px/1.32 var(--serif);letter-spacing:-.04em;color:#126650;margin-top:2px}.card-viz .track{height:8px;display:flex;overflow:hidden;gap:1px;margin-top:10px;background:#e9eee7}.card-viz .track i{height:100%;display:block;background:#0d876b}.card-viz .track i+ i{background:#b9c6bf}.card-viz .legend{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:#738983;margin-top:5px}.card-foot{border-top:1px solid var(--line);padding-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#477268;font-size:11px}.card-foot span:last-child{font-size:21px;font-weight:600}.card-note{font-size:10px;color:#87938b;margin:0 0 12px}.empty{padding:42px 0;color:var(--muted)}.feature-section{margin-top:100px}.feature{background:var(--dark);color:#fff;display:grid;grid-template-columns:1.26fr .74fr;min-height:320px;text-decoration:none;border:1px solid #183a40}.feature .words{padding:45px}.feature .words h3{font:500 clamp(29px,3.4vw,43px)/1.33 var(--serif);letter-spacing:-.04em;margin:18px 0 17px;max-width:650px}.feature p{font-size:14px;color:#c0d9d1;max-width:650px}.feature .side{display:flex;flex-direction:column;justify-content:space-between;border-left:1px solid #355257;padding:35px 34px;background:#193e43}.feature .side b{font:500 85px/1 var(--serif);color:#a3d9c4}.feature .side span{font-size:13px;color:#b5d4ca}.method{margin-top:90px;padding:36px 0 0;border-top:1px solid #cbdcd2}.method .inner{display:grid;grid-template-columns:1.1fr .9fr;gap:58px}.method h2{font:550 clamp(27px,3vw,41px)/1.35 var(--serif);letter-spacing:-.035em;max-width:520px}.method p{font-size:14px;color:#617571}.pipeline{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#cfdbd1}.pipeline div{background:var(--bg);padding:20px}.pipeline b{font-size:12px}.pipeline p{font-size:12px;line-height:1.8}.archive{margin-top:65px;border-top:1px solid var(--line);padding-top:20px;color:#657b74;font-size:12px}.archive summary{cursor:pointer}.archive a{color:#0c785e;margin-right:16px;white-space:nowrap}.footer{background:var(--dark);color:#bcd4c9;padding:25px 0;font-size:11px}.footer .frame{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.footer b{font-size:12px;color:white;letter-spacing:.11em}@media(max-width:1080px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr 220px}.feature{grid-template-columns:1fr 220px}.feature .side b{font-size:65px}}@media(max-width:660px){.frame{width:calc(100% - 32px)}.topbar{min-height:67px}.nav{gap:13px;font-size:11px}.logo{font-size:12px}.logo small{font-size:7px}.hero{display:block;padding:50px 0 57px}.hero h1{font-size:clamp(39px,10vw,54px)}.hero p{font-size:15px}.hero-aside{display:none}main{padding:37px 0 75px}.section-head{display:block}.section-head p{margin:14px 0}.controls{gap:7px}.filter{padding:8px 10px}.query{width:100%;margin:3px 0 0}.cards{grid-template-columns:1fr;gap:13px}.company{min-height:0;padding:24px}.name{font-size:29px;margin-top:18px}.card-viz{margin-top:20px}.feature{display:block}.feature .words{padding:28px}.feature .side{padding:22px;border-left:0;border-top:1px solid #355257}.feature .side b{font-size:45px}.method{margin-top:60px}.method .inner{display:block}.method .pipeline{margin-top:28px}.footer .frame{display:block}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.company{transition:none}}
+</style></head><body>
+<a class="skip" href="#companies">跳到公司研究</a><div class="mast"><div class="frame"><header class="topbar"><a class="logo" href="/" aria-label="Financials in Visuals 首页">FINANCIALS<small>IN VISUALS</small></a><nav class="nav" aria-label="全站主导航"><a href="#companies">公司研究</a><a href="#topics">专题研究</a><a href="#method">研究方法</a></nav></header>
+<section class="hero"><div><div class="eyebrow">Financial statements, explained / A-share research</div><h1>不止看数字。<br><em>看清企业如何赚钱，<br>现金又去了哪里。</em></h1><p>一家上市公司，一个真实商业模型。七篇独立研究从原始财报出发，将业务结构、利润形成、资产负债、现金转换和最强反面解释串成一条可追溯的证据链。</p><div class="hero-foot"><a href="#companies">浏览全部七家公司 <span aria-hidden="true">↘</span></a><small>2026 半年度 · 公司研究 · 非投资建议</small></div></div><aside class="hero-aside"><small>ONE RESEARCH LIBRARY</small><b>07</b><small>公司 · 五类经济模型</small><div class="flowwords"><span>Business economics / 商业机制</span><span>Income &amp; margin / 利润流向</span><span>Balance &amp; cash / 资本与现金</span><span>Counterview / 反证与风险</span></div></aside></section></div></div>
+<main class="frame"><section id="companies" aria-labelledby="companies-title"><div class="section-head"><div><div class="section-num">01 / Company research / 2026 H1</div><h2 id="companies-title">全部公司研究</h2></div><p>七家公司统一列示。按经济模型浏览，直接进入各自完整报告；图表形式和分析口径由行业实际决定，不是七份相同模板。</p></div>
+<div class="controls" role="group" aria-label="按行业筛选"><button class="filter" type="button" data-filter="all" aria-pressed="true">全部 7</button><button class="filter" type="button" data-filter="光通信" aria-pressed="false">光通信 3</button><button class="filter" type="button" data-filter="银行" aria-pressed="false">银行</button><button class="filter" type="button" data-filter="软件" aria-pressed="false">软件</button><button class="filter" type="button" data-filter="消费" aria-pressed="false">消费</button><button class="filter" type="button" data-filter="制造" aria-pressed="false">制造</button><input class="query" type="search" aria-label="搜索公司名称或股票代码" placeholder="搜索公司 / 股票代码"></div><p class="count" id="live-count" role="status" aria-live="polite">显示 7 / 7 家公司</p><div class="cards" id="company-cards"><a class="company" href="/300394.html" data-industry="光通信" data-search="天孚通信 300394 光通信 光器件与光连接" aria-label="阅读天孚通信2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">300394.SZ</span><span class="card-cat">光器件与光连接</span></div>
+  <h2 class="name">天孚通信</h2><h3>收入增长正在加速，现金与资本约束不能被忽略。</h3><p class="deck">无源光器件是毛利增长的关键来源。继续沿着应收、原材料库存与资本投入追问：增长能否真正转成现金？</p>
+  <div class="card-viz"><div class="figure-k">2026H1 综合毛利率</div><div class="major">60.9%</div><div class="track" role="img" aria-label="毛利 60.9%、成本 39.1%"><i style="width:60.9%"></i><i style="width:39.1%"></i></div><div class="legend"><span>毛利 60.9%</span><span>成本 39.1%</span></div></div>
+  <div class="card-note">2026H1 · 原始研究 · 后续独立复核</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
  </a>
- <a class="article-card" href="./300394.html" aria-label="阅读天孚通信2026年半年度财务深度研究">
-   <div class="article-grid">
-    <div class="article-main">
-     <div class="meta"><span>300394.SZ</span><span class="dot"></span><span>2026 年半年度</span><span class="dot"></span><span>未经审计</span><span class="dot"></span><span>RESEARCH EDITION</span></div>
-     <h3>天孚通信：从收入利润到现金与资本，重读增长质量。</h3>
-     <p>深度财务研究：从完整利润流向、同比毛利桥到净利润现金转换、资产负债与营运资金，逐图解释增长的来源、质量和反面风险。</p>
-     <div class="detail">
-      <div><small>营业收入</small><b>28.28 亿</b></div>
-      <div><small>归母净利润</small><b>12.04 亿</b></div>
-      <div><small>经营现金流</small><b>10.01 亿</b></div>
-     </div>
-    </div>
-    <div class="article-side">
-     <div>
-      <div class="side-kicker">EARNINGS / BUSINESS MIX / CASH CONVERSION</div>
-      <div class="visual-mark" aria-hidden="true">
-       <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg"><path d="M15 30H45C100 30 100 45 147 45C205 45 205 20 282 20V61C205 61 205 85 147 85C100 85 100 77 45 77H15Z" fill="#15967d" opacity=".8"/><path d="M15 80H45C100 80 100 111 147 111C205 111 205 80 282 80V108C205 108 205 136 147 136C100 136 100 118 45 118H15Z" fill="#6eafa0" opacity=".65"/><path d="M15 120H45C100 120 100 154 147 154C205 154 205 124 282 124V148C205 148 205 170 147 170C100 170 100 143 45 143H15Z" fill="#c19a82" opacity=".65"/></svg>
-      </div>
-     </div>
-     <div class="side-bottom"><span>阅读完整研究</span><span aria-hidden="true">↗</span></div>
-    </div>
-   </div>
-  </a>
-  <a class="article-card" style="margin-top:22px" href="./300308.html" aria-label="查看中际旭创2026年半年度财务研究预览，来源待复核">
-   <div class="article-grid">
-     <div class="article-main">
-       <div class="meta"><span>300308.SZ</span><span class="dot"></span><span>2026 年半年度</span><span class="dot"></span><span>第二家真实公司测试</span></div>
-       <div style="display:inline-block;border:1px solid #d6b7a4;color:#985d43;font-size:11px;padding:6px 10px;margin-top:18px;border-radius:2px;font-weight:700">研究预览 · 来源待终验</div>
-       <h3>中际旭创：利润狂奔，现金流为何反向？</h3>
-       <p>营收同比增长 182.49%、归母利润增长 241.70%，但 CFO 同比下降 44.08%。重新审视应收、库存、现金资本开支与现金转换。该报告仍处于研究预览及独立审阅阶段，请结合原始披露阅读。</p>
-       <div class="detail">
-         <div><small>营业收入</small><b>417.78 亿</b></div>
-         <div><small>归母净利润</small><b>136.51 亿</b></div>
-         <div><small>经营现金流</small><b>18.00 亿</b></div>
-       </div>
-     </div>
-     <div class="article-side">
-       <div class="side-kicker">RESEARCH IN REVIEW / CASH CONVERSION</div>
-       <div style="font-size:clamp(54px,7vw,95px);font-family:Georgia,serif;color:#0b6d5b;line-height:1.1;font-weight:500">12.2<span style="font-size:30px">%</span></div>
-       <div style="color:#52736b;font-size:13px;line-height:1.75">经营现金流 / 合并净利润<br>来源：2026H1 报告第 57、60 页</div>
-       <div class="side-bottom"><span>查看待审研究预览</span><span aria-hidden="true">↗</span></div>
-     </div>
-   </div>
-  </a>
- </section>
- <section id="latest-research" style="margin-top:78px;border-top:1px solid #cbd6cf;padding-top:43px"><div class="section-label">Archive / previous editorial drafts</div><div class="section-top"><h2>2026H1 旧版研究预览存档。<br>最新成果请阅读上方重做版。</h2><span class="count">4 ISSUERS · 29 EDITORIAL EXHIBITS</span></div><a href="./research/2026-h1/index.html" style="display:block;background:#fffefa;border:1px solid #d9e1dc;text-decoration:none;padding:28px 31px"><div style="font-size:11px;font-weight:800;color:#08785f;letter-spacing:.08em">招商银行 · 金山办公 · 贵州茅台 · 美的集团</div><p style="font-size:clamp(25px,3vw,38px);line-height:1.36;margin:14px 0 8px;font-weight:600">阅读 2026H1 多图财报研究系列 ↗</p><p style="color:#637872;font-size:14px;max-width:800px;line-height:1.75">从商业模式到利润质量与现金流，包含真实 PDF 页码、口径核查和反证分析。研究预览持续完善，尚非完整审计或估值报告。</p></a><p style="font-size:12px;color:#6a7974;margin-top:17px">其他行业的单图技术验证不等于公司研究，<a href="./research-lab/2026-h1/index.html" style="color:#08785f">单独存放在方法验证区</a>。</p></section>
-<section id="approach" class="method" aria-labelledby="method-title">
-  <div class="method-head">
-   <div><div class="section-label">Research philosophy / 研究原则</div><h2 id="method-title">不止于图表。<br>每一项判断都需要证据。</h2></div>
-   <p>从商业模式出发，结合中国会计准则与财务附注，检验增长、利润和现金之间的关系。我们明确区分财报披露、管理层观点、分析计算与尚未证实的推断；不把漂亮的图形当成可靠结论。</p>
-  </div>
-  <div class="values">
-   <div class="value"><b>01 / Business economics</b><p>研究企业如何创造收入与毛利，而不只复述同比数字。</p></div>
-   <div class="value"><b>02 / Evidence first</b><p>校验三张报表、关键附注、数据口径与来源页码。</p></div>
-   <div class="value"><b>03 / What could go wrong</b><p>同时呈现竞争性解释、风险、未知项与下一期观察指标。</p></div>
-  </div>
- </section>
-</main>
-<footer class="footer"><div class="shell"><b>FINANCIALS IN VISUALS</b><span>独立财务研究 · 仅供参考，不构成投资建议</span></div></footer>
-
-<script>
-/* Temporary compatibility: previously distributed homepage fragments and ?company links. */
-(()=>{
-  const url=new URL(location.href);
-  const company=url.searchParams.get("company") || url.hash.match(/^#company-(300394|300308|300502)$/)?.[1];
-  if(company && /^(300394|300308|300502)$/.test(company)){
-    location.replace("/"+company+".html");
-  }
-})();
-</script>
-</body></html>
+<a class="company" href="/300308.html" data-industry="光通信" data-search="中际旭创 300308 光通信 光模块与高速互联" aria-label="阅读中际旭创2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">300308.SZ</span><span class="card-cat">光模块与高速互联</span></div>
+  <h2 class="name">中际旭创</h2><h3>利润增速显著高于收入，经营现金流却下降。</h3><p class="deck">高速增长下的利润质量不能只看毛利。与应收、库存、现金资本开支一起读，才知道现金为何出现背离。</p>
+  <div class="card-viz"><div class="figure-k">2026H1 综合毛利率</div><div class="major">46.3%</div><div class="track" role="img" aria-label="毛利 46.3%、成本 53.7%"><i style="width:46.3%"></i><i style="width:53.7%"></i></div><div class="legend"><span>毛利 46.3%</span><span>成本 53.7%</span></div></div>
+  <div class="card-note">2026H1 · 待完成独立来源语义复核</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
+ </a>
+<a class="company" href="/300502.html" data-industry="光通信" data-search="新易盛 300502 光通信 高速光模块" aria-label="阅读新易盛2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">300502.SZ</span><span class="card-cat">高速光模块</span></div>
+  <h2 class="name">新易盛</h2><h3>销售额翻倍，但高端化能否带来持续的现金回报？</h3><p class="deck">收入增速与出货量增速不是同一个指标。研究平均实现收入、产品结构、库存、应收与现金转换之间的关系。</p>
+  <div class="card-viz"><div class="figure-k">2026H1 综合毛利率</div><div class="major">48.4%</div><div class="track" role="img" aria-label="毛利 48.4%、成本 51.6%"><i style="width:48.4%"></i><i style="width:51.6%"></i></div><div class="legend"><span>毛利 48.4%</span><span>成本 51.6%</span></div></div>
+  <div class="card-note">2026H1 · 原始研究 · 后续独立复核</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
+ </a>
+<a class="company" href="/research/2026-h1-v10/600036.html" data-industry="银行" data-search="招商银行 600036 银行 商业银行" aria-label="阅读招商银行2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">600036.SH</span><span class="card-cat">商业银行</span></div>
+  <h2 class="name">招商银行</h2><h3>净息差承压，净利息收入为何还能增长？</h3><p class="deck">从净利息收入、手续费和其他净收入，进入银行成本、信用减值、监管资本与资金结构，不硬套工业企业利润表。</p>
+  <div class="card-viz"><div class="figure-k">净利息收入占营业收入</div><div class="major">62.9%</div><div class="track" role="img" aria-label="净利息 62.9%、其他净收入 37.1%"><i style="width:62.9%"></i><i style="width:37.1%"></i></div><div class="legend"><span>净利息 62.9%</span><span>其他净收入 37.1%</span></div></div>
+  <div class="card-note">2026H1 · 银行专属会计逻辑</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
+ </a>
+<a class="company" href="/research/2026-h1-v10/688111.html" data-industry="软件" data-search="金山办公 688111 软件 订阅与办公软件" aria-label="阅读金山办公2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">688111.SH</span><span class="card-cat">订阅与办公软件</span></div>
+  <h2 class="name">金山办公</h2><h3>利润暴增，软件经营本身增长了多少？</h3><p class="deck">拆分个人、企业与软件产品收入，检验毛利与投资收益的影响，并将净利润逐项调节为经营现金流。</p>
+  <div class="card-viz"><div class="figure-k">2026H1 合并净利润</div><div class="major">25.18 亿</div></div>
+  <div class="card-note">2026H1 · 非经常收益与现金调节</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
+ </a>
+<a class="company" href="/research/2026-h1-v10/600519.html" data-industry="消费" data-search="贵州茅台 600519 消费 白酒与财务公司" aria-label="阅读贵州茅台2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">600519.SH</span><span class="card-cat">白酒与财务公司</span></div>
+  <h2 class="name">贵州茅台</h2><h3>现金流大幅增长，真的是白酒卖得更好吗？</h3><p class="deck">酒类产品与渠道的毛利结构是一回事，财务公司的成员存款与同业资金流又是另一回事。二者必须分开。</p>
+  <div class="card-viz"><div class="figure-k">2026H1 经营现金流</div><div class="major">706.91 亿</div></div>
+  <div class="card-note">2026H1 · 财务公司现金流专属口径</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
+ </a>
+<a class="company" href="/research/2026-h1-v10/000333.html" data-industry="制造" data-search="美的集团 000333 制造 综合制造与金融子公司" aria-label="阅读美的集团2026H1完整独立财务研究">
+  <div class="card-head"><span class="ticker">000333.SZ</span><span class="card-cat">综合制造与金融子公司</span></div>
+  <h2 class="name">美的集团</h2><h3>归母利润变化不大，扣非表现为何明显分化？</h3><p class="deck">先厘清业务分部父子层级与地区口径，再分析毛利、利润调整、金融子公司与营运资本的真实方向。</p>
+  <div class="card-viz"><div class="figure-k">2026H1 合并营业总收入</div><div class="major">2,610.52 亿</div></div>
+  <div class="card-note">2026H1 · 分部层级及金融业务口径</div><div class="card-foot"><span>进入独立研究全文 · 原始证据与反证</span><span aria-hidden="true">↗</span></div>
+ </a></div><p class="empty" id="empty-state" hidden>没有符合条件的公司，请清除搜索或选择“全部”。</p></section>
+<section id="topics" class="feature-section" aria-labelledby="topics-title"><div class="section-head"><div><div class="section-num">02 / Cross-company perspectives</div><h2 id="topics-title">专题研究</h2></div><p>行业专题和单公司研究分开呈现。比较之前，必须先确认价值链角色、财务分母与报告期可比。</p></div><a class="feature" href="/optical-2026h1.html"><div class="words"><div class="eyebrow">Optical interconnect / 2026 H1</div><h3>同处 AI 光互连产业链，三家公司的利润与现金为什么走向不同？</h3><p>天孚通信、中际旭创和新易盛：上游器件与光模块不是同一经济模型。比较增长、毛利、经营现金流与再投资压力，而不是机械排名。</p><p style="color:#a8dbc5;font-weight:700;margin-top:26px">阅读完整产业链专题 ↗</p></div><div class="side"><div><small>INDEPENDENT CROSS-ISSUER RESEARCH</small><br><b>03</b></div><span>跨公司比较 · 不混用会计口径</span></div></a></section>
+<section id="method" class="method"><div class="section-num">03 / Research discipline</div><div class="inner"><div><h2>让图表承担财务含义，<br>而不是替数字做装饰。</h2><p>基于已建立的 Skill：以真实 PDF、报告期和会计合并口径为边界，按经济关系选择桑基图、利润桥、两期比较或现金调节图。无法勾稽的结论不强行画成连续资金流；图表只是财务研究的可读表达，不是研究本身。</p></div><div class="pipeline"><div><b>01 / 原始披露</b><p>原始文件 SHA、页码、单位、报告版本、合并范围。</p></div><div><b>02 / 专业核查</b><p>财务恒等式、重要附注、行业机制、竞争性解释。</p></div><div><b>03 / 可视化叙事</b><p>真实比例流带、符号与零基准、可复核数据表。</p></div><div><b>04 / 发布验收</b><p>桌面与移动端、真实导航、原始来源及未完成事项。</p></div></div></div></section>
+<details class="archive"><summary>历史出版版本与工程实验（不属于正式公司研究目录）</summary><p><a href="/research/2026-h1-v10/index.html">历史四公司合集</a><a href="/research/2026-h1-v9/index.html">早期重建版本</a><a href="/research-lab/2026-h1/index.html">单图工程实验</a></p></details></main>
+<footer class="footer"><div class="frame"><b>FINANCIALS IN VISUALS</b><span>2026H1 · 7 家公司 · 独立来源限定研究 · 不构成投资建议</span></div></footer>
+<script>(()=>{const buttons=[...document.querySelectorAll('.filter')],items=[...document.querySelectorAll('.company')],input=document.querySelector('.query'),status=document.querySelector('#live-count'),empty=document.querySelector('#empty-state');let current='all';function refresh(){const q=input.value.trim().toLowerCase();let count=0;for(const item of items){const visible=(current==='all'||item.dataset.industry===current)&&item.dataset.search.toLowerCase().includes(q);item.hidden=!visible;if(visible)count++;}status.textContent='显示 '+count+' / 7 家公司';empty.hidden=count!==0;}buttons.forEach(b=>b.addEventListener('click',()=>{current=b.dataset.filter;buttons.forEach(x=>x.setAttribute('aria-pressed',String(x===b)));refresh();}));input.addEventListener('input',refresh);refresh();})();</script></body></html>
