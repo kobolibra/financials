@@ -93,5 +93,78 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertTrue(any("OUTSIDE_REPOSITORY_PATH" in x for x in errors))
 
 
+    def test_ledger_pdf_identity_cannot_be_stale(self):
+        original_read = mod.read_json
+        def wrong_source(path):
+            data = original_read(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["source"]["original_bytes_sha256"] = "0" * 64
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=wrong_source):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("LEDGER_PDF_PROVENANCE_STALE" in x for x in errors), errors)
+
+    def test_filing_issuer_or_period_not_borrowed_from_another_company(self):
+        original_read = mod.read_json
+        def wrong_issuer(path):
+            data = original_read(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["issuer"]["fiscal_period"] = "2025H1"
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=wrong_issuer):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("LEDGER_ISSUER_PERIOD_MISMATCH" in x for x in errors), errors)
+
+    def test_pdf_number_without_real_row_or_period_is_not_disclosed_fact(self):
+        original_read = mod.read_json
+        def wrong_cell(path):
+            data = original_read(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["facts"]["rev"]["page"] = 999
+                data["facts"]["rev"]["period"] = ""
+                data["facts"]["rev"]["label"] = ""
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=wrong_cell):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("LEDGER_FACT_SOURCE_PAGE_INVALID" in x for x in errors))
+        self.assertTrue(any("LEDGER_FACT_PERIOD_MISSING" in x for x in errors))
+        self.assertTrue(any("LEDGER_FACT_ROW_LABEL_MISSING" in x for x in errors))
+
+    def test_figure_brief_cannot_use_another_pdf_or_undocumented_fact(self):
+        original_read = mod.read_json
+        def wrong_figure(path):
+            data = original_read(path)
+            if str(path).endswith("688220/figure-briefs.json"):
+                data = copy.deepcopy(data)
+                data["source_sha256"] = "0" * 64
+                data["figure_briefs"][0]["facts"] = ["borrowed_issuer_revenue"]
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=wrong_figure):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("FIGURE_BRIEFS_PDF_IDENTITY_MISMATCH" in x for x in errors))
+        self.assertTrue(any("FIGURE_UNGROUNDED_FACT_ID" in x for x in errors))
+
+    def test_bank_and_insurer_cannot_inherit_industrial_reporting_basis(self):
+        for sector in ("bank", "insurance", "insurance_group"):
+            errors = self.poisoned(lambda x: x.update(
+                sector_adapter=sector, accounting_basis="industrial_revenue_cogs_cash_flow_proxy"))
+            self.assertTrue(any("WRONG_INDUSTRY_ACCOUNTING_GRAMMAR" in x for x in errors), (sector,errors))
+
+    def test_ratio_disclosure_cannot_masquerade_as_money(self):
+        original_read = mod.read_json
+        def wrong_ratio(path):
+            data = original_read(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["facts"]["ar_top5_ratio"]["unit"] = "元"
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=wrong_ratio):
+            errors = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("LEDGER_RATIO_WRONGLY_MONEY" in x for x in errors))
+
+
 if __name__ == "__main__":
     unittest.main()
