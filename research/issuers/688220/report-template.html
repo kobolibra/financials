@@ -59,23 +59,64 @@ function table(id,rows){const dest=document.getElementById("table-"+id);if(!dest
 function factual(keys){return keys.map(k=>[F[k].label,F[k].yuan,"p."+F[k].page]);}
 function register(name,html){const root=document.getElementById("chart-"+name);root.innerHTML=html;root.querySelector("svg").dataset.download=name;}
 function sourceSankey(){
- const total=N("rev"),cost=N("cogs"),gross=total-cost,scale=320/total,left=160,right=985,midA=515,midB=549,top=112;
- let s=E("收入来源 / 业务类型",20,32,'fill="'+C.muted+'" font-weight="700"')+E("合并营业收入",525,32,'text-anchor="middle" fill="'+C.muted+'" font-weight="700"')+E("去向 / 成本与毛利",985,32,'text-anchor="middle" fill="'+C.muted+'" font-weight="700"');
- let at=top;
- const colors=[C.green,C.blue,C.copper,"#9daaaa"];
- const path=(x0,x1,y0,y1,h,col)=>{let c=(x1-x0)*.46;return '<path d="M'+x0+','+y0+' C'+(x0+c)+','+y0+' '+(x1-c)+','+y1+' '+x1+','+y1+' L'+x1+','+(y1+h)+' C'+(x1-c)+','+(y1+h)+' '+(x0+c)+','+(y0+h)+' '+x0+','+(y0+h)+' Z" fill="'+col+'" fill-opacity=".68"/>';};
- let mid=top;seg.forEach((q,i)=>{let v=N(q.rev),h=v*scale;s+=path(left,midA,at,mid,h,colors[i]);const y=at+h/2;if(i<2){s+=E(q.label,14,y,'font-size="13" font-weight="700"');s+=E(money(v),14,y+20,'fill="'+C.muted+'" font-size="11"');}at+=h;mid+=h;});
- s+=E("半导体 IP 授权："+money(N("ip_rev")),14,467,'font-size="12" fill="'+C.copper+'"')+E("测试服务及其他："+money(N("other_service_rev")),356,467,'font-size="12" fill="'+C.muted+'"');
- s+='<rect x="'+midA+'" y="'+top+'" width="'+(midB-midA)+'" height="320" rx="3" fill="'+C.ink+'"/>';
- s+=E(n2(total)+" 亿",532,75,'text-anchor="middle" font-size="24" font-weight="800" fill="'+C.green+'"');
- const costH=cost*scale,grossH=gross*scale;
- s+=path(midB,right,top,top,costH,"#b6c9c0");
- s+=path(midB,right,top+costH,top+costH,grossH,C.green);
- s+=E("营业成本",995,top+costH*.43,'font-size="14" font-weight="700"')+E(n2(cost)+" 亿",995,top+costH*.43+23,'font-size="12" fill="'+C.muted+'"');
- s+=E("毛利润",995,top+costH+grossH*.50,'font-size="14" font-weight="700"')+E(n2(gross)+" 亿",995,top+costH+grossH*.50+23,'font-size="12" fill="'+C.muted+'"');
- s+=E("收入 = 成本 + 毛利（原始元精度严格守恒）",515,493,'text-anchor="middle" fill="'+C.muted+'" font-size="12"');
- register("flow",svg(1150,520,s,"翱捷科技2026H1财务桑基：四项互斥收入构成合并营业收入，并分为真实营业成本与毛利；金额严格守恒"));
- const rows=[];seg.forEach(q=>{rows.push([F[q.rev].label,N(q.rev),"p."+F[q.rev].page],[F[q.cost].label,N(q.cost),"p."+F[q.cost].page],[q.label+"毛利（推导）",N(q.rev)-N(q.cost),"p.178"]);});rows.push(["营业收入（合并）",total,"p.86"],["营业成本（合并）",cost,"p.86"],["合并毛利（推导）",gross,"p.86"]);table("flow",rows);
+ // A true issuer-specific 4→2 alluvial financial flow, not a purely decorative
+ // revenue ribbon. Exactly seven nonzero segment-to-cost/GP links; the eighth
+ // route has ZERO gross profit and is documented in the accompanying table.
+ const total=N("rev"),cost=N("cogs"),gross=total-cost;
+ const W=1190,H=615,L=260,R=888,top=154,height=334,k=height/total;
+ let a=top,cursorCost=top,cursorGP=top+cost*k;
+ const color={cost:"#b9c8c1",profit:"#16856b"};
+ const bezier=(y0,y1,h,kind,group,value)=>{
+  if(value===0)return "";
+  const p=(R-L)*.47,opacity=kind==="cost"?.75:.86;
+  const d="M"+L+","+y0+" C"+(L+p)+","+y0+" "+(R-p)+","+y1+" "+R+","+y1+
+    " L"+R+","+(y1+h)+" C"+(R-p)+","+(y1+h)+" "+(L+p)+","+(y0+h)+" "+L+","+(y0+h)+" Z";
+  const tooltip=group+" · "+(kind==="cost"?"营业成本":"毛利润")+" "+Number(value).toLocaleString("zh-CN",{minimumFractionDigits:2,maximumFractionDigits:2})+" 元";
+  return '<path class="money-ribbon" data-source="'+esc(group)+'" data-kind="'+kind+'" data-value-yuan="'+value.toFixed(2)+'" fill="'+color[kind]+'" fill-opacity="'+opacity+'" stroke="#fffefa" stroke-width=".25" d="'+d+'"><title>'+esc(tooltip)+'</title></path>';
+ };
+ let ribbons="",bars="",words="";
+ seg.forEach((q,i)=>{
+  const rev=N(q.rev),c=N(q.cost),g=rev-c,span=rev*k,cspan=c*k,gspan=g*k;
+  // The financial product band splits into its own original CO​​GS and GP.
+  // The two final sinks are reconciled independently to total P&L amounts.
+  ribbons+=bezier(a,cursorCost,cspan,"cost",q.label,c);
+  ribbons+=bezier(a+cspan,cursorGP,gspan,"profit",q.label,g);
+  if(span>=1)bars+='<rect x="'+(L-18)+'" y="'+a+'" width="18" height="'+span+'" fill="'+[C.green,C.blue,C.copper,"#99aaa1"][i]+'"/>';
+  else bars+='<line x1="'+(L-18)+'" x2="'+L+'" y1="'+(a+span/2)+'" y2="'+(a+span/2)+'" stroke="'+[C.green,C.blue,C.copper,"#99aaa1"][i]+'" stroke-width="1"/>';
+  if(i<=1){
+   words+=E(q.label,22,a+span/2-6,'font-size="14" font-weight="700"');
+   words+=E(money(rev),22,a+span/2+15,'font-size="12" fill="'+C.muted+'"');
+   words+=E("毛利率 "+pct(g/rev),22,a+span/2+34,'font-size="11" fill="'+C.green+'"');
+  }
+  a+=span;cursorCost+=cspan;cursorGP+=gspan;
+ });
+ let s=E("01 / 业务收入  →  02 / 各类业务独立成本与毛利  →  03 / 合并结果",22,31,'font-size="12" font-weight="700" fill="'+C.muted+'"');
+ s+=E("2026H1 合并营业收入",550,76,'font-size="15" text-anchor="middle" fill="'+C.muted+'"');
+ s+=E(money(total),550,108,'font-size="27" font-weight="800" text-anchor="middle" fill="'+C.ink+'"');
+ s+=E("来源业务",22,132,'font-weight="750" fill="'+C.muted+'"');
+ s+=E("同一人民币元比例尺 · 路径宽度 = 原始金额",540,132,'font-size="12" text-anchor="middle" fill="'+C.muted+'"');
+ s+=E("合并去向",917,132,'font-weight="750" fill="'+C.muted+'"');
+ s+=ribbons+bars;
+ s+='<rect x="'+R+'" y="'+top+'" width="19" height="'+(cost*k)+'" fill="#b9c8c1"/>';
+ s+='<rect x="'+R+'" y="'+(top+cost*k)+'" width="19" height="'+(gross*k)+'" fill="'+C.green+'"/>';
+ s+=words;
+ s+=E("营业成本",925,top+85,'font-size="16" font-weight="700"');
+ s+=E(money(cost),925,top+108,'font-size="21" font-weight="750" fill="'+C.ink+'"');
+ s+=E("占收入 "+pct(cost/total),925,top+128,'font-size="12" fill="'+C.muted+'"');
+ s+=E("毛利润",925,top+(cost+.48*gross)*k,'font-size="17" font-weight="700"');
+ s+=E(money(gross),925,top+(cost+.48*gross)*k+25,'font-size="21" font-weight="750" fill="'+C.green+'"');
+ s+=E("毛利率 "+pct(gross/total),925,top+(cost+.48*gross)*k+46,'font-size="12" fill="'+C.muted+'"');
+ s+='<line x1="22" x2="1170" y1="523" y2="523" stroke="'+C.line+'"/>';
+ s+=E("半导体 IP 授权",22,550,'font-size="12" font-weight="700"');
+ s+=E(money(N("ip_rev"))+"  ·  毛利率 "+pct((N("ip_rev")-N("ip_cost"))/N("ip_rev")),22,571,'font-size="12" fill="'+C.muted+'"');
+ s+=E("测试服务及其他",560,550,'font-size="12" font-weight="700"');
+ s+=E("收入 "+money(N("other_service_rev"))+" · 成本相等 · 毛利 0 元",560,571,'font-size="12" fill="'+C.muted+'"');
+ s+=E("极小类别保持真实宽度；标签移至下方，不放大成假流量",22,602,'font-size="11" fill="'+C.muted+'"');
+ register("flow",svg(W,H,s,"翱捷科技2026H1：四类互斥业务收入分别按实际披露成本和推导毛利分流至合并营业成本与合并毛利；所有会计节点精确到人民币分守恒。"));
+ const rows=[];
+ seg.forEach(q=>{const r=N(q.rev),c=N(q.cost);rows.push([q.label+"｜营业收入",r,"p.178"],[q.label+"｜营业成本",c,"p.178"],[q.label+"｜毛利润（收入－成本）",r-c,"p.178"]);});
+ rows.push(["合并收入 = 四类收入之和",total,"p.86、178"],["合并成本 = 四类成本之和",cost,"p.86、178"],["合并毛利 = 收入－成本",gross,"p.86、178"]);
+ table("flow",rows);
 }
 function segment(){
  const W=1000,top=75,step=79,max=Math.max(...seg.map(q=>N(q.rev)-N(q.cost))),base=350,length=440;
