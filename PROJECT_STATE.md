@@ -2,22 +2,22 @@
 
 **状态日期：2026-11-03。生产分支：`main`。现行入口：[START_HERE.md](START_HERE.md)。机器状态：[project-status.json](project-status.json)。**
 
-> **唯一网站：首页统一八家公司研究库；公司旧站路由 PASS，但本次 688220 修复图形的 Cloudflare 发布仍受 LIVE FAIL 门槛约束。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
+> **唯一网站：八家公司的同一研究库，严格的翱捷科技新版桑基几何已在真实 Cloudflare 浏览器运行 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) PASS；完整财报附注与独立审稿仍 NOT_CHECKED。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
 ## 2026-11-03 · CURRENT: Skill v8.4.2-RC1 · 第 N 家独立质量合同与源→出版一致性
 
-**实际已合并、真实测试的基线：** [PR #9](https://github.com/kobolibra/financials/pull/9) v8.4.0 merged `ffb57ac6142546a66233fa01741b54812422f40e`；[PR #10](https://github.com/kobolibra/financials/pull/10) v8.4.1 merged `d0eed02f7c3bb5bdffb3cb7cea6f4620d0e1bc96`；随后源账本清洁重建修复主分支 `f1e2343cb0b4c76d68b2c386218dde7a3d5bd403`。**当前候选** v8.4.2 源→已发布 HTML 一致性，分支 `work/skill-generated-ledger-anti-drift-20261103`，PR/合并/Actions 在本状态提交时 **NOT_CHECKED，不能提前报 PASS**。
+**实际已合并的 Skill（三次小步迭代）：** [PR #9](https://github.com/kobolibra/financials/pull/9) v8.4.0 merged `ffb57ac6142546a66233fa01741b54812422f40e`；[PR #10](https://github.com/kobolibra/financials/pull/10) v8.4.1 merged `d0eed02f7c3bb5bdffb3cb7cea6f4620d0e1bc96`；源账本真实内容修复 `f1e2343cb0b4c76d68b2c386218dde7a3d5bd403`；[PR #11](https://github.com/kobolibra/financials/pull/11) v8.4.2 merged `c2c8b15ab67cb91770b0e04818b181d38f567cfa`。**PR #11 真实 CI**：[41668925315](https://github.com/kobolibra/financials/actions/runs/41668925315) 交接/源与 20 个恶意反例 PASS，[41668925267](https://github.com/kobolibra/financials/actions/runs/41668925267) 统一目录本地 QA PASS；**main** [41669011190](https://github.com/kobolibra/financials/actions/runs/41669011190) 交接 PASS。合并后的最新版公开站点核验 [41669011093](https://github.com/kobolibra/financials/actions/runs/41669011093) 及既有网址 [41669011100](https://github.com/kobolibra/financials/actions/runs/41669011100) 在此交接快照时仍在运行（**NOT_CHECKED 正在运行**），前一个 main 确认在线新版几何 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) 已 PASS。**当前有效的 v8.4.2 执行状态以最新 main + Actions 为准，不应据本段假设后续运行已完成。**
 
 - **已有可复现自动化（不是口头方案）**：`scripts/check_release_contract.py` 在同一八家公司统一目录 `site/research_catalog.json` 上查每家新公司（原七家的历史欠账固定豁免，绝不扩张）的 `research/issuers/<code>/release-gates.json`；实际 PDF 字节、SHA/大小/魔数、Source Ledger 公司/期间/金额单位/物理页、Figure Briefs 事实 ID/来源哈希/原始分析问题、行业会计类型、个人审核与实时 Cloudflare 独立三态。不允许未经登记的新发行人通过；源限制预览不是研究全认证。
-- **实际反馈→测试**：`skills/ashare-financial-storytelling/quality-regressions.json` 当前 11 个真实根因/修复/可执行标记（旧错误 p87 期别错列、跨轴加总、负毛利假流、微小来源节点放大、桌面图内隐藏、Cloudflare 滞后、账本哈希陈旧、Figure Briefs 借用事实、银行保险工业会计等），涵盖**单公司证据与跨发行人机制分级**；`scripts/test_check_release_contract.py` 当前候选增加 2 个恶意发行源与内嵌 HTML 不一致测试，需在 PR CI 实际执行。
+- **实际反馈→测试**：`skills/ashare-financial-storytelling/quality-regressions.json` 当前 11 个真实根因/修复/可执行标记（旧错误 p87 期别错列、跨轴加总、负毛利假流、微小来源节点放大、桌面图内隐藏、Cloudflare 滞后、账本哈希陈旧、Figure Briefs 借用事实、银行保险工业会计等），涵盖**单公司证据与跨发行人机制分级**；`scripts/test_check_release_contract.py` 已加入额外两项对原始来源说明／披露数值恶意篡改、而已发布 HTML 仍旧的测试，PR #11 的自动检查实际执行并通过；该 PASS 只证明结构性防线，不代替实图专业审美或原报告每一单元格的人工判断。
 - **真实被 CI 抓住的 v8.4.1 回归**：[41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) **FAIL**，公司财务算术29项、浏览器三屏均 PASS，但源 `source-ledger.json` 的 `source.reason` 随新哈希说明被改，真实已发布 `public/688220.html` 的内嵌原始账本仍是旧说明，导致独立重建逐字节比对失败。已**从真实源账本修复**：保留验证过的完整 PDF 镜像 SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc` 与镜像状态、将 `reason` 恢复成已发布且仍准确的原文，**不更改公司财务金额或已发布 HTML**。新回归会比对所有内嵌 `ledger-data` 的原始 `issuer/source/facts/segments` 字段，禁止下一家公司在重建时才暴露问题。
 - **最新实际 QA 证据**：源账本修复后 [41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) **PASS**（完整 PDF/29 会计检查/九图原始渲染/真实1440、768、390/干净再次生成与已发布 HTML 逐字节比对）；真实 Cloudflare 八家公司目录与翱捷科技新四源节点金额几何 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) **PASS**；主分支交接 [41667952648](https://github.com/kobolibra/financials/actions/runs/41667952648) **PASS**。该线上 PASS 证明确实检查到了上次旧版没有的细来源节点，但**不能**冒充完整重大附注、独立金融/视觉研究编辑审查或整个 A 股行业的验证。
 - **未解决 P0/P1 数据问题明确保留**：688220 p.137 应收集中度披露 90.50% vs 简单导出89.17% 分母 **FAIL**，p.179 剩余履约义务分类差 0.01 元 **FAIL（披露取整的有界例外）**；上交所官方 PDF 与归档镜像字节完全一致 **NOT_CHECKED**；全部重大附注完成复核、外部8–12季度/可比/估值、第二名真实独立研究员 **NOT_CHECKED**。这批工作没有以新文档替代这些需要原报告的深入追证。
 - **真实公司目录/出版产物**：仍仅原八家公司+已有光通信专题，所有既有独立 URL 保留，未修改 `public/*.html`、未另起入口。未来新公司必须从原始 PDF → 行列和三表/附注 → 研究主线与反例 → AEI/FT 原创图形 → 截图 → 本地重建 → 本次 Cloudflare 逐级通过，并将所有失败转化为真正可运行的恶意回归，最后更新现行此文件和机器状态。精确协议见 [docs/SKILL_EVOLUTION_PROTOCOL.md](docs/SKILL_EVOLUTION_PROTOCOL.md)。
 
-## 2026-11-03 · 最新执行记录：桑基来源节点真实比例及线上部署阻断
+## 2026-11-03 · 历史故障复盘：桑基真实比例与早期 Cloudflare 旧版发布阻断（现已解决）
 
-**此节记录当前严格发布门槛，不以旧“九图线上通过”覆盖新版本失败。**
+**以下 FAIL 是旧提交、旧检查时点的真实历史记录，必须保留作反例，不代表此刻的线上状态**。后续严格真实站点检查 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) 已 PASS，参见本文件最顶部 CURRENT 状态；不可重复将旧 FAIL 当成最新项目结论。
 
 - **实际源工程已合并 `main`**：修复来自 [PR #8](https://github.com/kobolibra/financials/pull/8) 的提交 `3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0`。原有九张独立财务研究图、全部八个公司独立 URL 保留，原七公司 HTML 没有被改写。主版本是 `public/688220.html`，源头是 `research/issuers/688220/report-template.html` 与 `publish.py`。
 - **真正的 AEI/FT 图形错误**：旧版 p.178 “测试服务与其他”收入 79,769.92 元在桑基里按金额计算只有约 **0.011 SVG 单位**高，但来源节点 `span<1` 被换成固定 `stroke-width=1` 的线，视觉放大约 92 倍（流向 ribbon 原金额未变）。现移除最小 1px 线条，四类来源全按真实元金额构成节点，七条真正有金额的成本/毛利 Ribbon 与一条 **零毛利、零正面积**分流均如实处理。所有来源/终点源标签、期间、物理 p178、金额与图形几何有独立 browser 校验，不能只将 `data-value` 当成可视比例的证据。
@@ -26,7 +26,7 @@
 - **FAIL / 线上真正阻断**：新增 `main` live QA commit `ac588ebab444ec4510747ddcb46395b397ca9699` 后，[41660682930](https://github.com/kobolibra/financials/actions/runs/41660682930) 在 Cloudflare 线上 `/688220.html` 找不到修复版 `rect.money-source`，说明公网仍提供旧版图形；**LIVE_NEW_SVG=FAIL**，而不是“站点已全新通过”。对应 `3a1878...` 的 **Cloudflare Pages** GitHub provider check 仍 `in_progress`（检查时点），不能对外声称新代码的 Cloudflare 部署 PASS。新上线验收条件不能删除或放宽。
 - **线上再次重试仍失败（已真实执行）**：GitHub Actions [41660682930](https://github.com/kobolibra/financials/actions/runs/41660682930) **run_attempt=2** 于 2026-11-03 15:14 UTC 再次结束 **FAIL**，报错仍为 `ASR source amounts not represented as geometric nodes`，证明部署公开页确实未变而非一过性的浏览器等待错误；对应 Cloudflare Pages provider 检查尚无完成结论。不能删掉严格断言来换绿色。
 - **NOT_CHECKED / 不得冒充**：上交所官方静态 PDF 服务器与已核镜像的字节同一性、全部 224 页重大附注完整独立逐项复核、8–12 季度真实同行/估值、第二名真正独立人类财务或视觉审稿人；应收及合同资产附注集中度 p137 披露 90.50% 与简单披露分母回算 89.17% 仍 **FAIL_UNRECONCILED**，待履约义务 p179 明细相加比披露总额多 **0.01 元**，没有编造补差额。
-- **下一步 P0**：核实 Cloudflare Pages 对最新 `main` 是否构建/部署成功，若部署恢复，重跑包含 `money-source` 真节点和 1440px 终点可见性的真实线上 8 公司 × 3 视口 Chromium；把最后对应 SHA、Actions 运行与截图写回本节和 `project-status.json`，否则保持 LIVE FAIL 并排查 Cloudflare GitHub 构建连接。不可借原始 24 路由旧图成功假报新图已发布。
+- **此历史阻断已关闭**：后续真实 Chrome/Cloudflare 严格检查 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) 在八公司×三视口检验新版四个 `money-source`、7 条真实流带、极小源金额、零毛利和桌面图内不裁切 **PASS**。依然要求每个未来新 `main` 的部署重新验本次精确版本，不能用这次的通过替代未来所有提交。
 
 ## 2026-11-03 · 九图正式版增量原始 PDF 行列证据与图形通用财务关系
 
