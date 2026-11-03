@@ -6,10 +6,12 @@ all Decimal checks pass, and the file's SHA/224 physical pages match the manifes
 SOURCE_SEMANTIC and editorial-human gates remain separate.
 """
 from __future__ import annotations
-import argparse,hashlib,json
+import argparse,hashlib,json,sys
 from decimal import Decimal as D
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
+sys.path.insert(0,str(ROOT.parents[1]))
+from shared.conserved_flow import build_conserved_income_flow
 ap=argparse.ArgumentParser()
 ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
 ap.add_argument("--qa",type=Path,default=ROOT/"qa.json")
@@ -64,6 +66,23 @@ else:
     checks["PDF_MIRROR_FULL_BYTES_SHA_224P"]="NOT_CHECKED"
 data["source"]["original_bytes_sha256"]=actual_sha
 data["source"]["original_bytes_gate"]=source_status
+# One generic source/period/dimension-conserved finance flow graph is the
+# only source for the ribbon structure; renderer must use its eight actual edges.
+data["finance_flow"]=build_conserved_income_flow(data)
+checks["SANKEY_FOUR_SEGMENTS_EIGHT_EXACT_COGS_GP_EDGES"]="PASS"
+briefs=json.loads((ROOT/"figure-briefs.json").read_text(encoding="utf-8"))
+expected_briefs={"flow","segment","gp","earnings","cfo","cash","capital"}
+found={x["id"] for x in briefs["figures"]}
+assert len(briefs["figures"])==7 and found==expected_briefs,"FIGURE_BRIEF_MISSING_OR_DUPLICATED"
+required=("family","question","answer","pages","fact_ids","relation","domain_zero","color_encoding",
+          "alternative_hypothesis","mobile_policy","source_pdf_sha256","reviewer","publication_gate")
+for figure in briefs["figures"]:
+    assert all(figure.get(key) for key in required),("FIGURE_UNREVIEWED",figure.get("id"))
+    assert figure["source_pdf_sha256"]==actual_sha,("FIGURE_PDF_SHA_MISMATCH",figure["id"])
+    assert all(k in f for k in figure["fact_ids"]),("FIGURE_NON_SOURCE_FACT",figure["id"])
+    assert all(1<=p<=224 for p in figure["pages"]),("FIGURE_PHYSICAL_PAGE",figure["id"])
+data["figure_briefs"]=briefs["figures"]
+checks["SEVEN_ACTUAL_SOURCE_BOUND_FIGURE_BRIEFS"]="PASS"
 template=(ROOT/"report-template.html").read_text(encoding="utf-8")
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
 source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
