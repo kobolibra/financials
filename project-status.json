@@ -108,9 +108,67 @@
   },
   "source_archive": "ChatGPT Library /Financials-in-Visuals/ ; do not assume a new session has original PDF bytes mounted; retrieve and recheck SHA, dates, periods and issuer before claiming PDF_HASH PASS.",
   "last_verified_handoff": {
-    "run_id": 41610923043,
+    "run_id": 41615024220,
     "conclusion": "success",
-    "scope": "handoff version, five manuals, seven reports, original optical categories, 6 adversarial tests and 9 portal tests; does not certify investment analysis",
-    "warning": "Historical GitHub Action run: check current HEAD. New discovered Codex wrapper will be validated by the next CI."
+    "source_git_commit": "9f8cab1439225bac3b25a431f85cbeae60487eba",
+    "scope": "New N-issuer builder source, original seven exact rebuilt portal, five manuals, existing seven catalogue, adversarial handoff tests",
+    "warning": "Run against code commit before subsequent documentation-only updates; it is not a financial research certification."
+  },
+  "latest_engine_change": {
+    "date": "2026-11-03",
+    "code_git_commit": "9f8cab1439225bac3b25a431f85cbeae60487eba",
+    "pull_request": "https://github.com/kobolibra/financials/pull/1",
+    "purpose": "GENERALIZE_SINGLE_CANONICAL_ISSUER_DIRECTORY_FOR_N",
+    "changed_paths": [
+      "site/portal_builder.py",
+      "site/test_portal.py",
+      ".github/workflows/verify-unified-research-library.yml"
+    ],
+    "existing_seven_issuer_html_changed": false,
+    "company_catalog_changed": false,
+    "catalog_count_after": 7,
+    "qa": {
+      "PR_SYNTHETIC_EIGHTH_AND_EXACT_SEVEN_REBUILD": {
+        "status": "PASS",
+        "run_id": 41614961062,
+        "commit": "d59ade4ab6f2888ee3fc9f1aee083852b6b6626f"
+      },
+      "HANDOFF_INVARIANTS": {
+        "status": "PASS",
+        "run_id": 41615024220,
+        "commit": "9f8cab1439225bac3b25a431f85cbeae60487eba"
+      },
+      "LIVE_EXISTING_SEVEN_CLOUDFLARE_BROWSER": {
+        "status": "PASS",
+        "run_id": 41615024205,
+        "commit": "9f8cab1439225bac3b25a431f85cbeae60487eba",
+        "scope": "GitHub runner Playwright 1440/768/390 seven existing reports; not manual editorial certification"
+      },
+      "DIRECT_SESSION_SITE_FETCH": {
+        "status": "NOT_CHECKED",
+        "reason": "Web access denied; container could not resolve Cloudflare DNS"
+      },
+      "NEW_ISSUER_FINANCIAL_AND_VISUAL_RELEASE": {
+        "status": "NOT_CHECKED",
+        "reason": "No identified eighth issuer PDF supplied"
+      }
+    }
+  },
+  "active_new_issuer_intake": {
+    "issuer": "NOT_IDENTIFIED",
+    "report_period": "NOT_IDENTIFIED",
+    "original_pdf_bytes": "NOT_CHECKED",
+    "original_pdf_sha256": "NOT_CHECKED",
+    "source_availability": "No new PDF attachment in current chat; Library search revealed only prior published seven issuer artifacts and earlier sector test outputs",
+    "semantic_pdf_audit": "NOT_CHECKED",
+    "financial_accounting": "NOT_CHECKED",
+    "material_notes": "NOT_CHECKED",
+    "research_thesis_and_red_team": "NOT_CHECKED",
+    "editorial_visual_review": "NOT_CHECKED",
+    "money_flow_conservation": "NOT_CHECKED",
+    "new_issuer_browser": "NOT_CHECKED",
+    "new_issuer_live_deploy": "NOT_CHECKED",
+    "independent_second_human_review": "NOT_CHECKED",
+    "next_step": "Obtain specifically identified new issuer's complete original PDF or official direct PDF URL, check bytes/SHA/physical pages and only then build source-ledger, thesis, offline HTML, unified catalog and separate financial/visual/browser QA"
   }
 }
