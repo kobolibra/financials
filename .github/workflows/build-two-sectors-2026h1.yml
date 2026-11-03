@@ -8,6 +8,7 @@ on:
       - 'research/shared/build_two_sector.py'
       - 'research/shared/qa_two_sector_browser.py'
       - 'research/shared/verify_two_sector_cells.py'
+      - 'research/shared/test_two_sector_accounting.py'
       - 'public/600900.html'
       - 'public/600276.html'
       - '.github/workflows/build-two-sectors-2026h1.yml'
@@ -27,6 +28,7 @@ jobs:
           python -m pip install --disable-pip-version-check -q pymupdf
           python research/shared/verify_two_sector_cells.py --code 600900
           python research/shared/verify_two_sector_cells.py --code 600276
+          python -m unittest research/shared/test_two_sector_accounting.py -v
           python research/shared/build_two_sector.py --code 600900 --out public/600900.html
           python research/shared/build_two_sector.py --code 600276 --out public/600276.html
           test -s public/600900.html
