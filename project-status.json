@@ -5,7 +5,7 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "UNIFIED_EIGHT_ISSUER_LIBRARY_WITH_AEI_REDESIGNED_ASR_RESEARCH_PREVIEW",
+  "latest_publication_state": "EIGHT_ISSUER_MAIN_PUBLISHED_688220_AEI_V833_SOURCE_LIMITED_RESEARCH",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -111,7 +111,7 @@
     "every_new_report": "GATE_INDEPENDENTLY_REQUIRED",
     "asr_mirror_equals_official_pdf": "NOT_CHECKED",
     "asr_full_material_notes": "NOT_CHECKED",
-    "asr_ar_top5_note_denominator": "FAIL_REPORTED_90_50_VS_DERIVED_89_17",
+    "asr_ar_top5_note_denominator": "FAIL_BOUNDED_REPORTED_90_50_VS_DERIVED_89_17_UNRECONCILED_ORIGINAL_NOTE",
     "asr_second_independent_financial_editor": "NOT_CHECKED",
     "asr_original_current_vs_prior_nonoperating_expense": "RESOLVED_P87_COLUMN_REVIEW",
     "aei_visual_editorial_full_external_review": "NOT_CHECKED"
@@ -206,18 +206,23 @@
       "RESEARCH_MULTIYEAR_PEERS_VALUATION": "NOT_CHECKED",
       "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED",
       "FULL_CAS_PNL_FROM_GROSS_TO_CONSOLIDATED_NI": "PASS_BRANCH_EXACT_DECIMAL",
-      "P87_NONOPERATING_EXPENSE_CURRENT_VS_PRIOR_COLUMN": "PASS_CORRECTED__15_30_IN_2025H1__2026H1_BLANK_DERIVED_ZERO",
+      "P87_NONOPERATING_EXPENSE_CURRENT_VS_PRIOR_COLUMN": "PASS_RECHECKED_PHYSICAL_P87_15_30_IN_2025H1_2026H1_CELL_BLANK_DERIVED_ZERO",
       "SANKEY_PER_BUSINESS_COGS_AND_GP": "PASS_BRANCH_EXACT_DECIMAL_4_COST_3_POSITIVE_GP_1_ZERO_GP",
       "SANKEY_SOURCE_NEGATIVE_GP_REJECTION": "PASS_NEGATIVE_ADVERSARIAL",
-      "EQUAL_TOTAL_BALANCE_COMPOSITION_2_DATES": "PASS_EXACT_DECIMAL"
+      "EQUAL_TOTAL_BALANCE_COMPOSITION_2_DATES": "PASS_EXACT_DECIMAL",
+      "SOURCE_PDF_FULL_MIRROR_SHA": "PASS_224P_1449510B_SHA_9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "SANKEY_EACH_BUSINESS_COGS_GP": "PASS_4_COST_3_POSITIVE_GP_AND_ONE_ZERO_GP_NO_FAKE_RIBBON",
+      "FULL_GAAP_SIGNED_PNL": "PASS_FROM_GP_VIA_OPERATING_PNL_AND_TAX_TO_CONSOLIDATED_NI",
+      "BALANCE_TWO_DATES_EQUAL_TOTAL": "PASS_20251231_20260630",
+      "MATERIAL_NOTE_ROW_COLUMN_COVERAGE": "PARTIAL_SELECTED_NOT_FULL_109_OF_118_PAGE_LITERAL_AND_9_FRAGMENTED_TEXT_ITEMS"
     },
     "technical_gates": {
-      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_BRANCH_9_FIGURES_9_TABLES_21_SCREENSHOTS_3_SVG_EXPORTS",
+      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_MAIN_9_FIGURES_9_SOURCE_TABLES_21_SCREENSHOTS",
       "ORIGINAL_VISUAL_QA": "PARTIAL_MANUALLY_OPENED_SCREENSHOTS_FIXED_3_ISSUES_AWAIT_FINAL_ASSESSMENT",
-      "CLEAN_REBUILD": "PASS_BRANCH",
-      "GITHUB_MAIN_ROUTE": "NOT_CHECKED_THIS_REDESIGN_UNTIL_MERGE",
-      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_THIS_REDESIGN_UNTIL_DEPLOY",
-      "AEI_FT_VISUAL_EDITORIAL": "PARTIAL_SELF_REVIEW_SOURCE_BOUNDED_SCREENSHOTS_VIEWED__NOT_INDEPENDENT_RELEASE_CERTIFICATION",
+      "CLEAN_REBUILD": "PASS_MAIN_41653197855",
+      "GITHUB_MAIN_ROUTE": "PASS_MAIN_5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8",
+      "CLOUDFLARE_LIVE_ROUTE": "PASS_GITHUB_ACTIONS_REAL_CLOUDFLARE_CHROMIUM_41653304202_8_ISSUERS_3_VIEWPORTS",
+      "AEI_FT_VISUAL_EDITORIAL": "PARTIAL_SELF_REVIEWED_ALL_FIGURE_DESKTOP_SHEET_AND_MOBILE_HEADLINES__NOT_INDEPENDENT_EDITORIAL_CERTIFICATION",
       "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES"
     },
     "latest_branch_qa": {
@@ -228,14 +233,43 @@
       "source_git_commit": "d5e42a40becf8226de7be3f2a85d00095db3fa13",
       "scope": "224p source SHA, p87 original comparative column x-position check, 29 signed accounting assertions, 8 adversarial negative cases, 9 financial charts/9 source tables, 21 Chromium screenshots on 1440 768 390, 7 source-specific nonzero product cost+GP Sankey ribbons, 3 SVG download tests, clean regenerated HTML"
     },
-    "next_step": "Merge true per-business COGS/GP Sankey and full signed P&L 9-figure source-limited ASR HTML in original directory. Verify live Cloudflare browser at 1440/768/390 and update current handoff. Existing AR top-5 percentage denominator and official-versus-mirror bytes remain bounded unresolved issues."
+    "next_step": "Do not treat as independently certified institution-level equity research. If pursuing additional audit, prioritize PDF p137 top-five AR denominator (reported 90.50% vs derived 89.17%) and all material notes, official SSE original vs mirror bytes, 8-12Q and peers. Maintain same eight-issuer company library.",
+    "latest_main_release": {
+      "original_redesign_merge": "5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8",
+      "source_accuracy_live_workflow_fix": "f9f3ac4377c98fb5d9390716531c023a4def1393",
+      "unified_route_dynamic_figure_QA_fix": "52c4a6f166451ef3a132f929ab1e776a1521e130",
+      "production_url": "https://financials-in-visuals.pages.dev/688220.html",
+      "branch_offline_source_and_design": {
+        "run": 41652625378,
+        "status": "PASS",
+        "commit": "724ee4c80559c4357dec28b18e37634008ea7585"
+      },
+      "main_financial_browser": {
+        "run": 41653197855,
+        "status": "PASS",
+        "commit": "f9f3ac4377c98fb5d9390716531c023a4def1393"
+      },
+      "main_eight_issuer_cloudflare": {
+        "run": 41653304202,
+        "status": "PASS",
+        "commit": "52c4a6f166451ef3a132f929ab1e776a1521e130"
+      },
+      "main_handoff": {
+        "run": 41653016658,
+        "status": "PASS",
+        "commit": "5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8"
+      },
+      "reasons_for_initial_failed_main_runs": "Initial main 41653016669 and 41653016654 were stale hardcoded 7 figures after the nine-figure redesign, not accounting/HTTP failures. Replaced with figure-brief count and original source quality contract; reran 41653197855 and 41653304202 success."
+    }
   },
   "last_redesign_internal_checkpoint": {
     "date": "2026-11-03",
-    "branch": "work/688220-aei-financial-flow-redesign-20261103",
-    "ci_run": 41651927501,
-    "git_sha": "d5e42a40becf8226de7be3f2a85d00095db3fa13",
-    "status": "PASS_TECHNICAL_PRE_PUBLICATION__NOT_INDEPENDENT_RESEARCH_SIGNOFF",
-    "scope": "Source-linked true product-level money flow, full signed GAAP P&L, dated A=L+E, 9 figures; source p87 current/prior correction"
+    "branch": "main",
+    "status": "LIVE_TECHNICAL_PASS_SOURCE_LIMITED_RESEARCH",
+    "main_source_commit": "5f2cf82cd515e5e85a8a41a93ab4bcc0f10554d8",
+    "latest_verified_live_workflow_commit": "52c4a6f166451ef3a132f929ab1e776a1521e130",
+    "live_ci": 41653304202,
+    "financial_ci": 41653197855,
+    "notes": "9 figures after source-specific actual PDF p87 correction; all 8 original issuer routes retained"
   }
 }
