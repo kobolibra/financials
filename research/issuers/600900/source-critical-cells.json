@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "issuer": "600900",
+  "report_period": "2026H1",
+  "policy": "Manual-original-PDF-cell-selection verified physical page and real (x0,y0) against full PDF. All other typed facts separately pass exact literal page check; this is a critical-cells, not all-notes certification.",
+  "selected": [
+    {
+      "fact_id": "rev",
+      "physical_page": 50,
+      "original_x0": 328.6,
+      "original_y0": 536.8,
+      "row_anchor": "营业收入",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "rev_prior",
+      "physical_page": 50,
+      "original_x0": 436.6,
+      "original_y0": 536.8,
+      "row_anchor": "营业收入",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cogs",
+      "physical_page": 50,
+      "original_x0": 328.6,
+      "original_y0": 607,
+      "row_anchor": "营业成本",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "operating_profit",
+      "physical_page": 51,
+      "original_x0": 328.6,
+      "original_y0": 419,
+      "row_anchor": "营业利润",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "net_profit",
+      "physical_page": 51,
+      "original_x0": 328.6,
+      "original_y0": 517,
+      "row_anchor": "净利润",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "parent_net",
+      "physical_page": 51,
+      "original_x0": 328.6,
+      "original_y0": 628,
+      "row_anchor": "归属于母公司",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "main_rev",
+      "physical_page": 154,
+      "original_x0": 139.3,
+      "original_y0": 167,
+      "row_anchor": "主营业务",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "main_cost",
+      "physical_page": 154,
+      "original_x0": 243,
+      "original_y0": 167,
+      "row_anchor": "主营业务",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "other_rev",
+      "physical_page": 154,
+      "original_x0": 160,
+      "original_y0": 181,
+      "row_anchor": "其他业务",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "other_cost",
+      "physical_page": 154,
+      "original_x0": 264,
+      "original_y0": 181,
+      "row_anchor": "其他业务",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cfo",
+      "physical_page": 55,
+      "original_x0": 322.4,
+      "original_y0": 99.2,
+      "row_anchor": "经营活动产生的现金流",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cfo_prior",
+      "physical_page": 55,
+      "original_x0": 436.6,
+      "original_y0": 99.2,
+      "row_anchor": "经营活动产生的现金流",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cash_capex",
+      "physical_page": 55,
+      "original_x0": 328,
+      "original_y0": 267,
+      "row_anchor": "购建固定资产",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cfo_adj_depreciation",
+      "physical_page": 160,
+      "original_x0": 307,
+      "original_y0": 736,
+      "row_anchor": "固定资产折旧",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cfo_adj_payables",
+      "physical_page": 161,
+      "original_x0": 307,
+      "original_y0": 349,
+      "row_anchor": "经营性应付项目",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "assets",
+      "physical_page": 48,
+      "original_x0": 313,
+      "original_y0": 386,
+      "row_anchor": "负债和所有者权益",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "liabilities",
+      "physical_page": 48,
+      "original_x0": 313,
+      "original_y0": 122,
+      "row_anchor": "负债合计",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "cash_end",
+      "physical_page": 161,
+      "original_x0": 307,
+      "original_y0": 469,
+      "row_anchor": "现金的期末余额",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "restricted_non_cash",
+      "physical_page": 162,
+      "original_x0": 218,
+      "original_y0": 434.6,
+      "row_anchor": "保证金及冻结资金",
+      "coordinate_tolerance": 2.6
+    },
+    {
+      "fact_id": "water_resource_tax",
+      "physical_page": 154,
+      "original_x0": 305,
+      "original_y0": 651.9,
+      "row_anchor": "水资源税",
+      "coordinate_tolerance": 2.6
+    }
+  ]
+}
