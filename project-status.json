@@ -185,7 +185,10 @@
       "quality": "research/issuers/688220/qa.json",
       "source_verification": "research/issuers/688220/source-verification.json",
       "research_memo": "research/issuers/688220/research-memo.md",
-      "figure_count": 7
+      "figure_count": 8,
+      "figure_briefs": "research/issuers/688220/figure-briefs.json",
+      "generic_source_flow": "research/shared/conserved_flow.py",
+      "design_release_state": "IN_REVIEW_REQUIRES_REBUILT_LIVE_BROWSER"
     },
     "financial_gates": {
       "PDF_MIRROR_FULL_BYTES_SHA_224P": "PASS",
@@ -195,28 +198,30 @@
       "FULL_MATERIAL_NOTES": "NOT_CHECKED",
       "STATEMENT_IDENTITY": "PASS",
       "SIGNED_CFO_17_ROWS": "PASS",
-      "REVENUE_SAME_SCOPE_SANKEY": "PASS",
+      "REVENUE_SAME_SCOPE_SANKEY": "REBUILT_FOUR_SOURCES_EIGHT_EDGE_COST_GP_SEMANTICS_AWAIT_BRANCH_RENDER_QA",
       "INDUSTRY_ROUTE": "PASS_SEMICONDUCTOR_CHIP_DESIGN",
       "AR_TOP5_NOTE_DENOMINATOR": "FAIL_REPORTED_90_50_VS_DERIVED_89_17",
       "RPO_ONE_CENT_TIE": "FAIL_MIRRORED_0_01_YUAN_SOURCE_DISCLOSURE_DIFFERENCE",
       "THESIS_AND_COUNTER": "PASS_SELF_REVIEW",
       "RESEARCH_MULTIYEAR_PEERS_VALUATION": "NOT_CHECKED",
-      "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED"
+      "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED",
+      "FULL_SIGNED_OPERATING_PNL": "EXACT_YUAN_ACCOUNTING_ADDED__AWAIT_FINAL_CI",
+      "P87_NONOPERATING_EXPENSE_PERIOD": "CORRECTED_COMPARATIVE_2025H1_15_30_NOT_2026H1"
     },
     "technical_gates": {
-      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_ON_BRANCH_ISSUER_QA",
-      "ORIGINAL_VISUAL_QA": "PARTIAL_MANUALLY_OPENED_SCREENSHOTS_FIXED_3_ISSUES_AWAIT_FINAL_ASSESSMENT",
-      "CLEAN_REBUILD": "PASS_BRANCH",
-      "GITHUB_MAIN_ROUTE": "NOT_CHECKED_UNTIL_MERGE",
-      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_UNTIL_DEPLOY"
+      "RESPONSIVE_CHROMIUM_1440_768_390": "NOT_CHECKED_ON_LATEST_REBUILD_SHA",
+      "ORIGINAL_VISUAL_QA": "IN_PROGRESS_ACTUAL_8_EDGE_SOURCE_FLOW_AND_8_FIGURE_VISUAL_REVIEW",
+      "CLEAN_REBUILD": "NOT_CHECKED_ON_LATEST_REBUILD_SHA",
+      "GITHUB_MAIN_ROUTE": "PR_PENDING",
+      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_FOR_REBUILD"
     },
     "latest_branch_qa": {
+      "branch": "work/688220-source-flow-editorial-v2",
       "workflow": "Build and audit ASR 688220 source-limited standalone research",
-      "branch": "work/asrmicro-688220-2026h1",
-      "run_id": 41620029401,
-      "conclusion": "success",
-      "scope": "source PDF SHA, 93 ledger source items partly validated, signed exact equations, seven hostile accounting cases, 3 viewport local browser screenshots; previous code revision before final note-level text edits"
+      "status": "RUNNING_OR_PENDING_FINAL_BUILD",
+      "scope": "2026H1 exact signed eight-edge flow; added full P&L; source semantic 15.30 correction; 14 adversarial cases; 1440/768/390 screenshot review",
+      "run_id": null
     },
-    "next_step": "Verify final SHA branch CI, merge into original site eight-company directory and test actual public Cloudflare on 1440/768/390. Research preview only, material-note/source-ratio limitations remain."
+    "next_step": "Do not promote until new branch clean rebuild and visual screenshot passes; then squash PR and confirm Cloudflare all 8 issuers. Retain original PDF mirror and unresolved AR denominator."
   }
 }
