@@ -14,7 +14,7 @@ from decimal import Decimal as D
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
-SITE=ROOT.parents[0]
+SITE=ROOT
 CENT=D("100000000")
 NAMES={
 "tax_surcharge":"税费附加","selling":"销售","admin":"管理",
