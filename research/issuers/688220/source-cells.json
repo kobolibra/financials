@@ -1,0 +1,140 @@
+{
+  "source_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "report": "2026H1",
+  "issuer": "688220.SH",
+  "pages": [
+    135,
+    146
+  ],
+  "method": "Precisely bounded physical PDF-page word rectangles, original row label and column header must appear on that same source page; concatenate only literal subwords of one reviewed table cell.",
+  "reviewer": "assistant screenshot + PDF-coordinate audit; not independent second analyst",
+  "coordinates": "pymupdf PDF points, top left origin",
+  "cells": {
+    "inventory_gross": {
+      "physical_page": 146,
+      "rect": [
+        135,
+        315,
+        194,
+        350
+      ],
+      "row_label": "合计",
+      "top_heading": "期末余额",
+      "column_heading": "账面余额",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    },
+    "inventory_reserve": {
+      "physical_page": 146,
+      "rect": [
+        198,
+        315,
+        262,
+        350
+      ],
+      "row_label": "合计",
+      "top_heading": "期末余额",
+      "column_heading": "存货跌价准备",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    },
+    "inventory_gross_prior": {
+      "physical_page": 146,
+      "rect": [
+        325,
+        315,
+        384,
+        350
+      ],
+      "row_label": "合计",
+      "top_heading": "期初余额",
+      "column_heading": "账面余额",
+      "accounting_scope": "consolidated",
+      "period": "2025-12-31"
+    },
+    "inventory_reserve_prior": {
+      "physical_page": 146,
+      "rect": [
+        387,
+        315,
+        452,
+        350
+      ],
+      "row_label": "合计",
+      "top_heading": "期初余额",
+      "column_heading": "存货跌价准备",
+      "accounting_scope": "consolidated",
+      "period": "2025-12-31"
+    },
+    "inventory_outsourced_net": {
+      "physical_page": 146,
+      "rect": [
+        264,
+        268,
+        323,
+        295
+      ],
+      "row_label": "委托加工物资",
+      "top_heading": "期末余额",
+      "column_heading": "账面价值",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    },
+    "inventory_finished_net": {
+      "physical_page": 146,
+      "rect": [
+        264,
+        176,
+        323,
+        207
+      ],
+      "row_label": "库存商品",
+      "top_heading": "期末余额",
+      "column_heading": "账面价值",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    },
+    "inventory_raw_net": {
+      "physical_page": 146,
+      "rect": [
+        264,
+        138,
+        323,
+        168
+      ],
+      "row_label": "原材料",
+      "top_heading": "期末余额",
+      "column_heading": "账面价值",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    },
+    "inventory_contract_cost": {
+      "physical_page": 146,
+      "rect": [
+        135,
+        243,
+        194,
+        268
+      ],
+      "row_label": "合同履约成本",
+      "top_heading": "期末余额",
+      "column_heading": "账面余额",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    },
+    "ar_allowance": {
+      "physical_page": 135,
+      "rect": [
+        172,
+        711,
+        213,
+        744
+      ],
+      "row_label": "合计",
+      "top_heading": "期末余额",
+      "column_heading": "坏账准备",
+      "accounting_scope": "consolidated",
+      "period": "2026-06-30"
+    }
+  }
+}
