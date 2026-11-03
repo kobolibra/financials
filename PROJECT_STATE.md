@@ -4,6 +4,28 @@
 
 > **唯一正式站点：首页统一八家公司研究库（本提交为候选，按当前 main 实际发布状态验收）。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
+## 2026-11-03 · 翱捷科技源数据/AEI 风格重新审计与 v2 八图重构 · 真实 QA 检查点
+
+**这次不是对先前页面技术 PASS 的重新包装**：经过重读当前 `main` 的完整现行 `skills/ashare-financial-storytelling/SKILL.md` 及五份研究手册、直接核对公开 AEI 收入和现金流示例、实际原报告与已打开的桌面/手机截图，发现并修正了重大“财务图形语义”和原始比较期列错误。
+
+**旧版 Figure 01 失败实情**：四类收入先并成一个收入总流、再以集团层面分为成本/毛利，能闭合合并收入，但**不能证明哪类业务产生了哪类毛利**，未达到源业务级桑基要求。新 `research/shared/conserved_flow.py` 为不同发行人复用同一 exact-Decimal 业务收入 `source_i -> reported_cost_i / derived_gp_i` typed graph；本 688220 原报告 p.178 四项收入、四项成本各自分流，共八条原始金额带，四个 source / 两个 sink，消除伪可守恒汇总树；浏览器对实际 SVG Path 的 `data-business`/`data-to`/`data-yuan` 和 ribbon 宽度做精确公式测试。绝不推断跨轴、相同业务父子类、负毛利为正流或创造“未披露其他”。
+
+**P&L 深度修复**：真实合并利润表 p.87 **2025H1 比较列 15.30 元营业外支出**曾在旧 ledger 被误读作 2026H1；直接改 `research/issuers/688220/source-ledger.json` 为 `nonoperating_expense_prior` 并标签 `period=2025H1`，增加从 2026H1 毛利→研发费用 663,322,721.74 元→其他经营费用→投资及公允价值→信用及资产减值→营业利润→营业外收入→所得税收益→净利润的全部带符号利润算式，原始元零差；新独立 Figure 04 为有证据的**九步 P&L 瀑布**，原扣非/法定盈利对比成为 Figure 05。每个项目及“分析师聚合”的性质在可展开的原始源表中说明；p.87 15.30 不再计入当期。
+
+**原始 PDF 字节与行列**：原完整 224 物理页镜像 SHA-256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`、大小 1,449,510 字节不变。抽核的 **118 项源证据 PASS = 109 项连续 PDF 文本原金额 + 9 项真实 p.135/p.146 表格单元格重新按物理 bbox、行标题、列标题、日期拼接**；证据 `source-cells.json`、`source-verification.json`、`source-images/p135.png`、`p146.png`，不用 OCR 猜数。不是全部 224 页附注独立全文验收。上交所静态直链与镜像字节同一性继续 **NOT_CHECKED**。
+
+**原创视觉/页面**：`research/issuers/688220/figure-briefs.json` 提供八张图全部源键/SHA/原始物理页/问题/语法/反证/手机政策，`publish.py` 不满足会拒绝发布。人眼打开实际 `flow_1440`、`pnl_1440`、`flow_390`、`pnl_390` 等截图，发现并修正旧版“汇总型伪业务桑基”、桌面右侧源汇金额被横滚遮掉、九步利润瀑布末尾被藏、导航遮盖标题、金额 +0.00 亿误读等。最终 desktop 1440 所有八图无需内部横滚，768/390 可图内滚动但八条摘要金额先行可见，原始元数字以 SVG 导出，来源表均独立可展开。**视觉内部审稿有证据，但不冒充另一名独立人类编辑 PASS**。技术代码最后匹配 [GitHub Actions 41655445119](https://github.com/kobolibra/financials/actions/runs/41655445119) **PASS**（提交 `4a646a2a5444c03145256ae37a07b4c0bb05f463`），包括原始 PDF、25 项 exact 元级会计门槛、14 种对抗账本、8 张真实图/证据表/SVG 出口、1440/768/390 及完整 rebuild。之后文档增补未改计算逻辑；最终 PR HEAD 仍需核验。
+
+**独立、不能合并的状态**：
+- **PASS**：完整来源 PDF 镜像字节/SHA 与发行人期别、118 项指定原始元金额或原格、P&L/BS/CFO 原始元级会计桥、真实八条业务成本/毛利 source path 守恒、八图 source-typed brief、1440/768/390 本地独立 HTML 浏览器技术及已打开截图的目标修正。
+- **FAIL（源信息尚不一致）**：p.137 应收与合同资产 top-5 90.50% 与 p.135+p.138 报表金额直算 89.17% 不一致，不强行补虚构分母；p.179 尚未履约金额年内+以后总和比披露总额多 0.01 元，不用于守恒图。
+- **NOT_CHECKED**：上交所静态源与镜像**原始字节同一性**、所有重大财务附注完整独立逐项核验、8–12 季度/同业/估值独立资料、第二名真实独立专业研究员与外部视觉主编、重构后 PR 最终 `main`/Cloudflare 真实浏览器验收（须在合并后检查）。
+- **通用化边界**：一个真实 688220 H1 半导体 source-flow + 14 反例并不能证明 22 个图形模板已全自动泛化、银行/保险/其他行业已具有同样源证据的通用财务流。
+
+**新增可复现源码及审计**：`research/shared/conserved_flow.py`、`research/issuers/688220/{figure-briefs.json,source-cells.json,visual-audit.md,publish.py,report-template.html,test_accounting.py,verify_pages.py,qa_browser.py}`；八家公司继续同一 `public/index.html`，新独立公司链接始终是 `public/688220.html`，不创建独立版本首页。新增会计图之后需同时更新原首页卡片 `site/research_catalog.json` 的 `figures=8`，旧七家公司 HTML 保持字节不变。
+
+**下一步必须实际做**：确认本分支生成的八图 HTML 和首页保持可重建、一并通过 handoff 和 GitHub PR；合并至当前 `main`、查看 Cloudflare Pages 针对新 commit 构建完成，并运行实际线上八家公司 1440/768/390 截图和导航、最终生产路由与来源图形断言；最后把这里从候选改为真实 commit+RUN 的确切状态。
+
 ## 2026-11-03 · 688220 翱捷科技-U · 第八家公司源限定研究预览
 
 **发行人**：翱捷科技股份有限公司 688220.SH，2026H1，未经审计，2026-08-29 上交所公告。完整 224 物理页披露副本（新浪公告镜像、非上交所原始服务器字节认证），1,449,510 字节，SHA256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`。原件、源页文字/坐标、截图、原始附注行列证据：`research/issuers/688220/source/`、`extracted/`、`source-blocks/`、`source-images/`；`source-manifest.json` 和 `source-verification.json`。上交所静态直链在 GitHub runner 返回 3.8KB HTML，官方 URL vs 镜像完整字节同一性：**NOT_CHECKED**。
