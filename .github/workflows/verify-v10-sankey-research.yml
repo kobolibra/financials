@@ -124,7 +124,11 @@ jobs:
                 print('PUBLIC_SANKEY_BROWSER_PASS',code,width,flush=True)
               page.close()
             page=browser.new_page()
-            page.goto(home+root+'index.html')
+            page.goto(home,wait_until='networkidle')
+            assert page.locator('a[href="./research/2026-h1-v10/index.html"]').count()>=1, 'Homepage must feature latest v10 source-audited story'
+            page.locator('a[href="./research/2026-h1-v10/index.html"]').first.click()
+            assert '/research/2026-h1-v10/' in page.url
+            print('PUBLIC_HOMEPAGE_V10_CLICK_PASS',page.url,flush=True)
             page.locator('a[href="./600036.html"]').click()
             assert '600036' in page.url
             page.locator('a[href="#cash"]').click()
