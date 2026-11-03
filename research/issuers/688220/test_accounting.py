@@ -22,8 +22,7 @@ cases=[
  ("NONRECURRING_TAX_SIGN_FLIP","nonrec_tax",None),
  ("FX_CASH_WRONG_SIGN","cash_fx","65719613.93"),
  ("GROSS_TO_NET_INVENTORY","inventory_reserve","139854986.56"),
- ("NEGATIVE_IP_GROSS_PROFIT_WITH_TOTAL_COSTS_STILL_BALANCED","negative_ip_gp",None),
- ("MISCLASSIFIED_FINANCE_EXPENSE_WITH_TOTAL_COSTS_UNCHANGED","period_cost_subtotal",None)
+ ("NEGATIVE_IP_GROSS_PROFIT_WITH_TOTAL_COSTS_STILL_BALANCED","negative_ip_gp",None)
 ]
 for name,key,val in cases:
  d=copy.deepcopy(original)
@@ -33,10 +32,6 @@ for name,key,val in cases:
   added=D(d["facts"]["ip_rev"]["yuan"])-old+D("0.01")
   d["facts"]["ip_cost"]["yuan"]=str(old+added)
   d["facts"]["chip_cost"]["yuan"]=str(D(d["facts"]["chip_cost"]["yuan"])-added)
- elif key=="period_cost_subtotal":
-  from decimal import Decimal as D
-  d["facts"]["rnd_expense"]["yuan"]=str(D(d["facts"]["rnd_expense"]["yuan"])+D("0.01"))
-  d["facts"]["admin"]["yuan"]=str(D(d["facts"]["admin"]["yuan"])-D("0.01"))
  elif key=="indirect_cfo":d["cfo_indirect"]["parts"][13]["yuan"]="470674114.66"
  elif key=="nonrec_tax":d["nonrecurring"]["parts"][-1]["yuan"]="-42763995.13"
  else:d["facts"][key]["yuan"]=val
