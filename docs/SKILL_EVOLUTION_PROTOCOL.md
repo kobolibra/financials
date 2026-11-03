@@ -58,3 +58,9 @@
 ## 2026-11-03 执行反例：源账本与已发布财报数据失配（PUB-011）
 
 主分支原始报告完整 PDF、29 条算术、九图浏览器均通过，但真实 CI [41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) 的再次生成 HTML 与已提交 `public/688220.html` 不同：源账本仅更改了 `source.reason` 文字，已发布 HTML 内嵌旧版原始 `ledger-data`。其原因不是会计数字，而是源账本与出版产物没有同步更新。源文件已修到同一真实归档镜像 SHA 并保留发布时准确说明，[41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) 重新运行逐字节重建 **PASS**。因此 v8.4.2 增加对内嵌发行人/来源/全部事实/收入分组的真实一致性核验与两项恶意变异测试，绝不取消原有干净重建。未来对新公司改源数据必须一同重建并发行 HTML，完成真实 Cloudflare 版本核对后才升级线上状态。
+
+## 2026-11-04 · 双真实原始 PDF，来源与发行两层均已执行
+
+长江电力 600900 与恒瑞医药 600276 已用真实214/182页 2026H1完整原始 PDF，在同一个十家公司网站生产发布了**各自独立离线8图/8源表文章**；不同商业模式共用会计/图形约束，不混同具体财务口径。GitHub main 源+会计+实际浏览器 [41736999153](https://github.com/kobolibra/financials/actions/runs/41736999153) PASS；真实Cloudflare十公司×三尺寸 [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189) PASS。首次水电追溯同比/发电≠售电、创新药子集与许可收入、期后BMS、背书票据非现金购建资产等错误已进入 `quality-regressions.json`（20个实例）及本 Skill/05行业手册，原始测试在 `research/shared/test_two_sector_accounting.py`。
+
+这不是“行业 L2”认证：各行业目前只有一份完整发行人样本；全部材料附注独立逐项复核、外部8–12Q/估值、第二名独立真人仍为 NOT_CHECKED。后续增加保险、券商或房地产新会计行业应先从完整原始 PDF 与自己的专业财务定义起步，再按相同源→证据→反例→图形→三屏→真生产→交接循环。没有完整披露则不虚构图。
