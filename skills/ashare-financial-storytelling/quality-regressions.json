@@ -72,6 +72,36 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "OFFLINE_REBUILD",
       "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "SRC-008",
+      "root_cause": "发布门槛记录已指向新归档 PDF 真实 SHA，但公司实际 source-ledger 仍留旧的 NOT_CHECKED 临时指纹，跨文件发布证据不一致。",
+      "correction": "每次第 N 家质量验证必须交叉读取发行人源 ledger 的真实 PDF SHA/期间/代码与归档 source 记录；从源 ledger 修正，不能只改状态文件。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_ledger_pdf_identity_cannot_be_stale",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "PDF_BYTES",
+      "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "FIG-009",
+      "root_cause": "九图简报可能从另一份 PDF、另一报告期或不存在的 fact ID 复制后仍留下漂亮图，而路由和 CSS 测试无法发现。",
+      "correction": "每份 figure brief 源 SHA、发行人、报告期间与 source-ledger 必须交叉一致，引用的每个 fact ID 实际存在，必须有研究问题、反解释和页码。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_figure_brief_cannot_use_another_pdf_or_undocumented_fact",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "IND-010",
+      "root_cause": "把工业收入/营业成本/工业 FCF 框架套在银行、保险等不同会计行业，页面虽有数字却颠倒经济机制。",
+      "correction": "新增公司必须明确 sector_adapter 和 accounting_basis，第一道机器防线拦截显然错误的银行/保险工业框架，真实行业财报/关键附注仍需人工逐项语义审查。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_bank_and_insurer_cannot_inherit_industrial_reporting_basis",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "NEW_CONTRACT"
     }
   ]
 }

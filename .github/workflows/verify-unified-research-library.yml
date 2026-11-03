@@ -15,6 +15,8 @@ on:
       - 'scripts/check_release_contract.py'
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
       - 'research/issuers/**/release-gates.json'
+      - 'research/issuers/**/source-ledger.json'
+      - 'research/issuers/**/figure-briefs.json'
   pull_request:
     branches: [main]
     paths:

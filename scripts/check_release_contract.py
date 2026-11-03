@@ -12,6 +12,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from decimal import Decimal, InvalidOperation
 
 ROOT = Path(__file__).resolve().parents[1]
 LEGACY_PRE_CONTRACT = frozenset({
@@ -32,6 +33,12 @@ PREVIEW_BLOCKERS = frozenset({
 })
 STATUSES = frozenset({"PASS", "FAIL", "NOT_CHECKED"})
 RELEASE_CLASSES = frozenset({"source_limited_preview", "verified_research"})
+SECTOR_ADAPTERS = frozenset({
+    "optical", "semiconductor", "manufacturing", "software", "consumer",
+    "bank", "insurance", "insurance_group", "property", "broker",
+    "pharma", "utility", "energy", "construction", "holding_mixed",
+    "other_sector_specific"
+})
 REGRESSION_STATUSES = frozenset({
     "TESTED_ISSUER_ONLY", "TESTED_GENERIC_MECHANISM",
     "FAIL_LIVE_STILL_OPEN", "NEW_CONTRACT"
@@ -112,6 +119,108 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                 errors.append(f"PDF_BYTE_HASH_MISMATCH {code}")
     except ValueError as exc:
         errors.append(str(exc))
+
+    # A release JSON alone can describe a correct PDF while a stale source
+    # ledger or nine attractive charts still point to a different report.
+    # Demand issuer, period, original bytes identity and figure citations
+    # across the actual checked-in artifacts, not only release metadata.
+    sector = record.get("sector_adapter")
+    accounting_basis = record.get("accounting_basis")
+    if sector not in SECTOR_ADAPTERS or not isinstance(accounting_basis, str) or len(accounting_basis) < 20:
+        errors.append(f"ISSUER_SECTOR_MODEL_MISSING {code}")
+    else:
+        forbidden = {
+            "bank": ("industrial_", "industrial_fcf", "revenue_cogs"),
+            "insurance": ("industrial_", "revenue_cogs", "premium_as_recognized_revenue"),
+            "insurance_group": ("industrial_", "revenue_cogs", "premium_as_recognized_revenue"),
+            "property": ("presales_as_revenue", "restricted_cash_equals_free_cash"),
+        }
+        if any(x in accounting_basis.lower() for x in forbidden.get(sector, ())):
+            errors.append(f"WRONG_INDUSTRY_ACCOUNTING_GRAMMAR {code}/{sector}")
+        if sector == "other_sector_specific" and len(accounting_basis) < 80:
+            errors.append(f"UNKNOWN_SECTOR_REQUIRES_DOCUMENTED_MODEL {code}")
+
+    ledger_data = None
+    try:
+        ledger_file = checked_path(root, record.get("ledger_file"))
+        if not ledger_file.is_file():
+            errors.append(f"ISSUER_SOURCE_LEDGER_MISSING {code}")
+        else:
+            ledger_data = read_json(ledger_file)
+            identity = ledger_data.get("issuer", {})
+            source = ledger_data.get("source", {})
+            if identity.get("code") != code or identity.get("fiscal_period") != record.get("period"):
+                errors.append(f"LEDGER_ISSUER_PERIOD_MISMATCH {code}")
+            if source.get("original_bytes_sha256") != sha or (
+                "SHA_PASS" not in str(source.get("original_bytes_gate", ""))
+            ):
+                errors.append(f"LEDGER_PDF_PROVENANCE_STALE {code}")
+            if source.get("physical_pages_observed") != pdf.get("physical_pages"):
+                errors.append(f"LEDGER_PDF_PHYSICAL_PAGE_DRIFT {code}")
+            for key, fact in ledger_data.get("facts", {}).items():
+                if fact.get("classification") not in ("DISCLOSED", "DISCLOSED_RESTATED"):
+                    continue  # Derived claims still require separate source semantic review.
+                amount = str(fact.get("yuan", ""))
+                try:
+                    parsed = Decimal(amount)
+                    if not parsed.is_finite() or parsed.as_tuple().exponent < -2:
+                        raise InvalidOperation("original precision exceeds cents")
+                except (InvalidOperation, ValueError, TypeError):
+                    errors.append(f"LEDGER_DISCLOSED_VALUE_INVALID {code}/{key}")
+                if not isinstance(fact.get("page"), int) or not 1 <= fact["page"] <= pdf.get("physical_pages", 0):
+                    errors.append(f"LEDGER_FACT_SOURCE_PAGE_INVALID {code}/{key}")
+                if not isinstance(fact.get("period"), str) or not fact["period"]:
+                    errors.append(f"LEDGER_FACT_PERIOD_MISSING {code}/{key}")
+                if fact.get("scope") not in ("consolidated", "parent"):
+                    errors.append(f"LEDGER_FACT_SCOPE_INVALID {code}/{key}")
+                if len(str(fact.get("label") or "")) < 3:
+                    errors.append(f"LEDGER_FACT_ROW_LABEL_MISSING {code}/{key}")
+                kind = fact.get("type")
+                if kind in ("stock", "flow"):
+                    if fact.get("unit") != "元" or fact.get("currency") != "CNY":
+                        errors.append(f"LEDGER_MONEY_UNIT_NOT_YUAN {code}/{key}")
+                elif kind == "ratio":
+                    if fact.get("unit") not in ("%", "pp"):
+                        errors.append(f"LEDGER_RATIO_WRONGLY_MONEY {code}/{key}")
+                else:
+                    errors.append(f"LEDGER_FACT_TEMPORAL_KIND_INVALID {code}/{key}")
+    except (ValueError, KeyError, json.JSONDecodeError) as exc:
+        errors.append(f"ISSUER_SOURCE_LEDGER_INVALID {code}: {exc}")
+
+    try:
+        briefs_file = checked_path(root, record.get("figure_briefs_file"))
+        if not briefs_file.is_file():
+            errors.append(f"ISSUER_FIGURE_BRIEFS_MISSING {code}")
+        else:
+            briefs = read_json(briefs_file)
+            if (briefs.get("issuer") != code or briefs.get("report") != record.get("period")
+                    or briefs.get("source_sha256") != sha):
+                errors.append(f"FIGURE_BRIEFS_PDF_IDENTITY_MISMATCH {code}")
+            figures = briefs.get("figure_briefs", [])
+            if not isinstance(figures, list) or len(figures) < 2:
+                errors.append(f"COMPLETE_RESEARCH_NOT_A_SINGLE_CHART {code}")
+            else:
+                unique_families = set()
+                figure_ids = set()
+                for item in figures:
+                    fid = item.get("id")
+                    if not fid or fid in figure_ids:
+                        errors.append(f"FIGURE_ID_DUPLICATE_OR_MISSING {code}/{fid}")
+                    figure_ids.add(fid)
+                    unique_families.add(item.get("family"))
+                    for required in ("question", "takeaway", "identity", "counter", "mobile"):
+                        if len(str(item.get(required) or "")) < 10:
+                            errors.append(f"FIGURE_RESEARCH_BRIEF_MISSING {code}/{fid}/{required}")
+                    pages = item.get("source_pages", [])
+                    if not pages or any(not isinstance(x, int) or x < 1 or x > pdf.get("physical_pages", 0) for x in pages):
+                        errors.append(f"FIGURE_SOURCE_PAGE_INVALID {code}/{fid}")
+                    cited = item.get("facts", [])
+                    if not cited or (ledger_data and any(x not in ledger_data.get("facts", {}) for x in cited)):
+                        errors.append(f"FIGURE_UNGROUNDED_FACT_ID {code}/{fid}")
+                if len(unique_families) < 2:
+                    errors.append(f"GENERIC_REPEATED_FIGURE_GRAMMAR {code}")
+    except (ValueError, KeyError, json.JSONDecodeError) as exc:
+        errors.append(f"ISSUER_FIGURE_BRIEFS_INVALID {code}: {exc}")
 
     sankey = record.get("sankey", {})
     if sankey.get("decision") not in {"USED_CONSERVED", "OMITTED_WITH_SOURCE_REASON"}:

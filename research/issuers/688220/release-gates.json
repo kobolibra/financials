@@ -108,5 +108,9 @@
       "page": null,
       "issue": "current Cloudflare production still missing source geometry as of live attempt 2"
     }
-  ]
+  ],
+  "ledger_file": "research/issuers/688220/source-ledger.json",
+  "figure_briefs_file": "research/issuers/688220/figure-briefs.json",
+  "sector_adapter": "semiconductor",
+  "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment"
 }

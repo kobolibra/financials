@@ -1,6 +1,6 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.4.0](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.4.1](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
 
 ## A. 先确定研究产品、原始来源和允许的结论
 
@@ -53,6 +53,8 @@
 ## F0. 第 N 家新公司的自动化证据合同（v8.4.0；强制）
 
 - [ ] `ISSUER_CAPSULE`：新增公司必须提交 `research/issuers/<code>/release-gates.json`，对应唯一 `site/research_catalog.json` 路由和真实自包含 HTML；七家历史页面没有因此获得追溯合格认证。
+- [ ] `THREE_ARTIFACT_IDENTITY`：新公司 PDF 归档→source-ledger.json→figure-briefs.json→release-gates.json 四者的公司代码、报告期、原始报告 SHA、事实 ID、真实物理页范围和原始元/比例类型均一致；不能仅让状态文件中的哈希正确、但源账本仍留历史 NOT_CHECKED 占位。
+- [ ] `SECTOR_ACCOUNTING_ROUTE`：本公司声明 sector_adapter 和 accounting_basis；银行/保险等不同准则不能套工业收入−成本或 CFO/FCF 图，通用机器禁用明显错误方案，具体行业报表仍要原始证据复核。
 - [ ] `PDF_BYTES_REAL`：自动程序实际读取归档 PDF 魔数、**字节数与 SHA**；真实物理页、官网与镜像文件字节同一性必须另行证明，不能以 metadata 字段替代。
 - [ ] `PREVIEW_P0`：即使只是来源限制预览，PDF、选定关键表原始行列、核心账务、独立研究主线及反证、图形语义、截图自查、浏览器和离线重建均需 PASS。重大附注未解与外部研究未做必须显式标出且报告不得自称最终独立认证。
 - [ ] `NO_FALSE_PROMOTION`：`verified_research` 必须所有门槛 PASS，包括真实的人类独立财务/视觉审稿、外部多期同行来源、Cloudflare 最终版本真验。不能仅将 source-limited 更改分类就宣称合格。
