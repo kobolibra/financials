@@ -1,0 +1,299 @@
+{
+  "schema": "financial-figure-briefs-1.0",
+  "issuer": "688220",
+  "report": "2026H1",
+  "source_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "scope": "consolidated",
+  "reported_currency": "CNY",
+  "amount_base_unit": "yuan",
+  "image_rights": "all diagrams are original, do not copy AEI assets",
+  "visual_benchmark": [
+    "https://www.appeconomyinsights.com/p/how-to-analyze-an-income-statement",
+    "https://www.appeconomyinsights.com/p/how-to-analyze-a-balance-sheet",
+    "https://www.appeconomyinsights.com/p/how-to-analyze-a-cash-flow-statement",
+    "https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary"
+  ],
+  "figure_briefs": [
+    {
+      "id": "flow",
+      "family": "nonnegative_weighted_sankey",
+      "question": "How does each exclusive source of 2026H1 revenue individually become source-disclosed COGS and GP?",
+      "takeaway": "芯片产品与定制业务均贡献毛利，图中流带长度和宽度不可放大微小业务",
+      "facts": [
+        "chip_rev",
+        "chip_cost",
+        "asic_rev",
+        "asic_cost",
+        "ip_rev",
+        "ip_cost",
+        "other_service_rev",
+        "other_service_cost",
+        "rev",
+        "cogs"
+      ],
+      "source_pages": [
+        86,
+        178
+      ],
+      "identity": "For EACH of 4 exclusive product categories rev_i = cost_i + GP_i, GP_i >=0; Σrev_i = Σcost_i + ΣGP_i; precision 0.01 yuan. Each flow route must encode ORIGINAL segment cost and DERIVED GP, not just group-level aggregate split. All values nonnegative; seven positive stream links and one genuine zero GP.",
+      "zero": "NONNEGATIVE_PROPORTIONAL_FLOW",
+      "counter": "高毛利类别的低收入并不能证明规模经济",
+      "mobile": "direct numeric text before independently scrollable SVG",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "segment",
+      "family": "gross_profit_magnitude_plus_separate_margin",
+      "question": "Which of the same four product contracts contributes yuan gross profit and which merely has a high percent margin?",
+      "takeaway": "芯片产品主导绝对毛利;IP高毛利率只是低分母",
+      "facts": [
+        "chip_rev",
+        "chip_cost",
+        "asic_rev",
+        "asic_cost",
+        "ip_rev",
+        "ip_cost",
+        "other_service_rev",
+        "other_service_cost"
+      ],
+      "source_pages": [
+        178
+      ],
+      "identity": "GP=rev-cost; margin=GP/rev",
+      "zero": "GROSS_PROFIT_MAGNITUDE_STARTS_AT_ZERO, RATIO_IS_A_SEPARATE_NUMERIC_COLUMN",
+      "counter": "高毛利率不代表高持续现金贡献",
+      "mobile": "answers visible without scrolling",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "gp",
+      "family": "signed_gross_profit_delta_waterfall",
+      "question": "What is the strictly arithmetic change in same-period H1 gross profit?",
+      "takeaway": "两期合并毛利差来自收入变动－营业成本变动，不推断ASP与良率",
+      "facts": [
+        "rev_prior",
+        "cogs_prior",
+        "rev",
+        "cogs"
+      ],
+      "source_pages": [
+        86
+      ],
+      "identity": "GP26-GP25=(rev26-rev25)-(cogs26-cogs25)",
+      "zero": "SIGNED_YUAN",
+      "counter": "数量、价格、品类及汇率的因果拆分来源不足",
+      "mobile": "direct numeric text",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "pnl",
+      "family": "full_signed_CAS_PnL_waterfall",
+      "question": "How does CNY 721.52 million (7.22 亿元) 2026H1 gross profit become CNY 84.24 million (0.84 亿元) GAAP net profit?",
+      "takeaway": "研发消耗大部分毛利，随后公允价值/税项贡献法定正利润",
+      "facts": [
+        "rev",
+        "cogs",
+        "rnd_expense",
+        "tax_surcharge",
+        "sell",
+        "admin",
+        "finance_expense",
+        "other_income",
+        "investment_income",
+        "fair_value_income",
+        "credit_impairment",
+        "asset_impairment",
+        "asset_disposal_gain",
+        "operating_profit",
+        "nonoperating_income",
+        "nonoperating_expense",
+        "pretax_profit",
+        "income_tax_expense",
+        "consolidated_net_profit",
+        "nonoperating_expense_prior"
+      ],
+      "source_pages": [
+        86,
+        87
+      ],
+      "identity": "2026H1 current expense cell is blank, its zero signed contribution is derived; 2025H1 15.30 yuan sits in prior-year column p.87, never subtract it from current profits. Full signed operating cost + gains to operating profit; nonoperating income + zero derived current expense - tax expense to NI.",
+      "zero": "SIGNED_ZERO_RETAINED_AND_PAIRS_GROUPED_ONLY_FROM_SOURCE_COMPONENTS",
+      "counter": "市场估值及税收益的可持续性未经证明",
+      "mobile": "direct multi-line summary + horizontally scrollable 11-step SVG",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED",
+        "original_pnl_column_correction": "PASS_MANUALLY_VERIFIED_PHYSICAL_P87_CURRENT_BLANK_VS_PRIOR_15_30"
+      }
+    },
+    {
+      "id": "earnings",
+      "family": "zero_centered_recurrence_bridge",
+      "question": "Why is regulatory deducted parent earnings negative when parent NI is positive?",
+      "takeaway": "扣非仍亏，+1.43亿税后非经常损益导致归母扭亏",
+      "facts": [
+        "deducted_parent_ni",
+        "nonrec_parent_net",
+        "parent_ni"
+      ],
+      "source_pages": [
+        8,
+        9,
+        10
+      ],
+      "identity": "regulatory_deducted_parent+after_tax_nonrec=parent_ni",
+      "zero": "SIGNED_ZERO_REFERENCE",
+      "counter": "非经常分类与已实现现金不完全一致",
+      "mobile": "direct signed numbers visible",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "cfo",
+      "family": "signed_indirect_CFO_bridge",
+      "question": "How does consolidated NI turn into negative operating cash after all original signed adjustments?",
+      "takeaway": "存货与经营性应收现金吸收显著，且应付增加抵消部分",
+      "facts": [
+        "consolidated_net_profit",
+        "cash_cfo"
+      ],
+      "source_pages": [
+        187,
+        188,
+        90
+      ],
+      "identity": "consolidated_ni + 17 exact original signed rows = CFO, no residual",
+      "zero": "SIGNED_ZERO_REFERENCE",
+      "counter": "阶段性备货/合同验收也可解释现金负值",
+      "mobile": "direct numeric summary with full 17-row table",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "cash",
+      "family": "signed_cash_equivalents_bridge",
+      "question": "How do operating, investing, financing and cash FX explain six-month cash-equivalent movement?",
+      "takeaway": "30.31亿现金等价物降为29.15亿，不能混货币资金",
+      "facts": [
+        "cash_start",
+        "cash_cfo",
+        "cash_cfi",
+        "cash_cff",
+        "cash_fx",
+        "cash_end"
+      ],
+      "source_pages": [
+        90,
+        91,
+        92,
+        189
+      ],
+      "identity": "start+CFO+CFI+CFF+FX=end",
+      "zero": "SIGNED_OPEN_TO_CLOSE",
+      "counter": "受限现金与财务公司等定义问题需单列",
+      "mobile": "direct summary with complete table",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "balance",
+      "family": "dated_balance_equal_total_composition",
+      "question": "What funds balance sheet assets at two dates and how much is debt/equity?",
+      "takeaway": "资产等于负债+权益，两个时点使用相同绝对元尺度",
+      "facts": [
+        "assets",
+        "liabilities",
+        "equity",
+        "assets_prior",
+        "liabilities_prior",
+        "equity_prior"
+      ],
+      "source_pages": [
+        81,
+        82,
+        83
+      ],
+      "identity": "assets=liabilities+total_equity each date",
+      "zero": "EQUAL_TOTAL_DATED_STOCK_NOT_A_MONEY_FLOW",
+      "counter": "合并资产与现金储备不是自由可用流动性",
+      "mobile": "direct original numbers",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "capital",
+      "family": "two_date_working_capital_magnitude",
+      "question": "Which capital stocks grew from 2025 end to 2026 H1?",
+      "takeaway": "存货、应收、预付款项增长；合同负债亦增加",
+      "facts": [
+        "inventory_net",
+        "inventory_net_prior",
+        "ar",
+        "ar_prior",
+        "prepayments",
+        "prepayments_prior",
+        "contract_liabilities",
+        "contract_liabilities_prior"
+      ],
+      "source_pages": [
+        81,
+        82,
+        83,
+        146,
+        166
+      ],
+      "identity": "two dates NOT two half-year cash flow transactions",
+      "zero": "STOCK_BARS_START_AT_ZERO",
+      "counter": "订单备货与存货滞销都需要下一季回款及减值验证",
+      "mobile": "direct numbers; horizontal SVG supplemental",
+      "quality": {
+        "source_semantic": "PASS_SELECTED_ORIGINAL_PAGES_ONLY",
+        "money_accounting": "PUBLISHER_VALIDATED_NOT_INDEPENDENT_AUDIT",
+        "desktop_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "mobile_visual": "NOT_CHECKED_UNTIL_REDESIGN_SCREENSHOT_INSPECTION",
+        "human_second_editor": "NOT_CHECKED"
+      }
+    }
+  ]
+}

@@ -5,11 +5,11 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "UNIFIED_EIGHT_ISSUER_RESEARCH_LIBRARY_WITH_SOURCE_LIMITED_ASR",
+  "latest_publication_state": "UNIFIED_EIGHT_ISSUER_LIBRARY_WITH_AEI_REDESIGNED_ASR_RESEARCH_PREVIEW",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.3.2-rc1",
+    "version": "8.3.3-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -112,7 +112,9 @@
     "asr_mirror_equals_official_pdf": "NOT_CHECKED",
     "asr_full_material_notes": "NOT_CHECKED",
     "asr_ar_top5_note_denominator": "FAIL_REPORTED_90_50_VS_DERIVED_89_17",
-    "asr_second_independent_financial_editor": "NOT_CHECKED"
+    "asr_second_independent_financial_editor": "NOT_CHECKED",
+    "asr_original_current_vs_prior_nonoperating_expense": "RESOLVED_P87_COLUMN_REVIEW",
+    "aei_visual_editorial_full_external_review": "NOT_CHECKED"
   },
   "source_archive": "ChatGPT Library /Financials-in-Visuals/ ; do not assume a new session has original PDF bytes mounted; retrieve and recheck SHA, dates, periods and issuer before claiming PDF_HASH PASS.",
   "last_verified_handoff": {
@@ -185,12 +187,13 @@
       "quality": "research/issuers/688220/qa.json",
       "source_verification": "research/issuers/688220/source-verification.json",
       "research_memo": "research/issuers/688220/research-memo.md",
-      "figure_count": 7
+      "figure_count": 9,
+      "figure_briefs": "research/issuers/688220/figure-briefs.json"
     },
     "financial_gates": {
       "PDF_MIRROR_FULL_BYTES_SHA_224P": "PASS",
       "SSE_OFFICIAL_BYTE_EQUIVALENCE": "NOT_CHECKED",
-      "SOURCE_PAGE_LITERAL": "PASS_109_OF_118_WITH_9_PDF_TABLE_TEXT_FRAGMENTATIONS_OR_TO_REVIEW",
+      "SOURCE_PAGE_LITERAL": "109_OF_118_PAGE_LITERALS_MATCH;9_FRAGMENTED_INVENTORY_ECL_TABLE_ITEMS_REQUIRE_SEMANTIC_ROW_REVIEW",
       "IMPORTANT_ORIGINAL_PAGE_COLUMN": "PASS_SELECTED_PAGES_ONLY",
       "FULL_MATERIAL_NOTES": "NOT_CHECKED",
       "STATEMENT_IDENTITY": "PASS",
@@ -201,22 +204,38 @@
       "RPO_ONE_CENT_TIE": "FAIL_MIRRORED_0_01_YUAN_SOURCE_DISCLOSURE_DIFFERENCE",
       "THESIS_AND_COUNTER": "PASS_SELF_REVIEW",
       "RESEARCH_MULTIYEAR_PEERS_VALUATION": "NOT_CHECKED",
-      "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED"
+      "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED",
+      "FULL_CAS_PNL_FROM_GROSS_TO_CONSOLIDATED_NI": "PASS_BRANCH_EXACT_DECIMAL",
+      "P87_NONOPERATING_EXPENSE_CURRENT_VS_PRIOR_COLUMN": "PASS_CORRECTED__15_30_IN_2025H1__2026H1_BLANK_DERIVED_ZERO",
+      "SANKEY_PER_BUSINESS_COGS_AND_GP": "PASS_BRANCH_EXACT_DECIMAL_4_COST_3_POSITIVE_GP_1_ZERO_GP",
+      "SANKEY_SOURCE_NEGATIVE_GP_REJECTION": "PASS_NEGATIVE_ADVERSARIAL",
+      "EQUAL_TOTAL_BALANCE_COMPOSITION_2_DATES": "PASS_EXACT_DECIMAL"
     },
     "technical_gates": {
-      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_ON_BRANCH_ISSUER_QA",
+      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_BRANCH_9_FIGURES_9_TABLES_21_SCREENSHOTS_3_SVG_EXPORTS",
       "ORIGINAL_VISUAL_QA": "PARTIAL_MANUALLY_OPENED_SCREENSHOTS_FIXED_3_ISSUES_AWAIT_FINAL_ASSESSMENT",
       "CLEAN_REBUILD": "PASS_BRANCH",
-      "GITHUB_MAIN_ROUTE": "NOT_CHECKED_UNTIL_MERGE",
-      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_UNTIL_DEPLOY"
+      "GITHUB_MAIN_ROUTE": "NOT_CHECKED_THIS_REDESIGN_UNTIL_MERGE",
+      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_THIS_REDESIGN_UNTIL_DEPLOY",
+      "AEI_FT_VISUAL_EDITORIAL": "PARTIAL_SELF_REVIEW_SOURCE_BOUNDED_SCREENSHOTS_VIEWED__NOT_INDEPENDENT_RELEASE_CERTIFICATION",
+      "SANKEY_PRODUCT_RIBBON_GEOMETRY": "PASS_SEVEN_POSITIVE_SOURCE_EDGES_THREE_ZERO_XY_SCALES"
     },
     "latest_branch_qa": {
-      "workflow": "Build and audit ASR 688220 source-limited standalone research",
-      "branch": "work/asrmicro-688220-2026h1",
-      "run_id": 41620029401,
+      "workflow": "Verify AEI-inspired 688220 financial-flow and source-linked research",
+      "branch": "work/688220-aei-financial-flow-redesign-20261103",
+      "run_id": 41651927501,
       "conclusion": "success",
-      "scope": "source PDF SHA, 93 ledger source items partly validated, signed exact equations, seven hostile accounting cases, 3 viewport local browser screenshots; previous code revision before final note-level text edits"
+      "source_git_commit": "d5e42a40becf8226de7be3f2a85d00095db3fa13",
+      "scope": "224p source SHA, p87 original comparative column x-position check, 29 signed accounting assertions, 8 adversarial negative cases, 9 financial charts/9 source tables, 21 Chromium screenshots on 1440 768 390, 7 source-specific nonzero product cost+GP Sankey ribbons, 3 SVG download tests, clean regenerated HTML"
     },
-    "next_step": "Verify final SHA branch CI, merge into original site eight-company directory and test actual public Cloudflare on 1440/768/390. Research preview only, material-note/source-ratio limitations remain."
+    "next_step": "Merge true per-business COGS/GP Sankey and full signed P&L 9-figure source-limited ASR HTML in original directory. Verify live Cloudflare browser at 1440/768/390 and update current handoff. Existing AR top-5 percentage denominator and official-versus-mirror bytes remain bounded unresolved issues."
+  },
+  "last_redesign_internal_checkpoint": {
+    "date": "2026-11-03",
+    "branch": "work/688220-aei-financial-flow-redesign-20261103",
+    "ci_run": 41651927501,
+    "git_sha": "d5e42a40becf8226de7be3f2a85d00095db3fa13",
+    "status": "PASS_TECHNICAL_PRE_PUBLICATION__NOT_INDEPENDENT_RESEARCH_SIGNOFF",
+    "scope": "Source-linked true product-level money flow, full signed GAAP P&L, dated A=L+E, 9 figures; source p87 current/prior correction"
   }
 }

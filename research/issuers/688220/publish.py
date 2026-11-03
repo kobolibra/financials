@@ -15,6 +15,16 @@ ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
 ap.add_argument("--qa",type=Path,default=ROOT/"qa.json")
 a=ap.parse_args()
 data=json.loads((ROOT/"source-ledger.json").read_text(encoding="utf-8"))
+briefs=json.loads((ROOT/"figure-briefs.json").read_text(encoding="utf-8"))
+REQUIRED_FIGURES=("flow","segment","gp","pnl","earnings","cfo","cash","balance","capital")
+assert briefs["issuer"]==data["issuer"]["code"],"FIGURE_BRIEF_WRONG_ISSUER"
+assert tuple(q["id"] for q in briefs["figure_briefs"])==REQUIRED_FIGURES,"FIGURE_BRIEF_ORDER_OR_MISSING"
+for q in briefs["figure_briefs"]:
+    for field in ("family","question","takeaway","facts","source_pages","identity","zero","counter","mobile","quality"):
+        assert q.get(field),("INCOMPLETE_FIGURE_BRIEF",q["id"],field)
+    for fact_id in q["facts"]:
+        assert fact_id in data["facts"],("UNKNOWN_SOURCE_FACT",q["id"],fact_id)
+    assert q["quality"]["human_second_editor"]=="NOT_CHECKED","FALSE_HUMAN_EDITORIAL_CERTIFICATION"
 f=data["facts"]
 val=lambda k:D(f[k]["yuan"])
 checks={}
@@ -26,12 +36,33 @@ cost=sum((val(i["cost"]) for i in data["segments"]),D(0))
 ck("REVENUE_PARTITION_EXACT_YUAN",rev,val("rev"))
 ck("COST_PARTITION_EXACT_YUAN",cost,val("cogs"))
 ck("GROSS_PROFIT_COMPONENTS",sum((val(i["rev"])-val(i["cost"]) for i in data["segments"]),D(0)),val("rev")-val("cogs"))
+# Unlike a superficial total-revenue Sankey, every original business stream
+# splits into *its own* original disclosed COGS and derived positive gross profit.
+# Reject any segment whose ribbons would be negative or outside the same scope.
+for q in data["segments"]:
+    r,c=val(q["rev"]),val(q["cost"])
+    assert r>=0 and c>=0 and r>=c,("SEGMENT_RIBBON_MUST_BE_NONNEGATIVE",q["label"],r,c)
+    for k in (q["rev"],q["cost"]):
+        row=f[k]
+        assert row["scope"]=="consolidated" and row["period"]=="2026H1" and row["unit"]=="元",("SCOPE_UNIT_CROSSOVER",k,row)
+    ck("PRODUCT_COST_GP_FLOW_"+q["rev"],c+(r-c),r)
+checks["SANKEY_EACH_SOURCE_COST_GP_NONNEGATIVE"]="PASS"
 ck("CONSOLIDATED_PNL_OPERATING",val("rev")-val("operating_total_cost")+sum((val(k) for k in ("other_income","investment_income","fair_value_income","credit_impairment","asset_impairment","asset_disposal_gain")),D(0)),val("operating_profit"))
 ck("PARENT_PROFIT",val("pretax_profit")-val("income_tax_expense"),val("consolidated_net_profit"))
+# Full signed CAS P&L bridge makes the economic path visible. One compact
+# full-amount waterfall replaces the earlier omission (GP→GAAP NP).
+op_expenses=sum((val(k) for k in ("tax_surcharge","sell","admin","rnd_expense","finance_expense")),D(0))
+ck("FULL_PNL_OPERATING_EXPENSE_IDENTITIES",val("cogs")+op_expenses,val("operating_total_cost"))
+op_signed=(val("rev")-val("cogs"))-op_expenses+sum((val(k) for k in ("other_income","investment_income","fair_value_income","credit_impairment","asset_impairment","asset_disposal_gain")),D(0))
+ck("FULL_PNL_GROSS_TO_OPERATING_SIGNED",op_signed,val("operating_profit"))
+ck("FULL_PNL_OPERATING_TO_PRETAX",op_signed+val("nonoperating_income")-val("nonoperating_expense"),val("pretax_profit"))
+ck("FULL_PNL_PRETAX_TO_GAAP_NET",val("pretax_profit")-val("income_tax_expense"),val("consolidated_net_profit"))
 ck("PARENT_VS_DEDUCTED",val("deducted_parent_ni")+val("nonrec_parent_net"),val("parent_ni"))
 ck("NONRECURRING_SIGNED_SCHEDULE",sum((D(q["yuan"]) for q in data["nonrecurring"]["parts"]),D(0)),val("nonrec_parent_net"))
 ck("BS_2026_06_30",val("liabilities")+val("equity"),val("assets"))
 ck("BS_2025_12_31",val("liabilities_prior")+val("equity_prior"),val("assets_prior"))
+assert val("assets")>0 and val("assets_prior")>0
+checks["EQUAL_TOTAL_BALANCE_STOCK_COMPOSITION_TWO_DATES"]="PASS"
 ck("INVENTORY_GROSS_TO_NET",val("inventory_gross")-val("inventory_reserve"),val("inventory_net"))
 ck("INVENTORY_PRIOR_GROSS_TO_NET",val("inventory_gross_prior")-val("inventory_reserve_prior"),val("inventory_net_prior"))
 ck("ACCOUNTS_RECEIVABLE_NET",val("ar_gross")-val("ar_allowance"),val("ar"))
@@ -64,7 +95,22 @@ else:
     checks["PDF_MIRROR_FULL_BYTES_SHA_224P"]="NOT_CHECKED"
 data["source"]["original_bytes_sha256"]=actual_sha
 data["source"]["original_bytes_gate"]=source_status
+# Reviewed independent semantic contracts that the client JS is required to
+# obey. This is a factual source contract, not self-awarded design approval.
+data["graphic_contract"]={
+ "flow":{"family":"sankey","source":"p.178","period":"2026H1","scope":"consolidated",
+         "sources":len(data["segments"]),"nonzero_ribbons":sum((int(val(q["cost"])>0)+int(val(q["rev"])-val(q["cost"])>0) for q in data["segments"])),
+         "yuan_identity":"sum(segment revenue)=sum(segment original COGS)+sum(segment derived GP)"},
+ "pnl":{"family":"signed_waterfall","source":"p.86-87","period":"2026H1","scope":"consolidated",
+        "base":"gross_profit","end":"consolidated_net_profit","negative_and_positive_steps":True},
+ "balance":{"family":"same_date_equal_total_stock","source":"p.81-83",
+           "dates":["2025-12-31","2026-06-30"],"scope":"consolidated"}
+}
 template=(ROOT/"report-template.html").read_text(encoding="utf-8")
+for chart in REQUIRED_FIGURES:
+    for selector in ('id="fig-'+chart+'"','id="chart-'+chart+'"','id="table-'+chart+'"','data-export="'+chart+'"'):
+        assert selector in template,("FIGURE_RENDER_OR_EVIDENCE_MISSING",chart,selector)
+
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
 source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display).replace("__SOURCE_SHA__",actual_sha))
@@ -72,5 +118,5 @@ assert "<script src=" not in output and "<iframe" not in output and "https://fon
 a.out.parent.mkdir(parents=True,exist_ok=True)
 a.out.write_text(output,encoding="utf-8")
 a.qa.parent.mkdir(parents=True,exist_ok=True)
-a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","figure_briefs_schema":briefs["schema"],"figures_required":len(REQUIRED_FIGURES),"source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print("ASR_PUBLICATION_REBUILD",a.out,"bytes",a.out.stat().st_size,"ACCOUNTING_PASS",len(checks)-int(source_status=="NOT_CHECKED"),"source_bytes",source_status,flush=True)

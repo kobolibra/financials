@@ -9,6 +9,7 @@
   "sse_mirror_byte_equivalence": "NOT_CHECKED",
   "page_literal_matched": 109,
   "page_literal_total": 118,
+  "physical_row_column_exception_p87": "PASS_PRIOR_2025H1_EXPENSE_15_30_IN_RIGHT_COLUMN__2026H1_BLANK_DERIVED_0",
   "critical_source_row_literal_missing": [],
   "missing_page_literals": [
     "inventory_gross",
@@ -135,9 +136,10 @@
     },
     "nonoperating_expense": {
       "physical_page": 87,
-      "original_label_in_ledger": "营业外支出",
-      "amount_yuan": "15.30",
-      "literal_match": true
+      "original_label_in_ledger": "营业外支出（2026H1 本期列空白；计算调节结果为零，非原文列示的零金额）",
+      "amount_yuan": "0.00",
+      "status": "DERIVED_NOT_DISCLOSED_LITERAL",
+      "semantic_note": "Current column physically empty; compare prior column separately"
     },
     "pretax_profit": {
       "physical_page": 87,
@@ -581,6 +583,12 @@
       "physical_page": 138,
       "original_label_in_ledger": "合同资产期末账面价值",
       "amount_yuan": "1093368.56",
+      "literal_match": true
+    },
+    "nonoperating_expense_prior": {
+      "physical_page": 87,
+      "original_label_in_ledger": "营业外支出（2025H1 上年同期比较列，原表第 87 物理页）",
+      "amount_yuan": "15.30",
       "literal_match": true
     },
     "cfo_signed_part_01": {

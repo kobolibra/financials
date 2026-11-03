@@ -1,6 +1,6 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.3.2](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.3.3](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
 
 ## A. 先确定研究产品、原始来源和允许的结论
 
@@ -32,7 +32,10 @@
 - [ ] `D01 STUDY_BENCHMARK`：全文阅读 Skill 01（AEI 第一手公开案例）和 03（图形视觉系统/22 种关系）；另读 02/04/05 财务规范。不能只提 AEI 名字或数一数做了几张图。
 - [ ] `D02 EDITORIAL_SEQUENCE`：以一个可辩驳的核心财务问题和“为什么重要”开篇；按 business economics → profit → cash → capital → risk/counterview → methodology 形成完整文章而非仪表板。
 - [ ] `D03 FIGURE_BRIEF_EACH`：每张关键图填写 `question, take_away, source IDs/page, exact units/scope/period, calculation/reconciliation, type/axis/zero, color coding, alternate cause, mobile policy, reviewer/gate`，不可由代码盲选图。
+
+- [ ] `D04B SOURCE_TO_COST_GP_EDGES`：当原 PDF **同时披露每一类互斥业务的收入与成本**时，不满足于来源→总收入→集团成本/毛利的弱分配；逐来源验证 `收入_i=原始成本_i+推算毛利_i`，金额带宽按原始元金额，微小类别保留真实面积，负毛利改有符号图，零毛利绝不能抬高成虚假的正绿流。原始账本每个正金额链接必须与 SVG 编码和原始证据表逐个一致。
 - [ ] `D04 SOURCE_CONSERVED_SANKEY`：当存在**同一分组口径、互斥且非负**收入→成本/毛利或银行净收入→实际费用/利润等可守恒关系，选择真正金额宽度成比例的财务桑基图。输入/输出在原始元金额上精确相等；绝不能自动发明“other”，或银行重复扣利息支出；不适用必须书面记录 `FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON`。
+- [ ] `D05B FULL_SIGNED_CAS_PNL`：有完整 CAS 利润表行列时，单独用带符号瀑布从毛利走到营业利润/税前/合并净利润，研发、税金、金融费用、投资/公允价值和减值保留真实符号。绝不能以扣非税后项目生拼合并税前值；核实任何空白当前列与右侧上年同期数值的物理位置。
 - [ ] `D05 OTHER_FIGURE_GRAMMAR`：带符号变动用瀑布；时点资产结构用组成图，不能伪装现金流；完整财务利润桥、净利润→经营现金流桥、现金和资本投入、真正有可比数据的增长/利润率/同行趋势按问题选择；不自动重复普通条形图/固定图表数量。
 - [ ] `D06 ORIGINAL_VISUAL_QA`：完整文章有独立视觉风格、高质量中文排版、精确直接标注、来源近图、适当空白、强弱重点、行业特有信息图。逐图实际检查是否有标签裁切、孤行、假零点、重复或不可能的资金流；**技术截图通过不是审美质量 PASS**。
 

@@ -108,3 +108,20 @@ A chart is published only when each required field has been populated and passed
 ## 7. Concrete proof-of-method, not a mockup
 
 `nextlevel/engine/build_comparative.py` uses three user-supplied **2026H1 original PDFs** to generate `/optical-2026h1.html`: six different financial relationships, including a margin dumbbell, signed FCF bars, two-date asset share, zero-baseline growth bars, CFO/NP conversion and 100% asset composition. Each chart displays source pages; three issuer roles are distinguished before comparison. Code audits original PDF SHA256 and exact gross-profit arithmetic. No external prices or made-up product mix. `nextlevel/tests/test_comparative.py` and `nextlevel/tests/browser_qa.py` are reproducible acceptance.
+
+
+## 8. 2026-11-03 practical AEI-inspired design challenge: an honest diagram can still be weak
+
+**Before (observed on ASR 688220's actual 1440px figure screenshot):** four exclusive product revenues enter one center node, then a single consolidated COGS/GP split. The center node was mathematically conserved to 0.01 yuan, yet the product-level COGS and GP rows (both actually present on PDF physical p.178) were absent from the geometry. The visual said almost nothing about WHY two business models have different margins. Group-only flow therefore failed the product-economics editorial question even when source accounting tests were green.
+
+**After (original design specification, not AEI artwork reproduction):** for each business type, exact source revenue splits into (a) own original positive cost and (b) own derived GP; all costs feed the aggregated COGS sink, all GP feed the same GP sink. Two conservation layers must be asserted, same width scale across the entire plot. The visual unit is an accounting allocation, not a payment between counterparties. Label large flow amounts directly at their source and outcome; extremely small IP/test branches remain true subpixel-width flows with supporting numeric annotation below the plot. The actual zero margin on the test-service line is mathematically zero and must not be portrayed as a minimum visible green flow.
+
+**Companion exhibits, independent relationships:**
+- Signed P&L waterfall: GP to recurring expense pressure, other income/investments, fair-value, impairment, nonoperating/tax, GAAP net. Signed amounts preserve direction. Do not draw an all-positive GP→NP Sankey if disclosed signed terms have gross expenses larger than available GP.
+- Same-date balance sheet: 2025-12 and 2026-06 assets equal liabilities plus *total* equity, shared absolute yuan width, not a liquid-cash inflow; liabilities share can change independently of earnings.
+- Product margins: separate magnitude (GP yuan starts at zero) from percentage margin (labeled without putting percentages on the monetary axis). One genuinely zero GP cannot be misread as rounded-away sales.
+- Net income to CFO: complete original signed 17-item bridge; the BS inventory stock delta cannot be inserted as a shortcut.
+
+**Source-cell anti-regression:** p.87 of ASR's 2026H1 P&L has a blank current-year nonoperating expense cell and **15.30 yuan in the prior-year comparative column**. Earlier ledger classified 15.30 as 2026H1 because a number appeared on the correct page. The visual compiler must check original x-column, not only page token presence. The corrected 2026H1 contribution of zero is a derivation from the P&L subtotal and physically blank current cell, not an issuer-disclosed numeric zero. This concrete error demonstrates why self-certified source tests are insufficient.
+
+**Reviewer actions for each figure screenshot:** 5-second research answer; label hierarchy; monetary shape conservation; true zero/sign; period/currency; real source table and alternative explanation; exact legends for micro flows; 1440/768/390 all readable; check accessible keyboard/export; repeat on real public route. No editorial completion is claimed without actual screenshot opening, and no external human independence is implied by a second automated test.

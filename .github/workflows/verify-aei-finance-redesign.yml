@@ -1,0 +1,75 @@
+name: Verify AEI-inspired 688220 financial-flow and source-linked research
+on:
+  push:
+    branches: ['work/688220-aei-financial-flow-redesign-20261103']
+    paths:
+      - 'research/issuers/688220/**'
+      - '.github/workflows/verify-aei-finance-redesign.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  financial-source-and-publishing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install exact PDF accounting, CJK and browser capabilities
+        run: |
+          python -m pip install -q pymupdf playwright
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-list :lang=zh family | grep -qi 'Noto'
+          python -m playwright install --with-deps chromium
+      - name: Original 224-page PDF complete-byte audit and exact financial accounting
+        run: |
+          python scripts/check_handoff.py
+          python -m unittest discover -s scripts -p test_check_handoff.py -v
+          python research/issuers/688220/verify_pages.py
+          python research/issuers/688220/test_accounting.py
+          python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path('research/issuers/688220')
+          d=json.loads((root/'qa.json').read_text())
+          assert d['source_bytes'].startswith('MIRROR_COMPLETE_PDF_SHA_PASS')
+          assert d['figures_required']==9
+          assert d['checks']['SANKEY_EACH_SOURCE_COST_GP_NONNEGATIVE']=='PASS'
+          assert d['checks']['FULL_PNL_GROSS_TO_OPERATING_SIGNED']=='PASS'
+          assert d['checks']['EQUAL_TOTAL_BALANCE_STOCK_COMPOSITION_TWO_DATES']=='PASS'
+          assert d['second_independent_human']=='NOT_CHECKED'
+          print('REBUILT_SRC_FINANCE_AEI_GATES_PASS',len(d['checks']))
+          PY
+      - name: Real offline browser quality and screenshot/source table/export
+        run: |
+          python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa
+      - name: Clean deterministic rebuild of complete standalone HTML
+        run: |
+          cp public/688220.html /tmp/688220-redesign-first.html
+          python research/issuers/688220/publish.py --out /tmp/688220-redesign-second.html --qa /tmp/688220-redesign-qa.json
+          cmp /tmp/688220-redesign-first.html /tmp/688220-redesign-second.html
+      - name: Persist rebuilt report in research branch, without editing any old issuer
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebuild ASR full signed P&L, equal-total balance and business-level conserved Sankey"
+            git pull --rebase origin work/688220-aei-financial-flow-redesign-20261103
+            git push origin HEAD:work/688220-aei-financial-flow-redesign-20261103
+          fi
+      - name: Archive actual PDF/source accounting and responsive editorial screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asr-688220-aei-source-led-redesign-and-three-viewport-proof
+          path: |
+            public/688220.html
+            research/issuers/688220/qa.json
+            research/issuers/688220/source-verification.json
+            research/issuers/688220/figure-briefs.json
+            research/issuers/688220/visual-qa/
+          if-no-files-found: warn
+          retention-days: 30

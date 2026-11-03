@@ -8,7 +8,7 @@ original=json.loads((HERE/"source-ledger.json").read_text())
 def call(ledger):
  with tempfile.TemporaryDirectory() as root:
   t=pathlib.Path(root)
-  for name in ("report-template.html","publish.py"):
+  for name in ("report-template.html","publish.py","figure-briefs.json"):
    (t/name).write_bytes((HERE/name).read_bytes())
   (t/"source-ledger.json").write_text(json.dumps(ledger,ensure_ascii=False),encoding="utf8")
   return subprocess.run([sys.executable,str(t/"publish.py"),"--out",str(t/"test.html"),"--qa",str(t/"qa.json")],capture_output=True,text=True)
@@ -21,11 +21,18 @@ cases=[
  ("NONCASH_SIGN_FLIP","indirect_cfo",None),
  ("NONRECURRING_TAX_SIGN_FLIP","nonrec_tax",None),
  ("FX_CASH_WRONG_SIGN","cash_fx","65719613.93"),
- ("GROSS_TO_NET_INVENTORY","inventory_reserve","139854986.56")
+ ("GROSS_TO_NET_INVENTORY","inventory_reserve","139854986.56"),
+ ("NEGATIVE_IP_GROSS_PROFIT_WITH_TOTAL_COSTS_STILL_BALANCED","negative_ip_gp",None)
 ]
 for name,key,val in cases:
  d=copy.deepcopy(original)
- if key=="indirect_cfo":d["cfo_indirect"]["parts"][13]["yuan"]="470674114.66"
+ if key=="negative_ip_gp":
+  from decimal import Decimal as D
+  old=D(d["facts"]["ip_cost"]["yuan"])
+  added=D(d["facts"]["ip_rev"]["yuan"])-old+D("0.01")
+  d["facts"]["ip_cost"]["yuan"]=str(old+added)
+  d["facts"]["chip_cost"]["yuan"]=str(D(d["facts"]["chip_cost"]["yuan"])-added)
+ elif key=="indirect_cfo":d["cfo_indirect"]["parts"][13]["yuan"]="470674114.66"
  elif key=="nonrec_tax":d["nonrecurring"]["parts"][-1]["yuan"]="-42763995.13"
  else:d["facts"][key]["yuan"]=val
  r=call(d)
