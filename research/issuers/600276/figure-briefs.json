@@ -19,14 +19,18 @@
         "licence_rev",
         "rpo",
         "contract_liab",
-        "rev"
+        "rev",
+        "kailera_fairvalue_100m",
+        "bill_endorse_total"
       ],
       "source_pages": [
         20,
+        22,
         75,
         77,
         145,
-        146
+        146,
+        153
       ],
       "identity": "Source-first business-specific relation and reporting scope",
       "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
@@ -198,14 +202,18 @@
       "facts": [
         "cfo",
         "cash_capex",
-        "dividend_interest_cash"
+        "dividend_interest_cash",
+        "bill_endorse_total",
+        "bill_endorse_material",
+        "bill_endorse_capex"
       ],
       "source_pages": [
-        80
+        80,
+        153
       ],
       "identity": "simple FCF = CFO − cash long-term asset acquisitions; NOT a maintenance cash claim",
       "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
-      "counter": "购建长期资产的现金支出不全是维护资本支出，股利利润或利息合计现金不等于仅股东股利。",
+      "counter": "购建长期资产的现金支出不全是维护资本支出，股利利润或利息合计现金不等于仅股东股利。 原始附注 p.153 表明另有7.03亿元银行承兑汇票背书购建款（非现金结算），不得混入现金资本开支或凭空增列现金流。",
       "mobile": "用数字明确投资支出和现金支付的不同经济意义，SVG 简洁可读。",
       "quality": {
         "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
@@ -226,11 +234,13 @@
         "cfi",
         "cff",
         "fx_cash",
-        "cash_end"
+        "cash_end",
+        "restricted_non_cash"
       ],
       "source_pages": [
         80,
-        81
+        81,
+        154
       ],
       "identity": "Opening CE + CFO + CFI + CFF + FX = closing CE",
       "zero": "SIGNED_ZERO_AXIS",
@@ -257,11 +267,14 @@
         "nci_equity",
         "assets_prior",
         "liabilities_prior",
-        "equity_prior"
+        "equity_prior",
+        "restricted_non_cash",
+        "development_cost_stock"
       ],
       "source_pages": [
         75,
-        76
+        76,
+        154
       ],
       "identity": "Same-date assets = liabilities + consolidated total equity, parent + NCI",
       "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
