@@ -162,6 +162,46 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "BROWSER_LOCAL",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "HYD-012",
+      "root_cause": "水电公司2025H1对比数在2025年10月同一控制下合并后经追溯调整；将原历史值/未经重述比较列与2026H1并列会捏造增长。",
+      "correction": "从最新完整财报2025H1比较列引用，披露追溯重述；时间标签不能自动推导成原始未重述历史。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_2025_restated_comparative_marked_as_current_rejected",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "PHA-013",
+      "root_cause": "恒瑞的创新药销售88.09亿元包含在药品商品销售139.48亿元之内，不能作为与许可收入并列可加第三类来源；漂亮桑基可能使集团收入虚高。",
+      "correction": "按披露的销售商品/许可收入/其他三条互斥会计收入分组守恒；创新药销售只用于独立业务增长说明，严格非加总。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_fake_pharma_innovative_sales_as_additional_disjoint_source_rejected",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "PHA-014",
+      "root_cause": "银行承兑汇票背书供应商19.94亿元，其中7.03亿元形成长期资产但不是现金流量表本期现金购建支出；混入现金CapEx会使FCF定义错误。",
+      "correction": "必须分别显示现金流量表真实购建现金及附注披露的票据非现金结算；现金FCF=精确CFO−现金CapEx，另列经济资本结算。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_bill_endorsement_cash_spend_blend_rejected",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "PHA-015",
+      "root_cause": "2026年7月生效的BMS许可协议为期后事项，最高潜在里程碑不等于2026H1确认收入、应收金额或确定未来现金。",
+      "correction": "披露已发生收入与报告期外签约时间，变量对价/履约义务约束和未来概率情境分别标注。",
+      "proof_file": "research/shared/test_two_sector_accounting.py",
+      "assertion_marker": "test_out_of_period_bms_milestone_not_shown_as_h1_income",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "RESEARCH_COUNTERCASE",
+      "status": "NEW_CONTRACT"
     }
   ]
 }
