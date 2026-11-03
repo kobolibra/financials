@@ -201,7 +201,7 @@ function pnl(){
     }else if(e.total&&i!==entries.length-1){
        s+='<path d="M'+(x+w)+','+y(e.end)+' L'+(x+step)+','+y(e.end)+'" fill="none" stroke="'+C.muted+'" stroke-dasharray="3 4"/>';
     }
-    s+=E((e.total?n2(e.end):signed(e.amount))+" 亿",x+w/2,64,'text-anchor="middle" font-size="14" font-weight="750" fill="'+col+'"');
+    s+=E(e.total?n2(e.end)+" 亿":(Math.abs(e.amount)<1000000?(e.amount>=0?"+":"−")+money(Math.abs(e.amount)):signed(e.amount)+" 亿"),x+w/2,64,'text-anchor="middle" font-size="14" font-weight="750" fill="'+col+'"');
     const parts=e.label.replace("及","及").split(/(?<=.{5})/);
     // Explicit two-line fixed labels avoid truncation by height and Chinese word breaking.
     const titles=[
