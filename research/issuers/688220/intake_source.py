@@ -13,8 +13,11 @@ OUT=ROOT/"source"; OUT.mkdir(parents=True,exist_ok=True)
 TARGET=OUT/"688220_2026H1_20260829_original.pdf"
 def download():
     failures=[]
-    for candidate in (URL, URL.replace("https:","http:")):
-        for attempt in range(3):
+    # First-party SSE gives an anti-bot HTML challenge on GitHub runners; never mistake it for PDF.
+    # Verified 224-page complete filing link from Sina's literal '下载公告' action.
+    mirror="https://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2026/2026-8/2026-08-29/12571888.PDF"
+    for candidate,attempts in ((URL,1),(mirror,3)):
+        for attempt in range(attempts):
             try:
                 request=urllib.request.Request(candidate,headers={"User-Agent":"Mozilla/5.0 (compatible; FinancialsInVisualsSourceAudit/1.0)","Accept":"application/pdf,*/*","Referer":"https://www.sse.com.cn/"})
                 with urllib.request.urlopen(request,timeout=90) as resp:
@@ -34,7 +37,7 @@ def main():
     b,landed=download()
     h=hashlib.sha256(b).hexdigest()
     pdf=fitz.open(stream=b,filetype="pdf")
-    assert len(pdf)>80,("NOT_FULL_REPORT",len(pdf))
+    assert len(pdf)==224,("EXPECTED_224_PAGE_FULL_REPORT",len(pdf))
     cover=normalized("".join(pdf[i].get_text() for i in range(min(6,len(pdf)))))
     assert "翱捷科技" in cover and "2026" in cover and "半年度报告" in cover, "WRONG_PDF_ISSUER_OR_PERIOD"
     TARGET.write_bytes(b)
@@ -64,7 +67,7 @@ def main():
         "pdf_bytes":len(b),"pdf_physical_page_count":len(pdf),
         "pdf_header":b[:8].decode("ascii","replace"),"file":"source/"+TARGET.name,
         "cover_issuer_period_match":True,
-        "note":"Source text search is NOT equivalent to physical row/column semantic verification.",
+        "note":"SSE official primary URL linked to this report returned non-PDF HTML on runner; full original filing COPY acquired from exact report download mirror. SSE-vs-mirror byte equivalence NOT_CHECKED; source text search is not row/column semantic verification.",
         "keyword_hits_physical_pdf_pages":hits,
         "pdf_metadata":{k:str(v) for k,v in pdf.metadata.items()}
     }
