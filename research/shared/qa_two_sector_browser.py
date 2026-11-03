@@ -29,7 +29,9 @@ def main():
             assert page.locator("a[href='/#companies']").count()>=1
             assert page.locator("iframe").count()==0
             assert page.locator("script[src]").count()==0
-            assert page.evaluate("document.documentElement.scrollWidth")<=width+1,(a.code,width,"BODY_OVERFLOW",page.evaluate("document.documentElement.scrollWidth"))
+            if page.evaluate("document.documentElement.scrollWidth")>width+1:
+                overflow=page.evaluate("""() => [...document.querySelectorAll('body *')].map(x=>({name:x.tagName,cls:x.className?.baseVal||x.className||'',id:x.id,rect:x.getBoundingClientRect().toJSON()})).filter(x=>x.rect.right>innerWidth+1||x.rect.left< -1).slice(0,25)""")
+                raise AssertionError((a.code,width,"BODY_OVERFLOW",page.evaluate("document.documentElement.scrollWidth"),overflow))
             q=page.locator("#chart-flow")
             assert q.locator("rect.money-source").count()==len(d["segments"])
             assert q.locator("rect.money-sink").count()==2
