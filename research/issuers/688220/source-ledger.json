@@ -19,7 +19,7 @@
     "physical_pages_observed": 224,
     "original_bytes_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
     "original_bytes_gate": "MIRROR_COMPLETE_PDF_SHA_PASS__OFFICIAL_EQUIVALENCE_NOT_CHECKED",
-    "reason": "SSE official static file returned anti-bot HTML in CI; complete archived mirror PDF was independently byte-hashed as 9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc (1449510 bytes, 224 physical pages). Selected source cells were checked; direct SSE-vs-mirror byte equivalence and full material-note review remain NOT_CHECKED."
+    "reason": "SSE official static file returned anti-bot HTML in CI. Full 224-page PDF mirror was opened and physical pages 86,178,188 inspected; official-vs-mirror SHA identity not proven."
   },
   "facts": {
     "rev": {
