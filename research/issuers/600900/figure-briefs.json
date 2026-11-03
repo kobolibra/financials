@@ -1,0 +1,268 @@
+{
+  "schema": "financials.two_sector.filing_research.v1",
+  "issuer": "600900",
+  "report": "2026H1",
+  "source_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+  "scope": "consolidated except explicitly stated operating metrics",
+  "amount_base_unit": "yuan CNY Decimal",
+  "graphic_rights": "original in-house work; no copied AEI charts",
+  "figure_briefs": [
+    {
+      "id": "flow",
+      "order": 1,
+      "family": "nonnegative_weighted_sankey",
+      "question": "每一项互斥收入分别转成多少直接成本和毛利？",
+      "takeaway": "以原始附注同一业务类型的收入和直接成本构造真实加权而非装饰性桑基，汇总与法定口径逐分验证。",
+      "facts": [
+        "rev",
+        "cogs",
+        "main_rev",
+        "main_cost",
+        "other_rev",
+        "other_cost"
+      ],
+      "source_pages": [
+        50,
+        154
+      ],
+      "identity": "Every disjoint segment revenue_i = original cost_i + derived GP_i; total revenue = total cost + total GP, only positive area",
+      "zero": "TRUE_MONEY_PROPORTIONAL_AREA",
+      "counter": "业务毛利并不包含集团研发销售财务成本，不能拿高产品毛利率直接当自由现金流。",
+      "mobile": "手机先展示收入及毛利金额与表格，SVG 可单独滚动，比例面积不能人为放大小额流。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "sector",
+      "order": 2,
+      "family": "sector_specific_operating_mechanism",
+      "question": "这一行业的真正经营产出与会计确认收入如何连接？",
+      "takeaway": "行业专属原始经营指标先解释商业模式，明确物理产出、商品子集和许可收入分组之间非加总关系。",
+      "facts": [
+        "power_gen_100m_kwh",
+        "rev"
+      ],
+      "source_pages": [
+        8,
+        50
+      ],
+      "identity": "Source-first business-specific relation and reporting scope",
+      "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
+      "counter": "单一产量无法推断售价；创新药子集不能与总商品销售重复相加。",
+      "mobile": "主要经营数值和不可加的因果边界写在图外可直接阅读。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "pnl",
+      "order": 3,
+      "family": "full_signed_CAS_PnL_waterfall",
+      "question": "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+      "takeaway": "用完整 CAS 财务行项目的精确带符号加减展开，公开所有子项目表，而不是只画几张正成本卡片。",
+      "facts": [
+        "rev",
+        "cogs",
+        "tax_surcharge",
+        "selling",
+        "admin",
+        "rd_expense",
+        "finance",
+        "other_income",
+        "investment_income",
+        "fair_value",
+        "credit_impairment",
+        "asset_impairment",
+        "asset_disposal",
+        "operating_profit",
+        "nonop_income",
+        "nonop_expense",
+        "pretax",
+        "income_tax",
+        "net_profit",
+        "nci",
+        "parent_net"
+      ],
+      "source_pages": [
+        50,
+        51
+      ],
+      "identity": "Full signed GAAP gross-to-operating-to-pretax-to-net-to-parent profit, exact Decimal",
+      "zero": "SIGNED_ZERO_AXIS",
+      "counter": "公允价值或投资收益不是原始业务现金流，也不能把少数股东利润忽略。",
+      "mobile": "大额分组节点单独标注，其余全部原始会计分项配独立源码表。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "trend",
+      "order": 4,
+      "family": "two_period_comparison_independent_zero_scale",
+      "question": "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+      "takeaway": "每项绝对金额从零开始，独立尺度，变动比例分别计算；只有两期不能伪装为长期趋势。",
+      "facts": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior",
+        "parent_net",
+        "cfo",
+        "cfo_prior",
+        "net_profit"
+      ],
+      "source_pages": [
+        50,
+        51,
+        55
+      ],
+      "identity": "Valid 2025H1 vs 2026H1 amounts; restatements as reported",
+      "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
+      "counter": "调整合并范围或收入确认节奏可显著改变同比基数，缺季报不能外推多年变化。",
+      "mobile": "双期金额与变化百分比先在图外可见，分组短标签不依赖悬停。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "cfo",
+      "order": 5,
+      "family": "full_signed_indirect_cash_bridge",
+      "question": "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+      "takeaway": "用利润表合并净利润出发，一字不漏的间接调节行以真实符号汇总成现金桥，全部细项原数附表。",
+      "facts": [
+        "net_profit",
+        "cfo",
+        "cfo_adj_asset_impairment",
+        "cfo_adj_credit",
+        "cfo_adj_depreciation",
+        "cfo_adj_rou",
+        "cfo_adj_amort",
+        "cfo_adj_long_defer",
+        "cfo_adj_disposal",
+        "cfo_adj_scrap",
+        "cfo_adj_fair",
+        "cfo_adj_finance",
+        "cfo_adj_investment",
+        "cfo_adj_defer_tax_assets",
+        "cfo_adj_defer_tax_liab",
+        "cfo_adj_inventory",
+        "cfo_adj_receivables",
+        "cfo_adj_payables"
+      ],
+      "source_pages": [
+        51,
+        55,
+        160,
+        161
+      ],
+      "identity": "CFO = consolidated NP + sum of ALL original signed indirect adjustments (exact Decimal)",
+      "zero": "SIGNED_ZERO_AXIS",
+      "counter": "合并BS应收/库存余额变化不等于经营现金流补充资料的调节行；禁止错误混用。",
+      "mobile": "绘出分组桥、显式归零口径和各项正负明细，不缩小到无法读数。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "cash",
+      "order": 6,
+      "family": "cash_equivalents_signed_waterfall",
+      "question": "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+      "takeaway": "现金及等价物严格不同于货币资金，全部流量与汇率差额元精度守恒。",
+      "facts": [
+        "cash_start",
+        "cfo",
+        "cfi",
+        "cff",
+        "fx_cash",
+        "cash_end"
+      ],
+      "source_pages": [
+        55,
+        56
+      ],
+      "identity": "Opening CE + CFO + CFI + CFF + FX = closing CE",
+      "zero": "SIGNED_ZERO_AXIS",
+      "counter": "汇率影响现金并不等于利润表汇兑损益；大额筹资不是经营来源。",
+      "mobile": "期初/期末直接标注，真实有符号四分量在移动端也可以读出。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "capital",
+      "order": 7,
+      "family": "cash_reinvestment_simple_FCF_and_distributions",
+      "question": "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+      "takeaway": "明确展示 CFO 减支付长期资产现金支出形成的分析师定义简易 FCF，并另列股利利润或利息支付。",
+      "facts": [
+        "cfo",
+        "cash_capex",
+        "dividend_interest_cash"
+      ],
+      "source_pages": [
+        55
+      ],
+      "identity": "simple FCF = CFO − cash long-term asset acquisitions; NOT a maintenance cash claim",
+      "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
+      "counter": "购建长期资产的现金支出不全是维护资本支出，股利利润或利息合计现金不等于仅股东股利。",
+      "mobile": "用数字明确投资支出和现金支付的不同经济意义，SVG 简洁可读。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "balance",
+      "order": 8,
+      "family": "two_date_equal_total_balance_stock_composition",
+      "question": "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+      "takeaway": "保持两个日期同一总资产绝对尺度，区分本公司权益与少数股东权益；这不是资产转现金流。",
+      "facts": [
+        "assets",
+        "liabilities",
+        "total_equity",
+        "parent_equity",
+        "nci_equity",
+        "assets_prior",
+        "liabilities_prior",
+        "equity_prior"
+      ],
+      "source_pages": [
+        48
+      ],
+      "identity": "Same-date assets = liabilities + consolidated total equity, parent + NCI",
+      "zero": "DECLARED_ZERO_OR_SAME_VALUE_SCALE",
+      "counter": "资产负债表合计代表时点存量，受限现金和借款到期安排需另读附注。",
+      "mobile": "以固定比例幅宽呈现两期资产融资结构，提供所有实际元金额。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PAGES_REVIEWED_NOT_ALL_NOTES",
+        "exact_accounting": "PENDING_CI",
+        "browser_1440_768_390": "PENDING_CI",
+        "independent_human": "NOT_CHECKED"
+      }
+    }
+  ]
+}
