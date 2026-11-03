@@ -844,6 +844,78 @@
       "unit": "亿元",
       "currency": "CNY",
       "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "bill_endorse_total": {
+      "yuan": "1993956908.26",
+      "page": 153,
+      "label": "非现金结算：银行承兑汇票背书支付供应商款项总额",
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
+    },
+    "bill_endorse_material": {
+      "yuan": "1291253290.29",
+      "page": 153,
+      "label": "银行承兑汇票背书其中支付材料款项",
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
+    },
+    "bill_endorse_capex": {
+      "yuan": "702703617.97",
+      "page": 153,
+      "label": "银行承兑汇票背书其中支付购建固定资产款项（未进现金购建支出）",
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
+    },
+    "restricted_non_cash": {
+      "yuan": "702799344.56",
+      "page": 154,
+      "label": "不属于现金和现金等价物的货币资金合计",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
+    },
+    "development_cost_stock": {
+      "yuan": "4646233858.86",
+      "page": 75,
+      "label": "合并资产负债表开发支出（存量）",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
+    },
+    "kailera_fairvalue_100m": {
+      "yuan": "8.21",
+      "page": 22,
+      "label": "管理层披露Kailera持股公允价值变动收益亿元（估值收入子集）",
+      "type": "operating_metric",
+      "period": "2026H1",
+      "unit": "亿元",
+      "scope": "consolidated",
+      "classification": "MANAGEMENT_REPORTED",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
     }
   },
   "segments": [
