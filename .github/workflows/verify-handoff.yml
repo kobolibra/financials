@@ -1,0 +1,46 @@
+name: Verify financial research Skill and new-chat handoff
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'START_HERE.md'
+      - 'AGENTS.md'
+      - 'PROJECT_STATE.md'
+      - 'project-status.json'
+      - '.github/copilot-instructions.md'
+      - '.github/workflows/verify-handoff.yml'
+      - 'docs/HANDOFF_PROTOCOL.md'
+      - 'docs/NEW_SESSION_PROMPT.md'
+      - 'docs/REPORT_RELEASE_CHECKLIST.md'
+      - 'docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md'
+      - 'skills/ashare-financial-storytelling/SKILL.md'
+      - 'skills/ashare-financial-storytelling/research/**'
+      - 'site/research_catalog.json'
+      - 'site/portal_builder.py'
+      - 'public/index.html'
+      - 'public/300394.html'
+      - 'public/300502.html'
+      - 'scripts/check_handoff.py'
+      - 'scripts/test_check_handoff.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  handoff-source-of-truth:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate exact active state, five manuals, seven routes and release truth
+        run: |
+          python scripts/check_handoff.py
+      - name: Adversarial handoff test cases
+        run: |
+          python -m unittest discover -s scripts -p 'test_check_handoff.py' -v
+      - name: Existing unified-root generator still reproduces the homepage
+        run: |
+          python -m unittest discover -s site -p test_portal.py -v
+          python site/portal_builder.py --out /tmp/financials-handoff-rebuild
+          cmp public/index.html /tmp/financials-handoff-rebuild/index.html
+          echo 'CANONICAL_SEVEN_ISSUER_CATALOG_REBUILD_PASS'

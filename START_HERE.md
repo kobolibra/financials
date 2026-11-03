@@ -1,18 +1,18 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
-> **当前有效版本：统一七家公司研究库（2026-11-03）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[\`kobolibra/financials\`](https://github.com/kobolibra/financials)，生产分支 \`main\`。
+> **当前有效版本：统一七家公司研究库（2026-11-03）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
 
 ## 0. 新对话 / 新 Agent 必读
 
-**不能假设聊天记忆中已经包含本项目。仓库中的自定义 \`SKILL.md\` 不会自动变成 ChatGPT 已安装的 Skill。** 必须主动读取以下实际当前文件，而不是“知道有 Skill”便开始画图：
+**不能假设聊天记忆中已经包含本项目。仓库中的自定义 `SKILL.md` 不会自动变成 ChatGPT 已安装的 Skill。** 必须主动读取以下实际当前文件，而不是“知道有 Skill”便开始画图：
 
-1. \`START_HERE.md\`（此文件）及 \`project-status.json\` — 当前**机器可校验**状态；
-2. \`PROJECT_STATE.md\` — 只描述当前生产、实际 PASS / NOT_CHECKED 和未结事项；
-3. \`skills/ashare-financial-storytelling/SKILL.md\` — 唯一现行方法和出版质量合同；
-4. Skill 下 \`research/01_...\` 至 \`05_...\` **五份全文**，不可只读摘要；
-5. \`docs/REPORT_RELEASE_CHECKLIST.md\` — 对每篇新公司报告完成的源数据、会计、分析、可视化、网页验收清单；
-6. \`docs/HANDOFF_PROTOCOL.md\` — 任务开始/结束的交接格式；
-7. \`site/research_catalog.json\`、现有同行业真实研究页和发布生成器。
+1. `START_HERE.md`（此文件）及 `project-status.json` — 当前**机器可校验**状态；
+2. `PROJECT_STATE.md` — 只描述当前生产、实际 PASS / NOT_CHECKED 和未结事项；
+3. `skills/ashare-financial-storytelling/SKILL.md` — 唯一现行方法和出版质量合同；
+4. Skill 下 `research/01_...` 至 `05_...` **五份全文**，不可只读摘要；
+5. `docs/REPORT_RELEASE_CHECKLIST.md` — 对每篇新公司报告完成的源数据、会计、分析、可视化、网页验收清单；
+6. `docs/HANDOFF_PROTOCOL.md` — 任务开始/结束的交接格式；
+7. `site/research_catalog.json`、现有同行业真实研究页和发布生成器。
 
 **新窗口一键启动文本：** [docs/NEW_SESSION_PROMPT.md](docs/NEW_SESSION_PROMPT.md)。如果新会话无法读取 GitHub，则明确说出阻碍并请求上传必需文件，不能谎称“已执行 Skill”。
 
@@ -20,15 +20,15 @@
 
 | 行业 | 公司 | 正式网页 |
 |---|---|---|
-| 光器件 | 天孚通信 300394 | \`/300394.html\` |
-| 光模块 | 中际旭创 300308 | \`/300308.html\` |
-| 光模块 | 新易盛 300502 | \`/300502.html\` |
-| 银行 | 招商银行 600036 | \`/research/2026-h1-v10/600036.html\` |
-| 软件 | 金山办公 688111 | \`/research/2026-h1-v10/688111.html\` |
-| 白酒 | 贵州茅台 600519 | \`/research/2026-h1-v10/600519.html\` |
-| 制造 | 美的集团 000333 | \`/research/2026-h1-v10/000333.html\` |
+| 光器件 | 天孚通信 300394 | `/300394.html` |
+| 光模块 | 中际旭创 300308 | `/300308.html` |
+| 光模块 | 新易盛 300502 | `/300502.html` |
+| 银行 | 招商银行 600036 | `/research/2026-h1-v10/600036.html` |
+| 软件 | 金山办公 688111 | `/research/2026-h1-v10/688111.html` |
+| 白酒 | 贵州茅台 600519 | `/research/2026-h1-v10/600519.html` |
+| 制造 | 美的集团 000333 | `/research/2026-h1-v10/000333.html` |
 
-产业链横向比较 \`/optical-2026h1.html\` **属于专题，不是第八家公司**。新公司通过 \`site/research_catalog.json\` 和 \`site/portal_builder.py\` 接入同一个首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
+产业链横向比较 `/optical-2026h1.html` **属于专题，不是第八家公司**。新公司通过 `site/research_catalog.json` 和 `site/portal_builder.py` 接入同一个首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
 
 ## 2. 已验证什么，未验证什么
 

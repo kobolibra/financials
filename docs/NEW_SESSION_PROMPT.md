@@ -6,14 +6,14 @@ https://github.com/kobolibra/financials
 
 **在任何分析、编码、展示或发布前，必须通过 GitHub 连接或者网页访问，逐个实际读取 main 分支这些文件；不能凭对话记忆猜测已经读过：**
 
-1. \`START_HERE.md\`
-2. \`project-status.json\` + \`PROJECT_STATE.md\`（只采用现行状态，不要被历史 archive 的旧 “latest v9” 误导）
-3. \`AGENTS.md\` + \`docs/HANDOFF_PROTOCOL.md\` + \`docs/REPORT_RELEASE_CHECKLIST.md\`
-4. \`skills/ashare-financial-storytelling/SKILL.md\` **全文**
-5. 该 Skill 的 \`research/01\`、\`02\`、\`03\`、\`04\`、\`05\` **五份全文**
-6. \`site/research_catalog.json\`、最相关的原有真实公司报告、数据账本、最新 GitHub Actions 和 Cloudflare 实际状态
+1. `START_HERE.md`
+2. `project-status.json` + `PROJECT_STATE.md`（只采用现行状态，不要被历史 archive 的旧 “latest v9” 误导）
+3. `AGENTS.md` + `docs/HANDOFF_PROTOCOL.md` + `docs/REPORT_RELEASE_CHECKLIST.md`
+4. `skills/ashare-financial-storytelling/SKILL.md` **全文**
+5. 该 Skill 的 `research/01`、`02`、`03`、`04`、`05` **五份全文**
+6. `site/research_catalog.json`、最相关的原有真实公司报告、数据账本、最新 GitHub Actions 和 Cloudflare 实际状态
 
-**不要假设 \`SKILL.md\` 已经装成 ChatGPT 全局 Skill。读不了就明确指出；绝不可说“我已经严格按 Skill”但实际上没读。**
+**不要假设 `SKILL.md` 已经装成 ChatGPT 全局 Skill。读不了就明确指出；绝不可说“我已经严格按 Skill”但实际上没读。**
 
 我的新任务是：**按照原有完整 Skill 对我提供的这家公司的原始财报进行机构级财务研究、财报拆解、批判性复核与 App Economy Insights 水准的原创可视化出版。**
 
@@ -27,4 +27,4 @@ https://github.com/kobolibra/financials
 
 **开始时只需报告已经实际读取的关键规范、当前真实项目状态和此次财报如何进入既有系统，然后推进真实研究。** 不要让我重新讲述旧对话，也不要用方案和赞美代替作品。
 
-结束前必须按照 \`docs/HANDOFF_PROTOCOL.md\` 更新长期交接文件；如果某项需继续追查，直接查原始文件完成，不要无谓地把它推给下一次对话。
+结束前必须按照 `docs/HANDOFF_PROTOCOL.md` 更新长期交接文件；如果某项需继续追查，直接查原始文件完成，不要无谓地把它推给下一次对话。
