@@ -30,6 +30,21 @@ ck("COST_PARTITION_EXACT_YUAN",cost,val("cogs"))
 ck("GROSS_PROFIT_COMPONENTS",sum((val(i["rev"])-val(i["cost"]) for i in data["segments"]),D(0)),val("rev")-val("cogs"))
 ck("CONSOLIDATED_PNL_OPERATING",val("rev")-val("operating_total_cost")+sum((val(k) for k in ("other_income","investment_income","fair_value_income","credit_impairment","asset_impairment","asset_disposal_gain")),D(0)),val("operating_profit"))
 ck("PARENT_PROFIT",val("pretax_profit")-val("income_tax_expense"),val("consolidated_net_profit"))
+ck("OPERATING_COSTS_COMPLETE_ROW_DETAIL",
+   sum((val(k) for k in ("cogs","tax_surcharge","sell","admin","rnd_expense","finance_expense")),D(0)),
+   val("operating_total_cost"))
+ck("OPERATING_PROFIT_TO_PRETAX_BY_ACTUAL_CURRENT_COLUMN",
+   val("operating_profit")+val("nonoperating_income"),val("pretax_profit"))
+assert "nonoperating_expense" not in f,"PRIOR_YEAR_EXPENSE_MISREAD_AS_CURRENT"
+assert f["nonoperating_expense_prior"]["period"]=="2025H1" and val("nonoperating_expense_prior")==D("15.30"),"P87_COMPARATIVE_COLUMN_NOT_VERIFIED"
+gross=val("rev")-val("cogs")
+other_opex=sum((val(k) for k in ("tax_surcharge","sell","admin","finance_expense")),D(0))
+gains=sum((val(k) for k in ("other_income","investment_income","fair_value_income")),D(0))
+signed_impairment=sum((val(k) for k in ("credit_impairment","asset_impairment","asset_disposal_gain")),D(0))
+ck("FULL_SIGNED_PNL_FROM_GROSS_TO_OPERATING",
+   gross-val("rnd_expense")-other_opex+gains+signed_impairment,val("operating_profit"))
+ck("FULL_PNL_OP_TO_NI_VIA_TAX_BENEFIT",
+   val("operating_profit")+val("nonoperating_income")-val("income_tax_expense"),val("consolidated_net_profit"))
 ck("PARENT_VS_DEDUCTED",val("deducted_parent_ni")+val("nonrec_parent_net"),val("parent_ni"))
 ck("NONRECURRING_SIGNED_SCHEDULE",sum((D(q["yuan"]) for q in data["nonrecurring"]["parts"]),D(0)),val("nonrec_parent_net"))
 ck("BS_2026_06_30",val("liabilities")+val("equity"),val("assets"))
@@ -71,9 +86,9 @@ data["source"]["original_bytes_gate"]=source_status
 data["finance_flow"]=build_conserved_income_flow(data)
 checks["SANKEY_FOUR_SEGMENTS_EIGHT_EXACT_COGS_GP_EDGES"]="PASS"
 briefs=json.loads((ROOT/"figure-briefs.json").read_text(encoding="utf-8"))
-expected_briefs={"flow","segment","gp","earnings","cfo","cash","capital"}
+expected_briefs={"flow","segment","gp","pnl","earnings","cfo","cash","capital"}
 found={x["id"] for x in briefs["figures"]}
-assert len(briefs["figures"])==7 and found==expected_briefs,"FIGURE_BRIEF_MISSING_OR_DUPLICATED"
+assert len(briefs["figures"])==8 and found==expected_briefs,"FIGURE_BRIEF_MISSING_OR_DUPLICATED"
 required=("family","question","answer","pages","fact_ids","relation","domain_zero","color_encoding",
           "alternative_hypothesis","mobile_policy","source_pdf_sha256","reviewer","publication_gate")
 for figure in briefs["figures"]:
