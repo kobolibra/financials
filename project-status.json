@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.4.0-rc1",
+    "version": "8.4.1-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -41,7 +41,12 @@
         "600519",
         "000333"
       ],
-      "scope": "FORMALIZED_METHOD_AND_NEW_ISSUER_FAIL_CLOSED_GATE__NOT_AUTONOMOUS_ALL_INDUSTRY_CERTIFICATION"
+      "scope": "FORMALIZED_METHOD_AND_NEW_ISSUER_FAIL_CLOSED_GATE__NOT_AUTONOMOUS_ALL_INDUSTRY_CERTIFICATION",
+      "multi_artifact_identity": [
+        "original archived PDF SHA and real bytes",
+        "source-ledger.json issuer/period/source SHA and 93 disclosed typed facts",
+        "figure-briefs.json issuer/period/source SHA and cited fact IDs"
+      ]
     }
   },
   "entrypoints": {
@@ -429,6 +434,25 @@
     "company_count": 8,
     "public_html_modified": false,
     "cloudflare_outstanding": "FAIL_STRICT_LIVE_ASR_GEOMETRY_41660682930",
-    "limitations": "No automatic human editor or full industry generalization; regression registry references source tests, execution via Actions"
+    "limitations": "No automatic human editor or full industry generalization; regression registry references source tests, execution via Actions",
+    "version": "8.4.1-rc1",
+    "v840_merged_pr": "https://github.com/kobolibra/financials/pull/9",
+    "v840_merged_commit": "ffb57ac6142546a66233fa01741b54812422f40e",
+    "v840_actual_pr_ci": [
+      {
+        "run_id": 41666080981,
+        "status": "PASS",
+        "scope": "real repo source, 12 hostile tests, handoff, unified eight portal, PDF SHA"
+      },
+      {
+        "run_id": 41666080935,
+        "status": "PASS",
+        "scope": "PR source CI only; external public URL test intentionally skipped on PR"
+      }
+    ],
+    "v841_branch": "work/skill-typed-evidence-20261103",
+    "v841_pr": "NOT_CHECKED_PENDING_PR",
+    "v841_checks": "NOT_CHECKED_PENDING_ACTIONS",
+    "v841_scope": "SOURCE_LEDGER_SHA_PERIOD_AND_9_FIGURE_BRIEFS_CURRENT_PDF_CROSS_FILE_VALIDATION_PLUS_SECTOR_WRONG_ROUTE_GUARD"
   }
 }
