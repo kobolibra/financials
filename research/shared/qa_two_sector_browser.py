@@ -32,6 +32,16 @@ def main():
             if page.evaluate("document.documentElement.scrollWidth")>width+1:
                 overflow=page.evaluate("""() => [...document.querySelectorAll('body *')].filter(x=>{const r=x.getBoundingClientRect(); if(r.right<=innerWidth+1&&r.left>=-1)return false;for(let p=x.parentElement;p;p=p.parentElement){if(['auto','scroll','hidden','clip'].includes(getComputedStyle(p).overflowX))return false}return true}).slice(0,30).map(x=>({name:x.tagName,cls:typeof x.className==='string'?x.className:'svg',id:x.id,right:x.getBoundingClientRect().right,width:x.getBoundingClientRect().width,parent:x.parentElement?.className}))""")
                 raise AssertionError((a.code,width,"BODY_OVERFLOW",page.evaluate("document.documentElement.scrollWidth"),overflow))
+            # Do not gain a false pass by hiding oversized content at the
+            # root: every article section, figure, figure head and its lead
+            # narrative still has to fit the physical viewport. SVGs alone
+            # may scroll in their own .plot container on mobile.
+            structural=page.evaluate("""() => [...document.querySelectorAll('.topbar,.hero,.heroaside,.nav,.numbers,.number,.chapter,.chapter h2,.chapter .answer,.figure,.figure-head,.sourcebar,.tablewrap,.disclaimer,.actions,.footer')].map(x=>({tag:x.tagName,cls:x.className,rect:x.getBoundingClientRect()})).filter(z=>z.rect.right>innerWidth+2 || z.rect.left< -2).map(z=>({tag:z.tag,cls:z.cls,left:z.rect.left,right:z.rect.right})).slice(0,20)""")
+            assert not structural,("NON_SCROLLING_MOBILE_CONTENT_CLIPPED",a.code,width,structural)
+            if width<1440:
+                for plot in page.locator('.plot').all():
+                    state=plot.evaluate("(x) => ({overflow:getComputedStyle(x).overflowX,scroll:x.scrollWidth,visible:x.clientWidth})")
+                    assert state["overflow"] in ("auto","scroll") and state["visible"]<=width,(a.code,"CHART_SCROLL_CONTAINMENT",state)
             q=page.locator("#chart-flow")
             assert q.locator("rect.money-source").count()==len(d["segments"])
             assert q.locator("rect.money-sink").count()==2
