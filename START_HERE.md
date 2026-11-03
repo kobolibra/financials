@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
-> **当前有效版本：统一七家公司研究库（2026-11-03）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
+> **当前有效版本：统一八家公司研究库（2026-11-03）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
 
 ## 0. 新对话 / 新 Agent 必读
 
@@ -16,7 +16,7 @@
 
 **新窗口一键启动文本：** [docs/NEW_SESSION_PROMPT.md](docs/NEW_SESSION_PROMPT.md)。如果新会话无法读取 GitHub，则明确说出阻碍并请求上传必需文件，不能谎称“已执行 Skill”。
 
-## 1. 当前生产的七家独立研究
+## 1. 当前生产的八家独立研究
 
 | 行业 | 公司 | 正式网页 |
 |---|---|---|
@@ -27,8 +27,9 @@
 | 软件 | 金山办公 688111 | `/research/2026-h1-v10/688111.html` |
 | 白酒 | 贵州茅台 600519 | `/research/2026-h1-v10/600519.html` |
 | 制造 | 美的集团 000333 | `/research/2026-h1-v10/000333.html` |
+| 半导体 | 翱捷科技-U 688220 | `/688220.html`（源限定研究预览，公开披露的应收集中度比例分母仍有不可勾稽问题） |
 
-产业链横向比较 `/optical-2026h1.html` **属于专题，不是第八家公司**。新公司通过 `site/research_catalog.json` 和 `site/portal_builder.py` 接入同一个首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
+产业链横向比较 `/optical-2026h1.html` **属于专题，不是第八家公司**。第八家公司通过 `site/research_catalog.json` 和 `site/portal_builder.py` 接入原有首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
 
 ## 2. 已验证什么，未验证什么
 
@@ -36,7 +37,7 @@
 
 **最后一次已知公开验收**（历史报告对应 SHA、并非对将来任何报告的保证）：原始收入分类重建 [41599963892](https://github.com/kobolibra/financials/actions/runs/41599963892)、七家公司实际浏览器 [41599963800](https://github.com/kobolibra/financials/actions/runs/41599963800)、历史链接 [41599963891](https://github.com/kobolibra/financials/actions/runs/41599963891)。每次交接仍要查看 **GitHub 当前 HEAD 的最新 Action 和 Cloudflare 实际页面**。
 
-**尚未完成**：七家公司的全部重大附注再次逐行审查、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
+**尚未完成**：原有七家及新加入半导体公司的全部重大附注再次逐行审查、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
 
 ## 3. 新公司从 PDF 到独立 HTML 的最短正确路径
 
@@ -49,3 +50,8 @@
 ### 自动发现范围的区别（Codex vs ChatGPT）
 
 仓库已经提供 [Codex 仓库级 Skill 包装器](.agents/skills/ashare-financial-storytelling/SKILL.md)：Codex 在**已打开本仓库**时可以按官方约定发现它，再读取唯一完整 Skill。普通 ChatGPT 不会因为这些 Git 文件自动把它安装成全局 Skill。要让未来每个 ChatGPT 项目聊天具有固定指令，请按 [一次性 Project 设置说明](docs/SETUP_PERSISTENT_CONTEXT.md) 操作，复制 [Project 长期指令](docs/CHATGPT_PROJECT_INSTRUCTIONS.md)。**这一账户级 UI 操作尚未代替用户完成。**
+
+
+## 2026-11-03 增量：翱捷科技原始字节与独立页面
+
+2026H1 224 物理页 PDF 镜像原件 SHA256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`（1,449,510 bytes），原始字节保存于 `research/issuers/688220/source/`，账本/出版器/研究证据见同目录；正式研究页 `/688220.html`，首页仍唯一。上交所静态服务器回传 HTML，**交易所直链字节与归档副本是否完全一致尚为 NOT_CHECKED**。原始附注 p.137 的应收集中度 90.50% 与简单原值分母复算 89.17% 不一致，局部源证据门槛 **FAIL**，不可模糊称全部会计问题已解决。参考最新 `PROJECT_STATE.md`、`research/issuers/688220/research-memo.md` 和 CI 记录；本页描述的是代码预期状态，实际生产 URL 与当前 GitHub HEAD 仍需独立验证。
