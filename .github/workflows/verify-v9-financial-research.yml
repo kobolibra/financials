@@ -36,6 +36,15 @@ jobs:
               assert s.count('PDF ')>n,id
               print('SOURCE_REPORT_PASS',id,n,'figures',flush=True)
           PY
+      - name: Install and verify CJK publishing fonts (visual release blocker)
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=zh family | tee /tmp/financials-cjk-fonts.txt
+          grep -qi 'Noto' /tmp/financials-cjk-fonts.txt
+          echo 'CJK_FONT_AVAILABLE'
       - name: Install Chromium and Python Playwright
         run: |
           python -m pip install --disable-pip-version-check playwright
