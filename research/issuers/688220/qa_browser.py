@@ -102,7 +102,15 @@ with sync_playwright() as p:
         assert info["exportButtons"]==8 and info["externalScripts"]==0 and info["amounts"]>=10
         assert info["mobileFactPanels"]==8,(width,"each graphic requires independent first-order values on mobile",info)
         assert info["mobileFactsVisible"]==(0 if width==1440 else 8),(width,"missing visible amount headlines for mobile/tablet",info)
-        assert info["chapterPosition"]==("static" if width==390 else "sticky"),(width,"sticky navigation may obscure phone chart titles",info)
+        assert info["chapterPosition"]=="static",(width,"sticky navigation can obscure figure headings and figure screenshots",info)
+        if width==1440:
+            # Full financial charts must be complete on a 1440px desktop, not
+            # cropped at the right with hidden end-of-flow income or final profit.
+            charts=page.evaluate("""() => Array.from(document.querySelectorAll('.vizscroll')).map(c => ({
+                id:c.id,container:c.clientWidth,inner:c.querySelector('svg')?.getBoundingClientRect().width||0,
+                scroll:c.scrollWidth
+            }))""")
+            assert all(c["scroll"]<=c["container"]+2 for c in charts),(width,"desktop chart clipped and hiding source-amount end labels",charts)
         assert page.locator('a.brand[href="/#companies"]').count()==1
         assert page.locator('a[href="#cash"]').count()>=1
         page.screenshot(path=str(out/f"full_{width}.png"),full_page=True)
