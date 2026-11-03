@@ -87,26 +87,29 @@ function sourceSankey(){
  // revenue ribbon. Exactly seven nonzero segment-to-cost/GP links; the eighth
  // route has ZERO gross profit and is documented in the accompanying table.
  const total=N("rev"),cost=N("cogs"),gross=total-cost;
- const W=1190,H=615,L=260,R=888,top=154,height=334,k=height/total;
+ const W=1050,H=615,L=260,R=888,top=154,height=334,k=height/total;
  let a=top,cursorCost=top,cursorGP=top+cost*k;
  const color={cost:"#b9c8c1",profit:"#16856b"};
- const bezier=(y0,y1,h,kind,group,value)=>{
+ const bezier=(y0,y1,h,kind,group,value,sourceKey)=>{
   if(value===0)return "";
   const p=(R-L)*.47,opacity=kind==="cost"?.75:.86;
   const d="M"+L+","+y0+" C"+(L+p)+","+y0+" "+(R-p)+","+y1+" "+R+","+y1+
     " L"+R+","+(y1+h)+" C"+(R-p)+","+(y1+h)+" "+(L+p)+","+(y0+h)+" "+L+","+(y0+h)+" Z";
   const tooltip=group+" · "+(kind==="cost"?"营业成本":"毛利润")+" "+Number(value).toLocaleString("zh-CN",{minimumFractionDigits:2,maximumFractionDigits:2})+" 元";
-  return '<path class="money-ribbon" data-source="'+esc(group)+'" data-kind="'+kind+'" data-value-yuan="'+value.toFixed(2)+'" fill="'+color[kind]+'" fill-opacity="'+opacity+'" stroke="#fffefa" stroke-width=".25" d="'+d+'"><title>'+esc(tooltip)+'</title></path>';
+  return '<path class="money-ribbon" data-source="'+esc(group)+'" data-source-key="'+esc(sourceKey)+'" data-target-key="'+(kind==="cost"?"cogs":"gross_profit")+'" data-period="2026H1" data-scope="consolidated" data-source-page="178" data-kind="'+kind+'" data-value-yuan="'+value.toFixed(2)+'" data-thickness="'+h.toFixed(12)+'" fill="'+color[kind]+'" fill-opacity="'+opacity+'" stroke="#fffefa" stroke-width=".25" d="'+d+'"><title>'+esc(tooltip)+'</title></path>';
  };
  let ribbons="",bars="",words="";
  seg.forEach((q,i)=>{
   const rev=N(q.rev),c=N(q.cost),g=rev-c,span=rev*k,cspan=c*k,gspan=g*k;
   // The financial product band splits into its own original CO​​GS and GP.
   // The two final sinks are reconciled independently to total P&L amounts.
-  ribbons+=bezier(a,cursorCost,cspan,"cost",q.label,c);
-  ribbons+=bezier(a+cspan,cursorGP,gspan,"profit",q.label,g);
-  if(span>=1)bars+='<rect x="'+(L-18)+'" y="'+a+'" width="18" height="'+span+'" fill="'+[C.green,C.blue,C.copper,"#99aaa1"][i]+'"/>';
-  else bars+='<line x1="'+(L-18)+'" x2="'+L+'" y1="'+(a+span/2)+'" y2="'+(a+span/2)+'" stroke="'+[C.green,C.blue,C.copper,"#99aaa1"][i]+'" stroke-width="1"/>';
+  ribbons+=bezier(a,cursorCost,cspan,"cost",q.label,c,q.rev);
+  ribbons+=bezier(a+cspan,cursorGP,gspan,"profit",q.label,g,q.rev);
+  // Never inflate the microbusiness by replacing its actual 0.011px revenue band with a 1px stroke.
+  // The accessible label is placed in the textual source note below the diagram.
+  bars+='<rect class="money-source" data-source-key="'+esc(q.rev)+'" data-value-yuan="'+rev.toFixed(2)+
+    '" data-thickness="'+span.toFixed(12)+'" x="'+(L-18)+'" y="'+a+'" width="18" height="'+span+
+    '" fill="'+[C.green,C.blue,C.copper,"#99aaa1"][i]+'"><title>'+esc(q.label+" "+money(rev))+'</title></rect>';
   if(i<=1){
    words+=E(q.label,22,a+span/2-6,'font-size="14" font-weight="700"');
    words+=E(money(rev),22,a+span/2+15,'font-size="12" fill="'+C.muted+'"');
@@ -121,8 +124,8 @@ function sourceSankey(){
  s+=E("同一人民币元比例尺 · 路径宽度 = 原始金额",540,132,'font-size="12" text-anchor="middle" fill="'+C.muted+'"');
  s+=E("合并去向",917,132,'font-weight="750" fill="'+C.muted+'"');
  s+=ribbons+bars;
- s+='<rect x="'+R+'" y="'+top+'" width="19" height="'+(cost*k)+'" fill="#b9c8c1"/>';
- s+='<rect x="'+R+'" y="'+(top+cost*k)+'" width="19" height="'+(gross*k)+'" fill="'+C.green+'"/>';
+ s+='<rect class="money-sink" data-kind="cost" data-value-yuan="'+cost.toFixed(2)+'" x="'+R+'" y="'+top+'" width="19" height="'+(cost*k)+'" fill="#b9c8c1"/>';
+ s+='<rect class="money-sink" data-kind="profit" data-value-yuan="'+gross.toFixed(2)+'" x="'+R+'" y="'+(top+cost*k)+'" width="19" height="'+(gross*k)+'" fill="'+C.green+'"/>';
  s+=words;
  s+=E("营业成本",925,top+85,'font-size="16" font-weight="700"');
  s+=E(money(cost),925,top+108,'font-size="21" font-weight="750" fill="'+C.ink+'"');
@@ -130,7 +133,7 @@ function sourceSankey(){
  s+=E("毛利润",925,top+(cost+.48*gross)*k,'font-size="17" font-weight="700"');
  s+=E(money(gross),925,top+(cost+.48*gross)*k+25,'font-size="21" font-weight="750" fill="'+C.green+'"');
  s+=E("毛利率 "+pct(gross/total),925,top+(cost+.48*gross)*k+46,'font-size="12" fill="'+C.muted+'"');
- s+='<line x1="22" x2="1170" y1="523" y2="523" stroke="'+C.line+'"/>';
+ s+='<line x1="22" x2="1030" y1="523" y2="523" stroke="'+C.line+'"/>';
  s+=E("半导体 IP 授权",22,550,'font-size="12" font-weight="700"');
  s+=E(money(N("ip_rev"))+"  ·  毛利率 "+pct((N("ip_rev")-N("ip_cost"))/N("ip_rev")),22,571,'font-size="12" fill="'+C.muted+'"');
  s+=E("测试服务及其他",560,550,'font-size="12" font-weight="700"');
@@ -221,10 +224,10 @@ function cash(){const end=N("cash_end"),start=N("cash_start"),parts=[["经营现
  s+='<line x1="'+base+'" x2="'+base+'" y1="55" y2="340" stroke="'+C.muted+'" stroke-width="1.5"/>';
  let at=start;const all=[["期初现金等价物",start]];parts.forEach(q=>{at+=N(q[1]);all.push([q[0],at]);});all.push(["期末现金等价物",end]);
  all.forEach(([label,v],i)=>{let y=64+i*43,sx=base+v*mx;const from=i===0||i===all.length-1?base:base+(all[i-1][1])*mx;const vdiff=i===0||i===all.length-1?v:v-all[i-1][1];let l=i===0||i===all.length-1? v*mx:Math.abs(sx-from);let left=i===0||i===all.length-1?base:Math.min(sx,from);s+=E(label,8,y+14,'font-size="11"')+'<rect x="'+left+'" y="'+y+'" width="'+l+'" height="22" fill="'+(i===0||i===all.length-1?C.ink:vdiff>=0?C.green:C.rust)+'"/>'+E((i===0||i===all.length-1?n2(v):signed(vdiff))+" 亿",1010,y+15,'text-anchor="end" font-size="12" font-weight="700"');});
- register("cash",svg(1100,372,s,"2026H1期初现金至期末现金，经营、投资、筹资及汇率的真实符号调节"));
+ register("cash",svg(1050,372,s,"2026H1期初现金至期末现金，经营、投资、筹资及汇率的真实符号调节"));
  table("cash",factual(["cash_start","cash_cfo","cash_cfi","cash_cff","cash_fx","cash_end"]));}
 function balance(){
- const W=1090,H=430,barX=224,barW=745,scale=barW/N("assets");
+ const W=1050,H=430,barX=224,barW=745,scale=barW/N("assets");
  const sets=[
   {name:"2025 年末",a:N("assets_prior"),l:N("liabilities_prior"),e:N("equity_prior"),date:"2025-12-31"},
   {name:"2026 年中",a:N("assets"),l:N("liabilities"),e:N("equity"),date:"2026-06-30"}
