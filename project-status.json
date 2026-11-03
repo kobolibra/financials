@@ -188,40 +188,45 @@
       "figure_count": 8,
       "figure_briefs": "research/issuers/688220/figure-briefs.json",
       "generic_source_flow": "research/shared/conserved_flow.py",
-      "design_release_state": "IN_REVIEW_REQUIRES_REBUILT_LIVE_BROWSER"
+      "design_release_state": "BRANCH_REBUILT_TECHNICAL_PASS_REQUIRES_FINAL_CLOUDFLARE",
+      "visual_audit": "research/issuers/688220/visual-audit.md",
+      "original_source_cells": "research/issuers/688220/source-cells.json",
+      "current_branch_graph_family": "four_source_direct_8_edge_revenue_to_actual_segment_cogs_and_gp"
     },
     "financial_gates": {
       "PDF_MIRROR_FULL_BYTES_SHA_224P": "PASS",
       "SSE_OFFICIAL_BYTE_EQUIVALENCE": "NOT_CHECKED",
-      "SOURCE_PAGE_LITERAL": "PASS_109_OF_118_WITH_9_PDF_TABLE_TEXT_FRAGMENTATIONS_OR_TO_REVIEW",
-      "IMPORTANT_ORIGINAL_PAGE_COLUMN": "PASS_SELECTED_PAGES_ONLY",
+      "SOURCE_PAGE_LITERAL": "PASS_SELECTED_118_OF_118_AS_109_CONTIGUOUS_PLUS_9_VERIFIED_ORIGINAL_PHYSICAL_PDF_CELLS",
+      "IMPORTANT_ORIGINAL_PAGE_COLUMN": "PASS_SELECTED_PAGES_P87_PERIOD_AND_P135_P146_COORDINATES_ONLY",
       "FULL_MATERIAL_NOTES": "NOT_CHECKED",
       "STATEMENT_IDENTITY": "PASS",
       "SIGNED_CFO_17_ROWS": "PASS",
-      "REVENUE_SAME_SCOPE_SANKEY": "REBUILT_FOUR_SOURCES_EIGHT_EDGE_COST_GP_SEMANTICS_AWAIT_BRANCH_RENDER_QA",
+      "REVENUE_SAME_SCOPE_SANKEY": "PASS_ORIGINAL_P178_4_BUSINESSES_8_SOURCE_TO_COST_OR_GP_EDGES_EXACT_YUAN_AND_RENDER_WIDTH",
       "INDUSTRY_ROUTE": "PASS_SEMICONDUCTOR_CHIP_DESIGN",
       "AR_TOP5_NOTE_DENOMINATOR": "FAIL_REPORTED_90_50_VS_DERIVED_89_17",
       "RPO_ONE_CENT_TIE": "FAIL_MIRRORED_0_01_YUAN_SOURCE_DISCLOSURE_DIFFERENCE",
       "THESIS_AND_COUNTER": "PASS_SELF_REVIEW",
       "RESEARCH_MULTIYEAR_PEERS_VALUATION": "NOT_CHECKED",
       "INDEPENDENT_SECOND_HUMAN": "NOT_CHECKED",
-      "FULL_SIGNED_OPERATING_PNL": "EXACT_YUAN_ACCOUNTING_ADDED__AWAIT_FINAL_CI",
-      "P87_NONOPERATING_EXPENSE_PERIOD": "CORRECTED_COMPARATIVE_2025H1_15_30_NOT_2026H1"
+      "FULL_SIGNED_OPERATING_PNL": "PASS_P86_87_GROSS_TO_OPERATING_TO_PRETAX_TO_CONSOLIDATED_NI_ZERO_YUAN_DIFFERENCE",
+      "P87_NONOPERATING_EXPENSE_PERIOD": "PASS_15_30_YUAN_2025H1_COMPARATIVE_NOT_2026H1",
+      "FIGURE_BRIEFS": "PASS_EIGHT_SOURCE_SHA_PHYSICAL_PAGE_RELATIONSHIP_REVIEWED_BRIEFS"
     },
     "technical_gates": {
-      "RESPONSIVE_CHROMIUM_1440_768_390": "NOT_CHECKED_ON_LATEST_REBUILD_SHA",
-      "ORIGINAL_VISUAL_QA": "IN_PROGRESS_ACTUAL_8_EDGE_SOURCE_FLOW_AND_8_FIGURE_VISUAL_REVIEW",
-      "CLEAN_REBUILD": "NOT_CHECKED_ON_LATEST_REBUILD_SHA",
-      "GITHUB_MAIN_ROUTE": "PR_PENDING",
-      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_FOR_REBUILD"
+      "RESPONSIVE_CHROMIUM_1440_768_390": "PASS_BRANCH_41655445119_EIGHT_FIGURES_8_TABLES_8_EXPORTS_RENDERED_SVG_SOURCE_RELATIONS",
+      "ORIGINAL_VISUAL_QA": "PASS_ASSISTANT_INTERNAL_SCREENSHOT_CRITIQUE_KNOWN_CLIPPING_FAKESANE_AND_SMALL_AMOUNT_FIXED__NOT_INDEPENDENT_EDITOR",
+      "CLEAN_REBUILD": "PASS_BRANCH_41655445119_INCLUDING_REAL_ORIGINAL_PDF_SHA",
+      "GITHUB_MAIN_ROUTE": "NOT_CHECKED_FOR_NEW_V2_PR",
+      "CLOUDFLARE_LIVE_ROUTE": "NOT_CHECKED_FOR_NEW_V2_PR"
     },
     "latest_branch_qa": {
       "branch": "work/688220-source-flow-editorial-v2",
       "workflow": "Build and audit ASR 688220 source-limited standalone research",
-      "status": "RUNNING_OR_PENDING_FINAL_BUILD",
-      "scope": "2026H1 exact signed eight-edge flow; added full P&L; source semantic 15.30 correction; 14 adversarial cases; 1440/768/390 screenshot review",
-      "run_id": null
+      "run_id": 41655445119,
+      "code_sha": "4a646a2a5444c03145256ae37a07b4c0bb05f463",
+      "conclusion": "success",
+      "scope": "full original PDF p135,p146 cell positions 118/118; 14 hostile accounting tests; 25 exact ledger gates; true 8 source cost/gp edges; 9-step P&L; 1440/768/390 real offline Chromium, 8 SVG exports, 8 source tables, desktop uncut; matching generated HTML on branch"
     },
-    "next_step": "Do not promote until new branch clean rebuild and visual screenshot passes; then squash PR and confirm Cloudflare all 8 issuers. Retain original PDF mirror and unresolved AR denominator."
+    "next_step": "Squash PR onto actual main after checking PR diff, run exact SHA handoff and real Cloudflare 8-issuer 1440/768/390 with /688220.html flow and signed P&L; retain unresolved external evidence gates."
   }
 }
