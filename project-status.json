@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.3.3-rc1",
+    "version": "8.4.0-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -25,6 +25,23 @@
       "chatgpt_project_persistent_instructions": "docs/CHATGPT_PROJECT_INSTRUCTIONS.md",
       "chatgpt_project_setup": "docs/SETUP_PERSISTENT_CONTEXT.md",
       "ordinary_new_chat_auto_installation": "NOT_PROVEN__EXPLICIT_PROMPT_OR_USER_PROJECT_SETUP_REQUIRED"
+    },
+    "evolution": {
+      "contract": "docs/SKILL_EVOLUTION_PROTOCOL.md",
+      "regression_registry": "skills/ashare-financial-storytelling/quality-regressions.json",
+      "code_check": "scripts/check_release_contract.py",
+      "adversarial_tests": "scripts/test_check_release_contract.py",
+      "new_issuer_record_format": "research/issuers/<code>/release-gates.json",
+      "legacy_pre_contract_codes": [
+        "300394",
+        "300308",
+        "300502",
+        "600036",
+        "688111",
+        "600519",
+        "000333"
+      ],
+      "scope": "FORMALIZED_METHOD_AND_NEW_ISSUER_FAIL_CLOSED_GATE__NOT_AUTONOMOUS_ALL_INDUSTRY_CERTIFICATION"
     }
   },
   "entrypoints": {
@@ -33,7 +50,9 @@
     "handoff": "docs/HANDOFF_PROTOCOL.md",
     "new_session": "docs/NEW_SESSION_PROMPT.md",
     "releases": "docs/REPORT_RELEASE_CHECKLIST.md",
-    "history": "docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md"
+    "history": "docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md",
+    "skill_evolution": "docs/SKILL_EVOLUTION_PROTOCOL.md",
+    "quality_regressions": "skills/ashare-financial-storytelling/quality-regressions.json"
   },
   "site": {
     "catalog": "site/research_catalog.json",
@@ -398,5 +417,18 @@
       "did_not_relax_assertion": true,
       "code_original_sha": "3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0"
     }
+  },
+  "skill_quality_upgrade": {
+    "date": "2026-11-03",
+    "branch": "work/skill-quality-loop-20261103",
+    "pr": "NOT_CHECKED_PENDING_PR",
+    "commit": "NOT_CHECKED_PENDING_MERGE",
+    "checks": "NOT_CHECKED_PENDING_ACTIONS",
+    "intro": "v8.4.0-RC1 new issuer proof capsule, byte-SHA truth, explicit historical seven debt, feedback-to-poison tests, GitHub handoff CI",
+    "first_issuer_capsule": "research/issuers/688220/release-gates.json",
+    "company_count": 8,
+    "public_html_modified": false,
+    "cloudflare_outstanding": "FAIL_STRICT_LIVE_ASR_GEOMETRY_41660682930",
+    "limitations": "No automatic human editor or full industry generalization; regression registry references source tests, execution via Actions"
   }
 }
