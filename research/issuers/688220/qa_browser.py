@@ -44,7 +44,7 @@ with sync_playwright() as p:
   assert info["scrollWidth"]<=width+1,(width,"document scrolls horizontally",info)
   assert info["figures"]==info["svg"]==info["tables"]==info["exports"]==9,(width,info)
   assert info["mobilePanels"]==9 and info["mobileVisible"]==(0 if width==1440 else 9),(width,"invisible financial answer on phone",info)
-  assert info["navPosition"]==("static" if width==390 else "sticky"),(width,info)
+  assert info["navPosition"]=="static",(width,"chapter nav must never obscure figure title",info)
   assert info["bodyExternalScripts"]==0,(width,"offline must need no external JS",info)
   assert len(info["ribbon"])==7,(width,"4 cost ribbons and 3 nonzero GP ribbons required",info["ribbon"])
   assert len({r["source"] for r in info["ribbon"]})==4
