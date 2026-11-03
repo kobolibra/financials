@@ -1,6 +1,6 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.4.1](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.4.2](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
 
 ## A. 先确定研究产品、原始来源和允许的结论
 
@@ -53,6 +53,7 @@
 ## F0. 第 N 家新公司的自动化证据合同（v8.4.0；强制）
 
 - [ ] `ISSUER_CAPSULE`：新增公司必须提交 `research/issuers/<code>/release-gates.json`，对应唯一 `site/research_catalog.json` 路由和真实自包含 HTML；七家历史页面没有因此获得追溯合格认证。
+- [ ] `PUBLISHED_EMBEDDED_LEDGER_DRIFT`：公司 HTML 若内嵌可复核的 `ledger-data`，则其发行人/原始来源说明/实际事实元值/互斥业务分类必须与 checked-in `source-ledger.json` 相同，避免报告来源文本改了、网页嵌入数据仍旧；原始 PDF 账本修改后需**真正重新生成网页并逐字节对比已发布 HTML**，不得靠关闭重建检查过关。
 - [ ] `THREE_ARTIFACT_IDENTITY`：新公司 PDF 归档→source-ledger.json→figure-briefs.json→release-gates.json 四者的公司代码、报告期、原始报告 SHA、事实 ID、真实物理页范围和原始元/比例类型均一致；不能仅让状态文件中的哈希正确、但源账本仍留历史 NOT_CHECKED 占位。
 - [ ] `SECTOR_ACCOUNTING_ROUTE`：本公司声明 sector_adapter 和 accounting_basis；银行/保险等不同准则不能套工业收入−成本或 CFO/FCF 图，通用机器禁用明显错误方案，具体行业报表仍要原始证据复核。
 - [ ] `PDF_BYTES_REAL`：自动程序实际读取归档 PDF 魔数、**字节数与 SHA**；真实物理页、官网与镜像文件字节同一性必须另行证明，不能以 metadata 字段替代。
