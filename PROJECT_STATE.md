@@ -2,7 +2,19 @@
 
 **状态日期：2026-11-03。生产分支：`main`。现行入口：[START_HERE.md](START_HERE.md)。机器状态：[project-status.json](project-status.json)。**
 
-> **唯一正式站点：首页统一八家公司研究库（本提交为候选，按当前 main 实际发布状态验收）。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
+> **唯一网站：首页统一八家公司研究库；公司旧站路由 PASS，但本次 688220 修复图形的 Cloudflare 发布仍受 LIVE FAIL 门槛约束。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
+
+## 2026-11-03 · 最新执行记录：桑基来源节点真实比例及线上部署阻断
+
+**此节记录当前严格发布门槛，不以旧“九图线上通过”覆盖新版本失败。**
+
+- **实际源工程已合并 `main`**：修复来自 [PR #8](https://github.com/kobolibra/financials/pull/8) 的提交 `3a1878fa127eb8f757d1da1b68c5d8c1985b0ec0`。原有九张独立财务研究图、全部八个公司独立 URL 保留，原七公司 HTML 没有被改写。主版本是 `public/688220.html`，源头是 `research/issuers/688220/report-template.html` 与 `publish.py`。
+- **真正的 AEI/FT 图形错误**：旧版 p.178 “测试服务与其他”收入 79,769.92 元在桑基里按金额计算只有约 **0.011 SVG 单位**高，但来源节点 `span<1` 被换成固定 `stroke-width=1` 的线，视觉放大约 92 倍（流向 ribbon 原金额未变）。现移除最小 1px 线条，四类来源全按真实元金额构成节点，七条真正有金额的成本/毛利 Ribbon 与一条 **零毛利、零正面积**分流均如实处理。所有来源/终点源标签、期间、物理 p178、金额与图形几何有独立 browser 校验，不能只将 `data-value` 当成可视比例的证据。
+- **桌面阅读修复**：原收入桑基 SVG 1190px，现金及资产负债图 1100/1090px，桌面 figure 可用区域约 1060px，虽然整页不溢出却会让部分成本/利润终点隐藏于图内滚动。上述三图现改为 1050px；Playwright 在 1440px 逐图强制内部 `scrollWidth <= clientWidth + 2` 并检查 SVG 文字 `getBBox()` 不出边界；768/390 保留图内滚动并确保第一层结论金额可直接阅读。
+- **PASS / 真实运行证据**：旧完整原始 PDF 镜像 224 页/1,449,510 字节/SHA256 `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`，原始选定 118 项（109 连续文字+9 原单元格坐标）不变；`main` 会计/浏览器重建 [41660215226](https://github.com/kobolibra/financials/actions/runs/41660215226) **PASS**，线上现有 8 公司/24 路径尺寸 [41660215201](https://github.com/kobolibra/financials/actions/runs/41660215201) **PASS（仅已部署旧版的目录/路由层）**，主分支交接 [41660215142](https://github.com/kobolibra/financials/actions/runs/41660215142) PASS。真实 `1440/768/390` + 实图 Path 坐标、四来源、两个终点、零利润、不截断与 SVG 导出完成，21 张新图截图已在 [41659486482](https://github.com/kobolibra/financials/actions/runs/41659486482) 的 artifact 开卷检查。严格 Skill 条款与发布清单同步修正。
+- **FAIL / 线上真正阻断**：新增 `main` live QA commit `ac588ebab444ec4510747ddcb46395b397ca9699` 后，[41660682930](https://github.com/kobolibra/financials/actions/runs/41660682930) 在 Cloudflare 线上 `/688220.html` 找不到修复版 `rect.money-source`，说明公网仍提供旧版图形；**LIVE_NEW_SVG=FAIL**，而不是“站点已全新通过”。对应 `3a1878...` 的 **Cloudflare Pages** GitHub provider check 仍 `in_progress`（检查时点），不能对外声称新代码的 Cloudflare 部署 PASS。新上线验收条件不能删除或放宽。
+- **NOT_CHECKED / 不得冒充**：上交所官方静态 PDF 服务器与已核镜像的字节同一性、全部 224 页重大附注完整独立逐项复核、8–12 季度真实同行/估值、第二名真正独立人类财务或视觉审稿人；应收及合同资产附注集中度 p137 披露 90.50% 与简单披露分母回算 89.17% 仍 **FAIL_UNRECONCILED**，待履约义务 p179 明细相加比披露总额多 **0.01 元**，没有编造补差额。
+- **下一步 P0**：核实 Cloudflare Pages 对最新 `main` 是否构建/部署成功，若部署恢复，重跑包含 `money-source` 真节点和 1440px 终点可见性的真实线上 8 公司 × 3 视口 Chromium；把最后对应 SHA、Actions 运行与截图写回本节和 `project-status.json`，否则保持 LIVE FAIL 并排查 Cloudflare GitHub 构建连接。不可借原始 24 路由旧图成功假报新图已发布。
 
 ## 2026-11-03 · 九图正式版增量原始 PDF 行列证据与图形通用财务关系
 
