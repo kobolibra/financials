@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "code": "688220",
+  "company": "翱捷科技-U",
+  "period": "2026H1",
+  "release_class": "source_limited_preview",
+  "report_route": "/688220.html",
+  "report_file": "public/688220.html",
+  "status_label": "研究预览：来源限制与未结附注差异",
+  "source_pdf": {
+    "path": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+    "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+    "bytes": 1449510,
+    "physical_pages": 224,
+    "official_original_byte_equivalence": "NOT_CHECKED",
+    "note": "归档的完整 PDF 镜像；SSE 官方直链返回 HTML，官方字节同一性未核"
+  },
+  "sankey": {
+    "decision": "USED_CONSERVED",
+    "source_scope": "p178 exclusive contract-goods business types; 4 revenue sources, 4 cost and 4 GP edges, one exact zero GP",
+    "omission_reason": null
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+      "scope": "repo mirror SHA and byte size; not official SSE equivalence"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/688220/source-cells.json",
+      "scope": "selected 118 cells only; not all PDF notes"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/688220/qa.json",
+      "scope": "29 targeted exact checks including signed CFO; material note exceptions separate"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/688220/research-memo.md",
+      "scope": "source-bounded issuer thesis + alternate explanation, not verified market model"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/688220/qa_browser.py",
+      "scope": "7 positive signed-gated ribbons, zero GP, source-node dimensions, P&L and balance graph; issuer-specific QA"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41659486482",
+      "scope": "assistant reviewed actual 1440/768/390 screenshots; no independent art editor"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41660215226",
+      "scope": "9 figures, tables, 1440/768/390 and SVG export"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "research/issuers/688220/publish.py",
+      "scope": "clean publisher rebuild checked in main workflow"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "full-page critical note review beyond 118 selected numbers not completed"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "FAIL",
+      "proof": "research/issuers/688220/research-memo.md",
+      "scope": "p137 AR concentration 90.50% vs derived 89.17%; p179 RPO 0.01-yuan disclosure mismatch"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "SSE official direct PDF byte hash unavailable"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "external 8–12Q and market inputs unavailable"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "no second professional reviewer has signed"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "FAIL",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41660682930",
+      "scope": "Cloudflare still served old source-node SVG in strict live attempt 1 and 2; do not claim current production"
+    }
+  },
+  "blockers": [
+    {
+      "kind": "SOURCE_NOTE",
+      "page": 137,
+      "issue": "90.50% reported top-five AR/contract asset versus 89.17% derived, denominator unresolved"
+    },
+    {
+      "kind": "SOURCE_NOTE",
+      "page": 179,
+      "issue": "RPO disclosed partitions differ by RMB 0.01"
+    },
+    {
+      "kind": "RELEASE",
+      "page": null,
+      "issue": "current Cloudflare production still missing source geometry as of live attempt 2"
+    }
+  ]
+}
