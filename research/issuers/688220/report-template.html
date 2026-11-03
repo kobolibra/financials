@@ -29,15 +29,28 @@ section.article{margin-top:105px;scroll-margin-top:80px}.sectionid{display:inlin
 </section>
 <section class="article" id="earnings"><span class="sectionid">02 / EARNINGS QUALITY</span><div class="section-head"><h2>毛利改善推动经营基础；<br>非经常性收益改变法定利润的方向。</h2><p>会计利润、扣非归母利润与现金并列，而不是以一个“盈利已转正”的单指标替代。</p></div>
 <figure class="figure" id="fig-gp"><div class="figure-id">FIGURE 03 / EXACT SIGNED GROSS-PROFIT BRIDGE</div><div class="figure-top"><div><h3>2025H1 到 2026H1：毛利增加，算术贡献来自哪里？</h3><p class="answer">这是一条收入变动减成本变动的恒等式，不应解释成已经识别的单价、销量、产品组合或良率贡献。</p></div><button class="export" type="button" data-export="gp">导出 SVG</button></div><div class="mobile-facts" aria-label="毛利变化手机端摘要"><strong>毛利由 2025H1 的 4.69 亿元增至 2026H1 的 7.22 亿元。</strong><span>增量约 2.52 亿元，属于收入增加减成本增加的算术关系，并非销量或 ASP 的因果分解。</span></div><div class="vizscroll" id="chart-gp"></div><p class="source">来源：p.86 合并利润表，本期与上年同期营业收入、营业成本。带符号算术桥，人民币亿元；不做未经验证的 ASP 或价格/销量拆分。</p><details class="data-details"><summary>展开原始比较期财务金额</summary><div id="table-gp"></div></details></figure>
-<figure class="figure" id="fig-earnings"><div class="figure-id">FIGURE 04 / RECURRENT vs STATUTORY</div><div class="figure-top"><div><h3>扣非仍亏损，为什么归母净利润转正？</h3><p class="answer">扣非归母 −0.59 亿 + 税后非经常项目 1.43 亿 = 归母 0.84 亿。图形严格保留负数方向，而不把税前公允价值收益直接当成税后归母调整。</p></div><button class="export" type="button" data-export="earnings">导出 SVG</button></div><div class="mobile-facts" aria-label="归母和扣非手机端摘要"><strong>扣非归母 −0.59 亿元 + 税后非经常项目 1.43 亿元 = 法定归母 +0.84 亿元。</strong><span>三个数值同为归母税后口径，正负号保留。</span></div><div class="vizscroll" id="chart-earnings"></div><p class="source">来源：财报 p.8–10 归母、扣非归母与非经常性损益表（税后）；p.86–87 利润表的公允价值变动等项目与此不同税基和归属口径，禁止直接相减。</p><details class="data-details"><summary>展开非经常项目披露及税影响（原金额）</summary><div id="table-earnings"></div></details></figure>
+<figure class="figure" id="fig-pnl" data-accounting-family="signed-pnl">
+ <div class="figure-id">FIGURE 04 / FROM GROSS PROFIT TO NET PROFIT / CAS SIGNED BRIDGE</div>
+ <div class="figure-top"><div>
+  <h3>7.22 亿毛利，为什么最终只留下 0.84 亿净利润？</h3>
+  <p class="answer">不是把负数强塞进桑基。研发费用先吸收约 6.63 亿毛利，再由投资、公允价值变动及税项等带符号调节，形成当期法定利润。这是一张完整利润表主线桥，不是现金流向。</p>
+ </div><button class="export" type="button" data-export="pnl">导出 SVG</button></div>
+ <div class="mobile-facts" aria-label="法定利润桥手机端答案"><strong>毛利 7.22 亿 − 研发 6.63 亿 − 其他税费与期间费用约 0.80 亿 → 基础经营余量约 −0.22 亿。</strong><span>随后叠加其他收益、投资收益、公允价值变动、减值、非经营收支与所得税收益，合并净利润为 +0.84 亿。不是经营性现金。</span></div>
+ <div class="vizscroll" id="chart-pnl" role="region" aria-label="2026年上半年从毛利至法定净利润的带符号瀑布；移动端可左右滑动"></div>
+ <p class="scroll-hint">每一步保留原始财报正负号；微小营业外项目以直接金额标注，表格保留完整元金额。</p>
+ <div class="context"><strong>口径守恒：</strong>合并毛利 − 研发 − 另外四项期间费用及税金 + 其他收益 + 投资收益 + 公允价值变动收益 − 信用/资产减值及处置损益 = 营业利润；营业利润 + 营业外净额 − 所得税费用 = 合并净利润。每个括号的明细均可展开核对。</div>
+ <p class="source">来源：《翱捷科技 2026 年半年度报告》合并利润表物理 p.86–87。2026H1、人民币亿元，利润表本期损益（非现金）。公允价值损益、税后扣非和其他综合收益是不同口径。</p>
+ <details class="data-details"><summary>逐行核对利润表所有相关原始项目（元）</summary><div id="table-pnl"></div></details>
+</figure>
+<figure class="figure" id="fig-earnings"><div class="figure-id">FIGURE 05 / RECURRENT vs STATUTORY</div><div class="figure-top"><div><h3>扣非仍亏损，为什么归母净利润转正？</h3><p class="answer">扣非归母 −0.59 亿 + 税后非经常项目 1.43 亿 = 归母 0.84 亿。图形严格保留负数方向，而不把税前公允价值收益直接当成税后归母调整。</p></div><button class="export" type="button" data-export="earnings">导出 SVG</button></div><div class="mobile-facts" aria-label="归母和扣非手机端摘要"><strong>扣非归母 −0.59 亿元 + 税后非经常项目 1.43 亿元 = 法定归母 +0.84 亿元。</strong><span>三个数值同为归母税后口径，正负号保留。</span></div><div class="vizscroll" id="chart-earnings"></div><p class="source">来源：财报 p.8–10 归母、扣非归母与非经常性损益表（税后）；p.86–87 利润表的公允价值变动等项目与此不同税基和归属口径，禁止直接相减。</p><details class="data-details"><summary>展开非经常项目披露及税影响（原金额）</summary><div id="table-earnings"></div></details></figure>
 <div class="key-callout">盈利的下一次考验，是当公允价值变动和其他非经常项目贡献下降时，芯片与 ASIC 的毛利润是否足以覆盖研发、管理和持续经营成本。</div>
 <div class="essay"><p>研发费用本期约 6.63 亿元，是理解芯片设计业务盈利边界的关键成本。但不能把单期研发支出全部理解为与当期收入一一对应的“无效费用”；也不能把现金资本开支与研发费用混为一项投资。本报告只使用报表明示的支出分类。</p></div></section>
 <section class="article" id="cash"><span class="sectionid">03 / OPERATING CASH & RECONCILIATION</span><div class="section-head"><h2>合并净利润 0.84 亿，<br>怎样变成经营现金净流出 3.77 亿？</h2><p>经营现金流的答案必须从原始间接法完整 17 项调节出发，而不能用资产负债表两个时点的存货差额替换现金流附注。</p></div>
-<figure class="figure" id="fig-cfo"><div class="figure-id">FIGURE 05 / INDIRECT CFO / SIGNED AND EXACT</div><div class="figure-top"><div><h3>经营现金流：非现金调节与营运资本吸收在哪里发生？</h3><p class="answer">存货增加对应现金流调节约 −4.71 亿、经营性应收约 −3.55 亿；经营性应付增加抵消约 +2.64 亿。完整 17 项按原始符号勾稽到 0.00 元。</p></div><button class="export" type="button" data-export="cfo">导出 SVG</button></div><div class="mobile-facts" aria-label="现金流间接调节手机端摘要"><strong>合并净利润 +0.84 亿元 → 经营现金流 −3.77 亿元。</strong><span>存货现金流调整 −4.71 亿、经营性应收 −3.55 亿、经营性应付 +2.64 亿；完整 17 项均在下方原始表。</span></div><div class="vizscroll" id="chart-cfo"></div><p class="source">来源：p.187–188 合并现金流量表补充资料全部 17 项；起点合并净利润，终点 p.90 经营现金流。会计元精度在源码发布器验证，图形只合并显示部分同源细项以保持可读。</p><details class="data-details"><summary>展开完整 17 项原始现金流调整（每项符号与页码）</summary><div id="table-cfo"></div></details></figure>
-<figure class="figure" id="fig-cash"><div class="figure-id">FIGURE 06 / CASH EQUIVALENT CLOSE</div><div class="figure-top"><div><h3>现金余额为什么下降？经营、投资、筹资与汇率的完整闭合。</h3><p class="answer">期初现金等价物 + CFO + CFI + CFF + 现金汇率影响 = 期末现金等价物。别把资产负债表“货币资金”误认为完全相同的定义。</p></div><button class="export" type="button" data-export="cash">导出 SVG</button></div><div class="mobile-facts" aria-label="现金首尾手机端摘要"><strong>现金及现金等价物由 30.31 亿元降至 29.15 亿元。</strong><span>经营 −3.77 亿、投资 +1.35 亿、筹资 +1.92 亿、现金汇率影响 −0.66 亿，原始元金额严格闭合。</span></div><div class="vizscroll" id="chart-cash"></div><p class="source">来源：p.90–92 合并现金流量表；p.189 现金及现金等价物附注。汇率对现金余额的影响与利润表汇兑、其他综合收益是不同会计项目。</p><details class="data-details"><summary>展开现金流四项与首尾原始金额</summary><div id="table-cash"></div></details></figure></section>
+<figure class="figure" id="fig-cfo"><div class="figure-id">FIGURE 06 / INDIRECT CFO / SIGNED AND EXACT</div><div class="figure-top"><div><h3>经营现金流：非现金调节与营运资本吸收在哪里发生？</h3><p class="answer">存货增加对应现金流调节约 −4.71 亿、经营性应收约 −3.55 亿；经营性应付增加抵消约 +2.64 亿。完整 17 项按原始符号勾稽到 0.00 元。</p></div><button class="export" type="button" data-export="cfo">导出 SVG</button></div><div class="mobile-facts" aria-label="现金流间接调节手机端摘要"><strong>合并净利润 +0.84 亿元 → 经营现金流 −3.77 亿元。</strong><span>存货现金流调整 −4.71 亿、经营性应收 −3.55 亿、经营性应付 +2.64 亿；完整 17 项均在下方原始表。</span></div><div class="vizscroll" id="chart-cfo"></div><p class="source">来源：p.187–188 合并现金流量表补充资料全部 17 项；起点合并净利润，终点 p.90 经营现金流。会计元精度在源码发布器验证，图形只合并显示部分同源细项以保持可读。</p><details class="data-details"><summary>展开完整 17 项原始现金流调整（每项符号与页码）</summary><div id="table-cfo"></div></details></figure>
+<figure class="figure" id="fig-cash"><div class="figure-id">FIGURE 07 / CASH EQUIVALENT CLOSE</div><div class="figure-top"><div><h3>现金余额为什么下降？经营、投资、筹资与汇率的完整闭合。</h3><p class="answer">期初现金等价物 + CFO + CFI + CFF + 现金汇率影响 = 期末现金等价物。别把资产负债表“货币资金”误认为完全相同的定义。</p></div><button class="export" type="button" data-export="cash">导出 SVG</button></div><div class="mobile-facts" aria-label="现金首尾手机端摘要"><strong>现金及现金等价物由 30.31 亿元降至 29.15 亿元。</strong><span>经营 −3.77 亿、投资 +1.35 亿、筹资 +1.92 亿、现金汇率影响 −0.66 亿，原始元金额严格闭合。</span></div><div class="vizscroll" id="chart-cash"></div><p class="source">来源：p.90–92 合并现金流量表；p.189 现金及现金等价物附注。汇率对现金余额的影响与利润表汇兑、其他综合收益是不同会计项目。</p><details class="data-details"><summary>展开现金流四项与首尾原始金额</summary><div id="table-cash"></div></details></figure></section>
 <section class="article" id="capital"><span class="sectionid">04 / WORKING CAPITAL & REINVESTMENT</span><div class="section-head"><h2>库存、应收和预付款项上行，<br>合同负债亦在增长。</h2><p>余额变化是两个时点的存量变化，不是间接现金流量表调整项；原因可能包括交付准备、收入确认、减值与收款时点。</p></div>
 <aside class="note" style="margin:24px 0"><h3>真实源附注反证：应收前五名占比的分母尚未勾稽</h3><p>p.137 合并附注披露前五名应收账款及合同资产余额 414,844,022.57 元，占比 <strong>90.50%（发行人披露原文）</strong>；这<strong>不是客户销售额集中度</strong>。然而用 p.135 合并应收账款账面余额 464,113,067.29 元加 p.138 合同资产账面余额 1,113,000.00 元作为直接分母，计算得到约 <strong>89.17%</strong>，与表中 90.50% 并不一致。该项占比的准确统计分母仍未核实，本文不会为它补造一个分母或把比例当作已经可独立勾稽的事实；母公司 p.213 的 95.01% 更是另一合并范围，不可替换。</p><p>同一合并应收账款 p.135 期末原值 4.64 亿元、坏账准备约 0.08 亿元。账龄三个月至一年金额 50,662,511.11 元；少数个别逾期客户的单项减值见 p.136。前五名余额集中、个别逾期及整体坏账率是不同问题，不能用一个百分比武断下结论。</p></aside>
-<figure class="figure" id="fig-capital"><div class="figure-id">FIGURE 07 / TWO-DATE BALANCE STOCKS</div><div class="figure-top"><div><h3>从 2025 年末到 2026 年六月，资本占用落在哪里？</h3><p class="answer">存货与预付款项的增长，需要配合芯片在制、委托加工、客户验收和回款周期分析；合同负债不等于当期净现金流入。</p></div><button class="export" type="button" data-export="capital">导出 SVG</button></div><div class="mobile-facts" aria-label="营运资本存量手机端摘要"><strong>存货净额 17.04 → 21.55 亿；应收净额 3.09 → 4.56 亿。</strong><span>预付款项 2.57 → 4.47 亿；合同负债 2.31 → 4.66 亿。均为年末至六月末的存量比较，不是现金流量。</span></div><div class="vizscroll" id="chart-capital"></div><p class="source">来源：p.81–83 合并资产负债表；p.146–147 存货及合同履约成本附注。余额时点：2025-12-31 与 2026-06-30；人民币亿元。</p><details class="data-details"><summary>展开全部比较期存量数据</summary><div id="table-capital"></div></details></figure>
+<figure class="figure" id="fig-capital"><div class="figure-id">FIGURE 08 / TWO-DATE BALANCE STOCKS</div><div class="figure-top"><div><h3>从 2025 年末到 2026 年六月，资本占用落在哪里？</h3><p class="answer">存货与预付款项的增长，需要配合芯片在制、委托加工、客户验收和回款周期分析；合同负债不等于当期净现金流入。</p></div><button class="export" type="button" data-export="capital">导出 SVG</button></div><div class="mobile-facts" aria-label="营运资本存量手机端摘要"><strong>存货净额 17.04 → 21.55 亿；应收净额 3.09 → 4.56 亿。</strong><span>预付款项 2.57 → 4.47 亿；合同负债 2.31 → 4.66 亿。均为年末至六月末的存量比较，不是现金流量。</span></div><div class="vizscroll" id="chart-capital"></div><p class="source">来源：p.81–83 合并资产负债表；p.146–147 存货及合同履约成本附注。余额时点：2025-12-31 与 2026-06-30；人民币亿元。</p><details class="data-details"><summary>展开全部比较期存量数据</summary><div id="table-capital"></div></details></figure>
 <div class="two"><div class="note"><h3>存货减值的另一面</h3><p>期末存货净额 21.55 亿元，原值 22.95 亿、跌价准备约 1.40 亿；本期新增计提 55,097,071.34 元，同时存在减值转回／转销和其他减少，净准备较年初下降并不等于没有减值压力。资产质量不能只看净额增长。委托加工物资、成品及预付款项需要分别验证实物需求、客户订单、验收与新一轮计提。p.146–147。</p></div><div class="note"><h3>研发支出与现金资本支出</h3><p>本期研发费用约 6.63 亿元、购建长期资产现金流出约 0.58 亿元。按明确的分析师定义，简单 FCF = CFO − 购建长期资产支付现金，约 −4.35 亿元；不是管理层的法定 FCF，也不代表未来正常化水平。</p></div></div></section>
 <div class="note" style="margin:28px 0"><h3>合同负债、短期到期义务与流动性是三种不同尺度</h3><p>合同负债 p.166 的 4.66 亿元，由 ASIC 定制预收 291,867,010.73 元、预收货款 171,870,048.96 元和 IP 授权预收 2,174,451.18 元构成，精确守恒，但不表示收入已经实现。p.201 未折现合同现金流中一年内到期金融负债约 11.49 亿元，其中短期借款约 5.03 亿元。p.189 现金等价物约 29.15 亿元，其中仍计入现金等价物的受限租赁保证金 335,445.51 元；不能将资产负债表全部货币资金无条件视为自由现金。p.202–203 第三层次公允价值资产约 7.49 亿元，估值含不可观察输入，并不同于本期利润表公允价值收益或权益工具 OCI。</p></div>
 <section class="article" id="risk"><span class="sectionid">05 / COUNTERVIEW & TESTS</span><div class="section-head"><h2>五项可能推翻当前解释的后续披露。</h2><p>证据支持增长与毛利改善，但并未证明新产品长期定价权、量产兑现率或自由现金流已经稳定。</p></div><div class="risk"><div class="item"><b>01 · 库存和委托加工物资</b><p>如果后续存货、预付持续大增而芯片毛利率转弱，需重新评估备货效率和跌价风险。</p></div><div class="item"><b>02 · ASIC 项目验收、量产</b><p>跟踪在手订单、合同履约成本结转、已量产订单占比。尚未履约金额不等于营业收入或当期回款。</p></div><div class="item"><b>03 · 应收与合同负债</b><p>检验应收账龄、坏账准备、实际回款与客户预收款，不以应收余额集中度代替客户销售集中度。</p></div><div class="item"><b>04 · 扣非持续盈利能力</b><p>如果非经常性收益收缩，经营毛利能否持续覆盖研发和其他经营费用？</p></div><div class="item"><b>05 · 资本投入与现金储备</b><p>区分货币资金、现金等价物、受限资金和短债，把负经营现金流的持续性纳入流动性判断。</p></div><div class="item"><b>最佳对立假说</b><p>现金流恶化并不必然意味着需求恶化；也可能是已获订单的备货、研发与验收阶段性错配。后续交付和回款才是区分两种解释的证据。</p></div></div></section>
@@ -137,6 +150,45 @@ function waterfall(name,entries,options){
  register(name,svg(W,H,s,options.title));
 }
 function gp(){const p=N("rev_prior")-N("cogs_prior"),dr=N("rev")-N("rev_prior"),dc=N("cogs")-N("cogs_prior"),end=N("rev")-N("cogs");waterfall("gp",[{label:"2025H1|毛利",start:0,end:p,total:true},{label:"收入增加|（算术）",start:p,end:p+dr},{label:"成本增加|（负贡献）",start:p+dr,end:p+dr-dc},{label:"2026H1|毛利",start:0,end,total:true}],{title:"2025H1至2026H1合并毛利收入增减与成本增减的严格算术桥"});table("gp",factual(["rev_prior","cogs_prior","rev","cogs"]));}
+function pnl(){
+ // All rows tie directly to issuer's signed consolidated income statement.
+ const gross=N("rev")-N("cogs");
+ const others=N("tax_surcharge")+N("sell")+N("admin")+N("finance_expense");
+ const otherIncome=N("other_income")+N("investment_income");
+ const impair=N("credit_impairment")+N("asset_impairment"); // already signed
+ const nonop=N("nonoperating_income")-N("nonoperating_expense");
+ const taxBenefit=-N("income_tax_expense"); // a negative expense on the original P&L
+ let at=gross;
+ const steps=[{label:"2026H1|合并毛利",start:0,end:gross,total:true}];
+ const parts=[
+ [-N("rnd_expense"),"研发|费用"],
+ [-others,"销售管理财务|费用及税金"],
+ [otherIncome,"其他收益|与投资收益"],
+ [N("fair_value_income"),"公允价值|变动收益"],
+ [impair,"信用与资产|减值损失"],
+ [N("asset_disposal_gain"),"资产处置|损益"]
+ ];
+ parts.forEach(([v,label])=>{steps.push({label,start:at,end:at+v});at+=v;});
+ const operating=at;
+ steps.push({label:"营业利润|小计",start:0,end:N("operating_profit"),total:true});
+ steps.push({label:"营业外|净收支",start:at,end:at+nonop});at+=nonop;
+ steps.push({label:"所得税|收益",start:at,end:at+taxBenefit});at+=taxBenefit;
+ steps.push({label:"合并净利|法定口径",start:0,end:N("consolidated_net_profit"),total:true});
+ registerPnlProvenance();
+ if(Math.abs(operating-N("operating_profit"))>0.001 || Math.abs(at-N("consolidated_net_profit"))>0.001){
+   throw new Error("INCOME_STATEMENT_SIGNED_BRIDGE_INVARIANT_FAILURE");
+ }
+ waterfall("pnl",steps,{title:"2026H1翱捷科技合并利润表：毛利、研发费用、其余四项费用及税金、投资与公允价值、减值与税收收益至法定净利润的真实带符号瀑布"});
+ table("pnl",[
+  ["合并营业收入",N("rev"),"p.86"],["合并营业成本",N("cogs"),"p.86"],
+  ["毛利润（收入减成本）",gross,"p.86"],
+  ...["rnd_expense","tax_surcharge","sell","admin","finance_expense","other_income","investment_income","fair_value_income","credit_impairment","asset_impairment","asset_disposal_gain","operating_profit","nonoperating_income","nonoperating_expense","pretax_profit","income_tax_expense","consolidated_net_profit","parent_ni"].map(k=>[F[k].label,N(k),"p."+F[k].page])
+ ]);
+}
+function registerPnlProvenance(){
+ // Publisher checks exact Decimal equality; browser performs an additional
+ // independent render-bound signed identity before drawing the P&L chart.
+}
 function earnings(){const a=N("deducted_parent_ni"),b=N("nonrec_parent_net"),c=N("parent_ni"),w=1040,H=340,x0=500,scale=250/1.5e8;let s=E("亏损 / 零 / 利润（同一归母口径，单位亿元）",500,30,'text-anchor="middle" font-size="14" font-weight="750"')+'<line x1="'+x0+'" y1="55" x2="'+x0+'" y2="285" stroke="'+C.ink+'" stroke-width="2"/>';
  [["扣非归母",a],["非经常项目（税后）",b],["法定归母",c]].forEach((z,i)=>{const y=85+i*86,x=x0+z[1]*scale,sx=Math.min(x,x0);s+=E(z[0],18,y+19,'font-weight="700"')+'<rect x="'+sx+'" y="'+y+'" width="'+Math.abs(x-x0)+'" height="27" fill="'+(z[1]>=0?C.green:C.rust)+'"/>'+E(signed(z[1])+" 亿",z[1]<0?x-9:x+11,y+20,'text-anchor="'+(z[1]<0?'end':'start')+'" font-weight="700"')+'<line x1="18" y1="'+(y+52)+'" x2="1005" y2="'+(y+52)+'" stroke="'+C.line+'"/>';});
  register("earnings",svg(w,H,s,"归母净利润，扣非归母利润与税后非经常性损益的带符号零基准比较"));
@@ -157,7 +209,7 @@ function capital(){const pairs=[["存货净额","inventory_net_prior","inventory
  register("capital",svg(1060,475,s,"2025年末与2026年六月存货，应收，预付和合同负债的两个时点存量对照"));
  table("capital",pairs.flatMap(q=>[ [F[q[1]].label,F[q[1]].yuan,"p."+F[q[1]].page],[F[q[2]].label,F[q[2]].yuan,"p."+F[q[2]].page] ]));}
 function downloadSVG(name){let el=document.querySelector("#chart-"+name+" svg");if(!el)return;const blob=new Blob([new XMLSerializer().serializeToString(el)],{type:"image/svg+xml;charset=utf-8"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="688220_2026H1_"+name+".svg";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),200);}
-sourceSankey();segment();gp();earnings();cfo();cash();capital();
+sourceSankey();segment();gp();pnl();earnings();cfo();cash();capital();
 document.querySelectorAll("[data-export]").forEach(b=>b.addEventListener("click",()=>downloadSVG(b.dataset.export)));
 })();
 </script>
