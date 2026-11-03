@@ -1,7 +1,7 @@
 name: Build and audit ASR 688220 source-limited standalone research
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1', main]
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-flow-editorial-v2', main]
     paths:
       - 'research/issuers/688220/**'
       - 'public/688220.html'
@@ -62,8 +62,8 @@ jobs:
           git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json
           if ! git diff --cached --quiet; then
             git commit -m "Generate ASR 688220 independent source-limited research HTML and ledger QA"
-            git pull --rebase origin work/asrmicro-688220-2026h1
-            git push origin HEAD:work/asrmicro-688220-2026h1
+            git pull --rebase origin "${{ github.ref_name }}"
+            git push origin "HEAD:${{ github.ref_name }}"
           fi
       - name: Archive readable actual 1440/768/390 browser evidence
         if: always()
