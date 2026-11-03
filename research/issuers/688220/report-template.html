@@ -50,7 +50,18 @@ section.article{margin-top:105px;scroll-margin-top:80px}.sectionid{display:inlin
 <figure class="figure" id="fig-cash"><div class="figure-id">FIGURE 07 / CASH EQUIVALENT CLOSE</div><div class="figure-top"><div><h3>现金余额为什么下降？经营、投资、筹资与汇率的完整闭合。</h3><p class="answer">期初现金等价物 + CFO + CFI + CFF + 现金汇率影响 = 期末现金等价物。别把资产负债表“货币资金”误认为完全相同的定义。</p></div><button class="export" type="button" data-export="cash">导出 SVG</button></div><div class="mobile-facts" aria-label="现金首尾手机端摘要"><strong>现金及现金等价物由 30.31 亿元降至 29.15 亿元。</strong><span>经营 −3.77 亿、投资 +1.35 亿、筹资 +1.92 亿、现金汇率影响 −0.66 亿，原始元金额严格闭合。</span></div><div class="vizscroll" id="chart-cash"></div><p class="source">来源：p.90–92 合并现金流量表；p.189 现金及现金等价物附注。汇率对现金余额的影响与利润表汇兑、其他综合收益是不同会计项目。</p><details class="data-details"><summary>展开现金流四项与首尾原始金额</summary><div id="table-cash"></div></details></figure></section>
 <section class="article" id="capital"><span class="sectionid">04 / WORKING CAPITAL & REINVESTMENT</span><div class="section-head"><h2>库存、应收和预付款项上行，<br>合同负债亦在增长。</h2><p>余额变化是两个时点的存量变化，不是间接现金流量表调整项；原因可能包括交付准备、收入确认、减值与收款时点。</p></div>
 <aside class="note" style="margin:24px 0"><h3>真实源附注反证：应收前五名占比的分母尚未勾稽</h3><p>p.137 合并附注披露前五名应收账款及合同资产余额 414,844,022.57 元，占比 <strong>90.50%（发行人披露原文）</strong>；这<strong>不是客户销售额集中度</strong>。然而用 p.135 合并应收账款账面余额 464,113,067.29 元加 p.138 合同资产账面余额 1,113,000.00 元作为直接分母，计算得到约 <strong>89.17%</strong>，与表中 90.50% 并不一致。该项占比的准确统计分母仍未核实，本文不会为它补造一个分母或把比例当作已经可独立勾稽的事实；母公司 p.213 的 95.01% 更是另一合并范围，不可替换。</p><p>同一合并应收账款 p.135 期末原值 4.64 亿元、坏账准备约 0.08 亿元。账龄三个月至一年金额 50,662,511.11 元；少数个别逾期客户的单项减值见 p.136。前五名余额集中、个别逾期及整体坏账率是不同问题，不能用一个百分比武断下结论。</p></aside>
-<figure class="figure" id="fig-capital"><div class="figure-id">FIGURE 08 / TWO-DATE BALANCE STOCKS</div><div class="figure-top"><div><h3>从 2025 年末到 2026 年六月，资本占用落在哪里？</h3><p class="answer">存货与预付款项的增长，需要配合芯片在制、委托加工、客户验收和回款周期分析；合同负债不等于当期净现金流入。</p></div><button class="export" type="button" data-export="capital">导出 SVG</button></div><div class="mobile-facts" aria-label="营运资本存量手机端摘要"><strong>存货净额 17.04 → 21.55 亿；应收净额 3.09 → 4.56 亿。</strong><span>预付款项 2.57 → 4.47 亿；合同负债 2.31 → 4.66 亿。均为年末至六月末的存量比较，不是现金流量。</span></div><div class="vizscroll" id="chart-capital"></div><p class="source">来源：p.81–83 合并资产负债表；p.146–147 存货及合同履约成本附注。余额时点：2025-12-31 与 2026-06-30；人民币亿元。</p><details class="data-details"><summary>展开全部比较期存量数据</summary><div id="table-capital"></div></details></figure>
+<figure class="figure" id="fig-balance" data-accounting-family="equal-total-date-stock">
+ <div class="figure-id">FIGURE 08 / BALANCE SHEET / EQUAL TOTAL AT TWO DATES</div>
+ <div class="figure-top"><div><h3>资金从哪里支撑资产？资产增长与负债、权益来源必须同额。</h3>
+ <p class="answer">总资产由 69.80 亿增加至 77.94 亿，资产负债率同步上行；这是同一时点的资产＝负债＋权益，并非“资金从负债流入现金”的交易桑基。</p>
+ </div><button class="export" type="button" data-export="balance">导出 SVG</button></div>
+ <div class="mobile-facts" aria-label="资产与资金结构手机端答案"><strong>2026-06-30：资产 77.94 亿 = 负债 19.50 亿 + 所有者权益 58.44 亿。</strong><span>2025-12-31：资产 69.80 亿 = 负债 15.22 亿 + 所有者权益 54.58 亿；绝对额和结构均使用相同原始元金额比例尺。</span></div>
+ <div class="vizscroll" id="chart-balance" role="region" aria-label="两期总资产与负债、所有者权益相等的资产负债表存量图"></div>
+ <div class="context">两端同额、同口径，不将资产余额等同于可用于偿债的现金。p.201 的一年以内金融负债合同现金流是另一套*期限*口径；不能与本图负债总额直接相加。</div>
+ <p class="source">来源：p.81–83，合并资产负债表，人民币亿元；分别是 2025 年 12 月 31 日和 2026 年 6 月 30 日两个存量时点。</p>
+ <details class="data-details"><summary>展开资产＝负债＋所有者权益两期原始金额（元）</summary><div id="table-balance"></div></details>
+</figure>
+<figure class="figure" id="fig-capital"><div class="figure-id">FIGURE 09 / TWO-DATE BALANCE STOCKS</div><div class="figure-top"><div><h3>从 2025 年末到 2026 年六月，资本占用落在哪里？</h3><p class="answer">存货与预付款项的增长，需要配合芯片在制、委托加工、客户验收和回款周期分析；合同负债不等于当期净现金流入。</p></div><button class="export" type="button" data-export="capital">导出 SVG</button></div><div class="mobile-facts" aria-label="营运资本存量手机端摘要"><strong>存货净额 17.04 → 21.55 亿；应收净额 3.09 → 4.56 亿。</strong><span>预付款项 2.57 → 4.47 亿；合同负债 2.31 → 4.66 亿。均为年末至六月末的存量比较，不是现金流量。</span></div><div class="vizscroll" id="chart-capital"></div><p class="source">来源：p.81–83 合并资产负债表；p.146–147 存货及合同履约成本附注。余额时点：2025-12-31 与 2026-06-30；人民币亿元。</p><details class="data-details"><summary>展开全部比较期存量数据</summary><div id="table-capital"></div></details></figure>
 <div class="two"><div class="note"><h3>存货减值的另一面</h3><p>期末存货净额 21.55 亿元，原值 22.95 亿、跌价准备约 1.40 亿；本期新增计提 55,097,071.34 元，同时存在减值转回／转销和其他减少，净准备较年初下降并不等于没有减值压力。资产质量不能只看净额增长。委托加工物资、成品及预付款项需要分别验证实物需求、客户订单、验收与新一轮计提。p.146–147。</p></div><div class="note"><h3>研发支出与现金资本支出</h3><p>本期研发费用约 6.63 亿元、购建长期资产现金流出约 0.58 亿元。按明确的分析师定义，简单 FCF = CFO − 购建长期资产支付现金，约 −4.35 亿元；不是管理层的法定 FCF，也不代表未来正常化水平。</p></div></div></section>
 <div class="note" style="margin:28px 0"><h3>合同负债、短期到期义务与流动性是三种不同尺度</h3><p>合同负债 p.166 的 4.66 亿元，由 ASIC 定制预收 291,867,010.73 元、预收货款 171,870,048.96 元和 IP 授权预收 2,174,451.18 元构成，精确守恒，但不表示收入已经实现。p.201 未折现合同现金流中一年内到期金融负债约 11.49 亿元，其中短期借款约 5.03 亿元。p.189 现金等价物约 29.15 亿元，其中仍计入现金等价物的受限租赁保证金 335,445.51 元；不能将资产负债表全部货币资金无条件视为自由现金。p.202–203 第三层次公允价值资产约 7.49 亿元，估值含不可观察输入，并不同于本期利润表公允价值收益或权益工具 OCI。</p></div>
 <section class="article" id="risk"><span class="sectionid">05 / COUNTERVIEW & TESTS</span><div class="section-head"><h2>五项可能推翻当前解释的后续披露。</h2><p>证据支持增长与毛利改善，但并未证明新产品长期定价权、量产兑现率或自由现金流已经稳定。</p></div><div class="risk"><div class="item"><b>01 · 库存和委托加工物资</b><p>如果后续存货、预付持续大增而芯片毛利率转弱，需重新评估备货效率和跌价风险。</p></div><div class="item"><b>02 · ASIC 项目验收、量产</b><p>跟踪在手订单、合同履约成本结转、已量产订单占比。尚未履约金额不等于营业收入或当期回款。</p></div><div class="item"><b>03 · 应收与合同负债</b><p>检验应收账龄、坏账准备、实际回款与客户预收款，不以应收余额集中度代替客户销售集中度。</p></div><div class="item"><b>04 · 扣非持续盈利能力</b><p>如果非经常性收益收缩，经营毛利能否持续覆盖研发和其他经营费用？</p></div><div class="item"><b>05 · 资本投入与现金储备</b><p>区分货币资金、现金等价物、受限资金和短债，把负经营现金流的持续性纳入流动性判断。</p></div><div class="item"><b>最佳对立假说</b><p>现金流恶化并不必然意味着需求恶化；也可能是已获订单的备货、研发与验收阶段性错配。后续交付和回款才是区分两种解释的证据。</p></div></div></section>
@@ -204,12 +215,37 @@ function cash(){const end=N("cash_end"),start=N("cash_start"),parts=[["经营现
  all.forEach(([label,v],i)=>{let y=64+i*43,sx=base+v*mx;const from=i===0||i===all.length-1?base:base+(all[i-1][1])*mx;const vdiff=i===0||i===all.length-1?v:v-all[i-1][1];let l=i===0||i===all.length-1? v*mx:Math.abs(sx-from);let left=i===0||i===all.length-1?base:Math.min(sx,from);s+=E(label,8,y+14,'font-size="11"')+'<rect x="'+left+'" y="'+y+'" width="'+l+'" height="22" fill="'+(i===0||i===all.length-1?C.ink:vdiff>=0?C.green:C.rust)+'"/>'+E((i===0||i===all.length-1?n2(v):signed(vdiff))+" 亿",1010,y+15,'text-anchor="end" font-size="12" font-weight="700"');});
  register("cash",svg(1100,372,s,"2026H1期初现金至期末现金，经营、投资、筹资及汇率的真实符号调节"));
  table("cash",factual(["cash_start","cash_cfo","cash_cfi","cash_cff","cash_fx","cash_end"]));}
+function balance(){
+ const W=1090,H=430,barX=224,barW=745,scale=barW/N("assets");
+ const sets=[
+  {name:"2025 年末",a:N("assets_prior"),l:N("liabilities_prior"),e:N("equity_prior"),date:"2025-12-31"},
+  {name:"2026 年中",a:N("assets"),l:N("liabilities"),e:N("equity"),date:"2026-06-30"}
+ ];
+ let s=E("两期使用同一金额刻度；每期负债 + 总权益 = 总资产",18,27,'font-size="13" font-weight="700"');
+ s+=E("同一总资产长度",barX,57,'font-size="12" fill="'+C.muted+'"');
+ s+=E("负债",685,57,'font-size="12" fill="'+C.rust+'"')+E("股东权益",773,57,'font-size="12" fill="'+C.green+'"');
+ sets.forEach((q,i)=>{
+  const y=94+i*147,al=q.a*scale,ll=q.l*scale,el=q.e*scale;
+  s+=E(q.name,14,y+19,'font-size="17" font-weight="700"');
+  s+=E(q.date,14,y+41,'font-size="11" fill="'+C.muted+'"');
+  s+='<rect x="'+barX+'" y="'+y+'" width="'+al+'" height="38" fill="#e7eeeb" stroke="'+C.line+'"/>';
+  s+='<rect x="'+barX+'" y="'+(y+48)+'" width="'+ll+'" height="38" fill="'+C.rust+'" opacity=".8"/>';
+  s+='<rect x="'+(barX+ll)+'" y="'+(y+48)+'" width="'+el+'" height="38" fill="'+C.green+'" opacity=".86"/>';
+  s+=E("资产 "+n2(q.a)+" 亿",barX+Math.min(al/2,360),y+26,'font-size="15" font-weight="750" text-anchor="middle"');
+  s+=E("负债 "+n2(q.l)+" 亿",barX+ll/2,y+73,'font-size="13" font-weight="700" text-anchor="middle" fill="#fffefa"');
+  s+=E("权益 "+n2(q.e)+" 亿",barX+ll+el/2,y+73,'font-size="13" font-weight="700" text-anchor="middle" fill="#fffefa"');
+  s+=E("负债 / 资产 "+pct(q.l/q.a),14,y+74,'font-size="11" fill="'+C.muted+'"');
+ });
+ s+=E("注：资产总量是存量；颜色区分资金来源，并非实际资金运动。",18,411,'font-size="11" fill="'+C.muted+'"');
+ register("balance",svg(W,H,s,"2025年末及2026年中同一合并资产负债表资产总额与负债、总权益精确同额的两个时期比较"));
+ table("balance",factual(["assets_prior","liabilities_prior","equity_prior","assets","liabilities","equity"]));
+}
 function capital(){const pairs=[["存货净额","inventory_net_prior","inventory_net"],["应收账款净额","ar_prior","ar"],["预付款项","prepayments_prior","prepayments"],["合同负债","contract_liabilities_prior","contract_liabilities"]],mx=Math.max(...pairs.map(q=>N(q[2]))),base=240,width=680;let s=E("2025-12-31","770",26,'font-size="12" fill="'+C.blue+'"')+E("2026-06-30",870,26,'font-size="12" fill="'+C.green+'"');
  pairs.forEach((q,i)=>{const y=66+i*99,wold=N(q[1])/mx*width,wnew=N(q[2])/mx*width;s+=E(q[0],15,y+29,'font-size="14" font-weight="750"')+'<rect x="'+base+'" y="'+y+'" width="'+wold+'" height="15" fill="'+C.blue+'" opacity=".8"/>'+'<rect x="'+base+'" y="'+(y+24)+'" width="'+wnew+'" height="15" fill="'+C.green+'"/>'+E(n2(N(q[1]))+" → "+n2(N(q[2]))+" 亿",980,y+60,'font-size="11" text-anchor="end"');s+='<line x1="15" x2="1014" y1="'+(y+79)+'" y2="'+(y+79)+'" stroke="'+C.line+'"/>';});
  register("capital",svg(1060,475,s,"2025年末与2026年六月存货，应收，预付和合同负债的两个时点存量对照"));
  table("capital",pairs.flatMap(q=>[ [F[q[1]].label,F[q[1]].yuan,"p."+F[q[1]].page],[F[q[2]].label,F[q[2]].yuan,"p."+F[q[2]].page] ]));}
 function downloadSVG(name){let el=document.querySelector("#chart-"+name+" svg");if(!el)return;const blob=new Blob([new XMLSerializer().serializeToString(el)],{type:"image/svg+xml;charset=utf-8"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="688220_2026H1_"+name+".svg";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),200);}
-sourceSankey();segment();gp();pnl();earnings();cfo();cash();capital();
+sourceSankey();segment();gp();pnl();earnings();cfo();cash();balance();capital();
 document.querySelectorAll("[data-export]").forEach(b=>b.addEventListener("click",()=>downloadSVG(b.dataset.export)));
 })();
 </script>
