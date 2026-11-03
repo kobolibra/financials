@@ -27,6 +27,7 @@ jobs:
           git add research/issuers/688220/source/ research/issuers/688220/source-manifest.json research/issuers/688220/extracted/ research/issuers/688220/source-blocks/ research/issuers/688220/source-images/
           if ! git diff --cached --quiet; then
             git commit -m "Archive full 688220 original 2026H1 PDF and physical page source evidence"
+            git pull --rebase origin work/asrmicro-688220-2026h1
             git push origin HEAD:work/asrmicro-688220-2026h1
           fi
       - name: Preserve source original and page images in GitHub Actions artifact
