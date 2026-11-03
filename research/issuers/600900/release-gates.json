@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "code": "600900",
+  "company": "中国长江电力股份有限公司",
+  "period": "2026H1",
+  "release_class": "source_limited_preview",
+  "report_route": "/600900.html",
+  "report_file": "public/600900.html",
+  "status_label": "原创原始财报分析预览 · 原报告关键附注边界与第二名人类审稿未全部复核",
+  "sector_adapter": "utility",
+  "accounting_basis": "hydropower_revenue_from_reported_discharged_electricity_and_distinct_investment_return_with_restated_2025H1",
+  "source_pdf": {
+    "path": "research/issuers/600900/source/600900_2026H1_complete_original.pdf",
+    "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+    "bytes": 1296750,
+    "physical_pages": 214,
+    "official_original_byte_equivalence": "NOT_CHECKED",
+    "note": "Exact complete issuer PDF downloaded directly from official CNINFO disclosure URL and SHA verified. Independent SSE endpoint byte comparison not checked."
+  },
+  "ledger_file": "research/issuers/600900/source-ledger.json",
+  "figure_briefs_file": "research/issuers/600900/figure-briefs.json",
+  "sankey": {
+    "decision": "USED_CONSERVED",
+    "source_scope": "p154 mutually-exclusive main/other business, exact disclosed rev/cost; no water output volume converted to accounting sales",
+    "omission_reason": null
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/600900/source/600900_2026H1_complete_original.pdf",
+      "scope": "Complete official CNINFO downloaded PDF magic, SHA256, full archive bytes, physical pages and issuer cover checked"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/600900/source-critical-cells.json",
+      "scope": "Selected 20/26 critical original physical page x/y and row-anchor cells validated by PyMuPDF; not all PDF note cells"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/600900/qa.json",
+      "scope": "Full signed CAS P&L, BS, cash flow and all signed CFO supplemental rows exact yuan, 14-17 invariants"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/600900/story.json",
+      "scope": "Company-specific operating model, strong alternative explanations, research caveats and next period falsification"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/600900/figure-briefs.json",
+      "scope": "8 authored chart briefs and original weighted revenue to cost/gross profit ribbons; negative fields in signed waterfall"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
+      "scope": "Actual desktop 1440 and mobile 390 source screenshots opened and reviewed; independent second editor NOT_CHECKED"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
+      "scope": "8 real figures, 8 source tables, 1440/768/390 screenshots, source-to-ribbon SVG path geometry and no body overflow"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
+      "scope": "Real standalone HTML generated twice and byte-for-byte compared by successful Actions"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Not all full 214/182 physical pages and material notes certified by a separate professional reviewer"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Several core original cash/restricted/contract notes checked; exhaustive issuer notes reconciliation is not completed"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Direct CNINFO PDF archive SHA PASS; separate SSE versus CNINFO byte-identity not separately reproduced"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "External rolling 8 to 12 quarters industry peer valuation and original market pricing NOT_CHECKED"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "No genuine second independent human finance and visual editor approval"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "Source branch HTML approved locally; main and actual Cloudflare route not yet published and validated"
+    }
+  },
+  "blockers": [
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "SUBSECTOR_POWER_GENERATION_NOT_NET_SOLD_ELECTRICITY"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "COMPARATIVE_2025H1_RESTATED_FOR_2025OCT_COMMON_CONTROL_MERGER"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "WATER_RESOURCE_TAX_VOLUME_BASE"
+    },
+    {
+      "kind": "RESEARCH",
+      "page": null,
+      "issue": "CASH_EQUIVALENTS_RESTRICTED_MARGIN_EXCLUDED"
+    }
+  ],
+  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY",
+  "live_release_fingerprint": null
+}
