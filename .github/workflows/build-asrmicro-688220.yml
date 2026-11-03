@@ -26,8 +26,17 @@ jobs:
           test -s public/688220.html
           python - <<'PY'
           from pathlib import Path
+          import json
+          root=Path('research/issuers/688220')
+          briefs=json.loads((root/'figure-briefs.json').read_text())
+          qa=json.loads((root/'qa.json').read_text())
           x=Path('public/688220.html').read_text()
-          assert x.count('class="figure"')==7
+          required=[q['id'] for q in briefs['figure_briefs']]
+          assert len(required)==len(set(required)) and len(required)>=1, 'all figures must have source-led author briefs'
+          assert x.count('class="figure"')==len(required), 'published figures must match research-approved briefs'
+          assert qa['figures_required']==len(required), 'published QA must match figure briefs'
+          assert qa['checks']['FULL_PNL_GROSS_TO_OPERATING_SIGNED']=='PASS'
+          assert qa['checks']['SANKEY_EACH_SOURCE_COST_GP_NONNEGATIVE']=='PASS'
           assert 'FINANCIALS IN VISUALS' in x
           assert '<script src=' not in x
           assert '"rev":"chip_rev"' in x or '"rev": "chip_rev"' in x
