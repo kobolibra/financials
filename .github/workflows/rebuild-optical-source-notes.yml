@@ -1,0 +1,52 @@
+name: Rebuild audited optical income partitions
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/rebuild-optical-source-notes.yml'
+      - 'skills/ashare-financial-storytelling/v7/engine/**'
+      - 'skills/ashare-financial-storytelling/v7/examples/**'
+      - 'skills/ashare-financial-storytelling/v7/tests/test_reported_revenue_partitions.py'
+      - 'public/300394.html'
+      - 'public/300502.html'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-audited-optical-rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Original disclosure partition adversarial tests
+        run: |
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
+      - name: Generate two original issuer full HTMLs from source ledgers
+        shell: bash
+        run: |
+          mkdir -p optical-rebuilt
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out optical-rebuilt/300394.html --qa optical-rebuilt/300394-qa.json
+          python "$V7/experiments/second_issuer_render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out optical-rebuilt/300502.html --qa optical-rebuilt/300502-qa.json
+      - name: Verify full-generated money ribbons contain real source classifications
+        run: |
+          python - <<'PY'
+          import pathlib,re,json,hashlib
+          root=pathlib.Path('optical-rebuilt')
+          for code,needle,pg in [('300394','其他业务（附注）','140'),('300502','其他（业务类型）','104')]:
+              p=root/f'{code}.html'
+              h=p.read_text()
+              assert '<figure class="exhibit">' in h,(code,'no figures')
+              assert '未列示差额（计算）' not in h,(code,'fake balancing node still present')
+              assert needle in h,(code,'source category absent')
+              assert 'p.'+pg in h,(code,'source physical page absent')
+              assert h.count('class="money-ribbon"')>=7,(code,'not a proportional money-flow')
+              assert 'UNVERIFIED_REVENUE_PARTITION' not in h
+              print('SOURCE_CLASSIFICATION_HTML_PASS',code,len(h),hashlib.sha256(h.encode()).hexdigest(),flush=True)
+          PY
+      - name: Archive newly generated sources for release
+        uses: actions/upload-artifact@v4
+        with:
+          name: audited-optical-source-partitions-300394-300502
+          path: optical-rebuilt/
+          retention-days: 30
