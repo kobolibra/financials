@@ -748,6 +748,30 @@
       "unit": "亿千瓦时",
       "currency": "CNY",
       "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "restricted_non_cash": {
+      "yuan": "46372561.52",
+      "page": 162,
+      "label": "现金流附注不属于现金及等价物的保证金及冻结资金",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
+    },
+    "water_resource_tax": {
+      "yuan": "900356226.12",
+      "page": 154,
+      "label": "营业税金及附加附注中水资源税，发电量/取水量关联",
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "page_semantic_review": "ACTUAL_ORIGINAL_PDF_NOTE_WITH_ROW_AND_AMOUNT_OPENED"
     }
   },
   "segments": [
