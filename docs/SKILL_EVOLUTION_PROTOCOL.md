@@ -53,3 +53,8 @@
 **回归登记簿：** `skills/ashare-financial-storytelling/quality-regressions.json`。**第 N 家质量登记：** `research/issuers/<code>/release-gates.json`。**自动校验：** `scripts/check_release_contract.py` 和 `scripts/test_check_release_contract.py`。**旧七家公司欠账：** `PROJECT_STATE.md` 和 `project-status.json`。
 
 > 重要边界：本次工具可以核对 JSON、文件存在性、真正 PDF 字节和检索到的历史 GitHub 运行证据；不能从 JSON 自行证明视觉美感、附注全部正确、Cloudflare 当前版本或第二位真人审核。它们仍需实际执行相应审核。
+
+
+## 2026-11-03 执行反例：源账本与已发布财报数据失配（PUB-011）
+
+主分支原始报告完整 PDF、29 条算术、九图浏览器均通过，但真实 CI [41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) 的再次生成 HTML 与已提交 `public/688220.html` 不同：源账本仅更改了 `source.reason` 文字，已发布 HTML 内嵌旧版原始 `ledger-data`。其原因不是会计数字，而是源账本与出版产物没有同步更新。源文件已修到同一真实归档镜像 SHA 并保留发布时准确说明，[41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) 重新运行逐字节重建 **PASS**。因此 v8.4.2 增加对内嵌发行人/来源/全部事实/收入分组的真实一致性核验与两项恶意变异测试，绝不取消原有干净重建。未来对新公司改源数据必须一同重建并发行 HTML，完成真实 Cloudflare 版本核对后才升级线上状态。
