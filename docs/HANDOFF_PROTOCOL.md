@@ -51,3 +51,6 @@
 新的研究/会计/视觉/发布失误必须反向更新唯一 Skill、`skills/ashare-financial-storytelling/quality-regressions.json`，新增正常+恶意反例，并在 CI 执行。每次写清 **根因修复是否可迁移到其他公司**（单个发行人测试 ≠ 泛化）。必须跑 `python scripts/check_release_contract.py` 和其对抗测试，再跑 `python scripts/check_handoff.py`。完整流程详见 [SKILL_EVOLUTION_PROTOCOL.md](SKILL_EVOLUTION_PROTOCOL.md)。
 
 上一份报告旧 Cloudflare 的 PASS 不适用于当前代码版本；任何 LIVE FAIL 需保存 exact run id 与尚未部署的实际结构差异，不能在下一次新聊天淡化成 `NOT_CHECKED` 或历史成功。
+
+
+**v8.4.2 新增切实的跨窗口一致性**：新会话不能仅看 Skill 的版本号。核对本次原 PDF SHA、source ledger 真实字段、figure briefs、已发布页面内嵌的事实和源说明相同；执行 `scripts/check_release_contract.py`，且更改原始事实/来源后重新运行发行人出版社，并确认 `public/<code>.html` 逐字节重建。前次 688220 第一次 MAIN 重建 [41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) 失败、修复后 [41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) 通过，是不可丢的反例证据。不同跑次要记录各自发生于哪个 SHA，避免过期 FAIL/PASS 冒充最新结果。
