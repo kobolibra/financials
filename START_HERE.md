@@ -60,3 +60,8 @@
 现行方法升级为 **Skill v8.3.3-RC1**。翱捷科技 2026H1 的旧收入→集团 COGS/GP 桑基只证明集团守恒，不能解释每类业务利润。修订后的原始 p.178 桑基每类业务分别流向其对应的披露成本与推导毛利，**无最小假流**；毛利到净利润另用有符号瀑布，资产=负债+权益用两时点同尺度存量图。实际重构文件是 `research/issuers/688220/report-template.html`、`publish.py`、`figure-briefs.json`、`qa_browser.py`，生成 `/688220.html`。另发现 p.87 营业外支出 **15.30 元属于 2025H1 右列**，2026H1 当前列是空白（其损益贡献由算术推导为零），已直接更正账本与 PDF 物理坐标验证。不要将先前“页面数字找到即正确”的检查当作行列精确核对。
 
 此处记录方法与需核实的源码事实，**不能代替最新 GitHub `main` 与 Cloudflare 正式网页的发布成功证明**；具体分支/CI/门槛见 `PROJECT_STATE.md` 顶部和 `project-status.json`。
+
+
+## 2026-11-03 方法增量：Skill 持续迭代和第 N 家公司的强制发布门槛
+
+从 v8.4.0-RC1 开始，必须同时阅读 [Skill 进化/错误闭环协议](docs/SKILL_EVOLUTION_PROTOCOL.md) 与 [可执行回归登记](skills/ashare-financial-storytelling/quality-regressions.json)。每次新增公司提供本公司 `research/issuers/<code>/release-gates.json`，实际 PDF SHA/字节、各项 PASS/FAIL/NOT_CHECKED、对应证据、预览/最终研究类型；运行 `python scripts/check_release_contract.py` 和对应恶意反例。旧七公司仍是历史来源审阅欠账，不获得自动追溯认证；翱捷科技已按来源限制研究预览记录，Cloudflare 本次版本 LIVE FAIL 不能虚报上线。每个用户反馈都要从 PDF/会计/图形源头修复并写入可迁移回归，独立核对真正生产网站。详见 `PROJECT_STATE.md` 和 `project-status.json` 最新记录。

@@ -1,6 +1,6 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.3.3](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.4.0](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
 
 ## A. 先确定研究产品、原始来源和允许的结论
 
@@ -49,6 +49,15 @@
 - [ ] `E05 UNIFIED_LIBRARY`：新公司加到 `site/research_catalog.json` 及同一个首页 `public/index.html`，其独立 URL 真实存在。保留此前所有公司与专题；禁止新的多公司独立入口。
 - [ ] `E06 ACTUAL_DEPLOY`：GitHub `main` blob、Actions 的**确切提交和运行**、Cloudflare 真实 URL 与页面点击/截图分别核实；不因 Git push 成功直接声称站点更新。
 - [ ] `E07 HANDOFF`：现行 `PROJECT_STATE.md` 与 `project-status.json` 同步，列出最新工作、来源 PDF、门槛状态和未决异常；`python scripts/check_handoff.py` 通过。
+
+## F0. 第 N 家新公司的自动化证据合同（v8.4.0；强制）
+
+- [ ] `ISSUER_CAPSULE`：新增公司必须提交 `research/issuers/<code>/release-gates.json`，对应唯一 `site/research_catalog.json` 路由和真实自包含 HTML；七家历史页面没有因此获得追溯合格认证。
+- [ ] `PDF_BYTES_REAL`：自动程序实际读取归档 PDF 魔数、**字节数与 SHA**；真实物理页、官网与镜像文件字节同一性必须另行证明，不能以 metadata 字段替代。
+- [ ] `PREVIEW_P0`：即使只是来源限制预览，PDF、选定关键表原始行列、核心账务、独立研究主线及反证、图形语义、截图自查、浏览器和离线重建均需 PASS。重大附注未解与外部研究未做必须显式标出且报告不得自称最终独立认证。
+- [ ] `NO_FALSE_PROMOTION`：`verified_research` 必须所有门槛 PASS，包括真实的人类独立财务/视觉审稿、外部多期同行来源、Cloudflare 最终版本真验。不能仅将 source-limited 更改分类就宣称合格。
+- [ ] `FEEDBACK_TO_TEST`：每个新发现的重大错误要修原始源头、出反例、跑回归、登记 `quality-regressions.json`，注明仅个股测试还是跨发行人机制；更新 Skill 与 [进化协议](SKILL_EVOLUTION_PROTOCOL.md)。
+- [ ] `AUTOMATED_COMMIT_GATE`：运行 `python scripts/check_release_contract.py` 与 `python -m unittest discover -s scripts -p test_check_release_contract.py -v`，并保留现有源会计、图形与公开浏览器独立 QA 证据。
 
 ## F. 不能合并的最终门槛（逐项给状态）
 
