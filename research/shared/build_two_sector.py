@@ -208,7 +208,7 @@ function balance(){
  out+=text(20,34,"资产＝负债＋全部所有者权益｜两期均为同一金额尺度的时点存量","chart-title");
  var rows=[{date:"2025·12",amounts:old,labels:["负债","权益合计"],colors:[copper,green],total:v("assets_prior")},{date:"2026·06",amounts:curr,labels:["负债","归母权益","少数股东"],colors:[copper,green,blue],total:v("assets")}];
  rows.forEach(function(r,i){var yy=129+i*168,xx=x;out+=text(24,yy+35,r.date,"chart-title");
-  r.amounts.forEach(function(a,j){var ww=a*scale;out+=rect(xx,yy,ww,72,r.colors[j],"balance-part",'data-date="'+r.date+'" data-yuan="'+a.toFixed(2)+'"');if(ww>135){out+=text(xx+8,yy+28,r.labels[j],"chart-title",'fill="#fff"');out+=text(xx+8,yy+51,yi(a),"chart-tiny",'fill="#fff"')}xx+=ww});
+  r.amounts.forEach(function(a,j){var ww=a*scale;out+=rect(xx,yy,ww,72,r.colors[j],"balance-part",'data-date="'+r.date+'" data-yuan="'+a.toFixed(2)+'"');if(ww>135){out+=text(xx+8,yy+28,r.labels[j],"chart-title",'style="fill:#fff"');out+=text(xx+8,yy+51,yi(a),"chart-tiny",'style="fill:#fff"')}xx+=ww});
   out+=text(190,yy+100,"资产合计 "+yi(r.total)+"　/　负债与所有者权益一致","chart-tiny");
  });
  out+=text(20,500,"负债（铜）　/　母公司权益（绿）　/　少数股东权益（蓝）。上期总权益仍包含少数股东，见来源附表。","chart-tiny");
@@ -241,7 +241,7 @@ function capital(){
  return svg(1120,570,out);
 }
 function sector(){
- if(code==="600900"){
+ if(story.theme==="hydro"){
   var out=text(18,36,"水电物理产出 × 现金回收：不同计量单位必须分图、不能按一条假因果流连接。","chart-title");
   out+='<circle cx="245" cy="248" r="165" fill="#e5f1e9" stroke="'+green+'" stroke-width="1"/>';
   out+=text(245,236,"1327.44","chart-title",'text-anchor="middle" style="font-size:63px;fill:'+green+'"');
@@ -259,12 +259,12 @@ function sector(){
  }
  var rv=v("rev"),prod=v("drug_sales_rev"),lic=v("licence_rev"),other=v("other_rev");
  var w=975,sc=w/rv,x=75,out=text(20,32,"收入合同类别：商品销售、许可、其他互斥分流；创新药是商品销售的内部子集","chart-title");
- [["药品等商品",prod,green],["知识产权许可",lic,copper],["其他",other,blue]].forEach(function(a){var ww=a[1]*sc;out+=rect(x,102,ww,94,a[2],"sector-revenue");if(ww>125){out+=text(x+10,128,a[0],"chart-title",'fill="#fff"');out+=text(x+10,158,yi(a[1]),"chart-value",'fill="#fff"')}x+=ww});
+ [["药品等商品",prod,green],["知识产权许可",lic,copper],["其他",other,blue]].forEach(function(a){var ww=a[1]*sc;out+=rect(x,102,ww,94,a[2],"sector-revenue");if(ww>125){out+=text(x+10,128,a[0],"chart-title",'style="fill:#fff"');out+=text(x+10,158,yi(a[1]),"chart-value",'style="fill:#fff"')}x+=ww});
  var innovation=88.09*N,prodResidual=prod-innovation;
  out+=text(20,250,"商品销售中的创新药（管理层披露子集），绝不再加到集团收入总额","chart-label");
  out+=rect(75,278,innovation*sc,70,green,"sector-nested");
  out+=rect(75+innovation*sc,278,prodResidual*sc,70,muted,"sector-nested");
- out+=text(90,317,"创新药 88.09亿元","chart-title",'fill="#fff"');
+ out+=text(90,317,"创新药 88.09亿元","chart-title",'style="fill:#fff"');
  out+=text(75+innovation*sc+15,317,"其他药品等商品","chart-tiny");
  out+=text(20,413,"许可收入 "+yi(lic)+" ≠ 经常性药品销售；2026年7月生效的BMS合作不属于本期收入。","chart-label");
  out+=text(20,460,"剩余履约义务 "+yi(v("rpo"))+"：合同已签但非已实现收入，且变动里程碑未必纳入。","chart-label");
