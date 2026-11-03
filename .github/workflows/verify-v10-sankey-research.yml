@@ -125,7 +125,7 @@ jobs:
               page.close()
             page=browser.new_page()
             page.goto(home,wait_until='networkidle')
-            assert page.locator('a.company').count()==7,'The root must show all seven companies, not a four-company subset'
+            assert page.locator('a.company').count()==len(__import__('json').loads(__import__('pathlib').Path('site/research_catalog.json').read_text())['issuers']),'Homepage company count differs from source catalog'
             assert page.locator('a.company[href="/research/2026-h1-v10/600036.html"]').count()==1
             page.locator('a.company[href="/research/2026-h1-v10/600036.html"]').click()
             assert '600036' in page.url

@@ -38,7 +38,7 @@ class Tests(unittest.TestCase):
  def test_no_external_assets_or_iframe(self):
   self.assertNotIn('<iframe',self.s.lower())
   self.assertNotIn('<script src=',self.s.lower())
- def test_synthetic_eighth_issuer_in_same_home(self):
+ def test_synthetic_next_issuer_in_same_home(self):
   with tempfile.TemporaryDirectory() as tmp:
    folder=Path(tmp)/'site';folder.mkdir()
    (folder/'portal_builder.py').write_text((HERE/'portal_builder.py').read_text())
@@ -46,7 +46,7 @@ class Tests(unittest.TestCase):
    sample.update(code='999999',name='验收模拟公司',exchange='SH',industry='新能源',
                  sub='行业拓展回归测试',href='/research/999999.html',
                  story='模拟公司仅用于目录泛化测试',deck='不属于实际财务研究',
-                 period='2026Q3',rank=8,signal='NOT_CHECKED',signal_label='来源门槛',spark=None)
+                 period='2026Q3',rank=len(self.data['issuers'])+1,signal='NOT_CHECKED',signal_label='来源门槛',spark=None)
    catalog=dict(self.data)
    catalog['issuers']=[*self.data['issuers'],sample]
    catalog['published_issuer_count']=len(catalog['issuers'])
@@ -55,11 +55,11 @@ class Tests(unittest.TestCase):
    subprocess.run([sys.executable,str(folder/'portal_builder.py'),'--out',str(out)],check=True,capture_output=True)
    page=(out/'index.html').read_text()
    parsed=Parser();parsed.feed(page)
-   self.assertEqual(len(parsed.company),8)
+   self.assertEqual(len(parsed.company),len(self.data['issuers'])+1)
    self.assertIn('/research/999999.html',parsed.company)
    self.assertIn('新能源',parsed.filters)
-   self.assertIn('全部 8',page)
-   self.assertIn('显示 8 / 8 家公司',page)
+   self.assertIn('全部 '+str(len(self.data['issuers'])+1),page)
+   self.assertIn('显示 '+str(len(self.data['issuers'])+1)+' / '+str(len(self.data['issuers'])+1)+' 家公司',page)
    self.assertIn('2026Q3',page)
    self.assertIn('/optical-2026h1.html',parsed.links)
    for route in self.p.company:self.assertIn(route,parsed.company)

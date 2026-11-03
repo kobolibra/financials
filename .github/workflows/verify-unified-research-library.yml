@@ -91,8 +91,13 @@ jobs:
                   assert page.locator('a.brand[href="/#companies"]').count()==1,(ticker,'v10 back-to-library')
                 else:
                   assert page.locator('a[href="/#companies"]').count()>=1,(ticker,'new issuer lacks library return')
+                  if ticker=='688220':
+                    assert page.locator('#chart-flow svg').count()==1,'ASR original-source money-flow Sankey missing'
+                    assert page.locator('table.evidence-table').count()==7,'ASR seven source tables missing'
+                    assert '9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc' in page.content(),'ASR PDF source fingerprint missing'
+                    assert page.locator('[data-export]').count()==7,'ASR SVG export controls missing'
                 assert page.evaluate('document.documentElement.scrollWidth')<=width+1,(ticker,width,'body overflow')
-                if width in (1440,390):page.screenshot(path=str(out/f'{ticker}_{width}.png'),full_page=True)
+                page.screenshot(path=str(out/f'{ticker}_{width}.png'),full_page=True)
                 records.append({'ticker':ticker,'width':width,'figures':page.locator('figure').count(),'status':'PASS'})
               page.close()
             page=browser.new_page(viewport={'width':1440,'height':900})
@@ -105,6 +110,13 @@ jobs:
             assert '/research/2026-h1-v10/688111' in page.url
             page.locator('a.brand[href="/#companies"]').click()
             assert page.url.startswith(home+'/') and page.url.endswith('#companies'),page.url
+            page.goto(home,wait_until='networkidle')
+            page.locator('a.company[href="/688220.html"]').click()
+            assert '/688220' in page.url and page.locator('#chart-flow svg').count()==1,'ASR eighth issuer live route failed'
+            page.locator('a[href="#cash"]').first.click()
+            assert page.url.endswith('#cash'),'ASR real cash-section anchor failed'
+            page.locator('a.brand[href="/#companies"]').click()
+            assert page.url.endswith('#companies'),'ASR back to unified company library failed'
             page.locator('a.feature[href="/optical-2026h1.html"]').click()
             assert 'optical-2026h1' in page.url
             browser.close()

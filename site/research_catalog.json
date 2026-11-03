@@ -1,7 +1,7 @@
 {
   "edition": "2026H1",
   "primary_home": "/",
-  "published_issuer_count": 7,
+  "published_issuer_count": 8,
   "unified_directory": true,
   "issuers": [
     {
@@ -167,11 +167,32 @@
       "spark": null,
       "spark_names": null,
       "rank": 7
+    },
+    {
+      "code": "688220",
+      "name": "翱捷科技-U",
+      "exchange": "SH",
+      "industry": "半导体",
+      "sub": "通信基带芯片与 ASIC 定制",
+      "story": "会计利润转正，经营现金流为何仍在流出？",
+      "deck": "芯片销售与定制设计的毛利增长，如何经非经常性损益、库存与应收形成相反的现金结果？深究收入验收、合同负债及减值，并标注未勾稽的附注口径。",
+      "href": "/688220.html",
+      "kind": "研究预览",
+      "stage": "source-review",
+      "note": "原件副本已核验 · 应收集中度分母待解释",
+      "figures": 7,
+      "signal": "−3.77 亿",
+      "signal_label": "2026H1 经营现金流净额",
+      "source": "2026H1 完整报告副本，224物理页",
+      "spark": null,
+      "spark_names": null,
+      "rank": 8,
+      "period": "2026H1"
     }
   ],
   "topic": {
     "name": "光互连产业链比较",
     "href": "/optical-2026h1.html"
   },
-  "research_scope": "SOURCE_LIMITED_PREVIEWS_NOT_INDEPENDENT_EDITOR_CERTIFIED"
+  "research_scope": "SOURCE_LIMITED_PREVIEWS_NOT_INDEPENDENT_EDITOR_CERTIFIED__ASR_NEW_SEMANTIC_NOTE_EXCEPTION"
 }

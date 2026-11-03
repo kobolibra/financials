@@ -1,0 +1,58 @@
+name: Rebuild canonical ASR eight-issuer portal (branch validation only)
+on:
+  push:
+    branches: ['work/asrmicro-688220-2026h1']
+    paths:
+      - 'site/research_catalog.json'
+      - 'site/test_portal.py'
+      - 'site/portal_builder.py'
+      - 'project-status.json'
+      - 'PROJECT_STATE.md'
+      - '.github/workflows/rebuild-asr-portal.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  portal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Generate ONLY root home from original canonical catalog
+        run: |
+          python site/portal_builder.py --out /tmp/asr-eight-portal
+          cp /tmp/asr-eight-portal/index.html public/index.html
+          python -m unittest discover -s site -p test_portal.py -v
+          python scripts/check_handoff.py
+          python -m unittest discover -s scripts -p test_check_handoff.py -v
+          python - <<'PY'
+          import json,pathlib,re
+          d=json.loads(pathlib.Path('site/research_catalog.json').read_text())
+          assert len(d["issuers"])==d["published_issuer_count"]==8
+          s=pathlib.Path("public/index.html").read_text()
+          assert s.count('class="company"')==8 and 'href="/688220.html"' in s
+          assert '<iframe' not in s and '<script src=' not in s
+          for c in d['issuers']:
+            assert pathlib.Path('public',c['href'].lstrip('/')).is_file(),c['href']
+          print('ORIGINAL_SEVEN_PRESERVED_AND_EIGHTH_ADDED_PASS')
+          PY
+      - name: Commit only canonical homepage (no report overwrite)
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish eighth issuer in one canonical company directory without touching prior reports"
+            git pull --rebase origin work/asrmicro-688220-2026h1
+            git push origin HEAD:work/asrmicro-688220-2026h1
+          fi
+      - name: Archive generated canonical homepage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asr-eight-issuer-unified-homepage
+          path: public/index.html
+          retention-days: 30
+          if-no-files-found: warn
