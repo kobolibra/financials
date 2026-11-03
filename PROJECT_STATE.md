@@ -4,23 +4,16 @@
 
 > **唯一网站：首页统一八家公司研究库；公司旧站路由 PASS，但本次 688220 修复图形的 Cloudflare 发布仍受 LIVE FAIL 门槛约束。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
-## 2026-11-03 · v8.4.1-RC1 PDF→账本→九图源证据跨文件一致性（待 PR CI）
+## 2026-11-03 · CURRENT: Skill v8.4.2-RC1 · 第 N 家独立质量合同与源→出版一致性
 
-- **最新已合并主分支基准**：v8.4.0-RC1 的 [PR #9](https://github.com/kobolibra/financials/pull/9) 合并于 `ffb57ac6142546a66233fa01741b54812422f40e`，PR 同一源版本 Actions [41666080981](https://github.com/kobolibra/financials/actions/runs/41666080981) 与 [41666080935](https://github.com/kobolibra/financials/actions/runs/41666080935) **PASS**，前者执行真实原 PDF SHA/质量合同与恶意反例/交接/目录重建；后者为 PR 本地目录 QA，**不会在 PR 上运行公开 Cloudflare 浏览器**。本项不是原来 Cloudflare 新图部署失败的解决。
-- **新发现的具体源不一致**：翱捷科技 `research/issuers/688220/source-ledger.json` 原文件的 `source.original_bytes_sha256` 仍为历史临时 `NOT_CHECKED_PENDING_ACTION_SOURCE_CAPTURE`，而它对应的 PDF 真正归档与 publisher 完整字节验证已通过。当前候选分支 `work/skill-typed-evidence-20261103` 已从**真实 source ledger** 追源纠正为归档的 `9d2768...814d1bdc`，保留 **上交所原始直链和 PDF 镜像字节同一性 NOT_CHECKED**，未修改 94 项原数值与公司 HTML。
-- **通用防线**：`scripts/check_release_contract.py` 不再仅核对质量摘要；必须交叉验证 PDF 实际字节与 SHA、source ledger 的发行人/期间/真实源 SHA/93 条已披露 typed fact 页码单位/存量流量/比例、全部九图 brief 引用的 fact IDs、期间/来源版本/反解释，并让明显的银行/保险行业工业模式冒用报错。新 6 项恶意反例覆盖陈旧 ledger、跨期冒领、错页/缺标签、借用别家公司图片来源、银行保险错会计、百分比误作元。
-- **状态边界**：源字段存在/期间一致 **不等于**图书馆原始 PDF 每条金额在所称行列语义上已经独立复核；完整重大附注、外部同行估值、人类第二研究员、真生产新图仍独立门槛。PR 尚未建立，Actions 尚未运行，标记 **NOT_CHECKED**。
-- **下一步**：真实 PR CI 运行新合同与 18 个恶意反例及 688220 账目源重建；审阅结果后合并并更新下一会话交接 SHA 和本轮实际 PASS/FAIL。不能在 CI 运行前写 PASS。
+**实际已合并、真实测试的基线：** [PR #9](https://github.com/kobolibra/financials/pull/9) v8.4.0 merged `ffb57ac6142546a66233fa01741b54812422f40e`；[PR #10](https://github.com/kobolibra/financials/pull/10) v8.4.1 merged `d0eed02f7c3bb5bdffb3cb7cea6f4620d0e1bc96`；随后源账本清洁重建修复主分支 `f1e2343cb0b4c76d68b2c386218dde7a3d5bd403`。**当前候选** v8.4.2 源→已发布 HTML 一致性，分支 `work/skill-generated-ledger-anti-drift-20261103`，PR/合并/Actions 在本状态提交时 **NOT_CHECKED，不能提前报 PASS**。
 
-## 2026-11-03 · v8.4.0-RC1 Skill 泛化与问题闭环升级（质量合同，待 CI）
-
-**本项是可复用执行机制的增量，不是新增第九家公司，也不把八家已有财报冒充全量复核。** 当前开发分支 `work/skill-quality-loop-20261103`，从 `main` 真实 `76165c4fb5fcc630c79777fec086cc90fff9976b` 出发；版本 `8.4.0-rc1`。PR/最终合并 SHA 和 GitHub Actions 结果尚未获得，暂为 **NOT_CHECKED**；生产 Cloudflare 在原已知严格检查下仍 **FAIL**，本次不改 `public/*.html`，也不会以新 Skill 文件提交证明新版网站已上线。
-
-- **新公司自动门槛**：`scripts/check_release_contract.py` 从统一 `site/research_catalog.json` 检测第 N 家，已有七家“旧来源欠账”是固定、不可擅自扩大的单独集合，后续每家均必须提供 `research/issuers/<code>/release-gates.json`。强制检查 PDF 原始字节魔数/大小/SHA256、PDF 身份与发行人报告期、HTML 独立路由、桑基适用/不适用的源理由，以及每个财务/视觉/浏览器/真实部署/真人复核独立三态和证据。元数据声称页数仍需原始 PDF 页核对，机器文件检查不冒充逐页专业审阅。
-- **首个实际质量记录**：`research/issuers/688220/release-gates.json`。真实 224p 镜像 PDF、九图源与会计本地 PASS，p137 应收集中度分母、p179 0.01 元、官网字节同一性、Cloudflare 新 SVG 几何发布失败、外部多期同行、独立第二人审稿分别真实披露，不用单个“通过”掩盖。
-- **反馈回归**：`skills/ashare-financial-storytelling/quality-regressions.json` 记录 p87 错列、跨维度重复计算、虚构 residual、极微小来源节点 1px 膨胀、桌面图内裁切、GitHub 绿灯但生产版本滞后等；每项有根因、修复来源、回归标记及 **单公司或通用机制** 的准确覆盖级别。`scripts/test_check_release_contract.py` 的毒化反例检查来源 SHA、门槛 PASS 证明、伪全量认证、新公司无登记等。
-- **Skill 不断进化事务**：新增 `docs/SKILL_EVOLUTION_PROTOCOL.md`，写明每个新问题须**真实 PDF 复现→修源头→恶意反例→改唯一 Skill→相关行业回归→实际实截图/站点检查→交接**。v8.4 不是万能行业报告模板；L0–L3 取决于真实多家公司原始财报及独立质量记录，不能用一家公司案例获得整个 A 股认证。
-- **待验证**：GitHub PR CI 运行 `python scripts/check_release_contract.py`、十二项反例、原有桑基恶意测试、`python scripts/check_handoff.py`、原有单网站目录回归。若失败直接修源码，不放松门槛。**此处仅为预提交状态，实际结论以对应 PR/Actions 为准。**
+- **已有可复现自动化（不是口头方案）**：`scripts/check_release_contract.py` 在同一八家公司统一目录 `site/research_catalog.json` 上查每家新公司（原七家的历史欠账固定豁免，绝不扩张）的 `research/issuers/<code>/release-gates.json`；实际 PDF 字节、SHA/大小/魔数、Source Ledger 公司/期间/金额单位/物理页、Figure Briefs 事实 ID/来源哈希/原始分析问题、行业会计类型、个人审核与实时 Cloudflare 独立三态。不允许未经登记的新发行人通过；源限制预览不是研究全认证。
+- **实际反馈→测试**：`skills/ashare-financial-storytelling/quality-regressions.json` 当前 11 个真实根因/修复/可执行标记（旧错误 p87 期别错列、跨轴加总、负毛利假流、微小来源节点放大、桌面图内隐藏、Cloudflare 滞后、账本哈希陈旧、Figure Briefs 借用事实、银行保险工业会计等），涵盖**单公司证据与跨发行人机制分级**；`scripts/test_check_release_contract.py` 当前候选增加 2 个恶意发行源与内嵌 HTML 不一致测试，需在 PR CI 实际执行。
+- **真实被 CI 抓住的 v8.4.1 回归**：[41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) **FAIL**，公司财务算术29项、浏览器三屏均 PASS，但源 `source-ledger.json` 的 `source.reason` 随新哈希说明被改，真实已发布 `public/688220.html` 的内嵌原始账本仍是旧说明，导致独立重建逐字节比对失败。已**从真实源账本修复**：保留验证过的完整 PDF 镜像 SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc` 与镜像状态、将 `reason` 恢复成已发布且仍准确的原文，**不更改公司财务金额或已发布 HTML**。新回归会比对所有内嵌 `ledger-data` 的原始 `issuer/source/facts/segments` 字段，禁止下一家公司在重建时才暴露问题。
+- **最新实际 QA 证据**：源账本修复后 [41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) **PASS**（完整 PDF/29 会计检查/九图原始渲染/真实1440、768、390/干净再次生成与已发布 HTML 逐字节比对）；真实 Cloudflare 八家公司目录与翱捷科技新四源节点金额几何 [41667952839](https://github.com/kobolibra/financials/actions/runs/41667952839) **PASS**；主分支交接 [41667952648](https://github.com/kobolibra/financials/actions/runs/41667952648) **PASS**。该线上 PASS 证明确实检查到了上次旧版没有的细来源节点，但**不能**冒充完整重大附注、独立金融/视觉研究编辑审查或整个 A 股行业的验证。
+- **未解决 P0/P1 数据问题明确保留**：688220 p.137 应收集中度披露 90.50% vs 简单导出89.17% 分母 **FAIL**，p.179 剩余履约义务分类差 0.01 元 **FAIL（披露取整的有界例外）**；上交所官方 PDF 与归档镜像字节完全一致 **NOT_CHECKED**；全部重大附注完成复核、外部8–12季度/可比/估值、第二名真实独立研究员 **NOT_CHECKED**。这批工作没有以新文档替代这些需要原报告的深入追证。
+- **真实公司目录/出版产物**：仍仅原八家公司+已有光通信专题，所有既有独立 URL 保留，未修改 `public/*.html`、未另起入口。未来新公司必须从原始 PDF → 行列和三表/附注 → 研究主线与反例 → AEI/FT 原创图形 → 截图 → 本地重建 → 本次 Cloudflare 逐级通过，并将所有失败转化为真正可运行的恶意回归，最后更新现行此文件和机器状态。精确协议见 [docs/SKILL_EVOLUTION_PROTOCOL.md](docs/SKILL_EVOLUTION_PROTOCOL.md)。
 
 ## 2026-11-03 · 最新执行记录：桑基来源节点真实比例及线上部署阻断
 
