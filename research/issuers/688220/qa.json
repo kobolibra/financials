@@ -1,0 +1,29 @@
+{
+  "issuer": "688220",
+  "report_period": "2026H1",
+  "source_sha": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "source_bytes": "MIRROR_COMPLETE_PDF_SHA_PASS__OFFICIAL_EQUIVALENCE_NOT_CHECKED",
+  "checks": {
+    "REVENUE_PARTITION_EXACT_YUAN": "PASS",
+    "COST_PARTITION_EXACT_YUAN": "PASS",
+    "GROSS_PROFIT_COMPONENTS": "PASS",
+    "CONSOLIDATED_PNL_OPERATING": "PASS",
+    "PARENT_PROFIT": "PASS",
+    "PARENT_VS_DEDUCTED": "PASS",
+    "NONRECURRING_SIGNED_SCHEDULE": "PASS",
+    "BS_2026_06_30": "PASS",
+    "BS_2025_12_31": "PASS",
+    "INVENTORY_GROSS_TO_NET": "PASS",
+    "INVENTORY_PRIOR_GROSS_TO_NET": "PASS",
+    "INDIRECT_CFO_ALL_17_ORIGINAL_SIGNED_ROWS": "PASS",
+    "CASH_SECTION_CLOSURE": "PASS",
+    "RPO_SPLIT_ONE_CENT_SOURCE_PRECISION_BOUNDARY": "PASS",
+    "PDF_MIRROR_FULL_BYTES_SHA_224P": "PASS"
+  },
+  "research": "SELF_REVIEWED_SOURCE_LIMITED",
+  "full_material_notes": "NOT_CHECKED",
+  "second_independent_human": "NOT_CHECKED",
+  "industry": "semiconductor-chip-design",
+  "source_screenshots": "SELECTED_PAGES_SCREENED",
+  "article": "RESEARCH_PREVIEW"
+}
