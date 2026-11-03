@@ -4,6 +4,16 @@
 
 > **唯一网站：首页统一八家公司研究库；公司旧站路由 PASS，但本次 688220 修复图形的 Cloudflare 发布仍受 LIVE FAIL 门槛约束。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
 
+## 2026-11-03 · v8.4.0-RC1 Skill 泛化与问题闭环升级（质量合同，待 CI）
+
+**本项是可复用执行机制的增量，不是新增第九家公司，也不把八家已有财报冒充全量复核。** 当前开发分支 `work/skill-quality-loop-20261103`，从 `main` 真实 `76165c4fb5fcc630c79777fec086cc90fff9976b` 出发；版本 `8.4.0-rc1`。PR/最终合并 SHA 和 GitHub Actions 结果尚未获得，暂为 **NOT_CHECKED**；生产 Cloudflare 在原已知严格检查下仍 **FAIL**，本次不改 `public/*.html`，也不会以新 Skill 文件提交证明新版网站已上线。
+
+- **新公司自动门槛**：`scripts/check_release_contract.py` 从统一 `site/research_catalog.json` 检测第 N 家，已有七家“旧来源欠账”是固定、不可擅自扩大的单独集合，后续每家均必须提供 `research/issuers/<code>/release-gates.json`。强制检查 PDF 原始字节魔数/大小/SHA256、PDF 身份与发行人报告期、HTML 独立路由、桑基适用/不适用的源理由，以及每个财务/视觉/浏览器/真实部署/真人复核独立三态和证据。元数据声称页数仍需原始 PDF 页核对，机器文件检查不冒充逐页专业审阅。
+- **首个实际质量记录**：`research/issuers/688220/release-gates.json`。真实 224p 镜像 PDF、九图源与会计本地 PASS，p137 应收集中度分母、p179 0.01 元、官网字节同一性、Cloudflare 新 SVG 几何发布失败、外部多期同行、独立第二人审稿分别真实披露，不用单个“通过”掩盖。
+- **反馈回归**：`skills/ashare-financial-storytelling/quality-regressions.json` 记录 p87 错列、跨维度重复计算、虚构 residual、极微小来源节点 1px 膨胀、桌面图内裁切、GitHub 绿灯但生产版本滞后等；每项有根因、修复来源、回归标记及 **单公司或通用机制** 的准确覆盖级别。`scripts/test_check_release_contract.py` 的毒化反例检查来源 SHA、门槛 PASS 证明、伪全量认证、新公司无登记等。
+- **Skill 不断进化事务**：新增 `docs/SKILL_EVOLUTION_PROTOCOL.md`，写明每个新问题须**真实 PDF 复现→修源头→恶意反例→改唯一 Skill→相关行业回归→实际实截图/站点检查→交接**。v8.4 不是万能行业报告模板；L0–L3 取决于真实多家公司原始财报及独立质量记录，不能用一家公司案例获得整个 A 股认证。
+- **待验证**：GitHub PR CI 运行 `python scripts/check_release_contract.py`、十二项反例、原有桑基恶意测试、`python scripts/check_handoff.py`、原有单网站目录回归。若失败直接修源码，不放松门槛。**此处仅为预提交状态，实际结论以对应 PR/Actions 为准。**
+
 ## 2026-11-03 · 最新执行记录：桑基来源节点真实比例及线上部署阻断
 
 **此节记录当前严格发布门槛，不以旧“九图线上通过”覆盖新版本失败。**
