@@ -35,10 +35,36 @@ with sync_playwright() as p:
     mobileVisible:[...document.querySelectorAll('.mobile-facts')].filter(e=>getComputedStyle(e).display!=='none').length,
     navPosition:getComputedStyle(document.querySelector('.chapters')).position,
     bodyExternalScripts:document.querySelectorAll('script[src]').length,
-    ribbon:[...document.querySelectorAll('#chart-flow path.money-ribbon')].map(e=>({
-      source:e.dataset.source, kind:e.dataset.kind, amount:e.dataset.valueYuan, bboxHeight:e.getBBox().height,
-      title:e.querySelector('title')?.textContent||''
+    ribbon:[...document.querySelectorAll('#chart-flow path.money-ribbon')].map(e=>{
+      const d=e.getAttribute('d')||'';
+      const start=d.match(/^M([0-9.]+),([0-9.\-]+) C/);
+      // Last coordinate is the endpoint of the second cubic C, not a standalone L command.
+      const finish=d.match(/ ([0-9.]+),([0-9.\-]+) Z$/);
+      return {
+        source:e.dataset.source,sourceKey:e.dataset.sourceKey,target:e.dataset.targetKey,
+        kind:e.dataset.kind,amount:e.dataset.valueYuan,thickness:Number(e.dataset.thickness),
+        pathThickness:start&&finish?Number(finish[2])-Number(start[2]):null,
+        sourcePage:e.dataset.sourcePage,period:e.dataset.period,scope:e.dataset.scope,
+        bboxHeight:e.getBBox().height,title:e.querySelector('title')?.textContent||''
+      };
+    }),
+    sourceNodes:[...document.querySelectorAll('#chart-flow rect.money-source')].map(e=>({
+      key:e.dataset.sourceKey,amount:e.dataset.valueYuan,realHeight:Number(e.getAttribute('height')),
+      semanticHeight:Number(e.dataset.thickness),title:e.querySelector('title')?.textContent||''
     })),
+    sinks:[...document.querySelectorAll('#chart-flow rect.money-sink')].map(e=>({
+      kind:e.dataset.kind,amount:e.dataset.valueYuan,height:Number(e.getAttribute('height'))
+    })),
+    desktopGraphs:['flow','pnl','balance','cash'].map(id=>{
+      const c=document.querySelector('#chart-'+id),svg=c.querySelector('svg');
+      const contentEdges=[...svg.querySelectorAll('text')].map(t=>{
+        const b=t.getBBox();return {label:t.textContent,x:b.x,right:b.x+b.width,
+          y:b.y,bottom:b.y+b.height};
+      });
+      return {id,scroll:c.scrollWidth,client:c.clientWidth,
+        viewBoxWidth:svg.viewBox.baseVal.width,
+        outOfBoundsLabels:contentEdges.filter(t=>t.x < -2||t.right > svg.viewBox.baseVal.width+2)};
+    }),
     semanticFigures:[...document.querySelectorAll('figure[data-accounting-family]')].map(e=>e.dataset.accountingFamily)
   })""")
   assert info["scrollWidth"]<=width+1,(width,"document scrolls horizontally",info)
@@ -52,6 +78,42 @@ with sync_playwright() as p:
   cost=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="cost"),D(0))
   profit=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="profit"),D(0))
   assert abs(cost-expected_cost)<=D("0.02") and abs(profit-expected_profit)<=D("0.02"),(width,"money-flow totals wrong",cost,profit)
+  # A real finance flow needs correct individual edge amounts AND actual SVG path
+  # geometry: a correct accounting ledger alone cannot prevent a forged ribbon.
+  segment_by_rev={q["rev"]:q for q in ledger["segments"]}
+  source_nodes={q["key"]:q for q in info["sourceNodes"]}
+  assert len(source_nodes)==len(ledger["segments"])==4,(width,"source node count",info["sourceNodes"])
+  sink_nodes={q["kind"]:q for q in info["sinks"]}
+  assert set(sink_nodes)=={"cost","profit"},(width,"sink semantics",info["sinks"])
+  scale=334.0/float(D(facts["rev"]["yuan"]))
+  for q in ledger["segments"]:
+    key=q["rev"]
+    rev=D(facts[q["rev"]]["yuan"])
+    cogs=D(facts[q["cost"]]["yuan"])
+    gp=rev-cogs
+    node=source_nodes[key]
+    assert D(node["amount"])==rev and node["title"],(width,"source node disclosure",node)
+    assert abs(node["realHeight"]-float(rev)*scale)<0.000001,(width,"visually inflated revenue source",node)
+    assert abs(node["semanticHeight"]-node["realHeight"])<0.000001,(width,"false source width metadata",node)
+    for kind,expected,target in [("cost",cogs,"cogs"),("profit",gp,"gross_profit")]:
+      edge=[r for r in info["ribbon"] if r["sourceKey"]==key and r["kind"]==kind]
+      assert len(edge)==(0 if expected==0 else 1),(width,"missing or phantom 0-GP ribbon",key,kind,edge)
+      if expected>0:
+        r=edge[0]
+        assert D(r["amount"])==expected and r["target"]==target,(width,"business cost/GP attribution",r)
+        assert r["period"]=="2026H1" and r["scope"]=="consolidated" and r["sourcePage"]=="178",(width,"ribbon source",r)
+        assert r["pathThickness"] is not None,(width,"missing geometric proof",r)
+        expected_thick=float(expected)*scale
+        assert abs(r["thickness"]-expected_thick)<0.000001,(width,"inflated encoded ribbon",r,expected_thick)
+        assert abs(r["pathThickness"]-expected_thick)<0.000001,(width,"actual SVG path disagrees with exact source",r,expected_thick)
+  for kind,expected in [("cost",expected_cost),("profit",expected_profit)]:
+    sink=sink_nodes[kind]
+    assert D(sink["amount"])==expected and abs(sink["height"]-float(expected)*scale)<0.000001,(width,"sink geometry",sink)
+  tiny=source_nodes["other_service_rev"]
+  assert 0<tiny["realHeight"]<0.02,(width,"microbusiness source node was artificially enlarged",tiny)
+  if width==1440:
+    assert all(g["scroll"]<=g["client"]+2 for g in info["desktopGraphs"]),(width,"desktop figure requires hidden horizontal scroll",info["desktopGraphs"])
+    assert all(not g["outOfBoundsLabels"] for g in info["desktopGraphs"]),(width,"cropped SVG title or amounts",info["desktopGraphs"])
   assert "signed-pnl" in info["semanticFigures"] and "equal-total-date-stock" in info["semanticFigures"]
   assert page.locator("a.brand[href='/#companies']").count()==1
   assert page.locator("a[href='#cash']").count()>=1

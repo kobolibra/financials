@@ -6,6 +6,13 @@ summary: Two-track research-to-publication discipline: independently benchmark A
 
 # FINANCIALS IN VISUALS · Research & Publication Skill v8.3.3-RC1
 
+## v8.3.3-RC1 · 源头节点几何与桌面完整阅读约束（2026-11-03 九图实测补充）
+
+- **来源节点也是金额几何，不能只查 ribbon。** 一项占合并收入仅万分之零点几的真实业务，SVG 计算高度可能仅约 0.01px。若以 `if (height < 1) draw <line stroke-width=1>` 取代来源节点，这个节点的**视觉面积已经被人为放大约百倍**，即使真实流量的七条带及会计关系仍然精确。应始终保留精确高度的来源矩形，极小金额单独采用图外文字/无面积标注和可访问原金额表，不设最低可见线宽。
+- **验证真实 SVG 路径几何，而非只看 data-value。** 从 Path `d` 中实际曲线在来源端的上、下边界坐标取差，验证 `path_thickness = original_yuan / consolidated_revenue_yuan × chart_total_height`，同时验证来源矩形 height、终点矩形 height、每类业务到其独立 COGS/GP 的目标匹配和一条真正零毛利的“无正面积路径”；不允许通过只修改正确的 metadata 来绕过视觉几何测试。
+- **1440px 桌面完整正文阅读也是硬门槛。** 不要仅检查 `document.documentElement.scrollWidth`：对于宽 1190px 的 SVG 放入可用约 1060px 的插图容器，整页没有横向溢出，但图内右侧关键金额可能被隐藏。完整图形及金额标签在 1440px 容器内应无需横向滚动可见；在 768/390 允许图内部滚动，前提是主要结论金额在图外直接可读。验证实际 SVG `text.getBBox()` 不越过 viewBox；手机不能用“有 source table”掩盖图文不可读。
+- **本项确证范围**：源自 688220 一家 2026H1 报告和图像编辑复核；执行上述通用图形测试是强制流程，但不能据此给其他行业做未验证的通用化认证。
+
 ## v8.3.3-RC1 — Mandatory AEI/FT financial-visual execution contract
 
 **Reason for amendment:** The prior 688220 H1 article carried a true 4-to-1-to-2 aggregate money flow and passed whole-company arithmetic, yet failed to show which product's own cost and gross profit created the total. Seven SVGs and passing browser width checks could not fix this editorial shortfall. Skill compliance therefore requires independent financial **and** visual proofs, not appearance, a Sankey badge or a figure count.

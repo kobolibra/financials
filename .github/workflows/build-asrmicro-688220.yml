@@ -1,7 +1,7 @@
 name: Build and audit ASR 688220 source-limited standalone research
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', main]
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', main]
     paths:
       - 'research/issuers/688220/**'
       - 'public/688220.html'
