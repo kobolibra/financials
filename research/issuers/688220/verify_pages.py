@@ -99,7 +99,7 @@ out={"issuer":"688220","report":"2026H1","pdf_sha256":sha,"pdf_bytes":len(pdfbyt
  "source_file":"research/issuers/688220/"+manifest["file"],
  "source_get":"COMPLETE_PDF_MIRROR_BYTES_AND_ORIGINAL_REPORT_IDENTITY_PASS",
  "sse_mirror_byte_equivalence":"NOT_CHECKED",
- "page_literal_matched":raw_page_literal-1,"page_coordinate_reconstructed":len(cell_results),"page_amount_or_cell_matched":len(items)-len(missing)-1,"page_literal_total":len(items)-1,"verified_source_cells":cell_results,
+ "page_literal_matched":raw_page_literal,"page_coordinate_reconstructed":len(cell_results),"page_amount_or_cell_matched":len(items)-len(missing)-1,"page_literal_total":len(items)-1,"verified_source_cells":cell_results,
  "physical_row_column_exception_p87":"PASS_PRIOR_2025H1_EXPENSE_15_30_IN_RIGHT_COLUMN__2026H1_BLANK_DERIVED_0","critical_source_row_literal_missing":crit_missing,
  "missing_page_literals":missing,
  "page_amount_check_not_row_col_semantics":"The fact a number occurs on a cited physical page does NOT prove table row, column, consolidation scope or currency.",
@@ -109,7 +109,7 @@ out={"issuer":"688220","report":"2026H1","pdf_sha256":sha,"pdf_bytes":len(pdfbyt
 }
 (ROOT/"source-verification.json").write_text(json.dumps(out,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print("ASR_SOURCE_BYTES_PASS",sha,len(pdfbytes),len(pdf),flush=True)
-print("SOURCE_PAGE_LITERAL_AND_COORDINATES",raw_page_literal-1,"raw","+",len(cell_results),"cells","=",len(items)-len(missing)-1,"/",len(items)-1,"UNPROVEN",missing,flush=True)
+print("SOURCE_PAGE_LITERAL_AND_COORDINATES",raw_page_literal,"raw","+",len(cell_results),"cells","=",len(items)-len(missing)-1,"/",len(items)-1,"UNPROVEN",missing,flush=True)
 assert not missing,("UNPROVEN_NUMERIC_SOURCE_CELL",missing)
 assert not crit_missing,("CRITICAL_ROW_PAGE_AMOUNT_MISMATCH",crit_missing)
 assert all(items[f"cfo_signed_part_{i+1:02d}"]["signed_literal_match"] for i in range(17)), "SIGNED_CFO_PAGE_FAILED"
