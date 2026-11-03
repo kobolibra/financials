@@ -1,7 +1,7 @@
 name: Rebuild canonical ASR eight-issuer portal (branch validation only)
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1']
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-flow-editorial-v2']
     paths:
       - 'site/research_catalog.json'
       - 'site/test_portal.py'
@@ -45,8 +45,8 @@ jobs:
           git add public/index.html
           if ! git diff --cached --quiet; then
             git commit -m "Publish eighth issuer in one canonical company directory without touching prior reports"
-            git pull --rebase origin work/asrmicro-688220-2026h1
-            git push origin HEAD:work/asrmicro-688220-2026h1
+            git pull --rebase origin "${{ github.ref_name }}"
+            git push origin "HEAD:${{ github.ref_name }}"
           fi
       - name: Archive generated canonical homepage
         if: always()
