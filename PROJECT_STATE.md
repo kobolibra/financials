@@ -99,3 +99,11 @@ The **current main homepage** now features V9 at the top of the actual research 
 
 **Current main Skill:** v8.3.1-RC1, with an enforceable mandatory AEI finance-flow decision gate and explicit valid omission for signed/incompatible financial amounts. Not yet passed: independent second finance analyst's full PDF row/column and note review, multi-quarter market/peers/valuation, comprehensive visual-quality comparison beyond the flow diagrams, every issuer sector adapter. Never claim 'exceeded App Economy Insights' solely from four legitimate Sankeys and test counts. Verify the latest homepage deployment CI after any changes.
 
+
+## 2026-11-03 FINAL V10 PRODUCTION VISUAL CHECKPOINT
+
+**Latest full real-domain live test PASS** https://github.com/kobolibra/financials/actions/runs/41588718276, includes `PUBLIC_HOMEPAGE_V10_CLICK_PASS`: actual homepage → current V10 directory → bank report → #cash chapter → directory; all 4 issuer original 2026H1 source PDF SHA, year/company/full page count; 7 adversarial exact Sankey financial tests; exact rebuilt bytes for all five source-derived HTML; 12 real responsive viewport checks, CJK font and mobile Sankey figure-scoped scroll, SVG export and screenshot artifact ID `13208269663`. Independent prior financial-source and full editorial reviewer remain NOT_CHECKED.
+
+Production main Skill **8.3.1-rc1**, under `skills/ashare-financial-storytelling/SKILL.md` blob `a185e91d61e7e1342cf6201a47496ed6ea96f136`, now explicitly mandates an AEI weighted-financial-Sankey decision for appropriate conserved financial sources or a documented accounting-based omission; also requires human visual inspection and explicit finance-only versus visual editorial gates.
+
+The previous V9 workflow incorrectly required the homepage to continue promoting V9 after the user requested V10. Historical-route QA was corrected in commit `f8be48eeac248e6cc459e153ff422abb626cb093`; successful historical archive CI: https://github.com/kobolibra/financials/actions/runs/41588841115. Thus old V9 URLs remain navigable while v10 is production featured. v10 homepage click strengthened CI 41588718276 PASS.
