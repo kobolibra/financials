@@ -65,16 +65,23 @@ function sourceSankey(){
  const total=N("rev"),cost=N("cogs"),gross=total-cost,top=144,H=338,scale=H/total;
  const srcX=246,srcEnd=264,sinkX=932,sinkEnd=950,costEnd=top+cost*scale;
  const tones=[C.green,C.blue,C.copper,"#7f9991"];
+ const contract=d.finance_flow;
+ if(!contract||contract.family!=="source_conserved_revenue_to_cost_and_gp"||contract.edges.length!==seg.length*2||
+    contract.accounting!=="EXACT_DECIMAL_PASS"||contract.visual_minimum_thickness!==0)
+      throw Error("SOURCE_CONSERVED_GRAPH_CONTRACT_REQUIRED");
  const business=seg.map((q,i)=>({label:q.label,i,rev:N(q.rev),cost:N(q.cost),gp:N(q.rev)-N(q.cost),revKey:q.rev,costKey:q.cost}));
  const link=(x0,x1,y0,y1,h,col,b,kind)=>{
    const bend=(x1-x0)*.48;
    const path='M'+x0+','+y0+' C'+(x0+bend)+','+y0+' '+(x1-bend)+','+y1+' '+x1+','+y1+
      ' L'+x1+','+(y1+h)+' C'+(x1-bend)+','+(y1+h)+' '+(x0+bend)+','+(y0+h)+' '+x0+','+(y0+h)+' Z';
-   const yuan=(kind==="cost"?b.cost:b.gp).toFixed(2);
-   const label=b.label+' → '+(kind==="cost"?"营业成本":"毛利润")+'：'+money(kind==="cost"?b.cost:b.gp);
+   const contractEdge=contract.edges.find(e=>e.from===b.revKey&&e.kind===kind);
+   if(!contractEdge)throw Error("MISSING_CONTRACT_EDGE "+b.revKey+kind);
+   const yuan=contractEdge.yuan,source=contractEdge.physical_pdf_page;
+   if(Math.abs(Number(yuan)*scale-h)>0.00001)throw Error("SOURCE_FLOW_RIBBON_WIDTH_MISMATCH");
+   const label=b.label+' → '+(kind==="cost"?"营业成本":"毛利润")+'：'+money(Number(yuan));
    return '<path class="finance-ribbon" data-flow-role="edge" data-business="'+esc(b.revKey)+'" data-kind="'+kind+
       '" data-from="'+esc(b.revKey)+'" data-to="'+(kind==="cost"?"cogs":"gross_profit")+
-      '" data-yuan="'+yuan+'" data-width="'+h.toFixed(10)+'" data-source-page="178" data-period="2026H1" data-scope="consolidated" d="'+path+
+      '" data-yuan="'+yuan+'" data-width="'+h.toFixed(10)+'" data-source-page="'+source+'" data-period="'+contract.period+'" data-scope="'+contract.scope+'" d="'+path+
       '" fill="'+col+'" fill-opacity="'+(kind==="cost"?".55":".76")+'" stroke="#fffefa" stroke-width=".35"><title>'+esc(label)+'</title></path>';
  };
  let s='';
