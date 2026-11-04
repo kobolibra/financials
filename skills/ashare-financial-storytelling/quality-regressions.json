@@ -312,6 +312,46 @@
       "scope": "single_issuer",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PUB-033",
+      "root_cause": "生产站点真实点击路径是 Cloudflare /601628 而非字面 /601628.html，修正后线上三屏导航确实成功，但 live-qa 的 actual_dedicated_article_final_url 在按返回目录后才读取 page.url，导致报告声称的文章 URL 错被保存成首页 /#companies，形成正式 PASS 与错误证据字段并存。",
+      "correction": "先在真实独立文章页上抓取并验证与公司代码一致的完整 HTTPS 域名/精确路径，再在实际返回首页后抓另一个 URL；将两者分成不同字段。用通用纯 Python hostile module 拒绝首页冒充报告、错 issuer、相似恶意域名、错误 scheme、伪造 root anchor。完整 HTML 仍需核对真实来源和三屏截图。",
+      "proof_file": "scripts/test_live_route_evidence.py",
+      "assertion_marker": "test_home_return_must_never_masquerade_as_article",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-034",
+      "root_cause": "原始寿险 SVG 只有本地构建检查能确认 money-sink fill/class/value，有风险在 Cloudflare 发布或脚本修改后将无效的最终汇总节点按合法统计输出PASS。旧 live-qa 仅检查有6条money-ribbon及新源节点的data-value，未验证全部实绘矩形属性/高度。",
+      "correction": "生产真 Chromium 三屏逐个检查 10图所有 rect 六位HEX填充和合法 class、来源四个排他 rect 金额与按536634汇总比例，最终 money-sink fill #123F3A/class money-sink/真实100万为单位的536634值/268尺寸；哪怕其余六条路径都闭合，最终节点缺失或非法即 FAIL。",
+      "proof_file": "research/issuers/601628/qa_cloudflare_live.py",
+      "assertion_marker": "LIVE_UNPAINTED_OR_MALFORMED_SINK",
+      "scope": "single_issuer",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PUB-035",
+      "root_cause": "源文件、正式HTML二次重建、实际Cloudflare浏览器各可单独绿色，但 release-gates.json 旧版只要求任意非空 live_release_fingerprint，就允许将历史内容字节、不相关PDF SHA或未经核实标签记为线上 PASS。",
+      "correction": "当发行人已声明实际64位已发布HTML SHA，发布合同在CLOUDFLARE_LIVE PASS时必须要求 live_release_fingerprint 与该SHA严格一致，关联实际完整40字符 main 提交和真的GitHub live-browser工作流作为 proof；历史只有显式 NOT_CHECKED_PENDING_MAIN_DEPLOY 公司的旧来源限定状态不伪造升级。加恶意 0000 SHA/无效 commit 测试。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_live_fingerprint_must_be_actual_report_html_hash",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "HND-036",
+      "root_cause": "中国人寿已是十一家公司且Cloudflare真实生产测试通过，但 START_HERE.md 用户首读文档还写‘当前生产十家’，旧三行报告依然把历史十家公司行动当最新；新会话即使读取了方法与PDF仍会错误认定第十一家未进入主站。",
+      "correction": "在首读 START_HERE.md 不写死‘当前十/十一家’，引导以 GitHub 真实 main 的 project-status.json + site/research_catalog.json 为唯一发行人数量与路由真值；测试代码对当前固定数字及关键机器目录缺失明确 fail；允许带确切SHA/时间的历史实测数字，不把其当当前状态。",
+      "proof_file": "scripts/test_check_handoff.py",
+      "assertion_marker": "test_start_here_never_reverts_to_fixed_current_company_count",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "HANDOFF_SOURCE_OF_TRUTH",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

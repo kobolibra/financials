@@ -1,6 +1,15 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.6.0](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.6.1](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+
+### 新增 v8.6.1 发布后证据闭环（全部适用新公司）
+
+- [ ] `LIVE_MAIN_SHA`：以实际 GitHub `main` 的完整 40 字符 commit 和真实 Cloudflare HTML 全文件字节比对为依据。要验证唯一首页和本公司的 HTML 两者均与当前版本 SHA 一致，不把 Cloudflare Provider 成功当线上报告已更新。
+- [ ] `LIVE_ARTICLE_URL`：在真实公司文章加载后、点击返回目录**之前**记录实际 URL；Pages 可把 `/601628.html` 规范化为 `/601628`，但必须是同域名和同证券代码的独立文章。返回后再记录 `/#companies` 作为另一字段。恶意首页回跳、错误issuer、假域名为 FAIL。标准通用源 `research/shared/live_route_evidence.py`。
+- [ ] `LIVE_SVG_REAL_PAINT`：真实 Chromium 确认每个 SVG 矩形填充颜色合法、所有源节点与最终合计节点的实际可视颜色及金额几何高度按原数据守恒；只有资金带数值与图元属性正确还不够。如最终节点 `fill=money-sink` 此类无效 SVG 绝不通过，参照 VIS-032/VIS-034。
+- [ ] `LIVE_PUBLISHED_HTML_FINGERPRINT`：新公司若声明正式 64 hex `published_html_sha256`，`CLOUDFLARE_LIVE=PASS` 时 `live_release_fingerprint` 必须与之相等，并有真实 `actual_main_release_commit` 及对应 GitHub Action 运行证据；旧公司非完整字节验证状态不得被伪升级。
+- [ ] `LATEST_HANDOFF_ENTRY`：不能在 `START_HERE.md` 或新会话入口把“当前公司数”硬编码成十/十一家；从 `project-status.json` 与 `site/research_catalog.json` 和真实 `main` 获取，更新项目状态顶部及各公司专属发布门槛。实际 Python 手工负面回归 `scripts/test_live_route_evidence.py`、`scripts/test_check_release_contract.py`、`scripts/test_check_handoff.py` 必跑。
+- [ ] `LIVE_SCREENSHOT_RECEIPTS`：1440 / 768 / 390 各自真实拍摄独立公司文章与唯一首页，保存六张截图的 SHA256 与实际路由、当次 Git commit，记在本次 Actions artifact/输出证据中；无法看到专业人工审美评估仍保留 `INDEPENDENT_HUMAN_REVIEW=NOT_CHECKED`。
 
 ## A. 先确定研究产品、原始来源和允许的结论
 

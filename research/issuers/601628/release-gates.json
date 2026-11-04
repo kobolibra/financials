@@ -62,8 +62,8 @@
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41767495751",
-      "scope": "Final standalone original insurer HTML repeated byte-identical after new actual SVG total sink integrity proof #41770920009; exact SHA 051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763. Do not infer live Cloudflare PASS from local"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41770920009",
+      "scope": "Both original independent source-ledger 133 fact / 18 accounting test HTML builds were byte-identical in Actions #41770920009; actual release report SHA 051a8ec... and 10 original true money-flow SVG checked on real 1440/768/390 Chromium."
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
@@ -91,9 +91,9 @@
       "scope": "No separate human finance analyst or professional visual art director has performed independent factual and design signoff"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "NOT_CHECKED",
-      "proof": null,
-      "scope": "Candidate branch live Cloudflare production 601628 route has not been verified, actual new main release and browser navigation are pending"
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41771178361",
+      "scope": "Actually executed GitHub-hosted Chromium against https://financials-in-visuals.pages.dev: actual main d11638f has matching whole-file SHA for both independent /601628.html public body and root 11-issuer homepage, real /601628 canonical browser click, 10 article SVGs, 10 attached original source tables, full-page 1440/768/390 screenshots and working navigation back to unique /#companies; all eleven public issuer routes HTTP 200 and issuer IDs. Does NOT establish second human/complete material notes or external valuation."
     }
   },
   "blockers": [
@@ -125,6 +125,9 @@
   ],
   "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41770920009",
   "published_html_sha256": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
-  "live_release_fingerprint": null,
-  "actual_main_release_commit": null
+  "live_release_fingerprint": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
+  "actual_main_release_commit": "d11638f0c76ff8aef2beb163a1028f176123bbdc",
+  "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41771178361",
+  "actual_live_canonical_route": "/601628",
+  "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41"
 }

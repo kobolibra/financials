@@ -33,7 +33,15 @@
 
 ## 2026-11-04 · 新行业压力测试交接（601628 保险）
 
-通过同一零上下文入库流程：`main`→完整 Skill/研究手册→官方原始104物理页PDF字节/源SHA→127条类型化事实→33项原PDF(x,y)→保险合同服务及投资负债关联→CAS带符号三表与**仅直接法**CFO→真实只含同口径互斥总保费来源的加权桑基→10张具原始页码原创图→1440/768/390实Chrome与每图截图→完全离线HTML→唯一目录新增路由。机器检查：`python research/issuers/601628/verify_source.py`、`python -m unittest research/issuers/601628/test_accounting.py -v`、`python research/issuers/601628/publish.py --out public/601628.html`、`python research/issuers/601628/qa_browser.py`、`python scripts/check_handoff.py`、`python scripts/check_release_contract.py`。已复核原始源 SHA `b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943`；官方 SSE 二次比对、完整重大附注独立复核、第二人类审稿、外部多期同业估值明确未完成。**每次跨对话重新读真实 main、行动结果与 `project-status.json`，不要假称一个 PR 的动作证明下一个提交，亦不得将 Skill 库文件声称自动安装在 ChatGPT。**
+通过同一零上下文入库流程：`main`→完整 Skill/研究手册→官方原始104物理页PDF字节/源SHA→133条类型化事实→33项原PDF(x,y)→保险合同服务及投资负债关联→CAS带符号三表与**仅直接法**CFO→真实只含同口径互斥总保费来源的加权桑基→10张具原始页码原创图→1440/768/390实Chrome与每图截图→完全离线HTML→唯一目录新增路由。机器检查：`python research/issuers/601628/verify_source.py`、`python -m unittest research/issuers/601628/test_accounting.py -v`、`python research/issuers/601628/publish.py --out public/601628.html`、`python research/issuers/601628/qa_browser.py`、`python scripts/check_handoff.py`、`python scripts/check_release_contract.py`。已复核原始源 SHA `b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943`；官方 SSE 二次比对、完整重大附注独立复核、第二人类审稿、外部多期同业估值明确未完成。**每次跨对话重新读真实 main、行动结果与 `project-status.json`，不要假称一个 PR 的动作证明下一个提交，亦不得将 Skill 库文件声称自动安装在 ChatGPT。**
+
+## 2026-11-04 · 第11家公司正式上线与可移植 LIVE 取证闭环（v8.6.1）
+
+中国人寿601628 2026H1独立公司报告已在生产线上真实可达 `https://financials-in-visuals.pages.dev/601628`。最近确切已验证的真实 `main` `d11638f0c76ff8aef2beb163a1028f176123bbdc`，GitHub Actions [41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) 实际 Cloudflare Chromium 1440/768/390 + 11条独立路由 + 10张 SVG + 10张原始证据表 + 返回唯一主目录 PASS；网页完整 SHA `051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763`，主目录 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。金融研究仍只称 source_limited_preview（完整附注独立审查/同行估值/真正第二名人类编辑/上交所第二源文件字节一致 NOT_CHECKED）。
+
+**新的真实失误及防复发**：虽然上一轮真网页点击 PASS，源代码一度在返回 `/#companies` 之后才填写 `actual_dedicated_article_final_url`，造成公司页 URL 被错误保存成首页 URL。新增统一纯工具 `research/shared/live_route_evidence.py`、`scripts/test_live_route_evidence.py` 正面/恶意测试；在文章页上独立抓取真实 URL，再抓返回 URL，严格同域/同 ticker，正式网页已出现过最终保费桑基节点绘制错误，`qa_cloudflare_live.py` 也须对源节点、最终汇总金额、真实填充和高度复核；六张真实线上完整截图记录 SHA 与本次准确 main commit。公开 `CLOUDFLARE_LIVE` 通过状态与编译的完整 HTML 64位指纹要在 `scripts/check_release_contract.py` 绑定，篡改即 FAIL（PUB-033、VIS-034、PUB-035）。
+
+**下一次新会话最重要**：`START_HERE.md` 不能声称固定 10/11 家，从 `project-status.json` 与 `site/research_catalog.json` 的**真实最新 main**算；新手动反例 HND-036。上述新 8.6.1 代码只有在本次新增 Git commit 上通过 Actions 且真实线上验收后才可将其作为新版本 PASS，不能引用旧 #41771178361 代替新代码验收。
 
 ## 关于 Skill 的真实可发现性
 

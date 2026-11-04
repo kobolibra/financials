@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
-from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery, check_agent_source_of_truth
+from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery, check_agent_source_of_truth, check_start_here_source_of_truth
 
 STATUS=json.loads((ROOT/"project-status.json").read_text())
 CATALOG=json.loads((ROOT/"site/research_catalog.json").read_text())
@@ -27,6 +27,16 @@ class HandoffGateTests(unittest.TestCase):
         self.assertIn("AGENT_STALE_HARDCODED_ISSUER_COUNT", check_agent_source_of_truth(stale))
         missing = agent.replace("site/research_catalog.json", "omitted-catalog.json")
         self.assertIn("AGENT_CATALOG_SOURCE_OF_TRUTH_MISSING", check_agent_source_of_truth(missing))
+
+    def test_start_here_never_reverts_to_fixed_current_company_count(self):
+        entry=(ROOT/"START_HERE.md").read_text()
+        self.assertEqual(check_start_here_source_of_truth(entry),[])
+        stale="当前有效版本：统一十家公司研究库（遗忘最新第十一家）。\\n"+entry
+        self.assertIn("START_HERE_STALE_FIXED_ISSUER_COUNT",check_start_here_source_of_truth(stale))
+        stale11="当前有效版本：统一十一家公司研究库。\\n"+entry
+        self.assertIn("START_HERE_STALE_FIXED_ISSUER_COUNT",check_start_here_source_of_truth(stale11))
+        missing=entry.replace("site/research_catalog.json","stale/static-number.json")
+        self.assertIn("START_HERE_MISSING_CURRENT_MACHINE_CATALOG",check_start_here_source_of_truth(missing))
 
     def test_rejects_broken_codex_discovery_entry(self):
         wrapper=(ROOT/".agents/skills/ashare-financial-storytelling/SKILL.md").read_text()

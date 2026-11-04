@@ -51,6 +51,32 @@ class IssuerReleaseContractTests(unittest.TestCase):
         errors = mod.validate_release(ROOT, insurance, poisoned, check_bytes=False)
         self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 601628" in x for x in errors), errors)
 
+    def test_real_601628_live_and_source_limited_receipt_is_exactly_source_bound(self):
+        insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
+        original=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        self.assertEqual(original["gates"]["CLOUDFLARE_LIVE"]["status"],"PASS")
+        self.assertEqual(original["gates"]["INDEPENDENT_HUMAN_REVIEW"]["status"],"NOT_CHECKED")
+        self.assertEqual(mod.validate_release(ROOT,insurer,original,check_bytes=False),[])
+
+    def test_live_fingerprint_must_be_actual_report_html_hash(self):
+        insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
+        original=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        fake=copy.deepcopy(original)
+        fake["live_release_fingerprint"]="0"*64
+        errors=mod.validate_release(ROOT,insurer,fake,check_bytes=False)
+        self.assertIn("LIVE_FINGERPRINT_HTML_DRIFT 601628",errors)
+        fake=copy.deepcopy(original)
+        fake["actual_main_release_commit"]="NOT_CHECKED"
+        errors=mod.validate_release(ROOT,insurer,fake,check_bytes=False)
+        self.assertIn("LIVE_PROOF_MAIN_COMMIT_INVALID 601628",errors)
+
+    def test_historical_issuer_explicit_sha_not_checked_is_preserved(self):
+        for company_code in ("600900","600276"):
+            issuer=next(x for x in self.catalog["issuers"] if x["code"]==company_code)
+            record=json.loads((ROOT/f"research/issuers/{company_code}/release-gates.json").read_text())
+            self.assertEqual(record["published_html_sha256"],"NOT_CHECKED_PENDING_MAIN_DEPLOY")
+            self.assertFalse(any("LIVE_FINGERPRINT_HTML_DRIFT" in e for e in mod.validate_release(ROOT,issuer,record,check_bytes=False)))
+
     def test_existing_real_pdf_sha_and_exact_contract(self):
         self.assertEqual(mod.validate_release(ROOT, self.issuer, self.original), [])
         self.assertEqual(mod.validate_registry(ROOT), [])
