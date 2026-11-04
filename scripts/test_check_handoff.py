@@ -23,7 +23,7 @@ class HandoffGateTests(unittest.TestCase):
     def test_agent_instructions_must_use_current_catalog_not_stale_eight(self):
         agent = (ROOT/"AGENTS.md").read_text()
         self.assertEqual(check_agent_source_of_truth(agent), [])
-        stale = agent + "\\nProduct: site with eight independent issuer reports."
+        stale = agent + "\nProduct: site with eight independent issuer reports."
         self.assertIn("AGENT_STALE_HARDCODED_ISSUER_COUNT", check_agent_source_of_truth(stale))
         missing = agent.replace("site/research_catalog.json", "omitted-catalog.json")
         self.assertIn("AGENT_CATALOG_SOURCE_OF_TRUTH_MISSING", check_agent_source_of_truth(missing))
