@@ -16,11 +16,15 @@
 
 **新窗口一键启动文本：** [docs/NEW_SESSION_PROMPT.md](docs/NEW_SESSION_PROMPT.md)。如果新会话无法读取 GitHub，则明确说出阻碍并请求上传必需文件，不能谎称“已执行 Skill”。
 
+## 2026-11-04 新近 main 真实发布核对（仅对应以下当次 SHA）
+
+实际观测 `main=9060bd2a0bf3ddc32d267c176388214ef3316f13`：在同一个 11 家独立公司目录中，长江电力 `600900`、恒瑞医药 `600276` 的新版手机原生来源财务图与原桌面真实桑基图 **已发布**，并通过源链接完整 HTML、首页 SHA、真实中文 1440/768/390 及 6+6 张真截图验证 [#41804157527](https://github.com/kobolibra/financials/actions/runs/41804157527)。对应公司完整 HTML SHA 分别为 `d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8`、`cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a`；[原旧测试 #41804157343](https://github.com/kobolibra/financials/actions/runs/41804157343) 出现双 SVG 误判 FAIL，已在 [PR #24](https://github.com/kobolibra/financials/pull/24) 从源测试修正、正式合并 `25c5796b`，修复后实际 Cloudflare 统一目录 [#41806506722](https://github.com/kobolibra/financials/actions/runs/41806506722) PASS。之后的新 main 必须重新查询 Actions；以上 PASS 只对应所注明代码/真实数据范围，不能取代完整附注或独立人类审阅。仍有八家旧公司 390 财务图内横滚 FAIL。现行 Skill v8.7.2-rc1 原文和所有五册需要每次重新读取。
+
 ## 1. 当前独立公司研究库：不要在启动文档硬编码发行人总数
 
 权威清单是 [site/research_catalog.json](site/research_catalog.json)，唯一线上目录是 [Financials in Visuals](https://financials-in-visuals.pages.dev/)。最近真实 `main` 生产验证 [#41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066) 对应 `b88698a0cf1cfcd89c16eda1e399796d9418ea04`，当时**11家公司**全部路由以及桌面/平板/手机导航通过；这只是**明确有时间和 SHA 的历史验收快照**，新对话必须再取当前 GitHub `main`，不能把 11 当未来的固定常数。
 
-最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的手机十张源驱动全图已发布；线上公司页 HTML SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd` 与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
+最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的手机十张源驱动全图已发布；当时历史线上公司页 HTML SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`；之后实际已更新的 `601628` 正式页面 SHA 为 `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0`，请以对应当次 main/Actions 为准。旧版本 与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
 
 产业链横向比较 `/optical-2026h1.html` 始终是**专题**，不算单独公司。后续任何新增公司必须加入现有 `site/research_catalog.json` 并运行 `site/portal_builder.py`，只发布独立、可离线打开的单公司 HTML。绝不能新建“三家／四家／v11”第二入口。
 
