@@ -1,0 +1,40 @@
+name: Verify exact public optical native-finance release and all 11 independent company routes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/300394.html'
+      - 'public/300502.html'
+      - 'public/300394/2026-H1/index.html'
+      - 'public/300502/2026-H1/index.html'
+      - 'scripts/verify_live_optical_native.py'
+      - '.github/workflows/verify-live-optical-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  optical-original-source-production-390:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actual Chinese font / Chromium / source SHA prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=zh family | grep -qi Noto
+          python -m pip install --disable-pip-version-check -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Prove current PUBLIC Cloudflare whole HTML bytes, yuan ribbon math, signed mobile, return to unique library
+        run: |
+          python scripts/verify_live_optical_native.py
+          cat research/visual-audit/live-optical-native/result.json
+      - name: Archive nine genuine public Chromium screenshots and exact PDF/HTML source receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-Cloudflare-original-optical-two-native-money-release
+          path: research/visual-audit/live-optical-native/
+          retention-days: 30
+          if-no-files-found: warn

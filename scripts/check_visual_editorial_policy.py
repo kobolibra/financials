@@ -109,6 +109,28 @@ def validate_current_published_files(root, audit, debt):
                 continue
             fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CLOUDFLARE_SOURCE_SHA_ALL_TEN_MOBILE_FINANCIAL_FIGURES"})
             continue
+        # Shared optical original-money publisher has its OWN actual real CJK
+        # 1440/768/390 screenshots. Its output is not an unrelated sector or
+        # insurer receipt; require exact current HTML bytes and native money
+        # plus all CAS signed mobile geometry before treating its old 390 FAIL
+        # as technically repaired. This does NOT prove external production.
+        if code in {"300394","300502"}:
+            p=root/"optical-native-visual-qa/result.json"
+            if not p.is_file():
+                errors.append(f"VISUAL_CHANGED_OPTICAL_ISSUER_REQUIRES_REAL_BROWSER_FINANCE_SOURCE_PROOF {code}")
+                continue
+            d=json.loads(p.read_text(encoding="utf8"))
+            vs=[x for x in d.get("cases",[]) if x.get("issuer")==code]
+            valid=(len(vs)==3 and {x.get("width") for x in vs}==WIDTHS
+                and all(x.get("sha256")==sha for x in vs)
+                and all(x.get("money_area")=="PASS" and x.get("signed_accounting_and_svg_geometry")=="PASS" and x.get("figures",0)>=9 for x in vs)
+                and all(x.get("native_mobile_finance_no_inner_scroll")=="PASS" for x in vs if x.get("width") in {390,768})
+                and all(isinstance(x.get("screenshot_sha256"),str) and len(x["screenshot_sha256"])==64 for x in vs))
+            if not valid:
+                errors.append(f"VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID {code}")
+                continue
+            fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CJK_3_VIEWPORTS_SOURCE_WEIGHTED_AND_SIGNED_ACCOUNTING"})
+            continue
         # Old source SHA proves only history, not an edited current page.
         # The two-industry QA is calculated from new source and full HTML bytes.
         receipt=root/"research/issuers"/code/"visual-qa/result.json"

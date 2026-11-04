@@ -442,6 +442,16 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "CLOUDFLARE_LIVE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-046",
+      "root_cause": "初始三家光通信原有四阶段原创AEI式桌面真实元金额资金图在390手机上仅看到930px原图最左320px；原有测试只看document根无横溢，却把图内已截断的>60%资金/收益结论误认为mobile PASS。后续图形若简单缩小到几像素或用普通卡片替代源金额路径也失去机构财报可视化价值。",
+      "correction": "从原始同源typed财报元账本为两个真正源核验光通信发行人300394/300502生成独立330 viewBox纵向金额加权来源→自己COGS/GP全局同货币尺度Bezier ribbon，且同时保留原始桌面1250完整可编辑SVG；负数用真正单一原金额比例signed cumulative瀑布；时点资产/同比流量/百分比各自不同编码。CJK真实1440/768/390逐图截图、source/sink和path可见真几何、签名桥累计和文本bbox、无图内横滚以及原HTML二次字节级重建。原历史10个390FAIL保留为历史；任一新发布改变网页必须当次完整HTML SHA匹配真实3屏源证书，Cloudflare独立验收。",
+      "proof_file": "skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py",
+      "assertion_marker": "FALSE_RIBBON_AREA",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
