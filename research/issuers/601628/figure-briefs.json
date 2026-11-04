@@ -40,8 +40,8 @@
       "id": "premium",
       "order": 2,
       "family": "exclusive_weighted_premium_sankey",
-      "question": "2026H1保费的真实分组与新、续期现金业务如何守恒？",
-      "takeaway": "四种互斥保费归类恰好等于新单+续期，也恰好等于总保费；100%金额几何，与合并利润表保险服务收入断开。",
+      "question": "2026H1总保费如何由四个真实业务分组汇成新单与续期？",
+      "takeaway": "四种互斥统计保费类别精确汇为新单1,800.39亿元和续期3,565.95亿元，合计5,366.34亿元；这是同一管理层保费统计口径的分类守恒，不代表法定保险服务收入，也不等于收到的现金。",
       "facts": [
         "premium_first_regular",
         "premium_single",
@@ -56,7 +56,7 @@
       "identity": "101294+17696+61049=180039; +356595=536634 RMB million; geometry segment height exactly v/536634*chart height; not earnings or cash",
       "zero": "EXACT_AMOUNT_WEIGHTED_RIBBON",
       "counter": "报告p10脚注声明总保费遵循旧保险合同统计规则；不能将536634直接流进112525保险服务收入。",
-      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "mobile": "390px 手机完整源账本原数可读：四个来源+新单+总保费用真实原数和同比/存量关系逐项显示，不使用900px内部横向滚动 SVG；桌面仍输出可编辑/可导出原始完整保费加权桑基。",
       "quality": {
         "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
         "exact_accounting": "PENDING_ACTIONS",
