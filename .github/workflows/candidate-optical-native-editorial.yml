@@ -1,0 +1,86 @@
+name: Candidate original optical money editor and native CJK mobile
+on:
+  push:
+    branches: ['work/optical-three-native-editorial-20261104']
+    paths:
+      - 'skills/ashare-financial-storytelling/v7/engine/native_mobile_finance.py'
+      - 'skills/ashare-financial-storytelling/v7/engine/render_v7.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
+      - '.github/workflows/candidate-optical-native-editorial.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  original-source-and-editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Original signed CAS source and hostile child/margin tests
+        run: |
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_xinyisheng_case.py -v
+      - name: Source-regenerate TWO original report HTMLs on candidate branch only
+        shell: bash
+        run: |
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out public/300394.html --qa /tmp/native-300394-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out public/300502.html --qa /tmp/native-300502-qa.json
+          cp public/300394.html public/300394/2026-H1/index.html
+          cp public/300502.html public/300502/2026-H1/index.html
+          python - <<'PY'
+          import re,subprocess
+          from pathlib import Path
+          for code in ("300394","300502"):
+              old=subprocess.check_output(['git','show',f'HEAD:public/{code}.html']).decode()
+              new=Path(f'public/{code}.html').read_text()
+              orig=re.search(r'<svg class="hero-svg".*?</svg>',old,re.S)
+              assert orig and orig.group(0) in new,(code,'DESKTOP_ORIGINAL_FINANCE_FIGURE_CHANGED')
+              assert new.count('class="native-finance"')>=9,(code,'NATIVE_FIGURES_ABSENT')
+              assert new.count('class="money-ribbon"')==old.count('class="money-ribbon"'),(code,'SOURCE_GEOLOGY_CHANGED')
+              assert old.count('data-source')==new.count('data-source'),(code,'SOURCE_EVIDENCE_CHANGED')
+          PY
+      - name: Real CJK fonts and Chromium
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-list :lang=zh family | grep -qi Noto
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Actual 1440/768/390 original yuan SVG geometry and mobile all-figure screenshots
+        run: |
+          python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa
+      - name: Independent identical-byte clean regenerate
+        shell: bash
+        run: |
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out /tmp/native-300394-second.html --qa /tmp/native-second-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out /tmp/native-300502-second.html --qa /tmp/native-second-qa2.json
+          cmp /tmp/native-300394-second.html public/300394.html
+          cmp /tmp/native-300502-second.html public/300502.html
+      - name: Save actual candidacy source pages and artifact proofs on work branch
+        if: github.event_name == 'push' && github.ref_name != 'main'
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/300394.html public/300394/2026-H1/index.html public/300502.html public/300502/2026-H1/index.html
+          git add optical-native-visual-qa/result.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Candidate source-native full-phone optical finance articles and real screenshot QA"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Actual screenshots and original source
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-native-optical-real-original-2026H1
+          path: |
+            optical-native-visual-qa/
+            public/300394.html
+            public/300502.html
+          retention-days: 30
