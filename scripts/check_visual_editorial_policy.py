@@ -133,6 +133,45 @@ def validate_current_published_files(root, audit, debt):
             fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CJK_3_VIEWPORTS_SOURCE_WEIGHTED_AND_SIGNED_ACCOUNTING"})
             continue
         # Old source SHA proves only history, not an edited current page.
+        # Semiconductor source-led release is a distinct accounting/visual
+        # family: 4 product cost+GP true-weighted, signed CAS/17-row CFO and
+        # balanced BS. Never apply the two-sector or optical receipt schema.
+        if code=="688220":
+            rootdir=root/"research/issuers/688220"
+            receipt=rootdir/"visual-qa-native/result.json"
+            if not receipt.is_file():
+                errors.append("VISUAL_688220_CHANGED_FULL_HTML_REQUIRES_ACTUAL_NINE_NATIVE_CJK_FINANCE_RECEIPT")
+                continue
+            q=json.loads(receipt.read_text(encoding="utf8"))
+            v=q.get("actual_3_viewport_checks",[])
+            screenshots=q.get("real_CJK_screenshot_sha_bytes",{})
+            manifest=json.loads((rootdir/"source-manifest.json").read_text(encoding="utf8"))
+            valid=(q.get("issuer")==code and q.get("html_sha256")==sha
+                and q.get("source_pdf_sha256")==manifest["pdf_sha256"]
+                and len(v)==3 and {z.get("width") for z in v}==WIDTHS
+                and all(z.get("body_no_overflow")=="PASS" and
+                        z.get("source_conserved_source_sinks_and_Bezier_actual_width")=="PASS" and
+                        z.get("original_legal_signed_CFO_and_PNL_in_same_scale")=="PASS" and
+                        z.get("original_CJK_text_bbox")=="PASS" for z in v)
+                and all(z.get("actual_nine_390_768_native_signed_money_figures_no_inner_scroll")=="PASS"
+                        for z in v if z.get("width") in (390,768))
+                and q.get("all_nine_390px_native_financial_svg_legible_and_source_reconciled")=="PASS"
+                and q.get("source_nodes_sinks_ribbons_exact_svg_geometric_proportions")=="PASS"
+                and len(screenshots)>=21)
+            # Four curated genuine CJK screenshots are persisted in Git;
+            # remaining full 9×3 matrices live in the GitHub Actions artifact.
+            for name in ("flow_390.png","flow_1440.png","pnl_390.png","cfo_390.png"):
+                p=rootdir/"visual-qa-native"/name
+                entry=screenshots.get(name)
+                valid=valid and bool(entry) and p.is_file() and (
+                    entry.get("sha256")==hashlib.sha256(p.read_bytes()).hexdigest()
+                    and entry.get("bytes")==p.stat().st_size)
+            if not valid:
+                errors.append("VISUAL_CHANGED_688220_SOURCE_AMOUNT_SIGNED_CJK_390_RECEIPT_INVALID")
+                continue
+            fixed.append({"code":code,"source_html_sha256":sha,
+                          "mobile_original_money_grammar":"PASS_REAL_NINE_NATIVE_CJK_SOURCE_SANKKEY_SIGNED_CAS_BS"})
+            continue
         # The two-industry QA is calculated from new source and full HTML bytes.
         receipt=root/"research/issuers"/code/"visual-qa/result.json"
         if not receipt.is_file():
