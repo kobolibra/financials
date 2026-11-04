@@ -71,6 +71,17 @@ with sync_playwright() as p:
                     clipped:r.right>f.getBoundingClientRect().right+2};
                 })""")
                 assert all(z["active"] and z["oldHidden"] and z["inner"]<=z["visible"]+2 and z["width"]>220 and not z["clipped"] for z in figures),(code,width,"REAL_NATIVE_FIGURE_CLIP",figures)
+            if width==390:
+                source_row=page.locator("button.native-source-row[data-source-key]").first
+                assert source_row.count()==1,(code,"MISSING_ACCESSIBLE_SOURCE_FILTER")
+                original_d=page.locator("path.native-money-ribbon").first.get_attribute("d")
+                source_row.click()
+                assert page.locator("path.native-money-ribbon.is-selected").count()==2,(code,"SELECTED_SOURCE_PATHS_NOT_HIGHLIGHTED")
+                assert page.locator("path.native-money-ribbon.is-muted").count()==len(graph["ribbons"])-2,(code,"UNSELECTED_SOURCE_PATHS_NOT_DIMMED")
+                assert page.locator("button.native-source-row[aria-pressed=true]").count()==1,(code,"ACCESSIBLE_PRESS_STATE_MISSING")
+                source_row.click()
+                assert page.locator("path.native-money-ribbon.is-muted").count()==0 and page.locator("path.native-money-ribbon.is-selected").count()==0
+                assert page.locator("path.native-money-ribbon").first.get_attribute("d")==original_d,(code,"INTERACTION_CHANGED_ORIGINAL_AMOUNT_WIDTH")
             else:
                 assert page.locator(".chart-shell .hero-svg:visible").count()==1
                 with page.expect_download(timeout=10000) as event:
