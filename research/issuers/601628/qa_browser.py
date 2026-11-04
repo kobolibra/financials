@@ -73,7 +73,11 @@ with sync_playwright() as p:
    expectedheight=268*path["v"]/total
    assert math.isclose(abs(yend-ystart),expectedheight,abs_tol=.0006),(path["key"],"NOT_MONEY_WEIGHTED_ACTUAL_PATH",yend-ystart,expectedheight)
    actual_flow[path["key"]].append(path["v"])
-  assert all(len(actual_flow[k])==2 and all(v==n for v in actual_flow[k]) for k,n in expected.items()),"NOT_CONSERVED_FULL_SOURCE_TO_GROUP_TO_TOTAL"
+  assert all(len(actual_flow[k])==1 and actual_flow[k][0]==expected[k] for k in ["premium_first_regular","premium_single","premium_short"]), "LEFT_SOURCES_NOT_EXACT"
+  assert len(actual_flow["premium_renew"])==2 and actual_flow["premium_renew"]==[356595,356595], "RENEWAL_INTERMEDIATE_NOT_CLOSED"
+  assert len(actual_flow["premium_new"])==1 and actual_flow["premium_new"][0]==180039, "NEW_INTERMEDIATE_NOT_CLOSED"
+  assert sum(actual_flow[k][0] for k in ["premium_first_regular","premium_single","premium_short"])==actual_flow["premium_new"][0], "NEW_SOURCE_CONSERVATION"
+  assert actual_flow["premium_new"][0]+actual_flow["premium_renew"][1]==536634,"TOTAL_SINK_NOT_CLOSED"
   with page.expect_download(timeout=10000) as download:
    page.locator('[data-export="premium"]').click()
   got=download.value
