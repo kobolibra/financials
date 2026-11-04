@@ -119,12 +119,17 @@ def comparative():
     for i,(title,old,new) in enumerate(rows):
         y=78+i*72
         body+=t(40,y,title,16,"#163C39",650)
-        scale=680/float(max(amount(old),amount(new)))
+        # Reserve disjoint, fixed x-zones for exact source values and YoY.
+        # Former bars ended at x945 and value labels ran into the percentage
+        # text at x1030; screenshots proved visible overlapping data.
+        # Each comparable pair still shares its OWN independent zero baseline.
+        scale=555/float(max(amount(old),amount(new)))
         for j,(k,c) in enumerate([(old,"#A7B6B0"),(new,"#087964")]):
             yy=y-17+j*23
             body+=rect(265,yy,float(amount(k))*scale,16,c,extra=f'data-exact-yuan="{FACTS[k]["yuan"]}"')
-            body+=t(276+float(amount(k))*scale,yy+13,("2025 " if j==0 else "2026 ")+yi(k)+"亿",12,"#1D403E")
-        body+=t(1030,y+7,pct(new,old),17,"#077D64",700,"end")
+            body+=t(833,yy+13,("2025 " if j==0 else "2026 ")+yi(k)+"亿",12,"#1D403E")
+        # Percentage lives in its own rightmost readable column.
+        body+=t(1073,y+10,pct(new,old),17,"#077D64",700,"end")
     body+=t(40,358,"各指标独立从零起绘制、不同刻度不可比较条长；不允许保费→收入→净利润的虚假单线资金流",12,"#887359")
     return svg(body,h=380,desc="2025和2026保费、法定保险服务收入、归母净利润、CFO各自独立零基准的比较")
 def ribbon(x1,x2,ya,yb,za,zb,value,key,fill):
