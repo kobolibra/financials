@@ -1049,15 +1049,6 @@
       "exact_value": "107298065257.53",
       "classification": "ORIGINAL_REPORTED"
     },
-    "ship_segment_revenue_prior": {
-      "label": "航运分部营业收入（抵销前）（比较期）",
-      "physical_page": 12,
-      "period": "2025H1",
-      "scope": "management_segment",
-      "source_report_unit": "CNY_yuan",
-      "exact_value": "null",
-      "classification": "ORIGINAL_REPORTED"
-    },
     "port_segment_revenue": {
       "label": "码头分部营业收入（抵销前）",
       "physical_page": 12,
@@ -1065,15 +1056,6 @@
       "scope": "management_segment",
       "source_report_unit": "CNY_yuan",
       "exact_value": "6327260294.48",
-      "classification": "ORIGINAL_REPORTED"
-    },
-    "port_segment_revenue_prior": {
-      "label": "码头分部营业收入（抵销前）（比较期）",
-      "physical_page": 12,
-      "period": "2025H1",
-      "scope": "management_segment",
-      "source_report_unit": "CNY_yuan",
-      "exact_value": "null",
       "classification": "ORIGINAL_REPORTED"
     },
     "intersegment_revenue_elimination": {
