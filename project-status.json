@@ -1229,7 +1229,7 @@
     "branch": "work/688220-native-mobile-visual-editorial-20261104",
     "original_pdf_224_pages": true,
     "original_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
-    "source_and_negative_accounting": "PASS_ACTUAL_CI_41861590595",
+    "source_and_negative_accounting": "PASS_ONLY_ORIGINAL_PDF_AND_ADVERSARIAL_STEP_WITHIN_ACTION_41861590595__FULL_WORKFLOW_FAILED_BROWSER_TEST_SYNTAX_OLDER_REV",
     "chart_source": "research/issuers/688220/native_mobile.py",
     "figure_count": 9,
     "financial_grammars": [
@@ -1243,7 +1243,7 @@
       "business_GP_amount_and_rate",
       "dated_capital_stock_comparison"
     ],
-    "real_1440_768_390_CJK": "NOT_CHECKED_PENDING_BROWSER_REDTEAM_SUCCESS",
+    "real_1440_768_390_CJK": "NOT_CHECKED_PENDING_NEW_QUEUED_RUN_41864295455",
     "exact_main_cloudflare_new_html_sha": "NOT_CHECKED_CANDIDATE_ONLY",
     "five_other_main_visual_fail": [
       "600036",
@@ -1255,6 +1255,8 @@
     "original_AR_top5_denominator_conflict": "FAIL_BOUNDED_ORIGINAL_P137_90.50_PCT_VS_DERIVED_89.17_PCT_UNRESOLVED_DENOMINATOR",
     "independent_human_editor": "NOT_CHECKED",
     "external_source_pdf_equivalence": "NOT_CHECKED",
-    "regression": "VIS-048"
+    "regression": "VIS-048",
+    "candidate_pull_request": "https://github.com/kobolibra/financials/pull/29",
+    "release_status": "NOT_CHECKED_CANDIDATE_ONLY__NO_CLOUDFLARE_HTML_MODIFICATION"
   }
 }
