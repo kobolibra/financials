@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 30,
+        "quality_regressions_count": 31,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -756,11 +756,12 @@
       "Historical site/company_count and manifest Skill version must be updated together, not only catalog",
       "New PUB-028 generic release contract checks original standalone HTML SHA against declared publication fingerprint and hostile falsified 64-hex SHA",
       "Original p42 EY limited assurance review exists despite report being unaudited; old generic unaudited disclaimer loses professional assurance distinction",
-      "Regulatory minimum capital 674846 million is not shareholder equity; zero-division hostile mutation now fails clean with assertions"
+      "Regulatory minimum capital 674846 million is not shareholder equity; zero-division hostile mutation now fails clean with assertions",
+      "Actual Cloudflare article confirmed canonical extensionless /601628 route and revealed improperly painted final sankey total rect; primary SVG argument order and real Chromium DOM sink fill/class/source-value geometry are corrected, VIS-032"
     ],
     "action_next": "PR #14 head check all workflows, merge to real main, wait actual Cloudflare Pages production deploy and verify 11 company live Chromium three viewports and exact online HTML SHA; independent research/market and human review remains NOT_CHECKED",
-    "published_html_sha256": "14cdc1400c8f813f052f61a8d2325e4db849626049fd43b51f5a927a0131b088",
-    "latest_source_signed_qa_action": "https://github.com/kobolibra/financials/actions/runs/41769923566",
+    "published_html_sha256": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
+    "latest_source_signed_qa_action": "https://github.com/kobolibra/financials/actions/runs/41770920009",
     "pr": "https://github.com/kobolibra/financials/pull/14",
     "audit_assurance": "EY_HUA_MING_LIMITED_INTERIM_REVIEW_2026_08_27_PHYSICAL_PAGE_42_NOT_AN_AUDIT_OPINION",
     "insurance_regulatory_ratios": {

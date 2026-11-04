@@ -152,7 +152,7 @@ def premium_flow():
         body+=rect(m,sy,16,hh,col,"money-intermediate",f'data-source-key="{key}" data-value-million="{int(amount(key))}"')
         body+=ribbon(m+16,r,sy,sy+hh,sy,sy+hh,int(amount(key)),key,col)
         body+=t(m+24,sy+max(20,hh/2),name+" "+yi(key)+"亿",15,"#17423D",700)
-    body+=rect(r,Y,17,H,"money-sink",f'data-value-million="{int(amount("premium_total"))}"')
+    body+=rect(r,Y,17,H,"#123F3A","money-sink",f'data-value-million="{int(amount("premium_total"))}" data-exact-yuan="{FACTS["premium_total"]["yuan"]}"')
     body+=t(1010,Y+H/2,"总保费",18,"#143C36",700)
     body+=t(1010,Y+H/2+23,yi("premium_total")+"亿",18,"#087B65",700)
     body+=t(45,390,"来源×业务阶段×合计：每条带与每个节点的高度均为 268 × 原始金额 / 536,634；无最小宽度假流。",13,"#61756F")
