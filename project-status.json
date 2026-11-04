@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.6.0-rc1",
+    "version": "8.6.1-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -65,14 +65,20 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 34,
+        "quality_regressions_count": 35,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
         "each_sector_multiple_issuer_L2": "NOT_ESTABLISHED",
         "insurance_full_original_source_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
         "insurance_original_pdf_pages": 104,
-        "insurance_case": "single 601628 verified first-source 2026H1 L1; insurance L2 and universal L3 NOT_ESTABLISHED"
+        "insurance_case": "single 601628 verified first-source 2026H1 L1; insurance L2 and universal L3 NOT_ESTABLISHED",
+        "latest_live_generic_publication_regressions": [
+          "PUB-033",
+          "VIS-034",
+          "PUB-035",
+          "HND-036"
+        ]
       },
       "new_insurance_source_cell_verifier": "research/issuers/601628/verify_source.py",
       "new_insurance_qa": "research/issuers/601628/qa_browser.py",
@@ -793,7 +799,8 @@
       "Regulatory minimum capital 674846 million is not shareholder equity; zero-division hostile mutation now fails clean with assertions",
       "Actual Cloudflare article confirmed canonical extensionless /601628 route and revealed improperly painted final sankey total rect; primary SVG argument order and real Chromium DOM sink fill/class/source-value geometry are corrected, VIS-032",
       "After actual live PASS, qa_cloudflare_live.py saved home URL as article URL because page.url captured after back click. New shared live_route_evidence + hostile tests capture/validate both independently, PUB-033.",
-      "CLOUDFLARE_LIVE release flag and latest handoff were falsely pending despite successful exact production Actions 41771178361. Evidence and cryptographic gate now synchronized without rewriting ten prior issuer pages, PUB-035."
+      "CLOUDFLARE_LIVE release flag and latest handoff were falsely pending despite successful exact production Actions 41771178361. Evidence and cryptographic gate now synchronized without rewriting ten prior issuer pages, PUB-035.",
+      "Main 601628 live successful but START_HERE user entry still asserted current 10; removed hardcoded count, added generic main manifest/catalog first-door hostile regression HND-036."
     ],
     "action_next": "Source-limited 601628 2026H1 published and real Cloudflare 11 route PASS at d116; generic live evidence capture correct article/back URLs and durable screenshot SHA follow-up CI; future company must independently recheck original PDF bytes, financial note/CSM bridge, sector-native graphics, exact main-site real live browser. Full material notes and independent human review and external long-period valuation remain NOT_CHECKED.",
     "published_html_sha256": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
@@ -826,7 +833,11 @@
     "actual_live_all_11_issuer_routes": "PASS",
     "actual_live_10_svg_and_10_source_tables": "PASS",
     "actual_live_back_to_single_directory": "PASS",
-    "actual_live_source_metadata_and_sankey_sink": "PASS"
+    "actual_live_source_metadata_and_sankey_sink": "PASS",
+    "skill_version": "8.6.1-rc1",
+    "latest_adaptive_live_qa_source": "research/issuers/601628/qa_cloudflare_live.py",
+    "generic_live_route_source": "research/shared/live_route_evidence.py",
+    "latest_live_adaptive_qa_status": "PENDING_CANDIDATE_MAIN_RELEASE_TEST_NOT_YET_EXECUTED"
   },
   "historical_2026_11_04_source_intake_no_identified_issuer": {
     "date": "2026-11-04",
