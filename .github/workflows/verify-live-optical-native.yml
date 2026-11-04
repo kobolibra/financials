@@ -7,6 +7,9 @@ on:
       - 'public/300502.html'
       - 'public/300394/2026-H1/index.html'
       - 'public/300502/2026-H1/index.html'
+      - 'public/300308.html'
+      - 'public/300308/2026-H1/index.html'
+      - 'research/issuers/300308/source-verification.json'
       - 'scripts/verify_live_optical_native.py'
       - '.github/workflows/verify-live-optical-native.yml'
   workflow_dispatch:
