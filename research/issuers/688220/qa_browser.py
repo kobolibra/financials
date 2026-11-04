@@ -124,7 +124,7 @@ with sync_playwright() as p:
   assert info["bodyExternalScripts"]==0,(width,"offline must need no external JS",info)
   assert len(info["ribbon"])==7,(width,"4 cost ribbons and 3 nonzero GP ribbons required",info["ribbon"])
   assert len({r["source"] for r in info["ribbon"]})==4
-  assert all(D(r["amount"])>0 and r["bboxHeight"]>0 and r["title"] for r in info["ribbon"]),(width,"fake/empty ribbon")
+  assert all(D(r["amount"])>0 and (r["bboxHeight"]>0 if width==1440 else r["thickness"]>0) and r["title"] for r in info["ribbon"]),(width,"fake/empty ribbon")
   cost=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="cost"),D(0))
   profit=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="profit"),D(0))
   assert abs(cost-expected_cost)<=D("0.02") and abs(profit-expected_profit)<=D("0.02"),(width,"money-flow totals wrong",cost,profit)
