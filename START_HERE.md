@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
-> **当前有效版本：统一十家公司研究库（2026-11-04）**。不是旧 v9 首页，也不是四家公司独立专区。生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
+> **当前有效规则：唯一公司研究库，以实际 GitHub `main` 的 `project-status.json` + `site/research_catalog.json` 为真值。不得把上次聊天、固定公司数量或旧 v9 首页当当前状态。** 生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
 
 ## 0. 新对话 / 新 Agent 必读
 
@@ -16,30 +16,21 @@
 
 **新窗口一键启动文本：** [docs/NEW_SESSION_PROMPT.md](docs/NEW_SESSION_PROMPT.md)。如果新会话无法读取 GitHub，则明确说出阻碍并请求上传必需文件，不能谎称“已执行 Skill”。
 
-## 1. 当前生产的十家独立研究
+## 1. 当前独立公司研究库：不要在启动文档硬编码发行人总数
 
-| 行业 | 公司 | 正式网页 |
-|---|---|---|
-| 光器件 | 天孚通信 300394 | `/300394.html` |
-| 光模块 | 中际旭创 300308 | `/300308.html` |
-| 光模块 | 新易盛 300502 | `/300502.html` |
-| 银行 | 招商银行 600036 | `/research/2026-h1-v10/600036.html` |
-| 软件 | 金山办公 688111 | `/research/2026-h1-v10/688111.html` |
-| 白酒 | 贵州茅台 600519 | `/research/2026-h1-v10/600519.html` |
-| 制造 | 美的集团 000333 | `/research/2026-h1-v10/000333.html` |
-| 半导体 | 翱捷科技-U 688220 | `/688220.html`（源限定研究预览，公开披露的应收集中度比例分母仍有不可勾稽问题） |
-| 公用事业 / 水电 | 长江电力 600900 | `/600900.html`（2026H1完整214页报告；8图源限定研究） |
-| 医药 / 创新药 | 恒瑞医药 600276 | `/600276.html`（2026H1完整182页报告；8图源限定研究） |
+权威清单是 [site/research_catalog.json](site/research_catalog.json)，唯一线上目录是 [Financials in Visuals](https://financials-in-visuals.pages.dev/)。上一轮真实 `main` 生产验证 [#41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) 对应 `d11638f0c76ff8aef2beb163a1028f176123bbdc`，当时**11家公司**全部路由以及桌面/平板/手机导航通过；这只是**明确有时间和 SHA 的历史验收快照**，新对话必须再取当前 GitHub `main`，不能把 11 当未来的固定常数。
 
-产业链横向比较 `/optical-2026h1.html` **属于专题，不算入十家公司**。新增公司仍通过唯一 `site/research_catalog.json` 和 `site/portal_builder.py` 接入原有首页。不得另建“三家／四家／v11 公司入口”。原有公司 URL 不能因重构而损坏。
+最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的线上公司页 HTML SHA `051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763` 与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
+
+产业链横向比较 `/optical-2026h1.html` 始终是**专题**，不算单独公司。后续任何新增公司必须加入现有 `site/research_catalog.json` 并运行 `site/portal_builder.py`，只发布独立、可离线打开的单公司 HTML。绝不能新建“三家／四家／v11”第二入口。
 
 ## 2. 已验证什么，未验证什么
 
 **最近完成的有界修复**：天孚通信 p.140 0.38 亿元对应已披露其他业务；新易盛 p.104 0.27 亿元对应按业务类型“其他”，**不能**与另一维度“其他业务”合并。见 [附注核对报告](docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md)。
 
-**最新真实生产验收**（新加入两家公司，报告源 merge `7704ecc6...`）：两份完整PDF/行列/核心三表/CFO/16图/三屏及离线重建 [41736999153](https://github.com/kobolibra/financials/actions/runs/41736999153) **PASS**；真实Cloudflare十公司×三尺寸30路径 [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189) **PASS**；老页面路由 [41736999101](https://github.com/kobolibra/financials/actions/runs/41736999101) **PASS**；Skill及十公司交接 [41736999465](https://github.com/kobolibra/financials/actions/runs/41736999465) **PASS**。每次交接仍要查看 **GitHub 当前 HEAD 的最新 Action 和 Cloudflare 实际页面**。
+**最近一次精确 main 实测**：真实 Cloudflare 11家公司全部路由和 1440/768/390、双页完整 HTML SHA、新寿险十图与原始来源表及导航 [41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) **PASS**；保险完整原 PDF/会计/真实图形 [41771178355](https://github.com/kobolibra/financials/actions/runs/41771178355) **PASS**；通用统一研究库 [41771178360](https://github.com/kobolibra/financials/actions/runs/41771178360) **PASS**；主站真实路由 [41771178350](https://github.com/kobolibra/financials/actions/runs/41771178350) **PASS**；Skill交接 [41771178406](https://github.com/kobolibra/financials/actions/runs/41771178406) **PASS**。全部对应同一个当时 `main` SHA `d11638f...`，绝不自动适用于以后的源码变更。
 
-**尚未完成**：现有十家公司全部重大附注的完整独立系统语义复核、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
+**尚未完成**：现有公司全部重大附注的完整独立系统语义复核、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
 
 ## 3. 新公司从 PDF 到独立 HTML 的最短正确路径
 
