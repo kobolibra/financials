@@ -160,12 +160,43 @@ class IssuerReleaseContractTests(unittest.TestCase):
         errs=mod.validate_release(ROOT,insurer,unlinked,check_bytes=False)
         self.assertIn("LIVE_CAPTURE_RECEIPT_MISSING 601628",errs)
 
-    def test_historical_issuer_explicit_sha_not_checked_is_preserved(self):
-        for company_code in ("600900","600276"):
+    def test_two_sector_current_exact_live_html_and_real_receipts_are_source_bound(self):
+        # These exact receipts were actually captured from current 9060 main
+        # public Cloudflare Action 41804157527. Historic NOT_CHECKED metadata
+        # must not keep this observed genuine published version stale.
+        expected = {
+            "600900": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
+            "600276": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+        }
+        for company_code, html_sha in expected.items():
             issuer=next(x for x in self.catalog["issuers"] if x["code"]==company_code)
             record=json.loads((ROOT/f"research/issuers/{company_code}/release-gates.json").read_text())
-            self.assertEqual(record["published_html_sha256"],"NOT_CHECKED_PENDING_MAIN_DEPLOY")
-            self.assertFalse(any("LIVE_FINGERPRINT_HTML_DRIFT" in e for e in mod.validate_release(ROOT,issuer,record,check_bytes=False)))
+            self.assertEqual(record["published_html_sha256"], html_sha)
+            self.assertEqual(record["live_release_fingerprint"], html_sha)
+            self.assertEqual(record["actual_main_release_commit"], "9060bd2a0bf3ddc32d267c176388214ef3316f13")
+            self.assertEqual(record["gates"]["CLOUDFLARE_LIVE"]["proof"],
+                             "https://github.com/kobolibra/financials/actions/runs/41804157527")
+            self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=False),[])
+            poisoned=copy.deepcopy(record)
+            poisoned["live_release_fingerprint"]="0"*64
+            errors=mod.validate_release(ROOT,issuer,poisoned,check_bytes=False)
+            self.assertIn(f"LIVE_FINGERPRINT_HTML_DRIFT {company_code}",errors)
+            poisoned=copy.deepcopy(record)
+            poisoned["actual_main_release_commit"]="0"*40
+            errors=mod.validate_release(ROOT,issuer,poisoned,check_bytes=False)
+            self.assertIn(f"LIVE_CAPTURE_MAIN_SHA_MISMATCH {company_code}",errors)
+
+    def test_legacy_explicit_sha_not_checked_does_not_claim_new_live_fingerprint(self):
+        # Historical receipts may be retained as dated claims, not backfilled.
+        issuer=next(x for x in self.catalog["issuers"] if x["code"]=="600900")
+        record=json.loads((ROOT/"research/issuers/600900/release-gates.json").read_text())
+        historic=copy.deepcopy(record)
+        historic["published_html_sha256"]="NOT_CHECKED_PENDING_MAIN_DEPLOY"
+        historic["live_release_fingerprint"]="600900_SOURCE_PDF_SHA_738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2_MAIN_7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511_LIVE_CI_41736999189"
+        historic["actual_main_release_commit"]="7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511"
+        historic.pop("live_receipt_file",None)
+        self.assertFalse(any("LIVE_FINGERPRINT_HTML_DRIFT" in e
+                             for e in mod.validate_release(ROOT,issuer,historic,check_bytes=False)))
 
     def test_existing_real_pdf_sha_and_exact_contract(self):
         self.assertEqual(mod.validate_release(ROOT, self.issuer, self.original), [])
