@@ -20,7 +20,14 @@ GREY="#a6bab1"
 BLUE="#447489"
 
 def money(v):
-    return f"{D(v)/B:,.2f}亿"
+    n=D(v)
+    if n==0:
+        return "0元"
+    if abs(n)<D("10000"):
+        return f"{n:,.2f}元"
+    if abs(n)<D("10000000"):
+        return f"{n/D(10000):,.2f}万"
+    return f"{n/B:,.2f}亿"
 
 def plus(v):
     return ("+" if D(v)>0 else "")+money(v)
@@ -66,9 +73,9 @@ def flow(l):
         details+='<div class="native-asr-detail"><b>'+E(g["label"])+'</b><span>'+money(r)+'</span><small>营业成本 '+money(c)+' · 毛利 '+money(p)+' · 原报告 p.178</small></div>'
     assert abs(cost_left-(D(16)+cost*scale))<D("0.000000001") and abs(profit_left-D(314))<D("0.000000001")
     sinks=f'<rect class="native-asr-sink" data-sink="cost" data-exact-yuan="{cost}" x="16" y="211" width="{fmt(cost*scale)}" height="16" fill="{COPPER}"/>'+f'<rect class="native-asr-sink" data-sink="gp" data-exact-yuan="{gp}" x="{fmt(D(16)+cost*scale)}" y="211" width="{fmt(gp*scale)}" height="16" fill="{GREEN}"/>'
-    labels=txt("01 收入来源（互斥四组）",16,20)+txt("02 成本 "+money(cost)+" · 毛利 "+money(gp),16,250)
-    diagram=svg(labels+paths+nodes+sinks,330,265,"2026H1原始金额严格守恒的四类业务收入对各自营业成本和毛利的手机原生图")
-    return shell("nonnegative_conserved_source_cost_gp",diagram+details,"营业收入 "+money(revenue)+"＝营业成本 "+money(cost)+"＋毛利润 "+money(gp)+"。曲带真实宽度与原始元金额成正比，极小类别不人为加宽。")
+    labels=txt("01 原收入来源（互斥四组）",16,20)+txt("02 成本 "+money(cost)+" · 毛利 "+money(gp),16,247)+txt("铜色：营业成本     绿色：毛利润",16,268,10,color=GREY)
+    diagram=svg(labels+paths+nodes+sinks,330,280,"2026H1原始金额严格守恒的四类业务收入对各自营业成本和毛利的手机原生图")
+    return shell("nonnegative_conserved_source_cost_gp",diagram+details,"原始元金额严格满足：营业收入＝营业成本＋毛利润。图上四舍五入显示收入 "+money(revenue)+"、成本 "+money(cost)+"、毛利 "+money(gp)+"；小额业务显示万元或元，不能被显示为零。")
 
 def signed(l,title,start,changes,end):
     start=D(start);end=D(end);cur=start
