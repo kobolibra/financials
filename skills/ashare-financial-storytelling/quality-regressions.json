@@ -282,6 +282,26 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "OFFLINE_REBUILD",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "INS-029",
+      "root_cause": "中国人寿2026H1半年度报告虽然财务报告标记未经审计，但物理p42实际有安永华明签署的依审阅准则2101号实施的有限保证审阅报告；若只写'未经审计'而不识别审阅保证等级，会遗漏重要机构级披露并使风险表述模糊。",
+      "correction": "原件必须寻找独立审计或中期审阅报告所在物理页、审阅机构、日期、执行标准、有限/合理保证及是否真正给出审计意见；不得把有限审阅冒充审计，也不能以未经审计一语覆盖已完成审阅。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_unreviewed_claim_cannot_erase_actual_independent_limited_review",
+      "scope": "single_issuer",
+      "transfer_gate": "SOURCE_ASSURANCE_CLASS",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "INS-030",
+      "root_cause": "保险公司监管偿付能力核心资本/实际资本/最低资本与CAS合并报表股东权益不是同一统计范围；忽略原始p21可导致错误地用普通工业流动比率衡量偿付，或把监管资本当可自由分红权益。",
+      "correction": "原件p21核对两期核心资本/实际资本/最低资本、两位百分比核心与综合偿付覆盖，锁定监管资本与会计股权不同分母；错用合并归母股权、错上年末列、漏最低资本均为FAIL。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_regulatory_capital_is_not_CAS_shareholder_equity",
+      "scope": "single_issuer",
+      "transfer_gate": "SECTOR_REGULATORY_SOLVENCY",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }
