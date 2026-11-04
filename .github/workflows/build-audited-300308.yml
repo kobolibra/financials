@@ -98,6 +98,7 @@ jobs:
           git add research/issuers/300308/page139-source-evidence.png
           git add optical-native-visual-qa-300308/result.json optical-native-visual-qa-300308/300308_figure01_1440.png optical-native-visual-qa-300308/300308_figure01_768.png optical-native-visual-qa-300308/300308_figure01_390.png
           git add optical-native-visual-qa-300308/300308_figure03_390.png optical-native-visual-qa-300308/300308_figure06_390.png optical-native-visual-qa-300308/300308_figure09_390.png
+          git add optical-native-visual-qa-300308/300308_cashfocus_1440.png optical-native-visual-qa-300308/300308_cashfocus_768.png optical-native-visual-qa-300308/300308_cashfocus_390.png
           if ! git diff --cached --quiet; then
             git commit -m 'Publish candidate original 300308 full HTML with source SHA, disclosed p139 anomaly and native money 390'
             git pull --rebase origin "$GITHUB_REF_NAME"
