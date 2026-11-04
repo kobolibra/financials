@@ -97,7 +97,7 @@ def check_agent_source_of_truth(agent_instructions: str) -> list[str]:
     issues = []
     if "project-status.json" not in agent_instructions or "site/research_catalog.json" not in agent_instructions:
         issues.append("AGENT_CATALOG_SOURCE_OF_TRUTH_MISSING")
-    if re.search(r"\\b(?:with\\s+)?(?:seven|eight|nine|ten|eleven|twelve|\\d+)\\s+independent issuer reports\\b", agent_instructions, re.I):
+    if re.search(r"\b(?:with\s+)?(?:seven|eight|nine|ten|eleven|twelve|\d+)\s+independent issuer reports\b", agent_instructions, re.I):
         issues.append("AGENT_STALE_HARDCODED_ISSUER_COUNT")
     return issues
 
