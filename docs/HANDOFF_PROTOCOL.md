@@ -43,6 +43,12 @@
 
 **下一次新会话最重要**：`START_HERE.md` 不能声称固定 10/11 家，从 `project-status.json` 与 `site/research_catalog.json` 的**真实最新 main**算；新手动反例 HND-036。上述新 8.6.1 代码只有在本次新增 Git commit 上通过 Actions 且真实线上验收后才可将其作为新版本 PASS，不能引用旧 #41771178361 代替新代码验收。
 
+## 2026-11-04 · 截图发现真视觉缺陷，v8.6.2 研究出版压力测试
+
+这不是已经发布的当前生产结果，**不能与上面 v8.6.1 MAIN Cloudflare PASS 合并成同一证据**。真实原始研究截图 `research/issuers/601628/visual-qa/figure_cash_390.png`、`figure_csm_390.png` 原显示900px宽桌面图嵌在390px横向滚动框，且1440瀑布值标签重叠、保费分组标题误写为现金业务。代码源头 `research/issuers/601628/publish.py` 已增加10张原始元账本驱动的竖向手机图；`qa_browser.py` 在390实际DOM对10图、每源金额精度、正负颜色和相对几何、无内部横滚进行硬核验；仍有完整桌面向量图导出。真实 [#41777012329](https://github.com/kobolibra/financials/actions/runs/41777012329) 来源+三表+十图+三屏+双次重建 PASS，新手机 `figure_cash_390.png`、`figure_csm_390.png` 有完整可读的来源金额，`figure_pnl_1440.png` 金额与标题已不挤压。
+
+**PR #18 未合入之前，更新的`public/601628.html` 不是Cloudflare已验网页**。旧已验 HTML SHA `051a8ec...` 与新候选 SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd` 严格分开；发布合同必须把新版 `CLOUDFLARE_LIVE=NOT_CHECKED`，把旧 PASSED 记录保留在历史字段；待实际 MAIN+新公网页真实双SHA/11家/390真手机图 PASS 再改。新的可迁移反例 VIS-037、SEM-038、VIS-039，单一保险公司自审不是独立第二名人类审稿，`NOT_CHECKED` 不变。
+
 ## 关于 Skill 的真实可发现性
 
 `AGENTS.md` 和 `.github/copilot-instructions.md` 为支持这些协议的仓库编码助手提供入口，但**不能保证任意 ChatGPT 新聊天自动检索你的私有/公开 GitHub 仓库**。新聊天必须有 GitHub 访问，或收到直接链接/上传的 Skill。不要声称已完成 ChatGPT Skills 目录安装。推荐使用 [新会话启动消息](NEW_SESSION_PROMPT.md)。
