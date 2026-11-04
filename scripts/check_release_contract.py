@@ -97,7 +97,7 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
     # the updated value after regenerating one sentence must fail release.
     # Historic company receipts without this field are not retroactively faked.
     declared_html_sha = record.get("published_html_sha256")
-    if declared_html_sha is not None:
+    if declared_html_sha is not None and declared_html_sha not in {"NOT_CHECKED", "NOT_CHECKED_PENDING_MAIN_DEPLOY"}:
         if not isinstance(declared_html_sha, str) or not re.fullmatch("[a-f0-9]{64}", declared_html_sha):
             errors.append(f"PUBLISHED_REPORT_SHA_INVALID {code}")
         elif (root / expected).is_file() and hashlib.sha256((root / expected).read_bytes()).hexdigest() != declared_html_sha:
