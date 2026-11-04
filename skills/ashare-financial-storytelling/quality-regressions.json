@@ -342,6 +342,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CLOUDFLARE_LIVE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "HND-036",
+      "root_cause": "中国人寿已是十一家公司且Cloudflare真实生产测试通过，但 START_HERE.md 用户首读文档还写‘当前生产十家’，旧三行报告依然把历史十家公司行动当最新；新会话即使读取了方法与PDF仍会错误认定第十一家未进入主站。",
+      "correction": "在首读 START_HERE.md 不写死‘当前十/十一家’，引导以 GitHub 真实 main 的 project-status.json + site/research_catalog.json 为唯一发行人数量与路由真值；测试代码对当前固定数字及关键机器目录缺失明确 fail；允许带确切SHA/时间的历史实测数字，不把其当当前状态。",
+      "proof_file": "scripts/test_check_handoff.py",
+      "assertion_marker": "test_start_here_never_reverts_to_fixed_current_company_count",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "HANDOFF_SOURCE_OF_TRUTH",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
