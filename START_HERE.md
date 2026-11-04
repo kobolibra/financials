@@ -24,6 +24,12 @@
 
 产业链横向比较 `/optical-2026h1.html` 始终是**专题**，不算单独公司。后续任何新增公司必须加入现有 `site/research_catalog.json` 并运行 `site/portal_builder.py`，只发布独立、可离线打开的单公司 HTML。绝不能新建“三家／四家／v11”第二入口。
 
+## 2026-11-04 · 视觉质量 P0：早期三家与后期全站 11 家实际对比
+
+真实 GitHub Actions [#41783946027](https://github.com/kobolibra/financials/actions/runs/41783946027) **11家公司×真实中文 Chromium 1440/768/390=33次实际网页渲染**，逐幅浏览样本，发现 **10/11家390px财务图被780–1050px宽 SVG 限制在320–356px水平小窗口**，旧“根页面不溢出”虽PASS但图本身 FAIL。详见[全站视觉退化审计](research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md)、[真实图证](research/visual-audit/cross-issuer-visual-audit.json)、[固定原HTML SHA的10家FAIL账本](research/visual-audit/quality-debt.json)。最早300394/300308/300502桌面复杂金额流的AEI风格更强，但手机一样失格且原金额表不如后期完善；不把图多或单独来源表当顶级视觉。
+
+**实际源头纠错**：601628桌面首图金额与同比数值重叠，在`research/issuers/601628/publish.py`修改列布局并于真实 [#41784420788](https://github.com/kobolibra/financials/actions/runs/41784420788) 完整原PDF/会计/3屏浏览器+第二次确定性构建PASS。新版HTML SHA `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0` 在当前候选工作分支，原正式版 `6f386...` 的 LIVE PASS 不证明新字节已经上线。**新公司及任何编辑后的旧公司**如仍有390px内部滚动，必须被`scripts/check_visual_editorial_policy.py`+恶意测试拦截。剩余十家老版手机视觉明确FAIL，未逐页重构前不得说已全部修好。
+
 ## 2. 已验证什么，未验证什么
 
 **最近完成的有界修复**：天孚通信 p.140 0.38 亿元对应已披露其他业务；新易盛 p.104 0.27 亿元对应按业务类型“其他”，**不能**与另一维度“其他业务”合并。见 [附注核对报告](docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md)。
