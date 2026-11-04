@@ -23,7 +23,7 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
         if hashlib.sha256((ROOT/"public/688220.html").read_bytes()).hexdigest()!=old:expected.add("688220")
         self.assertEqual({x["code"] for x in fixed},expected)
         self.assertEqual(set(stale),
-            {"600036","688111","600519","000333"} | ({"688220"} if "688220" not in expected else set())
+            {"600036","688111","600519","000333"} | ({"688220"} if "688220" not in expected else set()))
     def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
         original=Path.read_bytes
         def changed(path):
