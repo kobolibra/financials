@@ -54,7 +54,7 @@ class OriginalShippingAccountingTests(unittest.TestCase):
         F=copy.deepcopy(mod.FACTS);F["international_yield_usd_per_teu"]["source_report_unit"]="CNY_yuan"
         with self.assertRaisesRegex(AssertionError,"USD_PER_TEU_INDEPENDENT_OF_RMB_REVENUE"):mod.check(F)
     def test_future_newbuild_contract_is_not_current_period_capex_cash(self):
-        self.t("capital_commit_shipbuilding",mod.value("capex_cash"),"UNFUNDED_VESSEL_NEWBUILD")
+        self.t("capital_commit_shipbuilding",mod.value("capex_cash"),"FUTURE_COMMITMENT_EQUALS_H1_PAID_CAPEX_FALSELY")
     def test_controlled_and_associated_teus_not_cash_revenue(self):
         self.t("port_participating_teu","0","CONTROLLED_PLUS_ASSOCIATED_TERMINAL_TEU")
     def test_stock_period_not_prior_h1_flow(self):
