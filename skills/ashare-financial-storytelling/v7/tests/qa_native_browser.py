@@ -51,6 +51,7 @@ with sync_playwright() as p:
                     page.locator("figure.exhibit .svg-save").first.click()
                 assert event.value.suggested_filename.endswith(".svg")
             img=out/(f"{code}_{width}.png");page.screenshot(path=str(img),full_page=True)
+            page.locator("figure.exhibit").first.screenshot(path=str(out/f"{code}_figure01_{width}.png"))
             records.append({"issuer":code,"width":width,"figures":n,"money_area":"PASS","sha256":sha,"screenshot_sha256":hashlib.sha256(img.read_bytes()).hexdigest()})
             page.close()
     browser.close()
