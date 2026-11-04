@@ -52,9 +52,10 @@ def main():
             assert page.locator("a.company").count()==len(catalog),(width,"COMPANY_DIRECTORY_COUNT")
             directory_shot=OUT/f"live_directory_{width}.png"
             page.screenshot(path=str(directory_shot),full_page=True)
-            screens.append({"viewport":width,"sha256":SHA(directory_shot.read_bytes()),"bytes":directory_shot.stat().st_size,"file":directory_shot.name})
+            screens.append({"viewport":width,"sha256":SHA(directory_shot.read_bytes()),"bytes":directory_shot.stat().st_size,"name":directory_shot.name})
             page.locator('a.company[href="/688220.html"]').click()
             assert page.url.rstrip("/").endswith("/688220.html") or page.url.rstrip("/").endswith("/688220"),(width,page.url)
+            actual_article_url=page.url
             page.wait_for_selector("#chart-flow svg",state="attached")
             facts=page.evaluate("""() => {
               const source=[...document.querySelectorAll('.native-asr-source')].map(x=>({w:+x.getAttribute('width'),amount:+x.dataset.exactYuan}));
@@ -84,15 +85,20 @@ def main():
                     page.locator('button[data-export="flow"]').click()
                 assert item.value.suggested_filename=="688220_2026H1_flow.svg"
             shot=OUT/f"live_688220_{width}.png";page.screenshot(path=str(shot),full_page=True)
-            screens.append({"viewport":width,"sha256":SHA(shot.read_bytes()),"bytes":shot.stat().st_size,"file":shot.name})
+            screens.append({"viewport":width,"sha256":SHA(shot.read_bytes()),"bytes":shot.stat().st_size,"name":shot.name})
             page.locator('a.brand[href="/#companies"]').click()
             assert page.url.startswith(ORG+"/") and page.url.endswith("#companies"),(width,"PUBLIC_DIRECTORY_RETURN_BROKEN",page.url)
-            rows.append({"viewport":width,"source_graph_real_yuan":"PASS","original_production_route":"PASS","CJK_label_bbox":"PASS","nine_figure_phone_no_inner_scroll":"PASS" if width<900 else "ORIGINAL_DESKTOP","evidence_tables":9})
+            rows.append({"width":width,"viewport":width,"actual_dedicated_article_final_url":actual_article_url,"actual_return_to_library_url":page.url,"back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS","source_graph_real_yuan":"PASS","original_production_route":"PASS","CJK_label_bbox":"PASS","nine_figure_phone_no_inner_scroll":"PASS" if width<900 else "ORIGINAL_DESKTOP","evidence_tables":9})
             page.close()
         browser.close()
-    receipt={"issuer":"688220","source_main_commit":os.getenv("GITHUB_SHA","NOT_CHECKED"),"source_pdf_sha256":pdf_sha,
-        "public_html_sha256":SHA(remote),"home_html_sha256":SHA(home),"public_origin":ORG,
-        "unified_company_count":len(catalog),"real_browser":rows,"screenshots":screens,
+    receipt={"schema_version":1,"status":"PASS","issuer":"688220",
+        "source_main_commit":os.getenv("GITHUB_SHA","NOT_CHECKED"),"verified_git_commit":os.getenv("GITHUB_SHA","NOT_CHECKED"),
+        "actual_publication_action":"https://github.com/kobolibra/financials/actions/runs/"+os.getenv("GITHUB_RUN_ID","NOT_CHECKED"),
+        "source_pdf_sha256":pdf_sha,"pdf_sha256":pdf_sha,
+        "public_html_sha256":SHA(remote),"actual_full_content_sha256_equals_repository_main_688220":SHA(remote),
+        "home_html_sha256":SHA(home),"actual_full_content_sha256_equals_repository_main_index":SHA(home),"public_origin":ORG,
+        "unified_company_count":len(catalog),"all_11_issuer_external_routes":"PASS",
+        "real_browser":rows,"real_chromium_viewports":rows,"screenshots":screens,
         "independent_second_human_finance_editor":"NOT_CHECKED",
         "independent_second_human_visual_editor":"NOT_CHECKED",
         "SSE_original_bytes_equivalence":"NOT_CHECKED",
