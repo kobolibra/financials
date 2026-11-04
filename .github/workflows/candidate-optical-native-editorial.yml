@@ -23,7 +23,6 @@ jobs:
         run: |
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
-          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_xinyisheng_case.py -v
       - name: Source-regenerate TWO original report HTMLs on candidate branch only
         shell: bash
         run: |
@@ -32,6 +31,7 @@ jobs:
           python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out public/300502.html --qa /tmp/native-300502-qa.json
           cp public/300394.html public/300394/2026-H1/index.html
           cp public/300502.html public/300502/2026-H1/index.html
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_xinyisheng_case.py -v
           python - <<'PY'
           import re,subprocess
           from pathlib import Path
