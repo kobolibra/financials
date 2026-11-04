@@ -3,7 +3,7 @@
 No manual human design approval is asserted.
 """
 from __future__ import annotations
-import hashlib,json,os,urllib.request
+import hashlib,json,os,time,urllib.request
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[1]
@@ -19,9 +19,18 @@ def get(url):
 
 def main():
     local=(ROOT/"public/688220.html").read_bytes()
-    remote=get(ORG+"/688220.html")
-    assert local==remote,("ACTUAL_CLOUDFLARE_688220_HTML_SHA_MISMATCH",SHA(local),SHA(remote))
     home=(ROOT/"public/index.html").read_bytes()
+    remote=b""
+    for retry in range(16):
+        try:
+            remote=get(ORG+"/688220.html")
+            if remote==local and get(ORG+"/")==home:
+                break
+        except Exception as exc:
+            print("PUBLIC_DEPLOY_PENDING_HTTP",retry,str(exc),flush=True)
+        print("PUBLIC_DEPLOY_PENDING_FULL_SOURCE_HTML_SHA",retry,SHA(remote),SHA(local),flush=True)
+        time.sleep(10)
+    assert local==remote,("ACTUAL_CLOUDFLARE_688220_HTML_SHA_MISMATCH",SHA(local),SHA(remote))
     assert get(ORG+"/")==home,"PUBLIC_SITE_DIRECTORY_HTML_NOT_MAIN_SHA"
     manifest=json.loads((ROOT/"research/issuers/688220/source-manifest.json").read_text())
     ledger=json.loads((ROOT/"research/issuers/688220/source-ledger.json").read_text())
