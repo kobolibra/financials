@@ -202,6 +202,76 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "RESEARCH_COUNTERCASE",
       "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "INS-021",
+      "root_cause": "把保费旧保险合同统计（536634百万元）误当CAS保险服务收入（112525百万元），并试图用收现626732构造不存在的经营利润桑基。",
+      "correction": "保险专项图语法必须区分管理层总保费、合并保险服务收入、合同保费收现；仅四项旧统计分组→新续期→总保费获准画金额加权守恒桑基。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_premium_is_disjoint_and_no_fake_service_recognition",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "INS-022",
+      "root_cause": "把仅披露直接现金流量表的保险公司硬性套用净利润→CFO间接法，从而发明原报告没有的补充表。",
+      "correction": "必须先检查原PDF是否实际披露间接法补充表；仅有直接法时逐项精确勾稽实际保费现金、赔款、佣金、税及其他现金，不得从合并净利润硬造桥。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_no_fake_indirect_cash_bridge",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "INS-023",
+      "root_cause": "将本期保险投资FV收益135835百万元当独立可持续利润，不包含承保财务损益−188067、OCI、所得税与少数股东。",
+      "correction": "所有原始CAS损益含保险金融项带符号重建，并明确资产估值和保险合同负债浮动收费法相互作用、盈利归因不等于会计贡献。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_insurance_finance_liability_cannot_be_ignored",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "INS-024",
+      "root_cause": "将原PDF物理p45-46母公司资产负债表或p49-50母公司利润表错认合并报表，资产/归母数和股东风险全部失真。",
+      "correction": "严格用完整原件物理p43-44和p47-48、p53-54核对合并报表，母公司行列不得进入合并精确恒等式。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_balance_sheet_consolidated_not_parent",
+      "scope": "single_issuer",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "INS-025",
+      "root_cause": "将未赚合同服务边际CSM期末存量813253百万元直接转成2026H1服务收入，或用单一股权/CSM差额当新增NBV。",
+      "correction": "独立核实p85未来现金流现值+风险调整+CSM+PAA负债的同一时点加总，p87 CSM摊销35155与p10新业务价值38167均为不同流量/模型口径。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_csm_is_stock_not_revenue",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "INS-026",
+      "root_cause": "仅在原始PDF某物理页找到目标数字，未验证左侧报告行和本期/比较期真实物理列；跨表同值可导致错误引用。",
+      "correction": "锁存真实原件104物理页中33个选中单元的行锚/数值/毫米坐标，原件重新读取复算，错行错列停止发布；选中源格不等于全页审计。",
+      "proof_file": "research/issuers/601628/verify_source.py",
+      "assertion_marker": "WRONG_PDF_COLUMN_OR_ROW",
+      "scope": "single_issuer",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-027",
+      "root_cause": "多阶段金额加权保费桑基被旧测试误写为每条原始来源必须穿越两条带：新业务的前三个子来源应只出现在左侧一级，而中间总新单180039才出现在第二级。",
+      "correction": "分别校验原始四来源rect和4条一级ribbon、两个互斥聚合出口ribbon，真实SVG起止 y 坐标按原始百万元严格比例守恒；不靠仅检查SVG amount metadata。",
+      "proof_file": "research/issuers/601628/qa_browser.py",
+      "assertion_marker": "NEW_SOURCE_CONSERVATION",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }
