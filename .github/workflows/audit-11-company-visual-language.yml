@@ -1,0 +1,59 @@
+name: Actual comparative 11-company AEI editorial design regression visual audit
+on:
+  push:
+    branches: [work/editorial-aei-11-issuer-visual-audit-20261104]
+    paths:
+      - 'scripts/audit_visual_regression.py'
+      - '.github/workflows/audit-11-company-visual-language.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: eleven-company-editorial-visual-audit-${{ github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  actual-three-generation-visual-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install real CJK fonts and Chromium for unmodified actual issuer HTML
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          python -m pip install --disable-pip-version-check -q playwright Pillow
+          python -m playwright install --with-deps chromium
+          fc-list :lang=zh family | grep -qi 'Noto'
+      - name: Capture 11 standalone issuer report visual grammar and 9 company comparison crops
+        run: |
+          python scripts/audit_visual_regression.py
+          python - <<'PY'
+          import json,pathlib
+          z=json.loads(pathlib.Path('research/visual-audit/cross-issuer-visual-audit.json').read_text())
+          assert z['count_issuers']==11
+          assert z['count_viewport_tests']==33
+          assert len(z['screenshots'])>=30
+          assert all(pathlib.Path(s['file']).is_file() for s in z['screenshots'])
+          print('REAL_11_ISSUER_33_BROWSER_COMPARISON_PASS',len(z['screenshots']))
+          PY
+      - name: Commit audit original screenshot evidence to candidate review branch only
+        if: github.ref_name == 'work/editorial-aei-11-issuer-visual-audit-20261104'
+        run: |
+          git config user.name "financials-visual-research-bot"
+          git config user.email "financials-visual-research-bot@users.noreply.github.com"
+          git add research/visual-audit/
+          if ! git diff --cached --quiet; then
+            git commit -m "Actual primary source-company pages visual screen comparison 11x3 and editorial figure crops"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Preserve real desktop and phone AEI comparison audit screenshot receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: all-eleven-issuer-aei-financial-visual-audit-real-screenshots
+          path: research/visual-audit/
+          if-no-files-found: warn
+          retention-days: 30

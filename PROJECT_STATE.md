@@ -1,8 +1,22 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-**真实最近主站状态 2026-11-04：已发布同一首页 11 家独立公司研究，中国人寿 601628 2026H1 新手机十大图形版本真实 Cloudflare PASS，源网页 main 提交 `b88698a0cf1cfcd89c16eda1e399796d9418ea04`；当前代码 Skill 升级候选 `v8.6.3-rc1`（正式 main 版本须独立重新读取）。下一次新对话必须重新确认真实 main HEAD、原始 PDF 与确切 Actions 结果。**
+**真实最近主站状态 2026-11-04：已发布同一首页 11 家独立公司研究，中国人寿 601628 2026H1 新手机十大图形版本真实 Cloudflare PASS，源网页 main 提交 `b88698a0cf1cfcd89c16eda1e399796d9418ea04`；当前 Skill 本轮视觉审计升级候选 `v8.7.0-rc1`（正式 main 版本须独立重新读取）。下一次新对话必须重新确认真实 main HEAD、原始 PDF 与确切 Actions 结果。**
 
 > **一套统一目录**：<https://financials-in-visuals.pages.dev/>；第十一家公司中国人寿独立全文：<https://financials-in-visuals.pages.dev/601628>。原目录卡 href `/601628.html` 被 Cloudflare Pages 规范化为 `/601628`，是真正独立的 HTML 页面，不是首页回跳，也不是 iframe。其余十家公司的独立报告未被改动。研究仍为**源限制预览**，不等于已完成独立第二人类审稿。
+
+## 2026-11-04 · P0最新审核：早期3家公司 vs 后续11家真实图形退化（Skill v8.7.0候选）
+
+**先说问题，不用图多/CI绿冒充顶级**：本轮由真实 `main=8f41d0ea50eeccead7215a99a7aa29808cefa535` 检索所有11家独立完整HTML，完整读取唯一 Skill + AEI/FT/会计/设计五份研究手册与发布门槛，运行 GitHub Actions [#41783946027](https://github.com/kobolibra/financials/actions/runs/41783946027) **33次真实本地Chromium 中文字体1440/768/390** 并保存36张实截图，逐幅查看最早300394/300308/300502和后来的600036/688111/688220/600900/600276/601628。结果令人警醒：**10/11家公司的390px重要财务图仍藏在内部横向滑动小窗口（真实图宽780–1050px、可视320–356px）**；全部 document 根宽度没有溢出却不等于图形可读。严格 **VISUAL_MOBILE=FAIL**，前3家公司桌面原创多阶段资金图的视觉层级明显强于某些后来的一源分二及重复横条，但早三家手机同样失败、逐图展开原始金额表也不够。参见独立完整 [视觉退化审计](research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md)、[真实33次浏览器结果](research/visual-audit/cross-issuer-visual-audit.json)、[十大真实FAIL绑定旧HTML SHA，不能刷成PASS](research/visual-audit/quality-debt.json)，以及 `research/visual-audit/*.webp` 原始证据照片。**真正独立另一名人类资深视觉总监和财报研究员没有审查，仍是 NOT_CHECKED。**
+
+**方法真改变**：新增 `scripts/check_visual_editorial_policy.py` 和 `scripts/test_visual_editorial_policy.py`（新公司或修改过的老公司如仍有390内部横向裁切，强制 FAIL，十家老页面原SHA可作为历史已知 FAIL，不是PASS，也不能更新旧源SHA来洗白；新的公司要有原始来源表及真正可读的SVG数值）。**不能简单缩小一个1250px SVG到300px或统一转换普通数字条代替财务图**：所有新公司必须做真正同源、原金额权重的手机图形重新布局或适用的带符号瀑布，桌面保留原创图导出；有负分部抵销/保险口径/嵌套子集不准为了模仿AEI伪造桑基。此为 VIS-043 跨公司实际截图驱动的发布准入。
+
+**已直接修发行人真源码，而非只写计划**：先前已发表中国人寿601628第一幅比较图在1440真实截图中“2025/2026元金额”和“+2.2/+5.3/+228.6/-5.8%”实际上相互重叠。直接改 `research/issuers/601628/publish.py::comparative()` 源头的独立金额与同比列，并改 `qa_browser.py` 以真实 `getBBox` 红队。该实际重构源PDF、18保险会计、十SVG/十手机完整图和3屏浏览器 + 二次独立重建 [#41784420788](https://github.com/kobolibra/financials/actions/runs/41784420788) **PASS**；修正后真实 1440 图片 `research/issuers/601628/visual-qa/figure_clocks_1440.png` 已逐图查看无重叠。**新候选HTML SHA** `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0`，旧生产已验 6f386…不能为新页背书，故候选 `release-gates.json` 的 `CLOUDFLARE_LIVE=NOT_CHECKED`，须合并后真实跑 Cloudflare 11公司和3屏、双全HTML SHA 才可升 PASS。为此新增 VIS-042。其余十家旧页面不在本次未经完整原始研究和逐个实测前改写，上线仍存在已知移动端 FAIL。
+
+**下一个全新商业模式继续了**：中远海控601919 2026H1 的真实巨潮完整原始PDF 178物理页、1,207,059字节、SHA `0265a4ca61fb24ff15e14b53b258d7febc03bdb7349f379e42e2c28476dd2ff1` 已由真实GitHub Action #41780361853归档于独立分支 `work/shipping-601919-2026h1-zero-context-source-stress`；42处原件x/y行列证据与46条法定IS/BS/直接CFO+原文p148真实间接CFO/分部负抵销/航运成本/受限现金源守恒经 #41781615665 **PASS**（当时159条有效来源，随后追加了五航线TEU与航线运费原事实但**追加部分尚未全量再验**）。真航运主线应审五航线货量、RMB千元运费与美元/TEU单位不同、航运码头合并抵销、真实成本挤压、已签建造承诺与实际船舶购建现金支出的不同；不能套用寿险手机数字条。第十二家公司独立HTML/官网 LIVE **NOT_CHECKED，不准为凑新增公司而出空图**。
+
+**本次硬状态**：研究源核算与33屏原视觉样本 **PASS**；已有十家390横滚 **FAIL**；新中国人寿碰撞修正候选本地 **PASS、未上线新字节 NOT_CHECKED**；独立人类视觉质量鉴定、完整重大附注、可比同行估值仍是 **NOT_CHECKED**。重开新聊天必须先读取实际最新main而不是使用当前候选branch声称已发布。
+
+---
 
 ## 2026-11-04 · 当前正式已发布（PR #18 / main b88698a / 390 原生手机全图）
 

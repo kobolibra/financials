@@ -71,6 +71,32 @@ with sync_playwright() as p:
      return issues;
    }""")
    assert not collisions,("DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP",collisions)
+   clocks_collisions=page.evaluate("""() => {
+     const svg=document.querySelector('#chart-clocks .chart svg');
+     if(!svg)return [{error:'MISSING_DISCLOSED_CLOCKS_SVG'}];
+     const texts=[...svg.querySelectorAll('text')];
+     const amounts=texts.filter(x=>/^202[56] [0-9,]+\\.[0-9]+亿$/.test(x.textContent.trim()));
+     const yoy=texts.filter(x=>/^[+−-][0-9,.]+%$/.test(x.textContent.trim()));
+     const faults=[];
+     if(amounts.length!==8 || yoy.length!==4)return [{error:'CLOCK_VALUE_OR_YOY_LABEL_MISSING',amounts:amounts.length,yoy:yoy.length}];
+     const intersects=(a,b)=>{
+        const x=a.getBBox(),y=b.getBBox();
+        return Math.min(x.x+x.width,y.x+y.width)-Math.max(x.x,y.x)>1 &&
+               Math.min(x.y+x.height,y.y+y.height)-Math.max(x.y,y.y)>1;
+     };
+     for(const yr of amounts)for(const pct of yoy){
+        if(intersects(yr,pct))faults.push({error:'CLOCK_AMOUNT_YOY_COLLISION',
+             yearAmount:yr.textContent,percentage:pct.textContent,
+             a:yr.getBBox().toJSON(),b:pct.getBBox().toJSON()});
+     }
+     const vw=svg.viewBox.baseVal.width;
+     for(const v of [...amounts,...yoy]){
+        const r=v.getBBox();
+        if(r.x<0||r.x+r.width>vw+0.5)faults.push({error:'CLOCK_LABEL_CROPPED',label:v.textContent,rect:r.toJSON(),viewBox:vw});
+     }
+     return faults;
+   }""")
+   assert not clocks_collisions,("ACTUAL_CHROMIUM_601628_MONEY_AND_YOY_TEXT_COLLISION",clocks_collisions)
   if width==390:
    assert page.locator(".mobile-chart:visible").count()==10,(width,"MOBILE_NOT_TEN_COMPLETE_SOURCE_PLOTS")
    assert page.locator(".chart:visible").count()==0,(width,"MOBILE_STILL_USES_900PX_CROPPED_SVG_WINDOW")

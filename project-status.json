@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.6.3-rc1",
+    "version": "8.7.0-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 40,
+        "quality_regressions_count": 42,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -120,7 +120,9 @@
     "current_candidate_branch": null,
     "company_report_stage": "MAIN_ELEVEN_ONE_LIBRARY_601628_SOURCE_LIMITED_FULL_RESPONSIVE_390_NATIVE_MOBILE_LIVE_REAL_CLOUDFLARE_PASS",
     "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
-    "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04"
+    "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
+    "visual_quality_legacy_mobile_status": "TEN_OF_ELEVEN_CURRENT_PUBLISHED_ISSUER_HTML_HAVE_REALLY_CLIPPED_390_FINANCE_EXHIBITS_FAIL",
+    "visual_audit_candidate_branch": "work/editorial-aei-11-issuer-visual-audit-20261104"
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -858,6 +860,17 @@
       "screenshots": 6,
       "source_original_desktop_svg_export_kept": true,
       "visual_art_director_human_review": "NOT_CHECKED"
+    },
+    "pending_typographic_layout_upgrade": {
+      "candidate_branch": "work/editorial-aei-11-issuer-visual-audit-20261104",
+      "source_figure": "clocks",
+      "true_original_accounting_unchanged": true,
+      "old_public_html_sha": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+      "new_offline_html_sha": "b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0",
+      "real_local_original_PDF_and_390_768_1440": "PASS_ACTION_41784420788",
+      "real_new_public_Cloudflare": "NOT_CHECKED_PENDING_MERGE_AND_THREE_REAL_WIDTHS",
+      "quality_issue": "VIS-042_AMOUNT_LABELS_COLLIDED_WITH_YOY_PERCENTAGES_OLD_DESKTOP_FIRST_FIGURE",
+      "independent_human_visual_editor": "NOT_CHECKED"
     }
   },
   "historical_2026_11_04_source_intake_no_identified_issuer": {
@@ -889,5 +902,71 @@
     "current_handoff_fix_ci": "PASS_PR_41763814988_HANDOFF_AND_41763815011_TWO_EXISTING_SECTORS_AT_SOURCE_SHA_797e27f75de1e4b4b4774dc85e1a31832ce84760",
     "next_required_source": "User-identified company's complete official PDF bytes or verified download URL and ticker",
     "current_handoff_fix_pr": "https://github.com/kobolibra/financials/pull/13"
+  },
+  "latest_visual_editorial_audit": {
+    "date": "2026-11-04",
+    "benchmark": "ORIGINAL_PUBLIC_AEI_ALPHABET_APPLE_VISUAL_FLOW_GRAMMAR_AND_INSTITUTIONAL_CAS_SOURCE_CORRECTNESS_INDEPENDENT",
+    "baseline_actual_main": "8f41d0ea50eeccead7215a99a7aa29808cefa535",
+    "actual_33_CJK_Chromium_source_action": "https://github.com/kobolibra/financials/actions/runs/41783946027",
+    "actual_company_count": 11,
+    "real_viewports": [
+      1440,
+      768,
+      390
+    ],
+    "genuine_original_visual_screenshot_count": 36,
+    "source_census": "research/visual-audit/cross-issuer-visual-audit.json",
+    "source_debt": "research/visual-audit/quality-debt.json",
+    "editorial_report": "research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md",
+    "original_first_three_codes": [
+      "300394",
+      "300308",
+      "300502"
+    ],
+    "actual_mobile_390_embedded_horiz_scroll_FAIL_issuers": [
+      "300394",
+      "300308",
+      "300502",
+      "600036",
+      "688111",
+      "600519",
+      "000333",
+      "688220",
+      "600900",
+      "600276"
+    ],
+    "real_mobile_full_width_PASSED": [
+      "601628"
+    ],
+    "real_mobile_internal_horiz_fail_count": 10,
+    "old_published_html_sha_frozen_exact": true,
+    "legacy_visual_FAIL_not_overridden_by_success": true,
+    "first_source_figures_generalized_AEI_editorial_visual_degradation": "DETECTED_DESKTOP_FIRST_THREE_HAS_FULL_FOUR_STAGE_FINANCIAL_MONEY_FLOW_WHILE_LATER_SECTOR_FIRST_PLATES_ARE_SOMETIMES_MORE_GENERIC",
+    "material_601628_label_overlap": "FAIL_ON_OLD_B886_PRODUCTION_HTML_FIXED_IN_NEW_CANDIDATE_B065_LOCAL_FULL_CJK_QA_PASS_CLOUDFLARE_NEW_HTML_NOT_CHECKED",
+    "independent_human_editor": "NOT_CHECKED",
+    "all_11_professional_art_direction_certification": "NOT_CHECKED",
+    "generic_new_issuer_no_390_inner_scroll_contract": "scripts/check_visual_editorial_policy.py",
+    "generic_redteam": "scripts/test_visual_editorial_policy.py",
+    "original_editorial_first_three_visual_quality": "BETTER_DESKTOP_PRIMARY_FLOW_BUT_NO_FULL_SOURCE_AMOUNT_TABLE_PER_FIGURE_AND_390_CLIP_FAIL",
+    "release_warning": "No new report company may inherit horizontal tiny viewport; 10 old current published pages remain precise SHA-bound FAIL until individually rebuilt from primary source and real browser verified."
+  },
+  "latest_unpublished_cross_business_model_shipment": {
+    "issuer": "601919",
+    "name": "中远海控",
+    "period": "2026H1",
+    "branch": "work/shipping-601919-2026h1-zero-context-source-stress",
+    "full_original_cainfo_pdf_sha256": "0265a4ca61fb24ff15e14b53b258d7febc03bdb7349f379e42e2c28476dd2ff1",
+    "source_pdf_bytes": 1207059,
+    "physical_pages": 178,
+    "original_source_intake_action": "https://github.com/kobolibra/financials/actions/runs/41780361853",
+    "original_accounting_source_xy_qa_action": "https://github.com/kobolibra/financials/actions/runs/41781615665",
+    "original_verified_physical_xy_cells": 42,
+    "original_accounting_invariants": 46,
+    "accounting_qa_scope": "First 159 source facts and original full signed income/BS/direct+indirect CFO, segment eliminating group revenue, voyage costs, TEU/port mix and contracted vs paid capex; five routes expanded in candidate but that addition is NOT YET REQUALIFIED",
+    "per_lane_added_later_in_branch_not_yet_retested": true,
+    "current_main_catalog_status": "NOT_PUBLISHED_11_COMPANIES_STILL",
+    "offline_article": "NOT_STARTED_IN_MAIN",
+    "source_note_second_human_review": "NOT_CHECKED",
+    "visual_editorial_pass": "NOT_CHECKED"
   }
 }

@@ -1,7 +1,7 @@
 name: Build and financially audit original China Life 601628 2026H1
 on:
   push:
-    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, work/601628-mobile-financial-visual-storytelling-v861, main]
+    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, work/601628-mobile-financial-visual-storytelling-v861, work/editorial-aei-11-issuer-visual-audit-20261104, main]
     paths:
       - 'research/issuers/601628/**'
       - '!research/issuers/601628/visual-qa/**'

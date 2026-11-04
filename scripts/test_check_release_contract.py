@@ -96,17 +96,43 @@ class IssuerReleaseContractTests(unittest.TestCase):
     def test_real_live_receipt_is_archived_and_has_exact_source_sha_3_viewports(self):
         insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
         current=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
-        self.assertEqual(current["gates"]["CLOUDFLARE_LIVE"]["status"],"PASS")
         self.assertEqual(mod.validate_release(ROOT,insurer,current,check_bytes=False),[])
-        receipt=json.loads((ROOT/current["live_receipt_file"]).read_text())
-        self.assertEqual(receipt["verified_git_commit"],current["actual_main_release_commit"])
+        receipt=json.loads((ROOT/"research/issuers/601628/live-release-receipt.json").read_text())
         self.assertEqual(receipt["status"],"PASS")
         self.assertEqual(len(receipt["screenshots"]),6)
         self.assertEqual({x["width"] for x in receipt["real_chromium_viewports"]},{1440,768,390})
+        if current["gates"]["CLOUDFLARE_LIVE"]["status"]=="PASS":
+            self.assertEqual(receipt["verified_git_commit"],current["actual_main_release_commit"])
+            self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_601628"],current["published_html_sha256"])
+        else:
+            # Genuine modified standalone HTML is NOT_CHECKED until the new
+            # report SHA has passed real Cloudflare after merging main.
+            self.assertEqual(current["gates"]["CLOUDFLARE_LIVE"]["status"],"NOT_CHECKED")
+            self.assertIsNone(current["live_release_fingerprint"])
+            self.assertIsNone(current["live_receipt_file"])
+            history=current["historical_live_before_1440_label_collision_qa_fix"]
+            self.assertEqual(history["public_article_sha256"],
+                receipt["actual_full_content_sha256_equals_repository_main_601628"])
+            self.assertNotEqual(history["public_article_sha256"],current["published_html_sha256"])
 
     def test_live_proof_must_not_be_forged_home_report_or_screenshot(self):
         insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
         original=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        # In-memory ONLY synthetic correct-shaped receipt for release-gate
+        # adversarial tests. Never persist/describe it as actual Cloudflare!
+        # This keeps hostile coverage during a genuine NOT_CHECKED candidate,
+        # without falsely promoting that new article to a LIVE PASS.
+        actual_historical=json.loads((ROOT/"research/issuers/601628/live-release-receipt.json").read_text())
+        original=copy.deepcopy(original)
+        original["gates"]["CLOUDFLARE_LIVE"]={
+            "status":"PASS",
+            "proof":actual_historical["actual_publication_action"],
+            "scope":"SYNTHETIC UNIT TEST FIXTURE ONLY NOT REAL NEW DEPLOYMENT"
+        }
+        original["live_release_fingerprint"]=original["published_html_sha256"]
+        original["actual_main_release_commit"]=actual_historical["verified_git_commit"]
+        original["actual_directory_fingerprint"]=actual_historical["actual_full_content_sha256_equals_repository_main_index"]
+        original["live_receipt_file"]="research/issuers/601628/live-release-receipt.json"
         original_read=mod.read_json
         cases=[
             ("LIVE_CAPTURE_MAIN_SHA_MISMATCH",lambda x:x.update(verified_git_commit="0"*40)),
@@ -123,6 +149,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
                     data=original_read(path)
                     if str(path).endswith("601628/live-release-receipt.json"):
                         data=copy.deepcopy(data)
+                        data["actual_full_content_sha256_equals_repository_main_601628"]=original["published_html_sha256"]
                         poison(data)
                     return data
                 with mock.patch.object(mod,"read_json",side_effect=changed):
