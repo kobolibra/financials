@@ -58,6 +58,13 @@ class LifeInsurance2026H1(unittest.TestCase):
             p["physical_page"]=41
             with self.assertRaises(AssertionError):mod.check()
         finally:p["physical_page"]=old
+    def test_old_standard_premium_sankey_must_not_claim_actual_cash_business(self):
+        brief=next(x for x in mod.FIG["figure_briefs"] if x["id"]=="premium")
+        self.assertNotIn("续期现金业务",brief["question"])
+        self.assertIn("同一管理层保费统计口径",brief["takeaway"])
+        self.assertIn("不等于收到的现金",brief["takeaway"])
+        self.assertNotEqual(mod.amount("premium_total"),mod.amount("cfo_insurance_cash"))
+
     def test_original_pdf_sha_not_unrelated_issuer(self):
         wrong=mod.FIG["source_sha256"]
         try:
