@@ -70,6 +70,31 @@ with sync_playwright() as pw:
     assert page.locator("figure.figure svg").count()==10
     assert page.locator("figure.figure details.audit").count()==10
     assert page.locator("figure.figure .money-ribbon").count()==6
+    assert page.locator("figure.figure .mobile-chart").count()==10,("LIVE_MOBILE_ALTERNATIVE_DOM_MISSING",width)
+    if width==390:
+        assert page.locator(".mobile-chart:visible").count()==10,("LIVE_390_MOBILE_FULL_TEN_FIGURES_NOT_VISIBLE")
+        assert page.locator(".chart:visible").count()==0,("LIVE_390_STILL_TRAPPED_IN_DESKTOP_900PX_SCROLL_WINDOWS")
+        mobile=page.evaluate("""() => [...document.querySelectorAll('.mobile-chart')].map(panel=>({
+          family:panel.dataset.mobileFigure,overflow:panel.scrollWidth-panel.clientWidth,
+          rows:[...panel.querySelectorAll('.m-item')].map(x=>({
+            key:x.dataset.mobileFact,exact:x.dataset.exactYuan,
+            scaleGroup:x.dataset.scaleGroup,width:parseFloat(x.querySelector('.m-item-rail i').style.width||'0')
+          }))
+        }))""")
+        assert len(mobile)==10
+        for panel in mobile:
+            assert panel["overflow"]<=1,("LIVE_390_MOBILE_INNER_HORIZ_OVERFLOW",panel["family"],panel["overflow"])
+            assert len(panel["rows"])>=5,("LIVE_MOBILE_FAMILY_INCOMPLETE",panel["family"])
+            scales={}
+            for item in panel["rows"]:
+                raw=int(item["exact"])
+                scales[item["scaleGroup"]]=max(scales.get(item["scaleGroup"],0),abs(raw))
+                if item["key"]!="derived":
+                    assert item["key"] in report["facts"],("LIVE_MOBILE_FAKE_LEDGER_KEY",item)
+                    assert item["exact"]==report["facts"][item["key"]]["yuan"],("LIVE_MOBILE_LEDGER_SOURCE_MISMATCH",item)
+            for item in panel["rows"]:
+                expected=abs(int(item["exact"]))/scales[item["scaleGroup"]]*100
+                assert abs(item["width"]-expected)<0.000055,("LIVE_MOBILE_MONEY_BAR_INFLATED",panel["family"],item,expected)
     assert page.locator('#chart-premium [data-value-million="536634"]').count()==1
     assert "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943" in page.content()
     assert page.locator('a[href="/#companies"]').count()>=1
@@ -113,7 +138,7 @@ with sync_playwright() as pw:
     actual_back_url=page.url
     nav=make_live_navigation_receipt(report_url=actual_article_url,back_url=actual_back_url,code=CODE,origin=SITE)
     assert page.locator("a.company").count()==11,("LIVE_BACK_NAV_DIRECTORY",width)
-    report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_svg_figures":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
+    report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_svg_figures":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","mobile_ten_full_width_source_exact_money_exhibits":"PASS" if width==390 else "DESKTOP_OR_TABLET_SVG","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
     page.close()
  assert not errors,("LIVE_CHROMIUM_PAGE_ERRORS",errors)
  # All prior issuer routes: actual GET and matching company code in HTML
