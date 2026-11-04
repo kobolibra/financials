@@ -300,7 +300,7 @@ def render():
 <section class="method" id="method"><h2>来源、独立性与复核边界</h2>
 <p>唯一原始报告：<a href="{e(PDF)}" target="_blank" rel="noopener noreferrer">中国人寿 2026 年半年度报告（CNINFO，PDF）</a>；真实源文件 SHA-256 <code>{e(sourcehash)}</code>；104 物理页，{int((ROOT/SOURCE["source_path"]).stat().st_size):,}字节，未经审计。全部金额在源账本保存为人民币元（原 PDF 披露单位人民币百万元），每张图附可追溯原始页和完整引用事实。</p>
 <p>{e(STORY["evidence_disclaimer"])}</p><p>{e(STORY["sector_footer"])}</p>
-<p>重大风险事项还需结合后续监管资本、利率资产负债敏感性、回购融资及保险精算假设进一步复核；完整的106页以外专项披露不存在于本次原始PDF，不能假称审阅。真正独立第二名人类财务/视觉审稿：NOT_CHECKED。上交所独立直链字节与巨潮原始文件完全同一：NOT_CHECKED。外部同行与8–12个季度估值：NOT_CHECKED。</p>
+<p>重大风险事项还需结合后续监管资本、利率资产负债敏感性、回购融资及保险精算假设进一步复核；未载入此104页半年报的独立精算工作底稿、完整全年披露及专项监管资本文件不在本轮原始报告范围，不能假称已经审阅。真正独立第二名人类财务/视觉审稿：NOT_CHECKED。上交所独立直链字节与巨潮原始文件完全同一：NOT_CHECKED。外部同行与8–12个季度估值：NOT_CHECKED。</p>
 <p>本页原创可编辑 SVG 与逐图来源表由同一结构化账本生成，可离线打开，金融图形不复制 App Economy Insights / FT 原始作品。</p></section></main>
 <footer><div class="wrap"><a href="/#companies">FINANCIALS IN VISUALS / 返回统一公司研究目录</a><p>© 2026 Financials in Visuals · 研究预览，非个性化投资建议</p></div></footer>
 <script id="ledger-data" type="application/json">{research_meta}</script>
