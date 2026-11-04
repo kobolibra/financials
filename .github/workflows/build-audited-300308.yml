@@ -1,0 +1,119 @@
+name: Audit and rebuild real 300308 original 184p optical full standalone research
+on:
+  push:
+    branches: [main, 'work/optical-300308-original-pdf-source-mobile-20261104']
+    paths:
+      - '.github/workflows/build-audited-300308.yml'
+      - 'research/issuers/300308/verify_original.py'
+      - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json'
+      - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-memo.json'
+      - 'skills/ashare-financial-storytelling/v7/engine/render_v7.py'
+      - 'skills/ashare-financial-storytelling/v7/engine/native_mobile_finance.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
+      - 'scripts/check_visual_editorial_policy.py'
+      - 'scripts/test_visual_editorial_policy.py'
+      - 'public/300308.html'
+      - 'public/300308/2026-H1/index.html'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  zj-original-physical-184p-exact-yuan-and-mobile-390:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Original PDF source bytes and all financial source facts
+        run: |
+          python -m pip install --disable-pip-version-check -q pymupdf
+          test -s research/issuers/300308/original-2026h1.pdf
+          python research/issuers/300308/verify_original.py --pdf research/issuers/300308/original-2026h1.pdf --out /tmp/300308-source-verification-second.json
+          cmp /tmp/300308-source-verification-second.json research/issuers/300308/source-verification.json
+          python - <<'PY'
+          import fitz,pathlib
+          d=fitz.open('research/issuers/300308/original-2026h1.pdf')
+          pix=d[138].get_pixmap(matrix=fitz.Matrix(1.75,1.75),alpha=False)
+          p=pathlib.Path('research/issuers/300308/page139-source-evidence.png')
+          p.parent.mkdir(parents=True,exist_ok=True);pix.save(p)
+          assert p.stat().st_size>20_000
+          PY
+      - name: Finance adversarial tests and third-issuer standalone source report
+        run: |
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/zhongji-2026H1-ledger.json" --memo "$V7/examples/zhongji-2026H1-memo.json" --out public/300308.html --qa /tmp/300308-report-rebuild.json
+          cp public/300308.html public/300308/2026-H1/index.html
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out /tmp/300394-old-rebuilt.html --qa /tmp/300394-old-rebuild-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out /tmp/300502-old-rebuilt.html --qa /tmp/300502-old-rebuild-qa.json
+          cmp /tmp/300394-old-rebuilt.html public/300394.html
+          cmp /tmp/300502-old-rebuilt.html public/300502.html
+          python - <<'PY'
+          from pathlib import Path
+          h=Path('public/300308.html').read_text()
+          assert h.count('<figure class="exhibit has-native-finance">')>=9
+          assert '<aside class="disclosure-conflict"' in h
+          assert '422,649,612.97' in h and '422,649,613.97' in h
+          assert '独立第二名人类研究分析师' in h
+          assert 'e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf' in h
+          assert 'UNVERIFIED_REVENUE_PARTITION' not in h
+          print('ZJ_REAL_ORIGINAL_P139_CONFLICT_AND_INTERNAL_ONLY_REVIEW_GATES_PASS')
+          PY
+      - name: Real CJK Chinese Chromium 1440 768 390
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-list :lang=zh family | grep -qi 'Noto'
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+          python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --codes 300308 --out optical-native-visual-qa-300308
+      - name: Current 11-issuer source-frozen visual policy plus hostile faked receipts
+        run: |
+          python scripts/check_visual_editorial_policy.py
+          python -m unittest discover -s scripts -p test_visual_editorial_policy.py -v
+          python scripts/check_release_contract.py
+      - name: Zero-difference complete 300308 HTML recompile and stable nested URL
+        run: |
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/zhongji-2026H1-ledger.json" --memo "$V7/examples/zhongji-2026H1-memo.json" --out /tmp/300308-independent-second.html --qa /tmp/300308-rebuild-second.json
+          cmp public/300308.html /tmp/300308-independent-second.html
+          cmp public/300308.html public/300308/2026-H1/index.html
+          if [ "${{ github.ref_name }}" = main ]; then
+            git diff --exit-code -- public/300308.html public/300308/2026-H1/index.html
+          fi
+      - name: Persist exact source-built full independent company article and 3-view CJK evidence to research branch
+        if: github.event_name == 'push' && github.ref_name != 'main'
+        run: |
+          git config user.name 'financials-research-bot'
+          git config user.email 'financials-research-bot@users.noreply.github.com'
+          git add public/300308.html public/300308/2026-H1/index.html
+          git add research/issuers/300308/page139-source-evidence.png
+          git add optical-native-visual-qa-300308/result.json optical-native-visual-qa-300308/300308_figure01_1440.png optical-native-visual-qa-300308/300308_figure01_768.png optical-native-visual-qa-300308/300308_figure01_390.png
+          git add optical-native-visual-qa-300308/300308_figure03_390.png optical-native-visual-qa-300308/300308_figure06_390.png optical-native-visual-qa-300308/300308_figure09_390.png
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish candidate original 300308 full HTML with source SHA, disclosed p139 anomaly and native money 390'
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            for i in 1 2 3; do
+              if git push origin "HEAD:$GITHUB_REF_NAME"; then exit 0; fi
+              sleep $((i*5))
+            done
+            echo 'Candidate source-pinned HTML push failed'
+            exit 1
+          fi
+      - name: Preserve real PDF, 3 screens, source table and rebuilt standalone article in artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 300308-original-pdf-184p-research-and-cjk-native-finance
+          path: |
+            public/300308.html
+            research/issuers/300308/source-verification.json
+            research/issuers/300308/page139-source-evidence.png
+            optical-native-visual-qa-300308/
+          retention-days: 30
+          if-no-files-found: warn
