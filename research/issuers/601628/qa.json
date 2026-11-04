@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "PREMIUM_4_SOURCE_CONSERVATION": "PASS",
+    "PREMIUM_NEW_RENEW_HIERARCHY": "PASS",
+    "INSURANCE_PREMIUM_NOT_CAS_SERVICE": "PASS",
+    "INSURANCE_SERVICE_CSM_RECOGNITION": "PASS",
+    "SERVICE_RESULT_WITH_REINSURANCE": "PASS",
+    "ALL_SIGNED_CAS_PNL_ROWS": "PASS",
+    "CAS_PRETAX_NET_PARENT_NCI": "PASS",
+    "COMPREHENSIVE_INCOME_OCI": "PASS",
+    "COMPLETE_DIRECT_CFO_RECEIPTS": "PASS",
+    "COMPLETE_DIRECT_CFO_PAYMENTS": "PASS",
+    "CASH_CLOSE_EXACT": "PASS",
+    "TWO_DATE_BS_STOCK": "PASS",
+    "CONTRACT_LIABILITY_FOUR_STOCK_PARTS": "PASS",
+    "INSURER_NO_FAKE_INDIRECT_CFO": "PASS",
+    "PARENT_AND_CONSOLIDATED_NOT_MIXED": "PASS",
+    "ISSUER_INDEPENDENT_SOURCE_SHAPE": "PASS"
+  },
+  "original_pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+  "source_page_count": 104,
+  "figure_count": 10,
+  "chart_ids": [
+    "clocks",
+    "premium",
+    "service",
+    "insurance",
+    "pnl",
+    "delta",
+    "cash",
+    "cashclose",
+    "csm",
+    "balance"
+  ],
+  "output_sha256": "3bcf0d43c531305d55be7d9324618341770d38bc0a72773ad25f18fb886d24f4"
+}
