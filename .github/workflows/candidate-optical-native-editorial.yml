@@ -69,6 +69,8 @@ jobs:
           git config user.email "financials-research-bot@users.noreply.github.com"
           git add public/300394.html public/300394/2026-H1/index.html public/300502.html public/300502/2026-H1/index.html
           git add optical-native-visual-qa/result.json
+          git add optical-native-visual-qa/300394_figure01_1440.png optical-native-visual-qa/300394_figure01_768.png optical-native-visual-qa/300394_figure01_390.png
+          git add optical-native-visual-qa/300502_figure01_1440.png optical-native-visual-qa/300502_figure01_768.png optical-native-visual-qa/300502_figure01_390.png
           if ! git diff --cached --quiet; then
             git commit -m "Candidate source-native full-phone optical finance articles and real screenshot QA"
             git pull --rebase origin "$GITHUB_REF_NAME"
