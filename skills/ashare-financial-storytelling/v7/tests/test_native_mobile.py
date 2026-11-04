@@ -86,11 +86,37 @@ class OriginalFinanceMobiles(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"NATIVE_CFO_MISSING_WC"):
             native.cfo(poisoned)
 
-    def test_300308_source_unverified_and_memo_unreviewed_stays_blocked(self):
+    def test_300308_full_original_pdf_sha_and_transparent_page139_repeated_column(self):
         l=get_ledger("300308")
         m=get_memo("300308")
-        self.assertEqual(l["document"]["source_sha256"],"NOT_VERIFIED_REMOTE_PDF")
-        self.assertEqual(m["review_status"],"DRAFT_NEEDS_SECOND_REVIEW")
+        self.assertEqual(l["document"]["source_sha256"],"e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf")
+        self.assertEqual(l["document"]["pages"],184)
+        self.assertEqual(m["review_status"],"AI_INTERNAL_ORIGINAL_SOURCE_CRITICAL_REVIEW__HUMAN_NOT_CHECKED")
+        self.assertEqual(m["independent_human_financial_review"],"NOT_CHECKED")
+        self.assertEqual(m["independent_human_visual_review"],"NOT_CHECKED")
+        self.assertEqual(l["verified_source_anomalies"][0]["original_contracted_revenue_cell"],"422649612.97")
+        self.assertEqual(l["verified_source_anomalies"][0]["original_repeated_total_revenue_cell"],"422649613.97")
+        panels=native.make(l)
+        self.assertEqual(panels["01"].count('class="native-money-source"'),2)
+        self.assertEqual(panels["01"].count('class="native-money-ribbon"'),4)
+        report,_=build(l,m)
+        self.assertIn("422,649,612.97",report)
+        self.assertIn("422,649,613.97",report)
+        self.assertIn("独立第二名人类研究分析师",report)
+        self.assertIn(l["document"]["source_sha256"],report)
+
+    def test_300308_unreviewed_source_or_faked_human_must_refuse_publication(self):
+        l=get_ledger("300308")
+        m=get_memo("300308")
+        poisoned=copy.deepcopy(m)
+        poisoned["review_status"]="DRAFT_NEEDS_SECOND_REVIEW"
+        with self.assertRaisesRegex(ValueError,"Research memo not source-reviewed"):
+            build(l,poisoned)
+        poisoned=copy.deepcopy(m)
+        poisoned["independent_human_financial_review"]="PASS_IMAGINARY"
+        with self.assertRaisesRegex(ValueError,"AI_ORIGINAL_SOURCE_REVIEW_MUST_RETAIN_UNCHECKED_HUMAN"):
+            build(l,poisoned)
+
 
 if __name__=="__main__":
     unittest.main()
