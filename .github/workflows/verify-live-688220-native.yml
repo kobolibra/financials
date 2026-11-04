@@ -1,0 +1,36 @@
+name: Verify actual Cloudflare 688220 original financial source and native 390 release
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/688220.html'
+      - 'scripts/verify_live_688220_native.py'
+      - '.github/workflows/verify-live-688220-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-public-semiconductor-visual-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 19
+    steps:
+      - uses: actions/checkout@v4
+      - name: Real CJK rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-list :lang=zh family | grep -qi Noto
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Compare public Cloudflare exact independent HTML with checked-out main and test 1440 768 390 live finance
+        run: |
+          python scripts/verify_live_688220_native.py
+          cat research/issuers/688220/live-visual-qa/result.json
+      - name: Preserve actual public screenshots and source HTML SHA receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: real-public-CJK-688220-original-money-9-figure-release
+          path: research/issuers/688220/live-visual-qa/
+          retention-days: 45
+          if-no-files-found: warn
