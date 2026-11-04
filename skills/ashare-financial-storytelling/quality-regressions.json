@@ -382,6 +382,16 @@
       "scope": "single_issuer",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PUB-040",
+      "root_cause": "发布原始财报后新的手机专属 HTML 已改变文件字节，因此严格把当前新版本 CLOUDFLARE_LIVE 标记 NOT_CHECKED；但以前的通用回归测试直接写死必须为 PASS，错误拒绝诚实的未发布候选版本并驱使开发者假恢复旧版本实时证明。",
+      "correction": "通用发布验证必须接受本次候选的真实 NOT_CHECKED（没有 live SHA 或 main release commit，但保留旧已通过版本历史证据），而当任何分支声称 PASS 时必须验证真实新 published HTML SHA、有效 40 hex MAIN commit 和线上浏览器 Actions；恶意测试先构造假 PASS 再注入错SHA/错commit，不能误以当前源门槛必须总是PASS。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_601628_release_gate_must_reflect_current_version_not_prior_green",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
