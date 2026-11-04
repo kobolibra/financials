@@ -331,6 +331,12 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                     home_sha=receipt.get("actual_full_content_sha256_equals_repository_main_index")
                     if not isinstance(home_sha,str) or not re.fullmatch("[a-f0-9]{64}",home_sha):
                         errors.append(f"LIVE_CAPTURE_HOME_SHA_INVALID {code}")
+                    expected_historical_home=record.get("actual_directory_fingerprint")
+                    # Compare to the homepage fingerprint AS OF THIS release:
+                    # later company additions legitimately change today's root,
+                    # but cannot retroactively falsify old captured release data.
+                    if expected_historical_home and home_sha!=expected_historical_home:
+                        errors.append(f"LIVE_CAPTURE_HOMEPAGE_SHA_MISMATCH {code}")
                     screens=receipt.get("screenshots",[])
                     expected_screens={f"live_{code}_{w}.png" for w in (1440,768,390)}
                     expected_screens|={f"live_directory_{w}.png" for w in (1440,768,390)}
@@ -355,7 +361,7 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                             errors.append(f"LIVE_CAPTURE_ELEVEN_ISSUER_ROUTE_INVALID {code}")
                         if code=="601628" and next(x for x in views if x["width"]==390).get("mobile_ten_full_width_source_exact_money_exhibits")!="PASS":
                             errors.append(f"LIVE_CAPTURE_PHONE_FINANCE_FIGURES_INVALID {code}")
-                except (OSError,ValueError,KeyError,TypeError,json.JSONDecodeError) as exc:
+                except (OSError,ValueError,KeyError,TypeError,AttributeError,json.JSONDecodeError) as exc:
                     errors.append(f"LIVE_CAPTURE_RECEIPT_UNREADABLE {code}: {type(exc).__name__}")
     return errors
 
