@@ -11,6 +11,7 @@ from collections import Counter
 from build import moneyflow, waterfall, money, y, pc, num, sign, factmeta, page, add
 from audit import audit
 from editorial_charts import balance_identity, operating_cash_allocation, profitability_change
+from native_mobile_finance import make as make_native_mobile_finance
 
 B=D('100000000')
 def esc(x): return html.escape(str(x),quote=True)
@@ -38,8 +39,16 @@ def metarow(name,value,sub,kind=''):
 def section_head(idx,kicker,heading,dek):
  return f'<div class="chapter-head"><span class="chapter-num">{idx}</span><div><span class="eyebrow soft">{esc(kicker)}</span><h2>{esc(heading)}</h2><p>{esc(dek)}</p></div></div>'
 
+_NATIVE_PANELS = {}
+
 def exhibit(title,stamp,chart,source_note,readout='',scrolly=True):
- return f'''<figure class="exhibit"><div class="exhibit-top"><div><span class="exhibit-kicker">FIGURE / {esc(stamp)}</span><h3>{esc(title)}</h3></div><button class="svg-save" type="button" aria-label="导出图表 SVG">导出 SVG ↗</button></div><div class="chart-shell {'scroll-x' if scrolly else ''}" tabindex="0" aria-label="财务图表，可横向滚动查看">{chart}</div>{'<div class="chart-scroll-hint">在窄屏上可横向滑动查看完整图形 ↔</div>' if scrolly else ''}{('<figcaption><strong>读图结论 / </strong>'+esc(readout)+'</figcaption>') if readout else ''}<div class="source-note">数据来源：{esc(source_note)}</div></figure>'''
+ # Same original yuan fact corpus, different chart grammar for full-width phone.
+ # Desktop 1250-viewBox authored SVG stays in the DOM for exact SVG export.
+ native=_NATIVE_PANELS.get(stamp.split(' / ')[0],'')
+ klass='exhibit has-native-finance' if native else 'exhibit'
+ mobile='<div class="native-finance" data-source-native="'+esc(stamp.split(' / ')[0])+'">'+native+'</div>' if native else ''
+ hint='<div class="chart-scroll-hint">在窄屏上可横向滑动查看完整图形 ↔</div>' if scrolly and not native else ''
+ return f'''<figure class="{klass}"><div class="exhibit-top"><div><span class="exhibit-kicker">FIGURE / {esc(stamp)}</span><h3>{esc(title)}</h3></div><button class="svg-save" type="button" aria-label="导出图表 SVG">导出 SVG ↗</button></div><div class="chart-shell {'scroll-x' if scrolly else ''}" tabindex="0" aria-label="原桌面财务SVG图，手机可导出原图">{chart}</div>{mobile}{hint}{('<figcaption><strong>读图结论 / </strong>'+esc(readout)+'</figcaption>') if readout else ''}<div class="source-note">数据来源：{esc(source_note)}</div></figure>'''
 
 def qualitative(label,text_,tone=''):
  return f'<div class="insight {tone}"><span>{esc(label)}</span><p>{esc(text_)}</p></div>'
@@ -145,7 +154,11 @@ def evidence_table(l):
  return '<div class="table-scroll"><table><thead><tr><th>原报表项目</th><th>人民币元</th><th>期别</th><th>页码</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></div>'
 
 def build(l,m):
+ global _NATIVE_PANELS
  QA=check(l)
+ _NATIVE_PANELS=make_native_mobile_finance(l)
+ if not {'01','03','04','05','06','07','08','09','10'}.issubset(_NATIVE_PANELS):
+  raise ValueError('NATIVE_FINANCIAL_EDITORIAL_FIGURES_MISSING')
  doc=l['document'];v=lambda k:num(l,k)
  rev,cogs,gp,net,cfo,capex=v('revenue'),v('cogs'),v('gross_profit'),v('net_profit'),v('cfo'),v('capex_cash')
  prevrev,prevcogs=v('revenue_prior'),v('cogs_prior')
@@ -190,6 +203,44 @@ def build(l,m):
 @media(max-width:970px){.nav{gap:13px}.wrap{width:min(100% - 42px,1240px)}.kpi-zone{grid-template-columns:repeat(2,1fr)}.chapter-head{grid-template-columns:74px 1fr;gap:22px}.two-col,.two-col.reverse{grid-template-columns:1fr}.analytic-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.bar{height:65px}.nav{gap:14px}.edition{display:none}.brand{font-size:11px;letter-spacing:.11em}.hero{padding:70px 0 90px}.hero h1{font-size:clamp(42px,10vw,64px)}.hero-deck{font-size:16px}.kpi-zone{grid-template-columns:1fr 1fr;gap:1px}.metric{padding:18px 14px}.metric strong{font-size:24px}.metric span{font-size:10px}.lead{grid-template-columns:1fr;gap:9px;padding:24px 0 52px}.lead p{font-size:23px}.chapter{padding:45px 0 53px}.chapter-head{grid-template-columns:1fr;gap:8px;margin-bottom:22px}.chapter-num{font-size:24px}.chapter-head h2{font-size:37px}.exhibit{padding:16px 13px 14px;margin:23px 0}.exhibit-top{align-items:start}.exhibit h3{font-size:20px}.exhibit svg{min-width:930px}.chart-scroll-hint{display:block}.svg-save{font-size:10px;padding:8px}.readout,.brief-compare,.concentration-set{grid-template-columns:1fr}.watch-row{grid-template-columns:45px 1fr;gap:12px}.watch-row small{grid-column:2;text-align:left}.page-footer .wrap{display:block}.period-bar{grid-template-columns:58px minmax(0,1fr) 70px;gap:8px}.journal-label small{display:none}.ci-top strong{font-size:28px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+'''
+ css+=r'''
+/* Responsive original finance illustrations, NOT zoomed 1250px desktop art. */
+.native-finance{display:none}
+.native-finance-inner{color:#16383c;background:#fffefa;padding:5px 0 10px;min-width:0}
+.native-finance h4{font:700 18px var(--serif);margin:8px 0 8px;line-height:1.45}
+.native-finance-dek{font-size:11px;line-height:1.75;color:#5d736c;margin:0 0 12px}
+.native-finance-foot{font-size:10.5px;line-height:1.75;color:#586d67;margin:15px 0}
+.native-finance svg{width:100%;height:auto;display:block;overflow:visible}
+.native-money-total,.native-money-pair{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:10px 0}
+.native-money-total{font-size:13px;border-bottom:1px solid #cad6d0;padding-bottom:9px}
+.native-money-total b{font-size:18px;color:#0b8069;white-space:nowrap}
+.native-money-pair{font-size:12px;color:#4c635b}
+.native-money-pair b{color:#234b48}
+.native-source-row{display:grid;grid-template-columns:1fr auto;gap:4px 8px;padding:10px 0;border-bottom:1px solid #dde6dd;font-size:12px}
+.native-source-row strong{white-space:nowrap;text-align:right;color:#164d48}
+.native-source-row small{font-size:10px;color:#607b72}
+.native-source-row>span:last-child{grid-column:1 / -1;color:#637973;font-size:10.5px}
+.native-pair-row{border-bottom:1px solid #dde6dd;padding:10px 0;font-size:12px;display:grid;grid-template-columns:1fr auto;gap:8px}
+.native-pair-row small{font-size:10px;color:#678078}
+.native-pair-row strong{text-align:right}
+.native-pair-track{grid-column:1 / -1;height:10px;background:#edf2ef}
+.native-pair-track i{display:block;height:100%}
+.native-stock-track{display:flex;overflow:hidden;height:19px;margin:12px 0}
+.native-stock-track i{display:block;height:100%}
+.native-metric-pair{padding:12px 0;border-bottom:1px solid #dce5dc;font-size:12px}
+.native-metric-pair strong{display:block;margin-bottom:10px}
+.native-metric-pair div{margin-top:8px;font-size:11px}
+.native-metric-pair i{display:block;height:10px;max-width:100%}
+@media(max-width:650px){
+.exhibit.has-native-finance .chart-shell{display:none}
+.exhibit.has-native-finance .native-finance{display:block}
+.exhibit.has-native-finance{padding:17px 14px}
+.exhibit.has-native-finance .chart-scroll-hint{display:none}
+.exhibit.has-native-finance .native-finance svg{min-width:0;max-width:100%;height:auto;width:100%}
+.exhibit.has-native-finance .exhibit-top{gap:8px}
+.exhibit.has-native-finance .exhibit-top h3{font-size:19px;line-height:1.5}
+}
 '''
  js=r'''(()=>{const tip=document.querySelector('#floatTip');let last=null;const hide=()=>{tip.style.display='none'};function show(el,evt){let value=el.getAttribute('data-tip')||el.getAttribute('aria-label')||el.querySelector('title')?.textContent||'';if(!value)return;tip.textContent=value;tip.style.display='block';last=el;move(evt,el)}function move(evt,el){let x=12,y=12;if(evt&&typeof evt.clientX==='number'){x=evt.clientX+16;y=evt.clientY+20}else{let box=el.getBoundingClientRect();x=box.left+10;y=box.top-68}tip.style.left=Math.max(8,Math.min(window.innerWidth-325,x))+'px';tip.style.top=Math.max(8,Math.min(window.innerHeight-100,y))+'px'}document.querySelectorAll('[data-tip],svg[role="img"] [tabindex],.ed-band').forEach(el=>{el.addEventListener('pointerenter',e=>show(el,e));el.addEventListener('pointermove',e=>move(e,el));el.addEventListener('pointerleave',hide);el.addEventListener('focus',e=>show(el,null));el.addEventListener('blur',hide)});document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});document.querySelectorAll('button.svg-save').forEach((b,i)=>{b.addEventListener('click',()=>{let svg=b.closest('.exhibit')?.querySelector('svg');if(!svg)return;let txt=new XMLSerializer().serializeToString(svg);let blob=new Blob([txt],{type:'image/svg+xml;charset=utf-8'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='Financials-Research-Exhibit-'+(i+1)+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(url),2500)})});document.querySelectorAll('.money-ribbon').forEach(el=>{let root=el.closest('svg');let dim=on=>{root?.querySelectorAll('.money-ribbon').forEach(x=>x.classList.toggle('is-dim',on&&x.getAttribute('data-group')!==el.getAttribute('data-group')))};el.addEventListener('pointerenter',()=>dim(true));el.addEventListener('pointerleave',()=>dim(false));el.addEventListener('focus',()=>dim(true));el.addEventListener('blur',()=>dim(false))});})();'''
  gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期变动 {n(gross_delta)} 亿元；收入变动 {n(rev-prevrev)} 亿元、营业成本变动 {n(cogs-prevcogs)} 亿元，二者仅为会计加减关系，不构成价格、销量、良率的因果归因。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
