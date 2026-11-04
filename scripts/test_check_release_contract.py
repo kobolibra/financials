@@ -111,6 +111,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
         cases=[
             ("LIVE_CAPTURE_MAIN_SHA_MISMATCH",lambda x:x.update(verified_git_commit="0"*40)),
             ("LIVE_CAPTURE_HTML_SHA_MISMATCH",lambda x:x.update(actual_full_content_sha256_equals_repository_main_601628="0"*64)),
+            ("LIVE_CAPTURE_HOMEPAGE_SHA_MISMATCH",lambda x:x.update(actual_full_content_sha256_equals_repository_main_index="0"*64)),
             ("LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID",lambda x:x["real_chromium_viewports"][0].update(actual_dedicated_article_final_url="https://financials-in-visuals.pages.dev/#companies")),
             ("LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID",lambda x:x["real_chromium_viewports"][0].update(actual_return_to_library_url="https://financials-in-visuals.pages.dev/601628")),
             ("LIVE_CAPTURE_SCREENSHOT_SET_INVALID",lambda x:x["screenshots"].pop()),
