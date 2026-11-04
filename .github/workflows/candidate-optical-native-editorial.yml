@@ -71,6 +71,8 @@ jobs:
           git add optical-native-visual-qa/result.json
           git add optical-native-visual-qa/300394_figure01_1440.png optical-native-visual-qa/300394_figure01_768.png optical-native-visual-qa/300394_figure01_390.png
           git add optical-native-visual-qa/300502_figure01_1440.png optical-native-visual-qa/300502_figure01_768.png optical-native-visual-qa/300502_figure01_390.png
+          git add optical-native-visual-qa/300394_figure03_390.png optical-native-visual-qa/300394_figure06_390.png optical-native-visual-qa/300394_figure09_390.png
+          git add optical-native-visual-qa/300502_figure03_390.png optical-native-visual-qa/300502_figure06_390.png optical-native-visual-qa/300502_figure09_390.png
           if ! git diff --cached --quiet; then
             git commit -m "Candidate source-native full-phone optical finance articles and real screenshot QA"
             git pull --rebase origin "$GITHUB_REF_NAME"
