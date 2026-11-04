@@ -5,7 +5,7 @@
     "short": "中国人寿",
     "industry": "life_insurance",
     "fiscal_period": "2026H1",
-    "audit": "未经审计",
+    "audit": "未经审计但已经注册会计师审阅（有限保证、非审计意见）",
     "base_unit": "人民币元"
   },
   "source": {
@@ -16,7 +16,17 @@
     "source_path": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
     "source_provider": "Official complete CNINFO 2026H1 issuer PDF downloaded and SHA/physical pages verified by GitHub Actions; SSE endpoint returned non-PDF and byte identity NOT_CHECKED",
     "period_semantics": "2026H1 vs 2025H1 cumulative flows; 2026-06-30 vs 2025-12-31 stocks. Financial report consolidated statements are physical p43-44, p47-48 and p53-54; p45-46 and p49-50 are parent-only",
-    "accounting_warning": "Management gross premiums refer to earlier insurance contract accounting basis (company original p10 footnote), not recognized CAS25 2026 insurance service revenue; do not join flow from premium to insurance service revenue."
+    "accounting_warning": "Management gross premiums refer to earlier insurance contract accounting basis (company original p10 footnote), not recognized CAS25 2026 insurance service revenue; do not join flow from premium to insurance service revenue.",
+    "independent_limited_review": {
+      "firm": "安永华明会计师事务所（特殊普通合伙）",
+      "physical_page": 42,
+      "date": "2026-08-27",
+      "standard": "中国注册会计师审阅准则第2101号－财务报表审阅",
+      "opinion": "对中期财务报表作有限保证审阅，未实施审计，未发表审计意见；审阅报告未提示发现重大不符合中期财务报告准则的事项",
+      "scope": "合并和公司中期资产负债表、利润表、股东权益变动表、现金流量表及财务附注",
+      "proof_type": "ORIGINAL_FINANCIAL_REPORT_SIGNED_REVIEW_TEXT"
+    },
+    "regulatory_scope": "保险公司核心/实际/最低资本是监管偿付能力口径，并非会计报表归母股权或全部资产；p21/P66审查，2026H1未经审计，但合并财务报告p42已进行有限保证审阅"
   },
   "facts": {
     "premium_total": {
@@ -1676,6 +1686,84 @@
       "type": "stock",
       "period": "2025-12-31",
       "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_disclosure_unit": "人民币百万元",
+      "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "reg_core_capital": {
+      "yuan": "1058166000000",
+      "page": 21,
+      "label": "核心资本（保险公司偿付能力监管口径）",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "insurance_regulatory_capital_issuer",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_disclosure_unit": "人民币百万元",
+      "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "reg_core_capital_prior": {
+      "yuan": "777291000000",
+      "page": 21,
+      "label": "核心资本（2025年末保险公司偿付能力监管口径）",
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "insurance_regulatory_capital_issuer",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_disclosure_unit": "人民币百万元",
+      "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "reg_actual_capital": {
+      "yuan": "1334688000000",
+      "page": 21,
+      "label": "实际资本（保险公司偿付能力监管口径）",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "insurance_regulatory_capital_issuer",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_disclosure_unit": "人民币百万元",
+      "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "reg_actual_capital_prior": {
+      "yuan": "1050358000000",
+      "page": 21,
+      "label": "实际资本（2025年末保险公司偿付能力监管口径）",
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "insurance_regulatory_capital_issuer",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_disclosure_unit": "人民币百万元",
+      "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "reg_minimum_capital": {
+      "yuan": "674846000000",
+      "page": 21,
+      "label": "最低资本（保险公司偿付能力监管口径）",
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "insurance_regulatory_capital_issuer",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_disclosure_unit": "人民币百万元",
+      "page_semantic_review": "ORIGINAL_REPORT_TABLE_COLUMN_REVIEWED"
+    },
+    "reg_minimum_capital_prior": {
+      "yuan": "603624000000",
+      "page": 21,
+      "label": "最低资本（2025年末保险公司偿付能力监管口径）",
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "insurance_regulatory_capital_issuer",
       "classification": "DISCLOSED",
       "unit": "元",
       "currency": "CNY",
