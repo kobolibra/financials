@@ -1,0 +1,1511 @@
+{
+  "schema_version": 1,
+  "issuer": "601919",
+  "name": "中远海运控股股份有限公司",
+  "period": "2026H1",
+  "release_class": "SOURCE_VERIFIED_RESEARCH_CANDIDATE_NO_HTML_NO_LIVE",
+  "source": {
+    "path": "research/issuers/601919/source/601919_2026H1_complete_original.pdf",
+    "official_original_url": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225531118.PDF",
+    "sha256": "0265a4ca61fb24ff15e14b53b258d7febc03bdb7349f379e42e2c28476dd2ff1",
+    "bytes": 1207059,
+    "physical_pages": 178,
+    "annual_or_interim": "2026H1_unaudited_original_p51_audit_report_not_applicable",
+    "independent_second_original_pdf_sha": "NOT_CHECKED"
+  },
+  "facts": {
+    "revenue": {
+      "label": "合并营业收入",
+      "physical_page": 55,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "111921747568.76",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "revenue_prior": {
+      "label": "合并营业收入（比较期）",
+      "physical_page": 55,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "109099344307.30",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cost": {
+      "label": "合并营业成本",
+      "physical_page": 55,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "91396114989.71",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cost_prior": {
+      "label": "合并营业成本（比较期）",
+      "physical_page": 55,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "86031485662.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "operating_total_cost": {
+      "label": "合并营业总成本",
+      "physical_page": 55,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "97181765344.02",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "operating_total_cost_prior": {
+      "label": "合并营业总成本（比较期）",
+      "physical_page": 55,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "89116652772.74",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "taxes_and_surcharges": {
+      "label": "税金及附加",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "596818575.54",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "taxes_and_surcharges_prior": {
+      "label": "税金及附加（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "638899686.27",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "selling_expense": {
+      "label": "销售费用",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "398449056.47",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "selling_expense_prior": {
+      "label": "销售费用（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "403786392.22",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "admin_expense": {
+      "label": "管理费用",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3905938553.21",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "admin_expense_prior": {
+      "label": "管理费用（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3635681150.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "rd_expense": {
+      "label": "研发费用",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "527699979.42",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "rd_expense_prior": {
+      "label": "研发费用（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "504590630.37",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "finance_expense": {
+      "label": "财务费用（含汇兑及存款收益净效应）",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "356744189.67",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "finance_expense_prior": {
+      "label": "财务费用（含汇兑及存款收益净效应）（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-2097790748.28",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "other_income": {
+      "label": "其他收益",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "543972575.01",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "other_income_prior": {
+      "label": "其他收益（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "907339542.78",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "investment_income": {
+      "label": "投资收益",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3002337219.33",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "investment_income_prior": {
+      "label": "投资收益（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3016505311.98",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "fairvalue_income": {
+      "label": "公允价值变动收益/损失",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-10534823.90",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "fairvalue_income_prior": {
+      "label": "公允价值变动收益/损失（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "28642136.09",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "credit_impairment": {
+      "label": "信用减值损失（报表签名）",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-81354170.68",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "credit_impairment_prior": {
+      "label": "信用减值损失（报表签名）（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "10255898.87",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "asset_impairment": {
+      "label": "资产减值损失（报表签名）",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-2312225.53",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "asset_impairment_prior": {
+      "label": "资产减值损失（报表签名）（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-1838608.05",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "asset_disposal_gain": {
+      "label": "资产处置收益",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "59634356.74",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "asset_disposal_gain_prior": {
+      "label": "资产处置收益（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "82923986.44",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "operating_profit": {
+      "label": "合并营业利润",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "18251725155.71",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "operating_profit_prior": {
+      "label": "合并营业利润（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "24026519802.67",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "nonoperating_income": {
+      "label": "营业外收入",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "34501218.20",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "nonoperating_income_prior": {
+      "label": "营业外收入（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "4622983.86",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "nonoperating_expense": {
+      "label": "营业外支出",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "39994664.58",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "nonoperating_expense_prior": {
+      "label": "营业外支出（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "27329832.43",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "pretax_profit": {
+      "label": "合并利润总额",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "18246231709.33",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "pretax_profit_prior": {
+      "label": "合并利润总额（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "24003812954.10",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "income_tax": {
+      "label": "所得税费用",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2546661952.90",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "income_tax_prior": {
+      "label": "所得税费用（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3795822735.02",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "net_profit": {
+      "label": "合并净利润（含少数股东）",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "15699569756.43",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "net_profit_prior": {
+      "label": "合并净利润（含少数股东）（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "20207990219.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "parent_profit": {
+      "label": "归属于母公司股东的净利润",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "13418920777.40",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "parent_profit_prior": {
+      "label": "归属于母公司股东的净利润（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "17536092241.00",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "minority_profit": {
+      "label": "少数股东损益",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2280648979.03",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "minority_profit_prior": {
+      "label": "少数股东损益（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2671897978.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "oci_total": {
+      "label": "其他综合收益税后净额（合并）",
+      "physical_page": 56,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-5790990068.31",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "oci_total_prior": {
+      "label": "其他综合收益税后净额（合并）（比较期）",
+      "physical_page": 56,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "120009676.13",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "oci_fx_translation": {
+      "label": "母公司归属外币财务报表折算差额",
+      "physical_page": 57,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-4524673717.25",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "oci_fx_translation_prior": {
+      "label": "母公司归属外币财务报表折算差额（比较期）",
+      "physical_page": 57,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-1227402.65",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "comprehensive_income": {
+      "label": "合并综合收益总额",
+      "physical_page": 57,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "9908579688.12",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "comprehensive_income_prior": {
+      "label": "合并综合收益总额（比较期）",
+      "physical_page": 57,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "20327999895.21",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "assets": {
+      "label": "合并资产总额",
+      "physical_page": 52,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "483630361378.62",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "assets_prior": {
+      "label": "合并资产总额（比较期）",
+      "physical_page": 52,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "483758023838.79",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "liabilities": {
+      "label": "合并负债总额",
+      "physical_page": 53,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "198318791982.25",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "liabilities_prior": {
+      "label": "合并负债总额（比较期）",
+      "physical_page": 53,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "200351998919.29",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "equity": {
+      "label": "合并所有者权益总额",
+      "physical_page": 53,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "285311569396.37",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "equity_prior": {
+      "label": "合并所有者权益总额（比较期）",
+      "physical_page": 53,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "283406024919.50",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "parent_equity": {
+      "label": "合并归母股东权益",
+      "physical_page": 53,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "233762206133.57",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "parent_equity_prior": {
+      "label": "合并归母股东权益（比较期）",
+      "physical_page": 53,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "232265324350.62",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "minority_equity": {
+      "label": "合并少数股东权益",
+      "physical_page": 53,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "51549363262.80",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "minority_equity_prior": {
+      "label": "合并少数股东权益（比较期）",
+      "physical_page": 53,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "51140700568.88",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_on_bs": {
+      "label": "合并货币资金（含受限）",
+      "physical_page": 51,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "141442076816.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_on_bs_prior": {
+      "label": "合并货币资金（含受限）（比较期）",
+      "physical_page": 51,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "151469711074.10",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ar": {
+      "label": "应收账款",
+      "physical_page": 51,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "11117924531.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ar_prior": {
+      "label": "应收账款（比较期）",
+      "physical_page": 51,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "8058718207.60",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "inventory": {
+      "label": "存货",
+      "physical_page": 51,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "8457252840.54",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "inventory_prior": {
+      "label": "存货（比较期）",
+      "physical_page": 51,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "6307605146.31",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "fixed_assets": {
+      "label": "固定资产",
+      "physical_page": 51,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "148164782888.49",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "fixed_assets_prior": {
+      "label": "固定资产（比较期）",
+      "physical_page": 51,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "147939335176.89",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "construction_in_progress": {
+      "label": "在建工程",
+      "physical_page": 51,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "21828911583.67",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "construction_in_progress_prior": {
+      "label": "在建工程（比较期）",
+      "physical_page": 51,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "16664600044.64",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "right_of_use_assets": {
+      "label": "使用权资产",
+      "physical_page": 52,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "40296456427.92",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "right_of_use_assets_prior": {
+      "label": "使用权资产（比较期）",
+      "physical_page": 52,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "42367609180.72",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lease_liabilities_longterm": {
+      "label": "长期租赁负债（不含一年内到期部分）",
+      "physical_page": 52,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "30599877378.55",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lease_liabilities_longterm_prior": {
+      "label": "长期租赁负债（不含一年内到期部分）（比较期）",
+      "physical_page": 52,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "32082870765.13",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "shortterm_borrowings": {
+      "label": "短期借款",
+      "physical_page": 52,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "776764869.97",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "shortterm_borrowings_prior": {
+      "label": "短期借款（比较期）",
+      "physical_page": 52,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2068718441.08",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "longterm_borrowings": {
+      "label": "长期借款",
+      "physical_page": 52,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "21511580512.27",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "longterm_borrowings_prior": {
+      "label": "长期借款（比较期）",
+      "physical_page": 52,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "25272590466.64",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "payables": {
+      "label": "应付账款",
+      "physical_page": 52,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "78566866042.49",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "payables_prior": {
+      "label": "应付账款（比较期）",
+      "physical_page": 52,
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "77120888617.68",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_from_customers": {
+      "label": "销售商品及服务现金收款",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "110742557509.80",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_from_customers_prior": {
+      "label": "销售商品及服务现金收款（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "107744641289.17",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "tax_refunds": {
+      "label": "经营活动收到退税",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "1674557678.49",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "tax_refunds_prior": {
+      "label": "经营活动收到退税（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "1318635005.29",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "other_operating_receipts": {
+      "label": "经营其他收款",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3447421463.93",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "other_operating_receipts_prior": {
+      "label": "经营其他收款（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "4388736318.69",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfo_inflows": {
+      "label": "经营活动现金流入小计",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "115864536652.22",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfo_inflows_prior": {
+      "label": "经营活动现金流入小计（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "113452012613.15",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_suppliers": {
+      "label": "购买商品和接受服务现金支付",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "79242257852.20",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_suppliers_prior": {
+      "label": "购买商品和接受服务现金支付（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "71669836748.65",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_staff": {
+      "label": "支付职工现金",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "7353210514.95",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_staff_prior": {
+      "label": "支付职工现金（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "6888507602.53",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_taxes": {
+      "label": "支付税费现金",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "3396613689.10",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_taxes_prior": {
+      "label": "支付税费现金（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "6409349622.44",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_operating_other": {
+      "label": "支付其他经营现金",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2542228869.40",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "paid_operating_other_prior": {
+      "label": "支付其他经营现金（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2707342009.54",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfo_outflows": {
+      "label": "经营活动现金流出小计",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "92534310925.65",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfo_outflows_prior": {
+      "label": "经营活动现金流出小计（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "87675035983.16",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfo": {
+      "label": "合并经营活动现金流净额",
+      "physical_page": 59,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "23330225726.57",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfo_prior": {
+      "label": "合并经营活动现金流净额（比较期）",
+      "physical_page": 59,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "25776976629.99",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "capex_cash": {
+      "label": "购建固定资产及无形资产支付现金（真实投资现金）",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "14136530850.79",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "capex_cash_prior": {
+      "label": "购建固定资产及无形资产支付现金（真实投资现金）（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "9751203366.26",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfi": {
+      "label": "合并投资现金流净额",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-11911783122.53",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cfi_prior": {
+      "label": "合并投资现金流净额（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-10501177463.07",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cff": {
+      "label": "合并筹资现金流净额",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-18232075385.53",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cff_prior": {
+      "label": "合并筹资现金流净额（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-30366227069.19",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "fx_cash_effect": {
+      "label": "汇率变动对现金等价物的影响",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-3230830566.76",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "fx_cash_effect_prior": {
+      "label": "汇率变动对现金等价物的影响（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "44258604.51",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_change": {
+      "label": "现金及现金等价物净增加额",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-10044463348.25",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_change_prior": {
+      "label": "现金及现金等价物净增加额（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-15046169297.76",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_begin": {
+      "label": "期初现金及现金等价物",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "150881601005.77",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_begin_prior": {
+      "label": "期初现金及现金等价物（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "184189078030.04",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_end": {
+      "label": "期末现金及现金等价物",
+      "physical_page": 60,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "140837137657.52",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "cash_end_prior": {
+      "label": "期末现金及现金等价物（比较期）",
+      "physical_page": 60,
+      "period": "2025H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "169142908732.28",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_segment_revenue": {
+      "label": "航运分部营业收入（抵销前）",
+      "physical_page": 12,
+      "period": "2026H1",
+      "scope": "management_segment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "107298065257.53",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_segment_revenue_prior": {
+      "label": "航运分部营业收入（抵销前）（比较期）",
+      "physical_page": 12,
+      "period": "2025H1",
+      "scope": "management_segment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "null",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_segment_revenue": {
+      "label": "码头分部营业收入（抵销前）",
+      "physical_page": 12,
+      "period": "2026H1",
+      "scope": "management_segment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "6327260294.48",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_segment_revenue_prior": {
+      "label": "码头分部营业收入（抵销前）（比较期）",
+      "physical_page": 12,
+      "period": "2025H1",
+      "scope": "management_segment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "null",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "intersegment_revenue_elimination": {
+      "label": "航运码头内部收入抵销（负数）",
+      "physical_page": 12,
+      "period": "2026H1",
+      "scope": "management_elimination",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-1703577983.25",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "intersegment_cost_elimination": {
+      "label": "航运码头内部成本抵销（负数）",
+      "physical_page": 12,
+      "period": "2026H1",
+      "scope": "management_elimination",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-2036060954.61",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_segment_cost": {
+      "label": "航运分部营业成本（抵销前）",
+      "physical_page": 12,
+      "period": "2026H1",
+      "scope": "management_segment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "88853206398.95",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_segment_cost": {
+      "label": "码头分部营业成本（抵销前）",
+      "physical_page": 12,
+      "period": "2026H1",
+      "scope": "management_segment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "4578969545.37",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_equipment": {
+      "label": "航运设备及货物运输成本",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "41416821205.12",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_voyage": {
+      "label": "航运航程成本",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "20208110530.05",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_vessel": {
+      "label": "航运船舶成本",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "18799090519.82",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_other": {
+      "label": "航运其他业务成本",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "8429184143.96",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_supply_chain_revenue_rmb_thousands": {
+      "label": "其中：除海运以外的供应链收入（航运收入子项，非额外增量）",
+      "physical_page": 15,
+      "period": "2026H1",
+      "scope": "management_shipping",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "24089548",
+      "classification": "DISCLOSED_SUBSET_DO_NOT_ADD"
+    },
+    "ship_supply_chain_revenue_rmb_thousands_prior": {
+      "label": "供应链收入比较期（航运收入子项）",
+      "physical_page": 15,
+      "period": "2025H1",
+      "scope": "management_shipping",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "21582976",
+      "classification": "DISCLOSED_SUBSET_DO_NOT_ADD"
+    },
+    "ship_ebit_rmb_thousands": {
+      "label": "集装箱航运业务EBIT（非集团法定营业利润）",
+      "physical_page": 15,
+      "period": "2026H1",
+      "scope": "management_shipping",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "15187254",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_ebit_rmb_thousands_prior": {
+      "label": "集装箱航运业务EBIT比较期",
+      "physical_page": 15,
+      "period": "2025H1",
+      "scope": "management_shipping",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "21506754",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_ebit_margin_pct": {
+      "label": "集装箱航运业务EBIT率（非集团净利率）",
+      "physical_page": 15,
+      "period": "2026H1",
+      "scope": "management_shipping",
+      "source_report_unit": "percent",
+      "exact_value": "14.15",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_ebit_margin_pct_prior": {
+      "label": "集装箱航运业务EBIT率比较期",
+      "physical_page": 15,
+      "period": "2025H1",
+      "scope": "management_shipping",
+      "source_report_unit": "percent",
+      "exact_value": "20.52",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "international_yield_usd_per_teu": {
+      "label": "国际航线单箱收入（美元/标准箱，不是人民币）",
+      "physical_page": 15,
+      "period": "2026H1",
+      "scope": "management_shipping",
+      "source_report_unit": "USD_per_TEU",
+      "exact_value": "1180.68",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "international_yield_usd_per_teu_prior": {
+      "label": "国际单箱收入比较期",
+      "physical_page": 15,
+      "period": "2025H1",
+      "scope": "management_shipping",
+      "source_report_unit": "USD_per_TEU",
+      "exact_value": "1205.95",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "group_teu": {
+      "label": "集装箱航运集团货运量标准箱",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "14279451",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "group_teu_prior": {
+      "label": "集装箱航运集团货运量比较期",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "13280904",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_teu": {
+      "label": "港口控股和参股码头吞吐量加总（不等于会计收入）",
+      "physical_page": 16,
+      "period": "2026H1",
+      "scope": "management_port_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "80157047",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_teu_prior": {
+      "label": "港口吞吐量比较期",
+      "physical_page": 16,
+      "period": "2025H1",
+      "scope": "management_port_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "74295971",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_controlling_teu": {
+      "label": "控股码头吞吐量",
+      "physical_page": 16,
+      "period": "2026H1",
+      "scope": "management_port_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "16893574",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_participating_teu": {
+      "label": "参股码头吞吐量",
+      "physical_page": 16,
+      "period": "2026H1",
+      "scope": "management_port_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "63263473",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "capital_commit_shipbuilding": {
+      "label": "已签约尚未列示的船舶建造资本性支出承诺（不是本期付款）",
+      "physical_page": 167,
+      "period": "2026-06-30",
+      "scope": "contract_commitment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "75510994181.00",
+      "classification": "COMMITMENT_STOCK_NOT_CAPEX_FLOW"
+    },
+    "capital_commit_shipbuilding_prior": {
+      "label": "船舶建造承诺上年末",
+      "physical_page": 167,
+      "period": "2025-12-31",
+      "scope": "contract_commitment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "52054278680.00",
+      "classification": "COMMITMENT_STOCK_NOT_CAPEX_FLOW"
+    },
+    "capital_commit_terminal": {
+      "label": "码头资本性支出承诺",
+      "physical_page": 167,
+      "period": "2026-06-30",
+      "scope": "contract_commitment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2816528543.48",
+      "classification": "COMMITMENT_STOCK_NOT_CAPEX_FLOW"
+    },
+    "signed_lease_commitment": {
+      "label": "已签约准备履行的船舶及集装箱租赁承诺",
+      "physical_page": 167,
+      "period": "2026-06-30",
+      "scope": "lease_commitment",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "82655482055.80",
+      "classification": "CONTRACT_NOT_RECOGNIZED_LIABILITY"
+    },
+    "restricted_non_cash_funds": {
+      "label": "不属于现金及现金等价物的货币资金",
+      "physical_page": 149,
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "604939158.56",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_depr_fixed": {
+      "label": "间接CFO调整：固定资产折旧",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "4782853169.41",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_amort_right_of_use": {
+      "label": "间接CFO调整：使用权资产摊销",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "5859865535.63",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_asset_impair": {
+      "label": "间接CFO调整：资产减值准备",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "2312225.53",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_credit_impair": {
+      "label": "间接CFO调整：信用减值",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "81354170.68",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_amort_intangible": {
+      "label": "间接CFO调整：无形资产摊销",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "216631889.85",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_amort_longterm": {
+      "label": "间接CFO调整：长期待摊摊销",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "133961223.79",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_disposal": {
+      "label": "间接CFO调整：资产处置收益转回",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-59634356.74",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_scrapping": {
+      "label": "间接CFO调整：固定资产报废损失",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "210364.33",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_fairvalue": {
+      "label": "间接CFO调整：公允价值收益转回",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "10534823.90",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_finance": {
+      "label": "间接CFO调整：财务费用",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "4610139607.28",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_invest": {
+      "label": "间接CFO调整：投资收益转回",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-3002337219.33",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_dta": {
+      "label": "间接CFO调整：递延所得税资产减少",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "49386773.58",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_dtl": {
+      "label": "间接CFO调整：递延所得税负债增加",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "469524390.12",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_inventory": {
+      "label": "间接CFO调整：存货增加",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-2150485348.39",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_receivable": {
+      "label": "间接CFO调整：经营应收增加",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-4287098084.33",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "indirect_payable": {
+      "label": "间接CFO调整：经营应付增加",
+      "physical_page": 148,
+      "period": "2026H1",
+      "scope": "consolidated",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "913436804.83",
+      "classification": "ORIGINAL_REPORTED"
+    }
+  },
+  "source_semantics": [
+    {
+      "scope": "consolidated",
+      "rule": "Financial statements direct Yuan precision, current H1 flow vs prior H1; stock June 30 vs prior Dec 31"
+    },
+    {
+      "scope": "management_segment",
+      "rule": "Shipping and port gross revenues/costs before intersegment elimination; negative elimination must be signed and EXPLICIT, not a positive third revenue business or a fake 1px Sankey"
+    },
+    {
+      "scope": "management_shipping",
+      "rule": "Supply chain RMB thousand value is a disclosed subset of shipping segment revenue. Do NOT add to shipping revenue; shipping EBIT is segment management, not consolidated operating profit."
+    },
+    {
+      "scope": "group_volume",
+      "rule": "TEU shipping lanes quantities and route RMB thousand revenues are different metrics; USD/TEU yield not inferred from group RMB revenue without currency and basis mapping."
+    },
+    {
+      "scope": "management_port_volume",
+      "rule": "Port total volume includes both controlled and participating terminals; volume is not consolidated recognized port sales."
+    },
+    {
+      "scope": "contract_commitment",
+      "rule": "June 30 unfunded committed new vessel builds are a STOCK of future obligations, not 2026 H1 actually-paid capex flow."
+    },
+    {
+      "scope": "indirect_CFO",
+      "rule": "Actual disclosed original p148 net-income-to-CFO reconciliation EXISTS; must not incorrectly claim direct-only."
+    },
+    {
+      "scope": "non_cash_funds",
+      "rule": "Consolidated cash on balance sheet includes restricted 604,939,158.56 RMB that is excluded from cash equivalents in direct cash flow, exact difference required."
+    }
+  ],
+  "known_open_gates": [
+    "PHYSICAL_XY_VALUE_COLUMN_30_CELLS_NOT_YET_INDEPENDENTLY_LOCKED",
+    "FULL_MATERIAL_LEASE_SHIP_DELIVERY_NOTES_NOT_EXHAUSTIVELY_AUDITED",
+    "SEGMENT_COST_AND_REVENUE_ELIMINATION_MUST_RECONCILE",
+    "H_SHARE_CAS_IFRS_ADJUSTMENTS_NOT_YET_ANALYZED_IN_DETAIL",
+    "FULL_BROKER_MULTI_YEAR_MACRO_AND_PEERS_NOT_CHECKED",
+    "REAL_OFFLINE_HTML_12TH_NEW_ISSUER_NOT_STARTED",
+    "CLOUDFLARE_LIVE_NOT_CHECKED",
+    "SECOND_INDEPENDENT_HUMAN_ANALYST_NOT_CHECKED"
+  ]
+}
