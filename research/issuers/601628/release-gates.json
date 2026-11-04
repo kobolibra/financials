@@ -38,12 +38,12 @@
     "ACCOUNTING_CORE": {
       "status": "PASS",
       "proof": "research/issuers/601628/qa.json",
-      "scope": "16 exact signed CAS insurance P&L/BS/stock/CFO invariants using 127 million-unit disclosed facts converted to RMB yuan; hostile tests in #41767495751"
+      "scope": "18 original signed consolidated insurer CAS/CFO/CSM/same-date balance + two-period regulatory capital coverage and EY limited review source, all hostile mutation tests; not full independent actuarial certification."
     },
     "RESEARCH_COUNTERCASE": {
       "status": "PASS",
       "proof": "research/issuers/601628/story.json",
-      "scope": "Insurer-specific premium/service investment-liability interactions, alternative explanation, direct CFO deterioration and next-period falsification"
+      "scope": "Source-linked issuer special case: premium vs recognized insurance service vs cash; FV linked with insurance finance and OCI, CSM stock, solvency capital vs CAS equity, EY interim limited review and direct cash deterioration."
     },
     "CHART_SEMANTICS": {
       "status": "PASS",
@@ -63,12 +63,12 @@
     "OFFLINE_REBUILD": {
       "status": "PASS",
       "proof": "https://github.com/kobolibra/financials/actions/runs/41767495751",
-      "scope": "Real standalone HTML rebuilt independently and compared byte for byte in updated source runner #41768746376; exact 2026H1 financial report publication SHA fc3856caed4e0e3a37618efa1fdaeeb2558c8eab37ecf9c3d7e51f1a909f2c00"
+      "scope": "Final true original 2026H1 133-fact 18-CAS-sign/solvency/limited-review original offline HTML built twice byte-identically at #41769923566; actual publication SHA 14cdc1400c8f813f052f61a8d2325e4db849626049fd43b51f5a927a0131b088; actual CJK Chromium 1440/768/390 and original money geometric SVG verified"
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
       "proof": null,
-      "scope": "Selected major business and liability notes have been read but all 104 original PDF pages not exhaustively independently challenged or peer reviewed"
+      "scope": "Original p17–21 and 42-104 selected extensive source-risk, repurchase securities, CSM and review notes were examined; not all original 104 pages exhaustively challenged and independently professional signed off."
     },
     "REPORTED_NOTE_TIES": {
       "status": "NOT_CHECKED",
@@ -123,8 +123,8 @@
       "issue": "INDEPENDENT_HUMAN_FINANCIAL_AND_DESIGN_REVIEW_NOT_PERFORMED"
     }
   ],
-  "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41768746376",
-  "published_html_sha256": "fc3856caed4e0e3a37618efa1fdaeeb2558c8eab37ecf9c3d7e51f1a909f2c00",
+  "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41769923566",
+  "published_html_sha256": "14cdc1400c8f813f052f61a8d2325e4db849626049fd43b51f5a927a0131b088",
   "live_release_fingerprint": null,
   "actual_main_release_commit": null
 }
