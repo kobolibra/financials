@@ -9,6 +9,8 @@ on:
       - 'skills/ashare-financial-storytelling/v7/tests/test_reported_revenue_partitions.py'
       - 'public/300394.html'
       - 'public/300502.html'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -36,7 +38,10 @@ jobs:
           for code,needle,pg in [('300394','其他业务（附注）','140'),('300502','其他（业务类型）','104')]:
               p=root/f'{code}.html'
               h=p.read_text()
-              assert h.count('<figure class="exhibit">')==(10 if code=='300394' else 11),(code,'expected full editorial exhibit count')
+              assert len(re.findall(r'<figure class="exhibit(?: has-native-finance)?"',h))==(10 if code=='300394' else 11),(code,'source-driven full financial-figure count')
+              assert h.count('<figure class="exhibit has-native-finance">')>=(9 if code=='300394' else 10),(code,'original mobile-specific finance drawings absent')
+              assert h.count('class="native-money-ribbon"')==2*(3 if code=='300394' else 2),(code,'true source per-issuer cost / GP branch count lost')
+              assert h.count('class="native-money-sink"')==2,(code,'source-conserved group revenue results missing')
               assert '未列示差额（计算）' not in h,(code,'fake balancing node still present')
               assert needle in h,(code,'source category absent')
               assert 'p.'+pg in h,(code,'source physical page absent')
