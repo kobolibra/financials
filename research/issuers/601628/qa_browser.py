@@ -71,7 +71,8 @@ with sync_playwright() as p:
      maximum=groups[item["group"]]
      assert maximum>0,(panel["family"],"MOBILE_ZERO_DENOMINATOR")
      expected=abs(int(item["exact"]))/maximum*100
-     assert math.isclose(item["widthPct"],expected,abs_tol=0.00002),(panel["family"],"MOBILE_BAR_INFLATED_OR_NOT_SOURCE_PROPORTIONAL",item,expected)
+     # Chromium CSSOM rounds percent widths to 4 decimals; allow at most half of its last percent-place, not a visual 1px fudge.
+     assert math.isclose(item["widthPct"],expected,abs_tol=0.000055),(panel["family"],"MOBILE_BAR_INFLATED_OR_NOT_SOURCE_PROPORTIONAL",item,expected)
    # No significant non-figure container can use overflow:hidden to mask content.
    for el in geometry["visible"]:
     r=el["rect"]
