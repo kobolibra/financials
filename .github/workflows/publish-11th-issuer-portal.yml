@@ -1,0 +1,61 @@
+name: Rebuild canonical single issuer research library for new company
+on:
+  push:
+    branches: [work/insurance-601628-original-2026h1-skill-stress]
+    paths:
+      - 'site/research_catalog.json'
+      - '.github/workflows/publish-11th-issuer-portal.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  only-one-canonical-home:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rebuild ONLY existing canonical home using actual eleven issuer catalog
+        run: |
+          python site/portal_builder.py --out public
+          python - <<'PY'
+          import json, pathlib,hashlib
+          r=pathlib.Path('.')
+          d=json.loads((r/'site/research_catalog.json').read_text())
+          assert len(d['issuers'])==d['published_issuer_count']==11
+          assert len({x['code'] for x in d['issuers']})==11
+          assert all((r/'public'/x['href'].lstrip('/')).is_file() for x in d['issuers'])
+          assert {x['code'] for x in d['issuers']}=={'300394','300308','300502','600036','688111','600519','000333','688220','600900','600276','601628'}
+          assert (r/'public/601628.html').is_file()
+          assert (r/'public/index.html').is_file()
+          print('ONE_LIBRARY_ELEVEN_INDEPENDENT_ISSUER_ROUTES_PASS',hashlib.sha256((r/'public/index.html').read_bytes()).hexdigest())
+          PY
+          python scripts/check_release_contract.py
+          python scripts/check_handoff.py
+          python -m unittest discover -s site -p test_portal.py -v
+          python -m unittest discover -s scripts -p test_check_release_contract.py -v
+          python -m unittest research/issuers/601628/test_accounting.py -v
+      - name: Verify portal reproducible exact bytes twice
+        run: |
+          python site/portal_builder.py --out /tmp/601628-canonical-portal
+          cmp public/index.html /tmp/601628-canonical-portal/index.html
+      - name: Ensure no previously released standalone issuer page was edited
+        run: |
+          git fetch origin main
+          python - <<'PY'
+          import subprocess
+          old=['300394','300308','300502','600036','688111','600519','000333','688220','600900','600276']
+          for ticker in old:
+             r=subprocess.run(['git','diff','--exit-code','origin/main','--','public/'+ticker+'.html'],capture_output=True,text=True)
+             assert r.returncode==0,('EXISTING_ISSUER_HTML_CHANGED',ticker,r.stdout[:300])
+          print('TEN_PRIOR_INDEPENDENT_REPORT_HTML_UNTOUCHED')
+          PY
+      - name: Commit only primary public index (no new landing page)
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/index.html public/catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Add China Life to existing unique eleven issuer home index, preserve ten prior pages"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
