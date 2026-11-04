@@ -75,7 +75,7 @@ def flow(l):
           '<div class="native-money-pair"><span>营业成本 <b>'+money(cogs)+'</b></span><span>毛利润 <b>'+money(gp)+'</b></span></div>',
           '<p class="native-finance-dek">各来源自己的原披露成本与推导毛利严格满足收入＝成本＋毛利；只有同一互斥合并口径才进入图形。</p>']
     for name,key,r,c,g,page in sources:
-        rows.append('<div class="native-source-row"><span>'+E(name)+' <small>'+page+'</small></span><strong>'+money(r)+'</strong><span>成本 '+money(c)+' · 毛利 '+money(g)+'</span></div>')
+        rows.append('<button type="button" class="native-source-row" data-source-key="'+E(key)+'" aria-pressed="false" aria-label="选择 '+E(name)+' 的真实成本和毛利路径"><span>'+E(name)+' <small>'+page+'</small></span><strong>'+money(r)+'</strong><span>成本 '+money(c)+' · 毛利 '+money(g)+'</span></button>')
     return card("收入如何分成成本与毛利润？","2026H1 · 合并人民币元 · 同比例真实来源→成本／毛利。不能把股权/现金/其他会计维度合并。",''.join(svg+rows),"两端所有真实 SVG 路径宽度按同一原始金额比例生成，微小来源不设最小可见宽度。")
 
 def signed(l, title, subtitle, rows, foot):
