@@ -181,7 +181,13 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                     errors.append(f"LEDGER_FACT_SOURCE_PAGE_INVALID {code}/{key}")
                 if not isinstance(fact.get("period"), str) or not fact["period"]:
                     errors.append(f"LEDGER_FACT_PERIOD_MISSING {code}/{key}")
-                if fact.get("scope") not in ("consolidated", "parent"):
+                # Insurance regulatory capital is issuer-level C-ROSS eligible/minimum
+                # capital: it is NOT CAS consolidated shareholder equity. Allow
+                # this third scope exclusively for a documented insurer adapter.
+                accepted_scopes = {"consolidated", "parent"}
+                if record.get("sector_adapter") in {"insurance", "insurance_group"}:
+                    accepted_scopes.add("issuer_regulatory")
+                if fact.get("scope") not in accepted_scopes:
                     errors.append(f"LEDGER_FACT_SCOPE_INVALID {code}/{key}")
                 if len(str(fact.get("label") or "")) < 3:
                     errors.append(f"LEDGER_FACT_ROW_LABEL_MISSING {code}/{key}")
