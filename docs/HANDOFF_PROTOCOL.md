@@ -31,6 +31,10 @@
 
 执行 `python scripts/check_handoff.py`；提交交接文档、源码和回归测试。优先核验真正生产 HTTP/浏览器，而不是只报 GitHub API `success`。
 
+## 2026-11-04 · 新行业压力测试交接（601628 保险）
+
+通过同一零上下文入库流程：`main`→完整 Skill/研究手册→官方原始104物理页PDF字节/源SHA→127条类型化事实→33项原PDF(x,y)→保险合同服务及投资负债关联→CAS带符号三表与**仅直接法**CFO→真实只含同口径互斥总保费来源的加权桑基→10张具原始页码原创图→1440/768/390实Chrome与每图截图→完全离线HTML→唯一目录新增路由。机器检查：`python research/issuers/601628/verify_source.py`、`python -m unittest research/issuers/601628/test_accounting.py -v`、`python research/issuers/601628/publish.py --out public/601628.html`、`python research/issuers/601628/qa_browser.py`、`python scripts/check_handoff.py`、`python scripts/check_release_contract.py`。已复核原始源 SHA `b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943`；官方 SSE 二次比对、完整重大附注独立复核、第二人类审稿、外部多期同业估值明确未完成。**每次跨对话重新读真实 main、行动结果与 `project-status.json`，不要假称一个 PR 的动作证明下一个提交，亦不得将 Skill 库文件声称自动安装在 ChatGPT。**
+
 ## 关于 Skill 的真实可发现性
 
 `AGENTS.md` 和 `.github/copilot-instructions.md` 为支持这些协议的仓库编码助手提供入口，但**不能保证任意 ChatGPT 新聊天自动检索你的私有/公开 GitHub 仓库**。新聊天必须有 GitHub 访问，或收到直接链接/上传的 Skill。不要声称已完成 ChatGPT Skills 目录安装。推荐使用 [新会话启动消息](NEW_SESSION_PROMPT.md)。
