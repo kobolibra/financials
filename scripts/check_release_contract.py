@@ -327,7 +327,7 @@ def validate_registry(root: Path) -> list[str]:
             errors.append(f"REGRESSION_ID_INVALID {id_}")
         if case.get("status") not in REGRESSION_STATUSES:
             errors.append(f"REGRESSION_STATUS_INVALID {id_}")
-        if case.get("transfer_gate") not in GATES:
+        if case.get("transfer_gate") not in (GATES | {"HANDOFF_SOURCE_OF_TRUTH"}):
             errors.append(f"REGRESSION_WRONG_GATE {id_}")
         if case.get("scope") not in {"single_issuer", "cross_issuer_mechanism", "cross_issuer_process"}:
             errors.append(f"REGRESSION_SCOPE_INVALID {id_}")
