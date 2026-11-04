@@ -5,7 +5,7 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "ELEVEN_ISSUER_SINGLE_MAIN_DIRECTORY__TWO_OPTICAL_300394_300502_REAL_CLOUDFLARE_CJK_PASS__THIRD_300308_COMPLETE_ORIGINAL_184P_SOURCE_AND_LOCAL_CJK_PASS_PENDING_MERGE_REAL_CLOUDFLARE",
+  "latest_publication_state": "ELEVEN_ISSUER_UNIFIED_MAIN_DIRECTORY__ALL_THREE_OPTICAL_300394_300502_300308_EXACT_REAL_CLOUDFLARE_SHA_1440_768_390_PASS_MAIN_D4CEB34__688220_NINE_ORIGINAL_NATIVE_FINANCE_CANDIDATE_NOT_LIVE",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -119,14 +119,32 @@
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
     "semiconductor_report": "/688220.html",
     "insurance_report": "/601628.html",
-    "current_candidate_branch": "work/optical-300308-original-pdf-source-mobile-20261104",
-    "company_report_stage": "2026-11-04_MAIN_11_STANDALONE; 300394_300502_REAL_CLOUDFLARE_EXACT_SHA_PASS_ACTION_41849552022; 300308_184P_ORIGINAL_SOURCE_ARCHIVED_63_FACTS_15_CFO__SOURCE_CONFLICT_P139_AND_NATIVE_390_FINANCE_3_CJK_PASS_LOCAL_ACTION_41854062950__PUBLIC_NEW_ARTICLE_SHA_NOT_CHECKED; 5_OTHER_CURRENT_MAIN_FINANCE_390_FAIL_AFTER_RELEASE_CANDIDATE",
+    "current_candidate_branch": "work/688220-native-mobile-visual-editorial-20261104",
+    "company_report_stage": "MAIN_11_ORIGINAL_SEPARATE_OFFLINE_REPORTS; THREE_OPTICAL_COMPLETE_PUBLIC_HTML_SHA_PASS_ACTION_41855709571; 600900_600276_601628_SOURCE_LIVE_PASS; FIVE_OLDER_COMPANY_MAIN_390_MONEY_SCROLL_FAIL_PENDING_ASR_CANDIDATE",
     "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
     "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
-    "visual_quality_legacy_mobile_status": "HISTORIC_SOURCE_FROZEN_10_FAIL; ACTUAL_CURRENT_MAIN_300394_300502_600900_600276_601628_SOURCE_CJK_FIXED; 300308_CANDIDATE_PASS_LOCAL_NOT_CLOUDFLARE; 600036_688111_600519_000333_688220_CURRENT_MAIN_390_FAIL",
+    "visual_quality_legacy_mobile_status": "MAIN_D4CEB34_OPTICAL_300394_300502_300308_PLUS_600900_600276_601628_MOBILE_SOURCE_FIXED_AND_CLOUDFLARE_PASS; FIVE_EXISTING_390_MONEY_FIGURE_INNER_SCROLL_FAIL_600036_688111_600519_000333_688220; ASR_688220_CANDIDATE_NATIVE_9_ISSUER_FINANCE_FIGURES_NOT_LIVE",
     "visual_audit_candidate_branch": null,
     "real_visual_aei_research_latest_main_source": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
-    "pending_native_mobile_two_sector_candidate": false
+    "pending_native_mobile_two_sector_candidate": false,
+    "current_verified_optical_main": {
+      "main_sha": "d4ceb34caad00e9adc5088690b6a5b08b475a86b",
+      "live_proof_action": 41855709571,
+      "cloudflare_article_sha256": {
+        "300308": "dc7231532a39e6d1c4994f26a8c63fce6d6cc49f4a3e0abb926eed45bc721f2e",
+        "300394": "40024eeffb333986549eff6eebb1a532028b4e9cb3354efb2e30676d0687785b",
+        "300502": "ccd5a81af61db6924d30cb77c5544df2a8f7e60f00cf148e0ebed8d8ce874367"
+      },
+      "actual_home_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+      "viewports": [
+        1440,
+        768,
+        390
+      ],
+      "real_screenshots": 12,
+      "route_nav": "PASS",
+      "second_human_editor": "NOT_CHECKED"
+    }
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -1144,10 +1162,9 @@
     "original_desktop_money_svg_preserved": "PASS",
     "source_exact_sankey_and_signed_cfo": "PASS_LOCAL",
     "CJK_1440_768_390": "PASS_LOCAL",
-    "cloudflare_new_html_sha": "NOT_CHECKED",
+    "cloudflare_new_html_sha": "PASS_MAIN_AND_LIVE_ACTION_41855709571_300394_40024EEFFB3339_300502_CCD5A81AF61",
     "human_external_research_and_visual_editor": "NOT_CHECKED",
     "still_fail_other_main_mobile": [
-      "300308",
       "600036",
       "688111",
       "600519",
@@ -1193,7 +1210,7 @@
     "browser_action": 41854062950,
     "visual_receipts": "optical-native-visual-qa-300308/result.json",
     "source_new_300308_full_html_sha": "dc7231532a39e6d1c4994f26a8c63fce6d6cc49f4a3e0abb926eed45bc721f2e",
-    "cloudflare_real_300308_SHA": "NOT_CHECKED_PENDING_MAIN_DEPLOY",
+    "cloudflare_real_300308_SHA": "dc7231532a39e6d1c4994f26a8c63fce6d6cc49f4a3e0abb926eed45bc721f2e",
     "human_second_financial": "NOT_CHECKED",
     "human_visual_director": "NOT_CHECKED",
     "remaining_unmodified_legacy_mobile_fail": [
@@ -1203,6 +1220,40 @@
       "000333",
       "688220"
     ],
-    "wider_research": "NOT_CHECKED_SOURCE_LIMITED"
+    "wider_research": "NOT_CHECKED_SOURCE_LIMITED",
+    "cloudflare_real_300308_viewports": "PASS_1440_768_390_CJK_FULL_HTML_BYTES_AND_NAV_MAIN_ACTION_41855709571",
+    "main_release_sha": "d4ceb34caad00e9adc5088690b6a5b08b475a86b",
+    "cloudflare_real_action": 41855709571
+  },
+  "semiconductor_688220_native_mobile_candidate": {
+    "branch": "work/688220-native-mobile-visual-editorial-20261104",
+    "original_pdf_224_pages": true,
+    "original_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+    "source_and_negative_accounting": "PASS_ACTUAL_CI_41861590595",
+    "chart_source": "research/issuers/688220/native_mobile.py",
+    "figure_count": 9,
+    "financial_grammars": [
+      "source_conserved_sankey",
+      "gross_profit_signed",
+      "full_CAS_PNL_signed",
+      "nonrecurring_parent_bridge_signed",
+      "full_17_adjustment_indirect_CFO_signed",
+      "cash_equivalent_signed",
+      "same_date_equal_balance",
+      "business_GP_amount_and_rate",
+      "dated_capital_stock_comparison"
+    ],
+    "real_1440_768_390_CJK": "NOT_CHECKED_PENDING_BROWSER_REDTEAM_SUCCESS",
+    "exact_main_cloudflare_new_html_sha": "NOT_CHECKED_CANDIDATE_ONLY",
+    "five_other_main_visual_fail": [
+      "600036",
+      "688111",
+      "600519",
+      "000333",
+      "688220"
+    ],
+    "original_AR_top5_denominator_conflict": "FAIL_BOUNDED_ORIGINAL_P137_90.50_PCT_VS_DERIVED_89.17_PCT_UNRESOLVED_DENOMINATOR",
+    "independent_human_editor": "NOT_CHECKED",
+    "external_source_pdf_equivalence": "NOT_CHECKED"
   }
 }
