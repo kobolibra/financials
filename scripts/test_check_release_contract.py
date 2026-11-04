@@ -31,6 +31,14 @@ class IssuerReleaseContractTests(unittest.TestCase):
         change(value)
         return mod.validate_release(ROOT, self.issuer, value, check_bytes=check_bytes)
 
+    def test_published_html_sha_cannot_silently_lag_generated_insurance_article(self):
+        insurance = next(x for x in self.catalog["issuers"] if x["code"] == "601628")
+        record = json.loads((ROOT / "research/issuers/601628/release-gates.json").read_text())
+        poisoned = copy.deepcopy(record)
+        poisoned["published_html_sha256"] = "0" * 64
+        errors = mod.validate_release(ROOT, insurance, poisoned, check_bytes=False)
+        self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 601628" in x for x in errors), errors)
+
     def test_existing_real_pdf_sha_and_exact_contract(self):
         self.assertEqual(mod.validate_release(ROOT, self.issuer, self.original), [])
         self.assertEqual(mod.validate_registry(ROOT), [])
