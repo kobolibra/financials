@@ -53,7 +53,7 @@
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
       "proof": "research/issuers/601628/visual-qa/result.json",
-      "scope": "Authorial visual self-check: ten original finance figure families, actual real 1440/768/390 Chromium screenshots and SVG proportion checks; independent visual editor not involved"
+      "scope": "Original actual Chromium full-page screenshot + per-chart 1440/390 saved; automated chart SVG geometry and source tables checked, not independent human visual art director review"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
@@ -63,7 +63,7 @@
     "OFFLINE_REBUILD": {
       "status": "PASS",
       "proof": "https://github.com/kobolibra/financials/actions/runs/41767495751",
-      "scope": "Publisher independently generated standalone file second time and compared bytes with first build exactly, source-ledger printed in embedded JSON"
+      "scope": "Actual standalone HTML rebuilt and compared byte-for-byte with actual generated report on runner #41767901626 after source story editorial correction; canonical page SHA 3645ec7e9369ccdcfabd14e9ed16cbc5eb8ff849e5e2d09cd0421de8ee7b71ba"
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
@@ -123,8 +123,8 @@
       "issue": "INDEPENDENT_HUMAN_FINANCIAL_AND_DESIGN_REVIEW_NOT_PERFORMED"
     }
   ],
-  "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41767495751",
-  "published_html_sha256": "3bcf0d43c531305d55be7d9324618341770d38bc0a72773ad25f18fb886d24f4",
+  "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41767901626",
+  "published_html_sha256": "3645ec7e9369ccdcfabd14e9ed16cbc5eb8ff849e5e2d09cd0421de8ee7b71ba",
   "live_release_fingerprint": null,
   "actual_main_release_commit": null
 }
