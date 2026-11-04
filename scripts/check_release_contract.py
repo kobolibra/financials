@@ -292,8 +292,20 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                 errors.append(f"VERIFIED_RESEARCH_HAS_OPEN_GATE {code}/{key}")
     # Never silently convert older Cloudflare browser green to new live PASS:
     # a source receipt is not the same thing as deployed production bytes.
-    if gates.get("CLOUDFLARE_LIVE", {}).get("status") == "PASS" and not record.get("live_release_fingerprint"):
-        errors.append(f"LIVE_PASS_WITHOUT_DEPLOYED_FINGERPRINT {code}")
+    if gates.get("CLOUDFLARE_LIVE", {}).get("status") == "PASS":
+        live_fp=record.get("live_release_fingerprint")
+        if not live_fp:
+            errors.append(f"LIVE_PASS_WITHOUT_DEPLOYED_FINGERPRINT {code}")
+        # A new issuer with a cryptographic FULL HTML SHA is not allowed to
+        # claim an unrelated 'green' live proof or just the PDF source SHA.
+        # Older source-limited issuer records with explicit NOT_CHECKED HTML
+        # fingerprint retain their historical partial-proof classification.
+        if isinstance(declared_html_sha,str) and re.fullmatch("[a-f0-9]{64}",declared_html_sha):
+            if live_fp!=declared_html_sha:
+                errors.append(f"LIVE_FINGERPRINT_HTML_DRIFT {code}")
+            commit=record.get("actual_main_release_commit")
+            if not isinstance(commit,str) or not re.fullmatch("[a-f0-9]{40}",commit):
+                errors.append(f"LIVE_PROOF_MAIN_COMMIT_INVALID {code}")
     return errors
 
 
