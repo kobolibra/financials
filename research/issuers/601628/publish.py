@@ -72,6 +72,16 @@ def check():
     eq(sum_keys(["future_cash_flow_liab","risk_adjustment_liab","csm","paa_liab"]),amount("insurance_contract_liab"),"INSURANCE_LIABILITY_COMPONENTS")
     eq(amount("insurance_contract_liab"),D(6910741),"ORIGINAL_P85")
     eq(amount("premium_total"),D(536634),"ORIGINAL_P10")
+    # Regulatory insurer capital ratio is neither accounting equity nor cash.
+    # The original disclosed capital amounts are rounded to RMB million;
+    # display only the ratio precision (2 decimals) published at physical p21.
+    solvency=lambda cap,min_cap:(amount(cap)*D(100)/amount(min_cap)).quantize(D("0.01"))
+    eq(solvency("reg_core_capital","reg_minimum_capital"),D("156.80"),"2026_REG_CORE_COVERAGE")
+    eq(solvency("reg_actual_capital","reg_minimum_capital"),D("197.78"),"2026_REG_TOTAL_COVERAGE")
+    eq(solvency("reg_core_capital_prior","reg_minimum_capital_prior"),D("128.77"),"2025_REG_CORE_COVERAGE")
+    eq(solvency("reg_actual_capital_prior","reg_minimum_capital_prior"),D("174.01"),"2025_REG_TOTAL_COVERAGE")
+    review=LEDGER["source"].get("independent_limited_review",{})
+    assert review.get("physical_page")==42 and "审阅" in review.get("standard","") and "非审计意见" in review.get("opinion",""),"INSURER_INTERIM_REVIEW_NOT_FULL_AUDIT"
     # Product category, insurance service recognition and cash receipt are
     # fundamentally different universes; this assertion must prevent wiring them.
     assert amount("premium_total")!=amount("service_revenue")!=amount("cfo_insurance_cash")
@@ -94,7 +104,9 @@ def check():
         "CONTRACT_LIABILITY_FOUR_STOCK_PARTS":"PASS",
         "INSURER_NO_FAKE_INDIRECT_CFO":"PASS",
         "PARENT_AND_CONSOLIDATED_NOT_MIXED":"PASS",
-        "ISSUER_INDEPENDENT_SOURCE_SHAPE":"PASS"}}
+        "ISSUER_INDEPENDENT_SOURCE_SHAPE":"PASS",
+        "REGULATORY_SOLVENCY_CORE_TOTAL_AND_PRIOR_RATIOS":"PASS",
+        "EY_LIMITED_REVIEW_EXPLICIT_NOT_FULL_AUDIT":"PASS"}}
 def comparative():
     rows=[("旧口径总保费","premium_prior","premium_total"),
           ("法定保险服务收入","service_revenue_prior","service_revenue"),
@@ -287,7 +299,7 @@ def render():
 <body><header class="mast"><div class="wrap"><div class="topbar"><a href="/#companies" class="logo">FINANCIALS IN VISUALS</a><nav><a href="/#companies">返回公司研究库</a><a href="#chapter">研究图形</a><a href="#method">原始来源</a></nav></div>
 <div class="hero"><div class="eyebrow">ISSUER 11 / 601628.SH / LIFE INSURANCE / SOURCE-LIMITED RESEARCH</div>
 <h1>保费只增 <em>2.2%</em>。<br>利润却增 <em>228.6%</em>。<br>寿险真正赚的是什么钱？</h1>
-<p class="dek">{e(STORY["dek"])}</p><div class="meta"><span>中国人寿保险股份有限公司 · 2026H1</span><span>完整原始 PDF 104 物理页</span><span>2026-08-27 董事会审议 · 未经审计</span><span>原始报表单位：人民币百万元</span><span>研究状态：来源限制预览</span></div>
+<p class="dek">{e(STORY["dek"])}</p><div class="meta"><span>中国人寿保险股份有限公司 · 2026H1</span><span>完整原始 PDF 104 物理页</span><span>2026-08-27 · 安永华明审阅（有限保证，非审计意见）</span><span>原始报表单位：人民币百万元</span><span>研究状态：来源限制预览</span></div>
 <div class="kpis"><div class="kpi"><span class="label">管理层口径总保费</span><b>{yi("premium_total")}亿</b><small>{pct("premium_total","premium_prior")} · 非保险服务收入</small></div>
 <div class="kpi"><span class="label">合并保险服务收入</span><b>{yi("service_revenue")}亿</b><small>{pct("service_revenue","service_revenue_prior")} · CAS25 损益确认</small></div>
 <div class="kpi"><span class="label">归母净利润</span><b>{yi("parent_net")}亿</b><small>{pct("parent_net","parent_net_prior")} · 资产收益/保险财务联动</small></div></div></div></div></header>
@@ -296,10 +308,10 @@ def render():
 <aside class="thesis"><strong>EDITORIAL THESIS / 核心判断</strong><p>{e(STORY["thesis"])}</p></aside></section>
 <section class="figures">{charts}</section>
 <section class="closing"><div><h2>真正需要追问的不是“利润为何暴涨”，而是“赚来的钱能否跨市场周期持续”。</h2><p>{e(STORY["tension"])}</p><p>管理层上半年新业务价值 {yi("nbv")} 亿元（{pct("nbv","nbv_prior")}），但 NBV 是特定内含价值模型口径，不是本期利润也不是现金收款。本页不把市场回报变化自动归结为管理层选股能力。</p></div>
-<div class="risk"><strong>COUNTERVIEW / 如果论点被推翻</strong><p>{e(STORY["counter"])}</p><p>其他综合收益税后净额 {yi("oci")} 亿元，说明资产端与保险负债相关的其他综合收益也须纳入权益与风险审查。期末卖出回购金融资产款 {yi("repo_liab")} 亿元，附注指出其短期到期及质押资产限制。</p></div></section>
+<div class="risk"><strong>COUNTERVIEW / 如果论点被推翻</strong><p>{e(STORY["counter"])}</p><p>其他综合收益税后净额 {yi("oci")} 亿元，说明资产端与保险负债相关的其他综合收益也须纳入权益与风险审查。期末卖出回购金融资产款 {yi("repo_liab")} 亿元，附注指出其短期到期及质押资产限制。</p><p><strong>偿付能力不是股东权益：</strong>公司报告物理 p21 的监管核心资本 {yi("reg_core_capital")}亿元、实际资本 {yi("reg_actual_capital")}亿元和最低资本 {yi("reg_minimum_capital")}亿元，构成核心偿付能力充足率 <strong>156.80%</strong>（上年末128.77%）及综合偿付能力充足率 <strong>197.78%</strong>（上年末174.01%）。两项监管资本指标不可混成合并净资产或可自由派发资本，未来资本质量仍应结合风险因子与偿付能力规则变化审视。<a href="{e(PDF)}#page=21" target="_blank" rel="noopener noreferrer">原始报告 p21</a>。</p></div></section>
 <section class="method" id="method"><h2>来源、独立性与复核边界</h2>
 <p>唯一原始报告：<a href="{e(PDF)}" target="_blank" rel="noopener noreferrer">中国人寿 2026 年半年度报告（CNINFO，PDF）</a>；真实源文件 SHA-256 <code>{e(sourcehash)}</code>；104 物理页，{int((ROOT/SOURCE["source_path"]).stat().st_size):,}字节，未经审计。全部金额在源账本保存为人民币元（原 PDF 披露单位人民币百万元），每张图附可追溯原始页和完整引用事实。</p>
-<p>{e(STORY["evidence_disclaimer"])}</p><p>{e(STORY["sector_footer"])}</p>
+<p>{e(STORY["evidence_disclaimer"])}</p><p><strong>审阅性质：</strong>原始 p42 载安永华明于2026-08-27签署的中期财务报表<strong>审阅报告</strong>，依中国注册会计师审阅准则第2101号提供<strong>有限保证</strong>。审阅主要是询问与分析程序，低于完整财务报表审计保证；审阅报告明确<strong>未实施审计，也不发表审计意见</strong>。<a href="{e(PDF)}#page=42" target="_blank" rel="noopener noreferrer">原始报告 p42</a>。</p><p>{e(STORY["sector_footer"])}</p>
 <p>重大风险事项还需结合后续监管资本、利率资产负债敏感性、回购融资及保险精算假设进一步复核；未载入此104页半年报的独立精算工作底稿、完整全年披露及专项监管资本文件不在本轮原始报告范围，不能假称已经审阅。真正独立第二名人类财务/视觉审稿：NOT_CHECKED。上交所独立直链字节与巨潮原始文件完全同一：NOT_CHECKED。外部同行与8–12个季度估值：NOT_CHECKED。</p>
 <p>本页原创可编辑 SVG 与逐图来源表由同一结构化账本生成，可离线打开，金融图形不复制 App Economy Insights / FT 原始作品。</p></section></main>
 <footer><div class="wrap"><a href="/#companies">FINANCIALS IN VISUALS / 返回统一公司研究目录</a><p>© 2026 Financials in Visuals · 研究预览，非个性化投资建议</p></div></footer>
