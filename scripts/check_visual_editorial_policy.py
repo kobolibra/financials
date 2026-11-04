@@ -88,8 +88,29 @@ def validate_current_published_files(root, audit, debt):
         if baseline=={sha}:
             if code in old:unresolved.append(code)
             continue
+        # Insurer had a separately authenticated current production source
+        # before this comparative audit. Its HTML SHA changed from first
+        # baseline after screenshot-proven typo correction; require BOTH real
+        # 1440/768/390 Cloudflare live receipt and source-linked 10 mobile
+        # finance exhibitions, not the two-sector renderer's custom schema.
+        if code=="601628":
+            p=root/"research/issuers/601628/live-release-receipt.json"
+            if not p.is_file():
+                errors.append("VISUAL_601628_NEW_HTML_REQUIRES_REAL_CLOUDFLARE_SOURCE_LIVE_RECEIPT")
+                continue
+            q=json.loads(p.read_text(encoding="utf8"))
+            vs=q.get("real_chromium_viewports",[])
+            valid=(q.get("actual_full_content_sha256_equals_repository_main_601628")==sha and
+                q.get("all_11_issuer_external_routes")=="PASS" and
+                len(vs)==3 and {v.get("width") for v in vs}==WIDTHS and
+                next((v for v in vs if v.get("width")==390),{}).get("mobile_ten_full_width_source_exact_money_exhibits")=="PASS")
+            if not valid:
+                errors.append("VISUAL_601628_CURRENT_CORRECTED_SOURCE_AND_REAL_CLOUDFLARE_THREE_WIDTHS_MISMATCH")
+                continue
+            fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CLOUDFLARE_SOURCE_SHA_ALL_TEN_MOBILE_FINANCIAL_FIGURES"})
+            continue
         # Old source SHA proves only history, not an edited current page.
-        # The real issuer QA is calculated from new source and full HTML bytes.
+        # The two-industry QA is calculated from new source and full HTML bytes.
         receipt=root/"research/issuers"/code/"visual-qa/result.json"
         if not receipt.is_file():
             errors.append(f"VISUAL_CHANGED_ISSUER_REQUIRES_ACTUAL_NEW_BROWSER_CENSUS {code}")
