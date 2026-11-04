@@ -1,0 +1,1182 @@
+{
+  "code": "601628",
+  "company": "中国人寿保险股份有限公司",
+  "period": "2026H1",
+  "official_full_pdf_url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF",
+  "source_pdf": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+  "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+  "bytes": 4867339,
+  "physical_pages": 104,
+  "checks": {
+    "pdf_magic": "PASS",
+    "full_report_not_summary": "PASS",
+    "issuer_period_cover": "PASS",
+    "physical_page_count": "PASS",
+    "sse_exact_byte_identity": "NOT_CHECKED",
+    "all_notes_independent_review": "NOT_CHECKED"
+  },
+  "topics": [
+    {
+      "page": 1,
+      "chars": 60,
+      "terms": {}
+    },
+    {
+      "page": 2,
+      "chars": 1043,
+      "terms": {
+        "risks": [
+          "审计",
+          "关联方",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 3,
+      "chars": 2264,
+      "terms": {
+        "risks": [
+          "风险",
+          "受限",
+          "诉讼"
+        ]
+      }
+    },
+    {
+      "page": 4,
+      "chars": 492,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "investments": [
+          "总投资收益",
+          "投资收益率"
+        ]
+      }
+    },
+    {
+      "page": 5,
+      "chars": 2672,
+      "terms": {
+        "insurance": [
+          "保险合同负债"
+        ],
+        "cash": [
+          "经营活动产生的现金流量净额"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "受限"
+        ]
+      }
+    },
+    {
+      "page": 6,
+      "chars": 2408,
+      "terms": {
+        "statements": [
+          "资产负债表",
+          "承保财务损益"
+        ],
+        "insurance": [
+          "浮动收费法"
+        ],
+        "investments": [
+          "公允价值变动损益",
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 7,
+      "chars": 1482,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "investments": [
+          "偿付能力"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 8,
+      "chars": 1508,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 9,
+      "chars": 1897,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "investments": [
+          "总投资收益",
+          "投资收益率",
+          "偿付能力"
+        ]
+      }
+    },
+    {
+      "page": 10,
+      "chars": 3481,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "investments": [
+          "总投资收益"
+        ]
+      }
+    },
+    {
+      "page": 11,
+      "chars": 2369,
+      "terms": {}
+    },
+    {
+      "page": 12,
+      "chars": 4108,
+      "terms": {}
+    },
+    {
+      "page": 13,
+      "chars": 2542,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ]
+      }
+    },
+    {
+      "page": 14,
+      "chars": 1924,
+      "terms": {
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 15,
+      "chars": 1870,
+      "terms": {}
+    },
+    {
+      "page": 16,
+      "chars": 2941,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 17,
+      "chars": 3095,
+      "terms": {
+        "investments": [
+          "公允价值变动损益",
+          "总投资收益",
+          "投资收益率"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 18,
+      "chars": 2927,
+      "terms": {
+        "investments": [
+          "偿付能力"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 19,
+      "chars": 2252,
+      "terms": {
+        "statements": [
+          "保险服务收入",
+          "承保财务损益"
+        ],
+        "insurance": [
+          "合同服务边际",
+          "浮动收费法",
+          "非金融风险调整",
+          "保险获取现金流量"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 20,
+      "chars": 2727,
+      "terms": {
+        "statements": [
+          "现金流量表"
+        ],
+        "insurance": [
+          "合同服务边际",
+          "未到期责任负债",
+          "保险合同负债"
+        ],
+        "cash": [
+          "经营活动产生的现金流量净额",
+          "现金及现金等价物"
+        ]
+      }
+    },
+    {
+      "page": 21,
+      "chars": 1916,
+      "terms": {
+        "investments": [
+          "偿付能力"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 22,
+      "chars": 2453,
+      "terms": {
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 23,
+      "chars": 1311,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ]
+      }
+    },
+    {
+      "page": 24,
+      "chars": 1218,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 25,
+      "chars": 2177,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ]
+      }
+    },
+    {
+      "page": 26,
+      "chars": 1750,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ]
+      }
+    },
+    {
+      "page": 27,
+      "chars": 2375,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 28,
+      "chars": 1869,
+      "terms": {
+        "insurance": [
+          "新业务价值"
+        ],
+        "risks": [
+          "审计",
+          "限制"
+        ]
+      }
+    },
+    {
+      "page": 29,
+      "chars": 1288,
+      "terms": {
+        "risks": [
+          "诉讼"
+        ]
+      }
+    },
+    {
+      "page": 30,
+      "chars": 2995,
+      "terms": {}
+    },
+    {
+      "page": 31,
+      "chars": 3805,
+      "terms": {}
+    },
+    {
+      "page": 32,
+      "chars": 2175,
+      "terms": {
+        "risks": [
+          "关联方",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 33,
+      "chars": 2691,
+      "terms": {
+        "risks": [
+          "审计",
+          "关联方",
+          "受限"
+        ]
+      }
+    },
+    {
+      "page": 34,
+      "chars": 603,
+      "terms": {}
+    },
+    {
+      "page": 35,
+      "chars": 2381,
+      "terms": {
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 36,
+      "chars": 2262,
+      "terms": {}
+    },
+    {
+      "page": 37,
+      "chars": 2594,
+      "terms": {
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 38,
+      "chars": 1021,
+      "terms": {}
+    },
+    {
+      "page": 39,
+      "chars": 2372,
+      "terms": {}
+    },
+    {
+      "page": 40,
+      "chars": 1135,
+      "terms": {
+        "investments": [
+          "偿付能力"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 41,
+      "chars": 288,
+      "terms": {}
+    },
+    {
+      "page": 42,
+      "chars": 881,
+      "terms": {
+        "statements": [
+          "资产负债表",
+          "现金流量表"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 43,
+      "chars": 2728,
+      "terms": {
+        "statements": [
+          "合并资产负债表",
+          "资产负债表"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 44,
+      "chars": 3124,
+      "terms": {
+        "statements": [
+          "合并资产负债表",
+          "资产负债表"
+        ],
+        "insurance": [
+          "保险合同负债",
+          "分出再保险"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 45,
+      "chars": 2630,
+      "terms": {
+        "statements": [
+          "资产负债表"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 46,
+      "chars": 2471,
+      "terms": {
+        "statements": [
+          "资产负债表"
+        ],
+        "insurance": [
+          "保险合同负债",
+          "分出再保险"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 47,
+      "chars": 4653,
+      "terms": {
+        "statements": [
+          "合并利润表",
+          "保险服务收入",
+          "承保财务损益"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "公允价值变动损益"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 48,
+      "chars": 2968,
+      "terms": {
+        "statements": [
+          "合并利润表"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 49,
+      "chars": 4432,
+      "terms": {
+        "statements": [
+          "保险服务收入",
+          "承保财务损益"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "公允价值变动损益"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 50,
+      "chars": 2213,
+      "terms": {
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 51,
+      "chars": 2876,
+      "terms": {
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 52,
+      "chars": 2080,
+      "terms": {
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 53,
+      "chars": 3810,
+      "terms": {
+        "statements": [
+          "合并现金流量表",
+          "现金流量表"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "cash": [
+          "经营活动产生的现金流量净额"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 54,
+      "chars": 2492,
+      "terms": {
+        "statements": [
+          "合并现金流量表",
+          "现金流量表"
+        ],
+        "cash": [
+          "现金及现金等价物"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 55,
+      "chars": 3810,
+      "terms": {
+        "statements": [
+          "现金流量表"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "cash": [
+          "经营活动产生的现金流量净额"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 56,
+      "chars": 1996,
+      "terms": {
+        "statements": [
+          "现金流量表"
+        ],
+        "cash": [
+          "现金及现金等价物"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 57,
+      "chars": 1658,
+      "terms": {
+        "risks": [
+          "追溯"
+        ]
+      }
+    },
+    {
+      "page": 58,
+      "chars": 976,
+      "terms": {
+        "insurance": [
+          "保险合同负债"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 59,
+      "chars": 1165,
+      "terms": {
+        "insurance": [
+          "浮动收费法"
+        ],
+        "investments": [
+          "利率风险"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 60,
+      "chars": 2163,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 61,
+      "chars": 1392,
+      "terms": {
+        "statements": [
+          "资产负债表"
+        ],
+        "risks": [
+          "风险",
+          "限制"
+        ]
+      }
+    },
+    {
+      "page": 62,
+      "chars": 1248,
+      "terms": {
+        "statements": [
+          "资产负债表"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 63,
+      "chars": 2741,
+      "terms": {
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 64,
+      "chars": 2533,
+      "terms": {
+        "insurance": [
+          "保险合同负债",
+          "分出再保险"
+        ],
+        "cash": [
+          "现金及现金等价物"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 65,
+      "chars": 2811,
+      "terms": {
+        "insurance": [
+          "保险合同负债",
+          "分出再保险"
+        ],
+        "cash": [
+          "现金及现金等价物"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 66,
+      "chars": 1559,
+      "terms": {
+        "investments": [
+          "偿付能力"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 67,
+      "chars": 1744,
+      "terms": {
+        "statements": [
+          "资产负债表"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 68,
+      "chars": 3236,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "审计",
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 69,
+      "chars": 2688,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 70,
+      "chars": 1792,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 71,
+      "chars": 1135,
+      "terms": {
+        "investments": [
+          "公允价值变动损益"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 72,
+      "chars": 4142,
+      "terms": {
+        "statements": [
+          "保险服务收入",
+          "承保财务损益"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "公允价值变动损益"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 73,
+      "chars": 4442,
+      "terms": {
+        "statements": [
+          "保险服务收入",
+          "承保财务损益"
+        ],
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "公允价值变动损益"
+        ],
+        "risks": [
+          "审计"
+        ]
+      }
+    },
+    {
+      "page": 74,
+      "chars": 5286,
+      "terms": {}
+    },
+    {
+      "page": 75,
+      "chars": 5127,
+      "terms": {}
+    },
+    {
+      "page": 76,
+      "chars": 3341,
+      "terms": {}
+    },
+    {
+      "page": 77,
+      "chars": 1910,
+      "terms": {}
+    },
+    {
+      "page": 78,
+      "chars": 2202,
+      "terms": {
+        "risks": [
+          "限制",
+          "受限"
+        ]
+      }
+    },
+    {
+      "page": 79,
+      "chars": 2923,
+      "terms": {}
+    },
+    {
+      "page": 80,
+      "chars": 2789,
+      "terms": {}
+    },
+    {
+      "page": 81,
+      "chars": 1755,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 82,
+      "chars": 2018,
+      "terms": {
+        "risks": [
+          "限制"
+        ]
+      }
+    },
+    {
+      "page": 83,
+      "chars": 2755,
+      "terms": {}
+    },
+    {
+      "page": 84,
+      "chars": 1786,
+      "terms": {
+        "insurance": [
+          "未到期责任负债",
+          "保险合同负债"
+        ],
+        "risks": [
+          "受限"
+        ]
+      }
+    },
+    {
+      "page": 85,
+      "chars": 1774,
+      "terms": {
+        "insurance": [
+          "合同服务边际",
+          "保险合同负债",
+          "非金融风险调整"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 86,
+      "chars": 2870,
+      "terms": {
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 87,
+      "chars": 3487,
+      "terms": {
+        "statements": [
+          "保险服务收入"
+        ],
+        "insurance": [
+          "合同服务边际",
+          "未到期责任负债",
+          "非金融风险调整",
+          "保险获取现金流量"
+        ],
+        "risks": [
+          "风险"
+        ]
+      }
+    },
+    {
+      "page": 88,
+      "chars": 2244,
+      "terms": {
+        "cash": [
+          "现金及现金等价物"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 89,
+      "chars": 2234,
+      "terms": {
+        "insurance": [
+          "保险获取现金流量"
+        ],
+        "investments": [
+          "公允价值变动损益"
+        ]
+      }
+    },
+    {
+      "page": 90,
+      "chars": 3031,
+      "terms": {
+        "insurance": [
+          "未到期责任负债",
+          "保险获取现金流量"
+        ]
+      }
+    },
+    {
+      "page": 91,
+      "chars": 2920,
+      "terms": {}
+    },
+    {
+      "page": 92,
+      "chars": 3108,
+      "terms": {
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 93,
+      "chars": 2262,
+      "terms": {}
+    },
+    {
+      "page": 94,
+      "chars": 3043,
+      "terms": {}
+    },
+    {
+      "page": 95,
+      "chars": 1756,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 96,
+      "chars": 2440,
+      "terms": {
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 97,
+      "chars": 3267,
+      "terms": {
+        "insurance": [
+          "分出再保险"
+        ],
+        "investments": [
+          "其他权益工具投资"
+        ]
+      }
+    },
+    {
+      "page": 98,
+      "chars": 1366,
+      "terms": {
+        "risks": [
+          "关联方"
+        ]
+      }
+    },
+    {
+      "page": 99,
+      "chars": 2928,
+      "terms": {
+        "risks": [
+          "关联方"
+        ]
+      }
+    },
+    {
+      "page": 100,
+      "chars": 1840,
+      "terms": {
+        "risks": [
+          "关联方"
+        ]
+      }
+    },
+    {
+      "page": 101,
+      "chars": 2727,
+      "terms": {
+        "risks": [
+          "关联方"
+        ]
+      }
+    },
+    {
+      "page": 102,
+      "chars": 2268,
+      "terms": {
+        "statements": [
+          "资产负债表"
+        ],
+        "risks": [
+          "诉讼"
+        ]
+      }
+    },
+    {
+      "page": 103,
+      "chars": 0,
+      "terms": {}
+    },
+    {
+      "page": 104,
+      "chars": 121,
+      "terms": {}
+    }
+  ],
+  "sse_fetch_status": "RETURNED_NON_PDF"
+}
