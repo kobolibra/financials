@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 ORIGIN="https://financials-in-visuals.pages.dev"
 OUT=ROOT/"research/visual-audit/live-optical-native"
 OUT.mkdir(parents=True,exist_ok=True)
-CODES=("300394","300502")
+CODES=("300394","300502","300308")
 WIDTHS=(1440,768,390)
 SHA=lambda b:hashlib.sha256(b).hexdigest()
 
@@ -62,7 +62,12 @@ def run():
             assert b"<html" in content.lower() or b"<!doctype" in content.lower(),("MISSING_INDEPENDENT_COMPANY_ROUTE",company["code"])
         for code in CODES:
             # Independent signed ledger identity is embedded in full HTML.
-            ledgerpath=(ROOT/"skills/ashare-financial-storytelling/v7/engine/sample-ledger.json" if code=="300394" else ROOT/"skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json")
+            ledgers={
+                "300394":ROOT/"skills/ashare-financial-storytelling/v7/engine/sample-ledger.json",
+                "300502":ROOT/"skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json",
+                "300308":ROOT/"skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json",
+            }
+            ledgerpath=ledgers[code]
             ledger=json.loads(ledgerpath.read_text())
             pdf_sha=ledger["document"]["source_sha256"]
             assert len(pdf_sha)==64
@@ -76,6 +81,14 @@ def run():
                 assert article_url in (ORIGIN+f"/{code}",ORIGIN+f"/{code}.html"),(code,width,"ARTICLE_REDIRECTED_TO_DIRECTORY",article_url)
                 assert page.locator("figure.exhibit.has-native-finance").count()>=9
                 assert pdf_sha in page.content()
+                if code=="300308":
+                    assert pdf_sha=="e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf"
+                    proof=json.loads((ROOT/"research/issuers/300308/source-verification.json").read_text(encoding="utf8"))
+                    assert proof["source_page_amount_checks"]==63 and proof["indirect_CFO_all_original_signed_adjustments"]==15
+                    assert "422,649,612.97" in page.locator(".disclosure-conflict").inner_text()
+                    assert "422,649,613.97" in page.locator(".disclosure-conflict").inner_text()
+                    assert "独立第二名人类研究分析师" in page.content()
+
                 assert page.evaluate("document.documentElement.scrollWidth")<=width+2,(code,width,"FULL_HTML_BODY_HORIZONTAL_OVERFLOW")
                 state=page.evaluate("""() => {
                   const figures=[...document.querySelectorAll('figure.has-native-finance')];
@@ -128,7 +141,7 @@ def run():
         "independent_human_financial_editor":"NOT_CHECKED","independent_human_art_director":"NOT_CHECKED",
         "exhaustive_material_notes":"NOT_CHECKED"}
     (OUT/"result.json").write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n")
-    assert len(results)==6 and len(screens)==9
-    print("ACTUAL_REAL_CLOUDFLARE_OPTICAL_SOURCE_2_ARTICLES_3_CHINESE_WIDTHS_EXACT_HTML_SOURCE_SHA_PASS",json.dumps({"commit":receipt["source_main_commit"],"articles":article_shas,"screenshots":len(screens)},ensure_ascii=False),flush=True)
+    assert len(results)==len(CODES)*len(WIDTHS) and len(screens)==(len(CODES)+1)*len(WIDTHS)
+    print("ACTUAL_REAL_CLOUDFLARE_OPTICAL_SOURCE_THREE_ARTICLES_THREE_CHINESE_WIDTHS_EXACT_HTML_SOURCE_SHA_PASS",json.dumps({"commit":receipt["source_main_commit"],"articles":article_shas,"screenshots":len(screens)},ensure_ascii=False),flush=True)
 
 if __name__=="__main__":run()

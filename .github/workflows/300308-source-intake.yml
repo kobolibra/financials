@@ -1,0 +1,58 @@
+name: Zero-memory original 300308 184-page PDF byte and accounting intake
+on:
+  push:
+    branches: ['work/optical-300308-original-pdf-source-mobile-20261104']
+    paths:
+      - '.github/workflows/300308-source-intake.yml'
+      - 'research/issuers/300308/verify_original.py'
+      - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  remote-exact-original-user-pdf-not-guessed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Python full PDF original line/physical page verification
+        run: python -m pip install --disable-pip-version-check -q pymupdf
+      - name: Download the EXACT archived user-source URL, not a made-up alternate report
+        shell: bash
+        run: |
+          mkdir -p research/issuers/300308
+          curl --fail --location --retry 3 --retry-delay 2 --connect-timeout 15 --max-time 80 -A 'Mozilla/5.0 (compatible; FinancialSourceResearch/1.0)' \
+            'https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf' \
+            --output research/issuers/300308/original-2026h1.pdf
+          test -s research/issuers/300308/original-2026h1.pdf
+          sha256sum research/issuers/300308/original-2026h1.pdf
+          python research/issuers/300308/verify_original.py --pdf research/issuers/300308/original-2026h1.pdf --out research/issuers/300308/source-verification.json
+      - name: Persist exact original public mirror bytes only after byte+page+accounting proof
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          git config user.name 'financials-research-bot'
+          git config user.email 'financials-research-bot@users.noreply.github.com'
+          git add research/issuers/300308/original-2026h1.pdf research/issuers/300308/source-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Archive original ZJ 184p exact PDF and audit cent-source row contradiction'
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            for i in 1 2 3; do
+              if git push origin "HEAD:$GITHUB_REF_NAME"; then exit 0; fi
+              sleep $((i*5))
+            done
+            echo 'Original source archive push failed despite 3 retries'
+            exit 1
+          fi
+      - name: Original 184-page byte, source-page and account receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-300308-pdf-and-each-cent-source-proof
+          path: |
+            research/issuers/300308/original-2026h1.pdf
+            research/issuers/300308/source-verification.json
+          if-no-files-found: warn
+          retention-days: 30

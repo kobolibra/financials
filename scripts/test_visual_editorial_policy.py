@@ -17,9 +17,9 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
     def test_current_issuer_hashes_are_not_conflated_with_historical_fail_screenshots(self):
         errors,fixed,stale=validate_current_published_files(ROOT,self.census,self.debt)
         self.assertEqual(errors,[])
-        self.assertEqual({x["code"] for x in fixed},{"300394","300502","600900","600276","601628"})
+        self.assertEqual({x["code"] for x in fixed},{"300308","300394","300502","600900","600276","601628"})
         self.assertEqual(set(stale),
-            {"300308","600036","688111","600519","000333","688220"})
+            {"600036","688111","600519","000333","688220"})
     def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
         original=Path.read_bytes
         def changed(path):
@@ -82,6 +82,35 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
         with mock.patch.object(Path,"read_text",new=corrupt):
             errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
         self.assertIn("VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID 300502",errors)
+
+    def test_300308_rebuilt_original_pdf_page_cannot_accept_old_390_mobile_receipts(self):
+        original=Path.read_text
+        def corrupt(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("optical-native-visual-qa-300308/result.json"):
+                obj=json.loads(data)
+                for z in obj["cases"]:
+                    if z["issuer"]=="300308" and z["width"]==390:
+                        z["native_mobile_finance_no_inner_scroll"]="FAIL"
+                return json.dumps(obj)
+            return data
+        with mock.patch.object(Path,"read_text",new=corrupt):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID 300308",errors)
+
+    def test_300308_different_pdf_sha_report_fingerprint_must_not_reclassify_old_fail(self):
+        original=Path.read_text
+        def corrupt(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("optical-native-visual-qa-300308/result.json"):
+                obj=json.loads(data)
+                for z in obj["cases"]:
+                    if z["issuer"]=="300308": z["sha256"]="f"*64
+                return json.dumps(obj)
+            return data
+        with mock.patch.object(Path,"read_text",new=corrupt):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID 300308",errors)
 
     def test_original_ten_are_explicit_failed_visual_debt_not_pass(self):
         errors,legacy=validate_audit(self.census,self.debt)
