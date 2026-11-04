@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 38,
+        "quality_regressions_count": 39,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -856,7 +856,8 @@
       "known_failures": [
         "VIS-037_390px_figures_cropped_inside_900px_inner_window",
         "SEM-038_premium_stats_mistitled_cash_business",
-        "VIS-039_desktop_signed_title_value_overlap"
+        "VIS-039_desktop_signed_title_value_overlap",
+        "PUB-040: old live gate PASS cannot certify a new source-changed offline HTML; new version must be NOT_CHECKED pending exact real Cloudflare gate"
       ]
     }
   },
