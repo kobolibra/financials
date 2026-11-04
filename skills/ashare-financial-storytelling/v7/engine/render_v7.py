@@ -256,7 +256,19 @@ def build(l,m):
  source_link='原文件另行保存'
  if doc.get('source_url'):
   note_page=esc(l.get('revenue_partition_assertion',{}).get('source_page','—'))
-  source_link='<a href="'+esc(doc['source_url'])+'" target="_blank" rel="noopener noreferrer">查看深交所原始半年报（本图收入附注 p.'+note_page+'）</a>'
+  host_name=('公开原始半年报镜像' if 'pdf.dfcfw.com' in doc['source_url'] else '深交所原始半年报')
+  source_link='<a href="'+esc(doc['source_url'])+'" target="_blank" rel="noopener noreferrer">查看'+host_name+'（本图收入附注 p.'+note_page+'）</a>'
+ # Keep company-specific genuine one-yuan *printed* source conflict visible
+ # without adding a made-up "undisclosed revenue" graph node.
+ source_exception_html=''
+ if m.get('material_source_exception'):
+  content=esc(m['material_source_exception'])
+  source_exception_html=('<aside class="disclosure-conflict" role="note">'
+     '<strong>原始附注 / SOURCE-DATA DISCREPANCY</strong><p>'+content+'</p></aside>')
+  css+=r'''.disclosure-conflict{background:#fcf6e9;color:#513b24;border-left:3px solid #a47738;padding:16px 20px;margin:12px 0 26px;line-height:1.85;font-size:12px}.disclosure-conflict strong{font-size:11px;letter-spacing:.06em;color:#835a26}.disclosure-conflict p{margin:6px 0 0}'''
+ editorial_review_note=''
+ if review=='AI_INTERNAL_ORIGINAL_SOURCE_CRITICAL_REVIEW__HUMAN_NOT_CHECKED':
+  editorial_review_note='<p class="risk-disclaimer">质量边界：本报告仅为AI辅助原始财报来源/会计事实的内部批判性复核；独立第二名人类研究分析师、独立人类视觉编辑、历史长周期、外部估值研究均NOT_CHECKED，不存在已签字审稿人。</p>'
  # full page assembly
  html_page=f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="{esc(issuer)} {period} 深度财务研究：商业模式、利润形成、现金转换、资产结构、风险与反证。原始财报可追溯。"><title>{issuer} · {period} | Financials in Visuals Research Edition</title><style>{css}</style></head><body>
 <a class="skip" href="#main">跳到正文</a><div class="tooltip" id="floatTip" role="status" aria-live="polite"></div>
@@ -264,7 +276,7 @@ def build(l,m):
 <header class="hero"><span class="eyebrow">Equity research / {ticker} / {period} · filing-first</span><h1>{thesis}</h1><p class="hero-deck">{summary}</p><div class="hero-meta"><span>{issuer} · {ticker}</span><span>{period} · {esc(doc['period_start'])} 至 {esc(doc['period_end'])}</span><span>{'已审计' if doc['audited'] else '未经审计'} · 合并报表</span><span>原始 PDF {doc['pages']} 页</span></div><div class="hero-figure"></div></header></div></div>
 <div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>
 <main id="main" class="wrap paper"><div class="lead"><aside>THE CENTRAL QUESTION<br>本期研究判断</aside><p>一家公司能把收入变成利润，并不等于它已经把利润变成了<strong>可持续的现金回报</strong>。这份研究将收入、成本、现金、营运资本和资本投入放在同一条会计逻辑中检验。</p></div>
-<section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','核心产品如何将销售额转化为盈利？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。本图仅使用原始财报中有明确分类、相同口径且金额严格守恒的收入来源。{esc(l.get('revenue_partition_assertion',{}).get('scope','未完整披露的产品来源不能自动生成未分类业务。'))}。不同分类维度绝对不能叠加。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension') in ('product','other_business')],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div>{exhibit('为什么收入翻倍而销量只增加约六成？','02 / SALES VOLUME & MIX',volume_fig,src(l,'revenue_optics','product_revenue_prior','product_volume_wan','product_volume_wan_prior'),'三个比较面板的最后一栏为平均收入/只的近似值，不等于产品型号价格。只有量价组合的数学关系，缺少规格级别因果证据。') if volume_fig else ''}</section>
+<section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','核心产品如何将销售额转化为盈利？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。本图仅使用原始财报中有明确分类、相同口径且金额严格守恒的收入来源。{esc(l.get('revenue_partition_assertion',{}).get('scope','未完整披露的产品来源不能自动生成未分类业务。'))}。不同分类维度绝对不能叠加。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension') in ('product','other_business')],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}{source_exception_html}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div>{exhibit('为什么收入翻倍而销量只增加约六成？','02 / SALES VOLUME & MIX',volume_fig,src(l,'revenue_optics','product_revenue_prior','product_volume_wan','product_volume_wan_prior'),'三个比较面板的最后一栏为平均收入/只的近似值，不等于产品型号价格。只有量价组合的数学关系，缺少规格级别因果证据。') if volume_fig else ''}</section>
 <section class="chapter" id="profit">{section_head('02','PROFIT & DURABILITY / QUALITY OF EARNINGS','利润增长究竟来自收入增长，还是成本与费用变化？','把完整利润形成、毛利润变动、利润率和真实同期比较分开处理；明确“会计桥”不等于销量、价格和良率的因果拆解。')}
 {exhibit('从毛利润到合并净利润：完整有符号会计桥','03 / P&L',pnl,src(l,'revenue','cogs','total_operating_costs','operating_profit','income_tax','net_profit'),'营业总成本中的非营业成本项目、其他经营损益净额、营业外净额及税费均保留正负号。')}
 {exhibit('毛利润同比多出多少？收入与成本变化分别起了什么算术作用？','04 / Δ GROSS PROFIT',delta,src(l,'revenue','revenue_prior','cogs','cogs_prior'),growth_unit+'；该分解不构成价格/销量因果归因。')}
@@ -283,7 +295,7 @@ def build(l,m):
 <section class="chapter" id="watch">{section_head('05','THE OTHER SIDE / FALSIFIABLE RESEARCH','什么证据支持这个判断，又有什么证据可能推翻它？','对同一组事实给予积极与谨慎两种解释。专业研究不是把风险放到页脚，而是设计具体可以验证的下一期指标。')}
 <div class="brief-compare"><div><h3>支持 / Positive evidence</h3><ul>{support}</ul></div><div><h3>反面 / Counter evidence</h3><ul>{counter}</ul></div></div>
 <div class="watchlist">{watch_html}</div></section>
-</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告依据用户上传的 {esc(doc['source_filename'])} PDF 原文件（{doc['pages']} 页），原文件 SHA-256：<code>{esc(doc['source_sha256'])}</code>；已经计算原始字节指纹并复核了主要合并报表及关键附注。{source_link}。原文件 SHA 仅证明此前上传文件身份，不能默认等于交易所另一个公开文件版本的字节 SHA；本次已在公开报告核对图一的收入和成本分类。全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>
+</main><div class="methods" id="sources"><div class="wrap"><span class="eyebrow">Methods / sources / limitations</span><h2>证据必须能回到原始财报。</h2><p>本报告依据用户上传的 {esc(doc['source_filename'])} PDF 原文件（{doc['pages']} 页），原文件 SHA-256：<code>{esc(doc['source_sha256'])}</code>；已经计算原始字节指纹并复核了主要合并报表及关键附注。{source_link}。原文件 SHA 仅证明此前上传文件身份，不能默认等于交易所另一个公开文件版本的字节 SHA；本次已在公开报告核对图一的收入和成本分类。全篇以人民币元进行精确核对，图表按显示需要换算为亿元。财务数据为{'经审计' if doc['audited'] else '未经审计'}的合并报表；管理层解释、数学计算、研究假设与外部独立验证严格区分。绘图方式参考公开金融可视化研究原则，但所有图形和排版均为独立设计，不与第三方出版物关联。</p><p class="risk-disclaimer">资料边界：单份半年报不能建立八至十二个季度趋势、竞争者估值、股价相对基本面的回归、公司具体产品 ASP/销量/良率或客户真实身份。未补充独立来源，不制作虚假图表或预测。</p>{editorial_review_note}
 <details><summary>展开：关键来源与精确原始金额（人民币元）</summary>{evidence_table(l)}</details>
 <details><summary>展开：净利润到经营现金流的全部 {ind} 项附注调节</summary><div class="table-scroll"><table class="indtable"><thead><tr><th>补充资料原文</th><th>带符号金额（元）</th><th>页码</th></tr></thead><tbody>{''.join(f'<tr><td>{esc(x["source_label"])}</td><td>{D(x["amount"]):,.2f}</td><td>p.{esc(x.get("page","—"))}</td></tr>' for x in l['indirect_cfo_adjustments'])}</tbody></table></div></details>
 <details><summary>展开：研究限制与未决问题</summary><ul>{''.join('<li>'+esc(x)+'</li>' for x in m.get('limits',[]))}</ul></details></div></div>
@@ -294,7 +306,19 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--ledger',required=True);p.add_argument('--memo',required=True);p.add_argument('--out',required=True);p.add_argument('--qa',required=True);a=p.parse_args()
  l=json.loads(Path(a.ledger).read_text(encoding='utf-8'));m=json.loads(Path(a.memo).read_text(encoding='utf-8'))
  if l['document'].get('business_type') not in ('industrial','manufacturing','services'):raise ValueError('Sector unsupported: bank/insurance/property need domain-specific renderer')
- if m.get('review_status')!='ANALYST_REVIEWED':raise ValueError('Analyst research memo not reviewed')
+ review=m.get('review_status')
+ if review=='AI_INTERNAL_ORIGINAL_SOURCE_CRITICAL_REVIEW__HUMAN_NOT_CHECKED':
+  # An internal primary-source research pass is *not* a second human signature.
+  # Require permanent original bytes and independent human gates left explicit.
+  if (m.get('independent_human_financial_review')!='NOT_CHECKED'
+      or m.get('independent_human_visual_review')!='NOT_CHECKED'
+      or len(l['document'].get('source_sha256',''))!=64
+      or not l['document'].get('source_archive_path')
+      or not l.get('verified_source_anomalies')):
+   raise ValueError('AI_ORIGINAL_SOURCE_REVIEW_MUST_RETAIN_UNCHECKED_HUMAN_AND_ORIGINAL_PDF')
+ elif review!='ANALYST_REVIEWED':
+  raise ValueError('Research memo not source-reviewed')
+
  page_html,meta=build(l,m)
  out=Path(a.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(page_html,encoding='utf-8');q=Path(a.qa);q.parent.mkdir(parents=True,exist_ok=True);q.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(meta,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()
