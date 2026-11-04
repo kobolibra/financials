@@ -1,0 +1,43 @@
+name: Intake insurance original full 2026H1 PDF source 601628
+on:
+  push:
+    branches: [work/insurance-601628-original-2026h1-skill-stress]
+    paths:
+      - 'research/issuers/601628/source-manifest.json'
+      - 'scripts/intake_life_601628.py'
+      - '.github/workflows/intake-life-601628.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  original-insurance-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Download full issuer original disclosure byte stream, prove SHA and physical pages
+        run: |
+          python -m pip install -q pymupdf
+          python scripts/intake_life_601628.py
+      - name: Commit exact PDF archive and per physical page source text
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add research/issuers/601628/source/ research/issuers/601628/extracted/ research/issuers/601628/source-images/ research/issuers/601628/source-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Source proof: archive actual 601628 original 2026H1 PDF and page audit"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Retain original full issuer PDF and independent acquisition verification
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 601628-original-financial-report-source-proof
+          path: |
+            research/issuers/601628/source/*.pdf
+            research/issuers/601628/source-verification.json
+          if-no-files-found: warn
+          retention-days: 30
