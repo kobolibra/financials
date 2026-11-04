@@ -4,6 +4,22 @@
 
 > **一套统一目录**：<https://financials-in-visuals.pages.dev/>；第十一家公司中国人寿独立全文：<https://financials-in-visuals.pages.dev/601628>。原目录卡 href `/601628.html` 被 Cloudflare Pages 规范化为 `/601628`，是真正独立的 HTML 页面，不是首页回跳，也不是 iframe。其余十家公司的独立报告未被改动。研究仍为**源限制预览**，不等于已完成独立第二人类审稿。
 
+## 2026-11-04 · 真修后续两个不同模式的手机财务图（v8.7.1；仅新候选源字节，非线上认证）
+
+**用户要求**：不能停留于审计“为什么新页面越来越差”，必须重建实际可复用的 Financial Storytelling Skill、财务图形生成器和手机真实图表，保证新聊读取当前主干后可立刻继续。基于先前11公司33次真实 CJK 浏览器视觉核验和10个390内部横向滚动真实FAIL，已将共用的 **600900 长江电力 + 600276 恒瑞医药** 正式源生产器 `research/shared/build_two_sector.py` 改为在原独立单体离线 HTML 中 **嵌入不同会计文法的八幅390原生财务SVG**；JS原图源在 `research/shared/mobile_finance.js`。这不是加几个绿色柱、把760px原SVG缩成300px或者iframe。原始8幅桌面同比/桑基/利润/间接CFO/资产负债/业务来源图继续存在并支持SVG导出，390手机不显示桌面宽图，而显示真正从同一源账本导出的原生专业中文图。
+
+**两个实际具体公司已独立通过完整原始PDF、原注、完整源财务金额守恒、CJK Chromium1440/768/390、每家公司16幅真实SVG、源金额加权收入→成本/毛利的重算节点与路径物理宽度、带符号利润/间接CFO/现金桥、两日期BS、真实万元/亿元单位、创新药商品销售子集且不二次计入收入、手机每图无内部横向溢出/文本BBox在视口、两次确定性独立生成**。真实源Actions [#41799046343](https://github.com/kobolibra/financials/actions/runs/41799046343) 及含7张仓库真实图审阅样本的 [#41799335392](https://github.com/kobolibra/financials/actions/runs/41799335392) **PASS 候选**。真实截图已逐幅亲看（非另一名人类分析师），见 [专门设计修复报告](research/visual-audit/VISUAL_CHANGESET_2026-11-04_TWO_SECTORS.md) 和 `research/issuers/{600900,600276}/visual-qa/*-390-*.png`，每家公司各 `visual-qa/result.json` 有真实新HTML SHA+三屏浏览器源守恒证据。
+
+**完整新HTML SHA**：600900 `d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8`、600276 `cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a`。**新字节线上验证尚未完成，本段在正式合入前只能标 `CLOUDFLARE_LIVE=NOT_CHECKED`，旧 main 的在线证明不可以自动继承**。2026H1真实巨潮PDF、源回查财务和原版2公司的会计检查依旧PASS。本轮改的是财务视觉和交互，不修改原始财报元金额或报表日期。
+
+**关键失败修正**：之前 `scripts/check_visual_editorial_policy.py` 只检验历史33屏截图中的旧SHA，但不核对 **当前候选HTML SHA**，形成“曾经浏览器通过就永久通过”的漏洞。已增加 `validate_current_published_files` 和恶意修改测试：任何变化的公司源HTML必须具备同一源SHA+真实1440/768/390浏览器财务视觉证明；中国人寿601628另外用新版b065真 Cloudflare 6张截图证明代替不能适用的两行业JSON；没凭证的任何变更FAIL。旧原11公司基线仍诚实记录**10个历史已存在手机图内滚FAIL**。本候选修复2公司手机后，其他**8家原始已发布的手机财务横滚**仍独立FAIL（300394/300308/300502/600036/688111/600519/000333/688220），**仍要继续实改**。v8.7.1技能新增VIS-044案例，43个可复制教训。
+
+**仍不等于研究和视觉两条都完美**：Desktop 600900主收入来源只有主营+极小其他的真实互斥来源，不允许为画出四阶段AEI剧烈效果捏造不存在的业务收入来源；600276创新药属于药品商品子集，不能重复计入法定收入。桌面行业原生长图故事、早三家公司手机真正原金额路径、其他六家、多行业公司第12个601919航运原始财报研究和第三方人类视觉/会计审稿仍为待独立验证/FAIL。**不得把局部手机端PASS称作11家机构级全部最终出版。**
+
+**操作下一步**：确保新分支 `work/two-sector-native-mobile-aei-original-finance-20261104` 的全源PDF+3屏 Actions 与 PR 所有工作流PASS，合并当前main且不动老八家公司；在新main重新跑真实 Cloudflare 11家公司入口/三屏/这两份新HTML SHA，同步 `release-gates.json` 和状态收据，然后继续改善其他8家和601919航运行业图。时间不够时保留分支未检查真相，不造成功劳。
+
+---
+
 ## 2026-11-04 · 601628 视觉修复新字节现已真实上线，精确发布收据 [#41786674737](https://github.com/kobolibra/financials/actions/runs/41786674737)
 
 **已在真实生产网站而非GitHub静态推测验证**：`main` 最后实证代码 `eba76b207a7bb5a5f1e027acbb2e59b1f58445d5`，公开 `https://financials-in-visuals.pages.dev/601628` 的完整HTML SHA `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0`，唯一11家公司目录原始首页完整字节SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。实际GitHub Actions #41786674737 使用真实 Cloudflare HTTP + 中文Chromium，独立公司导航、返回唯一公司目录、1440/768/390、10 SVG及源表、原保费流几何及390完整财务图 **PASS**，6张截图和真实行程均在 `research/issuers/601628/live-release-receipt.json`。源原件 PDF SHA `b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943`。原 `6f386...` 线上发行页面PASS是仅针对旧版，完整保留在 `historical_live_before_1440_label_collision_qa_fix`。现 `release-gates.json` 的 `CLOUDFLARE_LIVE` 恢复**PASS**只因同一新SHA确实通过真公网验证，而非自赋值。
