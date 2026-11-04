@@ -92,6 +92,16 @@ def check_discovery(manifest: dict, wrapper: str, project_instructions: str) -> 
     return errors
 
 
+def check_agent_source_of_truth(agent_instructions: str) -> list[str]:
+    """Reject stale fixed issuer counts in agent entry instructions."""
+    issues = []
+    if "project-status.json" not in agent_instructions or "site/research_catalog.json" not in agent_instructions:
+        issues.append("AGENT_CATALOG_SOURCE_OF_TRUTH_MISSING")
+    if re.search(r"\\b(?:with\\s+)?(?:seven|eight|nine|ten|eleven|twelve|\\d+)\\s+independent issuer reports\\b", agent_instructions, re.I):
+        issues.append("AGENT_STALE_HARDCODED_ISSUER_COUNT")
+    return issues
+
+
 def check_repo() -> list[str]:
     errors = []
     mandatory = [
@@ -134,6 +144,7 @@ def check_repo() -> list[str]:
     errors += check_catalog(manifest, catalog, load("public/index.html"))
     errors += check_current_state(load("PROJECT_STATE.md"), load("README.md"), manifest)
 
+    errors += check_agent_source_of_truth(load("AGENTS.md"))
     if not all(term in load("AGENTS.md") for term in
                ["SKILL.md", "NOT_CHECKED", "START_HERE.md", "REPORT_RELEASE_CHECKLIST"]):
         errors.append("AGENT_INSTRUCTIONS_NOT_ACTIVATING_SKILL_AND_GATES")
