@@ -84,15 +84,42 @@ with sync_playwright() as p:
   })""")
   assert info["scrollWidth"]<=width+1,(width,"document scrolls horizontally",info)
   assert info["figures"]==info["svg"]==info["tables"]==info["exports"]==9,(width,info)
-  assert info["mobilePanels"]==info["nativeCount"]==9 and info["mobileVisible"]==(0 if width==1440 else 9),(width,"native original finance missing on phone",info)
+  assert info["nativeCount"]==9 and info["mobilePanels"]==9
+  assert info["mobileVisible"]==(0 if width==1440 else 9),(width,"NATIVE_MOBILE_PANELS_NOT_VISIBLE")
   assert len(info["mobileFlowSource"])==4 and len(info["mobileFlowSink"])==2 and len(info["mobileFlowRibbon"])==7
-  mobile_scale=298/float(D(facts["rev"]["yuan"]))
-  for node in info["mobileFlowSource"]+info["mobileFlowSink"]:
-    assert abs(node["width"]-float(D(node["yuan"]))*mobile_scale)<0.000001,(width,"faked mobile money node",node)
-  for edge in info["mobileFlowRibbon"]:
-    assert abs(edge["width"]-float(D(edge["yuan"]))*mobile_scale)<0.000001,(width,"faked mobile money ribbon",edge)
+  source_scale=298/float(D(facts["rev"]["yuan"]))
+  for item in info["mobileFlowSource"]+info["mobileFlowSink"]:
+    assert abs(item["width"]-float(D(item["yuan"]))*source_scale)<1e-6,(width,"MOBILE_NODE_NOT_REAL_YUAN",item)
+  for item in info["mobileFlowRibbon"]:
+    assert abs(item["width"]-float(D(item["yuan"]))*source_scale)<1e-6,(width,"MOBILE_RIBBON_NOT_REAL_YUAN",item)
     import re
-    matched=re.search(r'^M([0-9.]+),58 C.*L([0-9.]+),211 C.* ([0-9.]+),112 ([0-9.]+),58 Z
+    match=re.search(r"^M([0-9.]+),58 C.* ([0-9.]+),58 Z$",item["path"])
+    assert match,(width,"BAD_MOBILE_MONEY_CURVE",item)
+    assert abs(float(match.group(2))-float(match.group(1))-item["width"])<1e-6,(width,"MOBILE_CURVE_FALSE_PHYSICAL_WIDTH",item)
+  assert len(info["mobileSigned"])>=25,(width,"SIGNED_FINANCIAL_GRAPHS_MISSING")
+  by_chart={}
+  for step in info["mobileSigned"]:
+    by_chart.setdefault(step["svg"],[]).append(step)
+  assert len(by_chart)==5,(width,"EXPECTED_FIVE_SIGNED_GRAPHS")
+  for title,steps in by_chart.items():
+    cumulative=None
+    scales=[]
+    for step in sorted(steps,key=lambda x:x["step"]):
+      delta=D(step["yuan"]);now=D(step["cumulative"])
+      if step["kind"]=="step":
+        assert cumulative is not None and abs(cumulative+delta-now)<=D("0.01"),(title,"BROKEN_SIGNED_CAS_CUMULATION",step)
+        assert step["fill"]==("#087b65" if delta>=0 else "#a84f40"),(title,"WRONG_MONEY_SIGN_COLOR",step)
+      elif step["kind"]=="total":
+        assert abs(cumulative-now)<=D("0.01"),(title,"TOTAL_WRONG_AMOUNT")
+      cumulative=now
+      if abs(delta)>D("0.01"):scales.append(step["width"]/abs(float(delta)))
+    assert scales and max(scales)-min(scales)<max(scales)*.000001,(title,"NOT_SAME_FINANCIAL_MONEY_SCALE")
+  if width in (768,390):
+    assert info["originalDesktopHidden"]==9,(width,"OLD_1050_SVG_VISIBLE_ON_PHONE")
+    assert all(z["visible"] and z["inner"]<=z["client"]+2 and z["originalSvg"]>220 for z in info["nativeViews"]),(width,"MOBILE_NATIVE_ART_CLIPPED")
+    assert all(t["x"]>=-2 and t["right"]<=t["view"]+2 for z in info["nativeViews"] for t in z["cjkTexts"]),(width,"CHINESE_SVG_LABEL_OUTSIDE_VIEWBOX")
+  else:
+    assert info["originalDesktopHidden"]==0 and info["mobileVisible"]==0,(width,"DESKTOP_SVG_REPLACED")
   assert info["navPosition"]=="static",(width,"chapter nav must never obscure figure title",info)
   assert info["bodyExternalScripts"]==0,(width,"offline must need no external JS",info)
   assert len(info["ribbon"])==7,(width,"4 cost ribbons and 3 nonzero GP ribbons required",info["ribbon"])
