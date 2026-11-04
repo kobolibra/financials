@@ -652,5 +652,34 @@
     "registry_cases": 20,
     "human_second_review": "NOT_CHECKED",
     "sector_L2": "NOT_ESTABLISHED"
+  },
+  "latest_session_intake_check": {
+    "date": "2026-11-04",
+    "source_main_sha_at_start": "7ee99b608fc4d0376de80f89c20539698b051ba2",
+    "current_issuer_count": 10,
+    "new_issuer_identity": "NOT_CHECKED_NO_NEW_ISSUER_IDENTIFIER_SUPPLIED_THIS_TURN",
+    "new_issuer_pdf": "NOT_CHECKED_NO_NEW_ISSUER_PDF_OR_FULL_OFFICIAL_PDF_URL_THIS_TURN",
+    "new_issuer_report_generation": "NOT_STARTED_NO_VALID_SOURCE_TO_AVOID_FABRICATED_DATA",
+    "new_issuer_publication": "NOT_CHECKED_NO_NEW_ROUTE_ADDED",
+    "direct_cloudflare_from_this_session": "NOT_CHECKED_TOOL_ACCESS_DENIED",
+    "last_main_handoff_run": {
+      "id": 41738267454,
+      "sha": "7ee99b608fc4d0376de80f89c20539698b051ba2",
+      "conclusion": "success"
+    },
+    "last_main_existing_issuer_financial_run": {
+      "id": 41737976198,
+      "sha": "0ed43ee45ad2aa52e44b11c6b4d371cc4bec5792",
+      "conclusion": "success"
+    },
+    "last_main_existing_cloudflare_browser_run": {
+      "id": 41738152741,
+      "sha": "93709bfcd5fe9d2008d12f62b14304c23a26700d",
+      "conclusion": "success"
+    },
+    "current_handoff_fix_branch": "work/handoff-current-issuer-count-intake-20261104",
+    "current_handoff_fix_scope": "Replace stale eight-company AGENTS count with manifest/catalog source-of-truth; regression guards hardcoded obsolete count; no issued HTML or financial facts changed",
+    "current_handoff_fix_ci": "NOT_CHECKED_PENDING_BRANCH_PR_TEST",
+    "next_required_source": "User-identified company's complete official PDF bytes or verified download URL and ticker"
   }
 }
