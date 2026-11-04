@@ -75,13 +75,16 @@ def check():
     # Regulatory insurer capital ratio is neither accounting equity nor cash.
     # The original disclosed capital amounts are rounded to RMB million;
     # display only the ratio precision (2 decimals) published at physical p21.
-    solvency=lambda cap,min_cap:(amount(cap)*D(100)/amount(min_cap)).quantize(D("0.01"))
+    def solvency(cap,min_cap):
+        assert amount(min_cap)>0,"NONPOSITIVE_REGULATORY_MINIMUM_CAPITAL"
+        assert amount(cap)>=0,"NEGATIVE_SOLVENCY_ELIGIBLE_CAPITAL"
+        return (amount(cap)*D(100)/amount(min_cap)).quantize(D("0.01"))
     eq(solvency("reg_core_capital","reg_minimum_capital"),D("156.80"),"2026_REG_CORE_COVERAGE")
     eq(solvency("reg_actual_capital","reg_minimum_capital"),D("197.78"),"2026_REG_TOTAL_COVERAGE")
     eq(solvency("reg_core_capital_prior","reg_minimum_capital_prior"),D("128.77"),"2025_REG_CORE_COVERAGE")
     eq(solvency("reg_actual_capital_prior","reg_minimum_capital_prior"),D("174.01"),"2025_REG_TOTAL_COVERAGE")
     review=LEDGER["source"].get("independent_limited_review",{})
-    assert review.get("physical_page")==42 and "审阅" in review.get("standard","") and "非审计意见" in review.get("opinion",""),"INSURER_INTERIM_REVIEW_NOT_FULL_AUDIT"
+    assert review.get("physical_page")==42 and "审阅" in review.get("standard","") and "未发表审计意见" in review.get("opinion",""),"INSURER_INTERIM_REVIEW_NOT_FULL_AUDIT"
     # Product category, insurance service recognition and cash receipt are
     # fundamentally different universes; this assertion must prevent wiring them.
     assert amount("premium_total")!=amount("service_revenue")!=amount("cfo_insurance_cash")
