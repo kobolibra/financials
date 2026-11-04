@@ -82,7 +82,7 @@ with sync_playwright() as p:
                 source_row.click()
                 assert page.locator("path.native-money-ribbon.is-muted").count()==0 and page.locator("path.native-money-ribbon.is-selected").count()==0
                 assert page.locator("path.native-money-ribbon").first.get_attribute("d")==original_d,(code,"INTERACTION_CHANGED_ORIGINAL_AMOUNT_WIDTH")
-            else:
+            if width==1440:
                 assert page.locator(".chart-shell .hero-svg:visible").count()==1
                 with page.expect_download(timeout=10000) as event:
                     page.locator("figure.exhibit .svg-save").first.click()
