@@ -42,7 +42,7 @@ jobs:
               assert orig and orig.group(0) in new,(code,'DESKTOP_ORIGINAL_FINANCE_FIGURE_CHANGED')
               assert new.count('class="native-finance"')>=9,(code,'NATIVE_FIGURES_ABSENT')
               assert new.count('class="money-ribbon"')==old.count('class="money-ribbon"'),(code,'SOURCE_GEOLOGY_CHANGED')
-              assert old.count('data-source')==new.count('data-source'),(code,'SOURCE_EVIDENCE_CHANGED')
+              assert old.count('class="source-note"')==new.count('class="source-note"'),(code,'ORIGINAL_EVIDENCE_CAPTIONS_CHANGED')
           PY
       - name: Real CJK fonts and Chromium
         run: |
