@@ -1,16 +1,26 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-**当前真实状态：2026-11-04。GitHub `main` 实际已包含 11 家公司，同一个唯一首页；中国人寿（601628）已通过真实 Cloudflare 线上报告与目录导航。现行候选 Skill `v8.6.2-rc1`（正式现行仍以每次真实 `main` 为准）。下一次新对话必须重新确认 `main` HEAD、现行 GitHub Actions 和官方原 PDF，而非把这里的 SHA 当永恒最新。**
+**真实最近主站状态 2026-11-04：已发布同一首页 11 家独立公司研究，中国人寿 601628 2026H1 新手机十大图形版本真实 Cloudflare PASS，源网页 main 提交 `b88698a0cf1cfcd89c16eda1e399796d9418ea04`；当前代码 Skill 升级候选 `v8.6.3-rc1`（正式 main 版本须独立重新读取）。下一次新对话必须重新确认真实 main HEAD、原始 PDF 与确切 Actions 结果。**
 
 > **一套统一目录**：<https://financials-in-visuals.pages.dev/>；第十一家公司中国人寿独立全文：<https://financials-in-visuals.pages.dev/601628>。原目录卡 href `/601628.html` 被 Cloudflare Pages 规范化为 `/601628`，是真正独立的 HTML 页面，不是首页回跳，也不是 iframe。其余十家公司的独立报告未被改动。研究仍为**源限制预览**，不等于已完成独立第二人类审稿。
 
-## 2026-11-04 · 实截图反馈驱动的第二轮视觉修复（尚未合并的新版候选）
+## 2026-11-04 · 当前正式已发布（PR #18 / main b88698a / 390 原生手机全图）
+
+- **纠正上次源交接滞后**：实际 [PR #18](https://github.com/kobolibra/financials/pull/18) 已在 **2026-11-04 05:17 UTC** 合并到当时真实 main `b88698a0cf1cfcd89c16eda1e399796d9418ea04`，并通过同源的全部真实主站 Actions：[Cloudflare 11发行人、主页与独立 HTML 双全字节SHA、中文浏览器1440/768/390、全部10 SVG+10张原报表来源表和手机10完整图、返回唯一路径 #41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066) **PASS**；[原PDF104页/133原事实/18保险财务勾稽/10真SVG及手机完整图/确定性重建 #41778320037](https://github.com/kobolibra/financials/actions/runs/41778320037) **PASS**；[统一研究库 #41778320121](https://github.com/kobolibra/financials/actions/runs/41778320121) **PASS**；[交接 #41778320045](https://github.com/kobolibra/financials/actions/runs/41778320045) **PASS**；[Pages历史路由 #41778320141](https://github.com/kobolibra/financials/actions/runs/41778320141) **PASS**。这五项精确对应**原已发布版本 b88698a**，不是自动证明下一次文件变更。
+- **真实公网页面双指纹和截图**：独立公司 `https://financials-in-visuals.pages.dev/601628` 的原始响应完整HTML `SHA256=6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`，原有首页 `SHA256=f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`，同本次源main实际字节逐一相等。真实公司URL与返回 `/#companies` 分别被记录，旧十公司一份独立报告都没重写。Actions真实执行记录的 **6 张桌面/平板/手机公司页和首页 PNG** 的原始字节长度与SHA全部摘录保存于 `research/issuers/601628/live-release-receipt.json`，便于独立新聊天读取，具体公网页面原图仍从原 Actions artifact 获得，不能把收据SHA冒充可见图片。
+- **新原图审美红队纠正已真实可见**：原来 390 宽浏览器把900宽SVG装在内部滚动小窗，真实只见三项经营付现/未见全部CSM组成。新的十组手机自然竖向、来自**同一会计源账本**的金额图形，10组全部完整可见且内部无横向滚动；桌面依然保留原10个专业SVG、可导出真桑基/带符号瀑布，真实图内金额标签不再撞标题。旧桑基“新/续期现金业务”误导标题已在 `figure-briefs.json` 原始源修为“管理层保费统计类别汇总”，不将旧标准保费 536634 百万元冒充CAS保险服务收入112525或现金收现626732百万元。
+- **本次发布证明合同纠偏**：本轮发现旧源 `release-gates.json` 的 `CLOUDFLARE_LIVE=NOT_CHECKED` 和机器状态还说新版未合并，**与已经实际运行通过的 #41778320066 相矛盾**。现按真实PDF→133原值→18会计检查→离线SHA→已验 main→真实公网页完整SHA、双真实路由和6截图指纹回写 **LIVE=PASS**，存独立原始收据并在通用 `scripts/check_release_contract.py` 添加任意实报错SHA/假公司首页/假提交/缺手机证据/缺PNG无条件失败的恶意回归 `PUB-041`。Skill 候选 `v8.6.3-rc1`，旧一家公司寿险**L1**实证，不能称保险行业L2或通用L3。
+- **严格保留未验**：全104页重大保险合同附注的第二独立审查、精算CSM敏感性与投资负债匹配的外部模型、SSE独立PDF字节与CNINFO相等、8-12季度同业可比估值、真正第二名人类财报分析师及视觉审稿 **NOT_CHECKED**；688220应收集中度报告90.50%与自推89.17%的历史问题独立**FAIL**，不因第十一家公司升级自动归零。中国人寿继续 `release_class=source_limited_preview`。
+
+---
+
+## 历史发布前候选记录（现已由上方已发布事实覆盖）· 2026-11-04 原手机视觉修复
 
 - **先验证真实图，不以CI数量代替视觉**：直接读取 `research/issuers/601628/visual-qa/figure_cash_390.png`、`figure_csm_390.png`、`figure_pnl_1440.png`。发现原 390px 真实截图用了固定900px SVG滚动小窗口，现金8项只能见左3项、CSM存量图右侧不可见；1440px 法定利润瀑布若干最大源金额标签与图内标题视觉重叠；p10保费统计图标题把新单/续期叫“现金业务”，违反 p53 现金收现实际金额的不同会计宇宙。旧 `body scrollWidth`、十张SVG存在和来源金额恒等式都PASS，却**不能代表高水准的手机阅读体验**。
 - **已直接修正主源码并实跑**：独立分支 `work/601628-mobile-financial-visual-storytelling-v861` 从原始 133 类事实生成 10 组手机完整竖向图形（保留原 10 桌面 SVG 与导出），每项有真正原元金额、正负号、明确分母与非假最小线，390px 无小窗口横向滚动；瀑布 SVG 顶部金额与标题增加真实布局间距；保费题头改为统计分组而非现金。真实 104页PDF、18个原始会计守恒、三视口移动源金额与条长按实际比例测试、10幅手机单图真实截图、双次确定重建 [#41777012329](https://github.com/kobolibra/financials/actions/runs/41777012329) **PASS**。独立阅读了新 `figure_cash_390.png` 和 `figure_csm_390.png`，整图能在手机宽度内自然竖向阅读且每个数值完整可见，桌面 `figure_pnl_1440.png` 标签已不与图内标题重叠。
 - **新版和旧版的真实发布证据不可互相继承**：先前 `main` 全文章 SHA `051a8ec...` 的 Cloudflare **PASS**只支持**旧发布字节**；新版候选 `public/601628.html` SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`，在 PR #18 合并并实际线上验证之前，必须使 `research/issuers/601628/release-gates.json` 的 `CLOUDFLARE_LIVE=NOT_CHECKED`，待同一个新 SHA 的 real Cloudflare 浏览器/双SHA/11条公司路由/手机真实可读全面 PASS 才可升级。新视觉回归 VIS-037/SEM-038/VIS-039，Skill 候选 `v8.6.2-rc1`；独立人类审稿依旧 `NOT_CHECKED`。
 
-## 最新完整生产证据：11 家／中国人寿保险新会计模型／实际 Cloudflare PASS
+## 历史较早主站版本 · 十一家公司中国人寿 2026H1 旧 HTML SHA 051a（已被新 6f386 版替代）
 
 - **代码与真实上线**：经实际重新查 GitHub，在本轮交接修订之前 `main` 为 `d11638f0c76ff8aef2beb163a1028f176123bbdc`（中国人寿实际源码与修复后的最终 SVG 版本）。真实公网页面+唯一首页双全字节 SHA、真实 1440/768/390 Chromium 点击和返回、全部 11 条公司路径 / 原始来源表 / 10 个有效 SVG 的线上验收运行 [#41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) **PASS**。测试输出逐幅真实浏览器公司页 `https://financials-in-visuals.pages.dev/601628`，11家公司从首页点击并能返回 `/#companies`；**公司页 SHA-256 `051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763`，首页 SHA-256 `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`**。当前网页此时真实等于已发布主分支字节，而非仅提供 Cloudflare provider 成功通知。
 - **其他同源 `main` PASS**：保险原始 PDF/专业财务/十张原创 SVG [#41771178355](https://github.com/kobolibra/financials/actions/runs/41771178355)，旧十公司完整统一目录真实浏览 [#41771178360](https://github.com/kobolibra/financials/actions/runs/41771178360)，发布路由 [#41771178350](https://github.com/kobolibra/financials/actions/runs/41771178350)，跨会话交接 Skill [#41771178406](https://github.com/kobolibra/financials/actions/runs/41771178406)，均在同一源 `d11638f` **PASS**。新的 PR/工具改动不凭旧绿色称为已验，须看本次提交新增的 CI。

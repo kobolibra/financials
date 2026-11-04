@@ -1,11 +1,23 @@
 ---
 name: ashare-financial-storytelling
-version: 8.6.2-rc1
+version: 8.6.3-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.6.2-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.6.3-RC1
 
+
+## v8.6.3-RC1 · Real Cloudflare production proof is a source-linked permanent research artifact, not a green UI badge
+
+**Actual date/commit:** Source-limited 中国人寿 601628 2026H1 mobile-first editorial article passed *real* complete 11-issuer public site Cloudflare Playwright at exact `main` `b88698a0cf1cfcd89c16eda1e399796d9418ea04`, [Actions #41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066). The server's complete article HTML SHA256 **`6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`** is identical to the exact checked-out repository `public/601628.html`; the canonical home SHA256 is `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`. All 11 actual issuer URLs, ten desktop SVGs, ten original source tables, visible correct final source money sink, 390px **ten independently source-driven full-width mobile signed finance figures**, no internal chart horizontal scroll, real CJK browser 1440/768/390 and distinct company `/601628` and back `/#companies` have actual PASS logs and six genuine screenshot byte hashes. Also [#41778320037](https://github.com/kobolibra/financials/actions/runs/41778320037) passed original 104-page PDF, selected33 original physical cells, 133 source facts, 18 CAS/signed/solvency checks, all ten figures and exact second offline build. **These receipts are for this exact original page version only.** The Skill is not magically auto-installed in ChatGPT.
+
+**PUB-041 original process bug:** The real site and source mobile report had already passed, but the independently stored `release-gates.json` and `project-status.json` still said “candidate/new live NOT_CHECKED”. This was a damaging cross-chat source-of-truth mismatch. From now on after a release, first retrieve actual main HEAD and check *the exact same GitHub Actions run and real public browser receipts*. If live genuinely passed, correct the actual issuer release record and top-level machine handoff, preserving previous release bytes separately. If live did not pass, explicitly maintain `NOT_CHECKED` or `FAIL` rather than upgrading by assumption. Keep one unique company library root.
+
+**Permanent per-release public browser receipt (cross-issuer infrastructure)**: Store `research/issuers/<code>/live-release-receipt.json`, taken from the real Action's `PRODUCTION_VERIFICATION_RECEIPT_JSON` captured **at the real public Cloudflare URL**, including company code, exact source main 40-char commit, Action public proof, original report SHA, whole publicly retrieved article HTML SHA, separately retrieved whole homepage SHA, actual company path *before clicking back*, actual returned root URL, all three real 1440/768/390 results, and six real screenshot SHA256 + byte sizes. **Do not invent screenshots or use unrelated/main-branch old receipts.** Some legacy sector releases have an explicitly NOT_CHECKED full-HTML hash and must not be retroactively described as having full byte verification.
+
+**Fail-closed gating**: `scripts/check_release_contract.py` now requires such an issuer-owned real receipt whenever an issuer declares `CLOUDFLARE_LIVE=PASS` **and** a genuine `published_html_sha256` of 64 hex. It must agree with both the source-ledger PDF SHA and release-gates exact current article HTML SHA, actual report main commit and exact Action proof, correct original company URL and independent back-to-library URL, three real widths, all six screenshot SHA bytes, and 390px finance visual assertions where sector-relevant. Hostile `scripts/test_check_release_contract.py::test_live_proof_must_not_be_forged_home_report_or_screenshot` must reject faked report/home routing, swapped article bytes, wrong commit, missing PNG and cropped mobile. The mechanism is reusable across issuers. *The financial research findings and native mobile designs remain only one-life-insurer L1, not financial sector L2 or universal L3.*
+
+**Quality boundaries**: Source-limited preview remains properly labelled: all 104 source pages exist but a second independent review of every actuarial note/counterparty and CSM dynamics, SSE separate-byte original equivalence, external eight-to-twelve-quarter insurer comparison and valuation, independent second HUMAN research analyst and human visual art director **NOT_CHECKED**. Company entries and all old issuer standalone HTML are unchanged by the proof correction. The next independent company's original report must exercise this process from a fresh `main`, never inherit 601628's green labels.
 
 ## v8.6.2-RC1 · Original data-driven responsive financial storytelling: mobile is an independent editorial medium
 

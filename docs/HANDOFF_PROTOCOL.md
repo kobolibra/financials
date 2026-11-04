@@ -49,6 +49,14 @@
 
 **PR #18 未合入之前，更新的`public/601628.html` 不是Cloudflare已验网页**。旧已验 HTML SHA `051a8ec...` 与新候选 SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd` 严格分开；发布合同必须把新版 `CLOUDFLARE_LIVE=NOT_CHECKED`，把旧 PASSED 记录保留在历史字段；待实际 MAIN+新公网页真实双SHA/11家/390真手机图 PASS 再改。新的可迁移反例 VIS-037、SEM-038、VIS-039，单一保险公司自审不是独立第二名人类审稿，`NOT_CHECKED` 不变。
 
+## 2026-11-04 · 最终真实手机版上线 b886 与不可伪造的跨会话 LIVE 证据（v8.6.3）
+
+上一节的“PR #18 尚未合入”**已经成为历史，禁止作为当前状态引用**。PR #18 真已合并到 `main b88698a0cf1cfcd89c16eda1e399796d9418ea04`，全站唯一目录真实11公司，真实 [Cloudflare Chromium #41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066) 在1440/768/390三档访问完整独立 `/601628`、十原SVG及十原始来源表、十组390手机完整源账本图、原文与首页双全文件HTML SHA及返回唯一目录均 PASS。独立公司 HTML SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`，首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。财报原始104页、133元数据事实、33 PDF选中行列、18项会计勾稽和完整浏览器原地重建 [#41778320037](https://github.com/kobolibra/financials/actions/runs/41778320037) PASS。
+
+**这次真正发现在新聊天中会自我误导的机械 bug**：旧项目机器状态与 per-issuer release-gates 在实际线上已通过后仍显示 `mobile_candidate_NOT_CHECKED`，上一轮新聊天很容易把实际成果判为未发出。本次把真实 Actions 浏览器原始 `PRODUCTION_VERIFICATION_RECEIPT_JSON`（具体六张真线上截图的文件字节长度和各自 SHA）归档为 `research/issuers/601628/live-release-receipt.json`，重新对齐实际发布的 `main` SHA、真实独立公司/返回首页两个URL、文章/首页HTML完整字节 SHA、原始财报字节指纹、三档实际 Chrome 证据。只有原数据/实际完整网页/CI同时对应才把 `CLOUDFLARE_LIVE` 改为 **PASS**；新通用合同拒绝真实网页SHA与收据不一致、伪造公司首页和删减图片凭据，新增 `PUB-041`。
+
+**仍不能冒充完成**：完整104页重大保险精算附注的第二名专业分析师独立查核、市场同业与8–12季度估值、SSE第二PDF逐字节同一性、另一名真正人类视觉总监签字 **NOT_CHECKED**。只有一家公司寿险新模型 L1，跨第二寿险L2和全行业L3均未证成。下一次新对话应立刻读取 `main` 真实 HEAD 和最新工作流，按本段精准来源重建，而非猜测历史候选/已经通过；自动检查通过本身不等于独立人类审阅。
+
 ## 关于 Skill 的真实可发现性
 
 `AGENTS.md` 和 `.github/copilot-instructions.md` 为支持这些协议的仓库编码助手提供入口，但**不能保证任意 ChatGPT 新聊天自动检索你的私有/公开 GitHub 仓库**。新聊天必须有 GitHub 访问，或收到直接链接/上传的 Skill。不要声称已完成 ChatGPT Skills 目录安装。推荐使用 [新会话启动消息](NEW_SESSION_PROMPT.md)。

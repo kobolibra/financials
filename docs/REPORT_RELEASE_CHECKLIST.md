@@ -1,6 +1,12 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.6.2](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.6.3](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+
+### v8.6.3 真正上线之后持久保留来源可复核的原始 LIVE 收据（硬门槛）
+
+- [ ] `LIVE_RECEIPT_AFTER_REAL_BROWSER`：从 **实际** `main` 真实 GitHub Actions 的 `PRODUCTION_VERIFICATION_RECEIPT_JSON`（不是用户肉眼猜想、不是Cloudflare provider badge）提取，落盘 `research/issuers/<code>/live-release-receipt.json` 并与 `release-gates.json` 的 `live_receipt_file`、`CLOUDFLARE_LIVE.proof` 完整指向；该收据需真实含原始财报 SHA、原本公司的独立浏览器 URL 与返回唯一路径的**两个不同字段**、完整线上文章HTML SHA、首页HTML SHA、对应40字节hex的 `main` 提交、11家公司或当前完整发行人路径覆盖、三档真实 Chromium 宽度、六张原始屏幕截图SHA和真实字节。不能用上一版的旧报告SHA冒充新版。
+- [ ] `LIVE_ATTESTATION_HOSTILE_REPLAY`：通用 `scripts/check_release_contract.py` 对任何新公司真实64位已发布HTML SHA且 `CLOUDFLARE_LIVE=PASS` 的报告进行原始收据载入校验；伪造主页为公司页、替换报告SHA、替换原始PDF SHA、伪造 `main` 提交、截图被删减/伪造以及390财务图变为横向裁切均强制 FAIL；运行 `scripts/test_check_release_contract.py` 的反例后才可合入主分支。
+- [ ] `CROSS_CHAT_NOT_STALE`：正式发布已经通过的版本必须同步改写 `project-status.json`、`PROJECT_STATE.md` 和 `START_HERE.md` 的活动状态，不能因旧分支仍被存档而把实际上线的公司写成 `NOT_CHECKED`；但真实未经独立审阅的完整附注、比较估值与第二名人类研究/视觉编辑 **继续 NOT_CHECKED**。原 `main` 发行人所有已发布 HTML 不得覆写。
 
 ### v8.6.2 源驱动的真实390px财务图形可读性（硬门槛）
 

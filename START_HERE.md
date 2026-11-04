@@ -18,9 +18,9 @@
 
 ## 1. 当前独立公司研究库：不要在启动文档硬编码发行人总数
 
-权威清单是 [site/research_catalog.json](site/research_catalog.json)，唯一线上目录是 [Financials in Visuals](https://financials-in-visuals.pages.dev/)。上一轮真实 `main` 生产验证 [#41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) 对应 `d11638f0c76ff8aef2beb163a1028f176123bbdc`，当时**11家公司**全部路由以及桌面/平板/手机导航通过；这只是**明确有时间和 SHA 的历史验收快照**，新对话必须再取当前 GitHub `main`，不能把 11 当未来的固定常数。
+权威清单是 [site/research_catalog.json](site/research_catalog.json)，唯一线上目录是 [Financials in Visuals](https://financials-in-visuals.pages.dev/)。最近真实 `main` 生产验证 [#41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066) 对应 `b88698a0cf1cfcd89c16eda1e399796d9418ea04`，当时**11家公司**全部路由以及桌面/平板/手机导航通过；这只是**明确有时间和 SHA 的历史验收快照**，新对话必须再取当前 GitHub `main`，不能把 11 当未来的固定常数。
 
-最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的线上公司页 HTML SHA `051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763` 与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
+最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的手机十张源驱动全图已发布；线上公司页 HTML SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd` 与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
 
 产业链横向比较 `/optical-2026h1.html` 始终是**专题**，不算单独公司。后续任何新增公司必须加入现有 `site/research_catalog.json` 并运行 `site/portal_builder.py`，只发布独立、可离线打开的单公司 HTML。绝不能新建“三家／四家／v11”第二入口。
 
@@ -28,7 +28,7 @@
 
 **最近完成的有界修复**：天孚通信 p.140 0.38 亿元对应已披露其他业务；新易盛 p.104 0.27 亿元对应按业务类型“其他”，**不能**与另一维度“其他业务”合并。见 [附注核对报告](docs/2026H1_OPTICAL_REVENUE_NOTE_CLASSIFICATION_AUDIT.md)。
 
-**最近一次精确 main 实测**：真实 Cloudflare 11家公司全部路由和 1440/768/390、双页完整 HTML SHA、新寿险十图与原始来源表及导航 [41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) **PASS**；保险完整原 PDF/会计/真实图形 [41771178355](https://github.com/kobolibra/financials/actions/runs/41771178355) **PASS**；通用统一研究库 [41771178360](https://github.com/kobolibra/financials/actions/runs/41771178360) **PASS**；主站真实路由 [41771178350](https://github.com/kobolibra/financials/actions/runs/41771178350) **PASS**；Skill交接 [41771178406](https://github.com/kobolibra/financials/actions/runs/41771178406) **PASS**。全部对应同一个当时 `main` SHA `d11638f...`，绝不自动适用于以后的源码变更。
+**最近一次精确 main 实测**（手机十大财务图形已真实部署）：Cloudflare 11家公司全部原始路由和 1440/768/390、唯一首页/独立公司全文双 SHA、保险公司十原SVG/十原始来源表、手机十组完整原始元账本签名金额图及导航 [41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066) **PASS**；保险完整原 PDF/18项财务/桌面及手机真图和确定性离线重建 [41778320037](https://github.com/kobolibra/financials/actions/runs/41778320037) **PASS**；11家公司统一研究库 [41778320121](https://github.com/kobolibra/financials/actions/runs/41778320121) **PASS**；原 Pages 路由 [41778320141](https://github.com/kobolibra/financials/actions/runs/41778320141) **PASS**；Skill交接 [41778320045](https://github.com/kobolibra/financials/actions/runs/41778320045) **PASS**。全部对应当时真实发布 `main` `b88698a0cf1cfcd89c16eda1e399796d9418ea04`；原始公开网页浏览器六截图元数据存 `research/issuers/601628/live-release-receipt.json`。新提交必须重新核验，不能沿用旧CI冒充新版财务与审美通过。
 
 **尚未完成**：现有公司全部重大附注的完整独立系统语义复核、另一名真正独立研究员的审核签名、全行业 8–12 季度和可比公司估值研究、所有行业自动接入的证实。**源码核算、CI、截图通过≠机构级研究已认证，不能叫“全面超越 AEI”。**
 
