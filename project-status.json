@@ -196,7 +196,8 @@
       "600900": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8"
     },
     "actual_home_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
-    "note": "Source original live commit 9060; workflow repair merged in PR24 as 25c5796. Company HTML source bytes unchanged. Both finance industry cases remain L1 source-limited preview, no independent second human/complete all notes or external valuations. Other eight historic 390 clipping issues remain FAIL."
+    "note": "Source original live commit 9060; workflow repair merged in PR24 as 25c5796. Company HTML source bytes unchanged. Both finance industry cases remain L1 source-limited preview, no independent second human/complete all notes or external valuations. Other eight historic 390 clipping issues remain FAIL.",
+    "warning": "EXPLICIT_HISTORICAL_SOURCE_SCOPE: the listed real Cloudflare full HTML screenshot and source facts belong to original main 9060bd2a... run 41804157527; corrected PR workflow 41806506722 is separately source-bounded and does not attest future code commits. Current main changes only release proof, workflow and handoff; a new issuer's original PDF/data remain NOT_CHECKED. Eight prior mobile issuer figure failures remain FAIL; all human editor and full material notes remain NOT_CHECKED."
   },
   "limitations": {
     "all_seven_full_material_note_reviews": "NOT_CHECKED",
