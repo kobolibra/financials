@@ -1,7 +1,7 @@
 {
   "edition": "2026H1",
   "primary_home": "/",
-  "published_issuer_count": 10,
+  "published_issuer_count": 11,
   "unified_directory": true,
   "issuers": [
     {
@@ -230,11 +230,32 @@
       "spark_names": null,
       "rank": 10,
       "period": "2026H1"
+    },
+    {
+      "code": "601628",
+      "name": "中国人寿",
+      "exchange": "SH",
+      "industry": "保险",
+      "sub": "寿险 · 资产负债联动与合同服务边际",
+      "story": "保费只增2.2%，归母利润为何增长228.6%？",
+      "deck": "将总保费旧统计、CAS保险服务收入、投资公允价值与承保财务损益、保险合同负债/CSM、直接法现金流分开审视；十幅按原始金额绘制的研究图形。",
+      "href": "/601628.html",
+      "kind": "研究预览",
+      "stage": "source-review",
+      "note": "原报告104物理页 · 33原件行列 · 10组原创来源图形 · 报告未经审计 / 独立审稿未覆盖",
+      "figures": 10,
+      "signal": "2,828.79亿",
+      "signal_label": "2026H1 经营现金流净额（同比−5.8%）",
+      "source": "2026H1 CNINFO完整原始半年度报告104物理页",
+      "spark": null,
+      "spark_names": null,
+      "rank": 11,
+      "period": "2026H1"
     }
   ],
   "topic": {
     "name": "光互连产业链比较",
     "href": "/optical-2026h1.html"
   },
-  "research_scope": "SOURCE_LIMITED_TEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION"
+  "research_scope": "SOURCE_LIMITED_ELEVEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION"
 }
