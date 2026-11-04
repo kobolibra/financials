@@ -93,6 +93,45 @@ class IssuerReleaseContractTests(unittest.TestCase):
         errors=mod.validate_release(ROOT,insurer,fake,check_bytes=False)
         self.assertIn("LIVE_PROOF_MAIN_COMMIT_INVALID 601628",errors)
 
+    def test_real_live_receipt_is_archived_and_has_exact_source_sha_3_viewports(self):
+        insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
+        current=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        self.assertEqual(current["gates"]["CLOUDFLARE_LIVE"]["status"],"PASS")
+        self.assertEqual(mod.validate_release(ROOT,insurer,current,check_bytes=False),[])
+        receipt=json.loads((ROOT/current["live_receipt_file"]).read_text())
+        self.assertEqual(receipt["verified_git_commit"],current["actual_main_release_commit"])
+        self.assertEqual(receipt["status"],"PASS")
+        self.assertEqual(len(receipt["screenshots"]),6)
+        self.assertEqual({x["width"] for x in receipt["real_chromium_viewports"]},{1440,768,390})
+
+    def test_live_proof_must_not_be_forged_home_report_or_screenshot(self):
+        insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
+        original=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        original_read=mod.read_json
+        cases=[
+            ("LIVE_CAPTURE_MAIN_SHA_MISMATCH",lambda x:x.update(verified_git_commit="0"*40)),
+            ("LIVE_CAPTURE_HTML_SHA_MISMATCH",lambda x:x.update(actual_full_content_sha256_equals_repository_main_601628="0"*64)),
+            ("LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID",lambda x:x["real_chromium_viewports"][0].update(actual_dedicated_article_final_url="https://financials-in-visuals.pages.dev/#companies")),
+            ("LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID",lambda x:x["real_chromium_viewports"][0].update(actual_return_to_library_url="https://financials-in-visuals.pages.dev/601628")),
+            ("LIVE_CAPTURE_SCREENSHOT_SET_INVALID",lambda x:x["screenshots"].pop()),
+            ("LIVE_CAPTURE_PHONE_FINANCE_FIGURES_INVALID",lambda x:next(y for y in x["real_chromium_viewports"] if y["width"]==390).update(mobile_ten_full_width_source_exact_money_exhibits="FAIL")),
+        ]
+        for marker,poison in cases:
+            with self.subTest(marker=marker):
+                def changed(path):
+                    data=original_read(path)
+                    if str(path).endswith("601628/live-release-receipt.json"):
+                        data=copy.deepcopy(data)
+                        poison(data)
+                    return data
+                with mock.patch.object(mod,"read_json",side_effect=changed):
+                    actual=mod.validate_release(ROOT,insurer,original,check_bytes=False)
+                self.assertTrue(any(marker in e for e in actual),actual)
+        unlinked=copy.deepcopy(original)
+        unlinked.pop("live_receipt_file",None)
+        errs=mod.validate_release(ROOT,insurer,unlinked,check_bytes=False)
+        self.assertIn("LIVE_CAPTURE_RECEIPT_MISSING 601628",errs)
+
     def test_historical_issuer_explicit_sha_not_checked_is_preserved(self):
         for company_code in ("600900","600276"):
             issuer=next(x for x in self.catalog["issuers"] if x["code"]==company_code)
