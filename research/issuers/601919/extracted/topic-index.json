@@ -1,0 +1,1761 @@
+[
+  {
+    "page": 1,
+    "chars": 176,
+    "terms": {}
+  },
+  {
+    "page": 2,
+    "chars": 884,
+    "terms": {
+      "risk": [
+        "审计",
+        "关联方",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 3,
+    "chars": 1281,
+    "terms": {
+      "risk": [
+        "审阅报告"
+      ]
+    }
+  },
+  {
+    "page": 4,
+    "chars": 1136,
+    "terms": {
+      "shipping": [
+        "标准箱",
+        "TEU"
+      ]
+    }
+  },
+  {
+    "page": 5,
+    "chars": 1344,
+    "terms": {}
+  },
+  {
+    "page": 6,
+    "chars": 2052,
+    "terms": {}
+  },
+  {
+    "page": 7,
+    "chars": 1291,
+    "terms": {
+      "capital": [
+        "资产减值",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 8,
+    "chars": 1197,
+    "terms": {
+      "shipping": [
+        "运价",
+        "运量",
+        "运力",
+        "船舶",
+        "航线",
+        "燃油",
+        "供应链",
+        "集装箱航运"
+      ]
+    }
+  },
+  {
+    "page": 9,
+    "chars": 1216,
+    "terms": {
+      "shipping": [
+        "运力",
+        "航线",
+        "供应链"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ]
+    }
+  },
+  {
+    "page": 10,
+    "chars": 1455,
+    "terms": {
+      "shipping": [
+        "标准箱",
+        "运力",
+        "船舶",
+        "航线",
+        "燃油",
+        "供应链"
+      ],
+      "terminals": [
+        "码头",
+        "泊位"
+      ],
+      "capital": [
+        "分红",
+        "股份回购"
+      ]
+    }
+  },
+  {
+    "page": 11,
+    "chars": 1583,
+    "terms": {
+      "shipping": [
+        "运量",
+        "船舶",
+        "航线",
+        "供应链",
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 12,
+    "chars": 2806,
+    "terms": {
+      "shipping": [
+        "航线",
+        "燃油",
+        "供应链",
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 13,
+    "chars": 2367,
+    "terms": {
+      "shipping": [
+        "标准箱",
+        "运量",
+        "船舶",
+        "航线",
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 14,
+    "chars": 2441,
+    "terms": {
+      "shipping": [
+        "航线"
+      ]
+    }
+  },
+  {
+    "page": 15,
+    "chars": 2061,
+    "terms": {
+      "shipping": [
+        "国际航线单箱收入",
+        "标准箱",
+        "单箱",
+        "航线",
+        "供应链",
+        "集装箱航运"
+      ]
+    }
+  },
+  {
+    "page": 16,
+    "chars": 1730,
+    "terms": {
+      "shipping": [
+        "标准箱",
+        "TEU",
+        "运力",
+        "船舶",
+        "航线",
+        "供应链",
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头",
+        "吞吐量"
+      ]
+    }
+  },
+  {
+    "page": 17,
+    "chars": 1668,
+    "terms": {
+      "shipping": [
+        "TEU",
+        "运力",
+        "航线",
+        "供应链",
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ],
+      "cash": [
+        "经营活动产生的现金流量净额",
+        "投资活动产生的现金流量净额"
+      ]
+    }
+  },
+  {
+    "page": 18,
+    "chars": 1663,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "cash": [
+        "经营活动产生的现金流量净额",
+        "投资活动产生的现金流量净额",
+        "船舶建造"
+      ],
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 19,
+    "chars": 1064,
+    "terms": {
+      "shipping": [
+        "燃油"
+      ],
+      "terminals": [
+        "码头"
+      ],
+      "capital": [
+        "股利"
+      ],
+      "risk": [
+        "受限"
+      ]
+    }
+  },
+  {
+    "page": 20,
+    "chars": 185,
+    "terms": {}
+  },
+  {
+    "page": 21,
+    "chars": 2930,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 22,
+    "chars": 1760,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 23,
+    "chars": 846,
+    "terms": {
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 24,
+    "chars": 895,
+    "terms": {
+      "shipping": [
+        "运力",
+        "航线",
+        "供应链"
+      ],
+      "terminals": [
+        "港口投资"
+      ],
+      "risk": [
+        "受限",
+        "限制"
+      ]
+    }
+  },
+  {
+    "page": 25,
+    "chars": 592,
+    "terms": {}
+  },
+  {
+    "page": 26,
+    "chars": 1573,
+    "terms": {}
+  },
+  {
+    "page": 27,
+    "chars": 2279,
+    "terms": {
+      "risk": [
+        "审计"
+      ]
+    }
+  },
+  {
+    "page": 28,
+    "chars": 1346,
+    "terms": {}
+  },
+  {
+    "page": 29,
+    "chars": 437,
+    "terms": {}
+  },
+  {
+    "page": 30,
+    "chars": 2002,
+    "terms": {
+      "risk": [
+        "关联方",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 31,
+    "chars": 2342,
+    "terms": {
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 32,
+    "chars": 2380,
+    "terms": {
+      "terminals": [
+        "码头"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 33,
+    "chars": 2181,
+    "terms": {
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 34,
+    "chars": 2434,
+    "terms": {
+      "shipping": [
+        "集装箱航运"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 35,
+    "chars": 2443,
+    "terms": {
+      "shipping": [
+        "船舶",
+        "集装箱航运"
+      ],
+      "risk": [
+        "限制",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 36,
+    "chars": 2759,
+    "terms": {
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 37,
+    "chars": 1028,
+    "terms": {
+      "risk": [
+        "审计",
+        "关联方",
+        "诉讼",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 38,
+    "chars": 1265,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ]
+    }
+  },
+  {
+    "page": 39,
+    "chars": 1813,
+    "terms": {
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 40,
+    "chars": 1351,
+    "terms": {
+      "terminals": [
+        "码头"
+      ],
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 41,
+    "chars": 1225,
+    "terms": {
+      "shipping": [
+        "TEU"
+      ],
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 42,
+    "chars": 1482,
+    "terms": {
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 43,
+    "chars": 3428,
+    "terms": {
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 44,
+    "chars": 525,
+    "terms": {
+      "shipping": [
+        "TEU",
+        "船舶"
+      ]
+    }
+  },
+  {
+    "page": 45,
+    "chars": 1837,
+    "terms": {}
+  },
+  {
+    "page": 46,
+    "chars": 3112,
+    "terms": {}
+  },
+  {
+    "page": 47,
+    "chars": 2525,
+    "terms": {}
+  },
+  {
+    "page": 48,
+    "chars": 1814,
+    "terms": {}
+  },
+  {
+    "page": 49,
+    "chars": 277,
+    "terms": {}
+  },
+  {
+    "page": 50,
+    "chars": 176,
+    "terms": {}
+  },
+  {
+    "page": 51,
+    "chars": 1923,
+    "terms": {
+      "statements": [
+        "合并资产负债表"
+      ],
+      "capital": [
+        "股利"
+      ],
+      "risk": [
+        "审计"
+      ]
+    }
+  },
+  {
+    "page": 52,
+    "chars": 2093,
+    "terms": {
+      "capital": [
+        "使用权资产",
+        "租赁负债",
+        "股利",
+        "合同负债"
+      ]
+    }
+  },
+  {
+    "page": 53,
+    "chars": 1890,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 54,
+    "chars": 1430,
+    "terms": {
+      "capital": [
+        "使用权资产",
+        "股利",
+        "合同负债"
+      ]
+    }
+  },
+  {
+    "page": 55,
+    "chars": 1786,
+    "terms": {
+      "statements": [
+        "合并利润表"
+      ],
+      "capital": [
+        "租赁负债"
+      ]
+    }
+  },
+  {
+    "page": 56,
+    "chars": 2260,
+    "terms": {
+      "capital": [
+        "资产减值",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 57,
+    "chars": 2094,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 58,
+    "chars": 1903,
+    "terms": {
+      "capital": [
+        "资产减值",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 59,
+    "chars": 1763,
+    "terms": {
+      "statements": [
+        "合并现金流量表"
+      ],
+      "cash": [
+        "经营活动产生的现金流量净额"
+      ]
+    }
+  },
+  {
+    "page": 60,
+    "chars": 2531,
+    "terms": {
+      "cash": [
+        "现金及现金等价物",
+        "投资活动产生的现金流量净额",
+        "购建固定资产"
+      ],
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 61,
+    "chars": 1708,
+    "terms": {
+      "cash": [
+        "经营活动产生的现金流量净额",
+        "现金及现金等价物",
+        "投资活动产生的现金流量净额",
+        "购建固定资产"
+      ],
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 62,
+    "chars": 4966,
+    "terms": {}
+  },
+  {
+    "page": 63,
+    "chars": 4771,
+    "terms": {}
+  },
+  {
+    "page": 64,
+    "chars": 2803,
+    "terms": {}
+  },
+  {
+    "page": 65,
+    "chars": 2981,
+    "terms": {}
+  },
+  {
+    "page": 66,
+    "chars": 1114,
+    "terms": {
+      "shipping": [
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ]
+    }
+  },
+  {
+    "page": 67,
+    "chars": 1735,
+    "terms": {
+      "capital": [
+        "合同负债"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 68,
+    "chars": 1318,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ],
+      "risk": [
+        "或有事项"
+      ]
+    }
+  },
+  {
+    "page": 69,
+    "chars": 1273,
+    "terms": {
+      "cash": [
+        "现金及现金等价物"
+      ],
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 70,
+    "chars": 1324,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 71,
+    "chars": 1341,
+    "terms": {
+      "capital": [
+        "股利",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 72,
+    "chars": 1296,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 73,
+    "chars": 1371,
+    "terms": {
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 74,
+    "chars": 1459,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 75,
+    "chars": 1325,
+    "terms": {
+      "capital": [
+        "股利",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 76,
+    "chars": 747,
+    "terms": {}
+  },
+  {
+    "page": 77,
+    "chars": 971,
+    "terms": {}
+  },
+  {
+    "page": 78,
+    "chars": 1350,
+    "terms": {
+      "capital": [
+        "股利",
+        "资产减值",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 79,
+    "chars": 1152,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 80,
+    "chars": 1406,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ]
+    }
+  },
+  {
+    "page": 81,
+    "chars": 1095,
+    "terms": {
+      "capital": [
+        "使用权资产",
+        "资产减值",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 82,
+    "chars": 1173,
+    "terms": {
+      "capital": [
+        "合同负债",
+        "资产减值",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 83,
+    "chars": 1255,
+    "terms": {
+      "risk": [
+        "或有事项"
+      ]
+    }
+  },
+  {
+    "page": 84,
+    "chars": 1151,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 85,
+    "chars": 1453,
+    "terms": {
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 86,
+    "chars": 1013,
+    "terms": {
+      "shipping": [
+        "船舶",
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头",
+        "装卸",
+        "泊位"
+      ]
+    }
+  },
+  {
+    "page": 87,
+    "chars": 1261,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 88,
+    "chars": 1392,
+    "terms": {}
+  },
+  {
+    "page": 89,
+    "chars": 1361,
+    "terms": {
+      "capital": [
+        "使用权资产",
+        "租赁负债",
+        "融资租赁"
+      ]
+    }
+  },
+  {
+    "page": 90,
+    "chars": 1074,
+    "terms": {
+      "statements": [
+        "分部信息"
+      ],
+      "shipping": [
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ],
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 91,
+    "chars": 1247,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 92,
+    "chars": 943,
+    "terms": {}
+  },
+  {
+    "page": 93,
+    "chars": 817,
+    "terms": {}
+  },
+  {
+    "page": 94,
+    "chars": 1463,
+    "terms": {
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 95,
+    "chars": 1565,
+    "terms": {}
+  },
+  {
+    "page": 96,
+    "chars": 1083,
+    "terms": {}
+  },
+  {
+    "page": 97,
+    "chars": 838,
+    "terms": {}
+  },
+  {
+    "page": 98,
+    "chars": 992,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 99,
+    "chars": 725,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 100,
+    "chars": 1057,
+    "terms": {
+      "terminals": [
+        "码头"
+      ],
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 101,
+    "chars": 1823,
+    "terms": {
+      "shipping": [
+        "船舶",
+        "燃油"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ],
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 102,
+    "chars": 1008,
+    "terms": {}
+  },
+  {
+    "page": 103,
+    "chars": 1294,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ]
+    }
+  },
+  {
+    "page": 104,
+    "chars": 1903,
+    "terms": {}
+  },
+  {
+    "page": 105,
+    "chars": 1119,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 106,
+    "chars": 1042,
+    "terms": {}
+  },
+  {
+    "page": 107,
+    "chars": 1157,
+    "terms": {}
+  },
+  {
+    "page": 108,
+    "chars": 796,
+    "terms": {}
+  },
+  {
+    "page": 109,
+    "chars": 1320,
+    "terms": {}
+  },
+  {
+    "page": 110,
+    "chars": 474,
+    "terms": {}
+  },
+  {
+    "page": 111,
+    "chars": 941,
+    "terms": {}
+  },
+  {
+    "page": 112,
+    "chars": 256,
+    "terms": {}
+  },
+  {
+    "page": 113,
+    "chars": 6643,
+    "terms": {
+      "shipping": [
+        "供应链"
+      ],
+      "terminals": [
+        "码头"
+      ],
+      "capital": [
+        "股利",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 114,
+    "chars": 1767,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 115,
+    "chars": 1986,
+    "terms": {}
+  },
+  {
+    "page": 116,
+    "chars": 877,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 117,
+    "chars": 4705,
+    "terms": {
+      "capital": [
+        "使用权资产"
+      ]
+    }
+  },
+  {
+    "page": 118,
+    "chars": 675,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 119,
+    "chars": 1900,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 120,
+    "chars": 1939,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 121,
+    "chars": 577,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 122,
+    "chars": 299,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 123,
+    "chars": 3648,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "capital": [
+        "使用权资产"
+      ]
+    }
+  },
+  {
+    "page": 124,
+    "chars": 1576,
+    "terms": {
+      "capital": [
+        "使用权资产",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 125,
+    "chars": 1759,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 126,
+    "chars": 1878,
+    "terms": {
+      "shipping": [
+        "供应链"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 127,
+    "chars": 1348,
+    "terms": {
+      "terminals": [
+        "码头"
+      ],
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 128,
+    "chars": 2309,
+    "terms": {
+      "capital": [
+        "使用权资产",
+        "租赁负债"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 129,
+    "chars": 1351,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 130,
+    "chars": 1829,
+    "terms": {
+      "risk": [
+        "受限"
+      ]
+    }
+  },
+  {
+    "page": 131,
+    "chars": 1183,
+    "terms": {}
+  },
+  {
+    "page": 132,
+    "chars": 1375,
+    "terms": {
+      "capital": [
+        "合同负债"
+      ]
+    }
+  },
+  {
+    "page": 133,
+    "chars": 2815,
+    "terms": {}
+  },
+  {
+    "page": 134,
+    "chars": 1692,
+    "terms": {
+      "capital": [
+        "租赁负债",
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 135,
+    "chars": 1133,
+    "terms": {
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 136,
+    "chars": 1523,
+    "terms": {
+      "capital": [
+        "租赁负债"
+      ]
+    }
+  },
+  {
+    "page": 137,
+    "chars": 1222,
+    "terms": {
+      "shipping": [
+        "运量",
+        "船舶"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ],
+      "risk": [
+        "诉讼",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 138,
+    "chars": 1166,
+    "terms": {
+      "capital": [
+        "股份回购"
+      ]
+    }
+  },
+  {
+    "page": 139,
+    "chars": 1246,
+    "terms": {
+      "capital": [
+        "股份回购"
+      ]
+    }
+  },
+  {
+    "page": 140,
+    "chars": 2204,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 141,
+    "chars": 1756,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 142,
+    "chars": 1797,
+    "terms": {
+      "shipping": [
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 143,
+    "chars": 2391,
+    "terms": {}
+  },
+  {
+    "page": 144,
+    "chars": 2000,
+    "terms": {
+      "capital": [
+        "股利",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 145,
+    "chars": 2044,
+    "terms": {
+      "capital": [
+        "资产减值"
+      ]
+    }
+  },
+  {
+    "page": 146,
+    "chars": 1860,
+    "terms": {}
+  },
+  {
+    "page": 147,
+    "chars": 1761,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "capital": [
+        "租赁负债"
+      ]
+    }
+  },
+  {
+    "page": 148,
+    "chars": 2065,
+    "terms": {
+      "statements": [
+        "现金流量表补充资料"
+      ],
+      "cash": [
+        "经营活动产生的现金流量净额",
+        "净利润调节为经营活动现金流量",
+        "现金及现金等价物"
+      ],
+      "capital": [
+        "使用权资产",
+        "资产减值",
+        "公允价值"
+      ],
+      "risk": [
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 149,
+    "chars": 1391,
+    "terms": {
+      "cash": [
+        "现金及现金等价物"
+      ],
+      "risk": [
+        "受限"
+      ]
+    }
+  },
+  {
+    "page": 150,
+    "chars": 2175,
+    "terms": {
+      "capital": [
+        "租赁负债"
+      ]
+    }
+  },
+  {
+    "page": 151,
+    "chars": 1154,
+    "terms": {
+      "capital": [
+        "融资租赁"
+      ]
+    }
+  },
+  {
+    "page": 152,
+    "chars": 1139,
+    "terms": {
+      "shipping": [
+        "供应链"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 153,
+    "chars": 954,
+    "terms": {
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 154,
+    "chars": 2140,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 155,
+    "chars": 1170,
+    "terms": {
+      "capital": [
+        "股利"
+      ],
+      "risk": [
+        "限制"
+      ]
+    }
+  },
+  {
+    "page": 156,
+    "chars": 1192,
+    "terms": {
+      "risk": [
+        "限制",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 157,
+    "chars": 937,
+    "terms": {
+      "capital": [
+        "租赁负债",
+        "公允价值"
+      ],
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 158,
+    "chars": 811,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 159,
+    "chars": 1202,
+    "terms": {
+      "capital": [
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 160,
+    "chars": 924,
+    "terms": {
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 161,
+    "chars": 1503,
+    "terms": {
+      "shipping": [
+        "船舶",
+        "燃油"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ],
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 162,
+    "chars": 1605,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "terminals": [
+        "码头",
+        "装卸"
+      ],
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 163,
+    "chars": 833,
+    "terms": {
+      "shipping": [
+        "TEU"
+      ]
+    }
+  },
+  {
+    "page": 164,
+    "chars": 1133,
+    "terms": {
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 165,
+    "chars": 1972,
+    "terms": {
+      "capital": [
+        "合同负债"
+      ],
+      "risk": [
+        "关联方"
+      ]
+    }
+  },
+  {
+    "page": 166,
+    "chars": 989,
+    "terms": {
+      "risk": [
+        "关联方",
+        "承诺"
+      ]
+    }
+  },
+  {
+    "page": 167,
+    "chars": 1146,
+    "terms": {
+      "shipping": [
+        "船舶"
+      ],
+      "terminals": [
+        "码头"
+      ],
+      "cash": [
+        "船舶建造"
+      ],
+      "risk": [
+        "承诺",
+        "或有事项"
+      ]
+    }
+  },
+  {
+    "page": 168,
+    "chars": 657,
+    "terms": {
+      "risk": [
+        "重述",
+        "追溯",
+        "或有事项",
+        "资产负债表日后事项"
+      ]
+    }
+  },
+  {
+    "page": 169,
+    "chars": 1071,
+    "terms": {
+      "statements": [
+        "分部信息"
+      ],
+      "shipping": [
+        "集装箱航运"
+      ],
+      "terminals": [
+        "码头"
+      ]
+    }
+  },
+  {
+    "page": 170,
+    "chars": 757,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 171,
+    "chars": 938,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 172,
+    "chars": 656,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 173,
+    "chars": 894,
+    "terms": {}
+  },
+  {
+    "page": 174,
+    "chars": 1894,
+    "terms": {}
+  },
+  {
+    "page": 175,
+    "chars": 2312,
+    "terms": {
+      "capital": [
+        "股利"
+      ]
+    }
+  },
+  {
+    "page": 176,
+    "chars": 1167,
+    "terms": {
+      "capital": [
+        "股利",
+        "公允价值"
+      ]
+    }
+  },
+  {
+    "page": 177,
+    "chars": 1426,
+    "terms": {
+      "risk": [
+        "审计"
+      ]
+    }
+  },
+  {
+    "page": 178,
+    "chars": 218,
+    "terms": {}
+  }
+]
