@@ -110,10 +110,10 @@ def main():
             assert q.locator("rect.money-source").count()==len(d["segments"])
             assert q.locator("rect.money-sink").count()==2
             assert q.locator("path.money-ribbon").count()==2*len(d["segments"])
-            assert page.locator("#chart-pnl svg").count()==1
-            assert page.locator("#chart-cfo svg").count()==1
-            assert page.locator("#chart-cash svg").count()==1
-            assert page.locator("#chart-balance svg").count()==1
+            assert page.locator("#chart-pnl > svg").count()==1
+            assert page.locator("#chart-cfo > svg").count()==1
+            assert page.locator("#chart-cash > svg").count()==1
+            assert page.locator("#chart-balance > svg").count()==1
             # Exact source rect and original SVG path geometry in absolute
             # viewBox units; metadata alone is not proof.
             geom=page.evaluate("""() => {
@@ -149,7 +149,7 @@ def main():
                 dimensions=page.evaluate("""() => [...document.querySelectorAll('.plot')].map(x=>({
                   id:x.id,visible:x.clientWidth,scroll:x.scrollWidth}))""")
                 assert all(x["scroll"]<=x["visible"]+2 for x in dimensions),("DESKTOP_INNER_CLIP",dimensions)
-                boxes=page.evaluate("""() => [...document.querySelectorAll('figure svg')].map(x=>({
+                boxes=page.evaluate("""() => [...document.querySelectorAll('figure .plot > svg')].map(x=>({
                   w:x.viewBox.baseVal.width,
                   min:Math.min(...Array.from(x.querySelectorAll('text')).map(t=>t.getBBox().x)),
                   max:Math.max(...Array.from(x.querySelectorAll('text')).map(t=>t.getBBox().x+t.getBBox().width))
