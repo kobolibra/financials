@@ -1,6 +1,21 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-## 2026-11-04 · CURRENT MAIN LIVE truth after original three optical + 688220 VIS-048 source-mobile candidate
+## 2026-11-05 · ACTIVE MAIN: 688220 真正完成独立网站新版发布与逐字节中文三屏核验
+
+**已核对的真实 GitHub main / Cloudflare（不是候选绿灯）**：原研究报告十一家公司统一研究库、每家独立离线 HTML。不另建任何入口，也不更改另十家既有公司 HTML。最新版 688220 研究图像直接以原始元账本生成九幅手机原生研究图；保留原 Desktop 全部原财务 SVG、SVG 导出、附注和逐行人民币元证据表。PR #29 发布正式研究 HTML `dfce7f700997b501cccd230f38925695e39a6e71`；后续 PR #30、#31 只更新真实 Cloudflare 验收程序和严格收据格式，不重写 `public/688220.html`。上一次实际生产核验工作提交 `e63ee316db22d8d079be6a80cd3cd9f08fd1d98e`，最新文档提交以实际新 main 为准。
+
+**真实公开网页来源回放**：[Action #41871662195](https://github.com/kobolibra/financials/actions/runs/41871662195) PASS：`https://financials-in-visuals.pages.dev/688220` 实际最终公司 URL，返回 `https://financials-in-visuals.pages.dev/#companies`，真实 11 个公司路由；公司整字节 HTML SHA `aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973` 与 main 源一致，首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。真实 Noto 中文 Chromium **1440、768、390** 各捕获首页与 688220 独立公司全页，合计六张真实截图带 SHA/实际字节，长期签名 `research/issuers/688220/live-release-receipt.json`；对应财务与可视化发布门 `research/issuers/688220/release-gates.json`。本地原始源 hostile 8 反例、29 项会计核验、21 张逐图候选实截图、9 张 source/CFO/BS 专业源驱动图、实际渲染源/目标金额权重和带符号累计等比例/中文BBox及 HTML 重建见 [Action #41869385326](https://github.com/kobolibra/financials/actions/runs/41869385326) PASS。
+
+**原始会计来源严格边界**：`research/issuers/688220/source/688220_2026H1_20260829_original.pdf` 镜像 224物理页，SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`；原 p178 四个互斥商品合同组的每笔收入→该组原披露成本+推导毛利，零毛利为零路径，实际比例宽度不膨胀；利润表负数、完整17项间接CFO（原表保留）、现金等价物、资产负债时点对照分别有合法不同图形。**不可消掉的原始报告附注异常仍是 FAIL**：p137 前五名应收+合同资产占比报告90.50%，本研究从p135/p138原金额推导约89.17%，分母未解释；p179 未来履约收入分期合计差 RMB 0.01。上交所官方 PDF 与当前存档镜像的逐字节同一性、所有重大附注穷尽审读、外部历史同行与估值、独立第二名人类研究员或艺术总监签字都仍 **NOT_CHECKED**。工程 PASS 不等于 AEI 品牌背书。
+
+**明确尚未修复的生产站点手机390图内裁切**：四家 `600036` 招商银行、`688111` 金山办公、`600519` 贵州茅台、`000333` 美的集团 **FAIL**。历史旧源10个FAIL的统计是历史源冻结快照；现已真实修复源图的七家包括 300394、300502、300308、600900、600276、601628、688220，不可将旧截图当成最新站点当前全部失败。下一轮根据每家实际原始 PDF 源字节和财务口径选择独立图形，别将银行保费/利息、软件订阅、白酒渠道与电子制造机械套用一个工业CFO公式。600036 现存源建设位于 `research/cases/600036/`，其原247页档案在用户 Library 而非仓库；其他三家源输入在 `research/rebuild-v10/input-ledgers/`，须真实复核而非猜数。
+
+**零记忆复现顺序**：当次查询 main HEAD → 完整 START_HERE / project-status / PROJECT_STATE / AGENTS / 报告发布/交接清单 / Skill 与五册全文 → `site/research_catalog.json` → 原发行人 SHA 与物理页 → `python research/issuers/688220/verify_pages.py`, `python research/issuers/688220/test_accounting.py`, `python -m unittest research/issuers/688220/test_native_mobile.py -v`, `python research/issuers/688220/publish.py --out public/688220.html`, `python research/issuers/688220/qa_browser.py --html public/688220.html`, `python scripts/check_release_contract.py`, `python scripts/check_visual_editorial_policy.py`, `python scripts/check_handoff.py` → 主站 `python scripts/verify_live_688220_native.py` 真实外部三屏及全部公司路径。所有 PASS/FAIL/NOT_CHECKED 分门记录，不能把其他发行人或旧网页自动升级。
+
+---
+
+
+## HISTORY ONLY · 2026-11-04 snapshot before 688220 actual release (not current)
 
 Real main rechecked: d4ceb34caad00e9adc5088690b6a5b08b475a86b. [Actual production full-byte optical CJK run #41855709571](https://github.com/kobolibra/financials/actions/runs/41855709571) **PASS** all THREE 300394 / 300502 / 300308 standalone real Cloudflare HTML articles, 1440/768/390, 12 published original Chromium screenshots, all 11 issuer routes and return-to-home. Exact complete HTML SHA: 300394 40024eeffb333986549eff6eebb1a532028b4e9cb3354efb2e30676d0687785b; 300502 ccd5a81af61db6924d30cb77c5544df2a8f7e60f00cf148e0ebed8d8ce874367; **300308 now REAL LIVE** dc7231532a39e6d1c4994f26a8c63fce6d6cc49f4a3e0abb926eed45bc721f2e. Home full HTML SHA f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41. The older section BELOW saying 300308 production pending was historical BEFORE main release, so must not be considered current.
 

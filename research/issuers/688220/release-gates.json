@@ -6,7 +6,7 @@
   "release_class": "source_limited_preview",
   "report_route": "/688220.html",
   "report_file": "public/688220.html",
-  "status_label": "研究预览：来源限制与未结附注差异",
+  "status_label": "来源受限研究预览：线上财务图发布已验证，原报告重大附注差异仍未结",
   "source_pdf": {
     "path": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
     "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
@@ -48,13 +48,13 @@
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41659486482",
-      "scope": "assistant reviewed actual 1440/768/390 screenshots; no independent art editor"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41871662195",
+      "scope": "Actual 6 public Chromium images/21 candidate screenshots manually inspected for source geometry/readability; no independent second visual editor and no AEI excellence certification."
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41660215226",
-      "scope": "9 figures, tables, 1440/768/390 and SVG export"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41869385326",
+      "scope": "Real Noto CJK Playwright 1440/768/390, nine original source-driven semiconductor phone graphs and retained desktop SVG, 21 source screenshots."
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
@@ -87,9 +87,9 @@
       "scope": "no second professional reviewer has signed"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "FAIL",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41660682930",
-      "scope": "Cloudflare still served old source-node SVG in strict live attempt 1 and 2; do not claim current production"
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41871662195",
+      "scope": "True complete public independent HTML SHA equals main; all 11 external routes; source-weighted nine source finance panels, signed 390 cash, six genuine CJK 1440/768/390 public screenshots; current release 2026-11-05. Not independent human review or SSE official byte equivalence."
     }
   },
   "blockers": [
@@ -102,15 +102,16 @@
       "kind": "SOURCE_NOTE",
       "page": 179,
       "issue": "RPO disclosed partitions differ by RMB 0.01"
-    },
-    {
-      "kind": "RELEASE",
-      "page": null,
-      "issue": "current Cloudflare production still missing source geometry as of live attempt 2"
     }
   ],
   "ledger_file": "research/issuers/688220/source-ledger.json",
   "figure_briefs_file": "research/issuers/688220/figure-briefs.json",
   "sector_adapter": "semiconductor",
-  "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment"
+  "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment",
+  "published_html_sha256": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
+  "live_release_fingerprint": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
+  "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "actual_main_release_commit": "e63ee316db22d8d079be6a80cd3cd9f08fd1d98e",
+  "live_site_origin": "https://financials-in-visuals.pages.dev",
+  "live_receipt_file": "research/issuers/688220/live-release-receipt.json"
 }

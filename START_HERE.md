@@ -1,19 +1,13 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
-**零记忆启动机器真值：** `project-status.json` 与 `site/research_catalog.json`，每次重新核对真实 `main` HEAD 和实时 GitHub Actions；以下历史段落不覆盖上述机器真值。
 
-**截至实际 main d4ceb34c 的真实上线收据（优先于以下历史段落）：** 三家初始光通信 300394、300502、300308 全部在唯一 11 公司研究目录正式发布，经过真实 GitHub main [Cloudflare 1440/768/390 完整HTML/SHA与导航 Action #41855709571](https://github.com/kobolibra/financials/actions/runs/41855709571) **PASS**，而非“300308 待合并”。完整文章 SHA 300394=40024eeffb333986549eff6eebb1a532028b4e9cb3354efb2e30676d0687785b，300502=ccd5a81af61db6924d30cb77c5544df2a8f7e60f00cf148e0ebed8d8ce874367，300308=dc7231532a39e6d1c4994f26a8c63fce6d6cc49f4a3e0abb926eed45bc721f2e；统一首页 SHA=f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41。只在相同 SHA/源提交下可继承当次通过结论。其他五家（600036、688111、600519、000333、688220）390 重要图内滚动仍为 FAIL。独立人类第二财务/视觉审稿、完整材料重大附注与8–12季外部估值仍 NOT_CHECKED。
+**2026-11-05 · 已公开核验的最新生产状态（后面日期较早的章节只作历史快照）**：现行 11 家公司仍在同一个 [Financials in Visuals](https://financials-in-visuals.pages.dev/) 公司目录，独立离线 HTML，`site/research_catalog.json` 为唯一公司清单。必须在每个新会话读取**当时真实 GitHub main**、`project-status.json`、当前 GitHub Actions、完整 Skill 和五册研究手册，不得凭本段硬编码未来公司数或把旧版本的“待上线”当真。
 
-**新候选 VIS-048（不要当作已上线）：** 688220 翱捷科技正在源改造真实原版 224 页 2026H1 财报和九幅财务图的独立手机原生语法，源文件 research/issuers/688220/native_mobile.py 和现行 publish.py，仍使用同一个 /688220.html 页面，保留原桌面9幅SVG/精确账本/来源。四类互斥业务收入→自身成本/毛利的人民币元真几何桑基、带符号利润/现金、两期资产存量是不同图形。完整 CJK 1440/768/390 CI 及新公共源HTML SHA 尚需真实完成，不能把源脚本PASS当出版PASS。原 p137 前五名应收+合同资产占比90.50%与同口径重算约89.17%边界未解决，保持FAIL_BOUNDED，不猜分母。Skill 候选 v8.7.5-RC1、VIS-048、长期交接详见 PROJECT_STATE.md；以每个新会话实际 main 为最高优先级。
+**最新真实 Cloudflare 688220 已 PASS**：[翱捷科技正式研究报告](https://financials-in-visuals.pages.dev/688220)，[完整 HTML / 六张真实中文浏览器截图 / 唯一11家目录真实路径验证 Action #41871662195](https://github.com/kobolibra/financials/actions/runs/41871662195)。真实生产提交 `e63ee316db22d8d079be6a80cd3cd9f08fd1d98e`，源报告 224 物理页镜像 SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`，公司完整公开 HTML SHA `aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973`，首页完整 HTML SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。九幅按原始元金额绘制的独立手机财务图，1440 / 768 / 390 真浏览器审核、原财务来源路径与原会计有符号桥已发布；保留桌面原 SVG、全部原元级证据表和编辑导出。截图、真实最终网址与源 SHA 详见 `research/issuers/688220/live-release-receipt.json`，校验门见同目录 `release-gates.json`。Skill 当前 v8.7.5-RC1（VIS-048）。原 p137 前五名应收/合同资产报告 90.50% 对比推导约 89.17% 的分母差异、RPO 0.01 元差额仍 **FAIL（附注有界）**；上交所官网 PDF 与镜像逐字节同一性及独立第二名人类财务/视觉审稿仍 **NOT_CHECKED**，不得对外称全优顶级完成。
+
+**最初三家光通信同样真实上线**：300394、300502、300308 三份源金额财务图与真实公开 1440/768/390 的 HTML SHA 及导航见 [主站 Action #41855709571](https://github.com/kobolibra/financials/actions/runs/41855709571) PASS。当前仍明确 **FAIL 390 图内裁切的四家旧 HTML** 为 `600036`、`688111`、`600519`、`000333`，必须逐个按原报告和真实图源复核并重建，不可凭其他行业的通过结论替它们签字。AEI/FT 水准的独立专业审美审阅仍没有第二人类编辑签字。
 
 ---
-
-**2026-11-04 新事实 / 真实工程交接（始终以新 main HEAD 为准）：** 初始三家光通信的 300394、300502 已由主站真实 Cloudflare 完整 HTML 字节和 1440/768/390 验证通过，原网站 Action [#41849552022](https://github.com/kobolibra/financials/actions/runs/41849552022) PASS；旧重建检查器同步修正 PR #27 / main [#41850299881](https://github.com/kobolibra/financials/actions/runs/41850299881) PASS。第三家 300308 的完整184物理页、2,984,970字节原报告已以 SHA `e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf` 双源下载验证并存至 `research/issuers/300308/original-2026h1.pdf`；原始物理页63项原金额、15项间接CFO通过 [#41851449349](https://github.com/kobolibra/financials/actions/runs/41851449349)，修正两项旧页码，保留p139两列重复“其他”收入相差1元疑点。第三家已独立重建原生390图并添加利润147.33亿元/CFO18.00亿元真实同尺度重点可视化，[候选CJK Actions #41854062950](https://github.com/kobolibra/financials/actions/runs/41854062950) PASS；**候选分支 `work/optical-300308-original-pdf-source-mobile-20261104`，云端新文章整字节与实际 main 发布必须独立确认，不得从本地PASS推断已上线。** Skill `8.7.4-rc1` 候选新增 FIN-047。发行人独立人类财务/视觉审阅与其他五家旧390财务图均未完成，来源核验 PASS 不等于顶级视觉总验收。
-
-
-> **当前有效规则：唯一公司研究库，以实际 GitHub `main` 的 `project-status.json` + `site/research_catalog.json` 为真值。不得把上次聊天、固定公司数量或旧 v9 首页当当前状态。** 生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
-
-**2026-11-04 最新候选（不得混作线上）：** PR [#26](https://github.com/kobolibra/financials/pull/26) 已直接改造早期两家 `300394/300502` 的原源账本金额加权手机图和有符号财务桥，在真实中文 1440/768/390 与源码到完整离线HTML重建阶段已有 PASS（[Action #41812941302](https://github.com/kobolibra/financials/actions/runs/41812941302)），但原正式 Cloudflare 新图全HTML字节、线上三屏与第二名人类视觉/研究审稿仍 `NOT_CHECKED`。目前真实 main 既有旧公司 390 财务图 FAIL 不能由工作分支的候选截图自动消除；此次 Skill 方法增加 VIS-046、候选 v8.7.3-rc1，必须以新的当前 main 检查为准。300308 完整184p原PDF在当前研究会话已核验SHA，但原仓库 ledger 还存在旧 `NOT_VERIFIED_REMOTE_PDF` 且备忘录仍待审，不可凭中际相关原网页就称新版已合格。**
 
 ## 0. 新对话 / 新 Agent 必读
 

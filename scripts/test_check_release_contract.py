@@ -202,10 +202,12 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertEqual(mod.validate_release(ROOT, self.issuer, self.original), [])
         self.assertEqual(mod.validate_registry(ROOT), [])
 
-    def test_current_live_failure_is_not_hidden_by_local_passes(self):
-        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["status"], "FAIL")
+    def test_current_actual_public_live_pass_does_not_erase_note_failure_or_invent_human_review(self):
+        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["status"], "PASS")
+        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["proof"], "https://github.com/kobolibra/financials/actions/runs/41871662195")
         self.assertEqual(self.original["gates"]["INDEPENDENT_HUMAN_REVIEW"]["status"], "NOT_CHECKED")
         self.assertEqual(self.original["gates"]["REPORTED_NOTE_TIES"]["status"], "FAIL")
+        self.assertEqual(self.original["gates"]["OFFICIAL_PDF_BYTE_EQUIVALENCE"]["status"], "NOT_CHECKED")
 
     def test_pdf_corruption_and_source_version_fail_closed(self):
         errors = self.poisoned(
@@ -221,9 +223,16 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertTrue(any("AMBIGUOUS_GATE_SCOPE" in x for x in errors))
 
     def test_forged_pass_without_evidence_rejected(self):
-        errors = self.poisoned(lambda x: x["gates"]["CLOUDFLARE_LIVE"].update(status="PASS",proof=None))
-        self.assertTrue(any("UNSUPPORTED_GATE" in x for x in errors))
-        self.assertTrue(any("LIVE_PASS_WITHOUT_DEPLOYED_FINGERPRINT" in x for x in errors))
+        def poison(x):
+            x["gates"]["CLOUDFLARE_LIVE"].update(status="PASS",proof=None)
+            x.pop("live_release_fingerprint",None)
+        errors = self.poisoned(poison)
+        self.assertTrue(any("UNSUPPORTED_GATE" in x for x in errors),errors)
+        self.assertTrue(any("LIVE_PASS_WITHOUT_DEPLOYED_FINGERPRINT" in x for x in errors),errors)
+
+    def test_real_688220_live_receipt_cannot_change_source_main_commit(self):
+        errors=self.poisoned(lambda x: x.update(actual_main_release_commit="0"*40))
+        self.assertTrue(any("LIVE_CAPTURE_MAIN_SHA_MISMATCH" in x for x in errors),errors)
 
     def test_signed_sankey_decision_must_be_source_grounded(self):
         errors = self.poisoned(lambda x: x["sankey"].update(
