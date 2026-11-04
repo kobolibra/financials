@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+"""Actually browse the deployed Cloudflare 11th-company article, not GitHub artifacts.
+
+Performs content SHA comparison with checked-out main. A Pages provider 'success'
+or prior issuer cloudflare screenshot is not an actual new issuer live PASS.
+"""
+import hashlib,json,re,time
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+ROOT=Path(__file__).resolve().parents[3]
+SITE="https://financials-in-visuals.pages.dev"
+HERE=ROOT/"research/issuers/601628"
+OUT=HERE/"live-qa"
+OUT.mkdir(parents=True,exist_ok=True)
+CODE="601628"
+local_html=(ROOT/"public/601628.html").read_bytes()
+local_home=(ROOT/"public/index.html").read_bytes()
+expected_sha=hashlib.sha256(local_html).hexdigest()
+expected_home=hashlib.sha256(local_home).hexdigest()
+catalog=json.loads((ROOT/"site/research_catalog.json").read_text(encoding="utf-8"))
+assert len(catalog["issuers"])==11 and catalog["published_issuer_count"]==11
+report=json.loads((HERE/"source-ledger.json").read_text())
+assert report["source"]["original_bytes_sha256"]=="b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943"
+report_check=[]
+errors=[]
+with sync_playwright() as pw:
+ browser=pw.chromium.launch(headless=True,args=["--no-sandbox"])
+ req=pw.request.new_context(user_agent="Financials-in-Visuals real post-deployment browser publication verification",timeout=25000)
+ # Pages deployments are asynchronous following main. Wait for MAIN bytes, not provider check or 200 old-page.
+ latest={}
+ for n in range(24):
+    try:
+      a=req.get(SITE+"/",timeout=25000)
+      b=req.get(SITE+"/601628.html",timeout=25000)
+      h=a.body() if a.status==200 else b""
+      x=b.body() if b.status==200 else b""
+      latest={"home_status":a.status,"report_status":b.status,"home_sha":hashlib.sha256(h).hexdigest(),"report_sha":hashlib.sha256(x).hexdigest(),"try":n+1}
+      if (latest["home_sha"]==expected_home and latest["report_sha"]==expected_sha and b"601628" in x):
+          break
+    except Exception as e:latest={"attempt":n+1,"error":str(e)[:300]}
+    if n!=23:time.sleep(15)
+ else:
+    (OUT/"result.json").write_text(json.dumps({"status":"FAIL","reason":"CLOUDFLARE_NEW_11TH_PUBLIC_BYTES_MISMATCH","expected_home_sha":expected_home,"expected_601628_sha":expected_sha,"observed":latest},ensure_ascii=False,indent=2))
+    raise AssertionError("CLOUDFLARE_NEW_11TH_PUBLIC_BYTES_MISMATCH "+str(latest))
+ for width,height in [(1440,900),(768,1024),(390,844)]:
+    page=browser.new_page(viewport={"width":width,"height":height},device_scale_factor=1,accept_downloads=True)
+    page.on("pageerror",lambda x:errors.append(str(x)))
+    page.goto(SITE+"/",wait_until="load",timeout=40000)
+    links=page.locator("a.company")
+    assert links.count()==11,("LIVE_DIRECTORY_CARD_COUNT",width,links.count())
+    hrefs=links.evaluate_all("els=>els.map(x=>x.getAttribute('href'))")
+    assert set(hrefs)==set(x["href"] for x in catalog["issuers"]),("LIVE_DIRECTORY_ROUTE_SET",width,hrefs)
+    assert page.locator('a.company[href="/601628.html"]').count()==1
+    assert page.locator('iframe').count()==0
+    info=page.evaluate("() => ({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth})")
+    assert info["scroll"]<=width+1,("LIVE_DIRECTORY_HORIZ_OVERFLOW",width,info)
+    page.screenshot(path=str(OUT/f"live_directory_{width}.png"),full_page=True)
+    page.locator('a.company[href="/601628.html"]').click()
+    page.wait_for_url(re.compile(r"/601628\.html$"),timeout=30000)
+    assert page.locator("figure.figure").count()==10
+    assert page.locator("figure.figure svg").count()==10
+    assert page.locator("figure.figure details.audit").count()==10
+    assert page.locator("figure.figure .money-ribbon").count()==6
+    assert page.locator('#chart-premium [data-value-million="536634"]').count()==1
+    assert "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943" in page.content()
+    assert page.locator('a[href="/#companies"]').count()>=1
+    graph=page.evaluate("() => ({width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,charts:[...document.querySelectorAll('.chart')].map(x=>({w:x.scrollWidth,c:x.clientWidth}))})")
+    assert graph["scroll"]<=width+1,("LIVE_ARTICLE_MOBILE_OVERFLOW",width,graph)
+    if width==1440:assert all(x["w"]<=x["c"]+2 for x in graph["charts"]),("LIVE_DESKTOP_FIGURE_INNER_CLIPPING",graph)
+    page.screenshot(path=str(OUT/f"live_601628_{width}.png"),full_page=True)
+    page.locator('a[href="/#companies"]').first.click()
+    page.wait_for_url(re.compile(r"/#companies$"),timeout=30000)
+    assert page.locator("a.company").count()==11,("LIVE_BACK_NAV_DIRECTORY",width)
+    report_check.append({"width":width,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_svg_figures":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
+    page.close()
+ assert not errors,("LIVE_CHROMIUM_PAGE_ERRORS",errors)
+ # All prior issuer routes: actual GET and matching company code in HTML
+ for card in catalog["issuers"]:
+    q=req.get(SITE+card["href"],timeout=25000)
+    assert q.status==200 and card["code"].encode() in q.body(),("LIVE_PRIOR_ISSUER_MISSING",card["code"],q.status)
+ browser.close();req.dispose()
+results={"status":"PASS","origin":SITE,"branch_head":(ROOT/".git/HEAD").read_text().strip(),"pdf_sha256":report["source"]["original_bytes_sha256"],
+         "actual_full_content_sha256_equals_repository_main_601628":expected_sha,
+         "actual_full_content_sha256_equals_repository_main_index":expected_home,
+         "all_11_issuer_external_routes":"PASS","real_chromium_viewports":report_check,
+         "independent_human_editor":"NOT_CHECKED","external_market_peer_valuation":"NOT_CHECKED"}
+(OUT/"result.json").write_text(json.dumps(results,ensure_ascii=False,indent=2)+"\n")
+print("ACTUAL_CLOUDFLARE_MAIN_ELEVEN_ISSUERS_THREE_REAL_VIEWPORTS_AND_PUBLIC_HTML_SHA_PASS",expected_sha,expected_home,json.dumps(report_check))
