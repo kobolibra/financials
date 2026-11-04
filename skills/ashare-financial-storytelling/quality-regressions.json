@@ -392,6 +392,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CLOUDFLARE_LIVE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "PUB-041",
+      "root_cause": "真实 PR #18 在 main b88698a 发布了包含10个原始元账本手机财务图的独立 601628 HTML；真实 Cloudflare 11 路由、1440/768/390、全 HTML 指纹和六张线上截图 Actions #41778320066 已 PASS，但当前项目状态及发行人 release-gates 仍说新手机版尚是候选、LIVE=NOT_CHECKED。最初的 green Action 仅保存在易过期日志中，没有可持续逐项的JSON公开源码收据；跨会话无法准确分辨已上线与未发布。",
+      "correction": "源代码为已验实际 main 版本建立永久的 live-release-receipt.json：直接由真实 GitHub Actions 浏览器日志的 PRODUCTION_VERIFICATION_RECEIPT_JSON 提取保留实际 public HTML SHA、来源PDF SHA、首页原始 HTML SHA、独立真实公司 URL、返回唯一路由、11家公司覆盖、真实三种 viewport、六张屏幕截图字节与SHA；回写 issuer release-gates 的 CLOUDFLARE_LIVE=PASS、完整原网页SHA及对应 main40字符提交。通用 release validator 对所有有真实正式网页SHA的新发行人 fail-closed 校验收据issuer/commit/报告SHA/原PDF/action/各页三屏/6截图/公司页不等于首页；恶意变异篡改任何字段不得PASS。不能把新版本的原网页SHA套用旧版。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_live_proof_must_not_be_forged_home_report_or_screenshot",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
