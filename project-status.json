@@ -679,7 +679,8 @@
     },
     "current_handoff_fix_branch": "work/handoff-current-issuer-count-intake-20261104",
     "current_handoff_fix_scope": "Replace stale eight-company AGENTS count with manifest/catalog source-of-truth; regression guards hardcoded obsolete count; no issued HTML or financial facts changed",
-    "current_handoff_fix_ci": "NOT_CHECKED_PENDING_BRANCH_PR_TEST",
-    "next_required_source": "User-identified company's complete official PDF bytes or verified download URL and ticker"
+    "current_handoff_fix_ci": "PASS_PR_41763814988_HANDOFF_AND_41763815011_TWO_EXISTING_SECTORS_AT_SOURCE_SHA_797e27f75de1e4b4b4774dc85e1a31832ce84760",
+    "next_required_source": "User-identified company's complete official PDF bytes or verified download URL and ticker",
+    "current_handoff_fix_pr": "https://github.com/kobolibra/financials/pull/13"
   }
 }
