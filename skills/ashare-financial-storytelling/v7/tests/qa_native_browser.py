@@ -36,6 +36,32 @@ with sync_playwright() as p:
                 m=re.match(r"M([0-9.]+),65 C.*?L([0-9.]+),276 C([0-9.]+),200 [0-9.]+,130 ([0-9.]+),65 Z",edge["d"])
                 assert m,(code,"INVALID_RIBBON_PATH",edge["d"])
                 assert abs(float(m.group(4))-float(m.group(1))-edge["yuan"]/rev*302)<1e-6,(code,"FALSE_RIBBON_AREA")
+            signed=page.evaluate("""() => [...document.querySelectorAll('.native-signed-svg')].map(svg=>{
+              const all=[...svg.querySelectorAll('rect.native-signed-money')];
+              const view=svg.viewBox.baseVal;
+              const steps=all.map(el=>({kind:el.dataset.kind,step:+el.dataset.step,
+                amount:+el.dataset.signedYuan,cumulative:+el.dataset.cumulativeYuan,
+                width:+el.getAttribute('width'),fill:el.getAttribute('fill')}));
+              const texts=[...svg.querySelectorAll('text')].map(t=>{
+                const b=t.getBBox();return {x:b.x,y:b.y,right:b.x+b.width,bottom:b.y+b.height};});
+              return {steps,texts,view:[view.width,view.height]};
+            })""")
+            assert len(signed)>=5,(code,width,"MISSING_SIGNED_SOURCE_WATERFALLS")
+            for panel in signed:
+                st=panel["steps"]
+                ratios=[z["width"]/abs(z["amount"]) for z in st if abs(z["amount"])>0]
+                assert ratios and max(ratios)-min(ratios)<=max(ratios)*0.000005,(code,width,"SIGNED_GEOMETRY_VALUE_SCALE_DRIFT")
+                prev=None
+                for z in st:
+                    if z["kind"]=="start":
+                        assert abs(z["cumulative"]-z["amount"])<0.01
+                    elif z["kind"]=="total":
+                        assert abs(z["cumulative"]-prev)<0.01
+                    else:
+                        assert abs(prev+z["amount"]-z["cumulative"])<0.01,(code,width,"SIGNED_CASH_WATERFALL_ACCOUNTING_BROKEN")
+                        assert z["fill"]==("#087e69" if z["amount"]>=0 else "#af745b"),(code,width,"WRONG_FINANCIAL_SIGN_COLOR")
+                    prev=z["cumulative"]
+                assert all(t["x"]>=-2 and t["right"]<=panel["view"][0]+2 and t["y"]>=-2 and t["bottom"]<=panel["view"][1]+2 for t in panel["texts"]),(code,width,"CJK_SVG_TEXT_BBOX_CLIPPED",panel["texts"])
             if width in (768,390):
                 figures=page.evaluate("""() => [...document.querySelectorAll('figure.has-native-finance')].map(f=>{
                   const n=f.querySelector('.native-finance'),old=f.querySelector('.chart-shell'),svg=n.querySelector('svg');
@@ -55,7 +81,7 @@ with sync_playwright() as p:
             if width==390:
                 for chart_idx in (2,5,8):
                     page.locator("figure.exhibit").nth(chart_idx).screenshot(path=str(out/f"{code}_figure{chart_idx+1:02d}_{width}.png"))
-            records.append({"issuer":code,"width":width,"figures":n,"money_area":"PASS","sha256":sha,"screenshot_sha256":hashlib.sha256(img.read_bytes()).hexdigest()})
+            records.append({"issuer":code,"width":width,"figures":n,"money_area":"PASS","signed_accounting_and_svg_geometry":"PASS","native_mobile_finance_no_inner_scroll":"PASS" if width in (390,768) else "NOT_MOBILE","sha256":sha,"screenshot_sha256":hashlib.sha256(img.read_bytes()).hexdigest()})
             page.close()
     browser.close()
 (out/"result.json").write_text(json.dumps({"cases":records,"second_human_review":"NOT_CHECKED"},ensure_ascii=False,indent=2)+"\n")
