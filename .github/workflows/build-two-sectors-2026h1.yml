@@ -77,6 +77,12 @@ jobs:
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
           git add public/600900.html public/600276.html research/issuers/600900/qa.json research/issuers/600276/qa.json
+          # Source-tied real Chromium QA receipts and carefully selected real
+          # 1440/390 figure screenshots for independent editorial review;
+          # keep the full 48 figure screenshot matrix in Actions artifacts.
+          git add research/issuers/600900/visual-qa/result.json research/issuers/600276/visual-qa/result.json
+          git add research/issuers/600900/visual-qa/600900-390-flow.png research/issuers/600900/visual-qa/600900-390-pnl.png research/issuers/600900/visual-qa/600900-1440-flow.png
+          git add research/issuers/600276/visual-qa/600276-390-sector.png research/issuers/600276/visual-qa/600276-390-flow.png research/issuers/600276/visual-qa/600276-390-cfo.png research/issuers/600276/visual-qa/600276-1440-sector.png
           if ! git diff --cached --quiet; then
             git commit -m "Publish source-audited independent utility and pharma research pages"
             git pull --rebase origin "$GITHUB_REF_NAME"
