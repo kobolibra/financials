@@ -57,6 +57,12 @@
 
 **仍不能冒充完成**：完整104页重大保险精算附注的第二名专业分析师独立查核、市场同业与8–12季度估值、SSE第二PDF逐字节同一性、另一名真正人类视觉总监签字 **NOT_CHECKED**。只有一家公司寿险新模型 L1，跨第二寿险L2和全行业L3均未证成。下一次新对话应立刻读取 `main` 真实 HEAD 和最新工作流，按本段精准来源重建，而非猜测历史候选/已经通过；自动检查通过本身不等于独立人类审阅。
 
+## 2026-11-04 · 用户要求恢复初始三家AEI视觉水平并全面反证
+
+每次新会话先读[真实11家33屏视觉退化审计](../research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md)和[十家源 SHA 绑定移动图FAIL](../research/visual-audit/quality-debt.json)。桌面早三家300394/300308/300502真实金额加权多阶段源→合并营收→毛利/成本→经营源图强于后来部分一源两带/普通横条，但手机也不及格；后期行业会计/逐图元级来源表有进步。不能把“旧CI绿色”替代AEI原创视觉审阅。新公司尤其601919航运必须源会计和视觉独立PASS、390无图内小窗口、真正原生完整中文带符号图、重要源印证。不混合TEU/美元/人民币、分部负抵销与正向收入，亦不能把未来建船承诺当本期CAPEX。新通用P0 `scripts/check_visual_editorial_policy.py`＋`scripts/test_visual_editorial_policy.py`。
+
+已修601628首图金额/同比压字（VIS-042）源，真实原财报+本地三屏和确定性重建 [#41784420788](https://github.com/kobolibra/financials/actions/runs/41784420788) PASS；新文章完整SHA `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0` 在新main及真实 Cloudflare 同SHA复核前 **LIVE=NOT_CHECKED**。旧线上 SHA `6f38612a...` 保留旧版本真证据。人类独立视觉总监、第二名财报分析师及完整重大附注复核继续 NOT_CHECKED。第十二家公司601919在独立源分支有真实178页原PDF、42 x/y 单元和46会计检查的通过结果，但其后追加的五航线明细、完整独立研究HTML与发布仍需实跑，绝不提前报PASS。
+
 ## 关于 Skill 的真实可发现性
 
 `AGENTS.md` 和 `.github/copilot-instructions.md` 为支持这些协议的仓库编码助手提供入口，但**不能保证任意 ChatGPT 新聊天自动检索你的私有/公开 GitHub 仓库**。新聊天必须有 GitHub 访问，或收到直接链接/上传的 Skill。不要声称已完成 ChatGPT Skills 目录安装。推荐使用 [新会话启动消息](NEW_SESSION_PROMPT.md)。
