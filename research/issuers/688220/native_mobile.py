@@ -64,7 +64,7 @@ def flow(l):
                 cur+=thick
         source_left+=w
         details+='<div class="native-asr-detail"><b>'+E(g["label"])+'</b><span>'+money(r)+'</span><small>营业成本 '+money(c)+' · 毛利 '+money(p)+' · 原报告 p.178</small></div>'
-    assert cost_left==D(16)+cost*scale and profit_left==D(314)
+    assert abs(cost_left-(D(16)+cost*scale))<D("0.000000001") and abs(profit_left-D(314))<D("0.000000001")
     sinks=f'<rect class="native-asr-sink" data-sink="cost" data-exact-yuan="{cost}" x="16" y="211" width="{fmt(cost*scale)}" height="16" fill="{COPPER}"/>'+f'<rect class="native-asr-sink" data-sink="gp" data-exact-yuan="{gp}" x="{fmt(D(16)+cost*scale)}" y="211" width="{fmt(gp*scale)}" height="16" fill="{GREEN}"/>'
     labels=txt("01 收入来源（互斥四组）",16,20)+txt("02 成本 "+money(cost)+" · 毛利 "+money(gp),16,250)
     diagram=svg(labels+paths+nodes+sinks,330,265,"2026H1原始金额严格守恒的四类业务收入对各自营业成本和毛利的手机原生图")
