@@ -302,6 +302,16 @@
       "scope": "single_issuer",
       "transfer_gate": "ACCOUNTING_CORE",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-032",
+      "root_cause": "生产 Cloudflare HTML 的寿险保费桑基图虽有4来源和6个金额正确的 SVG 流带，但 final total rect() 函数实参位置错，把'money-sink'错当 fill，且 data-value-million 被错放成 class，最终 SVG <rect fill=money-sink class=data-value-million=536634> 没有真实填充与机器可用金额元数据；旧CI只查资金带忽略汇总节点。",
+      "correction": "必须在原始 SVG 生成器以明确 fill 六位HEX、class money-sink、实际整数金额 data-value-million/data-exact-yuan 输出；真实 Chromium 1440/768/390 要逐项查所有 SVG rect 有合法填充/类属性，最终 sink 高度精确268、金额536634百万元、源账本原值，完整源→中间分组→总额守恒。生产逐 HTML 指纹重新匹配，旧发布不能冒称有效。",
+      "proof_file": "research/issuers/601628/qa_browser.py",
+      "assertion_marker": "UNPAINTED_PREMIUM_TOTAL_SINK",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }
