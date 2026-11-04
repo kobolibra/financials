@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "issuer": "601919",
+  "company": "中远海运控股股份有限公司",
+  "short_name": "中远海控",
+  "period": "2026H1",
+  "main_2026h1_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-29/1225531118.PDF",
+  "source_path": "research/issuers/601919/source/601919_2026H1_complete_original.pdf",
+  "filing_date": "2026-08-29",
+  "expected_physical_pages_from_official_cover": 178,
+  "source_evidence": "CNINFO official full H1 report verified PDF cover and sampled physical page rendering 2026-11-04; actual report bytes/physical pages must be independently verified on networked GitHub runner, no SMA summary",
+  "accounting_adaptation": "A+H container shipping and terminal operations under CAS, operating metrics TEU/transport prices, segment revenue including supply chain subset, potential inter-segment eliminations, future newbuild commitments versus H1 paid capex, effective cash flow and leasing assets/liabilities, shipping cyclical sensitivity, CAS vs IFRS disclosed differences",
+  "disclosure_assurance": "Report front states unaudited; original financial review report/independent reviewer must be verified from actual source prior to any claim",
+  "other_official_pdf_sha_byte_equivalence": "NOT_CHECKED"
+}
