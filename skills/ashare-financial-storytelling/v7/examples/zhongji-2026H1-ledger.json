@@ -17,13 +17,13 @@
     "source_filename": "H2_AN202608211828276722_1.pdf",
     "source_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
     "source_url": "https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf",
-    "source_access": "Complete 2,984,970-byte user Library original PDF independently read; SHA256 and 184 physical pages verified; remote downloadable mirror exact-byte SHA and long-term GitHub archive require a separate PASS",
+    "source_access": "Original 184 physical-page PDF, 2,984,970 bytes, SHA256 e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf, independently matched user Library original and public downloadable PDF, GitHub Actions #41851449349, permanently source-archived under research/issuers/300308/original-2026h1.pdf.",
     "report_publication_date": "2026-08-21",
     "original_library_pdf_bytes": 2984970,
     "original_pdf_sha_verified_date": "2026-11-04",
     "original_is_audited": false,
     "source_archive_path": "research/issuers/300308/original-2026h1.pdf",
-    "source_archive_gate": "NOT_CHECKED_BEFORE_REMOTE_EXACT_SHA_GITHUB_ARCHIVE"
+    "source_archive_gate": "PASS_EXACT_BYTES_2984970_SHA_E0ECD7C3_ARCHIVED_GITHUB_ACTION_41851449349"
   },
   "facts": {
     "revenue": {
@@ -967,7 +967,7 @@
     "2026H1 与 2025H1 对比；时点余额仅与2025年年末比较",
     "未获得8–12季度历史、同业和同期股价估值，不制作伪趋势图"
   ],
-  "source_integrity_status": "USER_LIBRARY_COMPLETE_ORIGINAL_PDF_SHA_AND_PHYSICAL_184_PAGES_VERIFIED__REMOTE_MIRROR_SHA_AND_SOURCE_FACT_PAGES_REQUIRE_ACTION_PASS",
+  "source_integrity_status": "SOURCE_BYTES_SHA_184PHYSICAL_PAGES_PASS_63_FACTS_15_INDIRECT_CFO_EXACT__P139_PRINTED_DISCREPANCY_DISCLOSED__SECOND_HUMAN_NOT_CHECKED",
   "verified_source_anomalies": [
     {
       "id": "300308-2026H1-P139-REPEATED_BUSINESS_TYPE_OTHER-1YUAN",
