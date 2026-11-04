@@ -1,4 +1,5 @@
 name: Rebuild canonical single issuer research library for new company
+# Rebuild canonical page after new official EY limited-review and core solvency source card text.
 on:
   push:
     branches: [work/insurance-601628-original-2026h1-skill-stress]
