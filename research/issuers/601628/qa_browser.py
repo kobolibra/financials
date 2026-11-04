@@ -52,6 +52,25 @@ with sync_playwright() as p:
   assert geometry["bodyWidth"]<=width+1,(width,"ROOT_HORIZONTAL_OVERFLOW",geometry["bodyWidth"])
   if width==1440:
    assert all(x["w"]<=x["visible"]+2 for x in geometry["charts"]),(width,"HIDDEN_DESKTOP_FIGURE",geometry["charts"])
+   collisions=page.evaluate("""() => {
+     const issues=[];
+     for(const id of ['insurance','pnl','delta','cash','cashclose']){
+       const svg=document.querySelector('#chart-'+id+' .chart svg');
+       const texts=[...svg.querySelectorAll('text')];
+       const title=texts.find(t=>t.getAttribute('font-size')==='16'&&t.getAttribute('font-weight')==='650'&&t.getAttribute('y')==='38.00');
+       const values=texts.filter(t=>t.getAttribute('font-size')==='12'&&t.getAttribute('font-weight')==='650');
+       if(!title || !values.length){issues.push({id,error:'MISSING_MONEY_WATERFALL_LABELS'});continue;}
+       const t=title.getBBox();
+       for(const label of values){
+         const b=label.getBBox();
+         // Source value labels must sit below the editorial chart title,
+         // not merely above their own bar, even when bars approach chart top.
+         if(b.y<t.y+t.height+12){issues.push({id,error:'DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP',title:t.y+t.height,valueY:b.y,label:label.textContent});}
+       }
+     }
+     return issues;
+   }""")
+   assert not collisions,("DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP",collisions)
   if width==390:
    assert page.locator(".mobile-chart:visible").count()==10,(width,"MOBILE_NOT_TEN_COMPLETE_SOURCE_PLOTS")
    assert page.locator(".chart:visible").count()==0,(width,"MOBILE_STILL_USES_900PX_CROPPED_SVG_WINDOW")
