@@ -22,7 +22,7 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
         self.assertTrue(all(x["status"]=="FAIL_BASELINE_ONLY" for x in legacy))
     def test_one_cropped_390px_new_issuer_must_fail_even_when_body_not_scrolled(self):
         d=copy.deepcopy(self.census)
-        subset=[x for x in d["records"] if x["code"]=="300394"]
+        subset=[copy.deepcopy(x) for x in d["records"] if x["code"]=="300394"]
         for row in subset:
             row["code"]="601919"
             row["source_html_sha256"]="1"*64
