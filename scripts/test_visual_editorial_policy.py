@@ -2,7 +2,8 @@
 """Proof that a new company cannot inherit a 900px mobile financial scroll box."""
 import copy,json,unittest
 from pathlib import Path
-from check_visual_editorial_policy import validate_audit,ROOT
+from unittest import mock
+from check_visual_editorial_policy import validate_audit,validate_current_published_files,ROOT
 
 class VisualPublicationPolicyRedTeam(unittest.TestCase):
     @classmethod
@@ -13,6 +14,46 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
     def fail_check(self,census,needle):
         errors,_=validate_audit(census,self.debt)
         self.assertTrue(any(needle in x for x in errors),errors)
+    def test_current_issuer_hashes_are_not_conflated_with_historical_fail_screenshots(self):
+        errors,fixed,stale=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertEqual(errors,[])
+        self.assertEqual({x["code"] for x in fixed},{"600900","600276","601628"})
+        self.assertEqual(set(stale),
+            {"300394","300308","300502","600036","688111","600519","000333","688220"})
+    def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
+        original=Path.read_bytes
+        def changed(path):
+            data=original(path)
+            if str(path).endswith("/public/300394.html"):return data+b"\nFORGED_NEW_ARTICLE_CHANGE"
+            return data
+        with mock.patch.object(Path,"read_bytes",new=changed):
+            errors,fixed,unresolved=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertTrue(any("VISUAL_CHANGED_ISSUER_REQUIRES_ACTUAL_NEW_BROWSER_CENSUS 300394" in x for x in errors),errors)
+    def test_manufactured_bogus_issuer_finance_receipt_SHA_must_fail(self):
+        original=Path.read_text
+        def changed(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("research/issuers/600900/visual-qa/result.json"):
+                doc=json.loads(data)
+                doc["html_sha256"]="f"*64
+                return json.dumps(doc)
+            return data
+        with mock.patch.object(Path,"read_text",new=changed):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertTrue(any("VISUAL_CHANGED_ISSUER_BROWSER_SOURCE_SHA_OR_390_NATIVE_MONEY_EVIDENCE_INVALID 600900" in x for x in errors),errors)
+    def test_source_matched_report_cannot_fake_screenshot_mobile_native_figure_visibility(self):
+        original=Path.read_text
+        def changed(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("research/issuers/600276/visual-qa/result.json"):
+                doc=json.loads(data)
+                doc["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]="FAIL"
+                return json.dumps(doc)
+            return data
+        with mock.patch.object(Path,"read_text",new=changed):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertTrue(any("VISUAL_CHANGED_ISSUER_BROWSER_SOURCE_SHA_OR_390_NATIVE_MONEY_EVIDENCE_INVALID 600276" in x for x in errors),errors)
+
     def test_original_ten_are_explicit_failed_visual_debt_not_pass(self):
         errors,legacy=validate_audit(self.census,self.debt)
         self.assertEqual(errors,[])
