@@ -1,7 +1,7 @@
 name: Build and financially audit original China Life 601628 2026H1
 on:
   push:
-    branches: [work/insurance-601628-original-2026h1-skill-stress, main]
+    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, main]
     paths:
       - 'research/issuers/601628/**'
       - '!research/issuers/601628/visual-qa/**'
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Real original PDF source cell coordinates and 127 typed facts + hostile accounting tests
+      - name: Real original PDF source cell coordinates and 133 typed facts + insurer original p42 limited-review and regulatory solvency hostile tests
         run: |
           python -m pip install -q pymupdf
           test -s research/issuers/601628/source/601628_2026H1_complete_original.pdf
