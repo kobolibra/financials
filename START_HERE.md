@@ -2,6 +2,8 @@
 
 > **当前有效规则：唯一公司研究库，以实际 GitHub `main` 的 `project-status.json` + `site/research_catalog.json` 为真值。不得把上次聊天、固定公司数量或旧 v9 首页当当前状态。** 生产站点：[financials-in-visuals.pages.dev](https://financials-in-visuals.pages.dev/)。仓库：[`kobolibra/financials`](https://github.com/kobolibra/financials)，生产分支 `main`。
 
+**2026-11-04 最新候选（不得混作线上）：** PR [#26](https://github.com/kobolibra/financials/pull/26) 已直接改造早期两家 `300394/300502` 的原源账本金额加权手机图和有符号财务桥，在真实中文 1440/768/390 与源码到完整离线HTML重建阶段已有 PASS（[Action #41812941302](https://github.com/kobolibra/financials/actions/runs/41812941302)），但原正式 Cloudflare 新图全HTML字节、线上三屏与第二名人类视觉/研究审稿仍 `NOT_CHECKED`。目前真实 main 既有旧公司 390 财务图 FAIL 不能由工作分支的候选截图自动消除；此次 Skill 方法增加 VIS-046、候选 v8.7.3-rc1，必须以新的当前 main 检查为准。300308 完整184p原PDF在当前研究会话已核验SHA，但原仓库 ledger 还存在旧 `NOT_VERIFIED_REMOTE_PDF` 且备忘录仍待审，不可凭中际相关原网页就称新版已合格。**
+
 ## 0. 新对话 / 新 Agent 必读
 
 **不能假设聊天记忆中已经包含本项目。仓库中的自定义 `SKILL.md` 不会自动变成 ChatGPT 已安装的 Skill。** 必须主动读取以下实际当前文件，而不是“知道有 Skill”便开始画图：
