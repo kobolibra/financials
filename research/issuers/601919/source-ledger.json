@@ -1444,6 +1444,267 @@
       "source_report_unit": "CNY_yuan",
       "exact_value": "913436804.83",
       "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_equipment_prior": {
+      "label": "航运设备及货物运输成本（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "40844710982.45",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_voyage_prior": {
+      "label": "航程成本（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "18294782207.60",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_vessel_prior": {
+      "label": "船舶成本（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "17227794055.46",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_cost_other_prior": {
+      "label": "航运其他业务成本（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "6968860693.21",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "ship_segment_cost_prior": {
+      "label": "航运分部营业成本（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "83336147938.72",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "port_segment_cost_prior": {
+      "label": "码头分部营业成本（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "4203469680.38",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "intersegment_cost_elimination_prior": {
+      "label": "分部间营业成本抵销（2025H1）",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "management_ship_cost",
+      "source_report_unit": "CNY_yuan",
+      "exact_value": "-1508131957.02",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_transpacific": {
+      "label": "跨太平洋货运量",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "2625662",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_transpacific_prior": {
+      "label": "跨太平洋货运量比较期",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "2393008",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_transpacific": {
+      "label": "跨太平洋航线收入",
+      "physical_page": 14,
+      "period": "2026H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "27633082",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_transpacific_prior": {
+      "label": "跨太平洋航线收入比较期",
+      "physical_page": 14,
+      "period": "2025H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "28322639",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_europe_med": {
+      "label": "亚欧（含地中海）货运量",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "2189851",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_europe_med_prior": {
+      "label": "亚欧（含地中海）货运量比较期",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "1947593",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_europe_med": {
+      "label": "亚欧（含地中海）航线收入",
+      "physical_page": 14,
+      "period": "2026H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "19984723",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_europe_med_prior": {
+      "label": "亚欧（含地中海）航线收入比较期",
+      "physical_page": 14,
+      "period": "2025H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "19501540",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_asia_oceania": {
+      "label": "亚洲区内（含澳洲）货运量",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "4735130",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_asia_oceania_prior": {
+      "label": "亚洲区内（含澳洲）货运量比较期",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "4495293",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_asia_oceania": {
+      "label": "亚洲区内（含澳洲）航线收入",
+      "physical_page": 14,
+      "period": "2026H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "28389724",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_asia_oceania_prior": {
+      "label": "亚洲区内（含澳洲）航线收入比较期",
+      "physical_page": 14,
+      "period": "2025H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "26551236",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_other_international": {
+      "label": "其他国际（含大西洋）货运量",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "1576192",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_other_international_prior": {
+      "label": "其他国际（含大西洋）货运量比较期",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "1578260",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_other_international": {
+      "label": "其他国际（含大西洋）航线收入",
+      "physical_page": 14,
+      "period": "2026H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "14696084",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_other_international_prior": {
+      "label": "其他国际（含大西洋）航线收入比较期",
+      "physical_page": 14,
+      "period": "2025H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "15789242",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_china_mainland": {
+      "label": "中国大陆货运量",
+      "physical_page": 13,
+      "period": "2026H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "3152616",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_teu_china_mainland_prior": {
+      "label": "中国大陆货运量比较期",
+      "physical_page": 13,
+      "period": "2025H1",
+      "scope": "group_volume",
+      "source_report_unit": "TEU",
+      "exact_value": "2866750",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_china_mainland": {
+      "label": "中国大陆航线收入",
+      "physical_page": 14,
+      "period": "2026H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "6775664",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_rmb_thousands_china_mainland_prior": {
+      "label": "中国大陆航线收入比较期",
+      "physical_page": 14,
+      "period": "2025H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "6444068",
+      "classification": "ORIGINAL_REPORTED"
+    },
+    "lane_revenue_total_rmb_thousands": {
+      "label": "集团按航线运费收入合计（不等于分部所有收入）",
+      "physical_page": 14,
+      "period": "2026H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "97479277",
+      "classification": "SUBSET_OF_SHIPPING_SEGMENT"
+    },
+    "lane_revenue_total_rmb_thousands_prior": {
+      "label": "集团按航线收入比较期合计",
+      "physical_page": 14,
+      "period": "2025H1",
+      "scope": "group_lanes",
+      "source_report_unit": "RMB_thousands",
+      "exact_value": "96608725",
+      "classification": "SUBSET_OF_SHIPPING_SEGMENT"
     }
   },
   "source_semantics": [
@@ -1478,6 +1739,10 @@
     {
       "scope": "non_cash_funds",
       "rule": "Consolidated cash on balance sheet includes restricted 604,939,158.56 RMB that is excluded from cash equivalents in direct cash flow, exact difference required."
+    },
+    {
+      "scope": "group_lanes",
+      "rule": "The five route RMB thousands reported freight sales sum to 97,479,277 RMB thousands, NOT shipping segment all revenue 107,298,065,257.53 RMB yuan. The current and prior route volumes (TEU) are separate quantitative series, and USD/TEU management international yields are a separately computed unit currency."
     }
   ],
   "known_open_gates": [
@@ -1488,6 +1753,7 @@
     "FULL_BROKER_MULTI_YEAR_MACRO_AND_PEERS_NOT_CHECKED",
     "REAL_OFFLINE_HTML_12TH_NEW_ISSUER_NOT_STARTED",
     "CLOUDFLARE_LIVE_NOT_CHECKED",
-    "SECOND_INDEPENDENT_HUMAN_ANALYST_NOT_CHECKED"
+    "SECOND_INDEPENDENT_HUMAN_ANALYST_NOT_CHECKED",
+    "SHIPPING_PER_LANE_REVENUE_EQUALS_CARRIED_FREIGHT_NOT_TOTAL_SEGMENT_SALES"
   ]
 }
