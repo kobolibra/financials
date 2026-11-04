@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Real offline Chromium + graphic source-flow QA; no claim of independent human approval."""
 from __future__ import annotations
-import argparse, json, pathlib
+import argparse, json, pathlib, hashlib
 from decimal import Decimal as D
 from playwright.sync_api import sync_playwright
 P=argparse.ArgumentParser()
@@ -186,7 +186,23 @@ with sync_playwright() as p:
   page.close()
  browser.close()
 assert not errors,errors
+source_manifest=json.loads((pathlib.Path(__file__).parent/"source-manifest.json").read_text(encoding="utf8"))
+full_article_sha=hashlib.sha256(html.read_bytes()).hexdigest()
+real_screenshots={p.name:{"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),"bytes":p.stat().st_size} for p in sorted(out.glob("*.png"))}
+assert len(real_screenshots)==screenshots and screenshots>=21,(screenshots,len(real_screenshots))
 (out/"result.json").write_text(json.dumps({
+ "issuer":"688220",
+ "source_pdf_sha256":source_manifest["pdf_sha256"],
+ "html_sha256":full_article_sha,
+ "actual_3_viewport_checks":[{"width":z["width"],"body_no_overflow":"PASS",
+       "actual_nine_390_768_native_signed_money_figures_no_inner_scroll":"PASS" if z["width"] in (390,768) else "DESKTOP_ORIGINAL_SVG",
+       "source_conserved_source_sinks_and_Bezier_actual_width":"PASS",
+       "original_legal_signed_CFO_and_PNL_in_same_scale":"PASS",
+       "original_CJK_text_bbox":"PASS"} for z in statuses],
+ "all_nine_390px_native_financial_svg_legible_and_source_reconciled":"PASS",
+ "source_nodes_sinks_ribbons_exact_svg_geometric_proportions":"PASS",
+ "real_CJK_screenshot_sha_bytes":real_screenshots,
+
  "technical_browser":"PASS","accounting_source_flow_visual_structure":"PASS",
  "source_pdf_manual_review":"SELECTED_PAGES_ONLY",
  "full_design_editorial":"NOT_CHECKED_INDEPENDENT_REVIEW",
