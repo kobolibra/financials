@@ -10,7 +10,7 @@ This pure contract consumes actual Chromium 1440/768/390 report data, not a
 guess from "overflow-x:hidden" or number of SVGs. Human design QA stays open.
 """
 from __future__ import annotations
-import json
+import json,hashlib
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -61,13 +61,92 @@ def validate_audit(audit,debt):
         errors.append("VISUAL_RELEASE_CATALOG_MISSING_ALREADY_PUBLISHED_601628")
     return errors,accepted_debt
 
+
+def validate_current_published_files(root, audit, debt):
+    """Reject stale old screenshots as proof of NEW current HTML bytes.
+
+    The original 11×3 baseline is permanently retained for before/after.
+    When an issuer's current full HTML SHA has changed, demand independent
+    source-tied real Chromium 3-view receipts with native money-flow proof.
+    This does not claim external Cloudflare before a matching live run.
+    """
+    errors=[];fixed=[];unresolved=[]
+    catalog=json.loads((root/"site/research_catalog.json").read_text(encoding="utf8"))["issuers"]
+    before={}
+    for r in audit["records"]:
+        before.setdefault(r["code"],set()).add(r["source_html_sha256"])
+    old=debt["legacy_source_frozen_allowlist_for_preexisting_only"]
+    seen=set()
+    for issuer in catalog:
+        code=issuer["code"];seen.add(code)
+        html=root/"public"/issuer["href"].lstrip("/")
+        if not html.is_file():
+            errors.append(f"VISUAL_CURRENT_ISSUER_REPORT_MISSING {code}")
+            continue
+        sha=hashlib.sha256(html.read_bytes()).hexdigest()
+        baseline=before.get(code)
+        if baseline=={sha}:
+            if code in old:unresolved.append(code)
+            continue
+        # Insurer had a separately authenticated current production source
+        # before this comparative audit. Its HTML SHA changed from first
+        # baseline after screenshot-proven typo correction; require BOTH real
+        # 1440/768/390 Cloudflare live receipt and source-linked 10 mobile
+        # finance exhibitions, not the two-sector renderer's custom schema.
+        if code=="601628":
+            p=root/"research/issuers/601628/live-release-receipt.json"
+            if not p.is_file():
+                errors.append("VISUAL_601628_NEW_HTML_REQUIRES_REAL_CLOUDFLARE_SOURCE_LIVE_RECEIPT")
+                continue
+            q=json.loads(p.read_text(encoding="utf8"))
+            vs=q.get("real_chromium_viewports",[])
+            valid=(q.get("actual_full_content_sha256_equals_repository_main_601628")==sha and
+                q.get("all_11_issuer_external_routes")=="PASS" and
+                len(vs)==3 and {v.get("width") for v in vs}==WIDTHS and
+                next((v for v in vs if v.get("width")==390),{}).get("mobile_ten_full_width_source_exact_money_exhibits")=="PASS")
+            if not valid:
+                errors.append("VISUAL_601628_CURRENT_CORRECTED_SOURCE_AND_REAL_CLOUDFLARE_THREE_WIDTHS_MISMATCH")
+                continue
+            fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CLOUDFLARE_SOURCE_SHA_ALL_TEN_MOBILE_FINANCIAL_FIGURES"})
+            continue
+        # Old source SHA proves only history, not an edited current page.
+        # The two-industry QA is calculated from new source and full HTML bytes.
+        receipt=root/"research/issuers"/code/"visual-qa/result.json"
+        if not receipt.is_file():
+            errors.append(f"VISUAL_CHANGED_ISSUER_REQUIRES_ACTUAL_NEW_BROWSER_CENSUS {code}")
+            continue
+        d=json.loads(receipt.read_text(encoding="utf8"))
+        three=d.get("actual_3_viewport_checks",[])
+        widths={x.get("width") for x in three}
+        valid=(
+            d.get("issuer")==code and d.get("html_sha256")==sha and
+            len(three)==3 and widths==WIDTHS and
+            all(x.get("body_no_overflow")=="PASS" for x in three) and
+            any(x.get("width")==390 and x.get("actual_native_mobile_financial_figures_and_390_no_inner_scroll")=="PASS" for x in three) and
+            d.get("all_eight_390px_native_money_visuals_readable_and_source_reconciled")=="PASS" and
+            d.get("source_nodes_sinks_ribbons_exact_svg_geometric_proportions")=="PASS"
+        )
+        if not valid:
+            errors.append(f"VISUAL_CHANGED_ISSUER_BROWSER_SOURCE_SHA_OR_390_NATIVE_MONEY_EVIDENCE_INVALID {code}")
+            continue
+        fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CHROMIUM_AND_SOURCE_GEOMETRY"})
+    for code in before.keys()-seen:
+        errors.append(f"VISUAL_ISSUER_CATALOG_REMOVED_WITHOUT_REVIEW {code}")
+    if len(catalog)!=audit["count_issuers"]:
+        errors.append("VISUAL_CURRENT_CATALOG_COUNT_DIFFERS_FROM_ACTUAL_SCREENSHOT_CENSUS")
+    return errors,fixed,unresolved
+
 if __name__=="__main__":
     root=ROOT/"research/visual-audit"
     audit=json.loads((root/"cross-issuer-visual-audit.json").read_text(encoding="utf8"))
     debt=json.loads((root/"quality-debt.json").read_text(encoding="utf8"))
     errors,legacy=validate_audit(audit,debt)
     assert not errors,errors
-    assert len(legacy)==debt["actual_mobile_internal_horiz_scroll_fail_count"],"FAILING_EXISTING_390PX_EXHIBITS_CANNOT_BE_AUTO_MARKED_PASS"
+    assert len(legacy)==debt["actual_mobile_internal_horiz_scroll_fail_count"],"HISTORICAL_390PX_EXHIBIT_FAIL_BASELINE_CANNOT_BE_AUTO_MARKED_PASS"
     assert all(x["status"]=="FAIL_BASELINE_ONLY" for x in legacy)
-    print("EXPLICIT_VISUAL_QUALITY_DEBT_UNRESOLVED_NOT_CLAIMED_PASS",len(legacy),[x["code"] for x in legacy])
-    print("EXACT_BASELINE_OR_ACTUALLY_RESPONSIVE_NEW_ISSUER_PUBLICATION_POLICY_PASS",audit["count_issuers"])
+    current_errors,fixed,still=validate_current_published_files(ROOT,audit,debt)
+    assert not current_errors,current_errors
+    print("ORIGINAL_SOURCE_SHA_HISTORICAL_FINANCIAL_VISUAL_FAIL_COUNT",len(legacy),[x["code"] for x in legacy])
+    print("ACTUAL_CURRENT_STANDALONE_HTML_MOBILE_FIXED_BY_REAL_3_SCREEN_BROWSER_AND_ORIGINAL_MONEY_GEOMETRY",len(fixed),fixed)
+    print("ACTUAL_CURRENT_390_FINANCE_INNER_SCROLL_SOURCE_UNRESOLVED_FAIL",len(still),still)
+    print("EXACT_OLD_FINGERPRINT_OR_NEW_ACTUAL_CHROMIUM_SOURCE_ARTIFACT_PUBLISH_POLICY_PASS",audit["count_issuers"])

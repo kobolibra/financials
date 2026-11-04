@@ -111,12 +111,12 @@ a{color:inherit}button{font:inherit}.wrap{max-width:1190px;margin:auto;padding:0
 .nav{max-width:100%;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:12px;overflow-x:auto;white-space:nowrap}.nav a{font-size:12px;text-decoration:none;padding:9px 14px;border-radius:20px;background:#e8eee7}
 .numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:35px}.number{border-top:1px solid var(--ink);padding-top:17px}.number label{display:block;font-size:11px;color:var(--soft);letter-spacing:.07em}.number strong{display:block;margin-top:8px;font-size:clamp(20px,2.7vw,35px);letter-spacing:-.055em;font-variant-numeric:tabular-nums}.number small{color:var(--soft);font-size:11px}
 .chapter{padding:82px 0 68px;border-bottom:1px solid var(--line);scroll-margin-top:35px}.chaptermark{font-size:11px;color:var(--green);font-weight:900;letter-spacing:.17em}.chapter h2{font-size:clamp(27px,3.4vw,42px);line-height:1.44;letter-spacing:-.035em;max-width:1000px;margin:18px 0}.chapter .answer{font-size:17px;max-width:870px;color:var(--soft);margin-bottom:30px}
-.figure{min-width:0;max-width:100%;margin:28px 0;background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}.figure-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:23px 30px 17px;border-bottom:1px solid var(--line)}.figure-head b{font-size:12px;letter-spacing:.08em}.export{background:transparent;border:1px solid var(--line);border-radius:4px;padding:7px 12px;color:var(--soft);cursor:pointer;font-size:11px}.plot{width:100%;max-width:100%;min-width:0;padding:18px 23px 17px;overflow-x:auto;scrollbar-width:thin}.plot svg{width:100%;height:auto;display:block;min-width:760px}.chart-label{font-size:12px;fill:var(--ink)}.chart-tiny{font-size:10.5px;fill:var(--soft)}.chart-value{font-weight:700;font-size:13px;fill:var(--ink)}.chart-title{font-size:12px;fill:var(--ink);font-weight:700}
+.figure{min-width:0;max-width:100%;margin:28px 0;background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}.figure-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:23px 30px 17px;border-bottom:1px solid var(--line)}.figure-head b{font-size:12px;letter-spacing:.08em}.export{background:transparent;border:1px solid var(--line);border-radius:4px;padding:7px 12px;color:var(--soft);cursor:pointer;font-size:11px}.plot{width:100%;max-width:100%;min-width:0;padding:18px 23px 17px;overflow-x:auto;scrollbar-width:thin}.plot svg{width:100%;height:auto;display:block;min-width:760px}.native-mobile-finance{display:none}.native-mobile-finance-supplement{padding:14px;background:#eef4ed;font-size:12px;color:#395c50;line-height:1.8;border-top:1px solid var(--line)}.native-mobile-finance-supplement p{margin:0 0 10px}.native-mobile-finance-supplement strong{color:var(--green);font-variant-numeric:tabular-nums}.chart-label{font-size:12px;fill:var(--ink)}.chart-tiny{font-size:10.5px;fill:var(--soft)}.chart-value{font-weight:700;font-size:13px;fill:var(--ink)}.chart-title{font-size:12px;fill:var(--ink);font-weight:700}
 .counter{font-size:13px;color:#784e3b;background:#f4eee7;padding:18px 24px;border-left:3px solid var(--copper)}.sourcebar{padding:15px 27px 20px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
 details{margin-top:10px}summary{cursor:pointer;color:var(--green);font-weight:700;list-style:disclosure-closed;font-size:12px}
 table{border-collapse:collapse;width:100%;font-size:12px;margin-top:16px;background:white}td,th{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left}td:nth-child(2),td:nth-child(3){font-variant-numeric:tabular-nums;white-space:nowrap}th{color:var(--soft);font-weight:600}td a{color:var(--green)}.tablewrap{max-width:100%;min-width:0;overflow:auto}
 .disclaimer{padding:54px 0}.disclaimer h2{font-size:27px}.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px}.note{font-size:14px;padding:20px 24px;background:#eef1eb;color:#456366}.actions{padding:50px 0 85px;background:#eaf0ea;margin-top:35px}.actions h2{font-size:30px}.actions li{margin:13px 0}.footer{display:flex;justify-content:space-between;gap:16px;padding:35px 0;border-top:1px solid var(--line);font-size:11px;color:var(--soft)}
-@media(max-width:740px){.wrap{padding:0 17px}.topbar{height:60px}.topbar .logo{font-size:11px}.hero{padding:53px 0 40px;grid-template-columns:1fr;gap:8px}h1{font-size:37px;max-width:99%;line-height:1.32}.dek{font-size:15px}.heroaside{margin:16px 0 0}.numbers{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.number strong{font-size:20px}.number label{font-size:10px}.chapter{padding:54px 0 45px}.chapter h2{font-size:26px}.chapter .answer{font-size:15px}.figure-head{padding:17px}.plot{padding:10px}.sourcebar{padding:14px 16px}.notes{grid-template-columns:1fr}.footer{flex-direction:column}.figure{border-radius:0}.counter{font-size:12px}.nav{margin:0 -17px;padding-left:17px}}
+@media(max-width:740px){.plot{overflow-x:visible!important;overflow-y:visible!important;padding:10px}.plot>svg{display:none!important}.plot .native-mobile-finance{display:block;min-width:0;max-width:100%;width:100%}.plot .native-mobile-finance svg{width:100%;max-width:100%;min-width:0;height:auto;display:block;overflow:visible}.wrap{padding:0 17px}.topbar{height:60px}.topbar .logo{font-size:11px}.hero{padding:53px 0 40px;grid-template-columns:1fr;gap:8px}h1{font-size:37px;max-width:99%;line-height:1.32}.dek{font-size:15px}.heroaside{margin:16px 0 0}.numbers{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.number strong{font-size:20px}.number label{font-size:10px}.chapter{padding:54px 0 45px}.chapter h2{font-size:26px}.chapter .answer{font-size:15px}.figure-head{padding:17px}.plot{padding:10px}.sourcebar{padding:14px 16px}.notes{grid-template-columns:1fr}.footer{flex-direction:column}.figure{border-radius:0}.counter{font-size:12px}.nav{margin:0 -17px;padding-left:17px}}
 </style></head><body>
 <div class="wrap"><div class="topbar"><a class="logo" href="/#companies">FINANCIALS / IN VISUALS</a><a class="back" href="/#companies">返回唯一公司研究目录 ↗</a></div>
 <header class="hero"><div><div class="eyebrow">__EYEBROW__ · 2026 H1 · ORIGINAL FINANCIAL RESEARCH</div><h1>__TITLE__</h1><p class="dek">__DEK__</p>
@@ -293,6 +293,7 @@ function sector(){
  out+=text(20,460,"剩余履约义务 "+yi(v("rpo"))+"：合同已签但非已实现收入，且变动里程碑未必纳入。","chart-label");
  return svg(1120,496,out);
 }
+__NATIVE_MOBILE_SVG__
 function draw(id){if(id==="flow")return sankey();if(id==="pnl")return waterfall(PNLsteps(),"完整 CAS：营业毛利 → 营业利润 → 税后净利 → 归母");
  if(id==="cfo")return waterfall(cfoSteps(),"合并净利润 + 原始全部调节项 → 经营现金流");
  if(id==="cash")return waterfall(cashSteps(),"现金及现金等价物：真实四项带符号现金变动");
@@ -312,7 +313,8 @@ section.innerHTML='<div class="chaptermark">FIGURE '+String(i+1).padStart(2,"0")
  '<div class="plot" id="chart-'+q.id+'"></div><figcaption class="sourcebar">真实原报告 2026H1；<span>物理页 '+q.source_pages.join(", ")+'</span>。<p class="counter"><b>反证/边界：</b>'+e(q.counter)+'</p>'+
  '<div id="table-'+q.id+'">'+sourceTable(q)+'</div></figcaption></figure>';
  article.appendChild(section);
- document.querySelector("#chart-"+q.id).innerHTML=draw(q.id);
+ document.querySelector("#chart-"+q.id).innerHTML=draw(q.id)+
+  '<div class="native-mobile-finance" data-native-mobile-id="'+e(q.id)+'" role="group" aria-label="财报原数据驱动的手机原生财务图，完整纵向阅读">'+nativeMoneyFigure(q.id)+'</div>';
 });
 document.querySelectorAll("[data-export]").forEach(function(button){button.addEventListener("click",function(){
 var id=button.getAttribute("data-export"),s=document.querySelector("#chart-"+id+" svg");var file=new Blob([new XMLSerializer().serializeToString(s)],{type:"image/svg+xml;charset=utf-8"});
@@ -329,7 +331,8 @@ def build(code,out):
     archive=SITE/d["source"]["source_path"]
     checks=check(d,briefs,story,archive)
     def compact(x):return json.dumps(x,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
-    article=HTML
+    # Native mobile original finance grammar is INLINED: one offline standalone HTML per issuer.
+    article=HTML.replace("__NATIVE_MOBILE_SVG__", (ROOT/"research/shared/mobile_finance.js").read_text(encoding="utf-8"))
     for a,b in (("__TITLE__",story["lead"]),("__DESCRIPTION__",story["thesis"]),("__EYEBROW__",story["eyebrow"]),
                 ("__DEK__",story["dek"]),("__TENSION__",story["tension"]),("__COUNTER__",story["counter"]),
                 ("__DISCLAIMER__",story["evidence_disclaimer"]),("__LEDGER__",compact(d)),

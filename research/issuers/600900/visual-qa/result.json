@@ -1,0 +1,44 @@
+{
+  "issuer": "600900",
+  "html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
+  "actual_3_viewport_checks": [
+    {
+      "width": 1440,
+      "figures": 8,
+      "desktop_svg": 8,
+      "native_mobile_svg": 8,
+      "tables": 8,
+      "actual_money_geometry": "PASS",
+      "body_no_overflow": "PASS",
+      "actual_native_mobile_financial_figures_and_390_no_inner_scroll": "NOT_RELEVANT_THIS_WIDTH",
+      "svg_export": "PASS"
+    },
+    {
+      "width": 768,
+      "figures": 8,
+      "desktop_svg": 8,
+      "native_mobile_svg": 8,
+      "tables": 8,
+      "actual_money_geometry": "PASS",
+      "body_no_overflow": "PASS",
+      "actual_native_mobile_financial_figures_and_390_no_inner_scroll": "NOT_RELEVANT_THIS_WIDTH",
+      "svg_export": "NOT_RUN_THIS_VIEW"
+    },
+    {
+      "width": 390,
+      "figures": 8,
+      "desktop_svg": 8,
+      "native_mobile_svg": 8,
+      "tables": 8,
+      "actual_money_geometry": "PASS",
+      "body_no_overflow": "PASS",
+      "actual_native_mobile_financial_figures_and_390_no_inner_scroll": "PASS",
+      "svg_export": "NOT_RUN_THIS_VIEW"
+    }
+  ],
+  "all_eight_figures_visible": "PASS",
+  "all_eight_390px_native_money_visuals_readable_and_source_reconciled": "PASS",
+  "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
+  "CJK_FONTS_RUNNER_INSTALLED": "PASS",
+  "human_editor": "NOT_CHECKED"
+}

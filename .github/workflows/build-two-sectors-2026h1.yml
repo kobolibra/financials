@@ -1,11 +1,12 @@
 name: Build and audit two distinct 2026H1 sector research reports
 on:
   push:
-    branches: ['work/two-sector-600900-600276-real-2026h1', main]
+    branches: ['work/two-sector-600900-600276-real-2026h1', 'work/two-sector-native-mobile-aei-original-finance-20261104', main]
     paths:
       - 'research/issuers/600900/**'
       - 'research/issuers/600276/**'
       - 'research/shared/build_two_sector.py'
+      - 'research/shared/mobile_finance.js'
       - 'research/shared/qa_two_sector_browser.py'
       - 'research/shared/verify_two_sector_cells.py'
       - 'research/shared/test_two_sector_accounting.py'
@@ -64,6 +65,7 @@ jobs:
               b=json.loads(a.read_text())
               assert b['source_nodes_sinks_ribbons_exact_svg_geometric_proportions']=='PASS'
               assert all(v['body_no_overflow']=='PASS' for v in b['actual_3_viewport_checks'])
+              assert b['all_eight_390px_native_money_visuals_readable_and_source_reconciled']=='PASS'
               print('INDEPENDENT_CLEAN_SOURCE_REBUILD_PASS',code)
           PY
       - name: Verify main's tracked issuer HTML can be rebuilt identically
@@ -75,6 +77,12 @@ jobs:
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
           git add public/600900.html public/600276.html research/issuers/600900/qa.json research/issuers/600276/qa.json
+          # Source-tied real Chromium QA receipts and carefully selected real
+          # 1440/390 figure screenshots for independent editorial review;
+          # keep the full 48 figure screenshot matrix in Actions artifacts.
+          git add research/issuers/600900/visual-qa/result.json research/issuers/600276/visual-qa/result.json
+          git add research/issuers/600900/visual-qa/600900-390-flow.png research/issuers/600900/visual-qa/600900-390-pnl.png research/issuers/600900/visual-qa/600900-1440-flow.png
+          git add research/issuers/600276/visual-qa/600276-390-sector.png research/issuers/600276/visual-qa/600276-390-flow.png research/issuers/600276/visual-qa/600276-390-cfo.png research/issuers/600276/visual-qa/600276-1440-sector.png
           if ! git diff --cached --quiet; then
             git commit -m "Publish source-audited independent utility and pharma research pages"
             git pull --rebase origin "$GITHUB_REF_NAME"

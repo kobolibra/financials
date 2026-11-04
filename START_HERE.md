@@ -24,6 +24,10 @@
 
 产业链横向比较 `/optical-2026h1.html` 始终是**专题**，不算单独公司。后续任何新增公司必须加入现有 `site/research_catalog.json` 并运行 `site/portal_builder.py`，只发布独立、可离线打开的单公司 HTML。绝不能新建“三家／四家／v11”第二入口。
 
+## 2026-11-04 · v8.7.1 真修水电和创新药行业手机原生财务图（候选）
+
+`research/shared/build_two_sector.py` 已将 `research/shared/mobile_finance.js` 源金额真图内联至600900长江电力和600276恒瑞医药的两份完整离线HTML，各8个桌面完整SVG及8个390原生财务SVG。真金额收入流向桑基、负数利润/间接CFO/现金和CAPEX瀑布、分部嵌套创新药、两日期资产负债守恒均已实际源PDF+ CJK Chromium1440/768/390验证 [#41799046343](https://github.com/kobolibra/financials/actions/runs/41799046343) **PASS候选**，真实图证和两新完整HTML SHA详见[VIS-044](research/visual-audit/VISUAL_CHANGESET_2026-11-04_TWO_SECTORS.md)。该源修改若未真实在Cloudflare以新SHA核验，直播仍NOT_CHECKED；旧十家手机横滚基线依旧是原字节FAIL，只真实修两家后余八家待修。`scripts/check_visual_editorial_policy.py` 现在还校验**当前改后HTML SHA**与同SHA浏览器实测，不准用旧截屏替新版本造PASS。
+
 ## 2026-11-04 · 视觉质量 P0：早期三家与后期全站 11 家实际对比
 
 真实 GitHub Actions [#41783946027](https://github.com/kobolibra/financials/actions/runs/41783946027) **11家公司×真实中文 Chromium 1440/768/390=33次实际网页渲染**，逐幅浏览样本，发现 **10/11家390px财务图被780–1050px宽 SVG 限制在320–356px水平小窗口**，旧“根页面不溢出”虽PASS但图本身 FAIL。详见[全站视觉退化审计](research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md)、[真实图证](research/visual-audit/cross-issuer-visual-audit.json)、[固定原HTML SHA的10家FAIL账本](research/visual-audit/quality-debt.json)。最早300394/300308/300502桌面复杂金额流的AEI风格更强，但手机一样失格且原金额表不如后期完善；不把图多或单独来源表当顶级视觉。

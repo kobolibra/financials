@@ -1,0 +1,54 @@
+name: Verify genuine published hydro and pharmaceutical 390 finance art on Cloudflare
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/600900.html'
+      - 'public/600276.html'
+      - 'research/shared/mobile_finance.js'
+      - 'research/shared/qa_two_sector_live.py'
+      - 'research/issuers/600900/visual-qa/result.json'
+      - 'research/issuers/600276/visual-qa/result.json'
+      - '.github/workflows/verify-live-native-sector-finance.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  remote-current-main-original-yuan-native-chromium:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Actual CJK font, headless Chromium and source SHA client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          fc-list :lang=zh family | grep -qi 'Noto'
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Require public Cloudflare full exact HEAD source bytes and financial art
+        run: |
+          python research/shared/qa_two_sector_live.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('research/visual-audit/live-two-sectors/live-result.json')
+          d=json.loads(p.read_text())
+          assert d['full_eleven_company_directory']=='PASS'
+          assert d['result_count']==6 and len(d['results'])==6
+          assert {r['code'] for r in d['results']}=={'600900','600276'}
+          assert {r['width'] for r in d['results']}=={1440,768,390}
+          assert all(r['public_html_sha256']==d['exact_live_public_html_sha256'][r['code']] for r in d['results'])
+          assert all(r['native_phone_full_financial_source_art']=='PASS' for r in d['results'] if r['width']==390)
+          assert d['independent_human_aesthetic_editor']=='NOT_CHECKED'
+          print('REAL_PRODUCTION_AEI_SOURCE_GLYPH_11_ROOT_6_OFFICIAL_PAGES_390_NEW_MONEY_FIGURES_COMPLETE')
+          PY
+      - name: Preserve actual Cloudflare homepage/company/screenshots and whole release source SHA receipt
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: published-two-sector-real-cloudflare-source-sha-native-finance-11-company-root
+          path: research/visual-audit/live-two-sectors/
+          retention-days: 30
+          if-no-files-found: warn

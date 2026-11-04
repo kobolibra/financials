@@ -422,6 +422,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-044",
+      "root_cause": "2026-11-04 original 11 × 3 Chromium visual audit found 600900/600276 public mobile important financial exhibits 780px wide but only 354px exposed. Generic CSS overflow auto and root document <=390 still green; first past three had AEI four-stage flow but no native mobile. Naively replacing wide desktop FIGURE with generic mobile numeric bars would erase true money conservation, legally signed CFO/PNL/cash bridges, pharma innovation nested subset and water asset physical-unit separation. Also previous cross-issuer regression read only historic HTML fingerprint and never compared current public/<issuer>.html SHA, allowing stale screenshots to act as new-page assurance.",
+      "correction": "Added actual shared source-based issuer-neutral mobile finance render source `research/shared/mobile_finance.js`, inlined by `research/shared/build_two_sector.py` into standalone offline utility/pharma HTML: true amount-weighted 330px revenue source→separate original COGS/gross profit ribbons with no fictional minimum; actual signed cumulative CAS P&L/indirect CFO/direct cash/capex waterfalls; historical/current BS cumulative stock composition and separate metric historical trend; hydro kWh vs RMB never falsely connected; pharmaceutical licensed goods and nested innovative sales don't double count; real browser QA 1440 768 390 checks every displayed new diagram, source geometry paths, signed changes, CJK text BBox and no figure-level internal scroll. Exact new full HTML SHA matching independent genuine Chromium receipts is now required for all changed published old reports, with strict real Cloudflare source receipt for 601628. Actions #41799046343 proves audited issuer original source tests + real phone visual grammar PASS in candidate.",
+      "proof_file": "research/shared/qa_two_sector_browser.py",
+      "assertion_marker": "MOBILE_390_FINANCIAL_FIGURE_INNER_SCROLL_STILL_PRESENT",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
