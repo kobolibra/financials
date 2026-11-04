@@ -144,7 +144,7 @@ def make(l):
        "gp":signed(l,"上年同期毛利润",prior,[("营业收入变化",f("rev")-f("rev_prior")),("减：营业成本变化",f("cogs_prior")-f("cogs"))],gp),
        "pnl":signed(l,"2026H1 合并毛利润",gp,[("研发费用",-f("rnd_expense")),("其他期间费用及税金",-(op_exp-f("rnd_expense"))),("其他经营损益净额",extra),("营业外收支净额",f("nonoperating_income")-f("nonoperating_expense")),("所得税影响",-f("income_tax_expense"))],f("consolidated_net_profit")),
        "earnings":signed(l,"扣非归母净利润",f("deducted_parent_ni"),[("非经常项目（归母税后）",f("nonrec_parent_net"))],f("parent_ni")),
-       "cfo":signed(l,"合并净利润",f("consolidated_net_profit"),[("前13项附注调整（逐项留在下方表格）",other),("存货调整",c(13)),("经营性应收调整",c(14)),("经营性应付调整",c(15)),("其他调整",c(16))],f("cash_cfo")),
+       "cfo":signed(l,"合并净利润",f("consolidated_net_profit"),[("其他13项附注调整",other),("存货调整",c(13)),("经营性应收调整",c(14)),("经营性应付调整",c(15)),("其他调整",c(16))],f("cash_cfo")),
        "cash":signed(l,"期初现金及等价物",f("cash_start"),[("经营现金流",f("cash_cfo")),("投资现金流",f("cash_cfi")),("筹资现金流",f("cash_cff")),("汇率对现金影响",f("cash_fx"))],f("cash_end")),
        "balance":balance(l),
        "capital":compare(l,"营运资产与合同负债两日期比较",[
