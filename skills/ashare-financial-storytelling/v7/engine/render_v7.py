@@ -238,6 +238,8 @@ def build(l,m):
 .exhibit.has-native-finance{padding:17px 14px}
 .exhibit.has-native-finance .chart-scroll-hint{display:none}
 .exhibit.has-native-finance .native-finance svg{min-width:0;max-width:100%;height:auto;width:100%}
+.exhibit.has-native-finance .native-finance h4{display:none}
+.exhibit.has-native-finance .native-finance-dek{border-left:2px solid #087e69;padding-left:10px;margin-top:12px}
 .exhibit.has-native-finance .exhibit-top{gap:8px}
 .exhibit.has-native-finance .exhibit-top h3{font-size:19px;line-height:1.5}
 }
