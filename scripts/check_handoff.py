@@ -111,7 +111,7 @@ def check_start_here_source_of_truth(entry: str) -> list[str]:
     errors = []
     if "project-status.json" not in entry[:1500] or "site/research_catalog.json" not in entry[:1500]:
         errors.append("START_HERE_MISSING_CURRENT_MACHINE_CATALOG")
-    if re.search(r"(?:当前有效版本|当前生产|现行版本|当前有效状态)[:：].{0,35}(?:七|八|九|十|十一|十二|\\d+)家", entry[:1500]):
+    if re.search(r"(?:当前有效版本|当前生产|现行版本|当前有效状态)[:：].{0,35}(?:七|八|九|十|十一|十二|[0-9]+)家", entry[:1500]):
         errors.append("START_HERE_STALE_FIXED_ISSUER_COUNT")
     if "START_HERE.md" not in entry or "NOT_CHECKED" not in entry:
         errors.append("START_HERE_MISSING_NEW_CHAT_AND_OPEN_GATES")
