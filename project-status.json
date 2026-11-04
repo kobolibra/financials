@@ -5,7 +5,7 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "ELEVEN_ISSUERS_CURRENT_MAIN_B886_SOURCE_LIMITED_601628_TEN_RESPONSIVE_MOBILE_CHARTS_REAL_CLOUDFLARE_LIVE_FULL_SHA_PASS",
+  "latest_publication_state": "ELEVEN_ISSUER_MAIN_EBA_ACTIVE_VISUAL_SOURCE_AUDIT_601628_FIRST_FIGURE_TYPOGRAPHY_FIXED_REAL_CLOUDFLARE_FULL_BYTES_PASS",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -122,7 +122,8 @@
     "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
     "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
     "visual_quality_legacy_mobile_status": "TEN_OF_ELEVEN_CURRENT_PUBLISHED_ISSUER_HTML_HAVE_REALLY_CLIPPED_390_FINANCE_EXHIBITS_FAIL",
-    "visual_audit_candidate_branch": "work/editorial-aei-11-issuer-visual-audit-20261104"
+    "visual_audit_candidate_branch": null,
+    "real_visual_aei_research_latest_main_source": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5"
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -153,35 +154,40 @@
     }
   ],
   "last_verified_release": {
-    "source_git_commit": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
+    "source_git_commit": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5",
     "checks": [
       {
-        "name": "Real Cloudflare 11-issuer original 601628 responsive mobile, live HTML exact SHA and 6 real PNG receipts",
-        "run_id": 41778320066,
+        "name": "Actual production Cloudflare current edited insurer article b065, 11 issuer standalone routes/1440 768 390 and 6 screenshot SHA",
+        "run_id": 41786674737,
         "conclusion": "success"
       },
       {
-        "name": "Real original 104-page life-insurer CAS/CSM accounting, 10 SVG & 10 no-scroll phone financials",
-        "run_id": 41778320037,
+        "name": "Original 601628 archived insurance PDF and 18 CAS, ten source figures, corrected label collision / CJK screenshot",
+        "run_id": 41786674782,
         "conclusion": "success"
       },
       {
-        "name": "Verify current one canonical issuer library 11 routes and mobile",
-        "run_id": 41778320121,
+        "name": "Actual 11 issuer original visual audit (10 legacy mobile clipping FAIL preserved) cross-company source-bounded CI",
+        "run_id": 41786674776,
         "conclusion": "success"
       },
       {
-        "name": "Verify official current first-door Skill+handoff",
-        "run_id": 41778320045,
+        "name": "Actual 11 issuer unified live navigation",
+        "run_id": 41786674796,
         "conclusion": "success"
       },
       {
-        "name": "Verify public Pages beta and routes",
-        "run_id": 41778320141,
+        "name": "Real public beta/Pages previous routes",
+        "run_id": 41786674741,
+        "conclusion": "success"
+      },
+      {
+        "name": "Zero-memory project source handoff",
+        "run_id": 41786674813,
         "conclusion": "success"
       }
     ],
-    "warning": "This is actual historical evidence at exact source main b88698a0cf1cfcd89c16eda1e399796d9418ea04 and original live full-byte PDF/HTML browser tests on 2026-11-04; it does not automatically certify later source commits/changed reports. New release proof archival and manifest amendment itself must run CI on its own head. Full notes, external peers and human second review remain NOT_CHECKED."
+    "warning": "The listed six real main Actions prove exact historical eba source and b065 public 601628 HTML only. Ten other issuer finance figures have independent visual FAIL on 390px, no human second review; no new shipping report. Updating metadata does not verify another source-modified HTML."
   },
   "limitations": {
     "all_seven_full_material_note_reviews": "NOT_CHECKED",
@@ -738,7 +744,7 @@
     "issuer": "601628",
     "issuer_name": "中国人寿保险股份有限公司",
     "fiscal_period": "2026H1",
-    "status": "SOURCE_LIMITED_PREVIEW_PUBLISHED_CURRENT_MAIN_B886_TEN_RESPONSIVE_MOBILE_CHARTS_LIVE_PASS",
+    "status": "SOURCE_LIMITED_PREVIEW_PUBLISHED_TRUE_CLOUDFLARE_V87_FIRST_FIGURE_MONEY_TEXT_COLLISION_FIXED",
     "original_source": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF",
     "archived_pdf": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
     "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
@@ -753,7 +759,7 @@
     "branches": {
       "candidate": null,
       "previous_main_at_session_open": "07ea54b5d6e917623a87f6bad83f817d277c6e2d",
-      "main_merge_sha": "b88698a0cf1cfcd89c16eda1e399796d9418ea04"
+      "main_merge_sha": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5"
     },
     "reports": {
       "html": "public/601628.html",
@@ -791,7 +797,9 @@
       "ACTUAL_SOURCE_FIXED_CASH_NOT_PREMIUM_SANKY_HEADING",
       "ACTUAL_DESKTOP_SIGNED_WATERFALL_TITLE_LABEL_GEOMETRY_PASS",
       "LIVE_SIX_SCREENSHOT_SHA_ARCHIVE_1440_768_390",
-      "ACTUAL_601628_SOURCE_LIMITED_MAIN_B886_FULL_PUBLIC_BYTES_PASS"
+      "ACTUAL_601628_SOURCE_LIMITED_MAIN_B886_FULL_PUBLIC_BYTES_PASS",
+      "FIRST_COMPANY_TRUE_CHROMIUM_MONEY_YEAR_LABELS_VERSUS_YOY_TEXT_NO_OVERLAP_PUBLISHED",
+      "SIX_SCREENSHOT_REAL_EBA_SOURCE_RELEASE_SHA_AND_CLOUDFLARE_PASS"
     ],
     "NOT_CHECKED": [
       "MAJOR_NOTES_EXHAUSTIVE_AND_ALL_SOURCE_CELLS",
@@ -814,10 +822,10 @@
       "Actual screenshot QA caught 900px horizontally cropped money charts and insurer headline title/value intrusion; repaired 10 independent native 390px figure variants and original title, VIS-037/SEM-038/VIS-039. Actual main b886 live PASS.",
       "Post-mobile source HTML was genuinely deployed and live-browsed PASS at #41778320066 but release-gates and project-status still claimed mobile candidate NOT_CHECKED. PUB-041 archives original signed browser log receipt with six screenshot SHA and fail-closed source/real-route provenance so no future chat repeats."
     ],
-    "action_next": "Eleven issuer single-site mobile production actually PASS at b886, receipt archived and Skill 8.6.3 release-proof loop. Expand on a SECOND distinct insurer before claiming sector L2; evaluate deeper actuarial CSM/matched assets notes and original PDF equivalence, 8-12 quarterly peer valuation and actual independent human financial/visual review remain NOT_CHECKED. Recheck current main and real Actions every new session.",
-    "published_html_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+    "action_next": "Real production on main eba has corrected 601628 first figure year amount vs YoY typography, GitHub Action #41786674737 exact full bytes b065 and 11 issuer routes PASS. Cross-company audit still proves TEN other 390px finance figures internally horizontally clipped FAIL. Prioritize redesigned 600900/600276 and earlier three genuine native figure grammar (not generic 390 tiny bar); new 601919 shipping accounting original source separate branch not yet published. Important research notes, peers and human second analyst/art director NOT_CHECKED.",
+    "published_html_sha256": "b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0",
     "latest_source_signed_qa_action": "https://github.com/kobolibra/financials/actions/runs/41778320037",
-    "pr": "https://github.com/kobolibra/financials/pull/18",
+    "pr": "https://github.com/kobolibra/financials/pull/20",
     "audit_assurance": "EY_HUA_MING_LIMITED_INTERIM_REVIEW_2026_08_27_PHYSICAL_PAGE_42_NOT_AN_AUDIT_OPINION",
     "insurance_regulatory_ratios": {
       "physical_source_page": 21,
@@ -828,12 +836,12 @@
       "checked_signed_capital_facts": 6
     },
     "exact_financial_checks": 18,
-    "actual_main_release_commit": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
-    "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41778320066",
-    "main_financial_and_chromium_action": "https://github.com/kobolibra/financials/actions/runs/41778320037",
-    "main_handoff_action": "https://github.com/kobolibra/financials/actions/runs/41778320045",
-    "main_unified_live_directory_action": "https://github.com/kobolibra/financials/actions/runs/41778320121",
-    "main_public_pages_action": "https://github.com/kobolibra/financials/actions/runs/41778320141",
+    "actual_main_release_commit": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5",
+    "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41786674737",
+    "main_financial_and_chromium_action": "https://github.com/kobolibra/financials/actions/runs/41786674782",
+    "main_handoff_action": "https://github.com/kobolibra/financials/actions/runs/41786674813",
+    "main_unified_live_directory_action": "https://github.com/kobolibra/financials/actions/runs/41786674796",
+    "main_public_pages_action": "https://github.com/kobolibra/financials/actions/runs/41786674741",
     "public_home_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
     "actual_live_canonical_route": "https://financials-in-visuals.pages.dev/601628",
     "actual_live_route_mode": "Cloudflare canonical extensionless /601628; catalog /601628.html resolves to same standalone HTML and is not a homepage redirect",
@@ -846,10 +854,10 @@
     "actual_live_10_svg_and_10_source_tables": "PASS",
     "actual_live_back_to_single_directory": "PASS",
     "actual_live_source_metadata_and_sankey_sink": "PASS",
-    "skill_version": "8.6.3-rc1",
+    "skill_version": "8.7.0-rc1",
     "latest_adaptive_live_qa_source": "research/issuers/601628/qa_cloudflare_live.py",
     "generic_live_route_source": "research/shared/live_route_evidence.py",
-    "latest_live_adaptive_qa_status": "PASS_CURRENT_MAIN_B886_REAL_CLOUDFLARE_11_ROUTE_390_NATIVE_NO_INNER_SCROLL",
+    "latest_live_adaptive_qa_status": "PASS_REAL_EBA_CLOUDFLARE_FULL_B065_HTML_AND_11_ROUTE_390_ALL_SOURCE_MOBILE_MONEY",
     "live_receipt_file": "research/issuers/601628/live-release-receipt.json",
     "mobile_readability_release": {
       "state": "PASS_REAL_MAIN_CLOUDFLARE",
@@ -861,7 +869,7 @@
       "source_original_desktop_svg_export_kept": true,
       "visual_art_director_human_review": "NOT_CHECKED"
     },
-    "pending_typographic_layout_upgrade": {
+    "pending_typographic_layout_upgrade_real_hist": {
       "candidate_branch": "work/editorial-aei-11-issuer-visual-audit-20261104",
       "source_figure": "clocks",
       "true_original_accounting_unchanged": true,
