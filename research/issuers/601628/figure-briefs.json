@@ -1,0 +1,337 @@
+{
+  "issuer": "601628",
+  "report": "2026H1",
+  "source_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+  "accounting_basis": "Chinese insurer: older-basis premiums are NOT insurance-service revenue; no industrial COGS, use exact signed CAS insurance P&L and original direct-CFO; CSM is stock; investment linked with insurance finance result",
+  "graphic_rights": "original authorial graphics; AEI and FT only editorial methodology benchmarks",
+  "figure_briefs": [
+    {
+      "id": "clocks",
+      "order": 1,
+      "family": "separate_accounting_metric_comparison",
+      "question": "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+      "takeaway": "三种时间/口径的指标并列而不混加，盈利并非主要由保费增长解释。",
+      "facts": [
+        "premium_total",
+        "premium_prior",
+        "service_revenue",
+        "service_revenue_prior",
+        "parent_net",
+        "parent_net_prior",
+        "fairvalue_income",
+        "fairvalue_income_prior"
+      ],
+      "source_pages": [
+        10,
+        47
+      ],
+      "identity": "Each current/prior comparable as its own 2026H1 vs 2025H1 flow; independent zero scales; NEVER one denominator",
+      "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
+      "counter": "投资市场与承保财务损益均可改变利润，不可直接把净利润弹性归给销售和NBV。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "premium",
+      "order": 2,
+      "family": "exclusive_weighted_premium_sankey",
+      "question": "2026H1保费的真实分组与新、续期现金业务如何守恒？",
+      "takeaway": "四种互斥保费归类恰好等于新单+续期，也恰好等于总保费；100%金额几何，与合并利润表保险服务收入断开。",
+      "facts": [
+        "premium_first_regular",
+        "premium_single",
+        "premium_short",
+        "premium_renew",
+        "premium_new",
+        "premium_total"
+      ],
+      "source_pages": [
+        10
+      ],
+      "identity": "101294+17696+61049=180039; +356595=536634 RMB million; geometry segment height exactly v/536634*chart height; not earnings or cash",
+      "zero": "EXACT_AMOUNT_WEIGHTED_RIBBON",
+      "counter": "报告p10脚注声明总保费遵循旧保险合同统计规则；不能将536634直接流进112525保险服务收入。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "service",
+      "order": 3,
+      "family": "insurer_recognized_service_components",
+      "question": "合并保险服务收入靠什么确认，而非简单收到了多少保费？",
+      "takeaway": "不采用PAA下四个构件加PAA收入，精确形成112525；其中CSM摊销35155是本期已服务释放，CSM存量813253是另一时点。",
+      "facts": [
+        "service_expected_claims",
+        "service_risk_release",
+        "service_csm_release",
+        "service_acq_amort",
+        "service_paa",
+        "service_revenue",
+        "csm"
+      ],
+      "source_pages": [
+        19,
+        85,
+        87
+      ],
+      "identity": "24572+1099+35155+25133+26566=112525; income category not premium source",
+      "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
+      "counter": "合同服务边际摊销并非当期保费的直接百分比，也不能由期初期末存量差直接得出。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "insurance",
+      "order": 4,
+      "family": "insurance_service_result_signed_bridge",
+      "question": "承保服务本身按法定行项贡献了多少，不计投资估值？",
+      "takeaway": "112525收入减保险服务费用70442、分出保费2885，加摊回费用1979，形成承保服务结果41177（人民币百万元）。",
+      "facts": [
+        "service_revenue",
+        "service_cost",
+        "reinsurance_premium",
+        "reinsurance_recovered",
+        "service_revenue_prior",
+        "service_cost_prior",
+        "reinsurance_premium_prior",
+        "reinsurance_recovered_prior"
+      ],
+      "source_pages": [
+        47
+      ],
+      "identity": "Service result=service revenue+service expense+ceded reinsurance premium+recovered expense; 2026 41177 vs 2025 18160; do not treat as net profit",
+      "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
+      "counter": "保险服务结果不包含承保财务损益，不可等同寿险全部经营利润。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "pnl",
+      "order": 5,
+      "family": "full_signed_CAS_insurer_profit_bridge",
+      "question": "资本市场估值收益如何被保险财务负担和税收抵消后抵达归母利润？",
+      "takeaway": "原始本期各行加总，投资收益、公允价值与−188067承保财务损益相互联动，并最终与合并/归母利润逐元勾稽。",
+      "facts": [
+        "total_revenue",
+        "service_revenue",
+        "service_cost",
+        "reinsurance_premium",
+        "reinsurance_recovered",
+        "interest_income",
+        "investment_income",
+        "fairvalue_income",
+        "insurance_finance",
+        "op_profit",
+        "pretax_profit",
+        "income_tax",
+        "net_profit",
+        "nci_profit",
+        "parent_net"
+      ],
+      "source_pages": [
+        47,
+        48
+      ],
+      "identity": "All original CAS revenue/expense items signed; group residual only as explicitly enumerated 12 CAS rows; op_profit163178, pretax163049, net136003, parent134489",
+      "zero": "SIGNED_EXPLICIT_ZERO",
+      "counter": "资产端估值波动与浮动收费法保险合同负债计量相关，不能按单一单年盈利暴涨推断持续投资 alpha。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "delta",
+      "order": 6,
+      "family": "signed_prior_to_current_accounting_profit_waterfall",
+      "question": "营业利润增量真正的会计贡献和抵销各是什么？",
+      "takeaway": "2025H1营业利润42511到2026H1 163178：公允价值+134806，投资收益+49225，承保财务−90089，剩余均为披露的CAS行项差异。",
+      "facts": [
+        "op_profit_prior",
+        "op_profit",
+        "fairvalue_income",
+        "fairvalue_income_prior",
+        "investment_income",
+        "investment_income_prior",
+        "insurance_finance",
+        "insurance_finance_prior",
+        "service_revenue",
+        "service_revenue_prior",
+        "service_cost",
+        "service_cost_prior"
+      ],
+      "source_pages": [
+        47
+      ],
+      "identity": "All signed year-on-year CAS line differences exactly reconcile 120667 RMB million; restatement and definition checked against filing",
+      "zero": "SIGNED_EXPLICIT_ZERO",
+      "counter": "损益变动仅是会计恒等式贡献，不是能独立识别的市场利率或产品费率因果效应。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "cash",
+      "order": 7,
+      "family": "full_direct_insurer_operating_CFO_signed_bridge",
+      "question": "保单保费收现及赔付、佣金、税费如何精确生成经营现金流？",
+      "takeaway": "本报告只披露直接法合并现金流，630015流入减347136流出=282879。现金赔付增加与利润增长背离。",
+      "facts": [
+        "cfo_insurance_cash",
+        "cfo_reinsurance_cash",
+        "cfo_other_cash",
+        "cfo_in",
+        "cfo_claims",
+        "cfo_loans",
+        "cfo_commission",
+        "cfo_staff",
+        "cfo_tax",
+        "cfo_other_out",
+        "cfo_out",
+        "cfo",
+        "cfo_prior",
+        "net_profit"
+      ],
+      "source_pages": [
+        20,
+        53
+      ],
+      "identity": "Direct cash signed: receipts 630015 + six disbursements(-347136)=CFO282879; NO fabricated net-income→CFO indirect disclosure",
+      "zero": "SIGNED_EXPLICIT_ZERO",
+      "counter": "收到保单现金626732不是总保费536634，投资资产交易流动性主要属于CFI；净利润不能被代入不存在的间接CFO附注。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "cashclose",
+      "order": 8,
+      "family": "cash_equivalents_four_activity_bridge",
+      "question": "经营现金282879为何期末现金只净增5449？",
+      "takeaway": "投资、融资资金活动和汇率影响严格连接期初142373与期末147822现金等价物。",
+      "facts": [
+        "cash_start",
+        "cfo",
+        "cfi",
+        "cff",
+        "cash_fx",
+        "cash_change",
+        "cash_end",
+        "repo_liab"
+      ],
+      "source_pages": [
+        20,
+        53,
+        54,
+        84
+      ],
+      "identity": "142373+282879−175434−101937−59=147822; restricted deposits excluded by equivalent definition",
+      "zero": "SIGNED_EXPLICIT_ZERO",
+      "counter": "卖出回购余额223880有短期流动性安排，不能简单套工业公司FCF估值或把全部投资支出叫维持性资本开支。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "csm",
+      "order": 9,
+      "family": "insurance_contract_liability_stock_components",
+      "question": "69,107.41亿元的保险合同负债里，CSM是什么而不是什么？",
+      "takeaway": "未来现金流现值、风险调整、CSM和PAA分部构成6900741存量，不能表述为已赚收入或可支配现金。",
+      "facts": [
+        "insurance_contract_liab",
+        "future_cash_flow_liab",
+        "risk_adjustment_liab",
+        "csm",
+        "paa_liab",
+        "insurance_contract_liab_prior",
+        "csm_prior"
+      ],
+      "source_pages": [
+        20,
+        84,
+        85
+      ],
+      "identity": "6018422+41039+813253+38027=6910741 at June30; CSM=unearned future service stock, not revenue",
+      "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
+      "counter": "CSM期末−期初44884不等于本期新业务CSM/服务摊销净值，利率、业务新增、计量假设等变动需要完整滚动附注。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    },
+    {
+      "id": "balance",
+      "order": 10,
+      "family": "same_date_insurer_balance_sheet_funding",
+      "question": "8.09万亿元资产由什么融资？负债与归母股权如何分层？",
+      "takeaway": "两时点同尺度资产=负债+归母权益+少数股东，结合回购融资与OCI负值提醒市场风险。",
+      "facts": [
+        "assets",
+        "assets_prior",
+        "liabilities",
+        "liabilities_prior",
+        "parent_equity",
+        "parent_equity_prior",
+        "minority_equity",
+        "minority_equity_prior",
+        "oci",
+        "repo_liab"
+      ],
+      "source_pages": [
+        43,
+        44,
+        48,
+        84
+      ],
+      "identity": "2026 8090712=7412816+664203+13693; 2025 7591004=6982611+595205+13188, both same stock dates; not cash transfer",
+      "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
+      "counter": "保险合同负债是未来履约义务，不能直接与同规模工业借款等义讨论，其他综合收益波动会影响权益。",
+      "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
+      "quality": {
+        "source_semantic": "SELECTED_ORIGINAL_PDF_PAGES_AND_ROW_COLUMNS_NOT_ALL_MATERIAL_NOTES",
+        "exact_accounting": "PENDING_ACTIONS",
+        "browser_1440_768_390": "PENDING_ACTIONS",
+        "independent_human": "NOT_CHECKED"
+      }
+    }
+  ]
+}
