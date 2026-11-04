@@ -1,0 +1,53 @@
+{
+  "cases": [
+    {
+      "issuer": "300394",
+      "width": 1440,
+      "figures": 9,
+      "money_area": "PASS",
+      "sha256": "f4823febd7744990524ce5922981a27cec4d14bd129311e16386e6ce56eeb9d4",
+      "screenshot_sha256": "db3cbdeb73d3278334748bae272d97341f4e6364fd120ba97151777cc7cbaedb"
+    },
+    {
+      "issuer": "300394",
+      "width": 768,
+      "figures": 9,
+      "money_area": "PASS",
+      "sha256": "f4823febd7744990524ce5922981a27cec4d14bd129311e16386e6ce56eeb9d4",
+      "screenshot_sha256": "e0d82d092936d7d5028a64d6a87ffcab92bfc98a48dc50174bbe13ba243302c0"
+    },
+    {
+      "issuer": "300394",
+      "width": 390,
+      "figures": 9,
+      "money_area": "PASS",
+      "sha256": "f4823febd7744990524ce5922981a27cec4d14bd129311e16386e6ce56eeb9d4",
+      "screenshot_sha256": "1c56a7614882d8bd4bb979fb4489a60c85e83c0a55841c8644b51e59c51f41bd"
+    },
+    {
+      "issuer": "300502",
+      "width": 1440,
+      "figures": 10,
+      "money_area": "PASS",
+      "sha256": "eb24edef26f6ef1b388bde3026e408b279eee68e9c77bd97d69a1dbd6a09d316",
+      "screenshot_sha256": "582853a8598e82b6ba8cccd78fe2016137a54ddd7409cf02a2d7665be4cc6e63"
+    },
+    {
+      "issuer": "300502",
+      "width": 768,
+      "figures": 10,
+      "money_area": "PASS",
+      "sha256": "eb24edef26f6ef1b388bde3026e408b279eee68e9c77bd97d69a1dbd6a09d316",
+      "screenshot_sha256": "20ea535c8be6db927e7f752e883a86be67407343988d09374096a6ddbbfa3129"
+    },
+    {
+      "issuer": "300502",
+      "width": 390,
+      "figures": 10,
+      "money_area": "PASS",
+      "sha256": "eb24edef26f6ef1b388bde3026e408b279eee68e9c77bd97d69a1dbd6a09d316",
+      "screenshot_sha256": "5ab8f5da0a61935f0e81884c28e81cea369cd9365f6c56ab316a92e96b58b66f"
+    }
+  ],
+  "second_human_review": "NOT_CHECKED"
+}
