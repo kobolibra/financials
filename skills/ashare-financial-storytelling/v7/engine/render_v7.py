@@ -203,6 +203,35 @@ def build(l,m):
  support=''.join('<li>'+esc(x)+'</li>' for x in m.get('support',[]));counter=''.join('<li>'+esc(x)+'</li>' for x in m.get('counter',[]))
  facts=len(l.get('facts',{}));ind=len(l.get('indirect_cfo_adjustments',[]))
  growth_unit='收入变动 '+(n(rev-prevrev)+' 亿' if prevrev is not None else '上期不可比')+' · 成本变动 '+(n(cogs-prevcogs)+' 亿' if prevcogs is not None else '上期不可比')
+ hero_focus_html=''
+ if m.get("hero_focus")=="cash_conversion":
+  # Distinctive issuer-specific visual question, not another generic KPI grid:
+  # two *comparable* 2026H1 consolidated positive yuan flows on ONE zero axis.
+  # CFO is not a physical subset of earnings; do not render as Sankey.
+  if net<=0 or cfo<0 or capex<0:raise ValueError('ISSUER_CASH_CONVERSION_SIGNED_GREATER_THAN_ZERO_REQUIRED')
+  base=max(net,cfo)
+  pnet=float(net/base*D(100));pcfo=float(cfo/base*D(100))
+  ratio=cfo/net*D(100)
+  cashgap=net-cfo
+  feature_question=esc(m.get("hero_focus_question","利润与经营现金流为何背离？"))
+  feature_hypothesis=esc(m.get("hero_focus_hypothesis",""))
+  feature_counter=esc(m.get("hero_focus_counter",""))
+  feature_caveat=esc(m.get("hero_focus_reader_caveat",""))
+  hero_focus_html=(f'<section class="cash-editorial-focus" aria-label="原财报净利润与经营现金流同一人民币元尺度比较">'
+    f'<div class="cash-feature-copy"><small>EDITORIAL FOCUS / THE CASH CONVERSION PARADOX</small>'
+    f'<h2>{feature_question}</h2><p>经营现金流仅为本期合并净利润的 <strong>{ratio:.2f}%</strong>，收入增长并没有同步兑现现金。</p>'
+    f'<p class="counter">可检验的解释：{feature_hypothesis}</p>'
+    f'<p class="counter">反面证据：{feature_counter}</p></div>'
+    f'<div class="cash-feature-graph" data-net-exact-yuan="{net}" data-cfo-exact-yuan="{cfo}" data-cash-actual-capex-yuan="{capex}" data-bar-base-yuan="{base}">'
+    f'<span class="cash-feature-label">2026H1 · 合并净利润</span><strong>{n(net)} 亿元</strong>'
+    f'<div class="cash-feature-track"><i class="bar-net" data-exact-yuan="{net}" style="width:{pnet:.6f}%"></i></div>'
+    f'<span class="cash-feature-label">2026H1 · 经营现金流</span><strong>{n(cfo)} 亿元</strong>'
+    f'<div class="cash-feature-track"><i class="bar-cfo" data-exact-yuan="{cfo}" style="width:{pcfo:.6f}%"></i></div>'
+    f'<div class="cash-feature-bottom"><strong>转现 {ratio:.2f}%</strong><small>进一步发生现金购建长期资产 {n(capex)} 亿元；简化 FCF {n(cfo-capex)} 亿元</small></div>'
+    f'<p class="cash-feature-caveat">{feature_caveat} · 原 PDF p.57 / p.60 / p.147–148；所有条长均按真实人民币金额同尺度从零缩放。</p>'
+    f'</div></section>')
+ elif m.get("hero_focus"):
+  raise ValueError("UNSUPPORTED_ISSUER_SOURCE_DRIVEN_EDITORIAL_FOCUS")
  index_breakdown='<div class="one-minute">'+qualitative('研究核心',m.get('growth_explanation','')[:250],'teal')+qualitative('关键反证',m.get('growth_counter','')[:250],'rust')+'</div>'
  css=r'''/* Edition 7 / original editorial art direction */
 :root{--canvas:#f4f5f0;--paper:#fffefd;--ink:#122e35;--mid:#38555a;--muted:#617774;--green:#087e65;--sage:#88bfb1;--copper:#b47c67;--blue:#447fa0;--line:#d5dfd8;--dark:#0e2a31;--serif:Georgia,"Songti SC","Noto Serif CJK SC",serif;--sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif}
@@ -282,6 +311,8 @@ def build(l,m):
   source_exception_html=('<aside class="disclosure-conflict" role="note">'
      '<strong>原始附注 / SOURCE-DATA DISCREPANCY</strong><p>'+content+'</p></aside>')
   css+=r'''.disclosure-conflict{background:#fcf6e9;color:#513b24;border-left:3px solid #a47738;padding:16px 20px;margin:12px 0 26px;line-height:1.85;font-size:12px}.disclosure-conflict strong{font-size:11px;letter-spacing:.06em;color:#835a26}.disclosure-conflict p{margin:6px 0 0}'''
+ if hero_focus_html:
+  css+=r'''.cash-editorial-focus{margin:42px auto 48px;width:min(1240px,calc(100% - 70px));display:grid;grid-template-columns:1fr 1fr;gap:42px;align-items:center;padding:34px 42px;background:#eff2eb;border-top:4px solid #137d67}.cash-feature-copy small{font-size:10px;letter-spacing:.15em;color:#1c6d5f;font-weight:800}.cash-feature-copy h2{font:600 clamp(27px,3vw,43px)/1.23 var(--serif);margin:13px 0;color:#132f35}.cash-feature-copy p{font-size:14px;color:#436158;line-height:1.8}.cash-feature-copy p strong{font:700 28px var(--serif);color:#0e7865}.cash-feature-copy .counter{font-size:12px;line-height:1.8;margin:11px 0}.cash-feature-graph{min-width:0}.cash-feature-label{display:block;font-size:12px;font-weight:700;color:#355d55;margin-top:14px}.cash-feature-graph>strong{display:block;font:600 26px var(--serif);margin:2px 0 7px;color:#14333a}.cash-feature-track{width:100%;height:24px;background:#d4ded5;overflow:hidden}.cash-feature-track i{display:block;height:100%;min-width:0;transition:none}.cash-feature-track .bar-net{background:#3c7881}.cash-feature-track .bar-cfo{background:#0e8870}.cash-feature-bottom{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;border-top:1px solid #c8d4ca;margin-top:22px;padding-top:14px}.cash-feature-bottom strong{font:700 23px var(--serif);color:#0d806c}.cash-feature-bottom small{max-width:265px;font-size:11px;color:#496b61}.cash-feature-caveat{font-size:10.5px;color:#698077;line-height:1.8;margin:18px 0 0}@media(max-width:900px){.cash-editorial-focus{width:min(100% - 30px,700px);grid-template-columns:1fr;gap:12px;padding:25px 22px}.cash-feature-copy h2{font-size:29px}.cash-feature-graph>strong{font-size:23px}}'''
  editorial_review_note=''
  if review=='AI_INTERNAL_ORIGINAL_SOURCE_CRITICAL_REVIEW__HUMAN_NOT_CHECKED':
   editorial_review_note='<p class="risk-disclaimer">质量边界：本报告仅为AI辅助原始财报来源/会计事实的内部批判性复核；独立第二名人类研究分析师、独立人类视觉编辑、历史长周期、外部估值研究均NOT_CHECKED，不存在已签字审稿人。</p>'
@@ -290,7 +321,7 @@ def build(l,m):
 <a class="skip" href="#main">跳到正文</a><div class="tooltip" id="floatTip" role="status" aria-live="polite"></div>
 <div class="mast"><div class="wrap"><div class="bar"><a href="/" class="brand">FINANCIALS <em>IN VISUALS</em></a><nav class="nav" aria-label="研究导航"><a href="#economics">商业模式</a><a href="#profit">盈利</a><a href="#cash">现金</a><a href="#capital">资本</a><a href="#watch">风险</a><a class="site-library-link" href="/#companies" title="返回包含七家公司的统一研究库">全部七家公司 ↗</a></nav></div>
 <header class="hero"><span class="eyebrow">Equity research / {ticker} / {period} · filing-first</span><h1>{thesis}</h1><p class="hero-deck">{summary}</p><div class="hero-meta"><span>{issuer} · {ticker}</span><span>{period} · {esc(doc['period_start'])} 至 {esc(doc['period_end'])}</span><span>{'已审计' if doc['audited'] else '未经审计'} · 合并报表</span><span>原始 PDF {doc['pages']} 页</span></div><div class="hero-figure"></div></header></div></div>
-<div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>
+<div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>{hero_focus_html}
 <main id="main" class="wrap paper"><div class="lead"><aside>THE CENTRAL QUESTION<br>本期研究判断</aside><p>一家公司能把收入变成利润，并不等于它已经把利润变成了<strong>可持续的现金回报</strong>。这份研究将收入、成本、现金、营运资本和资本投入放在同一条会计逻辑中检验。</p></div>
 <section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','核心产品如何将销售额转化为盈利？','先理解产品价值链和商业模式，再用按金额守恒的多级流带解释收入、成本、毛利润与经营盈余。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。本图仅使用原始财报中有明确分类、相同口径且金额严格守恒的收入来源。{esc(l.get('revenue_partition_assertion',{}).get('scope','未完整披露的产品来源不能自动生成未分类业务。'))}。不同分类维度绝对不能叠加。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('收入流向怎样形成毛利润及经营盈余？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension') in ('product','other_business')],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}{source_exception_html}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div>{exhibit('为什么收入翻倍而销量只增加约六成？','02 / SALES VOLUME & MIX',volume_fig,src(l,'revenue_optics','product_revenue_prior','product_volume_wan','product_volume_wan_prior'),'三个比较面板的最后一栏为平均收入/只的近似值，不等于产品型号价格。只有量价组合的数学关系，缺少规格级别因果证据。') if volume_fig else ''}</section>
 <section class="chapter" id="profit">{section_head('02','PROFIT & DURABILITY / QUALITY OF EARNINGS','利润增长究竟来自收入增长，还是成本与费用变化？','把完整利润形成、毛利润变动、利润率和真实同期比较分开处理；明确“会计桥”不等于销量、价格和良率的因果拆解。')}
