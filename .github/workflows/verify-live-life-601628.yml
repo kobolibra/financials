@@ -6,6 +6,7 @@ on:
       - 'public/601628.html'
       - 'public/index.html'
       - 'site/research_catalog.json'
+      - 'research/issuers/601628/qa_cloudflare_live.py'
       - '.github/workflows/verify-live-life-601628.yml'
   workflow_dispatch:
 permissions:
