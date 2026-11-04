@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
-from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery
+from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery, check_agent_source_of_truth
 
 STATUS=json.loads((ROOT/"project-status.json").read_text())
 CATALOG=json.loads((ROOT/"site/research_catalog.json").read_text())
@@ -20,6 +20,14 @@ README=(ROOT/"README.md").read_text()
 class HandoffGateTests(unittest.TestCase):
     def test_current_tree_is_consistent(self):
         self.assertEqual(check_repo(),[])
+    def test_agent_instructions_must_use_current_catalog_not_stale_eight(self):
+        agent = (ROOT/"AGENTS.md").read_text()
+        self.assertEqual(check_agent_source_of_truth(agent), [])
+        stale = agent + "\nProduct: site with eight independent issuer reports."
+        self.assertIn("AGENT_STALE_HARDCODED_ISSUER_COUNT", check_agent_source_of_truth(stale))
+        missing = agent.replace("site/research_catalog.json", "omitted-catalog.json")
+        self.assertIn("AGENT_CATALOG_SOURCE_OF_TRUTH_MISSING", check_agent_source_of_truth(missing))
+
     def test_rejects_broken_codex_discovery_entry(self):
         wrapper=(ROOT/".agents/skills/ashare-financial-storytelling/SKILL.md").read_text()
         broken=wrapper.replace("description:","missing_description:",1)
