@@ -306,6 +306,57 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
             commit=record.get("actual_main_release_commit")
             if not isinstance(commit,str) or not re.fullmatch("[a-f0-9]{40}",commit):
                 errors.append(f"LIVE_PROOF_MAIN_COMMIT_INVALID {code}")
+            # Generic new-issuer evidence must reference an original ACTUAL
+            # public-browser receipt, not a green provider badge or a bare
+            # Github Actions number. Historical issuers with explicitly
+            # NOT_CHECKED publication HTML SHA are deliberately excluded.
+            live_path=record.get("live_receipt_file")
+            if not live_path:
+                errors.append(f"LIVE_CAPTURE_RECEIPT_MISSING {code}")
+            else:
+                try:
+                    receipt=read_json(checked_path(root,live_path))
+                    if receipt.get("schema_version")!=1 or receipt.get("issuer")!=code:
+                        errors.append(f"LIVE_CAPTURE_ISSUER_MISMATCH {code}")
+                    if receipt.get("status")!="PASS":
+                        errors.append(f"LIVE_CAPTURE_NOT_PASS {code}")
+                    if receipt.get("verified_git_commit")!=commit:
+                        errors.append(f"LIVE_CAPTURE_MAIN_SHA_MISMATCH {code}")
+                    if receipt.get("actual_publication_action")!=gates["CLOUDFLARE_LIVE"].get("proof"):
+                        errors.append(f"LIVE_CAPTURE_ACTION_MISMATCH {code}")
+                    if receipt.get("actual_full_content_sha256_equals_repository_main_"+code)!=declared_html_sha:
+                        errors.append(f"LIVE_CAPTURE_HTML_SHA_MISMATCH {code}")
+                    if receipt.get("pdf_sha256")!=record.get("source_pdf",{}).get("sha256"):
+                        errors.append(f"LIVE_CAPTURE_ORIGINAL_SOURCE_SHA_MISMATCH {code}")
+                    home_sha=receipt.get("actual_full_content_sha256_equals_repository_main_index")
+                    if not isinstance(home_sha,str) or not re.fullmatch("[a-f0-9]{64}",home_sha):
+                        errors.append(f"LIVE_CAPTURE_HOME_SHA_INVALID {code}")
+                    screens=receipt.get("screenshots",[])
+                    expected_screens={f"live_{code}_{w}.png" for w in (1440,768,390)}
+                    expected_screens|={f"live_directory_{w}.png" for w in (1440,768,390)}
+                    if not isinstance(screens,list) or {x.get("name") for x in screens if isinstance(x,dict)}!=expected_screens:
+                        errors.append(f"LIVE_CAPTURE_SCREENSHOT_SET_INVALID {code}")
+                    elif any(not isinstance(x.get("sha256"),str) or not re.fullmatch("[a-f0-9]{64}",x["sha256"]) or not isinstance(x.get("bytes"),int) or x["bytes"]<10000 for x in screens):
+                        errors.append(f"LIVE_CAPTURE_SCREENSHOT_HASH_INVALID {code}")
+                    views=receipt.get("real_chromium_viewports",[])
+                    if not isinstance(views,list) or {x.get("width") for x in views if isinstance(x,dict)}!={1440,768,390}:
+                        errors.append(f"LIVE_CAPTURE_REAL_VIEWPORTS_INVALID {code}")
+                    else:
+                        site=record.get("live_site_origin","https://financials-in-visuals.pages.dev")
+                        good_articles={site+f"/{code}",site+f"/{code}.html"}
+                        for view in views:
+                            if view.get("actual_dedicated_article_final_url") not in good_articles or view.get("actual_return_to_library_url")!=site+"/#companies":
+                                errors.append(f"LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID {code}")
+                                break
+                            if any(view.get(z)!="PASS" for z in ("new_601628_main_route" if code=="601628" else "back_to_same_home","no_page_horizontal_overflow","real_live_screenshots")):
+                                errors.append(f"LIVE_CAPTURE_VIEWPORT_PROOF_INVALID {code}")
+                                break
+                        if receipt.get("all_11_issuer_external_routes")!="PASS" and code=="601628":
+                            errors.append(f"LIVE_CAPTURE_ELEVEN_ISSUER_ROUTE_INVALID {code}")
+                        if code=="601628" and next(x for x in views if x["width"]==390).get("mobile_ten_full_width_source_exact_money_exhibits")!="PASS":
+                            errors.append(f"LIVE_CAPTURE_PHONE_FINANCE_FIGURES_INVALID {code}")
+                except (OSError,ValueError,KeyError,TypeError,json.JSONDecodeError) as exc:
+                    errors.append(f"LIVE_CAPTURE_RECEIPT_UNREADABLE {code}: {type(exc).__name__}")
     return errors
 
 
