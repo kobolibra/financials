@@ -4,6 +4,14 @@
 
 > **一套统一目录**：<https://financials-in-visuals.pages.dev/>；第十一家公司中国人寿独立全文：<https://financials-in-visuals.pages.dev/601628>。原目录卡 href `/601628.html` 被 Cloudflare Pages 规范化为 `/601628`，是真正独立的 HTML 页面，不是首页回跳，也不是 iframe。其余十家公司的独立报告未被改动。研究仍为**源限制预览**，不等于已完成独立第二人类审稿。
 
+## 2026-11-04 · 601628 视觉修复新字节现已真实上线，精确发布收据 [#41786674737](https://github.com/kobolibra/financials/actions/runs/41786674737)
+
+**已在真实生产网站而非GitHub静态推测验证**：`main` 最后实证代码 `eba76b207a7bb5a5f1e027acbb2e59b1f58445d5`，公开 `https://financials-in-visuals.pages.dev/601628` 的完整HTML SHA `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0`，唯一11家公司目录原始首页完整字节SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。实际GitHub Actions #41786674737 使用真实 Cloudflare HTTP + 中文Chromium，独立公司导航、返回唯一公司目录、1440/768/390、10 SVG及源表、原保费流几何及390完整财务图 **PASS**，6张截图和真实行程均在 `research/issuers/601628/live-release-receipt.json`。源原件 PDF SHA `b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943`。原 `6f386...` 线上发行页面PASS是仅针对旧版，完整保留在 `historical_live_before_1440_label_collision_qa_fix`。现 `release-gates.json` 的 `CLOUDFLARE_LIVE` 恢复**PASS**只因同一新SHA确实通过真公网验证，而非自赋值。
+
+**仍未通过或尚未验收**：截至该真实网页版本，全站其余十家报告的手机重要财务图内滚原债 **VISUAL_MOBILE=FAIL**（源字节及图证见 `research/visual-audit/quality-debt.json`）；新 `work/two-sector-native-mobile-aei-original-finance-20261104` 独立重构长江电力和恒瑞医药的手机桑基/有符号瀑布等，须完整PDF、原值守恒、实际三屏、真实Cloudflare新字节才能解除这两家相应FAIL。用户要求对早三家继续图形升级，不得称全站11家视觉顶级已完成。独立第二名人类资深研究员、资深视觉总监以及全部重大附注仍 **NOT_CHECKED**。
+
+---
+
 ## 2026-11-04 · P0最新审核：早期3家公司 vs 后续11家真实图形退化（Skill v8.7.0候选）
 
 **先说问题，不用图多/CI绿冒充顶级**：本轮由真实 `main=8f41d0ea50eeccead7215a99a7aa29808cefa535` 检索所有11家独立完整HTML，完整读取唯一 Skill + AEI/FT/会计/设计五份研究手册与发布门槛，运行 GitHub Actions [#41783946027](https://github.com/kobolibra/financials/actions/runs/41783946027) **33次真实本地Chromium 中文字体1440/768/390** 并保存36张实截图，逐幅查看最早300394/300308/300502和后来的600036/688111/688220/600900/600276/601628。结果令人警醒：**10/11家公司的390px重要财务图仍藏在内部横向滑动小窗口（真实图宽780–1050px、可视320–356px）**；全部 document 根宽度没有溢出却不等于图形可读。严格 **VISUAL_MOBILE=FAIL**，前3家公司桌面原创多阶段资金图的视觉层级明显强于某些后来的一源分二及重复横条，但早三家手机同样失败、逐图展开原始金额表也不够。参见独立完整 [视觉退化审计](research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md)、[真实33次浏览器结果](research/visual-audit/cross-issuer-visual-audit.json)、[十大真实FAIL绑定旧HTML SHA，不能刷成PASS](research/visual-audit/quality-debt.json)，以及 `research/visual-audit/*.webp` 原始证据照片。**真正独立另一名人类资深视觉总监和财报研究员没有审查，仍是 NOT_CHECKED。**
