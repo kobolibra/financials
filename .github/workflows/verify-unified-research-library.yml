@@ -118,10 +118,24 @@ jobs:
                     assert page.locator('#chart-flow rect.money-sink').count()==2,(ticker,'weighted gross profit and cost sinks absent in live HTML')
                     assert page.locator('#chart-flow path.money-ribbon').count()==2*n_sources,(ticker,'source-specific cost and GP ribbons missing')
                     assert issuer_data['source']['original_bytes_sha256'] in page.content(),(ticker,'real PDF identity not printed in live article')
-                    assert page.locator('#chart-cfo svg').count()==1,(ticker,'complete signed indirect CFO exhibit missing')
-                    assert page.locator('#chart-pnl svg').count()==1,(ticker,'signed consolidated P&L bridge missing')
-                    assert page.locator('#chart-balance svg').count()==1,(ticker,'two-date stock composition missing')
+                    assert page.locator('#chart-cfo > svg').count()==1,(ticker,'complete signed indirect CFO exhibit missing')
+                    assert page.locator('#chart-pnl > svg').count()==1,(ticker,'signed consolidated P&L bridge missing')
+                    assert page.locator('#chart-balance > svg').count()==1,(ticker,'two-date stock composition missing')
                     assert page.locator('[data-export]').count()==8,(ticker,'eight independently usable SVG exports missing')
+                    # v8.7.1: each issuer retains the original 8 desktop full
+                    # financial vectors AND renders 8 source-ledger-driven,
+                    # genuinely upright native phone SVGs; never count both
+                    # as one chart or call a small horizontal window PASS.
+                    assert page.locator('.plot > svg').count()==8,(ticker,'eight actual desktop original SVGs lost')
+                    assert page.locator('.native-mobile-finance svg').count()==8,(ticker,'eight original 390px finance figures lost')
+                    if width==390:
+                      assert page.locator('.native-mobile-finance:visible').count()==8,(ticker,'390 native originals are not actually visible')
+                      assert page.locator('.plot > svg:visible').count()==0,(ticker,'old clipped 760px original desktop graph still shown in phone')
+                      figures=page.evaluate("""() => [...document.querySelectorAll('.plot')].map(x=>({
+                        inner:x.scrollWidth,visible:x.clientWidth,
+                        financeSvg:x.querySelector('.native-mobile-finance svg')?.getBoundingClientRect().width||0
+                      }))""")
+                      assert all(z['inner']<=z['visible']+2 and 250<=z['financeSvg']<=z['visible']+1 for z in figures),(ticker,'original phone finance chart still internally clipped',figures)
                     if width==1440:
                       vis=page.evaluate("""() => ['flow','pnl','cfo','cash','balance'].map(id=>{
                          const node=document.querySelector('#chart-'+id);
