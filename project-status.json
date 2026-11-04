@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.5.0-rc1",
+    "version": "8.6.0-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -61,15 +61,22 @@
       "real_new_sector_stress": {
         "models": [
           "hydropower_utility",
-          "innovative_pharma"
+          "innovative_pharma",
+          "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 20,
+        "quality_regressions_count": 27,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
-        "each_sector_multiple_issuer_L2": "NOT_ESTABLISHED"
-      }
+        "each_sector_multiple_issuer_L2": "NOT_ESTABLISHED",
+        "insurance_full_original_source_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+        "insurance_original_pdf_pages": 104,
+        "insurance_case": "single 601628 verified first-source 2026H1 L1; insurance L2 and universal L3 NOT_ESTABLISHED"
+      },
+      "new_insurance_source_cell_verifier": "research/issuers/601628/verify_source.py",
+      "new_insurance_qa": "research/issuers/601628/qa_browser.py",
+      "new_insurance_publication_engine": "research/issuers/601628/publish.py"
     }
   },
   "entrypoints": {
@@ -86,7 +93,7 @@
     "catalog": "site/research_catalog.json",
     "builder": "site/portal_builder.py",
     "root_html": "public/index.html",
-    "company_count": 10,
+    "company_count": 11,
     "company_codes": [
       "300394",
       "300308",
@@ -97,11 +104,15 @@
       "000333",
       "688220",
       "600900",
-      "600276"
+      "600276",
+      "601628"
     ],
     "topic": "/optical-2026h1.html",
-    "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_TEN_ISSUERS_AND_REUSABLE_NEW_ISSUER_RELEASE_GATES",
-    "semiconductor_report": "/688220.html"
+    "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_ELEVEN_ISSUERS_AND_REUSABLE_NEW_ISSUER_RELEASE_GATES",
+    "semiconductor_report": "/688220.html",
+    "insurance_report": "/601628.html",
+    "current_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
+    "company_report_stage": "CURRENT_MAIN_TEN_PRIOR_PUBLISHED_601628_ELEVENTH_CANDIDATE_SOURCE_LIMITED_PREVIEW_IN_PR_PENDING_MAIN_DEPLOY"
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -682,5 +693,66 @@
     "current_handoff_fix_ci": "PASS_PR_41763814988_HANDOFF_AND_41763815011_TWO_EXISTING_SECTORS_AT_SOURCE_SHA_797e27f75de1e4b4b4774dc85e1a31832ce84760",
     "next_required_source": "User-identified company's complete official PDF bytes or verified download URL and ticker",
     "current_handoff_fix_pr": "https://github.com/kobolibra/financials/pull/13"
+  },
+  "latest_insurance_601628": {
+    "issuer": "601628",
+    "issuer_name": "中国人寿保险股份有限公司",
+    "fiscal_period": "2026H1",
+    "status": "SOURCE_LIMITED_PREVIEW_CANDIDATE_NOT_YET_LIVE",
+    "original_source": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF",
+    "archived_pdf": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+    "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+    "pdf_bytes": 4867339,
+    "physical_pages": 104,
+    "original_selected_x_y_cells": 33,
+    "disclosed_signed_facts": 127,
+    "authored_figures": 10,
+    "old_issuer_html_changed": false,
+    "source_pdf_verified_run": "https://github.com/kobolibra/financials/actions/runs/41765739795",
+    "finance_and_browser_verified_run": "https://github.com/kobolibra/financials/actions/runs/41767495751",
+    "branches": {
+      "candidate": "work/insurance-601628-original-2026h1-skill-stress",
+      "previous_main_at_session_open": "07ea54b5d6e917623a87f6bad83f817d277c6e2d",
+      "main_merge_sha": "NOT_CHECKED"
+    },
+    "reports": {
+      "html": "public/601628.html",
+      "source_ledger": "research/issuers/601628/source-ledger.json",
+      "figure_briefs": "research/issuers/601628/figure-briefs.json",
+      "story": "research/issuers/601628/story.json",
+      "release_gates": "research/issuers/601628/release-gates.json",
+      "screenshots": "research/issuers/601628/visual-qa/"
+    },
+    "accounting_models": [
+      "old-basis premium reporting separate from recognized CAS service revenue and direct insurance cash",
+      "CAS insurer full signed P&L and historical income waterfall",
+      "present-only direct CFO, NOT invented indirect",
+      "stock CSM distinct from service period release",
+      "portfolio FV income together with insurance finance P&L, OCI, taxes",
+      "actual amount-conserved premium-exclusive multi-stage Sankey"
+    ],
+    "PASS": [
+      "ACTUAL_FULL_CNINFO_PDF_BYTES_HASH_AND_PHYSICAL_PAGES",
+      "SELECTED_33_PHYSICAL_PDF_XY_CELLS",
+      "16_COMPLETE_ORIGINAL_CAS_AND_SIGNED_CASH_INVARIANTS",
+      "AUTHORIAL_SOURCE_LINKED_TEN_INDUSTRY_GRAMMAR_FIGURES",
+      "REAL_CHROMIUM_1440_768_390_SVG_GEOMETRY_AND_EXPORT",
+      "OFFLINE_CLEAN_DETERMINISTIC_SECOND_BUILD",
+      "SINGLE_CANONICAL_SITE_CATALOG_ENTRY_PREPARED"
+    ],
+    "NOT_CHECKED": [
+      "MAJOR_NOTES_EXHAUSTIVE_AND_ALL_SOURCE_CELLS",
+      "SSE_AND_CNINFO_EXACT_PDF_BYTE_IDENTITY",
+      "FULL_EXTERNAL_8_TO_12_QUARTER_MARKET_PEER_VALUATION",
+      "SECOND_INDEPENDENT_HUMAN_ANALYST_AND_VISUAL_EDITOR",
+      "LIVE_CLOUDFLARE_NEW_601628_ARTICLE_AND_NEW_HOME_NAVIGATION_PENDING_MERGE"
+    ],
+    "known_issue_corrections": [
+      "Original insurance contract liability consolidated BS row actually physical p44 not note p85 for original source grid",
+      "Multi-stage Sankey QA requires four first-stage + two aggregate-stage ribbons, not each source twice",
+      "Markdown literal escaped backticks in canonical Skill rejected by check_handoff; fixed",
+      "Historical site/company_count and manifest Skill version must be updated together, not only catalog"
+    ],
+    "action_next": "pass updated 11 issuer portal and all regression CI; merge approved PR into main; verify real 601628 Cloudflare production and prior ten pages; independent notes/external comparative remain NOT_CHECKED"
   }
 }
