@@ -5,7 +5,7 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "ELEVEN_ISSUER_UNIFIED_MAIN_DIRECTORY__ALL_THREE_OPTICAL_300394_300502_300308_EXACT_REAL_CLOUDFLARE_SHA_1440_768_390_PASS_MAIN_D4CEB34__688220_NINE_ORIGINAL_NATIVE_FINANCE_CANDIDATE_NOT_LIVE",
+  "latest_publication_state": "ELEVEN_ISSUER_ONE_MAIN_DIRECTORY__THREE_OPTICAL_SOURCE_CLOUDFLARE_LIVE_PASS__688220_SOURCE_NATIVE_NINE_FIGURES_CLOUDFLARE_1440_768_390_EXACT_SHA_PASS__FOUR_LEGACY_MOBILE_FINANCE_FAIL",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -119,11 +119,11 @@
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
     "semiconductor_report": "/688220.html",
     "insurance_report": "/601628.html",
-    "current_candidate_branch": "work/688220-native-mobile-visual-editorial-20261104",
-    "company_report_stage": "MAIN_11_ORIGINAL_SEPARATE_OFFLINE_REPORTS; THREE_OPTICAL_COMPLETE_PUBLIC_HTML_SHA_PASS_ACTION_41855709571; 600900_600276_601628_SOURCE_LIVE_PASS; FIVE_OLDER_COMPANY_MAIN_390_MONEY_SCROLL_FAIL_PENDING_ASR_CANDIDATE",
+    "current_candidate_branch": null,
+    "company_report_stage": "CURRENT_MAIN_11_INDEPENDENT_OFFLINE_HTML; ALL_3_OPTICAL_LIVE_SHA_CJK_PASS_ACTION_41855709571; 688220_NINE_ORIGINAL_CAS_SANKKEY_SIGNED_SOURCE_GEOMETRY_CLOUDFLARE_REAL_SHA_PASS_ACTION_41871662195; 600900_600276_601628_PREVIOUS_REAL_MAIN_CJK_PASS; FOUR_600036_688111_600519_000333_MOBILE_MONEY_SCROLL_FAIL",
     "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
     "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
-    "visual_quality_legacy_mobile_status": "MAIN_D4CEB34_OPTICAL_300394_300502_300308_PLUS_600900_600276_601628_MOBILE_SOURCE_FIXED_AND_CLOUDFLARE_PASS; FIVE_EXISTING_390_MONEY_FIGURE_INNER_SCROLL_FAIL_600036_688111_600519_000333_688220; ASR_688220_CANDIDATE_NATIVE_9_ISSUER_FINANCE_FIGURES_NOT_LIVE",
+    "visual_quality_legacy_mobile_status": "HISTORIC_10_SOURCE_FROZEN_390_FAIL; NOW_SOURCE_RELEASE_FIXED_300394_300308_300502_600900_600276_601628_688220; 4_REMAIN_600036_688111_600519_000333__AEI_INDEPENDENT_AESTHETIC_SIGNOFF_NOT_CHECKED",
     "visual_audit_candidate_branch": null,
     "real_visual_aei_research_latest_main_source": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
     "pending_native_mobile_two_sector_candidate": false,
@@ -1229,7 +1229,7 @@
     "branch": "work/688220-native-mobile-visual-editorial-20261104",
     "original_pdf_224_pages": true,
     "original_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
-    "source_and_negative_accounting": "PASS_ONLY_ORIGINAL_PDF_AND_ADVERSARIAL_STEP_WITHIN_ACTION_41861590595__FULL_WORKFLOW_FAILED_BROWSER_TEST_SYNTAX_OLDER_REV",
+    "source_and_negative_accounting": "PASS_MAIN_CANDIDATE_41869385326_AND_MAIN_SOURCE_WORKFLOW_41870673559_FINAL_CONCLUSION_CHECK_SEPARATELY",
     "chart_source": "research/issuers/688220/native_mobile.py",
     "figure_count": 9,
     "financial_grammars": [
@@ -1243,20 +1243,25 @@
       "business_GP_amount_and_rate",
       "dated_capital_stock_comparison"
     ],
-    "real_1440_768_390_CJK": "NOT_CHECKED_PENDING_NEW_QUEUED_RUN_41864295455",
-    "exact_main_cloudflare_new_html_sha": "NOT_CHECKED_CANDIDATE_ONLY",
+    "real_1440_768_390_CJK": "PASS_MAIN_REAL_CLOUDFLARE_ACTION_41871662195",
+    "exact_main_cloudflare_new_html_sha": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
     "five_other_main_visual_fail": [
       "600036",
       "688111",
       "600519",
-      "000333",
-      "688220"
+      "000333"
     ],
     "original_AR_top5_denominator_conflict": "FAIL_BOUNDED_ORIGINAL_P137_90.50_PCT_VS_DERIVED_89.17_PCT_UNRESOLVED_DENOMINATOR",
     "independent_human_editor": "NOT_CHECKED",
     "external_source_pdf_equivalence": "NOT_CHECKED",
     "regression": "VIS-048",
     "candidate_pull_request": "https://github.com/kobolibra/financials/pull/29",
-    "release_status": "NOT_CHECKED_CANDIDATE_ONLY__NO_CLOUDFLARE_HTML_MODIFICATION"
+    "release_status": "PASS_REAL_MAIN_CLOUDFLARE_COMPLETE_HTML_1440_768_390_SIX_CJK_SCREEN_11_COMPANY_ROUTES",
+    "live_release_receipt": "research/issuers/688220/live-release-receipt.json",
+    "real_live_action": 41871662195,
+    "live_main_commit": "e63ee316db22d8d079be6a80cd3cd9f08fd1d98e",
+    "source_note_status": "FAIL_BOUNDED_AR_90.50_PCT_REPORTED_VS_89.17_PCT_DERIVED__RPO_0.01_YUAN_SOURCE_DIFFERENCE",
+    "human_review": "NOT_CHECKED",
+    "market_comparables": "NOT_CHECKED"
   }
 }
