@@ -713,7 +713,7 @@
     "branches": {
       "candidate": "work/insurance-601628-original-2026h1-skill-stress",
       "previous_main_at_session_open": "07ea54b5d6e917623a87f6bad83f817d277c6e2d",
-      "main_merge_sha": "NOT_CHECKED"
+      "main_merge_sha": "NOT_CHECKED_PENDING_ACTUAL_PR14_MERGE"
     },
     "reports": {
       "html": "public/601628.html",
@@ -758,9 +758,9 @@
       "Original p42 EY limited assurance review exists despite report being unaudited; old generic unaudited disclaimer loses professional assurance distinction",
       "Regulatory minimum capital 674846 million is not shareholder equity; zero-division hostile mutation now fails clean with assertions"
     ],
-    "action_next": "pass updated 11 issuer portal and all regression CI; merge approved PR into main; verify real 601628 Cloudflare production and prior ten pages; independent notes/external comparative remain NOT_CHECKED",
-    "published_html_sha256": "PENDING_NEW_GENERATION_SHOULD_MATCH_RELEASE_GATES_BEFORE_MERGE",
-    "latest_source_signed_qa_action": "PENDING_NEW_MAIN_CANDIDATE_REBUILD_AFTER_EY_AND_SOLVENCY_ADAPTER",
+    "action_next": "PR #14 head check all workflows, merge to real main, wait actual Cloudflare Pages production deploy and verify 11 company live Chromium three viewports and exact online HTML SHA; independent research/market and human review remains NOT_CHECKED",
+    "published_html_sha256": "14cdc1400c8f813f052f61a8d2325e4db849626049fd43b51f5a927a0131b088",
+    "latest_source_signed_qa_action": "https://github.com/kobolibra/financials/actions/runs/41769923566",
     "pr": "https://github.com/kobolibra/financials/pull/14",
     "audit_assurance": "EY_HUA_MING_LIMITED_INTERIM_REVIEW_2026_08_27_PHYSICAL_PAGE_42_NOT_AN_AUDIT_OPINION",
     "insurance_regulatory_ratios": {
@@ -770,6 +770,7 @@
       "combined_current_pct": "197.78",
       "combined_prior_pct": "174.01",
       "checked_signed_capital_facts": 6
-    }
+    },
+    "exact_financial_checks": 18
   }
 }
