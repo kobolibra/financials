@@ -197,7 +197,7 @@ def margin(l):
     if q("cfo_prior") is not None:pairs.append(("经营现金流/收入",q("cfo_prior")/a*100,q("cfo")/b*100,"cfo"))
     if q("capex_cash_prior") is not None and q("cfo_prior") is not None:
         pairs.append(("简化现金FCF/收入",(q("cfo_prior")-q("capex_cash_prior"))/a*100,(q("cfo")-q("capex_cash"))/b*100,"fcf"))
-    return paired(l,"毛利率与现金率：不同指标不能混成利润率","两个半年同期，数值使用百分比；不是8–12季度趋势。",pairs,"各自独立")
+    return paired(l,"毛利率与现金率：不同指标不能混成利润率",pairs,"两个半年同期，数值使用百分比；不是8–12季度趋势。",True)
 
 def volume(l):
     q=lambda k:v(l,k)
