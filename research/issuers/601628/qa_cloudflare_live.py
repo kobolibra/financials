@@ -59,7 +59,7 @@ with sync_playwright() as pw:
     # Cloudflare Pages may canonicalize /601628.html to /601628; the only
     # release condition is an independently navigated COMPANY page with ten
     # actual source-linked figures, NOT a literal browser URL suffix.
-    page.wait_for_url(re.compile(r"/601628(?:\\.html)?/?(?:[?#].*)?$"),timeout=30000)
+    page.wait_for_url(re.compile(r"/601628(?:\.html)?/?(?:[?#].*)?$"),timeout=30000)
     print("LIVE_ACTUAL_COMPANY_CANONICAL_URL",width,page.url,flush=True)
     assert page.locator("figure.figure").count()==10
     assert page.locator("figure.figure svg").count()==10
