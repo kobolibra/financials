@@ -153,8 +153,24 @@ def evidence_table(l):
   rows.append(f'<tr><th scope="row">{esc(d.get("source_label",k))}</th><td class="num">{D(d["amount"]):,.2f}</td><td>{esc(d.get("period",l["document"]["period_key"]))}</td><td>{page(l,k)}</td></tr>')
  return '<div class="table-scroll"><table><thead><tr><th>原报表项目</th><th>人民币元</th><th>期别</th><th>页码</th></tr></thead><tbody>'+''.join(rows)+'</tbody></table></div>'
 
+def _review_source_gate(l,m):
+ review=m.get('review_status')
+ if review=='AI_INTERNAL_ORIGINAL_SOURCE_CRITICAL_REVIEW__HUMAN_NOT_CHECKED':
+  # An internal primary-source research pass is *not* a second human signature.
+  # Require permanent original bytes and independent human gates left explicit.
+  if (m.get('independent_human_financial_review')!='NOT_CHECKED'
+      or m.get('independent_human_visual_review')!='NOT_CHECKED'
+      or len(l['document'].get('source_sha256',''))!=64
+      or not l['document'].get('source_archive_path')
+      or not l.get('verified_source_anomalies')):
+   raise ValueError('AI_ORIGINAL_SOURCE_REVIEW_MUST_RETAIN_UNCHECKED_HUMAN_AND_ORIGINAL_PDF')
+ elif review!='ANALYST_REVIEWED':
+  raise ValueError('Research memo not source-reviewed')
+ return review
+
 def build(l,m):
  global _NATIVE_PANELS
+ review=_review_source_gate(l,m)
  QA=check(l)
  _NATIVE_PANELS=make_native_mobile_finance(l)
  if not {'01','03','04','05','06','07','08','09','10'}.issubset(_NATIVE_PANELS):
@@ -306,18 +322,8 @@ def main():
  p=argparse.ArgumentParser();p.add_argument('--ledger',required=True);p.add_argument('--memo',required=True);p.add_argument('--out',required=True);p.add_argument('--qa',required=True);a=p.parse_args()
  l=json.loads(Path(a.ledger).read_text(encoding='utf-8'));m=json.loads(Path(a.memo).read_text(encoding='utf-8'))
  if l['document'].get('business_type') not in ('industrial','manufacturing','services'):raise ValueError('Sector unsupported: bank/insurance/property need domain-specific renderer')
- review=m.get('review_status')
- if review=='AI_INTERNAL_ORIGINAL_SOURCE_CRITICAL_REVIEW__HUMAN_NOT_CHECKED':
-  # An internal primary-source research pass is *not* a second human signature.
-  # Require permanent original bytes and independent human gates left explicit.
-  if (m.get('independent_human_financial_review')!='NOT_CHECKED'
-      or m.get('independent_human_visual_review')!='NOT_CHECKED'
-      or len(l['document'].get('source_sha256',''))!=64
-      or not l['document'].get('source_archive_path')
-      or not l.get('verified_source_anomalies')):
-   raise ValueError('AI_ORIGINAL_SOURCE_REVIEW_MUST_RETAIN_UNCHECKED_HUMAN_AND_ORIGINAL_PDF')
- elif review!='ANALYST_REVIEWED':
-  raise ValueError('Research memo not source-reviewed')
+ _review_source_gate(l,m)
+ review=_review_source_gate(l,m)
 
  page_html,meta=build(l,m)
  out=Path(a.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(page_html,encoding='utf-8');q=Path(a.qa);q.parent.mkdir(parents=True,exist_ok=True);q.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(meta,ensure_ascii=False,indent=2))
