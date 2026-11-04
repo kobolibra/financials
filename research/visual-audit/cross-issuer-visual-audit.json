@@ -1,0 +1,5054 @@
+{
+  "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+  "scope": "ALL_ELEVEN_REAL_LOCAL_STANDALONE_HTML_FILES_1440_768_390_BROWSER_ONLY",
+  "benchmark": "AEI original Q3FY24 Alphabet/Apple diagrams: business sources -> weighted total revenue -> COGS/GP -> operating expenses -> profit, labels and meaningful geometry, NOT just svg tag count",
+  "notes": "An actual Chromium screenshot is an input to editorial judgment, but no independent human designer reviewed or certified this audit.",
+  "count_issuers": 11,
+  "count_viewport_tests": 33,
+  "screenshots": [
+    {
+      "file": "research/visual-audit/300394-desktop-above-fold.webp",
+      "bytes": 57602,
+      "sha256": "331f09062599866a3b24fb18a26d544d7fe5be2fd0695aa25d6bae38a0fb371c",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/300394-first-financial-figure-1440.webp",
+      "bytes": 36808,
+      "sha256": "d3a9f5c12176e73b4148b3fd80d30526f8acb76d9811b4e4854572637737035c",
+      "pixel_dims": [
+        1240,
+        739
+      ]
+    },
+    {
+      "file": "research/visual-audit/300394-phone-above-fold.webp",
+      "bytes": 37554,
+      "sha256": "28986aadd1f8ce9b3c7c1e08229d8ee95cb0dd5eea105532bdc1587fdde64085",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/300394-first-financial-figure-390.webp",
+      "bytes": 20194,
+      "sha256": "1ea5babc29c079a166682cb3f4ebeaea9c8a8c9744d00fc7910f82c2891ec449",
+      "pixel_dims": [
+        348,
+        708
+      ]
+    },
+    {
+      "file": "research/visual-audit/300308-desktop-above-fold.webp",
+      "bytes": 62452,
+      "sha256": "40b83bc672fc56f1ef6436f0f11318ec3615dcbb89175677b0fa984ceb0df4d0",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/300308-first-financial-figure-1440.webp",
+      "bytes": 33634,
+      "sha256": "d2eb1c741ed0ad4067e1861c6cc3785e9b6eeeb1cbd9802e64f8296f1f93c454",
+      "pixel_dims": [
+        1240,
+        736
+      ]
+    },
+    {
+      "file": "research/visual-audit/300308-phone-above-fold.webp",
+      "bytes": 31760,
+      "sha256": "8ad7e2362e8936521f95822397715e3ec09427d30b95c24292fa8e161e142540",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/300308-first-financial-figure-390.webp",
+      "bytes": 17510,
+      "sha256": "6eda1ca91d5f0366a8198dfeea1c545c183ca2b3da814e7863ca02872a6308d0",
+      "pixel_dims": [
+        348,
+        707
+      ]
+    },
+    {
+      "file": "research/visual-audit/300502-desktop-above-fold.webp",
+      "bytes": 54146,
+      "sha256": "a574a0576f6def10b877c8a199b56c8e7eabfc23bd872f5836f9144014228ae5",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/300502-first-financial-figure-1440.webp",
+      "bytes": 33788,
+      "sha256": "02991df8c4f72c04dca38c79dac55376e45502828a7f1802a877765fb09343f4",
+      "pixel_dims": [
+        1240,
+        737
+      ]
+    },
+    {
+      "file": "research/visual-audit/300502-phone-above-fold.webp",
+      "bytes": 35538,
+      "sha256": "93498a487872239f473ae5a081908b252e851f71b28ad5b918848927039ade4f",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/300502-first-financial-figure-390.webp",
+      "bytes": 17834,
+      "sha256": "840c930471ff39992cd805d1e186924023221a7802d484b0984a2bd02baf9397",
+      "pixel_dims": [
+        348,
+        706
+      ]
+    },
+    {
+      "file": "research/visual-audit/600036-desktop-above-fold.webp",
+      "bytes": 65486,
+      "sha256": "4a6eb6368d9a679fbd53ec658860f168789db81e11f6f466ab51993b45dcc93b",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/600036-first-financial-figure-1440.webp",
+      "bytes": 38044,
+      "sha256": "ef93b9baee5306032080fedd366684a52597ed6dc59e2854699dfedb663202b7",
+      "pixel_dims": [
+        850,
+        638
+      ]
+    },
+    {
+      "file": "research/visual-audit/600036-phone-above-fold.webp",
+      "bytes": 29796,
+      "sha256": "cd3abaea260cb55b0005ab32b39310f1d356a78c825d8e9f6f6dbe48995d170d",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/600036-first-financial-figure-390.webp",
+      "bytes": 33382,
+      "sha256": "90964aca674bba715a52e4649a9dad5dd9da9d394d5eb7b7898913bab574fddb",
+      "pixel_dims": [
+        356,
+        1044
+      ]
+    },
+    {
+      "file": "research/visual-audit/688111-desktop-above-fold.webp",
+      "bytes": 70714,
+      "sha256": "b896dddf1d0d52db719715e9ccf68694f56a76eac5b74cb182cc7bc744d97bf8",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/688111-first-financial-figure-1440.webp",
+      "bytes": 29112,
+      "sha256": "a21ba778601103e829d3b5708464481d8db33a27016ed7308e32c3587a699084",
+      "pixel_dims": [
+        850,
+        601
+      ]
+    },
+    {
+      "file": "research/visual-audit/688111-phone-above-fold.webp",
+      "bytes": 30798,
+      "sha256": "31693fd6c9f47958c573093251b6d7c7ea80e73c7b59785fd17511ccf0f0e118",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/688111-first-financial-figure-390.webp",
+      "bytes": 27402,
+      "sha256": "d1fefc5dea09be5c1ae74e96e33540a0fe23814ad56c6b4911e97a95d72ad2a6",
+      "pixel_dims": [
+        356,
+        980
+      ]
+    },
+    {
+      "file": "research/visual-audit/688220-desktop-above-fold.webp",
+      "bytes": 60494,
+      "sha256": "4a9048bdb9b49e8e04789a1f49ead4d4df57c579ad6d21e407a1c73670252635",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/688220-first-financial-figure-1440.webp",
+      "bytes": 54554,
+      "sha256": "3485548dd88927984e2af9954cbd3fc04b9b4dabf574da185632ea7a9bbdc563",
+      "pixel_dims": [
+        1130,
+        1017
+      ]
+    },
+    {
+      "file": "research/visual-audit/688220-phone-above-fold.webp",
+      "bytes": 37854,
+      "sha256": "70513b78d07630c4358f872828baea5b5c5e30f5e9deb8a749426c7b52305e9c",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/688220-first-financial-figure-390.webp",
+      "bytes": 44218,
+      "sha256": "8ecf197fe5e24f8ef3fc76cdd7f620b12392781465330ae81fa1aea348f17184",
+      "pixel_dims": [
+        362,
+        1264
+      ]
+    },
+    {
+      "file": "research/visual-audit/600900-desktop-above-fold.webp",
+      "bytes": 75488,
+      "sha256": "61d4829b10b7316fb1d804403fc26aedf7e1cddda66c453147a13456c5033a7c",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/600900-first-financial-figure-1440.webp",
+      "bytes": 24202,
+      "sha256": "f3d951bb477984986aa211f0a8aff99c424e01d67fb0c9d73b684f64d3a33dbd",
+      "pixel_dims": [
+        1130,
+        832
+      ]
+    },
+    {
+      "file": "research/visual-audit/600900-phone-above-fold.webp",
+      "bytes": 46758,
+      "sha256": "495b1e5a1821588553fb78dd7e98662132907655b00b723acfda721b8280184a",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/600900-first-financial-figure-390.webp",
+      "bytes": 15928,
+      "sha256": "2ee7b560f929dd70a5ce96b221893ce616ed25097ffa2c1ec364700130cecd9a",
+      "pixel_dims": [
+        356,
+        674
+      ]
+    },
+    {
+      "file": "research/visual-audit/600276-desktop-above-fold.webp",
+      "bytes": 77830,
+      "sha256": "b8028c6cac3ca05edccd581b8e431e624a21dc536b09e7099a92d34fccb8df66",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/600276-first-financial-figure-1440.webp",
+      "bytes": 27574,
+      "sha256": "a37d978ea89ef4baa6ae5e5fa4967fac0bfd322d9fef52c0904fb9bbfdeaf5d6",
+      "pixel_dims": [
+        1130,
+        752
+      ]
+    },
+    {
+      "file": "research/visual-audit/600276-phone-above-fold.webp",
+      "bytes": 47742,
+      "sha256": "7af4639f9463a5e4720fb979af88d6254f3a38422b9f7e51e2b609d60821be5c",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/600276-first-financial-figure-390.webp",
+      "bytes": 19380,
+      "sha256": "2fd140bac12e91f96b25cfafd8c764a5f731bebae1c26e5684e9723029730b80",
+      "pixel_dims": [
+        356,
+        617
+      ]
+    },
+    {
+      "file": "research/visual-audit/601628-desktop-above-fold.webp",
+      "bytes": 65564,
+      "sha256": "b54efd04b7ff24a0fb5df5fa12fa3a26a9020e9eee072c686473c45a817cb5fb",
+      "pixel_dims": [
+        1440,
+        900
+      ]
+    },
+    {
+      "file": "research/visual-audit/601628-first-financial-figure-1440.webp",
+      "bytes": 59266,
+      "sha256": "50513eb8ab22da6860153607a8b3e39cb5fff04bfb3dec1a47f899e01244286e",
+      "pixel_dims": [
+        1210,
+        1012
+      ]
+    },
+    {
+      "file": "research/visual-audit/601628-phone-above-fold.webp",
+      "bytes": 38962,
+      "sha256": "bf8b674172dec5eae0328b39d7fd1aebfd25750480010a50d19f218404fba04a",
+      "pixel_dims": [
+        390,
+        844
+      ]
+    },
+    {
+      "file": "research/visual-audit/601628-first-financial-figure-390.webp",
+      "bytes": 59366,
+      "sha256": "c3ae11f4048001d107800829e69eb8143ffae82f9f91ca185f2e7c1d877aa44b",
+      "pixel_dims": [
+        358,
+        1255
+      ]
+    }
+  ],
+  "screenshot_errors": [],
+  "records": [
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "report_route": "/300394.html",
+      "source_html_sha256": "ff7912d91a93e631a7d9249a6b64bf4e1161f9abfa9bd0cf6e196e6dd1ddce14",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 7,
+      "realSvgTextLabels": 110,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 100,
+        "y": 1619,
+        "width": 1240,
+        "height": 738
+      },
+      "firstSvg": {
+        "x": 125,
+        "y": 1729,
+        "width": 1190,
+        "height": 530
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "利润增长正在加速，现金与资本约束也不应被忽略。",
+      "headings": [
+        "利润增长正在加速，现金与资本约束也不应被忽略。",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？",
+        "经营现金流形成后，期末现金为什么反而减少？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 25,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 557",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 100,
+        "y": 76,
+        "width": 1240,
+        "height": 595
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "report_route": "/300394.html",
+      "source_html_sha256": "ff7912d91a93e631a7d9249a6b64bf4e1161f9abfa9bd0cf6e196e6dd1ddce14",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 7,
+      "realSvgTextLabels": 110,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 676,
+          "scroll": 676,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 676,
+          "scroll": 676,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 21,
+        "y": 1869,
+        "width": 726,
+        "height": 610
+      },
+      "firstSvg": {
+        "x": 46,
+        "y": 1969,
+        "width": 930,
+        "height": 414
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "利润增长正在加速，现金与资本约束也不应被忽略。",
+      "headings": [
+        "利润增长正在加速，现金与资本约束也不应被忽略。",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？",
+        "经营现金流形成后，期末现金为什么反而减少？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 25,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 557",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 21,
+        "y": 76,
+        "width": 726,
+        "height": 554
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "report_route": "/300394.html",
+      "source_html_sha256": "ff7912d91a93e631a7d9249a6b64bf4e1161f9abfa9bd0cf6e196e6dd1ddce14",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 7,
+      "realSvgTextLabels": 110,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 320,
+          "scroll": 320,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 320,
+          "scroll": 320,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 21,
+        "y": 2273,
+        "width": 348,
+        "height": 707
+      },
+      "firstSvg": {
+        "x": 35,
+        "y": 2398,
+        "width": 930,
+        "height": 414
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "利润增长正在加速，现金与资本约束也不应被忽略。",
+      "headings": [
+        "利润增长正在加速，现金与资本约束也不应被忽略。",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？",
+        "经营现金流形成后，期末现金为什么反而减少？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 25,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 557",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 21,
+        "y": 65,
+        "width": 348,
+        "height": 698
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "report_route": "/300308.html",
+      "source_html_sha256": "9bbc0ef5970d7272a007197619f20587e3a016f895bb517c37b92c44a1e6f3b4",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 104,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 100,
+        "y": 1521,
+        "width": 1240,
+        "height": 736
+      },
+      "firstSvg": {
+        "x": 125,
+        "y": 1632,
+        "width": 1190,
+        "height": 528
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "利润狂奔，现金流为何反向？",
+      "headings": [
+        "利润狂奔，现金流为何反向？",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？",
+        "经营现金流形成后，期末现金为什么反而减少？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 23,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 555",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 100,
+        "y": 76,
+        "width": 1240,
+        "height": 506
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "report_route": "/300308.html",
+      "source_html_sha256": "9bbc0ef5970d7272a007197619f20587e3a016f895bb517c37b92c44a1e6f3b4",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 104,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 676,
+          "scroll": 676,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 676,
+          "scroll": 676,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 21,
+        "y": 1820,
+        "width": 726,
+        "height": 609
+      },
+      "firstSvg": {
+        "x": 46,
+        "y": 1919,
+        "width": 930,
+        "height": 413
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "利润狂奔，现金流为何反向？",
+      "headings": [
+        "利润狂奔，现金流为何反向？",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？",
+        "经营现金流形成后，期末现金为什么反而减少？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 23,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 555",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 21,
+        "y": 76,
+        "width": 726,
+        "height": 504
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300308",
+      "name": "中际旭创",
+      "report_route": "/300308.html",
+      "source_html_sha256": "9bbc0ef5970d7272a007197619f20587e3a016f895bb517c37b92c44a1e6f3b4",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 104,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 320,
+          "scroll": 320,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 320,
+          "scroll": 320,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 21,
+        "y": 2200,
+        "width": 348,
+        "height": 706
+      },
+      "firstSvg": {
+        "x": 35,
+        "y": 2325,
+        "width": 930,
+        "height": 413
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "利润狂奔，现金流为何反向？",
+      "headings": [
+        "利润狂奔，现金流为何反向？",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？",
+        "经营现金流形成后，期末现金为什么反而减少？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 23,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 555",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 21,
+        "y": 65,
+        "width": 348,
+        "height": 649
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300502",
+      "name": "新易盛",
+      "report_route": "/300502.html",
+      "source_html_sha256": "f85ddc2b9545c141ed59b9fba1805cb61ced7e0c3cea974c3609edc48a6d7a60",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 11,
+      "visibleFigures": 11,
+      "svgs": 9,
+      "visibleSvgCharts": 9,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 128,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "auto",
+          "actualSvgWidth": 1190
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 1190,
+          "scroll": 1190,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 100,
+        "y": 1704,
+        "width": 1240,
+        "height": 736
+      },
+      "firstSvg": {
+        "x": 125,
+        "y": 1815,
+        "width": 1190,
+        "height": 528
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "收入翻倍背后：高端化红利与现金占用。",
+      "headings": [
+        "收入翻倍背后：高端化红利与现金占用。",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "为什么收入翻倍而销量只增加约六成？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 27,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 555",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 100,
+        "y": 76,
+        "width": 1240,
+        "height": 631
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300502",
+      "name": "新易盛",
+      "report_route": "/300502.html",
+      "source_html_sha256": "f85ddc2b9545c141ed59b9fba1805cb61ced7e0c3cea974c3609edc48a6d7a60",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 11,
+      "visibleFigures": 11,
+      "svgs": 9,
+      "visibleSvgCharts": 9,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 128,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 676,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 676,
+          "scroll": 676,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 676,
+          "scroll": 676,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 21,
+        "y": 1928,
+        "width": 726,
+        "height": 609
+      },
+      "firstSvg": {
+        "x": 46,
+        "y": 2027,
+        "width": 930,
+        "height": 413
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "收入翻倍背后：高端化红利与现金占用。",
+      "headings": [
+        "收入翻倍背后：高端化红利与现金占用。",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "为什么收入翻倍而销量只增加约六成？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 27,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 555",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 21,
+        "y": 76,
+        "width": 726,
+        "height": 554
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "300502",
+      "name": "新易盛",
+      "report_route": "/300502.html",
+      "source_html_sha256": "f85ddc2b9545c141ed59b9fba1805cb61ced7e0c3cea974c3609edc48a6d7a60",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "initial_editorial_optical",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 11,
+      "visibleFigures": 11,
+      "svgs": 9,
+      "visibleSvgCharts": 9,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 128,
+      "evidenceTables": 0,
+      "details": 0,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 930,
+          "overflow": "auto",
+          "actualSvgWidth": 930
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell scroll-x",
+          "client": 320,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 320,
+          "scroll": 320,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        },
+        {
+          "klass": "chart-shell ",
+          "client": 320,
+          "scroll": 320,
+          "overflow": "visible",
+          "actualSvgWidth": 0
+        }
+      ],
+      "firstFigure": {
+        "x": 21,
+        "y": 2468,
+        "width": 348,
+        "height": 706
+      },
+      "firstSvg": {
+        "x": 35,
+        "y": 2593,
+        "width": 930,
+        "height": 413
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "h1": "收入翻倍背后：高端化红利与现金占用。",
+      "headings": [
+        "收入翻倍背后：高端化红利与现金占用。",
+        "核心产品如何将销售额转化为盈利？",
+        "收入流向怎样形成毛利润及经营盈余？",
+        "为什么收入翻倍而销量只增加约六成？",
+        "利润增长究竟来自收入增长，还是成本与费用变化？",
+        "从毛利润到合并净利润：完整有符号会计桥",
+        "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "利润能否真正转化为现金？",
+        "合并净利润经过哪些调整，才成为经营现金流？"
+      ],
+      "firstFigureTitle": "收入流向怎样形成毛利润及经营盈余？",
+      "iframes": 0,
+      "sourceWordCount": 27,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 4,
+      "maxSvgViewbox": "0 0 1250 555",
+      "rootBackdrop": "rgb(244, 245, 240)",
+      "firstHero": {
+        "x": 21,
+        "y": 65,
+        "width": 348,
+        "height": 728
+      },
+      "design_css_sha": 10814,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "report_route": "/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "daab535272cc8db39758befb2e2ad25a9ae9904a9baf62d3731fa811e127167a",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 110,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 850,
+          "scroll": 850,
+          "overflow": "visible",
+          "actualSvgWidth": 816
+        }
+      ],
+      "firstFigure": {
+        "x": 370,
+        "y": 1982,
+        "width": 850,
+        "height": 637
+      },
+      "firstSvg": {
+        "x": 387,
+        "y": 2277,
+        "width": 816,
+        "height": 251
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "净息差仍承压，净利息收入为何增长？",
+      "headings": [
+        "净息差仍承压，净利息收入为何增长？",
+        "当利息收入下降、支出下降更多，净利息收入仍可能增长。不能仅盯利润增速；必须看资金来源、信贷资产质量、拨备与风险加权资本的变化。",
+        "存款成本优势能抵住多少资产收益下行？",
+        "利息收入下降，净利息收入为何反而增长？",
+        "银行收入必须从净额开始阅读",
+        "从净利息收入到利润，还要面对信贷成本",
+        "银行收入经过信用成本和运营费用后留下多少利润？",
+        "规模不是优势的全部，资本才是约束",
+        "贷款扩张与存款扩张是否同步？",
+        "资本缓冲不能只看一个绝对数"
+      ],
+      "firstFigureTitle": "利息收入下降，净利息收入为何反而增长？",
+      "iframes": 0,
+      "sourceWordCount": 30,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 320",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 1440,
+        "height": 575
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "report_route": "/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "daab535272cc8db39758befb2e2ad25a9ae9904a9baf62d3731fa811e127167a",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 110,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 730,
+          "scroll": 730,
+          "overflow": "visible",
+          "actualSvgWidth": 716
+        }
+      ],
+      "firstFigure": {
+        "x": 19,
+        "y": 2040,
+        "width": 730,
+        "height": 577
+      },
+      "firstSvg": {
+        "x": 26,
+        "y": 2303,
+        "width": 716,
+        "height": 220
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "净息差仍承压，净利息收入为何增长？",
+      "headings": [
+        "净息差仍承压，净利息收入为何增长？",
+        "当利息收入下降、支出下降更多，净利息收入仍可能增长。不能仅盯利润增速；必须看资金来源、信贷资产质量、拨备与风险加权资本的变化。",
+        "存款成本优势能抵住多少资产收益下行？",
+        "利息收入下降，净利息收入为何反而增长？",
+        "银行收入必须从净额开始阅读",
+        "从净利息收入到利润，还要面对信贷成本",
+        "银行收入经过信用成本和运营费用后留下多少利润？",
+        "规模不是优势的全部，资本才是约束",
+        "贷款扩张与存款扩张是否同步？",
+        "资本缓冲不能只看一个绝对数"
+      ],
+      "firstFigureTitle": "利息收入下降，净利息收入为何反而增长？",
+      "iframes": 0,
+      "sourceWordCount": 30,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 320",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 768,
+        "height": 606
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "report_route": "/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "daab535272cc8db39758befb2e2ad25a9ae9904a9baf62d3731fa811e127167a",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 110,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "firstFigure": {
+        "x": 17,
+        "y": 2637,
+        "width": 356,
+        "height": 1043
+      },
+      "firstSvg": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "净息差仍承压，净利息收入为何增长？",
+      "headings": [
+        "净息差仍承压，净利息收入为何增长？",
+        "当利息收入下降、支出下降更多，净利息收入仍可能增长。不能仅盯利润增速；必须看资金来源、信贷资产质量、拨备与风险加权资本的变化。",
+        "存款成本优势能抵住多少资产收益下行？",
+        "利息收入下降，净利息收入为何反而增长？",
+        "银行收入必须从净额开始阅读",
+        "从净利息收入到利润，还要面对信贷成本",
+        "银行收入经过信用成本和运营费用后留下多少利润？",
+        "规模不是优势的全部，资本才是约束",
+        "贷款扩张与存款扩张是否同步？",
+        "资本缓冲不能只看一个绝对数"
+      ],
+      "firstFigureTitle": "利息收入下降，净利息收入为何反而增长？",
+      "iframes": 0,
+      "sourceWordCount": 30,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 320",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 65,
+        "width": 390,
+        "height": 674
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "688111",
+      "name": "金山办公",
+      "report_route": "/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "9a13c7a7c5cb1da62d6ec8170d54d33d61f66bcc77197933db6fbe9148ea1d66",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 109,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 850,
+          "scroll": 850,
+          "overflow": "visible",
+          "actualSvgWidth": 816
+        }
+      ],
+      "firstFigure": {
+        "x": 370,
+        "y": 1942,
+        "width": 850,
+        "height": 600
+      },
+      "firstSvg": {
+        "x": 387,
+        "y": 2186,
+        "width": 816,
+        "height": 264
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "利润暴增，软件经营增长几何？",
+      "headings": [
+        "利润暴增，软件经营增长几何？",
+        "关键问题不是“会计利润涨了多少”，而是订阅与许可业务创造多少持续毛利、投资收益解释多少财务口径，以及这些利润最终转成了多少经营现金。",
+        "增长究竟来自软件使用，还是一次性许可？",
+        "这不是同一条增长曲线",
+        "四类业务，如何流向毛利？",
+        "毛利贡献和收入贡献并不是一回事",
+        "法定利润不能直接代表核心经营增长",
+        "三个利润口径，不应揉成一个瀑布",
+        "资产负债表是收入持续性的另一面",
+        "资产增长落在什么结构上？"
+      ],
+      "firstFigureTitle": "这不是同一条增长曲线",
+      "iframes": 0,
+      "sourceWordCount": 30,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 1440,
+        "height": 534
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "688111",
+      "name": "金山办公",
+      "report_route": "/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "9a13c7a7c5cb1da62d6ec8170d54d33d61f66bcc77197933db6fbe9148ea1d66",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 109,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 730,
+          "scroll": 730,
+          "overflow": "visible",
+          "actualSvgWidth": 716
+        }
+      ],
+      "firstFigure": {
+        "x": 19,
+        "y": 1991,
+        "width": 730,
+        "height": 560
+      },
+      "firstSvg": {
+        "x": 26,
+        "y": 2225,
+        "width": 716,
+        "height": 231
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "利润暴增，软件经营增长几何？",
+      "headings": [
+        "利润暴增，软件经营增长几何？",
+        "关键问题不是“会计利润涨了多少”，而是订阅与许可业务创造多少持续毛利、投资收益解释多少财务口径，以及这些利润最终转成了多少经营现金。",
+        "增长究竟来自软件使用，还是一次性许可？",
+        "这不是同一条增长曲线",
+        "四类业务，如何流向毛利？",
+        "毛利贡献和收入贡献并不是一回事",
+        "法定利润不能直接代表核心经营增长",
+        "三个利润口径，不应揉成一个瀑布",
+        "资产负债表是收入持续性的另一面",
+        "资产增长落在什么结构上？"
+      ],
+      "firstFigureTitle": "这不是同一条增长曲线",
+      "iframes": 0,
+      "sourceWordCount": 30,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 768,
+        "height": 575
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "688111",
+      "name": "金山办公",
+      "report_route": "/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "9a13c7a7c5cb1da62d6ec8170d54d33d61f66bcc77197933db6fbe9148ea1d66",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 109,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "firstFigure": {
+        "x": 17,
+        "y": 2558,
+        "width": 356,
+        "height": 979
+      },
+      "firstSvg": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "利润暴增，软件经营增长几何？",
+      "headings": [
+        "利润暴增，软件经营增长几何？",
+        "关键问题不是“会计利润涨了多少”，而是订阅与许可业务创造多少持续毛利、投资收益解释多少财务口径，以及这些利润最终转成了多少经营现金。",
+        "增长究竟来自软件使用，还是一次性许可？",
+        "这不是同一条增长曲线",
+        "四类业务，如何流向毛利？",
+        "毛利贡献和收入贡献并不是一回事",
+        "法定利润不能直接代表核心经营增长",
+        "三个利润口径，不应揉成一个瀑布",
+        "资产负债表是收入持续性的另一面",
+        "资产增长落在什么结构上？"
+      ],
+      "firstFigureTitle": "这不是同一条增长曲线",
+      "iframes": 0,
+      "sourceWordCount": 30,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 65,
+        "width": 390,
+        "height": 599
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600519",
+      "name": "贵州茅台",
+      "report_route": "/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "69e24b8beb94564c7bc069e558a756edd6299e58cd12987db46a3514e04bb0a8",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 96,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 850,
+          "scroll": 850,
+          "overflow": "visible",
+          "actualSvgWidth": 816
+        }
+      ],
+      "firstFigure": {
+        "x": 370,
+        "y": 1874,
+        "width": 850,
+        "height": 650
+      },
+      "firstSvg": {
+        "x": 387,
+        "y": 2169,
+        "width": 816,
+        "height": 264
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "现金流猛增，白酒主业真的更好吗？",
+      "headings": [
+        "现金流猛增，白酒主业真的更好吗？",
+        "营收仅小幅增长，经营现金净额却大幅上升。最重要的不是庆祝百分比，而是把白酒销售收现与成员存款、同业资金周转从同一张现金流表中正确区分。",
+        "产品和渠道不是同一件事",
+        "收入与CFO属于完全不同的两条增长曲线",
+        "营收看构成，毛利看贡献",
+        "同样卖酒，贡献的毛利率差异巨大",
+        "销售渠道，属于另一条收入轴",
+        "高毛利不等于利润没有压力",
+        "已收款的履约义务，与库存存量一起读",
+        "合同负债下降，值得与渠道收现一起核查"
+      ],
+      "firstFigureTitle": "收入与CFO属于完全不同的两条增长曲线",
+      "iframes": 0,
+      "sourceWordCount": 31,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 1440,
+        "height": 534
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600519",
+      "name": "贵州茅台",
+      "report_route": "/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "69e24b8beb94564c7bc069e558a756edd6299e58cd12987db46a3514e04bb0a8",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 96,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 730,
+          "scroll": 730,
+          "overflow": "visible",
+          "actualSvgWidth": 716
+        }
+      ],
+      "firstFigure": {
+        "x": 19,
+        "y": 1957,
+        "width": 730,
+        "height": 560
+      },
+      "firstSvg": {
+        "x": 26,
+        "y": 2191,
+        "width": 716,
+        "height": 231
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "现金流猛增，白酒主业真的更好吗？",
+      "headings": [
+        "现金流猛增，白酒主业真的更好吗？",
+        "营收仅小幅增长，经营现金净额却大幅上升。最重要的不是庆祝百分比，而是把白酒销售收现与成员存款、同业资金周转从同一张现金流表中正确区分。",
+        "产品和渠道不是同一件事",
+        "收入与CFO属于完全不同的两条增长曲线",
+        "营收看构成，毛利看贡献",
+        "同样卖酒，贡献的毛利率差异巨大",
+        "销售渠道，属于另一条收入轴",
+        "高毛利不等于利润没有压力",
+        "已收款的履约义务，与库存存量一起读",
+        "合同负债下降，值得与渠道收现一起核查"
+      ],
+      "firstFigureTitle": "收入与CFO属于完全不同的两条增长曲线",
+      "iframes": 0,
+      "sourceWordCount": 31,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 768,
+        "height": 575
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600519",
+      "name": "贵州茅台",
+      "report_route": "/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "69e24b8beb94564c7bc069e558a756edd6299e58cd12987db46a3514e04bb0a8",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 96,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "firstFigure": {
+        "x": 17,
+        "y": 2602,
+        "width": 356,
+        "height": 1017
+      },
+      "firstSvg": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "现金流猛增，白酒主业真的更好吗？",
+      "headings": [
+        "现金流猛增，白酒主业真的更好吗？",
+        "营收仅小幅增长，经营现金净额却大幅上升。最重要的不是庆祝百分比，而是把白酒销售收现与成员存款、同业资金周转从同一张现金流表中正确区分。",
+        "产品和渠道不是同一件事",
+        "收入与CFO属于完全不同的两条增长曲线",
+        "营收看构成，毛利看贡献",
+        "同样卖酒，贡献的毛利率差异巨大",
+        "销售渠道，属于另一条收入轴",
+        "高毛利不等于利润没有压力",
+        "已收款的履约义务，与库存存量一起读",
+        "合同负债下降，值得与渠道收现一起核查"
+      ],
+      "firstFigureTitle": "收入与CFO属于完全不同的两条增长曲线",
+      "iframes": 0,
+      "sourceWordCount": 31,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 65,
+        "width": 390,
+        "height": 646
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "report_route": "/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "e9f10f864511be46d96e87b9c56108d11b893c70911194e1eafebabd0818915e",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 10,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 119,
+      "evidenceTables": 10,
+      "details": 10,
+      "inlineFigureCount": 10,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 850,
+          "scroll": 850,
+          "overflow": "visible",
+          "actualSvgWidth": 816
+        }
+      ],
+      "firstFigure": {
+        "x": 370,
+        "y": 1915,
+        "width": 850,
+        "height": 572
+      },
+      "firstSvg": {
+        "x": 387,
+        "y": 2132,
+        "width": 816,
+        "height": 264
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "利润看似稳定，经营表现为何分裂？",
+      "headings": [
+        "利润看似稳定，经营表现为何分裂？",
+        "最危险的捷径，是用“家电收入增长”解释整家集团，或者把一笔税前衍生工具收益与税后扣非利润直接相减。真正的研究要先识别业务层级和会计归属。",
+        "先解除重复计算，才有真实分部分析",
+        "三条增速相互背离",
+        "三项业务互斥汇总后，收入如何转成毛利？",
+        "海外贡献正在发生什么变化？",
+        "盈利能力要区分经营与金融市场影响",
+        "规模增长，毛利率改善了吗？",
+        "法定归母与扣非归母为何距离拉大？",
+        "金融子公司让总收入略大于工业收入"
+      ],
+      "firstFigureTitle": "三条增速相互背离",
+      "iframes": 0,
+      "sourceWordCount": 36,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 1440,
+        "height": 575
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "report_route": "/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "e9f10f864511be46d96e87b9c56108d11b893c70911194e1eafebabd0818915e",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 10,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 119,
+      "evidenceTables": 10,
+      "details": 10,
+      "inlineFigureCount": 10,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 730,
+          "scroll": 730,
+          "overflow": "visible",
+          "actualSvgWidth": 716
+        }
+      ],
+      "firstFigure": {
+        "x": 19,
+        "y": 1957,
+        "width": 730,
+        "height": 560
+      },
+      "firstSvg": {
+        "x": 26,
+        "y": 2191,
+        "width": 716,
+        "height": 231
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "利润看似稳定，经营表现为何分裂？",
+      "headings": [
+        "利润看似稳定，经营表现为何分裂？",
+        "最危险的捷径，是用“家电收入增长”解释整家集团，或者把一笔税前衍生工具收益与税后扣非利润直接相减。真正的研究要先识别业务层级和会计归属。",
+        "先解除重复计算，才有真实分部分析",
+        "三条增速相互背离",
+        "三项业务互斥汇总后，收入如何转成毛利？",
+        "海外贡献正在发生什么变化？",
+        "盈利能力要区分经营与金融市场影响",
+        "规模增长，毛利率改善了吗？",
+        "法定归母与扣非归母为何距离拉大？",
+        "金融子公司让总收入略大于工业收入"
+      ],
+      "firstFigureTitle": "三条增速相互背离",
+      "iframes": 0,
+      "sourceWordCount": 36,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 80,
+        "width": 768,
+        "height": 575
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "000333",
+      "name": "美的集团",
+      "report_route": "/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "e9f10f864511be46d96e87b9c56108d11b893c70911194e1eafebabd0818915e",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "v10_other_models",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 10,
+      "visibleSvgCharts": 1,
+      "moneyRibbons": 0,
+      "realSvgTextLabels": 119,
+      "evidenceTables": 10,
+      "details": 10,
+      "inlineFigureCount": 10,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "graphic-svg sankey-svg",
+          "client": 356,
+          "scroll": 864,
+          "overflow": "auto",
+          "actualSvgWidth": 850
+        }
+      ],
+      "firstFigure": {
+        "x": 17,
+        "y": 2527,
+        "width": 356,
+        "height": 979
+      },
+      "firstSvg": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "利润看似稳定，经营表现为何分裂？",
+      "headings": [
+        "利润看似稳定，经营表现为何分裂？",
+        "最危险的捷径，是用“家电收入增长”解释整家集团，或者把一笔税前衍生工具收益与税后扣非利润直接相减。真正的研究要先识别业务层级和会计归属。",
+        "先解除重复计算，才有真实分部分析",
+        "三条增速相互背离",
+        "三项业务互斥汇总后，收入如何转成毛利？",
+        "海外贡献正在发生什么变化？",
+        "盈利能力要区分经营与金融市场影响",
+        "规模增长，毛利率改善了吗？",
+        "法定归母与扣非归母为何距离拉大？",
+        "金融子公司让总收入略大于工业收入"
+      ],
+      "firstFigureTitle": "三条增速相互背离",
+      "iframes": 0,
+      "sourceWordCount": 36,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": false,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1040 336",
+      "rootBackdrop": "rgb(255, 253, 247)",
+      "firstHero": {
+        "x": 0,
+        "y": 65,
+        "width": 390,
+        "height": 599
+      },
+      "design_css_sha": 9186,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "688220",
+      "name": "翱捷科技-U",
+      "report_route": "/688220.html",
+      "source_html_sha256": "e5f7ec9a2a912f5aff38b9e87961d894dcc92737cf4dd871e151ad3e6e1fe9fe",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 9,
+      "moneyRibbons": 7,
+      "realSvgTextLabels": 153,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1000
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 1060,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        }
+      ],
+      "firstFigure": {
+        "x": 155,
+        "y": 1976,
+        "width": 1130,
+        "height": 1016
+      },
+      "firstSvg": {
+        "x": 190,
+        "y": 2124,
+        "width": 1050,
+        "height": 615
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Iowan Old Style\", \"Noto Serif CJK SC\", \"Songti SC\", Georgia, serif",
+      "h1": "翱捷科技：扭亏之后，现金为什么仍在流出？",
+      "headings": [
+        "翱捷科技：扭亏之后，现金为什么仍在流出？",
+        "毛利提升是经营事实；利润转正还不是现金盈利。",
+        "不是一个“芯片收入”标签：产品销售与 ASIC 定制的经济机制不同。",
+        "每一元收入，如何形成毛利？",
+        "谁贡献毛利？谁只是高毛利率的极小分母？",
+        "客户验收改变收入确认时点",
+        "毛利改善推动经营基础；非经常性收益改变法定利润的方向。",
+        "2025H1 到 2026H1：毛利增加，算术贡献来自哪里？",
+        "7.22 亿毛利，为什么最终只留下 0.84 亿净利润？",
+        "扣非仍亏损，为什么归母净利润转正？"
+      ],
+      "firstFigureTitle": "每一元收入，如何形成毛利？",
+      "iframes": 0,
+      "sourceWordCount": 19,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1050 615",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 155,
+        "y": 70,
+        "width": 1130,
+        "height": 584
+      },
+      "design_css_sha": 8572,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "688220",
+      "name": "翱捷科技-U",
+      "report_route": "/688220.html",
+      "source_html_sha256": "e5f7ec9a2a912f5aff38b9e87961d894dcc92737cf4dd871e151ad3e6e1fe9fe",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 9,
+      "moneyRibbons": 7,
+      "realSvgTextLabels": 153,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1000,
+          "overflow": "auto",
+          "actualSvgWidth": 1000
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1000,
+          "overflow": "auto",
+          "actualSvgWidth": 1000
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 678,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        }
+      ],
+      "firstFigure": {
+        "x": 24,
+        "y": 2020,
+        "width": 720,
+        "height": 1138
+      },
+      "firstSvg": {
+        "x": 45,
+        "y": 2266,
+        "width": 1050,
+        "height": 615
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Iowan Old Style\", \"Noto Serif CJK SC\", \"Songti SC\", Georgia, serif",
+      "h1": "翱捷科技：扭亏之后，现金为什么仍在流出？",
+      "headings": [
+        "翱捷科技：扭亏之后，现金为什么仍在流出？",
+        "毛利提升是经营事实；利润转正还不是现金盈利。",
+        "不是一个“芯片收入”标签：产品销售与 ASIC 定制的经济机制不同。",
+        "每一元收入，如何形成毛利？",
+        "谁贡献毛利？谁只是高毛利率的极小分母？",
+        "客户验收改变收入确认时点",
+        "毛利改善推动经营基础；非经常性收益改变法定利润的方向。",
+        "2025H1 到 2026H1：毛利增加，算术贡献来自哪里？",
+        "7.22 亿毛利，为什么最终只留下 0.84 亿净利润？",
+        "扣非仍亏损，为什么归母净利润转正？"
+      ],
+      "firstFigureTitle": "每一元收入，如何形成毛利？",
+      "iframes": 0,
+      "sourceWordCount": 19,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1050 615",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 24,
+        "y": 70,
+        "width": 720,
+        "height": 517
+      },
+      "design_css_sha": 8572,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "688220",
+      "name": "翱捷科技-U",
+      "report_route": "/688220.html",
+      "source_html_sha256": "e5f7ec9a2a912f5aff38b9e87961d894dcc92737cf4dd871e151ad3e6e1fe9fe",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 9,
+      "visibleFigures": 9,
+      "svgs": 9,
+      "visibleSvgCharts": 9,
+      "moneyRibbons": 7,
+      "realSvgTextLabels": 153,
+      "evidenceTables": 9,
+      "details": 9,
+      "inlineFigureCount": 9,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1000,
+          "overflow": "auto",
+          "actualSvgWidth": 1000
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1000,
+          "overflow": "auto",
+          "actualSvgWidth": 1000
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1040,
+          "overflow": "auto",
+          "actualSvgWidth": 1040
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1050,
+          "overflow": "auto",
+          "actualSvgWidth": 1050
+        },
+        {
+          "klass": "vizscroll",
+          "client": 332,
+          "scroll": 1060,
+          "overflow": "auto",
+          "actualSvgWidth": 1060
+        }
+      ],
+      "firstFigure": {
+        "x": 14,
+        "y": 2557,
+        "width": 362,
+        "height": 1263
+      },
+      "firstSvg": {
+        "x": 29,
+        "y": 2866,
+        "width": 1050,
+        "height": 615
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Iowan Old Style\", \"Noto Serif CJK SC\", \"Songti SC\", Georgia, serif",
+      "h1": "翱捷科技：扭亏之后，现金为什么仍在流出？",
+      "headings": [
+        "翱捷科技：扭亏之后，现金为什么仍在流出？",
+        "毛利提升是经营事实；利润转正还不是现金盈利。",
+        "不是一个“芯片收入”标签：产品销售与 ASIC 定制的经济机制不同。",
+        "每一元收入，如何形成毛利？",
+        "谁贡献毛利？谁只是高毛利率的极小分母？",
+        "客户验收改变收入确认时点",
+        "毛利改善推动经营基础；非经常性收益改变法定利润的方向。",
+        "2025H1 到 2026H1：毛利增加，算术贡献来自哪里？",
+        "7.22 亿毛利，为什么最终只留下 0.84 亿净利润？",
+        "扣非仍亏损，为什么归母净利润转正？"
+      ],
+      "firstFigureTitle": "每一元收入，如何形成毛利？",
+      "iframes": 0,
+      "sourceWordCount": 19,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1050 615",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 15,
+        "y": 62,
+        "width": 360,
+        "height": 451
+      },
+      "design_css_sha": 8572,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600900",
+      "name": "长江电力",
+      "report_route": "/600900.html",
+      "source_html_sha256": "7d75c9afc20d7a0c169bfdfb5e5e56eb6225d4ca5fd4081a90551cb4cafb804a",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 4,
+      "realSvgTextLabels": 113,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        }
+      ],
+      "firstFigure": {
+        "x": 155,
+        "y": 1067,
+        "width": 1130,
+        "height": 832
+      },
+      "firstSvg": {
+        "x": 179,
+        "y": 1161,
+        "width": 1082,
+        "height": 559
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Noto Serif CJK SC\", \"Songti SC\", STSong, serif",
+      "h1": "水电资产的利润增长，不能只归因于发电量。",
+      "headings": [
+        "水电资产的利润增长，不能只归因于发电量。",
+        "每一项互斥收入分别转成多少直接成本和毛利？",
+        "这一行业的真正经营产出与会计确认收入如何连接？",
+        "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+        "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+        "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+        "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+        "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+        "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+        "方法、来源与明确的边界"
+      ],
+      "firstFigureTitle": "",
+      "iframes": 0,
+      "sourceWordCount": 10,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1120 579",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 155,
+        "y": 76,
+        "width": 1130,
+        "height": 655
+      },
+      "design_css_sha": 5184,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600900",
+      "name": "长江电力",
+      "report_route": "/600900.html",
+      "source_html_sha256": "7d75c9afc20d7a0c169bfdfb5e5e56eb6225d4ca5fd4081a90551cb4cafb804a",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 4,
+      "realSvgTextLabels": 113,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "firstFigure": {
+        "x": 30,
+        "y": 1096,
+        "width": 708,
+        "height": 666
+      },
+      "firstSvg": {
+        "x": 54,
+        "y": 1190,
+        "width": 760,
+        "height": 393
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Noto Serif CJK SC\", \"Songti SC\", STSong, serif",
+      "h1": "水电资产的利润增长，不能只归因于发电量。",
+      "headings": [
+        "水电资产的利润增长，不能只归因于发电量。",
+        "每一项互斥收入分别转成多少直接成本和毛利？",
+        "这一行业的真正经营产出与会计确认收入如何连接？",
+        "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+        "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+        "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+        "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+        "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+        "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+        "方法、来源与明确的边界"
+      ],
+      "firstFigureTitle": "",
+      "iframes": 0,
+      "sourceWordCount": 10,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1120 579",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 30,
+        "y": 76,
+        "width": 708,
+        "height": 677
+      },
+      "design_css_sha": 5184,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600900",
+      "name": "长江电力",
+      "report_route": "/600900.html",
+      "source_html_sha256": "7d75c9afc20d7a0c169bfdfb5e5e56eb6225d4ca5fd4081a90551cb4cafb804a",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 4,
+      "realSvgTextLabels": 113,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "firstFigure": {
+        "x": 17,
+        "y": 1344,
+        "width": 356,
+        "height": 672
+      },
+      "firstSvg": {
+        "x": 28,
+        "y": 1443,
+        "width": 760,
+        "height": 393
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Noto Serif CJK SC\", \"Songti SC\", STSong, serif",
+      "h1": "水电资产的利润增长，不能只归因于发电量。",
+      "headings": [
+        "水电资产的利润增长，不能只归因于发电量。",
+        "每一项互斥收入分别转成多少直接成本和毛利？",
+        "这一行业的真正经营产出与会计确认收入如何连接？",
+        "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+        "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+        "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+        "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+        "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+        "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+        "方法、来源与明确的边界"
+      ],
+      "firstFigureTitle": "",
+      "iframes": 0,
+      "sourceWordCount": 10,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": true,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1120 579",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 17,
+        "y": 60,
+        "width": 356,
+        "height": 940
+      },
+      "design_css_sha": 5184,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600276",
+      "name": "恒瑞医药",
+      "report_route": "/600276.html",
+      "source_html_sha256": "033a35625152ec1dd31d383a632df8ab74a7f43e7ac1face31cfdfac9ce849c0",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 113,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        },
+        {
+          "klass": "plot",
+          "client": 1128,
+          "scroll": 1128,
+          "overflow": "auto",
+          "actualSvgWidth": 1082
+        }
+      ],
+      "firstFigure": {
+        "x": 155,
+        "y": 1148,
+        "width": 1130,
+        "height": 752
+      },
+      "firstSvg": {
+        "x": 179,
+        "y": 1243,
+        "width": 1082,
+        "height": 479
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Noto Serif CJK SC\", \"Songti SC\", STSong, serif",
+      "h1": "创新药在增长，但法定利润与经营现金讲的是另外两件事。",
+      "headings": [
+        "创新药在增长，但法定利润与经营现金讲的是另外两件事。",
+        "这一行业的真正经营产出与会计确认收入如何连接？",
+        "每一项互斥收入分别转成多少直接成本和毛利？",
+        "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+        "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+        "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+        "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+        "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+        "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+        "方法、来源与明确的边界"
+      ],
+      "firstFigureTitle": "",
+      "iframes": 0,
+      "sourceWordCount": 11,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1120 496",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 155,
+        "y": 76,
+        "width": 1130,
+        "height": 737
+      },
+      "design_css_sha": 5184,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600276",
+      "name": "恒瑞医药",
+      "report_route": "/600276.html",
+      "source_html_sha256": "033a35625152ec1dd31d383a632df8ab74a7f43e7ac1face31cfdfac9ce849c0",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 113,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 706,
+          "scroll": 806,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "firstFigure": {
+        "x": 30,
+        "y": 1144,
+        "width": 708,
+        "height": 609
+      },
+      "firstSvg": {
+        "x": 54,
+        "y": 1238,
+        "width": 760,
+        "height": 337
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Noto Serif CJK SC\", \"Songti SC\", STSong, serif",
+      "h1": "创新药在增长，但法定利润与经营现金讲的是另外两件事。",
+      "headings": [
+        "创新药在增长，但法定利润与经营现金讲的是另外两件事。",
+        "这一行业的真正经营产出与会计确认收入如何连接？",
+        "每一项互斥收入分别转成多少直接成本和毛利？",
+        "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+        "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+        "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+        "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+        "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+        "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+        "方法、来源与明确的边界"
+      ],
+      "firstFigureTitle": "",
+      "iframes": 0,
+      "sourceWordCount": 11,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1120 496",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 30,
+        "y": 76,
+        "width": 708,
+        "height": 725
+      },
+      "design_css_sha": 5184,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "600276",
+      "name": "恒瑞医药",
+      "report_route": "/600276.html",
+      "source_html_sha256": "033a35625152ec1dd31d383a632df8ab74a7f43e7ac1face31cfdfac9ce849c0",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "source_first_industrial",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 8,
+      "visibleFigures": 8,
+      "svgs": 8,
+      "visibleSvgCharts": 8,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 113,
+      "evidenceTables": 8,
+      "details": 8,
+      "inlineFigureCount": 8,
+      "internalHorizontalScrollers": [
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "scrollInfo": [
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        },
+        {
+          "klass": "plot",
+          "client": 354,
+          "scroll": 780,
+          "overflow": "auto",
+          "actualSvgWidth": 760
+        }
+      ],
+      "firstFigure": {
+        "x": 17,
+        "y": 1411,
+        "width": 356,
+        "height": 616
+      },
+      "firstSvg": {
+        "x": 28,
+        "y": 1510,
+        "width": 760,
+        "height": 337
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"Noto Sans CJK SC\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "headlineFont": "\"Noto Serif CJK SC\", \"Songti SC\", STSong, serif",
+      "h1": "创新药在增长，但法定利润与经营现金讲的是另外两件事。",
+      "headings": [
+        "创新药在增长，但法定利润与经营现金讲的是另外两件事。",
+        "这一行业的真正经营产出与会计确认收入如何连接？",
+        "每一项互斥收入分别转成多少直接成本和毛利？",
+        "收入、利润和经营现金流在两个可比半年期间究竟怎样不同步？",
+        "原始毛利怎样按法定符号穿过研发、财务、投资和税项变成归母利润？",
+        "净利润逐项调节为经营现金流，哪些具体项目吸收或释放了现金？",
+        "经营现金流支付长期资产购建后，还有多少简单自由现金可用？",
+        "期初现金经经营、投资、筹资及汇率四项怎样到达期末现金？",
+        "期末资产如何由负债、母公司权益及少数股东权益支撑，与年初有何不同？",
+        "方法、来源与明确的边界"
+      ],
+      "firstFigureTitle": "",
+      "iframes": 0,
+      "sourceWordCount": 11,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1120 496",
+      "rootBackdrop": "rgb(245, 244, 239)",
+      "firstHero": {
+        "x": 17,
+        "y": 60,
+        "width": 356,
+        "height": 989
+      },
+      "design_css_sha": 5184,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "FAIL",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "601628",
+      "name": "中国人寿",
+      "report_route": "/601628.html",
+      "source_html_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "insurance",
+      "viewport": [
+        1440,
+        900
+      ],
+      "body": 1440,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 10,
+      "visibleSvgCharts": 10,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 152,
+      "evidenceTables": 10,
+      "details": 10,
+      "inlineFigureCount": 10,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        },
+        {
+          "klass": "chart",
+          "client": 1208,
+          "scroll": 1208,
+          "overflow": "auto",
+          "actualSvgWidth": 1180
+        }
+      ],
+      "firstFigure": {
+        "x": 115,
+        "y": 1485,
+        "width": 1210,
+        "height": 1012
+      },
+      "firstSvg": {
+        "x": 130,
+        "y": 1843,
+        "width": 1180,
+        "height": 408
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "保费只增 2.2%。利润却增 228.6%。寿险真正赚的是什么钱？",
+      "headings": [
+        "保费只增 2.2%。利润却增 228.6%。寿险真正赚的是什么钱？",
+        "先区分三个世界，再讨论一家寿险公司的回报。",
+        "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+        "2026H1总保费如何由四个真实业务分组汇成新单与续期？",
+        "合并保险服务收入靠什么确认，而非简单收到了多少保费？",
+        "承保服务本身按法定行项贡献了多少，不计投资估值？",
+        "资本市场估值收益如何被保险财务负担和税收抵消后抵达归母利润？",
+        "营业利润增量真正的会计贡献和抵销各是什么？",
+        "保单保费收现及赔付、佣金、税费如何精确生成经营现金流？",
+        "经营现金282879为何期末现金只净增5449？"
+      ],
+      "firstFigureTitle": "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+      "iframes": 0,
+      "sourceWordCount": 27,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1100 380",
+      "rootBackdrop": "rgb(250, 249, 244)",
+      "firstHero": {
+        "x": 115,
+        "y": 76,
+        "width": 1210,
+        "height": 877
+      },
+      "design_css_sha": 6806,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "601628",
+      "name": "中国人寿",
+      "report_route": "/601628.html",
+      "source_html_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "insurance",
+      "viewport": [
+        768,
+        1024
+      ],
+      "body": 768,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 10,
+      "visibleSvgCharts": 10,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 152,
+      "evidenceTables": 10,
+      "details": 10,
+      "inlineFigureCount": 10,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        },
+        {
+          "klass": "chart",
+          "client": 694,
+          "scroll": 694,
+          "overflow": "auto",
+          "actualSvgWidth": 666
+        }
+      ],
+      "firstFigure": {
+        "x": 36,
+        "y": 1512,
+        "width": 696,
+        "height": 815
+      },
+      "firstSvg": {
+        "x": 51,
+        "y": 1828,
+        "width": 666,
+        "height": 230
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "保费只增 2.2%。利润却增 228.6%。寿险真正赚的是什么钱？",
+      "headings": [
+        "保费只增 2.2%。利润却增 228.6%。寿险真正赚的是什么钱？",
+        "先区分三个世界，再讨论一家寿险公司的回报。",
+        "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+        "2026H1总保费如何由四个真实业务分组汇成新单与续期？",
+        "合并保险服务收入靠什么确认，而非简单收到了多少保费？",
+        "承保服务本身按法定行项贡献了多少，不计投资估值？",
+        "资本市场估值收益如何被保险财务负担和税收抵消后抵达归母利润？",
+        "营业利润增量真正的会计贡献和抵销各是什么？",
+        "保单保费收现及赔付、佣金、税费如何精确生成经营现金流？",
+        "经营现金282879为何期末现金只净增5449？"
+      ],
+      "firstFigureTitle": "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+      "iframes": 0,
+      "sourceWordCount": 27,
+      "mobileAltFigures": 0,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1100 380",
+      "rootBackdrop": "rgb(250, 249, 244)",
+      "firstHero": {
+        "x": 36,
+        "y": 76,
+        "width": 696,
+        "height": 786
+      },
+      "design_css_sha": 6806,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    },
+    {
+      "code": "601628",
+      "name": "中国人寿",
+      "report_route": "/601628.html",
+      "source_html_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+      "source_git_commit": "783880496455753f8455b7dbb874fdf4cecc07fe",
+      "group": "insurance",
+      "viewport": [
+        390,
+        844
+      ],
+      "body": 390,
+      "figures": 10,
+      "visibleFigures": 10,
+      "svgs": 10,
+      "visibleSvgCharts": 0,
+      "moneyRibbons": 6,
+      "realSvgTextLabels": 152,
+      "evidenceTables": 10,
+      "details": 10,
+      "inlineFigureCount": 10,
+      "internalHorizontalScrollers": [],
+      "scrollInfo": [],
+      "firstFigure": {
+        "x": 16,
+        "y": 2037,
+        "width": 358,
+        "height": 1254
+      },
+      "firstSvg": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0
+      },
+      "bodyFont": "-apple-system, BlinkMacSystemFont, \"PingFang SC\", \"Noto Sans CJK SC\", Arial, sans-serif",
+      "headlineFont": "Georgia, \"Noto Serif CJK SC\", \"Songti SC\", serif",
+      "h1": "保费只增 2.2%。利润却增 228.6%。寿险真正赚的是什么钱？",
+      "headings": [
+        "保费只增 2.2%。利润却增 228.6%。寿险真正赚的是什么钱？",
+        "先区分三个世界，再讨论一家寿险公司的回报。",
+        "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+        "2026H1总保费如何由四个真实业务分组汇成新单与续期？",
+        "合并保险服务收入靠什么确认，而非简单收到了多少保费？",
+        "承保服务本身按法定行项贡献了多少，不计投资估值？",
+        "资本市场估值收益如何被保险财务负担和税收抵消后抵达归母利润？",
+        "营业利润增量真正的会计贡献和抵销各是什么？",
+        "保单保费收现及赔付、佣金、税费如何精确生成经营现金流？",
+        "经营现金282879为何期末现金只净增5449？"
+      ],
+      "firstFigureTitle": "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+      "iframes": 0,
+      "sourceWordCount": 27,
+      "mobileAltFigures": 10,
+      "hasRealMoneyRect": true,
+      "firstFigureHasMoneyRibbon": false,
+      "suspiciousGenericCards": 0,
+      "maxSvgViewbox": "0 0 1100 380",
+      "rootBackdrop": "rgb(250, 249, 244)",
+      "firstHero": {
+        "x": 16,
+        "y": 60,
+        "width": 358,
+        "height": 1109
+      },
+      "design_css_sha": 6806,
+      "linkToOnlyOneDirectory": true,
+      "quality_gates": {
+        "actual_local_browser_render": "PASS",
+        "one_single_standalone_article": "PASS",
+        "root_document_no_overflow": "PASS",
+        "entire_primary_money_diagram_readable_without_figure_internal_horizontal_scroller": "PASS",
+        "independent_human_visual_editor": "NOT_CHECKED",
+        "real_remote_cloudflare_current_sha": "NOT_CHECKED_BY_THIS_LOCAL_AUDIT",
+        "current_page_offline_source_row_and_financial_research": "NOT_CHECKED_BY_VISUAL_AUDIT"
+      }
+    }
+  ]
+}
