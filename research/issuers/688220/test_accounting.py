@@ -8,7 +8,7 @@ original=json.loads((HERE/"source-ledger.json").read_text())
 def call(ledger):
  with tempfile.TemporaryDirectory() as root:
   t=pathlib.Path(root)
-  for name in ("report-template.html","publish.py","figure-briefs.json"):
+  for name in ("report-template.html","publish.py","figure-briefs.json","native_mobile.py"):
    (t/name).write_bytes((HERE/name).read_bytes())
   (t/"source-ledger.json").write_text(json.dumps(ledger,ensure_ascii=False),encoding="utf8")
   return subprocess.run([sys.executable,str(t/"publish.py"),"--out",str(t/"test.html"),"--qa",str(t/"qa.json")],capture_output=True,text=True)
