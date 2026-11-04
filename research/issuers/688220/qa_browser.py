@@ -23,7 +23,7 @@ with sync_playwright() as p:
   page.on("pageerror",lambda e:errors.append("JS "+str(e)))
   page.on("console",lambda m:errors.append("CONSOLE "+m.text) if m.type=="error" else None)
   page.goto(html.as_uri(),wait_until="load")
-  page.wait_for_selector("#chart-flow svg",timeout=15000)
+  page.wait_for_selector("#chart-flow svg",state="attached",timeout=15000)
   info=page.evaluate("""() => ({
     scrollWidth:document.documentElement.scrollWidth,
     clientWidth:document.documentElement.clientWidth,
