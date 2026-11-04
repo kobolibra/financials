@@ -27,6 +27,21 @@ with sync_playwright() as p:
                 assert "422,649,612.97" in page.locator("aside.disclosure-conflict").inner_text()
                 assert "422,649,613.97" in page.locator("aside.disclosure-conflict").inner_text()
                 assert "独立第二名人类研究分析师" in page.content(),(code,"FALSE_HUMAN_REVIEW_CLAIM_BOUNDARY_MISSING")
+            if code=="300308":
+                focus=page.evaluate("""() => {
+                  const e=document.querySelector('.cash-feature-graph');
+                  const n=e?.querySelector('.bar-net'),c=e?.querySelector('.bar-cfo');
+                  if(!e||!n||!c)return null;
+                  return {net:+e.dataset.netExactYuan,cfo:+e.dataset.cfoExactYuan,
+                    capex:+e.dataset.cashActualCapexYuan,base:+e.dataset.barBaseYuan,
+                    netWidth:parseFloat(n.style.width),cfoWidth:parseFloat(c.style.width),
+                    left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right};
+                }""")
+                assert focus and focus["net"]==14733426763.13 and focus["cfo"]==1799674832.02,(code,"CASH_LEAD_SOURCE_AMOUNT_WRONG",focus)
+                assert focus["capex"]==4802161195.37 and focus["base"]==focus["net"],(code,"CASH_LEAD_CASH_CAPEX_AS_STOCK")
+                assert abs(focus["netWidth"]-100.0)<1e-5
+                assert abs(focus["cfoWidth"]-focus["cfo"]/focus["net"]*100)<1e-5,(code,"CASH_LEAD_EDITORIAL_VISUAL_GEOMETRY_WRONG")
+                assert 0<=focus["left"] and focus["right"]<=width+2,(code,width,"EDITORIAL_FOCUS_MOBILE_CROPPED")
             n=page.locator("figure.has-native-finance").count()
             assert n>=9,(code,width,"MISSING_MONEY_NATIVE_FIGURES",n)
             assert page.locator(".hero-svg").count()==1,(code,"DESKTOP_ORIGINAL_LOST")
@@ -98,6 +113,8 @@ with sync_playwright() as p:
                     page.locator("figure.exhibit .svg-save").first.click()
                 assert event.value.suggested_filename.endswith(".svg")
             img=out/(f"{code}_{width}.png");page.screenshot(path=str(img),full_page=True)
+            if code=="300308" and width in (1440,768,390):
+                page.locator(".cash-editorial-focus").screenshot(path=str(out/f"{code}_cashfocus_{width}.png"))
             page.locator("figure.exhibit").first.screenshot(path=str(out/f"{code}_figure01_{width}.png"))
             if width==390:
                 for chart_idx in (2,5,8):
