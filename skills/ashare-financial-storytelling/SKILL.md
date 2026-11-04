@@ -1,11 +1,25 @@
 ---
 name: ashare-financial-storytelling
-version: 8.6.0-rc1
+version: 8.6.1-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.6.0-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.6.1-RC1
 
+
+## v8.6.1-RC1 · Proven post-publication evidence and reliable zero-context issuer handoff
+
+**Actual dated acceptance; not an invented certification**: 2026-11-04 source commit `d11638f0c76ff8aef2beb163a1028f176123bbdc` has real [Cloudflare Pages publication action #41771178361](https://github.com/kobolibra/financials/actions/runs/41771178361) **PASS**; visited actual public eleven-issuer single root and the independent 601628 article on desktop 1440, tablet 768 and phone 390, checked ten SVG figures, ten source evidence tables, all eleven distinct reachable company routes, the genuine back-to-root link, and **whole-document public article SHA `051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763` plus whole-document root SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` equal the actually checked-out `main` bytes**. Those precise values apply ONLY to that version. CI has CJK screenshots for each page at 1440/768/390; it does **not** certify independent human financial/aesthetic review, full notes, or market valuations. Existing 600900/600276 legacy live PASS receipts do NOT imply full HTML byte equality because their `published_html_sha256` is explicitly `NOT_CHECKED_PENDING_MAIN_DEPLOY`.
+
+**Root cause of a true PASS but false proof field (PUB-033)**: a 2026-11-04 live QA script validated a real canonical `/601628` company page, then clicked back to `/#companies`, and only *afterwards* assigned the field `actual_dedicated_article_final_url = page.url`. The CI job genuinely PASSED, but the final machine receipt wrongly called the home page the article URL. All new issuer browser adapters must capture **two separate real URLs at their respective observed moments**, and validate the original one strictly against same HTTPS origin and `/TICKER` or `/TICKER.html`, not `/#companies`, not arbitrary query, not an impostor domain or different ticker. The pure reusable guard is `research/shared/live_route_evidence.py`; hostile tests `scripts/test_live_route_evidence.py` reject fake home/issuer/domain. A browser trace log saying `/601628` is real is not a license to save contradictory JSON.
+
+**Source-true visual on production (VIS-034)**: actual remote CJK Chromium must independently verify every SVG rectangle has valid six-digit painted `fill` and parseable `class`, all four unique insurer source nodes have exact original value and height, six two-stage true money ribbons are present, and the final total money sink's fill, class, original exact amount and proportional height are correct. A hidden/malformed sink constitutes **FAIL even if all ribbon flows and HTML arithmetic passed locally**. This production gate complements local original-Bezier-geometry test and source references, not replaces them.
+
+**Actual HTML release attestation (PUB-035)**: For each new issuer with a true 64-hex `published_html_sha256`, **CLOUDFLARE_LIVE PASS must contain** (i) real Github-hosted public-browser run URL, (ii) `live_release_fingerprint` exactly equal the SHA of the actual repo public HTML, and (iii) the full 40-hex specific `actual_main_release_commit`. New altered company HTML invalidates former hashes and all downstream success; redo real cloud browser test before issuing a new PASS. This is enforced by `scripts/check_release_contract.py` with deliberately wrong SHA and fake commit adversarial tests. Do not retroactively upgrade old explicitly unverified 600900/600276 HTML bytes.
+
+**New chat source of truth (HAND-036)**: `START_HERE.md` must not assert a hard-coded `current ten/eleven/twelve companies`. Only the actual `site/research_catalog.json` and `project-status.json` combined with the real queried `main` decide the issuer count; the entry document may record dated, SHA-scoped historical live tests. `scripts/check_handoff.py` and hostile `scripts/test_check_handoff.py` must fail if the first-page issuer count is fixed or the canonical machine sources are missing. Finish each new issuer by updating current first-page `PROJECT_STATE.md`, structured status and per-issuer release gate; mark historical stories explicitly historical.
+
+**Transfer boundary**: The generic HTML fingerprint validator, exact-domain URL helper and malicious mutation tests are **portable executable mechanisms**, but their deployment execution in this release is still one genuine new life insurer; industry financial research quality remains L1 for life insurance, **NOT L2 or all-sector L3**, and genuine second human review stays `NOT_CHECKED`. No amount of PASS from automated money geometry can certify an external professional art director's visual judgment.
 
 ## v8.6.0-RC1 · INSURANCE 601628 FULL-SOURCE ADAPTER — independently signed insurer finances, two non-exchangeable revenue grammars
 
