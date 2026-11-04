@@ -114,8 +114,9 @@ def validate_current_published_files(root, audit, debt):
         # insurer receipt; require exact current HTML bytes and native money
         # plus all CAS signed mobile geometry before treating its old 390 FAIL
         # as technically repaired. This does NOT prove external production.
-        if code in {"300394","300502"}:
-            p=root/"optical-native-visual-qa/result.json"
+        if code in {"300394","300502","300308"}:
+            p=(root/"optical-native-visual-qa-300308/result.json" if code=="300308"
+               else root/"optical-native-visual-qa/result.json")
             if not p.is_file():
                 errors.append(f"VISUAL_CHANGED_OPTICAL_ISSUER_REQUIRES_REAL_BROWSER_FINANCE_SOURCE_PROOF {code}")
                 continue
