@@ -272,6 +272,16 @@
       "scope": "single_issuer",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PUB-028",
+      "root_cause": "源账本、研究正文或 SVG 金额元数据变更后，原HTML已被重新编译，但发行人的 release-gates.json 中旧 published_html_sha256 未同步；旧发布门槛只校验源PDF签名、内嵌ledger和路由，没有验证离线正式正文逐字节指纹。",
+      "correction": "若发行人源发布合同已声明 published_html_sha256，则通用 release 检测器必须在实际仓库文件字节上重新SHA256交叉核对，任意图形修改/编辑修改导致旧指纹即阻断；原报告机器出稿后必须更新合同的真实SHA并重建一次后才允许合入main。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_published_html_sha_cannot_silently_lag_generated_insurance_article",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "OFFLINE_REBUILD",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
