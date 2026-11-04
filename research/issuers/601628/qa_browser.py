@@ -22,6 +22,7 @@ with sync_playwright() as p:
   assert page.locator("figure.figure").count()==len(Q["figure_briefs"])==10,(width,"figures")
   assert page.locator("figure.figure .audit").count()==10,(width,"independent source tables")
   assert page.locator("figure.figure .chart svg").count()==10,(width,"not real SVG")
+  assert page.locator("figure.figure .mobile-chart").count()==10,(width,"ten source-driven mobile finance exhibits missing")
   assert page.locator("[data-export]").count()==10,(width,"export controls")
   assert page.locator('a[href="/#companies"]').count()>=1,(width,"backlink")
   assert L["source"]["original_bytes_sha256"] in page.content(),(width,"source identity")
@@ -36,12 +37,61 @@ with sync_playwright() as p:
     const money=node=>[...document.querySelectorAll(node)].map(x=>({w:x.scrollWidth,visible:x.clientWidth}));
     const domContents=[...document.querySelectorAll('h1,h2,p,.intro,.closing,.figure,.wrap,footer,header,.topbar')].map(x=>({tag:x.tagName,rect:x.getBoundingClientRect().toJSON()}));
     return {width:innerWidth,bodyWidth:body.scrollWidth,nodes,paths,sinks,malformedRects,charts:money('.chart'),visible:domContents,
-      hasFont:document.fonts.check('16px "Noto Sans CJK SC"'),sourceTables:document.querySelectorAll('table').length}
+      hasFont:document.fonts.check('16px "Noto Sans CJK SC"'),sourceTables:document.querySelectorAll('table').length,
+      mobile:[...document.querySelectorAll('.mobile-chart')].map(el=>({
+        family:el.dataset.mobileFigure,visible:getComputedStyle(el).display!=='none',
+        panelOverflow:el.scrollWidth-el.clientWidth,
+        rows:[...el.querySelectorAll('.m-item')].map(x=>({
+          key:x.dataset.mobileFact,exact:x.dataset.exactYuan,group:x.dataset.scaleGroup,
+          label:x.querySelector('.m-item-name')?.textContent||'',
+          widthPct:parseFloat(x.querySelector('.m-item-rail i')?.style.width||'0'),
+          signed:x.querySelector('.m-item-val')?.textContent||''
+        }))
+      }))}
   }""")
   assert geometry["bodyWidth"]<=width+1,(width,"ROOT_HORIZONTAL_OVERFLOW",geometry["bodyWidth"])
   if width==1440:
    assert all(x["w"]<=x["visible"]+2 for x in geometry["charts"]),(width,"HIDDEN_DESKTOP_FIGURE",geometry["charts"])
+   collisions=page.evaluate("""() => {
+     const issues=[];
+     for(const id of ['insurance','pnl','delta','cash','cashclose']){
+       const svg=document.querySelector('#chart-'+id+' .chart svg');
+       const texts=[...svg.querySelectorAll('text')];
+       const title=texts.find(t=>t.getAttribute('font-size')==='16'&&t.getAttribute('font-weight')==='650'&&t.getAttribute('y')==='38.00');
+       const values=texts.filter(t=>t.getAttribute('font-size')==='12'&&t.getAttribute('font-weight')==='650');
+       if(!title || !values.length){issues.push({id,error:'MISSING_MONEY_WATERFALL_LABELS'});continue;}
+       const t=title.getBBox();
+       for(const label of values){
+         const b=label.getBBox();
+         // Source value labels must sit below the editorial chart title,
+         // not merely above their own bar, even when bars approach chart top.
+         if(b.y<t.y+t.height+12){issues.push({id,error:'DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP',title:t.y+t.height,valueY:b.y,label:label.textContent});}
+       }
+     }
+     return issues;
+   }""")
+   assert not collisions,("DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP",collisions)
   if width==390:
+   assert page.locator(".mobile-chart:visible").count()==10,(width,"MOBILE_NOT_TEN_COMPLETE_SOURCE_PLOTS")
+   assert page.locator(".chart:visible").count()==0,(width,"MOBILE_STILL_USES_900PX_CROPPED_SVG_WINDOW")
+   assert all(x["visible"] and x["panelOverflow"]<=1 for x in geometry["mobile"]),(width,"MOBILE_INNER_HORIZ_SCROLL",geometry["mobile"])
+   assert len({x["family"] for x in geometry["mobile"]})==10
+   for panel in geometry["mobile"]:
+    assert len(panel["rows"])>=5,(panel["family"],"MOBILE_NO_FULL_FINANCIAL_ITEMS")
+    groups={}
+    for item in panel["rows"]:
+     yuan=int(item["exact"])
+     groups[item["group"]]=max(groups.get(item["group"],0),abs(yuan))
+     if item["key"]!="derived":
+      assert item["key"] in F,(panel["family"],"UNSUPPORTED_MOBILE_FACT",item["key"])
+      assert item["exact"]==F[item["key"]]["yuan"],(panel["family"],"MOBILE_SOURCE_LEDGER_MISMATCH",item["key"])
+     assert item["signed"].startswith("−" if yuan<0 else ("+" if yuan>0 else "0")),(panel["family"],"MOBILE_SIGN_LOST",item)
+    for item in panel["rows"]:
+     maximum=groups[item["group"]]
+     assert maximum>0,(panel["family"],"MOBILE_ZERO_DENOMINATOR")
+     expected=abs(int(item["exact"]))/maximum*100
+     # Chromium CSSOM rounds percent widths to 4 decimals; allow at most half of its last percent-place, not a visual 1px fudge.
+     assert math.isclose(item["widthPct"],expected,abs_tol=0.000055),(panel["family"],"MOBILE_BAR_INFLATED_OR_NOT_SOURCE_PROPORTIONAL",item,expected)
    # No significant non-figure container can use overflow:hidden to mask content.
    for el in geometry["visible"]:
     r=el["rect"]
@@ -100,14 +150,14 @@ with sync_playwright() as p:
   statuses.append({"width":width,"height":height,"result":"PASS","body_no_overflow":"PASS",
                    "source_sankey_actual_path_and_rect":"PASS","cjk_font_available":geometry["hasFont"],
                    "figure_count":10,"original_source_tables":geometry["sourceTables"],
-                   "desktop_no_inner_scroll":"PASS" if width==1440 else "MOBILE_FIGURES_SCROLL_ALLOWED",
+                   "figure_readability":"DESKTOP_ALL_ORIGINAL_SVG_VISIBLE" if width==1440 else ("MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL" if width==390 else "TABLET_FULL_SOURCE_SVG"),
                    "svg_export":"PASS","screenshot":f"full_report_{width}.png"})
   page.close()
  browser.close()
 result={"code":"601628","source_sha":L["source"]["original_bytes_sha256"],
         "source_nodes_sinks_ribbons_exact_svg_geometric_proportions":"PASS",
         "page_1440_768_390":"PASS","chart_count":10,"source_table_count":10,
-        "export_click_and_svg_download":"PASS","original_actual_3_viewport_checks":statuses,
+        "export_click_and_svg_download":"PASS","mobile_fully_visible_financial_figures":"PASS","mobile_ledger_exact_value_and_geometry":"PASS","original_actual_3_viewport_checks":statuses,
         "human_editor":"NOT_CHECKED","scope":"real Chromium financial SVG and source-structure invariants, not human financial/aesthetic certification"}
 (OUT/"result.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
 print("INSURANCE_ACTUAL_CHROMIUM_1440_768_390_AND_SVG_GEOMETRY_PASS",json.dumps(statuses,ensure_ascii=False))

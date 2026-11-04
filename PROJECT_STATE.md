@@ -1,8 +1,14 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-**当前真实状态：2026-11-04。GitHub `main` 实际已包含 11 家公司，同一个唯一首页；中国人寿（601628）已通过真实 Cloudflare 线上报告与目录导航。现行 Skill `v8.6.1-rc1`。下一次新对话必须重新确认 `main` HEAD、现行 GitHub Actions 和官方原 PDF，而非把这里的 SHA 当永恒最新。**
+**当前真实状态：2026-11-04。GitHub `main` 实际已包含 11 家公司，同一个唯一首页；中国人寿（601628）已通过真实 Cloudflare 线上报告与目录导航。现行候选 Skill `v8.6.2-rc1`（正式现行仍以每次真实 `main` 为准）。下一次新对话必须重新确认 `main` HEAD、现行 GitHub Actions 和官方原 PDF，而非把这里的 SHA 当永恒最新。**
 
 > **一套统一目录**：<https://financials-in-visuals.pages.dev/>；第十一家公司中国人寿独立全文：<https://financials-in-visuals.pages.dev/601628>。原目录卡 href `/601628.html` 被 Cloudflare Pages 规范化为 `/601628`，是真正独立的 HTML 页面，不是首页回跳，也不是 iframe。其余十家公司的独立报告未被改动。研究仍为**源限制预览**，不等于已完成独立第二人类审稿。
+
+## 2026-11-04 · 实截图反馈驱动的第二轮视觉修复（尚未合并的新版候选）
+
+- **先验证真实图，不以CI数量代替视觉**：直接读取 `research/issuers/601628/visual-qa/figure_cash_390.png`、`figure_csm_390.png`、`figure_pnl_1440.png`。发现原 390px 真实截图用了固定900px SVG滚动小窗口，现金8项只能见左3项、CSM存量图右侧不可见；1440px 法定利润瀑布若干最大源金额标签与图内标题视觉重叠；p10保费统计图标题把新单/续期叫“现金业务”，违反 p53 现金收现实际金额的不同会计宇宙。旧 `body scrollWidth`、十张SVG存在和来源金额恒等式都PASS，却**不能代表高水准的手机阅读体验**。
+- **已直接修正主源码并实跑**：独立分支 `work/601628-mobile-financial-visual-storytelling-v861` 从原始 133 类事实生成 10 组手机完整竖向图形（保留原 10 桌面 SVG 与导出），每项有真正原元金额、正负号、明确分母与非假最小线，390px 无小窗口横向滚动；瀑布 SVG 顶部金额与标题增加真实布局间距；保费题头改为统计分组而非现金。真实 104页PDF、18个原始会计守恒、三视口移动源金额与条长按实际比例测试、10幅手机单图真实截图、双次确定重建 [#41777012329](https://github.com/kobolibra/financials/actions/runs/41777012329) **PASS**。独立阅读了新 `figure_cash_390.png` 和 `figure_csm_390.png`，整图能在手机宽度内自然竖向阅读且每个数值完整可见，桌面 `figure_pnl_1440.png` 标签已不与图内标题重叠。
+- **新版和旧版的真实发布证据不可互相继承**：先前 `main` 全文章 SHA `051a8ec...` 的 Cloudflare **PASS**只支持**旧发布字节**；新版候选 `public/601628.html` SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`，在 PR #18 合并并实际线上验证之前，必须使 `research/issuers/601628/release-gates.json` 的 `CLOUDFLARE_LIVE=NOT_CHECKED`，待同一个新 SHA 的 real Cloudflare 浏览器/双SHA/11条公司路由/手机真实可读全面 PASS 才可升级。新视觉回归 VIS-037/SEM-038/VIS-039，Skill 候选 `v8.6.2-rc1`；独立人类审稿依旧 `NOT_CHECKED`。
 
 ## 最新完整生产证据：11 家／中国人寿保险新会计模型／实际 Cloudflare PASS
 

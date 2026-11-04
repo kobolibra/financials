@@ -51,21 +51,44 @@ class IssuerReleaseContractTests(unittest.TestCase):
         errors = mod.validate_release(ROOT, insurance, poisoned, check_bytes=False)
         self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 601628" in x for x in errors), errors)
 
-    def test_real_601628_live_and_source_limited_receipt_is_exactly_source_bound(self):
+    def test_601628_release_gate_must_reflect_current_version_not_prior_green(self):
         insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
-        original=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
-        self.assertEqual(original["gates"]["CLOUDFLARE_LIVE"]["status"],"PASS")
-        self.assertEqual(original["gates"]["INDEPENDENT_HUMAN_REVIEW"]["status"],"NOT_CHECKED")
-        self.assertEqual(mod.validate_release(ROOT,insurer,original,check_bytes=False),[])
+        current=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        self.assertEqual(current["gates"]["INDEPENDENT_HUMAN_REVIEW"]["status"],"NOT_CHECKED")
+        self.assertEqual(mod.validate_release(ROOT,insurer,current,check_bytes=False),[])
+        live=current["gates"]["CLOUDFLARE_LIVE"]["status"]
+        if live=="PASS":
+            self.assertEqual(current["live_release_fingerprint"],current["published_html_sha256"])
+            self.assertRegex(current["actual_main_release_commit"],r"^[a-f0-9]{40}$")
+            self.assertTrue(current["gates"]["CLOUDFLARE_LIVE"]["proof"])
+        else:
+            # Updated HTML is only a candidate until this exact version has
+            # a main commit and actual public Cloudflare HTTP/browser proof.
+            self.assertEqual(live,"NOT_CHECKED")
+            self.assertIsNone(current["live_release_fingerprint"])
+            self.assertIsNone(current["actual_main_release_commit"])
+            self.assertIsNone(current["gates"]["CLOUDFLARE_LIVE"]["proof"])
+            old=current["historical_live_before_mobile_editorial_rebuild"]
+            self.assertEqual(old["status"],"PASS")
+            self.assertNotEqual(old["sha"],current["published_html_sha256"])
 
     def test_live_fingerprint_must_be_actual_report_html_hash(self):
         insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
         original=json.loads((ROOT/"research/issuers/601628/release-gates.json").read_text())
+        # A true candidate NOT_CHECKED is valid. Turn it into an explicit
+        # malicious LIVE PASS first, then verify the generic release gate fails
+        # on both fabricated public HTML SHA and fake current main commit.
         fake=copy.deepcopy(original)
+        fake["gates"]["CLOUDFLARE_LIVE"]={
+            "status":"PASS",
+            "proof":"https://github.com/kobolibra/financials/actions/runs/41771178361",
+            "scope":"Deliberately forged previous HTML live proof to challenge the new version's cryptographic release gate."
+        }
+        fake["actual_main_release_commit"]="d11638f0c76ff8aef2beb163a1028f176123bbdc"
         fake["live_release_fingerprint"]="0"*64
         errors=mod.validate_release(ROOT,insurer,fake,check_bytes=False)
         self.assertIn("LIVE_FINGERPRINT_HTML_DRIFT 601628",errors)
-        fake=copy.deepcopy(original)
+        fake["live_release_fingerprint"]=original["published_html_sha256"]
         fake["actual_main_release_commit"]="NOT_CHECKED"
         errors=mod.validate_release(ROOT,insurer,fake,check_bytes=False)
         self.assertIn("LIVE_PROOF_MAIN_COMMIT_INVALID 601628",errors)

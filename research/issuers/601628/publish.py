@@ -176,7 +176,7 @@ def simple_waterfall(steps,desc,w=1100):
         else:current+=D(value)
         balances.append((lab,old,current,D(value),kind))
     ymin=min(D(0),*[min(a,b) for _,a,b,_,_ in balances]);ymax=max(D(1),*[max(a,b) for _,a,b,_,_ in balances])
-    span=float(ymax-ymin);left=55.;right=1045.;top=60.;bottom=273.;n=len(steps)
+    span=float(ymax-ymin);left=55.;right=1045.;top=93.;bottom=273.;n=len(steps)
     bw=min(50,(right-left)/n*.60);dx=(right-left)/n
     def yy(x):return bottom-(float(x-ymin)/span)*(bottom-top)
     body=line(left,yy(D(0)),right,yy(D(0)),"#A9BDB3",1.6)
@@ -186,7 +186,7 @@ def simple_waterfall(steps,desc,w=1100):
         body+=rect(x,yy(topval),bw,h,col,klass="signed-waterfall",extra=f'data-source-value-million="{val}" data-cumulative-million="{b}"')
         if i<n-1 and kind!="total":body+=line(x+bw,yy(b),x+dx*1.11,yy(b),"#BCCEC5",1,"4 4")
         if i<n-1 and kind=="total":body+=line(x+bw,yy(b),x+dx*1.11,yy(b),"#BCCEC5",1,"4 4")
-        body+=t(x+bw/2,max(20,yy(topval)-11),yi(val)+"亿" if kind!="total" else yi(b)+"亿",12,col,650,"middle")
+        body+=t(x+bw/2,max(81,yy(topval)-11),yi(val)+"亿" if kind!="total" else yi(b)+"亿",12,col,650,"middle")
         parts=label.split("|")
         for j,p in enumerate(parts):body+=t(x+bw/2,309+j*18,p,12,"#375D58",550,"middle")
     body+=t(55,38,desc,16,"#1E4440",650)
@@ -279,19 +279,171 @@ def source_table(brief):
         class_="muted" if f["classification"]=="DERIVED" else ""
         rows.append(f'<tr class="{class_}"><th scope="row">{e(f["label"])}</th><td>{e(period)}</td><td class="number">{e(f"{val:+,.0f}")} 百万元</td><td><a href="{e(PDF)}#page={p}" target="_blank" rel="noopener noreferrer">原始 PDF p.{p}</a></td></tr>')
     return f'<details class="audit"><summary>逐图原始金额、合并/期间与来源行列 <span>展开 {len(rows)} 项</span></summary><div class="table-shell"><table><thead><tr><th>原报表行 / 注释</th><th>报告时点/期间</th><th>原报表单位</th><th>物理页</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></details>'
+
+def mobile_figure(brief):
+    """A complete no-horizontal-scroll, original-ledger mobile figure.
+
+    Same exact source values as desktop, but semantic groupings/zero-origin
+    magnitude bars are authored for 390px rather than cropping a 1100px SVG.
+    This is a second rendering grammar, NOT an alternate source ledger.
+    """
+    fid=brief["id"]
+    def r(label,key,group="all"):
+        return (label,amount(key),key,group)
+    def calc(label,value,group="all"):
+        assert isinstance(value,D) and value==value.to_integral_value(),"MOBILE_DERIVED_PRECISION"
+        return (label,value,None,group)
+    if fid=="clocks":
+        rows=[]
+        for title,prior,current in [
+            ("管理层旧统计总保费","premium_prior","premium_total"),
+            ("法定保险服务收入","service_revenue_prior","service_revenue"),
+            ("归母净利润","parent_net_prior","parent_net"),
+            ("经营现金流","cfo_prior","cfo")
+        ]:
+            rows.extend([r(title+" · 2025H1",prior,title),r(title+" · 2026H1",current,title)])
+        note="每个指标的两年各有自己的零基准，不跨指标比较条形长度。总保费、法定服务收入、股东净利润、现金分别属于不同报表/统计宇宙。"
+    elif fid=="premium":
+        rows=[r("首年期交","premium_first_regular"),r("趸交","premium_single"),
+              r("短期险","premium_short"),r("续期","premium_renew"),
+              r("前三项合计 · 新单保费","premium_new"),
+              r("新单+续期合计 · 总保费","premium_total")]
+        note="真实互斥总保费来源：1,012.94+176.96+610.49=1,800.39亿元新单；加3,565.95亿元续期=5,366.34亿元总保费。仅是旧统计保费的内部组成，不是保险服务收入或现金收款。"
+    elif fid=="service":
+        rows=[r("预计当期赔款及相关","service_expected_claims"),r("非金融风险调整","service_risk_release"),
+              r("CSM当期摊销","service_csm_release"),r("保险获取现金流摊销","service_acq_amort"),
+              r("PAA合同服务收入","service_paa"),r("法定保险服务收入总计","service_revenue")]
+        note="五项不重叠CAS保险服务收入项目准确加总112,525百万元；期末CSM是时点存量，不是当期已赚收入。"
+    elif fid=="insurance":
+        rows=[r("保险服务收入","service_revenue"),r("保险服务费用","service_cost"),
+              r("分出保费","reinsurance_premium"),r("摊回保险服务费用","reinsurance_recovered"),
+              calc("保险服务净结果（四项签名合计）",sum_keys(["service_revenue","service_cost","reinsurance_premium","reinsurance_recovered"]))]
+        note="经营服务结果41,177百万元不包括承保财务损益和投资，不能直接称归母利润。"
+    elif fid=="pnl":
+        otherkeys=["other_income","fx_income","other_business_income","disposal_income","reinsurance_finance",
+            "interest_expense","commission_expense","tax_surcharge","administrative_expense","credit_impair","other_asset_impair","other_business_cost"]
+        rows=[calc("保险服务净结果",D(41177)),r("利息收入","interest_income"),
+              r("投资收益","investment_income"),r("公允价值变动损益","fairvalue_income"),
+              r("承保财务损益","insurance_finance"),
+              calc("其余12项法定损益行合计",sum_keys(otherkeys)),
+              r("营业利润","op_profit"),
+              calc("营业外净收支",sum_keys(["nonoperating_income","nonoperating_expense"])),
+              r("所得税费用","income_tax"),
+              calc("归母利润需扣除的少数股东损益",-amount("nci_profit")),
+              r("最终归母净利润","parent_net")]
+        note="全部合并CAS损益逐项有符号勾稽至归母：最显著的+公允价值收益并非孤立的可持续盈利，其相对方承保财务损益为大额负数。"
+    elif fid=="delta":
+        def delta(key):
+            return amount(key)-amount(key+"_prior")
+        leading=["fairvalue_income","investment_income","insurance_finance","service_revenue","service_cost","interest_income"]
+        all_keys=["service_revenue","interest_income","investment_income","other_income","fairvalue_income","fx_income",
+            "other_business_income","disposal_income","service_cost","reinsurance_premium","reinsurance_recovered",
+            "insurance_finance","reinsurance_finance","interest_expense","commission_expense","tax_surcharge",
+            "administrative_expense","credit_impair","other_asset_impair","other_business_cost"]
+        rest=sum((delta(k) for k in all_keys if k not in leading),D(0))
+        rows=[r("2025H1营业利润","op_profit_prior"),
+              calc("公允价值变动 · 同比增量",delta("fairvalue_income")),
+              calc("投资收益 · 同比增量",delta("investment_income")),
+              calc("承保财务 · 同比增量",delta("insurance_finance")),
+              calc("服务收入 · 同比增量",delta("service_revenue")),
+              calc("服务费用 · 同比增量",delta("service_cost")),
+              calc("利息收入 · 同比增量",delta("interest_income")),
+              calc("剩余14法定行 · 同比净增量",rest),r("2026H1营业利润","op_profit")]
+        note="2025H1至2026H1并非把四类数字直接加在一起；仅同一法定损益行的同比带符号变化构成营业利润桥。"
+    elif fid=="cash":
+        rows=[r("经营现金总流入","cfo_in"),
+              r("支付保险赔付","cfo_claims"),r("支付手续费佣金","cfo_commission"),
+              r("支付职工现金","cfo_staff"),r("支付税费现金","cfo_tax"),
+              r("保单质押贷款净增加","cfo_loans"),r("其他经营付现","cfo_other_out"),
+              r("实际经营现金净额","cfo")]
+        note="630,015百万元流入，加六类带负号支付−347,136百万元 = CFO 282,879。只有报告真实直接法，不伪造净利润到CFO的间接桥。"
+    elif fid=="cashclose":
+        rows=[r("期初现金等价物","cash_start"),r("经营现金净额","cfo"),
+              r("投资现金净额","cfi"),r("筹资现金净额","cff"),
+              r("汇率对现金影响","cash_fx"),r("期末现金等价物","cash_end")]
+        note="期初142,373+经营282,879−投资175,434−筹资101,937−汇率59=期末147,822百万元，真实闭合，不把投融资现金当作经营成本。"
+    elif fid=="csm":
+        rows=[r("未来履约现金流现值","future_cash_flow_liab"),r("非金融风险调整存量","risk_adjustment_liab"),
+              r("未赚服务合同服务边际 · CSM","csm"),r("PAA短险负债","paa_liab"),
+              r("期末保险合同负债总额","insurance_contract_liab")]
+        note="截至2026-06-30同一时点四组成分总计6,910,741百万元；不是资金流，不是本期利润或可分配现金。"
+    elif fid=="balance":
+        rows=[r("2025年末 · 资产","assets_prior"),r("2025年末 · 全部负债","liabilities_prior"),
+              r("2025年末 · 归母权益","parent_equity_prior"),r("2025年末 · 少数股东权益","minority_equity_prior"),
+              r("2026年中 · 资产","assets"),r("2026年中 · 全部负债","liabilities"),
+              r("2026年中 · 归母权益","parent_equity"),r("2026年中 · 少数股东权益","minority_equity")]
+        note="同一时点资产 = 保险等全部负债 + 归母权益 + 少数股东权益；以2026年中最大资产为统一金额刻度，绝不混成现金流。"
+    else:
+        raise AssertionError("MOBILE_FIGURE_FAMILY_NOT_DEFINED:"+fid)
+
+    assert len(rows)>=5,(fid,len(rows))
+    groups={}
+    for lab,value,key,group in rows:
+        if key is not None:
+            assert int(D(FACTS[key]["yuan"]))==int(value*M),(fid,key,"MOBILE_SOURCE_DRIFT")
+        groups[group]=max(groups.get(group,D(0)),abs(value))
+    rendered=[]
+    for label,value,key,group in rows:
+        denominator=groups[group]
+        assert denominator>0,(fid,"ZERO_MOBILE_SCALE",group)
+        scale=float(abs(value)/denominator*D(100))
+        assert 0<=scale<=100.000001,(fid,label,scale)
+        sign="−" if value<0 else ("+" if value>0 else "0")
+        formatted=f"{abs(value)/D(100):,.2f}"
+        cls=("neg" if value<0 else ("prior" if "2025H1" in label or "2025年末" in label else "pos"))
+        data_key=key or "derived"
+        rendered.append(
+          f'<div class="m-item {cls}" data-mobile-fact="{e(data_key)}" data-exact-yuan="{e(int(value*M))}" data-scale-group="{e(group)}">'
+          f'<div class="m-item-line"><span class="m-item-name">{e(label)}</span>'
+          f'<strong class="m-item-val">{sign}{formatted}亿</strong></div>'
+          f'<div class="m-item-rail" aria-hidden="true"><i style="width:{scale:.6f}%"></i></div></div>'
+        )
+    return (
+      f'<section class="mobile-chart" data-mobile-figure="{e(fid)}" aria-label="{e(brief["question"])}的完整手机金额图">'
+      f'<div class="m-kicker">MOBILE FINANCIAL EXHIBIT · 全量阅读，无横向滚动</div>'
+      f'<p class="m-method">{e(note)}</p>'
+      f'<div class="m-items">{"".join(rendered)}</div>'
+      f'<p class="m-unit">金额：亿元，保留两位；原始计算为人民币百万元精度。每组线段共用零起点、按该组最大绝对金额绘制；负号及砖红色表示负向金额。'
+      f'小于一像素的极小金额不会人为放大，详细原始行项可在本图下方展开。</p></section>'
+    )
+
 def article(brief,num):
     fid=brief["id"];fam=brief["family"]
     return f'''<figure class="figure" id="chart-{e(fid)}" data-family="{e(fam)}">
       <figcaption><span class="figure-num">{num:02d} / 10 · {e(fam.replace("_"," / "))}</span>
         <h2>{e(brief["question"])}</h2><p class="take">{e(brief["takeaway"])}</p></figcaption>
       <div class="figure-toolbar"><span>原始百万元事实 · 视觉按明确金额/时点比例绘制</span><button type="button" data-export="{e(fid)}">导出原创 SVG</button></div>
-      <div class="chart" role="region" aria-label="{e(brief["question"])}，小屏可横向滚动">{FIGS[fid]()}</div>
+      <div class="chart" role="region" aria-label="{e(brief["question"])}，桌面及平板的原始可编辑向量图">{FIGS[fid]()}</div>
+      {mobile_figure(brief)}
       <div class="caption"><strong>会计关系：</strong>{e(brief["identity"])}<br><strong>强制反证：</strong>{e(brief["counter"])} <br><strong>数据范围：</strong>合并/报告明确范围，原始 PDF 物理页 {", ".join(str(x) for x in brief["source_pages"])}。图外金额精确到亿元两位，底层按原始百万元计算。</div>
       {source_table(brief)}
     </figure>'''
 CSS=r'''
 :root{--paper:#FAF9F4;--ink:#183D3B;--muted:#667E76;--line:#D6DFD5;--green:#087B66;--rust:#BC654B;--bronze:#B38C5E;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",Arial,sans-serif;--serif:Georgia,"Noto Serif CJK SC","Songti SC",serif}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 var(--font);-webkit-font-smoothing:antialiased}a{color:var(--green)}.wrap{max-width:1210px;width:calc(100% - 72px);margin:auto}.mast{background:#103C39;color:#F6F7EE}.topbar{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:76px;border-bottom:1px solid #47706A}.logo{font-weight:800;letter-spacing:.15em;font-size:12px;text-decoration:none;color:#D5EAE2}.topbar nav{display:flex;gap:24px;font-size:12px}.topbar nav a{color:#CFE5DC;text-decoration:none}.hero{padding:76px 0 74px}.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;color:#A7D7C3}.hero h1{font:500 clamp(39px,5.5vw,78px)/1.22 var(--serif);letter-spacing:-.055em;margin:22px 0 27px;max-width:1120px}.hero h1 em{font-style:normal;color:#A8E4CC}.hero .dek{font-size:17px;line-height:1.9;max-width:860px;color:#D7E5E0}.meta{display:flex;gap:17px;flex-wrap:wrap;font-size:11px;color:#BBD3C7;margin-top:31px}.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:#476D60;margin-top:52px}.kpi{padding:25px 28px;background:#194A44}.kpi .label{display:block;font-size:12px;color:#B5D7CA;letter-spacing:.06em}.kpi b{display:block;font:500 clamp(32px,4vw,51px)/1.3 var(--serif);color:#F3F2DF;margin-top:9px}.kpi small{color:#AECBBF;font-size:12px}.contents{border-bottom:1px solid var(--line);padding:23px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}.contents b{font-size:11px;color:#73877E;margin-right:10px}.contents a{font-size:11px;text-decoration:none;padding:7px 11px;border:1px solid #D8E1D8;color:#416C60}.contents a:hover,.contents a:focus{background:#DDEDE5}.intro{padding:58px 0 50px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1.1fr .9fr;gap:65px}.intro h2,.closing h2{font:500 clamp(29px,3.2vw,45px)/1.26 var(--serif);letter-spacing:-.035em;margin:0 0 20px}.intro p,.closing p{font-size:15px;color:#45645E}.thesis{padding:28px 31px;border-left:3px solid var(--green);background:#EEF3EA}.thesis strong{display:block;color:#076D5E;font-size:11px;letter-spacing:.13em}.thesis p{font:500 clamp(19px,2vw,27px)/1.58 var(--serif);color:#254641;margin:12px 0 0}.figures{padding-top:20px}.figure{padding:65px 0 78px;margin:0;border-bottom:1px solid var(--line);scroll-margin-top:20px}.figure figcaption{margin-bottom:28px;max-width:1030px}.figure-num{display:block;color:#0D846E;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.figure h2{font:500 clamp(27px,3vw,43px)/1.29 var(--serif);letter-spacing:-.04em;margin:11px 0 18px}.take{font-size:16px;color:#486962;max-width:960px}.figure-toolbar{display:flex;justify-content:space-between;gap:16px;padding:13px 0;color:#6C8178;font-size:11px;border-top:1px solid #CDD9D0}.figure-toolbar button{border:1px solid #B9CFC1;background:transparent;color:#237A68;font:inherit;padding:6px 11px;cursor:pointer}.figure-toolbar button:hover{background:#DCEEE3}.chart{width:100%;overflow-x:auto;overflow-y:hidden;background:#fff;border:1px solid #E2E8E0;padding:16px 14px}.chart svg{width:100%;height:auto;display:block;overflow:visible}.caption{font-size:12px;line-height:1.85;color:#71847B;padding:18px 1px}.caption strong{color:#3B5C52}.audit{border-top:1px solid #DAE1D9;padding:13px 0}.audit summary{cursor:pointer;color:#356D60;font-size:12px;font-weight:750}.audit summary span{float:right;color:#7E948B;font-weight:400}.table-shell{max-width:100%;overflow-x:auto;margin-top:12px}table{border-collapse:collapse;width:100%;min-width:720px;font-size:12px}th,td{text-align:left;border-bottom:1px solid #E6EAE4;padding:9px 9px}thead{background:#EAF0E8;color:#557167}th{font-weight:600}td.number{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.muted{opacity:.55}.closing{padding:68px 0 85px;display:grid;grid-template-columns:1fr 1fr;gap:60px}.risk{padding:26px 30px;background:#E9EEE6;border-left:3px solid var(--rust)}.risk strong{color:#A3503C;font-size:11px;letter-spacing:.1em}.risk p{font-size:14px}.method{background:#F0F1EB;border-top:1px solid var(--line);padding:40px 0}.method h2{font:500 28px/1.4 var(--serif)}.method p{font-size:13px;color:#5C756E;overflow-wrap:anywhere}footer{background:#103C39;color:#C5DED1;font-size:12px;padding:32px 0}footer a{color:#BAE7D5}:focus-visible{outline:3px solid #16A888;outline-offset:3px}@media(max-width:740px){.wrap{width:calc(100% - 32px)}.topbar{min-height:60px}.topbar nav{gap:10px;font-size:10px}.hero{padding:52px 0}.hero h1{font-size:clamp(35px,10vw,48px)}.hero .dek{font-size:14px}.kpis{display:block}.kpi{padding:17px 22px;border-bottom:1px solid #416E62}.kpi b{font-size:36px}.intro,.closing{display:block;padding:42px 0}.thesis,.risk{margin-top:27px}.contents{gap:6px}.contents a{font-size:10px;padding:5px}.figure{padding:48px 0 54px}.figure h2{font-size:29px}.take{font-size:14px}.chart{padding:8px;overscroll-behavior-x:contain}.chart svg{width:900px;max-width:none;min-width:900px}.figure-toolbar{flex-wrap:wrap}.caption{font-size:11px}.closing p{font-size:14px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+'''
+CSS += r'''
+/* Genuine 390px first-class finance figures: never trap reading in a 900px
+   horizontal SVG window. Desktop retains the full editable source SVG. */
+.mobile-chart{display:none}
+@media(max-width:740px){
+  .chart{display:none}
+  .mobile-chart{display:block;width:100%;padding:17px 14px 20px;background:#fff;border:1px solid #E2E8E0;overflow:visible}
+  .m-kicker{font:800 10px/1.5 var(--font);color:#0D806C;letter-spacing:.13em}
+  .m-method{font:500 13px/1.73 var(--font);color:#416960;margin:13px 0 20px}
+  .m-items{display:flex;flex-direction:column;gap:14px}
+  .m-item{min-width:0}
+  .m-item-line{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .m-item-name{font:500 12.5px/1.55 var(--font);color:#284E48;min-width:0;flex:1}
+  .m-item-val{font:700 15px/1.4 var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;flex-shrink:0;color:#087B66}
+  .m-item.neg .m-item-val{color:#BA664C}
+  .m-item.prior .m-item-val{color:#718D81}
+  .m-item-rail{height:9px;background:#E7EDE8;margin-top:6px;border-radius:1px;overflow:hidden}
+  .m-item-rail i{display:block;height:9px;background:#07816C}
+  .m-item.neg .m-item-rail i{background:#C4785E}
+  .m-item.prior .m-item-rail i{background:#A6BDB1}
+  .m-unit{font:400 10.5px/1.68 var(--font);color:#789087;border-top:1px solid #E0EAE1;padding-top:14px;margin:20px 0 0}
+}
 '''
 def render():
     q=check()

@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.6.1-rc1",
+    "version": "8.6.2-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 35,
+        "quality_regressions_count": 39,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -119,7 +119,8 @@
     "insurance_report": "/601628.html",
     "current_candidate_branch": null,
     "company_report_stage": "CURRENT_MAIN_ELEVEN_INDEPENDENT_REPORTS_IN_ONE_ORIGINAL_DIRECTORY_601628_REAL_CLOUDFLARE_PASS_SOURCE_LIMITED_RESEARCH",
-    "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress"
+    "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
+    "mobile_readability_upgrade_candidate": "work/601628-mobile-financial-visual-storytelling-v861"
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -837,7 +838,28 @@
     "skill_version": "8.6.1-rc1",
     "latest_adaptive_live_qa_source": "research/issuers/601628/qa_cloudflare_live.py",
     "generic_live_route_source": "research/shared/live_route_evidence.py",
-    "latest_live_adaptive_qa_status": "PENDING_CANDIDATE_MAIN_RELEASE_TEST_NOT_YET_EXECUTED"
+    "latest_live_adaptive_qa_status": "PENDING_CANDIDATE_MAIN_RELEASE_TEST_NOT_YET_EXECUTED",
+    "mobile_readability_candidate": {
+      "branch": "work/601628-mobile-financial-visual-storytelling-v861",
+      "state": "ORIGINAL_PDF_CAS_18_AND_REAL_CHROMIUM_1440_768_390_PASS_CANDIDATE_NEW_CLOUDFLARE_LIVE_NOT_CHECKED",
+      "changes": [
+        "Ten accounting-native full-width mobile figures from exact 133 original facts",
+        "No horizontal 900px small figure viewport on phone",
+        "No fake old-premium cash wording",
+        "Desktop five signed bridges have no title/value collision; negative-regression running"
+      ],
+      "last_preliminary_real_build_run": "https://github.com/kobolibra/financials/actions/runs/41777012329",
+      "exact_new_candidate_article_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+      "previous_live_main_full_article_sha256": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
+      "candidate_new_html_live": "NOT_CHECKED_NOT_MAIN_NOT_DEPLOYED",
+      "independent_human_visual_editor": "NOT_CHECKED",
+      "known_failures": [
+        "VIS-037_390px_figures_cropped_inside_900px_inner_window",
+        "SEM-038_premium_stats_mistitled_cash_business",
+        "VIS-039_desktop_signed_title_value_overlap",
+        "PUB-040: old live gate PASS cannot certify a new source-changed offline HTML; new version must be NOT_CHECKED pending exact real Cloudflare gate"
+      ]
+    }
   },
   "historical_2026_11_04_source_intake_no_identified_issuer": {
     "date": "2026-11-04",

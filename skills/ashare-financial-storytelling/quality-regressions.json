@@ -352,6 +352,46 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "HANDOFF_SOURCE_OF_TRUTH",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-037",
+      "root_cause": "真实1440/390源截图复核发现保险CFO、CSM等10图手机端原样将1100px的桌面 SVG 强制变成宽900px横向小窗口，390px屏幕只见左侧三个财务项目，后面多数报表金额必须横向滚动才能见到；旧CI只查整个页面不溢出和SVG存在，因而错误地放行难以阅读的'手机适配'。",
+      "correction": "每一张图需要手机专有的完整源驱动、纵向自然页面滚动的真正财务图（保留完整桌面可编辑SVG），手机 390 Chromium 必须有10个完整可见 mobile-chart，零 .chart 可见、各板块无内部水平溢出、每个原源金额与源账本元精度一致、分组原始金额条长度几何按实际比例，正确正负号，不以最小像素夸大小值；桌面仍检查原始加权桑基和负数瀑布。",
+      "proof_file": "research/issuers/601628/qa_browser.py",
+      "assertion_marker": "MOBILE_STILL_USES_900PX_CROPPED_SVG_WINDOW",
+      "scope": "single_issuer",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "SEM-038",
+      "root_cause": "真实保费来源桑基虽全部以旧保险合同口径正确守恒，财务图标题却说'新、续期现金业务'，会把公司管理层统计保费误导为直接法现金流入，违反原始p10/p53之间不可互通的边界。",
+      "correction": "直接修 figure-briefs.json 原始标题和释义，改成同一管理层保费统计口径的新单/续期业务，不用'现金业务'称呼；对文字与保费现金不等约束增加恶意财务测试；重新发布实际独立 HTML 与精确整文件指纹。",
+      "proof_file": "research/issuers/601628/test_accounting.py",
+      "assertion_marker": "test_old_standard_premium_sankey_must_not_claim_actual_cash_business",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-039",
+      "root_cause": "真实桌面利润瀑布图截图中的最大公允价值收益与承保财务损益标签贴到图内标题附近，数值可读性、清晰层级和金融叙事受到破坏；过去只测浏览器不报错、SVG金额与图形守恒，不测标签实际空间。",
+      "correction": "在原始 signed waterfall 源生成器中留出标题专用垂直留白，将图形最高点与数值标注整体下移；真实Chromium1440计算每幅实际SVG text getBBox，五张带符号瀑布任何原数标签侵入图内标题净空12px即 FAIL。",
+      "proof_file": "research/issuers/601628/qa_browser.py",
+      "assertion_marker": "DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP",
+      "scope": "single_issuer",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "PUB-040",
+      "root_cause": "发布原始财报后新的手机专属 HTML 已改变文件字节，因此严格把当前新版本 CLOUDFLARE_LIVE 标记 NOT_CHECKED；但以前的通用回归测试直接写死必须为 PASS，错误拒绝诚实的未发布候选版本并驱使开发者假恢复旧版本实时证明。",
+      "correction": "通用发布验证必须接受本次候选的真实 NOT_CHECKED（没有 live SHA 或 main release commit，但保留旧已通过版本历史证据），而当任何分支声称 PASS 时必须验证真实新 published HTML SHA、有效 40 hex MAIN commit 和线上浏览器 Actions；恶意测试先构造假 PASS 再注入错SHA/错commit，不能误以当前源门槛必须总是PASS。",
+      "proof_file": "scripts/test_check_release_contract.py",
+      "assertion_marker": "test_601628_release_gate_must_reflect_current_version_not_prior_green",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
