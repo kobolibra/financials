@@ -15,10 +15,15 @@
     "scope": "consolidated",
     "audited": false,
     "source_filename": "H2_AN202608211828276722_1.pdf",
-    "source_sha256": "NOT_VERIFIED_REMOTE_PDF",
+    "source_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
     "source_url": "https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf",
-    "source_access": "Public PDF text extracted from web source; original bytes unavailable to calculate SHA256",
-    "report_publication_date": "2026-08-21"
+    "source_access": "Complete 2,984,970-byte user Library original PDF independently read; SHA256 and 184 physical pages verified; remote downloadable mirror exact-byte SHA and long-term GitHub archive require a separate PASS",
+    "report_publication_date": "2026-08-21",
+    "original_library_pdf_bytes": 2984970,
+    "original_pdf_sha_verified_date": "2026-11-04",
+    "original_is_audited": false,
+    "source_archive_path": "research/issuers/300308/original-2026h1.pdf",
+    "source_archive_gate": "NOT_CHECKED_BEFORE_REMOTE_EXACT_SHA_GITHUB_ARCHIVE"
   },
   "facts": {
     "revenue": {
@@ -951,11 +956,25 @@
     }
   ],
   "limitations": [
-    "报告尚未下载为可校验的原始 PDF 字节：SHA-256 不可核验，绝不虚构",
-    "公开 PDF 文本已核对多个关键数字；部分复杂表格仍须逐页检查后才能正式出版",
+    "原始完整184物理页与2,984,970字节SHA已由用户资料库原件核验，源文件重新下载且存档需通过同SHA GitHub Action；本Ledger原报告重大附注完整人工审阅仍NOT_CHECKED。",
+    "p139按业务类型拆分的‘其他’收入一行在合同分类‘营业收入’列为422,649,612.97元，同行‘合计’复列为422,649,613.97元，存在1元原披露重复列矛盾；图中采用与合并营业收入精确勾稽的原主营合同分类列，不能创建虚构业务差额。",
+    "未取得独立第二名人类研究分析师/艺术总监审阅；当前机器源核验不应冒充人工评审。",
     "2026H1 未经审计",
     "2026H1 与 2025H1 对比；时点余额仅与2025年年末比较",
     "未获得8–12季度历史、同业和同期股价估值，不制作伪趋势图"
   ],
-  "source_integrity_status": "WEB_PDF_TEXT_REVIEWED_NOT_SHA_VERIFIED"
+  "source_integrity_status": "USER_LIBRARY_COMPLETE_ORIGINAL_PDF_SHA_AND_PHYSICAL_184_PAGES_VERIFIED__REMOTE_MIRROR_SHA_AND_SOURCE_FACT_PAGES_REQUIRE_ACTION_PASS",
+  "verified_source_anomalies": [
+    {
+      "id": "300308-2026H1-P139-REPEATED_BUSINESS_TYPE_OTHER-1YUAN",
+      "physical_page": 139,
+      "issue": "same disaggregated revenue by business type row repeats a one yuan different reported value in far-right total column",
+      "original_contracted_revenue_cell": "422649612.97",
+      "original_repeated_total_revenue_cell": "422649613.97",
+      "currency": "CNY",
+      "effect_on_consolidated_sum": "first contracted revenue cell reconciles exactly to consolidated total with optical module; alternate repeated total cell exceeds total by 1.00",
+      "treatment": "Use original reported contract/revenue-cell 422649612.97 in one exclusive product-type partition. Do NOT invent residual business or silently overwrite original contradictory repeated cell. Include explicit footnote in HTML and regression tests.",
+      "source_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf"
+    }
+  ]
 }
