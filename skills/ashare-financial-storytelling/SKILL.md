@@ -1,11 +1,21 @@
 ---
 name: ashare-financial-storytelling
-version: 8.7.4-rc1
+version: 8.7.5-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.7.4-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.7.5-RC1
 
+
+## v8.7.5-RC1 · VIS-048 second cross-sector original financial mobile adaptation: 688220 semiconductor
+
+**Main truth reconfirmation**: at session's latest actual main `d4ceb34caad00e9adc5088690b6a5b08b475a86b`, **all THREE** 300394, 300502, 300308 original standalone optical financial pages, original yuan provenance, actual 1440/768/390 CJK and Cloudflare *complete public HTML bytes* are PASS in [real main action #41855709571](https://github.com/kobolibra/financials/actions/runs/41855709571), not "third still awaiting deployment". 300308 PDF original 184p / 2,984,970 bytes is archived, SHA `e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf`. Public complete HTML SHA: 300394 `40024eeffb333986549eff6eebb1a532028b4e9cb3354efb2e30676d0687785b`; 300502 `ccd5a81af61db6924d30cb77c5544df2a8f7e60f00cf148e0ebed8d8ce874367`; 300308 `dc7231532a39e6d1c4994f26a8c63fce6d6cc49f4a3e0abb926eed45bc721f2e`. Future new-chat status must reflect current main and source receipts, not stale historical pending.
+
+**Next real sector original adaptation, NOT yet a published achievement:** 688220 semiconductor has valid business-level product-revenue→each independently disclosed COGS+GP Sankey in desktop research, but its legacy 390 figure exposes only part of a 1050px financial graph in a scroller, and the same visual weakness affects multiple numbered exhibits. The source corpus is original 224-page `research/issuers/688220/source/` report (mirrored SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`), with 17 original signed CFO rows and hard source failure `p.137 reported top-five AR/contract 90.50% vs p.135/p.138 derived 89.17%` — do NOT silently accept any fabricated denominator or claim original Shanghai exchange PDF byte equivalence without independent proof.
+
+**New transferrable visual adapter source:** `research/issuers/688220/native_mobile.py`, injected inline by existing `publish.py` into all nine independent company finance figures. Preserve every existing desktop 1050px art-work SVG/figure, evidence HTML table and export. For 390 and 768, create truly original narrow-screen company-specific panels: four exclusive mutually source-led product/ASIC/IP/services money streams, source→own disclosed cost and derived nonnegative profit at identical yuan width scale (zero ribbon remains zero; never inflate thin IP or service); significant EBIT→GAAP bridges and 17-row complete original signed indirect CFO (summary merged only in artwork, source evidence table keeps all 17), signed cash close, parent net-recurring gap, GP comparator, same-date asset=liabilities+equity, capital stock changes. No noncomparable margin and amount double addition, contract liabilities / backlog not cash. New figures are source-driven **not a generic client dashboard**, but they still require actual screenshot and independent aesthetic critique for FIGURE 01 crossing, labels, whitespace and narrative originality.
+
+**Red-team / publication gates:** `research/issuers/688220/test_native_mobile.py` rejects source one-cent fake revenue, wrong 17-row indirect CFO and BS; `qa_browser.py` must visually check all 9 true 330-SVG money relationships on 1440/768/390 CJK, including actual Bezier `d` physical width vs `exact original yuan/total×scale`, positive vs negative cumulative path with zero reference line, stock vs flow, no 390 or 768 inner scroll, CJK getBBox and desktop export, clean second source-byte report rebuild. Preserve receipt with full HTML SHA and real screenshots in `research/issuers/688220/visual-qa-native`. New Cloudflare release needs separate actual real remote URL and exact SHA after main; local successful browser is never called live PASS. Main old 688220 remains **FAIL 390 finance** until then. Other original 600036/688111/600519/000333 also remain historical-visual debt.
 
 ## v8.7.4-RC1 · FIN-047 original 300308 PDF full-byte evidence, source contradiction and cash-conversion editorial lead
 

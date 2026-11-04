@@ -1,0 +1,76 @@
+name: Candidate 688220 source-native mobile nine-figure editorial test
+on:
+  push:
+    branches: ['work/688220-native-mobile-visual-editorial-20261104']
+    paths:
+      - 'research/issuers/688220/**'
+      - 'public/688220.html'
+      - '.github/workflows/candidate-688220-native-money-mobile.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  semiconductor-source-native-finance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 34
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Actual original 224 PDF and hostile money visual source auditing
+        run: |
+          python -m pip install -q pymupdf
+          python research/issuers/688220/verify_pages.py
+          python research/issuers/688220/test_accounting.py
+          python -m unittest research/issuers/688220/test_native_mobile.py -v
+          python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
+      - name: Real Noto Chinese typography and Chromium
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-list :lang=zh family | grep -qi Noto
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+      - name: Actual source geometric original 9 mobile financial charts, signed PnL/CFO and CJK 1440 768 390
+        run: |
+          python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa-native
+      - name: Exact reproducible standalone HTML source and original desktop SVG
+        run: |
+          python research/issuers/688220/publish.py --out /tmp/asr-688220-again.html --qa /tmp/asr-688220-again-qa.json
+          cmp public/688220.html /tmp/asr-688220-again.html
+          python - <<'PY'
+          from pathlib import Path
+          import subprocess,re,hashlib
+          previous=subprocess.check_output(['git','show','HEAD:public/688220.html']).decode()
+          new=Path('public/688220.html').read_text()
+          for key in ("flow","pnl","balance","cfo"):
+              old=re.search(r'<div class="vizscroll" id="chart-'+key+r'"[^>]*></div>',previous)
+              modern=re.search(r'<div class="vizscroll" id="chart-'+key+r'"[^>]*></div>',new)
+              assert old and modern and old.group(0)==modern.group(0),key
+          assert new.count('class="native-asr"')==9
+          print('NINE_REAL_SEMICONDUCTOR_NATIVE_MOBILE_AND_ORIGINAL_DESKTOP_TEMPLATE_PASS',hashlib.sha256(new.encode()).hexdigest())
+          PY
+      - name: Commit candidate-only HTML and source-bound real CJK screenshot proof
+        if: github.event_name == 'push' && github.ref_name != 'main'
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add public/688220.html research/issuers/688220/qa.json
+          git add research/issuers/688220/visual-qa-native/result.json
+          git add research/issuers/688220/visual-qa-native/flow_1440.png research/issuers/688220/visual-qa-native/flow_390.png
+          git add research/issuers/688220/visual-qa-native/pnl_390.png research/issuers/688220/visual-qa-native/cfo_390.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Source rebuild true native semiconductor mobile money article and real screenshots"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Archive genuine Chromium screenshots and exact standalone source
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: original-semiconductor-688220-native-mobile-source-visual
+          path: |
+            public/688220.html
+            research/issuers/688220/qa.json
+            research/issuers/688220/visual-qa-native/
+          retention-days: 30

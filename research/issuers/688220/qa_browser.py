@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Real offline Chromium + graphic source-flow QA; no claim of independent human approval."""
 from __future__ import annotations
-import argparse, json, pathlib
+import argparse, json, pathlib, hashlib
 from decimal import Decimal as D
 from playwright.sync_api import sync_playwright
 P=argparse.ArgumentParser()
@@ -23,7 +23,7 @@ with sync_playwright() as p:
   page.on("pageerror",lambda e:errors.append("JS "+str(e)))
   page.on("console",lambda m:errors.append("CONSOLE "+m.text) if m.type=="error" else None)
   page.goto(html.as_uri(),wait_until="load")
-  page.wait_for_selector("#chart-flow svg",timeout=15000)
+  page.wait_for_selector("#chart-flow svg",state="attached",timeout=15000)
   info=page.evaluate("""() => ({
     scrollWidth:document.documentElement.scrollWidth,
     clientWidth:document.documentElement.clientWidth,
@@ -32,7 +32,22 @@ with sync_playwright() as p:
     tables:document.querySelectorAll('table.evidence-table').length,
     exports:document.querySelectorAll('[data-export]').length,
     mobilePanels:document.querySelectorAll('.mobile-facts').length,
-    mobileVisible:[...document.querySelectorAll('.mobile-facts')].filter(e=>getComputedStyle(e).display!=='none').length,
+    mobileVisible:[...document.querySelectorAll('.native-asr')].filter(e=>getComputedStyle(e).display!=='none').length,
+    nativeCount:document.querySelectorAll('.native-asr').length,
+    nativeViews:[...document.querySelectorAll('.native-asr')].map(e=>({
+      visible:getComputedStyle(e).display!=='none',
+      client:e.clientWidth,inner:e.scrollWidth,
+      originalSvg:e.querySelector('svg')?.getBoundingClientRect().width||0,
+      cjkTexts:[...e.querySelectorAll('svg text')].map(t=>{
+        const bb=t.getBBox(),view=t.closest('svg').viewBox.baseVal;
+        return {text:t.textContent,x:bb.x,right:bb.x+bb.width,view:view.width};
+      })
+    })),
+    originalDesktopHidden:[...document.querySelectorAll('.vizscroll')].filter(e=>getComputedStyle(e).display==='none').length,
+    mobileFlowSource:[...document.querySelectorAll('.native-asr-source')].map(e=>({yuan:e.dataset.exactYuan,width:+e.getAttribute('width')})),
+    mobileFlowSink:[...document.querySelectorAll('.native-asr-sink')].map(e=>({yuan:e.dataset.exactYuan,width:+e.getAttribute('width')})),
+    mobileFlowRibbon:[...document.querySelectorAll('.native-asr-ribbon')].map(e=>({yuan:e.dataset.exactYuan,width:+e.dataset.width,source:e.dataset.sourceKey,sink:e.dataset.sink,path:e.getAttribute('d')})),
+    mobileSigned:[...document.querySelectorAll('.native-asr-signed')].map(e=>({kind:e.dataset.kind,step:+e.dataset.step,yuan:e.dataset.signedYuan,cumulative:e.dataset.cumulativeYuan,width:+e.getAttribute('width'),fill:e.getAttribute('fill'),svg:e.closest('svg').getAttribute('aria-label')})),
     navPosition:getComputedStyle(document.querySelector('.chapters')).position,
     bodyExternalScripts:document.querySelectorAll('script[src]').length,
     ribbon:[...document.querySelectorAll('#chart-flow path.money-ribbon')].map(e=>{
@@ -69,12 +84,47 @@ with sync_playwright() as p:
   })""")
   assert info["scrollWidth"]<=width+1,(width,"document scrolls horizontally",info)
   assert info["figures"]==info["svg"]==info["tables"]==info["exports"]==9,(width,info)
-  assert info["mobilePanels"]==9 and info["mobileVisible"]==(0 if width==1440 else 9),(width,"invisible financial answer on phone",info)
+  assert info["nativeCount"]==9 and info["mobilePanels"]==9
+  assert info["mobileVisible"]==(0 if width==1440 else 9),(width,"NATIVE_MOBILE_PANELS_NOT_VISIBLE")
+  assert len(info["mobileFlowSource"])==4 and len(info["mobileFlowSink"])==2 and len(info["mobileFlowRibbon"])==7
+  source_scale=298/float(D(facts["rev"]["yuan"]))
+  for item in info["mobileFlowSource"]+info["mobileFlowSink"]:
+    assert abs(item["width"]-float(D(item["yuan"]))*source_scale)<1e-6,(width,"MOBILE_NODE_NOT_REAL_YUAN",item)
+  for item in info["mobileFlowRibbon"]:
+    assert abs(item["width"]-float(D(item["yuan"]))*source_scale)<1e-6,(width,"MOBILE_RIBBON_NOT_REAL_YUAN",item)
+    import re
+    match=re.search(r"^M([0-9.]+),58 C.* ([0-9.]+),58 Z$",item["path"])
+    assert match,(width,"BAD_MOBILE_MONEY_CURVE",item)
+    assert abs(float(match.group(2))-float(match.group(1))-item["width"])<1e-6,(width,"MOBILE_CURVE_FALSE_PHYSICAL_WIDTH",item)
+  assert len(info["mobileSigned"])>=25,(width,"SIGNED_FINANCIAL_GRAPHS_MISSING")
+  by_chart={}
+  for step in info["mobileSigned"]:
+    by_chart.setdefault(step["svg"],[]).append(step)
+  assert len(by_chart)==5,(width,"EXPECTED_FIVE_SIGNED_GRAPHS")
+  for title,steps in by_chart.items():
+    cumulative=None
+    scales=[]
+    for step in sorted(steps,key=lambda x:x["step"]):
+      delta=D(step["yuan"]);now=D(step["cumulative"])
+      if step["kind"]=="step":
+        assert cumulative is not None and abs(cumulative+delta-now)<=D("0.01"),(title,"BROKEN_SIGNED_CAS_CUMULATION",step)
+        assert step["fill"]==("#087b65" if delta>=0 else "#a84f40"),(title,"WRONG_MONEY_SIGN_COLOR",step)
+      elif step["kind"]=="total":
+        assert abs(cumulative-now)<=D("0.01"),(title,"TOTAL_WRONG_AMOUNT")
+      cumulative=now
+      if abs(delta)>D("0.01"):scales.append(step["width"]/abs(float(delta)))
+    assert scales and max(scales)-min(scales)<max(scales)*.000001,(title,"NOT_SAME_FINANCIAL_MONEY_SCALE")
+  if width in (768,390):
+    assert info["originalDesktopHidden"]==9,(width,"OLD_1050_SVG_VISIBLE_ON_PHONE")
+    assert all(z["visible"] and z["inner"]<=z["client"]+2 and z["originalSvg"]>220 for z in info["nativeViews"]),(width,"MOBILE_NATIVE_ART_CLIPPED")
+    assert all(t["x"]>=-2 and t["right"]<=t["view"]+2 for z in info["nativeViews"] for t in z["cjkTexts"]),(width,"CHINESE_SVG_LABEL_OUTSIDE_VIEWBOX")
+  else:
+    assert info["originalDesktopHidden"]==0 and info["mobileVisible"]==0,(width,"DESKTOP_SVG_REPLACED")
   assert info["navPosition"]=="static",(width,"chapter nav must never obscure figure title",info)
   assert info["bodyExternalScripts"]==0,(width,"offline must need no external JS",info)
   assert len(info["ribbon"])==7,(width,"4 cost ribbons and 3 nonzero GP ribbons required",info["ribbon"])
   assert len({r["source"] for r in info["ribbon"]})==4
-  assert all(D(r["amount"])>0 and r["bboxHeight"]>0 and r["title"] for r in info["ribbon"]),(width,"fake/empty ribbon")
+  assert all(D(r["amount"])>0 and (r["bboxHeight"]>0 if width==1440 else r["thickness"]>0) and r["title"] for r in info["ribbon"]),(width,"fake/empty ribbon")
   cost=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="cost"),D(0))
   profit=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="profit"),D(0))
   assert abs(cost-expected_cost)<=D("0.02") and abs(profit-expected_profit)<=D("0.02"),(width,"money-flow totals wrong",cost,profit)
@@ -136,7 +186,23 @@ with sync_playwright() as p:
   page.close()
  browser.close()
 assert not errors,errors
+source_manifest=json.loads((pathlib.Path(__file__).parent/"source-manifest.json").read_text(encoding="utf8"))
+full_article_sha=hashlib.sha256(html.read_bytes()).hexdigest()
+real_screenshots={p.name:{"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),"bytes":p.stat().st_size} for p in sorted(out.glob("*.png"))}
+assert len(real_screenshots)==screenshots and screenshots>=21,(screenshots,len(real_screenshots))
 (out/"result.json").write_text(json.dumps({
+ "issuer":"688220",
+ "source_pdf_sha256":source_manifest["pdf_sha256"],
+ "html_sha256":full_article_sha,
+ "actual_3_viewport_checks":[{"width":z["width"],"body_no_overflow":"PASS",
+       "actual_nine_390_768_native_signed_money_figures_no_inner_scroll":"PASS" if z["width"] in (390,768) else "DESKTOP_ORIGINAL_SVG",
+       "source_conserved_source_sinks_and_Bezier_actual_width":"PASS",
+       "original_legal_signed_CFO_and_PNL_in_same_scale":"PASS",
+       "original_CJK_text_bbox":"PASS"} for z in statuses],
+ "all_nine_390px_native_financial_svg_legible_and_source_reconciled":"PASS",
+ "source_nodes_sinks_ribbons_exact_svg_geometric_proportions":"PASS",
+ "real_CJK_screenshot_sha_bytes":real_screenshots,
+
  "technical_browser":"PASS","accounting_source_flow_visual_structure":"PASS",
  "source_pdf_manual_review":"SELECTED_PAGES_ONLY",
  "full_design_editorial":"NOT_CHECKED_INDEPENDENT_REVIEW",

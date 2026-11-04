@@ -17,9 +17,13 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
     def test_current_issuer_hashes_are_not_conflated_with_historical_fail_screenshots(self):
         errors,fixed,stale=validate_current_published_files(ROOT,self.census,self.debt)
         self.assertEqual(errors,[])
-        self.assertEqual({x["code"] for x in fixed},{"300308","300394","300502","600900","600276","601628"})
+        expected={"300308","300394","300502","600900","600276","601628"}
+        old=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"]["688220"]
+        import hashlib
+        if hashlib.sha256((ROOT/"public/688220.html").read_bytes()).hexdigest()!=old:expected.add("688220")
+        self.assertEqual({x["code"] for x in fixed},expected)
         self.assertEqual(set(stale),
-            {"600036","688111","600519","000333","688220"})
+            {"600036","688111","600519","000333"} | ({"688220"} if "688220" not in expected else set()))
     def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
         original=Path.read_bytes
         def changed(path):

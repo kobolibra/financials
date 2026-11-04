@@ -6,7 +6,8 @@ all Decimal checks pass, and the file's SHA/224 physical pages match the manifes
 SOURCE_SEMANTIC and editorial-human gates remain separate.
 """
 from __future__ import annotations
-import argparse,hashlib,json
+import argparse,hashlib,json,re
+from native_mobile import make as make_native_mobile
 from decimal import Decimal as D
 from pathlib import Path
 ROOT=Path(__file__).resolve().parent
@@ -114,6 +115,18 @@ for chart in REQUIRED_FIGURES:
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
 source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display).replace("__SOURCE_SHA__",actual_sha))
+# The full standalone article retains its original nine desktop editable SVG
+# graphs and financial evidence tables. At <=820, a second issuer-specific
+# original-money narrative is shown without horizontally cropping the reader.
+# An exact figure anchor is required; no silent source/render drift.
+native=make_native_mobile(data)
+assert tuple(native)==REQUIRED_FIGURES
+for figure_id,original in native.items():
+    pattern=r'(<div class="vizscroll" id="chart-'+re.escape(figure_id)+r'"[^>]*></div>)'
+    output,count=re.subn(pattern,lambda m:m.group(1)+original,output,count=1)
+    assert count==1,("ORIGINAL_FIGURE_NOT_FOUND_FOR_NATIVE_MOBILE",figure_id)
+assert output.count('class="native-asr"')==9
+
 assert "<script src=" not in output and "<iframe" not in output and "https://fonts" not in output
 a.out.parent.mkdir(parents=True,exist_ok=True)
 a.out.write_text(output,encoding="utf-8")

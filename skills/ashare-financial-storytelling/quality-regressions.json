@@ -462,6 +462,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-048",
+      "root_cause": "翱捷科技U原始四类业务流真实等额，但原手机只把1050px源加权图放入390px内嵌可横滚的小容器；360px内读者只见来源节点而看不到大额成本及毛利润的真实终点，9幅复杂原财务SVG均继承同一结构，desktop图/会计CI绿色假装艺术验收。",
+      "correction": "在不触碰原source ledger、法律口径、desktop九幅原始SVG及来源表基础上，688220公司适配器为390/768另生成9幅由原元金额计算的独立财务编辑图。四个互斥业务类别源→自己披露COGS与推导毛利；实际SVG每条贝塞尔和源目标宽度元额严格守恒，0流为0宽，不能放大微小业务；利润、去年毛利桥、真实全17项间接CFO和现金及等价物采用原有符号的单一货币累计瀑布；两期资产=负债+总权益属于stock图，分部毛利金额/毛利率是两个不同量纲。手机全部九图无需图内横滚，真实Noto CJK 1440/768/390浏览器检查每条路径、累计符号和文字BBox，留存原始HTML完整SHA和截图源。任何不匹配不可宣告生产PASS。",
+      "proof_file": "research/issuers/688220/qa_browser.py",
+      "assertion_marker": "MOBILE_CURVE_FALSE_PHYSICAL_WIDTH",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

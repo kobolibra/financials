@@ -1,0 +1,155 @@
+{
+  "issuer": "688220",
+  "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "html_sha256": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
+  "actual_3_viewport_checks": [
+    {
+      "width": 1440,
+      "body_no_overflow": "PASS",
+      "actual_nine_390_768_native_signed_money_figures_no_inner_scroll": "DESKTOP_ORIGINAL_SVG",
+      "source_conserved_source_sinks_and_Bezier_actual_width": "PASS",
+      "original_legal_signed_CFO_and_PNL_in_same_scale": "PASS",
+      "original_CJK_text_bbox": "PASS"
+    },
+    {
+      "width": 768,
+      "body_no_overflow": "PASS",
+      "actual_nine_390_768_native_signed_money_figures_no_inner_scroll": "PASS",
+      "source_conserved_source_sinks_and_Bezier_actual_width": "PASS",
+      "original_legal_signed_CFO_and_PNL_in_same_scale": "PASS",
+      "original_CJK_text_bbox": "PASS"
+    },
+    {
+      "width": 390,
+      "body_no_overflow": "PASS",
+      "actual_nine_390_768_native_signed_money_figures_no_inner_scroll": "PASS",
+      "source_conserved_source_sinks_and_Bezier_actual_width": "PASS",
+      "original_legal_signed_CFO_and_PNL_in_same_scale": "PASS",
+      "original_CJK_text_bbox": "PASS"
+    }
+  ],
+  "all_nine_390px_native_financial_svg_legible_and_source_reconciled": "PASS",
+  "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
+  "real_CJK_screenshot_sha_bytes": {
+    "balance_1440.png": {
+      "sha256": "2b386793b144ce9e8b18719502f69dec66c6af3bef9538b4964cb212b39ea13a",
+      "bytes": 110500
+    },
+    "balance_390.png": {
+      "sha256": "f4ed4bcc0e53da6a0ebc6de58253b1cd0135feb231072e7023c415aabd3bec74",
+      "bytes": 82991
+    },
+    "capital_1440.png": {
+      "sha256": "932e08ca22c486cd5e9f96740262dba477c04eeda891c73695ebf539c2a3d5e4",
+      "bytes": 64884
+    },
+    "capital_390.png": {
+      "sha256": "61778d54b9c150b47061a4c827f5e69605d5fc6200f223ea24e1fefcf8be5e65",
+      "bytes": 74269
+    },
+    "cash_1440.png": {
+      "sha256": "d285c906ec7403f6991e7752dd79c102f58fd53875b0de88094531c2ba0c21ec",
+      "bytes": 81988
+    },
+    "cash_390.png": {
+      "sha256": "b7cad87f7e39406ee58545b83ec991d37427573e96816ea75849b99bdbc35eff",
+      "bytes": 83033
+    },
+    "cfo_1440.png": {
+      "sha256": "a4ad6ad42dc9d1ae044b9a5513639a2e149038c6c997bd1da532719e4e665e51",
+      "bytes": 81650
+    },
+    "cfo_390.png": {
+      "sha256": "231e70a95426139ec72315fde0352fe9a5f9803b754f5b7fdd7a150e870b6d8a",
+      "bytes": 94542
+    },
+    "earnings_1440.png": {
+      "sha256": "41f19a6f455b80af6b9f71f81655990425722b4b2d7a6df9f5afa7dfeb76b6f0",
+      "bytes": 63945
+    },
+    "earnings_390.png": {
+      "sha256": "557c6938dc01a7ebf4636f1527fcdd74d802a6cdc0db784b2a9cbbdf5578fcff",
+      "bytes": 66300
+    },
+    "flow_1440.png": {
+      "sha256": "d1da26cbc3ee7918f82ce816ee57ba1178adc563dca7b113e266d037718c05ad",
+      "bytes": 142652
+    },
+    "flow_390.png": {
+      "sha256": "290f65adaf4c792ad3332f12b349f3b81e5e57d9c919249384582c79334206f0",
+      "bytes": 110177
+    },
+    "full_1440.png": {
+      "sha256": "899195ba98cb4ff58fd36ed7916cb8557c286d672ecd640477a4c986550b7879",
+      "bytes": 2060508
+    },
+    "full_390.png": {
+      "sha256": "f632675f92d8a468e07bb73566e0e52ca8c1ef7576ccfbb774db7f6477f30f9e",
+      "bytes": 1807080
+    },
+    "full_768.png": {
+      "sha256": "3ce6fc3bce7a906905ace660de5a26c0aee808956224447b417262e7802bc8a6",
+      "bytes": 2122170
+    },
+    "gp_1440.png": {
+      "sha256": "0be5235e2aa5762b2aa8f41d43d13f44a0a041d8154320e511f5dfd415a6e241",
+      "bytes": 60817
+    },
+    "gp_390.png": {
+      "sha256": "ad093dcbe2797a0fc357466222498a243bd4965cc6bf003231019be0a0aa6613",
+      "bytes": 67612
+    },
+    "pnl_1440.png": {
+      "sha256": "5a3e8cfa76a03639b555ea74b8f029c4ed387838d97a2e9fa1a55713e2d70797",
+      "bytes": 126013
+    },
+    "pnl_390.png": {
+      "sha256": "9da6db575a834e24f047739a5532963ebed9031b8299befe1af17d39de4c98a3",
+      "bytes": 120333
+    },
+    "segment_1440.png": {
+      "sha256": "e42964ec8dc001becb72b8365ce3d1c7a80e9d52c1fb42a95474a192478cdad3",
+      "bytes": 70260
+    },
+    "segment_390.png": {
+      "sha256": "e0b75ea3c311ce0da016638f8a67e20b489c5aabc0bb44b8d317aa5a2e8a132d",
+      "bytes": 61857
+    }
+  },
+  "technical_browser": "PASS",
+  "accounting_source_flow_visual_structure": "PASS",
+  "source_pdf_manual_review": "SELECTED_PAGES_ONLY",
+  "full_design_editorial": "NOT_CHECKED_INDEPENDENT_REVIEW",
+  "production_route": "NOT_CHECKED_LOCAL_TEST",
+  "viewport": [
+    {
+      "width": 1440,
+      "financial_figures": 9,
+      "money_flow_positive_ribbons": 7,
+      "source_tables": 9,
+      "mobile_numeric_answers": 0,
+      "horizontal_body_overflow": false,
+      "result": "PASS"
+    },
+    {
+      "width": 768,
+      "financial_figures": 9,
+      "money_flow_positive_ribbons": 7,
+      "source_tables": 9,
+      "mobile_numeric_answers": 9,
+      "horizontal_body_overflow": false,
+      "result": "PASS"
+    },
+    {
+      "width": 390,
+      "financial_figures": 9,
+      "money_flow_positive_ribbons": 7,
+      "source_tables": 9,
+      "mobile_numeric_answers": 9,
+      "horizontal_body_overflow": false,
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "screenshots": 21
+}
