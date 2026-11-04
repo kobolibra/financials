@@ -17,9 +17,9 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
     def test_current_issuer_hashes_are_not_conflated_with_historical_fail_screenshots(self):
         errors,fixed,stale=validate_current_published_files(ROOT,self.census,self.debt)
         self.assertEqual(errors,[])
-        self.assertEqual({x["code"] for x in fixed},{"600900","600276","601628"})
+        self.assertEqual({x["code"] for x in fixed},{"300394","300502","600900","600276","601628"})
         self.assertEqual(set(stale),
-            {"300394","300308","300502","600036","688111","600519","000333","688220"})
+            {"300308","600036","688111","600519","000333","688220"})
     def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
         original=Path.read_bytes
         def changed(path):
@@ -28,7 +28,7 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
             return data
         with mock.patch.object(Path,"read_bytes",new=changed):
             errors,fixed,unresolved=validate_current_published_files(ROOT,self.census,self.debt)
-        self.assertTrue(any("VISUAL_CHANGED_ISSUER_REQUIRES_ACTUAL_NEW_BROWSER_CENSUS 300394" in x for x in errors),errors)
+        self.assertTrue(any("VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID 300394" in x for x in errors),errors)
     def test_manufactured_bogus_issuer_finance_receipt_SHA_must_fail(self):
         original=Path.read_text
         def changed(path,*args,**kwargs):
@@ -53,6 +53,35 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
         with mock.patch.object(Path,"read_text",new=changed):
             errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
         self.assertTrue(any("VISUAL_CHANGED_ISSUER_BROWSER_SOURCE_SHA_OR_390_NATIVE_MONEY_EVIDENCE_INVALID 600276" in x for x in errors),errors)
+
+    def test_optical_source_receipt_cannot_be_rebound_to_a_forged_article(self):
+        original=Path.read_text
+        def corrupt(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("optical-native-visual-qa/result.json"):
+                obj=json.loads(data)
+                for z in obj["cases"]:
+                    if z["issuer"]=="300394":z["sha256"]="0"*64
+                return json.dumps(obj)
+            return data
+        with mock.patch.object(Path,"read_text",new=corrupt):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID 300394",errors)
+
+    def test_optical_true_signed_geometry_missing_on_390_must_fail(self):
+        original=Path.read_text
+        def corrupt(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("optical-native-visual-qa/result.json"):
+                obj=json.loads(data)
+                for z in obj["cases"]:
+                    if z["issuer"]=="300502" and z["width"]==390:
+                        z["signed_accounting_and_svg_geometry"]="FAIL"
+                return json.dumps(obj)
+            return data
+        with mock.patch.object(Path,"read_text",new=corrupt):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_CHANGED_OPTICAL_ISSUER_ORIGINAL_MONEY_SOURCE_390_BROWSER_RECEIPT_INVALID 300502",errors)
 
     def test_original_ten_are_explicit_failed_visual_debt_not_pass(self):
         errors,legacy=validate_audit(self.census,self.debt)
