@@ -1,0 +1,55 @@
+name: Intake actual 178 page original 2026H1 COSCO Shipping 601919 PDF
+on:
+  push:
+    branches: [work/shipping-601919-2026h1-zero-context-source-stress]
+    paths:
+      - 'research/issuers/601919/source-manifest.json'
+      - 'scripts/intake_shipping_601919.py'
+      - '.github/workflows/intake-shipping-601919.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  real-original-source-178-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Full exact PDF binary, issuer/period and physical 178 page verification
+        run: |
+          python -m pip install -q pymupdf
+          python -m py_compile scripts/intake_shipping_601919.py
+          python scripts/intake_shipping_601919.py
+          python - <<'PY'
+          import json,pathlib,hashlib,fitz
+          p=pathlib.Path("research/issuers/601919/source/601919_2026H1_complete_original.pdf")
+          m=json.loads(pathlib.Path("research/issuers/601919/source-verification.json").read_text())
+          d=fitz.open(p)
+          assert m["sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
+          assert m["bytes"]==p.stat().st_size and m["physical_pages"]==178 and d.page_count==178
+          assert len(m["topics"])==178 and len(list(pathlib.Path("research/issuers/601919/extracted").glob("p[0-9]*.txt")))==178
+          assert m["checks"]["all_notes_independent_review"]=="NOT_CHECKED"
+          print("SHIPPING_178PAGE_REAL_SOURCE_HASH AND 178PAGE_FULL_INDEX_PASS",m["sha256"],m["bytes"])
+          PY
+      - name: Publish original source bytes and full per physical page evidence only
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add research/issuers/601919/source/ research/issuers/601919/extracted/ research/issuers/601919/source-images/ research/issuers/601919/source-verification.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive full 178 physical page COSCO Shipping original 2026H1 PDF and primary sources"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Preserve real original PDF and independent download byte certificate
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: 601919-full-original-2026H1-source-only
+          path: |
+            research/issuers/601919/source/*.pdf
+            research/issuers/601919/source-verification.json
+          if-no-files-found: warn
+          retention-days: 30
