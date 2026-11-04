@@ -24,11 +24,11 @@
 
 权威清单是 [site/research_catalog.json](site/research_catalog.json)，唯一线上目录是 [Financials in Visuals](https://financials-in-visuals.pages.dev/)。最近真实 `main` 生产验证 [#41778320066](https://github.com/kobolibra/financials/actions/runs/41778320066) 对应 `b88698a0cf1cfcd89c16eda1e399796d9418ea04`，当时**11家公司**全部路由以及桌面/平板/手机导航通过；这只是**明确有时间和 SHA 的历史验收快照**，新对话必须再取当前 GitHub `main`，不能把 11 当未来的固定常数。
 
-最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的手机十张源驱动全图已发布；当时历史线上公司页 HTML SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`；之后实际已更新的 `601628` 正式页面 SHA 为 `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0`，请以对应当次 main/Actions 为准。旧版本 与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
+最新实测新增寿险：中国人寿 `601628`，独立报告 [正式线上全文](https://financials-in-visuals.pages.dev/601628)，仓库源账本 `research/issuers/601628/`，原始完整报告104物理页、133项源事实、33个定位源单元、18个会计及监管资本/有限保证核验、10个原创图形；目前是**source_limited_preview**，并不等于完整附注/外部估值/第二名人类审稿 PASS。2026-11-04 的手机十张源驱动全图已发布；当时历史线上公司页 HTML SHA `6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd`；之后实际已更新的 `601628` 正式页面 SHA 为 `b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0`，请以对应当次 main/Actions 为准。该历史版本与首页 SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41` 已通过真 Cloudflare 浏览器对比。公司目录卡 `/601628.html` 的点击跳转被 Pages 正常规范化为独立 `/601628` 路由，不是返回主页。其他既有公司不能被新发布覆盖。
 
 产业链横向比较 `/optical-2026h1.html` 始终是**专题**，不算单独公司。后续任何新增公司必须加入现有 `site/research_catalog.json` 并运行 `site/portal_builder.py`，只发布独立、可离线打开的单公司 HTML。绝不能新建“三家／四家／v11”第二入口。
 
-## 2026-11-04 · v8.7.1 真修水电和创新药行业手机原生财务图（候选）
+## 2026-11-04 · v8.7.1 水电和创新药行业手机原生财务图构建的历史候选阶段（正式上线证据见上）
 
 `research/shared/build_two_sector.py` 已将 `research/shared/mobile_finance.js` 源金额真图内联至600900长江电力和600276恒瑞医药的两份完整离线HTML，各8个桌面完整SVG及8个390原生财务SVG。真金额收入流向桑基、负数利润/间接CFO/现金和CAPEX瀑布、分部嵌套创新药、两日期资产负债守恒均已实际源PDF+ CJK Chromium1440/768/390验证 [#41799046343](https://github.com/kobolibra/financials/actions/runs/41799046343) **PASS候选**，真实图证和两新完整HTML SHA详见[VIS-044](research/visual-audit/VISUAL_CHANGESET_2026-11-04_TWO_SECTORS.md)。该源修改若未真实在Cloudflare以新SHA核验，直播仍NOT_CHECKED；旧十家手机横滚基线依旧是原字节FAIL，只真实修两家后余八家待修。`scripts/check_visual_editorial_policy.py` 现在还校验**当前改后HTML SHA**与同SHA浏览器实测，不准用旧截屏替新版本造PASS。
 
