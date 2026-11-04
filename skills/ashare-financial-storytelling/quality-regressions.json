@@ -471,7 +471,7 @@
       "assertion_marker": "MOBILE_CURVE_FALSE_PHYSICAL_WIDTH",
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
-      "status": "CANDIDATE_PENDING_REAL_CHROMIUM_AND_CLOUDFLARE"
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
