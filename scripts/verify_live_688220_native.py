@@ -39,6 +39,10 @@ def main():
     assert pdf_sha.encode() in local and len(pdf_sha)==64
     catalog=json.loads((ROOT/"site/research_catalog.json").read_text())["issuers"]
     assert len(catalog)>=11 and any(z["code"]=="688220" for z in catalog)
+    for company in catalog:
+        independent=get(ORG+company["href"])
+        assert b"<html" in independent.lower() or b"<!doctype" in independent.lower(),("PUBLIC_COMPANY_HTML_MISSING",company["code"])
+        assert independent!=home,("COMPANY_LINK_REDIRECTS_TO_HOMEPAGE",company["code"])
     rows=[];screens=[]
     with sync_playwright() as p:
         browser=p.chromium.launch(args=["--no-sandbox"])
@@ -46,6 +50,9 @@ def main():
             page=browser.new_page(viewport={"width":width,"height":900},device_scale_factor=1,accept_downloads=True)
             page.goto(ORG+"/",wait_until="networkidle")
             assert page.locator("a.company").count()==len(catalog),(width,"COMPANY_DIRECTORY_COUNT")
+            directory_shot=OUT/f"live_directory_{width}.png"
+            page.screenshot(path=str(directory_shot),full_page=True)
+            screens.append({"viewport":width,"sha256":SHA(directory_shot.read_bytes()),"bytes":directory_shot.stat().st_size,"file":directory_shot.name})
             page.locator('a.company[href="/688220.html"]').click()
             assert page.url.rstrip("/").endswith("/688220.html") or page.url.rstrip("/").endswith("/688220"),(width,page.url)
             page.wait_for_selector("#chart-flow svg",state="attached")
