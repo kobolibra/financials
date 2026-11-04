@@ -55,7 +55,7 @@ def check(facts=None):
         assert f["period"] in ("2026H1","2025H1","2026-06-30","2025-12-31"),("INVALID_REPORT_PERIOD",k)
         assert f["source_report_unit"] in ("CNY_yuan","TEU","RMB_thousands","percent","USD_per_TEU"),("UNKNOWN_UNIT",k)
         value(k,F)
-    checks["ALL_159_SOURCE_FACTS_HAVE_REAL_NUMBER_PHYSICAL_PAGE_PERIOD_AND_EXPLICIT_UNIT"]="PASS"
+    checks["ALL_SOURCE_FACTS_HAVE_REAL_NUMBER_PHYSICAL_PAGE_PERIOD_AND_EXPLICIT_UNIT"]="PASS"
 
     # Full statutory consolidated income, both signed periods.
     for suffix in ("","_prior"):
@@ -76,6 +76,20 @@ def check(facts=None):
         cross("CONSOLIDATED_INCOME_PERIOD"+suffix,p("revenue"),"consolidated","CNY_yuan",55,"2025H1" if suffix else "2026H1")
     # Specific shipping model: gross segment vs eliminations and gross profit.
     eq("GROSS_SHIPPING_COST_TRUE_FOUR_CATEGORY",tot("ship_cost_equipment","ship_cost_voyage","ship_cost_vessel","ship_cost_other"),v("ship_segment_cost"))
+    eq("PRIOR_SHIPPING_COST_ORIGINAL_FOUR_CATEGORIES",tot("ship_cost_equipment_prior","ship_cost_voyage_prior","ship_cost_vessel_prior","ship_cost_other_prior"),v("ship_segment_cost_prior"))
+    eq("PRIOR_GROUP_COGS_SIGNED_REAL_INTERCOMPANY_ELIMINATION",tot("ship_segment_cost_prior","port_segment_cost_prior","intersegment_cost_elimination_prior"),v("cost_prior"))
+    lanes=("transpacific","europe_med","asia_oceania","other_international","china_mainland")
+    for suffix in ("","_prior"):
+        eq("FIVE_EXCLUSIVE_ROUTES_REVENUE_RMB_THOUSANDS"+suffix,
+            tot(*("lane_revenue_rmb_thousands_"+x+suffix for x in lanes)),
+            v("lane_revenue_total_rmb_thousands"+suffix))
+        eq("FIVE_EXCLUSIVE_ROUTES_FREIGHT_TEU"+suffix,
+            tot(*("lane_teu_"+x+suffix for x in lanes)),
+            v("group_teu"+suffix))
+        cross("LANES_FREIGHT_REVENUE_UNIT_AND_SCOPE"+suffix,"lane_revenue_rmb_thousands_transpacific"+suffix,"group_lanes","RMB_thousands",14,"2025H1" if suffix else "2026H1")
+        cross("LANES_TEUS_UNIT_AND_SCOPE"+suffix,"lane_teu_transpacific"+suffix,"group_volume","TEU",13,"2025H1" if suffix else "2026H1")
+    assert v("lane_revenue_total_rmb_thousands")*1000<v("ship_segment_revenue"),"FREIGHT_ROUTE_REVENUE_NOT_ALL_SHIPPING_SERVICES"
+    checks["ROUTE_TEU_AND_FREIGHT_RMB_THOUSANDS_ARE_NOT_1000X_USD_PER_TEU"]="PASS"
     eq("GROSS_TWO_SEGMENTS_MINUS_INTERCOMPANY_TO_GROUP_REVENUE",tot("ship_segment_revenue","port_segment_revenue","intersegment_revenue_elimination"),v("revenue"))
     eq("GROSS_TWO_SEGMENTS_MINUS_INTERCOMPANY_TO_GROUP_COST",tot("ship_segment_cost","port_segment_cost","intersegment_cost_elimination"),v("cost"))
     assert v("intersegment_revenue_elimination")<0 and v("intersegment_cost_elimination")<0,"NEGATIVE_ELIMINATION_NOT_SIGNED"
