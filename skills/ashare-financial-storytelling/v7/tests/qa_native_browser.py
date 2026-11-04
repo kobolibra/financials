@@ -39,9 +39,10 @@ with sync_playwright() as p:
             if width in (768,390):
                 figures=page.evaluate("""() => [...document.querySelectorAll('figure.has-native-finance')].map(f=>{
                   const n=f.querySelector('.native-finance'),old=f.querySelector('.chart-shell'),svg=n.querySelector('svg');
+                  const graphic=svg||n;const r=graphic.getBoundingClientRect();
                   return {active:getComputedStyle(n).display!=='none',oldHidden:getComputedStyle(old).display==='none',
-                    inner:n.scrollWidth,visible:n.clientWidth,width:svg.getBoundingClientRect().width,
-                    clipped:svg.getBoundingClientRect().right>f.getBoundingClientRect().right+2};
+                    inner:n.scrollWidth,visible:n.clientWidth,width:r.width,
+                    clipped:r.right>f.getBoundingClientRect().right+2};
                 })""")
                 assert all(z["active"] and z["oldHidden"] and z["inner"]<=z["visible"]+2 and z["width"]>220 and not z["clipped"] for z in figures),(code,width,"REAL_NATIVE_FIGURE_CLIP",figures)
             else:
