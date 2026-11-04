@@ -31,9 +31,11 @@ with sync_playwright() as p:
     const svg=document.querySelector('#chart-premium svg');
     const nodes=[...svg.querySelectorAll('rect.money-source')].map(x=>({key:x.dataset.sourceKey,height:+x.getAttribute('height'),exact:x.dataset.exactYuan}));
     const paths=[...svg.querySelectorAll('path.money-ribbon')].map(x=>({key:x.dataset.sourceKey,d:x.getAttribute('d'),v:+x.dataset.valueMillion}));
+    const sinks=[...svg.querySelectorAll('rect.money-sink')].map(x=>({fill:x.getAttribute('fill'),klass:x.getAttribute('class'),y:+x.getAttribute('y'),height:+x.getAttribute('height'),million:x.dataset.valueMillion,exact:x.dataset.exactYuan}));
+    const malformedRects=[...document.querySelectorAll('.chart svg rect')].filter(x=>!/^#[0-9A-Fa-f]{6}$/.test(x.getAttribute('fill')||'')||((x.getAttribute('class')||'').includes('='))).map(x=>x.outerHTML.slice(0,200));
     const money=node=>[...document.querySelectorAll(node)].map(x=>({w:x.scrollWidth,visible:x.clientWidth}));
     const domContents=[...document.querySelectorAll('h1,h2,p,.intro,.closing,.figure,.wrap,footer,header,.topbar')].map(x=>({tag:x.tagName,rect:x.getBoundingClientRect().toJSON()}));
-    return {width:innerWidth,bodyWidth:body.scrollWidth,nodes,paths,charts:money('.chart'),visible:domContents,
+    return {width:innerWidth,bodyWidth:body.scrollWidth,nodes,paths,sinks,malformedRects,charts:money('.chart'),visible:domContents,
       hasFont:document.fonts.check('16px "Noto Sans CJK SC"'),sourceTables:document.querySelectorAll('table').length}
   }""")
   assert geometry["bodyWidth"]<=width+1,(width,"ROOT_HORIZONTAL_OVERFLOW",geometry["bodyWidth"])
@@ -46,6 +48,13 @@ with sync_playwright() as p:
     if r["width"]>0 and r["height"]>0:
      assert r["left"]>=-2 and r["right"]<=width+2,(el["tag"],"NON_SCROLLING_MOBILE_CONTENT_CLIPPED",r)
   assert len(geometry["nodes"])==4 and len(geometry["paths"])==6
+  assert not geometry["malformedRects"], ("SVG_RECT_MALFORMED_OR_UNPAINTED",width,geometry["malformedRects"])
+  assert len(geometry["sinks"])==1,("MISSING_PREMIUM_TOTAL_MONEY_SINK",width,geometry["sinks"])
+  sink=geometry["sinks"][0]
+  assert sink["klass"]=="money-sink",("BAD_SVG_SINK_CLASS",sink)
+  assert sink["fill"]=="#123F3A",("UNPAINTED_PREMIUM_TOTAL_SINK",sink)
+  assert sink["million"]=="536634" and sink["exact"]==F["premium_total"]["yuan"],("PREMIUM_SINK_WRONG_SOURCE_AMOUNT",sink)
+  assert math.isclose(sink["height"],268.0,abs_tol=0.00001) and math.isclose(sink["y"],82.0,abs_tol=0.00001),("PREMIUM_MONEY_SINK_NOT_CONSERVED",sink)
   total=536634.0
   expected={
    "premium_first_regular":101294,
