@@ -9,7 +9,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.7.4-rc1",
+    "version": "8.7.5-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 46,
+        "quality_regressions_count": 47,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -1254,6 +1254,7 @@
     ],
     "original_AR_top5_denominator_conflict": "FAIL_BOUNDED_ORIGINAL_P137_90.50_PCT_VS_DERIVED_89.17_PCT_UNRESOLVED_DENOMINATOR",
     "independent_human_editor": "NOT_CHECKED",
-    "external_source_pdf_equivalence": "NOT_CHECKED"
+    "external_source_pdf_equivalence": "NOT_CHECKED",
+    "regression": "VIS-048"
   }
 }
