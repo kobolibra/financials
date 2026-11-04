@@ -192,7 +192,13 @@ jobs:
               page.goto(home,wait_until='networkidle')
               page.locator(f'a.company[href="/{code}.html"]').click()
               assert f'/{code}' in page.url,(code,'new independent company route is not navigable')
-              assert page.locator('#chart-flow svg').count()==1,(code,'new route lost original source flow')
+              # A desktop original amount-weighted SVG and a separately authored
+              # mobile finance SVG coexist in the DOM. Count each genuine
+              # presentation independently; the old broad selector falsely
+              # rejected valid, source-conserved mobile-native releases.
+              assert page.locator('#chart-flow > svg').count()==1,(code,'desktop original money-flow SVG absent or duplicated')
+              assert page.locator('#chart-flow .native-mobile-finance svg').count()==1,(code,'native mobile original-money SVG absent or duplicated')
+              assert page.locator('#chart-flow svg').count()==2,(code,'unexpected duplicated or missing authored finance graphics')
               page.locator('a[href="/#companies"]').first.click()
               assert page.url.endswith('#companies'),(code,'new report fails to return to single catalog')
             page.locator('a.feature[href="/optical-2026h1.html"]').click()
