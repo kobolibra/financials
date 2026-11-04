@@ -128,3 +128,4 @@ assert len(results["screenshots"])==6,("MISSING_PRODUCTION_THREE_VIEWS_ISSUER_AN
 assert all(z["actual_dedicated_article_final_url"] in {SITE+"/601628",SITE+"/601628.html"} for z in report_check),"LIVE_EVIDENCE_URL_CORRUPTED_AFTER_BACK"
 (OUT/"result.json").write_text(json.dumps(results,ensure_ascii=False,indent=2)+"\n")
 print("ACTUAL_CLOUDFLARE_MAIN_ELEVEN_ISSUERS_THREE_REAL_VIEWPORTS_AND_PUBLIC_HTML_SHA_PASS",expected_sha,expected_home,json.dumps(report_check))
+print("PRODUCTION_VERIFICATION_RECEIPT_JSON",json.dumps(results,ensure_ascii=False,sort_keys=True),flush=True)
