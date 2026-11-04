@@ -42,6 +42,19 @@ jobs:
           assert all(r['public_html_sha256']==d['exact_live_public_html_sha256'][r['code']] for r in d['results'])
           assert all(r['native_phone_full_financial_source_art']=='PASS' for r in d['results'] if r['width']==390)
           assert d['independent_human_aesthetic_editor']=='NOT_CHECKED'
+          assert len(d['home_actual_full_source_sha256'])==64
+          import hashlib
+          assert d['home_actual_full_source_sha256']==hashlib.sha256(Path('public/index.html').read_bytes()).hexdigest()
+          for code in ('600900','600276'):
+              r=json.loads(Path('research/visual-audit/live-two-sectors',f'live_{code}_release_receipt.json').read_text())
+              assert r['issuer']==code and r['status']=='PASS'
+              assert r['verified_git_commit']==d['git_source_sha']
+              assert r['actual_full_content_sha256_equals_repository_main_'+code]==d['exact_live_public_html_sha256'][code]
+              assert r['actual_full_content_sha256_equals_repository_main_index']==d['home_actual_full_source_sha256']
+              assert {s['name'] for s in r['screenshots']}=={f'live_{code}_{w}.png' for w in (1440,768,390)}|{f'live_directory_{w}.png' for w in (1440,768,390)}
+              assert all(hashlib.sha256(Path('research/visual-audit/live-two-sectors',x['name']).read_bytes()).hexdigest()==x['sha256'] for x in r['screenshots'])
+              assert {x['width'] for x in r['real_chromium_viewports']}=={1440,768,390}
+              assert next(x for x in r['real_chromium_viewports'] if x['width']==390)['mobile_eight_full_width_source_exact_money_exhibits']=='PASS'
           print('REAL_PRODUCTION_AEI_SOURCE_GLYPH_11_ROOT_6_OFFICIAL_PAGES_390_NEW_MONEY_FIGURES_COMPLETE')
           PY
       - name: Preserve actual Cloudflare homepage/company/screenshots and whole release source SHA receipt
