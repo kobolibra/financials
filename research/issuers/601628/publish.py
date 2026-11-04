@@ -125,7 +125,7 @@ def premium_flow():
     body+=t(1012,30,yi("premium_total")+" 亿元",20,"#163F3B",750,"end")
     sy=Y
     for idx,(key,hh,col,label) in enumerate(zip(sourcekeys,hts,fills,labels)):
-        body+=rect(l,sy,15,hh,col,"money-source",f'data-source-key="{key}" data-value-million="{big(key)}" data-exact-yuan="{FACTS[key]["yuan"]}"')
+        body+=rect(l,sy,15,hh,col,"money-source",f'data-source-key="{key}" data-value-million="{int(amount(key))}" data-exact-yuan="{FACTS[key]["yuan"]}"')
         body+=ribbon(l+15,m,sy,sy+hh,sy,sy+hh,int(amount(key)),key,col)
         labelY=[80,144,200,288][idx]
         body+=t(28,labelY,label,15,"#163E3B",650)
@@ -134,10 +134,10 @@ def premium_flow():
         sy+=hh
     newh=sum(hts[:3])
     for sy,hh,key,col,name in [(Y,newh,"premium_new","#087B65","新单保费"),(Y+newh,hts[3],"premium_renew","#B27452","续期保费")]:
-        body+=rect(m,sy,16,hh,col,"money-intermediate",f'data-source-key="{key}" data-value-million="{big(key)}"')
+        body+=rect(m,sy,16,hh,col,"money-intermediate",f'data-source-key="{key}" data-value-million="{int(amount(key))}"')
         body+=ribbon(m+16,r,sy,sy+hh,sy,sy+hh,int(amount(key)),key,col)
         body+=t(m+24,sy+max(20,hh/2),name+" "+yi(key)+"亿",15,"#17423D",700)
-    body+=rect(r,Y,17,H,"money-sink",f'data-value-million="{big("premium_total")}"')
+    body+=rect(r,Y,17,H,"money-sink",f'data-value-million="{int(amount("premium_total"))}"')
     body+=t(1010,Y+H/2,"总保费",18,"#143C36",700)
     body+=t(1010,Y+H/2+23,yi("premium_total")+"亿",18,"#087B65",700)
     body+=t(45,390,"来源×业务阶段×合计：每条带与每个节点的高度均为 268 × 原始金额 / 536,634；无最小宽度假流。",13,"#61756F")
