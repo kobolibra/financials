@@ -6,6 +6,8 @@
 
 ## 2026-11-04 · 真修后续两个不同模式的手机财务图（v8.7.1；仅新候选源字节，非线上认证）
 
+**版本真实性**：当前候选完整仓库 Skill 与机器 manifest 均为 `8.7.1-rc1`（严格版本字符串）；正式 main SHA 在合并前保持实际上一版本，不能把候选误认为当前线上版本。
+
 **用户要求**：不能停留于审计“为什么新页面越来越差”，必须重建实际可复用的 Financial Storytelling Skill、财务图形生成器和手机真实图表，保证新聊读取当前主干后可立刻继续。基于先前11公司33次真实 CJK 浏览器视觉核验和10个390内部横向滚动真实FAIL，已将共用的 **600900 长江电力 + 600276 恒瑞医药** 正式源生产器 `research/shared/build_two_sector.py` 改为在原独立单体离线 HTML 中 **嵌入不同会计文法的八幅390原生财务SVG**；JS原图源在 `research/shared/mobile_finance.js`。这不是加几个绿色柱、把760px原SVG缩成300px或者iframe。原始8幅桌面同比/桑基/利润/间接CFO/资产负债/业务来源图继续存在并支持SVG导出，390手机不显示桌面宽图，而显示真正从同一源账本导出的原生专业中文图。
 
 **两个实际具体公司已独立通过完整原始PDF、原注、完整源财务金额守恒、CJK Chromium1440/768/390、每家公司16幅真实SVG、源金额加权收入→成本/毛利的重算节点与路径物理宽度、带符号利润/间接CFO/现金桥、两日期BS、真实万元/亿元单位、创新药商品销售子集且不二次计入收入、手机每图无内部横向溢出/文本BBox在视口、两次确定性独立生成**。真实源Actions [#41799046343](https://github.com/kobolibra/financials/actions/runs/41799046343) 及含7张仓库真实图审阅样本的 [#41799335392](https://github.com/kobolibra/financials/actions/runs/41799335392) **PASS 候选**。真实截图已逐幅亲看（非另一名人类分析师），见 [专门设计修复报告](research/visual-audit/VISUAL_CHANGESET_2026-11-04_TWO_SECTORS.md) 和 `research/issuers/{600900,600276}/visual-qa/*-390-*.png`，每家公司各 `visual-qa/result.json` 有真实新HTML SHA+三屏浏览器源守恒证据。
