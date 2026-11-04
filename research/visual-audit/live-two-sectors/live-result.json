@@ -1,0 +1,97 @@
+{
+  "git_source_sha": "9fac4aeebacd448efb634cfaaf4846c0ba498215",
+  "origin": "https://financials-in-visuals.pages.dev",
+  "exact_live_public_html_sha256": {
+    "600276": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+    "600900": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8"
+  },
+  "full_eleven_company_directory": "PASS",
+  "real_cjk_chromium_widths": [
+    1440,
+    768,
+    390
+  ],
+  "real_public_two_standalone_source_html_and_3_width_financial_plots": "PASS",
+  "each_phone_all_eight_new_finance_glyphs_money_signed_and_text_no_clip": "PASS",
+  "result_count": 6,
+  "results": [
+    {
+      "width": 1440,
+      "native_phone_full_financial_source_art": "NOT_MOBILE",
+      "signed_financial_bridge_source": "DESKTOP_SOURCE_GEOMETRY_PRESERVED",
+      "source_tables": 8,
+      "figure_count": 8,
+      "phone_no_inner_scroll": "NOT_MOBILE",
+      "code": "600900",
+      "url": "https://financials-in-visuals.pages.dev/600900",
+      "public_html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
+      "source_pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2"
+    },
+    {
+      "width": 1440,
+      "native_phone_full_financial_source_art": "NOT_MOBILE",
+      "signed_financial_bridge_source": "DESKTOP_SOURCE_GEOMETRY_PRESERVED",
+      "source_tables": 8,
+      "figure_count": 8,
+      "phone_no_inner_scroll": "NOT_MOBILE",
+      "code": "600276",
+      "url": "https://financials-in-visuals.pages.dev/600276",
+      "public_html_sha256": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+      "source_pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa"
+    },
+    {
+      "width": 768,
+      "native_phone_full_financial_source_art": "NOT_MOBILE",
+      "signed_financial_bridge_source": "DESKTOP_SOURCE_GEOMETRY_PRESERVED",
+      "source_tables": 8,
+      "figure_count": 8,
+      "phone_no_inner_scroll": "NOT_MOBILE",
+      "code": "600900",
+      "url": "https://financials-in-visuals.pages.dev/600900",
+      "public_html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
+      "source_pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2"
+    },
+    {
+      "width": 768,
+      "native_phone_full_financial_source_art": "NOT_MOBILE",
+      "signed_financial_bridge_source": "DESKTOP_SOURCE_GEOMETRY_PRESERVED",
+      "source_tables": 8,
+      "figure_count": 8,
+      "phone_no_inner_scroll": "NOT_MOBILE",
+      "code": "600276",
+      "url": "https://financials-in-visuals.pages.dev/600276",
+      "public_html_sha256": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+      "source_pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa"
+    },
+    {
+      "width": 390,
+      "native_phone_full_financial_source_art": "PASS",
+      "signed_financial_bridge_source": "PASS",
+      "source_tables": 8,
+      "figure_count": 8,
+      "phone_no_inner_scroll": "PASS",
+      "code": "600900",
+      "url": "https://financials-in-visuals.pages.dev/600900",
+      "public_html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
+      "source_pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2"
+    },
+    {
+      "width": 390,
+      "native_phone_full_financial_source_art": "PASS",
+      "signed_financial_bridge_source": "PASS",
+      "source_tables": 8,
+      "figure_count": 8,
+      "phone_no_inner_scroll": "PASS",
+      "code": "600276",
+      "url": "https://financials-in-visuals.pages.dev/600276",
+      "public_html_sha256": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+      "source_pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa"
+    }
+  ],
+  "independent_second_human_financial_analyst": "NOT_CHECKED",
+  "independent_human_aesthetic_editor": "NOT_CHECKED",
+  "material_report_notes_exhaustive": "NOT_CHECKED",
+  "real_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/41801650187",
+  "real_cloudflare_screenshots_artifact": "https://github.com/kobolibra/financials/actions/runs/41801650187/artifacts/13308151721",
+  "visual_editorial_quality": "PASS_390_FINANCE_MECHANICS_NOT_INDEPENDENT_HUMAN_DESIGN_SIGNOFF"
+}
