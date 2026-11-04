@@ -210,7 +210,7 @@
     },
     "income_tax": {
       "amount": "2497175782.71",
-      "page": 57,
+      "page": 56,
       "source_label": "所得税费用",
       "period": "2026H1",
       "kind": "flow",
@@ -219,7 +219,9 @@
       "status": "reported",
       "image_checked": false,
       "source_confidence": "pdf_text_extracted_web",
-      "source_url": "https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf"
+      "source_url": "https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf",
+      "page_corrected_from_legacy": 57,
+      "physical_pdf_page_evidence": "Original complete physical PDF page 56 ends with 减：所得税费用 2,497,175,782.71; physical page 57 begins 五、净利润"
     },
     "net_profit": {
       "amount": "14733426763.13",
