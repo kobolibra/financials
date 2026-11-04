@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41736999189",
-      "scope": "Actual Cloudflare public 10 issuer x 3 viewports Chromium: 30 successful routes including this issuer's 8 source-backed SVGs, distinct money-source/COGS/GP geometry, original PDF SHA and working back-to-library; no claim of independent financial editor or HTTP byte equality"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41804157527",
+      "scope": "2026-11-04 real Cloudflare Pages current exact FULL HTML SHA at original main 9060bd2, standalone issuer and canonical homepage SHA, all 11 issuer routes, CJK Chromium 1440/768/390; 6 captured screenshot bytes/SHA, source-conserved desktop weighted money flow and 8 native 390 full-source money graphs. No independent human notes/finance/editorial certification."
     }
   },
   "blockers": [
@@ -123,7 +123,9 @@
       "issue": "FAIR_VALUE_KAILERA_NOT_PRODUCT_CASH"
     }
   ],
-  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY",
-  "live_release_fingerprint": "600276_SOURCE_PDF_SHA_ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa_MAIN_7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511_LIVE_CI_41736999189",
-  "actual_main_release_commit": "7704ecc6c6a0f0470f7dd5f2c6fe71d5527de511"
+  "published_html_sha256": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+  "live_release_fingerprint": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+  "actual_main_release_commit": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
+  "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "live_receipt_file": "research/issuers/600276/live-release-receipt.json"
 }
