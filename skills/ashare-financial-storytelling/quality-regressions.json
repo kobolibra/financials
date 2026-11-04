@@ -432,6 +432,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "PUB-045",
+      "root_cause": "统一目录 Cloudflare 验收仍以 `#chart-flow svg` 必须恰好1个作为财务原图凭据；新版独立离线报告同一容器内同时保留原始桌面守恒资金SVG与另一幅独立390原生元账本财务SVG，测试误报 FAIL。源文章真实线上无误，但测试将两个有效媒体编排错当丢失财务图。",
+      "correction": "真实线上选择器须分别检查 `.plot#chart-flow > svg` 恰好1幅原始桌面资金图、`#chart-flow .native-mobile-finance svg` 恰好1幅独立手机图、二者合计2幅。保留逐源金额守恒、含符号瀑布、原文来源表、三屏SVG实际几何以及所有旧公司真实路由、SHA测试，禁止通过删图或取消断言掩盖缺陷。",
+      "proof_file": ".github/workflows/verify-unified-research-library.yml",
+      "assertion_marker": "desktop original money-flow SVG absent or duplicated",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

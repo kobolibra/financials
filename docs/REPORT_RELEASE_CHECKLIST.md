@@ -1,6 +1,12 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.7.0](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.7.2](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+
+### v8.7.2 · 已发布双财务SVG与真实版本收据（PUB-045）
+
+- [ ] 同一个财务图 `#chart-flow` 同时包含**桌面原生资金图**及**390原生资金图**时，严格验证各自一个、合计两个；不能用旧的 `#chart-flow svg == 1` 错把新增手机专业图判为丢失资金流。独立验证桌面原财务加权桑基和手机独立源本图的实际金额/层次/符号/文字可读性，绝不通过删除一幅SVG来通过测试。
+- [ ] 真 Cloudflare 1440/768/390 的**当次真实**文章/首页完整HTML SHA、真实主分支commit、财报源SHA、截图SHA与字节、目录/返回路由，应写入该发行人的 `live-release-receipt.json` 并同步 `release-gates.json`。只保留历史来源受限 preview 的先前证据，不能让过时的 `NOT_CHECKED_PENDING_MAIN_DEPLOY` 冒充已经通过完整字节验证的新版本。
+- [ ] 若当前用户新公司的原始完整 PDF/身份尚不可判定，`ORIGINAL_PDF=NOT_CHECKED`；不得将已有候选分支的公司当成这次新财报，也不能声称新公司研究/出版已完成。
 
 ### v8.7.0 · AEI视觉编辑总监与原始财报会计双独立 P0
 

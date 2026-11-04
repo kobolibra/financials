@@ -1,11 +1,19 @@
 ---
 name: ashare-financial-storytelling
-version: 8.7.1-rc1
+version: 8.7.2-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.7.1-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.7.2-RC1
 
+
+## v8.7.2-RC1 · PUB-045 dual-SVG release-gate root-cause closure, real-version receipts
+
+**Failure observed on real MAIN**: GitHub Action [#41804157343](https://github.com/kobolibra/financials/actions/runs/41804157343), exact source main `9060bd2a0bf3ddc32d267c176388214ef3316f13`, rejected legitimate 600900 Cloudflare company content with `new route lost original source flow` solely because legacy `#chart-flow svg` count required one SVG. The new original release deliberately contains both one original desktop yuan-proportional income-source Sankey and one independently authored mobile source-bound finance figure in the same plot container; the selector counted two valid visual grammars. Real same-SHA source/fact/full-browser specialized run [#41804157527](https://github.com/kobolibra/financials/actions/runs/41804157527) separately passed 600900 and 600276 actual complete public HTML SHA and 1440/768/390 CJK. Never reclassify a financial source as wrong because a legacy figure *container selector* did not adapt to responsive publishing.
+
+**Transferable executable release rule (PUB-045)**: when desktop and phone contain independent same-source graphs in one figure, require exactly one `#chart-flow > svg` desktop original, exactly one `#chart-flow .native-mobile-finance svg` original phone version, and exactly two total, then still inspect correct amount-weighted original source rect/path scales and total sinks, CAS-signed adjustments, unique figure tables, CJK labels, full 390 source-amount readability, SVG export and actual publisher route. Do not drop an SVG or weaken the conservation/negative/stock-vs-flow checks to make a status green. The corrected **real Cloudflare** unified-library PR run [#41806506722](https://github.com/kobolibra/financials/actions/runs/41806506722) independently passed before main integration; its source code gate is `.github/workflows/verify-unified-research-library.yml`. This regression is portable across responsive issuers, not evidence of universal financial-accounting research.
+
+**Source truth after release**: if an exact authored company HTML is already live, capture actual public article and home complete SHA, actual main commit and action ID, three Chromium viewports and six original screenshot file SHA/bytes in each company's `live-release-receipt.json`; synchronize `release-gates.json` with those *same* source bytes and keep comprehensive notes, external 8–12 quarter valuation, second true human financial/visual review separately `NOT_CHECKED`. Do not preserve stale `NOT_CHECKED_PENDING_MAIN_DEPLOY` after source-bound current publication verification, and do not allow this synchronization to rewrite already published HTML. New issuer with unknown or inaccessible source PDF remains `SOURCE_BYTES=NOT_CHECKED`; never substitute an existing branch issuer as the user's intended company.
 
 ## v8.7.1-RC1 · VIS-044 reusable issuer-native phone graphs, source SHA release truth, two-sector actual screenshots
 

@@ -5,11 +5,11 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "ELEVEN_ISSUER_MAIN_EBA_ACTIVE_VISUAL_SOURCE_AUDIT_601628_FIRST_FIGURE_TYPOGRAPHY_FIXED_REAL_CLOUDFLARE_FULL_BYTES_PASS",
+  "latest_publication_state": "ELEVEN_ISSUER_SINGLE_MAIN_DIRECTORY_SOURCE_LIMITED__REAL_600900_600276_EXACT_CLOUDFLARE_BYTES_PASS__UNIFIED_DUAL_SVG_QA_FIXED",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.7.1-rc1",
+    "version": "8.7.2-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 43,
+        "quality_regressions_count": 44,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -119,14 +119,14 @@
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
     "semiconductor_report": "/688220.html",
     "insurance_report": "/601628.html",
-    "current_candidate_branch": "work/two-sector-native-mobile-aei-original-finance-20261104",
-    "company_report_stage": "MAIN_11_STANDALONE_SOURCE_REPORTS_INSURER_UPDATED_LIVE_PASS; NEW_SOURCE_V8.7.1_TWO_SECTOR_NATIVE_390_GRAPHICS_NOT_YET_LIVE",
+    "current_candidate_branch": null,
+    "company_report_stage": "MAIN_11_INDEPENDENT_OFFLINE_HTML_REPORTS; ORIGINAL_600900_600276_NATIVE_390_FINANCIAL_SVG_AND_FULL_ARTICLE_SHA_ARE_ACTUALLY_LIVE_PASS_ACTION_41804157527; INSURER_601628_LIVE_PASS; 8_OLDER_390_FINANCE_CHARTS_STILL_FAIL",
     "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
     "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
-    "visual_quality_legacy_mobile_status": "TEN_OF_ELEVEN_CURRENT_PUBLISHED_ISSUER_HTML_HAVE_REALLY_CLIPPED_390_FINANCE_EXHIBITS_FAIL",
+    "visual_quality_legacy_mobile_status": "2026_11_04_HISTORIC_10_OF_11_MOBILE_FAIL__LATEST_REAL_MAIN_TWO_ISSUERS_600900_600276_FIXED_AND_SOURCE_SHA_CLOUDFLARE_PASS__EIGHT_UNMODIFIED_LEGACY_390_INNER_SCROLL_FAIL",
     "visual_audit_candidate_branch": null,
-    "real_visual_aei_research_latest_main_source": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5",
-    "pending_native_mobile_two_sector_candidate": true
+    "real_visual_aei_research_latest_main_source": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
+    "pending_native_mobile_two_sector_candidate": false
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -157,40 +157,47 @@
     }
   ],
   "last_verified_release": {
-    "source_git_commit": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5",
+    "source_git_commit": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
+    "proof_scope": "ACTUAL_LIVE_PUBLIC_11_ROUTE_TWO_SECTOR_PREVIOUS_SOURCE_MAIN_9060_HTML_BYTES_PLUS_CJK_THREE_VIEWPORTS; SUBSEQUENT_DOCUMENTATION_AND_BROWSER_ASSERTION_CHANGES_DO_NOT_REWRITE_HTML",
     "checks": [
       {
-        "name": "Actual production Cloudflare current edited insurer article b065, 11 issuer standalone routes/1440 768 390 and 6 screenshot SHA",
-        "run_id": 41786674737,
+        "name": "Actual Cloudflare 600900/600276 11 routes, exact article and homepage HTML SHA, real financial 1440/768/390 and six screenshots per issuer",
+        "run_id": 41804157527,
         "conclusion": "success"
       },
       {
-        "name": "Original 601628 archived insurance PDF and 18 CAS, ten source figures, corrected label collision / CJK screenshot",
-        "run_id": 41786674782,
+        "name": "Original 9060 unified browser old overbroad SVG selector false FAIL",
+        "run_id": 41804157343,
+        "conclusion": "failure"
+      },
+      {
+        "name": "Corrected same-public-HTML Cloudflare 11-route issuer browser dual-SVG PR full validation",
+        "run_id": 41806506722,
         "conclusion": "success"
       },
       {
-        "name": "Actual 11 issuer original visual audit (10 legacy mobile clipping FAIL preserved) cross-company source-bounded CI",
-        "run_id": 41786674776,
+        "name": "PR independent 600900 and 600276 original report/source amount build accounting and two viewport design",
+        "run_id": 41806506321,
         "conclusion": "success"
       },
       {
-        "name": "Actual 11 issuer unified live navigation",
-        "run_id": 41786674796,
+        "name": "PR 601628 original 104-page life insurer signed finances",
+        "run_id": 41806506534,
         "conclusion": "success"
       },
       {
-        "name": "Real public beta/Pages previous routes",
-        "run_id": 41786674741,
-        "conclusion": "success"
-      },
-      {
-        "name": "Zero-memory project source handoff",
-        "run_id": 41786674813,
+        "name": "PR handoff main manual consistency and tests",
+        "run_id": 41806506329,
         "conclusion": "success"
       }
     ],
-    "warning": "The listed six real main Actions prove exact historical eba source and b065 public 601628 HTML only. Ten other issuer finance figures have independent visual FAIL on 390px, no human second review; no new shipping report. Updating metadata does not verify another source-modified HTML."
+    "actual_issuer_full_html_sha256": {
+      "600276": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+      "600900": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8"
+    },
+    "actual_home_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+    "note": "Source original live commit 9060; workflow repair merged in PR24 as 25c5796. Company HTML source bytes unchanged. Both finance industry cases remain L1 source-limited preview, no independent second human/complete all notes or external valuations. Other eight historic 390 clipping issues remain FAIL.",
+    "warning": "EXPLICIT_HISTORICAL_SOURCE_SCOPE: the listed real Cloudflare full HTML screenshot and source facts belong to original main 9060bd2a... run 41804157527; corrected PR workflow 41806506722 is separately source-bounded and does not attest future code commits. Current main changes only release proof, workflow and handoff; a new issuer's original PDF/data remain NOT_CHECKED. Eight prior mobile issuer figure failures remain FAIL; all human editor and full material notes remain NOT_CHECKED."
   },
   "limitations": {
     "all_seven_full_material_note_reviews": "NOT_CHECKED",
@@ -989,9 +996,9 @@
       "600900",
       "600276"
     ],
-    "phase": "LOCAL_SRC_ORIGINAL_PDF_CAS_AND_CJK_CHROMIUM_1440_768_390_PASS__WAIT_PR_MAIN_CLOUDFLARE_SOURCE_SHA",
+    "phase": "MAIN_11_UNIFIED_REPORTS_TWO_SECTOR_SOURCE_BYTES_1440_768_390_REAL_CLOUDFLARE_PASS",
     "branch": "work/two-sector-native-mobile-aei-original-finance-20261104",
-    "skill_version": "8.7.1-rc1",
+    "skill_version": "8.7.2-rc1",
     "journal_design_comparison": "research/visual-audit/VISUAL_CHANGESET_2026-11-04_TWO_SECTORS.md",
     "original_11_issuer_visual_baseline_report": "research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md",
     "first_original_full_11_mobile_visual_debt_count": 10,
@@ -1009,7 +1016,8 @@
           "research/issuers/600276/visual-qa/600276-390-cfo.png"
         ],
         "local_source_and_390_no_inner_chart_scroll": "PASS",
-        "live_current_new_html_sha": "NOT_CHECKED"
+        "live_current_new_html_sha": "PASS_REAL_CLOUDFLARE_FULL_HTML_SHA_41804157527",
+        "independent_actual_public_1440_768_390_receipt": "research/issuers/600276/live-release-receipt.json"
       },
       "600900": {
         "name": "长江电力",
@@ -1023,7 +1031,8 @@
           "research/issuers/600900/visual-qa/600900-390-pnl.png"
         ],
         "local_source_and_390_no_inner_chart_scroll": "PASS",
-        "live_current_new_html_sha": "NOT_CHECKED"
+        "live_current_new_html_sha": "PASS_REAL_CLOUDFLARE_FULL_HTML_SHA_41804157527",
+        "independent_actual_public_1440_768_390_receipt": "research/issuers/600900/live-release-receipt.json"
       }
     },
     "actual_local_original_source_three_viewport_GHA": {
@@ -1044,9 +1053,78 @@
       "000333",
       "688220"
     ],
-    "post_merge_real_Cloudflare_exact_new_HTML": "NOT_CHECKED",
+    "post_merge_real_Cloudflare_exact_new_HTML": "PASS_REAL_PUBLIC_FULL_BYTES_SOURCE_9060_ACTION_41804157527",
     "independent_second_human_finance_analyst": "NOT_CHECKED",
     "independent_human_design_director": "NOT_CHECKED",
-    "desktop_AEI_multi_stage_flow_all_11": "NOT_CHECKED_NOT_ALL_IMPROVED"
+    "desktop_AEI_multi_stage_flow_all_11": "NOT_CHECKED_NOT_ALL_IMPROVED",
+    "live_original_main_sha": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
+    "live_action": "https://github.com/kobolibra/financials/actions/runs/41804157527",
+    "unified_broad_selector_failure_historical_action": "https://github.com/kobolibra/financials/actions/runs/41804157343",
+    "unified_dual_svg_selector_source_fix_pr": "https://github.com/kobolibra/financials/pull/24",
+    "unified_corrected_live_pr_action": "https://github.com/kobolibra/financials/actions/runs/41806506722"
+  },
+  "historical_verified_release_601628_prior_checkpoint": {
+    "source_git_commit": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5",
+    "checks": [
+      {
+        "name": "Actual production Cloudflare current edited insurer article b065, 11 issuer standalone routes/1440 768 390 and 6 screenshot SHA",
+        "run_id": 41786674737,
+        "conclusion": "success"
+      },
+      {
+        "name": "Original 601628 archived insurance PDF and 18 CAS, ten source figures, corrected label collision / CJK screenshot",
+        "run_id": 41786674782,
+        "conclusion": "success"
+      },
+      {
+        "name": "Actual 11 issuer original visual audit (10 legacy mobile clipping FAIL preserved) cross-company source-bounded CI",
+        "run_id": 41786674776,
+        "conclusion": "success"
+      },
+      {
+        "name": "Actual 11 issuer unified live navigation",
+        "run_id": 41786674796,
+        "conclusion": "success"
+      },
+      {
+        "name": "Real public beta/Pages previous routes",
+        "run_id": 41786674741,
+        "conclusion": "success"
+      },
+      {
+        "name": "Zero-memory project source handoff",
+        "run_id": 41786674813,
+        "conclusion": "success"
+      }
+    ],
+    "warning": "The listed six real main Actions prove exact historical eba source and b065 public 601628 HTML only. Ten other issuer finance figures have independent visual FAIL on 390px, no human second review; no new shipping report. Updating metadata does not verify another source-modified HTML."
+  },
+  "current_live_provenance_last_checked": {
+    "current_main_inspected_before_handoff": "25c5796b40276d6ae395573ab8001f5990144979",
+    "original_live_article_source_commit": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
+    "verified_live_action": 41804157527,
+    "fixed_unified_live_action_pr": 41806506722,
+    "branch_current_handoff": "work/sync-live-two-sector-signed-handoff-20261104",
+    "deployment_type": "Cloudflare Pages; actual source-bound browser and full HTML fingerprint verified for two unchanged company report files",
+    "release_receipt_files": [
+      "research/issuers/600900/live-release-receipt.json",
+      "research/issuers/600276/live-release-receipt.json"
+    ],
+    "current_user_new_issuer_pdf": "NOT_PROVIDED_IN_CURRENT_CONVERSATION_AND_NOT_IDENTIFIABLE",
+    "new_issuer_research_and_publication": "NOT_CHECKED",
+    "second_human_finance_editor": "NOT_CHECKED",
+    "second_human_visual_editor": "NOT_CHECKED",
+    "verified_accounting_full_material_notes": "NOT_CHECKED",
+    "eight_other_old_mobile_visual_fail_issuer_codes": [
+      "300394",
+      "300308",
+      "300502",
+      "600036",
+      "688111",
+      "600519",
+      "000333",
+      "688220"
+    ],
+    "reconciliation_of_old_single_svg_action": "FAIL_41804157343_BEFORE_FIXED_SOURCE; PR_CORRECTED_41806506722_PASS; MAIN_NEW_ACTION_REQUIRE_ACTUAL_OBSERVATION"
   }
 }
