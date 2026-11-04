@@ -73,7 +73,7 @@ def main():
                 assert len(source["src"])==len(d["segments"]),(a.code,"MOBILE_SOURCE_NODES_MISSING",source)
                 assert len(source["sinks"])==2 and len(source["bands"])==2*len(d["segments"]),(a.code,"MOBILE_WEIGHTED_SOURCE_RIBBONS_MISSING",source)
                 for obj in source["src"]+source["sinks"]:
-                    assert abs(obj["height"]-obj["amt"]*scale)<.000025,(a.code,"MOBILE_TRUE_WEIGHTED_SVG_RECT_GEOMETRY",obj)
+                    assert abs(obj.get("height",obj.get("h"))-obj["amt"]*scale)<.000025,(a.code,"MOBILE_TRUE_WEIGHTED_SVG_RECT_GEOMETRY",obj)
                 for obj in source["bands"]:
                     assert abs(obj["h"]-obj["amt"]*scale)<.000025,(a.code,"MOBILE_TRUE_WEIGHTED_SVG_CURVED_RIBBON_GEOMETRY",obj)
                 assert abs(sum(obj["amt"] for obj in source["sinks"])-total)<.006,(a.code,"MOBILE_MONEY_SINK_TOTAL_FAIL")
