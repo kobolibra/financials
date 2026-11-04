@@ -34,7 +34,7 @@ with sync_playwright() as pw:
       b=req.get(SITE+"/601628.html",timeout=25000)
       h=a.body() if a.status==200 else b""
       x=b.body() if b.status==200 else b""
-      latest={"home_status":a.status,"report_status":b.status,"home_sha":hashlib.sha256(h).hexdigest(),"report_sha":hashlib.sha256(x).hexdigest(),"try":n+1}
+      latest={"home_status":a.status,"report_status":b.status,"home_final_url":a.url,"report_final_url":b.url,"home_sha":hashlib.sha256(h).hexdigest(),"report_sha":hashlib.sha256(x).hexdigest(),"try":n+1}
       if (latest["home_sha"]==expected_home and latest["report_sha"]==expected_sha and b"601628" in x):
           break
     except Exception as e:latest={"attempt":n+1,"error":str(e)[:300]}
@@ -56,7 +56,11 @@ with sync_playwright() as pw:
     assert info["scroll"]<=width+1,("LIVE_DIRECTORY_HORIZ_OVERFLOW",width,info)
     page.screenshot(path=str(OUT/f"live_directory_{width}.png"),full_page=True)
     page.locator('a.company[href="/601628.html"]').click()
-    page.wait_for_url(re.compile(r"/601628\.html$"),timeout=30000)
+    # Cloudflare Pages may canonicalize /601628.html to /601628; the only
+    # release condition is an independently navigated COMPANY page with ten
+    # actual source-linked figures, NOT a literal browser URL suffix.
+    page.wait_for_url(re.compile(r"/601628(?:\\.html)?/?(?:[?#].*)?$"),timeout=30000)
+    print("LIVE_ACTUAL_COMPANY_CANONICAL_URL",width,page.url,flush=True)
     assert page.locator("figure.figure").count()==10
     assert page.locator("figure.figure svg").count()==10
     assert page.locator("figure.figure details.audit").count()==10
@@ -71,7 +75,7 @@ with sync_playwright() as pw:
     page.locator('a[href="/#companies"]').first.click()
     page.wait_for_url(re.compile(r"/#companies$"),timeout=30000)
     assert page.locator("a.company").count()==11,("LIVE_BACK_NAV_DIRECTORY",width)
-    report_check.append({"width":width,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_svg_figures":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
+    report_check.append({"width":width,"actual_dedicated_article_final_url":page.url,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_svg_figures":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
     page.close()
  assert not errors,("LIVE_CHROMIUM_PAGE_ERRORS",errors)
  # All prior issuer routes: actual GET and matching company code in HTML
