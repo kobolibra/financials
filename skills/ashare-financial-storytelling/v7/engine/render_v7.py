@@ -232,7 +232,7 @@ def build(l,m):
 .native-metric-pair strong{display:block;margin-bottom:10px}
 .native-metric-pair div{margin-top:8px;font-size:11px}
 .native-metric-pair i{display:block;height:10px;max-width:100%}
-@media(max-width:650px){
+@media(max-width:900px){
 .exhibit.has-native-finance .chart-shell{display:none}
 .exhibit.has-native-finance .native-finance{display:block}
 .exhibit.has-native-finance{padding:17px 14px}
