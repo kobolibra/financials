@@ -402,6 +402,26 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CLOUDFLARE_LIVE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-042",
+      "root_cause": "11公司×三屏真实独立截图显示中国人寿601628的真实桌面首图comparative()把2025/2026金额文字绑定在最长比例柱的末端（最大x956+文字长度），同时在x1030绘制同比+2.2/+5.3/+228.6/-5.8%。SVG条长、数据和CFO财务核验均PASS，实际金额与增长文本肉眼相互叠压。以前只测试了利润瀑布图标题不重叠，完全漏掉比较型财务图中两种金额标签的bbox相交。",
+      "correction": "直接修改生命保险实际源生成器：保留每组独立零基准及原比例，最大绘图区宽由680减至555，8个2025/2026原金额标签固定在独立x833列，4个同比固定位于x1073右对齐；真实1440浏览器对8年金额+4同比作svg getBBox相交与viewBox截断红队，实际来源PDF、18财务守恒和10手机真图均重新执行。新候选网页SHA不同于旧生产，旧CLOUDFLARE_LIVE=PASS不能冒充新版。",
+      "proof_file": "research/issuers/601628/qa_browser.py",
+      "assertion_marker": "ACTUAL_CHROMIUM_601628_MONEY_AND_YOY_TEXT_COLLISION",
+      "scope": "single_issuer",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-043",
+      "root_cause": "33次真实CJK浏览器跨11家公司证明10家公司390px屏幕图元被限制在320–356px宽可见窗口内，实际金融SVG宽780–1050px（不少只能读31.6%-45.4%）。所有这些公司html/document根宽度测试却PASS，因为横向隐藏在figure.scrollWidth>clientWidth的内部容器。即使前3家桌面真桑基优秀，手机仍严重失格；历次报告迭代未进行全公司量化图形审美回归。",
+      "correction": "新建真实11x3浏览器截图账本与逐公司原HTML SHA质量债务，保留10个明确FAIL但不可洗白为PASS；通用发布准入脚本只豁免确切未改的旧源 SHA，任何新增公司或编辑后的旧公司若仍有图形内部横向滚动即FAIL，未披露逐图原始source table或手机缺可见中文SVG值亦FAIL。8项合成恶意变异覆盖新601919、旧300394修改、伪无滚动、图数减少及原source缺失，保证通用准入不再“整页不溢出=手机好看”。真正人类独立审美仍NOT_CHECKED，图形语法和行业叙事需要单独质量关。",
+      "proof_file": "scripts/test_visual_editorial_policy.py",
+      "assertion_marker": "test_one_cropped_390px_new_issuer_must_fail_even_when_body_not_scrolled",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
