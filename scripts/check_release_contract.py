@@ -92,6 +92,16 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
     expected = "public/" + route.lstrip("/")
     if record.get("report_file") != expected or not (root / expected).is_file():
         errors.append(f"ISSUER_HTML_NOT_CANONICAL {code}")
+    # Optional issuer-owned canonical offline HTML byte fingerprint. This is
+    # mandatory once a new issuer opts into published_html_sha256; missing
+    # the updated value after regenerating one sentence must fail release.
+    # Historic company receipts without this field are not retroactively faked.
+    declared_html_sha = record.get("published_html_sha256")
+    if declared_html_sha is not None:
+        if not isinstance(declared_html_sha, str) or not re.fullmatch("[a-f0-9]{64}", declared_html_sha):
+            errors.append(f"PUBLISHED_REPORT_SHA_INVALID {code}")
+        elif (root / expected).is_file() and hashlib.sha256((root / expected).read_bytes()).hexdigest() != declared_html_sha:
+            errors.append(f"PUBLISHED_REPORT_SHA_MISMATCH {code}")
     if not record.get("period") or record.get("release_class") not in RELEASE_CLASSES:
         errors.append(f"ISSUER_PERIOD_OR_CLASS_MISSING {code}")
     if record.get("release_class") == "verified_research" and catalog_issuer.get("stage") == "source-review":
