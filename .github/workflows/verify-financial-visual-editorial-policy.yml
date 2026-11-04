@@ -1,0 +1,44 @@
+name: Verify actual cross-company finance visual editorial gate and source-stamped mobile FAIL
+on:
+  push:
+    branches: [work/editorial-aei-11-issuer-visual-audit-20261104, main]
+    paths:
+      - 'research/visual-audit/*.json'
+      - 'scripts/check_visual_editorial_policy.py'
+      - 'scripts/test_visual_editorial_policy.py'
+      - 'skills/ashare-financial-storytelling/quality-regressions.json'
+      - '.github/workflows/verify-financial-visual-editorial-policy.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'research/visual-audit/**'
+      - 'scripts/check_visual_editorial_policy.py'
+      - 'scripts/test_visual_editorial_policy.py'
+      - 'skills/ashare-financial-storytelling/**'
+      - '.github/workflows/verify-financial-visual-editorial-policy.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-original-web-page-visual-editorial-debt-and-malicious-release-redteam:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate actual 33 Chromium original report snapshots plus source-frozen 10 phone FAILs
+        run: |
+          python scripts/check_visual_editorial_policy.py
+          python -m unittest discover -s scripts -p 'test_visual_editorial_policy.py' -v
+          python - <<'PY'
+          import json,pathlib
+          v=pathlib.Path('research/visual-audit')
+          z=json.loads((v/'cross-issuer-visual-audit.json').read_text())
+          d=json.loads((v/'quality-debt.json').read_text())
+          assert z['count_viewport_tests']==33 and z['count_issuers']==11
+          assert d['actual_mobile_internal_horiz_scroll_fail_count']==10
+          assert d['actual_mobile_internal_horiz_scroll_pass_count']==1
+          assert len(z['screenshots'])>=36
+          assert all(pathlib.Path(s['file']).is_file() for s in z['screenshots'])
+          print('EDITORIAL_AEI_FIRST_THREE_VS_LATER_CJK_BROWSER_ORIGINAL_SCREENSHOTS_CERTIFIED')
+          print('TEN_LEGACY_REPORTS_INNER_MOBILE_SCROLL_STILL_FAIL_NOT_CORRECTED_BY_PASSING_CI')
+          PY
