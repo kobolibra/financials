@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "issuer": "601628",
+  "company": "中国人寿保险股份有限公司",
+  "period": "2026H1",
+  "main_2026h1_pdf": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF",
+  "sse_disclosure_full_pdf": "https://static.sse.com.cn/disclosure/listedinfo/announcement/c/new/2026-08-28/601628_20260828_WB6O.pdf",
+  "source_path": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+  "fiscal_standard": "CAS25 new insurance contracts, CAS22 financial instruments; comparative 2025H1 subject to filing-specific restatement",
+  "source_evidence": "CNINFO published official full A-share 2026 semiannual filing, independently matched cover via web PDF screenshot"
+}
