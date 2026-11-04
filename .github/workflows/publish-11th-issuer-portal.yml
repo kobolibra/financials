@@ -31,6 +31,17 @@ jobs:
           PY
           python scripts/check_release_contract.py
           python scripts/check_handoff.py
+          python - <<'PY'
+          import json,pathlib
+          r=pathlib.Path('.')
+          record=json.loads((r/'research/issuers/601628/release-gates.json').read_text())
+          assert record['source_pdf']['sha256']=='b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943'
+          assert record['source_pdf']['physical_pages']==104
+          assert record['release_class']=='source_limited_preview'
+          assert record['gates']['INDEPENDENT_HUMAN_REVIEW']['status']=='NOT_CHECKED'
+          assert record['gates']['CLOUDFLARE_LIVE']['status']=='NOT_CHECKED'
+          print('SOURCE_LIMITED_601628_NON_FAKE_LIVE_AND_HUMAN_GATES_PASS')
+          PY
           python -m unittest discover -s site -p test_portal.py -v
           python -m unittest discover -s scripts -p test_check_release_contract.py -v
           python -m unittest research/issuers/601628/test_accounting.py -v
