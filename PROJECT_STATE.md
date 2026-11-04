@@ -1,8 +1,23 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-**状态日期：2026-11-04。生产分支：`main`。现行入口：[START_HERE.md](START_HERE.md)。机器状态：[project-status.json](project-status.json)。**
+**状态日期：2026-11-04；现行 Skill v8.6.0-rc1。生产分支：`main`；第11家保险分支正在真实发布验收。现行入口：[START_HERE.md](START_HERE.md)。机器状态：[project-status.json](project-status.json)。**
 
-> **唯一网站：十家公司同一目录；长江电力和恒瑞医药两份源限定完整离线HTML已真实上线，10家公司×3视口30条Cloudflare检查 [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189) PASS；完整附注与第二名独立真人审稿仍NOT_CHECKED。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
+> **唯一网站：正式主站在本次第11家合并前仍为十家公司同一目录；第11家中国人寿在候选工作分支且暂不冒充已线上发布。长江电力和恒瑞医药两份源限定完整离线HTML已真实上线，10家公司×3视口30条Cloudflare检查 [41736999189](https://github.com/kobolibra/financials/actions/runs/41736999189) PASS；完整附注与第二名独立真人审稿仍NOT_CHECKED。** <https://financials-in-visuals.pages.dev/>。不是四家公司 v9/v10 独立站点，更不是 `research-lab` 里的工程样本。
+
+
+## 2026-11-04 · 最新活动：新会话零记忆源→会计→可视化→发布压力测试：中国人寿（601628）
+
+- **严格身份和范围**：本次实际以 GitHub `main` 初始 HEAD `07ea54b5d6e917623a87f6bad83f817d277c6e2d` 开始；真实 `main` 在正式合并前仍是原有 **10 家**；候选分支 `work/insurance-601628-original-2026h1-skill-stress` 提交第 **11** 家中国人寿（保险新经济模型）的唯一独立 `/601628.html` 和原有主页 `public/index.html` 的 **11家公司统一目录**。绝不改变旧十家公司任一家 HTML，也不另开四家公司首页。最新 Skill **v8.6.0-rc1**；新会话必须读本文件、project-status、实际 main HEAD、完整五研究手册、发布清单。
+- **官方原件是真实字节，不是网络文字摘要**：巨潮 `https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF`；GitHub 真实 Runner 下载、逐字节 SHA 与 `pymupdf` 封面/页数验证：[原件归档动作 #41765739795](https://github.com/kobolibra/financials/actions/runs/41765739795) **PASS**；文件 `research/issuers/601628/source/601628_2026H1_complete_original.pdf`，**4,867,339 bytes、104 物理页、SHA256 `b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943`**。逐页独立正文/主题索引在 `research/issuers/601628/extracted/`；`verify_source.py` 用真实原始 PDF 校验 **33 项选定 x/y 行锚+当前列来源格**；原报告合并 BS p43–44、合并 P&L p47–48、直接法现金流 p53–54、保险合同负债与 CSM p85、CSM 服务释放 p87。物理 p45–46、p49–50 为**母公司**，不能误当合并。SSE 单独 PDF URL 返回非 PDF，SSE/CNINFO 字节同一性 **NOT_CHECKED**。
+- **完整的会计研究优先于画图**：`source-ledger.json` 原始报告 **133 带物理页/会计期间/原报表百万元换算元的事实**，`story.json` 研究论点与反证，`figure-briefs.json` **10 张原创图逐张设计简报**，`publish.py` 18 个 signed 财务恒等式 + `test_accounting.py` 对 wrong year、负数、漏保险财务、CSM 存量当收益、保费误等于服务收入、现金直接法被强换间接法、错母公司等有具体恶意变异测试。
+- **行业会计最重要的三个互不等价**：p10旧保险合同统计的总保费 **536,634 百万元**（`101294+17696+61049+356595`）；p47新保险准则确认的保险服务收入 **112,525 百万元**；p53直接现金表实际签发保险合同收现 **626,732 百万元**。三者**禁止互联成盈利流**。管理层 NBV **38,167** 亦不是当前 IFRS/CAS 法定收入。
+- **十张真正原创财务图不是通用 dashboard**：仅对同一统计口径四种互斥保费从来源→新单/续期→总保费做真实几何金额权重守恒 SVG 桑基，绝不连到新保险服务收入；五组成分保险服务确认、带符号保险服务结果、完整法定利润桥、两期利润增量桥、实际直接法 CFO 七项负数支出桥、现金开闭桥、CSM+精算负债同日存量构成、两时点合并资产融资、各不混基准 KPI。公允价值变动收益 **135,835**、投资收益 **112,902** 与承保财务损益 **−188,067**、OCI **−48,038**（均 RMB 百万元）必须并读。保费仅 +2.2%，服务收入 +5.3%，归母利润 +228.6%，同期 CFO **282,879 百万元**却同比 −5.8%；这种矛盾是研究主线，不是利润预测外推。
+- **实跑失败→修正**：首轮财报坐标锁错源页（p85的保险合同负债附注与合并BS p44 行锚混淆）导致 Actions #41767214612 FAIL，修真实 ledger 后选定 33 项 x/y PASS；首轮桑基验证器错误将原始来源强制双重数带，Actions #41767325656 FAIL，修为 4一级原值 + 2聚合后出口实几何守恒，Actions [#41767495751](https://github.com/kobolibra/financials/actions/runs/41767495751) **PASS**，10 图、10 表、真实 CJK Chromium 1440/768/390、每图截图、实际 SVG 导出、2次字节一致重建。10 项真实失败与未覆盖披露锁进 `skills/ashare-financial-storytelling/quality-regressions.json`（INS-021..INS-030、VIS-027、PUB-028）并在 Skill v8.6.0 规定**L1 单一保险发行人实测 ≠ 保险行业 L2 或通用 L3**。
+- **当前状态门槛严格拆开**：原件/选定行列/合并三表+直接现金/10图会计语义/真桑基几何/三视口本地浏览器/同源码重建 **PASS（对应 Actions 具体提交）**；全104页重大附注的专业独立穷尽、历史8–12季同行和估值、独立第二名人类财务及视觉审稿、SSE第二源原件字节相等仍 **NOT_CHECKED**。**在生产真正新路由主站导航完成之前，`CLOUDFLARE_LIVE=NOT_CHECKED`，分支截图不会被冒充为线上发布；绝不写`verified_research`。**每张图原始文件/源事实/研究反证与释放门槛见 `research/issuers/601628/release-gates.json`。
+- **在新会话的下一步**：看候选分支最新 GitHub Actions、完成 `public/index.html` 同一个主页重建；原页10家公司全部 `git diff origin/main -- public/*.html`（排除本次新增 601628）应无变更；运行 `python scripts/check_release_contract.py`、`python scripts/check_handoff.py`、所有 issuer hostile/unified portal 测试、实际生产 Cloudflare 11 路由 Chromium 链接和指纹，随后真实 PR 合并 main 再更新本段。若任何一步失败应修原始源头和回归，而不是降级检查。无需让用户重新说明公司、技能和站点。
+
+- **新增机构级源事实修正（重要）**：完整原件 **p42** 是安永华明2026-08-27有限保证审阅报告（审阅准则第2101号，非完整审计、无审计意见）；原摘要仅标“未经审计”会漏掉真实会计保证层级，`issuer.audit`/全文出版现已明确限度。原件 **p21/p66** 监管资本 **核心1,058,166、实际1,334,688、最低674,846** 百万元，核心与综合充足率 **156.80%/197.78%**，年末历史 **128.77%/174.01%**；监管资本与股东CAS权益并非同一会计量。已添加 **6 新事实、4项当前/比较期两位比例实际校验**和4个恶意测试（零分母不能以浮点异常冒充专业门槛），注册 INS-029/INS-030。p17总投资收益3,145.04亿元是管理层经营收益口径，亦不等于合并利润表投资收益1,129.02亿元。
+- **当前校验最新状态（勿从过去绿色推定新提交）**：添加p42审阅与p21偿付能力后，机器状态显示候选强约束**正在等待新 133-fact、18-identity HTML 实际重新构建**；旧 [#41767901626](https://github.com/kobolibra/financials/actions/runs/41767901626) 绿色仅对应改动前代码。PR [#14](https://github.com/kobolibra/financials/pull/14) 正在跑新校验，未合并之前 `CLOUDFLARE_LIVE=NOT_CHECKED`。上游旧版`published_html_sha256`必须在新网页编译后按**实际字节**更新；新 PUB-028 反例会拦截指纹漂移，旧600900/600276的显式`NOT_CHECKED_PENDING_MAIN_DEPLOY`仍保留，不能假写已验。
 
 ## 2026-11-04 · 本次新发行人入库核验（等待明确的新原始披露对象，禁止虚构第十一家公司）
 

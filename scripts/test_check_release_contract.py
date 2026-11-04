@@ -31,6 +31,26 @@ class IssuerReleaseContractTests(unittest.TestCase):
         change(value)
         return mod.validate_release(ROOT, self.issuer, value, check_bytes=check_bytes)
 
+    def test_only_insurance_adapter_may_use_issuer_regulatory_scope(self):
+        original_read = mod.read_json
+        def wrong_sector_reg_scope(path):
+            data = original_read(path)
+            if str(path).endswith("688220/source-ledger.json"):
+                data = copy.deepcopy(data)
+                data["facts"]["rev"]["scope"] = "issuer_regulatory"
+            return data
+        with mock.patch.object(mod, "read_json", side_effect=wrong_sector_reg_scope):
+            errs = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
+        self.assertTrue(any("LEDGER_FACT_SCOPE_INVALID 688220/rev" in x for x in errs), errs)
+
+    def test_published_html_sha_cannot_silently_lag_generated_insurance_article(self):
+        insurance = next(x for x in self.catalog["issuers"] if x["code"] == "601628")
+        record = json.loads((ROOT / "research/issuers/601628/release-gates.json").read_text())
+        poisoned = copy.deepcopy(record)
+        poisoned["published_html_sha256"] = "0" * 64
+        errors = mod.validate_release(ROOT, insurance, poisoned, check_bytes=False)
+        self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 601628" in x for x in errors), errors)
+
     def test_existing_real_pdf_sha_and_exact_contract(self):
         self.assertEqual(mod.validate_release(ROOT, self.issuer, self.original), [])
         self.assertEqual(mod.validate_registry(ROOT), [])

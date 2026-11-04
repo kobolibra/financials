@@ -1,0 +1,33 @@
+name: Verify real Cloudflare LIVE China Life 601628 and 11 issuer canonical site
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/601628.html'
+      - 'public/index.html'
+      - 'site/research_catalog.json'
+      - '.github/workflows/verify-live-life-601628.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cloudflare-11-live-content-actual-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Real current deployment Cloudflare live HTML identity + full navigation and source-ledger accounting
+        run: |
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          python research/issuers/601628/qa_cloudflare_live.py
+      - name: Store actual live site Chromium 3-viewport receipts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-live-eleven-issuer-china-life-receipt
+          path: research/issuers/601628/live-qa/
+          if-no-files-found: warn
+          retention-days: 30

@@ -1,0 +1,87 @@
+name: Build and financially audit original China Life 601628 2026H1
+on:
+  push:
+    branches: [work/insurance-601628-original-2026h1-skill-stress, main]
+    paths:
+      - 'research/issuers/601628/**'
+      - '!research/issuers/601628/visual-qa/**'
+      - '!research/issuers/601628/qa.json'
+      - '!research/issuers/601628/source-critical-cells.json'
+      - '!public/601628.html'
+      - '.github/workflows/build-life-601628.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+concurrency:
+  group: 601628-${{ github.workflow }}-${{ github.event_name }}-${{ github.ref_name }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  insurer-original-cas-and-editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Real original PDF source cell coordinates and 127 typed facts + hostile accounting tests
+        run: |
+          python -m pip install -q pymupdf
+          test -s research/issuers/601628/source/601628_2026H1_complete_original.pdf
+          if [ ! -f research/issuers/601628/source-critical-cells.json ]; then
+            python research/issuers/601628/verify_source.py --capture
+          fi
+          python research/issuers/601628/verify_source.py
+          python -m unittest research/issuers/601628/test_accounting.py -v
+          python research/issuers/601628/publish.py --out public/601628.html
+      - name: Actual real Chromium source geometry, visual at 1440/768/390 and SVG export
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+          python research/issuers/601628/qa_browser.py
+      - name: Independent second clean HTML rebuild must be byte for byte identical
+        run: |
+          python research/issuers/601628/publish.py --out /tmp/601628-rebuild.html
+          cmp public/601628.html /tmp/601628-rebuild.html
+          test -s research/issuers/601628/visual-qa/full_report_390.png
+          test -s research/issuers/601628/visual-qa/full_report_1440.png
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('research/issuers/601628/visual-qa/result.json').read_text())
+          q=json.loads(Path('research/issuers/601628/qa.json').read_text())
+          assert d['source_nodes_sinks_ribbons_exact_svg_geometric_proportions']=='PASS'
+          assert all(x=='PASS' for x in q['checks'].values())
+          assert len(d['original_actual_3_viewport_checks'])==3
+          print('COMPLETE_INSURANCE_CAS_BROWSER_AND_CLEAN_REBUILD_PASS')
+          PY
+      - name: Strict tracked main report must be identical to generated output
+        if: github.ref_name == 'main'
+        run: git diff --exit-code -- public/601628.html research/issuers/601628/qa.json
+      - name: Commit full edited offline HTML and verified original cells to branch
+        if: github.event_name == 'push' && github.ref_name != 'main'
+        run: |
+          git config user.name "financials-research-bot"
+          git config user.email "financials-research-bot@users.noreply.github.com"
+          git add research/issuers/601628/source-critical-cells.json research/issuers/601628/qa.json research/issuers/601628/visual-qa/ public/601628.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Research and publish true source-audited 601628 insurance HTML and QA receipts"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
+          fi
+      - name: Store all actual full-page 1440/768/390 and each ten figures' screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: life-601628-source-audited-financial-visual-evidence
+          path: |
+            public/601628.html
+            research/issuers/601628/qa.json
+            research/issuers/601628/source-critical-cells.json
+            research/issuers/601628/visual-qa/
+          if-no-files-found: warn
+          retention-days: 30

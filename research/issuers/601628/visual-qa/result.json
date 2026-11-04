@@ -1,0 +1,52 @@
+{
+  "code": "601628",
+  "source_sha": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+  "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
+  "page_1440_768_390": "PASS",
+  "chart_count": 10,
+  "source_table_count": 10,
+  "export_click_and_svg_download": "PASS",
+  "original_actual_3_viewport_checks": [
+    {
+      "width": 1440,
+      "height": 900,
+      "result": "PASS",
+      "body_no_overflow": "PASS",
+      "source_sankey_actual_path_and_rect": "PASS",
+      "cjk_font_available": true,
+      "figure_count": 10,
+      "original_source_tables": 10,
+      "desktop_no_inner_scroll": "PASS",
+      "svg_export": "PASS",
+      "screenshot": "full_report_1440.png"
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "result": "PASS",
+      "body_no_overflow": "PASS",
+      "source_sankey_actual_path_and_rect": "PASS",
+      "cjk_font_available": true,
+      "figure_count": 10,
+      "original_source_tables": 10,
+      "desktop_no_inner_scroll": "MOBILE_FIGURES_SCROLL_ALLOWED",
+      "svg_export": "PASS",
+      "screenshot": "full_report_768.png"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "result": "PASS",
+      "body_no_overflow": "PASS",
+      "source_sankey_actual_path_and_rect": "PASS",
+      "cjk_font_available": true,
+      "figure_count": 10,
+      "original_source_tables": 10,
+      "desktop_no_inner_scroll": "MOBILE_FIGURES_SCROLL_ALLOWED",
+      "svg_export": "PASS",
+      "screenshot": "full_report_390.png"
+    }
+  ],
+  "human_editor": "NOT_CHECKED",
+  "scope": "real Chromium financial SVG and source-structure invariants, not human financial/aesthetic certification"
+}
