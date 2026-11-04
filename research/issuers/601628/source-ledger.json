@@ -1541,8 +1541,8 @@
     },
     "insurance_contract_liab": {
       "yuan": "6910741000000",
-      "page": 85,
-      "label": "保险合同负债合计",
+      "page": 44,
+      "label": "合并资产负债表保险合同负债",
       "type": "stock",
       "period": "2026-06-30",
       "scope": "consolidated",
