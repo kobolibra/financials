@@ -458,9 +458,9 @@
       "root_cause": "中际旭创300308 2026H1旧流水线依赖公共网页提取文本未保存完整原始PDF字节，仓库账本SHA长期NOT_VERIFIED_REMOTE_PDF，所得税费用源页错误标物理p57（真实金额p56）、CFO递延所得税负债244,565,424.70元标p148（真实金额p147而标签跨页）；原始物理p139按业务类型“其他”收入的收入列422,649,612.97元与同行重复合计列422,649,613.97元发生1.00元矛盾。旧图若自动生成“未披露残差业务”或直接采用重复合计列则会违反真实原始行列与合并守恒。另一风险是2026-07-30期后H股融资混入2026-06-30现金口径。",
       "correction": "使用与用户Library上传原件逐字节相同、GitHub正式下载并永久存档的2,984,970字节/184物理页原PDF SHA e0ecd7c3...，逐原始报告物理页程序核对63项报表金额和15条有符号间接CFO，全3表CAS等式；明确修复金额真实所在p56/p147页码并保留原值跨页标签证据。对p139同一业务收入原表两列1元矛盾在HTML做显式披露，按同一业务维度合并守恒的真实营业收入列422,649,612.97制图，禁止虚假差额或静默修改原重复列。经营现金流/合并净利润同RMB零起点但不是同一笔现金流，净利高现金弱作为独立AEI式首屏研究视觉；期后IPO不入上半年现金与股权；AI内评与第二人类审稿清晰分离并标NOT_CHECKED。",
       "proof_file": "research/issuers/300308/verify_original.py",
-      "assertion_marker": "SOURCE_LEDGER_FACT_PAGES_NOT_FOUND / ORIGINAL_300308_COMPLETE_184_PAGE_EXACT_BYTE_SIGNED_FINANCIAL_SOURCE_PASS",
+      "assertion_marker": "SOURCE_LEDGER_FACT_PAGES_NOT_FOUND",
       "scope": "cross_issuer_mechanism",
-      "transfer_gate": "SOURCE_CHECKED_AND_CHART_SEMANTICS",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
