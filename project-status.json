@@ -5,7 +5,7 @@
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",
   "canonical_company_directory": "/",
-  "latest_publication_state": "TEN_ISSUER_MAIN_SOURCE_LIMITED_2026H1_TWO_NEW_SECTORS_LIVE_30_VIEWPORT_PASS",
+  "latest_publication_state": "ELEVEN_ISSUER_MAIN_SOURCE_LIMITED_2026H1_CHINA_LIFE_REAL_CLOUDFLARE_3_VIEWPORT_11_ROUTE_DUAL_HTML_SHA_PASS",
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
@@ -65,7 +65,7 @@
           "life_insurance"
         ],
         "code": "research/shared/test_two_sector_accounting.py",
-        "quality_regressions_count": 31,
+        "quality_regressions_count": 34,
         "source_signed_main_run": 41736999153,
         "actual_cloudflare_main_run": 41736999189,
         "independent_human_review": "NOT_CHECKED",
@@ -108,11 +108,12 @@
       "601628"
     ],
     "topic": "/optical-2026h1.html",
-    "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_ELEVEN_ISSUERS_AND_REUSABLE_NEW_ISSUER_RELEASE_GATES",
+    "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
     "semiconductor_report": "/688220.html",
     "insurance_report": "/601628.html",
-    "current_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
-    "company_report_stage": "CURRENT_MAIN_TEN_PRIOR_PUBLISHED_601628_ELEVENTH_CANDIDATE_SOURCE_LIMITED_PREVIEW_IN_PR_PENDING_MAIN_DEPLOY"
+    "current_candidate_branch": null,
+    "company_report_stage": "CURRENT_MAIN_ELEVEN_INDEPENDENT_REPORTS_IN_ONE_ORIGINAL_DIRECTORY_601628_REAL_CLOUDFLARE_PASS_SOURCE_LIMITED_RESEARCH",
+    "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress"
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",
@@ -143,25 +144,35 @@
     }
   ],
   "last_verified_release": {
-    "source_git_commit": "4a734d60a40839c90d12a295c61be917783b7187",
+    "source_git_commit": "d11638f0c76ff8aef2beb163a1028f176123bbdc",
     "checks": [
       {
-        "name": "original note classifications & rebuilt optical issuer pages",
-        "run_id": 41599963892,
+        "name": "Real Cloudflare LIVE China Life 601628, eleven routes, full HTML SHA, CJK 1440/768/390 and back nav",
+        "run_id": 41771178361,
         "conclusion": "success"
       },
       {
-        "name": "unified seven issuer live Cloudflare browser",
-        "run_id": 41599963800,
+        "name": "Original China Life 2026H1 104 physical page PDF / 133 typed cells / 18 financial checks / 10 SVGs",
+        "run_id": 41771178355,
         "conclusion": "success"
       },
       {
-        "name": "historical routes and report QA",
-        "run_id": 41599963891,
+        "name": "Verify unified issuer research library (live)",
+        "run_id": 41771178360,
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify financial research Skill and new-chat handoff",
+        "run_id": 41771178406,
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify public beta release and live Pages routes",
+        "run_id": 41771178350,
         "conclusion": "success"
       }
     ],
-    "warning": "Historical QA evidence, not a claim that subsequent commits or new issuers have passed; check latest actual CI and public site independently."
+    "warning": "These are actually executed GitHub Actions and actual public Cloudflare Chromium receipts for the exact prior main commit d11638f. They do not automatically certify changed future Git SHAs, exhaustive original notes, market prices or second independent human analysis. New revisions require fresh current main and live QA; source-limited preview is not verified_research."
   },
   "limitations": {
     "all_seven_full_material_note_reviews": "NOT_CHECKED",
@@ -666,6 +677,159 @@
   },
   "latest_session_intake_check": {
     "date": "2026-11-04",
+    "scenario": "USER_DELEGATED_NEW_COMPANY_SELECTION_AND_FRESH_NEW_CHAT_SOURCE_TEST",
+    "company": "601628",
+    "name": "中国人寿",
+    "source_main_sha_at_start": "07ea54b5d6e917623a87f6bad83f817d277c6e2d",
+    "last_production_source_main_sha": "d11638f0c76ff8aef2beb163a1028f176123bbdc",
+    "issuer_count": 11,
+    "source_pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+    "source_original_physical_pages": 104,
+    "source_selected_xy_cells": 33,
+    "accounting_facts": 133,
+    "release_status": "PASS_REAL_PRODUCTION_CLOUDFLARE_SOURCE_LIMITED_PREVIEW",
+    "workflows": [
+      {
+        "name": "Real Cloudflare LIVE China Life 601628, eleven routes, full HTML SHA, CJK 1440/768/390 and back nav",
+        "run_id": 41771178361,
+        "conclusion": "success"
+      },
+      {
+        "name": "Original China Life 2026H1 104 physical page PDF / 133 typed cells / 18 financial checks / 10 SVGs",
+        "run_id": 41771178355,
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify unified issuer research library (live)",
+        "run_id": 41771178360,
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify financial research Skill and new-chat handoff",
+        "run_id": 41771178406,
+        "conclusion": "success"
+      },
+      {
+        "name": "Verify public beta release and live Pages routes",
+        "run_id": 41771178350,
+        "conclusion": "success"
+      }
+    ],
+    "history": "Historical prior NO_ISSUER intake checkpoint retained separately; do not treat its NOT_CHECKED as current.",
+    "open_gates": [
+      "MAJOR_NOTES_COMPLETE",
+      "REPORTED_NOTE_TIES",
+      "OFFICIAL_PDF_BYTE_EQUIVALENCE",
+      "HISTORICAL_PEERS_VALUATION",
+      "INDEPENDENT_HUMAN_REVIEW"
+    ]
+  },
+  "latest_insurance_601628": {
+    "issuer": "601628",
+    "issuer_name": "中国人寿保险股份有限公司",
+    "fiscal_period": "2026H1",
+    "status": "SOURCE_LIMITED_PREVIEW_PUBLISHED_ACTUAL_CLOUDFLARE_MAIN_ELEVEN_ISSUERS",
+    "original_source": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF",
+    "archived_pdf": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+    "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+    "pdf_bytes": 4867339,
+    "physical_pages": 104,
+    "original_selected_x_y_cells": 33,
+    "disclosed_signed_facts": 133,
+    "authored_figures": 10,
+    "old_issuer_html_changed": false,
+    "source_pdf_verified_run": "https://github.com/kobolibra/financials/actions/runs/41765739795",
+    "finance_and_browser_verified_run": "https://github.com/kobolibra/financials/actions/runs/41767495751",
+    "branches": {
+      "candidate": null,
+      "previous_main_at_session_open": "07ea54b5d6e917623a87f6bad83f817d277c6e2d",
+      "main_merge_sha": "d11638f0c76ff8aef2beb163a1028f176123bbdc"
+    },
+    "reports": {
+      "html": "public/601628.html",
+      "source_ledger": "research/issuers/601628/source-ledger.json",
+      "figure_briefs": "research/issuers/601628/figure-briefs.json",
+      "story": "research/issuers/601628/story.json",
+      "release_gates": "research/issuers/601628/release-gates.json",
+      "screenshots": "research/issuers/601628/visual-qa/"
+    },
+    "accounting_models": [
+      "old-basis premium reporting separate from recognized CAS service revenue and direct insurance cash",
+      "CAS insurer full signed P&L and historical income waterfall",
+      "present-only direct CFO, NOT invented indirect",
+      "stock CSM distinct from service period release",
+      "portfolio FV income together with insurance finance P&L, OCI, taxes",
+      "actual amount-conserved premium-exclusive multi-stage Sankey"
+    ],
+    "PASS": [
+      "ACTUAL_FULL_CNINFO_PDF_BYTES_HASH_AND_PHYSICAL_PAGES",
+      "SELECTED_33_PHYSICAL_PDF_XY_CELLS",
+      "18_COMPLETE_ORIGINAL_CAS_AND_DIRECT_CASH_AND_SOLVENCY_INVARIANTS",
+      "AUTHORIAL_SOURCE_LINKED_TEN_INDUSTRY_GRAMMAR_FIGURES",
+      "REAL_CHROMIUM_1440_768_390_SVG_GEOMETRY_AND_EXPORT",
+      "OFFLINE_CLEAN_DETERMINISTIC_SECOND_BUILD",
+      "SINGLE_CANONICAL_SITE_CATALOG_ENTRY_PUBLISHED_11_HOME",
+      "LIMITED_INTERIM_REVIEW_ORIGINAL_REPORT_PAGE_42_SOURCE_ASSERTION",
+      "INSURANCE_CORE_AND_TOTAL_SOLVENCY_RATIO_2026_AND_2025_EXACT",
+      "LIVE_11_ISSUER_CLOUDFLARE_CANONICAL_ROUTE_1440_768_390",
+      "ACTUAL_CLOUDFLARE_PUBLIC_REPORT_AND_HOME_FULL_BYTE_SHA_MATCH_CURRENT_MAIN",
+      "LIVE_REAL_TEN_GRAPHICS_SOURCE_TABLES_RETURN_NAVIGATION",
+      "LIVE_REAL_PAINTED_MONEY_SANKY_FINAL_SINK_SOURCE_VALUE",
+      "OFFLINE_TRUE_FULL_PDF_104_PAGES"
+    ],
+    "NOT_CHECKED": [
+      "MAJOR_NOTES_EXHAUSTIVE_AND_ALL_SOURCE_CELLS",
+      "SSE_AND_CNINFO_EXACT_PDF_BYTE_IDENTITY",
+      "FULL_EXTERNAL_8_TO_12_QUARTER_MARKET_PEER_VALUATION",
+      "SECOND_INDEPENDENT_HUMAN_ANALYST_AND_VISUAL_EDITOR"
+    ],
+    "known_issue_corrections": [
+      "Original insurance contract liability consolidated BS row actually physical p44 not note p85 for original source grid",
+      "Multi-stage Sankey QA requires four first-stage + two aggregate-stage ribbons, not each source twice",
+      "Markdown literal escaped backticks in canonical Skill rejected by check_handoff; fixed",
+      "Historical site/company_count and manifest Skill version must be updated together, not only catalog",
+      "New PUB-028 generic release contract checks original standalone HTML SHA against declared publication fingerprint and hostile falsified 64-hex SHA",
+      "Original p42 EY limited assurance review exists despite report being unaudited; old generic unaudited disclaimer loses professional assurance distinction",
+      "Regulatory minimum capital 674846 million is not shareholder equity; zero-division hostile mutation now fails clean with assertions",
+      "Actual Cloudflare article confirmed canonical extensionless /601628 route and revealed improperly painted final sankey total rect; primary SVG argument order and real Chromium DOM sink fill/class/source-value geometry are corrected, VIS-032",
+      "After actual live PASS, qa_cloudflare_live.py saved home URL as article URL because page.url captured after back click. New shared live_route_evidence + hostile tests capture/validate both independently, PUB-033.",
+      "CLOUDFLARE_LIVE release flag and latest handoff were falsely pending despite successful exact production Actions 41771178361. Evidence and cryptographic gate now synchronized without rewriting ten prior issuer pages, PUB-035."
+    ],
+    "action_next": "Source-limited 601628 2026H1 published and real Cloudflare 11 route PASS at d116; generic live evidence capture correct article/back URLs and durable screenshot SHA follow-up CI; future company must independently recheck original PDF bytes, financial note/CSM bridge, sector-native graphics, exact main-site real live browser. Full material notes and independent human review and external long-period valuation remain NOT_CHECKED.",
+    "published_html_sha256": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
+    "latest_source_signed_qa_action": "https://github.com/kobolibra/financials/actions/runs/41770920009",
+    "pr": "https://github.com/kobolibra/financials/pull/16",
+    "audit_assurance": "EY_HUA_MING_LIMITED_INTERIM_REVIEW_2026_08_27_PHYSICAL_PAGE_42_NOT_AN_AUDIT_OPINION",
+    "insurance_regulatory_ratios": {
+      "physical_source_page": 21,
+      "core_current_pct": "156.80",
+      "core_prior_pct": "128.77",
+      "combined_current_pct": "197.78",
+      "combined_prior_pct": "174.01",
+      "checked_signed_capital_facts": 6
+    },
+    "exact_financial_checks": 18,
+    "actual_main_release_commit": "d11638f0c76ff8aef2beb163a1028f176123bbdc",
+    "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41771178361",
+    "main_financial_and_chromium_action": "https://github.com/kobolibra/financials/actions/runs/41771178355",
+    "main_handoff_action": "https://github.com/kobolibra/financials/actions/runs/41771178406",
+    "main_unified_live_directory_action": "https://github.com/kobolibra/financials/actions/runs/41771178360",
+    "main_public_pages_action": "https://github.com/kobolibra/financials/actions/runs/41771178350",
+    "public_home_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+    "actual_live_canonical_route": "https://financials-in-visuals.pages.dev/601628",
+    "actual_live_route_mode": "Cloudflare canonical extensionless /601628; catalog /601628.html resolves to same standalone HTML and is not a homepage redirect",
+    "actual_live_chromium_viewports": [
+      1440,
+      768,
+      390
+    ],
+    "actual_live_all_11_issuer_routes": "PASS",
+    "actual_live_10_svg_and_10_source_tables": "PASS",
+    "actual_live_back_to_single_directory": "PASS",
+    "actual_live_source_metadata_and_sankey_sink": "PASS"
+  },
+  "historical_2026_11_04_source_intake_no_identified_issuer": {
+    "date": "2026-11-04",
     "source_main_sha_at_start": "7ee99b608fc4d0376de80f89c20539698b051ba2",
     "current_issuer_count": 10,
     "new_issuer_identity": "NOT_CHECKED_NO_NEW_ISSUER_IDENTIFIER_SUPPLIED_THIS_TURN",
@@ -693,85 +857,5 @@
     "current_handoff_fix_ci": "PASS_PR_41763814988_HANDOFF_AND_41763815011_TWO_EXISTING_SECTORS_AT_SOURCE_SHA_797e27f75de1e4b4b4774dc85e1a31832ce84760",
     "next_required_source": "User-identified company's complete official PDF bytes or verified download URL and ticker",
     "current_handoff_fix_pr": "https://github.com/kobolibra/financials/pull/13"
-  },
-  "latest_insurance_601628": {
-    "issuer": "601628",
-    "issuer_name": "中国人寿保险股份有限公司",
-    "fiscal_period": "2026H1",
-    "status": "SOURCE_LIMITED_PREVIEW_CANDIDATE_NOT_YET_LIVE",
-    "original_source": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF",
-    "archived_pdf": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
-    "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
-    "pdf_bytes": 4867339,
-    "physical_pages": 104,
-    "original_selected_x_y_cells": 33,
-    "disclosed_signed_facts": 133,
-    "authored_figures": 10,
-    "old_issuer_html_changed": false,
-    "source_pdf_verified_run": "https://github.com/kobolibra/financials/actions/runs/41765739795",
-    "finance_and_browser_verified_run": "https://github.com/kobolibra/financials/actions/runs/41767495751",
-    "branches": {
-      "candidate": "work/insurance-601628-original-2026h1-skill-stress",
-      "previous_main_at_session_open": "07ea54b5d6e917623a87f6bad83f817d277c6e2d",
-      "main_merge_sha": "NOT_CHECKED_PENDING_ACTUAL_PR14_MERGE"
-    },
-    "reports": {
-      "html": "public/601628.html",
-      "source_ledger": "research/issuers/601628/source-ledger.json",
-      "figure_briefs": "research/issuers/601628/figure-briefs.json",
-      "story": "research/issuers/601628/story.json",
-      "release_gates": "research/issuers/601628/release-gates.json",
-      "screenshots": "research/issuers/601628/visual-qa/"
-    },
-    "accounting_models": [
-      "old-basis premium reporting separate from recognized CAS service revenue and direct insurance cash",
-      "CAS insurer full signed P&L and historical income waterfall",
-      "present-only direct CFO, NOT invented indirect",
-      "stock CSM distinct from service period release",
-      "portfolio FV income together with insurance finance P&L, OCI, taxes",
-      "actual amount-conserved premium-exclusive multi-stage Sankey"
-    ],
-    "PASS": [
-      "ACTUAL_FULL_CNINFO_PDF_BYTES_HASH_AND_PHYSICAL_PAGES",
-      "SELECTED_33_PHYSICAL_PDF_XY_CELLS",
-      "16_COMPLETE_ORIGINAL_CAS_AND_SIGNED_CASH_INVARIANTS",
-      "AUTHORIAL_SOURCE_LINKED_TEN_INDUSTRY_GRAMMAR_FIGURES",
-      "REAL_CHROMIUM_1440_768_390_SVG_GEOMETRY_AND_EXPORT",
-      "OFFLINE_CLEAN_DETERMINISTIC_SECOND_BUILD",
-      "SINGLE_CANONICAL_SITE_CATALOG_ENTRY_PREPARED",
-      "LIMITED_INTERIM_REVIEW_ORIGINAL_REPORT_PAGE_42_SOURCE_ASSERTION",
-      "INSURANCE_CORE_AND_TOTAL_SOLVENCY_RATIO_2026_AND_2025_EXACT"
-    ],
-    "NOT_CHECKED": [
-      "MAJOR_NOTES_EXHAUSTIVE_AND_ALL_SOURCE_CELLS",
-      "SSE_AND_CNINFO_EXACT_PDF_BYTE_IDENTITY",
-      "FULL_EXTERNAL_8_TO_12_QUARTER_MARKET_PEER_VALUATION",
-      "SECOND_INDEPENDENT_HUMAN_ANALYST_AND_VISUAL_EDITOR",
-      "LIVE_CLOUDFLARE_NEW_601628_ARTICLE_AND_NEW_HOME_NAVIGATION_PENDING_MERGE"
-    ],
-    "known_issue_corrections": [
-      "Original insurance contract liability consolidated BS row actually physical p44 not note p85 for original source grid",
-      "Multi-stage Sankey QA requires four first-stage + two aggregate-stage ribbons, not each source twice",
-      "Markdown literal escaped backticks in canonical Skill rejected by check_handoff; fixed",
-      "Historical site/company_count and manifest Skill version must be updated together, not only catalog",
-      "New PUB-028 generic release contract checks original standalone HTML SHA against declared publication fingerprint and hostile falsified 64-hex SHA",
-      "Original p42 EY limited assurance review exists despite report being unaudited; old generic unaudited disclaimer loses professional assurance distinction",
-      "Regulatory minimum capital 674846 million is not shareholder equity; zero-division hostile mutation now fails clean with assertions",
-      "Actual Cloudflare article confirmed canonical extensionless /601628 route and revealed improperly painted final sankey total rect; primary SVG argument order and real Chromium DOM sink fill/class/source-value geometry are corrected, VIS-032"
-    ],
-    "action_next": "PR #14 head check all workflows, merge to real main, wait actual Cloudflare Pages production deploy and verify 11 company live Chromium three viewports and exact online HTML SHA; independent research/market and human review remains NOT_CHECKED",
-    "published_html_sha256": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
-    "latest_source_signed_qa_action": "https://github.com/kobolibra/financials/actions/runs/41770920009",
-    "pr": "https://github.com/kobolibra/financials/pull/14",
-    "audit_assurance": "EY_HUA_MING_LIMITED_INTERIM_REVIEW_2026_08_27_PHYSICAL_PAGE_42_NOT_AN_AUDIT_OPINION",
-    "insurance_regulatory_ratios": {
-      "physical_source_page": 21,
-      "core_current_pct": "156.80",
-      "core_prior_pct": "128.77",
-      "combined_current_pct": "197.78",
-      "combined_prior_pct": "174.01",
-      "checked_signed_capital_facts": 6
-    },
-    "exact_financial_checks": 18
   }
 }
