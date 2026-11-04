@@ -11,7 +11,7 @@ mod=module_from_spec(spec);spec.loader.exec_module(mod)
 class LifeInsurance2026H1(unittest.TestCase):
     def test_original_original_cas_insurance_accounting(self):
         r=mod.check()
-        self.assertEqual(len(r["checks"]),16)
+        self.assertEqual(len(r["checks"]),18)
         self.assertTrue(all(v=="PASS" for v in r["checks"].values()))
     def mutate(self,key,value):
         original=mod.FACTS[key]["yuan"]
@@ -45,6 +45,19 @@ class LifeInsurance2026H1(unittest.TestCase):
         self.mutate("fairvalue_income","0")
     def test_service_cost_2025_comparative_not_current(self):
         self.mutate("service_cost",str(int(mod.FACTS["service_cost_prior"]["yuan"])))
+    def test_regulatory_capital_is_not_CAS_shareholder_equity(self):
+        self.mutate("reg_core_capital",str(int(mod.FACTS["parent_equity"]["yuan"])))
+    def test_missing_minimum_regulatory_capital_fail_closed(self):
+        self.mutate("reg_minimum_capital","0")
+    def test_prior_to_current_solvency_comparative_cannot_be_swapped(self):
+        self.mutate("reg_actual_capital",str(int(mod.FACTS["reg_actual_capital_prior"]["yuan"])))
+    def test_unreviewed_claim_cannot_erase_actual_independent_limited_review(self):
+        p=mod.LEDGER["source"]["independent_limited_review"]
+        old=p["physical_page"]
+        try:
+            p["physical_page"]=41
+            with self.assertRaises(AssertionError):mod.check()
+        finally:p["physical_page"]=old
     def test_original_pdf_sha_not_unrelated_issuer(self):
         wrong=mod.FIG["source_sha256"]
         try:
