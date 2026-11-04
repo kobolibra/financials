@@ -4,11 +4,14 @@
 Performs content SHA comparison with checked-out main. A Pages provider 'success'
 or prior issuer cloudflare screenshot is not an actual new issuer live PASS.
 """
-import hashlib,json,re,time,subprocess
-from research.shared.live_route_evidence import make_live_navigation_receipt
+import hashlib,json,re,time,subprocess,sys
 from pathlib import Path
-from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3]
+# Direct execution (python research/issuers/601628/qa_cloudflare_live.py)
+# otherwise places only this script directory on sys.path, not the project root.
+sys.path.insert(0,str(ROOT))
+from research.shared.live_route_evidence import make_live_navigation_receipt
+from playwright.sync_api import sync_playwright
 SITE="https://financials-in-visuals.pages.dev"
 HERE=ROOT/"research/issuers/601628"
 OUT=HERE/"live-qa"
