@@ -1,6 +1,6 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
-**当前真实状态：2026-11-04。GitHub `main` 实际已包含 11 家公司，同一个唯一首页；中国人寿（601628）已通过真实 Cloudflare 线上报告与目录导航。现行 Skill `v8.6.0-rc1`。下一次新对话必须重新确认 `main` HEAD、现行 GitHub Actions 和官方原 PDF，而非把这里的 SHA 当永恒最新。**
+**当前真实状态：2026-11-04。GitHub `main` 实际已包含 11 家公司，同一个唯一首页；中国人寿（601628）已通过真实 Cloudflare 线上报告与目录导航。现行 Skill `v8.6.1-rc1`。下一次新对话必须重新确认 `main` HEAD、现行 GitHub Actions 和官方原 PDF，而非把这里的 SHA 当永恒最新。**
 
 > **一套统一目录**：<https://financials-in-visuals.pages.dev/>；第十一家公司中国人寿独立全文：<https://financials-in-visuals.pages.dev/601628>。原目录卡 href `/601628.html` 被 Cloudflare Pages 规范化为 `/601628`，是真正独立的 HTML 页面，不是首页回跳，也不是 iframe。其余十家公司的独立报告未被改动。研究仍为**源限制预览**，不等于已完成独立第二人类审稿。
 
@@ -12,7 +12,7 @@
 - **行业源概念禁止混假**：总保费**536634**、法定保险服务收入**112525**、实际收取保险合同保费现金**626732**（人民币百万元）绝不串成“销售→盈利”桑基；只对原件 p10 四项互斥旧保费分组→新单/续期→总保费生成真正几何守恒的原始 SVG 数带。承保服务净结果 **41177**、本期投资收益 **112902**、公允价值变动收益 **135835** 与承保财务损益 **−188067** 联动，完整 signed P&L 最终归母净利润 **134489**；CFO 用原件实际**直接法**而非编造净利润→CFO 间接表。CSM期末**813253** 是保险服务未赚负债时点存量，本期摊销 **35155** 不等于存量；管理层 NBV **38167** 又是特定价值评估口径。监管核心/实际/最低资本和覆盖率来自 p21，而非合并所有者权益。
 - **真实失败与纠偏已归入 Skill**：先纠正p44保险合同负债误抓附注p85、保费真桑基两阶段对金额重复误验，随后补安永**有限保证审阅而非审计意见**、监管资本的独立财务范围和零分母，最后线上真浏览器纠正 URL 后发现最终桑基汇总节点 `fill=money-sink` 的无效 SVG 属性并**回修原生成器**；新 1440/768/390 浏览器 QA 检查每个 rect 的填充、最终节点真实金额与高度，PR [#16](https://github.com/kobolibra/financials/pull/16) + 实际 `main` LIVE PASS。又发现线上 PASS 日志里的 `actual_dedicated_article_final_url` 在返回首页后才获取，虽然实际浏览的文章是 `/601628`，但证据字段错误；**本交接修订正在补通用 URL 分离取证模块 + hostile tests + 六张线上真截图 SHA**。不将这项新修订声称为已验，须跑新 `main` Actions。
 - **质量门槛，不能混同**：原始PDF/部分关键原始附注与33行列/18项准确会计守恒/10张原创图/真实Sankey的来源及最终节点/本地3视口/离线一致重建/十一家公司独立路径/生产双全字节 SHA/真实三屏 Cloudflare 导航 **PASS**（对精确 d11638f 的上述 Actions）。**NOT_CHECKED**：104页重大附注及潜在精算敏感性完整独立审阅、源PDF与另一个上交所副本逐字节相等、8–12季度同业市场估值和利率/精算模型、独立第二名人类财报分析师及独立专业视觉审稿；保持 `source_limited_preview`，不得写 `verified_research`。早期 688220 的 90.50% 与自推 89.17% AR 客户集中度问题也仍是独立 FAIL，不能由601628通过覆盖。
-- **现行跨会话入口**：先读 `START_HERE.md`、`project-status.json`、本文件；逐个读完整 `skills/ashare-financial-storytelling/SKILL.md`、`research/01–05`、`docs/REPORT_RELEASE_CHECKLIST.md`、`docs/HANDOFF_PROTOCOL.md`、`skills/ashare-financial-storytelling/quality-regressions.json`；从 GitHub 查询真实 `main` HEAD 与确切 commit 的五个 Actions；财务源、HTML、真截图、生产 HTTP 和提交SHA互不替代。本次新增通用模块 `research/shared/live_route_evidence.py` 及 `scripts/test_live_route_evidence.py`，live 证明代码 `research/issuers/601628/qa_cloudflare_live.py`，发布合同 `research/issuers/601628/release-gates.json`。再新增公司应下载本公司的**完整原始PDF字节**并独立运行其行业专有财务和图形门槛；本轮601628是单公司寿险 L1，不能自动宣称 L2跨保险或L3全行业泛化已证实。
+- **现行跨会话入口**：先读 `START_HERE.md`、`project-status.json`、本文件；逐个读完整 `skills/ashare-financial-storytelling/SKILL.md`、`research/01–05`、`docs/REPORT_RELEASE_CHECKLIST.md`、`docs/HANDOFF_PROTOCOL.md`、`skills/ashare-financial-storytelling/quality-regressions.json`；从 GitHub 查询真实 `main` HEAD 与确切 commit 的五个 Actions；财务源、HTML、真截图、生产 HTTP 和提交SHA互不替代。本次 v8.6.1 新增通用模块 `research/shared/live_route_evidence.py` 及 `scripts/test_live_route_evidence.py`，live 证明代码 `research/issuers/601628/qa_cloudflare_live.py`，发布合同 `research/issuers/601628/release-gates.json`。再新增公司应下载本公司的**完整原始PDF字节**并独立运行其行业专有财务和图形门槛；本轮601628是单公司寿险 L1，不能自动宣称 L2跨保险或L3全行业泛化已证实。
 
 ---
 
