@@ -34,13 +34,17 @@ with sync_playwright() as p:
                   if(!e||!n||!c)return null;
                   return {net:+e.dataset.netExactYuan,cfo:+e.dataset.cfoExactYuan,
                     capex:+e.dataset.cashActualCapexYuan,base:+e.dataset.barBaseYuan,
-                    netWidth:parseFloat(n.style.width),cfoWidth:parseFloat(c.style.width),
+                    netWidth:parseFloat(n.getAttribute('style').match(/width:([0-9.]+)%/)[1]),
+                    cfoWidth:parseFloat(c.getAttribute('style').match(/width:([0-9.]+)%/)[1]),
+                    cfoRendered:c.getBoundingClientRect().width,
+                    actualBarTrack:c.parentElement.getBoundingClientRect().width,
                     left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right};
                 }""")
                 assert focus and focus["net"]==14733426763.13 and focus["cfo"]==1799674832.02,(code,"CASH_LEAD_SOURCE_AMOUNT_WRONG",focus)
                 assert focus["capex"]==4802161195.37 and focus["base"]==focus["net"],(code,"CASH_LEAD_CASH_CAPEX_AS_STOCK")
                 assert abs(focus["netWidth"]-100.0)<1e-5
-                assert abs(focus["cfoWidth"]-focus["cfo"]/focus["net"]*100)<1e-5,(code,"CASH_LEAD_EDITORIAL_VISUAL_GEOMETRY_WRONG")
+                assert abs(focus["cfoWidth"]-focus["cfo"]/focus["net"]*100)<1e-6,(code,"CASH_LEAD_SOURCE_RAW_CSS_PERCENT_CONTRADICTS_YUAN")
+                assert focus["actualBarTrack"]>100 and abs(focus["cfoRendered"]/focus["actualBarTrack"]*100-focus["cfoWidth"])<0.25,(code,width,"CASH_LEAD_ACTUAL_BROWSER_PHYSICAL_BAR_LENGTH_WRONG",focus)
                 assert 0<=focus["left"] and focus["right"]<=width+2,(code,width,"EDITORIAL_FOCUS_MOBILE_CROPPED")
             n=page.locator("figure.has-native-finance").count()
             assert n>=9,(code,width,"MISSING_MONEY_NATIVE_FIGURES",n)
