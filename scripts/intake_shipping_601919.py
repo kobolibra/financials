@@ -68,7 +68,7 @@ source={
 source["checks"]["sse_exact_byte_identity"]="NOT_CHECKED"
 source["source_unit_warning"]="BASIC_STOCK_FLOW_STATEMENTS_IN_YUAN_SHIPPING_SEGMENT_IN_RMB_THOUSANDS_AND_USD_THOUSANDS; TEU_VOLUME_AND_REVENUE_METRICS_MUST_NOT_BE_ADDED"
 source["review_status_note"]="Original front calls half-year statements unaudited, but whether a specific limited-review report exists must be read and proven from the actual 178-page source before publishing"
-(base/"source-verification.json").write_text(json.dumps(source,ensure_ascii=False,indent=2)+"\\n")
+(base/"source-verification.json").write_text(json.dumps(source,ensure_ascii=False,indent=2)+"\n")
 print("SHIPPING_ORIGINAL_FULL_PDF_SHA_PHYSICAL_PAGES_PASS",sha,len(data),len(doc),flush=True)
 print("SHIPPING_TOPIC_INDEX_HITS",json.dumps([x for x in index if "shipping" in x["terms"] or "cash" in x["terms"]][:60],ensure_ascii=False),flush=True)
 print("OTHER_SOURCE_BYTES_EQUIVALENCE_NOT_CHECKED",flush=True)
