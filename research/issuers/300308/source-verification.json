@@ -1,0 +1,346 @@
+{
+  "issuer": "中际旭创股份有限公司",
+  "ticker": "300308.SZ",
+  "source_original_pdf_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+  "source_original_pdf_bytes": 2984970,
+  "physical_pdf_pages": 184,
+  "period": "2026H1",
+  "currency": "CNY",
+  "consolidated_report": "PASS",
+  "unaudited_original": "PASS",
+  "source_page_amount_checks": 63,
+  "source_page_amounts_exact": "PASS",
+  "indirect_CFO_all_original_signed_adjustments": 15,
+  "indirect_CFO_calculation": "PASS",
+  "income_gross_consolidated_and_product_group_sum": "PASS",
+  "cash_movement_bs_and_net_income": "PASS",
+  "original_page139_material_cross_print_one_yuan_discrepancy": {
+    "status": "DISCLOSED_INCONSISTENCY__DO_NOT_SILENTLY_CORRECT_OR_FAKE_RESIDUAL",
+    "physical_page": 139,
+    "original_business_type_revenue_cell_yuan": "422649612.97",
+    "original_same_row_repeated_total_revenue_cell_yuan": "422649613.97",
+    "difference_yuan": "1.00",
+    "source_choice_for_graph": "422649612.97__SOURCE_ORIGINAL_CONTRACT_BUSINESS_TYPE_CELL_AND_FULL_CONSOLIDATED_SUM",
+    "financial_meaning": "same p139 table repeated numeric column inconsistency; not a distinct business line or unreported residual"
+  },
+  "actual_reported_facts": [
+    {
+      "key": "revenue",
+      "physical_page": 56,
+      "exact_yuan": "41777861795.03"
+    },
+    {
+      "key": "revenue_prior",
+      "physical_page": 56,
+      "exact_yuan": "14789074837.80"
+    },
+    {
+      "key": "cogs",
+      "physical_page": 56,
+      "exact_yuan": "22454688140.44"
+    },
+    {
+      "key": "cogs_prior",
+      "physical_page": 56,
+      "exact_yuan": "8972966839.76"
+    },
+    {
+      "key": "total_operating_costs",
+      "physical_page": 56,
+      "exact_yuan": "25266330732.20"
+    },
+    {
+      "key": "operating_profit",
+      "physical_page": 56,
+      "exact_yuan": "17231320005.52"
+    },
+    {
+      "key": "other_income",
+      "physical_page": 56,
+      "exact_yuan": "13891729.92"
+    },
+    {
+      "key": "investment_income",
+      "physical_page": 56,
+      "exact_yuan": "189517732.88"
+    },
+    {
+      "key": "fair_value_income",
+      "physical_page": 56,
+      "exact_yuan": "537120000.00"
+    },
+    {
+      "key": "credit_impairment",
+      "physical_page": 56,
+      "exact_yuan": "-6255695.67"
+    },
+    {
+      "key": "asset_impairment",
+      "physical_page": 56,
+      "exact_yuan": "-13062926.18"
+    },
+    {
+      "key": "disposal_income",
+      "physical_page": 56,
+      "exact_yuan": "-1421898.26"
+    },
+    {
+      "key": "nonop_income",
+      "physical_page": 56,
+      "exact_yuan": "1895964.69"
+    },
+    {
+      "key": "nonop_expense",
+      "physical_page": 56,
+      "exact_yuan": "2613424.37"
+    },
+    {
+      "key": "income_tax",
+      "physical_page": 56,
+      "exact_yuan": "2497175782.71"
+    },
+    {
+      "key": "net_profit",
+      "physical_page": 57,
+      "exact_yuan": "14733426763.13"
+    },
+    {
+      "key": "net_profit_prior",
+      "physical_page": 57,
+      "exact_yuan": "4242457490.32"
+    },
+    {
+      "key": "parent_profit",
+      "physical_page": 57,
+      "exact_yuan": "13651149693.27"
+    },
+    {
+      "key": "parent_profit_prior",
+      "physical_page": 57,
+      "exact_yuan": "3995115384.70"
+    },
+    {
+      "key": "minority_profit",
+      "physical_page": 57,
+      "exact_yuan": "1082277069.86"
+    },
+    {
+      "key": "research_expenses",
+      "physical_page": 56,
+      "exact_yuan": "1153028870.98"
+    },
+    {
+      "key": "research_expenses_prior",
+      "physical_page": 56,
+      "exact_yuan": "585616998.59"
+    },
+    {
+      "key": "financial_expenses",
+      "physical_page": 56,
+      "exact_yuan": "562247445.89"
+    },
+    {
+      "key": "financial_expenses_prior",
+      "physical_page": 56,
+      "exact_yuan": "-39353732.96"
+    },
+    {
+      "key": "cfo",
+      "physical_page": 60,
+      "exact_yuan": "1799674832.02"
+    },
+    {
+      "key": "cfo_prior",
+      "physical_page": 60,
+      "exact_yuan": "3218463287.30"
+    },
+    {
+      "key": "cfi",
+      "physical_page": 60,
+      "exact_yuan": "-6816325924.25"
+    },
+    {
+      "key": "cff",
+      "physical_page": 60,
+      "exact_yuan": "839092117.70"
+    },
+    {
+      "key": "fx_effect",
+      "physical_page": 60,
+      "exact_yuan": "-402575377.72"
+    },
+    {
+      "key": "cash_open",
+      "physical_page": 61,
+      "exact_yuan": "10943807433.04"
+    },
+    {
+      "key": "cash_close",
+      "physical_page": 61,
+      "exact_yuan": "6363673080.79"
+    },
+    {
+      "key": "capex_cash",
+      "physical_page": 60,
+      "exact_yuan": "4802161195.37"
+    },
+    {
+      "key": "capex_cash_prior",
+      "physical_page": 60,
+      "exact_yuan": "953722044.05"
+    },
+    {
+      "key": "assets",
+      "physical_page": 52,
+      "exact_yuan": "68942203736.77"
+    },
+    {
+      "key": "assets_prior",
+      "physical_page": 52,
+      "exact_yuan": "45288970887.78"
+    },
+    {
+      "key": "current_assets",
+      "physical_page": 51,
+      "exact_yuan": "46707667607.80"
+    },
+    {
+      "key": "noncurrent_assets",
+      "physical_page": 52,
+      "exact_yuan": "22234536128.97"
+    },
+    {
+      "key": "liabilities",
+      "physical_page": 53,
+      "exact_yuan": "24875450361.61"
+    },
+    {
+      "key": "equity",
+      "physical_page": 53,
+      "exact_yuan": "44066753375.16"
+    },
+    {
+      "key": "inventory",
+      "physical_page": 51,
+      "exact_yuan": "19825909263.51"
+    },
+    {
+      "key": "inventory_prior",
+      "physical_page": 51,
+      "exact_yuan": "12680707624.68"
+    },
+    {
+      "key": "accounts_receivable",
+      "physical_page": 51,
+      "exact_yuan": "15000893993.58"
+    },
+    {
+      "key": "accounts_receivable_prior",
+      "physical_page": 51,
+      "exact_yuan": "6276876022.07"
+    },
+    {
+      "key": "prepayment",
+      "physical_page": 51,
+      "exact_yuan": "953622834.48"
+    },
+    {
+      "key": "prepayment_prior",
+      "physical_page": 51,
+      "exact_yuan": "134110191.04"
+    },
+    {
+      "key": "monetary_funds",
+      "physical_page": 51,
+      "exact_yuan": "6397133233.34"
+    },
+    {
+      "key": "monetary_funds_prior",
+      "physical_page": 51,
+      "exact_yuan": "10986893131.96"
+    },
+    {
+      "key": "fixed_assets",
+      "physical_page": 52,
+      "exact_yuan": "9822940499.34"
+    },
+    {
+      "key": "fixed_assets_prior",
+      "physical_page": 52,
+      "exact_yuan": "7080613124.29"
+    },
+    {
+      "key": "construction_in_progress",
+      "physical_page": 52,
+      "exact_yuan": "3707416577.70"
+    },
+    {
+      "key": "construction_in_progress_prior",
+      "physical_page": 52,
+      "exact_yuan": "1421937387.37"
+    },
+    {
+      "key": "accounts_payable",
+      "physical_page": 52,
+      "exact_yuan": "12032721726.12"
+    },
+    {
+      "key": "accounts_payable_prior",
+      "physical_page": 52,
+      "exact_yuan": "7329829283.58"
+    },
+    {
+      "key": "long_term_payables",
+      "physical_page": 53,
+      "exact_yuan": "5057109442.30"
+    },
+    {
+      "key": "long_term_payables_prior",
+      "physical_page": 53,
+      "exact_yuan": "900192424.40"
+    },
+    {
+      "key": "optical_revenue",
+      "physical_page": 26,
+      "exact_yuan": "41355212182.06"
+    },
+    {
+      "key": "optical_cogs",
+      "physical_page": 26,
+      "exact_yuan": "22088755382.03"
+    },
+    {
+      "key": "other_product_revenue",
+      "physical_page": 139,
+      "exact_yuan": "422649612.97"
+    },
+    {
+      "key": "other_product_cogs",
+      "physical_page": 139,
+      "exact_yuan": "365932758.41"
+    },
+    {
+      "key": "parent_profit_adjusted",
+      "physical_page": 8,
+      "exact_yuan": "13091597476.79"
+    },
+    {
+      "key": "cash_sales_collected",
+      "physical_page": 59,
+      "exact_yuan": "32852143471.50"
+    },
+    {
+      "key": "cash_supplier_paid",
+      "physical_page": 59,
+      "exact_yuan": "30053432777.55"
+    },
+    {
+      "key": "r_and_d_total",
+      "physical_page": 26,
+      "exact_yuan": "1234050709.33"
+    }
+  ],
+  "independent_second_human_analyst": "NOT_CHECKED",
+  "full_all_major_note_independent_reviews": "NOT_CHECKED",
+  "current_11_issuer_cloudflare_new_version": "NOT_CHECKED"
+}
