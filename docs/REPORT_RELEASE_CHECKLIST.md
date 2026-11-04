@@ -1,6 +1,14 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
-> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.6.3](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+> 适用：在统一网站添加 / 更新 **任意**发行人财报研究。不按图表数量验收，不以“CI 通过”推定研究质量。主规范为 [Skill v8.7.0](../skills/ashare-financial-storytelling/SKILL.md) 和全部五份研究手册。**本清单是执行门槛，不是重新设计一个平行 Skill。**
+
+### v8.7.0 · AEI视觉编辑总监与原始财报会计双独立 P0
+
+- [ ] **AEI第一视觉故事**：核对公开AEI Alphabet/Apple原始图与[早期三家公司金额流、后续公司实图对照](../research/visual-audit/VISUAL_DESIGN_DRIFT_REPORT_2026-11-04.md)。源业务收入、成本、毛利、后续法定经营损益能合法守恒时做原创金额加权资金图；不合法时用行业适用的分组对照或签名瀑布，绝不能混加非互斥分组、负抵销、保险保费和法定服务、TEU/USD/RMB。
+- [ ] **独立艺术编辑验收**：实际1440图片里每一幅有独立研究问题、主要驱动、一眼读得懂的源/终点与商业机制；杜绝8张同款普通条/通用Dashboard/空图，图数和Actions绿都不能代表美感。
+- [ ] **真实390全图可见**：真CJK Chromium的各图`scrollWidth<=clientWidth+6`，不得藏在一个固定930px小窗口，也不能把1250px整图缩成字小于可读尺寸的手机图片；需要公司原始元账本派生的独立手机图形语法。10家原HTML保持历史明确 **VISUAL_MOBILE=FAIL**，新公司及任何改动旧版不允许继承。`scripts/audit_visual_regression.py`、`scripts/check_visual_editorial_policy.py`、`scripts/test_visual_editorial_policy.py` 必跑。
+- [ ] **真实标签几何**：对同比% vs 两期金额、图标题vs signed waterfalls、来源节点vs数值，用中文字体实际SVG`getBBox`查碰撞和越界；公司601628旧桌面已真实误验，候选生成器修复可复用规则VIS-042。
+- [ ] **研究与视觉各自独立评级**：原PDF/三报表/重大附注/金额恒等、真实公司业务机制及反证是研究门；真实公司图形叙事、图形原创审美及手机可读性是另一个门，任一FAIL不能叫最终顶级。第二位真实人类研究员与视觉总监缺席为NOT_CHECKED，不得冒名认证。
 
 ### v8.6.3 真正上线之后持久保留来源可复核的原始 LIVE 收据（硬门槛）
 
