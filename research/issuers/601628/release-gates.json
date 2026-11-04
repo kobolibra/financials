@@ -91,9 +91,9 @@
       "scope": "No separate human finance analyst or professional visual art director has performed independent factual and design signoff"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "NOT_CHECKED",
-      "proof": null,
-      "scope": "Candidate mobile no-scroll 10-figure source-first HTML has not yet been merged into main and checked at real Cloudflare. Previous article SHA 051a8... LIVE PASS applies only to older public bytes; new source visual SHA 6f386... requires its own post-merge real 1440/768/390 browser, 11 routes and dual SHA."
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41778320066",
+      "scope": "Actual Cloudflare Pages live Chromium checked exact main b88698a0cf1cfcd89c16eda1e399796d9418ea04: 11 issuer routes, whole public 601628 mobile research HTML SHA 6f38612a... equal real repo byte stream, whole single homepage SHA f6254531..., actual dedicated canonical /601628 navigation and back to /#companies all 1440/768/390, 10 source-based SVGs and evidence tables, 390 all ten native full width zero inner horizontal scroll original-yuan money bars / sign / geometry, true conservatively weighted insurer premium source ribbons and final sink. Six actual full-page screenshots (home+issuer each 3 widths) have recorded SHA-256. Independent second human and exhaustive notes/peer valuation still NOT_CHECKED."
     }
   },
   "blockers": [
@@ -125,10 +125,10 @@
   ],
   "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41777012329",
   "published_html_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
-  "live_release_fingerprint": null,
-  "actual_main_release_commit": null,
-  "actual_live_qa_action": null,
-  "actual_live_canonical_route": "/601628",
+  "live_release_fingerprint": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+  "actual_main_release_commit": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
+  "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41778320066",
+  "actual_live_canonical_route": "https://financials-in-visuals.pages.dev/601628",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "historical_live_before_mobile_editorial_rebuild": {
     "status": "PASS",
@@ -137,5 +137,16 @@
     "commit": "d11638f0c76ff8aef2beb163a1028f176123bbdc",
     "site": "https://financials-in-visuals.pages.dev/601628",
     "scope": "TRUE PASS ON PREVIOUS SOURCE HTML ONLY, NOT PROOF OF NEW MOBILE REBUILD; retained for audit history"
+  },
+  "actual_live_route_mode": "Cloudflare normalizes catalog /601628.html to independent /601628; authentic article route and separate home-back URLs captured before/after correctly.",
+  "actual_mobile_public_390": "PASS_ALL_10_FULL_SOURCE_EXHIBITS_NO_INNER_SCROLL",
+  "actual_mobile_visual_self_inspection": "PASS_390_RENDERED_COMPLETE_SOURCE_CASH_AND_CSM_SCREENSHOT_REVIEW_2026-11-04_NOT_SECOND_INDEPENDENT_HUMAN",
+  "screenshot_sha_receipts": {
+    "live_601628_1440": "ab96a3fbd34b8c6a9d0fe78629d6302ac9cdb106d611de84ab15c6abfcca69e5",
+    "live_601628_390": "11ea193bc60a154813a89668c8e18d56ce9e436deb3a5f0db0a33f538f7a0342",
+    "live_601628_768": "ed9a2d7e8dc4e20d02c31ee422db800b1649c041962ee23e7c6807a03181a63f",
+    "live_directory_1440": "01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47",
+    "live_directory_390": "e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c",
+    "live_directory_768": "f82f45d62c12049f233a1330465eafa1669db05335f3cf1459b79"
   }
 }
