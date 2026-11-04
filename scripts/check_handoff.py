@@ -102,6 +102,22 @@ def check_agent_source_of_truth(agent_instructions: str) -> list[str]:
     return issues
 
 
+def check_start_here_source_of_truth(entry: str) -> list[str]:
+    """The human-facing first link must not ossify a fixed issuer count.
+
+    The actual catalogue count and live state belong to machine-readable
+    main files; a dated, SHA-bound historical check is allowed.
+    """
+    errors = []
+    if "project-status.json" not in entry[:1500] or "site/research_catalog.json" not in entry[:1500]:
+        errors.append("START_HERE_MISSING_CURRENT_MACHINE_CATALOG")
+    if re.search(r"(?:当前有效版本|当前生产|现行版本|当前有效状态)[:：].{0,35}(?:七|八|九|十|十一|十二|\\d+)家", entry[:1500]):
+        errors.append("START_HERE_STALE_FIXED_ISSUER_COUNT")
+    if "START_HERE.md" not in entry or "NOT_CHECKED" not in entry:
+        errors.append("START_HERE_MISSING_NEW_CHAT_AND_OPEN_GATES")
+    return errors
+
+
 def check_repo() -> list[str]:
     errors = []
     mandatory = [
@@ -144,6 +160,7 @@ def check_repo() -> list[str]:
     errors += check_catalog(manifest, catalog, load("public/index.html"))
     errors += check_current_state(load("PROJECT_STATE.md"), load("README.md"), manifest)
 
+    errors += check_start_here_source_of_truth(load("START_HERE.md"))
     errors += check_agent_source_of_truth(load("AGENTS.md"))
     if not all(term in load("AGENTS.md") for term in
                ["SKILL.md", "NOT_CHECKED", "START_HERE.md", "REPORT_RELEASE_CHECKLIST"]):
