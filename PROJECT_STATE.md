@@ -1,5 +1,13 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+## 2026-11-05 · ACTIVE MAIN: AEI/FT v8.8 实证视觉编审与真实财务流语义引擎已合并（不冒充修好四旧页）
+
+- **当前可复验main** `37ab35fd4c861b60ed65536e072b5aa6fa8b7ba8`，同一个11家目录无增删，11篇独立已发布HTML/所有原始PDF及发布器**本轮未变更**。PR [#33](https://github.com/kobolibra/financials/pull/33) 的方法标准、静态视觉失败检查及恶意用例，PR [#34](https://github.com/kobolibra/financials/pull/34) 的原始元级A/B/C流向会计语义执行器 `research/shared/editorial_financial_flow.py` 与十项基于实际账本/恶意会计情形的测试均已经合入。报告级「稳定顶级审美」「全面超越AEI」**仍未被证明**。
+- **对应真实Actions**：PR #33 最终旧四FAIL被真实读出的视觉策略 [#41968781177](https://github.com/kobolibra/financials/actions/runs/41968781177) PASS（策略识别而非四页修复），候选交接 [#41968781200](https://github.com/kobolibra/financials/actions/runs/41968781200) PASS；PR #34 [#41969451617](https://github.com/kobolibra/financials/actions/runs/41969451617) 中 `Test exact-Yuan source/type/negative/segment financial flow semantics` PASS；正式main新语义 [#41969534693](https://github.com/kobolibra/financials/actions/runs/41969534693) Skill+交接 PASS。PR#33 合并后原11家实际云端入口/路由 [#41968932787](https://github.com/kobolibra/financials/actions/runs/41968932787) PASS（未改变公司HTML，本次非新的视觉审美认证）。
+- **确切新会计/视觉区分**：688111金山办公真实账本有WPS个人/WPS365/许可/其他**各自**收入与成本，不能再将只到集团COGS/GP的B图当成A业务利润；600519贵州茅台「其他」原收入低于原成本，不可画正毛利飘带；000333美的工业三组仅集团统一成本时可承认真实B图却须突出 `PRODUCT_LEVEL_GP_NOT_ESTABLISHED`。新增校验同时拒绝期别/并表/货币混合、父子收入重复、未披露差额被当业务、银行净利息二次扣息、保费充CAS服务收入。此合同现已在CI执行，但旧V10出版器没有消费该模块，**不能称相关四页图已升级**。
+- **剩余P0具体源头**：V10旧图 `research/rebuild-v10/publisher.py` 的390手机规则隐藏非桑基SVG、唯一桑基850px横滑；四家公司 `600036/688111/600519/000333` 的生产财务图 **FAIL**；旧V10工作流 `sw>cw` 的反向验收仍未修。须先修公司对应真实图源生成器、对负数选择有符号瀑布/移动原生图，不得直接靠CSS把850px缩成5px中文或假扮图已修；必须跑原PDF/真实业务口径和1440/768/390每图审美截图，重新Cloudflare同HTML SHA双页面验证。独立第二人类审稿/完整重大附注与外部8–12Q同行仍NOT_CHECKED。
+
+
 ## 2026-11-05 · ACTIVE MAIN SOURCE AUDIT / AEI-FT financial editorial v8.8 candidate, not a fixed four-report website
 
 - **本轮用户暂停新公司研究，要求现有Skill与11个已发布公司的机构研究/财经信息设计深度审核**。开始时真实GitHub main=b0b7087a8bd06177512de1f6bb2a574f9461cbe0；11家公司唯一目录、原Skill v8.7.5全文/五研究手册及原交接均在本次会话核对。公开AEI三张报表及6图、Alphabet公开可看部分与FT关系语法对照，付费完整图不可冒称已看。

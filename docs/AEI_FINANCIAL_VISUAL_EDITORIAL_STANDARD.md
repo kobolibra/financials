@@ -80,3 +80,6 @@
 - 针对以后新增公司：必须在开始选图前做AEI案例/会计互斥层级/桑基A或B或C/一页视觉叙事的四项批判审查，渲染后保留每图来源与第一次批评的改动记录。没有可见强业务利润图、签名桥、手机真阅读，不能输出“顶级”。
 
 **判断“超越”而非宣称“超越”**：仅当可见作品在实质会计深度、独特经营解释、金额和视觉事实、五秒理解效率及真实手机体验方面逐项证实，且能在第二个不同发行人的真正原PDF上复现后，才能讨论某个能力超过公开参考。独立真实人类财务/视觉审稿仍单列。
+## 8. 实施边界：语义引擎已真实入库，实际桑基视觉须另验
+
+[PR #34](https://github.com/kobolibra/financials/pull/34) 增加 `research/shared/editorial_financial_flow.py`：原账本元级字段来源、报告期/合并与分类层级的TYPE_A/TYPE_B/TYPE_C判断。真实金山办公四种WPS收入及各自成本、茅台负其他毛利和美的集团顶层三组被编入恶意测试 `research/shared/test_editorial_financial_flow.py`，并在 main [#41969534693](https://github.com/kobolibra/financials/actions/runs/41969534693) 实跑通过。测试不生成新Sankey，不检查既有四页旧SVG真实几何，也不是中文实际截图审美；完整视觉和新云端页面须各自独立验证。

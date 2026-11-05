@@ -1,6 +1,6 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
-**2026-11-05 AEI/FT 视觉品质升级候选：** 现行 Skill 方法加入 [财经总编真实审美与桑基A/B/C决策标准](docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和真实独立HTML静态审查器。已发现生产源V10四家600036/688111/600519/000333在390隐藏除桑基外所有图、剩余850px桑基只在小窗横滑，确认为旧版FAIL；新规范和自动测试绝不宣称四家公司已修或全站审美达到AEI顶级。站点仍唯一11家公司，独立人类研究/视觉审核NOT_CHECKED。
+**2026-11-05 AEI/FT 视觉品质 v8.8.0-RC1 已实际 main 合并：** 已在 [#33](https://github.com/kobolibra/financials/pull/33)、[#34](https://github.com/kobolibra/financials/pull/34) 实际合并；现行 Skill 方法加入 [财经总编真实审美与桑基A/B/C决策标准](docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和真实独立HTML静态审查器。已发现生产源V10四家600036/688111/600519/000333在390隐藏除桑基外所有图、剩余850px桑基只在小窗横滑，确认为旧版FAIL；新规范和自动测试绝不宣称四家公司已修或全站审美达到AEI顶级。站点仍唯一11家公司，独立人类研究/视觉审核NOT_CHECKED。
 
 
 

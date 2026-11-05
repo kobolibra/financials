@@ -1327,6 +1327,11 @@
     "cloudflare_publication_in_this_iteration": "NOT_CHECKED_NO_REPORT_CHANGED",
     "human_independent_research_and_visual": "NOT_CHECKED",
     "pending_source_repair": "research/rebuild-v10/publisher.py_and_full_four_HTML_native_mobile_rebuild_then_true_Cloudflare",
-    "git_ci": "PENDING_CANDIDATE_VALIDATION"
+    "git_ci": "PASS_MAIN_41969534693_HEAD_37ab35fd__PR33_41968781177_PR34_41969451617",
+    "typed_financial_flow_contract": "research/shared/editorial_financial_flow.py",
+    "typed_flow_tests": "research/shared/test_editorial_financial_flow.py",
+    "new_semantic_tests": "PASS_SOURCE_LEDGER_ADVERSARIAL_ONLY_NOT_PRODUCTION_RENDERER",
+    "final_main_sha_at_handoff": "37ab35fd4c861b60ed65536e072b5aa6fa8b7ba8",
+    "latest_live_nav_existing_11": "PASS_PREVIOUS_UNCHANGED_HTML_41968932787_SOURCE_668108"
   }
 }
