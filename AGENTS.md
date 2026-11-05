@@ -25,3 +25,5 @@ Historical project state is archived only at `docs/history/PROJECT_STATE_ARCHIVE
 
 
 **v8.4.2 source-to-published anti-drift:** If a company report embeds `ledger-data`, match its issuer, source, facts and segment classification with the original source-ledger. Any source-note or financial fact edit must regenerate the exact offline HTML and pass the issuer's strict bit-for-bit rebuild, even when all accounting/geometry tests pass. The 688220 main run 41667517537 caught this real failure and 41667953097 verified the exact fix. Regression key `PUB-011` must remain executable.
+
+**v8.8 AEI/FT editorial gate:** Before creating or changing issuer HTML read docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md. Run scripts/audit_aei_editorial_delivery.py and its adversarial tests. Existing 600036/688111/600519/000333 mobile finance remains FAIL (old V10 hides other SVGs and forces an 850px scroller); --fail-known must fail until genuinely regenerated and CJK browser tested. A group-only conserved flow does not establish product own GP when its individual cost evidence is missing. A revised Skill does not revise released company HTML.

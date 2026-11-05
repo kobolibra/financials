@@ -86,3 +86,7 @@
 
 
 **v8.4.2 新增切实的跨窗口一致性**：新会话不能仅看 Skill 的版本号。核对本次原 PDF SHA、source ledger 真实字段、figure briefs、已发布页面内嵌的事实和源说明相同；执行 `scripts/check_release_contract.py`，且更改原始事实/来源后重新运行发行人出版社，并确认 `public/<code>.html` 逐字节重建。前次 688220 第一次 MAIN 重建 [41667517537](https://github.com/kobolibra/financials/actions/runs/41667517537) 失败、修复后 [41667953097](https://github.com/kobolibra/financials/actions/runs/41667953097) 通过，是不可丢的反例证据。不同跑次要记录各自发生于哪个 SHA，避免过期 FAIL/PASS 冒充最新结果。
+
+## 2026-11-05 · AEI/FT专项质量审查与根因阻断
+
+先读新的docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md并跑scripts/audit_aei_editorial_delivery.py。真实main已经发现旧四家600036/688111/600519/000333在390px隐藏所有非桑基图，唯一桑基仍是850px小窗横滚，旧CI曾把横滑当成功。新版本Skill可记录新P0，绝不代表这些旧公司HTML已实际修复；保持FAIL直到修改publisher，重新生成四份原始PDF有界源驱动的离线独立HTML、逐图CJK三屏真截图和完整Cloudflare双SHA验收。其余7家各有真实旧版本源证据，不因本轮Skill升级获得额外人类审稿认证；本轮没有新公司和新财报。

@@ -1,10 +1,24 @@
 ---
 name: ashare-financial-storytelling
-version: 8.7.5-rc1
+version: 8.8.0-rc1
 summary: Two-track research-to-publication discipline: independently benchmark App Economy Insights financial storytelling and rigorously analyze A-share original filings under current PRC accounting/disclosure rules, then produce a source-audited, responsive original visual equity research HTML.
 ---
 
-# FINANCIALS IN VISUALS · Research & Publication Skill v8.7.5-RC1
+# FINANCIALS IN VISUALS · Research & Publication Skill v8.8.0-RC1
+
+## v8.8.0-RC1 · AEI/FT 实际视觉执行质量升级（VIS-049／SEM-050）
+
+**这次不是新增公司。实际2026-11-05 main源审计发现原V10出版器在390px隐藏所有非桑基SVG，把唯一桑基压进850px横滑小框；旧GitHub Action反而断言图内能横滑为PASS。** 因此600036、688111、600519、000333当前移动视觉仍FAIL。读 [AEI×FT财经总编质量合同](../../docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和实际恶意测试 scripts/test_audit_aei_editorial_delivery.py。新Skill文字本身不会修复已经发布的网页。
+
+**两套同等P0，不得互相抵扣**：第一套是原始PDF完整字节/修订、原页行列/三表/重大附注/行业商业机制/利润现金资本/最强反证；第二套是首屏一个公司专属金融命题、能够一眼看出金额与经营机制的真实原创图、完整会计符号/原元SVG几何、直接标签与反方观点、完整独立HTML及三屏手机图像可读性。会计CI PASS、图片数量和美元/人民币换算准确均不等于顶级财经信息设计。
+
+**财务桑基必须先分类再画**：
+- TYPE A / SOURCE_OWN_COST_GP：每个互斥同口径来源均原PDF披露收入及其自己的成本时，逐源精确元级断言收入_i＝自己成本_i＋自己的推导毛利_i，并绘出真正各自的成本/毛利资金路径与合计节点；0毛利0路径，不得设假1px小业务金额，负毛利不能画正带。
+- TYPE B / GROUP_ONLY_GROSS_ALLOCATION：若仅有排他分部收入与集团总成本，则两阶段收入→集团成本/毛利图的算术守恒成立，但必须在图题明确PRODUCT_LEVEL_GP_NOT_ESTABLISHED，绝不能称其解释各分部自身毛利；若其实有逐分部成本，作为主图退化为B属于图形信息量FAIL。
+- TYPE C / SANKEY_OMITTED：涉及交叉分类、子项重复、负利润与负抵销、保费≠CAS服务收入、金融净额再重复扣息、资产存量与流量、不同币种期间或仅单源无更多合法分流，应写FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON并选合法有符号瀑布/嵌套图/时点结构，禁止漂亮的假流。
+
+**执行阻断**：python scripts/audit_aei_editorial_delivery.py 真实逐独立HTML字节检测已有四个隐藏SVG/850px横滑缺陷并为其保留明确FAIL，严禁新或其他页面继承；python scripts/audit_aei_editorial_delivery.py --fail-known 是严格出版审查，旧四没修时必须非零；python -m unittest scripts/test_audit_aei_editorial_delivery.py -v 运行恶意测试。必须继续真原报告来源、每图实际CJK Chromium 1440/768/390截图及人工批评、SVG元几何、离线重建与Cloudflare对应新SHA，不得将静态规则自动判为审美/新网页PASS。第二名真正人类分析师和艺术总监未审核保持NOT_CHECKED。
+
 
 
 ## v8.7.5-RC1 · VIS-048 second cross-sector original financial mobile adaptation: 688220 semiconductor

@@ -48,7 +48,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.7.5-rc1",
+    "version": "8.8.0-rc1",
     "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -1302,5 +1302,31 @@
     "source_note_status": "FAIL_BOUNDED_AR_90.50_PCT_REPORTED_VS_89.17_PCT_DERIVED__RPO_0.01_YUAN_SOURCE_DIFFERENCE",
     "human_review": "NOT_CHECKED",
     "market_comparables": "NOT_CHECKED"
+  },
+  "current_aei_ft_editorial_source_audit": {
+    "date": "2026-11-05",
+    "started_main": "b0b7087a8bd06177512de1f6bb2a574f9461cbe0",
+    "source_review": "SKILL_FIVE_MANUALS_11_PUBLIC_ISSUER_HTML_V10_PUBLISHER_LIVE_HISTORICAL_AUDIT",
+    "version": "8.8.0-rc1",
+    "document": "docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md",
+    "diagnostic_tool": "scripts/audit_aei_editorial_delivery.py",
+    "adversarial_test": "scripts/test_audit_aei_editorial_delivery.py",
+    "diagnosed_source_p0": "V10_390_CSS_HIDES_NON_SANKEY_SVG_AND_FORCES_850PX_INNER_HORIZONTAL_SCROLL",
+    "old_issuer_codes_with_unfixed_p0": [
+      "600036",
+      "688111",
+      "600519",
+      "000333"
+    ],
+    "research_accounting_history": "PRIOR_SOURCE_BOUNDED_ONLY_NO_NEW_ORIGINAL_PDF",
+    "semantic_sankey_policy": "TYPE_A_OWN_COST_GP_TYPE_B_GROUP_ONLY_TYPE_C_OMITTED",
+    "modified_issuer_pdfs": [],
+    "modified_issuer_html": [],
+    "new_issuer_added": false,
+    "browser_reinspection_in_this_iteration": "NOT_CHECKED_NO_NEW_SCREENSHOTS",
+    "cloudflare_publication_in_this_iteration": "NOT_CHECKED_NO_REPORT_CHANGED",
+    "human_independent_research_and_visual": "NOT_CHECKED",
+    "pending_source_repair": "research/rebuild-v10/publisher.py_and_full_four_HTML_native_mobile_rebuild_then_true_Cloudflare",
+    "git_ci": "PENDING_CANDIDATE_VALIDATION"
   }
 }

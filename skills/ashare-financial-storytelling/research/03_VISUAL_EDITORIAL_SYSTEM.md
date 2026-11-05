@@ -125,3 +125,7 @@ A chart is published only when each required field has been populated and passed
 **Source-cell anti-regression:** p.87 of ASR's 2026H1 P&L has a blank current-year nonoperating expense cell and **15.30 yuan in the prior-year comparative column**. Earlier ledger classified 15.30 as 2026H1 because a number appeared on the correct page. The visual compiler must check original x-column, not only page token presence. The corrected 2026H1 contribution of zero is a derivation from the P&L subtotal and physically blank current cell, not an issuer-disclosed numeric zero. This concrete error demonstrates why self-certified source tests are insufficient.
 
 **Reviewer actions for each figure screenshot:** 5-second research answer; label hierarchy; monetary shape conservation; true zero/sign; period/currency; real source table and alternative explanation; exact legends for micro flows; 1440/768/390 all readable; check accessible keyboard/export; repeat on real public route. No editorial completion is claimed without actual screenshot opening, and no external human independence is implied by a second automated test.
+
+## 9. v8.8 AEI/FT 财务总编独立阻断
+
+参照 [AEI/FT完整财经视觉标准](../../../docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 区分逐业务原始成本/毛利（Type A）与只有集团毛利的守恒分配图（Type B）；只有集团成本的资金图不能回答哪个产品自身赚钱。现存V10四公司在390隐藏全部非桑基SVG，仅850px桑基横滑，因此真实结构FAIL，必须改源生成器/真实HTML/逐图CJK浏览器与本版Cloudflare SHA，不可用历史截图、源表或CI绿色冒充视觉修复。公司专属5秒研究问题/原图真实面积/中文getBBox/负数/反证是独立于会计金额PASS的质量门。

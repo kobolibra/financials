@@ -1,9 +1,12 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
+**2026-11-05 AEI/FT 视觉品质升级候选：** 现行 Skill 方法加入 [财经总编真实审美与桑基A/B/C决策标准](docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和真实独立HTML静态审查器。已发现生产源V10四家600036/688111/600519/000333在390隐藏除桑基外所有图、剩余850px桑基只在小窗横滑，确认为旧版FAIL；新规范和自动测试绝不宣称四家公司已修或全站审美达到AEI顶级。站点仍唯一11家公司，独立人类研究/视觉审核NOT_CHECKED。
+
+
 
 **2026-11-05 · 已公开核验的最新生产状态（后面日期较早的章节只作历史快照）**：现行 11 家公司仍在同一个 [Financials in Visuals](https://financials-in-visuals.pages.dev/) 公司目录，独立离线 HTML，`site/research_catalog.json` 为唯一公司清单。必须在每个新会话读取**当时真实 GitHub main**、`project-status.json`、当前 GitHub Actions、完整 Skill 和五册研究手册，不得凭本段硬编码未来公司数或把旧版本的“待上线”当真。
 
-**最新真实 Cloudflare 688220 已 PASS**：[翱捷科技正式研究报告](https://financials-in-visuals.pages.dev/688220)，[完整 HTML / 六张真实中文浏览器截图 / 唯一11家目录真实路径验证 Action #41871662195](https://github.com/kobolibra/financials/actions/runs/41871662195)。真实生产提交 `e63ee316db22d8d079be6a80cd3cd9f08fd1d98e`，源报告 224 物理页镜像 SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`，公司完整公开 HTML SHA `aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973`，首页完整 HTML SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。九幅按原始元金额绘制的独立手机财务图，1440 / 768 / 390 真浏览器审核、原财务来源路径与原会计有符号桥已发布；保留桌面原 SVG、全部原元级证据表和编辑导出。截图、真实最终网址与源 SHA 详见 `research/issuers/688220/live-release-receipt.json`，校验门见同目录 `release-gates.json`。Skill 当前 v8.7.5-RC1（VIS-048）。原 p137 前五名应收/合同资产报告 90.50% 对比推导约 89.17% 的分母差异、RPO 0.01 元差额仍 **FAIL（附注有界）**；上交所官网 PDF 与镜像逐字节同一性及独立第二名人类财务/视觉审稿仍 **NOT_CHECKED**，不得对外称全优顶级完成。
+**最新真实 Cloudflare 688220 已 PASS**：[翱捷科技正式研究报告](https://financials-in-visuals.pages.dev/688220)，[完整 HTML / 六张真实中文浏览器截图 / 唯一11家目录真实路径验证 Action #41871662195](https://github.com/kobolibra/financials/actions/runs/41871662195)。真实生产提交 `e63ee316db22d8d079be6a80cd3cd9f08fd1d98e`，源报告 224 物理页镜像 SHA `9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc`，公司完整公开 HTML SHA `aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973`，首页完整 HTML SHA `f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41`。九幅按原始元金额绘制的独立手机财务图，1440 / 768 / 390 真浏览器审核、原财务来源路径与原会计有符号桥已发布；保留桌面原 SVG、全部原元级证据表和编辑导出。截图、真实最终网址与源 SHA 详见 `research/issuers/688220/live-release-receipt.json`，校验门见同目录 `release-gates.json`。Skill v8.7.5-RC1对应此前半导体发布阶段；现行方法规范见首页v8.8.0专项质量升级。原 p137 前五名应收/合同资产报告 90.50% 对比推导约 89.17% 的分母差异、RPO 0.01 元差额仍 **FAIL（附注有界）**；上交所官网 PDF 与镜像逐字节同一性及独立第二名人类财务/视觉审稿仍 **NOT_CHECKED**，不得对外称全优顶级完成。
 
 **最初三家光通信同样真实上线**：300394、300502、300308 三份源金额财务图与真实公开 1440/768/390 的 HTML SHA 及导航见 [主站 Action #41855709571](https://github.com/kobolibra/financials/actions/runs/41855709571) PASS。当前仍明确 **FAIL 390 图内裁切的四家旧 HTML** 为 `600036`、`688111`、`600519`、`000333`，必须逐个按原报告和真实图源复核并重建，不可凭其他行业的通过结论替它们签字。AEI/FT 水准的独立专业审美审阅仍没有第二人类编辑签字。
 

@@ -18,6 +18,9 @@ on:
       - 'docs/REPORT_RELEASE_CHECKLIST.md'
       - 'docs/history/PROJECT_STATE_ARCHIVE_2026-11-03.md'
       - 'skills/ashare-financial-storytelling/SKILL.md'
+      - 'docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md'
+      - 'scripts/audit_aei_editorial_delivery.py'
+      - 'scripts/test_audit_aei_editorial_delivery.py'
       - 'skills/ashare-financial-storytelling/research/**'
       - 'site/research_catalog.json'
       - 'site/portal_builder.py'
@@ -58,6 +61,17 @@ jobs:
           python scripts/check_release_contract.py
           python -m unittest discover -s scripts -p test_check_release_contract.py -v
           python research/shared/test_conserved_flow.py
+      - name: AEI V10 legacy source structural P0 and adversarial examples
+        run: |
+          python scripts/audit_aei_editorial_delivery.py --out /tmp/aie-source-audit.json >/dev/null
+          python -m unittest scripts/test_audit_aei_editorial_delivery.py -v
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/aie-source-audit.json'))
+          assert d['known_existing_visual_p0']==['000333','600036','600519','688111'], d['known_existing_visual_p0']
+          assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED'
+          print('FOUR_OLD_MOBILE_P0_REMAIN_FAIL_SOURCE_STAMPED_NOT_VISUALLY_CERTIFIED')
+          PY
       - name: Existing unified-root generator still reproduces the homepage
         run: |
           python -m unittest discover -s site -p test_portal.py -v
