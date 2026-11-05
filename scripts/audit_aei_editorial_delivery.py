@@ -80,6 +80,7 @@ def audit(root: Path, *, fail_known: bool = False) -> dict:
     assert catalog["published_issuer_count"] == len(catalog["issuers"])
     records = []
     violations = []
+    immutable_legacy = json.loads((root / 'research/visual-audit/quality-debt.json').read_text(encoding='utf-8'))['legacy_source_frozen_allowlist_for_preexisting_only']
     for issuer in catalog["issuers"]:
         code = issuer["code"]
         html = root / "public" / issuer["href"].lstrip("/")
@@ -89,7 +90,11 @@ def audit(root: Path, *, fail_known: bool = False) -> dict:
         item = inspect_html(code, html.read_bytes())
         records.append(item)
         if item["source_code_structural_failures"]:
-            if code not in KNOWN_CURRENT_P0 or fail_known:
+            # Waive only the exact source SHA of each historical old-FAIL report.
+            # Any changed HTML remains a *new* publication that must fix P0.
+            exact_historical_bytes = (code in KNOWN_CURRENT_P0 and
+                                      immutable_legacy.get(code) == item['html_sha256'])
+            if fail_known or not exact_historical_bytes:
                 violations.append(f"{code}: {item['source_code_structural_failures']}")
     codes = {item["code"] for item in records}
     if len(records) != len(catalog["issuers"]) or len(codes) != len(records):
