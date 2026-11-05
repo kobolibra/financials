@@ -481,7 +481,7 @@
       "assertion_marker": "MOBILE_SANKEY_FIXED_WIDE_IN_SMALL_HORIZONTAL_PANE",
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
-      "status": "STATIC_HOSTILE_GUARD_IMPLEMENTED__FOUR_PRODUCTION_PAGES_STILL_FAIL"
+      "status": "FAIL_LIVE_STILL_OPEN"
     },
     {
       "id": "SEM-050",
@@ -489,9 +489,9 @@
       "correction": "严格区分TYPE_A_SOURCE_OWN_COST_GP、TYPE_B_GROUP_ONLY_GROSS_ALLOCATION与TYPE_C_SANKEY_OMITTED。Type B必须直标PRODUCT_LEVEL_GP_NOT_ESTABLISHED，有逐组成本时主图强制A；该逻辑目前为编辑规则，等待和四家生成器及逐图真实几何测试融合才可声称生产执行。",
       "proof_file": "docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md",
       "assertion_marker": "GROUP_ONLY_GROSS_ALLOCATION",
-      "scope": "cross_issuer_rule_not_yet_end_to_end",
+      "scope": "cross_issuer_process",
       "transfer_gate": "CHART_SEMANTICS",
-      "status": "DOCUMENTED_PENDING_SOURCE_GENERATOR_AND_LIVE_TEST"
+      "status": "NEW_CONTRACT"
     }
   ]
 }
