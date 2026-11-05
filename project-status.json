@@ -1,6 +1,45 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-04",
+  "updated_date": "2026-11-05",
+  "current_new_issuer_unidentified_intake": {
+    "checked_date": "2026-11-05",
+    "observed_main_at_intake": "b7cf9daf79cb9abda0b6da2a0b85d60f995ff834",
+    "canonical_company_count_at_intake": 11,
+    "source_identity": "NOT_CHECKED_NO_NEW_COMPANY_OR_TICKER_IN_CURRENT_USER_MESSAGE",
+    "original_pdf": "NOT_CHECKED_NO_IDENTIFIED_NEW_ORIGINAL_REPORT_FILE_URL_OR_ATTACHMENT",
+    "current_conversation_attachment_count": 0,
+    "library_search": "OLD_IDENTIFIED_SOURCE_REPORTS_PRESENT_BUT_NO_EVIDENCE_WHICH_IS_THIS_REQUEST",
+    "new_issuer_financial_research": "NOT_CHECKED_NO_SOURCE",
+    "new_issuer_editorial_and_sankey": "NOT_CHECKED_NO_SOURCE",
+    "new_issuer_offline_html": "NOT_CREATED_NO_SOURCE",
+    "new_issuer_deployment": "NOT_CHECKED_NO_NEW_REPORT",
+    "latest_main_research_action": {
+      "id": 41872906405,
+      "head": "b7cf9daf79cb9abda0b6da2a0b85d60f995ff834",
+      "status": "PASS_EXISTING_688220_SCOPE_ONLY"
+    },
+    "latest_main_handoff_action": {
+      "id": 41872906530,
+      "head": "b7cf9daf79cb9abda0b6da2a0b85d60f995ff834",
+      "status": "PASS_EXISTING_SOURCE_CONTRACT"
+    },
+    "latest_main_unified_live_action": {
+      "id": 41872906424,
+      "head": "b7cf9daf79cb9abda0b6da2a0b85d60f995ff834",
+      "status": "CANCELLED_BROWSER_NOT_RUN"
+    },
+    "previous_verified_688220_live_action": {
+      "id": 41871662195,
+      "head": "e63ee316db22d8d079be6a80cd3cd9f08fd1d98e",
+      "status": "PASS_688220_EXACT_OLD_RELEASE_ONLY"
+    },
+    "direct_cloudflare_session_check": "NOT_CHECKED_TOOLS_INACCESSIBLE_AND_LOCAL_DNS_FAILED",
+    "old_html_modified": false,
+    "catalog_modified": false,
+    "next_source_required": "New company identifier plus its complete original PDF attachment or verifiable official PDF URL",
+    "source_handoff": "PROJECT_STATE.md first section 2026-11-05; existing issuer capsules unchanged",
+    "quality": "NO_NEW_ISSUER_RELEASE_OR_PDF_VERIFIED"
+  },
   "repository": "kobolibra/financials",
   "production_branch": "main",
   "production_url": "https://financials-in-visuals.pages.dev/",

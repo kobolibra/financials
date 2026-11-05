@@ -1,5 +1,15 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+## 2026-11-05 · ACTIVE INTAKE CHECK: 用户本轮未提供可识别新发行人原始 PDF（非新的已发布公司）
+
+- **本轮启动查验**：实际 GitHub `main` = `b7cf9daf79cb9abda0b6da2a0b85d60f995ff834`；权威 `site/research_catalog.json` = **11家公司**，统一网站独立离线报告，不改既有11家报告、不新建第二入口。已实际获取 START_HERE、project-status、PROJECT_STATE、AGENTS、交接协议、发布清单、现行 Skill v8.7.5-RC1 全文与五册研究手册；抽查 688220 的真实独立 HTML、source-ledger/figure-briefs/release-gates、601628 原始来源账本和统一目录生成器。仓库 Skill **不是自动安装的 ChatGPT 全局 Skill**。
+- **本轮输入证据**：本次消息未提供证券代码/公司名称、PDF 附件或完整官方 PDF URL；当前会话附件数为0。Library 可访问的PDF仅识别为已有旧公司或其他项目材料，**不能在未获指定时推断其为本次新公司**。所以 `NEW_ISSUER_IDENTITY=NOT_CHECKED`，`NEW_SOURCE_BYTES_SHA_PAGES=NOT_CHECKED`；无从复核报告期间、合并原表/重大附注或新图金额，禁止由历史候选公司替代。
+- **本轮实际最新 Actions**：同一 HEAD 的研究构建 `#41872906405` **PASS（仅既有688220研究构建范围）**、Skill/交接 `#41872906530` **PASS**；统一生产路由 `#41872906424` **CANCELLED**（中文 Chromium 安装阶段被取消，Cloudflare 真浏览器步骤未执行），故当前 HEAD 最新 live 验收 **NOT_CHECKED**。此前 `e63ee316db22d8d079be6a80cd3cd9f08fd1d98e` 的 688220 真 Cloudflare `#41871662195` PASS 只证明该特定已发布 HTML 及其截图与 SHA，**不证明本轮新增公司或当次 HEAD 的未执行 live 检查**。本会话直接访问 Cloudflare 工具报禁止/URL不可达，本地网络 DNS 解析失败；不虚构最新站点截图。
+- **现行已知遗留门槛**：原始研究网页 `600036`、`688111`、`600519`、`000333` 的390手机财务图裁切 **FAIL**（未在本轮改动）；688220 p137 应收集中度分母差异及p179 0.01元附注差异仍 **FAIL_BOUNDED**；完整重大附注第二人核查、外部多期估值、独立人类财务和视觉审阅 `NOT_CHECKED`。不以既有通过记录覆盖上述缺口。
+- **本轮新发行人独立质量门**：`PDF_BYTES=NOT_CHECKED`; `SOURCE_ROW_COLUMN=NOT_CHECKED`; `ACCOUNTING_THREE_STATEMENTS=NOT_CHECKED`; `RESEARCH_COUNTERCASE=NOT_CHECKED`; `AEI_FT_VISUAL_EDITORIAL=NOT_CHECKED`; `SANKEY_GEOMETRY=NOT_CHECKED`; `BROWSER_1440_768_390=NOT_CHECKED`; `CLEAN_OFFLINE_REBUILD=NOT_CHECKED`; `GITHUB_NEW_REPORT=NOT_CHECKED`; `CLOUDFLARE_NEW_REPORT=NOT_CHECKED`; `INDEPENDENT_SECOND_HUMAN=NOT_CHECKED`。未生成或发布新 HTML，未修改任何已发布公司网页及目录。
+- **可执行下一个真实动作**：取得用户本次指定的新公司原始 PDF（上传或给出证券代码+原始完整公告链接），先验证字节、PDF SHA/物理页、公告和修订状态，随后按现行 Skill 创建该发行人源账本/行业会计模型/反证/逐图 brief/独立 HTML，完成三屏和真实 Pages 逐字节验收，再加入唯一目录。此记录只保存真实阻碍和核验结果，不把缺少 PDF 当作已完成研究。每个后续新对话仍须重新核 main、Actions、源字节。
+
+
 ## 2026-11-05 · ACTIVE MAIN: 688220 真正完成独立网站新版发布与逐字节中文三屏核验
 
 **已核对的真实 GitHub main / Cloudflare（不是候选绿灯）**：原研究报告十一家公司统一研究库、每家独立离线 HTML。不另建任何入口，也不更改另十家既有公司 HTML。最新版 688220 研究图像直接以原始元账本生成九幅手机原生研究图；保留原 Desktop 全部原财务 SVG、SVG 导出、附注和逐行人民币元证据表。PR #29 发布正式研究 HTML `dfce7f700997b501cccd230f38925695e39a6e71`；后续 PR #30、#31 只更新真实 Cloudflare 验收程序和严格收据格式，不重写 `public/688220.html`。上一次实际生产核验工作提交 `e63ee316db22d8d079be6a80cd3cd9f08fd1d98e`，最新文档提交以实际新 main 为准。
