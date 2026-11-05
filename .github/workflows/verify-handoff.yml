@@ -72,6 +72,9 @@ jobs:
           assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED'
           print('FOUR_OLD_MOBILE_P0_REMAIN_FAIL_SOURCE_STAMPED_NOT_VISUALLY_CERTIFIED')
           PY
+      - name: Test exact-Yuan source/type/negative/segment financial flow semantics
+        run: |
+          python research/shared/test_editorial_financial_flow.py
       - name: Existing unified-root generator still reproduces the homepage
         run: |
           python -m unittest discover -s site -p test_portal.py -v
