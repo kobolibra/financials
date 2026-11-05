@@ -1,5 +1,14 @@
 # Financials in Visuals — 一家公司财报研究与视觉出版“不能跳过”清单
 
+### v8.8.0 · AEI/FT财经视觉独立阻断门
+
+- [ ] 同一层互斥业务原始收入及各自成本均已报告时必须Type A（各组自己成本＋毛利），只有集团总成本只能Type B（图上直接写PRODUCT_LEVEL_GP_NOT_ESTABLISHED）；负数或交叉维度为Type C不画假流。真实Bézier路径、源节点和目标金额几何核对，不只看金额meta。
+- [ ] 每张主图先有5秒公司专属结论、与事实相称的独特图形语法、可见最强反证；必须1440/768/390真中文整图截图审查，不能用同款仪表板和图数作审美标准。
+- [ ] V10四家旧HTML的390手机CSS明确隐藏所有非桑基SVG、唯一桑基850px强制小窗横滚，这四家600036、688111、600519、000333仍FAIL。不能修改质量记录假报PASS；必须修源与HTML并重新真实云端同SHA验收。
+- [ ] 运行python scripts/audit_aei_editorial_delivery.py、python -m unittest scripts/test_audit_aei_editorial_delivery.py -v；严格现有全站准入再运行python scripts/audit_aei_editorial_delivery.py --fail-known（四旧未修必须FAIL）。工具仅能判静态源结构，不能自证审美/真实浏览器/第二人类审阅。
+- [ ] 详情见[AEI/FT财经总编合同](AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md)。
+
+
 ### v8.7.5 · 原始半导体报告九图真手机财务信息设计（VIS-048）
 
 - [ ] 保留真实原财报PDF SHA/字节/物理页、原始原元金额、合并口径及同一财报期间；镜像原件不冒称上海交易所官网完全同字节，原p137披露前五名应收及合同资产占比90.50% vs 本研究独立分母89.17%明确保留 FAIL_BOUNDED，不得用假设分母“修正”会计或金融事实。

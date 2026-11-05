@@ -4,6 +4,9 @@ on:
     branches: [work/editorial-aei-11-issuer-visual-audit-20261104, main]
     paths:
       - 'research/visual-audit/*.json'
+      - 'docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md'
+      - 'scripts/audit_aei_editorial_delivery.py'
+      - 'scripts/test_audit_aei_editorial_delivery.py'
       - 'scripts/check_visual_editorial_policy.py'
       - 'scripts/test_visual_editorial_policy.py'
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
@@ -12,6 +15,9 @@ on:
     branches: [main]
     paths:
       - 'research/visual-audit/**'
+      - 'docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md'
+      - 'scripts/audit_aei_editorial_delivery.py'
+      - 'scripts/test_audit_aei_editorial_delivery.py'
       - 'scripts/check_visual_editorial_policy.py'
       - 'scripts/test_visual_editorial_policy.py'
       - 'skills/ashare-financial-storytelling/**'
@@ -25,6 +31,17 @@ jobs:
     timeout-minutes: 9
     steps:
       - uses: actions/checkout@v4
+      - name: AEI static source gate fails unseen new mobile clipped HTML, retains four old explicit FAIL
+        run: |
+          python scripts/audit_aei_editorial_delivery.py --out /tmp/aie-source-audit.json >/dev/null
+          python -m unittest scripts/test_audit_aei_editorial_delivery.py -v
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/aie-source-audit.json'))
+          assert len(d['known_existing_visual_p0'])==4
+          assert not d['new_or_unwaived_p0']
+          print('SOURCE_CODE_AEI_GUARD_PASS_WITH_FOUR_EXPLICIT_OLD_FAILS')
+          PY
       - name: Validate actual 33 Chromium original report snapshots plus source-frozen 10 phone FAILs
         run: |
           python scripts/check_visual_editorial_policy.py

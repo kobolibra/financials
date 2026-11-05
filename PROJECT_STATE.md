@@ -1,5 +1,16 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+## 2026-11-05 · ACTIVE MAIN SOURCE AUDIT / AEI-FT financial editorial v8.8 candidate, not a fixed four-report website
+
+- **本轮用户暂停新公司研究，要求现有Skill与11个已发布公司的机构研究/财经信息设计深度审核**。开始时真实GitHub main=b0b7087a8bd06177512de1f6bb2a574f9461cbe0；11家公司唯一目录、原Skill v8.7.5全文/五研究手册及原交接均在本次会话核对。公开AEI三张报表及6图、Alphabet公开可看部分与FT关系语法对照，付费完整图不可冒称已看。
+- **根因**：实际 research/rebuild-v10/publisher.py 的手机CSS在390px直接隐藏全部非桑基SVG，剩下桑基min-width:850px且内滚；.github/workflows/verify-v10-sankey-research.yml旧浏览器assert要求内部滚动才算PASS。明确现有四家600036、688111、600519、000333移动财务图FAIL，非会计CI绿色或数字列表能改正。现阶段并未修改V10原页面/生成器，不能写已修。
+- **方法修正**：Skill v8.8.0-rc1专门加入独立AEI/FT总编门，文件 docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md：Type A逐来源自身成本/毛利真实加权桑基、Type B仅集团毛利必须显性PRODUCT_LEVEL_GP_NOT_ESTABLISHED、Type C跨组/负数/异口径弃流并使用合法符号/存量对照。仍需逐图在真实公司财报内执行，不能只靠文字。
+- **实际新增回归代码**：scripts/audit_aei_editorial_delivery.py 读取独立HTML真实字节检查隐藏非桑基图/850px小窗/缺source-table/iframe；scripts/test_audit_aei_editorial_delivery.py 多种恶意反例。默认审计保留四家明确FAIL但仅新额外失误阻断CI；严格 --fail-known 模式四家没修必须红。静态门只能检查源码结构，真实新截图/CJK/金额真实几何/第二人类编辑均 NOT_CHECKED。
+- **范围/发布**：本次只变更Skill/研究图形规范/Actions质量门/交接，并没有修改现有11家公司任何原始PDF、账本、图形生成器、HTML，也不新增研究入口。旧7家源版本验收仍以各自历史事实SHA为准。第二位真实独立人类研究分析师/艺术总监、全体重大附注穷尽核查和多季度估值均NOT_CHECKED。
+- **当前本轮质量门**：MAIN_START_STATE=PASS；AEI_FIRST_PARTY_PUBLIC_METHOD=PASS_LIMITED_PUBLIC; MOBILE_OLD_FOUR=FAIL；NEW_STATIC_GUARD=CI_TO_VERIFY；SKILL_METHOD_PATCH=BRANCH_TO_MERGE；CURRENT_LIVE_CLOUDFLARE_11_SCREENSHOTS=NOT_CHECKED；HUMAN_INDEPENDENT_ART_AND_FINANCE_REVIEW=NOT_CHECKED。新PR/Actions准确SHA须以新实际结果记录，不能用旧CI替代。
+- **下一执行动作**：直接修V10源publisher的8/9/9/10幅财务图手机独立金融图（不是隐藏其余图或把850缩成330小字），移除旧Action反向sw>cw条件，原始4家PDF+账本重跑，真正1440/768/390每图截图与源元守恒/正式Pages双SHA验证才升旧四PASS；检验更深行业利润来源后再评估是否接近AEI的阅读效率。
+
+
 ## 2026-11-05 · ACTIVE INTAKE CHECK: 用户本轮未提供可识别新发行人原始 PDF（非新的已发布公司）
 
 - **本轮启动查验**：实际 GitHub `main` = `b7cf9daf79cb9abda0b6da2a0b85d60f995ff834`；权威 `site/research_catalog.json` = **11家公司**，统一网站独立离线报告，不改既有11家报告、不新建第二入口。已实际获取 START_HERE、project-status、PROJECT_STATE、AGENTS、交接协议、发布清单、现行 Skill v8.7.5-RC1 全文与五册研究手册；抽查 688220 的真实独立 HTML、source-ledger/figure-briefs/release-gates、601628 原始来源账本和统一目录生成器。仓库 Skill **不是自动安装的 ChatGPT 全局 Skill**。

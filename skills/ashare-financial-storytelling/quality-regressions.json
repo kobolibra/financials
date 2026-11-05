@@ -472,6 +472,26 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-049",
+      "root_cause": "V10四家真实发布源390CSS隐藏所有非桑基图，并把唯一桑基固定850px放进小窗横滑；旧Actions竟将图内scrollWidth>clientWidth视为通过。",
+      "correction": "新增对真实独立HTML的源字节检查与恶意用例，保留四家旧FAIL；任何修改旧HTML或新增公司不能继承该结构。真正修复必须回到publisher重建手机不同图形语法，严格从原PDF源元、文字BBox、实际中文三屏和Cloudflare核对新HTML SHA。",
+      "proof_file": "scripts/test_audit_aei_editorial_delivery.py",
+      "assertion_marker": "MOBILE_SANKEY_FIXED_WIDE_IN_SMALL_HORIZONTAL_PANE",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "FAIL_LIVE_STILL_OPEN"
+    },
+    {
+      "id": "SEM-050",
+      "root_cause": "旧V10真守恒来源→集团总成本/毛利两阶段图未展示每种商品自己的COGS和GP，容易与原报告已有逐类成本事实冲突，让读者错以为解释了分部盈利归因。",
+      "correction": "严格区分TYPE_A_SOURCE_OWN_COST_GP、TYPE_B_GROUP_ONLY_GROSS_ALLOCATION与TYPE_C_SANKEY_OMITTED。Type B必须直标PRODUCT_LEVEL_GP_NOT_ESTABLISHED，有逐组成本时主图强制A；该逻辑目前为编辑规则，等待和四家生成器及逐图真实几何测试融合才可声称生产执行。",
+      "proof_file": "docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md",
+      "assertion_marker": "GROUP_ONLY_GROSS_ALLOCATION",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "NEW_CONTRACT"
     }
   ]
 }
