@@ -1,0 +1,106 @@
+{
+  "source_check": [
+    {
+      "ticker": "688111",
+      "sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+      "pdf_pages": 199,
+      "selected_facts": 46,
+      "literal_page_numeric_found": 46,
+      "literal_page_numeric_missing": [],
+      "accounting_identities": [
+        "BS_2026",
+        "BS_2025",
+        "CASH_CLOSE",
+        "REV_SEGMENTS",
+        "CFO_INDIRECT_ALL_REPORTED_ADJUSTMENTS",
+        "CFO_SIGNED_LITERAL_SOURCE_ITEMS"
+      ],
+      "numeric_only_not_semantic_review": true
+    },
+    {
+      "ticker": "600519",
+      "sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+      "pdf_pages": 110,
+      "selected_facts": 45,
+      "literal_page_numeric_found": 45,
+      "literal_page_numeric_missing": [],
+      "accounting_identities": [
+        "BS_2026",
+        "BS_2025",
+        "CASH_CHANGE",
+        "PRODUCT_REV",
+        "CHANNEL_REV",
+        "CFO_INDIRECT_ALL_REPORTED_ADJUSTMENTS",
+        "CFO_SIGNED_LITERAL_SOURCE_ITEMS"
+      ],
+      "numeric_only_not_semantic_review": true
+    },
+    {
+      "ticker": "000333",
+      "sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+      "pdf_pages": 205,
+      "selected_facts": 54,
+      "literal_page_numeric_found": 54,
+      "literal_page_numeric_missing": [],
+      "accounting_identities": [
+        "BS_2026",
+        "BS_2025",
+        "CASH_CLOSE",
+        "REV_SEGMENTS",
+        "SEGMENT_HIERARCHY",
+        "TOTAL_REVENUE",
+        "MINORITY_PROFIT",
+        "DEDUCTED_PROFIT",
+        "CFO_INDIRECT_ALL_REPORTED_ADJUSTMENTS",
+        "CFO_SIGNED_LITERAL_SOURCE_ITEMS"
+      ],
+      "numeric_only_not_semantic_review": true
+    },
+    {
+      "ticker": "600036",
+      "sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+      "pdf_pages": 247,
+      "selected_facts": 46,
+      "literal_page_numeric_found": 46,
+      "literal_page_numeric_missing": [],
+      "accounting_identities": [
+        "BS_2026",
+        "BS_2025",
+        "CASH_CLOSE",
+        "NET_INTEREST",
+        "REVENUE",
+        "MINORITY_PROFIT",
+        "FULL_PNL_TO_PARENT",
+        "OTHER_OPERATING_COST_COMPONENTS"
+      ],
+      "numeric_only_not_semantic_review": true
+    }
+  ],
+  "files": {
+    "000333.html": {
+      "sha256": "b5834a2d2266a3eb06fb260204dcb4ad5d0a05a4c2711ca0f17a5f3c40670b97",
+      "bytes": 126304,
+      "figures": 10
+    },
+    "600519.html": {
+      "sha256": "577f23523e1ece2e4e7fed272809a92cafb52b9be512294530f8a63fc554c3ff",
+      "bytes": 101512,
+      "figures": 9
+    },
+    "600036.html": {
+      "sha256": "80fbc7a445209516cb16e91d98762a95fb878d997bf4b294339b127650bbe270",
+      "bytes": 113744,
+      "figures": 8
+    },
+    "index.html": {
+      "sha256": "564cb16665625fcaad6702ee9b5bf6d69fd72c06d3f690576bf4ebc3e782b848",
+      "bytes": 13944,
+      "figures": 0
+    },
+    "688111.html": {
+      "sha256": "b12cefa3a1865f1d8243a197fcb4e928b86d2a78f1004fc25da272b047c02572",
+      "bytes": 120134,
+      "figures": 9
+    }
+  }
+}
