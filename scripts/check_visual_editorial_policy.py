@@ -93,6 +93,46 @@ def validate_current_published_files(root, audit, debt):
         # baseline after screenshot-proven typo correction; require BOTH real
         # 1440/768/390 Cloudflare live receipt and source-linked 10 mobile
         # finance exhibitions, not the two-sector renderer's custom schema.
+        # V10's renewed source-bound path uses one actual original-byte CJK
+        # Chromium census for ALL independent company figures, not only the
+        # hero Sankey or a generic sector's unrelated receipt schema.
+        if code in {"688111","600519","000333","600036"}:
+            p=root/"research/rebuild-v10/real-browser-qa/result.json"
+            if not p.is_file():
+                errors.append(f"VISUAL_CHANGED_V10_REQUIRES_NEW_ALL_FIGURE_CJK_SOURCE_RECEIPT {code}")
+                continue
+            q=json.loads(p.read_text(encoding="utf8"))
+            arr=[x for x in q.get("cases",[]) if x.get("code")==code]
+            counts={"688111":9,"600519":9,"000333":10,"600036":8}
+            expected=counts[code]
+            valid=(q.get("all_36_issuer_exhibits_3_viewports")=="PASS"
+                   and len(arr)==3
+                   and {x.get("width") for x in arr}==WIDTHS
+                   and all(x.get("html_sha256")==sha and
+                           x.get("real_chromium") is True and
+                           x.get("actual_all_figures")==expected and
+                           isinstance(x.get("full_page_screenshot_sha256"),str) and
+                           len(x["full_page_screenshot_sha256"])==64 and
+                           len(x.get("figures",[]))==expected for x in arr)
+                   and all(len({f.get("figure") for f in x["figures"]})==expected
+                           and all(f.get("native_source_svg")== (x["width"]<=850)
+                                   and f.get("scroll_free")=="PASS"
+                                   and f.get("CJK_text_inside_screen")=="PASS"
+                                   and f.get("source_ribbon_actual_SVG_thickness")=="PASS"
+                                   and isinstance(f.get("actual_figure_png_sha256"),str)
+                                   and len(f["actual_figure_png_sha256"])==64
+                                   for f in x["figures"])
+                           for x in arr)
+                  )
+            # Every checked 390/768 page must have a genuine independent
+            # mobile rendering of EVERY finance exhibit. Source SHA prevents
+            # old PNGs and receipts being rebound to new HTML.
+            if not valid:
+                errors.append(f"VISUAL_CHANGED_V10_ORIGINAL_SOURCE_ALL_FINANCE_3_VIEWPORT_RECEIPT_INVALID {code}")
+                continue
+            fixed.append({"code":code,"source_html_sha256":sha,
+                          "mobile_original_money_grammar":"PASS_LOCAL_REAL_CJK_3_VIEWPORTS_ALL_MATERIAL_FIGURES__CLOUDFLARE_NOT_CHECKED"})
+            continue
         if code=="601628":
             p=root/"research/issuers/601628/live-release-receipt.json"
             if not p.is_file():
