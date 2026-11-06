@@ -230,9 +230,9 @@ def signed_source_bars(code, index, keys, get, facts, label="原始财务金额�
     h=D(62+len(rows)*70)
     out=_text(12,23,label,13,INK,True)
     out+=_text(12,40,"各指标同一金额坐标；不同定义的金额不可相加",10,MUTED)
-    axis=D(46)
+    axis=D(158)
     for i,(key,title,val) in enumerate(rows):
-        y=D(73+i*70);width=abs(val)/maximum*D(230)
+        y=D(73+i*70);width=abs(val)/maximum*D(134)
         out+=_text(12,y-9,_label(title,24),11,INK,True)
         out+=_box(axis,y,D(1),25,MUTED)
         out+=_box(axis if val>=0 else axis-width,y+3,width,19,GREEN if val>=0 else COPPER,
@@ -336,7 +336,7 @@ def cash_waterfall(code,index,get,facts,cfo_components):
 
 # Exact per-company exhibit family and use of full source rows.
 FAMILY={
- "688111":{1:"compare",2:"type",3:"rows",4:"rows",5:"stock",6:"compare",7:"cash",9:"rows"},
+ "688111":{1:"compare",2:"type",3:"rows",4:"rows",5:"stock",6:"compare",7:"cash",8:"indirect",9:"rows"},
  "600519":{1:"compare",2:"type",3:"rows",4:"rows",5:"rows",6:"compare",7:"stock",8:"indirect",9:"rows"},
  "000333":{1:"compare",2:"type",3:"compare",4:"rows",5:"rows",6:"compare",7:"rows",8:"stock",9:"cash",10:"indirect"},
  "600036":{1:"bank_interest",2:"type",3:"bank_profit",4:"compare",5:"ratio",6:"stock",7:"rows",8:"cash"},
