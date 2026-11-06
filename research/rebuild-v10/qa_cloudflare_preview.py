@@ -181,8 +181,14 @@ def main():
                         })""")
                         assert page_metrics["bodyScroll"]<=width+2,(engine,width,code,"DOCUMENT_OVERFLOW",page_metrics)
                         assert page_metrics["hasOverflow"]==0,(engine,width,code,"INNER_FINANCE_OVERFLOW",page_metrics)
-                        if touch:
+                        if touch and engine=="chromium":
+                            # Chromium exposes navigator.maxTouchPoints in this configured
+                            # touchscreen context; Linux WebKit may return zero even with
+                            # has_touch=True and is_mobile=True. Do not equate platform
+                            # API support with actual figure viewport correctness.
                             assert page_metrics["touch"]>0,(engine,width,code,"TOUCH_MODE_INACTIVE",page_metrics)
+                        if touch and engine=="webkit":
+                            assert context is not None and page_metrics["width"]==width,(engine,width,code,"WEBKIT_MOBILE_VIEWPORT_INVALID",page_metrics)
                         detail=[]
                         for idx in range(expected_count):
                             fig=figs.nth(idx)
