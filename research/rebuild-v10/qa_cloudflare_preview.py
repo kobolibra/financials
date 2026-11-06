@@ -243,8 +243,14 @@ def main():
                                 dest=OUT/f"preview-{code}-{engine}-{width}-{fid}.png"
                                 active.screenshot(path=str(dest),timeout=30000)
                                 detail[-1]["actual_preview_figure_png_sha256"]=sha(dest.read_bytes())
-                        shot=OUT/f"preview-{code}-{engine}-{width}-full.png"
-                        page.screenshot(path=str(shot),full_page=True,timeout=45000)
+                        # WebKit has a hard 32767px bitmap edge limit; these
+                        # long financial articles exceed it after device scale.
+                        # Every exhibit is already captured independently above.
+                        # Preserve an actual viewport screenshot on WebKit;
+                        # Chromium still captures the entire article.
+                        whole=engine!="webkit"
+                        shot=OUT/f"preview-{code}-{engine}-{width}-{'full' if whole else 'viewport'}.png"
+                        page.screenshot(path=str(shot),full_page=whole,timeout=45000)
                         assert not page_errors,(engine,width,code,"JS_PAGE_ERRORS",page_errors)
                         receipt={
                             "issuer":code,
@@ -258,7 +264,8 @@ def main():
                             "browser_pageerror_count":len(page_errors),
                             "figure_count":expected_count,
                             "all_figures":detail,
-                            "actual_full_page_screenshot_sha256":sha(shot.read_bytes()),
+                            "actual_article_or_viewport_screenshot_sha256":sha(shot.read_bytes()),
+                            "screenshot_scope":"FULL_PAGE" if whole else "TOP_VIEWPORT_WEBKIT_BITMAP_LIMIT",
                             "scroll_and_original_yuan_geometry":"PASS",
                         }
                         result["browser_cases"].append(receipt)
