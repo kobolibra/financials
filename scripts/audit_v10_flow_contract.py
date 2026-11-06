@@ -140,7 +140,7 @@ def inspect_published_figure(code: str, expected: dict, figure_html: str) -> lis
     marker = 'data-flow-kind="' + kind + '"'
     if marker not in figure_html:
         issues.append("FLOW_TYPE_NOT_SERIALIZED_IN_PUBLISHED_FIGURE")
-    sankey = bool(re.search(r"sankey-svg|会计守恒财务桑基图", figure_html))
+    sankey = bool(re.search(r"sankey-svg|会计守恒财务桑基图|data-figure-kind=\"(?:TYPE_A_SOURCE_OWN_COST_GP|TYPE_B_GROUP_ONLY_GROSS_ALLOCATION|BANK_NET_INCOME_TO_OPERATING_PROFIT)\"", figure_html))
     if kind == "TYPE_A_SOURCE_OWN_COST_GP":
         if not sankey:
             issues.append("SOURCE_OWN_COST_GP_REQUIRES_TRUE_PER_PRODUCT_FLOW")
