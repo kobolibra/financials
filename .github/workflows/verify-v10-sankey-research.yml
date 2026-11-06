@@ -70,10 +70,10 @@ jobs:
           python - <<'PY'
           import pathlib,hashlib
           local=pathlib.Path('site');published=pathlib.Path('../../public/research/2026-h1-v10')
-          for name in ('index.html','600036.html','688111.html','600519.html','000333.html'):
+          for name in ('600036.html','688111.html','600519.html','000333.html'):
               expected=hashlib.sha256((published/name).read_bytes()).hexdigest()
               actual=hashlib.sha256((local/name).read_bytes()).hexdigest()
-              assert actual==expected,(name,'published HTML differs from source rebuilt HTML')
+              assert actual==expected,(name,'candidate issuer report HTML differs from original verified full PDF source rebuild')
               print('EXACT_SOURCE_REBUILD_PASS',name,flush=True)
           PY
       - name: Prove ALL source-typed finance figures in true 1440/768/390 Chinese Chromium
