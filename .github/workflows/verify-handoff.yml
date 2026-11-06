@@ -78,7 +78,6 @@ jobs:
               assert d['conclusion']=='STATIC_ONLY_PASS_BROWSER_AND_AESTHETICS_NOT_CHECKED'
               print('REBUILT_V10_FOUR_MOBILE_P0_RESOLVED_IN_STATIC_SOURCE_AUDIT')
           PY
-          PY
       - name: Test exact-Yuan source/type/negative/segment financial flow semantics
         run: |
           python research/shared/test_editorial_financial_flow.py
