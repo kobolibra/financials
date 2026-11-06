@@ -115,7 +115,7 @@ with sync_playwright() as p:
 assert len(records)==12,len(records)
 result={"scope":"local original CJK Chromium 1440/768/390, not live Cloudflare",
         "source_sha_proof":"each figure receipt carries its actual regenerated HTML sha256",
-        "all_35_issuer_exhibits_3_viewports":"PASS",
+        "all_36_issuer_exhibits_3_viewports":"PASS",
         "independent_finance_and_visual_human_review":"NOT_CHECKED",
         "real_live_pages_full_content_sha":"NOT_CHECKED",
         "cases":records}
