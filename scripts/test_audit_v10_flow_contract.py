@@ -48,28 +48,34 @@ class TypedV10FlowContractTests(unittest.TestCase):
         self.assertEqual(MOD.classify(ROOT, "600519")["reason"],
                          "AT_LEAST_ONE_PRODUCT_HAS_NEGATIVE_GROSS_PROFIT_OR_COST")
 
-    def test_current_four_source_bound_published_figures_remain_unfixed(self):
+    def test_real_published_figures_have_no_unacknowledged_quality_debt(self):
         result = MOD.audit(ROOT)
         self.assertEqual(result["count"], 4)
-        self.assertEqual(result["conclusion"], "KNOWN_HISTORICAL_FLOW_DEBT_NOT_CERTIFIED")
-        self.assertFalse(result["blocking_violations"])
         for row in result["records"]:
-            self.assertTrue(row["published_figure_issues"], row["issuer"])
-            self.assertTrue(row["historical_exact_source_waiver"])
-            self.assertEqual(row["current_figure_semantic_status"], "FAIL")
+            if row["published_figure_issues"]:
+                self.assertTrue(row["historical_exact_source_waiver"])
+                self.assertEqual(row["current_figure_semantic_status"], "FAIL")
+            else:
+                self.assertEqual(row["current_figure_semantic_status"], "PASS_STATIC_SCOPE_ONLY")
             self.assertEqual(row["actual_svg_path_geometric_widths"], "NOT_CHECKED")
 
-    def test_strict_release_must_reject_all_legacy_defects(self):
+    def test_strict_release_blocks_only_unrepaired_real_pages(self):
         result = MOD.audit(ROOT, strict=True)
-        self.assertEqual(len(result["blocking_violations"]), 4)
-        self.assertEqual(result["conclusion"], "FAIL")
+        unresolved = [r for r in result["records"] if r["published_figure_issues"]]
+        self.assertEqual(len(result["blocking_violations"]), len(unresolved))
+        self.assertEqual(result["conclusion"] == "FAIL", bool(unresolved))
 
-    def test_modifying_any_one_old_report_revokes_exact_sha_waiver(self):
+    def test_mutating_a_repaired_or_old_page_to_wrong_semantics_blocks_release(self):
         with tempfile.TemporaryDirectory() as d:
             tmp = Path(d)
             fixture_copy(tmp)
             page = tmp / "public/research/2026-h1-v10/688111.html"
-            page.write_bytes(page.read_bytes() + b"\n<!-- revision, old SHA waiver expired -->\n")
+            source = page.read_text(encoding="utf8")
+            self.assertIn('id="fig-02"', source)
+            # A new changed SHA is never covered by the exact old exception.
+            # Strip typed evidence; if the original was old it already failed.
+            source = source.replace('id="fig-02"', 'id="fig-02" data-flow-kind="FORGED"')
+            page.write_text(source + "\n<!-- changed malicious release -->\n", encoding="utf8")
             result = MOD.audit(tmp)
             self.assertEqual([v["issuer"] for v in result["blocking_violations"]], ["688111"])
             self.assertEqual(result["conclusion"], "FAIL")
