@@ -6,6 +6,11 @@ summary: Two-track research-to-publication discipline: independently benchmark A
 
 # FINANCIALS IN VISUALS · Research & Publication Skill v8.8.0-RC1
 
+## Mandatory V10 source-typed figure publication contract (implementation gate)
+
+Before treating a V10 company publication as new or repaired, run the source-ledger gate in [the typed V10 audit](../../scripts/audit_v10_flow_contract.py) and review [the P0/P1 execution roadmap](../../docs/AEI_EXECUTION_ROADMAP.md). The real four issuer classifications are: WPS 688111 A (source-own COGS+GP), Moutai 600519 C (negative minor segment GP: omit a positive-product Sankey), Midea 000333 B (group-only COGS, visibly state PRODUCT_LEVEL_GP_NOT_ESTABLISHED), and CMB 600036 BANK (NII already nets interest). Never publish group Sankey as product economics when source-own costs exist. New/changed publication HTML bytes revoke historical hash waivers and MUST prove faithful actual SVG/source semantics and real CJK 1440/768/390 mobile drawings before release. The strict source-flow gate MUST FAIL on the four unchanged historical pages. Neither a passing default CI nor a source typed audit is an art director or original PDF visual/cell certificate. Run: python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v; python scripts/audit_v10_flow_contract.py; python scripts/audit_v10_flow_contract.py --strict (must fail until all four are repaired).
+
+
 ## v8.8.0-RC1 · AEI/FT 实际视觉执行质量升级（VIS-049／SEM-050）
 
 **这次不是新增公司。实际2026-11-05 main源审计发现原V10出版器在390px隐藏所有非桑基SVG，把唯一桑基压进850px横滑小框；旧GitHub Action反而断言图内能横滑为PASS。** 因此600036、688111、600519、000333当前移动视觉仍FAIL。读 [AEI×FT财经总编质量合同](../../docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和实际恶意测试 scripts/test_audit_aei_editorial_delivery.py。新Skill文字本身不会修复已经发布的网页。
