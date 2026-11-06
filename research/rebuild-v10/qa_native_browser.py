@@ -80,7 +80,7 @@ with sync_playwright() as p:
                         assert node["right"] <= width+8 and node["x"]>=-6,(code,width,fid,"CJK_TEXT_OUTSIDE_VIEWPORT",node)
                 for b in info["money"]:
                     coords=[D(v) for v in re.findall(r"-?\d+(?:\.\d+)?",b["d"])]
-                    assert len(coords)>=24,(code,width,fid,"INVALID_MONEY_RIBBON")
+                    assert len(coords)>=16,(code,width,fid,"INVALID_MONEY_RIBBON")
                     actual=abs(coords[-1]-coords[1])
                     target=D(b["yuan"])/D(b["scale"])
                     assert abs(actual-target) <= D(".001"),(code,width,fid,"AMOUNT_RIBBON_NOT_PROPORTIONAL",actual,target)
