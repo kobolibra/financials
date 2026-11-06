@@ -88,7 +88,7 @@ class TypedV10FlowContractTests(unittest.TestCase):
     def test_moutai_negative_product_profit_cannot_be_drawn_positive(self):
         expected = MOD.classify(ROOT, "600519")
         weak = ('<figure data-flow-kind="TYPE_C_SANKEY_OMITTED">'
-                '财务桑基图 FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON '
+                '会计守恒财务桑基图 FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON '
                 + expected["reason"] + '</figure>')
         self.assertIn("NEGATIVE_PRODUCT_GP_ILLEGAL_POSITIVE_SANKEY",
                       MOD.inspect_published_figure("600519", expected, weak))
@@ -100,21 +100,21 @@ class TypedV10FlowContractTests(unittest.TestCase):
     def test_midea_group_only_needs_visible_no_product_gp_warning(self):
         expected = MOD.classify(ROOT, "000333")
         weak = ('<figure data-flow-kind="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION">'
-                '财务桑基图<details>PRODUCT_LEVEL_GP_NOT_ESTABLISHED</details></figure>')
+                '会计守恒财务桑基图<details>PRODUCT_LEVEL_GP_NOT_ESTABLISHED</details></figure>')
         self.assertIn("GROUP_ONLY_NO_VISIBLE_PRODUCT_GP_LIMITATION",
                       MOD.inspect_published_figure("000333", expected, weak))
         good = ('<figure data-flow-kind="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION">'
-                '财务桑基图 · PRODUCT_LEVEL_GP_NOT_ESTABLISHED</figure>')
+                '会计守恒财务桑基图 · PRODUCT_LEVEL_GP_NOT_ESTABLISHED</figure>')
         self.assertFalse(MOD.inspect_published_figure("000333", expected, good))
 
     def test_bank_cannot_be_labeled_as_industrial_gross_profit(self):
         expected = MOD.classify(ROOT, "600036")
         bad = ('<figure data-flow-kind="BANK_NET_INCOME_TO_OPERATING_PROFIT">'
-               '银行净利息收入 → 毛利的桑基图</figure>')
+               '银行净利息收入 → 毛利的会计守恒财务桑基图</figure>')
         self.assertIn("BANK_FALSE_INDUSTRIAL_GROSS_PROFIT_LABEL",
                       MOD.inspect_published_figure("600036", expected, bad))
         good = ('<figure data-flow-kind="BANK_NET_INCOME_TO_OPERATING_PROFIT">'
-                '银行净利息收入 → 支出与营业利润 · 财务桑基图</figure>')
+                '银行净利息收入 → 支出与营业利润 · 会计守恒财务桑基图</figure>')
         self.assertFalse(MOD.inspect_published_figure("600036", expected, good))
 
     def test_original_cost_tamper_triggers_decimal_conservation_failure(self):
