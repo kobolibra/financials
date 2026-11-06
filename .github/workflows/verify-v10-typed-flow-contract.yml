@@ -34,16 +34,26 @@ jobs:
       - name: Source-SHA frozen debt cannot become a new untyped publication
         run: |
           python scripts/audit_v10_flow_contract.py --out v10-typed-flow-audit.json
-      - name: Independently require strict release to FAIL on four unrepaired reports
+      - name: Enforce current four source-bound finance reports, fail strictly for every defect
         run: |
           python - <<'PY'
           import json,subprocess,sys
-          proc=subprocess.run([sys.executable,"scripts/audit_v10_flow_contract.py","--strict"],capture_output=True,text=True)
+          cmd=[sys.executable,"scripts/audit_v10_flow_contract.py","--strict"]
+          proc=subprocess.run(cmd,capture_output=True,text=True)
           result=json.loads(proc.stdout)
-          assert proc.returncode==1,(proc.returncode,proc.stderr)
-          assert result["conclusion"]=="FAIL",result["conclusion"]
-          assert len(result["blocking_violations"])==4,result["blocking_violations"]
-          print("EXPECTED_STRICT_RELEASE_BLOCKED_FOR_FOUR_REAL_SOURCE_PAGES")
+          rows=result["records"]
+          unpassed=[r["issuer"] for r in rows if r["published_figure_issues"]]
+          assert len(rows)==4,len(rows)
+          assert {r["issuer"] for r in rows}=={"688111","600519","000333","600036"}
+          if unpassed:
+              assert proc.returncode==1,(proc.returncode,unpassed,proc.stderr)
+              assert result["conclusion"]=="FAIL"
+              print("STRICT_V10_UNREPAIRED_SOURCE_FIGURES_BLOCKED",unpassed)
+          else:
+              assert proc.returncode==0,(proc.returncode,proc.stderr)
+              assert not result["blocking_violations"]
+              assert result["conclusion"]=="STATIC_SCOPE_PASS_BROWSER_GEOMETRY_AND_HUMAN_NOT_CHECKED"
+              print("STRICT_V10_ALL_FOUR_REBUILT_SOURCE_FIGURES_PASS")
           PY
       - name: Persist actual source SHA and typed failure reasons
         if: always()
