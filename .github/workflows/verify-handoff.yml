@@ -68,9 +68,16 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open('/tmp/aie-source-audit.json'))
-          assert d['known_existing_visual_p0']==['000333','600036','600519','688111'], d['known_existing_visual_p0']
-          assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED'
-          print('FOUR_OLD_MOBILE_P0_REMAIN_FAIL_SOURCE_STAMPED_NOT_VISUALLY_CERTIFIED')
+          known=d['known_existing_visual_p0']
+          assert set(known).issubset({'000333','600036','600519','688111'}),known
+          assert not d['new_or_unwaived_p0'],d['new_or_unwaived_p0']
+          if known:
+              assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED'
+              print('OLD_MOBILE_P0_STILL_NOT_CERTIFIED',known)
+          else:
+              assert d['conclusion']=='STATIC_ONLY_PASS_BROWSER_AND_AESTHETICS_NOT_CHECKED'
+              print('REBUILT_V10_FOUR_MOBILE_P0_RESOLVED_IN_STATIC_SOURCE_AUDIT')
+          PY
           PY
       - name: Test exact-Yuan source/type/negative/segment financial flow semantics
         run: |
