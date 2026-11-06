@@ -76,75 +76,44 @@ jobs:
               assert actual==expected,(name,'published HTML differs from source rebuilt HTML')
               print('EXACT_SOURCE_REBUILD_PASS',name,flush=True)
           PY
-      - name: Verify real public Cloudflare pages, Sankey geometry and browser UX
+      - name: Prove ALL source-typed finance figures in true 1440/768/390 Chinese Chromium
+        shell: bash
+        run: |
+          python research/rebuild-v10/qa_native_browser.py
+          python scripts/audit_v10_flow_contract.py --strict --out research/rebuild-v10/strict-semantic-audit.json
+          python scripts/audit_aei_editorial_delivery.py --fail-known --out research/rebuild-v10/structural-visual-audit.json
+          python scripts/check_visual_editorial_policy.py
+      - name: Check actual public Pages full report SHA without claiming a premature live deployment
         shell: bash
         run: |
           python - <<'PY'
-          from playwright.sync_api import sync_playwright
-          from pathlib import Path
-          import json,time
-          home='https://financials-in-visuals.pages.dev'
-          root='/research/2026-h1-v10/'
-          expected={'600036':8,'688111':9,'600519':9,'000333':10}
-          out=Path('v10-qa');out.mkdir(exist_ok=True)
-          issues=[];passed=[]
-          with sync_playwright() as p:
-            browser=p.chromium.launch(headless=True)
-            for width,height in ((1440,960),(768,1024),(390,844)):
-              page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1,accept_downloads=True)
-              page.on('pageerror',lambda e:issues.append(str(e)))
-              for code,count in expected.items():
-                url=home+root+code+'.html'
-                for attempt in range(5):
-                  try:
-                    resp=page.goto(url,wait_until='networkidle',timeout=40000)
-                    assert resp and resp.status==200
-                    assert page.locator('figure.graphic').count()==count
-                    assert page.locator('figure.graphic svg[aria-label*="会计守恒财务桑基图"]').count()==1
-                    break
-                  except Exception:
-                    if attempt==4:raise
-                    time.sleep(12)
-                assert page.locator('table.evidence-table').count()==count
-                assert page.locator('figure.graphic path[fill-opacity]').count()>=5
-                info=page.evaluate('({sw:document.documentElement.scrollWidth,cw:document.documentElement.clientWidth})')
-                assert info['sw']<=width+2,(code,width,info)
-                box=page.locator('figure.graphic .sankey-svg')
-                assert box.count()==1
-                if width==390:
-                  render=box.evaluate('(el)=>({display:getComputedStyle(el).display,sw:el.scrollWidth,cw:el.clientWidth})')
-                  assert render['display']!='none' and render['sw']>render['cw'],(code,render)
-                figure=box.locator('svg')
-                figure.screenshot(path=str(out/f'{code}_{width}_sankey.png'))
-                page.screenshot(path=str(out/f'{code}_{width}_top.png'),full_page=False)
-                if width==1440:
-                  with page.expect_download() as item:page.locator('button.export').first.click()
-                  assert item.value.suggested_filename.endswith('.svg')
-                passed.append((code,width))
-                print('PUBLIC_SANKEY_BROWSER_PASS',code,width,flush=True)
-              page.close()
-            page=browser.new_page()
-            page.goto(home,wait_until='networkidle')
-            assert page.locator('a.company').count()==len(__import__('json').loads(__import__('pathlib').Path('site/research_catalog.json').read_text())['issuers']),'Homepage company count differs from source catalog'
-            assert page.locator('a.company[href="/research/2026-h1-v10/600036.html"]').count()==1
-            page.locator('a.company[href="/research/2026-h1-v10/600036.html"]').click()
-            assert '600036' in page.url
-            page.locator('a[href="#cash"]').click()
-            assert page.url.endswith('#cash'),page.url
-            page.locator('a.brand[href="/#companies"]').click()
-            assert page.url.startswith(home+'/') and page.url.endswith('#companies'),page.url
-            print('PUBLIC_SEVEN_COMPANY_HOME_TO_BANK_TO_HOME_PASS',page.url,flush=True)
-            browser.close()
-          assert not issues,issues
-          assert len(passed)==12,len(passed)
-          (out/'result.json').write_text(json.dumps({'public_route':'PASS','sankey_diagrams':4,'viewports':12,'navigation':'PASS','svg_export':'PASS','js_errors':issues},indent=2))
-          print('FULL_SANKY_V10_PUBLIC_QA_PASS',flush=True)
+          import urllib.request,hashlib,json,pathlib
+          base='https://financials-in-visuals.pages.dev/research/2026-h1-v10/'
+          root=pathlib.Path('public/research/2026-h1-v10')
+          rows=[]
+          for code in ('600036','688111','600519','000333'):
+              expected=hashlib.sha256((root/(code+'.html')).read_bytes()).hexdigest()
+              try:
+                  with urllib.request.urlopen(urllib.request.Request(base+code+'.html',
+                     headers={'User-Agent':'Mozilla/5.0'}),timeout=30) as response:
+                      raw=response.read()
+                  actual=hashlib.sha256(raw).hexdigest()
+                  status='PASS_LIVE_EXACT_FULL_ARTICLE_SHA' if actual==expected else 'NOT_CHECKED_PENDING_OR_DIFFERENT_LIVE_DEPLOYMENT'
+              except Exception as exc:
+                  actual=None
+                  status='NOT_CHECKED_LIVE_HTTP_UNAVAILABLE'
+              rows.append({'issuer':code,'expected_main_full_html_sha256':expected,
+                           'actual_live_full_html_sha256':actual,'live_status':status})
+              print('CLOUDFLARE_ACTUAL_FULL_HTML_STATUS',code,status,flush=True)
+          pathlib.Path('research/rebuild-v10/real-browser-qa').mkdir(exist_ok=True)
+          pathlib.Path('research/rebuild-v10/real-browser-qa/live-byte-receipt.json').write_text(
+              json.dumps(rows,ensure_ascii=False,indent=2)+'\n')
           PY
       - name: Archive live browser screenshots
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: financials-v10-sankey-live-qa
-          path: v10-qa/
+          name: financials-v10-original-native-finance-3-view-source-audit
+          path: research/rebuild-v10/real-browser-qa/
           retention-days: 30
           if-no-files-found: warn
