@@ -45,6 +45,8 @@ jobs:
           python scripts/audit_aei_editorial_delivery.py --fail-known --out research/rebuild-v10/structural-visual-audit.json
           python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v
           python -m unittest discover -s research/shared -p 'test_editorial_financial_flow.py' -v
+          python scripts/check_visual_editorial_policy.py
+          python scripts/test_visual_editorial_policy.py
       - name: Commit actual rebuilt four source-audited company HTML pages and Chromium receipts to branch
         run: |
           git config user.name "financials-qa-bot"
