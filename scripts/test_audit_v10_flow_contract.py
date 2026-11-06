@@ -74,7 +74,7 @@ class TypedV10FlowContractTests(unittest.TestCase):
             self.assertIn('id="fig-02"', source)
             # A new changed SHA is never covered by the exact old exception.
             # Strip typed evidence; if the original was old it already failed.
-            source = source.replace('id="fig-02"', 'id="fig-02" data-flow-kind="FORGED"')
+            source = source.replace('data-flow-kind="TYPE_A_SOURCE_OWN_COST_GP"', 'data-flow-kind="FORGED"')
             page.write_text(source + "\n<!-- changed malicious release -->\n", encoding="utf8")
             result = MOD.audit(tmp)
             self.assertEqual([v["issuer"] for v in result["blocking_violations"]], ["688111"])
