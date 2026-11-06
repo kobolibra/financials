@@ -21,9 +21,57 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
         old=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"]["688220"]
         import hashlib
         if hashlib.sha256((ROOT/"public/688220.html").read_bytes()).hexdigest()!=old:expected.add("688220")
+        v10={"600036","688111","600519","000333"}
+        for code in v10:
+            source_hash=hashlib.sha256(
+                (ROOT/"public/research/2026-h1-v10"/(code+".html")).read_bytes()).hexdigest()
+            if source_hash!=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"][code]:
+                expected.add(code)
         self.assertEqual({x["code"] for x in fixed},expected)
         self.assertEqual(set(stale),
-            {"600036","688111","600519","000333"} | ({"688220"} if "688220" not in expected else set()))
+            (v10-expected) | ({"688220"} if "688220" not in expected else set()))
+    def test_new_v10_report_cannot_steal_wrong_CJK_sha_receipt(self):
+        code="688111"
+        import hashlib
+        page=ROOT/"public/research/2026-h1-v10/688111.html"
+        old=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"][code]
+        if hashlib.sha256(page.read_bytes()).hexdigest()==old:
+            self.skipTest("Old source remains deliberately failed; no new V10 receipt to poison yet")
+        original=Path.read_text
+        def corrupt(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("research/rebuild-v10/real-browser-qa/result.json"):
+                doc=json.loads(data)
+                for x in doc["cases"]:
+                    if x["code"]==code and x["width"]==390:
+                        x["html_sha256"]="0"*64
+                return json.dumps(doc)
+            return data
+        with mock.patch.object(Path,"read_text",new=corrupt):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_CHANGED_V10_ORIGINAL_SOURCE_ALL_FINANCE_3_VIEWPORT_RECEIPT_INVALID "+code,errors)
+
+    def test_new_v10_report_cannot_hide_a_phone_finance_exhibit(self):
+        code="600519"
+        import hashlib
+        page=ROOT/"public/research/2026-h1-v10/600519.html"
+        old=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"][code]
+        if hashlib.sha256(page.read_bytes()).hexdigest()==old:
+            self.skipTest("Old source remains deliberately failed; no new V10 receipt to poison yet")
+        original=Path.read_text
+        def corrupt(path,*args,**kwargs):
+            data=original(path,*args,**kwargs)
+            if str(path).endswith("research/rebuild-v10/real-browser-qa/result.json"):
+                doc=json.loads(data)
+                for x in doc["cases"]:
+                    if x["code"]==code and x["width"]==390:
+                        x["figures"][0]["scroll_free"]="FAIL"
+                return json.dumps(doc)
+            return data
+        with mock.patch.object(Path,"read_text",new=corrupt):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_CHANGED_V10_ORIGINAL_SOURCE_ALL_FINANCE_3_VIEWPORT_RECEIPT_INVALID "+code,errors)
+
     def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
         original=Path.read_bytes
         def changed(path):
