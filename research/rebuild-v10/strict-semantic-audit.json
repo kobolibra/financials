@@ -57,7 +57,7 @@
     },
     {
       "issuer": "600519",
-      "actual_html_sha256": "03ae22f8b22732d6a229d9ce33636773feab91ee0e72cfe839badf2d97be2a35",
+      "actual_html_sha256": "30c7bc4eb66957acb425b8f33a704127cadde398e065ce855151a5e2bcc5367a",
       "expected_semantics": {
         "kind": "TYPE_C_SANKEY_OMITTED",
         "reason": "AT_LEAST_ONE_PRODUCT_HAS_NEGATIVE_GROSS_PROFIT_OR_COST",
@@ -82,7 +82,7 @@
     },
     {
       "issuer": "000333",
-      "actual_html_sha256": "35bcf758b537a0db6c242f6fe10a6699d92b7233972549afc9a94fd73dd97c8f",
+      "actual_html_sha256": "9cd0776a8b5f0b9daaf8c0bc3d503efcb6dcd7f3ed84cd569a5aa5df057e83b4",
       "expected_semantics": {
         "kind": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
         "reason": "PRODUCT_LEVEL_GP_NOT_ESTABLISHED",

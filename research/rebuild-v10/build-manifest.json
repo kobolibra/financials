@@ -78,13 +78,13 @@
   ],
   "files": {
     "000333.html": {
-      "sha256": "35bcf758b537a0db6c242f6fe10a6699d92b7233972549afc9a94fd73dd97c8f",
-      "bytes": 126762,
+      "sha256": "9cd0776a8b5f0b9daaf8c0bc3d503efcb6dcd7f3ed84cd569a5aa5df057e83b4",
+      "bytes": 126903,
       "figures": 10
     },
     "600519.html": {
-      "sha256": "03ae22f8b22732d6a229d9ce33636773feab91ee0e72cfe839badf2d97be2a35",
-      "bytes": 106730,
+      "sha256": "30c7bc4eb66957acb425b8f33a704127cadde398e065ce855151a5e2bcc5367a",
+      "bytes": 107059,
       "figures": 9
     },
     "600036.html": {
