@@ -1,5 +1,13 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+## 2026-11-07 v9 production Skill + AEI first-party reference: unified visual grammar candidate
+
+**Canonical Skill is now v9.0.0, compact mandatory control plane, not 125 KB historical append-only narrative.** Full historical v8.8 is preserved at docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md. One legitimate industry-aware positive income Sankey engine is research/shared/unified_income_sankey.py, adapted by research/rebuild-v10/unified_finance.py, with own cost/GP Type A, group-only Type B and bank net-income business rules. TYPE C negative income / stock or crossing remains a signed independent figure. Both desktop/mobile connected Sankeys must show ONE actual group income node; all money must reconcile exact Decimal yuan. See docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md for first-party App Economy Insights structural benchmark, original colors, reader labeling and **11-company honest migration matrix**.
+
+**IMPORTANT: only four V10 candidates are being actively migrated to this engine.** The other seven are LEGACY_NOT_UNIFIED until their original-source authoring pipelines actually consume the common design. Do not use passing old site CI to claim 11 unified. Any changed candidate HTML MUST be regenerated from original PDFs and verified with same source SHA at 1440/768/390 and real preview; older screenshots do not transfer. Production main remains separate; independent finance and editorial 5-second review and multi-period generalization remain NOT_CHECKED.
+
+
+
 ## 2026-11-07 候选 PR #35 ACTIVE，main 仍不同：图形与交接品质整改
 
 **新候选真实 SHA 验证已闭环**：原始财报重编与 36 图 CJK 三屏 [#42347332430](https://github.com/kobolibra/financials/actions/runs/42347332430) PASS；真正新图所对应的 Cloudflare HTTPS 预览 11 路由全文字节、16 档浏览器/设备视口、108 次 SVG 真实可见版本导出 [#42347520600](https://github.com/kobolibra/financials/actions/runs/42347520600) PASS。四公司 source HTML SHA 收在 research/quality/active-pr35.json 和 build-manifest.json（注意不是新 main）。零记忆交接与四家图形财务红队通过的准确 CI 以 PR 最新 HEAD 查询，不用旧会话声称。独立财经/视觉总编与跨期陌生公司稳定性、生产 main 新 HTML 仍 **NOT_CHECKED / NOT_DEPLOYED**；此段证明候选工程质量，不证明超越 AEI。
