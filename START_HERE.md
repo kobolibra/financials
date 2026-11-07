@@ -1,5 +1,8 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
+**2026-11-07 active PR #35 optical visual migration (candidate only):** The original-source income hero Sankeys in 300394, 300502 and 300308 now use the shared v9 connected source→single total→own disclosed COGS/GP renderer with independent 1100 desktop/330 mobile. [Real 3-company CJK Chromium, original source and export QA](https://github.com/kobolibra/financials/actions/runs/42359062392) PASS. The 300308 original p139 repeated column 1-CNY discrepancy stays visible. These reports are *partial hero-only*, their other graphics are still old V7; other four sectors 688220, 600900, 600276, 601628 have not migrated. Full 11-issuer editorial design, human blind review, unseen periods and current production release are NOT_ESTABLISHED. Treat earlier "seven legacy companies" references as historical; use [current machine census](scripts/audit_unified_visual_corpus.py) and [active handoff](docs/ACTIVE_PR35_HANDOFF.md).
+
+
 **机器真值：先读 `project-status.json` 与 `site/research_catalog.json`，后按 `docs/ACTIVE_PR35_HANDOFF.md` 核对实时 GitHub 主分支和 PR；不要把 PR 预览当正式生产。**
 
 ## 2026-11-07 · v9.0.0 统一质量系统（候选 PR #35，非 main）
