@@ -89,13 +89,15 @@ def signed_product_profit(code, typed, get, names, *, mobile=False):
     proportional and show separate source revenue/COGS bars with an
     EXPLICIT independent inset scale and negative margin.
     """
-    assert typed["kind"]=="TYPE_C_SANKEY_OMITTED"
+    if typed.get("kind")!="TYPE_C_SANKEY_OMITTED":
+        raise ValueError("SIGNED_PRODUCT_PROFIT_WRONG_FINANCIAL_FLOW_KIND")
     keys=[("maotai_rev","maotai_cogs"),("series_rev","series_cogs"),
           ("other_rev","other_cogs")]
     facts=[(k,D(get(code,k)),D(get(code,c))) for k,c in keys]
     gps=[(k,r-c) for k,r,c in facts]
     biggest=max(abs(v) for _,v in gps)
-    assert biggest>0 and gps[-1][1]<0
+    if biggest<=0 or gps[-1][1]>=0:
+        raise ValueError("SIGNED_PRODUCT_PROFIT_NEGATIVE_SOURCE_NOT_ESTABLISHED")
     if not mobile:
         # The earlier issue intentionally kept the signed zero-width loss,
         # but desktop accidentally stretched the 330-unit MOBILE graphic.

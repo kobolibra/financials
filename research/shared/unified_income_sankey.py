@@ -54,9 +54,13 @@ def rect(x,y,w,h,color,metadata=""):
     return f'<rect x="{nu(x)}" y="{nu(y)}" width="{nu(w)}" height="{nu(h)}" fill="{color}" {metadata}/>'
 
 def path(x0,top0,bot0,x1,top1,bot1,color,amount,scale,source_id,stage,**attrs):
-    assert yuan(amount)>=0
-    assert abs((yuan(bot0)-yuan(top0))-yuan(amount)/yuan(scale))<D(".00000001")
-    assert abs((yuan(bot1)-yuan(top1))-yuan(amount)/yuan(scale))<D(".00000001")
+    amount, scale = yuan(amount), yuan(scale)
+    if amount < 0 or scale <= 0:
+        raise ValueError("INVALID_SANKEY_PATH_AMOUNT_OR_SCALE")
+    expected = amount / scale
+    if (abs((yuan(bot0)-yuan(top0))-expected) >= D(".00000001")
+            or abs((yuan(bot1)-yuan(top1))-expected) >= D(".00000001")):
+        raise ValueError("SANKEY_PATH_GEOMETRY_DOES_NOT_CONSERVE")
     dx=(x1-x0)*D(".48")
     d=(f'M {nu(x0)} {nu(top0)} C {nu(x0+dx)} {nu(top0)} '
        f'{nu(x1-dx)} {nu(top1)} {nu(x1)} {nu(top1)} '

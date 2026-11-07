@@ -25,13 +25,24 @@ def plan_for(code:str, typed:dict, get, names:dict):
         (key,names.get(key,key),str(get(code,key))) for key in typed["source_keys"]
     )
     total=D(typed["exact_yuan_total"])
-    assert sum((D(row[2]) for row in original_sources),D(0))==total
+    if sum((D(row[2]) for row in original_sources),D(0)) != total:
+        raise ValueError("SOURCE_LEDGER_TOTAL_MISMATCH " + code)
     if kind=="TYPE_A_SOURCE_OWN_COST_GP":
         rows=typed["source_own_cost_gp"]
+        expected_source={sid:D(amount) for sid,_,amount in original_sources}
+        if len(rows)!=len(expected_source) or {sid for sid,_,_,_ in rows}!=set(expected_source):
+            raise ValueError("SOURCE_OWN_ROW_IDENTITIES_MISMATCH " + code)
+        for sid,revenue,cost,gross in rows:
+            if D(revenue)!=expected_source[sid]:
+                raise ValueError("SOURCE_OWN_REVENUE_ROW_MISMATCH " + sid)
+            if D(cost)+D(gross)!=D(revenue):
+                raise ValueError("SOURCE_OWN_COST_GP_ARITHMETIC_MISMATCH " + sid)
         costs=sum((D(c) for _,_,c,_ in rows),D(0))
         gp=sum((D(g) for _,_,_,g in rows),D(0))
-        assert costs==D(typed["exact_yuan_cogs"])
-        assert gp==D(typed["exact_yuan_group_gp"])
+        if costs!=D(typed["exact_yuan_cogs"]):
+            raise ValueError("SOURCE_OWN_COST_TOTAL_MISMATCH " + code)
+        if gp!=D(typed["exact_yuan_group_gp"]):
+            raise ValueError("SOURCE_OWN_GP_TOTAL_MISMATCH " + code)
         # The group cost/GP sink is backed by 4 separate independently
         # disclosed own-product cost/GP values, NOT by corporate average.
         allocations=tuple(
@@ -53,7 +64,8 @@ def plan_for(code:str, typed:dict, get, names:dict):
     if kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
         cost=D(typed["exact_yuan_cogs"])
         gp=D(typed["exact_yuan_group_gp"])
-        assert cost+gp==total
+        if cost+gp!=total:
+            raise ValueError("GROUP_COST_GP_TOTAL_MISMATCH " + code)
         return FlowPlan(
             issuer=code,kind=kind,
             title="哪些业务贡献收入，集团留下多少毛利？",
@@ -69,6 +81,8 @@ def plan_for(code:str, typed:dict, get, names:dict):
     costs=tuple((key,names.get(key,key),str(get(code,key)),"cost")
                 for key in exp_keys)
     op=D(typed["exact_yuan_result"])
+    if sum((D(amount) for _,_,amount,_ in costs),D(0))+op!=total:
+        raise ValueError("BANK_COST_OPERATING_PROFIT_TOTAL_MISMATCH " + code)
     return FlowPlan(
         issuer=code,kind=kind,
         title="银行净收入如何承担信用成本并留下营业利润？",

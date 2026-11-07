@@ -187,5 +187,44 @@ class OriginalVisualGrammarTests(unittest.TestCase):
         self.assertGreater(abs(actual-amount/scale),D(".5"))
 
 
+    def test_typed_adapter_rejects_stale_source_and_group_facts(self):
+        from unified_finance import plan_for
+        source=classify(ROOT,"688111")
+        bad=dict(source)
+        bad["exact_yuan_total"]=str(D(source["exact_yuan_total"])+1)
+        with self.assertRaisesRegex(ValueError,"SOURCE_LEDGER_TOTAL_MISMATCH"):
+            plan_for("688111",bad,RAW_GET,{})
+        bad=dict(source)
+        rows=[list(row) for row in source["source_own_cost_gp"]]
+        rows[0][1]=str(D(rows[0][1])+1)
+        bad["source_own_cost_gp"]=rows
+        with self.assertRaisesRegex(ValueError,"SOURCE_OWN_REVENUE_ROW_MISMATCH"):
+            plan_for("688111",bad,RAW_GET,{})
+        bad=dict(source)
+        bad["exact_yuan_group_gp"]=str(D(source["exact_yuan_group_gp"])+1)
+        with self.assertRaisesRegex(ValueError,"SOURCE_OWN_GP_TOTAL_MISMATCH"):
+            plan_for("688111",bad,RAW_GET,{})
+        group=classify(ROOT,"000333")
+        bad=dict(group)
+        bad["exact_yuan_group_gp"]=str(D(group["exact_yuan_group_gp"])+1)
+        with self.assertRaisesRegex(ValueError,"GROUP_COST_GP_TOTAL_MISMATCH"):
+            plan_for("000333",bad,RAW_GET,{})
+        bank=classify(ROOT,"600036")
+        bad=dict(bank)
+        bad["exact_yuan_result"]=str(D(bank["exact_yuan_result"])+1)
+        with self.assertRaisesRegex(ValueError,"BANK_COST_OPERATING_PROFIT_TOTAL_MISMATCH"):
+            plan_for("600036",bad,RAW_GET,{})
+
+    def test_geometry_and_signed_flow_guards_survive_python_optimized_mode(self):
+        from unified_income_sankey import path
+        with self.assertRaisesRegex(ValueError,"INVALID_SANKEY_PATH_AMOUNT_OR_SCALE"):
+            path(D(0),D(0),D(5),D(10),D(0),D(5),
+                 "#333",D(-1),D(10),"source","source-to-revenue")
+        with self.assertRaisesRegex(ValueError,"SANKEY_PATH_GEOMETRY_DOES_NOT_CONSERVE"):
+            path(D(0),D(0),D(10),D(10),D(0),D(10),
+                 "#333",D(50),D(10),"source","source-to-revenue")
+        with self.assertRaisesRegex(ValueError,"SIGNED_PRODUCT_PROFIT_WRONG_FINANCIAL_FLOW_KIND"):
+            signed_product_profit("600519",{"kind":"TYPE_A_SOURCE_OWN_COST_GP"},GET,{})
+
 if __name__=="__main__":
     unittest.main()
