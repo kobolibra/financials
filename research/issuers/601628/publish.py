@@ -417,7 +417,7 @@ def article(brief,num):
     return f'''<figure class="figure" id="chart-{e(fid)}" data-family="{e(fam)}">
       <figcaption><span class="figure-num">{num:02d} / 10 · {e(fam.replace("_"," / "))}</span>
         <h2>{e(brief["question"])}</h2><p class="take">{e(brief["takeaway"])}</p></figcaption>
-      <div class="figure-toolbar"><span>原始百万元事实 · 视觉按明确金额/时点比例绘制</span><button type="button" data-export="{e(fid)}">导出原创 SVG</button></div>
+      <div class="figure-toolbar"><span>原始百万元事实 · 视觉按明确金额/时点比例绘制</span><button type="button" data-export="{e(fid)}" aria-label="导出桌面源 SVG；手机图为同源原生金额对照">导出桌面源 SVG</button></div>
       <div class="chart" role="region" aria-label="{e(brief["question"])}，桌面及平板的原始可编辑向量图">{FIGS[fid]()}</div>
       {mobile_figure(brief)}
       <div class="caption"><strong>会计关系：</strong>{e(brief["identity"])}<br><strong>强制反证：</strong>{e(brief["counter"])} <br><strong>数据范围：</strong>合并/报告明确范围，原始 PDF 物理页 {", ".join(str(x) for x in brief["source_pages"])}。图外金额精确到亿元两位，底层按原始百万元计算。</div>
@@ -476,7 +476,7 @@ def render():
 <p>本页原创可编辑 SVG 与逐图来源表由同一结构化账本生成，可离线打开，金融图形不复制 App Economy Insights / FT 原始作品。</p></section></main>
 <footer><div class="wrap"><a href="/#companies">FINANCIALS IN VISUALS / 返回统一公司研究目录</a><p>© 2026 Financials in Visuals · 研究预览，非个性化投资建议</p></div></footer>
 <script id="ledger-data" type="application/json">{research_meta}</script>
-<script>(function(){{document.querySelectorAll('[data-export]').forEach(function(b){{b.addEventListener('click',function(){{var id=b.getAttribute('data-export'),svgs=Array.from(b.closest('figure').querySelectorAll('svg')),node=svgs.find(function(el){{var r=el.getBoundingClientRect(),s=getComputedStyle(el);return r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden'}});if(!node)return;var s=new XMLSerializer().serializeToString(node);var blob=new Blob([s],{{type:'image/svg+xml;charset=utf-8'}});var u=URL.createObjectURL(blob);var a=document.createElement('a');a.href=u;a.download='601628-2026H1-'+id+'.svg';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){{URL.revokeObjectURL(u)}},1000)}})}})}})();</script></body></html>''',q
+<script>(function(){{document.querySelectorAll('[data-export]').forEach(function(b){{b.addEventListener('click',function(){{var id=b.getAttribute('data-export'),svgs=Array.from(b.closest('figure').querySelectorAll('svg')),node=svgs.find(function(el){{var r=el.getBoundingClientRect(),s=getComputedStyle(el);return r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden'}});if(!node){node=b.closest('figure').querySelector('.chart svg');}if(!node)return;var s=new XMLSerializer().serializeToString(node);var blob=new Blob([s],{{type:'image/svg+xml;charset=utf-8'}});var u=URL.createObjectURL(blob);var a=document.createElement('a');a.href=u;a.download='601628-2026H1-'+id+'.svg';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){{URL.revokeObjectURL(u)}},1000)}})}})}})();</script></body></html>''',q
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",default=str(ROOT/"public/601628.html"))
