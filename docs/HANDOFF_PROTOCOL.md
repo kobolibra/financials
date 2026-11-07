@@ -1,3 +1,7 @@
+## 2026-11-07 v9 现行 Skill 与真实迁移边界
+
+唯一精简 Skill：skills/ashare-financial-storytelling/SKILL.md v9.0.0；完整旧 v8.8 在 docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md。统一图形 grammar：docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md 与 research/shared/unified_income_sankey.py。**四家新桑基候选只按真实当前 HTML SHA 验收，其他七家 LEGACY_NOT_UNIFIED，生产 main 与 PR candidate 严格分开。** 新会话必须从零重新核验 GitHub HEAD、原始 PDF、出版产物、截图/来源与 Cloudflare 字节，不能仅通过历史 Skill 的叙述宣称完成。
+
 # Financials in Visuals — 零猜测跨对话交接协议
 
 > 有效入口：[START_HERE.md](../START_HERE.md) → [project-status.json](../project-status.json) → [PROJECT_STATE.md](../PROJECT_STATE.md) → 完整 Skill + 五份研究规范。历史记录在 `docs/history/`，不作为现行命令来源。
