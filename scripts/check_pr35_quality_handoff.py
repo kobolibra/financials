@@ -43,10 +43,11 @@ def validate_artifact_integrity(active:dict,build:dict,browser:dict,typed:dict,
     codes=set(CODES)
     if set(active.get("four_issuers",{}))!=codes:
         errors.append("INCOMPLETE_CANDIDATE_ISSUER_HANDOFF")
-    if set(x["code"] for x in catalog.get("issuers",[]))!=set(
-            active.get("source_of_truth",{}).get("original_issuer_count_source")
-            and x["code"] for x in catalog.get("issuers",[])):
-        errors.append("CATALOG_SCOPE_UNRESOLVED")
+    if active.get("source_of_truth",{}).get("original_issuer_count_source")!="site/research_catalog.json":
+        errors.append("CATALOG_NOT_GROUNDED_IN_CANONICAL_FILE")
+    codes_actual=[row.get("code") for row in catalog.get("issuers",[])]
+    if len(set(codes_actual))!=len(codes_actual) or not set(CODES).issubset(codes_actual):
+        errors.append("CANDIDATE_OR_CATALOG_ISSUER_IDENTITY_DRIFT")
     if len(catalog.get("issuers",[]))!=11:
         errors.append("ISSUER_COUNT_DIFFERS_FROM_VERIFIED_CANDIDATE_SCOPE")
     fixtures={x["issuer"]:x for x in typed.get("records",[])}
