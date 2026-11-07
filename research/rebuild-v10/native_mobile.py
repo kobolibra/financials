@@ -63,6 +63,15 @@ def _svg(body, h, title, kind, uid):
             f'<title>{_e(title)}</title>' + body + '</svg>')
 
 
+def _svg_desktop(body, w, h, title, kind, uid):
+    """Independent full desktop layout, not a stretched 330-unit mobile SVG."""
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {_num(w)} {_num(h)}" '
+            f'role="img" data-native-original-yuan="true" data-layout="desktop-editorial" '
+            f'data-figure-kind="{_e(kind)}" data-figure-id="{_e(uid)}" '
+            f'aria-label="{_e(title)}">'
+            f'<title>{_e(title)}</title>' + body + '</svg>')
+
+
 def _band(x0, top0, bottom0, x1, top1, bottom1):
     c = D(str(x1-x0)) * D(".48")
     return (f'M {_num(x0)} {_num(top0)} C {_num(x0+c)} {_num(top0)} '
@@ -80,39 +89,95 @@ def _path_money(d, fill, amount, exact_scale, source_id, revenue, cost, gp):
 
 
 def source_own_sankey(code, typed, names, *, mobile=False):
-    """Real source->own COGS and own GP, no group-only borrowing."""
+    """Four original disclosed sources split to own COGS/GP and GROUP sinks.
+
+    Both editions share EXACT original yuan scale and never forge a sub-business
+    gross profit by applying a corporate-average cost ratio. Desktop is an
+    independent, three-stage 1040-unit diagram; mobile has four stacked
+    separate source ribbons at a shared amount scale.
+    """
     assert typed["kind"] == "TYPE_A_SOURCE_OWN_COST_GP"
     rows = typed["source_own_cost_gp"]
     total = D(typed["exact_yuan_total"])
-    scale = D(70) / total
-    if not mobile:
-        # Desktop graph uses the same actual-source ribbon decomposition;
-        # SVG 330-unit grammar can be placed on a wide canvas without fake flows.
-        pass
-    h = D(54+len(rows)*132)
-    out = _text(12, 23, "业务收入 → 各自成本 + 各自毛利", 14, INK, True)
-    out += _text(12, 42, "每条色带的高度＝原始人民币元 × 同一精确比例", 10, MUTED)
+    assert total > 0
+    cost_total = sum((D(c) for _,r,c,g in rows),D(0))
+    gp_total = sum((D(g) for _,r,c,g in rows),D(0))
+    assert sum((D(r) for _,r,c,g in rows),D(0)) == total
+    assert cost_total == D(typed["exact_yuan_cogs"])
+    assert gp_total == D(typed["exact_yuan_group_gp"])
+    for sid,revenue,cost,gp in rows:
+        assert D(revenue)==D(cost)+D(gp) and min(D(revenue),D(cost),D(gp))>=0
+
+    if mobile:
+        scale = D(70) / total
+        h = D(66+len(rows)*132)
+        out = _text(12,23,"四类收入，各自成本与毛利",14,INK,True)
+        out += _text(12,42,"统一金额比例 · 不把集团成本强摊给业务",10,MUTED)
+        for i,(sid,revenue,cost,gp) in enumerate(rows):
+            r,c,g=D(revenue),D(cost),D(gp)
+            baseline=D(80+i*132)
+            rh,ch,gh=r*scale,c*scale,g*scale
+            margin = g/r*100 if r else D(0)
+            out += _text(12,baseline-16,names.get(sid,sid),13,INK,True)
+            out += _text(317,baseline-16,_fmt(r),12,INK,True,"end")
+            y=baseline+D(12)
+            out+=_box(12,y,7,rh,GREEN)
+            if c:
+                out+=_path_money(_band(D(19),y,y+ch,D(235),y,y+ch),
+                    COPPER,c,str(total/D(70)),sid,revenue,cost,gp)
+                out+=_box(235,y,7,ch,COPPER)
+            if g:
+                out+=_path_money(_band(D(19),y+ch,y+rh,D(235),y+ch,y+rh),
+                    GREEN,g,str(total/D(70)),sid,revenue,cost,gp)
+                out+=_box(235,y+ch,7,gh,GREEN)
+            out+=_text(247,y+12,"成本 "+_fmt(c),10,COPPER)
+            out+=_text(247,y+29,"毛利 "+_fmt(g),10,GREEN)
+            out+=_text(12,y+rh+18,"毛利率 "+format(margin,".2f")+"% · 原始元精度",10,MUTED)
+        out+=_text(12,h-D(7),"集团营业成本 "+_fmt(cost_total)+"；毛利 "+_fmt(gp_total),10,INK)
+        return _svg(out,h,"四业务各自成本和毛利的真实元级财务流","TYPE_A_SOURCE_OWN_COST_GP",code+"-2")
+
+    # Grouped three-stage desktop composition. Each incoming source ribbon
+    # branches to its OWN disclosed cost and GP; at right they join into
+    # global cost and gross-profit sinks. Source and sink heights use the
+    # IDENTICAL original yuan scale, with zero amounts kept at zero width.
+    height=D(660)
+    scale=D(260)/total
+    inverse=total/D(260)
+    out=_text(23,33,"收入从哪里来，毛利在哪些业务形成？",23,INK,True)
+    out+=_text(23,58,"四项业务收入 → 各自实际成本与毛利 → 集团两项合计",14,MUTED)
+    out+=_text(23,82,"线带宽度按人民币原始元统一比例；没有交叉分类、没有估算的成本分摊",12,MUTED)
+    y=D(132);cy=D(132);gy=D(306)
     for i,(sid,revenue,cost,gp) in enumerate(rows):
-        r,c,g = D(revenue),D(cost),D(gp)
-        assert r == c+g and min(r,c,g)>=0
-        baseline = D(80+i*132)
-        rheight,cheight,gheight = r*scale,c*scale,g*scale
-        out += _text(12,baseline-16, names.get(sid,sid),13,INK,True)
-        out += _text(317,baseline-16,_fmt(r),12,INK,True,"end")
-        y = baseline + D(12)
-        out += _box(12,y,7,rheight,GREEN)
+        r,c,g=D(revenue),D(cost),D(gp)
+        rh,ch,gh=r*scale,c*scale,g*scale
+        mar=g/r*100 if r else D(0)
+        out+=_text(24,y-10,names.get(sid,sid),15,INK,True)
+        out+=_text(24,y+9,_fmt(r)+" · 毛利率 "+format(mar,".2f")+"%",12,MUTED)
+        out+=_box(215,y,12,rh,BLUE)
+        out+=_path_money(_band(D(227),y,y+rh,D(463),y,y+rh),
+                         BLUE,r,str(inverse),sid,revenue,cost,gp)
+        out+=_box(463,y,10,rh,INK)
         if c>0:
-            d=_band(D(19),y,y+cheight,D(235),y,y+cheight)
-            out+=_path_money(d,COPPER,c,str(total/D(70)),sid,revenue,cost,gp)
-            out+=_box(235,y,7,cheight,COPPER)
+            out+=_path_money(_band(D(473),y,y+ch,D(793),cy,cy+ch),
+                             COPPER,c,str(inverse),sid,revenue,cost,gp)
         if g>0:
-            d=_band(D(19),y+cheight,y+rheight,D(235),y+cheight,y+rheight)
-            out+=_path_money(d,GREEN,g,str(total/D(70)),sid,revenue,cost,gp)
-            out+=_box(235,y+cheight,7,gheight,GREEN)
-        out+=_text(250,y+12,"成本 "+_fmt(c),10,COPPER,False)
-        out+=_text(250,y+31,"毛利 "+_fmt(g),10,GREEN,False)
-        out+=_text(12,y+rheight+16,"原始元 "+format(r,",.2f"),9,MUTED)
-    return _svg(out,h,"各业务独立收入成本毛利真实元级桑基图","TYPE_A_SOURCE_OWN_COST_GP",code+"-2")
+            out+=_path_money(_band(D(473),y+ch,y+rh,D(793),gy,gy+gh),
+                             GREEN,g,str(inverse),sid,revenue,cost,gp)
+        cy+=ch
+        gy+=gh
+        y+=rh+D(44)
+    out+=_box(793,132,12,cost_total*scale,COPPER)
+    out+=_box(793,306,12,gp_total*scale,GREEN)
+    out+=_text(826,135,"集团营业成本",17,COPPER,True)
+    out+=_text(826,162,_fmt(cost_total),22,COPPER,True)
+    out+=_text(826,297,"集团营业毛利",17,GREEN,True)
+    out+=_text(826,324,_fmt(gp_total),23,GREEN,True)
+    out+=_text(826,348,"整体毛利率 "+format(gp_total/total*100,".2f")+"%",13,MUTED)
+    out+=_text(23,602,"会计边界：营业收入＝披露的四项互斥业务收入＝公司营业成本＋营业毛利",13,INK,True)
+    out+=_text(23,629,"仅到毛利层；研发、销售、管理、投资收益及所得税须在另外的有符号利润桥解读。",12,MUTED)
+    return _svg_desktop(out,D(1040),height,
+            "四业务原始元收入到自身成本毛利再到集团汇总的完整财务桑基图",
+            "TYPE_A_SOURCE_OWN_COST_GP",code+"-2")
 
 
 def group_sankey(code, typed, names):
@@ -192,23 +257,65 @@ def bank_sankey(code, typed, get, names):
 
 
 def signed_product_profit(code, typed, get, names):
-    """No positive profit ribbons when a reported product has negative GP."""
+    """Truthful full-scale signed product GP + a separately scaled local inset.
+
+    A tiny negative product GP cannot legitimately be fattened on the
+    same scale as 717+亿元 Maotai liquor GP. Instead keep the main bar
+    proportional and show separate source revenue/COGS bars with an
+    EXPLICIT independent inset scale and negative margin.
+    """
     assert typed["kind"]=="TYPE_C_SANKEY_OMITTED"
-    keys=[("maotai_rev","maotai_cogs"),("series_rev","series_cogs"),("other_rev","other_cogs")]
-    gps=[(k,D(get(code,k))-D(get(code,c))) for k,c in keys]
-    maxabs=max(abs(v) for _,v in gps)
-    zero=D(44)
-    out=_text(12,22,"真实业务毛利（含负数）",13,INK,True)
-    out+=_text(12,42,"FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON",9,COPPER,True)
-    out+=_text(12,58,typed["reason"],9,MUTED)
-    for i,(sid,amt) in enumerate(gps):
-        y=D(91+i*91);w=abs(amt)/maxabs*D(240)
-        out+=_text(12,y-11,names.get(sid,sid),12,INK,True)
-        out+=_box(44,y,D(1),37,MUTED)
-        out+=_box(zero if amt>=0 else zero-w,y+3,w,25,GREEN if amt>=0 else COPPER,
-                  f'data-signed-yuan="{amt}"')
-        out+=_text(12,y+47,("+" if amt>0 else "")+_fmt(amt),12,GREEN if amt>=0 else COPPER,True)
-    return _svg(out,395,"逐产品真实有符号毛利：负毛利不是正向资金流","TYPE_C_SANKEY_OMITTED",code+"-2")
+    keys=[("maotai_rev","maotai_cogs"),("series_rev","series_cogs"),
+          ("other_rev","other_cogs")]
+    facts=[(k,D(get(code,k)),D(get(code,c))) for k,c in keys]
+    gps=[(k,r-c) for k,r,c in facts]
+    biggest=max(abs(v) for _,v in gps)
+    assert biggest>0 and gps[-1][1]<0
+    out=_text(12,22,"主要酒类盈利，其他业务亏损",14,INK,True)
+    out+=_text(12,43,"全部毛利共用真实金额比例，负数画向左",10,MUTED)
+    out+=_text(12,62,"产品负毛利不能画成正向资金桑基",10,COPPER,True)
+    for i,(sid,amount) in enumerate(gps):
+        y=D(102+i*88)
+        w=abs(amount)/biggest*D(232)
+        axis=D(50)
+        out+=_text(12,y-10,names.get(sid,sid),12,INK,True)
+        out+=_box(axis,y,D("1"),29,MUTED)
+        out+=_box(axis if amount>=0 else axis-w,y+4,w,19,
+            GREEN if amount>=0 else COPPER,
+            f'data-source-id="{_e(sid)}" data-signed-yuan="{_e(amount)}" '
+            f'data-scale-yuan-per-svg-unit="{_e(biggest/D(232))}"')
+        exact=format(_yi(amount),".4f") if abs(_yi(amount))<D(1) else _fmt(amount)
+        exact=exact+("亿" if "亿" not in exact else "")
+        out+=_text(12,y+45,("+" if amount>0 else "")+exact,12,
+            GREEN if amount>=0 else COPPER,True)
+    # The 0.04-unit real-width negative bar in the main full-scale chart
+    # remains mathematically honest; its source mechanism gets a separate
+    # locally scaled (clearly non-additive) two-amount magnifier.
+    other_key,r,c=facts[-1]
+    loss=r-c
+    margin=loss/r*D(100)
+    local=max(r,c)
+    out+=_text(12,391,"局部放大｜仅其他业务，独立金额比例尺",12,INK,True)
+    out+=_text(12,410,"下列两条只在此局部区域内比较，不与主图共轴",10,MUTED)
+    for i,(label,val,col) in enumerate((("收入",r,BLUE),("成本",c,COPPER))):
+        y=D(439+i*40)
+        width=val/local*D(182)
+        out+=_text(12,y+14,label,12,INK,True)
+        out+=_box(56,y,width,20,col,
+                f'data-local-inset-source="{_e(other_key)}" '
+                f'data-original-yuan="{_e(val)}" '
+                f'data-inset-yuan-per-svg-unit="{_e(local/D(182))}"')
+        out+=_text(245,y+15,format(_yi(val),".4f")+"亿",11,col,True)
+    out+=_text(12,536,"其他业务毛利 "+format(_yi(loss),".4f")+"亿",12,COPPER,True)
+    out+=_text(12,554,"毛利率 "+format(margin,".2f")+"% · 成本高于收入",11,COPPER,True)
+    svg=_svg(out,D(570),
+             "主营酒类毛利和其他业务负毛利，含单独标明比例尺的局部放大",
+             "TYPE_C_SANKEY_OMITTED",code+"-2")
+    # Machine-readable omission codes are metadata; readers receive
+    # meaningful Chinese editorial copy, never machine gate identifiers.
+    return svg.replace('role="img"',
+             f'data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" '
+             f'data-flow-reason="{_e(typed["reason"])}" role="img"',1)
 
 
 def signed_source_bars(code, index, keys, get, facts, label="原始财务金额与真实符号"):
