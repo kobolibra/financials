@@ -131,14 +131,14 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
     if mobile:
         xsrc,xrev,xout=D(15),D(149),D(260)
         left_width=6
-        rev_width=10
+        rev_width=D(10)
         top=D(175)
         src_base=top; mid_base=top+D(7); sink_base=top+D(7)
         title_size=14
     else:
         xsrc,xrev,xout=D(310),D(603),D(859)
         left_width=12
-        rev_width=16
+        rev_width=D(16)
         top=D(195)
         src_base=top; mid_base=top+D(9); sink_base=top+D(9)
         title_size=25
