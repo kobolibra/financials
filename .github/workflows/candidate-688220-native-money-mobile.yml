@@ -51,10 +51,16 @@ jobs:
               old=re.search(r'<div class="vizscroll" id="chart-'+key+r'"[^>]*></div>',previous)
               modern=re.search(r'<div class="vizscroll" id="chart-'+key+r'"[^>]*></div>',new)
               assert old and modern and old.group(0)==modern.group(0),key
-          assert new.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2
-          assert new.count('data-node-id="revenue-total"')==2
-          assert new.count('data-stage="source-to-revenue"')==8
-          assert new.count('data-stage="revenue-to-outcome"')==14
+          # Desktop SVG is JSON-escaped inside an offline JS string while
+          # native mobile SVG is literal HTML. A raw quote count sees only
+          # the phone; test BOTH encodings and browser DOM separately.
+          def both(token):
+              return new.count(token.replace('="','=\\\\"').replace('" ', '\\\\" ')) if False else (
+                  new.count(token)+new.count(token.replace('"','\\\\"')))
+          assert both('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2
+          assert both('data-node-id="revenue-total"')==2
+          assert both('data-stage="source-to-revenue"')==8
+          assert both('data-stage="revenue-to-outcome"')==14
           assert 'MIRROR_COMPLETE_PDF_SHA_PASS__OFFICIAL_EQUIVALENCE_NOT_CHECKED' in new
           assert new.count('class="native-asr"')==9
           print('NINE_REAL_SEMICONDUCTOR_NATIVE_MOBILE_AND_ORIGINAL_DESKTOP_TEMPLATE_PASS',hashlib.sha256(new.encode()).hexdigest())
