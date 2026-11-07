@@ -159,10 +159,19 @@ def inspect_published_figure(code: str, expected: dict, figure_html: str) -> lis
     elif kind == "TYPE_C_SANKEY_OMITTED":
         if sankey:
             issues.append("NEGATIVE_PRODUCT_GP_ILLEGAL_POSITIVE_SANKEY")
-        if "FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" not in visible:
+        if 'data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON"' not in figure_html:
             issues.append("MISSING_SOURCE_BASED_SIGNED_ALTERNATIVE_DISCLOSURE")
-        if expected["reason"] not in visible:
+        if 'data-flow-reason="' + expected["reason"] + '"' not in figure_html:
             issues.append("MISSING_TYPED_OMISSION_REASON")
+        if "负毛利" not in visible:
+            issues.append("MISSING_VISIBLE_CHINESE_NEGATIVE_GROSS_PROFIT_EXPLANATION")
+        # Real main-scale negative ribbons must be truthful: do not inflate
+        # a 0.0416 SVG-unit loss to an artificial minimum. A separate
+        # independently labelled local zoom can reveal the tiny amount.
+        if 'data-local-inset-source="other_rev"' not in figure_html:
+            issues.append("NEGATIVE_TINY_PRODUCT_GP_MAGNIFIER_MISSING")
+        if "局部放大" not in visible or "独立金额比例尺" not in visible:
+            issues.append("INDEPENDENT_SCALE_NOT_DISCLOSED_TO_READERS")
     elif kind == "BANK_NET_INCOME_TO_OPERATING_PROFIT":
         if not sankey:
             issues.append("BANK_NET_REVENUE_TO_PROFIT_FIGURE_MISSING")
