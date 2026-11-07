@@ -6,6 +6,10 @@
 
 > 本文是 **候选 PR 状态**，绝不等同 main 正式上线。每次新会话必须重新获取真正的 GitHub main HEAD、PR #35 HEAD、Actions 最新状态和 Cloudflare 当前完整 HTML SHA。不能把这里的历史观测当作现在。机器合同：research/quality/active-pr35.json、scripts/check_pr35_quality_handoff.py。
 
+## 最新真正同源 Cloudflare HTTPS 验收已闭环（仅 PR 预览）
+
+[Cloudflare 线上全字节、16 组 Chromium/WebKit 与 108 张实际 SVG 导出 Action #42352460965](https://github.com/kobolibra/financials/actions/runs/42352460965) **PASS**。验证 11 家全部报告的完整 HTML 来源 SHA 与当前 PR 匹配，四家当前统一财务图在 390/375 手机触屏模式、768 平板、1440 桌面真实浏览器展示可见且金额路径合法，来源数据表可按键盘操作，108 份实际 SVG 与当前可见版字节一致。此状态**只针对本次候选 HTML SHA**；main 未合并，独立人类专业财经/美术审稿仍 NOT_CHECKED，七家遗留出版器仍 LEGACY_NOT_UNIFIED。旧证据 42347520600/42347332430 为旧版，不能重新授权。
+
 ## 最新经过真实 PNG 人工式 AI 视觉复查的版本
 
 **真正的统一设计图证**见 [2026-11-07 v9 新 1100/330 桑基原始 PNG 与 exact-SHA 观察](PR35_UNIFIED_REAL_CJK_VISUAL_REVIEW_2026-11-07.md)。此前记录的 1040 WPS 图和 2026-11-07 早期截图属于历史 SHA，不能作为当前新统一收入主干图的证书。真正源 PDF→发布四页→12 套中文字体浏览器已在 [#42352289753](https://github.com/kobolibra/financials/actions/runs/42352289753) PASS，最新四页 SHA 见 research/quality/active-pr35.json。Cloudflare 线上同一 SHA 必须单独检查，独立专业财经和美术审稿仍 NOT_CHECKED。其余七家公司仍 LEGACY_NOT_UNIFIED，禁止把四家候选成功概括为 11 家顶级。
