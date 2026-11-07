@@ -89,8 +89,8 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.8.0-rc1",
-    "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
+    "version": "9.0.0",
+    "loading": "REPO_CANONICAL_V9_PRODUCTION_SKILL_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
       "skills/ashare-financial-storytelling/research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md",
