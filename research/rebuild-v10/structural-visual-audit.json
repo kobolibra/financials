@@ -7,8 +7,8 @@
   "records": [
     {
       "code": "300394",
-      "html_sha256": "f24ff4b5949eb864228e431d396deebafc2ddf8f99f5f7711b3f5bef33376cc0",
-      "html_bytes": 108171,
+      "html_sha256": "08a445f1d7d2a06ad440505eb3dab710c59bea2628acf6c1083a49640c6fcc6f",
+      "html_bytes": 107784,
       "figure_count_for_inventory_only": 10,
       "svg_count_for_inventory_only": 14,
       "has_source_table": true,
@@ -23,8 +23,8 @@
     },
     {
       "code": "300308",
-      "html_sha256": "61af4938ed32b2c1aff020fb38ff60dd0a6a54f319664e478a5ca4b01fbace69",
-      "html_bytes": 110310,
+      "html_sha256": "126c761b3993779d4df7014bf3b71c7b7d184112d6fef26566708f6af7d2e86c",
+      "html_bytes": 109974,
       "figure_count_for_inventory_only": 10,
       "svg_count_for_inventory_only": 14,
       "has_source_table": true,
@@ -39,8 +39,8 @@
     },
     {
       "code": "300502",
-      "html_sha256": "45f69fcebc8c83d6c7064bc69ac5a3051a1c500e92714bdf790625ffa7d7e6b0",
-      "html_bytes": 110386,
+      "html_sha256": "7bd0921e0d71ca5e834ea215538a4196538f6cef3ea936ef21f2d9cc5aac0f5f",
+      "html_bytes": 109859,
       "figure_count_for_inventory_only": 11,
       "svg_count_for_inventory_only": 15,
       "has_source_table": true,
@@ -135,8 +135,8 @@
     },
     {
       "code": "600900",
-      "html_sha256": "6dbcb87aa86de8ea89cd39ecd8933200051dd9d1ecabd01a4ad3d283f2865fd7",
-      "html_bytes": 70288,
+      "html_sha256": "7b87466520d5e60eb9d4fa019e16d5d4fed437f48555c7769161a975b82eea17",
+      "html_bytes": 89196,
       "figure_count_for_inventory_only": 1,
       "svg_count_for_inventory_only": 2,
       "has_source_table": true,
@@ -151,8 +151,8 @@
     },
     {
       "code": "600276",
-      "html_sha256": "7e22dbd92c79393cb916e060558c784e7fdfaafebb9f278e5855161ddb9b9ff4",
-      "html_bytes": 74814,
+      "html_sha256": "57902958526566261c1d05c5d93131d47e8f2d59131ce8910d90c7f5a3929367",
+      "html_bytes": 98203,
       "figure_count_for_inventory_only": 1,
       "svg_count_for_inventory_only": 2,
       "has_source_table": true,
