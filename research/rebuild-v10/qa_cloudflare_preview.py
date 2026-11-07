@@ -231,6 +231,23 @@ def main():
                                 thick=abs(vals[-1]-vals[1])
                                 expected=D(ribbon["amount"])/D(ribbon["scale"])
                                 assert abs(thick-expected)<=D(".001"),(engine,width,code,fid,"WRONG_ORIGINAL_YUAN_RIBBON",thick,expected)
+                            if width<=850 and fid=="fig-02" and code in ("688111","000333","600036"):
+                                # Real Cloudflare Android-size Chromium AND
+                                # iPhone-size WebKit CJK measured collision proof.
+                                spacing=active.evaluate("""svg=>{
+                                  const n=r=>[...svg.querySelectorAll('[data-editorial-role="'+r+'"]')];
+                                  const bot=r=>Math.max(...n(r).map(e=>e.getBoundingClientRect().bottom));
+                                  const top=r=>Math.min(...n(r).map(e=>e.getBoundingClientRect().top));
+                                  return {legend:bot('source-summary'),header:top('source-stage-header'),
+                                    outcome:bot('outcome-value'),warning:top('accounting-limitation'),
+                                    warningBottom:bot('accounting-limitation'),
+                                    note:top('source-caveat'),noteBottom:bot('source-caveat'),
+                                    svgBottom:svg.getBoundingClientRect().bottom};
+                                }""")
+                                assert spacing["legend"]+3<spacing["header"],(engine,width,code,"MOBILE_SOURCE_LABEL_COLLISION",spacing)
+                                assert spacing["outcome"]+3<spacing["warning"],(engine,width,code,"MOBILE_AMOUNT_AND_ACCOUNTING_WARNING_COLLISION",spacing)
+                                assert spacing["warningBottom"]+3<spacing["note"],(engine,width,code,"MOBILE_FINANCIAL_WARNING_AND_PDF_NOTE_COLLISION",spacing)
+                                assert spacing["noteBottom"]<spacing["svgBottom"],(engine,width,code,"MOBILE_PDF_NOTE_CLIPPED",spacing)
                             detail.append({
                                 "figure_id":fid,
                                 "source_svg":width<=850,
