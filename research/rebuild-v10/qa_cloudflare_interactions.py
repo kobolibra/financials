@@ -14,6 +14,7 @@ import json
 import os
 from pathlib import Path
 import sys
+import time
 from urllib.request import Request, urlopen
 
 from playwright.sync_api import sync_playwright
@@ -43,6 +44,24 @@ def fetch(url: str) -> bytes:
     return data
 
 
+def live_exact_after_deploy(url: str, expected: bytes) -> bytes:
+    """Release verification must wait for actual Pages CDN convergence, but
+    never green a partially deployed or mismatched article/index."""
+    last=None
+    for attempt in range(12):
+        try:
+            data=fetch(url)
+            if data==expected:
+                return data
+            last=f"sha={sha(data)} expected={sha(expected)}"
+        except Exception as exc:
+            last=repr(exc)
+        print("LIVE_BYTE_CONVERGENCE_PENDING",url,attempt+1,last,flush=True)
+        if attempt<11:
+            time.sleep(10)
+    raise AssertionError(f"LIVE_FULL_HTML_BYTES_NOT_CURRENT_MAIN {url}: {last}")
+
+
 def main() -> int:
     result={
         "schema":"financials.v10.pr35.actual_online_reader_interaction.v1",
@@ -58,17 +77,15 @@ def main() -> int:
         catalog=json.loads((ROOT/"site/research_catalog.json").read_text(encoding="utf8"))
         issuers=catalog["issuers"]
         assert catalog["published_issuer_count"]==len(issuers)==11,(len(issuers),catalog["published_issuer_count"])
-        index=fetch(DOMAIN+"/")
         expected_index=(ROOT/"public/index.html").read_bytes()
-        assert index==expected_index,("PREVIEW_HOME_NOT_CURRENT_REPO",sha(index),sha(expected_index))
+        index=live_exact_after_deploy(DOMAIN+"/",expected_index)
         assert b'id="companies"' in index,("MAIN_DIRECTORY_ANCHOR_MISSING")
         for issuer in issuers:
             code=issuer["code"]
             href=issuer["href"]
             assert href.startswith("/") and href.endswith(".html"),(code,href)
-            actual=fetch(DOMAIN+href)
             source=(ROOT/"public"/href.lstrip("/")).read_bytes()
-            assert actual==source,("PREVIEW_ISSUER_HTML_NOT_REPOSITORY",code,sha(actual),sha(source))
+            actual=live_exact_after_deploy(DOMAIN+href,source)
             assert href.encode() in index,("UNIFIED_HOME_ISSUER_LINK_MISSING",code,href)
             assert code.encode() in actual,("ISSUER_HTML_CODE_MISSING",code)
             result["company_routes"].append({"code":code,"route":href,
