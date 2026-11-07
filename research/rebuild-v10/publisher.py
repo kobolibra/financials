@@ -86,65 +86,16 @@ def split_funding(curr,prev,title):
  return svg_base(out,ht,title)
 
 
-def audited_financial_sankey(source_rows, total, uses, title, *, context='', required_scope='2026H1 consolidated', min_label=None):
-    """Conserved financial Sankey: exact Decimal yuan flows, never cosmetic ribbons.
+def audited_financial_sankey(*args, **kwargs):
+    """Historical V10 API is intentionally a poison-pill, not a renderer.
 
-    source_rows and uses are tuples (display_name, original_yuan_amount), same
-    fiscal period and consolidation. Negative entries are REJECTED rather than
-    disguised as ribbons; mixed assets & cash cannot share this flow grammar.
+    Source rows with no typed issuer, source fact IDs and own-cost disclosure
+    are forbidden as finance publication art. Use typed classify() and
+    unified_finance.render_typed_finance() ONLY. Never silently resurrect the
+    old color-per-issuer, source-label-less picture generator.
     """
-    src=[(str(label),D(value)) for label,value in source_rows]
-    dst=[(str(label),D(value)) for label,value in uses]
-    t=D(total)
-    assert t>0 and all(v>0 for _,v in src+dst), 'Financial Sankey requires strictly positive comparable flow amounts'
-    assert len(src)>=2 and len(dst)==2 and len(src)<=5, 'Use sourced and non-overlapping source and use taxonomy'
-    assert sum(v for _,v in src)==t,(title,'SOURCE_FLOW_NOT_CONSERVED',str(sum(v for _,v in src)-t))
-    assert sum(v for _,v in dst)==t,(title,'USES_FLOW_NOT_CONSERVED',str(sum(v for _,v in dst)-t))
-    h=678; total_h=378.; top=162.; left_x=300.; middle_x=586.;right_x=864.; gap=12.;nodew=20.;
-    scale=total_h/float(t)
-    colors=['#0c8670','#4b7890','#6da897','#a6a899','#c99872']
-    tocolors=['#c18b72','#0a816c']
-    gap_src=gap*(len(src)-1)
-    source_start=top-gap_src/2
-    target_start=top-gap/2
-    out='<defs><linearGradient id="flow-left" x1="0" x2="1"><stop stop-color="#0c8670" stop-opacity=".62"/><stop offset="1" stop-color="#0c8670" stop-opacity=".32"/></linearGradient><linearGradient id="flow-gp" x1="0" x2="1"><stop stop-color="#238e78" stop-opacity=".62"/><stop offset="1" stop-color="#238e78" stop-opacity=".78"/></linearGradient></defs>'
-    out+=txt(30,37,title,19,COL['ink'],'650')
-    out+=txt(30,70,'SOURCE / 收入来源',14,COL['muted'],'650')
-    out+=txt(536,70,'CONSOLIDATED / 汇总',13,COL['muted'],'650')
-    out+=txt(875,70,'ALLOCATION / 成本与留存',13,COL['muted'],'650')
-    out+=txt(30,105,required_scope+'  ·  线带厚度＝披露金额 · 所有连接可按人民币元精确勾稽',14,COL['muted'])
-    def band(x0,ya0,ya1,x1,yb0,yb1):
-        cp=(x1-x0)*.49
-        return f'M {x0:.3f} {ya0:.3f} C {x0+cp:.3f} {ya0:.3f} {x1-cp:.3f} {yb0:.3f} {x1:.3f} {yb0:.3f} L {x1:.3f} {yb1:.3f} C {x1-cp:.3f} {yb1:.3f} {x0+cp:.3f} {ya1:.3f} {x0:.3f} {ya1:.3f} Z'
-    source_cursor=source_start; middle_cursor=top
-    for i,(label,val) in enumerate(src):
-        thick=float(val)*scale; center=source_cursor+thick/2
-        innercolor=colors[i]
-        out+=f'<path d="{band(left_x+nodew,source_cursor,source_cursor+thick,middle_x,middle_cursor,middle_cursor+thick)}" fill="{innercolor}" fill-opacity=".47"><title>{x(label)} {n(yi(val),2)} 亿元 → 汇总</title></path>'
-        out+=bar(left_x,source_cursor,nodew,max(thick,.02),innercolor,0)
-        label_y=185.+i*80
-        out+=rule(291,center,276,label_y,'#91aaa2',1)
-        out+=txt(265,label_y-5,label,17,COL['ink'],'650','end')
-        out+=txt(265,label_y+22,n(yi(val),2)+' 亿',16,innercolor,'650','end')
-        source_cursor+=thick+gap;middle_cursor+=thick
-    out+=bar(middle_x,top,nodew,total_h,COL['ink'],0)
-    out+=txt(middle_x+nodew/2,top-24,n(yi(t),2)+' 亿',27,COL['ink'],'750','middle')
-    out+=txt(middle_x+nodew/2,top+total_h+31,'合并收入 / 净额',15,COL['muted'],'600','middle')
-    middle_cursor=top;target_cursor=target_start
-    for i,(label,val) in enumerate(dst):
-        thick=float(val)*scale;center=target_cursor+thick/2
-        col=tocolors[i];out+=f'<path d="{band(middle_x+nodew,middle_cursor,middle_cursor+thick,right_x,target_cursor,target_cursor+thick)}" fill="{col}" fill-opacity=".51"><title>汇总 → {x(label)} {n(yi(val),2)} 亿元</title></path>'
-        out+=bar(right_x,target_cursor,nodew,max(.02,thick),col,0)
-        label_y=[235.,440.][i]
-        out+=rule(right_x+nodew+8,center,right_x+nodew+27,label_y,'#91aaa2',1)
-        out+=txt(923,label_y-3,label,18,COL['ink'],'650')
-        out+=txt(923,label_y+28,n(yi(val),2)+' 亿',20,col,'750')
-        out+=txt(923,label_y+51,n(val/t*100,2)+'%',15,COL['muted'])
-        target_cursor+=thick+gap;middle_cursor+=thick
-    out+=rule(30,588,1013,588,'#dce5df',1)
-    out+=txt(30,616,'会计守恒：来源 Σ = 汇总 = 去向 Σ · 数据单位：人民币亿元；后台按原始元精度校验',14,COL['muted'])
-    if context:out+=txt(30,643,context,13,COL['muted'])
-    return svg_base(out,h,title+' · 会计守恒财务桑基图')
+    raise AssertionError("LEGACY_DISCONNECTED_SANKEY_FORBIDDEN__USE_UNIFIED_INCOME_SANKEY")
+
 
 def profitability_panel(r0,c0,r1,c1,title):
     rev0,rev1,cost0,cost1=map(D,[r0,r1,c0,c1]);gp0=rev0-cost0;gp1=rev1-cost1
