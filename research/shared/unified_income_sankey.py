@@ -260,6 +260,12 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
             out.append(text(12,ypos,name,10,PALETTE["ink"],500))
             out.append(text(315,ypos,fmt(v),10,
                             PALETTE["profit"] if role=="profit" else PALETTE["cost"],700,"end"))
+        if plan.kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
+            out.append(text(12,H-D(31),"未披露各业务毛利，不能倒推分部盈利",10,PALETTE["cost"],700))
+        elif plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT":
+            out.append(text(12,H-D(31),"净利息已经扣息，信用减值单独列示",10,PALETTE["cost"],700))
+        else:
+            out.append(text(12,H-D(31),"各业务成本源自自己的原始披露",10,PALETTE["muted"],700))
         out.append(text(12,H-D(12),"详细来源、会计口径及限制见本图下方数据表",9,PALETTE["muted"]))
         if len(sink_nodes)>3:
             H=max(H,footer+D(23+len(sink_nodes)*18))
