@@ -75,7 +75,7 @@ def plan_for(code:str, typed:dict, get, names:dict):
         source_label="净收入来源",outcome_label="营业费用与利润",
         sources=original_sources,
         outcomes=costs+(("operating_profit","营业利润",str(op),"profit"),),
-        footnote="净利息收入已扣利息支出，不是工业企业毛利；信用减值与运营支出分别呈现",
+        footnote="净利息收入已经扣除利息支出；信用减值和运营费用分别列示，不能重复扣息",
     )
 
 
