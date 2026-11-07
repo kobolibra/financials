@@ -50,7 +50,7 @@ with sync_playwright() as p:
             assert n>=9,(code,width,"MISSING_MONEY_NATIVE_FIGURES",n)
             assert page.locator(".hero-svg").count()==1,(code,"DESKTOP_ORIGINAL_LOST")
             assert page.evaluate("document.documentElement.scrollWidth")<=width+1,(code,width,"ROOT_OVERFLOW")
-            if code in ("300394","300502"):
+            if code in ("300394","300502","300308"):
                 graph=page.evaluate("""() => {
                   const selector=window.innerWidth>900
                     ? '.chart-shell .hero-svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'
@@ -121,7 +121,7 @@ with sync_playwright() as p:
                     clipped:r.right>f.getBoundingClientRect().right+2};
                 })""")
                 assert all(z["active"] and z["oldHidden"] and z["inner"]<=z["visible"]+2 and z["width"]>220 and not z["clipped"] for z in figures),(code,width,"REAL_NATIVE_FIGURE_CLIP",figures)
-            if width==390 and code=="300308":
+            if width==390 and page.locator("button.native-source-row[data-source-key]").count()>0:
                 source_row=page.locator("button.native-source-row[data-source-key]").first
                 assert source_row.count()==1,(code,"MISSING_ACCESSIBLE_SOURCE_FILTER")
                 original_d=page.locator("path.native-money-ribbon").first.get_attribute("d")

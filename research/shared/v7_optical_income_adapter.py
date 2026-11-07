@@ -22,6 +22,30 @@ def optical_flow_plan(ledger: dict) -> FlowPlan:
     period=d.get("period_key")
     if not issuer or not period or d.get("currency")!="CNY" or d.get("scope")!="consolidated":
         raise ValueError("OPTICAL_INCOMPATIBLE_ISSUER_PERIOD_CURRENCY_OR_SCOPE")
+    anomaly=ledger.get("verified_source_anomalies",[])
+    if anomaly and not coverage:
+        # The 184-page 300308 source prints one contradictory repeated cell.
+        # Accept ONLY its original reported contract/revenue column, which
+        # closes to the consolidated income statement; retain the disclosure.
+        if len(anomaly)!=1:
+            raise ValueError("OPTICAL_MULTIPLE_UNADJUDICATED_SOURCE_ANOMALIES")
+        x=anomaly[0]
+        primary=D(str(x.get("original_contracted_revenue_cell","NaN")))
+        repeated=D(str(x.get("original_repeated_total_revenue_cell","NaN")))
+        if (not primary.is_finite() or not repeated.is_finite()
+                or repeated-primary!=D("1.00")
+                or x.get("source_sha256")!=d.get("source_sha256")
+                or not str(d.get("source_archive_gate","")).startswith("PASS_EXACT_BYTES")
+                or not x.get("physical_page")
+                or not x.get("treatment")):
+            raise ValueError("OPTICAL_ORIGINAL_PDF_DISCREPANCY_NOT_SOURCED")
+        other=[s for s in segments if s.get("revenue_key")=="other_product_revenue"]
+        if len(other)!=1 or D(facts.get("other_product_revenue",{}).get("amount","NaN"))!=primary:
+            raise ValueError("OPTICAL_ONE_YUAN_ALTERNATE_COLUMN_CANNOT_ENTER_SANKEY")
+        coverage={"completeness":"exact_original_reported","source_amounts":"original yuan",
+                  "source_page":x["physical_page"],
+                  "source_section":"original contract revenue/COGS subcolumn with disclosed repeated-column conflict",
+                  "scope":"module + contract business-type other; repeated total differs by CNY 1.00, NOT a new source"}
     if (coverage.get("completeness")!="exact_original_reported"
             or coverage.get("source_amounts")!="original yuan"
             or not coverage.get("source_page") or not coverage.get("scope")

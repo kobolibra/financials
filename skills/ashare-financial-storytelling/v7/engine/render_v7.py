@@ -186,7 +186,7 @@ def build(l,m):
  # Both desktop and independent mobile figure-01 now use the same typed
  # source-original v9 income graph. Contradictory PDF source columns are a
  # documented exception: do not silently reclassify 300308.
- if not l.get("verified_source_anomalies"):
+ if l.get("revenue_partition_assertion",{}).get("completeness")=="exact_original_reported" or l.get("verified_source_anomalies"):
   flow=render_optical_candidate(l,mobile=False).replace('<svg ','<svg class="hero-svg" ',1)
   _NATIVE_PANELS["01"]=render_optical_candidate(l,mobile=True)
  pnl=original_profit_bridge(l)

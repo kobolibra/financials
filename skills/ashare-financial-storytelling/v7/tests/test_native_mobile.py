@@ -102,6 +102,8 @@ class OriginalFinanceMobiles(unittest.TestCase):
         self.assertEqual(panels["01"].count('class="native-money-source"'),2)
         self.assertEqual(panels["01"].count('class="native-money-ribbon"'),4)
         report,_=build(l,m)
+        self.assertEqual(report.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"'),2)
+        self.assertEqual(report.count('data-node-id="revenue-total"'),2)
         self.assertIn("422,649,612.97",report)
         self.assertIn("422,649,613.97",report)
         self.assertIn("独立第二名人类研究分析师",report)

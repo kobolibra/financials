@@ -14,6 +14,7 @@ from v7_optical_income_adapter import optical_flow_plan,render_optical_candidate
 FIXTURES=(
     "skills/ashare-financial-storytelling/v7/engine/sample-ledger.json",
     "skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json",
+    "skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json",
 )
 SVG="{http://www.w3.org/2000/svg}"
 
@@ -42,6 +43,21 @@ class RealOpticalSankeyMigrationContract(unittest.TestCase):
                     self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in outgoing),D(0)),total)
                     self.assertEqual(len(outgoing),2*len(ledger["segments"]))
                     self.assertEqual(len([p for p in svg.iter(SVG+"rect") if p.get("data-node-id")=="revenue-total"]),1)
+    def test_300308_one_yuan_repeated_column_must_never_become_a_source(self):
+        ledger=load(FIXTURES[-1])
+        self.assertEqual(ledger["document"]["pages"],184)
+        self.assertEqual(ledger["verified_source_anomalies"][0]["physical_page"],139)
+        self.assertEqual(optical_flow_plan(ledger).check(),
+                         D(ledger["facts"]["revenue"]["amount"]))
+        bad=copy.deepcopy(ledger)
+        bad["facts"]["other_product_revenue"]["amount"]="422649613.97"
+        with self.assertRaisesRegex(ValueError,"OPTICAL_ONE_YUAN_ALTERNATE_COLUMN_CANNOT_ENTER_SANKEY"):
+            optical_flow_plan(bad)
+        bad=copy.deepcopy(ledger)
+        bad["verified_source_anomalies"][0]["source_sha256"]="0"*64
+        with self.assertRaisesRegex(ValueError,"OPTICAL_ORIGINAL_PDF_DISCREPANCY_NOT_SOURCED"):
+            optical_flow_plan(bad)
+
     def test_reject_fabricated_or_cross_period_cost_revenue(self):
         for path in FIXTURES:
             with self.subTest(fixture=path):
