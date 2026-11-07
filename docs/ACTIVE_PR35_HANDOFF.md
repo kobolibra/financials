@@ -1,5 +1,10 @@
 # PR #35 零记忆接续｜当前研究与视觉质量工程
 
+## Current migration result — three original optical reports (2026-11-07)
+
+The source-pinned income hero figures for 300394, 300502 and 300308 now use the **same actual connected v9 Sankey renderer** on independent desktop and phone layouts. [Actual three-issuer financial source and CJK 1440/768/390 browser build #42359062392](https://github.com/kobolibra/financials/actions/runs/42359062392) passed; the rebuilt HTML files and current matching screenshot receipts were committed on the candidate PR branch. The 300308 source exception retains original PDF physical p139's printed 422,649,612.97 vs 422,649,613.97 discrepancy. **Three optical reports are PARTIAL: their main Sankey is unified but their other V7 figures still use older art.** Four other issuers 688220/600900/600276/601628 remain fully legacy. V10's three industrial/bank positive cases and one signed exception remain distinct. All-eleven fully unified visual/editorial quality is **NOT_ESTABLISHED**. Human independent visual and finance reviews, new-period generalization, current candidate Cloudflare exact HTML SHA and production merge remain **NOT_CHECKED / NOT_DEPLOYED**. The older references to “seven legacy companies” below describe the historical state before this migration and must not override this update. Current manifest: `research/quality/active-pr35.json`; dynamic source census: `scripts/audit_unified_visual_corpus.py`. Requery latest PR HEAD; old SHA-browser receipts are never release authority for changed HTML.
+
+
 **2026-11-07 v9 设计统一更新**：旧 125KB v8.8 Skill 已完整归档在 docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md；唯一现行 v9 Skill 负责流程与硬门禁，五本原研究手册保留。行业语义先分类，正向收入流由 research/shared/unified_income_sankey.py 一个引擎实现，三个公司类型 Type A/B/BANK 使用同一真实连接的收入合计主干，茅台 Type C 使用不同合法有符号图。设计标准、AEI 公开案例与严格 11 家迁移现状在 docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md。新渲染产物必须按新的 HTML SHA 实际重建、截图和云端字节检查；**其余七家仍 LEGACY_NOT_UNIFIED**，不可将候选 4 家的通过宣称 11 家完成。独立总编与研究员未审稿。
 
 
