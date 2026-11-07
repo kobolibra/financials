@@ -66,6 +66,16 @@ class ActivePR35HandoffTests(unittest.TestCase):
         errors=validate_artifact_integrity(*args)
         self.assertIn("WPS_NO_INDEPENDENT_THREE_STAGE_DESKTOP",errors)
 
+    def test_stretched_330_desktop_moutai_cannot_be_certified(self):
+        args=list(evidence())
+        pages=dict(args[4])
+        pages["600519"]=pages["600519"].replace(
+            b'data-layout="desktop-editorial"',
+            b'data-layout="stretched-mobile"',1)
+        args[4]=pages
+        errors=validate_artifact_integrity(*args)
+        self.assertIn("MOUTAI_DESKTOP_IS_ONLY_A_STRETCHED_330_PHONE_CHART",errors)
+
     def test_false_human_and_main_deployment_certification_rejected(self):
         args=list(evidence())
         active=copy.deepcopy(args[0])
