@@ -108,18 +108,18 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a",
-      "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
       "688111": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
-      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d"
+      "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
+      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d",
+      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",
-    "actual_cloudflare_for_new_visual_candidate": "PASS_11_EXACT_ISSUER_HTML_SHA_16_CHROMIUM_WEBKIT_VIEWPORTS_AND_108_EXPORTED_VISIBLE_SVG_CURRENT_HTML_SHA",
+    "actual_cloudflare_for_new_visual_candidate": "PENDING_NEW_SHA_REAL_HTTPS_BROWSER",
     "current_main_live_new_figures": "NOT_DEPLOYED_PR_UNMERGED",
     "unseen_multiperiod_generalization": "NOT_ESTABLISHED",
-    "actual_cloudflare_preview_action": "https://github.com/kobolibra/financials/actions/runs/42352460965",
-    "actual_cloudflare_preview_artifact": "https://github.com/kobolibra/financials/actions/runs/42352460965/artifacts/13566530465",
+    "actual_cloudflare_preview_action": "NOT_CHECKED_THIS_HTML_SHA",
+    "actual_cloudflare_preview_artifact": "NOT_CHECKED_THIS_HTML_SHA",
     "human_independent_financial_and_visual_review": "NOT_CHECKED",
     "production_new_source_state": "NOT_DEPLOYED_PR_UNMERGED"
   },

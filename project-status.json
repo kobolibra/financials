@@ -25,15 +25,15 @@
       "SHARED_CONNECTED_1100_330_SOURCE_TO_ONE_TOTAL_TO_EXACT_COST_OR_GP",
       "MOUTAI_INDEPENDENT_TRUE_SIGNED_SCALES"
     ],
-    "new_upgraded_figures_status": "PASS_CURRENT_PDF_SHA_CJK_390_768_1440_AND_CLOUDFLARE_FULL_SHA_ALL_11_ROUTES_16_BROWSER_108_DOWNLOADS__HUMAN_NOT_CHECKED__MAIN_NOT_DEPLOYED",
+    "new_upgraded_figures_status": "PASS_LOCAL_ORIGINAL_SOURCE_AND_CJK_ON_EXACT_SHA__REAL_PREVIEW_AND_HUMAN_ART_REVIEW_PENDING",
     "current_local_figure_proof_action": "REQUERY_EXACT_CURRENT_BRANCH_GITHUB_RUN",
-    "current_cloudflare_live_candidate_proof_action": "https://github.com/kobolibra/financials/actions/runs/42352460965",
-    "candidate_source_bound_preview_validation_scope": "PASS_11_HTML_SHA_16_HTTPS_BROWSER_AND_108_VISIBLE_SVG_EXPORTS_CURRENT_FOUR_SOURCE_SHA",
+    "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
+    "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a",
-      "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
       "688111": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
-      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d"
+      "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
+      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d",
+      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
