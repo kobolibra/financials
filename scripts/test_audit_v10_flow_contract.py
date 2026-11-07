@@ -80,6 +80,23 @@ class TypedV10FlowContractTests(unittest.TestCase):
             self.assertEqual([v["issuer"] for v in result["blocking_violations"]], ["688111"])
             self.assertEqual(result["conclusion"], "FAIL")
 
+    def test_all_repaired_issuer_phone_export_buttons_really_visible_and_source_selected(self):
+        # A technically correct money SVG is not independently useful if a
+        # phone CSS rule silently hides the original-money download control.
+        for code in MOD.CODES:
+            with self.subTest(code=code):
+                page=(ROOT/"public/research/2026-h1-v10"/(code+".html")).read_text(encoding="utf8")
+                self.assertNotIn(".export{display:none}",page)
+                self.assertIn(".export{display:inline-flex",page)
+                self.assertIn("min-height:44px",page)
+                self.assertIn("figure.querySelectorAll('.graphic-svg svg')",page)
+                self.assertNotIn("全部七家公司",page)
+                self.assertEqual(page.count('type="button" class="export"'),
+                                 MOD.audit(ROOT)["records"][
+                                     MOD.CODES.index(code)]["actual_html_sha256"] and
+                                 page.count('<figure class="graphic"'),
+                                 "Every financial figure needs its own visible export action")
+
     def test_kingsoft_a_requires_real_per_source_disclosed_cost_metadata(self):
         expected = MOD.classify(ROOT, "688111")
         before = '<figure data-flow-kind="TYPE_A_SOURCE_OWN_COST_GP">会计守恒财务桑基图'
