@@ -158,12 +158,22 @@ def main():
             page.screenshot(path=str(out/(a.code+"-"+str(width)+"-full.png")),full_page=True)
             for key in ["flow","sector","pnl","cfo","cash","balance"]:
                 page.locator("#fig-"+key).screenshot(path=str(out/(a.code+"-"+str(width)+"-"+key+".png")))
-            if width==1440:
-                with page.expect_download(timeout=10000) as dl:
-                    page.locator('button[data-export="flow"]').click()
-                download=dl.value
-                assert download.suggested_filename==a.code+"-2026H1-flow.svg"
-                download.save_as(str(out/(a.code+"-flow.svg")))
+            # Exported bytes must equal the current visible SVG at each viewport.
+            visible_xml=page.evaluate("""() => {
+                const f=document.querySelector('#fig-flow');
+                const svg=[...f.querySelectorAll('svg')].find(el=>{
+                    const r=el.getBoundingClientRect(),s=getComputedStyle(el);
+                    return r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden';
+                });
+                return svg?new XMLSerializer().serializeToString(svg):null;
+            }""")
+            assert visible_xml,(a.code,width,"VISIBLE_FLOW_SVG_MISSING")
+            with page.expect_download(timeout=10000) as dl:
+                page.locator('button[data-export="flow"]').click()
+            download=dl.value
+            assert download.suggested_filename==a.code+"-2026H1-flow.svg"
+            assert download.path().read_text(encoding="utf-8")==visible_xml,(a.code,width,"FLOW_EXPORT_NOT_VISIBLE_SVG")
+            download.save_as(str(out/(a.code+"-flow-"+str(width)+".svg")))
             record.append({"width":width,"figures":8,"desktop_svg":8,"native_mobile_svg":8,"tables":8,"actual_money_geometry":"PASS","body_no_overflow":"PASS","actual_native_mobile_financial_figures_and_390_no_inner_scroll":"PASS" if width==390 else "NOT_RELEVANT_THIS_WIDTH","svg_export":"PASS" if width==1440 else "NOT_RUN_THIS_VIEW"})
             page.close()
         browser.close()
