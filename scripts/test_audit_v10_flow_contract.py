@@ -128,15 +128,22 @@ class TypedV10FlowContractTests(unittest.TestCase):
         self.assertIn("INDEPENDENT_SCALE_NOT_DISCLOSED_TO_READERS",
                       MOD.inspect_published_figure("600519", expected, not_disclosed))
 
-    def test_midea_group_only_needs_visible_no_product_gp_warning(self):
+    def test_midea_group_only_needs_readable_disclosure_without_internal_codes(self):
         expected = MOD.classify(ROOT, "000333")
         weak = ('<figure data-flow-kind="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION">'
                 '会计守恒财务桑基图<details>PRODUCT_LEVEL_GP_NOT_ESTABLISHED</details></figure>')
         self.assertIn("GROUP_ONLY_NO_VISIBLE_PRODUCT_GP_LIMITATION",
                       MOD.inspect_published_figure("000333", expected, weak))
         good = ('<figure data-flow-kind="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION">'
-                '会计守恒财务桑基图 · PRODUCT_LEVEL_GP_NOT_ESTABLISHED</figure>')
+                '<svg data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED">'
+                '会计守恒财务桑基图<text>未披露各业务毛利，不能倒推分部盈利</text>'
+                '</svg></figure>')
         self.assertFalse(MOD.inspect_published_figure("000333", expected, good))
+        raw_machine_in_text = good.replace(
+            "未披露各业务毛利，不能倒推分部盈利",
+            "未披露各业务毛利，不能倒推分部盈利 PRODUCT_LEVEL_GP_NOT_ESTABLISHED")
+        self.assertIn("GROUP_ONLY_INTERNAL_MACHINE_TAG_VISIBLE_TO_READER",
+                      MOD.inspect_published_figure("000333", expected, raw_machine_in_text))
 
     def test_bank_cannot_be_labeled_as_industrial_gross_profit(self):
         expected = MOD.classify(ROOT, "600036")
