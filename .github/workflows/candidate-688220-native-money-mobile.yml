@@ -55,7 +55,7 @@ jobs:
           # native mobile SVG is literal HTML. A raw quote count sees only
           # the phone; test BOTH encodings and browser DOM separately.
           def both(token):
-              return new.count(token) + new.count(token.replace('"', r'\\"'))
+              return new.count(token) + new.count(token.replace('"', chr(92) + '"'))
           assert both('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2
           assert both('data-node-id="revenue-total"')==2
           assert both('data-stage="source-to-revenue"')==8
