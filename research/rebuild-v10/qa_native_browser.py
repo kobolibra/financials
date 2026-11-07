@@ -104,7 +104,9 @@ with sync_playwright() as p:
                 assert flow.locator(".native-finance svg").get_attribute("data-figure-kind")=="TYPE_C_SANKEY_OMITTED"
                 assert flow.locator(".native-finance svg rect[data-signed-yuan]").count()==3
             if code=="000333":
-                assert flow.locator("text=PRODUCT_LEVEL_GP_NOT_ESTABLISHED").count()>=1
+                assert flow.locator('.native-finance svg[data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED"]').count()==1
+                assert flow.locator("text=未披露各业务").count()>=1
+                assert flow.locator('text=PRODUCT_LEVEL_GP_NOT_ESTABLISHED').count()==0
             if code=="600036":
                 assert "净利息" in flow.inner_text()
             records.append(page_result)
