@@ -8,6 +8,8 @@ on:
       - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
       - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
       - 'research/shared/v7_optical_income_adapter.py'
+      - 'research/shared/test_v7_optical_income_adapter.py'
+      - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json'
       - 'research/shared/unified_income_sankey.py'
       - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json'
   workflow_dispatch:
