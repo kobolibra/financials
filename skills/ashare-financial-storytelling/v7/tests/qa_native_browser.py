@@ -52,7 +52,10 @@ with sync_playwright() as p:
             assert page.evaluate("document.documentElement.scrollWidth")<=width+1,(code,width,"ROOT_OVERFLOW")
             if code in ("300394","300502"):
                 graph=page.evaluate("""() => {
-                  const s=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+                  const selector=window.innerWidth>900
+                    ? '.chart-shell .hero-svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'
+                    : '.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]';
+                  const s=document.querySelector(selector);
                   if(!s)return null;
                   return {total:+s.getAttribute('data-revenue-yuan'),
                     boxes:[...s.querySelectorAll('rect[data-node-role]')].map(e=>({id:e.getAttribute('data-node-id'),role:e.getAttribute('data-node-role'),yuan:+e.getAttribute('data-node-yuan')})),
