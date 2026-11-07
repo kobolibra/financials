@@ -1,5 +1,15 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+## 2026-11-07 候选 PR #35 ACTIVE，main 仍不同：图形与交接品质整改
+
+**权威实时状态入口 [docs/ACTIVE_PR35_HANDOFF.md](docs/ACTIVE_PR35_HANDOFF.md) + [research/quality/active-pr35.json](research/quality/active-pr35.json)**。PR #35 quality/aei-sankey-source-contract-v1 正在改造四家 2026H1 报告；本段只是带日期候选快照，新会话必须重新查 main、PR HEAD、Actions 和 Cloudflare 全 HTML SHA。正式 main 的四篇旧页面不可因为 PR 预览成功就写为正式生产已修。候选会计路径金山办公 A（自身收入/成本/毛利）、茅台 C（真实小负毛利不画正向带）、美的 B（仅集团总毛利）、招商银行 BANK（净利息已减息）各不同。
+
+**本次新实装修复尚须新 SHA 实测**：金山 WPS 独立 1040 单位的原元三阶段桌面收入→自身成本/毛利→集团合计桑基，手机 330 单位独立；茅台 −12,446,319.42 元其他业务真正极小主比例正负图＋明确独立尺度的收入/成本局部放大，机器内部原因只保留 SVG 属性。针对这两种误导图已加源金额的对抗测试，但旧浏览器成功记录 #42344600791、#42344715944 只证旧候选 SHA，**不得继承到新改网页**。本次分支变更以实际 HEAD 及最新 CI 为准，不能写本地截图成功如未执行。
+
+**持续高质量审核未完成**：另一期/另一公司跨行业无代码特例复现、20–30未见样本、完整重大附注、独立机构分析师和视觉总编五秒盲评、真实实体移动设备与合并后主站新 SHA 都 NOT_CHECKED。机器代码 scripts/check_pr35_quality_handoff.py 与 python scripts/check_handoff.py 的双门必须在真实生成回执一致后 PASS；研究深度边界与明确经济命题见 docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md。跨轮交接需要更新机器状态和真实 HTML SHA，不可依赖前一次对话记忆。
+
+
+
 ## 2026-11-05 · ACTIVE MAIN: AEI/FT v8.8 实证视觉编审与真实财务流语义引擎已合并（不冒充修好四旧页）
 
 - **当前可复验main** `37ab35fd4c861b60ed65536e072b5aa6fa8b7ba8`，同一个11家目录无增删，11篇独立已发布HTML/所有原始PDF及发布器**本轮未变更**。PR [#33](https://github.com/kobolibra/financials/pull/33) 的方法标准、静态视觉失败检查及恶意用例，PR [#34](https://github.com/kobolibra/financials/pull/34) 的原始元级A/B/C流向会计语义执行器 `research/shared/editorial_financial_flow.py` 与十项基于实际账本/恶意会计情形的测试均已经合入。报告级「稳定顶级审美」「全面超越AEI」**仍未被证明**。
