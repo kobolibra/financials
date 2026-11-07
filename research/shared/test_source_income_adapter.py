@@ -38,6 +38,24 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
                 if code=="688220":
                     self.assertIn("字节等价尚未证明",plan.footnote)
 
+    def test_real_desktop_micro_business_labels_never_collide(self):
+        # The 688220 last two source values are tiny on a 24.51-yi
+        # common scale; their THREE textual rows must not be overprinted.
+        root=ET.fromstring(render_sector_income(read("688220"),mobile=False))
+        texts=list(root.iter(SVG+"text"))
+        names=[D(x.get("y")) for x in texts if x.get("data-editorial-role")=="source-item-title"]
+        money=[D(x.get("y")) for x in texts if x.get("data-editorial-role")=="source-item-money"]
+        margins=[D(x.get("y")) for x in texts if x.get("data-editorial-role")=="source-item-margin"]
+        self.assertEqual(len(names),4)
+        self.assertEqual(len(money),4)
+        self.assertEqual(len(margins),4)
+        for i in range(3):
+            self.assertGreater(names[i+1]-margins[i],D(18),
+                               "NEXT_SOURCE_MUST_NOT_OVERPRINT_PRIOR_MARGIN")
+        source_labels=" ".join(x.text or "" for x in texts)
+        self.assertIn("7.98万",source_labels)
+        self.assertNotIn("0.001亿",source_labels)
+
     def test_reject_counterfeit_source_and_forged_per_segment_cost(self):
         for code in CODES:
             with self.subTest(code=code):
