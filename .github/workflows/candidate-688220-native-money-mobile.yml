@@ -1,10 +1,12 @@
 name: Candidate 688220 source-native mobile nine-figure editorial test
 on:
   push:
-    branches: ['work/688220-native-mobile-visual-editorial-20261104']
+    branches: ['work/688220-native-mobile-visual-editorial-20261104', 'quality/aei-sankey-source-contract-v1']
     paths:
       - 'research/issuers/688220/**'
       - 'public/688220.html'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/unified_income_sankey.py'
       - '.github/workflows/candidate-688220-native-money-mobile.yml'
   workflow_dispatch:
 permissions:
@@ -23,6 +25,7 @@ jobs:
           python research/issuers/688220/verify_pages.py
           python research/issuers/688220/test_accounting.py
           python -m unittest research/issuers/688220/test_native_mobile.py -v
+          python -m unittest discover -s research/shared -p test_source_income_adapter.py -v
           python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
       - name: Real Noto Chinese typography and Chromium
         run: |
@@ -38,6 +41,7 @@ jobs:
         run: |
           python research/issuers/688220/publish.py --out /tmp/asr-688220-again.html --qa /tmp/asr-688220-again-qa.json
           cmp public/688220.html /tmp/asr-688220-again.html
+          grep -q 'FINANCIALS_UNIFIED_STORY_V1' public/688220.html
           python - <<'PY'
           from pathlib import Path
           import subprocess,re,hashlib
