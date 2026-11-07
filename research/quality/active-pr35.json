@@ -30,7 +30,8 @@
     "source_semantics": "research/rebuild-v10/strict-semantic-audit.json",
     "current_quality_roadmap": "docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md",
     "detailed_handoff": "docs/ACTIVE_PR35_HANDOFF.md",
-    "hero_figure_briefs": "research/quality/pr35-hero-figure-briefs.json"
+    "hero_figure_briefs": "research/quality/pr35-hero-figure-briefs.json",
+    "actual_visual_spot_review": "docs/PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md"
   },
   "four_issuers": {
     "600036": {
@@ -94,5 +95,21 @@
     "VERIFY_GITHUB_ACTIONS_ON_ACTUAL_CURRENT_PR_HEAD",
     "VERIFY_PREVIEW_OR_PRODUCTION_FULL_HTML_SHA_FOR_ACTUAL_CURRENT_HEAD"
   ],
-  "release_rule": "NO_CLAIM_AEI_LEVEL_CERTIFIED_OR_MAIN_DEPLOYED_WITHOUT_ACTUAL_REVIEW_AND_SHA_BOUND_SIGNOFF"
+  "release_rule": "NO_CLAIM_AEI_LEVEL_CERTIFIED_OR_MAIN_DEPLOYED_WITHOUT_ACTUAL_REVIEW_AND_SHA_BOUND_SIGNOFF",
+  "latest_source_sha_bound_candidate": {
+    "gate": "PASS_LOCAL_ORIGINAL_PDF_VERIFICATION_AND_12_REAL_CJK_CASES__NOT_HUMAN_EDITED",
+    "original_pdf_full_rebuild_run": "https://github.com/kobolibra/financials/actions/runs/42347332430",
+    "typed_and_editorial_handoff_pr_check_run": "https://github.com/kobolibra/financials/actions/runs/42347522657",
+    "four_actual_public_full_html_sha256": {
+      "600036": "17e20ef509616c259aa7637e6da33a7c9c3556cfc9f5a17e168691023f962a13",
+      "600519": "30c7bc4eb66957acb425b8f33a704127cadde398e065ce855151a5e2bcc5367a",
+      "688111": "d6a4e923ad59a12b2d74e916bf966531c3c645111c5836a548faa5478e670b66",
+      "000333": "9cd0776a8b5f0b9daaf8c0bc3d503efcb6dcd7f3ed84cd569a5aa5df057e83b4"
+    },
+    "original_browser_figures": 36,
+    "desktop_phone_original_money_editorial_spotcheck": "ASSISTANT_VISUAL_REVIEW_NOT_INDEPENDENT_HUMAN",
+    "actual_cloudflare_for_new_visual_candidate": "PENDING_INDEPENDENT_HTTP_BROWSER_SHA_AT_TIME_OF_RECORD",
+    "current_main_live_new_figures": "NOT_DEPLOYED_PR_UNMERGED",
+    "unseen_multiperiod_generalization": "NOT_ESTABLISHED"
+  }
 }
