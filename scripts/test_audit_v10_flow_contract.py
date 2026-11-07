@@ -92,8 +92,6 @@ class TypedV10FlowContractTests(unittest.TestCase):
                 self.assertIn("figure.querySelectorAll('.graphic-svg svg')",page)
                 self.assertNotIn("全部七家公司",page)
                 self.assertEqual(page.count('type="button" class="export"'),
-                                 MOD.audit(ROOT)["records"][
-                                     MOD.CODES.index(code)]["actual_html_sha256"] and
                                  page.count('<figure class="graphic"'),
                                  "Every financial figure needs its own visible export action")
 
