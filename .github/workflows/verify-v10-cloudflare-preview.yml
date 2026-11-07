@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/verify-v10-cloudflare-preview.yml'
       - 'research/rebuild-v10/qa_cloudflare_preview.py'
+      - 'research/rebuild-v10/qa_cloudflare_interactions.py'
       - 'public/research/2026-h1-v10/**'
       - 'research/rebuild-v10/qa_native_browser.py'
   workflow_dispatch:
@@ -34,11 +35,18 @@ jobs:
           FINANCIALS_PRODUCTION: https://financials-in-visuals.pages.dev
         run: |
           python research/rebuild-v10/qa_cloudflare_preview.py
+      - name: Verify 11 exact online company routes and all 108 visible-original SVG exports with source keyboard disclosures
+        env:
+          FINANCIALS_PR_PREVIEW: https://quality-aei-sankey-source-co.financials-in-visuals.pages.dev
+        run: |
+          python research/rebuild-v10/qa_cloudflare_interactions.py
       - name: Archive online screenshots and exact live byte receipts, including failures
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: v10-cloudflare-exact-byte-touchscreen-live-preview-release-gate
-          path: research/rebuild-v10/cloudflare-release-qa/
+          path: |
+            research/rebuild-v10/cloudflare-release-qa/
+            research/rebuild-v10/cloudflare-interaction-qa/
           retention-days: 30
           if-no-files-found: warn
