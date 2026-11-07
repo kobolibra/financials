@@ -6,7 +6,7 @@
   "records": [
     {
       "issuer": "688111",
-      "actual_html_sha256": "3e6811e04e6d6f495c9082511c55864112e737d5614f4d0e3ae5f5bd7c0e2d20",
+      "actual_html_sha256": "d6a4e923ad59a12b2d74e916bf966531c3c645111c5836a548faa5478e670b66",
       "expected_semantics": {
         "kind": "TYPE_A_SOURCE_OWN_COST_GP",
         "reason": "EXACT_SOURCE_TO_OWN_COST_AND_GP",
@@ -57,7 +57,7 @@
     },
     {
       "issuer": "600519",
-      "actual_html_sha256": "9fda424e8d4e968f4c1d45fb3c1e57dda8a7c0c6f247df2d9bfb1e394e7f6bc6",
+      "actual_html_sha256": "03ae22f8b22732d6a229d9ce33636773feab91ee0e72cfe839badf2d97be2a35",
       "expected_semantics": {
         "kind": "TYPE_C_SANKEY_OMITTED",
         "reason": "AT_LEAST_ONE_PRODUCT_HAS_NEGATIVE_GROSS_PROFIT_OR_COST",
