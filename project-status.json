@@ -1,6 +1,43 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-05",
+  "updated_date": "2026-11-07",
+  "active_pr35_quality_candidate": {
+    "pr_number": 35,
+    "status_scope": "CANDIDATE_PR_BRANCH_ONLY__NOT_PRODUCTION",
+    "state": "UNMERGED_CANDIDATE_WITH_SEPARATE_MAIN_PRODUCTION",
+    "branch": "quality/aei-sankey-source-contract-v1",
+    "main_at_review_start": "9b70e1a4dad2c57cbbd26810dbd7ed9d3e5ddea9",
+    "real_main_and_pr_head": "MUST_REQUERY_GITHUB_EACH_NEW_SESSION",
+    "handoff_manifest": "research/quality/active-pr35.json",
+    "handoff_document": "docs/ACTIVE_PR35_HANDOFF.md",
+    "editorial_scorecard": "docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md",
+    "strict_candidate_proof": "scripts/check_pr35_quality_handoff.py",
+    "source_rebuild": "research/rebuild-v10/build-manifest.json",
+    "typed_financial_flow": "research/rebuild-v10/strict-semantic-audit.json",
+    "real_cjk_browser": "research/rebuild-v10/real-browser-qa/result.json",
+    "candidate_actual_issuer_codes": [
+      "688111",
+      "600519",
+      "000333",
+      "600036"
+    ],
+    "latest_candidate_visual_upgrade": [
+      "688111_TRUE_1040_DESKTOP_THREE_STAGE_OWN_COST_GP_SUM",
+      "600519_TRUE_TINY_NEGATIVE_GP_PLUS_INDEPENDENT_SCALE_ZOOM"
+    ],
+    "new_upgraded_figures_status": "PENDING_NEW_SOURCE_SHA_REAL_BROWSER_AND_CLOUDFLARE_RECHECK",
+    "historical_verified_prior_sha_only": [
+      "https://github.com/kobolibra/financials/actions/runs/42344600791",
+      "https://github.com/kobolibra/financials/actions/runs/42344715944"
+    ],
+    "independent_human_editorial": "NOT_CHECKED",
+    "independent_full_notes": "NOT_CHECKED",
+    "unseen_20_30_company_period_regression": "NOT_ESTABLISHED",
+    "mobile_physical_device": "NOT_CHECKED",
+    "main_production_new_four_figures": "NOT_DEPLOYED_NO_OWNER_MERGE",
+    "aei_top_quality_claim": "NOT_CERTIFIED",
+    "entrypoint_instruction": "Current main remains canonical production, PR35 files are candidate only. Re-read main+PR HEAD, all Skill manuals, verify actual HTML SHA and QA receipts. Do not copy prior PASS onto new files."
+  },
   "current_new_issuer_unidentified_intake": {
     "checked_date": "2026-11-05",
     "observed_main_at_intake": "b7cf9daf79cb9abda0b6da2a0b85d60f995ff834",
