@@ -21,9 +21,9 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
         self.assertEqual(set(census["unified_positive_sankey_issuers"]),{"688111","000333","600036"})
         self.assertEqual(census["lawful_signed_exception_issuers"],["600519"])
         self.assertEqual(set(census["legacy_not_unified"]),
-                         {"688220","600900","600276","601628"})
+                         set())
         self.assertEqual(set(census["partial_hero_only_unified_remaining_art_legacy"]),
-                         {"300394","300502","300308"})
+                         {"300394","300502","300308","688220","600900","600276","601628"})
         self.assertEqual(census["strict_all_11_visual_unification"],"NOT_ESTABLISHED")
         self.assertEqual(census["failed_new_grammar"],[])
         self.assertEqual(census["independent_visual_art_director"],"NOT_CHECKED")
@@ -43,6 +43,24 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
         tampered=dict(pages)
         tampered["300308"]=tampered["300308"].replace(b"422,649,613.97",b"422,649,612.97")
         self.assertIn("300308",inspect(catalog,tampered)["failed_new_grammar"])
+
+    def test_current_sector_connected_flow_cannot_be_replaced_by_cute_ribbons(self):
+        catalog,pages=actual()
+        for code in ("688220","600900","600276"):
+            with self.subTest(code=code):
+                bad=dict(pages)
+                raw=pages[code]
+                bad[code]=(raw.replace(b'data-node-id="revenue-total"',b'data-node-id="forged-total"')
+                           .replace(b'data-node-id=\\\"revenue-total\\\"',b'data-node-id=\\\"forged-total\\\"'))
+                self.assertIn(code,inspect(catalog,bad)["failed_new_grammar"])
+
+    def test_insurer_premium_can_never_become_industrial_revenue(self):
+        catalog,pages=actual()
+        bad=dict(pages)
+        bad["601628"]=pages["601628"].replace(
+            b'data-chart-grammar="INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL"',
+            b'data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"')
+        self.assertIn("601628",inspect(catalog,bad)["failed_new_grammar"])
 
     def test_false_disconnected_software_source_to_revenue_is_rejected(self):
         catalog,pages=actual()

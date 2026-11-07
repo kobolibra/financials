@@ -21,6 +21,17 @@ POSITIVE={"688111","000333","600036"}
 LEGACY={"300394","300308","300502","688220","600900","600276","601628"}
 
 
+def has_native_pair(html:str,token:str)->bool:
+    # Offline JS source in semiconductor/hydro/pharma is JSON-escaped,
+    # while insurance and optical are literal HTML SVG markup.
+    return html.count(token)+html.count(token.replace('"',chr(92)+'"'))>=2
+
+
+def has_native_viewbox(html:str,width:int)->bool:
+    token=f'viewBox="0 0 {width}'
+    return token in html or token.replace('"',chr(92)+'"') in html
+
+
 def inspect(catalog:dict,pages:dict[str,bytes])->dict:
     rows=[]
     seen=set()
@@ -74,9 +85,50 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
             else:
                 row["visual_grammar_status"]="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"
                 row["issues"].append("REMAINDER_OF_V7_ISSUER_ART_NOT_YET_UNIFIED")
+        elif code in {"688220","600900","600276"}:
+            # Source-typed originals now render SAME v9 connected main income
+            # flow in native 1100 desktop and 330 phone SVG. Their other
+            # corporate graphics are still sector publisher legacy.
+            required=('data-design-system="FINANCIALS_UNIFIED_STORY_V1"',
+                      'data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"',
+                      'data-node-id="revenue-total"',
+                      'data-stage="source-to-revenue"',
+                      'data-stage="revenue-to-outcome"')
+            if any(not has_native_pair(html,token) for token in required):
+                row["visual_grammar_status"]="FAIL_SECTOR_HERO_NOT_SHARED_V9"
+                row["issues"].append("SEMICONDUCTOR_UTILITY_PHARMA_HERO_GRAPH_NOT_CONNECTED")
+            elif any(not has_native_viewbox(html,w) for w in (1100,330)):
+                row["visual_grammar_status"]="FAIL_SECTOR_HERO_NOT_SHARED_V9"
+                row["issues"].append("SECTOR_DESKTOP_AND_PHONE_SANKKY_NOT_INDEPENDENT")
+            elif code=="688220" and ("OFFICIAL_EQUIVALENCE_NOT_CHECKED" not in html or "7.98万" not in html):
+                row["visual_grammar_status"]="FAIL_SECTOR_HERO_NOT_SHARED_V9"
+                row["issues"].append("ASR_ORIGINAL_MIRROR_CAVEAT_OR_TINY_SOURCE_WAS_HIDDEN")
+            else:
+                row["visual_grammar_status"]="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"
+                row["issues"].append("REMAINDER_OF_ORIGINAL_SECTOR_PUBLISHER_ART_NOT_YET_UNIFIED")
+        elif code=="601628":
+            # Original insurance premiums are management old-contract
+            # statistics. A shared COST/GP industrial income flow would be
+            # financially false. This is a distinct but same-palette lawful
+            # 4-source -> new/renew -> total insurance Sankey.
+            required=('data-design-system="FINANCIALS_UNIFIED_STORY_V1"',
+                      'data-chart-grammar="INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL"',
+                      'data-node-id="premium-total"',
+                      'data-stage="premium-source-to-new-or-renew"',
+                      'data-stage="new-or-renew-to-premium-total"')
+            if any(html.count(x)<2 for x in required):
+                row["visual_grammar_status"]="FAIL_INSURANCE_PREMIUM_SEMANTIC_GRAMMAR"
+                row["issues"].append("INSURER_FOUR_NEW_RENEW_TOTAL_CONNECTED_GRAPH_MISSING")
+            elif any(not has_native_viewbox(html,w) for w in (1100,330)):
+                row["visual_grammar_status"]="FAIL_INSURANCE_PREMIUM_SEMANTIC_GRAMMAR"
+                row["issues"].append("INSURER_MOBILE_OR_DESKTOP_NOT_NATIVE")
+            elif 'data-accounting-basis="MANAGEMENT_LEGACY_PREMIUM_STATISTICS_NOT_CAS25"' not in html or "保险服务收入" not in html:
+                row["visual_grammar_status"]="FAIL_INSURANCE_PREMIUM_SEMANTIC_GRAMMAR"
+                row["issues"].append("PREMIUM_IS_NOT_CAS25_SERVICE_REVENUE_DISCLOSURE_MISSING")
+            else:
+                row["visual_grammar_status"]="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"
+                row["issues"].append("INSURANCE_TEN_FIGURES_MONEY_EDITION_PRESERVED_BUT_OTHER_ART_NOT_UNIFIED")
         else:
-            # A valid historical page can be financially correct without
-            # complying with the new unified editorial visual renderer.
             row["issues"].append("NOT_YET_MIGRATED_TO_CANONICAL_V9_EDITORIAL_SYSTEM")
         rows.append(row)
     if len(rows)!=11 or set(x["issuer"] for x in rows)!=POSITIVE|LEGACY|{"600519"}:
