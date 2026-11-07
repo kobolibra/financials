@@ -40,6 +40,8 @@ def live_dom(page,code,width):
     assert page.evaluate("document.documentElement.scrollWidth")<=width+1,(code,width,"ACTUAL_LIVE_DOCUMENT_OVERFLOW")
     for figure in ["flow","pnl","cfo","cash","balance"]:
         assert page.locator("#chart-"+figure+" > svg").count()==1,(code,width,figure,"REAL_DESKTOP_FINANCIAL_PLOT_MISSING")
+    assert page.locator('#chart-flow > svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
+    assert page.locator('#chart-flow .native-mobile-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
     if width==390:
         assert page.locator(".native-mobile-finance:visible").count()==8,(code,width,"ACTUAL_REMOTE_MOBILE_NOT_EIGHT_VISIBLE")
         assert page.locator(".plot > svg:visible").count()==0,(code,width,"REMOTE_CLIPPED_DESKTOP_MONEY_WINDOW_IN_USE")
@@ -52,17 +54,24 @@ def live_dom(page,code,width):
         }))""")
         assert len(plots)==8 and all(p["scroll"]<=p["visible"]+2 and 250<=p["svg"]<=p["visible"]+1 and not p["textClip"] for p in plots),(code,width,"REMOTE_NATIVE_FINANCE_TEXT_CLIP_OR_INTERNAL_HORIZ_SCROLL",plots)
         src=page.evaluate("""() => {
-          let svg=document.querySelector('#chart-flow .native-mobile-finance svg');
-          return {inflow:[...svg.querySelectorAll('.m-flow-source')].map(x=>({money:+x.dataset.exactYuan,h:+x.getAttribute('height')})),
-           ribbons:[...svg.querySelectorAll('.m-flow-band')].map(x=>({money:+x.dataset.exactYuan,h:+x.dataset.geometryHeight,source:x.dataset.sourceKey,target:x.dataset.targetKey})),
-           sinks:[...svg.querySelectorAll('.m-flow-sink')].map(x=>({money:+x.dataset.exactYuan,h:+x.getAttribute('height')}))}
+          const svg=document.querySelector('#chart-flow .native-mobile-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+          if(!svg)return null;
+          return {total:+svg.getAttribute('data-revenue-yuan'),scale:+svg.getAttribute('data-scale-yuan-per-svg-unit'),
+            nodes:[...svg.querySelectorAll('rect[data-node-role]')].map(e=>({id:e.getAttribute('data-node-id'),role:e.getAttribute('data-node-role'),money:+e.getAttribute('data-node-yuan'),h:+e.getAttribute('height')})),
+            ribbons:[...svg.querySelectorAll('path[data-ribbon-yuan]')].map(e=>({money:+e.getAttribute('data-ribbon-yuan'),stage:e.getAttribute('data-stage'),scale:+e.getAttribute('data-scale-yuan-per-svg-unit'),d:e.getAttribute('d')}))};
         }""")
-        money=float(ledger["facts"]["rev"]["yuan"]);scale=(298-14*(len(ledger["segments"])-1))/money
-        assert len(src["inflow"])==len(ledger["segments"]) and len(src["sinks"])==2
-        assert len(src["ribbons"])==2*len(ledger["segments"]),(code,"ACTUAL_REMOTE_NATIVE_BEZIER_CONSERVATION_MISSING")
-        assert all(abs(x["money"]*scale-x["h"])<.00003 for x in src["inflow"]+src["ribbons"]+src["sinks"]),(code,"REMOTE_SOURCE_MONEY_WIDTH_NOT_PROPORTIONAL")
-        assert abs(sum(x["money"] for x in src["sinks"])-money)<.01
-        assert abs(sum(x["money"] for x in src["ribbons"])-money)<.01
+        money=float(ledger["facts"]["rev"]["yuan"])
+        assert src and abs(src["total"]-money)<.001,(code,"REMOTE_UNIFIED_INCOME_SVG_NOT_CURRENT")
+        assert len([x for x in src["nodes"] if x["role"]=="source"])==len(ledger["segments"])
+        assert len([x for x in src["nodes"] if x["role"]=="total" and x["id"]=="revenue-total"])==1
+        assert len([x for x in src["nodes"] if x["role"] in ("cost","profit")])==2
+        inflow=[x for x in src["ribbons"] if x["stage"]=="source-to-revenue"]
+        outflow=[x for x in src["ribbons"] if x["stage"]=="revenue-to-outcome"]
+        assert len(inflow)==len(ledger["segments"]) and len(outflow)==2*len(ledger["segments"])
+        assert abs(sum(x["money"] for x in inflow)-money)<.001
+        assert abs(sum(x["money"] for x in outflow)-money)<.001
+        assert all(abs(x["h"]-x["money"]/src["scale"])<.001 for x in src["nodes"])
+        assert all(x["d"].startswith("M ") and " C " in x["d"] and x["scale"]>0 for x in src["ribbons"])
         for kind in ["pnl","cfo","cash","capital"]:
             svg=page.locator(f'#chart-{kind} .native-mobile-finance svg')
             assert svg.count()==1
