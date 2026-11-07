@@ -9,14 +9,17 @@ from __future__ import annotations
 from decimal import Decimal as D
 from html import escape as E
 from unified_finance import render_typed_finance
+from unified_income_sankey import PALETTE
 
 W = D(330)
-INK = "#17343b"
-GREEN = "#087d69"
-COPPER = "#b8795b"
-BLUE = "#437d95"
-MUTED = "#667b78"
-PAPER = "#f7f5ef"
+# All source-derived money exhibits share the same semantic palette as the
+# true connected income Sankey; no separate issuer-specific color grammar.
+INK = PALETTE["ink"]
+GREEN = PALETTE["profit"]
+COPPER = PALETTE["cost"]
+BLUE = PALETTE["source_dark"]
+MUTED = PALETTE["muted"]
+PAPER = PALETTE["page"]
 
 
 def _e(x):
