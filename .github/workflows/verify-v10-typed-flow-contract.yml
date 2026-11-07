@@ -31,6 +31,7 @@ jobs:
       - name: Exercise actual yuan source facts, four issuer genres, and hostile tests
         run: |
           python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v
+          python -m unittest discover -s research/rebuild-v10 -p 'test_editorial_chart_quality.py' -v
       - name: Source-SHA frozen debt cannot become a new untyped publication
         run: |
           python scripts/audit_v10_flow_contract.py --out v10-typed-flow-audit.json
