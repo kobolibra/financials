@@ -43,6 +43,39 @@ class IssuerReleaseContractTests(unittest.TestCase):
             errs = mod.validate_release(ROOT, self.issuer, self.original, check_bytes=False)
         self.assertTrue(any("LEDGER_FACT_SCOPE_INVALID 688220/rev" in x for x in errs), errs)
 
+    def test_unmerged_exact_candidate_sha_never_borrows_main_live_certification(self):
+        # Candidate SHA is different from the only actually deployed main HTML.
+        # The old production Cloudflare receipt remains anchored to old bytes.
+        import hashlib
+        for code in ("688220","600900","600276","601628"):
+            with self.subTest(code=code):
+                issuer=next(x for x in self.catalog["issuers"] if x["code"]==code)
+                current=json.loads((ROOT/f"research/issuers/{code}/release-gates.json").read_text())
+                candidate=current["unmerged_candidate"]
+                actual=hashlib.sha256((ROOT/f"public/{code}.html").read_bytes()).hexdigest()
+                self.assertEqual(candidate["candidate_full_html_sha256"],actual)
+                self.assertEqual(candidate["base_deployed_html_sha256"],current["published_html_sha256"])
+                self.assertNotEqual(candidate["base_deployed_html_sha256"],actual)
+                self.assertEqual(candidate["promotion_status"],"UNMERGED_NOT_DEPLOYED")
+                self.assertEqual(current["live_release_fingerprint"],current["published_html_sha256"])
+                self.assertEqual(mod.validate_release(ROOT,issuer,current,check_bytes=False),[])
+                false_hash=copy.deepcopy(current)
+                false_hash["unmerged_candidate"]["candidate_full_html_sha256"]="0"*64
+                self.assertIn(f"CANDIDATE_HTML_SHA_MISMATCH {code}",
+                              mod.validate_release(ROOT,issuer,false_hash,check_bytes=False))
+                false_base=copy.deepcopy(current)
+                false_base["unmerged_candidate"]["base_deployed_html_sha256"]="0"*64
+                self.assertIn(f"CANDIDATE_BASE_DEPLOYED_SHA_INVALID {code}",
+                              mod.validate_release(ROOT,issuer,false_base,check_bytes=False))
+                fake_release=copy.deepcopy(current)
+                fake_release["unmerged_candidate"]["promotion_status"]="PASS_LIVE"
+                self.assertIn(f"CANDIDATE_PREMATURE_PRODUCTION_PROMOTION {code}",
+                              mod.validate_release(ROOT,issuer,fake_release,check_bytes=False))
+                missing=copy.deepcopy(current)
+                del missing["unmerged_candidate"]
+                self.assertIn(f"PUBLISHED_REPORT_SHA_MISMATCH {code}",
+                              mod.validate_release(ROOT,issuer,missing,check_bytes=False))
+
     def test_published_html_sha_cannot_silently_lag_generated_insurance_article(self):
         insurance = next(x for x in self.catalog["issuers"] if x["code"] == "601628")
         record = json.loads((ROOT / "research/issuers/601628/release-gates.json").read_text())
