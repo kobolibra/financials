@@ -127,6 +127,35 @@ class OriginalVisualGrammarTests(unittest.TestCase):
                     if code=="600036":
                         self.assertEqual(graph.get("data-bank-interest-already-net"),"true")
 
+    def test_mobile_source_stage_and_outcome_footer_have_nonoverlapping_original_yuan_rows(self):
+        from unified_finance import render_typed_finance
+        for code in ("688111","000333","600036"):
+            with self.subTest(code=code):
+                typed=classify(ROOT,code)
+                svg=render_typed_finance(code,typed,RAW_GET,{},mobile=True)
+                root=ET.fromstring(svg)
+                grouped={}
+                for t in root.iter(XMLNS+"text"):
+                    grouped.setdefault(t.get("data-editorial-role"),[]).append(D(t.get("y")))
+                source=max(grouped["source-summary"])
+                header=min(grouped["source-stage-header"])
+                self.assertGreater(header-source,D(18),
+                                   "Source legend must never touch the real Sankey stage label")
+                last_outcome=max(grouped["outcome-value"])
+                warning=grouped["accounting-limitation"][0]
+                note=grouped["source-caveat"][0]
+                self.assertGreaterEqual(warning-last_outcome,D(25))
+                self.assertGreaterEqual(note-warning,D(18))
+                self.assertLess(note+D(12),D(root.get("viewBox").split()[-1]))
+                self.assertEqual(len(grouped["outcome-value"]),len(
+                    [x for x in root.iter(XMLNS+"rect") if x.get("data-node-role") in ("cost","profit")])*2)
+                if code=="688111":
+                    # 330px card must not discard the issuer's key insight:
+                    # different product gross-margin rates.
+                    summary=" ".join(t.text or "" for t in root.iter(XMLNS+"text")
+                                     if t.get("data-editorial-role")=="source-summary")
+                    self.assertEqual(summary.count("毛利"),4)
+
     def test_unified_flow_rejects_fake_allocations_and_negative_amounts(self):
         from unified_finance import plan_for
         from dataclasses import replace
