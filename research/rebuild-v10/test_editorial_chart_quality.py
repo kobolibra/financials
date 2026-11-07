@@ -20,9 +20,11 @@ ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/"research/rebuild-v10"))
 sys.path.insert(0,str(ROOT/"scripts"))
 from native_mobile import source_own_sankey, signed_product_profit, group_sankey
-from audit_v10_flow_contract import classify
+from audit_v10_flow_contract import classify, _raw
 
 LEDGER=json.loads((ROOT/"research/rebuild-v10/input-ledgers/600519.json").read_text())["facts"]
+def RAW_GET(code,key):
+    return D(str(_raw(ROOT,code)[key]["yuan"]))
 GET=lambda code,key:LEDGER[key]["yuan"]
 XMLNS="{http://www.w3.org/2000/svg}"
 
@@ -152,14 +154,13 @@ class OriginalVisualGrammarTests(unittest.TestCase):
 
     def test_unified_financials_three_stage_source_trunk_and_outcome_geometry(self):
         from unified_finance import render_typed_finance, plan_for
-        from verify import get
         for code,nsource,nsink in (("688111",4,2),("000333",3,2),("600036",3,4)):
             with self.subTest(code=code):
                 typed=classify(ROOT,code)
-                plan=plan_for(code,typed,get,{})
+                plan=plan_for(code,typed,RAW_GET,{})
                 total=plan.check()
                 for mobile in (False,True):
-                    graph=ET.fromstring(render_typed_finance(code,typed,get,{},mobile=mobile))
+                    graph=ET.fromstring(render_typed_finance(code,typed,RAW_GET,{},mobile=mobile))
                     self.assertEqual(graph.get("data-design-system"),"FINANCIALS_UNIFIED_STORY_V1")
                     self.assertEqual(graph.get("data-chart-grammar"),"SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY")
                     self.assertEqual(D(graph.get("data-revenue-yuan")),total)
@@ -185,11 +186,10 @@ class OriginalVisualGrammarTests(unittest.TestCase):
 
     def test_unified_flow_rejects_fake_allocations_and_negative_amounts(self):
         from unified_finance import plan_for
-        from verify import get
         from dataclasses import replace
-        a=plan_for("688111",classify(ROOT,"688111"),get,{})
-        b=plan_for("000333",classify(ROOT,"000333"),get,{})
-        bank=plan_for("600036",classify(ROOT,"600036"),get,{})
+        a=plan_for("688111",classify(ROOT,"688111"),RAW_GET,{})
+        b=plan_for("000333",classify(ROOT,"000333"),RAW_GET,{})
+        bank=plan_for("600036",classify(ROOT,"600036"),RAW_GET,{})
         with self.assertRaisesRegex(ValueError,"SOURCE_AND_OUTCOME_TOTAL_MISMATCH"):
             replace(b,sources=b.sources[:-1]).check()
         with self.assertRaisesRegex(ValueError,"NEGATIVE_IN_POSITIVE_FLOW"):
