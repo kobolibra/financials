@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/"research/rebuild-v10"))
 sys.path.insert(0,str(ROOT/"scripts"))
-from native_mobile import source_own_sankey, signed_product_profit
+from native_mobile import source_own_sankey, signed_product_profit, group_sankey
 from audit_v10_flow_contract import classify
 
 LEDGER=json.loads((ROOT/"research/rebuild-v10/input-ledgers/600519.json").read_text())["facts"]
@@ -79,6 +79,23 @@ class OriginalVisualGrammarTests(unittest.TestCase):
             observed=[D(x.get("data-ribbon-yuan")) for x in _paths(svg)
                       if x.get("data-source-id")==sid]
             self.assertCountEqual(observed,[D(c),D(g)])
+
+    def test_midea_group_only_must_disclose_in_chinese_without_machine_tag(self):
+        typed=classify(ROOT,"000333")
+        svg=group_sankey("000333",typed,{
+            "home":"智能家居","industrial_solution":"商业及工业","other_total":"其他业务"})
+        root=ET.fromstring(svg)
+        self.assertEqual(root.get("data-gp-limitation"),
+                         "PRODUCT_LEVEL_GP_NOT_ESTABLISHED")
+        ribbons=_paths(svg)
+        self.assertEqual(len(ribbons),5)
+        vals=[D(t.get("data-ribbon-yuan")) for t in ribbons]
+        self.assertEqual(sum(vals[:3],D(0)),D(typed["exact_yuan_total"]))
+        self.assertEqual(sum(vals[3:],D(0)),D(typed["exact_yuan_total"]))
+        visible=" ".join(n.text or "" for n in root.iter(XMLNS+"text"))
+        self.assertIn("未披露各业务",visible)
+        self.assertIn("不能",visible)
+        self.assertNotIn("PRODUCT_LEVEL_GP_NOT_ESTABLISHED",visible)
 
     def test_moutai_tiny_loss_must_not_be_fake_width_or_invisible_story(self):
         kind=classify(ROOT,"600519")
