@@ -6,6 +6,10 @@
 
 稳定输出有明确行业经营命题、可量化驱动、最强反证、同原始披露账本守恒的优秀金融可视化，尤其是能一眼看出业务赚钱机制的真实桑基图。App Economy Insights / FT 只作为公开方法、信息效率与视觉设计基准；不能用图表数或 CI 全绿宣称超越。
 
+## 最新实际候选版源码及交接机测（2026-11-07，本段是 SHA 绑定记录）
+
+四份新 SVG 已完成实际原 PDF 检查、按原始元重新生成和 1440/768/390 的 36 图 12 浏览器场景：源重建与截图 [Action #42347332430](https://github.com/kobolibra/financials/actions/runs/42347332430) PASS。对应精确 HTML SHA 存于 research/rebuild-v10/build-manifest.json 和 research/quality/active-pr35.json 的 latest_source_sha_bound_candidate；真正图片的人工式 AI 观察笔记及 PNG SHA 在 [真实 CJK 图证审阅](PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md)，不冒充独立视觉编辑签字。候选零记忆 SHA 与财经审计门 [Action #42347522657](https://github.com/kobolibra/financials/actions/runs/42347522657) PASS；真实 Cloudflare HTTPS 新版重测未通过前保持 PENDING，旧云端绿灯只能证明旧 HTML SHA。
+
 ## 工作状态——必须区分三条线
 
 - 唯一仓库：kobolibra/financials。工作 PR：https://github.com/kobolibra/financials/pull/35；分支 quality/aei-sankey-source-contract-v1；此交接创建时 **PR 未合并**。最初查验 main 为 9b70e1a4dad2c57cbbd26810dbd7ed9d3e5ddea9，仅为带日期历史快照，须重新获取。
