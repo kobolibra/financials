@@ -6,6 +6,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts'))
 from audit_v10_flow_contract import classify as typed_classify
 from native_mobile import mobile_for, signed_product_profit, NAME
 from unified_finance import render_typed_finance
+from unified_income_sankey import PALETTE
 from verify import get, facts, check, SRC, SHA, HERE, LEDGER
 CFO_COMPONENTS=json.loads((HERE/"cfo_components.json").read_text())
 TYPED={code:typed_classify(HERE.parents[1], code) for code in ('688111','600519','000333','600036')}
@@ -21,7 +22,7 @@ def pp(a,b):return D(a)-D(b)
 def x(v):return html.escape(str(v),quote=True)
 def tag(name,body,**attrs):return f'<{name} '+ ' '.join(f'{k.replace("_","-")}="{x(v)}"' for k,v in attrs.items())+f'>{body}</{name}>'
 
-COL={'ink':'#17343b','green':'#0b866e','teal':'#0c6f68','copper':'#c8896e','blue':'#487b91','slate':'#93a8a4','muted':'#687d7c','cream':'#f7f5ef','ivory':'#fffdf8','line':'#dce5df'}
+COL={'ink':PALETTE['ink'],'green':PALETTE['profit'],'teal':'#0c6f68','copper':PALETTE['cost'],'blue':PALETTE['source_dark'],'slate':PALETTE['source'],'muted':PALETTE['muted'],'cream':PALETTE['page'],'ivory':'#fffdf8','line':PALETTE['rule']}
 
 def svg_base(content, h=430, title='Financial relationship'):
  return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 {int(h)}" role="img" aria-label="{x(title)}"><title>{x(title)}</title>{content}</svg>'
