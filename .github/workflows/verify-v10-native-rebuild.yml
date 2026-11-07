@@ -54,6 +54,11 @@ jobs:
           git add public/research/2026-h1-v10/600036.html public/research/2026-h1-v10/688111.html public/research/2026-h1-v10/600519.html public/research/2026-h1-v10/000333.html
           git add research/rebuild-v10/build-manifest.json research/rebuild-v10/strict-semantic-audit.json research/rebuild-v10/structural-visual-audit.json research/rebuild-v10/real-browser-qa/result.json
           git diff --cached --quiet || git commit -m "Rebuild four V10 reports with source-typed original finance and 3-viewport native QA receipts"
+          # PR source-gate QA can advance the branch while original PDFs are
+          # being downloaded. Rebase on the exact current remote rather than
+          # force-pushing over changes, and fail closed on a real conflict.
+          git fetch origin quality/aei-sankey-source-contract-v1
+          git rebase FETCH_HEAD
           git push origin HEAD:quality/aei-sankey-source-contract-v1
       - name: Save independent per-figure Chinese Chromium screenshot evidence
         if: always()
