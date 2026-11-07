@@ -41,6 +41,9 @@ jobs:
           # Financial guards must remain live under -O (Python removes assert).
           python -O -m unittest discover -s research/rebuild-v10 -p 'test_editorial_chart_quality.py' -v
           python -m unittest discover -s scripts -p 'test_audit_unified_visual_corpus.py' -v
+          # Test two original optical issuer ledgers against the same v9
+          # compiler, without prematurely publishing or certifying legacy.
+          python -m unittest discover -s research/shared -p 'test_v7_optical_income_adapter.py' -v
           python scripts/audit_unified_visual_corpus.py --out v10-11-issuer-actual-visual-adoption.json
       - name: Source-SHA frozen debt cannot become a new untyped publication
         run: |
