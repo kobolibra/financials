@@ -1,7 +1,7 @@
 {
   "issuer": "688220",
   "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
-  "html_sha256": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
+  "html_sha256": "7ab78b1b54688bd093f3364f4f6eb9ddd9036daabc268c362d5a643ac298793b",
   "actual_3_viewport_checks": [
     {
       "width": 1440,

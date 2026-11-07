@@ -1,0 +1,20 @@
+{
+  "schema": "financials.insurer.local_candidate.v1",
+  "candidate_html_sha256": "5c2455a5821a62b316a4a861d0cbe27e85e82c1486913e1620fe0eaafc971800",
+  "production_live_html_sha256": "NOT_CHECKED",
+  "independent_human_art_review": "NOT_CHECKED",
+  "screenshots": {
+    "full_report_1440.png": {
+      "sha256": "97ed32462f542ba5752182c68a03eb76bb0a43a1685c97dbe310d4918e7e940f",
+      "bytes": 2130485
+    },
+    "full_report_768.png": {
+      "sha256": "f77bc9cbcac9b39bff41c329a9f237a98aafc13c87e7d4898a2db336d23a9517",
+      "bytes": 1704070
+    },
+    "full_report_390.png": {
+      "sha256": "6e1089ff7e78a7c2be432e2298f7d5dd890946d571398a7f97561fe15c3337b6",
+      "bytes": 2031775
+    }
+  }
+}
