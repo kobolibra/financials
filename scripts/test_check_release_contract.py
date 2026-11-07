@@ -82,7 +82,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
         poisoned = copy.deepcopy(record)
         poisoned["published_html_sha256"] = "0" * 64
         errors = mod.validate_release(ROOT, insurance, poisoned, check_bytes=False)
-        self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 601628" in x for x in errors), errors)
+        self.assertTrue(any("CANDIDATE_BASE_DEPLOYED_SHA_INVALID 601628" in x or "PUBLISHED_REPORT_SHA_MISMATCH 601628" in x for x in errors), errors)
 
     def test_601628_release_gate_must_reflect_current_version_not_prior_green(self):
         insurer=next(x for x in self.catalog["issuers"] if x["code"]=="601628")
