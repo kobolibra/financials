@@ -41,10 +41,11 @@ def nu(x):
 def esc(x):
     return escape(str(x),quote=True)
 
-def text(x,y,label,size=12,color=None,weight=500,anchor="start"):
+def text(x,y,label,size=12,color=None,weight=500,anchor="start",role=""):
     return (f'<text x="{nu(x)}" y="{nu(y)}" fill="{color or PALETTE["ink"]}" '
             f'font-family="Noto Sans CJK SC,PingFang SC,Arial,sans-serif" '
-            f'font-size="{size}" font-weight="{weight}" text-anchor="{anchor}">'
+            f'font-size="{size}" font-weight="{weight}" text-anchor="{anchor}" '
+            f'data-editorial-role="{esc(role)}">'
             f'{esc(label)}</text>')
 
 def rect(x,y,w,h,color,metadata=""):
@@ -162,16 +163,23 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
                      sink_base+HVAL+gap_out*(len(plan.outcomes)-1))
     H=chart_bottom+D(120 if mobile else 140)
     out=[]
-    title="收入如何沿着财务路径变成成本和利润？" if plan.kind!="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "银行净收入如何负担经营成本、留下利润？"
+    title=plan.title
     if mobile:
         out.append(text(12,24,title[:23],title_size,weight=700))
         out.append(text(12,43,f'{plan.period} · 人民币亿元 · 金额按同一比例',10,PALETTE["muted"]))
         out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",10,PALETTE["muted"]))
         for i,(sid,name,v,_,__) in enumerate(src_nodes):
-            out.append(text(12,D(89+i*21),f'{i+1:02d}  {name}',10,PALETTE["ink"],600))
-            out.append(text(315,D(89+i*21),fmt(v),10,PALETTE["source_dark"],600,"end"))
-        out.append(text(12,top-D(16),"来源",10,PALETTE["muted"],600))
-        out.append(text(xrev,top-D(16),"总收入",10,PALETTE["muted"],600,"middle"))
+            leg_y=D(89+i*21)
+            out.append(text(12,leg_y,f'{i+1:02d}  {name}',10,PALETTE["ink"],600,role="source-summary"))
+            label=fmt(v)
+            if plan.allocations:
+                own_gp=sum((yuan(value) for source,outcome,value in plan.allocations
+                            if source==sid and any(key==outcome and role=="profit"
+                                                   for key,_,_,role in plan.outcomes)),D(0))
+                label+=f' · 毛利{own_gp/v*100:.1f}%'
+            out.append(text(315,leg_y,label,9,PALETTE["source_dark"],600,"end",role="source-summary"))
+        out.append(text(12,top-D(16),"来源",10,PALETTE["muted"],600,role="source-stage-header"))
+        out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",10,PALETTE["muted"],600,"middle",role="total-stage-header"))
         out.append(text(xout,top-D(16),"去向",10,PALETTE["muted"],600,"middle"))
     else:
         out.append(text(26,46,title,28,PALETTE["ink"],700))
@@ -253,24 +261,32 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
             if len(short)>4: short=short[:4]
             out.append(text(274,sy+10,short,9,color,700))
     if mobile:
-        # Exact source and outcome amounts remain in the DOM and a readable
-        # legend below, so tiny amounts are visible without false-width ribbons.
+        # The financial outcome list, accounting warning and source note are
+        # stacked using ACTUAL row count, never fixed H offsets (which caused
+        # the CMB amount + bank caveat + source note to overlap).
         footer=chart_bottom+D(27)
-        out.append(text(12,footer,"成本与利润 · 对应原报表",11,PALETTE["ink"],700))
+        out.append(text(12,footer,"成本与利润 · 对应原报表",11,PALETTE["ink"],700,role="outcome-list-title"))
         for i,(oid,name,v,role,_,__) in enumerate(sink_nodes):
-            ypos=footer+D(20+i*18)
-            out.append(text(12,ypos,name,10,PALETTE["ink"],500))
+            ypos=footer+D(20+i*20)
+            out.append(text(12,ypos,name,10,PALETTE["ink"],500,role="outcome-value"))
             out.append(text(315,ypos,fmt(v),10,
-                            PALETTE["profit"] if role=="profit" else PALETTE["cost"],700,"end"))
+                            PALETTE["profit"] if role=="profit" else PALETTE["cost"],
+                            700,"end",role="outcome-value"))
+        last_value_y=footer+D(20+(len(sink_nodes)-1)*20)
+        hint_y=last_value_y+D(28)
+        source_y=hint_y+D(20)
         if plan.kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
-            out.append(text(12,H-D(31),"未披露各业务毛利，不能倒推分部盈利",10,PALETTE["cost"],700))
+            out.append(text(12,hint_y,"未披露各业务毛利，不能倒推分部盈利",
+                            10,PALETTE["cost"],700,role="accounting-limitation"))
         elif plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT":
-            out.append(text(12,H-D(31),"净利息已经扣息，信用减值单独列示",10,PALETTE["cost"],700))
+            out.append(text(12,hint_y,"净利息已扣息，信用成本另列",
+                            10,PALETTE["cost"],700,role="accounting-limitation"))
         else:
-            out.append(text(12,H-D(31),"各业务成本源自自己的原始披露",10,PALETTE["muted"],700))
-        out.append(text(12,H-D(12),"详细来源、会计口径及限制见本图下方数据表",9,PALETTE["muted"]))
-        if len(sink_nodes)>3:
-            H=max(H,footer+D(23+len(sink_nodes)*18))
+            out.append(text(12,hint_y,"各业务成本来自本业务披露",
+                            10,PALETTE["muted"],700,role="accounting-limitation"))
+        out.append(text(12,source_y,"详细来源和会计口径见下方数据表",
+                        9,PALETTE["muted"],role="source-caveat"))
+        H=max(H,source_y+D(21))
     else:
         y=chart_bottom+D(47)
         if plan.kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
