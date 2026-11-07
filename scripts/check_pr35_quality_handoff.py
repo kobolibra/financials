@@ -108,6 +108,8 @@ def validate_artifact_integrity(active:dict,build:dict,browser:dict,typed:dict,
                     errors.append("MOUTAI_TINY_NEGATIVE_GP_EDITORIAL_MISSING_"+needle)
             if 'data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON"' not in source:
                 errors.append("MOUTAI_SOURCE_REASONED_OMISSION_METADATA_MISSING")
+            if 'viewBox="0 0 1040' not in source or 'data-layout="desktop-editorial"' not in source:
+                errors.append("MOUTAI_DESKTOP_IS_ONLY_A_STRETCHED_330_PHONE_CHART")
     return errors
 
 
