@@ -21,10 +21,22 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
         self.assertEqual(set(census["unified_positive_sankey_issuers"]),{"688111","000333","600036"})
         self.assertEqual(census["lawful_signed_exception_issuers"],["600519"])
         self.assertEqual(set(census["legacy_not_unified"]),
-                         {"300394","300308","300502","688220","600900","600276","601628"})
+                         {"300308","688220","600900","600276","601628"})
+        self.assertEqual(set(census["partial_hero_only_unified_remaining_art_legacy"]),
+                         {"300394","300502"})
         self.assertEqual(census["strict_all_11_visual_unification"],"NOT_ESTABLISHED")
         self.assertEqual(census["failed_new_grammar"],[])
         self.assertEqual(census["independent_visual_art_director"],"NOT_CHECKED")
+
+    def test_actual_optical_main_flow_cannot_disappear_behind_partial_migration_claim(self):
+        catalog,pages=actual()
+        for code in ("300394","300502"):
+            with self.subTest(code=code):
+                tampered=dict(pages)
+                tampered[code]=tampered[code].replace(
+                    b'data-node-id="revenue-total"',b'data-node-id="fake-total"',2)
+                census=inspect(catalog,tampered)
+                self.assertIn(code,census["failed_new_grammar"])
 
     def test_false_disconnected_software_source_to_revenue_is_rejected(self):
         catalog,pages=actual()

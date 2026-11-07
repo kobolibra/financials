@@ -49,6 +49,25 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
                     'data-local-inset-source="other_rev"',"独立金额比例尺","局部放大")
             row["issues"]=[f"SIGNED_NEGATIVE_INTEGRITY_MISSING_{i}" for i,t in enumerate(needed) if t not in html]
             row["visual_grammar_status"]="UNIFIED_SEMANTICS_SIGNED_EXCEPTION" if not row["issues"] else "FAIL_SIGNED_NEGATIVE_GRAMMAR"
+        elif code in {"300394","300502"}:
+            # Actual original-source optical publishers now use the canonical
+            # connected money compiler for their HERO income graph on both
+            # desktop and phone. The other figures and editorial art direction
+            # are still from the V7 family; do not upgrade to all-unified.
+            required=('data-design-system="FINANCIALS_UNIFIED_STORY_V1"',
+                      'data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"',
+                      'data-node-id="revenue-total"',
+                      'data-stage="source-to-revenue"',
+                      'data-stage="revenue-to-outcome"')
+            if any(html.count(token)<2 for token in required):
+                row["visual_grammar_status"]="FAIL_OPTICAL_HERO_UNIFIED_GRAMMAR"
+                row["issues"].append("OPTICAL_MAIN_SANKEY_MISSING_OR_DISCONNECTED")
+            elif 'viewBox="0 0 1100' not in html or 'viewBox="0 0 330' not in html:
+                row["visual_grammar_status"]="FAIL_OPTICAL_HERO_UNIFIED_GRAMMAR"
+                row["issues"].append("OPTICAL_PHONE_DESKTOP_BOTH_MUST_BE_NATIVE")
+            else:
+                row["visual_grammar_status"]="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"
+                row["issues"].append("REMAINDER_OF_V7_ISSUER_ART_NOT_YET_UNIFIED")
         else:
             # A valid historical page can be financially correct without
             # complying with the new unified editorial visual renderer.
@@ -59,6 +78,7 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
     adopted=[x["issuer"] for x in rows if x["visual_grammar_status"]=="UNIFIED_FINANCIAL_INCOME_FLOW"]
     legitimate_signed=[x["issuer"] for x in rows if x["visual_grammar_status"]=="UNIFIED_SEMANTICS_SIGNED_EXCEPTION"]
     old=[x["issuer"] for x in rows if x["visual_grammar_status"]=="LEGACY_NOT_UNIFIED"]
+    partial=[x["issuer"] for x in rows if x["visual_grammar_status"]=="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"]
     failures=[x["issuer"] for x in rows if x["visual_grammar_status"].startswith("FAIL_")]
     return {"schema":"financials.visual_unification_census.v1",
             "scope":"CURRENT_REPOSITORY_ARTICLE_HTML_SHA_ONLY",
@@ -66,7 +86,8 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
             "unified_positive_sankey_issuers":adopted,
             "lawful_signed_exception_issuers":legitimate_signed,
             "legacy_not_unified":old,
-            "strict_all_11_visual_unification":"PASS" if not old and not failures else "NOT_ESTABLISHED",
+            "partial_hero_only_unified_remaining_art_legacy":partial,
+            "strict_all_11_visual_unification":"PASS" if not old and not partial and not failures else "NOT_ESTABLISHED",
             "failed_new_grammar":failures,
             "independent_visual_art_director":"NOT_CHECKED",
             "all_11_original_source_PDF_verified_and_in_same_renderer":"NOT_ESTABLISHED",
@@ -89,7 +110,7 @@ def main():
         print("NEW_VISUAL_GRAMMAR_P0",verdict["failed_new_grammar"],file=sys.stderr)
         return 1
     if args.strict_all_11 and verdict["strict_all_11_visual_unification"]!="PASS":
-        print("ALL_11_NOT_UNIFIED_DONT_CERTIFY",verdict["legacy_not_unified"],file=sys.stderr)
+        print("ALL_11_NOT_UNIFIED_DONT_CERTIFY",verdict["legacy_not_unified"]+verdict["partial_hero_only_unified_remaining_art_legacy"],file=sys.stderr)
         return 2
     return 0
 
