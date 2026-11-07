@@ -85,7 +85,7 @@ class OriginalVisualGrammarTests(unittest.TestCase):
         self.assertEqual(kind["kind"],"TYPE_C_SANKEY_OMITTED")
         svg=signed_product_profit("600519",kind,GET,{
             "maotai_rev":"茅台酒","series_rev":"系列酒",
-            "other_rev":"其他业务"})
+            "other_rev":"其他业务"},mobile=True)
         root=ET.fromstring(svg)
         self.assertEqual(root.get("data-flow-omission"),
                          "FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON")
@@ -115,9 +115,27 @@ class OriginalVisualGrammarTests(unittest.TestCase):
         self.assertNotIn("FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON",text)
         self.assertNotIn(kind["reason"],text)
 
+    def test_moutai_desktop_is_an_independent_wide_original_yuan_signed_figure(self):
+        kind=classify(ROOT,"600519")
+        desktop=signed_product_profit("600519",kind,GET,{
+            "maotai_rev":"茅台酒","series_rev":"系列酒",
+            "other_rev":"其他业务"})
+        phone=signed_product_profit("600519",kind,GET,{},mobile=True)
+        graph=ET.fromstring(desktop)
+        self.assertEqual(graph.get("data-layout"),"desktop-editorial")
+        self.assertIn("1040",graph.get("viewBox"))
+        self.assertNotEqual(desktop,phone)
+        self.assertIn("独立比例尺的局部放大",desktop)
+        self.assertEqual(len(_rects(desktop,"data-signed-yuan")),3)
+        self.assertEqual(len(_rects(desktop,"data-local-inset-source")),2)
+        body=" ".join(node.text or "" for node in graph.iter(XMLNS+"text"))
+        self.assertIn("717",body)
+        self.assertIn("毛利率",body)
+        self.assertNotIn("FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON",body)
+
     def test_a_chart_cannot_pass_by_compressing_large_magnitude_into_1px(self):
         kind=classify(ROOT,"600519")
-        svg=signed_product_profit("600519",kind,GET,{})
+        svg=signed_product_profit("600519",kind,GET,{},mobile=True)
         other=_rects(svg,"data-signed-yuan")[-1]
         altered=svg.replace('width="'+other.get("width")+'"',
                             'width="1.0000"',1)
