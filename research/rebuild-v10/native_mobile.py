@@ -331,7 +331,12 @@ NAME={
 
 
 def mobile_for(code,index,keys,get,facts,cfo_components,typed):
-    family=FAMILY[code].get(index,"rows")
+    # Fail closed on a new issuer/exhibit. Never silently turn a promised
+    # signed CFO/profit bridge into generic bars or repeat an irrelevant
+    # legacy figure simply because a new report number was unrecognized.
+    if code not in FAMILY or index not in FAMILY[code]:
+        raise ValueError(f"NO_ISSUER_FIGURE_BRIEF_{code}_{index}")
+    family=FAMILY[code][index]
     names=NAME[code]
     if family=="type":
         if code=="688111":
@@ -355,4 +360,6 @@ def mobile_for(code,index,keys,get,facts,cfo_components,typed):
         return two_stock_comparison(code,index,keys,get,facts)
     if family=="stock":
         return two_stock_comparison(code,index,keys,get,facts)
-    return signed_source_bars(code,index,keys,get,facts)
+    if family=="rows":
+        return signed_source_bars(code,index,keys,get,facts)
+    raise ValueError(f"UNKNOWN_FINANCIAL_FIGURE_GRAMMAR_{code}_{index}_{family}")
