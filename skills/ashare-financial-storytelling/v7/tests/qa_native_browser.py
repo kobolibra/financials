@@ -113,9 +113,20 @@ with sync_playwright() as p:
                 assert page.locator("path.native-money-ribbon").first.get_attribute("d")==original_d,(code,"INTERACTION_CHANGED_ORIGINAL_AMOUNT_WIDTH")
             if width==1440:
                 assert page.locator(".chart-shell .hero-svg:visible").count()==1
-                with page.expect_download(timeout=10000) as event:
-                    page.locator("figure.exhibit .svg-save").first.click()
-                assert event.value.suggested_filename.endswith(".svg")
+            visible_xml=page.evaluate("""() => {
+                const f=document.querySelector('figure.exhibit');
+                const svg=[...f.querySelectorAll('svg')].find(el=>{
+                    const b=el.getBoundingClientRect(),s=getComputedStyle(el);
+                    return b.width>0&&b.height>0&&s.display!=='none'&&s.visibility!=='hidden';
+                });
+                return svg?new XMLSerializer().serializeToString(svg):null;
+            }""")
+            assert visible_xml and "<svg" in visible_xml,(code,width,"VISIBLE_SVG_MISSING")
+            with page.expect_download(timeout=10000) as event:
+                page.locator("figure.exhibit .svg-save").first.click()
+            got=event.value
+            assert got.suggested_filename.endswith(".svg")
+            assert got.path().read_text(encoding="utf-8")==visible_xml,(code,width,"EXPORTED_HIDDEN_DESKTOP_SVG")
             img=out/(f"{code}_{width}.png");page.screenshot(path=str(img),full_page=True)
             if code=="300308" and width in (1440,768,390):
                 page.locator(".cash-editorial-focus").screenshot(path=str(out/f"{code}_cashfocus_{width}.png"))
