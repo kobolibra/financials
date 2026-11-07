@@ -13,6 +13,9 @@ on:
       - 'scripts/audit_v10_flow_contract.py'
       - 'scripts/test_audit_v10_flow_contract.py'
   workflow_dispatch:
+concurrency:
+  group: v10-source-bound-rebuild-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
