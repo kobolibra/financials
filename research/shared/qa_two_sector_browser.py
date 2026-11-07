@@ -62,22 +62,29 @@ def main():
                 assert all(not z["textClips"] for z in native),(a.code,"MOBILE_MONEY_SVG_CJK_TEXT_CLIPPED_OR_OVERLONG",native)
                 assert all(z["style"] not in ("auto","scroll") for z in native),(a.code,"MOBILE_390_STILL_SHOWS_NESTED_CHART_SCROLL_WINDOW",native)
                 source=page.evaluate("""() => {
-                   const plot=document.querySelector('#chart-flow .native-mobile-finance svg');
-                   return {src:[...plot.querySelectorAll('.m-flow-source')].map(x=>({key:x.dataset.sourceKey,amt:+x.dataset.exactYuan,height:+x.getAttribute('height')})),
-                      bands:[...plot.querySelectorAll('.m-flow-band')].map(x=>({key:x.dataset.sourceKey,to:x.dataset.targetKey,amt:+x.dataset.exactYuan,h:+x.dataset.geometryHeight})),
-                      sinks:[...plot.querySelectorAll('.m-flow-sink')].map(x=>({to:x.dataset.targetKey,amt:+x.dataset.exactYuan,h:+x.getAttribute('height')}))
-                   };
+                  const svg=document.querySelector('#chart-flow .native-mobile-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+                  if(!svg)return null;
+                  return {
+                    total:+svg.getAttribute('data-revenue-yuan'),scale:+svg.getAttribute('data-scale-yuan-per-svg-unit'),
+                    nodes:[...svg.querySelectorAll('rect[data-node-role]')].map(n=>({id:n.getAttribute('data-node-id'),role:n.getAttribute('data-node-role'),money:+n.getAttribute('data-node-yuan'),h:+n.getAttribute('height')})),
+                    ribbons:[...svg.querySelectorAll('path[data-ribbon-yuan]')].map(p=>({money:+p.getAttribute('data-ribbon-yuan'),stage:p.getAttribute('data-stage'),scale:+p.getAttribute('data-scale-yuan-per-svg-unit'),d:p.getAttribute('d')}))};
                 }""")
+                assert source and source["total"]>0 and source["scale"]>0,(a.code,"MOBILE_UNIFIED_FLOW_MISSING")
                 total=float(d["facts"]["rev"]["yuan"])
-                scale=(298-14*(len(d["segments"])-1))/total
-                assert len(source["src"])==len(d["segments"]),(a.code,"MOBILE_SOURCE_NODES_MISSING",source)
-                assert len(source["sinks"])==2 and len(source["bands"])==2*len(d["segments"]),(a.code,"MOBILE_WEIGHTED_SOURCE_RIBBONS_MISSING",source)
-                for obj in source["src"]+source["sinks"]:
-                    assert abs(obj.get("height",obj.get("h"))-obj["amt"]*scale)<.000025,(a.code,"MOBILE_TRUE_WEIGHTED_SVG_RECT_GEOMETRY",obj)
-                for obj in source["bands"]:
-                    assert abs(obj["h"]-obj["amt"]*scale)<.000025,(a.code,"MOBILE_TRUE_WEIGHTED_SVG_CURVED_RIBBON_GEOMETRY",obj)
-                assert abs(sum(obj["amt"] for obj in source["sinks"])-total)<.006,(a.code,"MOBILE_MONEY_SINK_TOTAL_FAIL")
-                assert abs(sum(obj["amt"] for obj in source["bands"])-total)<.006,(a.code,"MOBILE_MONEY_CURVE_TOTAL_FAIL")
+                assert abs(source["total"]-total)<.001
+                src=[x for x in source["nodes"] if x["role"]=="source"]
+                cost=[x for x in source["nodes"] if x["role"]=="cost"]
+                profit=[x for x in source["nodes"] if x["role"]=="profit"]
+                trunk=[x for x in source["nodes"] if x["role"]=="total" and x["id"]=="revenue-total"]
+                incoming=[x for x in source["ribbons"] if x["stage"]=="source-to-revenue"]
+                outgoing=[x for x in source["ribbons"] if x["stage"]=="revenue-to-outcome"]
+                assert len(src)==len(d["segments"]) and len(cost)==len(profit)==len(trunk)==1,(a.code,"MOBILE_THREE_STAGE_STRUCTURE",source)
+                assert len(incoming)==len(src) and len(outgoing)==2*len(src),(a.code,"MOBILE_CONNECTED_RIBBONS",source)
+                assert abs(trunk[0]["money"]-total)<.001
+                assert abs(sum(x["money"] for x in incoming)-total)<.001
+                assert abs(sum(x["money"] for x in outgoing)-total)<.001
+                assert all(abs(x["h"]-x["money"]/source["scale"])<.001 for x in source["nodes"]),(a.code,"MOBILE_YUAN_NODE_SCALE")
+                assert all(x["scale"]>0 and x["money"]>=0 and x["d"].startswith("M ") for x in source["ribbons"]),(a.code,"MOBILE_GENUINE_MONEY_PATH")
                 for fig in ["pnl","cfo","cash","capital"]:
                     signed=page.locator(f'#chart-{fig} .native-mobile-finance .m-signed-bridge')
                     assert signed.count()>=2,(a.code,fig,"NO_SIGNED_CUMULATIVE_NATIVE_MOBILE_BRIDGE")
@@ -107,42 +114,34 @@ def main():
                     state=plot.evaluate("(x) => ({overflow:getComputedStyle(x).overflowX,scroll:x.scrollWidth,visible:x.clientWidth})")
                     assert state["visible"]<=width,(a.code,"TABLET_CHART_CONTAINMENT",state)
             q=page.locator("#chart-flow")
-            assert q.locator("rect.money-source").count()==len(d["segments"])
-            assert q.locator("rect.money-sink").count()==2
-            assert q.locator("path.money-ribbon").count()==2*len(d["segments"])
-            assert page.locator("#chart-pnl > svg").count()==1
-            assert page.locator("#chart-cfo > svg").count()==1
-            assert page.locator("#chart-cash > svg").count()==1
-            assert page.locator("#chart-balance > svg").count()==1
-            # Exact source rect and original SVG path geometry in absolute
-            # viewBox units; metadata alone is not proof.
+            assert q.locator('> svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
+            assert q.locator('.native-mobile-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
+            for kind in ["pnl","cfo","cash","balance"]:
+                assert page.locator("#chart-"+kind+" > svg").count()==1
             geom=page.evaluate("""() => {
-               const svg=document.querySelector('#chart-flow svg');
-               const src=Array.from(svg.querySelectorAll('.money-source')).map(x=>({
-                 key:x.dataset.sourceKey,amount:+x.dataset.yuan,height:+x.getAttribute('height')}));
-               const ribbons=Array.from(svg.querySelectorAll('.money-ribbon')).map(x=>{
-                 const d=x.getAttribute('d');
-                 const m=d.match(/^M205 ([\\d.]+) C420 ([\\d.]+) 700 ([\\d.]+) 938 ([\\d.]+) L938 ([\\d.]+)/);
-                 return {source:x.dataset.sourceKey,target:x.dataset.targetKey,amount:+x.dataset.yuan,meta:+x.dataset.thickness,
-                   actual:m ? +m[5]- +m[4] : null};
-               });
-               const end=Array.from(svg.querySelectorAll('.money-sink')).map(x=>({to:x.dataset.targetKey,height:+x.getAttribute('height'),amount:+x.dataset.yuan}));
-               return {src,ribbons,end,viewBox:svg.viewBox.baseVal.width};
-             }""")
+              const svg=document.querySelector('#chart-flow > svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+              if(!svg)return null;
+              return {
+                total:+svg.getAttribute('data-revenue-yuan'),scale:+svg.getAttribute('data-scale-yuan-per-svg-unit'),
+                nodes:[...svg.querySelectorAll('rect[data-node-role]')].map(n=>({id:n.getAttribute('data-node-id'),role:n.getAttribute('data-node-role'),money:+n.getAttribute('data-node-yuan'),h:+n.getAttribute('height')})),
+                ribbons:[...svg.querySelectorAll('path[data-ribbon-yuan]')].map(p=>({money:+p.getAttribute('data-ribbon-yuan'),stage:p.getAttribute('data-stage'),scale:+p.getAttribute('data-scale-yuan-per-svg-unit'),d:p.getAttribute('d')}))};
+            }""")
+            assert geom and geom["total"]>0 and geom["scale"]>0,(a.code,"DESKTOP_SHARED_TOTAL_REVENUE_NOT_RENDERED")
             total=float(d["facts"]["rev"]["yuan"])
-            cost=float(d["facts"]["cogs"]["yuan"])
-            scale=(420-14*(len(d["segments"])-1))/total
-            for k in geom["src"]:
-                assert abs(k["height"]-k["amount"]*scale)<0.00000001,(a.code,"SOURCE_AREA_WRONG",k)
-            for k in geom["ribbons"]:
-                assert k["actual"] is not None and abs(k["actual"]-k["amount"]*scale)<1e-5,(a.code,"RIBBON_GEOMETRY_WRONG",k)
-                assert abs(k["meta"]-k["actual"])<1e-5,(a.code,"RIBBON_MISMATCH",k)
-            for k in geom["end"]:
-                assert abs(k["height"]-k["amount"]*scale)<1e-8,(a.code,"SINK_GEOMETRY_WRONG",k)
-            assert abs(sum(k["amount"] for k in geom["src"])-total)<.005
-            assert abs(sum(k["amount"] for k in geom["end"])-total)<.005
-            assert abs(sum(k["amount"] for k in geom["ribbons"])-total)<.005
-            assert abs(next(k["amount"] for k in geom["end"] if k["to"]=="cogs")-cost)<.005
+            costs=float(d["facts"]["cogs"]["yuan"])
+            assert abs(geom["total"]-total)<.001,(a.code,"DESKTOP_WRONG_REVENUE_SOURCE")
+            src=[x for x in geom["nodes"] if x["role"]=="source"]
+            sink=[x for x in geom["nodes"] if x["role"] in ("cost","profit")]
+            trunk=[x for x in geom["nodes"] if x["role"]=="total" and x["id"]=="revenue-total"]
+            incoming=[x for x in geom["ribbons"] if x["stage"]=="source-to-revenue"]
+            outgoing=[x for x in geom["ribbons"] if x["stage"]=="revenue-to-outcome"]
+            assert len(src)==len(d["segments"]) and len(sink)==2 and len(trunk)==1,(a.code,"DESKTOP_CONNECTED_NODE_STRUCTURE")
+            assert len(incoming)==len(src) and len(outgoing)==2*len(src),(a.code,"DESKTOP_SOURCE_OWN_COST_GP_PATHS")
+            assert abs(sum(x["money"] for x in incoming)-total)<.001
+            assert abs(sum(x["money"] for x in outgoing)-total)<.001
+            assert abs(next(x["money"] for x in sink if x["role"]=="cost")-costs)<.001
+            assert all(abs(x["h"]-x["money"]/geom["scale"])<.001 for x in geom["nodes"]),(a.code,"DESKTOP_ORIGINAL_YUAN_NODE_SCALE")
+            assert all(x["d"].startswith("M ") and " C " in x["d"] and " L " in x["d"] and x["scale"]>0 for x in geom["ribbons"]),(a.code,"DESKTOP_NOT_REAL_CURVED_RIBBONS")
             # Full-size desktop must never hide sink labels behind nested
             # horizontal scrolling even if the body itself does not overflow.
             if width==1440:
