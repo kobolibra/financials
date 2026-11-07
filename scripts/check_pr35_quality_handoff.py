@@ -113,6 +113,37 @@ def validate_artifact_integrity(active:dict,build:dict,browser:dict,typed:dict,
     return errors
 
 
+def validate_issuer_figure_briefs(briefs: dict, typed: dict) -> list[str]:
+    """A publishable figure has a company-specific falsifiable research question.
+
+    This gate checks SOURCE IDs and presence of actionable editorial argument;
+    it does not pretend a prose length test is professional research quality.
+    """
+    errors=[]
+    if briefs.get("schema")!="financials.editorial_hero_briefs.v1":
+        errors.append("FIGURE_BRIEFS_SCHEMA_MISSING")
+    if briefs.get("independent_financial_editor")!="NOT_CHECKED" or briefs.get("independent_visual_director")!="NOT_CHECKED":
+        errors.append("UNSUPPORTED_FIGURE_BRIEF_HUMAN_REVIEW")
+    actual={v.get("issuer"):v for v in briefs.get("hero_figures",[])}
+    if len(briefs.get("hero_figures",[]))!=len(CODES) or set(actual)!=set(CODES):
+        errors.append("FOUR_DISTINCT_ISSUER_BRIEFS_REQUIRED")
+    classifications={v["issuer"]:v.get("expected_semantics",{}) for v in typed.get("records",[])}
+    required=("title","read_in_five_seconds","mechanism","strongest_countercase","business_driver_still_needed","geometry","unproven")
+    for code,(count,kind) in CODES.items():
+        item=actual.get(code,{})
+        if item.get("flow_kind")!=kind or item.get("figure_id")!="fig-02":
+            errors.append(f"FIGURE_BRIEF_KIND_OR_ID_MISMATCH_{code}")
+        keys=item.get("source_keys",[])
+        if not isinstance(keys,list) or not keys or not set(classifications.get(code,{}).get("source_keys",[])).issubset(set(keys)):
+            errors.append(f"FIGURE_BRIEF_MISSING_SOURCE_REVENUE_FACT_IDS_{code}")
+        for key in required:
+            if not isinstance(item.get(key),str) or len(item[key].strip())<15:
+                errors.append(f"FIGURE_BRIEF_MISSING_DISTINCT_REASON_{code}_{key}")
+        if item.get("unproven") in {"PASS","CERTIFIED","NO"}:
+            errors.append(f"FIGURE_BRIEF_UNSUPPORTED_CAUSAL_OR_EDITORIAL_CONFIDENCE_{code}")
+    return errors
+
+
 def validate_handoff_documents(active:dict,status:dict,
                                entry:str,state:str,agents:str,skill:str,
                                protocol:str,scorecard:str)->list[str]:
@@ -154,6 +185,8 @@ def check_repo(root:Path=ROOT)->list[str]:
            for code in CODES}
     errors=validate_artifact_integrity(active,build,browser,typed,pages,catalog)
     texts=lambda path:(root/path).read_text(encoding="utf8")
+    errors+=validate_issuer_figure_briefs(
+        jread(root,"research/quality/pr35-hero-figure-briefs.json"),typed)
     errors+=validate_handoff_documents(
         active,jread(root,"project-status.json"),
         texts("START_HERE.md"),texts("PROJECT_STATE.md"),
