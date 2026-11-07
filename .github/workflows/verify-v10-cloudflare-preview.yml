@@ -9,6 +9,9 @@ on:
       - 'public/research/2026-h1-v10/**'
       - 'research/rebuild-v10/qa_native_browser.py'
   workflow_dispatch:
+concurrency:
+  group: v10-cloudflare-qa-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
