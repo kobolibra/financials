@@ -8,6 +8,7 @@ reported independent units. Shapes are measured, not cosmetic KPI cards.
 from __future__ import annotations
 from decimal import Decimal as D
 from html import escape as E
+from unified_finance import render_typed_finance
 
 W = D(330)
 INK = "#17343b"
@@ -511,12 +512,12 @@ def mobile_for(code,index,keys,get,facts,cfo_components,typed):
     names=NAME[code]
     if family=="type":
         if code=="688111":
-            return source_own_sankey(code,typed,names,mobile=True)
+            return render_typed_finance(code,typed,get,names,mobile=True)
         if code=="600519":
             return signed_product_profit(code,typed,get,names,mobile=True)
         if code=="000333":
-            return group_sankey(code,typed,names)
-        return bank_sankey(code,typed,get,names)
+            return render_typed_finance(code,typed,get,names,mobile=True)
+        return render_typed_finance(code,typed,get,names,mobile=True)
     if family=="indirect":
         return cash_waterfall(code,index,get,facts,cfo_components)
     if family=="cash":
