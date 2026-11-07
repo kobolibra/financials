@@ -48,9 +48,12 @@ jobs:
       - name: Verify exact same generated HTML is the proposed independent publication
         run: |
           cp research/rebuild-v10/site/{600036,688111,600519,000333}.html public/research/2026-h1-v10/
+          # First mint a genuinely current original-source typed semantic
+          # receipt, THEN bind it and the actual browser PNG receipts to
+          # the current four HTML SHA. Old audit JSON is NEVER authoritative.
+          python scripts/audit_v10_flow_contract.py --strict --out research/rebuild-v10/strict-semantic-audit.json
           python research/rebuild-v10/sync_active_handoff.py
           python scripts/check_pr35_quality_handoff.py
-          python scripts/audit_v10_flow_contract.py --strict --out research/rebuild-v10/strict-semantic-audit.json
           python scripts/audit_aei_editorial_delivery.py --fail-known --out research/rebuild-v10/structural-visual-audit.json
           python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v
           python -m unittest discover -s research/rebuild-v10 -p 'test_editorial_chart_quality.py' -v
