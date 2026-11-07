@@ -37,22 +37,22 @@
     "600036": {
       "source_type": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
       "exhibits": 8,
-      "figure_02_design": "UNIFIED_TRUE_CONNECTED_1100_DESKTOP_330_MOBILE_BANK_NET_INCOME_TO_EXPENSE_PROFIT"
+      "figure_02_design": "UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_BANK_NET_INCOME_TO_OPERATING_PROFIT"
     },
     "600519": {
       "source_type": "TYPE_C_SANKEY_OMITTED",
       "exhibits": 9,
-      "figure_02_design": "INDEPENDENT_1040_DESKTOP_AND_330_MOBILE_TRUE_NEGATIVE_FULL_SCALE_WITH_EXPLICIT_LOCALLY_SCALED_REVENUE_COST_INSET"
+      "figure_02_design": "TYPE_C_SIGNED_1040_DESKTOP_AND_330_PHONE_NEGATIVE_WITH_INDEPENDENT_SCALE_INSET"
     },
     "688111": {
       "source_type": "TYPE_A_SOURCE_OWN_COST_GP",
       "exhibits": 9,
-      "figure_02_design": "UNIFIED_TRUE_CONNECTED_1100_DESKTOP_330_MOBILE_SOURCE_TO_ONE_REVENUE_TOTAL_TO_SOURCE_OWN_COST_GP"
+      "figure_02_design": "UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_SOURCE_TO_ONE_TOTAL_TO_OWN_COST_GP"
     },
     "000333": {
       "source_type": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
       "exhibits": 10,
-      "figure_02_design": "UNIFIED_TRUE_CONNECTED_1100_DESKTOP_330_MOBILE_GROUP_ONLY_COST_GP_NO_PRODUCT_MARGIN"
+      "figure_02_design": "UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_GROUP_COST_GP_NOT_OWN_MARGIN"
     }
   },
   "exact_byte_rule": "DERIVE_SHA256_FROM_CURRENT_PUBLIC_HTML; REJECT_ANY_STALE_BUILD_MANIFEST_OR_BROWSER_RECEIPT; PR_PREVIEW_SHA_ONLY_COVERS_RECORDED_CANDIDATE_BYTES",
@@ -98,32 +98,34 @@
   ],
   "release_rule": "NO_CLAIM_AEI_LEVEL_CERTIFIED_OR_MAIN_DEPLOYED_WITHOUT_ACTUAL_REVIEW_AND_SHA_BOUND_SIGNOFF",
   "latest_source_sha_bound_candidate": {
-    "gate": "PASS_LOCAL_ORIGINAL_PDF_VERIFICATION_AND_12_REAL_CJK_CASES__NOT_HUMAN_EDITED",
-    "original_pdf_full_rebuild_run": "https://github.com/kobolibra/financials/actions/runs/42351452908",
-    "typed_and_editorial_handoff_pr_check_run": "PENDING_LATEST_HEAD_REVALIDATION",
+    "gate": "PASS_LOCAL_ORIGINAL_PDF_AND_EXACT_SHA_CJK_BROWSER__HUMAN_NOT_CHECKED",
+    "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
+    "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "600036": "e19fbf29e8648a24fb5f0f1fadedc94e23e6bde7589648412b9984b161582eea",
-      "600519": "30c7bc4eb66957acb425b8f33a704127cadde398e065ce855151a5e2bcc5367a",
-      "688111": "54470dff7b3a5a642a63d994d1c675dccff29ef188d24b9f9cbb567ea95c0bc5",
-      "000333": "c06e7661df1d5b0fd840affab38d39ebe5467672edb6b9cf44512dd04528cb2c"
+      "688111": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
+      "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
+      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d",
+      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a"
     },
     "original_browser_figures": 36,
-    "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_NEW_UNIFIED_CHART_VERSION",
-    "actual_cloudflare_for_new_visual_candidate": "PENDING_NEW_SHA_CLOUDFLARE_PREVIEW_BROWSER",
+    "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",
+    "actual_cloudflare_for_new_visual_candidate": "PENDING_NEW_SHA_REAL_HTTPS_BROWSER",
     "current_main_live_new_figures": "NOT_DEPLOYED_PR_UNMERGED",
     "unseen_multiperiod_generalization": "NOT_ESTABLISHED",
-    "actual_cloudflare_preview_action": "NOT_VALID_FOR_THIS_SHA",
-    "actual_cloudflare_preview_artifact": "NOT_VALID_FOR_THIS_SHA",
+    "actual_cloudflare_preview_action": "NOT_CHECKED_THIS_HTML_SHA",
+    "actual_cloudflare_preview_artifact": "NOT_CHECKED_THIS_HTML_SHA",
     "human_independent_financial_and_visual_review": "NOT_CHECKED",
     "production_new_source_state": "NOT_DEPLOYED_PR_UNMERGED"
   },
   "visual_unification_status": {
-    "positive_conserved_income_issuers": [
+    "unified_positive_income_flow": [
       "688111",
       "000333",
       "600036"
     ],
-    "signed_negative_issuer": "600519",
+    "lawful_signed_exception": [
+      "600519"
+    ],
     "legacy_not_unified": [
       "300394",
       "300308",
@@ -133,7 +135,8 @@
       "600276",
       "601628"
     ],
-    "target_company_count": 11,
-    "achieved_all_eleven": false
+    "all_11_editorially_unified": "NOT_ESTABLISHED",
+    "human_editorial": "NOT_CHECKED",
+    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED"
   }
 }

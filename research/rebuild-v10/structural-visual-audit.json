@@ -55,8 +55,8 @@
     },
     {
       "code": "600036",
-      "html_sha256": "e19fbf29e8648a24fb5f0f1fadedc94e23e6bde7589648412b9984b161582eea",
-      "html_bytes": 120170,
+      "html_sha256": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a",
+      "html_bytes": 121588,
       "figure_count_for_inventory_only": 8,
       "svg_count_for_inventory_only": 16,
       "has_source_table": true,
@@ -71,8 +71,8 @@
     },
     {
       "code": "688111",
-      "html_sha256": "54470dff7b3a5a642a63d994d1c675dccff29ef188d24b9f9cbb567ea95c0bc5",
-      "html_bytes": 127505,
+      "html_sha256": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
+      "html_bytes": 128885,
       "figure_count_for_inventory_only": 9,
       "svg_count_for_inventory_only": 18,
       "has_source_table": true,
@@ -87,7 +87,7 @@
     },
     {
       "code": "600519",
-      "html_sha256": "30c7bc4eb66957acb425b8f33a704127cadde398e065ce855151a5e2bcc5367a",
+      "html_sha256": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
       "html_bytes": 107059,
       "figure_count_for_inventory_only": 9,
       "svg_count_for_inventory_only": 18,
@@ -103,8 +103,8 @@
     },
     {
       "code": "000333",
-      "html_sha256": "c06e7661df1d5b0fd840affab38d39ebe5467672edb6b9cf44512dd04528cb2c",
-      "html_bytes": 129611,
+      "html_sha256": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d",
+      "html_bytes": 130738,
       "figure_count_for_inventory_only": 10,
       "svg_count_for_inventory_only": 20,
       "has_source_table": true,
