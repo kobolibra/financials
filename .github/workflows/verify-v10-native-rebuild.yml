@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/verify-v10-native-rebuild.yml'
       - 'research/rebuild-v10/native_mobile.py'
+      - 'research/rebuild-v10/test_editorial_chart_quality.py'
       - 'research/rebuild-v10/publisher.py'
       - 'research/rebuild-v10/qa_native_browser.py'
       - 'research/rebuild-v10/download_originals.py'
@@ -44,6 +45,7 @@ jobs:
           python scripts/audit_v10_flow_contract.py --strict --out research/rebuild-v10/strict-semantic-audit.json
           python scripts/audit_aei_editorial_delivery.py --fail-known --out research/rebuild-v10/structural-visual-audit.json
           python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v
+          python -m unittest discover -s research/rebuild-v10 -p 'test_editorial_chart_quality.py' -v
           python -m unittest discover -s research/shared -p 'test_editorial_financial_flow.py' -v
           python scripts/check_visual_editorial_policy.py
           python scripts/test_visual_editorial_policy.py
