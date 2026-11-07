@@ -135,7 +135,10 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
     W=D(330 if mobile else 1100)
     HVAL=D(142 if mobile else 286)
     scale=total/HVAL
-    gap_src=D(25 if mobile else 43)
+    # Desktop has three distinct editorial rows per source (name/amount/GP).
+    # 43-unit spacing makes near-zero disclosed sources collide with the prior
+    # business label even though zero-width ribbon geometry remains correct.
+    gap_src=D(25 if mobile else 70)
     gap_out=D(31 if mobile else 55)
     if mobile:
         xsrc,xrev,xout=D(15),D(149),D(260)
@@ -249,12 +252,12 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         out.append(rect(xsrc,sy,left_width,thick,PALETTE["source_dark"],
                         f'data-node-id="{esc(sid)}" data-node-yuan="{esc(v)}" data-node-role="source"'))
         if not mobile:
-            out.append(text(24,sy-10,name,16,PALETTE["ink"],700))
-            out.append(text(24,sy+13,fmt(v),15,PALETTE["muted"],600))
+            out.append(text(24,sy-10,name,16,PALETTE["ink"],700,role="source-item-title"))
+            out.append(text(24,sy+13,fmt(v),15,PALETTE["muted"],600,role="source-item-money"))
             if plan.allocations:
                 own=[(o,yuan(a)) for s,o,a in plan.allocations if s==sid]
                 profit=sum((a for oid,a in own if next(r for k,_,_,r in plan.outcomes if k==oid)=="profit"),D(0))
-                out.append(text(24,sy+34,f'毛利率 {profit/v*100:.1f}%',13,PALETTE["profit"],700))
+                out.append(text(24,sy+34,f'毛利率 {profit/v*100:.1f}%',13,PALETTE["profit"],700,role="source-item-margin"))
     out.append(rect(xrev,mid_base,rev_width,HVAL,PALETTE["trunk"],
                     f'data-node-id="revenue-total" data-node-yuan="{esc(total)}" data-node-role="total"'))
     if not mobile:
