@@ -150,6 +150,57 @@ class OriginalVisualGrammarTests(unittest.TestCase):
         self.assertIn("毛利率",body)
         self.assertNotIn("FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON",body)
 
+    def test_unified_financials_three_stage_source_trunk_and_outcome_geometry(self):
+        from unified_finance import render_typed_finance, plan_for
+        from verify import get
+        for code,nsource,nsink in (("688111",4,2),("000333",3,2),("600036",3,4)):
+            with self.subTest(code=code):
+                typed=classify(ROOT,code)
+                plan=plan_for(code,typed,get,{})
+                total=plan.check()
+                for mobile in (False,True):
+                    graph=ET.fromstring(render_typed_finance(code,typed,get,{},mobile=mobile))
+                    self.assertEqual(graph.get("data-design-system"),"FINANCIALS_UNIFIED_STORY_V1")
+                    self.assertEqual(graph.get("data-chart-grammar"),"SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY")
+                    self.assertEqual(D(graph.get("data-revenue-yuan")),total)
+                    nodes=[r for r in graph.iter(XMLNS+"rect") if r.get("data-node-role")]
+                    self.assertEqual(len(nodes),nsource+nsink+1)
+                    self.assertEqual([n.get("data-node-id") for n in nodes if n.get("data-node-role")=="total"],["revenue-total"])
+                    paths=[p for p in graph.iter(XMLNS+"path") if p.get("data-ribbon-yuan")]
+                    inflows=[p for p in paths if p.get("data-stage")=="source-to-revenue"]
+                    outflows=[p for p in paths if p.get("data-stage")=="revenue-to-outcome"]
+                    self.assertEqual(len(inflows),nsource)
+                    self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in inflows),D(0)),total)
+                    self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in outflows),D(0)),total)
+                    self.assertEqual(len(outflows),8 if code=="688111" else nsink)
+                    if code=="688111":
+                        for sid,rev,c,gp in typed["source_own_cost_gp"]:
+                            own=[p for p in outflows if p.get("data-source-id")==sid]
+                            self.assertCountEqual([D(p.get("data-ribbon-yuan")) for p in own],[D(c),D(gp)])
+                            self.assertEqual({p.get("data-revenue-yuan") for p in own},{rev})
+                    if code=="000333":
+                        self.assertEqual(graph.get("data-gp-limitation"),"PRODUCT_LEVEL_GP_NOT_ESTABLISHED")
+                    if code=="600036":
+                        self.assertEqual(graph.get("data-bank-interest-already-net"),"true")
+
+    def test_unified_flow_rejects_fake_allocations_and_negative_amounts(self):
+        from unified_finance import plan_for
+        from verify import get
+        from dataclasses import replace
+        a=plan_for("688111",classify(ROOT,"688111"),get,{})
+        b=plan_for("000333",classify(ROOT,"000333"),get,{})
+        bank=plan_for("600036",classify(ROOT,"600036"),get,{})
+        with self.assertRaisesRegex(ValueError,"SOURCE_AND_OUTCOME_TOTAL_MISMATCH"):
+            replace(b,sources=b.sources[:-1]).check()
+        with self.assertRaisesRegex(ValueError,"NEGATIVE_IN_POSITIVE_FLOW"):
+            replace(b,outcomes=(("fake","fake","-1","profit"),)+b.outcomes).check()
+        with self.assertRaisesRegex(ValueError,"MUST_NOT_INVENT_PRODUCT_GP"):
+            replace(b,allocations=(("home","group_gp","1"),)).check()
+        with self.assertRaisesRegex(ValueError,"SOURCE_OWN_COST_CANNOT_BE_INFERRED"):
+            replace(a,allocations=()).check()
+        with self.assertRaisesRegex(ValueError,"MUST_NOT_INVENT_PRODUCT_GP"):
+            replace(bank,allocations=(("nii","operating_profit","1"),)).check()
+
     def test_a_chart_cannot_pass_by_compressing_large_magnitude_into_1px(self):
         kind=classify(ROOT,"600519")
         svg=signed_product_profit("600519",kind,GET,{},mobile=True)
