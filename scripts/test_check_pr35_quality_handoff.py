@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from check_pr35_quality_handoff import (
     ROOT, CODES, MANIFEST, check_repo,
-    jread, validate_artifact_integrity, validate_handoff_documents,
+    jread, validate_artifact_integrity, validate_handoff_documents, validate_issuer_figure_briefs,
 )
 
 
@@ -85,6 +85,19 @@ class ActivePR35HandoffTests(unittest.TestCase):
         errors=validate_artifact_integrity(*args)
         self.assertIn("PREMATURE_RESEARCH_OR_DEPLOYMENT_CERTIFICATION",errors)
         self.assertIn("HUMAN_OR_GENERALIZATION_CERTIFICATION_NOT_PROVEN",errors)
+
+    def test_forged_company_specific_five_second_insight_is_blocked(self):
+        briefs=jread(ROOT,"research/quality/pr35-hero-figure-briefs.json")
+        typed=jread(ROOT,"research/rebuild-v10/strict-semantic-audit.json")
+        self.assertEqual(validate_issuer_figure_briefs(briefs,typed),[])
+        poison=copy.deepcopy(briefs)
+        for item in poison["hero_figures"]:
+            if item["issuer"]=="688111":
+                item["source_keys"]=["wps_personal"]
+                item["strongest_countercase"]=""
+        issues=validate_issuer_figure_briefs(poison,typed)
+        self.assertIn("FIGURE_BRIEF_MISSING_SOURCE_REVENUE_FACT_IDS_688111",issues)
+        self.assertIn("FIGURE_BRIEF_MISSING_DISTINCT_REASON_688111_strongest_countercase",issues)
 
     def test_no_handoff_anchor_or_main_belongs_to_branch_rejected(self):
         active=jread(ROOT,MANIFEST)
