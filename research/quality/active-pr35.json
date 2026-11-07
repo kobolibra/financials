@@ -31,7 +31,13 @@
     "current_quality_roadmap": "docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md",
     "detailed_handoff": "docs/ACTIVE_PR35_HANDOFF.md",
     "hero_figure_briefs": "research/quality/pr35-hero-figure-briefs.json",
-    "actual_visual_spot_review": "docs/PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md"
+    "actual_visual_spot_review": "docs/PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md",
+    "latest_real_v9_visual_review": "docs/PR35_UNIFIED_REAL_CJK_VISUAL_REVIEW_2026-11-07.md",
+    "unified_visual_standard": "docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md",
+    "visual_migration_census": "scripts/audit_unified_visual_corpus.py",
+    "current_sankey_source": "research/shared/unified_income_sankey.py",
+    "current_v10_adapter": "research/rebuild-v10/unified_finance.py",
+    "current_skill_archive": "docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md"
   },
   "four_issuers": {
     "600036": {
@@ -102,10 +108,10 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "688111": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
+      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a",
       "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
-      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d",
-      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a"
+      "688111": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
+      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",
