@@ -108,8 +108,12 @@
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "ASSISTANT_VISUAL_REVIEW_NOT_INDEPENDENT_HUMAN",
-    "actual_cloudflare_for_new_visual_candidate": "PENDING_INDEPENDENT_HTTP_BROWSER_SHA_AT_TIME_OF_RECORD",
+    "actual_cloudflare_for_new_visual_candidate": "PASS_EXACT_NEW_FOUR_PR_HTML_SHA__11_ISSUER_SOURCE_SHA__16_LIVE_CHROMIUM_WEBKIT_VIEWPORTS__108_VISIBLE_SVG_EXPORTS",
     "current_main_live_new_figures": "NOT_DEPLOYED_PR_UNMERGED",
-    "unseen_multiperiod_generalization": "NOT_ESTABLISHED"
+    "unseen_multiperiod_generalization": "NOT_ESTABLISHED",
+    "actual_cloudflare_preview_action": "https://github.com/kobolibra/financials/actions/runs/42347520600",
+    "actual_cloudflare_preview_artifact": "https://github.com/kobolibra/financials/actions/runs/42347520600/artifacts/13564585854",
+    "human_independent_financial_and_visual_review": "NOT_CHECKED",
+    "production_new_source_state": "NOT_DEPLOYED_PR_UNMERGED"
   }
 }
