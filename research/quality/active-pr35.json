@@ -108,10 +108,10 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "688111": "eae102c55d53f7f50978a017a4a31d9aff98bd350e1c70a0b7eb60b96c0c5f01",
+      "600036": "fa8855734562ea9b4ea2ba6efe9892600252f4fbebb2bbe9eba2d6706b899993",
       "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
-      "000333": "8d7719c581b29cee95c67f2664f7ee579a92332554944ba9191685df3d5c70aa",
-      "600036": "fa8855734562ea9b4ea2ba6efe9892600252f4fbebb2bbe9eba2d6706b899993"
+      "688111": "eae102c55d53f7f50978a017a4a31d9aff98bd350e1c70a0b7eb60b96c0c5f01",
+      "000333": "8d7719c581b29cee95c67f2664f7ee579a92332554944ba9191685df3d5c70aa"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",
@@ -132,7 +132,11 @@
     "lawful_signed_exception": [
       "600519"
     ],
-    "legacy_not_unified": [
+    "legacy_not_unified": [],
+    "all_11_editorially_unified": "NOT_ESTABLISHED",
+    "human_editorial": "NOT_CHECKED",
+    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED",
+    "partial_hero_only_unified_remaining_art_legacy": [
       "300394",
       "300308",
       "300502",
@@ -141,8 +145,9 @@
       "600276",
       "601628"
     ],
-    "all_11_editorially_unified": "NOT_ESTABLISHED",
-    "human_editorial": "NOT_CHECKED",
-    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED"
+    "issuer_601628_legal_grammar": "MANAGEMENT_PREMIUM_4_SOURCE_TO_NEW_RENEW_TO_TOTAL_NOT_CAS25_REVENUE",
+    "strict_all_11_visual_unification": "NOT_ESTABLISHED",
+    "pending": "INDEPENDENT_FINANCE_AND_ART_REVIEW__ALL_OTHER_FIGURES_SOURCE_AUDIT__CURRENT_CLOUDFLARE_HTML_SHA__UNSEEN_PERIODS",
+    "current_census": "scripts/audit_unified_visual_corpus.py"
   }
 }
