@@ -78,28 +78,28 @@
   ],
   "files": {
     "000333.html": {
-      "sha256": "b5834a2d2266a3eb06fb260204dcb4ad5d0a05a4c2711ca0f17a5f3c40670b97",
-      "bytes": 126304,
+      "sha256": "1e4593df5c9dca9ad55866d1d9db3453000118f38a0e8990b94ebc87d5804e45",
+      "bytes": 126638,
       "figures": 10
     },
     "600519.html": {
-      "sha256": "577f23523e1ece2e4e7fed272809a92cafb52b9be512294530f8a63fc554c3ff",
-      "bytes": 101512,
+      "sha256": "66dc1aba36286c428ba8bbc6b10052fc929654e0c9c7048e436b2a19c04ac12a",
+      "bytes": 101846,
       "figures": 9
     },
     "600036.html": {
-      "sha256": "80fbc7a445209516cb16e91d98762a95fb878d997bf4b294339b127650bbe270",
-      "bytes": 113744,
+      "sha256": "6d9c763341238a3606d3ab901184d7c8b08f047f4a60d0c653900c69e51ecd4d",
+      "bytes": 114078,
       "figures": 8
     },
     "index.html": {
-      "sha256": "564cb16665625fcaad6702ee9b5bf6d69fd72c06d3f690576bf4ebc3e782b848",
+      "sha256": "5670fd2766020dbf7b40d4d0a7206a8940c2d314702a0ec27046352a4626da0a",
       "bytes": 13944,
       "figures": 0
     },
     "688111.html": {
-      "sha256": "b12cefa3a1865f1d8243a197fcb4e928b86d2a78f1004fc25da272b047c02572",
-      "bytes": 120134,
+      "sha256": "4b6ed41fbc180a03799b3deef901b6f802c687be6be559ab84505d5d7c5a948f",
+      "bytes": 120468,
       "figures": 9
     }
   }
