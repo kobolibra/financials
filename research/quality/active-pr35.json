@@ -37,7 +37,7 @@
     "600036": {
       "source_type": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
       "exhibits": 8,
-      "figure_02_design": "BANK_NET_INTEREST_ALREADY_NET_OPERATING_COSTS_AND_PROFIT"
+      "figure_02_design": "UNIFIED_TRUE_CONNECTED_1100_DESKTOP_330_MOBILE_BANK_NET_INCOME_TO_EXPENSE_PROFIT"
     },
     "600519": {
       "source_type": "TYPE_C_SANKEY_OMITTED",
@@ -47,12 +47,12 @@
     "688111": {
       "source_type": "TYPE_A_SOURCE_OWN_COST_GP",
       "exhibits": 9,
-      "figure_02_design": "TRUE_1040_DESKTOP_THREE_STAGE_AND_DISTINCT_330_PHONE_PER_SOURCE_OWN_COST_GP"
+      "figure_02_design": "UNIFIED_TRUE_CONNECTED_1100_DESKTOP_330_MOBILE_SOURCE_TO_ONE_REVENUE_TOTAL_TO_SOURCE_OWN_COST_GP"
     },
     "000333": {
       "source_type": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
       "exhibits": 10,
-      "figure_02_design": "GROUP_COGS_GP_ONLY_NO_PRODUCT_GP_CLAIM"
+      "figure_02_design": "UNIFIED_TRUE_CONNECTED_1100_DESKTOP_330_MOBILE_GROUP_ONLY_COST_GP_NO_PRODUCT_MARGIN"
     }
   },
   "exact_byte_rule": "DERIVE_SHA256_FROM_CURRENT_PUBLIC_HTML; REJECT_ANY_STALE_BUILD_MANIFEST_OR_BROWSER_RECEIPT; PR_PREVIEW_SHA_ONLY_COVERS_RECORDED_CANDIDATE_BYTES",
@@ -64,7 +64,7 @@
     "actually_verified_prior_preview_figures": 36
   },
   "current_art_direction": {
-    "status": "NOT_CHECKED_CURRENT_HUMAN_REVIEW_AND_UNSEEN_PERIOD_GENERALIZATION",
+    "status": "NOT_CHECKED_NEW_UNIFIED_SVG_HUMAN_EDITOR_AND_UNSEEN_PERIOD_GENERALIZATION",
     "newly_implemented_and_must_be_RETESTED": [
       "WPS_1040_DESKTOP_SOURCE_OWN_COST_AND_GROUP_SINK_GEOMETRY",
       "MOUTAI_TRUE_PROPORTIONAL_TINY_NEGATIVE_GP_AND_SEPARATELY_LABELED_LOCAL_ZOOM",
@@ -98,22 +98,41 @@
   "release_rule": "NO_CLAIM_AEI_LEVEL_CERTIFIED_OR_MAIN_DEPLOYED_WITHOUT_ACTUAL_REVIEW_AND_SHA_BOUND_SIGNOFF",
   "latest_source_sha_bound_candidate": {
     "gate": "PASS_LOCAL_ORIGINAL_PDF_VERIFICATION_AND_12_REAL_CJK_CASES__NOT_HUMAN_EDITED",
-    "original_pdf_full_rebuild_run": "https://github.com/kobolibra/financials/actions/runs/42347332430",
-    "typed_and_editorial_handoff_pr_check_run": "https://github.com/kobolibra/financials/actions/runs/42347522657",
+    "original_pdf_full_rebuild_run": "https://github.com/kobolibra/financials/actions/runs/42351452908",
+    "typed_and_editorial_handoff_pr_check_run": "PENDING_LATEST_HEAD_REVALIDATION",
     "four_actual_public_full_html_sha256": {
-      "600036": "17e20ef509616c259aa7637e6da33a7c9c3556cfc9f5a17e168691023f962a13",
+      "600036": "e19fbf29e8648a24fb5f0f1fadedc94e23e6bde7589648412b9984b161582eea",
       "600519": "30c7bc4eb66957acb425b8f33a704127cadde398e065ce855151a5e2bcc5367a",
-      "688111": "d6a4e923ad59a12b2d74e916bf966531c3c645111c5836a548faa5478e670b66",
-      "000333": "9cd0776a8b5f0b9daaf8c0bc3d503efcb6dcd7f3ed84cd569a5aa5df057e83b4"
+      "688111": "54470dff7b3a5a642a63d994d1c675dccff29ef188d24b9f9cbb567ea95c0bc5",
+      "000333": "c06e7661df1d5b0fd840affab38d39ebe5467672edb6b9cf44512dd04528cb2c"
     },
     "original_browser_figures": 36,
-    "desktop_phone_original_money_editorial_spotcheck": "ASSISTANT_VISUAL_REVIEW_NOT_INDEPENDENT_HUMAN",
-    "actual_cloudflare_for_new_visual_candidate": "PASS_EXACT_NEW_FOUR_PR_HTML_SHA__11_ISSUER_SOURCE_SHA__16_LIVE_CHROMIUM_WEBKIT_VIEWPORTS__108_VISIBLE_SVG_EXPORTS",
+    "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_NEW_UNIFIED_CHART_VERSION",
+    "actual_cloudflare_for_new_visual_candidate": "PENDING_NEW_SHA_CLOUDFLARE_PREVIEW_BROWSER",
     "current_main_live_new_figures": "NOT_DEPLOYED_PR_UNMERGED",
     "unseen_multiperiod_generalization": "NOT_ESTABLISHED",
-    "actual_cloudflare_preview_action": "https://github.com/kobolibra/financials/actions/runs/42347520600",
-    "actual_cloudflare_preview_artifact": "https://github.com/kobolibra/financials/actions/runs/42347520600/artifacts/13564585854",
+    "actual_cloudflare_preview_action": "NOT_VALID_FOR_THIS_SHA",
+    "actual_cloudflare_preview_artifact": "NOT_VALID_FOR_THIS_SHA",
     "human_independent_financial_and_visual_review": "NOT_CHECKED",
     "production_new_source_state": "NOT_DEPLOYED_PR_UNMERGED"
+  },
+  "visual_unification_status": {
+    "positive_conserved_income_issuers": [
+      "688111",
+      "000333",
+      "600036"
+    ],
+    "signed_negative_issuer": "600519",
+    "legacy_not_unified": [
+      "300394",
+      "300308",
+      "300502",
+      "688220",
+      "600900",
+      "600276",
+      "601628"
+    ],
+    "target_company_count": 11,
+    "achieved_all_eleven": false
   }
 }
