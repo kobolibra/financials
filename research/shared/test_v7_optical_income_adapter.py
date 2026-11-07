@@ -75,9 +75,16 @@ class RealOpticalSankeyMigrationContract(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,"OPTICAL_OVERLAPPING_OR_DUPLICATE_SOURCE_FACTS"):
                     optical_flow_plan(bad)
                 bad=copy.deepcopy(good)
-                bad["revenue_partition_assertion"]["completeness"]="UNKNOWN"
-                with self.assertRaisesRegex(ValueError,"OPTICAL_EXHAUSTIVE_SOURCE_PARTITION_NOT_PROVEN"):
-                    optical_flow_plan(bad)
+                if bad.get("verified_source_anomalies"):
+                    # Original PDF 300308 contains a documented conflict,
+                    # so invalidating its exception proof must fail closed.
+                    bad["verified_source_anomalies"][0]["source_sha256"]="0"*64
+                    with self.assertRaisesRegex(ValueError,"OPTICAL_ORIGINAL_PDF_DISCREPANCY_NOT_SOURCED"):
+                        optical_flow_plan(bad)
+                else:
+                    bad["revenue_partition_assertion"]["completeness"]="UNKNOWN"
+                    with self.assertRaisesRegex(ValueError,"OPTICAL_EXHAUSTIVE_SOURCE_PARTITION_NOT_PROVEN"):
+                        optical_flow_plan(bad)
 
 if __name__=="__main__":
     unittest.main()

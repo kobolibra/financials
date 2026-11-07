@@ -40,12 +40,30 @@ jobs:
               h=p.read_text()
               assert len(re.findall(r'<figure class="exhibit(?: has-native-finance)?"',h))==(10 if code=='300394' else 11),(code,'source-driven full financial-figure count')
               assert h.count('<figure class="exhibit has-native-finance">')>=(9 if code=='300394' else 10),(code,'original mobile-specific finance drawings absent')
-              assert h.count('class="native-money-ribbon"')==2*(3 if code=='300394' else 2),(code,'true source per-issuer cost / GP branch count lost')
-              assert h.count('class="native-money-sink"')==2,(code,'source-conserved group revenue results missing')
+              # v9 hero figure has both native desktop and mobile connected
+              # income Sankeys with original exact-yuan source/cost metadata.
+              from decimal import Decimal as D
+              import xml.etree.ElementTree as ET
+              from pathlib import Path
+              from importlib.util import spec_from_file_location,module_from_spec
+              import sys
+              sys.path.insert(0,str(Path('research/shared').resolve()))
+              from v7_optical_income_adapter import optical_flow_plan
+              ledger_path=(Path('skills/ashare-financial-storytelling/v7/engine/sample-ledger.json')
+                  if code=='300394' else Path('skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json'))
+              plan=optical_flow_plan(json.loads(ledger_path.read_text()))
+              total=plan.check()
+              count=len(plan.sources)
+              assert h.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2,(code,'TWO_NATIVE_UNIFIED_FIGURES_REQUIRED')
+              assert h.count('data-node-id="revenue-total"')==2,(code,'SINGLE_SHARED_TOTAL_PER_FIGURE_REQUIRED')
+              assert h.count('data-stage="source-to-revenue"')==2*count,(code,'ALL_EXCLUSIVE_SOURCES_MUST_CONNECT')
+              assert h.count('data-stage="revenue-to-outcome"')==4*count,(code,'OWN_PRODUCT_GP_AND_COST_MUST_CONNECT')
+              assert h.count(f'data-revenue-yuan="{total}"')==2,(code,'EXACT_SOURCE_REVENUE_NOT_IN_BOTH_FIGURES')
+              assert 'viewBox="0 0 1100' in h and 'viewBox="0 0 330' in h,(code,'DESKTOP_MOBILE_NOT_INDEPENDENT')
               assert '未列示差额（计算）' not in h,(code,'fake balancing node still present')
               assert needle in h,(code,'source category absent')
               assert 'p.'+pg in h,(code,'source physical page absent')
-              assert h.count('class="money-ribbon"')>=(7 if code=='300394' else 6),(code,'not a proportional money-flow')
+              assert 'data-ribbon-yuan=' in h,(code,'not an original-yuan proportional money flow')
               assert 'UNVERIFIED_REVENUE_PARTITION' not in h
               print('SOURCE_CLASSIFICATION_HTML_PASS',code,len(h),hashlib.sha256(h.encode()).hexdigest(),flush=True)
           PY
