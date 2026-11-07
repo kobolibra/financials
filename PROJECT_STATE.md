@@ -2,6 +2,9 @@
 
 ## 2026-11-07 候选 PR #35 ACTIVE，main 仍不同：图形与交接品质整改
 
+**新候选真实 SHA 验证已闭环**：原始财报重编与 36 图 CJK 三屏 [#42347332430](https://github.com/kobolibra/financials/actions/runs/42347332430) PASS；真正新图所对应的 Cloudflare HTTPS 预览 11 路由全文字节、16 档浏览器/设备视口、108 次 SVG 真实可见版本导出 [#42347520600](https://github.com/kobolibra/financials/actions/runs/42347520600) PASS。四公司 source HTML SHA 收在 research/quality/active-pr35.json 和 build-manifest.json（注意不是新 main）。零记忆交接与四家图形财务红队通过的准确 CI 以 PR 最新 HEAD 查询，不用旧会话声称。独立财经/视觉总编与跨期陌生公司稳定性、生产 main 新 HTML 仍 **NOT_CHECKED / NOT_DEPLOYED**；此段证明候选工程质量，不证明超越 AEI。
+
+
 **权威实时状态入口 [docs/ACTIVE_PR35_HANDOFF.md](docs/ACTIVE_PR35_HANDOFF.md) + [research/quality/active-pr35.json](research/quality/active-pr35.json)**。PR #35 quality/aei-sankey-source-contract-v1 正在改造四家 2026H1 报告；本段只是带日期候选快照，新会话必须重新查 main、PR HEAD、Actions 和 Cloudflare 全 HTML SHA。正式 main 的四篇旧页面不可因为 PR 预览成功就写为正式生产已修。候选会计路径金山办公 A（自身收入/成本/毛利）、茅台 C（真实小负毛利不画正向带）、美的 B（仅集团总毛利）、招商银行 BANK（净利息已减息）各不同。
 
 **本次新实装修复尚须新 SHA 实测**：金山 WPS 独立 1040 单位的原元三阶段桌面收入→自身成本/毛利→集团合计桑基，手机 330 单位独立；茅台 −12,446,319.42 元其他业务真正极小主比例正负图＋明确独立尺度的收入/成本局部放大，机器内部原因只保留 SVG 属性。针对这两种误导图已加源金额的对抗测试，但旧浏览器成功记录 #42344600791、#42344715944 只证旧候选 SHA，**不得继承到新改网页**。本次分支变更以实际 HEAD 及最新 CI 为准，不能写本地截图成功如未执行。
