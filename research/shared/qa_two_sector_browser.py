@@ -114,7 +114,7 @@ def main():
                     state=plot.evaluate("(x) => ({overflow:getComputedStyle(x).overflowX,scroll:x.scrollWidth,visible:x.clientWidth})")
                     assert state["visible"]<=width,(a.code,"TABLET_CHART_CONTAINMENT",state)
             q=page.locator("#chart-flow")
-            assert q.locator('> svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
+            assert q.locator(':scope > svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
             assert q.locator('.native-mobile-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
             for kind in ["pnl","cfo","cash","balance"]:
                 assert page.locator("#chart-"+kind+" > svg").count()==1
