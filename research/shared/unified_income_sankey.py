@@ -31,6 +31,10 @@ def fmt(x):
     y=yuan(x)/D(100000000)
     if y == 0:
         return "0"
+    if abs(y)<D(".01"):
+        # Never turn 79,769.92 original yuan into a misleading "0.001亿"
+        # (approximately CNY 100,000). Use a suitable truthful small unit.
+        return format(yuan(x)/D(10000),".2f")+"万"
     if abs(y)<D(1):
         return format(y,".3f")+"亿"
     return format(y,",.2f")+"亿"
