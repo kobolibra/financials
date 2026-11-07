@@ -113,5 +113,13 @@
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "actual_main_release_commit": "e63ee316db22d8d079be6a80cd3cd9f08fd1d98e",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
-  "live_receipt_file": "research/issuers/688220/live-release-receipt.json"
+  "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
+    "candidate_full_html_sha256": "7ab78b1b54688bd093f3364f4f6eb9ddd9036daabc268c362d5a643ac298793b",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "NOT_CHECKED",
+    "note": "This sha belongs to the changed PR source file only. Historical live release PASS and screenshots remain valid exclusively for the old main SHA. Do not claim new candidate deployed or screenshot certified until a real independent current-sha browser receipt."
+  }
 }
