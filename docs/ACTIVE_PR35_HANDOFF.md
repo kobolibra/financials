@@ -8,7 +8,7 @@
 
 ## 最新实际候选版源码及交接机测（2026-11-07，本段是 SHA 绑定记录）
 
-四份新 SVG 已完成实际原 PDF 检查、按原始元重新生成和 1440/768/390 的 36 图 12 浏览器场景：源重建与截图 [Action #42347332430](https://github.com/kobolibra/financials/actions/runs/42347332430) PASS。对应精确 HTML SHA 存于 research/rebuild-v10/build-manifest.json 和 research/quality/active-pr35.json 的 latest_source_sha_bound_candidate；真正图片的人工式 AI 观察笔记及 PNG SHA 在 [真实 CJK 图证审阅](PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md)，不冒充独立视觉编辑签字。候选零记忆 SHA 与财经审计门 [Action #42347522657](https://github.com/kobolibra/financials/actions/runs/42347522657) PASS；真实 Cloudflare HTTPS 新版重测未通过前保持 PENDING，旧云端绿灯只能证明旧 HTML SHA。
+四份新 SVG 已完成实际原 PDF 检查、按原始元重新生成和 1440/768/390 的 36 图 12 浏览器场景：源重建与截图 [Action #42347332430](https://github.com/kobolibra/financials/actions/runs/42347332430) PASS。对应精确 HTML SHA 存于 research/rebuild-v10/build-manifest.json 和 research/quality/active-pr35.json 的 latest_source_sha_bound_candidate；真正图片的人工式 AI 观察笔记及 PNG SHA 在 [真实 CJK 图证审阅](PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md)，不冒充独立视觉编辑签字。候选零记忆 SHA 与财经审计门 [Action #42347522657](https://github.com/kobolibra/financials/actions/runs/42347522657) PASS；真实 Cloudflare HTTPS 预览 [Action #42347520600](https://github.com/kobolibra/financials/actions/runs/42347520600) **已经以此次四篇实际 HTML SHA PASS**：11 家完整路由逐字节、16 个 Chromium/WebKit 视口、108 次所见即所得 SVG 导出、来源表与 PDF 页码。下载图与截图证据 Artifact #13564585854。此项只证明候选 preview，**main 仍未合并/正式新站点未上线**；下一次任何 HTML 变化都必须重新在线验证。
 
 ## 工作状态——必须区分三条线
 
