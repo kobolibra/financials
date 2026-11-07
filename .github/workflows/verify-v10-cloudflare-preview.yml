@@ -35,6 +35,7 @@ jobs:
       - name: Confirm this exact PR version is internally consistent before testing remote published HTML
         run: |
           python scripts/check_pr35_quality_handoff.py
+          python scripts/audit_unified_visual_corpus.py --out research/rebuild-v10/cloudflare-release-qa/11-issuer-unification-truth.json
           python -m unittest discover -s scripts -p test_check_pr35_quality_handoff.py -v
       - name: Read actual current PR branch deployment and production bytes, then inspect all finance SVG in touch browsers
         env:
