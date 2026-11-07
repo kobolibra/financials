@@ -64,7 +64,7 @@
     "actually_verified_prior_preview_figures": 36
   },
   "current_art_direction": {
-    "status": "NOT_CHECKED_NEW_UNIFIED_SVG_HUMAN_EDITOR_AND_UNSEEN_PERIOD_GENERALIZATION",
+    "status": "NOT_CHECKED_CURRENT_HUMAN_REVIEW_AND_UNSEEN_PERIOD_GENERALIZATION",
     "newly_implemented_and_must_be_RETESTED": [
       "WPS_1040_DESKTOP_SOURCE_OWN_COST_AND_GROUP_SINK_GEOMETRY",
       "MOUTAI_TRUE_PROPORTIONAL_TINY_NEGATIVE_GP_AND_SEPARATELY_LABELED_LOCAL_ZOOM",
@@ -79,7 +79,8 @@
       "20_30_UNSEEN_CROSS_ISSUER_REGRESSION",
       "DEVICE_HARDWARE_IOS_ANDROID",
       "LIVE_MAIN_CANDIDATE_NOT_YET_MERGED"
-    ]
+    ],
+    "new_visual_version_note": "New 1100/330 connected flow HTML SHA in latest_source_sha_bound_candidate; first-party AEI art direction and unseen period NOT_CHECKED"
   },
   "known_source_debt": [
     "688220_p137_top5_receivables_note_90_50_VS_89_17_DENOMINATOR_UNRECONCILED",
