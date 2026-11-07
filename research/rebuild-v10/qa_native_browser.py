@@ -97,6 +97,28 @@ with sync_playwright() as p:
                 })
             flow=page.locator("#fig-02")
             assert flow.get_attribute("data-flow-kind")==EXPECTED[code],(code,width,"WRONG_FINANCE_FLOW_SEMANTICS")
+            if width<=850 and code in ("688111","000333","600036"):
+                # A real screenshot captured a WPS legend/stage collision and
+                # a CMB four-cost footer/caveat collision despite all figure
+                # bounds being legal. Test actual transformed CJK font boxes.
+                spacing=flow.locator(".native-finance svg").evaluate("""svg => {
+                  const nodes=role=>[...svg.querySelectorAll('[data-editorial-role="'+role+'"]')];
+                  const bottom=role=>Math.max(...nodes(role).map(x=>x.getBoundingClientRect().bottom));
+                  const top=role=>Math.min(...nodes(role).map(x=>x.getBoundingClientRect().top));
+                  const bounds=svg.getBoundingClientRect();
+                  return {sourceBottom:bottom('source-summary'),
+                          sourceStageTop:top('source-stage-header'),
+                          outcomeBottom:bottom('outcome-value'),
+                          disclaimerTop:top('accounting-limitation'),
+                          disclaimerBottom:bottom('accounting-limitation'),
+                          noteTop:top('source-caveat'),
+                          noteBottom:bottom('source-caveat'),
+                          svgBottom:bounds.bottom};
+                }""")
+                assert spacing["sourceBottom"]+3 < spacing["sourceStageTop"],(code,width,"SOURCE_LEGEND_OVERLAPS_CHART",spacing)
+                assert spacing["outcomeBottom"]+3 < spacing["disclaimerTop"],(code,width,"FINANCIAL_OUTCOME_OVERLAPS_CAVEAT",spacing)
+                assert spacing["disclaimerBottom"]+3 < spacing["noteTop"],(code,width,"CAVEAT_OVERLAPS_SOURCE_NOTE",spacing)
+                assert spacing["noteBottom"]+1 < spacing["svgBottom"],(code,width,"FINANCE_SOURCE_FOOTER_CLIPPED",spacing)
             if code=="688111":
                 selected=flow.locator(".native-finance svg") if width<=850 else flow.locator(".desktop-finance svg")
                 assert selected.locator('path[data-source-id][data-revenue-yuan][data-cost-yuan][data-gp-yuan]').count()>=8
