@@ -108,10 +108,10 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "600036": "5aca016af78e22dca39a0da11e242ec591ba241a4b1c3d3b8cd5b3d5d435198a",
+      "688111": "5264671de9e8ab3dec3f8da184bbe5353a1804005bb72dd5967130fe8044b46b",
       "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
-      "688111": "960e9be990c4615ee411050056e5f2e7a5e87992ffd0d124735a187b08aadbf2",
-      "000333": "fe4f96b7b6a02bf8faa11ec0a9bbb5adcf98c1032f93fdc1f0a993cdebd1391d"
+      "000333": "934f9ad60ce6d55d867eca236f8863183994af5c7619f9d276470e4eaab4db96",
+      "600036": "fec7a3f2b357ca5014d502cf1a377eb2e56105c305ee4f5dd54b6e1549c64c83"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",
@@ -133,6 +133,9 @@
       "600519"
     ],
     "legacy_not_unified": [
+      "300394",
+      "300308",
+      "300502",
       "688220",
       "600900",
       "600276",
@@ -140,13 +143,6 @@
     ],
     "all_11_editorially_unified": "NOT_ESTABLISHED",
     "human_editorial": "NOT_CHECKED",
-    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED",
-    "partial_hero_only_unified_remaining_art_legacy": [
-      "300394",
-      "300308",
-      "300502"
-    ],
-    "optical_current_browser_evidence": "https://github.com/kobolibra/financials/actions/runs/42359062392",
-    "original_zj_p139_one_yuan_discrepancy": "PRESERVED_SOURCE_CONTRACT_COLUMN_NOT_FABRICATED"
+    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED"
   }
 }
