@@ -190,8 +190,8 @@ def group_sankey(code, typed, names):
     scale=D(92)/total
     h=D(145+len(rows)*47)
     out=_text(12,22,"收入分类 → 集团总成本 / 毛利",13,INK,True)
-    out+=_text(12,40,"PRODUCT_LEVEL_GP_NOT_ESTABLISHED",10,COPPER,True)
-    out+=_text(12,56,"未披露各业务毛利；右侧仅为集团合计分配",10,MUTED)
+    out+=_text(12,40,"未披露各业务自身毛利",11,COPPER,True)
+    out+=_text(12,56,"右侧仅是集团成本与毛利，不能倒推分部盈利",10,MUTED)
     cursor=D(78);mid=D(78)
     for sid,amount in rows:
         thick=amount*scale
@@ -213,7 +213,8 @@ def group_sankey(code, typed, names):
     out+=_text(260,106,_fmt(cost),10,COPPER)
     out+=_text(260,149,"毛利",11,GREEN,True)
     out+=_text(260,164,_fmt(gp),10,GREEN)
-    return _svg(out,h,"集团层财务桑基图（不代表各分部毛利）","TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",code+"-2")
+    svg=_svg(out,h,"集团层财务桑基图（不代表各分部毛利）","TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",code+"-2")
+    return svg.replace('role="img"', 'data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED" role="img"',1)
 
 
 def _source_rows(code, typed):
