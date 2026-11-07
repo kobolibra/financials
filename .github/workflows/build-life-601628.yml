@@ -1,9 +1,12 @@
 name: Build and financially audit original China Life 601628 2026H1
 on:
   push:
-    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, work/601628-mobile-financial-visual-storytelling-v861, work/editorial-aei-11-issuer-visual-audit-20261104, main]
+    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, work/601628-mobile-financial-visual-storytelling-v861, work/editorial-aei-11-issuer-visual-audit-20261104, quality/aei-sankey-source-contract-v1, main]
     paths:
       - 'research/issuers/601628/**'
+      - 'research/shared/unified_insurance_premium.py'
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/test_unified_insurance_premium.py'
       - '!research/issuers/601628/visual-qa/**'
       - '!research/issuers/601628/qa.json'
       - '!research/issuers/601628/source-critical-cells.json'
@@ -34,6 +37,7 @@ jobs:
           fi
           python research/issuers/601628/verify_source.py
           python -m unittest research/issuers/601628/test_accounting.py -v
+          python -m unittest discover -s research/shared -p test_unified_insurance_premium.py -v
           python research/issuers/601628/publish.py --out public/601628.html
       - name: Actual real Chromium source geometry, visual at 1440/768/390 and SVG export
         run: |
