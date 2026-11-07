@@ -10,6 +10,8 @@ on:
       - 'research/rebuild-v10/qa_native_browser.py'
       - 'research/rebuild-v10/download_originals.py'
       - 'research/shared/editorial_financial_flow.py'
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/rebuild-v10/unified_finance.py'
       - 'scripts/audit_v10_flow_contract.py'
       - 'scripts/test_audit_v10_flow_contract.py'
   workflow_dispatch:
