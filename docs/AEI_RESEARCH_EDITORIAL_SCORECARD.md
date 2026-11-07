@@ -2,6 +2,8 @@
 
 > 范围：PR #35 候选 2026H1 四篇真实财报。公开 AEI/FT 原作作为公开方法参照；不是取得认可、复制作品或付费全文覆盖。所有观测须绑定实际 HTML SHA。机器 PASS 不能代表人类总编签字。
 
+实际 CJK 图像的版本绑定观察与残余问题见 [PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md](PR35_ACTUAL_CJK_FIGURE_REVIEW_2026-11-07.md)，四张主图的逐公司 original fact-ID 研究命题见 [pr35-hero-figure-briefs.json](../research/quality/pr35-hero-figure-briefs.json)。这些是 AI 内部研究/视觉回执，独立财经与视觉双审仍 NOT_CHECKED。
+
 ## 同等重要的三个质量轴
 
 | 轴 | 需要实际证明 | 现状 |
