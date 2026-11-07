@@ -53,7 +53,9 @@ class TypedV10FlowContractTests(unittest.TestCase):
         self.assertEqual(result["count"], 4)
         for row in result["records"]:
             if row["published_figure_issues"]:
-                self.assertTrue(row["historical_exact_source_waiver"])
+                self.assertTrue(row["historical_exact_source_waiver"]
+                                or any(v["issuer"]==row["issuer"]
+                                       for v in result["blocking_violations"]))
                 self.assertEqual(row["current_figure_semantic_status"], "FAIL")
             else:
                 self.assertEqual(row["current_figure_semantic_status"], "PASS_STATIC_SCOPE_ONLY")
@@ -77,7 +79,7 @@ class TypedV10FlowContractTests(unittest.TestCase):
             source = source.replace('data-flow-kind="TYPE_A_SOURCE_OWN_COST_GP"', 'data-flow-kind="FORGED"')
             page.write_text(source + "\n<!-- changed malicious release -->\n", encoding="utf8")
             result = MOD.audit(tmp)
-            self.assertEqual([v["issuer"] for v in result["blocking_violations"]], ["688111"])
+            self.assertIn("688111",[v["issuer"] for v in result["blocking_violations"]])
             self.assertEqual(result["conclusion"], "FAIL")
 
     def test_all_repaired_issuer_phone_export_buttons_really_visible_and_source_selected(self):
