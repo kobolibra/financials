@@ -274,7 +274,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
         if plan.kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
             out.append(text(26,y,"重要边界：仅集团合计成本和毛利，无法由此倒推各分部毛利率",16,PALETTE["cost"],700))
         elif plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT":
-            out.append(text(26,y,"银行净利息收入已扣利息支出；下方分流是运营及信用成本，绝非工业毛利",15,PALETTE["cost"],700))
+            out.append(text(26,y,"银行净利息收入已扣利息支出；仅分流经营费用、信用成本和营业利润",15,PALETTE["cost"],700))
         else:
             out.append(text(26,y,"各业务成本直接来自本业务披露；集团总毛利不等于归母净利润",15,PALETTE["muted"],600))
         out.append(text(26,y+28,plan.footnote[:78],12,PALETTE["muted"]))
