@@ -6,6 +6,10 @@
 
 > 本文是 **候选 PR 状态**，绝不等同 main 正式上线。每次新会话必须重新获取真正的 GitHub main HEAD、PR #35 HEAD、Actions 最新状态和 Cloudflare 当前完整 HTML SHA。不能把这里的历史观测当作现在。机器合同：research/quality/active-pr35.json、scripts/check_pr35_quality_handoff.py。
 
+## 最新经过真实 PNG 人工式 AI 视觉复查的版本
+
+**真正的统一设计图证**见 [2026-11-07 v9 新 1100/330 桑基原始 PNG 与 exact-SHA 观察](PR35_UNIFIED_REAL_CJK_VISUAL_REVIEW_2026-11-07.md)。此前记录的 1040 WPS 图和 2026-11-07 早期截图属于历史 SHA，不能作为当前新统一收入主干图的证书。真正源 PDF→发布四页→12 套中文字体浏览器已在 [#42352289753](https://github.com/kobolibra/financials/actions/runs/42352289753) PASS，最新四页 SHA 见 research/quality/active-pr35.json。Cloudflare 线上同一 SHA 必须单独检查，独立专业财经和美术审稿仍 NOT_CHECKED。其余七家公司仍 LEGACY_NOT_UNIFIED，禁止把四家候选成功概括为 11 家顶级。
+
 ## 当前确定的研究/编辑目标
 
 稳定输出有明确行业经营命题、可量化驱动、最强反证、同原始披露账本守恒的优秀金融可视化，尤其是能一眼看出业务赚钱机制的真实桑基图。App Economy Insights / FT 只作为公开方法、信息效率与视觉设计基准；不能用图表数或 CI 全绿宣称超越。
