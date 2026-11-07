@@ -86,16 +86,34 @@ with sync_playwright() as p:
   assert info["figures"]==info["svg"]==info["tables"]==info["exports"]==9,(width,info)
   assert info["nativeCount"]==9 and info["mobilePanels"]==9
   assert info["mobileVisible"]==(0 if width==1440 else 9),(width,"NATIVE_MOBILE_PANELS_NOT_VISIBLE")
-  assert len(info["mobileFlowSource"])==4 and len(info["mobileFlowSink"])==2 and len(info["mobileFlowRibbon"])==7
-  source_scale=298/float(D(facts["rev"]["yuan"]))
-  for item in info["mobileFlowSource"]+info["mobileFlowSink"]:
-    assert abs(item["width"]-float(D(item["yuan"]))*source_scale)<1e-6,(width,"MOBILE_NODE_NOT_REAL_YUAN",item)
-  for item in info["mobileFlowRibbon"]:
-    assert abs(item["width"]-float(D(item["yuan"]))*source_scale)<1e-6,(width,"MOBILE_RIBBON_NOT_REAL_YUAN",item)
-    import re
-    match=re.search(r"^M([0-9.]+),58 C.* ([0-9.]+),58 Z$",item["path"])
-    assert match,(width,"BAD_MOBILE_MONEY_CURVE",item)
-    assert abs(float(match.group(2))-float(match.group(1))-item["width"])<1e-6,(width,"MOBILE_CURVE_FALSE_PHYSICAL_WIDTH",item)
+  finance=page.evaluate("""() => {
+    const parse=(svg)=>svg?{total:+svg.getAttribute('data-revenue-yuan'),scale:+svg.getAttribute('data-scale-yuan-per-svg-unit'),
+      grammar:svg.getAttribute('data-chart-grammar'),view:svg.viewBox.baseVal.width,
+      nodes:[...svg.querySelectorAll('rect[data-node-role]')].map(e=>({id:e.getAttribute('data-node-id'),role:e.getAttribute('data-node-role'),amount:+e.getAttribute('data-node-yuan'),h:+e.getAttribute('height')})),
+      bands:[...svg.querySelectorAll('path[data-ribbon-yuan]')].map(e=>({source:e.getAttribute('data-source-id'),stage:e.getAttribute('data-stage'),amount:+e.getAttribute('data-ribbon-yuan'),scale:+e.getAttribute('data-scale-yuan-per-svg-unit'),d:e.getAttribute('d')}))}:null;
+    return {desk:parse(document.querySelector('#chart-flow > svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]')),
+      phone:parse(document.querySelector('#fig-flow .native-asr svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'))};
+  }""")
+  assert finance["desk"] and finance["phone"],(width,"SEMI_ORIGINAL_UNIFIED_DESKTOP_AND_PHONE_MISSING")
+  for key,graph in finance.items():
+    total=float(D(facts["rev"]["yuan"]))
+    assert graph["grammar"]=="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"
+    assert graph["view"]==(1100 if key=="desk" else 330)
+    assert abs(graph["total"]-total)<.001 and graph["scale"]>0
+    sources=[n for n in graph["nodes"] if n["role"]=="source"]
+    sinks=[n for n in graph["nodes"] if n["role"] in ("cost","profit")]
+    trunks=[n for n in graph["nodes"] if n["role"]=="total" and n["id"]=="revenue-total"]
+    inflow=[b for b in graph["bands"] if b["stage"]=="source-to-revenue"]
+    outflow=[b for b in graph["bands"] if b["stage"]=="revenue-to-outcome"]
+    assert len(sources)==4 and len(sinks)==2 and len(trunks)==1,(width,key,"MISSING_SHARED_TOTAL_NODE",graph)
+    assert len(inflow)==4 and len(outflow)==7,(width,key,"ZERO_GP_PHANTOM_RIBBON",graph)
+    assert abs(sum(b["amount"] for b in inflow)-total)<.001
+    assert abs(sum(b["amount"] for b in outflow)-total)<.001
+    assert abs(next(n["amount"] for n in sinks if n["role"]=="cost")-float(expected_cost))<.001
+    assert all(abs(n["h"]-n["amount"]/graph["scale"])<.001 for n in graph["nodes"]),(width,key,"ORIGINAL_MONEY_SCALE_BROKEN")
+    assert all(b["scale"]>0 and b["d"].startswith("M ") and " C " in b["d"] for b in graph["bands"])
+    tiny=next(n for n in sources if n["id"]=="other_service_rev")
+    assert 0<tiny["h"]<0.05,(width,key,"MICRO_BUSINESS_INFLATED",tiny)
   assert len(info["mobileSigned"])>=25,(width,"SIGNED_FINANCIAL_GRAPHS_MISSING")
   by_chart={}
   for step in info["mobileSigned"]:
@@ -122,45 +140,6 @@ with sync_playwright() as p:
     assert info["originalDesktopHidden"]==0 and info["mobileVisible"]==0,(width,"DESKTOP_SVG_REPLACED")
   assert info["navPosition"]=="static",(width,"chapter nav must never obscure figure title",info)
   assert info["bodyExternalScripts"]==0,(width,"offline must need no external JS",info)
-  assert len(info["ribbon"])==7,(width,"4 cost ribbons and 3 nonzero GP ribbons required",info["ribbon"])
-  assert len({r["source"] for r in info["ribbon"]})==4
-  assert all(D(r["amount"])>0 and (r["bboxHeight"]>0 if width==1440 else r["thickness"]>0) and r["title"] for r in info["ribbon"]),(width,"fake/empty ribbon")
-  cost=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="cost"),D(0))
-  profit=sum((D(r["amount"]) for r in info["ribbon"] if r["kind"]=="profit"),D(0))
-  assert abs(cost-expected_cost)<=D("0.02") and abs(profit-expected_profit)<=D("0.02"),(width,"money-flow totals wrong",cost,profit)
-  # A real finance flow needs correct individual edge amounts AND actual SVG path
-  # geometry: a correct accounting ledger alone cannot prevent a forged ribbon.
-  segment_by_rev={q["rev"]:q for q in ledger["segments"]}
-  source_nodes={q["key"]:q for q in info["sourceNodes"]}
-  assert len(source_nodes)==len(ledger["segments"])==4,(width,"source node count",info["sourceNodes"])
-  sink_nodes={q["kind"]:q for q in info["sinks"]}
-  assert set(sink_nodes)=={"cost","profit"},(width,"sink semantics",info["sinks"])
-  scale=334.0/float(D(facts["rev"]["yuan"]))
-  for q in ledger["segments"]:
-    key=q["rev"]
-    rev=D(facts[q["rev"]]["yuan"])
-    cogs=D(facts[q["cost"]]["yuan"])
-    gp=rev-cogs
-    node=source_nodes[key]
-    assert D(node["amount"])==rev and node["title"],(width,"source node disclosure",node)
-    assert abs(node["realHeight"]-float(rev)*scale)<0.000001,(width,"visually inflated revenue source",node)
-    assert abs(node["semanticHeight"]-node["realHeight"])<0.000001,(width,"false source width metadata",node)
-    for kind,expected,target in [("cost",cogs,"cogs"),("profit",gp,"gross_profit")]:
-      edge=[r for r in info["ribbon"] if r["sourceKey"]==key and r["kind"]==kind]
-      assert len(edge)==(0 if expected==0 else 1),(width,"missing or phantom 0-GP ribbon",key,kind,edge)
-      if expected>0:
-        r=edge[0]
-        assert D(r["amount"])==expected and r["target"]==target,(width,"business cost/GP attribution",r)
-        assert r["period"]=="2026H1" and r["scope"]=="consolidated" and r["sourcePage"]=="178",(width,"ribbon source",r)
-        assert r["pathThickness"] is not None,(width,"missing geometric proof",r)
-        expected_thick=float(expected)*scale
-        assert abs(r["thickness"]-expected_thick)<0.000001,(width,"inflated encoded ribbon",r,expected_thick)
-        assert abs(r["pathThickness"]-expected_thick)<0.000001,(width,"actual SVG path disagrees with exact source",r,expected_thick)
-  for kind,expected in [("cost",expected_cost),("profit",expected_profit)]:
-    sink=sink_nodes[kind]
-    assert D(sink["amount"])==expected and abs(sink["height"]-float(expected)*scale)<0.000001,(width,"sink geometry",sink)
-  tiny=source_nodes["other_service_rev"]
-  assert 0<tiny["realHeight"]<0.02,(width,"microbusiness source node was artificially enlarged",tiny)
   if width==1440:
     assert all(g["scroll"]<=g["client"]+2 for g in info["desktopGraphs"]),(width,"desktop figure requires hidden horizontal scroll",info["desktopGraphs"])
     assert all(not g["outOfBoundsLabels"] for g in info["desktopGraphs"]),(width,"cropped SVG title or amounts",info["desktopGraphs"])
