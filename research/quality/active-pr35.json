@@ -29,7 +29,8 @@
     "original_rebuild_manifest": "research/rebuild-v10/build-manifest.json",
     "source_semantics": "research/rebuild-v10/strict-semantic-audit.json",
     "current_quality_roadmap": "docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md",
-    "detailed_handoff": "docs/ACTIVE_PR35_HANDOFF.md"
+    "detailed_handoff": "docs/ACTIVE_PR35_HANDOFF.md",
+    "hero_figure_briefs": "research/quality/pr35-hero-figure-briefs.json"
   },
   "four_issuers": {
     "600036": {
