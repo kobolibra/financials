@@ -34,6 +34,12 @@ on:
       - 'scripts/check_release_contract.py'
       - 'scripts/test_check_release_contract.py'
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
+      - 'research/quality/active-pr35.json'
+      - 'docs/ACTIVE_PR35_HANDOFF.md'
+      - 'docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md'
+      - 'scripts/check_pr35_quality_handoff.py'
+      - 'scripts/test_check_pr35_quality_handoff.py'
+      - 'research/rebuild-v10/test_editorial_chart_quality.py'
       - 'research/issuers/**/release-gates.json'
       - 'research/issuers/**/source-ledger.json'
       - 'research/issuers/**/figure-briefs.json'
@@ -68,10 +74,22 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open('/tmp/aie-source-audit.json'))
-          assert d['known_existing_visual_p0']==['000333','600036','600519','688111'], d['known_existing_visual_p0']
-          assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED'
-          print('FOUR_OLD_MOBILE_P0_REMAIN_FAIL_SOURCE_STAMPED_NOT_VISUALLY_CERTIFIED')
+          known=d['known_existing_visual_p0']
+          assert set(known).issubset({'000333','600036','600519','688111'}),known
+          assert not d['new_or_unwaived_p0'],d['new_or_unwaived_p0']
+          if known:
+              assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED'
+              print('OLD_MOBILE_P0_STILL_NOT_CERTIFIED',known)
+          else:
+              assert d['conclusion']=='STATIC_ONLY_PASS_BROWSER_AND_AESTHETICS_NOT_CHECKED'
+              print('REBUILT_V10_FOUR_MOBILE_P0_RESOLVED_IN_STATIC_SOURCE_AUDIT')
           PY
+      - name: Bind active PR35 report HTML SHA to original build, typed ledger, CJK screenshots and complete five-manual session handoff
+        if: github.event_name == 'pull_request'
+        run: |
+          python scripts/check_pr35_quality_handoff.py
+          python -m unittest discover -s scripts -p test_check_pr35_quality_handoff.py -v
+          python -m unittest discover -s research/rebuild-v10 -p test_editorial_chart_quality.py -v
       - name: Test exact-Yuan source/type/negative/segment financial flow semantics
         run: |
           python research/shared/test_editorial_financial_flow.py

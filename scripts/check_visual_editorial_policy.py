@@ -93,21 +93,89 @@ def validate_current_published_files(root, audit, debt):
         # baseline after screenshot-proven typo correction; require BOTH real
         # 1440/768/390 Cloudflare live receipt and source-linked 10 mobile
         # finance exhibitions, not the two-sector renderer's custom schema.
-        if code=="601628":
-            p=root/"research/issuers/601628/live-release-receipt.json"
+        # V10's renewed source-bound path uses one actual original-byte CJK
+        # Chromium census for ALL independent company figures, not only the
+        # hero Sankey or a generic sector's unrelated receipt schema.
+        if code in {"688111","600519","000333","600036"}:
+            p=root/"research/rebuild-v10/real-browser-qa/result.json"
             if not p.is_file():
-                errors.append("VISUAL_601628_NEW_HTML_REQUIRES_REAL_CLOUDFLARE_SOURCE_LIVE_RECEIPT")
+                errors.append(f"VISUAL_CHANGED_V10_REQUIRES_NEW_ALL_FIGURE_CJK_SOURCE_RECEIPT {code}")
                 continue
             q=json.loads(p.read_text(encoding="utf8"))
-            vs=q.get("real_chromium_viewports",[])
-            valid=(q.get("actual_full_content_sha256_equals_repository_main_601628")==sha and
-                q.get("all_11_issuer_external_routes")=="PASS" and
-                len(vs)==3 and {v.get("width") for v in vs}==WIDTHS and
-                next((v for v in vs if v.get("width")==390),{}).get("mobile_ten_full_width_source_exact_money_exhibits")=="PASS")
+            arr=[x for x in q.get("cases",[]) if x.get("code")==code]
+            counts={"688111":9,"600519":9,"000333":10,"600036":8}
+            expected=counts[code]
+            valid=(q.get("all_36_issuer_exhibits_3_viewports")=="PASS"
+                   and len(arr)==3
+                   and {x.get("width") for x in arr}==WIDTHS
+                   and all(x.get("html_sha256")==sha and
+                           x.get("real_chromium") is True and
+                           x.get("actual_all_figures")==expected and
+                           isinstance(x.get("full_page_screenshot_sha256"),str) and
+                           len(x["full_page_screenshot_sha256"])==64 and
+                           len(x.get("figures",[]))==expected for x in arr)
+                   and all(len({f.get("figure") for f in x["figures"]})==expected
+                           and all(f.get("native_source_svg")== (x["width"]<=850)
+                                   and f.get("scroll_free")=="PASS"
+                                   and f.get("CJK_text_inside_screen")=="PASS"
+                                   and f.get("source_ribbon_actual_SVG_thickness")=="PASS"
+                                   and isinstance(f.get("actual_figure_png_sha256"),str)
+                                   and len(f["actual_figure_png_sha256"])==64
+                                   for f in x["figures"])
+                           for x in arr)
+                  )
+            # Every checked 390/768 page must have a genuine independent
+            # mobile rendering of EVERY finance exhibit. Source SHA prevents
+            # old PNGs and receipts being rebound to new HTML.
             if not valid:
-                errors.append("VISUAL_601628_CURRENT_CORRECTED_SOURCE_AND_REAL_CLOUDFLARE_THREE_WIDTHS_MISMATCH")
+                errors.append(f"VISUAL_CHANGED_V10_ORIGINAL_SOURCE_ALL_FINANCE_3_VIEWPORT_RECEIPT_INVALID {code}")
                 continue
-            fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CLOUDFLARE_SOURCE_SHA_ALL_TEN_MOBILE_FINANCIAL_FIGURES"})
+            fixed.append({"code":code,"source_html_sha256":sha,
+                          "mobile_original_money_grammar":"PASS_LOCAL_REAL_CJK_3_VIEWPORTS_ALL_MATERIAL_FIGURES__CLOUDFLARE_NOT_CHECKED"})
+            continue
+        if code=="601628":
+            # Production proof is NEVER repurposed as a PR candidate receipt.
+            # A candidate can pass the local real-CJK gate only when its own
+            # screenshot bytes and page SHA are independently source-bound.
+            p=root/"research/issuers/601628/visual-qa/result.json"
+            if not p.is_file():
+                errors.append("VISUAL_601628_CANDIDATE_REQUIRES_CURRENT_REAL_CJK_RECEIPT")
+                continue
+            q=json.loads(p.read_text(encoding="utf8"))
+            views=q.get("original_actual_3_viewport_checks",[])
+            valid=(q.get("code")==code and q.get("page_1440_768_390")=="PASS"
+                and q.get("source_nodes_sinks_ribbons_exact_svg_geometric_proportions")=="PASS"
+                and q.get("mobile_fully_visible_financial_figures")=="PASS"
+                and q.get("mobile_ledger_exact_value_and_geometry")=="PASS"
+                and q.get("chart_count")==10 and q.get("source_table_count")==10
+                and q.get("export_click_and_svg_download")=="PASS"
+                and len(views)==3 and {v.get("width") for v in views}==WIDTHS
+                and all(v.get("result")=="PASS" and v.get("body_no_overflow")=="PASS"
+                        and v.get("source_sankey_actual_path_and_rect")=="PASS"
+                        and v.get("svg_export")=="PASS" and v.get("figure_count")==10
+                        and v.get("original_source_tables")==10 and v.get("cjk_font_available") is True
+                        for v in views)
+                and next((v for v in views if v.get("width")==390),{}).get("figure_readability")
+                    =="MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL")
+            # The original QA script stores no HTML SHA. Prove it was
+            # reconstructed from the CURRENT HTML through a dedicated
+            # candidate-only receipt produced by the real browser workflow.
+            proof=root/"research/issuers/601628/visual-qa/candidate-html-sha.json"
+            if not proof.is_file():
+                valid=False
+            else:
+                r=json.loads(proof.read_text(encoding="utf8"))
+                valid=valid and r.get("candidate_html_sha256")==sha
+                for w in WIDTHS:
+                    fname=f"full_report_{w}.png"
+                    img=root/"research/issuers/601628/visual-qa"/fname
+                    record=r.get("screenshots",{}).get(fname,{})
+                    valid=valid and img.is_file() and record.get("sha256")==hashlib.sha256(img.read_bytes()).hexdigest() and record.get("bytes")==img.stat().st_size
+            if not valid:
+                errors.append("VISUAL_601628_CURRENT_CANDIDATE_THREE_CJK_WIDTHS_OR_SHA_MISMATCH")
+                continue
+            fixed.append({"code":code,"source_html_sha256":sha,
+                          "mobile_original_money_grammar":"PASS_LOCAL_REAL_CJK_3_VIEWPORTS_TEN_FIGURES__PRODUCTION_NOT_CHECKED"})
             continue
         # Shared optical original-money publisher has its OWN actual real CJK
         # 1440/768/390 screenshots. Its output is not an unrelated sector or

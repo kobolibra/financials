@@ -1,0 +1,100 @@
+"""One literal-source Type A income flow compiler for semiconductor, power and pharma.
+
+Hard requirement: all source categories are mutually exclusive, source ledger
+has actual PDF SHA and physical pages, source-specific disclosed costs, and
+the sum closes to the actual consolidated original-yuan revenue and COGS.
+Do not substitute geography, contract stock, insurance premium or bank NII.
+"""
+from __future__ import annotations
+from decimal import Decimal as D, InvalidOperation
+from pathlib import Path
+import re
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from unified_income_sankey import FlowPlan,render_income_sankey
+
+TITLES={
+    "688220":"芯片、定制和IP业务各自贡献多少营业毛利？",
+    "600900":"主营业务和其他业务分别留下多少营业毛利？",
+    "600276":"药品销售、许可收入和其他业务分别创造多少毛利？",
+}
+SECTOR_DIMENSIONS={
+    "688220":"semiconductor_disclosed_product_and_service_axis",
+    "600900":"contract_goods_type",
+    "600276":"contract_goods_type",
+}
+
+def compile_disclosed_income(ledger: dict) -> FlowPlan:
+    issuer=ledger.get("issuer",{})
+    source=ledger.get("source",{})
+    code=issuer.get("code")
+    if code not in TITLES:
+        raise ValueError("SECTOR_CANNOT_REUSE_INDUSTRIAL_GROSS_FLOW")
+    if issuer.get("fiscal_period")!="2026H1" or issuer.get("base_unit")!="人民币元":
+        raise ValueError("SECTOR_ISSUER_PERIOD_UNIT_MISMATCH")
+    sha=source.get("original_bytes_sha256","")
+    gate=source.get("original_bytes_gate","")
+    if not re.fullmatch("[0-9a-f]{64}",sha) or "SHA_PASS" not in gate:
+        raise ValueError("SECTOR_ORIGINAL_COMPLETE_PDF_BYTES_NOT_PROVEN")
+    facts=ledger.get("facts",{})
+    def value(key: str) -> D:
+        row=facts.get(key)
+        if (not row or row.get("type")!="flow" or row.get("period")!="2026H1"
+                or row.get("scope")!="consolidated" or row.get("unit")!="元"
+                or row.get("currency")!="CNY" or row.get("classification")!="DISCLOSED"):
+            raise ValueError("SECTOR_ORIGINAL_TYPED_FACT_INCOMPATIBLE "+str(key))
+        page=row.get("page")
+        if not isinstance(page,int) or page<1 or page>source.get("physical_pages_observed",0):
+            raise ValueError("SECTOR_REAL_ORIGINAL_PDF_PHYSICAL_PAGE_MISSING "+key)
+        try:
+            val=D(str(row.get("yuan","NaN")))
+        except InvalidOperation as exc:
+            raise ValueError("SECTOR_INVALID_DECIMAL_FACT "+key) from exc
+        if not val.is_finite():
+            raise ValueError("SECTOR_NONFINITE_ORIGINAL_YUAN "+key)
+        return val
+    total=value("rev");cogs=value("cogs")
+    if total<=0 or cogs<0 or cogs>total:
+        raise ValueError("SECTOR_INVALID_GROUP_REVENUE_COGS")
+    rows=ledger.get("segments",[])
+    if not 2<=len(rows)<=8:
+        raise ValueError("SECTOR_EXCLUSIVE_REVENUE_GROUPS_NOT_ESTABLISHED")
+    seen=set();parts=[];allocs=[]
+    rsum=csum=D(0)
+    dims=set()
+    pages=set()
+    for seg in rows:
+        rk,ck=seg.get("rev"),seg.get("cost")
+        if not rk or not ck or rk==ck or rk in seen or ck in seen:
+            raise ValueError("SECTOR_DUPLICATED_OR_OVERLAPPING_BUSINESS_FACT")
+        seen.update((rk,ck))
+        dim=seg.get("dimension",SECTOR_DIMENSIONS[code] if code=="688220" else "")
+        if dim!=SECTOR_DIMENSIONS[code]:
+            raise ValueError("SECTOR_MIXED_BUSINESS_AND_GEOGRAPHY_OR_CHILD_GROUPS")
+        dims.add(dim)
+        if not seg.get("label"):
+            raise ValueError("SECTOR_UNNAMED_FINANCIAL_SOURCE")
+        r=value(rk);cost=value(ck)
+        pages.add(facts[rk]["page"]);pages.add(facts[ck]["page"])
+        if r<=0 or cost<0 or cost>r:
+            raise ValueError("SECTOR_SIGNED_OR_LOSS_BUSINESS_REQUIRES_SEPARATE_CHART")
+        rsum+=r;csum+=cost
+        parts.append((rk,seg["label"],str(r)))
+        allocs.extend(((rk,"group_cogs",str(cost)),(rk,"group_gp",str(r-cost))))
+    if len(dims)!=1 or rsum!=total or csum!=cogs:
+        raise ValueError("SECTOR_NONEXHAUSTIVE_OR_MIXED_SOURCE_COST_PARTITION")
+    scope="；".join("p."+str(p) for p in sorted(pages))
+    mirror="，完整源PDF与官方文件字节等价尚未证明" if code=="688220" else ""
+    plan=FlowPlan(issuer=code,period="2026H1",kind="TYPE_A_SOURCE_OWN_COST_GP",
+        title=TITLES[code],source_label="原报告互斥业务来源",
+        outcome_label="实际营业成本及毛利",
+        sources=tuple(parts),
+        outcomes=(("group_cogs","营业成本",str(cogs),"cost"),
+                  ("group_gp","营业毛利",str(total-cogs),"profit")),
+        allocations=tuple(allocs),
+        footnote=f"原始财报物理页{scope}，仅各业务真实收入及本业务成本{mirror}；不含期间费用与净利润。")
+    plan.check()
+    return plan
+
+def render_sector_income(ledger:dict, *,mobile:bool=False,embedded:bool=True)->str:
+    return render_income_sankey(compile_disclosed_income(ledger),mobile=mobile,embedded=embedded)

@@ -1,6 +1,14 @@
+## 2026-11-07 v9 现行 Skill 与真实迁移边界
+
+唯一精简 Skill：skills/ashare-financial-storytelling/SKILL.md v9.0.0；完整旧 v8.8 在 docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md。统一图形 grammar：docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md 与 research/shared/unified_income_sankey.py。**四家新桑基候选只按真实当前 HTML SHA 验收，其他七家 LEGACY_NOT_UNIFIED，生产 main 与 PR candidate 严格分开。** 新会话必须从零重新核验 GitHub HEAD、原始 PDF、出版产物、截图/来源与 Cloudflare 字节，不能仅通过历史 Skill 的叙述宣称完成。
+
 # Financials in Visuals — 零猜测跨对话交接协议
 
 > 有效入口：[START_HERE.md](../START_HERE.md) → [project-status.json](../project-status.json) → [PROJECT_STATE.md](../PROJECT_STATE.md) → 完整 Skill + 五份研究规范。历史记录在 `docs/history/`，不作为现行命令来源。
+
+**2026-11-07 PR #35 候选零记忆交接：** 确认真实 main 与 PR HEAD 后，必须读 [ACTIVE_PR35_HANDOFF.md](ACTIVE_PR35_HANDOFF.md)、research/quality/active-pr35.json 和 docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md。运行 python scripts/check_handoff.py 及 python scripts/check_pr35_quality_handoff.py，后者把四份候选 HTML 的实际 SHA、原始来源出版 ledger、Type A/B/C/BANK 桑基类型、真实 12 组 Chromium 图像、项目机器状态绑定为同一版本，任何旧截图/新 HTML 混用 FAIL。新 WPS 三阶段财务桑基与茅台负毛利独立尺度图必须真实重新编译并复核。候选预览≠main正式发布；未获得人类独立财经/视觉审稿=NOT_CHECKED。
+
+
 
 ## 开始新对话（必须）
 

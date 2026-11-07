@@ -1,5 +1,13 @@
 # 开新 ChatGPT 对话时的启动指令（可直接复制）
 
+现行 Skill v9.0.0 是紧凑执行控制，而非旧历史 125 KB 日志；新接手还必须读 docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md 和 docs/ACTIVE_PR35_HANDOFF.md。正向财务桑基必须统一由 research/shared/unified_income_sankey.py 连接来源→一处总收入→合法成本利润；不可用孤立矩形带叫桑基。四家公司新图须重编原始 PDF 并验证当期 HTML SHA，其他七家公司仍属于 LEGACY_NOT_UNIFIED，不得误称全部统一。
+
+
+
+**重要候选接续（2026-11-07）：** 如果目标是 financials PR #35、财务拆解深度、AEI 信息设计或桑基图稳定产出，必须在确认最新 main 与 PR 真实 HEAD 后阅读 docs/ACTIVE_PR35_HANDOFF.md、research/quality/active-pr35.json 和 docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md；执行 python scripts/check_pr35_quality_handoff.py。旧 main 的“V10 四家公司 390 失败”是生产真旧状态，PR 改造是独立候选状态，不能混写。新 WPS 桑基/茅台负毛利放大图不能使用此前旧 SHA 通过截图；独立机构级人类财经和视觉评审尚 NOT_CHECKED。
+
+
+
 请继续我的 **Financials in Visuals** 项目。GitHub 真实工作仓库：
 
 https://github.com/kobolibra/financials

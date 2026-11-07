@@ -266,9 +266,9 @@
     {
       "id": "VIS-027",
       "root_cause": "多阶段金额加权保费桑基被旧测试误写为每条原始来源必须穿越两条带：新业务的前三个子来源应只出现在左侧一级，而中间总新单180039才出现在第二级。",
-      "correction": "分别校验原始四来源rect和4条一级ribbon、两个互斥聚合出口ribbon，真实SVG起止 y 坐标按原始百万元严格比例守恒；不靠仅检查SVG amount metadata。",
+      "correction": "v9保险专属原始元金额桑基：原始四类保费组成→互斥新单与续期→单个管理层总保费，第一阶段四条和第二阶段两条真实贝塞尔流带均用同一人民币元比例尺；现行 qa_browser.py 中 INSURANCE_PREMIUM_PHYSICAL_RIBBON_HEIGHT_FALSE 检查SVG目标端上下真实路径坐标和金额并非仅检查元数据，原财报p10旧统计绝不跨接CAS25服务收入或现金。",
       "proof_file": "research/issuers/601628/qa_browser.py",
-      "assertion_marker": "NEW_SOURCE_CONSERVATION",
+      "assertion_marker": "INSURANCE_PREMIUM_PHYSICAL_RIBBON_HEIGHT_FALSE",
       "scope": "single_issuer",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_ISSUER_ONLY"
@@ -306,9 +306,9 @@
     {
       "id": "VIS-032",
       "root_cause": "生产 Cloudflare HTML 的寿险保费桑基图虽有4来源和6个金额正确的 SVG 流带，但 final total rect() 函数实参位置错，把'money-sink'错当 fill，且 data-value-million 被错放成 class，最终 SVG <rect fill=money-sink class=data-value-million=536634> 没有真实填充与机器可用金额元数据；旧CI只查资金带忽略汇总节点。",
-      "correction": "必须在原始 SVG 生成器以明确 fill 六位HEX、class money-sink、实际整数金额 data-value-million/data-exact-yuan 输出；真实 Chromium 1440/768/390 要逐项查所有 SVG rect 有合法填充/类属性，最终 sink 高度精确268、金额536634百万元、源账本原值，完整源→中间分组→总额守恒。生产逐 HTML 指纹重新匹配，旧发布不能冒称有效。",
+      "correction": "统一保险桑基从同一个shared palette和原始来源事实生成4类保费、2个真实聚合节点、一个total节点；每个SVG矩形具备合法填充色和data-node-yuan，浏览器在390/768/1440检查总额536634百万元、原始source SHA、真实两段贝塞尔路径等额闭合和终端总额填充。现行SVG_RECT_MALFORMED_OR_UNPAINTED不能被旧class或纯标签检查替代；新候选必须重新绑定真实截图SHA，不继承生产证明。",
       "proof_file": "research/issuers/601628/qa_browser.py",
-      "assertion_marker": "UNPAINTED_PREMIUM_TOTAL_SINK",
+      "assertion_marker": "SVG_RECT_MALFORMED_OR_UNPAINTED",
       "scope": "single_issuer",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_ISSUER_ONLY"
@@ -466,9 +466,9 @@
     {
       "id": "VIS-048",
       "root_cause": "翱捷科技U原始四类业务流真实等额，但原手机只把1050px源加权图放入390px内嵌可横滚的小容器；360px内读者只见来源节点而看不到大额成本及毛利润的真实终点，9幅复杂原财务SVG均继承同一结构，desktop图/会计CI绿色假装艺术验收。",
-      "correction": "在不触碰原source ledger、法律口径、desktop九幅原始SVG及来源表基础上，688220公司适配器为390/768另生成9幅由原元金额计算的独立财务编辑图。四个互斥业务类别源→自己披露COGS与推导毛利；实际SVG每条贝塞尔和源目标宽度元额严格守恒，0流为0宽，不能放大微小业务；利润、去年毛利桥、真实全17项间接CFO和现金及等价物采用原有符号的单一货币累计瀑布；两期资产=负债+总权益属于stock图，分部毛利金额/毛利率是两个不同量纲。手机全部九图无需图内横滚，真实Noto CJK 1440/768/390浏览器检查每条路径、累计符号和文字BBox，留存原始HTML完整SHA和截图源。任何不匹配不可宣告生产PASS。",
+      "correction": "原始688220源金额与四类真实成本/毛利关系不改写；当前共用 v9 原始金额守恒 1100/330 双 SVG 编译器，手机九张独立图无横向内滚动；同一 QA 的 ORIGINAL_MONEY_SCALE_BROKEN 精确检查桌面与手机真实节点高度/人民币元，七条正向流带且零毛利不产生虚假第八条，保留完整PDF镜像与官方逐字节等价尚未确认边界。",
       "proof_file": "research/issuers/688220/qa_browser.py",
-      "assertion_marker": "MOBILE_CURVE_FALSE_PHYSICAL_WIDTH",
+      "assertion_marker": "ORIGINAL_MONEY_SCALE_BROKEN",
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "VISUAL_EDITORIAL_SELF",
       "status": "TESTED_GENERIC_MECHANISM"

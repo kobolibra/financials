@@ -1,0 +1,98 @@
+name: PR35 revalidate seven legacy report browser evidence against current HTML bytes
+on:
+  push:
+    branches: [quality/aei-sankey-source-contract-v1]
+    paths:
+      - '.github/workflows/verify-pr35-legacy-current-html-browser.yml'
+      - 'public/300394.html'
+      - 'public/300308.html'
+      - 'public/300502.html'
+      - 'public/688220.html'
+      - 'public/600900.html'
+      - 'public/600276.html'
+      - 'public/601628.html'
+      - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
+      - 'research/issuers/688220/qa_browser.py'
+      - 'research/shared/qa_two_sector_browser.py'
+      - 'research/issuers/601628/qa_browser.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pr35-seven-current-HTML-browser-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  original-cjk-seven-issuer-current-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install real Noto CJK fonts and Chromium
+        run: |
+          python -m pip install --disable-pip-version-check playwright pymupdf
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+      - name: Original money browser QA on seven actual PR report HTML files
+        run: |
+          python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa --codes 300394,300502
+          python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa-300308 --codes 300308
+          python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa-native
+          python research/shared/qa_two_sector_browser.py --code 600900
+          python research/shared/qa_two_sector_browser.py --code 600276
+          python research/issuers/601628/qa_browser.py
+      - name: Bind insurer candidate source to three actual screenshot bytes without impersonating production
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          base=Path('research/issuers/601628/visual-qa')
+          html=Path('public/601628.html').read_bytes()
+          record={'schema':'financials.insurer.local_candidate.v1',
+                  'candidate_html_sha256':hashlib.sha256(html).hexdigest(),
+                  'production_live_html_sha256':'NOT_CHECKED',
+                  'independent_human_art_review':'NOT_CHECKED',
+                  'screenshots':{}}
+          for width in (1440,768,390):
+              p=base/f'full_report_{width}.png'
+              raw=p.read_bytes()
+              record['screenshots'][p.name]={'sha256':hashlib.sha256(raw).hexdigest(),'bytes':len(raw)}
+          (base/'candidate-html-sha.json').write_text(json.dumps(record,indent=2)+'\n')
+          PY
+      - name: Fail closed on stale candidate and forged legacy financial screenshot receipts
+        run: |
+          python scripts/check_visual_editorial_policy.py
+          python -m unittest discover -s scripts -p test_visual_editorial_policy.py -v
+          python scripts/audit_unified_visual_corpus.py
+      - name: Commit only current real-browser candidate receipts and original evidence snapshots
+        run: |
+          git config user.name financials-qa-bot
+          git config user.email financials-qa-bot@users.noreply.github.com
+          git add optical-native-visual-qa/result.json optical-native-visual-qa-300308/result.json
+          git add research/issuers/688220/visual-qa-native/result.json
+          git add research/issuers/600900/visual-qa/result.json research/issuers/600276/visual-qa/result.json
+          git add research/issuers/601628/visual-qa/result.json research/issuers/601628/visual-qa/candidate-html-sha.json
+          git add -f research/issuers/601628/visual-qa/full_report_1440.png research/issuers/601628/visual-qa/full_report_768.png research/issuers/601628/visual-qa/full_report_390.png
+          git add -u optical-native-visual-qa optical-native-visual-qa-300308 research/issuers/688220/visual-qa-native research/issuers/600900/visual-qa research/issuers/600276/visual-qa research/issuers/601628/visual-qa
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebind seven real CJK legacy-browser screenshots to PR candidate HTML SHA without fake production approval"
+            git fetch origin quality/aei-sankey-source-contract-v1
+            git rebase FETCH_HEAD
+            git push origin HEAD:quality/aei-sankey-source-contract-v1
+          fi
+      - name: Preserve complete current seven-company screenshot matrix
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr35-current-seven-company-original-cjk-browser-sha-evidence
+          path: |
+            optical-native-visual-qa/
+            optical-native-visual-qa-300308/
+            research/issuers/688220/visual-qa-native/
+            research/issuers/600900/visual-qa/
+            research/issuers/600276/visual-qa/
+            research/issuers/601628/visual-qa/
+          retention-days: 30
+          if-no-files-found: warn

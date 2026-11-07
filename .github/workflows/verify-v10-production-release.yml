@@ -1,0 +1,55 @@
+name: V10 post-merge Cloudflare production release lock
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-v10-production-release.yml'
+      - 'research/rebuild-v10/qa_cloudflare_interactions.py'
+      - 'public/index.html'
+      - 'site/research_catalog.json'
+      - 'public/research/2026-h1-v10/**'
+      - 'research/rebuild-v10/publisher.py'
+      - 'research/rebuild-v10/native_mobile.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  live-source-exact-and-real-device-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install live Chromium WebKit and Chinese font system
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium webkit
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+      - name: Confirm the deployed LIVE production full HTML is exactly current main for all 11 companies, then execute original mobile finance downloads
+        env:
+          FINANCIALS_PR_PREVIEW: https://financials-in-visuals.pages.dev
+        run: |
+          python research/rebuild-v10/qa_cloudflare_interactions.py
+      - name: Fail closed on 11 fully published exact routes and 108 source-original SVG downloads
+        run: |
+          python - <<'PY'
+          import json, pathlib, os
+          p=pathlib.Path('research/rebuild-v10/cloudflare-interaction-qa/result.json')
+          d=json.loads(p.read_text())
+          assert d['unified_11_issuer_organic_routes']=='PASS'
+          assert d['all_108_exact_edition_svg_exports']=='PASS'
+          assert d['real_online_reader_interaction']=='PASS'
+          assert d['overall']=='PASS_PREVIEW_ONLY_INDEPENDENT_HUMAN_AND_PHYSICAL_DEVICES_NOT_CHECKED'
+          assert len(d['company_routes'])==11
+          assert len(d['browser_cases'])==12
+          assert not d['blocking_issues'],d['blocking_issues']
+          print('ACTUAL_MAIN_LIVE_PRODUCTION_ORIGINAL_BYTES_AND_ALL_108_EXPORTS_PASS',os.environ.get('GITHUB_SHA'))
+          PY
+      - name: Archive actual main SHA release browser interactions, source tables and original downloaded SVG proofs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v10-11-issuer-production-exact-html-and-108-real-browser-finance-interactions
+          path: research/rebuild-v10/cloudflare-interaction-qa/
+          retention-days: 60
+          if-no-files-found: warn

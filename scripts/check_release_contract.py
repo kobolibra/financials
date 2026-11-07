@@ -101,7 +101,29 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
         if not isinstance(declared_html_sha, str) or not re.fullmatch("[a-f0-9]{64}", declared_html_sha):
             errors.append(f"PUBLISHED_REPORT_SHA_INVALID {code}")
         elif (root / expected).is_file() and hashlib.sha256((root / expected).read_bytes()).hexdigest() != declared_html_sha:
-            errors.append(f"PUBLISHED_REPORT_SHA_MISMATCH {code}")
+            # The checked-in PR article may be a NEW candidate while the LIVE
+            # release fingerprint and old Cloudflare receipt still describe
+            # immutable production main. Two different hashes must NEVER be
+            # promoted into one false "live PASS".
+            candidate = record.get("unmerged_candidate")
+            actual = hashlib.sha256((root / expected).read_bytes()).hexdigest()
+            if not isinstance(candidate, dict):
+                errors.append(f"PUBLISHED_REPORT_SHA_MISMATCH {code}")
+            else:
+                if record.get("release_class") != "source_limited_preview":
+                    errors.append(f"CANDIDATE_CANNOT_BYPASS_VERIFIED_RELEASE {code}")
+                if candidate.get("base_deployed_html_sha256") != declared_html_sha:
+                    errors.append(f"CANDIDATE_BASE_DEPLOYED_SHA_INVALID {code}")
+                if candidate.get("candidate_full_html_sha256") != actual:
+                    errors.append(f"CANDIDATE_HTML_SHA_MISMATCH {code}")
+                if candidate.get("promotion_status") != "UNMERGED_NOT_DEPLOYED":
+                    errors.append(f"CANDIDATE_PREMATURE_PRODUCTION_PROMOTION {code}")
+                if candidate.get("independent_finance_and_art_review") != "NOT_CHECKED":
+                    errors.append(f"CANDIDATE_FAKE_HUMAN_APPROVAL {code}")
+                if candidate.get("current_sha_browser_proof") not in {"NOT_CHECKED", "LOCAL_ONLY"}:
+                    errors.append(f"CANDIDATE_BROWSER_PROOF_NOT_PROVEN {code}")
+        elif record.get("unmerged_candidate") is not None:
+            errors.append(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}")
     if not record.get("period") or record.get("release_class") not in RELEASE_CLASSES:
         errors.append(f"ISSUER_PERIOD_OR_CLASS_MISSING {code}")
     if record.get("release_class") == "verified_research" and catalog_issuer.get("stage") == "source-review":
