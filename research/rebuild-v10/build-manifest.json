@@ -78,8 +78,8 @@
   ],
   "files": {
     "000333.html": {
-      "sha256": "9cd0776a8b5f0b9daaf8c0bc3d503efcb6dcd7f3ed84cd569a5aa5df057e83b4",
-      "bytes": 126903,
+      "sha256": "c06e7661df1d5b0fd840affab38d39ebe5467672edb6b9cf44512dd04528cb2c",
+      "bytes": 129611,
       "figures": 10
     },
     "600519.html": {
@@ -88,8 +88,8 @@
       "figures": 9
     },
     "600036.html": {
-      "sha256": "17e20ef509616c259aa7637e6da33a7c9c3556cfc9f5a17e168691023f962a13",
-      "bytes": 114202,
+      "sha256": "e19fbf29e8648a24fb5f0f1fadedc94e23e6bde7589648412b9984b161582eea",
+      "bytes": 120170,
       "figures": 8
     },
     "index.html": {
@@ -98,8 +98,8 @@
       "figures": 0
     },
     "688111.html": {
-      "sha256": "d6a4e923ad59a12b2d74e916bf966531c3c645111c5836a548faa5478e670b66",
-      "bytes": 122093,
+      "sha256": "54470dff7b3a5a642a63d994d1c675dccff29ef188d24b9f9cbb567ea95c0bc5",
+      "bytes": 127505,
       "figures": 9
     }
   }
