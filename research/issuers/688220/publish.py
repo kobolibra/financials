@@ -8,11 +8,11 @@ SOURCE_SEMANTIC and editorial-human gates remain separate.
 from __future__ import annotations
 import argparse,hashlib,json,re
 from native_mobile import make as make_native_mobile
+from decimal import Decimal as D
+from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"shared"))
 from source_income_adapter import render_sector_income
-from decimal import Decimal as D
-from pathlib import Path
 ROOT=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser()
 ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
