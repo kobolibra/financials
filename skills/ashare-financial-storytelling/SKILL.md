@@ -6,6 +6,12 @@ summary: Two-track research-to-publication discipline: independently benchmark A
 
 # FINANCIALS IN VISUALS · Research & Publication Skill v8.8.0-RC1
 
+## 2026-11-07 PR #35 研究深度/财务可视化/接续控制
+
+执行任何 PR #35、未来报告研究或桑基图升级前，重新读取最新 GitHub main/PR HEAD 和 docs/ACTIVE_PR35_HANDOFF.md、research/quality/active-pr35.json、docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md；按完整五册研究手册操作，运行 python scripts/check_handoff.py 与 python scripts/check_pr35_quality_handoff.py。四家公司候选不等于 main 已发布，旧截图 SHA 不能冒充新图检验。WPS 桌面 Type A 必须是真实独立的 1040 三阶段来源→各自成本毛利→集团合计；茅台负毛利不得抬宽真实 0.04 SVG 单位，局部另用**明显披露的独立比例尺**；内部机器遗漏代码不应成为读者看到的图题。研究结论还须有因果驱动、最强反证和多期/同业真实证据。无独立财经/视觉第二审稿与 20–30 未见发行人盲测保持 NOT_CHECKED，不宣称全面超过 AEI。
+
+
+
 ## Mandatory V10 source-typed figure publication contract (implementation gate)
 
 Before treating a V10 company publication as new or repaired, run the source-ledger gate in [the typed V10 audit](../../scripts/audit_v10_flow_contract.py) and review [the P0/P1 execution roadmap](../../docs/AEI_EXECUTION_ROADMAP.md). The real four issuer classifications are: WPS 688111 A (source-own COGS+GP), Moutai 600519 C (negative minor segment GP: omit a positive-product Sankey), Midea 000333 B (group-only COGS, visibly state PRODUCT_LEVEL_GP_NOT_ESTABLISHED), and CMB 600036 BANK (NII already nets interest). Never publish group Sankey as product economics when source-own costs exist. New/changed publication HTML bytes revoke historical hash waivers and MUST prove faithful actual SVG/source semantics and real CJK 1440/768/390 mobile drawings before release. The strict source-flow gate MUST FAIL on the four unchanged historical pages. Neither a passing default CI nor a source typed audit is an art director or original PDF visual/cell certificate. Run: python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v; python scripts/audit_v10_flow_contract.py; python scripts/audit_v10_flow_contract.py --strict (must fail until all four are repaired).
