@@ -131,7 +131,7 @@ output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__
 native=make_native_mobile(data)
 native["flow"]=('<div class="native-asr" data-native-source="canonical-v9">'
                  +'<p class="native-asr-dek">本图来自同一个收入来源→总收入→真实成本/毛利金额守恒渲染器；金额按人民币元一比一比例绘制，其他小额业务不人为加粗。</p>'
-                 +income_phone.replace("<svg ","<svg class=\\\"native-asr-original\\\" ",1)
+                 +income_phone.replace('<svg ', '<svg class="native-asr-original" ',1)
                  +'</div>')
 assert tuple(native)==REQUIRED_FIGURES
 for figure_id,original in native.items():
