@@ -150,10 +150,13 @@ with sync_playwright() as p:
     # Inspect ACTUAL vector geometry, not just data-* amounts.
     # path is M x y C ... L x y C ... Z.
     import re
-    start=re.match(r'^M ([0-9.]+) ([0-9.]+) C ',ribbon["d"])
-    endpoint=re.search(r' L [0-9.]+ ([0-9.]+) C ',ribbon["d"])
-    assert start and endpoint,(width,view,"INSURANCE_PREMIUM_NOT_CLOSED_BEZIER_PATH",ribbon)
-    thickness=abs(float(endpoint.group(1))-float(start.group(2)))
+    assert ribbon["d"].startswith("M ") and " C " in ribbon["d"] and " L " in ribbon["d"]
+    # First cubic's rightmost endpoint is the TARGET top. The following
+    # L target is the TARGET bottom. Source top vs target bottom is WRONG
+    # whenever individual lanes bend vertically between graph stages.
+    top_target=float(ribbon["d"].split(" L ")[0].split()[-1])
+    bottom_target=float(ribbon["d"].split(" L ")[1].split(" C ")[0].split()[-1])
+    thickness=abs(bottom_target-top_target)
     assert abs(thickness-ribbon["amount"]/graph["scale"])<.001,(width,view,"INSURANCE_PREMIUM_PHYSICAL_RIBBON_HEIGHT_FALSE",thickness,ribbon)
    for key in ("premium_first_regular","premium_single","premium_short","premium_renew"):
     source=next((x for x in sources if x["id"]==key),None)
