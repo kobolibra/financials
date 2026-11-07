@@ -45,12 +45,13 @@ def qa(out:Path):
                 page.wait_for_timeout(120)
                 state=page.evaluate("""() => {
                   const body=document.documentElement;
-                  const all=[...document.querySelectorAll('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]')];
+                  const all=[...document.querySelectorAll('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"],svg[data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON"]')];
                   const visible=all.filter(e=>{
                     const b=e.getBoundingClientRect();
                     return b.width>=145&&b.height>65;
                   });
-                  const chosen=visible.find(e=>e.getAttribute('data-chart-grammar')==='INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL')||
+                  const chosen=visible.find(e=>e.hasAttribute('data-flow-omission'))||
+                    visible.find(e=>e.getAttribute('data-chart-grammar')==='INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL')||
                     visible.find(e=>e.getAttribute('data-chart-grammar')==='SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY')||visible[0]||null;
                   if(!chosen)return {found:false,available:all.length,client:body.clientWidth,scroll:body.scrollWidth};
                   const r=chosen.getBoundingClientRect();
@@ -62,7 +63,7 @@ def qa(out:Path):
                   const cut=labels.filter(x=>x.x<r.left-3||x.right>r.right+3||x.y<r.top-3||x.bottom>r.bottom+3);
                   const ribbons=[...chosen.querySelectorAll('path[data-ribbon-yuan]')];
                   return {found:true,available:all.length,client:body.clientWidth,scroll:body.scrollWidth,
-                    chosen:{grammar:chosen.getAttribute('data-chart-grammar'),kind:chosen.getAttribute('data-figure-kind'),
+                    chosen:{grammar:chosen.getAttribute('data-chart-grammar'),signed_omission:chosen.getAttribute('data-flow-omission'),kind:chosen.getAttribute('data-figure-kind'),
                       width:r.width,height:r.height,box_width:chosen.viewBox?.baseVal?.width,
                       monetary_total:chosen.getAttribute('data-revenue-yuan')||chosen.getAttribute('data-premium-yuan'),
                       source_nodes:chosen.querySelectorAll('rect[data-node-role="source"],rect[data-node-role="premium-source"]').length,
@@ -94,11 +95,15 @@ def qa(out:Path):
                     if state["cut"]:
                         raise AssertionError(("SOURCE_MONEY_SVG_CJK_LABEL_CLIPPED",code,width,state["cut"]))
                 else:
-                    if "data-flow-omission" not in page.content():
-                        raise AssertionError(("NEGATIVE_MARGIN_SOURCE_SIGNED_EXCEPTION_LOST",code,width))
+                    if not state["found"] or state["chosen"]["signed_omission"]!="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON":
+                        raise AssertionError(("NEGATIVE_MARGIN_VISIBLE_SIGNED_FINANCE_FIGURE_LOST",code,width,state))
+                    if state["chosen"]["box_width"] not in ((330,) if width==390 else (1040,330)):
+                        raise AssertionError(("NEGATIVE_MARGIN_NATIVE_PHONE_OR_DESKTOP_WRONG",code,width,state))
+                    if state["cut"]:
+                        raise AssertionError(("NEGATIVE_MARGIN_SIGNED_SOURCE_CJK_LABEL_CLIPPED",code,width,state["cut"]))
                 image_name=f"{code}-source-finance-{width}.png"
                 if state["found"]:
-                    locator=page.locator('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]')
+                    locator=page.locator('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"],svg[data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON"]')
                     # Select ACTUAL visible figure, not CSS-hidden desktop SVG
                     # in the mobile DOM. Locator.index is original DOM index.
                     all_boxes=locator.all()
