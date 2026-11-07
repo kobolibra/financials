@@ -49,7 +49,7 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
                     'data-local-inset-source="other_rev"',"独立金额比例尺","局部放大")
             row["issues"]=[f"SIGNED_NEGATIVE_INTEGRITY_MISSING_{i}" for i,t in enumerate(needed) if t not in html]
             row["visual_grammar_status"]="UNIFIED_SEMANTICS_SIGNED_EXCEPTION" if not row["issues"] else "FAIL_SIGNED_NEGATIVE_GRAMMAR"
-        elif code in {"300394","300502"}:
+        elif code in {"300394","300502","300308"}:
             # Actual original-source optical publishers now use the canonical
             # connected money compiler for their HERO income graph on both
             # desktop and phone. The other figures and editorial art direction
@@ -65,6 +65,12 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
             elif 'viewBox="0 0 1100' not in html or 'viewBox="0 0 330' not in html:
                 row["visual_grammar_status"]="FAIL_OPTICAL_HERO_UNIFIED_GRAMMAR"
                 row["issues"].append("OPTICAL_PHONE_DESKTOP_BOTH_MUST_BE_NATIVE")
+            elif code=="300308" and any(token not in html for token in (
+                    '<aside class="disclosure-conflict"',
+                    "422,649,612.97","422,649,613.97",
+                    "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf")):
+                row["visual_grammar_status"]="FAIL_OPTICAL_HERO_UNIFIED_GRAMMAR"
+                row["issues"].append("ORIGINAL_P139_ONE_YUAN_PRINTED_CONTRADICTION_WAS_SUPPRESSED")
             else:
                 row["visual_grammar_status"]="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"
                 row["issues"].append("REMAINDER_OF_V7_ISSUER_ART_NOT_YET_UNIFIED")
