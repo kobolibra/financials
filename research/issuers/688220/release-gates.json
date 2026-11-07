@@ -116,10 +116,10 @@
   "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
   "unmerged_candidate": {
     "base_deployed_html_sha256": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
-    "candidate_full_html_sha256": "7ab78b1b54688bd093f3364f4f6eb9ddd9036daabc268c362d5a643ac298793b",
+    "candidate_full_html_sha256": "0dbd647f1f948a5b13877ab173909fcceeccff79e8f8a3cbb6346275b5f61c24",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
     "note": "This sha belongs to the changed PR source file only. Historical live release PASS and screenshots remain valid exclusively for the old main SHA. Do not claim new candidate deployed or screenshot certified until a real independent current-sha browser receipt."
   }
 }
