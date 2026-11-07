@@ -270,7 +270,7 @@ def signed_product_profit(code, typed, get, names, *, mobile=False):
     facts=[(k,D(get(code,k)),D(get(code,c))) for k,c in keys]
     gps=[(k,r-c) for k,r,c in facts]
     biggest=max(abs(v) for _,v in gps)
-    assert biggest>0
+    assert biggest>0 and gps[-1][1]<0
     if not mobile:
         # The earlier issue intentionally kept the signed zero-width loss,
         # but desktop accidentally stretched the 330-unit MOBILE graphic.
@@ -318,7 +318,6 @@ def signed_product_profit(code, typed, get, names, *, mobile=False):
              f'data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" '
              f'data-flow-reason="{_e(typed["reason"])}" role="img"',1)
 
- and gps[-1][1]<0
     out=_text(12,22,"主要酒类盈利，其他业务亏损",14,INK,True)
     out+=_text(12,43,"全部毛利共用真实金额比例，负数画向左",10,MUTED)
     out+=_text(12,62,"产品负毛利不能画成正向资金桑基",10,COPPER,True)
