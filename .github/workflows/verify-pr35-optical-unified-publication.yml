@@ -54,7 +54,8 @@ jobs:
           python -m playwright install --with-deps chromium
           sudo apt-get install -y -qq fonts-noto-cjk
       - name: All original money diagrams current 1440 768 390 screenshot and visible SVG export
-        run: python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa --codes 300394,300502
+        run: |
+          python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa --codes 300394,300502
           python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa-300308 --codes 300308
       - name: Fail-closed cross-issuer QA and deterministic rebuild
         run: |
