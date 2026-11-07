@@ -95,10 +95,23 @@ def validate_artifact_integrity(active:dict,build:dict,browser:dict,typed:dict,
                 errors.append(f"NOT_REAL_ALL_FIGURES_CJK_{code}_{width}")
             if item.get("full_page_screenshot_sha256") is None:
                 errors.append(f"MISSING_ACTUAL_FULL_PAGE_SCREENSHOT_{code}_{width}")
+        if code in {"688111","000333","600036"}:
+            # All three distinct accounting industries must use the SAME
+            # real three-stage graph, with a physically shared income trunk.
+            # This is a much stronger test than counting old bank/company
+            # nonconnecting colored ribbon graphics.
+            if source.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')<2:
+                errors.append(f"COMPETING_UNIFIED_FINANCE_SVG_RENDERERS_{code}")
+            if source.count('data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"')<2:
+                errors.append(f"FAKE_NONCONNECTING_SANKEY_{code}")
+            if source.count('data-node-id="revenue-total"')<2:
+                errors.append(f"NO_REAL_SHARED_TOTAL_REVENUE_NODE_{code}")
+            if 'viewBox="0 0 1100' not in source or 'viewBox="0 0 330' not in source:
+                errors.append(f"NO_INDEPENDENT_DESKTOP_AND_PHONE_GRAMMAR_{code}")
         if code=="688111":
-            if 'viewBox="0 0 1040' not in source or 'data-layout="desktop-editorial"' not in source:
+            if 'viewBox="0 0 1100' not in source or 'data-layout="desktop-editorial"' not in source:
                 errors.append("WPS_NO_INDEPENDENT_THREE_STAGE_DESKTOP")
-            if "集团营业毛利" not in source or "毛利率" not in source:
+            if "group_gp" not in source or "毛利率" not in source:
                 errors.append("WPS_SOURCE_OWN_GP_STORY_ABSENT")
         if code=="600519":
             for needle in ('data-local-inset-source="other_rev"',
