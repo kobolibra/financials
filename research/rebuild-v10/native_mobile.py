@@ -256,7 +256,7 @@ def bank_sankey(code, typed, get, names):
     return _svg(out,350,"银行净利息及手续费收入分配到营业支出与营业利润","BANK_NET_INCOME_TO_OPERATING_PROFIT",code+"-2")
 
 
-def signed_product_profit(code, typed, get, names):
+def signed_product_profit(code, typed, get, names, *, mobile=False):
     """Truthful full-scale signed product GP + a separately scaled local inset.
 
     A tiny negative product GP cannot legitimately be fattened on the
@@ -270,7 +270,55 @@ def signed_product_profit(code, typed, get, names):
     facts=[(k,D(get(code,k)),D(get(code,c))) for k,c in keys]
     gps=[(k,r-c) for k,r,c in facts]
     biggest=max(abs(v) for _,v in gps)
-    assert biggest>0 and gps[-1][1]<0
+    assert biggest>0
+    if not mobile:
+        # The earlier issue intentionally kept the signed zero-width loss,
+        # but desktop accidentally stretched the 330-unit MOBILE graphic.
+        # An original 1040-unit composition is required on desktop.
+        biggest=max(abs(v) for _,v in gps)
+        scale=D(560)/biggest
+        out=_text(30,45,"真正的产品毛利：规模、结构和小额亏损",23,INK,True)
+        out+=_text(30,76,"主图保持人民币原始元同一金额比例，负毛利朝左；所有业务是2026年上半年同一期间",14,MUTED)
+        out+=_text(30,102,"不同产品的毛利不是净利润，也不能把负毛利画成正向桑基流",13,COPPER,True)
+        axis=D(258)
+        for i,(sid,gp) in enumerate(gps):
+            y=D(168+i*115)
+            size=abs(gp)*scale
+            out+=_text(30,y-19,names.get(sid,sid),17,INK,True)
+            out+=_box(axis,y,D("1.5"),34,MUTED)
+            out+=_box(axis if gp>=0 else axis-size,y+4,size,25,
+                GREEN if gp>=0 else COPPER,
+                f'data-source-id="{_e(sid)}" data-signed-yuan="{_e(gp)}" '
+                f'data-scale-yuan-per-svg-unit="{_e(biggest/D(560))}"')
+            pretty=format(_yi(gp),".4f")+"亿" if abs(_yi(gp))<D(1) else _fmt(gp)
+            out+=_text(30,y+52,("+" if gp>0 else "")+pretty,18,
+                      GREEN if gp>=0 else COPPER,True)
+        r=D(get(code,"other_rev"));c=D(get(code,"other_cogs"))
+        loss=r-c
+        margin=loss/r*D(100)
+        local=max(r,c)
+        out+=_text(30,515,"独立比例尺的局部放大｜仅其他业务",17,INK,True)
+        out+=_text(30,538,"下方两条的金额比例尺仅适用于局部，不与上方 717 亿主图共轴",12,MUTED)
+        for i,(label,val,col) in enumerate((("营业收入",r,BLUE),("营业成本",c,COPPER))):
+            y=D(559+i*40)
+            w=val/local*D(355)
+            out+=_text(30,y+16,label,13,INK,True)
+            out+=_box(128,y,w,22,col,
+                    f'data-local-inset-source="other_rev" '
+                    f'data-original-yuan="{_e(val)}" '
+                    f'data-inset-yuan-per-svg-unit="{_e(local/D(355))}"')
+            out+=_text(500,y+17,format(_yi(val),".4f")+"亿",14,col,True)
+        out+=_text(680,575,"其他业务毛利",17,COPPER,True)
+        out+=_text(680,608,format(_yi(loss),".4f")+"亿",25,COPPER,True)
+        out+=_text(680,635,"毛利率 "+format(margin,".2f")+"%",15,COPPER,True)
+        svg=_svg_desktop(out,D(1040),D(690),
+              "真比例的茅台酒类毛利与其他业务亏损，独立金额比例尺局部放大",
+              "TYPE_C_SANKEY_OMITTED",code+"-2")
+        return svg.replace('role="img"',
+             f'data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" '
+             f'data-flow-reason="{_e(typed["reason"])}" role="img"',1)
+
+ and gps[-1][1]<0
     out=_text(12,22,"主要酒类盈利，其他业务亏损",14,INK,True)
     out+=_text(12,43,"全部毛利共用真实金额比例，负数画向左",10,MUTED)
     out+=_text(12,62,"产品负毛利不能画成正向资金桑基",10,COPPER,True)
@@ -465,7 +513,7 @@ def mobile_for(code,index,keys,get,facts,cfo_components,typed):
         if code=="688111":
             return source_own_sankey(code,typed,names,mobile=True)
         if code=="600519":
-            return signed_product_profit(code,typed,get,names)
+            return signed_product_profit(code,typed,get,names,mobile=True)
         if code=="000333":
             return group_sankey(code,typed,names)
         return bank_sankey(code,typed,get,names)
