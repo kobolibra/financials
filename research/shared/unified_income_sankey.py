@@ -126,7 +126,7 @@ class FlowPlan:
             raise ValueError("UNSOURCED_OR_CONTEXTLESS_FINANCE")
         return total
 
-def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
+def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=False):
     total=plan.check()
     W=D(330 if mobile else 1100)
     HVAL=D(142 if mobile else 286)
@@ -169,7 +169,8 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
     out=[]
     title=plan.title
     if mobile:
-        out.append(text(12,24,title[:23],title_size,weight=700))
+        if not embedded:
+            out.append(text(12,24,title[:23],title_size,weight=700))
         out.append(text(12,43,f'{plan.period} · 人民币亿元 · 金额按同一比例',10,PALETTE["muted"]))
         out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",10,PALETTE["muted"]))
         for i,(sid,name,v,_,__) in enumerate(src_nodes):
@@ -186,7 +187,8 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
         out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",10,PALETTE["muted"],600,"middle",role="total-stage-header"))
         out.append(text(xout,top-D(16),"去向",10,PALETTE["muted"],600,"middle"))
     else:
-        out.append(text(26,46,title,28,PALETTE["ink"],700))
+        if not embedded:
+            out.append(text(26,46,title,28,PALETTE["ink"],700))
         out.append(text(26,76,f'{plan.period}  ·  CNY 亿元  ·  真实原始元面积守恒',15,PALETTE["muted"]))
         out.append(text(26,103,"收入来源汇总到一个总收入节点，然后流向合法的成本与利润去向；色带不设置虚假的最小金额宽度",12,PALETTE["muted"]))
         out.append(text(xsrc,160,plan.source_label,17,PALETTE["ink"],700,"middle"))
@@ -292,14 +294,37 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
                         9,PALETTE["muted"],role="source-caveat"))
         H=max(H,source_y+D(21))
     else:
-        y=chart_bottom+D(47)
+        # Give the last small source's directly labeled margin enough air
+        # before a second hierarchy of accounting/editorial caveats.
+        y=chart_bottom+D(67 if embedded else 47)
         if plan.kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
             out.append(text(26,y,"重要边界：仅集团合计成本和毛利，无法由此倒推各分部毛利率",16,PALETTE["cost"],700))
         elif plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT":
             out.append(text(26,y,"银行净利息收入已扣利息支出；仅分流经营费用、信用成本和营业利润",15,PALETTE["cost"],700))
         else:
             out.append(text(26,y,"各业务成本直接来自本业务披露；集团总毛利不等于归母净利润",15,PALETTE["muted"],600))
-        out.append(text(26,y+28,plan.footnote[:78],12,PALETTE["muted"]))
+        if not embedded:
+            out.append(text(26,y+28,plan.footnote[:78],12,PALETTE["muted"]))
+        else:
+            # Never silently truncate the reader's original-PDF source caveat
+            # or print half an English sentence beyond the 1100 viewBox.
+            # Approximate full-width Chinese as two display columns, Latin
+            # as one; real Chromium bounding boxes remain the final gate.
+            units=0
+            pieces=[]
+            part=""
+            for ch in plan.footnote:
+                next_units=2 if ord(ch)>127 else 1
+                if part and units+next_units>140:
+                    pieces.append(part)
+                    part="";units=0
+                part+=ch;units+=next_units
+            if part:
+                pieces.append(part)
+            for i,line in enumerate(pieces):
+                out.append(text(26,y+D(28)+D(20)*i,line,12,
+                                PALETTE["muted"],role="source-footnote"))
+            H=max(H,y+D(54)+D(20)*D(max(0,len(pieces)-1)))
     extra={
         "TYPE_A_SOURCE_OWN_COST_GP":'data-allocation-evidence="SOURCE_OWN_COST_GP"',
         "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":'data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED"',
@@ -309,9 +334,17 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False):
                  f"收入合计{fmt(total)}. {plan.footnote}. "
                  f"全部原始人民币元金额在数据节点和色带属性中.")
     body="".join(out)
+    if embedded:
+        # The surrounding report already has its own editorial H3. Keep
+        # meaningful period/margins, but do not repeat a competing title.
+        # Compact only this embedded layout; no changes to source/path scale.
+        shift=D(22 if mobile else 50)
+        H-=shift
+        body=f'<g transform="translate(0,-{nu(shift)})">{body}</g>'
     return (f'<svg xmlns="http://www.w3.org/2000/svg" '
             f'viewBox="0 0 {nu(W)} {nu(H)}" role="img" '
             f'data-design-system="FINANCIALS_UNIFIED_STORY_V1" '
+            f'data-editorial-placement="{"embedded-article" if embedded else "standalone"}" '
             f'data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY" '
             f'data-layout="{"mobile-editorial" if mobile else "desktop-editorial"}" '
             f'data-figure-kind="{esc(plan.kind)}" data-figure-id="{esc(plan.issuer)}-2" '

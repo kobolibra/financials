@@ -60,9 +60,17 @@ with sync_playwright() as p:
                   return {total:+s.getAttribute('data-revenue-yuan'),
                     boxes:[...s.querySelectorAll('rect[data-node-role]')].map(e=>({id:e.getAttribute('data-node-id'),role:e.getAttribute('data-node-role'),yuan:+e.getAttribute('data-node-yuan')})),
                     ribbons:[...s.querySelectorAll('path[data-ribbon-yuan]')].map(e=>({yuan:+e.getAttribute('data-ribbon-yuan'),stage:e.getAttribute('data-stage'),scale:+e.getAttribute('data-scale-yuan-per-svg-unit')})),
-                    right:s.getBoundingClientRect().right,width:s.getBoundingClientRect().width};
+                    right:s.getBoundingClientRect().right,width:s.getBoundingClientRect().width,
+                    placement:s.getAttribute('data-editorial-placement'),
+                    repeatedHeader:[...s.querySelectorAll('text')].some(t=>t.textContent.includes('业务收入如何形成真实披露的成本与毛利')),
+                    clippedLabels:[...s.querySelectorAll('text')].filter(t=>{
+                      const v=t.getBoundingClientRect(),box=s.getBoundingClientRect();
+                      return v.width>0 && (v.left<box.left-2||v.right>box.right+2||v.top<box.top-2||v.bottom>box.bottom+2);
+                    }).map(t=>t.textContent)};
                 }""")
                 assert graph and graph["width"]>200 and graph["right"]<=width+3,(code,width,"UNIFIED_FLOW_CLIPPED_OR_MISSING",graph)
+                assert graph["placement"]=="embedded-article" and not graph["repeatedHeader"],(code,width,"DUPLICATED_OUTER_AND_INNER_HEADLINE")
+                assert not graph["clippedLabels"],(code,width,"SVG_EDITORIAL_TEXT_CLIPPED",graph["clippedLabels"])
                 srcs=[x for x in graph["ribbons"] if x["stage"]=="source-to-revenue"]
                 sinks=[x for x in graph["ribbons"] if x["stage"]=="revenue-to-outcome"]
                 assert len(srcs)>=2 and len(sinks)==2*len(srcs),(code,width,"NOT_TRUE_CONNECTED_SANKEY")

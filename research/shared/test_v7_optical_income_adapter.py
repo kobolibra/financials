@@ -34,6 +34,11 @@ class RealOpticalSankeyMigrationContract(unittest.TestCase):
                 for mobile in (False,True):
                     svg=ET.fromstring(render_optical_candidate(ledger,mobile=mobile))
                     self.assertEqual(svg.get("data-design-system"),"FINANCIALS_UNIFIED_STORY_V1")
+                    self.assertEqual(svg.get("data-editorial-placement"),"embedded-article")
+                    visible_text=" ".join(e.text or "" for e in svg.iter(SVG+"text"))
+                    self.assertNotIn("业务收入如何形成真实披露的成本与毛利？",visible_text)
+                    if ledger["document"]["ticker"].startswith("300308"):
+                        self.assertIn("相差人民币1元",visible_text if not mobile else svg.get("aria-label",""))
                     self.assertEqual(svg.get("data-revenue-yuan"),str(total))
                     self.assertEqual(svg.get("data-layout"),"mobile-editorial" if mobile else "desktop-editorial")
                     ribbons=[v for v in svg.iter(SVG+"path") if v.get("data-ribbon-yuan")]

@@ -88,6 +88,13 @@ def optical_flow_plan(ledger: dict) -> FlowPlan:
         raise ValueError("OPTICAL_SEGMENT_COGS_NOT_EXHAUSTIVE")
     if revenue<=0 or cogs>revenue:
         raise ValueError("OPTICAL_TOTAL_CANNOT_RENDER_POSITIVE_SANKEY")
+    source_note=(
+        f"原始财报第{coverage['source_page']}页：业务类型收入与自身成本；"
+        "其他业务原件的重复合计列相差人民币1元，按可与合并营业收入核对的原列绘制。"
+        if anomaly else
+        f"原始财报第{coverage['source_page']}页：按同层级互斥业务收入及各自成本，"
+        "产品分类不得与主营/其他业务分类重复加总。"
+    )
     return FlowPlan(issuer=issuer,period=period,kind="TYPE_A_SOURCE_OWN_COST_GP",
         title="业务收入如何形成真实披露的成本与毛利？",
         source_label="互斥披露业务收入",outcome_label="成本与毛利",
@@ -95,9 +102,8 @@ def optical_flow_plan(ledger: dict) -> FlowPlan:
         outcomes=(("group_cogs","营业成本",str(cogs),"cost"),
                   ("group_gp","营业毛利",str(revenue-cogs),"profit")),
         allocations=tuple(alloc),
-        footnote=(f"业务分组与成本来自原报告附注物理页 {coverage['source_page']}；"
-                  f"{coverage['scope']}；不得跨业务类型和主营/其他分类重复加总。"))
+        footnote=source_note)
 
 
 def render_optical_candidate(ledger: dict, *, mobile:bool=False) -> str:
-    return render_income_sankey(optical_flow_plan(ledger),mobile=mobile)
+    return render_income_sankey(optical_flow_plan(ledger),mobile=mobile,embedded=True)
