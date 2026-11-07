@@ -55,8 +55,8 @@
     },
     {
       "code": "600036",
-      "html_sha256": "fec7a3f2b357ca5014d502cf1a377eb2e56105c305ee4f5dd54b6e1549c64c83",
-      "html_bytes": 121664,
+      "html_sha256": "fa8855734562ea9b4ea2ba6efe9892600252f4fbebb2bbe9eba2d6706b899993",
+      "html_bytes": 121766,
       "figure_count_for_inventory_only": 8,
       "svg_count_for_inventory_only": 16,
       "has_source_table": true,
@@ -71,8 +71,8 @@
     },
     {
       "code": "688111",
-      "html_sha256": "5264671de9e8ab3dec3f8da184bbe5353a1804005bb72dd5967130fe8044b46b",
-      "html_bytes": 128961,
+      "html_sha256": "eae102c55d53f7f50978a017a4a31d9aff98bd350e1c70a0b7eb60b96c0c5f01",
+      "html_bytes": 129169,
       "figure_count_for_inventory_only": 9,
       "svg_count_for_inventory_only": 18,
       "has_source_table": true,
@@ -103,8 +103,8 @@
     },
     {
       "code": "000333",
-      "html_sha256": "934f9ad60ce6d55d867eca236f8863183994af5c7619f9d276470e4eaab4db96",
-      "html_bytes": 130814,
+      "html_sha256": "8d7719c581b29cee95c67f2664f7ee579a92332554944ba9191685df3d5c70aa",
+      "html_bytes": 130916,
       "figure_count_for_inventory_only": 10,
       "svg_count_for_inventory_only": 20,
       "has_source_table": true,
