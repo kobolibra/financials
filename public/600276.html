@@ -446,7 +446,7 @@ section.innerHTML='<div class="chaptermark">FIGURE '+String(i+1).padStart(2,"0")
   '<div class="native-mobile-finance" data-native-mobile-id="'+e(q.id)+'" role="group" aria-label="财报原数据驱动的手机原生财务图，完整纵向阅读">'+nativeMoneyFigure(q.id)+'</div>';
 });
 document.querySelectorAll("[data-export]").forEach(function(button){button.addEventListener("click",function(){
-var id=button.getAttribute("data-export"),s=document.querySelector("#chart-"+id+" svg");var file=new Blob([new XMLSerializer().serializeToString(s)],{type:"image/svg+xml;charset=utf-8"});
+var id=button.getAttribute("data-export"),svgs=Array.from(button.closest("figure").querySelectorAll("svg")),s=svgs.find(function(el){var r=el.getBoundingClientRect(),v=getComputedStyle(el);return r.width>0&&r.height>0&&v.display!=="none"&&v.visibility!=="hidden"});if(!s)return;var file=new Blob([new XMLSerializer().serializeToString(s)],{type:"image/svg+xml;charset=utf-8"});
 var url=URL.createObjectURL(file),a=document.createElement("a");a.href=url;a.download=code+"-2026H1-"+id+".svg";a.click();URL.revokeObjectURL(url);
 })});
 })();
