@@ -1,0 +1,95 @@
+{
+  "schema": "financials.editorial_hero_briefs.v1",
+  "scope": "four real 2026H1 issuers in PR35, exact source-model scope not independent market-data certification",
+  "as_of_date": "2026-11-07",
+  "independent_financial_editor": "NOT_CHECKED",
+  "independent_visual_director": "NOT_CHECKED",
+  "hero_figures": [
+    {
+      "issuer": "688111",
+      "figure_id": "fig-02",
+      "flow_kind": "TYPE_A_SOURCE_OWN_COST_GP",
+      "title": "四项 WPS 业务各自赚多少毛利？",
+      "read_in_five_seconds": "个人业务是最大收入来源，WPS软件和 WPS365 产品毛利率更高；四项各按其自己披露的成本得到集团实际总毛利。",
+      "source_keys": [
+        "wps_personal",
+        "wps365",
+        "wps_software",
+        "other_rev",
+        "wps_personal_cost",
+        "wps365_cost",
+        "wps_software_cost",
+        "other_cost"
+      ],
+      "source_pdf_physical_page": 142,
+      "mechanism": "不同产品组合的毛利结构不等于重复性订阅收入能力；真实业务成本与集团总毛利不同于投资收益",
+      "strongest_countercase": "更高账面毛利率不自动说明现金商业化更好；研发与销售费用、续费率及归属股权投资收益尚未分摊",
+      "business_driver_still_needed": "披露续费、ARPU、流失率及 WPS365 客单；法定归母与经调整利润税后归属",
+      "geometry": "DESKTOP_1040_THREE_STAGE_SOURCE_TO_OWN_COST_AND_GP_TO_GROUP_SINK; PHONE_330_SOURCE_OWN_MONEY_BANDS",
+      "unproven": "MULTI_QUARTER_COUPLING_AND_INDEPENDENT_5_SECOND_READ"
+    },
+    {
+      "issuer": "600519",
+      "figure_id": "fig-02",
+      "flow_kind": "TYPE_C_SANKEY_OMITTED",
+      "title": "为什么高毛利白酒中还有负毛利业务？",
+      "read_in_five_seconds": "茅台酒毛利绝对额压倒性大，其他小业务实际亏损 1,244.63 万元。主比例不伪造亏损条宽，独立局部比例呈现收入低于成本。",
+      "source_keys": [
+        "maotai_rev",
+        "maotai_cogs",
+        "series_rev",
+        "series_cogs",
+        "other_rev",
+        "other_cogs"
+      ],
+      "source_pdf_physical_page": 74,
+      "mechanism": "产品毛利差异是销售收入与本产品营业成本对应关系，不是集团 CFO 增长驱动",
+      "strongest_countercase": "小业务亏损金额不能反推酒类盈利恶化；财务公司成员存款和同业资金往来才是 CFO 超常增长的首要审查对象",
+      "business_driver_still_needed": "财务公司分主体现金/内部抵销、酒类渠道动销库存与价盘、产品量价结构",
+      "geometry": "DESKTOP_1040_SIGNED_ORIGINAL_SCALE_WITH_EXPLICIT_SEPARATE_INSET; PHONE_330_ORIGINAL_SCALE_INSET; NEGATIVE_NO_FAKE_WIDTH",
+      "unproven": "REAL_TERMINAL_SALES_AND_INDEPENDENT_5_SECOND_READ"
+    },
+    {
+      "issuer": "000333",
+      "figure_id": "fig-02",
+      "flow_kind": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+      "title": "三类业务收入之后，集团真正留下多少毛利？",
+      "read_in_five_seconds": "三类同层级互斥营业收入之和＝集团营业收入，再分到集团成本和集团毛利；没有逐分部自身成本，不允许归因每个业务的毛利。",
+      "source_keys": [
+        "home",
+        "industrial_solution",
+        "other_total",
+        "rev",
+        "cogs"
+      ],
+      "source_pdf_physical_page": "51-52",
+      "mechanism": "集团层收入结构仅定义来源，不能从总 COGS 虚构板块单位经济性",
+      "strongest_countercase": "工业方案内部子行业和海外地域不是可继续相加的新业务；金融子公司收入另在总收入口径",
+      "business_driver_still_needed": "业务分部合法成本、海外本币/价量、税前衍生品到税后归属及 OCI、风险对冲效果",
+      "geometry": "TYPE_B_MAIN_GROUP_COST_GP_ONLY; CHINESE_VISIBLE_UNKNOWN_PRODUCT_GP; MACHINE_TAG_IN_SVG_METADATA_ONLY",
+      "unproven": "PRODUCT_LEVEL_MARGINS_AND_INDEPENDENT_5_SECOND_READ"
+    },
+    {
+      "issuer": "600036",
+      "figure_id": "fig-02",
+      "flow_kind": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
+      "title": "净利息与手续费收入如何付完信用成本后形成营业利润？",
+      "read_in_five_seconds": "净利息收入已经减掉利息支出；银行净营收再负担管理支出与信用减值后留下营业利润，绝不能像工业毛利再扣息。",
+      "source_keys": [
+        "nii",
+        "fees_net",
+        "other_net",
+        "administrative_expense",
+        "credit_impairment_expense",
+        "other_operating_cost",
+        "operating_profit"
+      ],
+      "source_pdf_physical_page": "refer to original 2026H1 extras individual source page",
+      "mechanism": "银行收入由资产收益、负债成本和信用损失形成，净息已经结算利息支出",
+      "strongest_countercase": "利息支出下降可能主要来自共同利率周期，并不自动证实结构性低成本负债优势，需日均生息基数",
+      "business_driver_still_needed": "日均资产负债与净息差量价、零售不良迁徙、拨备、风险加权资产增长",
+      "geometry": "BANK_NET_INTEREST_ALREADY_NET_NO_SECOND_SUBTRACTION; ORIGINAL_YUAN_NET_REVENUE_TO_OPERATING_PROFIT",
+      "unproven": "PEER_CREDIT_LOSS_AND_INDEPENDENT_5_SECOND_READ"
+    }
+  ]
+}
