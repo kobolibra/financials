@@ -17,7 +17,7 @@ A GitHub repository Skill is **not automatically installed globally in ChatGPT**
 
 ## Current adoption: do not overstate
 
-As recorded in PR #35, the current candidate financial flow renderer covers three positive Sankey issuers (688111, 000333, 600036), plus one lawful signed exception (600519). The other **seven** published company report families remain **LEGACY_NOT_UNIFIED** and require actual source-aware design migration; the PR has not been merged to production main. Unseen-company generalization, cross-period stability and genuine independent finance/visual review are **NOT_CHECKED**. The authoritative census is [scripts/audit_unified_visual_corpus.py](../../scripts/audit_unified_visual_corpus.py).
+PR #35 now has three V10 positive Sankey issuer examples (688111, 000333, 600036) and one lawful signed exception (600519). Three original optical company primary income figures (300394, 300502, 300308) are **HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY**: source-pinned original-yuan fully connected v9 Sankeys are actually used in both desktop and phone report HTML, but the other old V7 P&L/CFO figures are not yet unified. The remaining **four** older issuer visual families (688220, 600900, 600276, 601628) remain **LEGACY_NOT_UNIFIED**. All eleven companies still require full original-source design migration; the PR has not been merged to production main. Unseen-company generalization, cross-period stability and genuine independent finance/visual review are **NOT_CHECKED**. The authoritative census is [scripts/audit_unified_visual_corpus.py](../../scripts/audit_unified_visual_corpus.py).
 
 ## Hardening regression
 
