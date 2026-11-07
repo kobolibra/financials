@@ -85,8 +85,12 @@ jobs:
           assert {x["width"] for x in proof["actual_3_viewport_checks"]}=={390,768,1440}
           assert proof["all_nine_390px_native_financial_svg_legible_and_source_reconciled"]=="PASS"
           assert proof["source_nodes_sinks_ribbons_exact_svg_geometric_proportions"]=="PASS"
-          for width in (1440,768,390):
-              path=base/"visual-qa-native"/f"flow_{width}.png"
+          # The browser captures all three complete pages, and two
+          # close-up money figures (desktop and phone); 768 closeup is
+          # intentionally absent, never pretend a phantom screenshot.
+          for name in ("full_1440.png","full_768.png","full_390.png",
+                       "flow_1440.png","flow_390.png"):
+              path=base/"visual-qa-native"/name
               screenshot=proof["real_CJK_screenshot_sha_bytes"][path.name]
               assert path.is_file() and screenshot["sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()
               assert screenshot["bytes"]==path.stat().st_size
