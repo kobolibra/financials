@@ -1,5 +1,13 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
+## 2026-11-07 活动候选 PR #35：研究深度、真实桑基和严格零记忆交接
+
+**先判定 main 与候选分支，禁止混淆已发布内容和未合并质量改进。** 最新审查工作见 [候选真实交接](docs/ACTIVE_PR35_HANDOFF.md)、[研究与 AEI/FT 质量评分合同](docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md)，机器可检状态 research/quality/active-pr35.json。PR [#35](https://github.com/kobolibra/financials/pull/35) 使用 quality/aei-sankey-source-contract-v1；开始新会话必须重新查询 GitHub main/PR HEAD 和每项 Actions 的准确 SHA，而非引用这段日期快照。
+
+四家公司候选的原始 PDF 账目、Type A/B/C/BANK、36 张完整独立手机图有前一轮证据；**本次新改 WPS 1040px 真三阶段桌面财务桑基与茅台 −0.1245 亿负毛利的独立尺度放大必须重新重建、截图与真实预览字节审查，先标 PENDING_RETEST，不引用旧截图为新图证明。** 运行 python scripts/check_pr35_quality_handoff.py 验证网页、重建元数据与浏览器回执是同一 SHA。独立人类财经与艺术审稿、跨公司新期稳定性和正式生产新版本仍 NOT_CHECKED。项目真正的高质量交付不等于 CI 绿灯。
+
+
+
 **2026-11-05 AEI/FT 视觉品质 v8.8.0-RC1 已实际 main 合并：** 已在 [#33](https://github.com/kobolibra/financials/pull/33)、[#34](https://github.com/kobolibra/financials/pull/34) 实际合并；现行 Skill 方法加入 [财经总编真实审美与桑基A/B/C决策标准](docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和真实独立HTML静态审查器。已发现生产源V10四家600036/688111/600519/000333在390隐藏除桑基外所有图、剩余850px桑基只在小窗横滑，确认为旧版FAIL；新规范和自动测试绝不宣称四家公司已修或全站审美达到AEI顶级。站点仍唯一11家公司，独立人类研究/视觉审核NOT_CHECKED。
 
 
