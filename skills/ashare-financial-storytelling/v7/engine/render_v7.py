@@ -12,6 +12,8 @@ from build import moneyflow, waterfall, money, y, pc, num, sign, factmeta, page,
 from audit import audit
 from editorial_charts import balance_identity, operating_cash_allocation, profitability_change
 from native_mobile_finance import make as make_native_mobile_finance
+sys.path.insert(0,str(Path(__file__).resolve().parents[4]/"research/shared"))
+from v7_optical_income_adapter import render_optical_candidate
 
 B=D('100000000')
 def esc(x): return html.escape(str(x),quote=True)
@@ -181,6 +183,12 @@ def build(l,m):
  prevgp=prevrev-prevcogs if None not in (prevrev,prevcogs) else None
  gross_delta=gp-prevgp if prevgp is not None else None
  flow,count=moneyflow(l)
+ # Both desktop and independent mobile figure-01 now use the same typed
+ # source-original v9 income graph. Contradictory PDF source columns are a
+ # documented exception: do not silently reclassify 300308.
+ if not l.get("verified_source_anomalies"):
+  flow=render_optical_candidate(l,mobile=False).replace('<svg ','<svg class="hero-svg" ',1)
+  _NATIVE_PANELS["01"]=render_optical_candidate(l,mobile=True)
  pnl=original_profit_bridge(l)
  delta=gp_delta_bridge(l)
  cash1,cash2=cash_bridges(l)

@@ -47,6 +47,8 @@ class OriginalFinanceMobiles(unittest.TestCase):
                 self.assertIn('data-cumulative-yuan=',panels["06"])
                 self.assertIn('data-signed-yuan=',panels["03"])
                 report,_=build(ledger,get_memo(code))
+                self.assertEqual(report.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"'),2)
+                self.assertEqual(report.count('data-node-id="revenue-total"'),2)
                 self.assertEqual(report.count('class="native-finance"'),len(panels))
                 self.assertIn('viewBox="0 0 330',report)
                 self.assertIn(ledger["document"]["source_sha256"],report)

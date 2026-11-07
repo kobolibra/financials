@@ -1,0 +1,82 @@
+name: Rebuild source-true V9 optical main charts and validate CJK browsers
+on:
+  push:
+    branches: [quality/aei-sankey-source-contract-v1]
+    paths:
+      - '.github/workflows/verify-pr35-optical-unified-publication.yml'
+      - 'skills/ashare-financial-storytelling/v7/engine/render_v7.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
+      - 'research/shared/v7_optical_income_adapter.py'
+      - 'research/shared/unified_income_sankey.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pr35-optical-v9-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  rebuild-optical-original-source-and-real-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Unit tests for exact original yuan and duplicate source rejection
+        run: |
+          python -m unittest discover -s research/shared -p test_v7_optical_income_adapter.py -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
+      - name: Rebuild both complete source-ledger HTML reports
+        run: |
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out public/300394.html --qa /tmp/300394-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out public/300502.html --qa /tmp/300502-qa.json
+          cp public/300394.html public/300394/2026-H1/index.html
+          cp public/300502.html public/300502/2026-H1/index.html
+          python - <<'PY'
+          from pathlib import Path
+          for c in ('300394','300502'):
+              src=Path('public/'+c+'.html').read_text()
+              assert src.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2
+              assert src.count('data-node-id="revenue-total"')==2
+              assert src.count('class="native-finance"')>=9
+          PY
+      - name: Real Chromium and Noto CJK
+        run: |
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-cjk
+      - name: All original money diagrams current 1440 768 390 screenshot and visible SVG export
+        run: python skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py --out optical-native-visual-qa --codes 300394,300502
+      - name: Fail-closed cross-issuer QA and deterministic rebuild
+        run: |
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out /tmp/300394.html --qa /tmp/300394-again.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out /tmp/300502.html --qa /tmp/300502-again.json
+          cmp /tmp/300394.html public/300394.html
+          cmp /tmp/300502.html public/300502.html
+          python scripts/check_visual_editorial_policy.py
+      - name: Persist only verified candidate pages and real CJK screenshot receipts
+        run: |
+          git config user.name financials-qa-bot
+          git config user.email financials-qa-bot@users.noreply.github.com
+          git add public/300394.html public/300502.html public/300394/2026-H1/index.html public/300502/2026-H1/index.html
+          git add optical-native-visual-qa/result.json
+          git add -u optical-native-visual-qa
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish real v9 connected income Sankey on both optical reports with native phone and exact CJK screenshot receipts"
+            git fetch origin quality/aei-sankey-source-contract-v1
+            git rebase FETCH_HEAD
+            git push origin HEAD:quality/aei-sankey-source-contract-v1
+          fi
+      - name: Archive all screenshots and rebuilt page bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr35-original-optical-v9-rebuild-and-browser-evidence
+          path: |
+            public/300394.html
+            public/300502.html
+            optical-native-visual-qa/
+          retention-days: 30
