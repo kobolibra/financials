@@ -1,0 +1,96 @@
+{
+  "schema": "financials.pr35.active_quality_handoff.v1",
+  "as_of_date": "2026-11-07",
+  "repository": "kobolibra/financials",
+  "pr_number": 35,
+  "pr_url": "https://github.com/kobolibra/financials/pull/35",
+  "branch": "quality/aei-sankey-source-contract-v1",
+  "source_main_sha_at_start": "9b70e1a4dad2c57cbbd26810dbd7ed9d3e5ddea9",
+  "actual_main_sha_and_pr_head_rule": "RE_QUERY_GITHUB_EACH_SESSION; NEVER_TREAT_THIS_FILE_OR_PREVIOUS_ACTION_AS_LIVE",
+  "review_state": "UNMERGED_CANDIDATE_NEEDS_INDEPENDENT_EDITORIAL_REVIEW",
+  "cloudflare_candidate": "https://quality-aei-sankey-source-co.financials-in-visuals.pages.dev",
+  "cloudflare_production": "https://financials-in-visuals.pages.dev",
+  "source_of_truth": {
+    "entry": "START_HERE.md",
+    "machine_status": "project-status.json",
+    "prose_status": "PROJECT_STATE.md",
+    "agent": "AGENTS.md",
+    "handoff": "docs/HANDOFF_PROTOCOL.md",
+    "skill": "skills/ashare-financial-storytelling/SKILL.md",
+    "five_research_manuals": [
+      "skills/ashare-financial-storytelling/research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md",
+      "skills/ashare-financial-storytelling/research/02_ASHARE_INSTITUTIONAL_RESEARCH.md",
+      "skills/ashare-financial-storytelling/research/03_VISUAL_EDITORIAL_SYSTEM.md",
+      "skills/ashare-financial-storytelling/research/04_ASHARE_FORENSIC_DEEP_DIVE.md",
+      "skills/ashare-financial-storytelling/research/05_CROSS_SECTOR_GENERALIZATION.md"
+    ],
+    "original_issuer_count_source": "site/research_catalog.json",
+    "evidence_figures": "research/rebuild-v10/real-browser-qa/result.json",
+    "original_rebuild_manifest": "research/rebuild-v10/build-manifest.json",
+    "source_semantics": "research/rebuild-v10/strict-semantic-audit.json",
+    "current_quality_roadmap": "docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md",
+    "detailed_handoff": "docs/ACTIVE_PR35_HANDOFF.md"
+  },
+  "four_issuers": {
+    "600036": {
+      "source_type": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
+      "exhibits": 8,
+      "figure_02_design": "BANK_NET_INTEREST_ALREADY_NET_OPERATING_COSTS_AND_PROFIT"
+    },
+    "600519": {
+      "source_type": "TYPE_C_SANKEY_OMITTED",
+      "exhibits": 9,
+      "figure_02_design": "UNINFLATED_SIGNED_NEGATIVE_PRODUCT_GP_WITH_EXPLICIT_INDEPENDENT_SCALE_INSET"
+    },
+    "688111": {
+      "source_type": "TYPE_A_SOURCE_OWN_COST_GP",
+      "exhibits": 9,
+      "figure_02_design": "TRUE_1040_DESKTOP_THREE_STAGE_AND_DISTINCT_330_PHONE_PER_SOURCE_OWN_COST_GP"
+    },
+    "000333": {
+      "source_type": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+      "exhibits": 10,
+      "figure_02_design": "GROUP_COGS_GP_ONLY_NO_PRODUCT_GP_CLAIM"
+    }
+  },
+  "exact_byte_rule": "DERIVE_SHA256_FROM_CURRENT_PUBLIC_HTML; REJECT_ANY_STALE_BUILD_MANIFEST_OR_BROWSER_RECEIPT; PR_PREVIEW_SHA_ONLY_COVERS_RECORDED_CANDIDATE_BYTES",
+  "verified_previous_candidate_evidence": {
+    "scope": "HISTORICAL_SHA_ONLY_NOT_AUTOMATIC_NEW_RELEASE_PASS",
+    "rebuild_action": "https://github.com/kobolibra/financials/actions/runs/42344600791",
+    "online_browser_export_action": "https://github.com/kobolibra/financials/actions/runs/42344715944",
+    "original_export_count": 108,
+    "actually_verified_prior_preview_figures": 36
+  },
+  "current_art_direction": {
+    "status": "NOT_CHECKED_CURRENT_HUMAN_REVIEW_AND_UNSEEN_PERIOD_GENERALIZATION",
+    "newly_implemented_and_must_be_RETESTED": [
+      "WPS_1040_DESKTOP_SOURCE_OWN_COST_AND_GROUP_SINK_GEOMETRY",
+      "MOUTAI_TRUE_PROPORTIONAL_TINY_NEGATIVE_GP_AND_SEPARATELY_LABELED_LOCAL_ZOOM",
+      "SAME_SHA_ALL_FIGURES_390_768_1440_CJK",
+      "PR_PREVIEW_11_ROUTES_AND_108_EXPORTS_MATCH_NEW_HTML_SHA"
+    ],
+    "unproven": [
+      "INDEPENDENT_FINANCIAL_EDITOR",
+      "INDEPENDENT_VISUAL_ART_DIRECTOR",
+      "MULTIPERIOD_8_12_QUARTERS_AND_PEER_CONTEXT",
+      "20_30_UNSEEN_CROSS_ISSUER_REGRESSION",
+      "DEVICE_HARDWARE_IOS_ANDROID",
+      "LIVE_MAIN_CANDIDATE_NOT_YET_MERGED"
+    ]
+  },
+  "known_source_debt": [
+    "688220_p137_top5_receivables_note_90_50_VS_89_17_DENOMINATOR_UNRECONCILED",
+    "688220_p179_original_note_0_01_CNY_REMAINING_PERFORMANCE_OBLIGATIONS_DIFFERENCE",
+    "FULL_MATERIAL_NOTES_INDEPENDENT_REVIEW_NOT_CHECKED"
+  ],
+  "execute_next": [
+    "python scripts/check_pr35_quality_handoff.py",
+    "python -m unittest discover -s scripts -p test_check_pr35_quality_handoff.py -v",
+    "python -m unittest discover -s research/rebuild-v10 -p test_editorial_chart_quality.py -v",
+    "python scripts/audit_v10_flow_contract.py --strict",
+    "python scripts/check_handoff.py",
+    "VERIFY_GITHUB_ACTIONS_ON_ACTUAL_CURRENT_PR_HEAD",
+    "VERIFY_PREVIEW_OR_PRODUCTION_FULL_HTML_SHA_FOR_ACTUAL_CURRENT_HEAD"
+  ],
+  "release_rule": "NO_CLAIM_AEI_LEVEL_CERTIFIED_OR_MAIN_DEPLOYED_WITHOUT_ACTUAL_REVIEW_AND_SHA_BOUND_SIGNOFF"
+}
