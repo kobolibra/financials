@@ -64,12 +64,43 @@ jobs:
           assert new.count('class="native-asr"')==9
           print('NINE_REAL_SEMICONDUCTOR_NATIVE_MOBILE_AND_ORIGINAL_DESKTOP_TEMPLATE_PASS',hashlib.sha256(new.encode()).hexdigest())
           PY
+      - name: Bind only current original-source CJK browser candidate SHA, never overwrite deployed production
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          code="688220"
+          base=Path("research/issuers")/code
+          gate=base/"release-gates.json"
+          record=json.loads(gate.read_text(encoding="utf8"))
+          candidate=record["unmerged_candidate"]
+          assert record["release_class"]=="source_limited_preview"
+          assert candidate["base_deployed_html_sha256"]==record["published_html_sha256"]
+          assert candidate["promotion_status"]=="UNMERGED_NOT_DEPLOYED"
+          assert candidate["independent_finance_and_art_review"]=="NOT_CHECKED"
+          page=Path("public/688220.html")
+          sha=hashlib.sha256(page.read_bytes()).hexdigest()
+          proof=json.loads((base/"visual-qa-native/result.json").read_text(encoding="utf8"))
+          assert proof["html_sha256"]==sha,(code,"BROWSER_RECEIPT_NOT_CURRENT_BYTES")
+          assert {x["width"] for x in proof["actual_3_viewport_checks"]}=={390,768,1440}
+          assert proof["all_nine_390px_native_financial_svg_legible_and_source_reconciled"]=="PASS"
+          assert proof["source_nodes_sinks_ribbons_exact_svg_geometric_proportions"]=="PASS"
+          for width in (1440,768,390):
+              path=base/"visual-qa-native"/f"flow_{width}.png"
+              screenshot=proof["real_CJK_screenshot_sha_bytes"][path.name]
+              assert path.is_file() and screenshot["sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()
+              assert screenshot["bytes"]==path.stat().st_size
+          candidate["candidate_full_html_sha256"]=sha
+          candidate["current_sha_browser_proof"]="LOCAL_ONLY"
+          gate.write_text(json.dumps(record,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
+          print("LOCAL_SOURCE_CJK_SEMICONDUCTOR_SHA_BOUND_NOT_PRODUCTION",sha)
+          PY
       - name: Commit candidate-only HTML and source-bound real CJK screenshot proof
         if: github.event_name == 'push' && github.ref_name != 'main'
         run: |
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
-          git add public/688220.html research/issuers/688220/qa.json
+          git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/release-gates.json
           git add research/issuers/688220/visual-qa-native/result.json
           git add research/issuers/688220/visual-qa-native/flow_1440.png research/issuers/688220/visual-qa-native/flow_390.png
           git add research/issuers/688220/visual-qa-native/pnl_390.png research/issuers/688220/visual-qa-native/cfo_390.png
