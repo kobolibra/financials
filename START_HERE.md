@@ -1,5 +1,11 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
+## 2026-11-07 · v9.0.0 统一质量系统（候选 PR #35，非 main）
+
+立即阅读 [统一图形设计与一手 AEI 比对](docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md)、[PR35 零记忆交接](docs/ACTIVE_PR35_HANDOFF.md) 和 [精简执行 Skill](skills/ashare-financial-storytelling/SKILL.md)。原始 v8.8 大段历史说明已归档，不允许作为今天的最新执行指令。新非负财务桑基统一由 research/shared/unified_income_sankey.py 输出单一营业收入合计节点＋合法成本/利润；银行、集团毛利和负利润使用不同的合法语法。**十一家公司标准一致的目标≠十一家公司都已完成迁移，未迁移的七家必须写 LEGACY_NOT_UNIFIED。** 本次新图须重新通过原始 PDF/HTML SHA/浏览器/Cloudflare 才能认证；独立财经/视觉总编仍未审核。
+
+
+
 ## 2026-11-07 活动候选 PR #35：研究深度、真实桑基和严格零记忆交接
 
 **先判定 main 与候选分支，禁止混淆已发布内容和未合并质量改进。** 最新审查工作见 [候选真实交接](docs/ACTIVE_PR35_HANDOFF.md)、[研究与 AEI/FT 质量评分合同](docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md)，机器可检状态 research/quality/active-pr35.json。PR [#35](https://github.com/kobolibra/financials/pull/35) 使用 quality/aei-sankey-source-contract-v1；开始新会话必须重新查询 GitHub main/PR HEAD 和每项 Actions 的准确 SHA，而非引用这段日期快照。
