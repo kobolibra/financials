@@ -1,5 +1,9 @@
 # AGENTS.md — Financials in Visuals (repository-wide agent operating contract)
 
+**v9.0.0 execution priority:** Read the concise full canonical `skills/ashare-financial-storytelling/SKILL.md` and `docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md` before rendering any new financial figure. Historical v8.8 is archived; do not treat its stale mandatory old-fail examples as current instructions. The sole connected legal positive-flow Sankey renderer is `research/shared/unified_income_sankey.py`. Confirm 11-issuer catalogue, current main vs PR source SHA, and explicitly classify seven old publishers LEGACY_NOT_UNIFIED rather than silently calling a mixed-version corpus "one system".
+
+
+
 **Active candidate overlay (2026-11-07):** On any Financials quality, AEI, V10 Sankey, PR #35 or cross-chat continuity request, read [docs/ACTIVE_PR35_HANDOFF.md](docs/ACTIVE_PR35_HANDOFF.md) and machine [research/quality/active-pr35.json](research/quality/active-pr35.json) **after** confirming real main and PR head. This is an UNMERGED candidate; never equate preview SHA with live production. New WPS desktop 3-stage source-own COGS/GP and tiny Moutai negative-margin zoom require fresh source-bound rebuild, 3-width CJK browser and Cloudflare exact-byte receipts. Run python scripts/check_pr35_quality_handoff.py as a separate quality/continuity gate; independent human finance/editorial review and 20–30 unseen future samples remain NOT_CHECKED.
 
 
