@@ -154,8 +154,14 @@ def inspect_published_figure(code: str, expected: dict, figure_html: str) -> lis
     elif kind == "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
         if not sankey:
             issues.append("GROUP_GROSS_ALLOCATION_FIGURE_MISSING")
-        if "PRODUCT_LEVEL_GP_NOT_ESTABLISHED" not in visible:
+        if 'data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED"' not in figure_html:
+            issues.append("GROUP_ONLY_NO_MACHINE_READABLE_NONATTRIBUTION")
+        if "未披露各业务" not in visible or "不能" not in visible:
             issues.append("GROUP_ONLY_NO_VISIBLE_PRODUCT_GP_LIMITATION")
+        # Typed internal sentinel is for the machine. It must never be
+        # displayed as a giant red code on a reader-facing 390px financial SVG.
+        if re.search(r'<text\b[^>]*>[^<]*PRODUCT_LEVEL_GP_NOT_ESTABLISHED', figure_html):
+            issues.append("GROUP_ONLY_INTERNAL_MACHINE_TAG_VISIBLE_TO_READER")
     elif kind == "TYPE_C_SANKEY_OMITTED":
         if sankey:
             issues.append("NEGATIVE_PRODUCT_GP_ILLEGAL_POSITIVE_SANKEY")
