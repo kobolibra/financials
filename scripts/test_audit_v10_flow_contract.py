@@ -114,9 +114,19 @@ class TypedV10FlowContractTests(unittest.TestCase):
         self.assertIn("NEGATIVE_PRODUCT_GP_ILLEGAL_POSITIVE_SANKEY",
                       MOD.inspect_published_figure("600519", expected, weak))
         correct = ('<figure data-flow-kind="TYPE_C_SANKEY_OMITTED">'
-                   'FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON '
-                   + expected["reason"] + ' 有符号产品毛利瀑布</figure>')
+                   '<svg data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" '
+                   'data-flow-reason="' + expected["reason"] + '">'
+                   '<title>其他业务负毛利，保留真实原始元比例</title>'
+                   '<rect data-local-inset-source="other_rev" '
+                   'data-original-yuan="44636527.18"/></svg>'
+                   '<p>局部放大｜独立金额比例尺，负毛利不能画正向桑基</p></figure>')
         self.assertFalse(MOD.inspect_published_figure("600519", expected, correct))
+        not_zoomed = correct.replace('data-local-inset-source="other_rev"', 'data-fake-cosmetic-bar="other_rev"')
+        self.assertIn("NEGATIVE_TINY_PRODUCT_GP_MAGNIFIER_MISSING",
+                      MOD.inspect_published_figure("600519", expected, not_zoomed))
+        not_disclosed = correct.replace("局部放大｜独立金额比例尺", "辅助条形图")
+        self.assertIn("INDEPENDENT_SCALE_NOT_DISCLOSED_TO_READERS",
+                      MOD.inspect_published_figure("600519", expected, not_disclosed))
 
     def test_midea_group_only_needs_visible_no_product_gp_warning(self):
         expected = MOD.classify(ROOT, "000333")
