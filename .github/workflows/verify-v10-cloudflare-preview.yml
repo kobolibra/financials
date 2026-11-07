@@ -32,6 +32,10 @@ jobs:
           python -m playwright install --with-deps chromium webkit
           sudo apt-get install -y -qq fonts-noto-cjk
           fc-cache -f
+      - name: Confirm this exact PR version is internally consistent before testing remote published HTML
+        run: |
+          python scripts/check_pr35_quality_handoff.py
+          python -m unittest discover -s scripts -p test_check_pr35_quality_handoff.py -v
       - name: Read actual current PR branch deployment and production bytes, then inspect all finance SVG in touch browsers
         env:
           FINANCIALS_PR_PREVIEW: https://quality-aei-sankey-source-co.financials-in-visuals.pages.dev
