@@ -6,6 +6,9 @@ on:
       - 'scripts/test_audit_v10_flow_contract.py'
       - 'scripts/audit_unified_visual_corpus.py'
       - 'scripts/test_audit_unified_visual_corpus.py'
+      - 'scripts/check_release_contract.py'
+      - 'research/issuers/688220/release-gates.json'
+      - 'research/issuers/601628/release-gates.json'
       - 'research/shared/editorial_financial_flow.py'
       - 'research/shared/unified_income_sankey.py'
       - 'research/shared/source_income_adapter.py'
@@ -24,6 +27,9 @@ on:
       - 'scripts/test_audit_v10_flow_contract.py'
       - 'scripts/audit_unified_visual_corpus.py'
       - 'scripts/test_audit_unified_visual_corpus.py'
+      - 'scripts/check_release_contract.py'
+      - 'research/issuers/688220/release-gates.json'
+      - 'research/issuers/601628/release-gates.json'
       - 'research/shared/editorial_financial_flow.py'
       - 'research/shared/unified_income_sankey.py'
       - 'research/shared/source_income_adapter.py'
@@ -56,6 +62,20 @@ jobs:
           python -m unittest discover -s research/shared -p 'test_v7_optical_income_adapter.py' -v
           python -m unittest discover -s research/shared -p 'test_source_income_adapter.py' -v
           python scripts/audit_unified_visual_corpus.py --out v10-11-issuer-actual-visual-adoption.json
+          python - <<'PY'
+          import json
+          v=json.load(open('v10-11-issuer-actual-visual-adoption.json'))
+          assert v["canonical_issuer_count"]==11
+          assert set(v["unified_positive_sankey_issuers"])=={"688111","000333","600036"}
+          assert set(v["lawful_signed_exception_issuers"])=={"600519"}
+          assert set(v["partial_hero_only_unified_remaining_art_legacy"])=={"300394","300308","300502","688220","600900","600276","601628"}
+          assert not v["legacy_not_unified"] and not v["failed_new_grammar"]
+          assert v["strict_all_11_visual_unification"]=="NOT_ESTABLISHED"
+          assert v["independent_visual_art_director"]=="NOT_CHECKED"
+          print("ELEVEN_REAL_ISSUERS_SEVEN_HERO_ONLY_REMAINING_ART_LEGACY_NOT_CERTIFIED")
+          PY
+          python scripts/check_release_contract.py
+          python scripts/check_visual_editorial_policy.py
       - name: Source-SHA frozen debt cannot become a new untyped publication
         run: |
           python scripts/audit_v10_flow_contract.py --out v10-typed-flow-audit.json
