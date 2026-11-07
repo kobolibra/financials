@@ -381,11 +381,17 @@ def mobile_figure(brief):
           f'<strong class="m-item-val">{sign}{formatted}亿</strong></div>'
           f'<div class="m-item-rail" aria-hidden="true"><i style="width:{scale:.6f}%"></i></div></div>'
         )
+    # Same source facts and accessible optional item ledger, but the first
+    # phone view is a true 330-unit financial Sankey, not a horizontal crop.
+    primary = render_insurance_premium(LEDGER,mobile=True) if fid=="premium" else ""
+    money_rows = ("<details class='premium-original-items'><summary>展开六项精确金额</summary>"
+                  +'<div class="m-items">'+"".join(rendered)+"</div></details>"
+                  if fid=="premium" else '<div class="m-items">'+"".join(rendered)+"</div>")
     return (
       f'<section class="mobile-chart" data-mobile-figure="{e(fid)}" aria-label="{e(brief["question"])}的完整手机金额图">'
       f'<div class="m-kicker">MOBILE FINANCIAL EXHIBIT · 全量阅读，无横向滚动</div>'
       f'<p class="m-method">{e(note)}</p>'
-      f'<div class="m-items">{"".join(rendered)}</div>'
+      f'{primary}{money_rows}'
       f'<p class="m-unit">金额：亿元，保留两位；原始计算为人民币百万元精度。每组线段共用零起点、按该组最大绝对金额绘制；负号及砖红色表示负向金额。'
       f'小于一像素的极小金额不会人为放大，详细原始行项可在本图下方展开。</p></section>'
     )
@@ -409,6 +415,9 @@ CSS += r'''
 /* Genuine 390px first-class finance figures: never trap reading in a 900px
    horizontal SVG window. Desktop retains the full editable source SVG. */
 .mobile-chart{display:none}
+.premium-original-items summary{font:700 11px/1.6 var(--font);color:#237A68;cursor:pointer;padding:12px 0}
+.premium-original-items .m-items{margin:12px 0 0}
+.mobile-chart[data-mobile-figure="premium"] svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]{display:block;max-width:100%;width:100%;height:auto;overflow:visible}
 @media(max-width:740px){
   .chart{display:none}
   .mobile-chart{display:block;width:100%;padding:17px 14px 20px;background:#fff;border:1px solid #E2E8E0;overflow:visible}
