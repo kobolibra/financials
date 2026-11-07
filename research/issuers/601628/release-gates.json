@@ -152,10 +152,10 @@
   },
   "unmerged_candidate": {
     "base_deployed_html_sha256": "b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0",
-    "candidate_full_html_sha256": "5c2455a5821a62b316a4a861d0cbe27e85e82c1486913e1620fe0eaafc971800",
+    "candidate_full_html_sha256": "5c498ceb1dddbe7db512835ae5e96f691758628208eb7f58f0ab737df39999c3",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
     "note": "This sha belongs to the changed PR source file only. Historical live release PASS and screenshots remain valid exclusively for the old main SHA. Do not claim new candidate deployed or screenshot certified until a real independent current-sha browser receipt."
   }
 }

@@ -1,20 +1,20 @@
 {
   "schema": "financials.insurer.local_candidate.v1",
-  "candidate_html_sha256": "5c2455a5821a62b316a4a861d0cbe27e85e82c1486913e1620fe0eaafc971800",
+  "candidate_html_sha256": "5c498ceb1dddbe7db512835ae5e96f691758628208eb7f58f0ab737df39999c3",
   "production_live_html_sha256": "NOT_CHECKED",
   "independent_human_art_review": "NOT_CHECKED",
   "screenshots": {
     "full_report_1440.png": {
-      "sha256": "97ed32462f542ba5752182c68a03eb76bb0a43a1685c97dbe310d4918e7e940f",
-      "bytes": 2130485
+      "sha256": "50f4aec6462208503113826fa8dfa0ece787279e964efc7f5dc491d186b3f498",
+      "bytes": 2173102
     },
     "full_report_768.png": {
-      "sha256": "f77bc9cbcac9b39bff41c329a9f237a98aafc13c87e7d4898a2db336d23a9517",
-      "bytes": 1704070
+      "sha256": "072c9aac4417fc93b823d5afe7aead0e535831df8186f876037436434f9a4a91",
+      "bytes": 1731328
     },
     "full_report_390.png": {
-      "sha256": "6e1089ff7e78a7c2be432e2298f7d5dd890946d571398a7f97561fe15c3337b6",
-      "bytes": 2031775
+      "sha256": "bae53094c0b642a0780a64c873de219986b4d176dd50aa2cb58ab9104edc4343",
+      "bytes": 2059395
     }
   }
 }
