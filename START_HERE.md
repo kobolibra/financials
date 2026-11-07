@@ -1,4 +1,6 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
+**Every new session's authoritative machine entrypoints:** `project-status.json` for current handoff and `site/research_catalog.json` for one actual 11-issuer canonical catalog. Requery GitHub HEAD; candidate branch snapshots never replace live source SHA evidence.
+
 
 **2026-11-07 newest seven-source-publisher hero migration (supersedes earlier paragraphs):** The actual shared desktop/native-phone source-yuan primary Sankeys cover 300394/300502/300308, 688220, 600900, 600276 and a separate *insurance-specific premium statistics* grammar for 601628. All seven remain **HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY** because their remaining original figures are not entirely ported. Three V10 issuers have connected income Sankeys and one has a legal signed alternative. Strict eleven-full-report visual/editorial unification **NOT_ESTABLISHED**; independent human signoff, current Cloudflare candidate HTML SHA and unseen period generalization **NOT_CHECKED**. Old "four fully legacy" and "seven fully legacy" text below is historical, not live instructions. Requery [machine census](scripts/audit_unified_visual_corpus.py) and [PR handoff](docs/ACTIVE_PR35_HANDOFF.md); do not mix insurer management premium with CAS25 service revenue.
 
