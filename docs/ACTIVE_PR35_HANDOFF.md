@@ -19,7 +19,7 @@
 1. START_HERE.md → project-status.json → PROJECT_STATE.md → AGENTS.md，取得最新 main 和 PR HEAD。
 2. 完整 skills/ashare-financial-storytelling/SKILL.md + research 01–05 五册全文（AEI 方法、A股机构研究、视觉编辑、法证分析、跨行业泛化）。
 3. docs/HANDOFF_PROTOCOL.md、docs/REPORT_RELEASE_CHECKLIST.md、docs/SKILL_EVOLUTION_PROTOCOL.md、skills/ashare-financial-storytelling/quality-regressions.json。
-4. 本 PR 的 machine status research/quality/active-pr35.json、docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md、V10 publisher.py、native_mobile.py、source type audit、QA 浏览器及源账本。
+4. 本 PR 的 machine status research/quality/active-pr35.json、research/quality/pr35-hero-figure-briefs.json（四家财务主图的真实来源事实、最强反证与未证问题）、docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md、V10 publisher.py、native_mobile.py、source type audit、QA 浏览器及源账本。
 5. research/rebuild-v10/build-manifest.json、strict-semantic-audit.json、real-browser-qa/result.json 和四个新 public/research/2026-h1-v10/*.html 的 **本次 SHA**；绝不能复用先前版本绿灯。
 6. PR 实际 Actions 和在线 Cloudflare 字节。2026-11-07 历史通过 #42344600791 原始 PDF 重建 / #42344715944 云预览全站路由和 108 真实 SVG 下载属于**旧候选 SHA**；不证明新图已被验收。
 
