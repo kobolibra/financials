@@ -30,13 +30,18 @@ with sync_playwright() as p:
   geometry=page.evaluate("""() => {
     const body=document.documentElement;
     const svg=document.querySelector('#chart-premium svg');
-    const nodes=[...svg.querySelectorAll('rect.money-source')].map(x=>({key:x.dataset.sourceKey,height:+x.getAttribute('height'),exact:x.dataset.exactYuan}));
-    const paths=[...svg.querySelectorAll('path.money-ribbon')].map(x=>({key:x.dataset.sourceKey,d:x.getAttribute('d'),v:+x.dataset.valueMillion}));
-    const sinks=[...svg.querySelectorAll('rect.money-sink')].map(x=>({fill:x.getAttribute('fill'),klass:x.getAttribute('class'),y:+x.getAttribute('y'),height:+x.getAttribute('height'),million:x.dataset.valueMillion,exact:x.dataset.exactYuan}));
+    const premium=(root)=>{
+      if(!root)return null;
+      return {total:+root.getAttribute('data-premium-yuan'),scale:+root.getAttribute('data-scale-yuan-per-svg-unit'),grammar:root.getAttribute('data-chart-grammar'),
+        view:root.viewBox.baseVal.width,
+        nodes:[...root.querySelectorAll('rect[data-node-role]')].map(n=>({id:n.getAttribute('data-node-id'),role:n.getAttribute('data-node-role'),amount:+n.getAttribute('data-node-yuan'),height:+n.getAttribute('height')})),
+        paths:[...root.querySelectorAll('path[data-ribbon-yuan]')].map(p=>({source:p.getAttribute('data-source-id'),stage:p.getAttribute('data-stage'),amount:+p.getAttribute('data-ribbon-yuan'),d:p.getAttribute('d'),scale:+p.getAttribute('data-scale-yuan-per-svg-unit')}))};
+    };
+    const graph=premium(svg),phone=premium(document.querySelector('#chart-premium .mobile-chart svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'));
     const malformedRects=[...document.querySelectorAll('.chart svg rect')].filter(x=>!/^#[0-9A-Fa-f]{6}$/.test(x.getAttribute('fill')||'')||((x.getAttribute('class')||'').includes('='))).map(x=>x.outerHTML.slice(0,200));
     const money=node=>[...document.querySelectorAll(node)].map(x=>({w:x.scrollWidth,visible:x.clientWidth}));
     const domContents=[...document.querySelectorAll('h1,h2,p,.intro,.closing,.figure,.wrap,footer,header,.topbar')].map(x=>({tag:x.tagName,rect:x.getBoundingClientRect().toJSON()}));
-    return {width:innerWidth,bodyWidth:body.scrollWidth,nodes,paths,sinks,malformedRects,charts:money('.chart'),visible:domContents,
+    return {width:innerWidth,bodyWidth:body.scrollWidth,graph,phone,malformedRects,charts:money('.chart'),visible:domContents,
       hasFont:document.fonts.check('16px "Noto Sans CJK SC"'),sourceTables:document.querySelectorAll('table').length,
       mobile:[...document.querySelectorAll('.mobile-chart')].map(el=>({
         family:el.dataset.mobileFigure,visible:getComputedStyle(el).display!=='none',
