@@ -1,5 +1,9 @@
 # PR #35 零记忆接续｜当前研究与视觉质量工程
 
+**2026-11-07 v9 设计统一更新**：旧 125KB v8.8 Skill 已完整归档在 docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md；唯一现行 v9 Skill 负责流程与硬门禁，五本原研究手册保留。行业语义先分类，正向收入流由 research/shared/unified_income_sankey.py 一个引擎实现，三个公司类型 Type A/B/BANK 使用同一真实连接的收入合计主干，茅台 Type C 使用不同合法有符号图。设计标准、AEI 公开案例与严格 11 家迁移现状在 docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md。新渲染产物必须按新的 HTML SHA 实际重建、截图和云端字节检查；**其余七家仍 LEGACY_NOT_UNIFIED**，不可将候选 4 家的通过宣称 11 家完成。独立总编与研究员未审稿。
+
+
+
 > 本文是 **候选 PR 状态**，绝不等同 main 正式上线。每次新会话必须重新获取真正的 GitHub main HEAD、PR #35 HEAD、Actions 最新状态和 Cloudflare 当前完整 HTML SHA。不能把这里的历史观测当作现在。机器合同：research/quality/active-pr35.json、scripts/check_pr35_quality_handoff.py。
 
 ## 当前确定的研究/编辑目标
@@ -16,14 +20,14 @@
 - 生产： https://financials-in-visuals.pages.dev/ 对应 main，公司总数与路由从 site/research_catalog.json 读取。
 - 候选： https://quality-aei-sankey-source-co.financials-in-visuals.pages.dev 对应 PR 分支；只有实际新 HTML SHA 等于候选源文件时，才能称预览该版本已验证。
 - 四家真实候选报告：688111 金山办公 9 图（Type A）；600519 贵州茅台 9 图（Type C）；000333 美的集团 10 图（Type B）；600036 招商银行 8 图（BANK）。不改动另外七家生产报告，不创设第二目录。
-- 唯一完整 Skill：skills/ashare-financial-storytelling/SKILL.md，版本 v8.8.0-rc1。GitHub 文件不是已装入 ChatGPT 全局的 Skill；Codex 使用 .agents/skills 包装器。当前没有真实独立财经和视觉第二审稿签字。
+- 唯一精简 v9 执行 Skill：skills/ashare-financial-storytelling/SKILL.md，版本 v9.0.0。GitHub 文件不是已装入 ChatGPT 全局的 Skill；Codex 使用 .agents/skills 包装器。当前没有真实独立财经和视觉第二审稿签字。
 
 ## 每个新 Agent 必读，按顺序，绝不以聊天记忆取代
 
 1. START_HERE.md → project-status.json → PROJECT_STATE.md → AGENTS.md，取得最新 main 和 PR HEAD。
 2. 完整 skills/ashare-financial-storytelling/SKILL.md + research 01–05 五册全文（AEI 方法、A股机构研究、视觉编辑、法证分析、跨行业泛化）。
 3. docs/HANDOFF_PROTOCOL.md、docs/REPORT_RELEASE_CHECKLIST.md、docs/SKILL_EVOLUTION_PROTOCOL.md、skills/ashare-financial-storytelling/quality-regressions.json。
-4. 本 PR 的 machine status research/quality/active-pr35.json、research/quality/pr35-hero-figure-briefs.json（四家财务主图的真实来源事实、最强反证与未证问题）、docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md、V10 publisher.py、native_mobile.py、source type audit、QA 浏览器及源账本。
+4. 本 PR 的 machine status research/quality/active-pr35.json、research/quality/pr35-hero-figure-briefs.json（四家财务主图的真实来源事实、最强反证与未证问题）、docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md、research/shared/unified_income_sankey.py、research/rebuild-v10/unified_finance.py、V10 publisher.py、native_mobile.py、source type audit、QA 浏览器及源账本。
 5. research/rebuild-v10/build-manifest.json、strict-semantic-audit.json、real-browser-qa/result.json 和四个新 public/research/2026-h1-v10/*.html 的 **本次 SHA**；绝不能复用先前版本绿灯。
 6. PR 实际 Actions 和在线 Cloudflare 字节。2026-11-07 历史通过 #42344600791 原始 PDF 重建 / #42344715944 云预览全站路由和 108 真实 SVG 下载属于**旧候选 SHA**；不证明新图已被验收。
 
