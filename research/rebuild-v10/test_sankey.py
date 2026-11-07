@@ -45,6 +45,14 @@ def test_presentation_has_original_source_native_finance_and_type():
         assert 'data-flow-kind="'+kind+'"' in html,(code,kind)
         assert 'width:850px;min-width:850px' not in html
         assert '.graphic-svg{display:none}' not in html
+        # A hidden SVG export button is a real mobile publication P0; export
+        # must use the actual rendered source-original phone/desktop SVG.
+        assert '.export{display:none}' not in html,(code,'MOBILE_EXPORT_HIDDEN')
+        assert '.export{display:inline-flex' in html,(code,'MOBILE_EXPORT_TOUCH_TARGET_MISSING')
+        assert 'min-height:44px' in html,(code,'PHONE_EXPORT_TOUCH_TARGET_TOO_SMALL')
+        assert "figure.querySelectorAll('.graphic-svg svg')" in html,(code,'EXPORT_NOT_VISIBILITY_SELECTED')
+        assert '全部七家公司' not in html,(code,'OUTDATED_ISSUER_CATALOG_LABEL')
+
         assert '<svg' in html and 'data-native-original-yuan="true"' in html
         assert '左右滑动' not in html
         assert html.count('class="graphic-svg desktop-finance')>=8
