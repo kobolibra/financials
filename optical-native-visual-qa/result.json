@@ -7,8 +7,8 @@
       "money_area": "PASS",
       "signed_accounting_and_svg_geometry": "PASS",
       "native_mobile_finance_no_inner_scroll": "NOT_MOBILE",
-      "sha256": "f24ff4b5949eb864228e431d396deebafc2ddf8f99f5f7711b3f5bef33376cc0",
-      "screenshot_sha256": "122da39b1fcd0768def8a490e54f1c7706d2bf5de5314149b985290ff80c2b89"
+      "sha256": "57d9713db8c816a1533b6ec3ff35c0ef952319590baaf8318db7a6a7224c5d62",
+      "screenshot_sha256": "4ce3fea963ee313d7b11999fca9e8514d4658429b202cc1bb8d79727a07ead81"
     },
     {
       "issuer": "300394",
@@ -17,8 +17,8 @@
       "money_area": "PASS",
       "signed_accounting_and_svg_geometry": "PASS",
       "native_mobile_finance_no_inner_scroll": "PASS",
-      "sha256": "f24ff4b5949eb864228e431d396deebafc2ddf8f99f5f7711b3f5bef33376cc0",
-      "screenshot_sha256": "fdedff1daccc434e590effdbfebc11e96690dc7b5a7f2aee85aa863cb4c9f41d"
+      "sha256": "57d9713db8c816a1533b6ec3ff35c0ef952319590baaf8318db7a6a7224c5d62",
+      "screenshot_sha256": "18ecd79e3ac5b298f505a5b3134605e3a05877d4731e64b6f5356bb8e458aaa4"
     },
     {
       "issuer": "300394",
@@ -27,8 +27,8 @@
       "money_area": "PASS",
       "signed_accounting_and_svg_geometry": "PASS",
       "native_mobile_finance_no_inner_scroll": "PASS",
-      "sha256": "f24ff4b5949eb864228e431d396deebafc2ddf8f99f5f7711b3f5bef33376cc0",
-      "screenshot_sha256": "4face0d1c0780062800a2f8291450fe3bb7da88a6710e6826c3afcc0ecd8ae13"
+      "sha256": "57d9713db8c816a1533b6ec3ff35c0ef952319590baaf8318db7a6a7224c5d62",
+      "screenshot_sha256": "971c40b7f98e684331fd5c5c6400e4f5ac328924e6c027c4191a82c9430d0127"
     },
     {
       "issuer": "300502",
@@ -37,8 +37,8 @@
       "money_area": "PASS",
       "signed_accounting_and_svg_geometry": "PASS",
       "native_mobile_finance_no_inner_scroll": "NOT_MOBILE",
-      "sha256": "45f69fcebc8c83d6c7064bc69ac5a3051a1c500e92714bdf790625ffa7d7e6b0",
-      "screenshot_sha256": "d8900dfc6ee52bec29217c987cd35e60c428f12fd57e0c809c82368b3decadbc"
+      "sha256": "28dc0ccd6c4475528f3665eaf34e1a5fba9b8c5fc05f49271caf1d869c415f03",
+      "screenshot_sha256": "63d30209cb01df1c7e712e6aa5e209697d652740e692b2626678e50c902c61c9"
     },
     {
       "issuer": "300502",
@@ -47,8 +47,8 @@
       "money_area": "PASS",
       "signed_accounting_and_svg_geometry": "PASS",
       "native_mobile_finance_no_inner_scroll": "PASS",
-      "sha256": "45f69fcebc8c83d6c7064bc69ac5a3051a1c500e92714bdf790625ffa7d7e6b0",
-      "screenshot_sha256": "c2884ae871fa39b1c46d7ebabe6511a20fdc3398f3394a8a09b113586b0d2664"
+      "sha256": "28dc0ccd6c4475528f3665eaf34e1a5fba9b8c5fc05f49271caf1d869c415f03",
+      "screenshot_sha256": "3d418e066530539a90eb2c177c530c143d6c1c554e507c93724a91cac318b857"
     },
     {
       "issuer": "300502",
@@ -57,8 +57,8 @@
       "money_area": "PASS",
       "signed_accounting_and_svg_geometry": "PASS",
       "native_mobile_finance_no_inner_scroll": "PASS",
-      "sha256": "45f69fcebc8c83d6c7064bc69ac5a3051a1c500e92714bdf790625ffa7d7e6b0",
-      "screenshot_sha256": "dafc831e37f033588264523aaec1cfca3b579221d3a2e9fff86bb83717ad3071"
+      "sha256": "28dc0ccd6c4475528f3665eaf34e1a5fba9b8c5fc05f49271caf1d869c415f03",
+      "screenshot_sha256": "f0fbaa89fad8f8164a5f14e890fadca82f55e9304204a53b00ab64e709feeb86"
     }
   ],
   "second_human_review": "NOT_CHECKED"
