@@ -92,7 +92,7 @@ jobs:
               assert evidence["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]=="PASS"
               candidate["candidate_full_html_sha256"]=actual
               candidate["current_sha_browser_proof"]="LOCAL_ONLY"
-              gate.write_text(json.dumps(record,ensure_ascii=False,indent=2)+"\\n",encoding="utf8")
+              gate.write_text(json.dumps(record,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
               print("UNMERGED_BROWSER_SOURCE_BOUND_CANDIDATE",code,actual)
           PY
           python scripts/check_release_contract.py
