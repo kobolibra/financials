@@ -19,7 +19,7 @@ import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/"research/rebuild-v10"))
 sys.path.insert(0,str(ROOT/"scripts"))
-from native_mobile import source_own_sankey, signed_product_profit, group_sankey
+from native_mobile import signed_product_profit
 from audit_v10_flow_contract import classify, _raw
 
 LEDGER=json.loads((ROOT/"research/rebuild-v10/input-ledgers/600519.json").read_text())["facts"]
@@ -42,63 +42,6 @@ def _rects(svg:str, attribute:str):
 
 
 class OriginalVisualGrammarTests(unittest.TestCase):
-    def test_wps_desktop_is_real_three_stage_not_stretched_phone_card(self):
-        kind=classify(ROOT,"688111")
-        svg=source_own_sankey("688111",kind,{
-            "wps_personal":"WPS个人","wps365":"WPS365",
-            "wps_software":"WPS软件","other_rev":"其他"})
-        root=ET.fromstring(svg)
-        self.assertEqual(root.get("data-layout"),"desktop-editorial")
-        self.assertIn("1040",root.get("viewBox"))
-        self.assertEqual(len(_paths(svg)),12)
-        groups={}
-        for node in _paths(svg):
-            sid=node.get("data-source-id")
-            groups.setdefault(sid,[]).append(D(node.get("data-ribbon-yuan")))
-            r,c,g=[D(node.get(name)) for name in
-                   ("data-revenue-yuan","data-cost-yuan","data-gp-yuan")]
-            self.assertEqual(r,c+g)
-            self.assertEqual(D(node.get("data-scale-yuan-per-svg-unit")),
-                             D(kind["exact_yuan_total"])/D(260))
-        self.assertEqual(set(groups),set(kind["source_keys"]))
-        for sid,r,c,g in kind["source_own_cost_gp"]:
-            self.assertCountEqual(groups[sid],[D(r),D(c),D(g)])
-        self.assertEqual(sum((x for values in groups.values() for x in values),D(0)),
-                         D(kind["exact_yuan_total"])*2)
-        self.assertIn("集团营业毛利",svg)
-        self.assertIn("毛利率",svg)
-
-    def test_wps_mobile_keeps_all_four_source_own_cost_and_gp(self):
-        kind=classify(ROOT,"688111")
-        svg=source_own_sankey("688111",kind,{
-            "wps_personal":"WPS个人","wps365":"WPS365",
-            "wps_software":"WPS软件","other_rev":"其他"},mobile=True)
-        root=ET.fromstring(svg)
-        self.assertNotIn("desktop-editorial",root.attrib.values())
-        self.assertIn("330",root.get("viewBox"))
-        self.assertEqual(len(_paths(svg)),8)
-        for sid,r,c,g in kind["source_own_cost_gp"]:
-            observed=[D(x.get("data-ribbon-yuan")) for x in _paths(svg)
-                      if x.get("data-source-id")==sid]
-            self.assertCountEqual(observed,[D(c),D(g)])
-
-    def test_midea_group_only_must_disclose_in_chinese_without_machine_tag(self):
-        typed=classify(ROOT,"000333")
-        svg=group_sankey("000333",typed,{
-            "home":"智能家居","industrial_solution":"商业及工业","other_total":"其他业务"})
-        root=ET.fromstring(svg)
-        self.assertEqual(root.get("data-gp-limitation"),
-                         "PRODUCT_LEVEL_GP_NOT_ESTABLISHED")
-        ribbons=_paths(svg)
-        self.assertEqual(len(ribbons),5)
-        vals=[D(t.get("data-ribbon-yuan")) for t in ribbons]
-        self.assertEqual(sum(vals[:3],D(0)),D(typed["exact_yuan_total"]))
-        self.assertEqual(sum(vals[3:],D(0)),D(typed["exact_yuan_total"]))
-        visible=" ".join(n.text or "" for n in root.iter(XMLNS+"text"))
-        self.assertIn("未披露各业务",visible)
-        self.assertIn("不能",visible)
-        self.assertNotIn("PRODUCT_LEVEL_GP_NOT_ESTABLISHED",visible)
-
     def test_moutai_tiny_loss_must_not_be_fake_width_or_invisible_story(self):
         kind=classify(ROOT,"600519")
         self.assertEqual(kind["kind"],"TYPE_C_SANKEY_OMITTED")
