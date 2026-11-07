@@ -4,7 +4,7 @@ from decimal import Decimal as D, ROUND_HALF_UP
 import json, math, html, re, hashlib, sys
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'scripts'))
 from audit_v10_flow_contract import classify as typed_classify
-from native_mobile import mobile_for, source_own_sankey, signed_product_profit, FAMILY, NAME
+from native_mobile import mobile_for, signed_product_profit, NAME
 from unified_finance import render_typed_finance
 from verify import get, facts, check, SRC, SHA, HERE, LEDGER
 CFO_COMPONENTS=json.loads((HERE/"cfo_components.json").read_text())
