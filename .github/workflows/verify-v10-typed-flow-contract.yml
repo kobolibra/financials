@@ -8,6 +8,11 @@ on:
       - 'scripts/test_audit_unified_visual_corpus.py'
       - 'research/shared/editorial_financial_flow.py'
       - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/test_source_income_adapter.py'
+      - 'research/issuers/688220/source-ledger.json'
+      - 'research/issuers/600900/source-ledger.json'
+      - 'research/issuers/600276/source-ledger.json'
       - 'research/rebuild-v10/**'
       - 'public/research/2026-h1-v10/**'
       - 'research/visual-audit/quality-debt.json'
@@ -21,6 +26,11 @@ on:
       - 'scripts/test_audit_unified_visual_corpus.py'
       - 'research/shared/editorial_financial_flow.py'
       - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/test_source_income_adapter.py'
+      - 'research/issuers/688220/source-ledger.json'
+      - 'research/issuers/600900/source-ledger.json'
+      - 'research/issuers/600276/source-ledger.json'
       - 'research/rebuild-v10/**'
       - 'public/research/2026-h1-v10/**'
       - 'research/visual-audit/quality-debt.json'
@@ -44,6 +54,7 @@ jobs:
           # Test two original optical issuer ledgers against the same v9
           # compiler, without prematurely publishing or certifying legacy.
           python -m unittest discover -s research/shared -p 'test_v7_optical_income_adapter.py' -v
+          python -m unittest discover -s research/shared -p 'test_source_income_adapter.py' -v
           python scripts/audit_unified_visual_corpus.py --out v10-11-issuer-actual-visual-adoption.json
       - name: Source-SHA frozen debt cannot become a new untyped publication
         run: |
