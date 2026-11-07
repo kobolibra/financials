@@ -146,6 +146,8 @@ def main() -> int:
                             download=info.value
                             assert download.suggested_filename==fid+".svg",(code,width,fid,"EXPORT_FILE_NAME",download.suggested_filename)
                             exported=Path(download.path()).read_bytes()
+                            archive=OUT/f"{code}-{engine}-{width}-{fid}.svg"
+                            archive.write_bytes(exported)
                             assert exported.decode("utf8")==expected,(code,width,fid,
                                 "DOWNLOADED_SVG_NOT_SAME_AS_VISIBLE_ORIGINAL_MONEY_ART",
                                 sha(exported),sha(expected.encode()))
@@ -174,6 +176,7 @@ def main() -> int:
                                 "figure":fid,
                                 "active_source_original_edition":"native_mobile" if width<=850 else "desktop",
                                 "downloaded_exact_currently_visible_svg_sha256":sha(exported),
+                                "actual_exported_source_svg_archive":archive.name,
                                 "actual_original_svg_download_matches_visible_renderer":"PASS",
                                 "source_disclosure_mouse_and_keyboard":"PASS",
                                 "source_pdf_page_links":"PASS",
