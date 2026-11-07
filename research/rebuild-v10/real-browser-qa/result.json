@@ -8,7 +8,7 @@
     {
       "code": "688111",
       "width": 1440,
-      "html_sha256": "4b6ed41fbc180a03799b3deef901b6f802c687be6be559ab84505d5d7c5a948f",
+      "html_sha256": "3e6811e04e6d6f495c9082511c55864112e737d5614f4d0e3ae5f5bd7c0e2d20",
       "real_chromium": true,
       "actual_all_figures": 9,
       "figures": [
@@ -99,7 +99,7 @@
     {
       "code": "688111",
       "width": 768,
-      "html_sha256": "4b6ed41fbc180a03799b3deef901b6f802c687be6be559ab84505d5d7c5a948f",
+      "html_sha256": "3e6811e04e6d6f495c9082511c55864112e737d5614f4d0e3ae5f5bd7c0e2d20",
       "real_chromium": true,
       "actual_all_figures": 9,
       "figures": [
@@ -190,7 +190,7 @@
     {
       "code": "688111",
       "width": 390,
-      "html_sha256": "4b6ed41fbc180a03799b3deef901b6f802c687be6be559ab84505d5d7c5a948f",
+      "html_sha256": "3e6811e04e6d6f495c9082511c55864112e737d5614f4d0e3ae5f5bd7c0e2d20",
       "real_chromium": true,
       "actual_all_figures": 9,
       "figures": [
@@ -276,12 +276,12 @@
           "source_ribbon_actual_SVG_thickness": "PASS"
         }
       ],
-      "full_page_screenshot_sha256": "c8c6bbd19ff0c06751fbb20667fecfc8ee474b9323beeb96e93ee8941f20589a"
+      "full_page_screenshot_sha256": "89077c6bf2a42dfe12bcb95a8a772035cf4944b66ec25c92ba53348b5edc2232"
     },
     {
       "code": "600519",
       "width": 1440,
-      "html_sha256": "66dc1aba36286c428ba8bbc6b10052fc929654e0c9c7048e436b2a19c04ac12a",
+      "html_sha256": "9fda424e8d4e968f4c1d45fb3c1e57dda8a7c0c6f247df2d9bfb1e394e7f6bc6",
       "real_chromium": true,
       "actual_all_figures": 9,
       "figures": [
@@ -372,7 +372,7 @@
     {
       "code": "600519",
       "width": 768,
-      "html_sha256": "66dc1aba36286c428ba8bbc6b10052fc929654e0c9c7048e436b2a19c04ac12a",
+      "html_sha256": "9fda424e8d4e968f4c1d45fb3c1e57dda8a7c0c6f247df2d9bfb1e394e7f6bc6",
       "real_chromium": true,
       "actual_all_figures": 9,
       "figures": [
@@ -463,7 +463,7 @@
     {
       "code": "600519",
       "width": 390,
-      "html_sha256": "66dc1aba36286c428ba8bbc6b10052fc929654e0c9c7048e436b2a19c04ac12a",
+      "html_sha256": "9fda424e8d4e968f4c1d45fb3c1e57dda8a7c0c6f247df2d9bfb1e394e7f6bc6",
       "real_chromium": true,
       "actual_all_figures": 9,
       "figures": [
@@ -549,12 +549,12 @@
           "source_ribbon_actual_SVG_thickness": "PASS"
         }
       ],
-      "full_page_screenshot_sha256": "e5674debd64ccb63ec53df48e13fcedd3f516d6eaf45eceb9a4da710cf49e0b0"
+      "full_page_screenshot_sha256": "9008bdd5b885a656d20e863f83ca362e70cb0c9883eb1f2318fb42717f763200"
     },
     {
       "code": "000333",
       "width": 1440,
-      "html_sha256": "1e4593df5c9dca9ad55866d1d9db3453000118f38a0e8990b94ebc87d5804e45",
+      "html_sha256": "35bcf758b537a0db6c242f6fe10a6699d92b7233972549afc9a94fd73dd97c8f",
       "real_chromium": true,
       "actual_all_figures": 10,
       "figures": [
@@ -654,7 +654,7 @@
     {
       "code": "000333",
       "width": 768,
-      "html_sha256": "1e4593df5c9dca9ad55866d1d9db3453000118f38a0e8990b94ebc87d5804e45",
+      "html_sha256": "35bcf758b537a0db6c242f6fe10a6699d92b7233972549afc9a94fd73dd97c8f",
       "real_chromium": true,
       "actual_all_figures": 10,
       "figures": [
@@ -754,7 +754,7 @@
     {
       "code": "000333",
       "width": 390,
-      "html_sha256": "1e4593df5c9dca9ad55866d1d9db3453000118f38a0e8990b94ebc87d5804e45",
+      "html_sha256": "35bcf758b537a0db6c242f6fe10a6699d92b7233972549afc9a94fd73dd97c8f",
       "real_chromium": true,
       "actual_all_figures": 10,
       "figures": [
@@ -771,7 +771,7 @@
           "figure": "fig-02",
           "native_source_svg": true,
           "ribbon_count": 5,
-          "actual_figure_png_sha256": "858d518accf6a82fb78b8f8c375ce0ea86f012f04291b512037708a5d8256d9e",
+          "actual_figure_png_sha256": "6d6969a16e42364bd474272f87936fa2ecd9c6f6ceb1f934eded0f8eea440273",
           "scroll_free": "PASS",
           "CJK_text_inside_screen": "PASS",
           "source_ribbon_actual_SVG_thickness": "PASS"
@@ -849,12 +849,12 @@
           "source_ribbon_actual_SVG_thickness": "PASS"
         }
       ],
-      "full_page_screenshot_sha256": "ca2d20b06010e598057526fe4dabca9dca04ed7b75deb71ddeca09210af0cef1"
+      "full_page_screenshot_sha256": "d61fb9c9b066e270a2aa19b4f74ca15d0c3b38dd1328dcb7cac24638f85852af"
     },
     {
       "code": "600036",
       "width": 1440,
-      "html_sha256": "6d9c763341238a3606d3ab901184d7c8b08f047f4a60d0c653900c69e51ecd4d",
+      "html_sha256": "17e20ef509616c259aa7637e6da33a7c9c3556cfc9f5a17e168691023f962a13",
       "real_chromium": true,
       "actual_all_figures": 8,
       "figures": [
@@ -936,7 +936,7 @@
     {
       "code": "600036",
       "width": 768,
-      "html_sha256": "6d9c763341238a3606d3ab901184d7c8b08f047f4a60d0c653900c69e51ecd4d",
+      "html_sha256": "17e20ef509616c259aa7637e6da33a7c9c3556cfc9f5a17e168691023f962a13",
       "real_chromium": true,
       "actual_all_figures": 8,
       "figures": [
@@ -1018,7 +1018,7 @@
     {
       "code": "600036",
       "width": 390,
-      "html_sha256": "6d9c763341238a3606d3ab901184d7c8b08f047f4a60d0c653900c69e51ecd4d",
+      "html_sha256": "17e20ef509616c259aa7637e6da33a7c9c3556cfc9f5a17e168691023f962a13",
       "real_chromium": true,
       "actual_all_figures": 8,
       "figures": [
@@ -1035,7 +1035,7 @@
           "figure": "fig-02",
           "native_source_svg": true,
           "ribbon_count": 7,
-          "actual_figure_png_sha256": "8ae38bc3ffa5d75ca47135130170f32f43dd51817e11d2eafe5523c73a31229e",
+          "actual_figure_png_sha256": "0f4a746cb150bda5db39a5d0f19399451a9c307c7e6dabb17adc4b31b91fc617",
           "scroll_free": "PASS",
           "CJK_text_inside_screen": "PASS",
           "source_ribbon_actual_SVG_thickness": "PASS"
@@ -1095,7 +1095,7 @@
           "source_ribbon_actual_SVG_thickness": "PASS"
         }
       ],
-      "full_page_screenshot_sha256": "84a109935b44f7ec224e940abf866a6394087f656338008eeec9ccc277202e43"
+      "full_page_screenshot_sha256": "bd2535cbbe21a6ce9ce8c8a137fa47486d08d1d4f704210b3dad35eb1709d2d8"
     }
   ]
 }
