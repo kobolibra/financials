@@ -128,46 +128,38 @@ with sync_playwright() as p:
     r=el["rect"]
     if r["width"]>0 and r["height"]>0:
      assert r["left"]>=-2 and r["right"]<=width+2,(el["tag"],"NON_SCROLLING_MOBILE_CONTENT_CLIPPED",r)
-  assert len(geometry["nodes"])==4 and len(geometry["paths"])==6
-  assert not geometry["malformedRects"], ("SVG_RECT_MALFORMED_OR_UNPAINTED",width,geometry["malformedRects"])
-  assert len(geometry["sinks"])==1,("MISSING_PREMIUM_TOTAL_MONEY_SINK",width,geometry["sinks"])
-  sink=geometry["sinks"][0]
-  assert sink["klass"]=="money-sink",("BAD_SVG_SINK_CLASS",sink)
-  assert sink["fill"]=="#123F3A",("UNPAINTED_PREMIUM_TOTAL_SINK",sink)
-  assert sink["million"]=="536634" and sink["exact"]==F["premium_total"]["yuan"],("PREMIUM_SINK_WRONG_SOURCE_AMOUNT",sink)
-  assert math.isclose(sink["height"],268.0,abs_tol=0.00001) and math.isclose(sink["y"],82.0,abs_tol=0.00001),("PREMIUM_MONEY_SINK_NOT_CONSERVED",sink)
-  total=536634.0
-  expected={
-   "premium_first_regular":101294,
-   "premium_single":17696,
-   "premium_short":61049,
-   "premium_renew":356595
-  }
-  for node in geometry["nodes"]:
-   k=node["key"];assert k in expected
-   assert math.isclose(node["height"],268*expected[k]/total,abs_tol=.0005),(k,"VISUAL_RECT_GEOMETRY",node)
-   assert node["exact"]==F[k]["yuan"],(k,"RECT_SOURCE_DRIFT")
-  actual_flow={x["key"]:[] for x in geometry["paths"]}
-  for path in geometry["paths"]:
-   # SVG actual path starts M x,source_y and has a first L x,target_y.
-   # Parse true path coordinates, do not trust just correct data-*.
-   import re
-   nums=re.findall(r"[-+]?(?:\d+\.\d+|\d+)",path["d"])
-   # format starts 'M {x},{ya} C ... L {x},{zb} ...';
-   ystart=float(nums[1]); ylow=float(nums[3]); end=float(nums[13])
-   # The geometry under test is source thickness. Extract the first
-   # M y and the third pair following first L.
-   coords=re.findall(r"\b([ML])\s+([\d.]+),([\d.]+)",path["d"])
-   assert len(coords)>=2,(path["key"],"PATH_COORDS_NOT_PARSEABLE",path["d"][:150])
-   yend=float(coords[1][2])
-   expectedheight=268*path["v"]/total
-   assert math.isclose(abs(yend-ystart),expectedheight,abs_tol=.0006),(path["key"],"NOT_MONEY_WEIGHTED_ACTUAL_PATH",yend-ystart,expectedheight)
-   actual_flow[path["key"]].append(path["v"])
-  assert all(len(actual_flow[k])==1 and actual_flow[k][0]==expected[k] for k in ["premium_first_regular","premium_single","premium_short"]), "LEFT_SOURCES_NOT_EXACT"
-  assert len(actual_flow["premium_renew"])==2 and actual_flow["premium_renew"]==[356595,356595], "RENEWAL_INTERMEDIATE_NOT_CLOSED"
-  assert len(actual_flow["premium_new"])==1 and actual_flow["premium_new"][0]==180039, "NEW_INTERMEDIATE_NOT_CLOSED"
-  assert sum(actual_flow[k][0] for k in ["premium_first_regular","premium_single","premium_short"])==actual_flow["premium_new"][0], "NEW_SOURCE_CONSERVATION"
-  assert actual_flow["premium_new"][0]+actual_flow["premium_renew"][1]==536634,"TOTAL_SINK_NOT_CLOSED"
+  assert not geometry["malformedRects"],("SVG_RECT_MALFORMED_OR_UNPAINTED",width,geometry["malformedRects"])
+  for view,graph in (("desktop",geometry["graph"]),("phone",geometry["phone"])):
+   assert graph and graph["grammar"]=="INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL",(width,view,"INSURANCE_PREMIUM_SEMANTIC_GRAMMAR_MISSING")
+   assert graph["view"]==(1100 if view=="desktop" else 330)
+   assert abs(graph["total"]-float(F["premium_total"]["yuan"]))<.001 and graph["scale"]>0
+   sources=[x for x in graph["nodes"] if x["role"]=="premium-source"]
+   buckets=[x for x in graph["nodes"] if x["role"]=="premium-bucket"]
+   totals=[x for x in graph["nodes"] if x["role"]=="premium-total"]
+   assert len(sources)==4 and len(buckets)==2 and len(totals)==1,(width,view,"TRUE_INSURANCE_PREMIUM_NODES_MISSING")
+   assert totals[0]["id"]=="premium-total"
+   stage_a=[x for x in graph["paths"] if x["stage"]=="premium-source-to-new-or-renew"]
+   stage_b=[x for x in graph["paths"] if x["stage"]=="new-or-renew-to-premium-total"]
+   assert len(stage_a)==4 and len(stage_b)==2,(width,view,"TRUE_INSURANCE_PREMIUM_RIBBONS_MISSING")
+   assert abs(sum(x["amount"] for x in stage_a)-graph["total"])<.001
+   assert abs(sum(x["amount"] for x in stage_b)-graph["total"])<.001
+   for node in graph["nodes"]:
+    assert abs(node["height"]-node["amount"]/graph["scale"])<.001,(width,view,"REAL_INSURANCE_PREMIUM_SOURCE_SCALE",node)
+   for ribbon in graph["paths"]:
+    assert ribbon["scale"]>0 and ribbon["amount"]>0
+    # Inspect ACTUAL vector geometry, not just data-* amounts.
+    # path is M x y C ... L x y C ... Z.
+    import re
+    start=re.match(r'^M ([0-9.]+) ([0-9.]+) C ',ribbon["d"])
+    endpoint=re.search(r' L [0-9.]+ ([0-9.]+) C ',ribbon["d"])
+    assert start and endpoint,(width,view,"INSURANCE_PREMIUM_NOT_CLOSED_BEZIER_PATH",ribbon)
+    thickness=abs(float(endpoint.group(1))-float(start.group(2)))
+    assert abs(thickness-ribbon["amount"]/graph["scale"])<.001,(width,view,"INSURANCE_PREMIUM_PHYSICAL_RIBBON_HEIGHT_FALSE",thickness,ribbon)
+   for key in ("premium_first_regular","premium_single","premium_short","premium_renew"):
+    source=next((x for x in sources if x["id"]==key),None)
+    assert source and abs(source["amount"]-float(F[key]["yuan"]))<.001,(width,view,"INSURANCE_P10_ORIGINAL_DISJOINT_SOURCE_WRONG",key)
+   assert abs(next(x for x in buckets if x["id"]=="premium_new")["amount"]-float(F["premium_new"]["yuan"]))<.001
+   assert abs(next(x for x in buckets if x["id"]=="premium_renew")["amount"]-float(F["premium_renew"]["yuan"]))<.001
   with page.expect_download(timeout=10000) as download:
    page.locator('[data-export="premium"]').click()
   got=download.value
