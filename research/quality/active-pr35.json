@@ -148,6 +148,21 @@
     "issuer_601628_legal_grammar": "MANAGEMENT_PREMIUM_4_SOURCE_TO_NEW_RENEW_TO_TOTAL_NOT_CAS25_REVENUE",
     "strict_all_11_visual_unification": "NOT_ESTABLISHED",
     "pending": "INDEPENDENT_FINANCE_AND_ART_REVIEW__ALL_OTHER_FIGURES_SOURCE_AUDIT__CURRENT_CLOUDFLARE_HTML_SHA__UNSEEN_PERIODS",
-    "current_census": "scripts/audit_unified_visual_corpus.py"
+    "current_census": "scripts/audit_unified_visual_corpus.py",
+    "current_11_issuer_side_by_side_review": {
+      "workflow": "https://github.com/kobolibra/financials/actions/runs/42363228984",
+      "result": "PASS_REAL_33_CURRENT_CJK_NATIVE_FINANCE_SCREENSHOTS",
+      "viewport_widths": [
+        1440,
+        768,
+        390
+      ],
+      "issuers": 11,
+      "original_report_sha_bound": true,
+      "issuer_600519": "SIGNED_NATIVE_EXCEPTION_CAPTURES_TRUE_SVG_NO_FAKE_SANKEY",
+      "art_director_independent_human": "NOT_CHECKED",
+      "full_11_multi_figure_edition": "NOT_ESTABLISHED",
+      "cloudflare_latest_live_same_sha": "NOT_CHECKED"
+    }
   }
 }
