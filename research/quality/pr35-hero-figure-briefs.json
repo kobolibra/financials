@@ -1,7 +1,7 @@
 {
   "schema": "financials.editorial_hero_briefs.v1",
   "scope": "four real 2026H1 issuers in PR35, exact source-model scope not independent market-data certification",
-  "as_of_date": "2026-11-07",
+  "as_of_date": "2026-11-08",
   "independent_financial_editor": "NOT_CHECKED",
   "independent_visual_director": "NOT_CHECKED",
   "hero_figures": [
@@ -26,7 +26,30 @@
       "strongest_countercase": "更高账面毛利率不自动说明现金商业化更好；研发与销售费用、续费率及归属股权投资收益尚未分摊",
       "business_driver_still_needed": "披露续费、ARPU、流失率及 WPS365 客单；法定归母与经调整利润税后归属",
       "geometry": "DESKTOP_1040_THREE_STAGE_SOURCE_TO_OWN_COST_AND_GP_TO_GROUP_SINK; PHONE_330_SOURCE_OWN_MONEY_BANDS",
-      "unproven": "MULTI_QUARTER_COUPLING_AND_INDEPENDENT_5_SECOND_READ"
+      "unproven": "MULTI_QUARTER_COUPLING_AND_INDEPENDENT_5_SECOND_READ",
+      "quantified_driver": {
+        "formula": "GROSS_PROFIT_YOY_CHANGE",
+        "evidence_source": "ledger",
+        "fact_keys": [
+          "rev",
+          "cogs",
+          "rev_prior",
+          "cogs_prior"
+        ],
+        "expected_yuan": "553402832.28",
+        "physical_pdf_pages": [
+          6,
+          29
+        ],
+        "source_pdf_sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+        "unit": "CNY_YUAN",
+        "causality_status": "ACCOUNTING_ARITHMETIC_ONLY_NOT_CAUSAL",
+        "independent_financial_review": "NOT_CHECKED",
+        "decision_use": "毛利同比增加约5.53亿元，但必须将这部分业务毛利变化与法定归母利润、权益法投资收益和实际经营现金流分别讨论，不能把全部利润增长认定为订阅业务经营驱动。",
+        "strongest_alternative": "产品组合变化、一次性许可确认或成本结构变化也可能解释毛利增量；单期收入与成本数据只能证明算术差异，不能单独证明续费率或定价权提高。",
+        "next_disclosure_falsifier": "取得连续8至12季度按同口径的WPS个人、WPS365和软件业务收入及成本，并取得续费率、付费席位、ARPU；若分部毛利改善无法延续则持续商业化论点需要修正。",
+        "scope_and_limitations": "该等式比较2026H1与2025H1的合并收入和成本，仅为精确人民币元的会计毛利同比差，不是增量利润的因果归因，也不等于现金、归母或投资收益。"
+      }
     },
     {
       "issuer": "600519",
@@ -47,7 +70,27 @@
       "strongest_countercase": "小业务亏损金额不能反推酒类盈利恶化；财务公司成员存款和同业资金往来才是 CFO 超常增长的首要审查对象",
       "business_driver_still_needed": "财务公司分主体现金/内部抵销、酒类渠道动销库存与价盘、产品量价结构",
       "geometry": "DESKTOP_1040_SIGNED_ORIGINAL_SCALE_WITH_EXPLICIT_SEPARATE_INSET; PHONE_330_ORIGINAL_SCALE_INSET; NEGATIVE_NO_FAKE_WIDTH",
-      "unproven": "REAL_TERMINAL_SALES_AND_INDEPENDENT_5_SECOND_READ"
+      "unproven": "REAL_TERMINAL_SALES_AND_INDEPENDENT_5_SECOND_READ",
+      "quantified_driver": {
+        "formula": "OPERATING_CASH_YOY_CHANGE",
+        "evidence_source": "ledger",
+        "fact_keys": [
+          "cfo",
+          "cfo_prior"
+        ],
+        "expected_yuan": "57571689087.73",
+        "physical_pdf_pages": [
+          34
+        ],
+        "source_pdf_sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+        "unit": "CNY_YUAN",
+        "causality_status": "ACCOUNTING_ARITHMETIC_ONLY_NOT_CAUSAL",
+        "independent_financial_review": "NOT_CHECKED",
+        "decision_use": "合并经营现金流同比净增加约575.72亿元，只证明集团合并现金流变化，必须另行分解白酒销售收现、财务公司成员存款与同业资金流动，才可判断经营现金改善可持续性。",
+        "strongest_alternative": "销售回款确有改善和财务公司资金净流入可能同时成立；未经分主体与内部抵销桥，不能将合并经营现金流增加归因于白酒终端动销或客户支付能力。",
+        "next_disclosure_falsifier": "下一期取得可核对的金融子公司分部现金流、合并抵销、成员存款及同业往来明细，并结合渠道库存和合同负债；若资金收付逆转而酒业收现未增，经营质量假设需要修正。",
+        "scope_and_limitations": "严格对比2026H1与2025H1的合并经营活动现金净额，未经过财务公司拆分、销售现金与存款变化归因，不将该差额视为酒业现金创造的净增长。"
+      }
     },
     {
       "issuer": "000333",
@@ -67,7 +110,29 @@
       "strongest_countercase": "工业方案内部子行业和海外地域不是可继续相加的新业务；金融子公司收入另在总收入口径",
       "business_driver_still_needed": "业务分部合法成本、海外本币/价量、税前衍生品到税后归属及 OCI、风险对冲效果",
       "geometry": "TYPE_B_MAIN_GROUP_COST_GP_ONLY; CHINESE_VISIBLE_UNKNOWN_PRODUCT_GP; MACHINE_TAG_IN_SVG_METADATA_ONLY",
-      "unproven": "PRODUCT_LEVEL_MARGINS_AND_INDEPENDENT_5_SECOND_READ"
+      "unproven": "PRODUCT_LEVEL_MARGINS_AND_INDEPENDENT_5_SECOND_READ",
+      "quantified_driver": {
+        "formula": "PARENT_VS_DEDUCTED_YOY_DIVERGENCE",
+        "evidence_source": "ledger",
+        "fact_keys": [
+          "parent_ni",
+          "parent_ni_prior",
+          "reg_ni",
+          "reg_ni_prior"
+        ],
+        "expected_yuan": "7072567000",
+        "physical_pdf_pages": [
+          7
+        ],
+        "source_pdf_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+        "unit": "CNY_YUAN",
+        "causality_status": "ACCOUNTING_ARITHMETIC_ONLY_NOT_CAUSAL",
+        "independent_financial_review": "NOT_CHECKED",
+        "decision_use": "归母利润同比增加4.32347亿元，而扣非归母利润减少66.4022亿元，两种利润增量相差70.72567亿元，需追查非经常性损益税后归属以及衍生工具的真实风险抵消关系。",
+        "strongest_alternative": "扣非变化并不自动代表核心业务整体衰退，衍生品估值收益也不自动代表所有汇兑风险已对冲；税前损益、OCI、所得税与少数股东归属口径不能被直接相减。",
+        "next_disclosure_falsifier": "获得衍生金融工具逐类期初期末敞口、当期结算、公允价值进入损益与OCI的桥，以及税后非经常性项目归属；若无法与扣非差额勾稽，套保解释应下调可信度。",
+        "scope_and_limitations": "2026H1对比2025H1，计算的是两种已披露归母利润指标的同比增量差额，不是确证衍生工具贡献，也不等于对非经常性损益逐项税后归属的完整重构。"
+      }
     },
     {
       "issuer": "600036",
@@ -89,7 +154,31 @@
       "strongest_countercase": "利息支出下降可能主要来自共同利率周期，并不自动证实结构性低成本负债优势，需日均生息基数",
       "business_driver_still_needed": "日均资产负债与净息差量价、零售不良迁徙、拨备、风险加权资产增长",
       "geometry": "BANK_NET_INTEREST_ALREADY_NET_NO_SECOND_SUBTRACTION; ORIGINAL_YUAN_NET_REVENUE_TO_OPERATING_PROFIT",
-      "unproven": "PEER_CREDIT_LOSS_AND_INDEPENDENT_5_SECOND_READ"
+      "unproven": "PEER_CREDIT_LOSS_AND_INDEPENDENT_5_SECOND_READ",
+      "quantified_driver": {
+        "formula": "BANK_NET_INTEREST_YOY_BRIDGE",
+        "evidence_source": "extras",
+        "fact_keys": [
+          "interest_in",
+          "interest_in_prior",
+          "interest_out",
+          "interest_out_prior",
+          "nii",
+          "nii_prior"
+        ],
+        "expected_yuan": "5937000000",
+        "physical_pdf_pages": [
+          89
+        ],
+        "source_pdf_sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+        "unit": "CNY_YUAN",
+        "causality_status": "ACCOUNTING_ARITHMETIC_ONLY_NOT_CAUSAL",
+        "independent_financial_review": "NOT_CHECKED",
+        "decision_use": "利息收入同比下降42.81亿元，利息支出同比下降102.18亿元，相减使净利息收入反而增加59.37亿元；下一层必须拆解日均资产负债规模和收益率变化，才可讨论负债竞争优势。",
+        "strongest_alternative": "净利息收入改善可能受行业利率普降及计息负债重定价影响，而非招商银行独有的存款护城河；日均生息规模、付息负债结构和同业对照未完成前不可作因果认证。",
+        "next_disclosure_falsifier": "取得日均生息资产及计息负债、收益率和付息成本率连续季度数据，按规模与利差做可复算桥并对比同业；若优势主要来自共同降息，结构性存款竞争力命题须调整。",
+        "scope_and_limitations": "使用2026H1和2025H1两期银行利息收支及净利息收入，属于净额的会计算术桥；不混入贷款减值、银行现金流或制造业毛利率，不推断NIM量价驱动。"
+      }
     }
   ]
 }
