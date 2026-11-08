@@ -1,12 +1,15 @@
 name: V10 original-source native finance rebuild and browser QA
 on:
   push:
-    branches: [quality/postmerge-visual-research-hardening-20261108]
+    branches: [quality/sector-live-contract-research-brief-v1]
     paths:
       - '.github/workflows/verify-v10-native-rebuild.yml'
       - 'research/rebuild-v10/native_mobile.py'
       - 'research/rebuild-v10/test_editorial_chart_quality.py'
       - 'research/rebuild-v10/publisher.py'
+      - 'research/quality/pr35-hero-figure-briefs.json'
+      - 'scripts/audit_published_research_depth.py'
+      - 'scripts/test_audit_published_research_depth.py'
       - 'research/rebuild-v10/qa_native_browser.py'
       - 'research/rebuild-v10/download_originals.py'
       - 'research/shared/editorial_financial_flow.py'
@@ -48,6 +51,11 @@ jobs:
       - name: Verify exact same generated HTML is the proposed independent publication
         run: |
           cp research/rebuild-v10/site/{600036,688111,600519,000333}.html public/research/2026-h1-v10/
+          # The SOURCE-BOUND research must be visible in the published HTML:
+          # never certify a standalone internal research JSON as a reader result.
+          python scripts/audit_published_research_depth.py
+          python -m unittest discover -s scripts -p 'test_audit_published_research_depth.py' -v
+          python -O -m unittest discover -s scripts -p 'test_audit_published_research_depth.py' -v
           # First mint a genuinely current original-source typed semantic
           # receipt, THEN bind it and the actual browser PNG receipts to
           # the current four HTML SHA. Old audit JSON is NEVER authoritative.
@@ -71,9 +79,9 @@ jobs:
           # PR source-gate QA can advance the branch while original PDFs are
           # being downloaded. Rebase on the exact current remote rather than
           # force-pushing over changes, and fail closed on a real conflict.
-          git fetch origin quality/postmerge-visual-research-hardening-20261108
+          git fetch origin quality/sector-live-contract-research-brief-v1
           git rebase FETCH_HEAD
-          git push origin HEAD:quality/postmerge-visual-research-hardening-20261108
+          git push origin HEAD:quality/sector-live-contract-research-brief-v1
       - name: Save independent per-figure Chinese Chromium screenshot evidence
         if: always()
         uses: actions/upload-artifact@v4
