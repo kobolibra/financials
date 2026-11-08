@@ -103,12 +103,12 @@ def validate(briefs, ledgers, extras, manifest):
                 issues.append("RESEARCH_ORIGINAL_PHYSICAL_PAGE_MISSING_" + code + "_" + key)
             else:
                 pages.add(page)
+            expected_period = "2025H1" if key.endswith("_prior") else "2026H1"
+            if fact.get("period") != expected_period:
+                issues.append("RESEARCH_PERIOD_COLUMN_DRIFT_" + code + "_" + key)
             if source_kind == "ledger":
                 if fact.get("scope") != "consolidated" or fact.get("status") != "DISCLOSED":
                     issues.append("RESEARCH_UNDISCLOSED_OR_WRONG_CONSOLIDATION_" + code + "_" + key)
-                expected_period = "2025H1" if key.endswith("_prior") else "2026H1"
-                if fact.get("period") != expected_period:
-                    issues.append("RESEARCH_PERIOD_COLUMN_DRIFT_" + code + "_" + key)
         if brief.get("physical_pdf_pages") != sorted(pages):
             issues.append("RESEARCH_PHYSICAL_PAGE_TRACE_MISMATCH_" + code)
         if len(values) == len(keys):
