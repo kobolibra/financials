@@ -104,7 +104,44 @@ with sync_playwright() as p:
                 const b=t.getBBox();return {x:b.x,y:b.y,right:b.x+b.width,bottom:b.y+b.height};});
               return {steps,texts,view:[view.width,view.height]};
             })""")
-            assert len(signed)>=5,(code,width,"MISSING_SIGNED_SOURCE_WATERFALLS")
+            assert len(signed)>=(4 if code=="300308" else 5),(code,width,"MISSING_SIGNED_SOURCE_WATERFALLS")
+            if code=="300308":
+                # The original optical source already has accurate signed money;
+                # now verify FIGURE 03's two editions use the SAME typed P&L
+                # with 7 precise actual-yuan stages, original 184-page SHA,
+                # honest unallocated operating difference, and no fake width.
+                from decimal import Decimal as D
+                both=page.evaluate("""() => [...document.querySelectorAll('figure.exhibit')].flatMap(f=>[...f.querySelectorAll('svg[data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"]')]).map(el=>{
+                  let r=el.getBoundingClientRect(),vb=el.viewBox.baseVal,
+                  labels=[...el.querySelectorAll('text')].map(t=>{let b=t.getBBox();return {text:t.textContent,left:b.x,right:b.x+b.width,bottom:b.y+b.height};});
+                  return {layout:el.dataset.layout,source:el.dataset.originalPdfSha256,
+                    gross:el.dataset.startGrossYuan,net:el.dataset.endNetYuan,
+                    visible:r.width>2,overflows:r.left< -2||r.right>innerWidth+2,
+                    clipped:labels.filter(z=>z.left< -2||z.right>vb.width+2||z.bottom>vb.height+2),
+                    rows:[...el.querySelectorAll('rect.unified-signed-statement-step')].map(n=>({
+                      name:n.dataset.stageId,before:n.dataset.beforeYuan,
+                      delta:n.dataset.signedYuan,after:n.dataset.afterYuan,
+                      width:n.getAttribute('width'),scale:n.dataset.moneyScaleYuanPerUnit,
+                      physical:n.dataset.physicalPages,ids:n.dataset.sourceFactIds,
+                      proof:n.dataset.moneyProvenance}))};
+                })""")
+                assert len(both)==2,(code,width,"MISSING_SHARED_OPTICAL_PNL_DESKTOP_PHONE")
+                assert {z["layout"] for z in both}=={"native-330","editorial-1040"}
+                for art in both:
+                    assert art["source"]=="e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf"
+                    assert D(art["gross"])==D("19323173654.59") and D(art["net"])==D("14733426763.13")
+                    assert not art["clipped"],(code,width,art["layout"],"SOURCE_PNL_CJK_LABEL_CLIPPED",art["clipped"])
+                    assert len(art["rows"])==7,(code,width,"SHARED_FULL_PNL_SEVEN_STEP_MISSING")
+                    assert any(row["proof"]=="DERIVED_UNATTRIBUTED_GROUP_OPERATING_NET_DIFFERENCE" for row in art["rows"]),(code,width,"FAKE_OPERATING_CAUSAL_DETAIL")
+                    for row in art["rows"]:
+                        assert D(row["before"])+D(row["delta"])==D(row["after"])
+                        assert abs(D(row["width"])-abs(D(row["delta"]))/D(row["scale"]))<D(".000001"),(code,width,row,"FALSE_MONEY_GEOMETRY")
+                        assert row["physical"] and row["ids"]
+                active=next(z for z in both if z["layout"]==("native-330" if width<=900 else "editorial-1040"))
+                inactive=next(z for z in both if z is not active)
+                assert active["visible"] and not inactive["visible"],(code,width,"SHARED_NATIVE_PNL_NOT_GENUINE_MOBILE")
+                assert not active["overflows"],(code,width,"SHARED_PNL_HORIZONTALLY_CROPPED")
+
             for panel in signed:
                 st=panel["steps"]
                 ratios=[z["width"]/abs(z["amount"]) for z in st if abs(z["amount"])>0]
