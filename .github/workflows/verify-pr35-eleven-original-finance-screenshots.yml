@@ -1,0 +1,53 @@
+name: PR35 actual eleven issuer side-by-side CJK source-finance visual audit
+on:
+  push:
+    branches: [quality/aei-sankey-source-contract-v1]
+    paths:
+      - '.github/workflows/verify-pr35-eleven-original-finance-screenshots.yml'
+      - 'scripts/qa_11_issuer_editorial_cross_browser.py'
+      - 'scripts/audit_unified_visual_corpus.py'
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/unified_insurance_premium.py'
+      - 'public/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  current-source-sha-33-real-cjk-readers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install real Chromium and original Chinese CJK font
+        run: |
+          python -m pip install -q playwright
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-cjk
+          fc-cache -f
+      - name: Original 11-issuer publication source and five legal finance grammar families
+        run: |
+          python scripts/audit_unified_visual_corpus.py --out /tmp/eleven-census.json
+          python -m unittest discover -s scripts -p test_audit_unified_visual_corpus.py -v
+          python scripts/check_release_contract.py
+          python scripts/check_visual_editorial_policy.py
+      - name: View 11 actual unique company report main money figures on 1440 768 390
+        run: |
+          python scripts/qa_11_issuer_editorial_cross_browser.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('research/quality/pr35-11-finance-original-browser/result.json').read_text())
+          assert len(r['screenshots'])==33
+          assert len({s['code'] for s in r['screenshots']})==11
+          assert r['full_11_issuer_aesthetic_and_research']=='NOT_ESTABLISHED'
+          assert r['human_second_art_and_financial_editor']=='NOT_CHECKED'
+          print('NOT_A_HUMAN_ART_APPROVAL_BUT_33_REAL_SHA_BOUND_CURRENT_SCREENSHOTS')
+          PY
+      - name: Preserve current actual same-page hero photos for independent 11-company art direction
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr35-eleven-issuer-33-current-sha-hero-visual-cjk-bento
+          path: research/quality/pr35-11-finance-original-browser/
+          retention-days: 30
+          if-no-files-found: warn

@@ -1,9 +1,12 @@
 name: Build and financially audit original China Life 601628 2026H1
 on:
   push:
-    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, work/601628-mobile-financial-visual-storytelling-v861, work/editorial-aei-11-issuer-visual-audit-20261104, main]
+    branches: [work/insurance-601628-original-2026h1-skill-stress, work/fix-601628-sankey-sink-svg-real-paint, work/601628-mobile-financial-visual-storytelling-v861, work/editorial-aei-11-issuer-visual-audit-20261104, quality/aei-sankey-source-contract-v1, main]
     paths:
       - 'research/issuers/601628/**'
+      - 'research/shared/unified_insurance_premium.py'
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/test_unified_insurance_premium.py'
       - '!research/issuers/601628/visual-qa/**'
       - '!research/issuers/601628/qa.json'
       - '!research/issuers/601628/source-critical-cells.json'
@@ -34,6 +37,7 @@ jobs:
           fi
           python research/issuers/601628/verify_source.py
           python -m unittest research/issuers/601628/test_accounting.py -v
+          python -m unittest discover -s research/shared -p test_unified_insurance_premium.py -v
           python research/issuers/601628/publish.py --out public/601628.html
       - name: Actual real Chromium source geometry, visual at 1440/768/390 and SVG export
         run: |
@@ -61,6 +65,45 @@ jobs:
           assert d['mobile_ledger_exact_value_and_geometry']=='PASS'
           print('COMPLETE_INSURANCE_CAS_BROWSER_AND_CLEAN_REBUILD_PASS')
           PY
+      - name: Prove current local candidate insurer original-PDF browser screenshots against source SHA
+        if: github.event_name == 'push' && github.ref_name != 'main'
+        run: |
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          base=Path("research/issuers/601628")
+          page=Path("public/601628.html")
+          sha=hashlib.sha256(page.read_bytes()).hexdigest()
+          receipt=json.loads((base/"visual-qa/result.json").read_text(encoding="utf8"))
+          assert receipt["code"]=="601628"
+          assert receipt["source_nodes_sinks_ribbons_exact_svg_geometric_proportions"]=="PASS"
+          views=receipt["original_actual_3_viewport_checks"]
+          assert {v["width"] for v in views}=={390,768,1440}
+          assert all(v["result"]=="PASS" and v["svg_export"]=="PASS" and
+                     v["body_no_overflow"]=="PASS" and v["cjk_font_available"] is True
+                     for v in views)
+          proof={"schema":"financials.insurer.local_candidate.v1",
+                 "candidate_html_sha256":sha,"production_live_html_sha256":"NOT_CHECKED",
+                 "independent_human_art_review":"NOT_CHECKED","screenshots":{}}
+          for width in (1440,768,390):
+              p=base/"visual-qa"/f"full_report_{width}.png"
+              raw=p.read_bytes()
+              assert len(raw)>10000
+              proof["screenshots"][p.name]={"sha256":hashlib.sha256(raw).hexdigest(),"bytes":len(raw)}
+          (base/"visual-qa/candidate-html-sha.json").write_text(
+              json.dumps(proof,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
+          gate=base/"release-gates.json"
+          record=json.loads(gate.read_text(encoding="utf8"))
+          candidate=record["unmerged_candidate"]
+          assert record["release_class"]=="source_limited_preview"
+          assert candidate["base_deployed_html_sha256"]==record["published_html_sha256"]
+          assert candidate["promotion_status"]=="UNMERGED_NOT_DEPLOYED"
+          assert candidate["independent_finance_and_art_review"]=="NOT_CHECKED"
+          candidate["candidate_full_html_sha256"]=sha
+          candidate["current_sha_browser_proof"]="LOCAL_ONLY"
+          gate.write_text(json.dumps(record,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
+          print("INSURER_PDF_ACCOUNTING_AND_TRUE_CJK_3_VIEW_CANDIDATE_ONLY",sha)
+          PY
       - name: Strict tracked main report must be identical to generated output
         if: github.ref_name == 'main'
         run: git diff --exit-code -- public/601628.html research/issuers/601628/qa.json
@@ -70,6 +113,8 @@ jobs:
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
           git add research/issuers/601628/source-critical-cells.json research/issuers/601628/qa.json research/issuers/601628/visual-qa/ public/601628.html
+          git add research/issuers/601628/release-gates.json research/issuers/601628/visual-qa/candidate-html-sha.json
+          git add -f research/issuers/601628/visual-qa/full_report_1440.png research/issuers/601628/visual-qa/full_report_768.png research/issuers/601628/visual-qa/full_report_390.png
           if ! git diff --cached --quiet; then
             git commit -m "Research and publish true source-audited 601628 insurance HTML and QA receipts"
             git pull --rebase origin "$GITHUB_REF_NAME"

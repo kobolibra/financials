@@ -1,26 +1,24 @@
-# Financials in Visuals · Dual-Track Research & Publication System v7
+# Financials in Visuals — canonical A-share research Skill v9.0.0
 
-The skill is no longer a one-chart Sankey imitation. It has **two independent research foundations** and one source-audited original visual reporting implementation.
+**The sole current execution contract is [SKILL.md](SKILL.md), not this README or the historical v7 subdirectory.** The former v7 report system remains in [v7/](v7/) as a case-study and regression fixture; its releases and screenshots cannot authorize new financial research publication.
 
-## Read the two research pillars separately
+## Zero-memory start and authoritative sources
 
-1. [App Economy Insights complete visual research analysis](research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md) — original first-party research, business-first framing, full P&L / balance / cash / FCF visual grammar, 6 pre-investment charts and their evidence requirements.
-2. [Professional A-share institutional financial research framework](research/02_ASHARE_INSTITUTIONAL_RESEARCH.md) — PRC accounting and CSRC disclosure, material financial-note interrogation, industry-specific ratios, cash-quality/valuation/risks, counter-hypotheses and provenance.
+Read the repository-root [START_HERE.md](../../START_HERE.md), [project-status.json](../../project-status.json), [PROJECT_STATE.md](../../PROJECT_STATE.md), [AGENTS.md](../../AGENTS.md) and [active PR handoff](../../docs/ACTIVE_PR35_HANDOFF.md). Recheck actual GitHub main, PR #35 head, source-original PDF SHAs, candidate HTML SHAs, browser evidence and Cloudflare live full-page bytes. Follow all five research manuals in [research/](research/): App Economy Insights method, A-share financial research, visual editorial system, forensic disclosure review and cross-sector generalization.
 
-[Execution Skill v7](SKILL.md) binds these two independently researched pillars to the publication gates.
+A GitHub repository Skill is **not automatically installed globally in ChatGPT**. Codex operating in this repository can discover the [small .agents/skills wrapper](../../.agents/skills/ashare-financial-storytelling/SKILL.md); another ChatGPT session needs its own Skill setup or project instructions.
 
-## Working v7 issuer case
+## One finance-first publishing system
 
-- **Published GitHub path:** `public/300394/2026-H1/index.html` (the Pages project must independently deploy this Git commit).
-- **Sources:** Tianfu Communications 2026 H1 unaudited PDF, 185 pages, SHA-256 `6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5`, 59 structured source facts, 15 original signed indirect CFO adjustments.
-- **Editorial output:** 10 original exhibits: product economics / income allocation, complete P&L bridge, gross-profit change bridge, two-period margins, net earnings→CFO, opening→closing cash, analyst-defined FCF, balance-sheet anatomy, working-capital comparisons and properly denominated concentration.
-- **Reproducible v7 package:** [v7](v7/) with `engine/render_v7.py`, ledger, research memo, chart primitives, tests, local-browser QA, HTML build and instructions.
-- **Verification:** 12 regression tests PASS; local Chromium at 1440/768/390 PASS, keyboard, SVG export, no JS exception or page overflow. GitHub content SHA re-read matches preview and production.
+- Verify original issuer PDFs, physical pages, exact Decimal-yuan evidence, same-period/grouping facts and profit/cash/stock accounting constraints. Write a company-specific falsifiable thesis and strongest source-backed countercase before drawing.
+- Use [the shared connected Sankey engine](../../research/shared/unified_income_sankey.py) through [the V10 industry adapter](../../research/rebuild-v10/unified_finance.py) for legal nonnegative conserved income flows. Do not duplicate renderers or fabricate business-level margin from company-level gross profit. Use signed honest alternatives for negative-margin cases and a distinct banking / insurance grammar.
+- Provide separate native phone and desktop SVG compositions, source-linked figures and real CJK browser screenshots; never treat passing source arithmetic or screenshot overlap gates as independent editorial-art certification.
+- Keep release gates separate: original financial evidence, analytical depth, art direction, live deployment SHA and independent review. Build and verify the **current HTML bytes**, and update machine-readable session handoff with true PASS/FAIL/NOT_CHECKED status.
 
-## The unresolved professional boundary
+## Current adoption: do not overstate
 
-The user-facing site is `https://financials-in-visuals.pages.dev/`. The GitHub production HTML has been updated and verified; **its Cloudflare live HTTP body has not been independently verified in this execution environment.** Neither a GitHub commit nor a screenshot of a local HTML file can substitute for a public site verification.
+PR #35 now has three V10 positive Sankey issuer examples (688111, 000333, 600036) and one lawful signed exception (600519). Seven original historical issuer primary finance figures (300394, 300502, 300308, 688220, 600900, 600276, 601628) now actually use one source-typed original-yuan visual grammar for both desktop and phone. The six positive industrial/optical sources compile through the shared v9 true connected income Sankey; the insurer has a lawful separate management-old-premium 4→new/renew→total graph with shared visual tokens but NO CAS25 insurance service income bridge. All seven must retain **HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY** because the other older industry P&L/CFO/stock graphics are not yet harmonized. No issuer may silently claim all company visuals unified. All eleven companies still require full original-source design migration; the PR has not been merged to production main. Unseen-company generalization, cross-period stability and genuine independent finance/visual review are **NOT_CHECKED**. The authoritative census is [scripts/audit_unified_visual_corpus.py](../../scripts/audit_unified_visual_corpus.py).
 
-The second issuer regression is synthetic; cross-sector automatic PDF research, historical price/valuation/peer research and 8–12Q comparisons need their own verified inputs. The system deliberately refuses banking/insurance/real-estate industrial-style accounting rather than hallucinate universal support.
+## Hardening regression
 
-**Publication quality has several independent gates. No self-awarded 'top-tier' labels from code tests alone.**
+The current release pipeline runs the money-flow and visual accounting suite under normal Python and `python -O`: **financial and geometric invariants must raise explicit errors even when Python assertions are optimized away.** The canonical checks and handoff procedures are in [SKILL.md](SKILL.md), not copied into another competing policy.

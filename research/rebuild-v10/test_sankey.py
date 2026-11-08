@@ -33,17 +33,43 @@ def test_four_true_conservation_equations():
         else:
             assert get(code,total)==sum((get(code,k) for k in ('administrative_expense','credit_impairment_expense','other_operating_cost')),D(0))+get(code,'operating_profit')
 
-def test_presentation_has_real_proportional_ribbons():
-    for code in CASES:
+def test_presentation_has_original_source_native_finance_and_type():
+    kinds={'688111':'TYPE_A_SOURCE_OWN_COST_GP',
+           '600519':'TYPE_C_SANKEY_OMITTED',
+           '000333':'TYPE_B_GROUP_ONLY_GROSS_ALLOCATION',
+           '600036':'BANK_NET_INCOME_TO_OPERATING_PROFIT'}
+    for code,kind in kinds.items():
         html=(OUTPUT/(code+'.html')).read_text()
-        assert '会计守恒财务桑基图' in html
-        assert 'SOURCE / 收入来源' in html
-        assert html.count('<figure') >=8
-        assert '财务桑基图' in html
-        assert 'sankey-svg' in html
-        assert '左右滑动' in html
-        # A true ribbon has two Bezier curves and area; cosmetic line diagrams do not.
-        assert len(re.findall(r'<path d="M [0-9.]+ [0-9.]+ C [^"<>]+ Z" fill=',html))>=5
+        assert html.count('<figure')>=8
+        assert html.count('class="graphic-svg native-finance"')>=8
+        assert 'data-flow-kind="'+kind+'"' in html,(code,kind)
+        assert 'width:850px;min-width:850px' not in html
+        assert '.graphic-svg{display:none}' not in html
+        # A hidden SVG export button is a real mobile publication P0; export
+        # must use the actual rendered source-original phone/desktop SVG.
+        assert '.export{display:none}' not in html,(code,'MOBILE_EXPORT_HIDDEN')
+        assert '.export{display:inline-flex' in html,(code,'MOBILE_EXPORT_TOUCH_TARGET_MISSING')
+        assert 'min-height:44px' in html,(code,'PHONE_EXPORT_TOUCH_TARGET_TOO_SMALL')
+        assert "figure.querySelectorAll('.graphic-svg svg')" in html,(code,'EXPORT_NOT_VISIBILITY_SELECTED')
+        assert '全部七家公司' not in html,(code,'OUTDATED_ISSUER_CATALOG_LABEL')
+
+        assert '<svg' in html and 'data-native-original-yuan="true"' in html
+        assert '左右滑动' not in html
+        assert html.count('class="graphic-svg desktop-finance')>=8
+        figure=html.split('id="fig-02"')[1].split('</figure>')[0]
+        if code=='688111':
+            for key in ('wps_personal','wps365','wps_software','other_rev'):
+                assert 'data-source-id="'+key+'"' in figure
+                assert 'data-gp-yuan=' in figure and 'data-cost-yuan=' in figure
+        elif code=='600519':
+            assert 'FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON' in figure
+            assert 'data-signed-yuan=' in figure
+        elif code=='000333':
+            assert 'PRODUCT_LEVEL_GP_NOT_ESTABLISHED' in figure
+        else:
+            assert '净利息' in figure
+
+
 
 def test_signed_or_incompatible_mixed_flows_rejected():
     good=[('A',D('800')),('B',D('200'))]

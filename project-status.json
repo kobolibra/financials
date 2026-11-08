@@ -1,6 +1,97 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-05",
+  "updated_date": "2026-11-07",
+  "active_pr35_quality_candidate": {
+    "pr_number": 35,
+    "status_scope": "CANDIDATE_PR_BRANCH_ONLY__NOT_PRODUCTION",
+    "state": "UNMERGED_CANDIDATE_WITH_SEPARATE_MAIN_PRODUCTION",
+    "branch": "quality/aei-sankey-source-contract-v1",
+    "main_at_review_start": "9b70e1a4dad2c57cbbd26810dbd7ed9d3e5ddea9",
+    "real_main_and_pr_head": "MUST_REQUERY_GITHUB_EACH_NEW_SESSION",
+    "handoff_manifest": "research/quality/active-pr35.json",
+    "handoff_document": "docs/ACTIVE_PR35_HANDOFF.md",
+    "editorial_scorecard": "docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md",
+    "strict_candidate_proof": "scripts/check_pr35_quality_handoff.py",
+    "source_rebuild": "research/rebuild-v10/build-manifest.json",
+    "typed_financial_flow": "research/rebuild-v10/strict-semantic-audit.json",
+    "real_cjk_browser": "research/rebuild-v10/real-browser-qa/result.json",
+    "candidate_actual_issuer_codes": [
+      "688111",
+      "600519",
+      "000333",
+      "600036"
+    ],
+    "latest_candidate_visual_upgrade": [
+      "SHARED_CONNECTED_1100_330_SOURCE_TO_ONE_TOTAL_TO_EXACT_COST_OR_GP",
+      "MOUTAI_INDEPENDENT_TRUE_SIGNED_SCALES"
+    ],
+    "new_upgraded_figures_status": "PASS_LOCAL_ORIGINAL_SOURCE_AND_CJK_ON_EXACT_SHA__REAL_PREVIEW_AND_HUMAN_ART_REVIEW_PENDING",
+    "current_local_figure_proof_action": "REQUERY_EXACT_CURRENT_BRANCH_GITHUB_RUN",
+    "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
+    "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
+    "current_new_visual_candidate_html_sha256": {
+      "600036": "fa8855734562ea9b4ea2ba6efe9892600252f4fbebb2bbe9eba2d6706b899993",
+      "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
+      "688111": "eae102c55d53f7f50978a017a4a31d9aff98bd350e1c70a0b7eb60b96c0c5f01",
+      "000333": "8d7719c581b29cee95c67f2664f7ee579a92332554944ba9191685df3d5c70aa"
+    },
+    "historical_verified_prior_sha_only": [
+      "https://github.com/kobolibra/financials/actions/runs/42344600791",
+      "https://github.com/kobolibra/financials/actions/runs/42344715944"
+    ],
+    "independent_human_editorial": "NOT_CHECKED",
+    "independent_full_notes": "NOT_CHECKED",
+    "unseen_20_30_company_period_regression": "NOT_ESTABLISHED",
+    "mobile_physical_device": "NOT_CHECKED",
+    "main_production_new_four_figures": "NOT_DEPLOYED_NO_OWNER_MERGE",
+    "aei_top_quality_claim": "NOT_CERTIFIED",
+    "entrypoint_instruction": "Current main remains canonical production, PR35 files are candidate only. Re-read main+PR HEAD, all Skill manuals, verify actual HTML SHA and QA receipts. Do not copy prior PASS onto new files.",
+    "legacy_unified_design_not_completed": [
+      "300394",
+      "300308",
+      "300502",
+      "688220",
+      "600900",
+      "600276",
+      "601628"
+    ],
+    "archive_skill_v8_8": "docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md",
+    "unified_skill_contract": "9.0.0",
+    "actual_three_optical_hero_migration": {
+      "scope": "SOURCE_ORIGINAL_2026H1_CANDIDATE_HTML_ONLY",
+      "codes": [
+        "300394",
+        "300502",
+        "300308"
+      ],
+      "figure": "SOURCE_TO_ONE_TOTAL_TO_OWN_COST_AND_GP_CANONICAL_V9_1100_DESKTOP_330_PHONE",
+      "other_figures": "LEGACY_NOT_YET_UNIFIED",
+      "original_300308_page139_printed_one_yuan_discrepancy": "PRESERVED",
+      "source_sha_bound_browser_action": "https://github.com/kobolibra/financials/actions/runs/42359062392",
+      "human_art_and_finance_review": "NOT_CHECKED",
+      "candidate_live_current_sha": "NOT_CHECKED_AFTER_HTML_CHANGE",
+      "main_production": "NOT_DEPLOYED_PR_UNMERGED"
+    },
+    "remaining_four_legacy_publisher_families": [],
+    "all_eleven_complete_visual_editorial_unification": "NOT_ESTABLISHED",
+    "legacy_unified_design_not_completed_reason": "SEVEN_ORIGINAL_ISSUERS_MAIN_HERO_ONLY_SHARED_V9_OR_LAWFUL_INSURANCE_PALETTE;REMAINING_ART_NOT_UNIFIED",
+    "actual_seven_historical_hero_only_migrations": {
+      "codes": [
+        "300394",
+        "300308",
+        "300502",
+        "688220",
+        "600900",
+        "600276",
+        "601628"
+      ],
+      "role": "HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY",
+      "all_remaining_finance_figures": "LEGACY_ART_NOT_YET_UNIFIED",
+      "full_independent_visual_art_review": "NOT_CHECKED",
+      "current_real_cloudflare_same_html_sha": "NOT_CHECKED",
+      "source_details": "300308 p139 1-yuan contradiction preserved; 688220 official PDF byte equivalence unknown; 601628 management-premium-vs-CAS25 barrier enforced"
+    }
+  },
   "current_new_issuer_unidentified_intake": {
     "checked_date": "2026-11-05",
     "observed_main_at_intake": "b7cf9daf79cb9abda0b6da2a0b85d60f995ff834",
@@ -48,8 +139,8 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "8.8.0-rc1",
-    "loading": "REPO_FILE_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
+    "version": "9.0.0",
+    "loading": "REPO_CANONICAL_V9_PRODUCTION_SKILL_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
       "skills/ashare-financial-storytelling/research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md",

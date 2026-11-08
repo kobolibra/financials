@@ -11,6 +11,9 @@ from decimal import Decimal
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[3]
+import sys
+sys.path.insert(0,str(ROOT/"research/shared"))
+from unified_insurance_premium import render_insurance_premium
 BASE=ROOT/"research/issuers/601628"
 LEDGER=json.loads((BASE/"source-ledger.json").read_text(encoding="utf-8"))
 FIG=json.loads((BASE/"figure-briefs.json").read_text(encoding="utf-8"))
@@ -132,36 +135,11 @@ def comparative():
         body+=t(1073,y+10,pct(new,old),17,"#077D64",700,"end")
     body+=t(40,358,"各指标独立从零起绘制、不同刻度不可比较条长；不允许保费→收入→净利润的虚假单线资金流",12,"#887359")
     return svg(body,h=380,desc="2025和2026保费、法定保险服务收入、归母净利润、CFO各自独立零基准的比较")
-def ribbon(x1,x2,ya,yb,za,zb,value,key,fill):
-    d=f"M {x1:.5f},{ya:.5f} C {(x1+x2)/2:.5f},{ya:.5f} {(x1+x2)/2:.5f},{za:.5f} {x2:.5f},{za:.5f} L {x2:.5f},{zb:.5f} C {(x1+x2)/2:.5f},{zb:.5f} {(x1+x2)/2:.5f},{yb:.5f} {x1:.5f},{yb:.5f} Z"
-    return f'<path class="money-ribbon" d="{d}" fill="{fill}" opacity=".34" stroke="none" data-source-key="{e(key)}" data-value-million="{value}" data-exact-yuan="{e(value*1000000)}"/>'
 def premium_flow():
-    sourcekeys=["premium_first_regular","premium_single","premium_short","premium_renew"]
-    total=float(amount("premium_total")); H=268.;Y=82.;l=290.;m=662.;r=980.
-    fills=["#087B65","#84A99B","#C6A572","#B27452"]
-    labels=["首年期交","趸交","短期险","续期"]
-    hts=[float(amount(k))/total*H for k in sourcekeys]
-    body=t(42,30,"管理层总保费（原报告第10页旧保险合同统计口径）",15,"#587873")
-    body+=t(1012,30,yi("premium_total")+" 亿元",20,"#163F3B",750,"end")
-    sy=Y
-    for idx,(key,hh,col,label) in enumerate(zip(sourcekeys,hts,fills,labels)):
-        body+=rect(l,sy,15,hh,col,"money-source",f'data-source-key="{key}" data-value-million="{int(amount(key))}" data-exact-yuan="{FACTS[key]["yuan"]}"')
-        body+=ribbon(l+15,m,sy,sy+hh,sy,sy+hh,int(amount(key)),key,col)
-        labelY=[80,144,200,288][idx]
-        body+=t(28,labelY,label,15,"#163E3B",650)
-        body+=t(28,labelY+21,yi(key)+" 亿",17,col,700)
-        body+=line(159,labelY+4,l-9,sy+hh/2,"#BCC8BF",1)
-        sy+=hh
-    newh=sum(hts[:3])
-    for sy,hh,key,col,name in [(Y,newh,"premium_new","#087B65","新单保费"),(Y+newh,hts[3],"premium_renew","#B27452","续期保费")]:
-        body+=rect(m,sy,16,hh,col,"money-intermediate",f'data-source-key="{key}" data-value-million="{int(amount(key))}"')
-        body+=ribbon(m+16,r,sy,sy+hh,sy,sy+hh,int(amount(key)),key,col)
-        body+=t(m+24,sy+max(20,hh/2),name+" "+yi(key)+"亿",15,"#17423D",700)
-    body+=rect(r,Y,17,H,"#123F3A","money-sink",f'data-value-million="{int(amount("premium_total"))}" data-exact-yuan="{FACTS["premium_total"]["yuan"]}"')
-    body+=t(1010,Y+H/2,"总保费",18,"#143C36",700)
-    body+=t(1010,Y+H/2+23,yi("premium_total")+"亿",18,"#087B65",700)
-    body+=t(45,390,"来源×业务阶段×合计：每条带与每个节点的高度均为 268 × 原始金额 / 536,634；无最小宽度假流。",13,"#61756F")
-    return svg(body,h=410,w=1110,desc="四个不重叠的总保费来源到新单及续期再汇总的真实金额加权资金分组桑基，不能解释保险服务收入")
+    # Genuine management premium source to new/renewal to gross total.
+    # Never alias this to CAS25 insurance service income or cash receipt.
+    return render_insurance_premium(LEDGER,mobile=False)
+
 def service_comp():
     ks=[("预计当期赔付及相关","service_expected_claims","#17705F"),("非金融风险调整","service_risk_release","#A4B9AA"),("CSM本期摊销","service_csm_release","#B88642"),("保险获取现金流摊销","service_acq_amort","#568F87"),("保费分配法（PAA）","service_paa","#C89A79")]
     maxv=float(amount("service_revenue"));body=t(35,38,"保险服务确认 = 五个有披露来源的互斥成分",17,"#1B4440",700)
@@ -403,11 +381,17 @@ def mobile_figure(brief):
           f'<strong class="m-item-val">{sign}{formatted}亿</strong></div>'
           f'<div class="m-item-rail" aria-hidden="true"><i style="width:{scale:.6f}%"></i></div></div>'
         )
+    # Same source facts and accessible optional item ledger, but the first
+    # phone view is a true 330-unit financial Sankey, not a horizontal crop.
+    primary = render_insurance_premium(LEDGER,mobile=True) if fid=="premium" else ""
+    money_rows = ("<details class='premium-original-items'><summary>展开六项精确金额</summary>"
+                  +'<div class="m-items">'+"".join(rendered)+"</div></details>"
+                  if fid=="premium" else '<div class="m-items">'+"".join(rendered)+"</div>")
     return (
       f'<section class="mobile-chart" data-mobile-figure="{e(fid)}" aria-label="{e(brief["question"])}的完整手机金额图">'
       f'<div class="m-kicker">MOBILE FINANCIAL EXHIBIT · 全量阅读，无横向滚动</div>'
       f'<p class="m-method">{e(note)}</p>'
-      f'<div class="m-items">{"".join(rendered)}</div>'
+      f'{primary}{money_rows}'
       f'<p class="m-unit">金额：亿元，保留两位；原始计算为人民币百万元精度。每组线段共用零起点、按该组最大绝对金额绘制；负号及砖红色表示负向金额。'
       f'小于一像素的极小金额不会人为放大，详细原始行项可在本图下方展开。</p></section>'
     )
@@ -417,7 +401,7 @@ def article(brief,num):
     return f'''<figure class="figure" id="chart-{e(fid)}" data-family="{e(fam)}">
       <figcaption><span class="figure-num">{num:02d} / 10 · {e(fam.replace("_"," / "))}</span>
         <h2>{e(brief["question"])}</h2><p class="take">{e(brief["takeaway"])}</p></figcaption>
-      <div class="figure-toolbar"><span>原始百万元事实 · 视觉按明确金额/时点比例绘制</span><button type="button" data-export="{e(fid)}">导出原创 SVG</button></div>
+      <div class="figure-toolbar"><span>原始百万元事实 · 视觉按明确金额/时点比例绘制</span><button type="button" data-export="{e(fid)}" aria-label="导出桌面源 SVG；手机图为同源原生金额对照">导出桌面源 SVG</button></div>
       <div class="chart" role="region" aria-label="{e(brief["question"])}，桌面及平板的原始可编辑向量图">{FIGS[fid]()}</div>
       {mobile_figure(brief)}
       <div class="caption"><strong>会计关系：</strong>{e(brief["identity"])}<br><strong>强制反证：</strong>{e(brief["counter"])} <br><strong>数据范围：</strong>合并/报告明确范围，原始 PDF 物理页 {", ".join(str(x) for x in brief["source_pages"])}。图外金额精确到亿元两位，底层按原始百万元计算。</div>
@@ -431,6 +415,9 @@ CSS += r'''
 /* Genuine 390px first-class finance figures: never trap reading in a 900px
    horizontal SVG window. Desktop retains the full editable source SVG. */
 .mobile-chart{display:none}
+.premium-original-items summary{font:700 11px/1.6 var(--font);color:#237A68;cursor:pointer;padding:12px 0}
+.premium-original-items .m-items{margin:12px 0 0}
+.mobile-chart[data-mobile-figure="premium"] svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]{display:block;max-width:100%;width:100%;height:auto;overflow:visible}
 @media(max-width:740px){
   .chart{display:none}
   .mobile-chart{display:block;width:100%;padding:17px 14px 20px;background:#fff;border:1px solid #E2E8E0;overflow:visible}
@@ -476,7 +463,7 @@ def render():
 <p>本页原创可编辑 SVG 与逐图来源表由同一结构化账本生成，可离线打开，金融图形不复制 App Economy Insights / FT 原始作品。</p></section></main>
 <footer><div class="wrap"><a href="/#companies">FINANCIALS IN VISUALS / 返回统一公司研究目录</a><p>© 2026 Financials in Visuals · 研究预览，非个性化投资建议</p></div></footer>
 <script id="ledger-data" type="application/json">{research_meta}</script>
-<script>(function(){{document.querySelectorAll('[data-export]').forEach(function(b){{b.addEventListener('click',function(){{var id=b.getAttribute('data-export'),node=document.querySelector('#chart-'+id+' svg');if(!node)return;var s=new XMLSerializer().serializeToString(node);var blob=new Blob([s],{{type:'image/svg+xml;charset=utf-8'}});var u=URL.createObjectURL(blob);var a=document.createElement('a');a.href=u;a.download='601628-2026H1-'+id+'.svg';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){{URL.revokeObjectURL(u)}},1000)}})}})}})();</script></body></html>''',q
+<script>(function(){{document.querySelectorAll('[data-export]').forEach(function(b){{b.addEventListener('click',function(){{var id=b.getAttribute('data-export'),svgs=Array.from(b.closest('figure').querySelectorAll('svg')),node=svgs.find(function(el){{var r=el.getBoundingClientRect(),s=getComputedStyle(el);return r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden'}});if(!node){{node=b.closest('figure').querySelector('.chart svg');}}if(!node)return;var s=new XMLSerializer().serializeToString(node);var blob=new Blob([s],{{type:'image/svg+xml;charset=utf-8'}});var u=URL.createObjectURL(blob);var a=document.createElement('a');a.href=u;a.download='601628-2026H1-'+id+'.svg';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){{URL.revokeObjectURL(u)}},1000)}})}})}})();</script></body></html>''',q
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("--out",default=str(ROOT/"public/601628.html"))

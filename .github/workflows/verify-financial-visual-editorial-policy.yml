@@ -38,9 +38,15 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open('/tmp/aie-source-audit.json'))
-          assert len(d['known_existing_visual_p0'])==4
-          assert not d['new_or_unwaived_p0']
-          print('SOURCE_CODE_AEI_GUARD_PASS_WITH_FOUR_EXPLICIT_OLD_FAILS')
+          known=d['known_existing_visual_p0']
+          assert set(known).issubset({'000333','600036','600519','688111'}),known
+          assert not d['new_or_unwaived_p0'],d['new_or_unwaived_p0']
+          if known:
+              assert d['conclusion']=='KNOWN_LEGACY_VISUAL_FAIL_NOT_CERTIFIED',d['conclusion']
+              print('SOURCE_CODE_AEI_GUARD_KNOWN_OLD_P0_REMAIN_NOT_CERTIFIED',known)
+          else:
+              assert d['conclusion']=='STATIC_ONLY_PASS_BROWSER_AND_AESTHETICS_NOT_CHECKED'
+              print('SOURCE_CODE_AEI_GUARD_FOUR_REBUILT_MOBILE_STRUCTURE_PASS')
           PY
       - name: Validate actual 33 Chromium original report snapshots plus source-frozen 10 phone FAILs
         run: |

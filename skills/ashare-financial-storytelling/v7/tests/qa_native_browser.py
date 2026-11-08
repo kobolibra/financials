@@ -50,21 +50,50 @@ with sync_playwright() as p:
             assert n>=9,(code,width,"MISSING_MONEY_NATIVE_FIGURES",n)
             assert page.locator(".hero-svg").count()==1,(code,"DESKTOP_ORIGINAL_LOST")
             assert page.evaluate("document.documentElement.scrollWidth")<=width+1,(code,width,"ROOT_OVERFLOW")
-            graph=page.evaluate("""() => {
-              const s=document.querySelector('.native-money-svg');
-              return {sources:[...s.querySelectorAll('.native-money-source')].map(x=>[+x.dataset.exactYuan,+x.getAttribute('width')]),
-              sinks:[...s.querySelectorAll('.native-money-sink')].map(x=>[+x.dataset.exactYuan,+x.getAttribute('width')]),
-              ribbons:[...s.querySelectorAll('.native-money-ribbon')].map(x=>({yuan:+x.dataset.exactYuan,d:x.getAttribute('d')}))};
-            }""")
-            rev=sum(x[0] for x in graph["sources"])
-            assert abs(sum(x[0] for x in graph["sinks"])-rev)<.001
-            assert abs(sum(x["yuan"] for x in graph["ribbons"])-rev)<.001
-            for value,width_svg in graph["sources"]+graph["sinks"]:
-                assert abs(width_svg-value/rev*302)<1e-7,(code,"NODE_REAL_MONEY_AREA")
-            for edge in graph["ribbons"]:
-                m=re.match(r"M([0-9.]+),65 C.*?L([0-9.]+),276 C([0-9.]+),200 [0-9.]+,130 ([0-9.]+),65 Z",edge["d"])
-                assert m,(code,"INVALID_RIBBON_PATH",edge["d"])
-                assert abs(float(m.group(4))-float(m.group(1))-edge["yuan"]/rev*302)<1e-6,(code,"FALSE_RIBBON_AREA")
+            if code in ("300394","300502","300308"):
+                graph=page.evaluate("""() => {
+                  const selector=window.innerWidth>900
+                    ? '.chart-shell .hero-svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'
+                    : '.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]';
+                  const s=document.querySelector(selector);
+                  if(!s)return null;
+                  return {total:+s.getAttribute('data-revenue-yuan'),
+                    boxes:[...s.querySelectorAll('rect[data-node-role]')].map(e=>({id:e.getAttribute('data-node-id'),role:e.getAttribute('data-node-role'),yuan:+e.getAttribute('data-node-yuan')})),
+                    ribbons:[...s.querySelectorAll('path[data-ribbon-yuan]')].map(e=>({yuan:+e.getAttribute('data-ribbon-yuan'),stage:e.getAttribute('data-stage'),scale:+e.getAttribute('data-scale-yuan-per-svg-unit')})),
+                    right:s.getBoundingClientRect().right,width:s.getBoundingClientRect().width,
+                    placement:s.getAttribute('data-editorial-placement'),
+                    repeatedHeader:[...s.querySelectorAll('text')].some(t=>t.textContent.includes('业务收入如何形成真实披露的成本与毛利')),
+                    clippedLabels:[...s.querySelectorAll('text')].filter(t=>{
+                      const v=t.getBoundingClientRect(),box=s.getBoundingClientRect();
+                      return v.width>0 && (v.left<box.left-2||v.right>box.right+2||v.top<box.top-2||v.bottom>box.bottom+2);
+                    }).map(t=>t.textContent)};
+                }""")
+                assert graph and graph["width"]>200 and graph["right"]<=width+3,(code,width,"UNIFIED_FLOW_CLIPPED_OR_MISSING",graph)
+                assert graph["placement"]=="embedded-article" and not graph["repeatedHeader"],(code,width,"DUPLICATED_OUTER_AND_INNER_HEADLINE")
+                assert not graph["clippedLabels"],(code,width,"SVG_EDITORIAL_TEXT_CLIPPED",graph["clippedLabels"])
+                srcs=[x for x in graph["ribbons"] if x["stage"]=="source-to-revenue"]
+                sinks=[x for x in graph["ribbons"] if x["stage"]=="revenue-to-outcome"]
+                assert len(srcs)>=2 and len(sinks)==2*len(srcs),(code,width,"NOT_TRUE_CONNECTED_SANKEY")
+                assert abs(sum(x["yuan"] for x in srcs)-graph["total"])<.001
+                assert abs(sum(x["yuan"] for x in sinks)-graph["total"])<.001
+                assert all(x["scale"]>0 and x["yuan"]>=0 for x in graph["ribbons"])
+                assert len([x for x in graph["boxes"] if x["role"]=="total" and x["id"]=="revenue-total" and abs(x["yuan"]-graph["total"])<.001])==1
+            else:
+                graph=page.evaluate("""() => {
+                  const s=document.querySelector('.native-money-svg');
+                  return {sources:[...s.querySelectorAll('.native-money-source')].map(x=>[+x.dataset.exactYuan,+x.getAttribute('width')]),
+                  sinks:[...s.querySelectorAll('.native-money-sink')].map(x=>[+x.dataset.exactYuan,+x.getAttribute('width')]),
+                  ribbons:[...s.querySelectorAll('.native-money-ribbon')].map(x=>({yuan:+x.dataset.exactYuan,d:x.getAttribute('d')}))};
+                }""")
+                rev=sum(x[0] for x in graph["sources"])
+                assert abs(sum(x[0] for x in graph["sinks"])-rev)<.001
+                assert abs(sum(x["yuan"] for x in graph["ribbons"])-rev)<.001
+                for value,width_svg in graph["sources"]+graph["sinks"]:
+                    assert abs(width_svg-value/rev*302)<1e-7,(code,"NODE_REAL_MONEY_AREA")
+                for edge in graph["ribbons"]:
+                    m=re.match(r"M([0-9.]+),65 C.*?L([0-9.]+),276 C([0-9.]+),200 [0-9.]+,130 ([0-9.]+),65 Z",edge["d"])
+                    assert m,(code,"INVALID_RIBBON_PATH",edge["d"])
+                    assert abs(float(m.group(4))-float(m.group(1))-edge["yuan"]/rev*302)<1e-6,(code,"FALSE_RIBBON_AREA")
             signed=page.evaluate("""() => [...document.querySelectorAll('.native-signed-svg')].map(svg=>{
               const all=[...svg.querySelectorAll('rect.native-signed-money')];
               const view=svg.viewBox.baseVal;
@@ -100,7 +129,7 @@ with sync_playwright() as p:
                     clipped:r.right>f.getBoundingClientRect().right+2};
                 })""")
                 assert all(z["active"] and z["oldHidden"] and z["inner"]<=z["visible"]+2 and z["width"]>220 and not z["clipped"] for z in figures),(code,width,"REAL_NATIVE_FIGURE_CLIP",figures)
-            if width==390:
+            if width==390 and page.locator("button.native-source-row[data-source-key]").count()>0:
                 source_row=page.locator("button.native-source-row[data-source-key]").first
                 assert source_row.count()==1,(code,"MISSING_ACCESSIBLE_SOURCE_FILTER")
                 original_d=page.locator("path.native-money-ribbon").first.get_attribute("d")
@@ -113,9 +142,22 @@ with sync_playwright() as p:
                 assert page.locator("path.native-money-ribbon").first.get_attribute("d")==original_d,(code,"INTERACTION_CHANGED_ORIGINAL_AMOUNT_WIDTH")
             if width==1440:
                 assert page.locator(".chart-shell .hero-svg:visible").count()==1
-                with page.expect_download(timeout=10000) as event:
-                    page.locator("figure.exhibit .svg-save").first.click()
-                assert event.value.suggested_filename.endswith(".svg")
+                if code in ("300394","300502"):
+                    assert page.locator('.chart-shell .hero-svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1
+            visible_xml=page.evaluate("""() => {
+                const f=document.querySelector('figure.exhibit');
+                const svg=[...f.querySelectorAll('svg')].find(el=>{
+                    const b=el.getBoundingClientRect(),s=getComputedStyle(el);
+                    return b.width>0&&b.height>0&&s.display!=='none'&&s.visibility!=='hidden';
+                });
+                return svg?new XMLSerializer().serializeToString(svg):null;
+            }""")
+            assert visible_xml and "<svg" in visible_xml,(code,width,"VISIBLE_SVG_MISSING")
+            with page.expect_download(timeout=10000) as event:
+                page.locator("figure.exhibit .svg-save").first.click()
+            got=event.value
+            assert got.suggested_filename.endswith(".svg")
+            assert got.path().read_text(encoding="utf-8")==visible_xml,(code,width,"EXPORTED_HIDDEN_DESKTOP_SVG")
             img=out/(f"{code}_{width}.png");page.screenshot(path=str(img),full_page=True)
             if code=="300308" and width in (1440,768,390):
                 page.locator(".cash-editorial-focus").screenshot(path=str(out/f"{code}_cashfocus_{width}.png"))

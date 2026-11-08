@@ -1,5 +1,31 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+## 2026-11-07 latest source-of-truth PR #35 (supersedes the dated historical snapshots below)
+
+**Actual eleven-company report status:** V10 688111/000333/600036 positive source-money Sankeys and 600519 lawful signed alternative; **seven** historically different publishing families (300394/300308/300502/688220/600900/600276/601628) now use shared native desktop/phone original-yuan financial *hero* diagrams. China Life's 601628 premium is a distinct old-management-statistics 4→new/renew→premium-total graph, NOT CAS25 insurance service revenue, profit or CFO. Full source PDFs/typed facts and real 1440/768/390 Noto CJK Chromium checks as referenced from [the current zero-memory handoff](docs/ACTIVE_PR35_HANDOFF.md); strict PR-only SHA release gate has separate proof from historical production. **Every one of the seven former legacy families remains HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY:** remaining P&L, cash, stock and operating-driver designs have not all been migrated to the one editorial visual treatment, so full-11 aesthetic, independent second human finance/art review, unseen 20–30 issue/period sample evaluation, latest same-SHA Cloudflare live and production merge remain NOT_ESTABLISHED / NOT_CHECKED / NOT_DEPLOYED. Read the current on-disk census `scripts/audit_unified_visual_corpus.py` and `project-status.json` before citing status. Previous “only four active” and “seven fully legacy” paragraphs below are **dated historical checkpoints** superseded here.
+
+
+## 2026-11-07 v9 production Skill + AEI first-party reference: unified visual grammar candidate
+
+**Canonical Skill is now v9.0.0, compact mandatory control plane, not 125 KB historical append-only narrative.** Full historical v8.8 is preserved at docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md. One legitimate industry-aware positive income Sankey engine is research/shared/unified_income_sankey.py, adapted by research/rebuild-v10/unified_finance.py, with own cost/GP Type A, group-only Type B and bank net-income business rules. TYPE C negative income / stock or crossing remains a signed independent figure. Both desktop/mobile connected Sankeys must show ONE actual group income node; all money must reconcile exact Decimal yuan. See docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md for first-party App Economy Insights structural benchmark, original colors, reader labeling and **11-company honest migration matrix**.
+
+**IMPORTANT: only four V10 candidates are being actively migrated to this engine.** The other seven are LEGACY_NOT_UNIFIED until their original-source authoring pipelines actually consume the common design. Do not use passing old site CI to claim 11 unified. Any changed candidate HTML MUST be regenerated from original PDFs and verified with same source SHA at 1440/768/390 and real preview; older screenshots do not transfer. Production main remains separate; independent finance and editorial 5-second review and multi-period generalization remain NOT_CHECKED.
+
+
+
+## 2026-11-07 候选 PR #35 ACTIVE，main 仍不同：图形与交接品质整改
+
+**新候选真实 SHA 验证已闭环**：原始财报重编与 36 图 CJK 三屏 [#42347332430](https://github.com/kobolibra/financials/actions/runs/42347332430) PASS；真正新图所对应的 Cloudflare HTTPS 预览 11 路由全文字节、16 档浏览器/设备视口、108 次 SVG 真实可见版本导出 [#42347520600](https://github.com/kobolibra/financials/actions/runs/42347520600) PASS。四公司 source HTML SHA 收在 research/quality/active-pr35.json 和 build-manifest.json（注意不是新 main）。零记忆交接与四家图形财务红队通过的准确 CI 以 PR 最新 HEAD 查询，不用旧会话声称。独立财经/视觉总编与跨期陌生公司稳定性、生产 main 新 HTML 仍 **NOT_CHECKED / NOT_DEPLOYED**；此段证明候选工程质量，不证明超越 AEI。
+
+
+**权威实时状态入口 [docs/ACTIVE_PR35_HANDOFF.md](docs/ACTIVE_PR35_HANDOFF.md) + [research/quality/active-pr35.json](research/quality/active-pr35.json)**。PR #35 quality/aei-sankey-source-contract-v1 正在改造四家 2026H1 报告；本段只是带日期候选快照，新会话必须重新查 main、PR HEAD、Actions 和 Cloudflare 全 HTML SHA。正式 main 的四篇旧页面不可因为 PR 预览成功就写为正式生产已修。候选会计路径金山办公 A（自身收入/成本/毛利）、茅台 C（真实小负毛利不画正向带）、美的 B（仅集团总毛利）、招商银行 BANK（净利息已减息）各不同。
+
+**本次新实装修复尚须新 SHA 实测**：金山 WPS 独立 1040 单位的原元三阶段桌面收入→自身成本/毛利→集团合计桑基，手机 330 单位独立；茅台 −12,446,319.42 元其他业务真正极小主比例正负图＋明确独立尺度的收入/成本局部放大，机器内部原因只保留 SVG 属性。针对这两种误导图已加源金额的对抗测试，但旧浏览器成功记录 #42344600791、#42344715944 只证旧候选 SHA，**不得继承到新改网页**。本次分支变更以实际 HEAD 及最新 CI 为准，不能写本地截图成功如未执行。
+
+**持续高质量审核未完成**：另一期/另一公司跨行业无代码特例复现、20–30未见样本、完整重大附注、独立机构分析师和视觉总编五秒盲评、真实实体移动设备与合并后主站新 SHA 都 NOT_CHECKED。机器代码 scripts/check_pr35_quality_handoff.py 与 python scripts/check_handoff.py 的双门必须在真实生成回执一致后 PASS；研究深度边界与明确经济命题见 docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md。跨轮交接需要更新机器状态和真实 HTML SHA，不可依赖前一次对话记忆。
+
+
+
 ## 2026-11-05 · ACTIVE MAIN: AEI/FT v8.8 实证视觉编审与真实财务流语义引擎已合并（不冒充修好四旧页）
 
 - **当前可复验main** `37ab35fd4c861b60ed65536e072b5aa6fa8b7ba8`，同一个11家目录无增删，11篇独立已发布HTML/所有原始PDF及发布器**本轮未变更**。PR [#33](https://github.com/kobolibra/financials/pull/33) 的方法标准、静态视觉失败检查及恶意用例，PR [#34](https://github.com/kobolibra/financials/pull/34) 的原始元级A/B/C流向会计语义执行器 `research/shared/editorial_financial_flow.py` 与十项基于实际账本/恶意会计情形的测试均已经合入。报告级「稳定顶级审美」「全面超越AEI」**仍未被证明**。

@@ -1,0 +1,139 @@
+{
+  "schema": "financials.v10.typed_flow_published_contract.v1",
+  "scope": "Four real published V10 issuer EXHIBIT 02 HTML bytes and committed source ledger",
+  "count": 4,
+  "strict": true,
+  "records": [
+    {
+      "issuer": "688111",
+      "actual_html_sha256": "eae102c55d53f7f50978a017a4a31d9aff98bd350e1c70a0b7eb60b96c0c5f01",
+      "expected_semantics": {
+        "kind": "TYPE_A_SOURCE_OWN_COST_GP",
+        "reason": "EXACT_SOURCE_TO_OWN_COST_AND_GP",
+        "source_keys": [
+          "wps_personal",
+          "wps365",
+          "wps_software",
+          "other_rev"
+        ],
+        "exact_yuan_total": "3313262599.20",
+        "exact_yuan_cogs": "500458107.69",
+        "exact_yuan_group_gp": "2812804491.51",
+        "source_own_cost_gp": [
+          [
+            "wps_personal",
+            "2014142306.56",
+            "411342024.15",
+            "1602800282.41"
+          ],
+          [
+            "wps365",
+            "496654213.27",
+            "45285972.27",
+            "451368241.00"
+          ],
+          [
+            "wps_software",
+            "722293544.62",
+            "37600693.78",
+            "684692850.84"
+          ],
+          [
+            "other_rev",
+            "80172534.75",
+            "6229417.49",
+            "73943117.26"
+          ]
+        ],
+        "product_gp_claim_allowed": true
+      },
+      "published_figure_issues": [],
+      "historical_exact_source_waiver": false,
+      "current_figure_semantic_status": "PASS_STATIC_SCOPE_ONLY",
+      "actual_source_pdf_row_and_column": "NOT_CHECKED",
+      "actual_1440_768_390_chromium": "NOT_CHECKED",
+      "actual_svg_path_geometric_widths": "NOT_CHECKED",
+      "independent_human_editorial_review": "NOT_CHECKED"
+    },
+    {
+      "issuer": "600519",
+      "actual_html_sha256": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
+      "expected_semantics": {
+        "kind": "TYPE_C_SANKEY_OMITTED",
+        "reason": "AT_LEAST_ONE_PRODUCT_HAS_NEGATIVE_GROSS_PROFIT_OR_COST",
+        "source_keys": [
+          "maotai_rev",
+          "series_rev",
+          "other_rev"
+        ],
+        "exact_yuan_total": "90703260964.48",
+        "exact_yuan_cogs": "9473762565.88",
+        "exact_yuan_group_gp": "81229498398.60",
+        "source_own_cost_gp": [],
+        "product_gp_claim_allowed": false
+      },
+      "published_figure_issues": [],
+      "historical_exact_source_waiver": false,
+      "current_figure_semantic_status": "PASS_STATIC_SCOPE_ONLY",
+      "actual_source_pdf_row_and_column": "NOT_CHECKED",
+      "actual_1440_768_390_chromium": "NOT_CHECKED",
+      "actual_svg_path_geometric_widths": "NOT_CHECKED",
+      "independent_human_editorial_review": "NOT_CHECKED"
+    },
+    {
+      "issuer": "000333",
+      "actual_html_sha256": "8d7719c581b29cee95c67f2664f7ee579a92332554944ba9191685df3d5c70aa",
+      "expected_semantics": {
+        "kind": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+        "reason": "PRODUCT_LEVEL_GP_NOT_ESTABLISHED",
+        "source_keys": [
+          "home",
+          "industrial_solution",
+          "other_total"
+        ],
+        "exact_yuan_total": "260042490000",
+        "exact_yuan_cogs": "194366771000",
+        "exact_yuan_group_gp": "65675719000",
+        "source_own_cost_gp": [],
+        "product_gp_claim_allowed": false
+      },
+      "published_figure_issues": [],
+      "historical_exact_source_waiver": false,
+      "current_figure_semantic_status": "PASS_STATIC_SCOPE_ONLY",
+      "actual_source_pdf_row_and_column": "NOT_CHECKED",
+      "actual_1440_768_390_chromium": "NOT_CHECKED",
+      "actual_svg_path_geometric_widths": "NOT_CHECKED",
+      "independent_human_editorial_review": "NOT_CHECKED"
+    },
+    {
+      "issuer": "600036",
+      "actual_html_sha256": "fa8855734562ea9b4ea2ba6efe9892600252f4fbebb2bbe9eba2d6706b899993",
+      "expected_semantics": {
+        "kind": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
+        "reason": "BANK_NET_INTEREST_ALREADY_AFTER_INTEREST_EXPENSE",
+        "source_keys": [
+          "nii",
+          "fees_net",
+          "other_net"
+        ],
+        "expense_keys": [
+          "administrative_expense",
+          "credit_impairment_expense",
+          "other_operating_cost"
+        ],
+        "exact_yuan_total": "178181000000",
+        "exact_yuan_result": "90783000000",
+        "product_gp_claim_allowed": false
+      },
+      "published_figure_issues": [],
+      "historical_exact_source_waiver": false,
+      "current_figure_semantic_status": "PASS_STATIC_SCOPE_ONLY",
+      "actual_source_pdf_row_and_column": "NOT_CHECKED",
+      "actual_1440_768_390_chromium": "NOT_CHECKED",
+      "actual_svg_path_geometric_widths": "NOT_CHECKED",
+      "independent_human_editorial_review": "NOT_CHECKED"
+    }
+  ],
+  "blocking_violations": [],
+  "conclusion": "STATIC_SCOPE_PASS_BROWSER_GEOMETRY_AND_HUMAN_NOT_CHECKED"
+}

@@ -1,0 +1,112 @@
+name: V10 typed financial flow publication quality gate
+on:
+  pull_request:
+    paths:
+      - 'scripts/audit_v10_flow_contract.py'
+      - 'scripts/test_audit_v10_flow_contract.py'
+      - 'scripts/audit_unified_visual_corpus.py'
+      - 'scripts/test_audit_unified_visual_corpus.py'
+      - 'scripts/check_release_contract.py'
+      - 'research/issuers/688220/release-gates.json'
+      - 'research/issuers/601628/release-gates.json'
+      - 'research/shared/editorial_financial_flow.py'
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/test_source_income_adapter.py'
+      - 'research/issuers/688220/source-ledger.json'
+      - 'research/issuers/600900/source-ledger.json'
+      - 'research/issuers/600276/source-ledger.json'
+      - 'research/rebuild-v10/**'
+      - 'public/research/2026-h1-v10/**'
+      - 'research/visual-audit/quality-debt.json'
+      - '.github/workflows/verify-v10-typed-flow-contract.yml'
+  push:
+    branches: [main, 'quality/**']
+    paths:
+      - 'scripts/audit_v10_flow_contract.py'
+      - 'scripts/test_audit_v10_flow_contract.py'
+      - 'scripts/audit_unified_visual_corpus.py'
+      - 'scripts/test_audit_unified_visual_corpus.py'
+      - 'scripts/check_release_contract.py'
+      - 'research/issuers/688220/release-gates.json'
+      - 'research/issuers/601628/release-gates.json'
+      - 'research/shared/editorial_financial_flow.py'
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/test_source_income_adapter.py'
+      - 'research/issuers/688220/source-ledger.json'
+      - 'research/issuers/600900/source-ledger.json'
+      - 'research/issuers/600276/source-ledger.json'
+      - 'research/rebuild-v10/**'
+      - 'public/research/2026-h1-v10/**'
+      - 'research/visual-audit/quality-debt.json'
+      - '.github/workflows/verify-v10-typed-flow-contract.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  typed-source-ledger-and-published-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exercise actual yuan source facts, four issuer genres, and hostile tests
+        run: |
+          python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v
+          python -m unittest discover -s research/rebuild-v10 -p 'test_editorial_chart_quality.py' -v
+          # Financial guards must remain live under -O (Python removes assert).
+          python -O -m unittest discover -s research/rebuild-v10 -p 'test_editorial_chart_quality.py' -v
+          python -m unittest discover -s scripts -p 'test_audit_unified_visual_corpus.py' -v
+          # Test two original optical issuer ledgers against the same v9
+          # compiler, without prematurely publishing or certifying legacy.
+          python -m unittest discover -s research/shared -p 'test_v7_optical_income_adapter.py' -v
+          python -m unittest discover -s research/shared -p 'test_source_income_adapter.py' -v
+          python scripts/audit_unified_visual_corpus.py --out v10-11-issuer-actual-visual-adoption.json
+          python - <<'PY'
+          import json
+          v=json.load(open('v10-11-issuer-actual-visual-adoption.json'))
+          assert v["canonical_issuer_count"]==11
+          assert set(v["unified_positive_sankey_issuers"])=={"688111","000333","600036"}
+          assert set(v["lawful_signed_exception_issuers"])=={"600519"}
+          assert set(v["partial_hero_only_unified_remaining_art_legacy"])=={"300394","300308","300502","688220","600900","600276","601628"}
+          assert not v["legacy_not_unified"] and not v["failed_new_grammar"]
+          assert v["strict_all_11_visual_unification"]=="NOT_ESTABLISHED"
+          assert v["independent_visual_art_director"]=="NOT_CHECKED"
+          print("ELEVEN_REAL_ISSUERS_SEVEN_HERO_ONLY_REMAINING_ART_LEGACY_NOT_CERTIFIED")
+          PY
+          python scripts/check_release_contract.py
+          python scripts/check_visual_editorial_policy.py
+      - name: Source-SHA frozen debt cannot become a new untyped publication
+        run: |
+          python scripts/audit_v10_flow_contract.py --out v10-typed-flow-audit.json
+      - name: Enforce current four source-bound finance reports, fail strictly for every defect
+        run: |
+          python - <<'PY'
+          import json,subprocess,sys
+          cmd=[sys.executable,"scripts/audit_v10_flow_contract.py","--strict"]
+          proc=subprocess.run(cmd,capture_output=True,text=True)
+          result=json.loads(proc.stdout)
+          rows=result["records"]
+          unpassed=[r["issuer"] for r in rows if r["published_figure_issues"]]
+          assert len(rows)==4,len(rows)
+          assert {r["issuer"] for r in rows}=={"688111","600519","000333","600036"}
+          if unpassed:
+              assert proc.returncode==1,(proc.returncode,unpassed,proc.stderr)
+              assert result["conclusion"]=="FAIL"
+              print("STRICT_V10_UNREPAIRED_SOURCE_FIGURES_BLOCKED",unpassed)
+          else:
+              assert proc.returncode==0,(proc.returncode,proc.stderr)
+              assert not result["blocking_violations"]
+              assert result["conclusion"]=="STATIC_SCOPE_PASS_BROWSER_GEOMETRY_AND_HUMAN_NOT_CHECKED"
+              print("STRICT_V10_ALL_FOUR_REBUILT_SOURCE_FIGURES_PASS")
+          PY
+      - name: Persist actual source SHA and typed failure reasons
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v10-source-typed-figure-release-audit
+          path: |
+            v10-typed-flow-audit.json
+            v10-11-issuer-actual-visual-adoption.json
+          retention-days: 30
+          if-no-files-found: warn

@@ -2,16 +2,24 @@
 """Adversarial checks: all relevant money conservation tests must reject altered source facts.
 No printed-page matching is used as independent semantic verification here.
 """
-import copy,json,pathlib,subprocess,sys,tempfile
+import copy,json,os,pathlib,shutil,subprocess,sys,tempfile
 HERE=pathlib.Path(__file__).resolve().parent
 original=json.loads((HERE/"source-ledger.json").read_text())
 def call(ledger):
  with tempfile.TemporaryDirectory() as root:
   t=pathlib.Path(root)
-  for name in ("report-template.html","publish.py","figure-briefs.json","native_mobile.py"):
+  for name in ("report-template.html","publish.py","figure-briefs.json","native_mobile.py","source-manifest.json"):
    (t/name).write_bytes((HERE/name).read_bytes())
+  manifest=json.loads((HERE/"source-manifest.json").read_text())
+  pdf=t/manifest["file"]
+  pdf.parent.mkdir(parents=True,exist_ok=True)
+  shutil.copy2(HERE/manifest["file"],pdf)
   (t/"source-ledger.json").write_text(json.dumps(ledger,ensure_ascii=False),encoding="utf8")
-  return subprocess.run([sys.executable,str(t/"publish.py"),"--out",str(t/"test.html"),"--qa",str(t/"qa.json")],capture_output=True,text=True)
+  # The real shared compiler must be imported from the unchanged repository;
+  # a temporary issuer test cannot substitute an unsourced fake renderer.
+  env=dict(os.environ)
+  env["PYTHONPATH"]=str(HERE.parents[1]/"shared")+os.pathsep+env.get("PYTHONPATH","")
+  return subprocess.run([sys.executable,str(t/"publish.py"),"--out",str(t/"test.html"),"--qa",str(t/"qa.json")],capture_output=True,text=True,env=env)
 s=call(original)
 assert s.returncode==0,(s.stdout,s.stderr)
 cases=[

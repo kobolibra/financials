@@ -20,14 +20,30 @@ def load(path: str) -> str:
 
 def check_skill(manifest: dict, skill: str) -> list[str]:
     errors = []
-    match = re.search(r"(?m)^version:\s*([^\s]+)\s*$", skill)
+    # v9 is a compact executable control plane, with full historical log
+    # moved to docs/history and deep evidence kept in five original manuals.
+    # A large append-only SKILL is a failure, not proof of completeness.
+    match = re.search(r"(?m)^Contract version:\s*([^\s]+)\s*$", skill)
     version = match.group(1) if match else None
     if version != manifest["skill"]["version"]:
         errors.append(f"SKILL_VERSION_MISMATCH: manifest {manifest['skill']['version']}, actual {version}")
-    if len(skill) < 15000:
-        errors.append("SKILL_INCOMPLETE: full company Skill unexpectedly short")
-    if "FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" not in skill:
-        errors.append("SKILL_SANKEY_GATE_ABSENT: no explicit source-reason omission contract")
+    if not skill.startswith("---\n") or not re.search(r"(?m)^name:\s*ashare-financial-storytelling$", skill):
+        errors.append("SKILL_MISSING_STANDARD_DISCOVERY_FRONTMATTER")
+    if not re.search(r"(?m)^description:\s*\S+", skill):
+        errors.append("SKILL_MISSING_TRIGGER_DESCRIPTION")
+    if len(skill) < 4000 or len(skill) > 30000:
+        errors.append("SKILL_CONTROL_PLANE_NOT_COMPACT_AND_COMPLETE")
+    for required in ("unified_income_sankey.py","UNIFIED_FINANCIALS_VISUAL_STANDARD.md",
+                     "TYPE A","TYPE B","TYPE C","BANK",
+                     "NOT_CHECKED","check_pr35_quality_handoff.py",
+                     "01_APP_ECONOMY_INSIGHTS_RESEARCH.md",
+                     "05_CROSS_SECTOR_GENERALIZATION.md"):
+        if required not in skill:
+            errors.append("SKILL_MISSING_ACTIONABLE_PRODUCTION_CONTRACT:"+required)
+    if "docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md" not in skill:
+        errors.append("SKILL_HISTORICAL_INSTRUCTIONS_NOT_ARCHIVED")
+    if "FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON" not in skill and "TYPE C" not in skill:
+        errors.append("SKILL_SANKEY_GATE_ABSENT: no source-reason omission contract")
     return errors
 
 

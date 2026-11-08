@@ -1,4 +1,28 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
+**Every new session's authoritative machine entrypoints:** `project-status.json` for current handoff and `site/research_catalog.json` for one actual 11-issuer canonical catalog. Requery GitHub HEAD; candidate branch snapshots never replace live source SHA evidence.
+
+
+**2026-11-07 newest seven-source-publisher hero migration (supersedes earlier paragraphs):** The actual shared desktop/native-phone source-yuan primary Sankeys cover 300394/300502/300308, 688220, 600900, 600276 and a separate *insurance-specific premium statistics* grammar for 601628. All seven remain **HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY** because their remaining original figures are not entirely ported. Three V10 issuers have connected income Sankeys and one has a legal signed alternative. Strict eleven-full-report visual/editorial unification **NOT_ESTABLISHED**; independent human signoff, current Cloudflare candidate HTML SHA and unseen period generalization **NOT_CHECKED**. Old "four fully legacy" and "seven fully legacy" text below is historical, not live instructions. Requery [machine census](scripts/audit_unified_visual_corpus.py) and [PR handoff](docs/ACTIVE_PR35_HANDOFF.md); do not mix insurer management premium with CAS25 service revenue.
+
+
+**2026-11-07 active PR #35 optical visual migration (candidate only):** The original-source income hero Sankeys in 300394, 300502 and 300308 now use the shared v9 connected source→single total→own disclosed COGS/GP renderer with independent 1100 desktop/330 mobile. [Real 3-company CJK Chromium, original source and export QA](https://github.com/kobolibra/financials/actions/runs/42359062392) PASS. The 300308 original p139 repeated column 1-CNY discrepancy stays visible. These reports are *partial hero-only*, their other graphics are still old V7; other four sectors 688220, 600900, 600276, 601628 have not migrated. Full 11-issuer editorial design, human blind review, unseen periods and current production release are NOT_ESTABLISHED. Treat earlier "seven legacy companies" references as historical; use [current machine census](scripts/audit_unified_visual_corpus.py) and [active handoff](docs/ACTIVE_PR35_HANDOFF.md).
+
+
+**机器真值：先读 `project-status.json` 与 `site/research_catalog.json`，后按 `docs/ACTIVE_PR35_HANDOFF.md` 核对实时 GitHub 主分支和 PR；不要把 PR 预览当正式生产。**
+
+## 2026-11-07 · v9.0.0 统一质量系统（候选 PR #35，非 main）
+
+立即阅读 [统一图形设计与一手 AEI 比对](docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md)、[PR35 零记忆交接](docs/ACTIVE_PR35_HANDOFF.md) 和 [精简执行 Skill](skills/ashare-financial-storytelling/SKILL.md)。原始 v8.8 大段历史说明已归档，不允许作为今天的最新执行指令。新非负财务桑基统一由 research/shared/unified_income_sankey.py 输出单一营业收入合计节点＋合法成本/利润；银行、集团毛利和负利润使用不同的合法语法。**十一家公司标准一致的目标≠十一家公司都已完成迁移，未迁移的七家必须写 LEGACY_NOT_UNIFIED。** 本次新图须重新通过原始 PDF/HTML SHA/浏览器/Cloudflare 才能认证；独立财经/视觉总编仍未审核。
+
+
+
+## 2026-11-07 活动候选 PR #35：研究深度、真实桑基和严格零记忆交接
+
+**先判定 main 与候选分支，禁止混淆已发布内容和未合并质量改进。** 最新审查工作见 [候选真实交接](docs/ACTIVE_PR35_HANDOFF.md)、[研究与 AEI/FT 质量评分合同](docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md)，机器可检状态 research/quality/active-pr35.json。PR [#35](https://github.com/kobolibra/financials/pull/35) 使用 quality/aei-sankey-source-contract-v1；开始新会话必须重新查询 GitHub main/PR HEAD 和每项 Actions 的准确 SHA，而非引用这段日期快照。
+
+四家公司候选的原始 PDF 账目、Type A/B/C/BANK、36 张完整独立手机图有前一轮证据；**本次新改 WPS 1040px 真三阶段桌面财务桑基与茅台 −0.1245 亿负毛利的独立尺度放大必须重新重建、截图与真实预览字节审查，先标 PENDING_RETEST，不引用旧截图为新图证明。** 运行 python scripts/check_pr35_quality_handoff.py 验证网页、重建元数据与浏览器回执是同一 SHA。独立人类财经与艺术审稿、跨公司新期稳定性和正式生产新版本仍 NOT_CHECKED。项目真正的高质量交付不等于 CI 绿灯。
+
+
 
 **2026-11-05 AEI/FT 视觉品质 v8.8.0-RC1 已实际 main 合并：** 已在 [#33](https://github.com/kobolibra/financials/pull/33)、[#34](https://github.com/kobolibra/financials/pull/34) 实际合并；现行 Skill 方法加入 [财经总编真实审美与桑基A/B/C决策标准](docs/AEI_FINANCIAL_VISUAL_EDITORIAL_STANDARD.md) 和真实独立HTML静态审查器。已发现生产源V10四家600036/688111/600519/000333在390隐藏除桑基外所有图、剩余850px桑基只在小窗横滑，确认为旧版FAIL；新规范和自动测试绝不宣称四家公司已修或全站审美达到AEI顶级。站点仍唯一11家公司，独立人类研究/视觉审核NOT_CHECKED。
 

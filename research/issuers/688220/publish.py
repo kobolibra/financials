@@ -10,6 +10,9 @@ import argparse,hashlib,json,re
 from native_mobile import make as make_native_mobile
 from decimal import Decimal as D
 from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"shared"))
+from source_income_adapter import render_sector_income
 ROOT=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser()
 ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
@@ -114,12 +117,22 @@ for chart in REQUIRED_FIGURES:
 
 encoded=json.dumps(data,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
 source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 字节同一性 NOT_CHECKED" if source_status.startswith("MIRROR_COMPLETE") else "原始 PDF 完整字节 NOT_CHECKED")
-output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display).replace("__SOURCE_SHA__",actual_sha))
+# Original PDF mirror is source-bound but its byte-equivalence to the
+# official exchange download remains explicitly NOT_CHECKED.
+income_desktop=render_sector_income(data,mobile=False,embedded=True)
+income_phone=render_sector_income(data,mobile=True,embedded=True)
+income_json=json.dumps(income_desktop,ensure_ascii=False).replace("<","\\u003c")
+output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display)
+    .replace("__SOURCE_SHA__",actual_sha).replace("__UNIFIED_DESKTOP__",income_json))
 # The full standalone article retains its original nine desktop editable SVG
 # graphs and financial evidence tables. At <=820, a second issuer-specific
 # original-money narrative is shown without horizontally cropping the reader.
 # An exact figure anchor is required; no silent source/render drift.
 native=make_native_mobile(data)
+native["flow"]=('<div class="native-asr" data-native-source="canonical-v9">'
+                 +'<p class="native-asr-dek">本图来自同一个收入来源→总收入→真实成本/毛利金额守恒渲染器；金额按人民币元一比一比例绘制，其他小额业务不人为加粗。</p>'
+                 +income_phone.replace('<svg ', '<svg class="native-asr-original" ',1)
+                 +'</div>')
 assert tuple(native)==REQUIRED_FIGURES
 for figure_id,original in native.items():
     pattern=r'(<div class="vizscroll" id="chart-'+re.escape(figure_id)+r'"[^>]*></div>)'
