@@ -1,7 +1,7 @@
 {
   "issuer": "688220",
   "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
-  "html_sha256": "0dbd647f1f948a5b13877ab173909fcceeccff79e8f8a3cbb6346275b5f61c24",
+  "html_sha256": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
   "actual_3_viewport_checks": [
     {
       "width": 1440,
@@ -32,44 +32,44 @@
   "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
   "real_CJK_screenshot_sha_bytes": {
     "balance_1440.png": {
-      "sha256": "f9bd2dd8d8088876b4141ed848befb37d8119b189fc48e2c20648f5311f6a542",
-      "bytes": 110506
+      "sha256": "6e94d34c51531bc96e6b131b30a669c5c27ff61129e3b7c4dc2c4e37d532c5c8",
+      "bytes": 110500
     },
     "balance_390.png": {
-      "sha256": "5141dd761ad872fa0f8cd5a28cb5c9becb8a91d3afda75a1e064170521729dd3",
-      "bytes": 82977
+      "sha256": "9c69ef15ad8e64b6577eba6a7e3ce1a8458e7414aca6f7356eec32bf79ea2656",
+      "bytes": 83001
     },
     "capital_1440.png": {
-      "sha256": "3b2b65aae1a760bdba37a7d136ee9daaf828cc5542b341fea5d6db98c3e19cc9",
-      "bytes": 64887
+      "sha256": "3699e45814900576b0d96b2e1c8d398fa9736c82fcd1572a5ab758782cefb7ee",
+      "bytes": 64884
     },
     "capital_390.png": {
-      "sha256": "47d5ca032a048a9bb03168ae05c1774cdf6cac1dbdcb5dd1025834f0a576e818",
-      "bytes": 74274
+      "sha256": "9da4c2c9efbbf512b6874f2de42bbc1e6b04fc9450ad2df02977d71276bc50a7",
+      "bytes": 74267
     },
     "cash_1440.png": {
-      "sha256": "e42fe2d5495579e2c365426ab2ffbb174d9a31cf629a24ddfb941924f44b6275",
-      "bytes": 81972
+      "sha256": "2de2904963ecf7785dd97ce73506e941fd8fba72e81ad8cf7199d3162b49e596",
+      "bytes": 81989
     },
     "cash_390.png": {
-      "sha256": "9e43d40ed7a261cd2f1acc2b3ba40fbced0c8d10c0e6fa51b3a9cc7dbc4a4845",
-      "bytes": 83017
+      "sha256": "2e1e37fb86da8b0347b206abc50dfaf435995557324bd598b207d96626d77943",
+      "bytes": 83022
     },
     "cfo_1440.png": {
-      "sha256": "4e344f6617fbbbfd40d3593b1b4a1c77c0613ecb7330aaa39257e8790fc7454b",
-      "bytes": 81666
+      "sha256": "8ef4067275c8e34b26beb69636e054e87f12c71de2a3e9f46feee0a369eb34d4",
+      "bytes": 81650
     },
     "cfo_390.png": {
-      "sha256": "56dba130cdb82f0fbcee5be63fdbfa026d2fe71cc957e4b943d5d13927c58653",
-      "bytes": 94576
+      "sha256": "c6fe1140f5d9035f4039778d010e7e52012f7a2a872a0fa94051f702ee83b29e",
+      "bytes": 94578
     },
     "earnings_1440.png": {
-      "sha256": "9d9421c26e73ca7f8d5d5adc4d23ad4daa777eb850533278ec4eef307a948ab4",
-      "bytes": 63959
+      "sha256": "8e699fd81939f2fc1fcc03216cdf9e07e5a585f39ab8734e1c78356a0877698f",
+      "bytes": 63927
     },
     "earnings_390.png": {
-      "sha256": "36e364f81c0b09ef05582e21b48044b2b530ec993a95f4932c5c7a2549623764",
-      "bytes": 66305
+      "sha256": "8851a704766665a9680de686cbcddf890f58bce030d690c58259572fc5ea29d0",
+      "bytes": 66301
     },
     "flow_1440.png": {
       "sha256": "a67b37f443c052d47a43c1abc8d1cb6094d2b7d54169e29e52a7fe305ecf9ddc",
@@ -80,16 +80,16 @@
       "bytes": 118912
     },
     "full_1440.png": {
-      "sha256": "7bd04b456604c62b8fe43f9890d9ac27b9d4c4a21e5bae29914c900981625534",
-      "bytes": 2082552
+      "sha256": "880c30bdd26726ee6906c1eca165de32287631890b44848763867f70b85eb681",
+      "bytes": 2143208
     },
     "full_390.png": {
-      "sha256": "38380a74ea49c27c28e68db0e3759fc7387ebba244872568c1590cb9f659a23c",
-      "bytes": 1816836
+      "sha256": "9d9539a74df395dc47a3e7363f168648630de0b5b654d09bd0316d83fa6b3cc2",
+      "bytes": 1853831
     },
     "full_768.png": {
-      "sha256": "96391b50d66f99f873052c584ab75f197fa4aa204917bcd32d15fd9875d7a61e",
-      "bytes": 2182197
+      "sha256": "b669d1ea561ab35d7e9b8e867b61a82b270e5ad8bc20a10f0316292bf742b15a",
+      "bytes": 2244898
     },
     "gp_1440.png": {
       "sha256": "bb3df6f185399aab3a368cdc4ef12958be810e1b68c565d9367aaf494397325f",
@@ -100,12 +100,12 @@
       "bytes": 67607
     },
     "pnl_1440.png": {
-      "sha256": "ff6da2801a4e58e4b3e11dfade44396be258673149c94b964a8d18c96a6f0b83",
-      "bytes": 126040
+      "sha256": "2e2960d2e9835f13fea2bc98ab369c519b6a8c12088e61b1887fb4059899daec",
+      "bytes": 188490
     },
     "pnl_390.png": {
-      "sha256": "3d3b729622164a97b1c0ae58c4b1c067ab5fcc20e477efa2c6b71f539f44499f",
-      "bytes": 120332
+      "sha256": "4a134df3d7da0e388c8034ec59a2e89d9a4c4a466ca170d7f87df234754dbf79",
+      "bytes": 153905
     },
     "segment_1440.png": {
       "sha256": "3abc65d78358ed619a56740a39d1ee436d69fc2ec5a6415949a13c2d4627e925",

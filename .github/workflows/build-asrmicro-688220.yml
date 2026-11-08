@@ -1,10 +1,15 @@
 name: Build and audit ASR 688220 source-limited standalone research
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', main]
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', 'quality/688220-shared-full-pnl-native-profit-20261108', main]
     paths:
       - 'research/issuers/688220/**'
-      - 'public/688220.html'
+      - '!research/issuers/688220/visual-qa/**'
+      - '!research/issuers/688220/visual-qa-native/**'
+      - '!research/issuers/688220/live-visual-qa/**'
+      - '!research/issuers/688220/qa.json'
+      - '!research/issuers/688220/release-gates.json'
+      - 'research/shared/signed_statement_waterfall.py'
       - '.github/workflows/build-asrmicro-688220.yml'
   workflow_dispatch:
 permissions:
@@ -23,6 +28,8 @@ jobs:
           python research/issuers/688220/verify_pages.py
           python research/shared/test_conserved_flow.py
           python research/issuers/688220/test_accounting.py
+          python -m unittest discover -s research/issuers/688220 -p 'test_shared_pnl.py' -v
+          python -O -m unittest discover -s research/issuers/688220 -p 'test_shared_pnl.py' -v
           python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
           test -s public/688220.html
           python - <<'PY'
@@ -53,7 +60,32 @@ jobs:
           python -m pip install -q playwright
           python -m playwright install --with-deps chromium
       - name: Local 1440, 768, 390 fully rendered browser QA, source tables and SVG downloads
-        run: python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa
+        run: |
+          python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa-native
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib,json
+          repo=Path('.')
+          report=repo/'public/688220.html'
+          root=repo/'research/issuers/688220'
+          record=json.loads((root/'visual-qa-native/result.json').read_text(encoding='utf8'))
+          release=root/'release-gates.json'
+          meta=json.loads(release.read_text(encoding='utf8'))
+          sha=hashlib.sha256(report.read_bytes()).hexdigest()
+          assert record['html_sha256']==sha
+          assert meta['published_html_sha256']==meta['unmerged_candidate']['base_deployed_html_sha256']
+          assert meta['unmerged_candidate']['independent_finance_and_art_review']=='NOT_CHECKED'
+          assert {z['width'] for z in record['actual_3_viewport_checks']}=={390,768,1440}
+          for pic in ('flow_390.png','flow_1440.png','pnl_390.png','cfo_390.png'):
+              content=(root/'visual-qa-native'/pic).read_bytes()
+              assert hashlib.sha256(content).hexdigest()==record['real_CJK_screenshot_sha_bytes'][pic]['sha256']
+          meta['unmerged_candidate']['candidate_full_html_sha256']=sha
+          meta['unmerged_candidate']['current_sha_browser_proof']='LOCAL_ONLY'
+          meta['unmerged_candidate']['promotion_status']='UNMERGED_NOT_DEPLOYED'
+          meta['unmerged_candidate']['note']='Original source-typed ASR signed full P&L is a current SHA-bound local candidate only. Do not claim deployed or human editorial approval before independent live SHA and current browser checks.'
+          release.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+          print('ASR_SIGNED_FULL_PNL_SHA_BOUND_BROWSER_CANDIDATE_PASS',sha)
+          PY
       - name: Clean independent rebuild of exactly the published article
         run: |
           sha256sum public/688220.html
@@ -70,6 +102,8 @@ jobs:
           git config user.name "financials-research-bot"
           git config user.email "financials-research-bot@users.noreply.github.com"
           git add public/688220.html research/issuers/688220/qa.json research/issuers/688220/source-verification.json research/issuers/688220/source-images/p135.png research/issuers/688220/source-images/p146.png
+          git add research/issuers/688220/release-gates.json research/issuers/688220/visual-qa-native/result.json
+          git add research/issuers/688220/visual-qa-native/flow_390.png research/issuers/688220/visual-qa-native/flow_1440.png research/issuers/688220/visual-qa-native/pnl_390.png research/issuers/688220/visual-qa-native/cfo_390.png
           if ! git diff --cached --quiet; then
             git commit -m "Generate ASR 688220 independent source-limited research HTML and ledger QA"
             git pull --rebase origin "${{ github.ref_name }}"
@@ -83,6 +117,6 @@ jobs:
           path: |
             public/688220.html
             research/issuers/688220/qa.json
-            research/issuers/688220/visual-qa/
+            research/issuers/688220/visual-qa-native/
           if-no-files-found: warn
           retention-days: 30

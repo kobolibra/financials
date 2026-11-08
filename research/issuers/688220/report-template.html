@@ -48,7 +48,7 @@ section.article{margin-top:105px;scroll-margin-top:80px}.sectionid{display:inlin
  <div class="figure-id">FIGURE 04 / FROM GROSS PROFIT TO NET PROFIT / CAS SIGNED BRIDGE</div>
  <div class="figure-top"><div>
   <h3>7.22 亿毛利，为什么最终只留下 0.84 亿净利润？</h3>
-  <p class="answer">不是把负数强塞进桑基。研发费用先吸收约 6.63 亿毛利，再由投资、公允价值变动及税项等带符号调节，形成当期法定利润。这是一张完整利润表主线桥，不是现金流向。</p>
+  <p class="answer">不是把负数强塞进桑基。研发费用先吸收约 6.63 亿毛利，再由投资、公允价值变动及税项等带符号调节，形成当期法定利润。这是共享的完整合并利润表有符号主线桥，允许累计经营利润短暂转负；不把它冒充现金流向。</p>
  </div><button class="export" type="button" data-export="pnl">导出 SVG</button></div>
  <div class="mobile-facts" aria-label="法定利润桥手机端答案"><strong>毛利 7.22 亿 − 研发 6.63 亿 − 其他税费与期间费用约 0.80 亿 → 基础经营余量约 −0.22 亿。</strong><span>随后叠加其他收益、投资收益、公允价值变动、减值、非经营收支与所得税收益，合并净利润为 +0.84 亿。不是经营性现金。</span></div>
  <div class="vizscroll" id="chart-pnl" role="region" aria-label="2026年上半年从毛利至法定净利润的带符号瀑布；移动端可左右滑动"></div>
@@ -163,7 +163,9 @@ function pnl(){
  if(Math.abs(operating-N("operating_profit"))>0.001 || Math.abs(at-N("consolidated_net_profit"))>0.001){
    throw new Error("INCOME_STATEMENT_SIGNED_BRIDGE_INVARIANT_FAILURE");
  }
- waterfall("pnl",steps,{title:"2026H1翱捷科技合并利润表：毛利、研发费用、其余四项费用及税金、投资与公允价值、减值与税收收益至法定净利润的真实带符号瀑布"});
+ // The complete signed SVG now comes from one Python Decimal original-CNY plan.
+ // JS only verifies the source arithmetic and renders original evidence table.
+ register("pnl",__UNIFIED_PNL_DESKTOP__);
  table("pnl",[
   ["合并营业收入",N("rev"),"p.86"],["合并营业成本",N("cogs"),"p.86"],
   ["毛利润（收入减成本）",gross,"p.86"],

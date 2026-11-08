@@ -8,7 +8,7 @@ original=json.loads((HERE/"source-ledger.json").read_text())
 def call(ledger):
  with tempfile.TemporaryDirectory() as root:
   t=pathlib.Path(root)
-  for name in ("report-template.html","publish.py","figure-briefs.json","native_mobile.py","source-manifest.json"):
+  for name in ("report-template.html","publish.py","figure-briefs.json","native_mobile.py","shared_pnl.py","source-manifest.json"):
    (t/name).write_bytes((HERE/name).read_bytes())
   manifest=json.loads((HERE/"source-manifest.json").read_text())
   pdf=t/manifest["file"]
