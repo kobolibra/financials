@@ -1,9 +1,10 @@
 name: Build and audit ASR 688220 source-limited standalone research
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', main]
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', 'quality/688220-shared-full-pnl-native-profit-20261108', main]
     paths:
       - 'research/issuers/688220/**'
+      - 'research/shared/signed_statement_waterfall.py'
       - 'public/688220.html'
       - '.github/workflows/build-asrmicro-688220.yml'
   workflow_dispatch:
@@ -23,6 +24,8 @@ jobs:
           python research/issuers/688220/verify_pages.py
           python research/shared/test_conserved_flow.py
           python research/issuers/688220/test_accounting.py
+          python -m unittest discover -s research/issuers/688220 -p 'test_shared_pnl.py' -v
+          python -O -m unittest discover -s research/issuers/688220 -p 'test_shared_pnl.py' -v
           python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
           test -s public/688220.html
           python - <<'PY'
