@@ -1,7 +1,7 @@
 name: Build and audit ASR 688220 source-limited standalone research
 on:
   push:
-    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', 'quality/688220-shared-full-pnl-native-profit-20261108', main]
+    branches: ['work/asrmicro-688220-2026h1', 'work/688220-source-cells-verified-nine-figures', 'work/688220-zero-width-sankey-desktop-qa', 'quality/688220-shared-full-pnl-native-profit-20261108', 'quality/688220-state-machine-rebuild-stable-20261108', main]
     paths:
       - 'research/issuers/688220/**'
       - '!research/issuers/688220/visual-qa/**'
@@ -64,7 +64,7 @@ jobs:
           python research/issuers/688220/qa_browser.py --html public/688220.html --out research/issuers/688220/visual-qa-native
           python - <<'PY'
           from pathlib import Path
-          import hashlib,json
+          import hashlib,json,os
           repo=Path('.')
           report=repo/'public/688220.html'
           root=repo/'research/issuers/688220'
@@ -73,18 +73,45 @@ jobs:
           meta=json.loads(release.read_text(encoding='utf8'))
           sha=hashlib.sha256(report.read_bytes()).hexdigest()
           assert record['html_sha256']==sha
-          assert meta['published_html_sha256']==meta['unmerged_candidate']['base_deployed_html_sha256']
-          assert meta['unmerged_candidate']['independent_finance_and_art_review']=='NOT_CHECKED'
+          assert meta['gates']['INDEPENDENT_HUMAN_REVIEW']['status']=='NOT_CHECKED'
+          assert meta['gates']['OFFICIAL_PDF_BYTE_EQUIVALENCE']['status']=='NOT_CHECKED'
+          assert meta['gates']['REPORTED_NOTE_TIES']['status']=='FAIL'
+          assert meta['release_class']=='source_limited_preview'
           assert {z['width'] for z in record['actual_3_viewport_checks']}=={390,768,1440}
           for pic in ('flow_390.png','flow_1440.png','pnl_390.png','cfo_390.png'):
               content=(root/'visual-qa-native'/pic).read_bytes()
               assert hashlib.sha256(content).hexdigest()==record['real_CJK_screenshot_sha_bytes'][pic]['sha256']
-          meta['unmerged_candidate']['candidate_full_html_sha256']=sha
-          meta['unmerged_candidate']['current_sha_browser_proof']='LOCAL_ONLY'
-          meta['unmerged_candidate']['promotion_status']='UNMERGED_NOT_DEPLOYED'
-          meta['unmerged_candidate']['note']='Original source-typed ASR signed full P&L is a current SHA-bound local candidate only. Do not claim deployed or human editorial approval before independent live SHA and current browser checks.'
-          release.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
-          print('ASR_SIGNED_FULL_PNL_SHA_BOUND_BROWSER_CANDIDATE_PASS',sha)
+          actual_live=meta['published_html_sha256']
+          candidate=meta.get('unmerged_candidate')
+          if sha==actual_live:
+              # Source-identical rebuilt main is already deployed. Keep actual
+              # live evidence immutable, not an invented UNMERGED candidate.
+              assert candidate is None,'STALE_CANDIDATE_ON_ALREADY_DEPLOYED_BYTES'
+              assert meta['live_release_fingerprint']==sha
+              assert meta['gates']['CLOUDFLARE_LIVE']['status']=='PASS'
+              proof=json.loads((root/'live-release-receipt.json').read_text(encoding='utf8'))
+              assert proof['status']=='PASS' and proof['public_html_sha256']==sha
+              assert proof['verified_git_commit']==meta['actual_main_release_commit']
+              assert proof['actual_publication_action']==meta['gates']['CLOUDFLARE_LIVE']['proof']
+              assert proof['source_pdf_sha256']==meta['source_pdf']['sha256']
+              assert {q['width'] for q in proof['real_chromium_viewports']}=={390,768,1440}
+              assert proof['SSE_original_bytes_equivalence']=='NOT_CHECKED'
+              print('ASR_REBUILT_CURRENT_LIVE_IDENTICAL_SOURCE_NO_GHOST_CANDIDATE',sha)
+          else:
+              # New source bytes must remain separate pending release evidence.
+              assert isinstance(candidate,dict),'NEW_CANDIDATE_MISSING_SEPARATE_RELEASE_STATE'
+              assert candidate['base_deployed_html_sha256']==actual_live
+              assert candidate['independent_finance_and_art_review']=='NOT_CHECKED'
+              assert candidate['promotion_status']=='UNMERGED_NOT_DEPLOYED'
+              if os.environ.get('GITHUB_REF_NAME')=='main':
+                  assert candidate['candidate_full_html_sha256']==sha
+                  print('ASR_MAIN_NEW_HTML_LIVE_NOT_YET_CERTIFIED',sha)
+              else:
+                  candidate['candidate_full_html_sha256']=sha
+                  candidate['current_sha_browser_proof']='LOCAL_ONLY'
+                  candidate['note']='Original full-source P&L is a local candidate. Current live SHA and independent human approval require separate proof.'
+                  release.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
+                  print('ASR_NEW_SOURCE_CANDIDATE_NOT_DEPLOYED',sha)
           PY
       - name: Clean independent rebuild of exactly the published article
         run: |
