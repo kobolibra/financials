@@ -7,6 +7,9 @@ description: Original-PDF-grounded A-share public company research, institutiona
 
 Contract version: 9.0.0
 
+
+**2026-11-08 merged-main amendment:** #35/#36/#37 are merged. This Skill applies on current `main` and subsequent branches; the old PR35 candidate handoff is history. For `research/rebuild-v10` use `readable_source_rows=True` in the shared renderer, but preserve legacy issuer outputs through the default false layout until their other financial exhibits and full original-source HTML are deliberately rebuilt and reverified. Current seven are HERO-only unified, not whole-article unified. Independent professional review and unseen multi-period causal drivers remain NOT_CHECKED. Never call the new main live SHA verified merely because Cloudflare deploy succeeded.
+
 **This is a decision-and-execution Skill, not a record of earlier successes.** The 125 KB append-only historical v8.8 notes are preserved in `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md`; historical claims there NEVER authorize a current release. The five research manuals below provide accounting/editorial detail, while this file decides what to execute, what can be published and what must be rejected.
 
 ## 0. Start from actual source of truth, not chat memory
