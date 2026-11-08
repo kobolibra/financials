@@ -1,11 +1,12 @@
 name: Build and audit two distinct 2026H1 sector research reports
 on:
   push:
-    branches: ['work/two-sector-600900-600276-real-2026h1', 'work/two-sector-native-mobile-aei-original-finance-20261104', 'quality/aei-sankey-source-contract-v1', main]
+    branches: ['work/two-sector-600900-600276-real-2026h1', 'work/two-sector-native-mobile-aei-original-finance-20261104', 'quality/aei-sankey-source-contract-v1', 'quality/two-sector-source-typed-profit-bridge-20261108', main]
     paths:
       - 'research/issuers/600900/**'
       - 'research/issuers/600276/**'
       - 'research/shared/build_two_sector.py'
+      - 'research/rebuild-v10/profit_formation.py'
       - 'research/shared/source_income_adapter.py'
       - 'research/shared/unified_income_sankey.py'
       - 'research/shared/qa_two_sector_browser.py'
@@ -35,6 +36,7 @@ jobs:
           python research/shared/verify_two_sector_cells.py --code 600900
           python research/shared/verify_two_sector_cells.py --code 600276
           python -m unittest research/shared/test_two_sector_accounting.py -v
+          python -m unittest discover -s research/rebuild-v10 -p 'test_profit_formation.py' -v
           python research/shared/build_two_sector.py --code 600900 --out public/600900.html
           python research/shared/build_two_sector.py --code 600276 --out public/600276.html
           test -s public/600900.html
