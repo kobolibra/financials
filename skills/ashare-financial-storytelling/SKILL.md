@@ -30,6 +30,8 @@ For **every** report, create five decision-bound items linked to literal source 
 4. Business durability and reinvestment/working capital/credit/capital constraints, with explicit cash and profit scopes.
 5. What is NOT_CHECKED: missing peer/8–12 quarter/volume-price/valuation data; never fabricate.
 
+For the four current V10 baseline cases, keep an exact original-PDF-SHA-bound **quantified_driver** in `research/quality/pr35-hero-figure-briefs.json` with real fact IDs, physical PDF pages, 2025H1/2026H1 period, explicit equation, exact Decimal yuan result, strongest alternative and the next disclosure that could falsify it. Run `python scripts/audit_research_depth.py` and `python -m unittest discover -s scripts -p test_audit_research_depth.py -v` before any V10 report release. This tests source-backed accounting attribution arithmetic ONLY, not causality, 8–12Q mechanism or independent editorial excellence. Invalid prior-year period metadata is a release FAIL even if its numeric values happen to be correct.
+
 Each figure receives a **five-second editorial brief** (question, graphically provable answer, key comparison, contradictory evidence, exact fact IDs, scope, unit, period, disclaimer, why this graphic). Four actual v10 hero examples: `research/quality/pr35-hero-figure-briefs.json`. Figure counts and test counts are never analytical-depth scores.
 
 ## 2. Use one semantic compiler, one money-flow renderer
