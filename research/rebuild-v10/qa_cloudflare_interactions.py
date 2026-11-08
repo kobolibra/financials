@@ -137,6 +137,36 @@ def main() -> int:
                         assert thesis.get_attribute("data-accounting-not-causal")=="true",(code,"FALSE_CAUSAL_RESEARCH_CLAIM")
                         assert thesis.locator(".decision-fact[data-exact-yuan][data-physical-page] a[href*='#page=']").count()==len(brief["fact_keys"]),(code,"LIVE_QUANTIFIED_SOURCE_ROWS_OR_LINKS_MISSING")
                         assert page.locator('a[href="#quantified-decision"]').count()==1,(code,"DECISION_NAV_LINK_LOST")
+                        formation=page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"]')
+                        if code in ("688111","000333"):
+                            assert formation.count()==1,(engine,width,code,"REAL_SIGNED_PROFIT_FORMATION_SECTION_MISSING")
+                            assert formation.get_attribute("data-source-pdf-sha256")==brief["source_pdf_sha256"],(code,"FORMED_PROFIT_SOURCE_PDF_DRIFT")
+                            selected=formation.locator(".profit-viz-phone svg") if width<=850 else formation.locator(".profit-viz-desktop svg")
+                            hidden=formation.locator(".profit-viz-desktop svg") if width<=850 else formation.locator(".profit-viz-phone svg")
+                            assert selected.count()==1 and selected.is_visible() and not hidden.is_visible(),(engine,width,code,"PROFIT_FORMATION_NOT_NATIVE_MOBILE_OR_DESKTOP")
+                            graph=selected.evaluate("""svg=>{
+                                let rect=svg.getBoundingClientRect();
+                                return {source:svg.dataset.sourcePdfSha256,period:svg.dataset.period,
+                                  grammar:svg.dataset.profitGrammar,
+                                  residual:svg.dataset.residualStatus,
+                                  visibility:rect.width>240&&rect.left>=-3&&rect.right<=innerWidth+3,
+                                  nodes:[...svg.querySelectorAll('rect[data-step-id]')].map(x=>({
+                                    id:x.dataset.stepId,delta:x.dataset.deltaYuan,
+                                    before:x.dataset.beforeYuan,after:x.dataset.afterYuan,
+                                    scale:x.dataset.moneyScaleYuanPerUnit,width:x.getAttribute('width') }))};
+                            }""")
+                            from decimal import Decimal
+                            assert graph["source"]==brief["source_pdf_sha256"] and graph["period"]=="2026H1" and graph["visibility"],(code,width,"SOURCE_BOUND_LIVE_PROFIT_VISUAL_CLIPPED",graph)
+                            assert graph["grammar"]=="DISCLOSED_INCOME_TO_NET_SIGNED_CONSOLIDATED_BRIDGE" and graph["residual"]=="DERIVED_UNATTRIBUTED_NOT_CAUSAL"
+                            assert len(graph["nodes"])==(6 if code=="000333" else 5)
+                            for node in graph["nodes"]:
+                                before=Decimal(node["before"]);delta=Decimal(node["delta"]);after=Decimal(node["after"])
+                                assert before+delta==after,(code,width,"LIVE_PROFIT_CHAIN_NOT_RECONCILED",node)
+                                assert abs(Decimal(node["width"])-abs(delta)/Decimal(node["scale"]))<Decimal(".001"),(code,width,"LIVE_SIGNED_FINANCE_GEOMETRY_WRONG",node)
+                            assert formation.locator(".profit-source-table tbody tr[data-exact-yuan] a[href*='#page=']").count()==(7 if code=="000333" else 4),(code,width,"SOURCE_TABLE_LINKS_MISSING")
+                        else:
+                            assert formation.count()==0,(code,width,"INDUSTRIAL_PROFIT_GRAPH_WRONGLY_FORCED_ON_OTHER_BUSINESS_MODEL")
+
                         assert page.locator('a[href="/#companies"]').count()>=2,(code,"NO_HOME_RETURN_ROUTE")
                         assert page.locator("header .mast-links").inner_text().find("全部公司")>=0,(code,"STALE_SEVEN_COMPANY_NAV")
                         figs=page.locator("figure.graphic")
