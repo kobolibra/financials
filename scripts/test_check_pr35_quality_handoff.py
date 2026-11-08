@@ -99,6 +99,30 @@ class ActivePR35HandoffTests(unittest.TestCase):
         self.assertIn("FIGURE_BRIEF_MISSING_SOURCE_REVENUE_FACT_IDS_688111",issues)
         self.assertIn("FIGURE_BRIEF_MISSING_DISTINCT_REASON_688111_strongest_countercase",issues)
 
+    def test_archived_unmerged_pr35_status_and_false_seven_legacy_claim_rejected(self):
+        args=list(evidence())
+        old_active=copy.deepcopy(args[0])
+        old_active["review_state"]="UNMERGED_CANDIDATE_NEEDS_INDEPENDENT_EDITORIAL_REVIEW"
+        args[0]=old_active
+        self.assertIn("PREMATURE_RESEARCH_OR_DEPLOYMENT_CERTIFICATION",
+                      validate_artifact_integrity(*args))
+        old_active=copy.deepcopy(evidence()[0])
+        old_active["visual_unification_status"]["legacy_not_unified"]=[
+            "300394","300308","300502","688220","600900","600276","601628"]
+        active=jread(ROOT,MANIFEST)
+        status=jread(ROOT,"project-status.json")
+        texts=lambda p:(ROOT/p).read_text(encoding="utf8")
+        inputs=[old_active,status,texts("START_HERE.md"),texts("PROJECT_STATE.md"),
+                texts("AGENTS.md"),texts("skills/ashare-financial-storytelling/SKILL.md"),
+                texts("docs/HANDOFF_PROTOCOL.md"),texts("docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md")]
+        self.assertIn("SEVEN_ISSUER_HERO_ONLY_EDITORIAL_MIGRATION_STATUS_STALE",
+                      validate_handoff_documents(*inputs))
+        inputs[0]=active
+        inputs[1]=copy.deepcopy(status)
+        inputs[1]["active_pr35_quality_candidate"]["state"]="UNMERGED_CANDIDATE_WITH_SEPARATE_MAIN_PRODUCTION"
+        self.assertIn("PROJECT_STATUS_PREMATURE_RELEASE",
+                      validate_handoff_documents(*inputs))
+
     def test_no_handoff_anchor_or_main_belongs_to_branch_rejected(self):
         active=jread(ROOT,MANIFEST)
         status=jread(ROOT,"project-status.json")
