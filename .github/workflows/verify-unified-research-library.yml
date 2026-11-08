@@ -162,17 +162,27 @@ jobs:
                     assert page.locator('[data-export]').count()==expected_figures,'ASR authored figure SVG export controls missing'
                     assert page.locator('#chart-pnl svg').count()==1,'ASR full signed GAAP P&L missing'
                     assert page.locator('#chart-balance svg').count()==1,'ASR equal-total BS funding composition missing'
-                    assert page.locator('#chart-flow path.money-ribbon').count()==7,'ASR source-to-cost+GP seven actually positive weighted edges missing'
-                    # Live release identity: test the real rendered proportional
-                    # source geometry, not a stale page with the same 9 SVG counts.
-                    assert page.locator('#chart-flow rect.money-source').count()==4,'ASR source amounts not represented as geometric nodes'
-                    assert page.locator('#chart-flow rect.money-sink').count()==2,'ASR cost/GP sink geometry absent'
-                    tiny=page.locator('#chart-flow rect.money-source[data-source-key="other_service_rev"]')
-                    assert tiny.count()==1,'new original-source geometry release missing on production'
+                    # V9 finance hero is now source -> ONE total -> disclosed cost/GP.
+                    # The old money-ribbon classes were intentionally removed.
+                    graph=page.locator('#chart-flow svg[data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]')
+                    assert graph.count()==1,'ASR connected original money Sankey missing'
+                    assert graph.locator('rect[data-node-id="revenue-total"]').count()==1,'ASR consolidated original-money total missing'
+                    assert graph.locator('rect[data-node-role="source"]').count()==4,'ASR four distinct disclosed sources missing'
+                    assert graph.locator('rect[data-node-role="cost"],rect[data-node-role="profit"]').count()==2,'ASR two financial sinks missing'
+                    assert graph.locator('path[data-stage="source-to-revenue"]').count()==4,'ASR original income sources not connected'
+                    assert graph.locator('path[data-stage="revenue-to-outcome"]').count()==7,'ASR individually disclosed cost/GP ribbons missing'
+                    tiny=graph.locator('rect[data-node-id="other_service_rev"]')
+                    assert tiny.count()==1,'original very-small other-service revenue source missing'
                     tiny_height=float(tiny.get_attribute('height'))
-                    assert 0<tiny_height<0.02,(ticker,width,'source tiny real amount was visually inflated',tiny_height)
-                    assert page.locator('#chart-flow path.money-ribbon[data-source-key="other_service_rev"][data-target-key="cogs"]').count()==1
-                    assert page.locator('#chart-flow path.money-ribbon[data-source-key="other_service_rev"][data-target-key="gross_profit"]').count()==0,'real zero GP must not become fake green ribbon'
+                    assert 0<tiny_height<0.02,(ticker,width,'original tiny source money was inflated',tiny_height)
+                    assert graph.locator('path[data-stage="revenue-to-outcome"][data-source-id="other_service_rev"][data-outcome-id="group_cogs"]').count()==1
+                    assert graph.locator('path[data-stage="revenue-to-outcome"][data-source-id="other_service_rev"][data-outcome-id="group_gp"]').count()==0,'zero actual GP must not produce cosmetic green ribbon'
+                    amounts=graph.evaluate("""svg => {
+                      const scale=+svg.getAttribute('data-scale-yuan-per-svg-unit');
+                      return [...svg.querySelectorAll('rect[data-node-role="source"]')].map(r=>({
+                        actual:+r.getAttribute('height'),expected:+r.dataset.nodeYuan/scale}));
+                    }""")
+                    assert all(abs(z['actual']-z['expected'])<0.001 for z in amounts),(ticker,width,'false original-money source geometry',amounts)
                     if width==1440:
                       v=page.evaluate("""() => ['flow','pnl','balance','cash'].map(id=>{
                         let c=document.querySelector('#chart-'+id);
