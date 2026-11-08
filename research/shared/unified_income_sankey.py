@@ -130,7 +130,7 @@ class FlowPlan:
             raise ValueError("UNSOURCED_OR_CONTEXTLESS_FINANCE")
         return total
 
-def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=False):
+def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=False, readable_source_rows:bool=False):
     total=plan.check()
     W=D(330 if mobile else 1100)
     HVAL=D(142 if mobile else 286)
@@ -146,7 +146,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         rev_width=D(10)
         # The source legend has one line per real source. Give it its
         # own height instead of drawing the fourth company over the header.
-        top=D(165)+D(18)*D(max(0,len(plan.sources)-2))
+        top=(D(173)+D(32)*D(max(0,len(plan.sources)-2)) if readable_source_rows else D(165)+D(18)*D(max(0,len(plan.sources)-2)))
         src_base=top; mid_base=top+D(7); sink_base=top+D(7)
         title_size=14
     else:
@@ -181,15 +181,20 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         out.append(text(12,43,f'{plan.period} · 人民币亿元 · 金额按同一比例',10,PALETTE["muted"]))
         out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",10,PALETTE["muted"]))
         for i,(sid,name,v,_,__) in enumerate(src_nodes):
-            leg_y=D(89+i*21)
-            out.append(text(12,leg_y,f'{i+1:02d}  {name}',10,PALETTE["ink"],600,role="source-summary"))
+            leg_y=D(89+i*(32 if readable_source_rows else 21))
+            # Own line for the source and own line for money: never collide
+            # with long Chinese names or the directly readable gross margin.
+            out.append(text(12,leg_y,f'{i+1:02d}  {name}',11 if readable_source_rows else 10,PALETTE["ink"],600,role="source-summary"))
             label=fmt(v)
             if plan.allocations:
                 own_gp=sum((yuan(value) for source,outcome,value in plan.allocations
                             if source==sid and any(key==outcome and role=="profit"
                                                    for key,_,_,role in plan.outcomes)),D(0))
                 label+=f' · 毛利{own_gp/v*100:.1f}%'
-            out.append(text(315,leg_y,label,9,PALETTE["source_dark"],600,"end",role="source-summary"))
+            if readable_source_rows:
+                out.append(text(28,leg_y+D(15),label,11,PALETTE["source_dark"],600,role="source-summary"))
+            else:
+                out.append(text(315,leg_y,label,9,PALETTE["source_dark"],600,"end",role="source-summary"))
         out.append(text(12,top-D(16),"来源",10,PALETTE["muted"],600,role="source-stage-header"))
         out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",10,PALETTE["muted"],600,"middle",role="total-stage-header"))
         out.append(text(xout,top-D(16),"去向",10,PALETTE["muted"],600,"middle"))
@@ -272,7 +277,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         else:
             short=name.replace("营业","").replace("及管理","")
             if len(short)>4: short=short[:4]
-            out.append(text(274,sy+10,short,9,color,700))
+            out.append(text(274,sy+10,short,10 if readable_source_rows else 9,color,700))
     if mobile:
         # The financial outcome list, accounting warning and source note are
         # stacked using ACTUAL row count, never fixed H offsets (which caused

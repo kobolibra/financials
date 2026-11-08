@@ -137,6 +137,17 @@ class OriginalVisualGrammarTests(unittest.TestCase):
                 grouped={}
                 for t in root.iter(XMLNS+"text"):
                     grouped.setdefault(t.get("data-editorial-role"),[]).append(D(t.get("y")))
+                # The phone must present source names and original-yuan labels
+                # on independent readable lines, not two competing 9px columns.
+                legend=[t for t in root.iter(XMLNS+"text")
+                        if t.get("data-editorial-role")=="source-summary"]
+                self.assertEqual(len(legend),len(typed["source_keys"])*2)
+                self.assertTrue(all(D(t.get("font-size"))>=D(11) for t in legend))
+                for row in range(len(legend)//2):
+                    name,money=legend[2*row:2*row+2]
+                    self.assertGreater(D(money.get("y"))-D(name.get("y")),D(12))
+                    self.assertEqual(name.get("text-anchor"),"start")
+                    self.assertEqual(money.get("text-anchor"),"start")
                 source=max(grouped["source-summary"])
                 header=min(grouped["source-stage-header"])
                 self.assertGreater(header-source,D(18),

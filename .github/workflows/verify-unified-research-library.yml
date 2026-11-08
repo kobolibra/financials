@@ -102,10 +102,22 @@ jobs:
                 page.goto(home+path,wait_until='networkidle',timeout=45000)
                 assert page.locator('figure').count()>=(6 if ticker in old or ticker in initial_new else 1),(ticker,'report figures; finance/editorial gate is independent')
                 if ticker in old:
-                  assert page.locator('.money-ribbon').count()>=2,(ticker,'old optical money flows lost')
-                  assert page.locator('a.site-library-link[href="/#companies"]').count()==1,(ticker,'old back-to-library')
+                  # V9 replaced the legacy .money-ribbon hero; test the
+                  # connected source -> shared total -> cost/GP structure,
+                  # rather than failing on a removed CSS class.
+                  hero=page.locator('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]')
+                  assert hero.count()==2,(ticker,'original-source optical hero desktop+phone missing')
+                  assert hero.locator('rect[data-node-id="revenue-total"]').count()==2,(ticker,'optical actual total node missing')
+                  assert hero.locator('path[data-stage="source-to-revenue"]').count()>=4,(ticker,'source money ribbons missing')
+                  assert hero.locator('path[data-stage="revenue-to-outcome"]').count()>=4,(ticker,'outcome money ribbons missing')
+                  assert page.locator('a.site-library-link[href="/#companies"]').count()>=1,(ticker,'optical back-to-library')
                 elif ticker in initial_new:
-                  assert page.locator('.sankey-svg svg').count()>=1,(ticker,'existing v10 sankey missing')
+                  if ticker=='600519':
+                    assert page.locator('svg[data-flow-omission="FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON"]').count()==2,(ticker,'honest negative product-profit exception missing')
+                  else:
+                    hero=page.locator('svg[data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]')
+                    assert hero.count()==2,(ticker,'typed V10 true connected Sankey missing')
+                    assert hero.locator('rect[data-node-id="revenue-total"]').count()==2,(ticker,'group income total missing')
                   assert page.locator('a.brand[href="/#companies"]').count()==1,(ticker,'v10 back-to-library')
                 else:
                   assert page.locator('a[href="/#companies"]').count()>=1,(ticker,'new issuer lacks library return')

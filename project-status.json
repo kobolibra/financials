@@ -30,10 +30,10 @@
     "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
     "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "600036": "fa8855734562ea9b4ea2ba6efe9892600252f4fbebb2bbe9eba2d6706b899993",
+      "688111": "21030160fc2fae5cb009aa131bfe11c014bc98d08c69c3689dc447adf0f6ad49",
       "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
-      "688111": "eae102c55d53f7f50978a017a4a31d9aff98bd350e1c70a0b7eb60b96c0c5f01",
-      "000333": "8d7719c581b29cee95c67f2664f7ee579a92332554944ba9191685df3d5c70aa"
+      "000333": "7b9f02d7e76d5facb8120176d5100227b53bcc5bc05771e8d88bccc420b49541",
+      "600036": "ed9cd12b1a6af08cc6f4ad1399ea0317069be3c2965d7fe4f612560385a2b948"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
