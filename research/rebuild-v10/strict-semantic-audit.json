@@ -6,7 +6,7 @@
   "records": [
     {
       "issuer": "688111",
-      "actual_html_sha256": "86d060368ce2ea47ea7e7057c6c638a1e90beb038174773214ade391b291f534",
+      "actual_html_sha256": "339ea620baad9cdfa4085d53b6637ddb0246c53152df6d27a8e1efeb9038ec10",
       "expected_semantics": {
         "kind": "TYPE_A_SOURCE_OWN_COST_GP",
         "reason": "EXACT_SOURCE_TO_OWN_COST_AND_GP",
@@ -57,7 +57,7 @@
     },
     {
       "issuer": "600519",
-      "actual_html_sha256": "a749195cdeca820dc8992d4bff4913d5a436432f16013207c11145336dd70200",
+      "actual_html_sha256": "1be2828a85fb7dfece58c287a82a2d4a0687678fca11399de1ee6f2aceb532ae",
       "expected_semantics": {
         "kind": "TYPE_C_SANKEY_OMITTED",
         "reason": "AT_LEAST_ONE_PRODUCT_HAS_NEGATIVE_GROSS_PROFIT_OR_COST",
@@ -82,7 +82,7 @@
     },
     {
       "issuer": "000333",
-      "actual_html_sha256": "5c2d1295477426b64b51d102c71baaf455aae4826f62a075b3503531b98cd89c",
+      "actual_html_sha256": "8594d7a9a93cfde5c28aab37eac62112b14757503b46fb80695adb2969645822",
       "expected_semantics": {
         "kind": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
         "reason": "PRODUCT_LEVEL_GP_NOT_ESTABLISHED",
@@ -107,7 +107,7 @@
     },
     {
       "issuer": "600036",
-      "actual_html_sha256": "37dfe328b7c27f7e0ec17d89e22dc7b5f08088ebfd649c2121ed650c5947f6b0",
+      "actual_html_sha256": "dd47ace2259c0e00edad896b9ac2cfd1a1b118d1d2c495414ef5b22436fdeccd",
       "expected_semantics": {
         "kind": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
         "reason": "BANK_NET_INTEREST_ALREADY_AFTER_INTEREST_EXPENSE",
