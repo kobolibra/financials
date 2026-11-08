@@ -55,22 +55,35 @@ def sync():
     latest["actual_cloudflare_preview_artifact"]="NOT_CHECKED_THIS_HTML_SHA"
     latest["desktop_phone_original_money_editorial_spotcheck"]="NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR"
     latest["original_browser_figures"]=36
-    latest["current_main_live_new_figures"]="NOT_DEPLOYED_PR_UNMERGED"
+    # PR35 and PR36 were merged; a new rebuild is not proof of live production.
+    active["review_state"]="MERGED_MAIN_PENDING_INDEPENDENT_FINANCE_AND_ART_REVIEW"
+    latest["current_main_live_new_figures"]="MERGED_MAIN__CURRENT_LIVE_SHA_MUST_BE_REVERIFIED"
     active["four_issuers"]["688111"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_SOURCE_TO_ONE_TOTAL_TO_OWN_COST_GP"
     active["four_issuers"]["000333"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_GROUP_COST_GP_NOT_OWN_MARGIN"
     active["four_issuers"]["600036"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_BANK_NET_INCOME_TO_OPERATING_PROFIT"
     active["four_issuers"]["600519"]["figure_02_design"]="TYPE_C_SIGNED_1040_DESKTOP_AND_330_PHONE_NEGATIVE_WITH_INDEPENDENT_SCALE_INSET"
-    active["visual_unification_status"]={
+    # The seven former sector publishers now have a common lawful HERO;
+    # their other figures still require full editorial migration.
+    partial=["300394","300308","300502","688220","600900","600276","601628"]
+    visual=active.get("visual_unification_status",{})
+    visual.update({
         "unified_positive_income_flow":["688111","000333","600036"],
         "lawful_signed_exception":["600519"],
-        "legacy_not_unified":["300394","300308","300502","688220","600900","600276","601628"],
+        "legacy_not_unified":[],
+        "partial_hero_only_unified_remaining_art_legacy":partial,
         "all_11_editorially_unified":"NOT_ESTABLISHED",
         "human_editorial":"NOT_CHECKED",
-        "unseen_company_reporting_period_reliability":"NOT_ESTABLISHED"
-    }
+        "unseen_company_reporting_period_reliability":"NOT_ESTABLISHED",
+        "strict_all_11_visual_unification":"NOT_ESTABLISHED",
+    })
+    active["visual_unification_status"]=visual
     write(HANDOFF,active)
     state=read(STATUS)
     candidate=state["active_pr35_quality_candidate"]
+    candidate["state"]="MERGED_MAIN_SOURCE_BASE__NEW_RELEASE_SHA_STILL_REQUIRES_VERIFICATION"
+    candidate["status_scope"]="HISTORICAL_PR35_MERGED_IN_MAIN_NEW_SOURCE_CANDIDATE_MUST_BE_REVERIFIED"
+    candidate["main_production_new_four_figures"]="MERGED_MAIN__LATEST_PUBLIC_FULL_HTML_SHA_NOT_INFERRED"
+    candidate["entrypoint_instruction"]="PR35 and PR36 were merged; re-query main HEAD and Cloudflare exact HTML SHA. This rebuild only proves current source/CJK artifacts, never live status, full 11-report art or human signoff."
     candidate["current_new_visual_candidate_html_sha256"]=proof
     candidate["new_upgraded_figures_status"]="PASS_LOCAL_ORIGINAL_SOURCE_AND_CJK_ON_EXACT_SHA__REAL_PREVIEW_AND_HUMAN_ART_REVIEW_PENDING"
     candidate["current_local_figure_proof_action"]="REQUERY_EXACT_CURRENT_BRANCH_GITHUB_RUN"
@@ -79,7 +92,7 @@ def sync():
     candidate["latest_candidate_visual_upgrade"]=[
         "SHARED_CONNECTED_1100_330_SOURCE_TO_ONE_TOTAL_TO_EXACT_COST_OR_GP",
         "MOUTAI_INDEPENDENT_TRUE_SIGNED_SCALES"]
-    candidate["legacy_unified_design_not_completed"]=active["visual_unification_status"]["legacy_not_unified"]
+    candidate["legacy_unified_design_not_completed"]=active["visual_unification_status"]["partial_hero_only_unified_remaining_art_legacy"]
     write(STATUS,state)
     print("ACTIVE_PR35_SOURCE_BOUND_HANDOFF_UPDATED",json.dumps(proof,ensure_ascii=False,sort_keys=True))
 
