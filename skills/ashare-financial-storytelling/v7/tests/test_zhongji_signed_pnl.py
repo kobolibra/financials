@@ -59,7 +59,7 @@ class SourceTypedOriginal300308SignedTests(unittest.TestCase):
             with self.subTest(label=label):
                 ledger=copy.deepcopy(LEDGER)
                 ledger["facts"][key].update(change)
-                with self.assertRaisesRegex((ValueError,Exception),needle):
+                with self.assertRaisesRegex(ValueError,needle):
                     original_plan(ledger)
         bad=copy.deepcopy(LEDGER)
         bad["document"]["source_archive_gate"]="NOT_CHECKED"
