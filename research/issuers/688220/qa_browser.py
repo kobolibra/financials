@@ -48,6 +48,17 @@ with sync_playwright() as p:
     mobileFlowSink:[...document.querySelectorAll('.native-asr-sink')].map(e=>({yuan:e.dataset.exactYuan,width:+e.getAttribute('width')})),
     mobileFlowRibbon:[...document.querySelectorAll('.native-asr-ribbon')].map(e=>({yuan:e.dataset.exactYuan,width:+e.dataset.width,source:e.dataset.sourceKey,sink:e.dataset.sink,path:e.getAttribute('d')})),
     mobileSigned:[...document.querySelectorAll('.native-asr-signed')].map(e=>({kind:e.dataset.kind,step:+e.dataset.step,yuan:e.dataset.signedYuan,cumulative:e.dataset.cumulativeYuan,width:+e.getAttribute('width'),fill:e.getAttribute('fill'),svg:e.closest('svg').getAttribute('aria-label')})),
+    sharedSigned:[...document.querySelectorAll('#fig-pnl svg[data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"]')].map(svg=>{
+      const box=svg.getBoundingClientRect(),vb=svg.viewBox.baseVal,labels=[...svg.querySelectorAll('text')].map(t=>{const b=t.getBBox();return {name:t.textContent,left:b.x,right:b.x+b.width,bottom:b.y+b.height}});
+      return {layout:svg.dataset.layout,source:svg.dataset.originalPdfSha256,status:svg.dataset.sourceStatus,
+        gross:svg.dataset.startGrossYuan,net:svg.dataset.endNetYuan,visible:box.width>1,
+        width:vb.width,height:vb.height,clip:labels.filter(t=>t.left< -2||t.right>vb.width+2||t.bottom>vb.height+2),
+        rows:[...svg.querySelectorAll('rect.unified-signed-statement-step')].map(e=>({
+          id:e.dataset.stageId,before:e.dataset.beforeYuan,delta:e.dataset.signedYuan,
+          after:e.dataset.afterYuan,width:e.getAttribute('width'),scale:e.dataset.moneyScaleYuanPerUnit,
+          pages:e.dataset.physicalPages,sourceFactIds:e.dataset.sourceFactIds,position:+e.getAttribute('x')
+        }))};
+    }),
     navPosition:getComputedStyle(document.querySelector('.chapters')).position,
     bodyExternalScripts:document.querySelectorAll('script[src]').length,
     ribbon:[...document.querySelectorAll('#chart-flow path.money-ribbon')].map(e=>{
@@ -114,11 +125,32 @@ with sync_playwright() as p:
     assert all(b["scale"]>0 and b["d"].startswith("M ") and " C " in b["d"] for b in graph["bands"])
     tiny=next(n for n in sources if n["id"]=="other_service_rev")
     assert 0<tiny["h"]<0.05,(width,key,"MICRO_BUSINESS_INFLATED",tiny)
-  assert len(info["mobileSigned"])>=25,(width,"SIGNED_FINANCIAL_GRAPHS_MISSING")
+  # The old issuer-specific full P&L SVG is replaced in both versions by
+  # one canonical typed Decimal statement, without reducing the figure count.
+  shared=info["sharedSigned"]
+  assert len(shared)==2,(width,"MISSING_SHARED_DESKTOP_AND_PHONE_SIGNED_PNL")
+  source_sha=ledger["source"]["original_bytes_sha256"]
+  for edition in shared:
+    assert edition["source"]==source_sha,(width,edition["layout"],"PDF_SHA_WRONG")
+    assert edition["status"]=="MIRROR_COMPLETE_PDF_SHA_PASS__OFFICIAL_EQUIVALENCE_NOT_CHECKED"
+    assert edition["gross"]==str(D(facts["rev"]["yuan"])-D(facts["cogs"]["yuan"]))
+    assert edition["net"]==facts["consolidated_net_profit"]["yuan"]
+    assert len(edition["rows"])==10,(width,edition["layout"],"FULL_PNL_NOT_ALL_TEN_RECONCILED_STEPS")
+    assert not edition["clip"],(width,edition["layout"],"SOURCE_SIGNED_SVG_CJK_TEXT_CLIPPED",edition["clip"])
+    for step in edition["rows"]:
+      assert D(step["before"])+D(step["delta"])==D(step["after"]),(width,step,"WRONG_SIGNED_PNL_STEP")
+      assert abs(D(step["width"])-abs(D(step["delta"]))/D(step["scale"]))<D(".00001"),(width,step,"DECEPTIVE_MONEY_WIDTH")
+      assert step["pages"] and step["sourceFactIds"],(width,step,"UNPROVEN_FINANCIAL_ROW")
+  assert {z["layout"] for z in shared}=={"editorial-1040","native-330"}
+  chosen=next(z for z in shared if z["layout"]==("native-330" if width<=820 else "editorial-1040"))
+  hidden=next(z for z in shared if z is not chosen)
+  assert chosen["visible"] and not hidden["visible"],(width,"WRONG_SHARED_PNL_EDITION_VISIBILITY")
+  assert any(D(r["after"])<0 for r in chosen["rows"]),(width,"NEGATIVE_INTERIM_OPERATING_PROFIT_WAS_HIDDEN")
+  assert len(info["mobileSigned"])>=19,(width,"FOUR_ORIGINAL_SIGNED_FINANCIAL_GRAPHS_MISSING")
   by_chart={}
   for step in info["mobileSigned"]:
     by_chart.setdefault(step["svg"],[]).append(step)
-  assert len(by_chart)==5,(width,"EXPECTED_FIVE_SIGNED_GRAPHS")
+  assert len(by_chart)==4,(width,"EXPECTED_FOUR_OTHER_SIGNED_GRAPHS_PLUS_SHARED_PNL")
   for title,steps in by_chart.items():
     cumulative=None
     scales=[]
