@@ -51,8 +51,33 @@ class IssuerReleaseContractTests(unittest.TestCase):
             with self.subTest(code=code):
                 issuer=next(x for x in self.catalog["issuers"] if x["code"]==code)
                 current=json.loads((ROOT/f"research/issuers/{code}/release-gates.json").read_text())
-                candidate=current["unmerged_candidate"]
                 actual=hashlib.sha256((ROOT/f"public/{code}.html").read_bytes()).hexdigest()
+                # Actual 688220 production passed its own current main SHA,
+                # six screenshots, typed Sankey and signed-profit live gate.
+                # Keeping an UNMERGED candidate would now be a false status.
+                if code=="688220":
+                    self.assertNotIn("unmerged_candidate",current)
+                    self.assertEqual(current["published_html_sha256"],actual)
+                    self.assertEqual(current["live_release_fingerprint"],actual)
+                    self.assertEqual(current["gates"]["CLOUDFLARE_LIVE"]["status"],"PASS")
+                    self.assertEqual(mod.validate_release(ROOT,issuer,current,check_bytes=False),[])
+                    false_stale=copy.deepcopy(current)
+                    false_stale["unmerged_candidate"]={
+                        "base_deployed_html_sha256":actual,
+                        "candidate_full_html_sha256":actual,
+                        "promotion_status":"UNMERGED_NOT_DEPLOYED",
+                        "independent_finance_and_art_review":"NOT_CHECKED",
+                        "current_sha_browser_proof":"LOCAL_ONLY",
+                    }
+                    self.assertIn("STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION 688220",
+                                  mod.validate_release(ROOT,issuer,false_stale,check_bytes=False))
+                    false_hash=copy.deepcopy(current)
+                    false_hash["published_html_sha256"]="0"*64
+                    self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 688220" in x or
+                                        "CANDIDATE_BASE_DEPLOYED_SHA_INVALID 688220" in x
+                                        for x in mod.validate_release(ROOT,issuer,false_hash,check_bytes=False)))
+                    continue
+                candidate=current["unmerged_candidate"]
                 self.assertEqual(candidate["candidate_full_html_sha256"],actual)
                 self.assertEqual(candidate["base_deployed_html_sha256"],current["published_html_sha256"])
                 self.assertNotEqual(candidate["base_deployed_html_sha256"],actual)
@@ -237,10 +262,33 @@ class IssuerReleaseContractTests(unittest.TestCase):
 
     def test_current_actual_public_live_pass_does_not_erase_note_failure_or_invent_human_review(self):
         self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["status"], "PASS")
-        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["proof"], "https://github.com/kobolibra/financials/actions/runs/41871662195")
+        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["proof"], "https://github.com/kobolibra/financials/actions/runs/42457017812")
         self.assertEqual(self.original["gates"]["INDEPENDENT_HUMAN_REVIEW"]["status"], "NOT_CHECKED")
         self.assertEqual(self.original["gates"]["REPORTED_NOTE_TIES"]["status"], "FAIL")
         self.assertEqual(self.original["gates"]["OFFICIAL_PDF_BYTE_EQUIVALENCE"]["status"], "NOT_CHECKED")
+
+    def test_688220_production_receipt_matches_actual_merged_source_and_no_fake_review(self):
+        original=self.original
+        receipt=json.loads((ROOT/"research/issuers/688220/live-release-receipt.json").read_text())
+        self.assertEqual(receipt["status"],"PASS")
+        self.assertEqual(receipt["issuer"],"688220")
+        self.assertEqual(receipt["verified_git_commit"],original["actual_main_release_commit"])
+        self.assertEqual(receipt["public_html_sha256"],original["published_html_sha256"])
+        self.assertEqual(receipt["actual_publication_action"],original["gates"]["CLOUDFLARE_LIVE"]["proof"])
+        self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_index"],
+                         original["actual_directory_fingerprint"])
+        self.assertEqual({r["width"] for r in receipt["real_chromium_viewports"]},
+                         {390,768,1440})
+        self.assertEqual({r["name"] for r in receipt["screenshots"]},
+                         {f"live_688220_{w}.png" for w in (390,768,1440)} |
+                         {f"live_directory_{w}.png" for w in (390,768,1440)})
+        self.assertTrue(all(r["bytes"]>10000 and len(r["sha256"])==64
+                            for r in receipt["screenshots"]))
+        self.assertEqual(receipt["SSE_original_bytes_equivalence"],"NOT_CHECKED")
+        self.assertEqual(receipt["independent_second_human_finance_editor"],"NOT_CHECKED")
+        self.assertEqual(receipt["independent_second_human_visual_editor"],"NOT_CHECKED")
+        self.assertEqual(original["gates"]["REPORTED_NOTE_TIES"]["status"],"FAIL")
+        self.assertNotIn("unmerged_candidate",original)
 
     def test_pdf_corruption_and_source_version_fail_closed(self):
         errors = self.poisoned(
