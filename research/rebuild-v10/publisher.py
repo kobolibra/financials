@@ -9,6 +9,16 @@ from unified_finance import render_typed_finance
 from unified_income_sankey import PALETTE
 from verify import get, facts, check, SRC, SHA, HERE, LEDGER
 CFO_COMPONENTS=json.loads((HERE/"cfo_components.json").read_text())
+RESEARCH_BRIEFS=json.loads((HERE.parents[1]/"research/quality/pr35-hero-figure-briefs.json").read_text())
+from audit_research_depth import audit_repo
+# Reading the editorial brief without the independent accounting evidence gate
+# would be merely copying attractive but untrusted prose into a financial report.
+RESEARCH_BRIEF_ERRORS=audit_repo()
+if RESEARCH_BRIEF_ERRORS:
+ raise ValueError("SOURCE_BOUND_EDITORIAL_RESEARCH_BROKEN "+repr(RESEARCH_BRIEF_ERRORS))
+DECISION_BY_ISSUER={row["issuer"]:row["quantified_driver"] for row in RESEARCH_BRIEFS["hero_figures"]}
+if set(DECISION_BY_ISSUER)!={"688111","600519","000333","600036"}:
+ raise ValueError("EDITORIAL_RESEARCH_MISSING_OR_DUPLICATED_ISSUER")
 TYPED={code:typed_classify(HERE.parents[1], code) for code in ('688111','600519','000333','600036')}
 
 OUTPUT=HERE/'site';OUTPUT.mkdir(exist_ok=True)
@@ -222,6 +232,11 @@ CSS='''
 @media(max-width:850px){.wrap{width:calc(100% - 38px)}.hero-grid,.executive-grid{grid-template-columns:1fr;gap:26px}.hero{padding:58px 0 65px}.hero-aside{border-left:0;border-top:1px solid #49615f;padding:20px 0 0}.chapter-head{grid-template-columns:1fr;gap:9px}.chapter-body{margin-left:0;max-width:none}.chapter{padding-top:76px}.graphic-top{grid-template-columns:1fr;gap:9px}.graphic-marginal{margin-top:0}.bottomline{padding:33px}.graphic-svg{padding:15px 7px}.facts-strip>div{padding:17px 12px}.hero h1{font-size:clamp(42px,7.4vw,64px)}}
 @media(max-width:560px){body{font-size:15px}.wrap{width:calc(100% - 34px)}.mast-inner{min-height:65px}.mast-links{gap:10px}.mast-links a{font-size:11px}.hero h1{font-size:clamp(38px,10vw,52px);line-height:1.2}.hero .dek{font-size:17px}.hero{padding:48px 0 53px}.executive{padding:44px 0}.executive h2{font-size:34px}.executive p{font-size:16px}.facts-strip{grid-template-columns:1fr}.facts-strip>div{border-right:0;border-bottom:1px solid var(--line);padding:16px 5px}.facts-strip>div:last-child{border:0}.facts-strip b{font-size:30px}.chapter{padding-top:65px}.chapter-head h2{font-size:35px}.chapter-head .intro{font-size:16px}.graphic{margin:39px 0}.graphic h3{font-size:30px}.graphic .figure-answer{font-size:14px}.graphic-svg.desktop-finance{display:none}.graphic-svg.native-finance{display:block;overflow:visible;padding:18px 4px}.graphic-svg.native-finance svg{width:100%;max-width:100%;height:auto;overflow:visible}.graphic-data{display:block}.graphic-data{display:block}.figure-bottom{flex-wrap:wrap}.export{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:96px;padding:10px 14px;touch-action:manipulation}.counterview{padding:20px}.bottomline h2{font-size:32px}.bottomline{padding:25px}.quote{padding:19px 22px}.page-nav .wrap{gap:21px}.graphic-marginal{border-left:2px solid var(--coral)}}
 @media(max-width:850px){.graphic-svg.desktop-finance{display:none}.graphic-svg.native-finance{display:block;overflow:visible;padding:18px 4px}.graphic-svg.native-finance svg{width:100%;height:auto;max-width:100%;overflow:visible}.graphic-data{display:block}.graphic-svg{min-height:0}.graphic-svg.native-finance{margin-top:14px}}
+
+.decision-chain{margin:55px 0 26px;padding:38px 45px 31px;background:#f4f6f1;border:1px solid #d7e1da;border-top:3px solid var(--green);max-width:1160px}.decision-header h2{font:550 clamp(28px,3vw,41px)/1.3 var(--serif);letter-spacing:-.03em;max-width:930px;margin:15px 0}.decision-intro{font-size:17px;line-height:1.9;max-width:950px;color:#344c49}.decision-answer{display:grid;grid-template-columns:minmax(215px,.43fr) minmax(0,1fr);gap:35px;align-items:center;border-top:1px solid #c8d8cd;border-bottom:1px solid #c8d8cd;padding:27px 0}.decision-answer span{display:block;font-size:10px;letter-spacing:.12em;color:#55756b;font-weight:800}.decision-answer strong{display:block;font:600 clamp(34px,4.2vw,51px)/1.28 var(--serif);color:var(--green);font-variant-numeric:tabular-nums;letter-spacing:-.04em}.decision-answer small{display:block;color:#607b72;font-size:12px}.decision-answer p{font-size:15px;line-height:1.8;font-weight:620;overflow-wrap:anywhere}.decision-answer em{font-size:12px;line-height:1.7;font-style:normal;color:#805d52;font-weight:450}.decision-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 30px}.decision-fact{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:4px 15px;border-bottom:1px solid #d5e0d7;padding:17px 0}.decision-fact-label{font-size:13px;font-weight:680;line-height:1.5;min-width:0}.decision-fact-label small{display:block;font-size:11px;font-weight:400;color:#6b827a}.decision-fact-money{font:600 21px/1.25 var(--serif);color:#214e45;white-space:nowrap;font-variant-numeric:tabular-nums}.decision-fact>a{grid-column:1/-1;font-size:11px;color:#167c65;text-decoration:underline;text-underline-offset:3px}.decision-interpretation{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:27px;margin:27px 0 15px}.decision-interpretation section{border-left:2px solid #b89d86;padding-left:18px}.decision-interpretation section:last-child{border-color:#689f8d}.decision-interpretation h3{font-size:13px;letter-spacing:.06em;color:#4c665e}.decision-interpretation p{font-size:14px;line-height:1.85;margin:5px 0}.decision-limits{border-top:1px solid #cfddd3;padding-top:17px;font-size:12px;line-height:1.8;color:#667971;overflow-wrap:anywhere}.decision-limits code{font-size:10px;overflow-wrap:anywhere}.decision-chain:target{scroll-margin-top:80px}
+@media(max-width:850px){.decision-chain{padding:28px 22px}.decision-answer{grid-template-columns:1fr;gap:6px}.decision-interpretation{gap:18px}}
+@media(max-width:560px){.decision-chain{margin:29px 0;padding:24px 16px}.decision-facts,.decision-interpretation{grid-template-columns:1fr}.decision-fact{padding:14px 0}.decision-answer strong{font-size:37px}.decision-intro{font-size:15px}.decision-interpretation{gap:7px}.decision-interpretation section{padding-left:13px}.decision-limits{font-size:11px}}
+
 '''
 
 JAVASCRIPT='''
@@ -255,6 +270,56 @@ def fig(code,idx,question,answer,svg,keys,counter=''):
  <div class="figure-bottom"><div class="figure-source">来源：<a href="{x(url)}" target="_blank" rel="noopener">发行人2026H1完整PDF</a> · 物理页 {', '.join('p.'+str(z) for z in sorted(set(pages)))}；底层以原披露金额勾稽，图中换算为人民币亿元。</div><button type="button" class="export" aria-label="导出本图SVG">导出 SVG</button></div>
  <details class="details"><summary>查看精确来源索引与数据表</summary><table class="evidence-table"><thead><tr><th>原始字段</th><th>换算金额</th><th>可点击来源</th></tr></thead><tbody>{''.join(rows)}</tbody></table></details>
  </figure>'''
+
+def source_bound_decision(code):
+ """A publication exhibit with independently audited amounts, not fake causality.
+
+ Every number is drawn from the same typed original-PDF-source fact keys as the
+ research-depth gate. This does not claim an independently verified mechanism.
+ """
+ b=DECISION_BY_ISSUER[code]
+ selected=facts(code)
+ keys=b["fact_keys"]
+ if set(keys)-set(selected):raise ValueError("PUBLISHED_RESEARCH_FACT_MISSING "+code)
+ amounts={k:D(str(selected[k]["yuan"])) for k in keys}
+ kind=b["formula"]
+ if kind=="GROSS_PROFIT_YOY_CHANGE":
+  result=amounts["rev"]-amounts["cogs"]-amounts["rev_prior"]+amounts["cogs_prior"]
+  formula="（2026H1 营业收入－营业成本）－（2025H1 营业收入－营业成本）"
+  outcome="合并毛利同比变化"
+ elif kind=="OPERATING_CASH_YOY_CHANGE":
+  result=amounts["cfo"]-amounts["cfo_prior"]
+  formula="2026H1 合并经营现金净额－2025H1 合并经营现金净额"
+  outcome="合并经营现金流同比变化"
+ elif kind=="PARENT_VS_DEDUCTED_YOY_DIVERGENCE":
+  result=(amounts["parent_ni"]-amounts["parent_ni_prior"])-(amounts["reg_ni"]-amounts["reg_ni_prior"])
+  formula="（2026H1归母－2025H1归母）－（2026H1扣非归母－2025H1扣非归母）"
+  outcome="归母与扣非归母同比增量差"
+ elif kind=="BANK_NET_INTEREST_YOY_BRIDGE":
+  result=(amounts["interest_in"]-amounts["interest_in_prior"])-(amounts["interest_out"]-amounts["interest_out_prior"])
+  formula="（2026H1利息收入－2025H1利息收入）－（2026H1利息支出－2025H1利息支出）"
+  outcome="银行净利息收入同比变化"
+  if amounts["interest_in"]-amounts["interest_out"]!=amounts["nii"] or amounts["interest_in_prior"]-amounts["interest_out_prior"]!=amounts["nii_prior"]:
+   raise ValueError("RESEARCH_INTEREST_NETTING_NOT_CLOSED")
+ else:raise ValueError("UNSUPPORTED_RESEARCH_DECISION "+kind)
+ if result!=D(b["expected_yuan"]) or b["source_pdf_sha256"]!=SHA[code]:
+  raise ValueError("EDITORIAL_QUANTIFIED_DECISION_SOURCE_DRIFT "+code)
+ pdf=(LEDGER[code]["source"]["url"] if code in LEDGER else "https://static.cninfo.com.cn/finalpage/2026-08-28/1225531453.PDF")
+ facts_html=[]
+ for key in keys:
+  item=selected[key]
+  period="2025H1" if key.endswith("_prior") else "2026H1"
+  if item.get("period")!=period or type(item.get("page")) is not int:
+   raise ValueError("RESEARCH_LINE_PERIOD_OR_PAGE_DRIFT "+code+" "+key)
+  amount=amounts[key]
+  facts_html.append(f'<div class="decision-fact" data-fact-id="{x(key)}" data-exact-yuan="{x(amount)}" data-period="{period}" data-physical-page="{item["page"]}"><div class="decision-fact-label">{x(item["label"])}<small>{period}</small></div><div class="decision-fact-money">{("+" if amount>0 else "")+f(amount)} 亿</div><a href="{x(pdf)}#page={item["page"]}" target="_blank" rel="noopener">原始 PDF p.{item["page"]}</a></div>')
+ return f'''<section id="quantified-decision" class="decision-chain" data-research-schema="financials.source_bound_decision.v1" data-issuer="{code}" data-formula="{kind}" data-result-yuan="{x(result)}" data-original-pdf-sha256="{b["source_pdf_sha256"]}" data-accounting-not-causal="true" aria-labelledby="decision-title">
+ <header class="decision-header"><div class="tag">02 / QUANTIFIED RESEARCH / REAL SOURCE BRIDGE</div><h2 id="decision-title">用原始数据检验研究判断，而不是用标题替代证据。</h2><p class="decision-intro">{x(b["decision_use"])}</p></header>
+ <div class="decision-answer"><div><span>EXACT ACCOUNTING DIFFERENCE</span><strong>{("+" if result>0 else "")+f(result)} 亿</strong><small>{x(outcome)} · 2026H1 对比 2025H1</small></div><p>{x(formula)}<br><em>仅为会计金额勾稽，不是业务驱动因果证明。</em></p></div>
+ <div class="decision-facts" aria-label="组成量化桥的全部披露金额">{''.join(facts_html)}</div>
+ <div class="decision-interpretation"><section><h3>竞争性解释</h3><p>{x(b["strongest_alternative"])}</p></section><section><h3>下一次披露的反证条件</h3><p>{x(b["next_disclosure_falsifier"])}</p></section></div>
+ <p class="decision-limits"><b>口径与审阅边界：</b>{x(b["scope_and_limitations"])} 原始完整 PDF SHA-256：<code>{x(b["source_pdf_sha256"])}</code>；独立财务专业审阅：NOT_CHECKED。</p>
+ </section>'''
 
 def chapter(i,name,title,lead,content,anchor):
  return f'''<section id="{anchor}" class="chapter"><div class="chapter-head"><div><div class="tag">{x(name)}</div><div class="chapter-no">{i:02d}.</div></div><div><h2>{x(title)}</h2><p class="intro">{x(lead)}</p></div></div><div class="chapter-body">{content}</div></section>'''
@@ -330,7 +395,7 @@ def portfolio():
 
 def render_case(case,code):
  chapters=''.join(case['chapters'])
- nav=''.join(f'<a href="#{anchor}">{label}</a>' for anchor,label in [('overview','执行摘要'),('economics','商业模式'),('earnings','盈利质量'),('balance','资产负债'),('cash','现金流'),('conclusion','反证与展望'),('sources','来源审计')])
+ nav=''.join(f'<a href="#{anchor}">{label}</a>' for anchor,label in [('overview','执行摘要'),('quantified-decision','量化证据'),('economics','商业模式'),('earnings','盈利质量'),('balance','资产负债'),('cash','现金流'),('conclusion','反证与展望'),('sources','来源审计')])
  strip=''.join(f'<div><b>{x(amount)}</b><small>{x(label)}</small></div>' for amount,label in case['stats'])
  watch=''.join('<li>'+x(z)+'</li>' for z in case['watch'])
  title=case['headline'].replace('\n','<br>')
@@ -342,6 +407,7 @@ def render_case(case,code):
 <section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">SOURCE-FIRST RESEARCH / 2026 H1 / {x(case['sector'])}</div><h1>{title}</h1><p class="dek">{x(case['deck'])}</p><div class="meta-row"><span>{x(case['name'])} · {code}</span><span>2026年半年度 · 未经审计</span><span>研究预览 · 2026-11-03</span></div></div><aside class="hero-aside"><div class="eyebrow">THE NUMBER THAT MISLEADS</div><div class="big-number">{x(case['hero_number'])}</div><p>{x(case['hero_label'])}</p></aside></div></section>
 <nav class="page-nav" aria-label="研究章节导航"><div class="wrap">{nav}</div></nav>
 <main><div class="wrap"><section class="executive" id="overview"><div class="executive-grid"><div><div class="tag">01 / EXECUTIVE READ · 90 SECOND THESIS</div><h2>{x(case['intro'])}</h2><p>本稿的判断只从能够在原始财报复核的财务事实出发。不同会计主体、收入和利润定义、现金流经济方向必须拆开，避免把同期变化写成没有证据的因果关系。</p></div><div class="speed-reading"><div class="mini">ALTERNATIVE EXPLANATION / 反方观点</div><div class="counter">{x(case['counter'])}</div><p class="tag">NOT AN INVESTMENT RECOMMENDATION</p></div></div><div class="facts-strip">{strip}</div></section>
+{source_bound_decision(code)}
 {chapters}
 <section id="conclusion" class="bottomline"><div class="tag" style="color:#9fd7c1">WHAT WOULD CHANGE THE THESIS?</div><h2>下一份报告，需要回答这些问题。</h2><ol>{watch}</ol><p>关键局限：{x(case['limitations'])}</p></section>
 <section id="sources" class="method"><div class="tag">SOURCE & ACCOUNTING CONTROL</div><h2 style="font:550 30px/1.3 var(--serif)">可复核，不意味着夸大确定性。</h2><p>{statement}</p><p>原始披露：<a href="{x(source)}" target="_blank" rel="noopener">{x(case['name'])} · 2026H1 PDF</a> · SHA-256：<code>{SHA[code]}</code></p><p>通过基础硬校验：PDF SHA、选定原始数值页码匹配、合并资产=负债+权益（当期及上期）、签名现金流闭合和适用的分部/口径勾稽。<strong>仍未完成：</strong>全量附注独立同行审阅、真实季度/同业与估值数据库。状态：研究预览，不是正式独立机构评级。</p></section></div></main>
