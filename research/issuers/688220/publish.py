@@ -8,6 +8,7 @@ SOURCE_SEMANTIC and editorial-human gates remain separate.
 from __future__ import annotations
 import argparse,hashlib,json,re
 from native_mobile import make as make_native_mobile
+from shared_pnl import render_asr_pnl,original_plan
 from decimal import Decimal as D
 from pathlib import Path
 import sys
@@ -122,8 +123,17 @@ source_display=("完整 PDF 副本 SHA / 224 页已核验；上交所原始 URL 
 income_desktop=render_sector_income(data,mobile=False,embedded=True)
 income_phone=render_sector_income(data,mobile=True,embedded=True)
 income_json=json.dumps(income_desktop,ensure_ascii=False).replace("<","\\u003c")
+# Entire 2026H1 signed accounting is generated once from typed original
+# Decimal facts, then visualized in genuinely distinct desktop/phone editions.
+# Never trust a JavaScript floating-point waterfall for published source truth.
+pnl_plan=original_plan(data)
+pnl_desktop=render_asr_pnl(data,mobile=False)
+pnl_phone=render_asr_pnl(data,mobile=True)
+pnl_desktop_json=json.dumps(pnl_desktop,ensure_ascii=False).replace("<","\\u003c")
+checks["SHARED_FULL_SIGNED_PNL_DESKTOP_PHONE"]="PASS"
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display)
-    .replace("__SOURCE_SHA__",actual_sha).replace("__UNIFIED_DESKTOP__",income_json))
+    .replace("__SOURCE_SHA__",actual_sha).replace("__UNIFIED_DESKTOP__",income_json)
+    .replace("__UNIFIED_PNL_DESKTOP__",pnl_desktop_json))
 # The full standalone article retains its original nine desktop editable SVG
 # graphs and financial evidence tables. At <=820, a second issuer-specific
 # original-money narrative is shown without horizontally cropping the reader.
@@ -133,12 +143,25 @@ native["flow"]=('<div class="native-asr" data-native-source="canonical-v9">'
                  +'<p class="native-asr-dek">本图来自同一个收入来源→总收入→真实成本/毛利金额守恒渲染器；金额按人民币元一比一比例绘制，其他小额业务不人为加粗。</p>'
                  +income_phone.replace('<svg ', '<svg class="native-asr-original" ',1)
                  +'</div>')
+# Replace only the former issuer-specific P&L art, leaving all nine figures
+# and their original source evidence/exports/chapter order untouched.
+native["pnl"]=(
+    '<div class="native-asr" data-finance-grammar="shared-full-signed-pnl" '
+    'data-native-source="shared-signed-statement">'
+    '<p class="native-asr-dek">研发支出使累计利润短暂低于零，后续收益和税项逆转；'
+    '每一步根据原始利润表元金额及原始物理页码精确勾稽，不人为将负数画成正向桑基。</p>'
+    +pnl_phone+'</div>')
 assert tuple(native)==REQUIRED_FIGURES
 for figure_id,original in native.items():
     pattern=r'(<div class="vizscroll" id="chart-'+re.escape(figure_id)+r'"[^>]*></div>)'
     output,count=re.subn(pattern,lambda m:m.group(1)+original,output,count=1)
     assert count==1,("ORIGINAL_FIGURE_NOT_FOUND_FOR_NATIVE_MOBILE",figure_id)
 assert output.count('class="native-asr"')==9
+assert output.count('data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"')==1
+assert 'data-signed-statement-grammar=\\\"FINANCIALS_TYPED_FULL_PNL_SIGNED_V1\\\"' in output
+assert output.count('data-negative-intervals-preserved="true"')==1
+assert output.count('__UNIFIED_PNL_DESKTOP__')==0
+
 
 assert "<script src=" not in output and "<iframe" not in output and "https://fonts" not in output
 a.out.parent.mkdir(parents=True,exist_ok=True)
