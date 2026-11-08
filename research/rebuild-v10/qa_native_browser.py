@@ -14,6 +14,8 @@ HERE = Path(__file__).resolve().parent
 OUT = HERE / "real-browser-qa"
 OUT.mkdir(exist_ok=True)
 COUNTS = {"688111":9,"600519":9,"000333":10,"600036":8}
+BRIEFS=json.loads((HERE.parents[1]/"research/quality/pr35-hero-figure-briefs.json").read_text())
+QUANTIFIED={row["issuer"]:row["quantified_driver"] for row in BRIEFS["hero_figures"]}
 EXPECTED = {"688111":"TYPE_A_SOURCE_OWN_COST_GP",
             "600519":"TYPE_C_SANKEY_OMITTED",
             "000333":"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
@@ -41,6 +43,30 @@ with sync_playwright() as p:
                          "figures":[]}
             body=page.evaluate("({scroll:document.documentElement.scrollWidth,client:document.documentElement.clientWidth})")
             assert body["scroll"]<=width+2,(code,width,"DOCUMENT_HORIZONTAL_OVERFLOW",body)
+            # An audited thesis hidden in JSON, or clipped on the actual
+            # narrow browser, cannot count as professional research delivery.
+            thesis=page.locator('section#quantified-decision[data-research-schema="financials.source_bound_decision.v1"]')
+            assert thesis.count()==1,(code,width,"READER_QUANTIFIED_RESEARCH_MISSING")
+            q=thesis.evaluate("""el => {
+              const r=el.getBoundingClientRect(),facts=[...el.querySelectorAll('.decision-fact')];
+              const links=[...el.querySelectorAll('.decision-fact a[href*="#page="]')];
+              const money=facts.map(f=>f.querySelector('.decision-fact-money')?.getBoundingClientRect());
+              return {visible:getComputedStyle(el).display!=='none' && r.width>250 && r.height>180,
+                x:r.left,right:r.right,insideWidth:el.clientWidth,contentWidth:el.scrollWidth,
+                factCount:facts.length,links:links.length,
+                textClipping:money.some(n=>!n || n.left<r.left-2 || n.right>r.right+2),
+                exactResult:el.getAttribute('data-result-yuan'),
+                sourceSHA:el.getAttribute('data-original-pdf-sha256'),
+                nonCausal:el.getAttribute('data-accounting-not-causal')};
+            }""")
+            brief=QUANTIFIED[code]
+            assert q["visible"] and q["x"]>=-2 and q["right"]<=width+2,(code,width,"READER_EVIDENCE_PANEL_OFFSCREEN",q)
+            assert q["insideWidth"]+2>=q["contentWidth"] and not q["textClipping"],(code,width,"QUANTIFIED_RESEARCH_MONEY_CLIPPED",q)
+            assert q["factCount"]==q["links"]==len(brief["fact_keys"]),(code,width,"RESEARCH_ORIGINAL_PAGE_LINKS_ABSENT",q)
+            assert D(q["exactResult"])==D(brief["expected_yuan"]) and q["sourceSHA"]==brief["source_pdf_sha256"] and q["nonCausal"]=="true",(code,width,"QUANTIFIED_BROWSER_RESEARCH_SOURCE_DRIFT",q)
+            page_result["reader_quantified_research"]={"real_visible":"PASS","source_fact_rows":q["factCount"],
+                "original_source_links":"PASS","no_phone_clip":"PASS","accounting_not_causal":"PASS"}
+
             screenshot=OUT/(code+"-"+str(width)+"-whole.png")
             page.screenshot(path=str(screenshot),full_page=True,timeout=45000)
             page_result["full_page_screenshot_sha256"]=sha(screenshot)
