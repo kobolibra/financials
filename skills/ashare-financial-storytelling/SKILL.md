@@ -3,6 +3,9 @@ name: ashare-financial-storytelling
 description: Original-PDF-grounded A-share public company research, institutional financial breakdown, AEI-informed original Sankey and signed cash-flow visuals, standalone HTML publications, real mobile/desktop QA, financial evidence gates, and zero-memory cross-session handoff. Use for kobolibra/financials research, any new issuer or reporting period, report regeneration, visual quality problems, Skill improvements, source reconciliation and PR release approval.
 ---
 
+**Current 2026-11-08 signed-source delivery contract:** #43–#48 have been merged to main. In addition to #35 lawful 11-company HERO Sankeys and #37–#42 source-bound WPS/Midea/hydro/pharma profit visual work, **688220** now uses the shared original-amount signed 10-step 1040/330 P&L renderer in existing FIGURE04, and **300308** uses shared signed 7-step 1040/330 in existing FIGURE03. Keep the independent industrial, bank and insurer accounting boundaries, p139 original one-yuan disclosure discrepancy, 688220 full PDF mirror SHA vs official SSE byte NOT_CHECKED. PR #48 repaired and verified actual V9 optical original CNY source→group total→source cost and GP production QA at [run 42458196003](https://github.com/kobolibra/financials/actions/runs/42458196003); PR #47 repaired 688220 already-deployed vs new candidate rebuild QA [run 42458241039](https://github.com/kobolibra/financials/actions/runs/42458241039). **Current main HEAD must always be fetched, this is a dated evidence checkpoint only.** NEVER certify 11 entire financial reports visually unified, independent finance/art or 8–12 quarterly causal study. For exact current status use `project-status.json.current_release_provenance_20261108` and real live complete SHA receipts.
+
+
 # Financials in Visuals — one production contract
 
 Contract version: 9.0.0
