@@ -30,10 +30,10 @@
     "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
     "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "688111": "339ea620baad9cdfa4085d53b6637ddb0246c53152df6d27a8e1efeb9038ec10",
+      "600036": "dd47ace2259c0e00edad896b9ac2cfd1a1b118d1d2c495414ef5b22436fdeccd",
       "600519": "1be2828a85fb7dfece58c287a82a2d4a0687678fca11399de1ee6f2aceb532ae",
-      "000333": "8594d7a9a93cfde5c28aab37eac62112b14757503b46fb80695adb2969645822",
-      "600036": "dd47ace2259c0e00edad896b9ac2cfd1a1b118d1d2c495414ef5b22436fdeccd"
+      "688111": "339ea620baad9cdfa4085d53b6637ddb0246c53152df6d27a8e1efeb9038ec10",
+      "000333": "8594d7a9a93cfde5c28aab37eac62112b14757503b46fb80695adb2969645822"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
@@ -1424,5 +1424,58 @@
     "new_semantic_tests": "PASS_SOURCE_LEDGER_ADVERSARIAL_ONLY_NOT_PRODUCTION_RENDERER",
     "final_main_sha_at_handoff": "37ab35fd4c861b60ed65536e072b5aa6fa8b7ba8",
     "latest_live_nav_existing_11": "PASS_PREVIOUS_UNCHANGED_HTML_41968932787_SOURCE_668108"
+  },
+  "current_release_provenance_20261108": {
+    "scope": "HISTORICAL_VERIFIED_SOURCE_SNAPSHOT__REQUERY_CURRENT_GITHUB_MAIN_AND_PUBLIC_HTML",
+    "main_sha_at_verified_checkpoint": "5e6ec65d5fc9563be8b9f9d33c9abccc62aac9c6",
+    "merged_public_research_prs": [
+      43,
+      44,
+      45,
+      46,
+      47,
+      48
+    ],
+    "recent_delivered_source_changes": [
+      "688220 canonical original 224p mirror finance P&L: one Decimal 10-stage signed group bridge for 1040 desktop and native 330 phone, maintaining zero/negative interim profit",
+      "300308 independently archived verified 184p 2026H1 financial PDF: one Decimal 7-stage group P&L for 1040 desktop and native 330 phone; 300394 and 300502 full HTML source rebuild byte unchanged",
+      "Current V9 cross-optical source→revenue→own disclosed cost/gross-profit Sankeys all 3 verified with exact CNY and no fake source ribbons",
+      "Repaired real Cloudflare 688220 and optical browser QA for actual current SVG nodes instead of old removed CSS",
+      "Repaired 688220 candidate→actually-live source build state machine and persisted authentic six-screen live receipt"
+    ],
+    "evidence": [
+      {
+        "purpose": "688220 real latest original-source rebuild after merged release state",
+        "run": "https://github.com/kobolibra/financials/actions/runs/42458241039",
+        "result": "PASS"
+      },
+      {
+        "purpose": "three optical live full HTML SHA, 11 routes and original-money 1440 768 390 CJK",
+        "run": "https://github.com/kobolibra/financials/actions/runs/42458196003",
+        "result": "PASS"
+      },
+      {
+        "purpose": "688220 official deployed HTML original-yuan, 11 routes and 6-screen live receipt",
+        "run": "https://github.com/kobolibra/financials/actions/runs/42457017812",
+        "result": "PASS"
+      },
+      {
+        "purpose": "300308 184p source rebuild with legacy optical 300394 300502 zero-byte drift",
+        "run": "https://github.com/kobolibra/financials/actions/runs/42457873164",
+        "result": "PASS"
+      }
+    ],
+    "remaining_not_checked": [
+      "All eleven whole-article non-hero financial chart grammar + typography visual consistency",
+      "Independent second professional financial analyst and independent editorial/visual director",
+      "Externally supported 8-12 quarterly driver/volume/pricing/peer causal triangulation and forward falsification",
+      "Complete note-level reconciliations incl 688220 original source note exceptions and independent SSE official-vs-mirror PDF byte equivalence"
+    ],
+    "prohibitions": [
+      "No status can be called current main without re-querying GitHub HEAD",
+      "No main/Cloudflare deployment inferred from a green PR; match complete HTML SHA and real three-viewport output",
+      "Do not force insurer/bank into industrial profit bridge or negative profit into positive Sankey",
+      "Historical PR35 unmerged language is archive only; old active-pr35 file is a historical provenance record"
+    ]
   }
 }
