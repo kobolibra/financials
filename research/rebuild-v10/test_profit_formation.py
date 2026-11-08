@@ -75,6 +75,38 @@ class SourceBoundSignedIncomeTests(unittest.TestCase):
                 self.assertEqual(published.count('data-profit-formation="SOURCE_BOUND_SIGNED_V1"'),1)
                 self.assertIn(expected,published,(code,"PUBLISHED_PROFIT_FORMATION_NOT_SOURCE_REPRODUCIBLE"))
 
+    def test_two_other_original_pdf_sector_income_to_net_profiles(self):
+        expected={"600900":("37929268927.18","15971160694.54",
+                            "18358345904.30","15033525962.40"),
+                  "600276":("15455583728.11","2113343029.35",
+                            "5087742489.21","4465282419.88")}
+        for code,(rev,cost,operating,net) in expected.items():
+            with self.subTest(issuer=code):
+                d=json.loads((ROOT/f"research/issuers/{code}/source-ledger.json").read_text())
+                sha=d["source"]["original_bytes_sha256"]
+                plan=form_plan(code,d["facts"],sha)
+                steps={step.id:step for step in plan.steps}
+                self.assertEqual(steps["income"].delta,D(rev))
+                self.assertEqual(steps["cost"].delta,-D(cost))
+                self.assertEqual(steps["unallocated_operating"].after,D(operating))
+                self.assertEqual(steps["nonoperating_tax"].after,D(net))
+                self.assertEqual(steps["net_income"].after,D(net))
+                self.assertEqual(len(plan.sources),4)
+                self.assertEqual(plan.group_total_revenue,None)
+                assert "finance_income" not in steps
+                for mobile in (False,True):
+                    svg=ET.fromstring(render_svg(plan,mobile=mobile))
+                    self.assertEqual(svg.get("data-source-pdf-sha256"),sha)
+                    self.assertEqual(svg.get("data-net-yuan"),net)
+                    for bar in [n for n in svg.iter(NS+"rect") if n.get("data-step-id")]:
+                        self.assertLess(abs(D(bar.get("width"))-
+                          abs(D(bar.get("data-delta-yuan")))/
+                          D(bar.get("data-money-scale-yuan-per-unit"))),D(".00011"))
+                forged={k:dict(v) for k,v in d["facts"].items()}
+                forged["operating_profit"]["period"]="2025H1"
+                with self.assertRaisesRegex(ValueError,"PAGE_OR_FLOW_PERIOD"):
+                    form_plan(code,forged,sha)
+
     def test_midea_finance_never_embedded_in_industrial_gross_margin(self):
         facts,sha=source("000333")
         plan=form_plan("000333",facts,sha)
