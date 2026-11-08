@@ -1,7 +1,7 @@
 name: V10 original-source native finance rebuild and browser QA
 on:
   push:
-    branches: [quality/aei-sankey-source-contract-v1]
+    branches: [quality/postmerge-visual-research-hardening-20261108]
     paths:
       - '.github/workflows/verify-v10-native-rebuild.yml'
       - 'research/rebuild-v10/native_mobile.py'
@@ -71,9 +71,9 @@ jobs:
           # PR source-gate QA can advance the branch while original PDFs are
           # being downloaded. Rebase on the exact current remote rather than
           # force-pushing over changes, and fail closed on a real conflict.
-          git fetch origin quality/aei-sankey-source-contract-v1
+          git fetch origin quality/postmerge-visual-research-hardening-20261108
           git rebase FETCH_HEAD
-          git push origin HEAD:quality/aei-sankey-source-contract-v1
+          git push origin HEAD:quality/postmerge-visual-research-hardening-20261108
       - name: Save independent per-figure Chinese Chromium screenshot evidence
         if: always()
         uses: actions/upload-artifact@v4
