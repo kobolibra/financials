@@ -54,11 +54,11 @@ def _yuan(value):
     return value
 
 def form_plan(code:str, facts:dict, source_sha:str)->ProfitFormation:
-    if code not in {"688111","000333"}:
+    if code not in {"688111","000333","600900","600276"}:
         raise ValueError("INDUSTRY_PROFIT_BRIDGE_INCOMPATIBLE_OR_UNSOURCED "+str(code))
     if not re.fullmatch(r"[0-9a-f]{64}",source_sha):
         raise ValueError("MISSING_COMPLETE_ORIGINAL_PDF_SHA")
-    names=["rev","cogs","operating_profit","net_consolidated" if code=="688111" else "consolidated_ni"]
+    names=["rev","cogs","operating_profit",{"688111":"net_consolidated","000333":"consolidated_ni","600900":"net_profit","600276":"net_profit"}[code]]
     if code=="000333":
         names+=["total_rev","interest_income","fee_income"]
     sources=[]
@@ -206,6 +206,8 @@ def render_profit_formation(code:str, facts:dict, source_sha:str, pdf_url:str)->
     finance_note=('美的的财务子公司利息与手续费收入先单独加回到集团总收入；'
                   '这不是工业毛利，集团其余成本和利润影响不得假设全部来自工业主业。'
                   if code=="000333" else
+                  "水电业务的财务费用与投资收益须按披露符号复核，不能把毛利到营业利润净差额全标成发电成本。" if code=="600900" else
+                  "医药业务销售、研发和管理开支及许可收入需分别理解，净差额并不证明某一款药物贡献了集团利润。" if code=="600276" else
                   '金山办公投资收益可能进入营业利润，不可把毛利到营业利润的净差额简单标成期间费用。')
     return (f'<section class="profit-formation" id="profit-formation-{code}" '
             f'data-profit-formation="SOURCE_BOUND_SIGNED_V1" '
