@@ -1,289 +1,4 @@
 {
-  "688111": {
-    "statement_unit": "元",
-    "model": "软件订阅 / 许可 / 企业服务",
-    "source_status": "原始2026H1未经审计",
-    "assets_bs": {
-      "val": "20879674684.69",
-      "page": 56,
-      "label": "合并资产总计"
-    },
-    "liabilities": {
-      "val": "5802932070.17",
-      "page": 57,
-      "label": "合并负债合计"
-    },
-    "equity": {
-      "val": "15076742614.52",
-      "page": 57,
-      "label": "合并所有者权益合计"
-    },
-    "assets_prior_bs": {
-      "val": "18155801690.14",
-      "page": 56,
-      "label": "2025年末资产总计"
-    },
-    "liabilities_prior": {
-      "val": "5302354608.80",
-      "page": 57,
-      "label": "2025年末负债合计"
-    },
-    "equity_prior": {
-      "val": "12853447081.34",
-      "page": 57,
-      "label": "2025年末所有者权益"
-    },
-    "contract_liab": {
-      "val": "2764215464.83",
-      "page": 56,
-      "label": "合并合同负债"
-    },
-    "contract_liab_prior": {
-      "val": "2598812963.28",
-      "page": 56,
-      "label": "上年末合同负债"
-    },
-    "ar_bs": {
-      "val": "755088306.53",
-      "page": 55,
-      "label": "合并应收账款"
-    },
-    "ar_prior_bs": {
-      "val": "636321758.99",
-      "page": 55,
-      "label": "上年末应收账款"
-    },
-    "noncurrent_asset": {
-      "val": "7169616905.89",
-      "page": 56,
-      "label": "非流动资产合计"
-    },
-    "current_asset": {
-      "val": "13710057778.80",
-      "page": 55,
-      "label": "流动资产合计"
-    },
-    "net_consolidated": {
-      "val": "2517594330.93",
-      "page": 60,
-      "label": "合并净利润"
-    },
-    "operating_profit": {
-      "val": "2744613866.21",
-      "page": 60,
-      "label": "营业利润"
-    },
-    "cash_fx_ledger": {
-      "val": "-4299003.37",
-      "page": 63,
-      "label": "汇率变动对现金及现金等价物影响"
-    }
-  },
-  "600519": {
-    "statement_unit": "元",
-    "model": "白酒生产销售 / 直销经销 / 财务公司",
-    "source_status": "原始2026H1未经审计",
-    "assets_bs": {
-      "val": "309050784569.31",
-      "page": 26,
-      "label": "合并资产总计"
-    },
-    "liabilities": {
-      "val": "46954432394.95",
-      "page": 27,
-      "label": "合并负债合计"
-    },
-    "equity": {
-      "val": "262096352174.36",
-      "page": 28,
-      "label": "合并所有者权益合计"
-    },
-    "assets_prior_bs": {
-      "val": "303834844021.44",
-      "page": 26,
-      "label": "上年末资产"
-    },
-    "liabilities_prior": {
-      "val": "49875590112.37",
-      "page": 27,
-      "label": "上年末负债"
-    },
-    "equity_prior": {
-      "val": "253959253909.07",
-      "page": 28,
-      "label": "上年末所有者权益"
-    },
-    "contract_liab": {
-      "val": "3177561597.07",
-      "page": 27,
-      "label": "合并合同负债"
-    },
-    "contract_liab_prior": {
-      "val": "8006739780.94",
-      "page": 27,
-      "label": "上年末合同负债"
-    },
-    "inventory_bs": {
-      "val": "61317208371.30",
-      "page": 26,
-      "label": "合并存货"
-    },
-    "inventory_prior": {
-      "val": "61427421796.18",
-      "page": 26,
-      "label": "上年末存货"
-    },
-    "sales_cash_prior": {
-      "val": "95086614960.23",
-      "page": 33,
-      "label": "上年同期销售收到现金"
-    },
-    "cfi_bs": {
-      "val": "25640543520.60",
-      "page": 34,
-      "label": "投资活动净现金"
-    },
-    "cff_bs": {
-      "val": "-37944297802.12",
-      "page": 34,
-      "label": "筹资活动净现金"
-    },
-    "fx_bs": {
-      "val": "-1509802.64",
-      "page": 34,
-      "label": "汇率变化影响"
-    },
-    "cash_change": {
-      "val": "58385486034.90",
-      "page": 34,
-      "label": "现金等价物净增加额"
-    },
-    "capex_cash": {
-      "val": "832142752.28",
-      "page": 34,
-      "label": "购建长期资产支出"
-    },
-    "interest_income": {
-      "val": "1574811118.73",
-      "page": 30,
-      "label": "利息收入"
-    }
-  },
-  "000333": {
-    "statement_unit": "千元",
-    "model": "制造业 / 海外业务 / 财务子公司",
-    "source_status": "原始2026H1未经审计",
-    "assets_bs": {
-      "val": "643101789000",
-      "page": 96,
-      "label": "合并资产总计"
-    },
-    "liabilities": {
-      "val": "417308848000",
-      "page": 97,
-      "label": "合并负债合计"
-    },
-    "equity": {
-      "val": "225792941000",
-      "page": 97,
-      "label": "合并股东权益合计"
-    },
-    "assets_prior_bs": {
-      "val": "608791766000",
-      "page": 96,
-      "label": "上年末资产"
-    },
-    "liabilities_prior": {
-      "val": "372367543000",
-      "page": 97,
-      "label": "上年末负债"
-    },
-    "equity_prior": {
-      "val": "236424223000",
-      "page": 97,
-      "label": "上年末股东权益"
-    },
-    "noncurrent_asset": {
-      "val": "206001762000",
-      "page": 96,
-      "label": "非流动资产合计"
-    },
-    "current_asset": {
-      "val": "437100027000",
-      "page": 96,
-      "label": "流动资产合计"
-    },
-    "contract_liab": {
-      "val": "45458117000",
-      "page": 97,
-      "label": "合并合同负债"
-    },
-    "contract_liab_prior": {
-      "val": "46993060000",
-      "page": 97,
-      "label": "上年末合同负债"
-    },
-    "total_rev": {
-      "val": "261052379000",
-      "page": 98,
-      "label": "合并营业总收入"
-    },
-    "interest_income": {
-      "val": "1009683000",
-      "page": 98,
-      "label": "利息收入"
-    },
-    "fee_income": {
-      "val": "206000",
-      "page": 98,
-      "label": "手续费及佣金收入"
-    },
-    "operating_profit": {
-      "val": "31684489000",
-      "page": 98,
-      "label": "合并营业利润"
-    },
-    "consolidated_ni": {
-      "val": "26582874000",
-      "page": 98,
-      "label": "合并净利润"
-    },
-    "nci_ni": {
-      "val": "136837000",
-      "page": 98,
-      "label": "合并少数股东损益"
-    },
-    "cfi_bs": {
-      "val": "-15872491000",
-      "page": 99,
-      "label": "投资活动净现金流"
-    },
-    "cff_bs": {
-      "val": "-15156180000",
-      "page": 99,
-      "label": "筹资活动净现金流"
-    },
-    "fx_bs": {
-      "val": "-417845000",
-      "page": 99,
-      "label": "现金汇率影响"
-    },
-    "cash_begin_bs": {
-      "val": "68508670000",
-      "page": 99,
-      "label": "现金及等价物期初"
-    },
-    "cash_close_bs": {
-      "val": "74614244000",
-      "page": 99,
-      "label": "现金及等价物期末"
-    },
-    "capex_cash": {
-      "val": "2634210000",
-      "page": 99,
-      "label": "购建长期资产支付现金"
-    }
-  },
   "600036": {
     "statement_unit": "百万元",
     "model": "商业银行 / 存贷利差 / 资本监管",
@@ -321,32 +36,38 @@
     "interest_in": {
       "val": "172733000000",
       "page": 89,
-      "label": "合并利息收入"
+      "label": "合并利息收入",
+      "period": "2026H1"
     },
     "interest_out": {
       "val": "60711000000",
       "page": 89,
-      "label": "合并利息支出"
+      "label": "合并利息支出",
+      "period": "2026H1"
     },
     "interest_in_prior": {
       "val": "177014000000",
       "page": 89,
-      "label": "上年同期利息收入"
+      "label": "上年同期利息收入",
+      "period": "2025H1"
     },
     "interest_out_prior": {
       "val": "70929000000",
       "page": 89,
-      "label": "上年同期利息支出"
+      "label": "上年同期利息支出",
+      "period": "2025H1"
     },
     "nii": {
       "val": "112022000000",
       "page": 89,
-      "label": "合并净利息收入"
+      "label": "合并净利息收入",
+      "period": "2026H1"
     },
     "nii_prior": {
       "val": "106085000000",
       "page": 89,
-      "label": "上年同期净利息收入"
+      "label": "上年同期净利息收入",
+      "period": "2025H1"
     },
     "revenue": {
       "val": "178181000000",
@@ -534,6 +255,291 @@
       "unit": "百万元",
       "status": "DERIVED",
       "formula": "1,508+14+3,787=5,309（百万元）"
+    }
+  },
+  "600519": {
+    "statement_unit": "元",
+    "model": "白酒生产销售 / 直销经销 / 财务公司",
+    "source_status": "原始2026H1未经审计",
+    "assets_bs": {
+      "val": "309050784569.31",
+      "page": 26,
+      "label": "合并资产总计"
+    },
+    "liabilities": {
+      "val": "46954432394.95",
+      "page": 27,
+      "label": "合并负债合计"
+    },
+    "equity": {
+      "val": "262096352174.36",
+      "page": 28,
+      "label": "合并所有者权益合计"
+    },
+    "assets_prior_bs": {
+      "val": "303834844021.44",
+      "page": 26,
+      "label": "上年末资产"
+    },
+    "liabilities_prior": {
+      "val": "49875590112.37",
+      "page": 27,
+      "label": "上年末负债"
+    },
+    "equity_prior": {
+      "val": "253959253909.07",
+      "page": 28,
+      "label": "上年末所有者权益"
+    },
+    "contract_liab": {
+      "val": "3177561597.07",
+      "page": 27,
+      "label": "合并合同负债"
+    },
+    "contract_liab_prior": {
+      "val": "8006739780.94",
+      "page": 27,
+      "label": "上年末合同负债"
+    },
+    "inventory_bs": {
+      "val": "61317208371.30",
+      "page": 26,
+      "label": "合并存货"
+    },
+    "inventory_prior": {
+      "val": "61427421796.18",
+      "page": 26,
+      "label": "上年末存货"
+    },
+    "sales_cash_prior": {
+      "val": "95086614960.23",
+      "page": 33,
+      "label": "上年同期销售收到现金"
+    },
+    "cfi_bs": {
+      "val": "25640543520.60",
+      "page": 34,
+      "label": "投资活动净现金"
+    },
+    "cff_bs": {
+      "val": "-37944297802.12",
+      "page": 34,
+      "label": "筹资活动净现金"
+    },
+    "fx_bs": {
+      "val": "-1509802.64",
+      "page": 34,
+      "label": "汇率变化影响"
+    },
+    "cash_change": {
+      "val": "58385486034.90",
+      "page": 34,
+      "label": "现金等价物净增加额"
+    },
+    "capex_cash": {
+      "val": "832142752.28",
+      "page": 34,
+      "label": "购建长期资产支出"
+    },
+    "interest_income": {
+      "val": "1574811118.73",
+      "page": 30,
+      "label": "利息收入"
+    }
+  },
+  "688111": {
+    "statement_unit": "元",
+    "model": "软件订阅 / 许可 / 企业服务",
+    "source_status": "原始2026H1未经审计",
+    "assets_bs": {
+      "val": "20879674684.69",
+      "page": 56,
+      "label": "合并资产总计"
+    },
+    "liabilities": {
+      "val": "5802932070.17",
+      "page": 57,
+      "label": "合并负债合计"
+    },
+    "equity": {
+      "val": "15076742614.52",
+      "page": 57,
+      "label": "合并所有者权益合计"
+    },
+    "assets_prior_bs": {
+      "val": "18155801690.14",
+      "page": 56,
+      "label": "2025年末资产总计"
+    },
+    "liabilities_prior": {
+      "val": "5302354608.80",
+      "page": 57,
+      "label": "2025年末负债合计"
+    },
+    "equity_prior": {
+      "val": "12853447081.34",
+      "page": 57,
+      "label": "2025年末所有者权益"
+    },
+    "contract_liab": {
+      "val": "2764215464.83",
+      "page": 56,
+      "label": "合并合同负债"
+    },
+    "contract_liab_prior": {
+      "val": "2598812963.28",
+      "page": 56,
+      "label": "上年末合同负债"
+    },
+    "ar_bs": {
+      "val": "755088306.53",
+      "page": 55,
+      "label": "合并应收账款"
+    },
+    "ar_prior_bs": {
+      "val": "636321758.99",
+      "page": 55,
+      "label": "上年末应收账款"
+    },
+    "noncurrent_asset": {
+      "val": "7169616905.89",
+      "page": 56,
+      "label": "非流动资产合计"
+    },
+    "current_asset": {
+      "val": "13710057778.80",
+      "page": 55,
+      "label": "流动资产合计"
+    },
+    "net_consolidated": {
+      "val": "2517594330.93",
+      "page": 60,
+      "label": "合并净利润"
+    },
+    "operating_profit": {
+      "val": "2744613866.21",
+      "page": 60,
+      "label": "营业利润"
+    },
+    "cash_fx_ledger": {
+      "val": "-4299003.37",
+      "page": 63,
+      "label": "汇率变动对现金及现金等价物影响"
+    }
+  },
+  "000333": {
+    "statement_unit": "千元",
+    "model": "制造业 / 海外业务 / 财务子公司",
+    "source_status": "原始2026H1未经审计",
+    "assets_bs": {
+      "val": "643101789000",
+      "page": 96,
+      "label": "合并资产总计"
+    },
+    "liabilities": {
+      "val": "417308848000",
+      "page": 97,
+      "label": "合并负债合计"
+    },
+    "equity": {
+      "val": "225792941000",
+      "page": 97,
+      "label": "合并股东权益合计"
+    },
+    "assets_prior_bs": {
+      "val": "608791766000",
+      "page": 96,
+      "label": "上年末资产"
+    },
+    "liabilities_prior": {
+      "val": "372367543000",
+      "page": 97,
+      "label": "上年末负债"
+    },
+    "equity_prior": {
+      "val": "236424223000",
+      "page": 97,
+      "label": "上年末股东权益"
+    },
+    "noncurrent_asset": {
+      "val": "206001762000",
+      "page": 96,
+      "label": "非流动资产合计"
+    },
+    "current_asset": {
+      "val": "437100027000",
+      "page": 96,
+      "label": "流动资产合计"
+    },
+    "contract_liab": {
+      "val": "45458117000",
+      "page": 97,
+      "label": "合并合同负债"
+    },
+    "contract_liab_prior": {
+      "val": "46993060000",
+      "page": 97,
+      "label": "上年末合同负债"
+    },
+    "total_rev": {
+      "val": "261052379000",
+      "page": 98,
+      "label": "合并营业总收入"
+    },
+    "interest_income": {
+      "val": "1009683000",
+      "page": 98,
+      "label": "利息收入"
+    },
+    "fee_income": {
+      "val": "206000",
+      "page": 98,
+      "label": "手续费及佣金收入"
+    },
+    "operating_profit": {
+      "val": "31684489000",
+      "page": 98,
+      "label": "合并营业利润"
+    },
+    "consolidated_ni": {
+      "val": "26582874000",
+      "page": 98,
+      "label": "合并净利润"
+    },
+    "nci_ni": {
+      "val": "136837000",
+      "page": 98,
+      "label": "合并少数股东损益"
+    },
+    "cfi_bs": {
+      "val": "-15872491000",
+      "page": 99,
+      "label": "投资活动净现金流"
+    },
+    "cff_bs": {
+      "val": "-15156180000",
+      "page": 99,
+      "label": "筹资活动净现金流"
+    },
+    "fx_bs": {
+      "val": "-417845000",
+      "page": 99,
+      "label": "现金汇率影响"
+    },
+    "cash_begin_bs": {
+      "val": "68508670000",
+      "page": 99,
+      "label": "现金及等价物期初"
+    },
+    "cash_close_bs": {
+      "val": "74614244000",
+      "page": 99,
+      "label": "现金及等价物期末"
+    },
+    "capex_cash": {
+      "val": "2634210000",
+      "page": 99,
+      "label": "购建长期资产支付现金"
     }
   }
 }

@@ -20,7 +20,16 @@ def get(code,key):
  if key in EXTRA[code] and isinstance(EXTRA[code][key],dict):return D(EXTRA[code][key]['val'])
  return D(LEDGER[code]['facts'][key]['yuan'])
 def facts(code):
- return {**(LEDGER[code]['facts'] if code in LEDGER else {}),**{k:{'yuan':v['val'],'page':v['page'],'label':v['label'],'period':'2026H1','scope':'consolidated','status':v.get('status','DISCLOSED'),'reported_unit':v.get('unit',EXTRA[code]['statement_unit'])} for k,v in EXTRA[code].items() if isinstance(v,dict)}}
+ def stated_period(key,record):
+  # A prior closing stock is dated 2025-12-31, not the prior H1 flow.
+  # Do not silently re-label comparative 2025H1 income/cash facts as 2026H1.
+  if record.get('period'): return record['period']
+  if key.endswith('_prior_bs') or key in {'assets_prior','liabilities_prior','equity_prior','contract_liab_prior','inventory_prior','customer_deposits_prior','net_loans_prior','ar_prior_bs','npl_pct_prior','coverage_pct_prior','cet1_pct_prior'}:
+   return '2025-12-31'
+  if key.endswith('_prior'): return '2025H1'
+  if key.endswith('_begin_bs'): return '2025-12-31'
+  return '2026H1'
+ return {**(LEDGER[code]['facts'] if code in LEDGER else {}),**{k:{'yuan':v['val'],'page':v['page'],'label':v['label'],'period':stated_period(k,v),'scope':'consolidated','status':v.get('status','DISCLOSED'),'reported_unit':v.get('unit',EXTRA[code]['statement_unit'])} for k,v in EXTRA[code].items() if isinstance(v,dict)}}
 def check(code):
  p=SRC[code];assert p.is_file(),p
  assert hashlib.sha256(p.read_bytes()).hexdigest()==SHA[code], 'source hash mismatch '+code

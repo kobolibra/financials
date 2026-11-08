@@ -2,6 +2,10 @@ name: V10 typed financial flow publication quality gate
 on:
   pull_request:
     paths:
+      - 'scripts/audit_research_depth.py'
+      - 'scripts/test_audit_research_depth.py'
+      - 'research/quality/pr35-hero-figure-briefs.json'
+      - 'research/rebuild-v10/input-ledgers/**'
       - 'scripts/audit_v10_flow_contract.py'
       - 'scripts/test_audit_v10_flow_contract.py'
       - 'scripts/audit_unified_visual_corpus.py'
@@ -50,6 +54,11 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce quantified, original-source-bound, falsifiable four-issuer analysis
+        run: |
+          python scripts/audit_research_depth.py
+          python -m unittest discover -s scripts -p 'test_audit_research_depth.py' -v
+          python -O -m unittest discover -s scripts -p 'test_audit_research_depth.py' -v
       - name: Exercise actual yuan source facts, four issuer genres, and hostile tests
         run: |
           python -m unittest discover -s scripts -p 'test_audit_v10_flow_contract.py' -v
