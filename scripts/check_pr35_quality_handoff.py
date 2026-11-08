@@ -36,7 +36,7 @@ def validate_artifact_integrity(active:dict,build:dict,browser:dict,typed:dict,
         errors.append("CANDIDATE_HANDOFF_SCHEMA")
     if active.get("pr_number")!=35 or active.get("branch")!="quality/aei-sankey-source-contract-v1":
         errors.append("CANDIDATE_BRANCH_IDENTITY")
-    if active.get("review_state")!="UNMERGED_CANDIDATE_NEEDS_INDEPENDENT_EDITORIAL_REVIEW":
+    if active.get("review_state")!="MERGED_MAIN_PENDING_INDEPENDENT_FINANCE_AND_ART_REVIEW":
         errors.append("PREMATURE_RESEARCH_OR_DEPLOYMENT_CERTIFICATION")
     if active.get("current_art_direction",{}).get("status")!="NOT_CHECKED_CURRENT_HUMAN_REVIEW_AND_UNSEEN_PERIOD_GENERALIZATION":
         errors.append("HUMAN_OR_GENERALIZATION_CERTIFICATION_NOT_PROVEN")
@@ -164,8 +164,14 @@ def validate_handoff_documents(active:dict,status:dict,
     candidate=status.get("active_pr35_quality_candidate",{})
     if candidate.get("handoff_manifest")!=MANIFEST or candidate.get("pr_number")!=PR:
         errors.append("PROJECT_STATUS_DOES_NOT_SURFACE_CANDIDATE")
-    if candidate.get("state")!="UNMERGED_CANDIDATE_WITH_SEPARATE_MAIN_PRODUCTION":
+    if candidate.get("state")!="MERGED_MAIN_SOURCE_BASE__NEW_RELEASE_SHA_STILL_REQUIRES_VERIFICATION":
         errors.append("PROJECT_STATUS_PREMATURE_RELEASE")
+    if candidate.get("status_scope")!="HISTORICAL_PR35_MERGED_IN_MAIN_NEW_SOURCE_CANDIDATE_MUST_BE_REVERIFIED":
+        errors.append("PROJECT_STATUS_STALE_UNMERGED_PR_CLAIM")
+    if candidate.get("main_production_new_four_figures")!="MERGED_MAIN__LATEST_PUBLIC_FULL_HTML_SHA_NOT_INFERRED":
+        errors.append("PROJECT_STATUS_FAKE_PRODUCTION_SHA_CERTIFICATION")
+    if active.get("visual_unification_status",{}).get("legacy_not_unified")!=[] or set(active.get("visual_unification_status",{}).get("partial_hero_only_unified_remaining_art_legacy",[]))!={"300394","300308","300502","688220","600900","600276","601628"}:
+        errors.append("SEVEN_ISSUER_HERO_ONLY_EDITORIAL_MIGRATION_STATUS_STALE")
     if candidate.get("main_at_review_start")!=active.get("source_main_sha_at_start"):
         errors.append("PROJECT_STATUS_MAIN_BASELINE_DRIFT")
     if "ACTIVE_PR35_HANDOFF.md" not in entry[:3500]:
