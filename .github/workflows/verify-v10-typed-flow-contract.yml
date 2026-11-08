@@ -96,6 +96,10 @@ jobs:
           PY
           python scripts/check_release_contract.py
           python scripts/check_visual_editorial_policy.py
+      - name: Prove disclosed income to profit source chain for industrial issuers without pretending bank/insurance is industrial
+        run: |
+          python -m unittest discover -s research/rebuild-v10 -p 'test_profit_formation.py' -v
+          python -O -m unittest discover -s research/rebuild-v10 -p 'test_profit_formation.py' -v
       - name: Source-SHA frozen debt cannot become a new untyped publication
         run: |
           python scripts/audit_v10_flow_contract.py --out v10-typed-flow-audit.json
