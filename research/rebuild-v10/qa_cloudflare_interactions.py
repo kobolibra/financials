@@ -24,6 +24,11 @@ OUT=ROOT/"research/rebuild-v10/cloudflare-interaction-qa"
 OUT.mkdir(parents=True,exist_ok=True)
 DOMAIN=os.environ.get("FINANCIALS_PR_PREVIEW","https://quality-aei-sankey-source-co.financials-in-visuals.pages.dev").rstrip("/")
 CODES={"688111":9,"600519":9,"000333":10,"600036":8}
+RESEARCH_BRIEFS={row["issuer"]:row["quantified_driver"] for row in json.loads(
+    (ROOT/"research/quality/pr35-hero-figure-briefs.json").read_text(encoding="utf8")
+)["hero_figures"]}
+NAV_ORDER=("#overview","#quantified-decision","#economics","#earnings","#balance",
+           "#cash","#conclusion","#sources")
 ENGINES=(("chromium",390,844,True),("webkit",375,812,True),("chromium",1440,960,False))
 
 
@@ -118,7 +123,20 @@ def main() -> int:
                         page.evaluate("document.fonts.ready")
                         assert page.title().strip(),(code,"MISSING_DOCUMENT_TITLE")
                         assert page.locator("html").get_attribute("lang")=="zh-CN",(code,"DOCUMENT_LANG")
-                        assert page.locator('nav[aria-label="研究章节导航"] a').count()==7,(code,"LOST_EDITORIAL_NAVIGATION")
+                        # Do not hard-code the old seven-link layout: the public
+                        # quantified research section is an actual eighth
+                        # chapter, not an internal JSON-only compliance note.
+                        nav=page.locator('nav[aria-label="研究章节导航"] a')
+                        actual_hrefs=nav.evaluate_all("els=>els.map(e=>e.getAttribute('href'))")
+                        assert tuple(actual_hrefs)==NAV_ORDER,(code,"LOST_EDITORIAL_NAVIGATION",actual_hrefs)
+                        thesis=page.locator('section#quantified-decision[data-research-schema="financials.source_bound_decision.v1"]')
+                        brief=RESEARCH_BRIEFS[code]
+                        assert thesis.count()==1 and thesis.is_visible(),(code,"SOURCE_BOUND_THESIS_NOT_PUBLISHED")
+                        assert thesis.get_attribute("data-original-pdf-sha256")==brief["source_pdf_sha256"],(code,"LIVE_THESIS_PDF_SHA_WRONG")
+                        assert thesis.get_attribute("data-result-yuan")==brief["expected_yuan"],(code,"LIVE_THESIS_EXACT_RESULT_CHANGED")
+                        assert thesis.get_attribute("data-accounting-not-causal")=="true",(code,"FALSE_CAUSAL_RESEARCH_CLAIM")
+                        assert thesis.locator(".decision-fact[data-exact-yuan][data-physical-page] a[href*='#page=']").count()==len(brief["fact_keys"]),(code,"LIVE_QUANTIFIED_SOURCE_ROWS_OR_LINKS_MISSING")
+                        assert page.locator('a[href="#quantified-decision"]').count()==1,(code,"DECISION_NAV_LINK_LOST")
                         assert page.locator('a[href="/#companies"]').count()>=2,(code,"NO_HOME_RETURN_ROUTE")
                         assert page.locator("header .mast-links").inner_text().find("全部公司")>=0,(code,"STALE_SEVEN_COMPANY_NAV")
                         figs=page.locator("figure.graphic")
