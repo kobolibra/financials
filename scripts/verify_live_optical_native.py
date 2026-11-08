@@ -90,24 +90,65 @@ def run():
                     assert "独立第二名人类研究分析师" in page.content()
 
                 assert page.evaluate("document.documentElement.scrollWidth")<=width+2,(code,width,"FULL_HTML_BODY_HORIZONTAL_OVERFLOW")
+                # All three optical issuers migrated to original-yuan V9
+                # source -> consolidated revenue -> own reported COGS / GP.
+                # The old native-money-* classes, widths and filter buttons
+                # were removed. Never let a stale selector hide a real
+                # financial regression or falsely fail a lawful upgrade.
                 state=page.evaluate("""() => {
-                  const figures=[...document.querySelectorAll('figure.has-native-finance')];
-                  const f=figures[0],native=f.querySelector('.native-finance'),
-                        desktop=f.querySelector('.chart-shell'),svg=native.querySelector('.native-money-svg');
-                  const a=[...svg.querySelectorAll('.native-money-source')].map(x=>[+x.dataset.exactYuan,+x.getAttribute('width')]),
-                        b=[...svg.querySelectorAll('.native-money-sink')].map(x=>[+x.dataset.exactYuan,+x.getAttribute('width')]),
-                        edges=[...svg.querySelectorAll('.native-money-ribbon')].map(x=>+x.dataset.exactYuan);
-                  return {figures:figures.length, nativeVisible:getComputedStyle(native).display!=='none',
-                    desktopVisible:getComputedStyle(desktop).display!=='none', inner:native.scrollWidth,client:native.clientWidth,
-                    source:a,sink:b,ribbons:edges, signed:[...document.querySelectorAll('.native-signed-svg')].length,
-                    exportedSourceRibbons:document.querySelectorAll('.hero-svg path.money-ribbon').length,
+                  const f=[...document.querySelectorAll('figure.has-native-finance')][0];
+                  const native=f.querySelector('.native-finance'),desktop=f.querySelector('.chart-shell');
+                  const sourceSvg=native.querySelector('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
+                  const desktopSvg=desktop.querySelector('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
+                  const info=svg=>svg?{
+                    total:svg.dataset.revenueYuan,scale:svg.dataset.scaleYuanPerSvgUnit,
+                    nodes:[...svg.querySelectorAll('rect[data-node-role][data-node-yuan]')].map(n=>({
+                      id:n.dataset.nodeId,role:n.dataset.nodeRole,
+                      money:n.dataset.nodeYuan,height:n.getAttribute('height')})),
+                    ribbons:[...svg.querySelectorAll('path[data-stage][data-ribbon-yuan]')].map(p=>({
+                      stage:p.dataset.stage,source:p.dataset.sourceId,outcome:p.dataset.outcomeId,
+                      money:p.dataset.ribbonYuan,scale:p.dataset.scaleYuanPerSvgUnit,d:p.getAttribute('d')}))
+                  }:null;
+                  return {figures:document.querySelectorAll('figure.has-native-finance').length,
+                    nativeVisible:getComputedStyle(native).display!=='none',
+                    desktopVisible:getComputedStyle(desktop).display!=='none',
+                    inner:native.scrollWidth,client:native.clientWidth,
+                    original:info(desktopSvg),current:info(sourceSvg),
+                    signed:document.querySelectorAll('.native-signed-svg').length,
                     bodyOverflow:document.documentElement.scrollWidth-window.innerWidth};
                 }""")
-                n=sum(x[0] for x in state["source"])
-                assert n>0 and abs(sum(x[0] for x in state["sink"])-n)<.001
-                assert abs(sum(state["ribbons"])-n)<.001
-                assert state["signed"]>=(4 if code=="300308" else 5) and state["exportedSourceRibbons"]>=6
-                assert all(abs(w-v/n*302)<1e-7 for v,w in state["source"]+state["sink"]),(code,width,"REAL_CLOUDFLARE_SVG_MONEY_SHAPES_NOT_SOURCE_WEIGHTED")
+                from decimal import Decimal as D
+                assert state["original"] and state["current"],(code,width,"REAL_V9_SOURCE_SVG_MISSING")
+                graph=state["current"] if width<900 else state["original"]
+                amount=D(ledger["facts"]["revenue"]["amount"])
+                costs=D(ledger["facts"]["cogs"]["amount"])
+                assert D(graph["total"])==amount and D(graph["scale"])>0,(code,width,"GROUP_REVENUE_OR_SCALE_NOT_SOURCE_BOUND")
+                parts=ledger["segments"]
+                exact={x["revenue_key"]:D(ledger["facts"][x["revenue_key"]]["amount"]) for x in parts}
+                expected_cost={x["revenue_key"]:D(ledger["facts"][x["cost_key"]]["amount"]) for x in parts}
+                assert len(exact)==len(parts),(code,width,"DUPLICATED_DISCLOSED_REVENUE_SOURCE")
+                nodes=graph["nodes"]
+                sources=[x for x in nodes if x["role"]=="source"]
+                group=[x for x in nodes if x["role"]=="total" and x["id"]=="revenue-total"]
+                sinks=[x for x in nodes if x["role"] in ("cost","profit")]
+                assert len(sources)==len(parts) and len(group)==1 and len(sinks)==2,(code,width,"WRONG_SOURCE_TOTAL_GP_NODES")
+                assert {x["id"]:D(x["money"]) for x in sources}==exact,(code,width,"ORIGINAL_PER_BUSINESS_YUAN_CHANGED")
+                assert D(group[0]["money"])==amount
+                assert {x["role"]:D(x["money"]) for x in sinks}=={"cost":costs,"profit":amount-costs}
+                assert all(abs(D(x["height"])-D(x["money"])/D(graph["scale"]))<D(".001") for x in nodes),(code,width,"FALSE_ORIGINAL_AMOUNT_NODE_HEIGHT")
+                ribbons=graph["ribbons"]
+                inbound=[x for x in ribbons if x["stage"]=="source-to-revenue"]
+                outbound=[x for x in ribbons if x["stage"]=="revenue-to-outcome"]
+                expected_out=sum(int(expected_cost[k]>0)+int(exact[k]>expected_cost[k]) for k in exact)
+                assert len(inbound)==len(parts) and len(outbound)==expected_out,(code,width,"NONCONSERVED_REVENUE_OR_PHANTOM_ZERO_MONEY_RIBBON")
+                assert {x["source"]:D(x["money"]) for x in inbound}==exact
+                expected_alloc={(k,"group_cogs"):expected_cost[k] for k in exact if expected_cost[k]>0}
+                expected_alloc.update({(k,"group_gp"):exact[k]-expected_cost[k] for k in exact if exact[k]>expected_cost[k]})
+                assert {(x["source"],x["outcome"]):D(x["money"]) for x in outbound}==expected_alloc,(code,width,"INVENTED_PRODUCT_GROSS_PROFIT_OR_COST_SPLIT")
+                assert sum((D(x["money"]) for x in inbound),D(0))==amount
+                assert sum((D(x["money"]) for x in outbound),D(0))==amount
+                assert all(D(x["scale"])>0 and x["d"].startswith("M ") and " C " in x["d"] for x in ribbons)
+                assert state["signed"]>=(4 if code=="300308" else 5)
                 if code=="300308":
                     from decimal import Decimal as D
                     graphs=page.locator('figure.exhibit svg[data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"]')
@@ -149,11 +190,12 @@ def run():
                         page.locator("figure.exhibit .svg-save").first.click()
                     assert export.value.suggested_filename.endswith(".svg"),(code,"LIVE_EDITABLE_FINANCIAL_SVG_EXPORT_MISSING")
                 if width==390:
-                    first=page.locator("button.native-source-row").first
-                    first.click()
-                    assert page.locator("path.native-money-ribbon.is-selected").count()==2,(code,"NO_SOURCE_SPECIFIC_PHONE_MONEY_HIGHLIGHT")
-                    first.click()
-                    assert page.locator("path.native-money-ribbon.is-muted").count()==0,(code,"SOURCE_SELECTION_CANNOT_RESET")
+                    # Selection buttons belonged to the retired issuer-only
+                    # mobile money illustrator. The current editable V9 SVG
+                    # must preserve all source IDs, exact CNY and all stages.
+                    assert state["nativeVisible"] and not state["desktopVisible"]
+                    assert len(state["current"]["ribbons"])==len(ribbons)
+                    assert {x["source"] for x in inbound}==set(exact),(code,"MISSING_ACTUAL_SOURCE_NAVIGABLE_FACT_IDS")
                 screenshot=OUT/f"live_{code}_{width}.png"
                 page.screenshot(path=str(screenshot),full_page=True)
                 screens.append({"name":screenshot.name,"sha256":SHA(screenshot.read_bytes()),"bytes":screenshot.stat().st_size})
