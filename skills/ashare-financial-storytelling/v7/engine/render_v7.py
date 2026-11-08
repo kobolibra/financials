@@ -12,6 +12,7 @@ from build import moneyflow, waterfall, money, y, pc, num, sign, factmeta, page,
 from audit import audit
 from editorial_charts import balance_identity, operating_cash_allocation, profitability_change
 from native_mobile_finance import make as make_native_mobile_finance
+from zhongji_signed_pnl import render_original_signed_pnl
 sys.path.insert(0,str(Path(__file__).resolve().parents[4]/"research/shared"))
 from v7_optical_income_adapter import render_optical_candidate
 
@@ -189,7 +190,21 @@ def build(l,m):
  if l.get("revenue_partition_assertion",{}).get("completeness")=="exact_original_reported" or l.get("verified_source_anomalies"):
   flow=render_optical_candidate(l,mobile=False).replace('<svg ','<svg class="hero-svg" ',1)
   _NATIVE_PANELS["01"]=render_optical_candidate(l,mobile=True)
- pnl=original_profit_bridge(l)
+ # 300308 is the first V7 opt-in to the one-source, two-edition shared
+ # signed P&L art. Do not accidentally change historical 300394/300502
+ # output bytes or force unsupported issuer/period contexts into this bridge.
+ if doc['ticker']=="300308.SZ":
+  pnl=render_original_signed_pnl(l,mobile=False)
+  phone_pnl=render_original_signed_pnl(l,mobile=True)
+  _NATIVE_PANELS["03"]=(
+      '<div class="native-finance-inner" data-native-grammar="full-signed-source-pnl">'
+      '<p class="native-finance-dek">完整原始财报中的营业毛利、研发与财务费用、剩余费用、经营净收益及税项全部按实际元金额表示；'
+      '经营残差只代表合并差额，不代表已核实的产品因果归属。</p>'
+      +phone_pnl+
+      '<p class="native-finance-foot">2026H1 合并口径 · 原始184页财报SHA与收入、成本、营业利润、合并净利润逐项勾稽；'
+      '行业比较、多季度因果与独立视觉复核 NOT_CHECKED。</p></div>')
+ else:
+  pnl=original_profit_bridge(l)
  delta=gp_delta_bridge(l)
  cash1,cash2=cash_bridges(l)
  bal=balance_identity(l)
