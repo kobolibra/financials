@@ -39,6 +39,20 @@ class ReaderFacingQuantifiedThesisTests(unittest.TestCase):
             with self.subTest(code=code):
                 self.assertEqual(verify(code,*fake_case(code)),[])
 
+    def test_real_four_published_reports_have_exact_eight_meaningful_navigation_anchors(self):
+        import re
+        expected=("#overview","#quantified-decision","#economics","#earnings",
+                  "#balance","#cash","#conclusion","#sources")
+        for code in MODELS:
+            with self.subTest(issuer=code):
+                doc=(ROOT/f"public/research/2026-h1-v10/{code}.html").read_text(encoding="utf8")
+                region=re.search(r'<nav class="page-nav" aria-label="研究章节导航">([\s\S]*?)</nav>',doc)
+                self.assertIsNotNone(region,(code,"MISSING_REAL_EDITION_NAV"))
+                links=tuple(re.findall(r'<a href="(#[a-z-]+)">',region.group(1)))
+                self.assertEqual(links,expected,(code,"MISSING_QUANTIFIED_DECISION_NAV_LINK"))
+                for href in expected:
+                    self.assertIn(f'id="{href[1:]}"',doc,(code,href,"BROKEN_SOURCE_BOUND_READER_NAV"))
+
     def test_tampering_with_exact_yuan_is_rejected(self):
         args=list(fake_case("688111"))
         args[0]=args[0].replace('data-exact-yuan="3313262599.20"',
