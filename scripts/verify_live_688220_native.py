@@ -58,24 +58,60 @@ def main():
             actual_article_url=page.url
             page.wait_for_selector("#chart-flow svg",state="attached")
             facts=page.evaluate("""() => {
-              const source=[...document.querySelectorAll('.native-asr-source')].map(x=>({w:+x.getAttribute('width'),amount:+x.dataset.exactYuan}));
-              const sink=[...document.querySelectorAll('.native-asr-sink')].map(x=>({w:+x.getAttribute('width'),amount:+x.dataset.exactYuan}));
-              const flow=[...document.querySelectorAll('.native-asr-ribbon')].map(x=>({w:+x.dataset.width,amount:+x.dataset.exactYuan}));
+              const sourceSvg=document.querySelector('#fig-flow .native-asr svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
+              const desktopSvg=document.querySelector('#chart-flow > svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
+              const source=sourceSvg?{
+                  total:sourceSvg.dataset.revenueYuan,
+                  scale:sourceSvg.dataset.scaleYuanPerSvgUnit,
+                  nodes:[...sourceSvg.querySelectorAll('rect[data-node-role][data-node-yuan]')].map(x=>({
+                    role:x.dataset.nodeRole,id:x.dataset.nodeId,amount:x.dataset.nodeYuan,
+                    height:x.getAttribute('height')})),
+                  ribbons:[...sourceSvg.querySelectorAll('path[data-stage][data-ribbon-yuan]')].map(x=>({
+                    stage:x.dataset.stage,source:x.dataset.sourceId,outcome:x.dataset.outcomeId,
+                    amount:x.dataset.ribbonYuan,scale:x.dataset.scaleYuanPerSvgUnit,
+                    d:x.getAttribute('d')}))
+                }:null;
               const native=[...document.querySelectorAll('.native-asr')];
               const bbox=native.flatMap(n=>[...n.querySelectorAll('svg text')].map(t=>{const b=t.getBBox();return {x:b.x,right:b.x+b.width,total:t.ownerSVGElement.viewBox.baseVal.width}}));
               return {n:native.length,visible:native.filter(n=>getComputedStyle(n).display!=='none').length,
                 originals:[...document.querySelectorAll('.vizscroll')].filter(n=>getComputedStyle(n).display!=='none').length,
                 cropped:native.filter(n=>n.scrollWidth>n.clientWidth+2).length,root:document.documentElement.scrollWidth,
-                source,sink,flow,bbox,steps:document.querySelectorAll('.native-asr-signed').length,
+                source,desktopGraph:!!desktopSvg,bbox,steps:document.querySelectorAll('.native-asr-signed').length,
                 tables:document.querySelectorAll('table.evidence-table').length,
                 exports:document.querySelectorAll('[data-export]').length};
             }""")
             assert facts["root"]<=width+1 and facts["n"]==facts["tables"]==facts["exports"]==9
-            assert len(facts["source"])==4 and len(facts["sink"])==2 and len(facts["flow"])==7 and facts["steps"]>=19
-            rev=sum(x["amount"] for x in facts["source"]);scale=298/rev
-            assert abs(sum(x["amount"] for x in facts["sink"])-rev)<.001
-            assert abs(sum(x["amount"] for x in facts["flow"])-rev)<.001
-            assert all(abs(x["w"]-x["amount"]*scale)<.000001 for x in facts["source"]+facts["sink"]+facts["flow"])
+            # The old node/ribbon classes were legitimately retired when
+            # the shared V9 positive-money Sankey went live. Test that actual
+            # source→group-revenue→source-cost/GP graph, NOT obsolete CSS.
+            assert facts["desktopGraph"] and facts["source"] and facts["steps"]>=19,(width,"CURRENT_SHARED_V9_INCOME_GRAPH_MISSING")
+            from decimal import Decimal as D
+            graph=facts["source"]
+            rev=D(ledger["facts"]["rev"]["yuan"])
+            assert D(graph["total"])==rev and D(graph["scale"])>0,(width,"GROUP_REVENUE_SOURCE_WRONG")
+            nodes=graph["nodes"]
+            sources=[z for z in nodes if z["role"]=="source"]
+            trunk=[z for z in nodes if z["role"]=="total" and z["id"]=="revenue-total"]
+            sinks=[z for z in nodes if z["role"] in ("cost","profit")]
+            assert len(sources)==4 and len(trunk)==1 and len(sinks)==2,(width,"SHARED_GROSS_FLOW_NODES_MISSING",nodes)
+            actual_sources={z["id"]:D(z["amount"]) for z in sources}
+            expected_sources={entry["rev"]:D(ledger["facts"][entry["rev"]]["yuan"]) for entry in ledger["segments"]}
+            assert actual_sources==expected_sources,(width,"SANKKEY_SOURCE_IDS_OR_YUAN_CHANGED")
+            assert D(trunk[0]["amount"])==rev
+            assert {z["role"]:D(z["amount"]) for z in sinks}=={
+                "cost":D(ledger["facts"]["cogs"]["yuan"]),
+                "profit":rev-D(ledger["facts"]["cogs"]["yuan"])}
+            assert all(abs(D(z["height"])-D(z["amount"])/D(graph["scale"]))<D(".001") for z in nodes),(width,"FALSIFIED_SOURCE_NODE_YUAN_GEOMETRY")
+            ribbons=graph["ribbons"]
+            inbound=[z for z in ribbons if z["stage"]=="source-to-revenue"]
+            outbound=[z for z in ribbons if z["stage"]=="revenue-to-outcome"]
+            assert len(inbound)==4 and len(outbound)==7,(width,"SOURCE_BRANCH_OR_ZERO_GP_PHANTOM_RIBBON")
+            assert {x["source"] for x in inbound}==set(expected_sources)
+            assert sum((D(z["amount"]) for z in inbound),D(0))==rev
+            assert sum((D(z["amount"]) for z in outbound),D(0))==rev
+            assert all(D(z["scale"])>0 and z["d"].startswith("M ") and " C " in z["d"] for z in ribbons)
+            assert len([z for z in outbound if z["source"]=="other_service_rev" and z["outcome"]=="group_gp"])==0,(width,"ZERO_ORIGINAL_GP_MUST_NOT_BE_PAINTED")
+            assert len([z for z in outbound if z["source"]=="other_service_rev" and z["outcome"]=="group_cogs"])==1
             assert all(b["x"]>=-2 and b["right"]<=b["total"]+2 for b in facts["bbox"]),("ACTUAL_CJK_SVG_TEXT_CLIPPED",width)
             # Real live source-authorized full-income signed bridge is checked
             # independently of remaining four mobile issuer-specific signed art.
