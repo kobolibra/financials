@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-07",
+  "updated_date": "2026-11-08",
   "active_pr35_quality_candidate": {
     "pr_number": 35,
-    "status_scope": "CANDIDATE_PR_BRANCH_ONLY__NOT_PRODUCTION",
-    "state": "UNMERGED_CANDIDATE_WITH_SEPARATE_MAIN_PRODUCTION",
+    "status_scope": "HISTORICAL_PR35_MERGED_IN_MAIN_NEW_SOURCE_CANDIDATE_MUST_BE_REVERIFIED",
+    "state": "MERGED_MAIN_SOURCE_BASE__NEW_RELEASE_SHA_STILL_REQUIRES_VERIFICATION",
     "branch": "quality/aei-sankey-source-contract-v1",
     "main_at_review_start": "9b70e1a4dad2c57cbbd26810dbd7ed9d3e5ddea9",
     "real_main_and_pr_head": "MUST_REQUERY_GITHUB_EACH_NEW_SESSION",
@@ -30,10 +30,10 @@
     "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
     "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "688111": "21030160fc2fae5cb009aa131bfe11c014bc98d08c69c3689dc447adf0f6ad49",
+      "600036": "ed9cd12b1a6af08cc6f4ad1399ea0317069be3c2965d7fe4f612560385a2b948",
       "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
-      "000333": "7b9f02d7e76d5facb8120176d5100227b53bcc5bc05771e8d88bccc420b49541",
-      "600036": "ed9cd12b1a6af08cc6f4ad1399ea0317069be3c2965d7fe4f612560385a2b948"
+      "688111": "21030160fc2fae5cb009aa131bfe11c014bc98d08c69c3689dc447adf0f6ad49",
+      "000333": "7b9f02d7e76d5facb8120176d5100227b53bcc5bc05771e8d88bccc420b49541"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
@@ -43,9 +43,9 @@
     "independent_full_notes": "NOT_CHECKED",
     "unseen_20_30_company_period_regression": "NOT_ESTABLISHED",
     "mobile_physical_device": "NOT_CHECKED",
-    "main_production_new_four_figures": "NOT_DEPLOYED_NO_OWNER_MERGE",
+    "main_production_new_four_figures": "MERGED_MAIN__LATEST_PUBLIC_FULL_HTML_SHA_NOT_INFERRED",
     "aei_top_quality_claim": "NOT_CERTIFIED",
-    "entrypoint_instruction": "Current main remains canonical production, PR35 files are candidate only. Re-read main+PR HEAD, all Skill manuals, verify actual HTML SHA and QA receipts. Do not copy prior PASS onto new files.",
+    "entrypoint_instruction": "PR35 and PR36 were merged; re-query main HEAD and Cloudflare exact HTML SHA. This rebuild only proves current source/CJK artifacts, never live status, full 11-report art or human signoff.",
     "legacy_unified_design_not_completed": [
       "300394",
       "300308",
