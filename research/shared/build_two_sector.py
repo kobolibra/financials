@@ -15,6 +15,10 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from source_income_adapter import render_sector_income
+# Reuse the very same source-ledger signed profit grammar as the V10
+# industrial research; no bespoke hydro/pharma margin-to-net geometry.
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"rebuild-v10"))
+from profit_formation import render_profit_formation
 
 ROOT=Path(__file__).resolve().parents[2]
 SITE=ROOT
@@ -120,11 +124,15 @@ details{margin-top:10px}summary{cursor:pointer;color:var(--green);font-weight:70
 table{border-collapse:collapse;width:100%;font-size:12px;margin-top:16px;background:white}td,th{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left}td:nth-child(2),td:nth-child(3){font-variant-numeric:tabular-nums;white-space:nowrap}th{color:var(--soft);font-weight:600}td a{color:var(--green)}.tablewrap{max-width:100%;min-width:0;overflow:auto}
 .disclaimer{padding:54px 0}.disclaimer h2{font-size:27px}.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px}.note{font-size:14px;padding:20px 24px;background:#eef1eb;color:#456366}.actions{padding:50px 0 85px;background:#eaf0ea;margin-top:35px}.actions h2{font-size:30px}.actions li{margin:13px 0}.footer{display:flex;justify-content:space-between;gap:16px;padding:35px 0;border-top:1px solid var(--line);font-size:11px;color:var(--soft)}
 @media(max-width:740px){.plot{overflow-x:visible!important;overflow-y:visible!important;padding:10px}.plot>svg{display:none!important}.plot .native-mobile-finance{display:block;min-width:0;max-width:100%;width:100%}.plot .native-mobile-finance svg{width:100%;max-width:100%;min-width:0;height:auto;display:block;overflow:visible}.wrap{padding:0 17px}.topbar{height:60px}.topbar .logo{font-size:11px}.hero{padding:53px 0 40px;grid-template-columns:1fr;gap:8px}h1{font-size:37px;max-width:99%;line-height:1.32}.dek{font-size:15px}.heroaside{margin:16px 0 0}.numbers{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.number strong{font-size:20px}.number label{font-size:10px}.chapter{padding:54px 0 45px}.chapter h2{font-size:26px}.chapter .answer{font-size:15px}.figure-head{padding:17px}.plot{padding:10px}.sourcebar{padding:14px 16px}.notes{grid-template-columns:1fr}.footer{flex-direction:column}.figure{border-radius:0}.counter{font-size:12px}.nav{margin:0 -17px;padding-left:17px}}
+.profit-formation{margin:30px 0 70px;padding:32px 39px 26px;background:#fffefa;border:1px solid var(--line);border-top:3px solid var(--ink)}.profit-formation h3{font:650 clamp(26px,3vw,40px)/1.25 "Noto Serif CJK SC","Songti SC",serif;letter-spacing:-.035em;margin:12px 0}.profit-formation-lead{font-size:15px;line-height:1.8;color:var(--soft);max-width:950px}.profit-viz{margin:17px 0;background:#f2f5f0;border:1px solid #dce5dd;padding:17px 9px}.profit-viz svg{display:block;width:100%;max-width:100%;height:auto}.profit-viz-phone{display:none}.profit-formation .tag{font-size:11px;letter-spacing:.15em;font-weight:800;color:var(--green)}.profit-formation-caveat{font-size:13px;line-height:1.8;color:#825d52}.profit-source-table{border-top:1px solid var(--line);padding-top:12px}.profit-source-table summary{font-size:13px;color:var(--green)}.profit-source-table table{font-size:12px}.profit-source-table code{overflow-wrap:anywhere}.profit-source-table td{overflow-wrap:anywhere}
+@media(max-width:850px){.profit-formation{padding:23px 20px}.profit-viz-desktop{display:none}.profit-viz-phone{display:block}}
+@media(max-width:740px){.profit-formation{padding:22px 12px;margin:28px 0 53px}.profit-formation h3{font-size:28px}.profit-viz{padding:13px 4px}.profit-formation-lead{font-size:14px}.profit-formation-caveat{font-size:12px}.profit-source-table th,.profit-source-table td{font-size:11px;padding:8px 4px}}
+
 </style></head><body>
 <div class="wrap"><div class="topbar"><a class="logo" href="/#companies">FINANCIALS / IN VISUALS</a><a class="back" href="/#companies">返回唯一公司研究目录 ↗</a></div>
 <header class="hero"><div><div class="eyebrow">__EYEBROW__ · 2026 H1 · ORIGINAL FINANCIAL RESEARCH</div><h1>__TITLE__</h1><p class="dek">__DEK__</p>
 <div class="numbers" id="hero-numbers"></div></div><div class="heroaside"><b>THE CONTRADICTION / 关键矛盾</b><p>__TENSION__</p><b style="display:block;margin-top:25px">STRONGEST COUNTERCASE</b><p>__COUNTER__</p></div></header>
-<div class="nav" id="nav"></div><main id="article"></main>
+<div class="nav" id="nav"></div>__PROFIT_FORMATION__<main id="article"></main>
 <div class="disclaimer"><h2>方法、来源与明确的边界</h2><p>__DISCLAIMER__</p><div class="notes" id="notes"></div><p>本稿为来源限定的独立研究预览；所载研究与图表源于发行人原始完整 PDF，并不意味着已经取得另一名独立人类财务分析师、独立视觉编辑、机构买卖评级或完整的全部附注鉴证。每张图都附有原始事实与物理 PDF 页码。PDF 的全部重大附注独立核对仍为 NOT_CHECKED；与交易所原始主机字节同一性另作验证。</p></div></div>
 <div class="actions"><div class="wrap"><div class="eyebrow">FALSIFIABILITY / 下一轮证伪</div><h2>下一份披露应该回答的三个问题</h2><ol id="followups"></ol></div></div>
 <div class="wrap footer"><span>FINANCIALS IN VISUALS · 2026 H1 · SOURCE-LIMITED RESEARCH PREVIEW</span><a href="/#companies">返回统一公司研究库</a></div>
@@ -339,17 +347,24 @@ def build(code,out):
     # Keep the separate signed P&L, CFO, stock and sector figures intact.
     finance_desktop=render_sector_income(d,mobile=False,embedded=True)
     finance_phone=render_sector_income(d,mobile=True,embedded=True)
+    # Ledger already passed full original PDF SHA, physical-page and
+    # disclosed accounting equality checks above. Only that source is
+    # eligible to construct the signed group income-to-net profile.
+    profit_bridge=render_profit_formation(code,d["facts"],
+        d["source"]["original_bytes_sha256"],
+        d["source"]["official_announcement"])
     def compact(x):return json.dumps(x,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
     # Native mobile original finance grammar is INLINED: one offline standalone HTML per issuer.
     article=HTML.replace("__NATIVE_MOBILE_SVG__", (ROOT/"research/shared/mobile_finance.js").read_text(encoding="utf-8"))
     for a,b in (("__UNIFIED_INCOME_DESKTOP__",compact(finance_desktop)),
                  ("__UNIFIED_INCOME_PHONE__",compact(finance_phone)),
+                  ("__PROFIT_FORMATION__",profit_bridge),
                  ("__TITLE__",story["lead"]),("__DESCRIPTION__",story["thesis"]),("__EYEBROW__",story["eyebrow"]),
                 ("__DEK__",story["dek"]),("__TENSION__",story["tension"]),("__COUNTER__",story["counter"]),
                 ("__DISCLAIMER__",story["evidence_disclaimer"]),("__LEDGER__",compact(d)),
                 ("__BRIEFS__",compact(briefs)),("__STORY__",compact(story))):
         import html
-        if a in {"__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__"}:article=article.replace(a,b)
+        if a in {"__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__","__PROFIT_FORMATION__"}:article=article.replace(a,b)
         else:article=article.replace(a,html.escape(b,quote=True))
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(article,encoding="utf-8")
