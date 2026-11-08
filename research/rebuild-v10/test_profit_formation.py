@@ -62,6 +62,19 @@ class SourceBoundSignedIncomeTests(unittest.TestCase):
                     self.assertEqual(svg.get("data-layout"),
                                      "native-mobile-330" if mobile else "desktop-1040")
 
+    def test_actual_published_reader_html_is_exact_source_compiler_output(self):
+        # Lock the full HTML figure itself, not just the typed builder.
+        # A finance chart changed by hand after the evidence-gated rebuild
+        # is a failed release even when decorative visuals appear unchanged.
+        for code in ("688111","000333"):
+            with self.subTest(code=code):
+                fact,sha=source(code)
+                ledger=json.loads((ROOT/f"research/rebuild-v10/input-ledgers/{code}.json").read_text())
+                expected=render_profit_formation(code,fact,sha,ledger["source"]["url"])
+                published=(ROOT/f"public/research/2026-h1-v10/{code}.html").read_text()
+                self.assertEqual(published.count('data-profit-formation="SOURCE_BOUND_SIGNED_V1"'),1)
+                self.assertIn(expected,published,(code,"PUBLISHED_PROFIT_FORMATION_NOT_SOURCE_REPRODUCIBLE"))
+
     def test_midea_finance_never_embedded_in_industrial_gross_margin(self):
         facts,sha=source("000333")
         plan=form_plan("000333",facts,sha)
