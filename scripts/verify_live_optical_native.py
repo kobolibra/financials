@@ -106,8 +106,36 @@ def run():
                 n=sum(x[0] for x in state["source"])
                 assert n>0 and abs(sum(x[0] for x in state["sink"])-n)<.001
                 assert abs(sum(state["ribbons"])-n)<.001
-                assert state["signed"]>=5 and state["exportedSourceRibbons"]>=6
+                assert state["signed"]>=(4 if code=="300308" else 5) and state["exportedSourceRibbons"]>=6
                 assert all(abs(w-v/n*302)<1e-7 for v,w in state["source"]+state["sink"]),(code,width,"REAL_CLOUDFLARE_SVG_MONEY_SHAPES_NOT_SOURCE_WEIGHTED")
+                if code=="300308":
+                    from decimal import Decimal as D
+                    graphs=page.locator('figure.exhibit svg[data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"]')
+                    assert graphs.count()==2,(code,width,"LIVE_CANONICAL_PNL_DUAL_EDITIONS_MISSING")
+                    real=graphs.nth(1) if width<900 else graphs.nth(0)
+                    hidden=graphs.nth(0) if width<900 else graphs.nth(1)
+                    assert real.is_visible() and not hidden.is_visible(),(code,width,"LIVE_OPTICAL_PNL_MOBILE_DESKTOP_WRONG_VERSION")
+                    evidence=real.evaluate("""svg=>{
+                      let b=svg.getBoundingClientRect(),vb=svg.viewBox.baseVal;
+                      let labels=[...svg.querySelectorAll('text')].map(x=>{let r=x.getBBox();return {l:r.x,right:r.x+r.width,b:r.y+r.height}});
+                      return {sha:svg.dataset.originalPdfSha256,
+                        gross:svg.dataset.startGrossYuan,net:svg.dataset.endNetYuan,
+                        clipped:b.left< -2||b.right>innerWidth+2||svg.parentElement.scrollWidth>svg.parentElement.clientWidth+2,
+                        labelClip:labels.filter(x=>x.l< -2||x.right>vb.width+2||x.b>vb.height+2),
+                        stages:[...svg.querySelectorAll('rect.unified-signed-statement-step')].map(n=>({
+                          id:n.dataset.stageId,before:n.dataset.beforeYuan,delta:n.dataset.signedYuan,
+                          after:n.dataset.afterYuan,width:n.getAttribute('width'),
+                          scale:n.dataset.moneyScaleYuanPerUnit,ids:n.dataset.sourceFactIds,pages:n.dataset.physicalPages,
+                          proof:n.dataset.moneyProvenance}))};
+                    }""")
+                    assert evidence["sha"]==pdf_sha and not evidence["clipped"] and not evidence["labelClip"],(code,width,"LIVE_OPTICAL_SIGNED_PNL_CJK_CLIPPED",evidence)
+                    assert D(evidence["gross"])==D(ledger["facts"]["revenue"]["amount"])-D(ledger["facts"]["cogs"]["amount"])
+                    assert D(evidence["net"])==D(ledger["facts"]["net_profit"]["amount"]) and len(evidence["stages"])==7
+                    assert any(z["proof"]=="DERIVED_UNATTRIBUTED_GROUP_OPERATING_NET_DIFFERENCE" for z in evidence["stages"]),(code,width,"FAKE_OPTICAL_OPERATING_PROFIT_ATTRIBUTION")
+                    for z in evidence["stages"]:
+                        assert D(z["before"])+D(z["delta"])==D(z["after"])
+                        assert abs(D(z["width"])-abs(D(z["delta"]))/D(z["scale"]))<D(".000001"),(code,width,"LIVE_OPTICAL_PNL_FALSE_MONEY_LENGTH",z)
+                        assert z["ids"] and z["pages"]
                 if width<900:
                     assert state["nativeVisible"] and not state["desktopVisible"] and state["inner"]<=state["client"]+2,(code,width,"PUBLIC_NATIVE_MONEY_HIDDEN_OR_CROPPED",state)
                     figures=page.evaluate("""() => [...document.querySelectorAll('figure.has-native-finance')].map(f=>{
