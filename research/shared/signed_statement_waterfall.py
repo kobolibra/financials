@@ -117,7 +117,8 @@ def render_signed_statement(plan:SignedStatement,facts:dict,*,mobile:bool)->str:
     axis=left+(D(0)-lo)/scale
     def t(x,y,words,size,*,fill=COLORS["ink"],weight=600,anchor="start",role=""):
         return (f'<text x="{_fmt(x)}" y="{_fmt(y)}" font-size="{size}" '
-                f'fill="{fill}" font-weight="{weight}" text-anchor="{anchor}" '
+                f'fill="{fill}" style="font-size:{size}px;fill:{fill}" '
+                f'font-weight="{weight}" text-anchor="{anchor}" '
                 f'font-family="Noto Sans CJK SC,PingFang SC,Arial,sans-serif" '
                 f'data-editorial-role="{role}">{E(str(words))}</text>')
     out=[t(left,24,"SIGNED PROFIT FORMATION / ORIGINAL CNY",10 if mobile else 14,
