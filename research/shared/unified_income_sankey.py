@@ -146,7 +146,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         rev_width=D(10)
         # The source legend has one line per real source. Give it its
         # own height instead of drawing the fourth company over the header.
-        top=D(169)+D(32)*D(max(0,len(plan.sources)-2))
+        top=D(173)+D(32)*D(max(0,len(plan.sources)-2))
         src_base=top; mid_base=top+D(7); sink_base=top+D(7)
         title_size=14
     else:
