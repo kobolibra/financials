@@ -2,13 +2,13 @@
   "schema_version": 1,
   "status": "PASS",
   "issuer": "688220",
-  "source_main_commit": "e63ee316db22d8d079be6a80cd3cd9f08fd1d98e",
-  "verified_git_commit": "e63ee316db22d8d079be6a80cd3cd9f08fd1d98e",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/41871662195",
+  "source_main_commit": "b365e40f4d0c0fe63f2948778de4ae375e0446f8",
+  "verified_git_commit": "b365e40f4d0c0fe63f2948778de4ae375e0446f8",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/42457017812",
   "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
   "pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
-  "public_html_sha256": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
-  "actual_full_content_sha256_equals_repository_main_688220": "aca567335dbec04d94569bc93a52f207b4b1bacb6b77cb41a3ca5eaae2f5d973",
+  "public_html_sha256": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
+  "actual_full_content_sha256_equals_repository_main_688220": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
   "home_html_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "public_origin": "https://financials-in-visuals.pages.dev",
@@ -111,8 +111,8 @@
     },
     {
       "viewport": 1440,
-      "sha256": "06899d0c5c85bfa9fbf38868a1c0f459bb3a535176ad0a6061d048e2d09522fa",
-      "bytes": 2060525,
+      "sha256": "811b744d9cb80f14084551bc31d4fcadae71eb3e10588c18d11a5e7efdae4b07",
+      "bytes": 2143231,
       "name": "live_688220_1440.png"
     },
     {
@@ -123,8 +123,8 @@
     },
     {
       "viewport": 768,
-      "sha256": "3ce6fc3bce7a906905ace660de5a26c0aee808956224447b417262e7802bc8a6",
-      "bytes": 2122170,
+      "sha256": "b669d1ea561ab35d7e9b8e867b61a82b270e5ad8bc20a10f0316292bf742b15a",
+      "bytes": 2244898,
       "name": "live_688220_768.png"
     },
     {
@@ -135,8 +135,8 @@
     },
     {
       "viewport": 390,
-      "sha256": "f632675f92d8a468e07bb73566e0e52ca8c1ef7576ccfbb774db7f6477f30f9e",
-      "bytes": 1807080,
+      "sha256": "9d9539a74df395dc47a3e7363f168648630de0b5b654d09bd0316d83fa6b3cc2",
+      "bytes": 1853831,
       "name": "live_688220_390.png"
     }
   ],
