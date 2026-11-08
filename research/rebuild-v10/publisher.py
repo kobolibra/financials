@@ -7,6 +7,7 @@ from audit_v10_flow_contract import classify as typed_classify
 from native_mobile import mobile_for, signed_product_profit, NAME
 from unified_finance import render_typed_finance
 from unified_income_sankey import PALETTE
+from profit_formation import render_profit_formation
 from verify import get, facts, check, SRC, SHA, HERE, LEDGER
 CFO_COMPONENTS=json.loads((HERE/"cfo_components.json").read_text())
 RESEARCH_BRIEFS=json.loads((HERE.parents[1]/"research/quality/pr35-hero-figure-briefs.json").read_text())
@@ -237,6 +238,11 @@ CSS='''
 @media(max-width:850px){.decision-chain{padding:28px 22px}.decision-answer{grid-template-columns:1fr;gap:6px}.decision-interpretation{gap:18px}}
 @media(max-width:560px){.decision-chain{margin:29px 0;padding:24px 16px}.decision-facts,.decision-interpretation{grid-template-columns:1fr}.decision-fact{padding:14px 0}.decision-answer strong{font-size:37px}.decision-intro{font-size:15px}.decision-interpretation{gap:7px}.decision-interpretation section{padding-left:13px}.decision-limits{font-size:11px}}
 
+
+.profit-formation{margin:30px 0 72px;padding:38px 45px 34px;background:#fffefa;border:1px solid var(--line);border-top:3px solid var(--black)}.profit-formation h3{font:550 clamp(27px,3.3vw,42px)/1.25 var(--serif);letter-spacing:-.035em;margin:12px 0}.profit-formation-lead{font-size:16px;line-height:1.85;color:#4d6863;max-width:930px}.profit-viz{margin:19px 0 0;background:#f5f6f2;border:1px solid #e0e6df;padding:18px 12px}.profit-viz svg{width:100%;max-width:100%;height:auto;display:block}.profit-viz-phone{display:none}.profit-formation-caveat{font-size:13px;line-height:1.85;color:#795e56;margin:21px 0}.profit-source-table{border-top:1px solid var(--line);padding-top:15px}.profit-source-table summary{font-size:13px;font-weight:700;color:var(--green);cursor:pointer}.profit-source-table table{width:100%;border-collapse:collapse;margin-top:15px;font-size:12px}.profit-source-table th,.profit-source-table td{padding:12px 8px;border-bottom:1px solid var(--line);text-align:left}.profit-source-table td{overflow-wrap:anywhere}.profit-source-table code{overflow-wrap:anywhere}
+@media(max-width:850px){.profit-formation{padding:27px 22px}.profit-viz-desktop{display:none}.profit-viz-phone{display:block}}
+@media(max-width:560px){.profit-formation{margin:22px 0 45px;padding:22px 12px}.profit-formation h3{font-size:29px}.profit-formation-lead{font-size:14px}.profit-viz{padding:13px 3px}.profit-formation-caveat{font-size:12px}.profit-source-table{overflow-wrap:anywhere}.profit-source-table table{font-size:11px}.profit-source-table th,.profit-source-table td{padding:8px 4px}}
+
 '''
 
 JAVASCRIPT='''
@@ -408,6 +414,7 @@ def render_case(case,code):
 <nav class="page-nav" aria-label="研究章节导航"><div class="wrap">{nav}</div></nav>
 <main><div class="wrap"><section class="executive" id="overview"><div class="executive-grid"><div><div class="tag">01 / EXECUTIVE READ · 90 SECOND THESIS</div><h2>{x(case['intro'])}</h2><p>本稿的判断只从能够在原始财报复核的财务事实出发。不同会计主体、收入和利润定义、现金流经济方向必须拆开，避免把同期变化写成没有证据的因果关系。</p></div><div class="speed-reading"><div class="mini">ALTERNATIVE EXPLANATION / 反方观点</div><div class="counter">{x(case['counter'])}</div><p class="tag">NOT AN INVESTMENT RECOMMENDATION</p></div></div><div class="facts-strip">{strip}</div></section>
 {source_bound_decision(code)}
+{render_profit_formation(code,facts(code),SHA[code],source) if code in ("688111","000333") else ""}
 {chapters}
 <section id="conclusion" class="bottomline"><div class="tag" style="color:#9fd7c1">WHAT WOULD CHANGE THE THESIS?</div><h2>下一份报告，需要回答这些问题。</h2><ol>{watch}</ol><p>关键局限：{x(case['limitations'])}</p></section>
 <section id="sources" class="method"><div class="tag">SOURCE & ACCOUNTING CONTROL</div><h2 style="font:550 30px/1.3 var(--serif)">可复核，不意味着夸大确定性。</h2><p>{statement}</p><p>原始披露：<a href="{x(source)}" target="_blank" rel="noopener">{x(case['name'])} · 2026H1 PDF</a> · SHA-256：<code>{SHA[code]}</code></p><p>通过基础硬校验：PDF SHA、选定原始数值页码匹配、合并资产=负债+权益（当期及上期）、签名现金流闭合和适用的分部/口径勾稽。<strong>仍未完成：</strong>全量附注独立同行审阅、真实季度/同业与估值数据库。状态：研究预览，不是正式独立机构评级。</p></section></div></main>

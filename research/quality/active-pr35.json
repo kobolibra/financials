@@ -108,10 +108,10 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "688111": "86d060368ce2ea47ea7e7057c6c638a1e90beb038174773214ade391b291f534",
-      "600519": "a749195cdeca820dc8992d4bff4913d5a436432f16013207c11145336dd70200",
-      "000333": "5c2d1295477426b64b51d102c71baaf455aae4826f62a075b3503531b98cd89c",
-      "600036": "37dfe328b7c27f7e0ec17d89e22dc7b5f08088ebfd649c2121ed650c5947f6b0"
+      "688111": "339ea620baad9cdfa4085d53b6637ddb0246c53152df6d27a8e1efeb9038ec10",
+      "600519": "1be2828a85fb7dfece58c287a82a2d4a0687678fca11399de1ee6f2aceb532ae",
+      "000333": "8594d7a9a93cfde5c28aab37eac62112b14757503b46fb80695adb2969645822",
+      "600036": "dd47ace2259c0e00edad896b9ac2cfd1a1b118d1d2c495414ef5b22436fdeccd"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",

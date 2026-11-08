@@ -67,6 +67,49 @@ with sync_playwright() as p:
             page_result["reader_quantified_research"]={"real_visible":"PASS","source_fact_rows":q["factCount"],
                 "original_source_links":"PASS","no_phone_clip":"PASS","accounting_not_causal":"PASS"}
 
+            # Industrial issuer total profit: source-bound signed, not fake
+            # positive-money Sankey for net income or a bank-like financial flow.
+            formation=page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"]')
+            if code in ("688111","000333"):
+                assert formation.count()==1,(code,width,"SOURCE_BOUND_PROFIT_FORMATION_MISSING")
+                assert formation.get_attribute("data-source-pdf-sha256")==QUANTIFIED[code]["source_pdf_sha256"]
+                svg=formation.locator(".profit-viz-phone svg") if width<=850 else formation.locator(".profit-viz-desktop svg")
+                off=formation.locator(".profit-viz-desktop svg") if width<=850 else formation.locator(".profit-viz-phone svg")
+                assert svg.is_visible() and not off.is_visible(),(code,width,"WRONG_PROFIT_BRIDGE_EDITORIAL_EDITION")
+                observed=svg.evaluate("""el=>{
+                    let scale=+el.dataset.yuanPerSvgUnit;
+                    let bars=[...el.querySelectorAll('rect[data-step-id]')].map(x=>({
+                      id:x.dataset.stepId,money:x.dataset.deltaYuan,
+                      before:x.dataset.beforeYuan,after:x.dataset.afterYuan,
+                      width:+x.getAttribute('width'),scale:+x.dataset.moneyScaleYuanPerUnit
+                    }));
+                    let b=el.getBoundingClientRect(),s=el.closest('.profit-formation').getBoundingClientRect();
+                    return {source:el.dataset.sourcePdfSha256,
+                      net:el.dataset.netYuan,gross:el.dataset.grossYuan,
+                      status:el.dataset.residualStatus,
+                      layout:el.dataset.layout,
+                      visible:b.width>230 && b.right<=innerWidth+3 && b.left>=-3,
+                      clipped:el.parentElement.scrollWidth>el.parentElement.clientWidth+2,
+                      bars,scale};
+                }""")
+                assert observed["visible"] and not observed["clipped"],(code,width,"PROFIT_BRIDGE_PHONE_OR_DESKTOP_CLIPPED",observed)
+                assert observed["source"]==QUANTIFIED[code]["source_pdf_sha256"] and observed["status"]=="DERIVED_UNATTRIBUTED_NOT_CAUSAL"
+                assert observed["scale"]>0 and len(observed["bars"])==(6 if code=="000333" else 5)
+                for bar in observed["bars"]:
+                    before=D(bar["before"]);delta=D(bar["money"]);after=D(bar["after"])
+                    assert before+delta==after,(code,width,bar,"NOT_A_REAL_SIGNED_FINANCIAL_BRIDGE")
+                    assert abs(D(str(bar["width"]))-abs(delta)/D(str(bar["scale"])))<D(".001"),(code,width,bar,"AMOUNT_DEPICTION_INFLATED")
+                assert formation.locator('.profit-source-table tbody tr[data-exact-yuan][data-physical-page]').count()==(7 if code=="000333" else 4)
+                image=OUT/(code+"-"+str(width)+"-profit-formation.png")
+                svg.screenshot(path=str(image),timeout=20000)
+                page_result["source_bound_industrial_profit_formation"]={
+                    "actual_visible_signed_svg":"PASS",
+                    "real_original_amount_conservation":"PASS",
+                    "unattributed_financial_residual_explicit":"PASS",
+                    "no_390_inner_scroll":"PASS",
+                    "screenshot_sha256":sha(image)}
+            else:
+                assert formation.count()==0,(code,width,"FORBIDDEN_INDUSTRIAL_BRIDGE_FOR_OTHER_ACCOUNTING_MODEL")
             screenshot=OUT/(code+"-"+str(width)+"-whole.png")
             page.screenshot(path=str(screenshot),full_page=True,timeout=45000)
             page_result["full_page_screenshot_sha256"]=sha(screenshot)

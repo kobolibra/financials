@@ -1,12 +1,14 @@
 name: V10 original-source native finance rebuild and browser QA
 on:
   push:
-    branches: [quality/sector-live-contract-research-brief-v1]
+    branches: [quality/source-bound-profit-formation-20261108]
     paths:
       - '.github/workflows/verify-v10-native-rebuild.yml'
       - 'research/rebuild-v10/native_mobile.py'
       - 'research/rebuild-v10/test_editorial_chart_quality.py'
       - 'research/rebuild-v10/publisher.py'
+      - 'research/rebuild-v10/profit_formation.py'
+      - 'research/rebuild-v10/test_profit_formation.py'
       - 'research/quality/pr35-hero-figure-briefs.json'
       - 'scripts/audit_published_research_depth.py'
       - 'scripts/test_audit_published_research_depth.py'
@@ -46,6 +48,10 @@ jobs:
         run: |
           python research/rebuild-v10/verify.py
           python research/rebuild-v10/publisher.py
+      - name: Verify original-yuan signed income-to-net formation in normal and optimized Python
+        run: |
+          python -m unittest discover -s research/rebuild-v10 -p 'test_profit_formation.py' -v
+          python -O -m unittest discover -s research/rebuild-v10 -p 'test_profit_formation.py' -v
       - name: Test all financial diagrams in real 1440/768/390 CJK Chromium
         run: python research/rebuild-v10/qa_native_browser.py
       - name: Verify exact same generated HTML is the proposed independent publication
@@ -79,9 +85,9 @@ jobs:
           # PR source-gate QA can advance the branch while original PDFs are
           # being downloaded. Rebase on the exact current remote rather than
           # force-pushing over changes, and fail closed on a real conflict.
-          git fetch origin quality/sector-live-contract-research-brief-v1
+          git fetch origin quality/source-bound-profit-formation-20261108
           git rebase FETCH_HEAD
-          git push origin HEAD:quality/sector-live-contract-research-brief-v1
+          git push origin HEAD:quality/source-bound-profit-formation-20261108
       - name: Save independent per-figure Chinese Chromium screenshot evidence
         if: always()
         uses: actions/upload-artifact@v4
