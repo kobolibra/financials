@@ -95,4 +95,4 @@ def plan_for(code:str, typed:dict, get, names:dict):
 
 def render_typed_finance(code,typed,get,names,*,mobile=False):
     plan=plan_for(code,typed,get,names)
-    return render_income_sankey(plan,mobile=mobile)
+    return render_income_sankey(plan,mobile=mobile,readable_source_rows=True)
