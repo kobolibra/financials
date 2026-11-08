@@ -6,6 +6,7 @@ screenshots; automated pass is not a human aesthetic or full notes signature.
 """
 from pathlib import Path
 import argparse,hashlib,json,sys
+from decimal import Decimal as D
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
 def main():
@@ -24,8 +25,43 @@ def main():
             assert page.locator("h1").count()==1
             assert page.locator("section.chapter").count()==8
             assert page.locator("figure.figure").count()==8
-            assert page.locator("table").count()==8
+            assert page.locator("figure table").count()==8
+            assert page.locator("table").count()==9,("SOURCE_TYPED_PROFIT_DETAILS_TABLE_MISSING",a.code,width)
             assert page.locator("figure svg").count()==16,("EIGHT_DESKTOP_AND_EIGHT_NATIVE_MOBILE_SVG_MISSING",a.code,width)
+            # Signed V10-compatible research bridge: the two existing signed
+            # PNL/CFO exhibits stay intact; this is a separately source-typed
+            # exact original Yuan summary with explicit unattributed residual.
+            panel=page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"]')
+            assert panel.count()==1 and panel.is_visible(),(a.code,width,"SOURCE_BOUND_PROFIT_STORY_NOT_VISIBLE")
+            assert panel.get_attribute("data-source-pdf-sha256")==d["source"]["original_bytes_sha256"],(a.code,width,"ORIGINAL_DISCLOSURE_PDF_SHA_WRONG")
+            chosen=panel.locator(".profit-viz-phone svg") if width<=850 else panel.locator(".profit-viz-desktop svg")
+            other=panel.locator(".profit-viz-desktop svg") if width<=850 else panel.locator(".profit-viz-phone svg")
+            assert chosen.count()==1 and chosen.is_visible() and not other.is_visible(),(a.code,width,"PROFIT_BRIDGE_NOT_INDEPENDENT_MOBILE_EDITION")
+            evidence=chosen.evaluate("""svg=>{
+                let b=svg.getBoundingClientRect();
+                return {period:svg.dataset.period,source:svg.dataset.sourcePdfSha256,
+                  grammar:svg.dataset.profitGrammar,residual:svg.dataset.residualStatus,
+                  gross:svg.dataset.grossYuan,net:svg.dataset.netYuan,
+                  clipped:b.left< -2||b.right>innerWidth+2||
+                    svg.parentElement.scrollWidth>svg.parentElement.clientWidth+2,
+                  bars:[...svg.querySelectorAll('rect[data-step-id]')].map(n=>({
+                    id:n.dataset.stepId,before:n.dataset.beforeYuan,after:n.dataset.afterYuan,
+                    delta:n.dataset.deltaYuan,width:n.getAttribute('width'),
+                    scale:n.dataset.moneyScaleYuanPerUnit}))};
+            }""")
+            assert evidence["grammar"]=="DISCLOSED_INCOME_TO_NET_SIGNED_CONSOLIDATED_BRIDGE" and evidence["residual"]=="DERIVED_UNATTRIBUTED_NOT_CAUSAL"
+            assert evidence["period"]=="2026H1" and evidence["source"]==d["source"]["original_bytes_sha256"] and not evidence["clipped"],(a.code,width,"SOURCE_PROFIT_CJK_CLIPPED",evidence)
+            assert D(evidence["gross"])==D(d["facts"]["rev"]["yuan"])-D(d["facts"]["cogs"]["yuan"])
+            assert D(evidence["net"])==D(d["facts"]["net_profit"]["yuan"])
+            assert len(evidence["bars"])==5,(a.code,width,"REAL_SIGNED_INCOME_TO_NET_STEPS_MISSING")
+            for bar in evidence["bars"]:
+                bef=D(bar["before"]);end=D(bar["after"]);delta=D(bar["delta"])
+                assert bef+delta==end,(a.code,width,"SIGNED_INCOME_TO_NET_UNBALANCED",bar)
+                assert abs(D(bar["width"])-abs(delta)/D(bar["scale"]))<D(".001"),(a.code,width,"SOURCE_MONEY_GRAPH_NOT_PROPORTIONAL",bar)
+            assert panel.locator('.profit-source-table tbody tr[data-fact-id][data-exact-yuan][data-physical-page] a[href*="#page="]').count()==4
+            pic=out/(a.code+"-profit-formation-"+str(width)+".png")
+            chosen.screenshot(path=str(pic),timeout=20000)
+
             assert page.locator(".plot > svg").count()==8
             assert page.locator(".native-mobile-finance svg").count()==8
             assert page.locator("a[href='/#companies']").count()>=1
