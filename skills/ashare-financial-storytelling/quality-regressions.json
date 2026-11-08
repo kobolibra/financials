@@ -56,9 +56,9 @@
     {
       "id": "PUB-006",
       "root_cause": "GitHub/main 与 Actions 绿色不等于 Cloudflare 新版已经发布，旧版页面仍能通过弱路由测试。",
-      "correction": "真生产路由需校验本次图形独有语义/结构并单列 LIVE FAIL。",
+      "correction": "真生产验收必须直接检查新 v9 合法收入来源→合计收入→披露成本/毛利节点、各原始金额色带及极小来源真实比例；旧 money-ribbon CSS 已删除不能再作为发布证据。",
       "proof_file": ".github/workflows/verify-unified-research-library.yml",
-      "assertion_marker": "ASR source amounts not represented as geometric nodes",
+      "assertion_marker": "ASR original income sources not connected",
       "scope": "single_issuer",
       "transfer_gate": "CLOUDFLARE_LIVE",
       "status": "FAIL_LIVE_STILL_OPEN"

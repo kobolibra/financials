@@ -7,7 +7,7 @@
   "branch": "quality/aei-sankey-source-contract-v1",
   "source_main_sha_at_start": "9b70e1a4dad2c57cbbd26810dbd7ed9d3e5ddea9",
   "actual_main_sha_and_pr_head_rule": "RE_QUERY_GITHUB_EACH_SESSION; NEVER_TREAT_THIS_FILE_OR_PREVIOUS_ACTION_AS_LIVE",
-  "review_state": "UNMERGED_CANDIDATE_NEEDS_INDEPENDENT_EDITORIAL_REVIEW",
+  "review_state": "MERGED_MAIN_PENDING_INDEPENDENT_FINANCE_AND_ART_REVIEW",
   "cloudflare_candidate": "https://quality-aei-sankey-source-co.financials-in-visuals.pages.dev",
   "cloudflare_production": "https://financials-in-visuals.pages.dev",
   "source_of_truth": {
@@ -108,15 +108,15 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "688111": "21030160fc2fae5cb009aa131bfe11c014bc98d08c69c3689dc447adf0f6ad49",
+      "600036": "ed9cd12b1a6af08cc6f4ad1399ea0317069be3c2965d7fe4f612560385a2b948",
       "600519": "b248a5a296be82420b786590651aab79836911fa0e1b505519bf82d66bf8b394",
-      "000333": "7b9f02d7e76d5facb8120176d5100227b53bcc5bc05771e8d88bccc420b49541",
-      "600036": "ed9cd12b1a6af08cc6f4ad1399ea0317069be3c2965d7fe4f612560385a2b948"
+      "688111": "21030160fc2fae5cb009aa131bfe11c014bc98d08c69c3689dc447adf0f6ad49",
+      "000333": "7b9f02d7e76d5facb8120176d5100227b53bcc5bc05771e8d88bccc420b49541"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",
     "actual_cloudflare_for_new_visual_candidate": "PENDING_NEW_SHA_REAL_HTTPS_BROWSER",
-    "current_main_live_new_figures": "NOT_DEPLOYED_PR_UNMERGED",
+    "current_main_live_new_figures": "MERGED_MAIN__CURRENT_LIVE_SHA_MUST_BE_REVERIFIED",
     "unseen_multiperiod_generalization": "NOT_ESTABLISHED",
     "actual_cloudflare_preview_action": "NOT_CHECKED_THIS_HTML_SHA",
     "actual_cloudflare_preview_artifact": "NOT_CHECKED_THIS_HTML_SHA",
@@ -132,7 +132,11 @@
     "lawful_signed_exception": [
       "600519"
     ],
-    "legacy_not_unified": [
+    "legacy_not_unified": [],
+    "all_11_editorially_unified": "NOT_ESTABLISHED",
+    "human_editorial": "NOT_CHECKED",
+    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED",
+    "partial_hero_only_unified_remaining_art_legacy": [
       "300394",
       "300308",
       "300502",
@@ -141,8 +145,6 @@
       "600276",
       "601628"
     ],
-    "all_11_editorially_unified": "NOT_ESTABLISHED",
-    "human_editorial": "NOT_CHECKED",
-    "unseen_company_reporting_period_reliability": "NOT_ESTABLISHED"
+    "strict_all_11_visual_unification": "NOT_ESTABLISHED"
   }
 }
