@@ -1,5 +1,8 @@
 # AGENTS.md — Financials in Visuals (repository-wide agent operating contract)
 
+**2026-11-08 merged main authority:** #35/#36/#37 have been merged. This repo is no longer operating the old unmerged PR35 preview as its release branch. The new V10 phone Sankey 11-unit two-row source labels are opt-in (`readable_source_rows`) so the seven other companies retain exact reproducible source HTML. Never overwrite the actual partial-hero corpus classification or reset production to `NOT_DEPLOYED_PR_UNMERGED` during handoff. Live Cloudflare proof must be established on exact current main SHA.
+
+
 **v9.0.0 execution priority:** Read the concise full canonical `skills/ashare-financial-storytelling/SKILL.md` and `docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md` before rendering any new financial figure. Historical v8.8 is archived; do not treat its stale mandatory old-fail examples as current instructions. The sole connected legal positive-flow Sankey renderer is `research/shared/unified_income_sankey.py`. Confirm the exact 11-issuer canonical catalog and current main-vs-PR HTML/source SHA. As of current candidate, the seven historical publisher **primary income or lawful management-premium figures** are real native desktop/phone shared-palette source-money graphics and must be labeled HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY; their other financial art has NOT completed visual migration. Zero historical publishers have an old hero but all seven have remaining chart-art debt. Do not claim 11 fully unified or independently professionally certified. Preserve 300308 printed p139 1-yuan contradiction, 688220 mirror-vs-official equivalence NOT_CHECKED and insurer management-premium != CAS25 service income.
 
 
