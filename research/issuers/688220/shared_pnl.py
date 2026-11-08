@@ -29,20 +29,16 @@ def original_plan(ledger:dict)->SignedStatement:
         step("impair_disposal","信用、资产减值及处置损益",
              ("credit_impairment","asset_impairment","asset_disposal_gain"),
              provenance="SIGNED_DISCLOSED_LOSS_ROWS"),
-        step("nonoperating","营业外收入扣减营业外支出",
-             ("nonoperating_income","nonoperating_expense"),
-             provenance="DISCLOSED_INCOME_MINUS_SOURCE_BLANK_DERIVED_ZERO"),
+        SignedStage("nonoperating","营业外收入扣减营业外支出",
+             v("nonoperating_income")-v("nonoperating_expense"),
+             ("nonoperating_income","nonoperating_expense"),"ordinary",
+             "DISCLOSED_INCOME_MINUS_SOURCE_BLANK_DERIVED_ZERO"),
         step("income_tax","减：所得税费用（本期负数为收益）",
              ("income_tax_expense",),-1,
              provenance="NEGATIVE_REPORTED_TAX_EXPENSE_IS_TAX_BENEFIT"),
     )
-    # The non-operating expense is blank in the original report; it is
-    # explicitly source-led as derived zero and never passed off as print literal.
-    stages=list(stages)
-    stages[8]=SignedStage("nonoperating","营业外收入扣减营业外支出",
-        v("nonoperating_income")-v("nonoperating_expense"),
-        ("nonoperating_income","nonoperating_expense"),"ordinary",
-        "DISCLOSED_INCOME_MINUS_SOURCE_BLANK_DERIVED_ZERO")
+    # The original non-operating expense was blank; this is a derived zero,
+    # not a claim that a printed 0.00 existed on the original PDF.
     p=SignedStatement(
         issuer="688220",statement="consolidated_income_2026H1",
         source_sha256=source["original_bytes_sha256"],
