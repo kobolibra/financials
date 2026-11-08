@@ -52,7 +52,7 @@ class SourceTypedOriginal300308SignedTests(unittest.TestCase):
             ("parent_in_group","financial_expenses",{"scope":"parent"},"INCOMPATIBLE_FINANCIAL_FACT"),
             ("wrong_statement","net_profit",{"table":"parent_income"},"INCOMPATIBLE_FINANCIAL_FACT"),
             ("missing_page","operating_profit",{"page":0},"UNVERIFIED_ORIGINAL_PAGE"),
-            ("fake_earnings","operating_profit",{"amount":"17231320005.53"},"CHECKPOINT_ACCOUNTING_WRONG"),
+            ("fake_earnings","operating_profit",{"amount":"17231320005.53"},"SIGNED_END_NET_PROFIT_NOT_CLOSED"),
             ("missing_expense","research_expenses",{"status":"unavailable"},"REPORTED_CONSOLIDATED_FINANCE_FIELD"),
             ("cross_currency","revenue",{"amount":"NaN"},"SIGNED_NONFINITE_MONEY"),
         ]:
