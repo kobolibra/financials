@@ -1,7 +1,7 @@
 name: Verify exact public optical native-finance release and all 11 independent company routes
 on:
   push:
-    branches: [main]
+    branches: [main, quality/optical-live-v9-source-stages-sha-20261108]
     paths:
       - 'public/300394.html'
       - 'public/300502.html'
