@@ -1,4 +1,7 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
+
+**2026-11-08 MAIN STATUS OVERRIDE:** PR #35 (connected 11-issuer lawful hero grammar), PR #36 (quantitative research source/period checks), and PR #37 (V10 source-rebuilt mobile readable Sankey + Midea accounting caveat) have all MERGED INTO `main`. Their previous `UNMERGED_CANDIDATE` descriptions below are archived dated notes, NOT current release status. Re-query `git main HEAD`, current Cloudflare full HTML bytes, `research/quality/active-pr35.json` and independent source/browser gates before claiming live production. Seven companies remain **HERO_UNIFIED_OTHER_FINANCIAL_FIGURES_LEGACY**, independent finance/art review NOT_CHECKED and unseen cross-period generality NOT_ESTABLISHED.
+
 **Every new session's authoritative machine entrypoints:** `project-status.json` for current handoff and `site/research_catalog.json` for one actual 11-issuer canonical catalog. Requery GitHub HEAD; candidate branch snapshots never replace live source SHA evidence.
 
 
