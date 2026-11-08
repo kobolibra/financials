@@ -1,13 +1,16 @@
 name: Audit and rebuild real 300308 original 184p optical full standalone research
 on:
   push:
-    branches: [main, 'work/optical-300308-original-pdf-source-mobile-20261104']
+    branches: [main, 'work/optical-300308-original-pdf-source-mobile-20261104', 'quality/300308-source-typed-v7-pnl-20261108']
     paths:
       - '.github/workflows/build-audited-300308.yml'
       - 'research/issuers/300308/verify_original.py'
       - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json'
       - 'skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-memo.json'
       - 'skills/ashare-financial-storytelling/v7/engine/render_v7.py'
+      - 'skills/ashare-financial-storytelling/v7/engine/zhongji_signed_pnl.py'
+      - 'research/shared/signed_statement_waterfall.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/test_zhongji_signed_pnl.py'
       - 'skills/ashare-financial-storytelling/v7/engine/native_mobile_finance.py'
       - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
       - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
@@ -48,6 +51,8 @@ jobs:
       - name: Finance adversarial tests and third-issuer standalone source report
         run: |
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_zhongji_signed_pnl.py -v
+          python -O -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_zhongji_signed_pnl.py -v
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
           V7=skills/ashare-financial-storytelling/v7
           python "$V7/engine/render_v7.py" --ledger "$V7/examples/zhongji-2026H1-ledger.json" --memo "$V7/examples/zhongji-2026H1-memo.json" --out public/300308.html --qa /tmp/300308-report-rebuild.json
