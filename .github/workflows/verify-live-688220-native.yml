@@ -1,7 +1,10 @@
 name: Verify actual Cloudflare 688220 original financial source and native 390 release
 on:
   push:
-    branches: [main]
+    # This temporary QA-only candidate edits assertions, not the already deployed
+    # public HTML. Live SHA still must match main; never treat a candidate
+    # content change as a deployed acceptance.
+    branches: [main, quality/688220-live-v9-native-source-pnl-check-20261108]
     paths:
       - 'public/688220.html'
       - 'scripts/verify_live_688220_native.py'
