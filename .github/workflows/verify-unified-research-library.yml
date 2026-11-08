@@ -126,9 +126,46 @@ jobs:
                     n_sources=len(issuer_data['segments'])
                     assert page.locator('figure.figure').count()==8,(ticker,'new sector preview lost any sourced figure')
                     assert page.locator('table').count()==8,(ticker,'new sector preview source tables missing')
-                    assert page.locator('#chart-flow rect.money-source').count()==n_sources,(ticker,'weighted exclusive source rectangles absent in real live HTML')
-                    assert page.locator('#chart-flow rect.money-sink').count()==2,(ticker,'weighted gross profit and cost sinks absent in live HTML')
-                    assert page.locator('#chart-flow path.money-ribbon').count()==2*n_sources,(ticker,'source-specific cost and GP ribbons missing')
+                    # Same source-bound V9 graph as ASR. Reject false money edges,
+                    # duplicated source groups or an invisible/imaginary trunk.
+                    # The old .money-source / .money-ribbon CSS nodes were
+                    # legitimately replaced by typed original-yuan SVG nodes.
+                    graph=page.locator('#chart-flow > svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]')
+                    assert graph.count()==1,(ticker,'new sector source-bound desktop income Sankey missing')
+                    observed=graph.evaluate("""svg => {
+                      const nodes=[...svg.querySelectorAll('rect[data-node-id][data-node-yuan]')]
+                        .map(n=>({id:n.dataset.nodeId,role:n.dataset.nodeRole,money:n.dataset.nodeYuan,height:n.getAttribute('height')}));
+                      const ribbons=[...svg.querySelectorAll('path[data-stage][data-ribbon-yuan]')]
+                        .map(p=>({stage:p.dataset.stage,source:p.dataset.sourceId,amount:p.dataset.ribbonYuan,scale:p.dataset.scaleYuanPerSvgUnit,outcome:p.dataset.outcomeId}));
+                      return {total:svg.getAttribute('data-revenue-yuan'),
+                        scale:svg.getAttribute('data-scale-yuan-per-svg-unit'),nodes,ribbons};
+                    }""")
+                    from decimal import Decimal as D
+                    source_nodes=[x for x in observed['nodes'] if x['role']=='source']
+                    totals=[x for x in observed['nodes'] if x['role']=='total']
+                    destinations=[x for x in observed['nodes'] if x['role'] in ('cost','profit')]
+                    inflows=[x for x in observed['ribbons'] if x['stage']=='source-to-revenue']
+                    outflows=[x for x in observed['ribbons'] if x['stage']=='revenue-to-outcome']
+                    expected_ids={x['rev'] for x in issuer_data['segments']}
+                    assert len(source_nodes)==n_sources and {x['id'] for x in source_nodes}==expected_ids,(ticker,'unverifiable business income partition',source_nodes)
+                    assert len(totals)==1 and totals[0]['id']=='revenue-total',(ticker,'shared group revenue trunk missing')
+                    assert {x['id'] for x in destinations}=={'group_cogs','group_gp'},(ticker,'actual group cost or GP missing')
+                    assert len(inflows)==n_sources and len(outflows)==2*n_sources,(ticker,'genuine source-to-cost and GP money ribbons missing')
+                    assert {x['source'] for x in inflows}==expected_ids,(ticker,'false income source in Sankey')
+                    expected_total=D(issuer_data['facts']['rev']['yuan']);expected_cost=D(issuer_data['facts']['cogs']['yuan'])
+                    assert D(observed['total'])==expected_total and D(totals[0]['money'])==expected_total,(ticker,'total money differs from original PDF source')
+                    amounts={x['id']:D(x['money']) for x in source_nodes}
+                    assert all(amounts[x['rev']]==D(issuer_data['facts'][x['rev']]['yuan']) for x in issuer_data['segments']),(ticker,'original source amounts altered')
+                    assert sum(amounts.values(),D(0))==expected_total,(ticker,'not all exclusive categories reconciled')
+                    expected_sinks={'group_cogs':expected_cost,'group_gp':expected_total-expected_cost}
+                    assert all(D(x['money'])==expected_sinks[x['id']] for x in destinations),(ticker,'cost and GP sink changed')
+                    assert sum((D(x['amount']) for x in inflows),D(0))==expected_total and sum((D(x['amount']) for x in outflows),D(0))==expected_total,(ticker,'nonconserved connected monetary flow')
+                    costs={x['rev']:D(issuer_data['facts'][x['cost']]['yuan']) for x in issuer_data['segments']}
+                    actual={(x['source'],x['outcome']):D(x['amount']) for x in outflows}
+                    assert len(actual)==len(outflows),(ticker,'duplicate typed Sankey ribbons')
+                    assert all(actual[(sid,'group_cogs')]==costs[sid] and actual[(sid,'group_gp')]==amounts[sid]-costs[sid] for sid in expected_ids),(ticker,'invented business gross profit or cost allocation')
+                    scale=D(observed['scale'])
+                    assert scale>0 and all(abs(D(x['height'])-D(x['money'])/scale)<D('.001') for x in observed['nodes']),(ticker,'nonproportional original money node geometry')
                     assert issuer_data['source']['original_bytes_sha256'] in page.content(),(ticker,'real PDF identity not printed in live article')
                     assert page.locator('#chart-cfo > svg').count()==1,(ticker,'complete signed indirect CFO exhibit missing')
                     assert page.locator('#chart-pnl > svg').count()==1,(ticker,'signed consolidated P&L bridge missing')
