@@ -55,6 +55,11 @@ class ResearchDepthSourceTests(unittest.TestCase):
         args[1]["688111"]["facts"]["rev_prior"]["period"] = "2026H1"
         self.assertIn("RESEARCH_PERIOD_COLUMN_DRIFT_688111_rev_prior", validate(*args))
 
+    def test_bank_prior_interest_period_fails(self):
+        args = fixtures()
+        args[2]["600036"]["nii_prior"]["period"] = "2026H1"
+        self.assertIn("RESEARCH_PERIOD_COLUMN_DRIFT_600036_nii_prior", validate(*args))
+
     def test_off_by_one_yuan_bridge_fails(self):
         args = fixtures()
         args[0]["hero_figures"][0]["quantified_driver"]["expected_yuan"] = "553402833.28"
