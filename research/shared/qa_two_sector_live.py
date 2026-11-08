@@ -32,6 +32,28 @@ def live_dom(page,code,width):
     ledger=expected[code]["ledger"];source=ledger["source"]
     assert page.locator('figure.figure').count()==8,(code,width,"NOT_EIGHT_SOURCE_FIGURES")
     assert page.locator('figure table').count()==8,(code,width,"ORIGINAL_PDF_TABLE_LOST")
+    panel=page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"]')
+    assert panel.count()==1 and panel.is_visible(),(code,width,"LIVE_SOURCE_PROFIT_FORMATION_MISSING")
+    assert panel.get_attribute("data-source-pdf-sha256")==source["original_bytes_sha256"],(code,width,"LIVE_PROFIT_ORIGINAL_PDF_SHA_WRONG")
+    selected=panel.locator(".profit-viz-phone svg") if width<=850 else panel.locator(".profit-viz-desktop svg")
+    hidden=panel.locator(".profit-viz-desktop svg") if width<=850 else panel.locator(".profit-viz-phone svg")
+    assert selected.is_visible() and not hidden.is_visible(),(code,width,"LIVE_PROFIT_FORMATION_WRONG_ART_EDITION")
+    bridge=selected.evaluate("""svg=>{
+      const b=svg.getBoundingClientRect();
+      return {grammar:svg.dataset.profitGrammar,net:svg.dataset.netYuan,gross:svg.dataset.grossYuan,
+        residual:svg.dataset.residualStatus,
+        clipped:b.left< -2||b.right>innerWidth+2||svg.parentElement.scrollWidth>svg.parentElement.clientWidth+2,
+        steps:[...svg.querySelectorAll('rect[data-step-id]')].map(x=>({
+          id:x.dataset.stepId,before:x.dataset.beforeYuan,after:x.dataset.afterYuan,
+          delta:x.dataset.deltaYuan,scale:x.dataset.moneyScaleYuanPerUnit,width:x.getAttribute('width')}))};
+    }""")
+    from decimal import Decimal as D
+    assert bridge["grammar"]=="DISCLOSED_INCOME_TO_NET_SIGNED_CONSOLIDATED_BRIDGE" and bridge["residual"]=="DERIVED_UNATTRIBUTED_NOT_CAUSAL" and not bridge["clipped"],(code,width,"LIVE_PROFIT_FORMATION_NOT_VALID",bridge)
+    assert D(bridge["gross"])==D(ledger["facts"]["rev"]["yuan"])-D(ledger["facts"]["cogs"]["yuan"])
+    assert D(bridge["net"])==D(ledger["facts"]["net_profit"]["yuan"]) and len(bridge["steps"])==5
+    assert all(D(t["before"])+D(t["delta"])==D(t["after"]) and abs(D(t["width"])-abs(D(t["delta"]))/D(t["scale"]))<D(".001") for t in bridge["steps"]),(code,width,"LIVE_SIGNED_PROFIT_MONEY_NOT_CONSERVED")
+    assert panel.locator('.profit-source-table tbody tr[data-fact-id][data-exact-yuan][data-physical-page] a[href*="#page="]').count()==4,(code,width,"LIVE_SOURCE_PNL_FACTS_MISSING")
+
     assert page.locator('.plot > svg').count()==8,(code,width,"ORIGINAL_DESKTOP_VECTOR_LOST")
     assert page.locator('.native-mobile-finance svg').count()==8,(code,width,"NATIVE_SOURCE_FINANCIAL_VECTOR_LOST")
     assert page.locator('script[src],iframe').count()==0,(code,width,"EXTERNAL_SCRIPT_IFRAME_DISALLOWED")
