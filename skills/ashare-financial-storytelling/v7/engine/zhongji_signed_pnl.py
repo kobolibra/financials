@@ -12,7 +12,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0,str(Path(__file__).resolve().parents[4]/"research/shared"))
-from signed_statement_waterfall import SignedStage,SignedStatement,render_signed_statement
+from signed_statement_waterfall import SignedStage,SignedStatement,render_signed_statement,money
 
 
 def original_plan(ledger:dict):
@@ -37,7 +37,7 @@ def original_plan(ledger:dict):
             raise ValueError("ZJ_UNVERIFIED_ORIGINAL_PAGE "+key)
         normalized[key]={"yuan":v["amount"],"page":v["page"],
                          "period":"2026H1","scope":"consolidated","unit":"元"}
-    def v(key):return D(str(normalized[key]["yuan"]))
+    def v(key):return money(normalized[key]["yuan"])
     rev,cogs,other_total=v("revenue"),v("cogs"),v("total_operating_costs")
     if not (rev>0 and D(0)<=cogs<=other_total and other_total>0):
         raise ValueError("ZJ_REVENUE_COST_UNIT_MISMATCH")
