@@ -71,12 +71,40 @@ def main():
                 exports:document.querySelectorAll('[data-export]').length};
             }""")
             assert facts["root"]<=width+1 and facts["n"]==facts["tables"]==facts["exports"]==9
-            assert len(facts["source"])==4 and len(facts["sink"])==2 and len(facts["flow"])==7 and facts["steps"]>=25
+            assert len(facts["source"])==4 and len(facts["sink"])==2 and len(facts["flow"])==7 and facts["steps"]>=19
             rev=sum(x["amount"] for x in facts["source"]);scale=298/rev
             assert abs(sum(x["amount"] for x in facts["sink"])-rev)<.001
             assert abs(sum(x["amount"] for x in facts["flow"])-rev)<.001
             assert all(abs(x["w"]-x["amount"]*scale)<.000001 for x in facts["source"]+facts["sink"]+facts["flow"])
             assert all(b["x"]>=-2 and b["right"]<=b["total"]+2 for b in facts["bbox"]),("ACTUAL_CJK_SVG_TEXT_CLIPPED",width)
+            # Real live source-authorized full-income signed bridge is checked
+            # independently of remaining four mobile issuer-specific signed art.
+            from decimal import Decimal as D
+            shared=page.locator('#fig-pnl svg[data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"]')
+            assert shared.count()==2,(width,"LIVE_SHARED_PNL_DESKTOP_PHONE_MISSING")
+            selected=shared.nth(1) if width<=820 else shared.nth(0)
+            assert selected.is_visible() and not (shared.nth(0) if width<=820 else shared.nth(1)).is_visible(),(width,"WRONG_LIVE_SOURCE_PNL_EDITION")
+            actual=selected.evaluate("""e=>{
+              let b=e.getBoundingClientRect();
+              return {sha:e.dataset.originalPdfSha256,mode:e.dataset.sourceStatus,
+                 net:e.dataset.endNetYuan,gross:e.dataset.startGrossYuan,
+                 clipped:b.left< -2||b.right>innerWidth+2||e.parentElement.scrollWidth>e.parentElement.clientWidth+2,
+                 rows:[...e.querySelectorAll('rect.unified-signed-statement-step')].map(n=>({
+                   before:n.dataset.beforeYuan,delta:n.dataset.signedYuan,
+                   after:n.dataset.afterYuan,width:n.getAttribute('width'),
+                   scale:n.dataset.moneyScaleYuanPerUnit,src:n.dataset.sourceFactIds
+                 }))};
+            }""")
+            assert actual["sha"]==pdf_sha and actual["mode"]=="MIRROR_COMPLETE_PDF_SHA_PASS__OFFICIAL_EQUIVALENCE_NOT_CHECKED"
+            assert D(actual["gross"])==D(ledger["facts"]["rev"]["yuan"])-D(ledger["facts"]["cogs"]["yuan"])
+            assert D(actual["net"])==D(ledger["facts"]["consolidated_net_profit"]["yuan"])
+            assert len(actual["rows"])==10 and not actual["clipped"],(width,"LIVE_SHARED_PNL_CJK_CLIPPED_OR_INCOMPLETE",actual)
+            assert any(D(z["after"])<0 for z in actual["rows"]),(width,"LIVE_INTERIM_NEGATIVE_PROFIT_HIDDEN")
+            for z in actual["rows"]:
+                assert D(z["before"])+D(z["delta"])==D(z["after"])
+                assert abs(D(z["width"])-abs(D(z["delta"]))/D(z["scale"]))<D(".00001"),(width,"LIVE_SIGNED_PROFIT_WIDTH_NOT_PROPORTIONAL",z)
+                assert z["src"]
+
             if width<900:
                 assert facts["visible"]==9 and facts["originals"]==0 and facts["cropped"]==0,("PUBLIC_MOBILE_FINANCE_CLIPPED",width,facts)
             else:
