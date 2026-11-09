@@ -1,10 +1,12 @@
 name: Candidate original optical money editor and native CJK mobile
 on:
   push:
-    branches: ['work/optical-three-native-editorial-20261104']
+    branches: ['work/optical-three-native-editorial-20261104', 'quality/optical-source-quantified-decision-20261109']
     paths:
       - 'skills/ashare-financial-storytelling/v7/engine/native_mobile_finance.py'
       - 'skills/ashare-financial-storytelling/v7/engine/render_v7.py'
+      - 'skills/ashare-financial-storytelling/v7/engine/quantified_optical_decision.py'
+      - 'skills/ashare-financial-storytelling/v7/tests/test_quantified_optical_decision.py'
       - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
       - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
       - '.github/workflows/candidate-optical-native-editorial.yml'
@@ -22,6 +24,7 @@ jobs:
       - name: Original signed CAS source and hostile child/margin tests
         run: |
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_quantified_optical_decision.py -v
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
       - name: Source-regenerate TWO original report HTMLs on candidate branch only
         shell: bash
@@ -43,6 +46,9 @@ jobs:
               assert new.count('class="native-finance"')>=9,(code,'NATIVE_FIGURES_ABSENT')
               assert new.count('class="money-ribbon"')==old.count('class="money-ribbon"'),(code,'SOURCE_GEOLOGY_CHANGED')
               assert old.count('class="source-note"')==new.count('class="source-note"'),(code,'ORIGINAL_EVIDENCE_CAPTIONS_CHANGED')
+          assert new.count('id="quantified-decision"')==1,(code,'READER_VISIBLE_RESEARCH_NOT_PUBLISHED')
+          assert new.count('data-original-pdf-sha256=')>=1,(code,'READER_SOURCE_PDF_SHA_ABSENT')
+          assert old.count('class="native-finance"')==new.count('class="native-finance"'),(code,'OLD_NATIVE_FIGURE_MISSING')
           PY
       - name: Real CJK fonts and Chromium
         run: |
@@ -73,6 +79,8 @@ jobs:
           git add optical-native-visual-qa/300502_figure01_1440.png optical-native-visual-qa/300502_figure01_768.png optical-native-visual-qa/300502_figure01_390.png
           git add optical-native-visual-qa/300394_figure03_390.png optical-native-visual-qa/300394_figure06_390.png optical-native-visual-qa/300394_figure09_390.png
           git add optical-native-visual-qa/300502_figure03_390.png optical-native-visual-qa/300502_figure06_390.png optical-native-visual-qa/300502_figure09_390.png
+          git add optical-native-visual-qa/300394_decision_1440.png optical-native-visual-qa/300394_decision_768.png optical-native-visual-qa/300394_decision_390.png
+          git add optical-native-visual-qa/300502_decision_1440.png optical-native-visual-qa/300502_decision_768.png optical-native-visual-qa/300502_decision_390.png
           if ! git diff --cached --quiet; then
             git commit -m "Candidate source-native full-phone optical finance articles and real screenshot QA"
             git pull --rebase origin "$GITHUB_REF_NAME"
