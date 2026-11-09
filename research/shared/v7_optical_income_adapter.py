@@ -106,4 +106,16 @@ def optical_flow_plan(ledger: dict) -> FlowPlan:
 
 
 def render_optical_candidate(ledger: dict, *, mobile:bool=False) -> str:
-    return render_income_sankey(optical_flow_plan(ledger),mobile=mobile,embedded=True)
+    plan=optical_flow_plan(ledger)
+    # Progressive actual-publisher rollout after real CJK/whole-source proof.
+    # Both already-verified 300394/300502 primary source graphs have 2-3
+    # mutually exclusive businesses, so give their phone legend real
+    # separately readable 11-unit source and money rows; preserve exact
+    # original-yuan source -> trunk -> cost/profit ribbon geometry unchanged.
+    # 300308 has its own original 184-page discrepancy and separate source
+    # rebuild; keep its published phone layout unchanged until an independent
+    # 300308 same-SHA report publication is verified in its own PR.
+    readable=bool(mobile and plan.issuer in {"300394","300502"}
+                  and 2<=len(plan.sources)<=3)
+    return render_income_sankey(plan,mobile=mobile,embedded=True,
+                                readable_source_rows=readable)
