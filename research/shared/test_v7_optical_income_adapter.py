@@ -48,6 +48,34 @@ class RealOpticalSankeyMigrationContract(unittest.TestCase):
                     self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in outgoing),D(0)),total)
                     self.assertEqual(len(outgoing),2*len(ledger["segments"]))
                     self.assertEqual(len([p for p in svg.iter(SVG+"rect") if p.get("data-node-id")=="revenue-total"]),1)
+    def test_phone_source_labels_and_exact_money_use_existing_readable_shared_layout(self):
+        for path in FIXTURES:
+            led=load(path)
+            code=led["document"]["ticker"].split(".")[0]
+            plan=optical_flow_plan(led)
+            svg=ET.fromstring(render_optical_candidate(led,mobile=True))
+            labels=[node for node in svg.iter(SVG+"text")
+                    if node.get("data-editorial-role")=="source-summary"]
+            self.assertEqual(len(labels),len(plan.sources)*2,(code,"MONEY_AND_NAME_ROWS_MISSING"))
+            font=[D(x.get("font-size")) for x in labels]
+            if code in ("300394","300502"):
+                self.assertTrue(all(x>=D(11) for x in font),(code,font))
+                y=[D(x.get("y")) for x in labels]
+                for i in range(len(plan.sources)):
+                    self.assertGreaterEqual(y[2*i+1]-y[2*i],D(20))
+                    if i+1<len(plan.sources):
+                        self.assertGreaterEqual(y[2*i+2]-y[2*i+1],D(24))
+                self.assertEqual({x.get("text-anchor") for x in labels},{"start"})
+            else:
+                # One-yuan 300308 PDF anomaly is independently source-bound;
+                # this PR must not silently republish its other phone layout.
+                self.assertEqual(font[0],D(10))
+                self.assertEqual(font[1],D(9))
+            self.assertEqual(D(svg.get("data-revenue-yuan")),plan.check())
+            widths=[D(x.get("data-ribbon-yuan")) for x in svg.iter(SVG+"path")
+                    if x.get("data-stage")=="source-to-revenue"]
+            self.assertEqual(sum(widths,D(0)),plan.check())
+
     def test_300308_one_yuan_repeated_column_must_never_become_a_source(self):
         ledger=load(FIXTURES[-1])
         self.assertEqual(ledger["document"]["pages"],184)

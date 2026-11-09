@@ -1,11 +1,13 @@
 name: Candidate original optical money editor and native CJK mobile
 on:
   push:
-    branches: ['work/optical-three-native-editorial-20261104', 'quality/optical-source-quantified-decision-20261109']
+    branches: ['work/optical-three-native-editorial-20261104', 'quality/optical-source-quantified-decision-20261109', 'quality/optical-mobile-sankey-source-labels-20261109']
     paths:
       - 'skills/ashare-financial-storytelling/v7/engine/native_mobile_finance.py'
       - 'skills/ashare-financial-storytelling/v7/engine/render_v7.py'
       - 'skills/ashare-financial-storytelling/v7/engine/quantified_optical_decision.py'
+      - 'research/shared/v7_optical_income_adapter.py'
+      - 'research/shared/test_v7_optical_income_adapter.py'
       - 'skills/ashare-financial-storytelling/v7/tests/test_quantified_optical_decision.py'
       - 'skills/ashare-financial-storytelling/v7/tests/test_native_mobile.py'
       - 'skills/ashare-financial-storytelling/v7/tests/qa_native_browser.py'
@@ -25,6 +27,7 @@ jobs:
         run: |
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_native_mobile.py -v
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_quantified_optical_decision.py -v
+          python research/shared/test_v7_optical_income_adapter.py
           python -m unittest discover -s skills/ashare-financial-storytelling/v7/tests -p test_reported_revenue_partitions.py -v
       - name: Source-regenerate TWO original report HTMLs on candidate branch only
         shell: bash

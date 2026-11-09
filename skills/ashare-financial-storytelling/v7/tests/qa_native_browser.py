@@ -119,6 +119,24 @@ with sync_playwright() as p:
                 srcs=[x for x in graph["ribbons"] if x["stage"]=="source-to-revenue"]
                 sinks=[x for x in graph["ribbons"] if x["stage"]=="revenue-to-outcome"]
                 assert len(srcs)>=2 and len(sinks)==2*len(srcs),(code,width,"NOT_TRUE_CONNECTED_SANKEY")
+                if width<=900 and code in ("300394","300502"):
+                    legend=page.evaluate("""() => {
+                      const svg=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+                      if(!svg)return null;
+                      const labels=[...svg.querySelectorAll('text[data-editorial-role="source-summary"]')];
+                      const header=svg.querySelector('text[data-editorial-role="source-stage-header"]');
+                      return {labels:labels.map(x=>({
+                        font:+x.getAttribute('font-size'),
+                        top:x.getBoundingClientRect().top,
+                        bottom:x.getBoundingClientRect().bottom})),
+                        header:header?.getBoundingClientRect().top};
+                    }""")
+                    assert legend and len(legend["labels"])==2*len(srcs),(code,width,"SOURCE_MONEY_NAME_MUST_BE_IN_INDEPENDENT_ROWS")
+                    labels=legend["labels"]
+                    assert all(x["font"]>=11 for x in labels),(code,width,"LEGACY_TINY_SOURCE_MONEY_TEXT")
+                    assert all(labels[i]["bottom"]+0.5<labels[i+1]["top"]
+                               for i in range(len(labels)-1)),(code,width,"NATIVE_CJK_SOURCE_MONEY_TEXT_OVERPRINT",labels)
+                    assert legend["header"] is not None and labels[-1]["bottom"]+2<legend["header"],(code,width,"NATIVE_SOURCE_LABEL_OVERLAPS_TOTAL_NODE_HEADER",legend)
                 assert abs(sum(x["yuan"] for x in srcs)-graph["total"])<.001
                 assert abs(sum(x["yuan"] for x in sinks)-graph["total"])<.001
                 assert all(x["scale"]>0 and x["yuan"]>=0 for x in graph["ribbons"])

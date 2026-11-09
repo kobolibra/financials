@@ -228,6 +228,8 @@ def build(l,m):
  facts=len(l.get('facts',{}));ind=len(l.get('indirect_cfo_adjustments',[]))
  growth_unit='收入变动 '+(n(rev-prevrev)+' 亿' if prevrev is not None else '上期不可比')+' · 成本变动 '+(n(cogs-prevcogs)+' 亿' if prevcogs is not None else '上期不可比')
  quantified_decision=render_optical_decision(l,m) if doc['ticker'] in ('300394.SZ','300502.SZ') else ''
+ library_title='返回统一的全部公司研究目录' if quantified_decision else '返回包含七家公司的统一研究库'
+ library_text='全部公司 ↗' if quantified_decision else '全部七家公司 ↗'
  hero_focus_html=''
  if m.get("hero_focus")=="cash_conversion":
   # Distinctive issuer-specific visual question, not another generic KPI grid:
@@ -276,25 +278,6 @@ def build(l,m):
 '''
  css+=r'''
 /* Responsive original finance illustrations, NOT zoomed 1250px desktop art. */
-.optical-decision{margin:42px auto 60px;padding:34px 42px 29px;background:#fffcf7;border:1px solid #dfe5da;border-top:4px solid #087e69;color:#16383c}
-.optical-decision-eyebrow{font-size:10px;font-weight:780;letter-spacing:.13em;color:#087e69;margin:0 0 14px}
-.optical-decision h2{font:600 clamp(29px,3.1vw,43px)/1.23 var(--serif);letter-spacing:-.025em;margin:0 0 16px;max-width:950px}
-.optical-decision-lead{max-width:1030px;font-size:16px;line-height:1.85;color:#405b54}
-.optical-decision-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:27px 0 22px;padding:22px 0;border-top:1px solid #cedbd2;border-bottom:1px solid #cedbd2}
-.optical-decision-metric{min-width:0}
-.optical-decision-metric small{font-size:11px;line-height:1.55;display:block;color:#5e746d}
-.optical-decision-metric strong{display:block;margin-top:9px;font:700 clamp(28px,3.3vw,42px)/1.25 var(--serif);color:#087e69;font-variant-numeric:tabular-nums}
-.optical-decision-alternative,.optical-decision-falsifier{font-size:13px;line-height:1.9;margin:13px 0;color:#4b615a}
-.optical-decision-alternative b,.optical-decision-falsifier b{color:#213d37}
-.optical-decision-sources{margin:22px 0 10px;border-top:1px solid #d6dfd7;border-bottom:1px solid #d6dfd7}
-.optical-decision-sources summary{cursor:pointer;padding:17px 0;font-size:12px;font-weight:700;color:#215d4f}
-.optical-decision-source-scroller{max-width:100%;overflow-x:auto}
-.optical-decision-source-scroller table{width:100%;border-collapse:collapse;min-width:610px;font-size:12px;text-align:left}
-.optical-decision-source-scroller th,.optical-decision-source-scroller td{padding:10px 9px;border-top:1px solid #e2e8e0}
-.optical-decision-source-scroller a{color:#087e69}
-.optical-decision-integrity{font-size:11px;line-height:1.8;color:#6e7b71}
-@media(max-width:900px){.optical-decision{padding:25px 20px;margin:27px auto 38px}.optical-decision-metrics{gap:12px}.optical-decision-metric strong{font-size:30px}}
-@media(max-width:650px){.optical-decision{width:calc(100% - 26px);padding:22px 16px}.optical-decision h2{font-size:29px}.optical-decision-lead{font-size:14px}.optical-decision-metrics{grid-template-columns:1fr;gap:0;padding:4px 0}.optical-decision-metric{padding:12px 0;border-bottom:1px solid #e2e8e0}.optical-decision-metric:last-child{border-bottom:0}.optical-decision-metric strong{font-size:32px}.optical-decision-alternative,.optical-decision-falsifier{font-size:12px}}
 .native-finance{display:none}
 .native-finance-inner{color:#16383c;background:#fffefa;padding:5px 0 10px;min-width:0}
 .native-finance h4{font:700 18px var(--serif);margin:8px 0 8px;line-height:1.45}
@@ -337,6 +320,30 @@ def build(l,m):
 .exhibit.has-native-finance .exhibit-top h3{font-size:19px;line-height:1.5}
 }
 '''
+ # The untouched 300308 184-page original is a separate publisher/release;
+ # its CSS byte identity must not change for two other companies' panels.
+ if quantified_decision:
+  css+=r'''
+.optical-decision{margin:42px auto 60px;padding:34px 42px 29px;background:#fffcf7;border:1px solid #dfe5da;border-top:4px solid #087e69;color:#16383c}
+.optical-decision-eyebrow{font-size:10px;font-weight:780;letter-spacing:.13em;color:#087e69;margin:0 0 14px}
+.optical-decision h2{font:600 clamp(29px,3.1vw,43px)/1.23 var(--serif);letter-spacing:-.025em;margin:0 0 16px;max-width:950px}
+.optical-decision-lead{max-width:1030px;font-size:16px;line-height:1.85;color:#405b54}
+.optical-decision-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:27px 0 22px;padding:22px 0;border-top:1px solid #cedbd2;border-bottom:1px solid #cedbd2}
+.optical-decision-metric{min-width:0}
+.optical-decision-metric small{font-size:11px;line-height:1.55;display:block;color:#5e746d}
+.optical-decision-metric strong{display:block;margin-top:9px;font:700 clamp(28px,3.3vw,42px)/1.25 var(--serif);color:#087e69;font-variant-numeric:tabular-nums}
+.optical-decision-alternative,.optical-decision-falsifier{font-size:13px;line-height:1.9;margin:13px 0;color:#4b615a}
+.optical-decision-alternative b,.optical-decision-falsifier b{color:#213d37}
+.optical-decision-sources{margin:22px 0 10px;border-top:1px solid #d6dfd7;border-bottom:1px solid #d6dfd7}
+.optical-decision-sources summary{cursor:pointer;padding:17px 0;font-size:12px;font-weight:700;color:#215d4f}
+.optical-decision-source-scroller{max-width:100%;overflow-x:auto}
+.optical-decision-source-scroller table{width:100%;border-collapse:collapse;min-width:610px;font-size:12px;text-align:left}
+.optical-decision-source-scroller th,.optical-decision-source-scroller td{padding:10px 9px;border-top:1px solid #e2e8e0}
+.optical-decision-source-scroller a{color:#087e69}
+.optical-decision-integrity{font-size:11px;line-height:1.8;color:#6e7b71}
+@media(max-width:900px){.optical-decision{padding:25px 20px;margin:27px auto 38px}.optical-decision-metrics{gap:12px}.optical-decision-metric strong{font-size:30px}}
+@media(max-width:650px){.optical-decision{width:calc(100% - 26px);padding:22px 16px}.optical-decision h2{font-size:29px}.optical-decision-lead{font-size:14px}.optical-decision-metrics{grid-template-columns:1fr;gap:0;padding:4px 0}.optical-decision-metric{padding:12px 0;border-bottom:1px solid #e2e8e0}.optical-decision-metric:last-child{border-bottom:0}.optical-decision-metric strong{font-size:32px}.optical-decision-alternative,.optical-decision-falsifier{font-size:12px}}
+'''
  js=r'''(()=>{const tip=document.querySelector('#floatTip');let last=null;const hide=()=>{tip.style.display='none'};function show(el,evt){let value=el.getAttribute('data-tip')||el.getAttribute('aria-label')||el.querySelector('title')?.textContent||'';if(!value)return;tip.textContent=value;tip.style.display='block';last=el;move(evt,el)}function move(evt,el){let x=12,y=12;if(evt&&typeof evt.clientX==='number'){x=evt.clientX+16;y=evt.clientY+20}else{let box=el.getBoundingClientRect();x=box.left+10;y=box.top-68}tip.style.left=Math.max(8,Math.min(window.innerWidth-325,x))+'px';tip.style.top=Math.max(8,Math.min(window.innerHeight-100,y))+'px'}document.querySelectorAll('[data-tip],svg[role="img"] [tabindex],.ed-band').forEach(el=>{el.addEventListener('pointerenter',e=>show(el,e));el.addEventListener('pointermove',e=>move(e,el));el.addEventListener('pointerleave',hide);el.addEventListener('focus',e=>show(el,null));el.addEventListener('blur',hide)});document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});document.querySelectorAll('button.svg-save').forEach((b,i)=>{b.addEventListener('click',()=>{let svgs=[...b.closest('.exhibit').querySelectorAll('svg')],svg=svgs.find(el=>{let r=el.getBoundingClientRect(),s=getComputedStyle(el);return r.width>0&&r.height>0&&s.display!=='none'&&s.visibility!=='hidden'});if(!svg)return;let txt=new XMLSerializer().serializeToString(svg);let blob=new Blob([txt],{type:'image/svg+xml;charset=utf-8'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='Financials-Research-Exhibit-'+(i+1)+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(url),2500)})});document.querySelectorAll('.money-ribbon').forEach(el=>{let root=el.closest('svg');let dim=on=>{root?.querySelectorAll('.money-ribbon').forEach(x=>x.classList.toggle('is-dim',on&&x.getAttribute('data-group')!==el.getAttribute('data-group')))};el.addEventListener('pointerenter',()=>dim(true));el.addEventListener('pointerleave',()=>dim(false));el.addEventListener('focus',()=>dim(true));el.addEventListener('blur',()=>dim(false))});document.querySelectorAll('button.native-source-row[data-source-key]').forEach(btn=>{btn.addEventListener('click',()=>{const host=btn.closest('.native-finance'),active=btn.getAttribute('aria-pressed')==='true';host.querySelectorAll('button.native-source-row').forEach(b=>b.setAttribute('aria-pressed','false'));host.querySelectorAll('path.native-money-ribbon').forEach(path=>{path.classList.remove('is-muted','is-selected');if(!active)path.classList.add(path.getAttribute('data-source-key')===btn.dataset.sourceKey?'is-selected':'is-muted')});if(!active)btn.setAttribute('aria-pressed','true')})});})();'''
  gp_analysis_text=(f'本期毛利润 {n(gp)} 亿元，较上年同期变动 {n(gross_delta)} 亿元；收入变动 {n(rev-prevrev)} 亿元、营业成本变动 {n(cogs-prevcogs)} 亿元，二者仅为会计加减关系，不构成价格、销量、良率的因果归因。' if gross_delta is not None else f'本期毛利润 {n(gp)} 亿元；上期收入或营业成本缺失，不能计算同比毛利润增量。')
  lens=m.get('forensic_lenses') or []
@@ -363,7 +370,7 @@ def build(l,m):
  # full page assembly
  html_page=f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="{esc(issuer)} {period} 深度财务研究：商业模式、利润形成、现金转换、资产结构、风险与反证。原始财报可追溯。"><title>{issuer} · {period} | Financials in Visuals Research Edition</title><style>{css}</style></head><body>
 <a class="skip" href="#main">跳到正文</a><div class="tooltip" id="floatTip" role="status" aria-live="polite"></div>
-<div class="mast"><div class="wrap"><div class="bar"><a href="/" class="brand">FINANCIALS <em>IN VISUALS</em></a><nav class="nav" aria-label="研究导航"><a href="#economics">商业模式</a><a href="#profit">盈利</a><a href="#cash">现金</a><a href="#capital">资本</a><a href="#watch">风险</a><a class="site-library-link" href="/#companies" title="返回统一的全部公司研究目录">全部公司 ↗</a></nav></div>
+<div class="mast"><div class="wrap"><div class="bar"><a href="/" class="brand">FINANCIALS <em>IN VISUALS</em></a><nav class="nav" aria-label="研究导航"><a href="#economics">商业模式</a><a href="#profit">盈利</a><a href="#cash">现金</a><a href="#capital">资本</a><a href="#watch">风险</a><a class="site-library-link" href="/#companies" title="{library_title}">{library_text}</a></nav></div>
 <header class="hero"><span class="eyebrow">Equity research / {ticker} / {period} · filing-first</span><h1>{thesis}</h1><p class="hero-deck">{summary}</p><div class="hero-meta"><span>{issuer} · {ticker}</span><span>{period} · {esc(doc['period_start'])} 至 {esc(doc['period_end'])}</span><span>{'已审计' if doc['audited'] else '未经审计'} · 合并报表</span><span>原始 PDF {doc['pages']} 页</span></div><div class="hero-figure"></div></header></div></div>
 <div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>{quantified_decision}{hero_focus_html}
 <main id="main" class="wrap paper"><div class="lead"><aside>THE CENTRAL QUESTION<br>本期研究判断</aside><p>一家公司能把收入变成利润，并不等于它已经把利润变成了<strong>可持续的现金回报</strong>。这份研究将收入、成本、现金、营运资本和资本投入放在同一条会计逻辑中检验。</p></div>
