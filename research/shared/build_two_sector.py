@@ -89,7 +89,8 @@ def check(d,briefs,story,pdf_path):
         if x != y: raise AssertionError(label+" "+str(x)+" vs "+str(y))
         checks[label]="PASS_EXACT_DECIMAL"
     code=d["issuer"]["code"]
-    checks["OPERATING_SOURCE_MODEL"]=check_sector_operating_story(d)
+    check_sector_operating_story(d)
+    checks["OPERATING_SOURCE_MODEL"]="PASS_TYPED_SOURCE_NO_FALSE_ADDITIVITY"
     assert briefs["issuer"]==code and briefs["source_sha256"]==d["source"]["original_bytes_sha256"]
     assert tuple(x["id"] for x in briefs["figure_briefs"])==tuple(story["figure_order"])
     assert all(x["facts"] and x["source_pages"] and x["question"] and x["counter"] for x in briefs["figure_briefs"])
