@@ -212,7 +212,7 @@ with sync_playwright() as p:
  browser.close()
 result={"code":"601628","source_sha":L["source"]["original_bytes_sha256"],
         "source_nodes_sinks_ribbons_exact_svg_geometric_proportions":"PASS",
-        "page_1440_768_390":"PASS","chart_count":10,"source_table_count":10,
+        "page_1440_768_390":"PASS","chart_count":10,"source_table_count":statuses[0]["original_source_tables"],
         "export_click_and_svg_download":"PASS","mobile_fully_visible_financial_figures":"PASS","mobile_ledger_exact_value_and_geometry":"PASS","original_actual_3_viewport_checks":statuses,
         "human_editor":"NOT_CHECKED","scope":"real Chromium financial SVG and source-structure invariants, not human financial/aesthetic certification"}
 (OUT/"result.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
