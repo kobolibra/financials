@@ -28,6 +28,41 @@ for code in CODELIST:
     assert local["html_sha256"]==sha and local["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]=="PASS",("NO_SOURCE_MATCHING_LOCAL_CJK",code)
     expected[code]={"sha256":sha,"ledger":json.loads(ledger.read_text())}
 
+def wait_for_real_main_source_bytes():
+    """Fail closed, but tolerate deploy/edge propagation after latest main merge.
+
+    Canonical HTTP URLs must eventually serve *whole exact* new report bytes.
+    GitHub provider badge, homepage marker or cache-busting preview do not
+    authorize LIVE PASS. Never rewrite local source to match stale CDN.
+    """
+    import urllib.request, urllib.error
+    last={}
+    for attempt in range(1,11):
+        errors=[]
+        for code in CODELIST:
+            req=urllib.request.Request(
+                f"{ORIGIN}/{code}.html",
+                headers={"User-Agent":"FinancialsExactSourceProductionGate/1.1",
+                         "Cache-Control":"no-cache"})
+            try:
+                with urllib.request.urlopen(req,timeout=25) as response:
+                    raw=response.read()
+                    sha=hashlib.sha256(raw).hexdigest()
+                    last[code]=sha
+                    if response.status!=200 or sha!=expected[code]["sha256"]:
+                        errors.append(f"{code}: HTTP {response.status} SHA {sha}, expected {expected[code]['sha256']}")
+            except (urllib.error.URLError,TimeoutError) as exc:
+                errors.append(f"{code}: {type(exc).__name__}: {exc}")
+        if not errors:
+            print("CLOUDFLARE_MAIN_CANONICAL_WHOLE_HTML_BYTES_CONVERGED",
+                  {code:expected[code]["sha256"] for code in CODELIST},flush=True)
+            return
+        print("CLOUDFLARE_MAIN_SHA_NOT_YET_CONVERGED",attempt,errors,flush=True)
+        if attempt<10:time.sleep(20)
+    raise AssertionError(("CLOUDFLARE_PRODUCTION_MAIN_HTML_STILL_OLD",
+                          last,{code:expected[code]["sha256"] for code in CODELIST}))
+
+
 def live_dom(page,code,width):
     ledger=expected[code]["ledger"];source=ledger["source"]
     assert page.locator('figure.figure').count()==8,(code,width,"NOT_EIGHT_SOURCE_FIGURES")
@@ -120,6 +155,7 @@ def live_dom(page,code,width):
 
 results=[]
 actual_home_sha=None
+wait_for_real_main_source_bytes()
 with sync_playwright() as p:
     browser=p.chromium.launch(headless=True,args=["--no-sandbox"])
     for width,height in ((1440,900),(768,1024),(390,844)):
