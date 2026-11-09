@@ -55,6 +55,13 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
                 self.assertTrue(all(x.get("text-anchor")!="end" for x in labels),code)
                 yy=[D(x.get("y")) for x in labels]
                 self.assertTrue(all(yy[i]<yy[i+1] for i in range(len(yy)-1)),code)
+                # Real Noto CJK browser used ~16px bounding boxes at 11px
+                # nominal. Need 20 within each name/amount pair and 24
+                # before the next financial source name.
+                for i in range(len(plan.sources)):
+                    self.assertGreaterEqual(yy[2*i+1]-yy[2*i],D(20))
+                    if i+1<len(plan.sources):
+                        self.assertGreaterEqual(yy[2*i+2]-yy[2*i+1],D(24))
             else:
                 # Prior four-source 688220 two-column original phone art
                 # must remain source-byte deterministic and not silently
