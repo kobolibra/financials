@@ -38,6 +38,38 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
                 if code=="688220":
                     self.assertIn("字节等价尚未证明",plan.footnote)
 
+    def test_small_sector_native_phone_rows_are_readable_and_source_bound(self):
+        # Two/three-source phone source labels each get their own money
+        # line. Never silently alter the four-source 688220 released layout.
+        for code in CODES:
+            root=ET.fromstring(render_sector_income(read(code),mobile=True))
+            plan=compile_disclosed_income(read(code))
+            labels=[x for x in root.iter(SVG+"text")
+                    if x.get("data-editorial-role")=="source-summary"]
+            self.assertEqual(len(labels),2*len(plan.sources),(code,"WRONG_MOBILE_SOURCE_ROWS"))
+            font=[D(x.get("font-size")) for x in labels]
+            if len(plan.sources)<=3:
+                self.assertTrue(all(x>=D(11) for x in font),code)
+                # Separate 32-unit rows, with left-aligned amounts below
+                # their source label and never squeezed beside the name.
+                self.assertTrue(all(x.get("text-anchor")!="end" for x in labels),code)
+                yy=[D(x.get("y")) for x in labels]
+                self.assertTrue(all(yy[i]<yy[i+1] for i in range(len(yy)-1)),code)
+                # Real Noto CJK browser used ~16px bounding boxes at 11px
+                # nominal. Need 20 within each name/amount pair and 24
+                # before the next financial source name.
+                for i in range(len(plan.sources)):
+                    self.assertGreaterEqual(yy[2*i+1]-yy[2*i],D(20))
+                    if i+1<len(plan.sources):
+                        self.assertGreaterEqual(yy[2*i+2]-yy[2*i+1],D(24))
+            else:
+                # Prior four-source 688220 two-column original phone art
+                # must remain source-byte deterministic and not silently
+                # inherit the new optional layout.
+                self.assertEqual([font[i] for i in range(0,len(font),2)],[D(10)]*len(plan.sources))
+                self.assertEqual([font[i] for i in range(1,len(font),2)],[D(9)]*len(plan.sources))
+            self.assertEqual(D(root.get("data-revenue-yuan")),plan.check())
+
     def test_real_desktop_micro_business_labels_never_collide(self):
         # The 688220 last two source values are tiny on a 24.51-yi
         # common scale; their THREE textual rows must not be overprinted.

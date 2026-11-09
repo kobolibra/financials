@@ -97,4 +97,12 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
     return plan
 
 def render_sector_income(ledger:dict, *,mobile:bool=False,embedded:bool=True)->str:
-    return render_income_sankey(compile_disclosed_income(ledger),mobile=mobile,embedded=embedded)
+    plan=compile_disclosed_income(ledger)
+    # For two/three exclusive business sources, use native phone editorial
+    # source-name and money rows. This is a data-structure driven layout
+    # choice, never an issuer-specific invented cost/GP allocation.
+    # Four-or-more-source reports retain their previously source-verified
+    # layout until they are deliberately rebuilt and re-verified.
+    readable=bool(mobile and 2<=len(plan.sources)<=3)
+    return render_income_sankey(plan,mobile=mobile,embedded=embedded,
+                                readable_source_rows=readable)

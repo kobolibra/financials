@@ -55,7 +55,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 # Actual 688220 production passed its own current main SHA,
                 # six screenshots, typed Sankey and signed-profit live gate.
                 # Keeping an UNMERGED candidate would now be a false status.
-                if code in {"688220","600900","600276"}:
+                if code=="688220" or (code in {"600900","600276"} and "unmerged_candidate" not in current):
                     self.assertNotIn("unmerged_candidate",current)
                     self.assertEqual(current["published_html_sha256"],actual)
                     self.assertEqual(current["live_release_fingerprint"],actual)
@@ -235,12 +235,20 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 issuer=next(x for x in self.catalog["issuers"] if x["code"]==code)
                 record=json.loads((ROOT/f"research/issuers/{code}/release-gates.json").read_text())
                 receipt=json.loads((ROOT/f"research/issuers/{code}/live-release-receipt.json").read_text())
-                self.assertNotIn("unmerged_candidate",record)
+                candidate=record.get("unmerged_candidate")
                 self.assertEqual(record["published_html_sha256"],html_sha)
                 self.assertEqual(record["live_release_fingerprint"],html_sha)
                 self.assertEqual(record["actual_main_release_commit"],source_main)
                 self.assertEqual(record["gates"]["CLOUDFLARE_LIVE"]["proof"],source_action)
-                self.assertEqual(hashlib.sha256((ROOT/f"public/{code}.html").read_bytes()).hexdigest(),html_sha)
+                actual=hashlib.sha256((ROOT/f"public/{code}.html").read_bytes()).hexdigest()
+                if candidate is None:
+                    self.assertEqual(actual,html_sha)
+                else:
+                    self.assertEqual(candidate["base_deployed_html_sha256"],html_sha)
+                    self.assertEqual(candidate["candidate_full_html_sha256"],actual)
+                    self.assertNotEqual(actual,html_sha)
+                    self.assertEqual(candidate["promotion_status"],"UNMERGED_NOT_DEPLOYED")
+                    self.assertEqual(candidate["independent_finance_and_art_review"],"NOT_CHECKED")
                 self.assertEqual(receipt["actual_publication_action"],source_action)
                 self.assertEqual(receipt["verified_git_commit"],source_main)
                 self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_"+code],html_sha)
@@ -259,15 +267,20 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 self.assertIn(f"LIVE_CAPTURE_MAIN_SHA_MISMATCH {code}",
                               mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
                 poisoned=copy.deepcopy(record)
-                poisoned["unmerged_candidate"]={
-                    "base_deployed_html_sha256":html_sha,
-                    "candidate_full_html_sha256":html_sha,
-                    "promotion_status":"UNMERGED_NOT_DEPLOYED",
-                    "independent_finance_and_art_review":"NOT_CHECKED",
-                    "current_sha_browser_proof":"LOCAL_ONLY",
-                }
-                self.assertIn(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}",
-                              mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
+                if candidate is None:
+                    poisoned["unmerged_candidate"]={
+                        "base_deployed_html_sha256":html_sha,
+                        "candidate_full_html_sha256":html_sha,
+                        "promotion_status":"UNMERGED_NOT_DEPLOYED",
+                        "independent_finance_and_art_review":"NOT_CHECKED",
+                        "current_sha_browser_proof":"LOCAL_ONLY",
+                    }
+                    self.assertIn(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}",
+                                  mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
+                else:
+                    poisoned["unmerged_candidate"]["candidate_full_html_sha256"]=html_sha
+                    self.assertIn(f"CANDIDATE_HTML_SHA_MISMATCH {code}",
+                                  mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
                 # The historical immutable Actions-artifact PNG digest is
                 # an independent assertion from the stored issuer receipt;
                 # the public live source test below separately authenticates
