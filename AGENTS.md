@@ -10,7 +10,7 @@
 
 
 
-**Active candidate overlay (2026-11-07):** On any Financials quality, AEI, V10 Sankey, PR #35 or cross-chat continuity request, read [docs/ACTIVE_PR35_HANDOFF.md](docs/ACTIVE_PR35_HANDOFF.md) and machine [research/quality/active-pr35.json](research/quality/active-pr35.json) **after** confirming real main and PR head. This is an UNMERGED candidate; never equate preview SHA with live production. New WPS desktop 3-stage source-own COGS/GP and tiny Moutai negative-margin zoom require fresh source-bound rebuild, 3-width CJK browser and Cloudflare exact-byte receipts. Run python scripts/check_pr35_quality_handoff.py as a separate quality/continuity gate; independent human finance/editorial review and 20–30 unseen future samples remain NOT_CHECKED.
+**Historical PR #35 evidence (merged, 2026-11-08):** `docs/ACTIVE_PR35_HANDOFF.md` and `research/quality/active-pr35.json` are archival provenance of the previously unmerged four-company candidate, not the current release authority. Read current `project-status.json`, `site/research_catalog.json` and `scripts/audit_unified_visual_corpus.py` results first. The real WPS source-own diagram and Moutai signed inset require source-bound regeneration and new CJK/Cloudflare HTML fingerprints whenever modified. Run `scripts/check_pr35_quality_handoff.py` for applicable SHA-bound regression, while keeping independent human review and 20–30 unseen cross-company samples NOT_CHECKED.
 
 
 
