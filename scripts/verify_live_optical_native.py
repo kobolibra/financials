@@ -6,9 +6,12 @@ A failing exact article SHA, 390 finance geometry, source route or CJK screensho
 means public production remains FAIL. Run only after changed main is deployed.
 """
 from __future__ import annotations
-import hashlib,json,os,time,urllib.request
+import hashlib,json,os,time,urllib.request,sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'skills/ashare-financial-storytelling/v7/engine'))
+from quantified_optical_decision import CONFIG,decision_values
 
 ROOT=Path(__file__).resolve().parents[1]
 ORIGIN="https://financials-in-visuals.pages.dev"
@@ -81,6 +84,35 @@ def run():
                 assert article_url in (ORIGIN+f"/{code}",ORIGIN+f"/{code}.html"),(code,width,"ARTICLE_REDIRECTED_TO_DIRECTORY",article_url)
                 assert page.locator("figure.exhibit.has-native-finance").count()>=9
                 assert pdf_sha in page.content()
+                if code in ("300394","300502"):
+                    from decimal import Decimal as D
+                    target=decision_values(ledger)
+                    decision=page.locator('section#quantified-decision[data-research-schema="financials.optical_decision.v1"]')
+                    assert decision.count()==1 and decision.is_visible(),(code,width,"LIVE_READER_VISIBLE_RESEARCH_NOT_RELEASED")
+                    assert decision.get_attribute("data-original-pdf-sha256")==pdf_sha
+                    assert decision.get_attribute("data-accounting-not-causal")=="true"
+                    proof=decision.evaluate("""node=>({
+                      facts:[...node.querySelectorAll('tr[data-fact-id]')].map(x=>({...x.dataset})),
+                      derived:[...node.querySelectorAll('.optical-decision-metric')].map(x=>({...x.dataset})),
+                      left:node.getBoundingClientRect().left,right:node.getBoundingClientRect().right,
+                      fonts:[...node.querySelectorAll('.optical-decision-lead')].map(x=>+getComputedStyle(x).fontSize.replace('px',''))
+                    })""")
+                    assert len(proof["facts"])==8 and len(proof["derived"])==3,(code,width,"LIVE_RESEARCH_EVIDENCE_ROW_COUNT")
+                    for fact in proof["facts"]:
+                        key=fact["factId"]
+                        expected=ledger["facts"][key]
+                        specification=next(x for x in CONFIG[code] if x[0]==key)
+                        assert D(fact["originalValue"])==D(expected["amount"]),(code,width,key,"LIVE_RESEARCH_SOURCE_YUAN_DIFFERENCE")
+                        assert fact["period"]==specification[1] and fact["statementKind"]==specification[2]
+                        assert fact["sourceUnit"]==specification[3] and int(fact["physicalPage"])==expected["page"]
+                    assert {x["derivedKey"]:D(x["derivedRatio"]) for x in proof["derived"]}=={
+                        k:v for k,_,v in target["metrics"]},(code,width,"LIVE_RESEARCH_QUANTIFIED_DECISION_WRONG")
+                    assert proof["left"]>=-1 and proof["right"]<=width+2
+                    assert proof["fonts"] and min(proof["fonts"])>=14,(code,width,"LIVE_RESEARCH_LEAD_TOO_SMALL")
+                    assert "NOT_CHECKED" in decision.inner_text(),(code,width,"MISSING_RESEARCH_CAUSALITY_BOUNDARY")
+                    shot=OUT/f"live_{code}_decision_{width}.png"
+                    decision.screenshot(path=str(shot),animations="disabled")
+                    screens.append({"name":shot.name,"sha256":SHA(shot.read_bytes()),"bytes":shot.stat().st_size})
                 if code=="300308":
                     assert pdf_sha=="e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf"
                     proof=json.loads((ROOT/"research/issuers/300308/source-verification.json").read_text(encoding="utf8"))
@@ -202,7 +234,8 @@ def run():
                 page.locator('a.site-library-link[href="/#companies"]').first.click()
                 assert page.url==ORIGIN+"/#companies",(code,width,"RETURN_TO_SINGLE_COMPANY_DIRECTORY_FAILED",page.url)
                 results.append({"code":code,"width":width,"real_article_url":article_url,"article_html_sha256":article_shas[code],"pdf_source_sha":pdf_sha,
-                    "real_return_to_library":"PASS","source_weighted_cost_gp":"PASS","native_390_unclipped":"PASS" if width==390 else "NOT_PHONE"})
+                    "real_return_to_library":"PASS","source_weighted_cost_gp":"PASS","native_390_unclipped":"PASS" if width==390 else "NOT_PHONE",
+                    "reader_visible_original_source_decision":"PASS" if code in ("300394","300502") else "NOT_THIS_MIGRATION"})
                 page.close()
         browser.close()
     receipt={"source_main_commit":os.environ.get("GITHUB_SHA","NOT_CHECKED"),"company_directory_issuer_count":len(catalog),
@@ -211,7 +244,7 @@ def run():
         "independent_human_financial_editor":"NOT_CHECKED","independent_human_art_director":"NOT_CHECKED",
         "exhaustive_material_notes":"NOT_CHECKED"}
     (OUT/"result.json").write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n")
-    assert len(results)==len(CODES)*len(WIDTHS) and len(screens)==(len(CODES)+1)*len(WIDTHS)
+    assert len(results)==len(CODES)*len(WIDTHS) and len(screens)==(len(CODES)+1+2)*len(WIDTHS)
     print("ACTUAL_REAL_CLOUDFLARE_OPTICAL_SOURCE_THREE_ARTICLES_THREE_CHINESE_WIDTHS_EXACT_HTML_SOURCE_SHA_PASS",json.dumps({"commit":receipt["source_main_commit"],"articles":article_shas,"screenshots":len(screens)},ensure_ascii=False),flush=True)
 
 if __name__=="__main__":run()
