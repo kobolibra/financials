@@ -4,7 +4,7 @@
   "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
   "page_1440_768_390": "PASS",
   "chart_count": 10,
-  "source_table_count": 10,
+  "source_table_count": 11,
   "export_click_and_svg_download": "PASS",
   "mobile_fully_visible_financial_figures": "PASS",
   "mobile_ledger_exact_value_and_geometry": "PASS",
