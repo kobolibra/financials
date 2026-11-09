@@ -5,6 +5,7 @@ on:
     paths:
       - 'public/600900.html'
       - 'public/600276.html'
+      - 'public/release-check.txt'
       - 'research/shared/mobile_finance.js'
       - 'research/shared/qa_two_sector_live.py'
       - 'research/issuers/600900/visual-qa/result.json'
