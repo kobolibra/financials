@@ -1,7 +1,7 @@
 name: Build and audit two distinct 2026H1 sector research reports
 on:
   push:
-    branches: ['work/two-sector-600900-600276-real-2026h1', 'work/two-sector-native-mobile-aei-original-finance-20261104', 'quality/aei-sankey-source-contract-v1', 'quality/two-sector-source-typed-profit-bridge-20261108', main]
+    branches: ['work/two-sector-600900-600276-real-2026h1', 'work/two-sector-native-mobile-aei-original-finance-20261104', 'quality/aei-sankey-source-contract-v1', 'quality/two-sector-source-typed-profit-bridge-20261108', 'quality/two-sector-source-visual-rigor-20261109', main]
     paths:
       - 'research/issuers/600900/**'
       - 'research/issuers/600276/**'
