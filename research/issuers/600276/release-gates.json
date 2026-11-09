@@ -130,10 +130,10 @@
   "live_receipt_file": "research/issuers/600276/live-release-receipt.json",
   "unmerged_candidate": {
     "base_deployed_html_sha256": "a333818fc584eebefeaa0d8747dc74fcc6af6bd3b5c9fa78177508065821b75d",
-    "candidate_full_html_sha256": "NOT_CHECKED_REBUILD_PENDING",
+    "candidate_full_html_sha256": "9a51d251d271a6dc7803c4036c71a441634ef784258aabaf85e97d1081962d99",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
     "note": "New 330 native phone source-label editorial layout, still in PR; script must generate actual source HTML and update this to real SHA only after original CNY/CJK 390/768/1440 browser tests. Previous production SHA retains immutable Cloudflare receipt until independent new current-main live validation."
   }
 }
