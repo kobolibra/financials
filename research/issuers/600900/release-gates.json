@@ -125,7 +125,7 @@
   "live_receipt_file": "research/issuers/600900/live-release-receipt.json",
   "unmerged_candidate": {
     "base_deployed_html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
-    "candidate_full_html_sha256": "578c0fb1676513d5a1b796cd46c2bb0c92241fe2cca04ed0b838c366a7c9fd12",
+    "candidate_full_html_sha256": "b291a229f8f3e7fd5dfd349e1f78d8f2b554115b4dc9e0e72add87be751039dd",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
