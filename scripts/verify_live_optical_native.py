@@ -100,11 +100,11 @@ def run():
                     assert len(proof["facts"])==8 and len(proof["derived"])==3,(code,width,"LIVE_RESEARCH_EVIDENCE_ROW_COUNT")
                     for fact in proof["facts"]:
                         key=fact["factId"]
-                        expected=ledger["facts"][key]
+                        source_fact=ledger["facts"][key]
                         specification=next(x for x in CONFIG[code] if x[0]==key)
-                        assert D(fact["originalValue"])==D(expected["amount"]),(code,width,key,"LIVE_RESEARCH_SOURCE_YUAN_DIFFERENCE")
+                        assert D(fact["originalValue"])==D(source_fact["amount"]),(code,width,key,"LIVE_RESEARCH_SOURCE_YUAN_DIFFERENCE")
                         assert fact["period"]==specification[1] and fact["statementKind"]==specification[2]
-                        assert fact["sourceUnit"]==specification[3] and int(fact["physicalPage"])==expected["page"]
+                        assert fact["sourceUnit"]==specification[3] and int(fact["physicalPage"])==source_fact["page"]
                     assert {x["derivedKey"]:D(x["derivedRatio"]) for x in proof["derived"]}=={
                         k:v for k,_,v in target["metrics"]},(code,width,"LIVE_RESEARCH_QUANTIFIED_DECISION_WRONG")
                     assert proof["left"]>=-1 and proof["right"]<=width+2
