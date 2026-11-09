@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/42595318738",
-      "scope": "2026-11-09 real main Cloudflare full HTML SHA for exact original source and all eleven routes, genuine Noto CJK Chromium 1440/768/390 six browser screenshots, mobile eight source charts and actual SVG finance geometry; source-limited research only; independent human financial/art review NOT_CHECKED."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/42599056086",
+      "scope": "Actual full canonical production 600900/600276 HTML SHA + 11 issuer routes + real 1440/768/390 CJK signed source-money figures + Noto label collision-free and SVG exported; authentic source-limited scope only, independent human finance/art NOT_CHECKED."
     }
   },
   "blockers": [
@@ -118,17 +118,14 @@
       "issue": "CASH_EQUIVALENTS_RESTRICTED_MARGIN_EXCLUDED"
     }
   ],
-  "published_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
-  "live_release_fingerprint": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
-  "actual_main_release_commit": "328ce615557390f1f0a52611496032557e87800a",
+  "published_html_sha256": "cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88",
+  "live_release_fingerprint": "cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88",
+  "actual_main_release_commit": "b72e6074795bc0cb9aabe0b312c79f1decf567f4",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "live_receipt_file": "research/issuers/600900/live-release-receipt.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
-    "candidate_full_html_sha256": "cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "New 330 native phone source-label editorial layout, still in PR; script must generate actual source HTML and update this to real SHA only after original CNY/CJK 390/768/1440 browser tests. Previous production SHA retains immutable Cloudflare receipt until independent new current-main live validation."
+  "last_verified_previous_release": {
+    "original_main": "328ce615557390f1f0a52611496032557e87800a",
+    "prior_full_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
+    "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
   }
 }
