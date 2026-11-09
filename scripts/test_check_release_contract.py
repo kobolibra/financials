@@ -219,16 +219,16 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertIn("LIVE_CAPTURE_RECEIPT_MISSING 601628",errs)
 
     def test_two_sector_current_exact_live_html_and_real_receipts_are_source_bound(self):
-        # Immutable 2026-11-09 production source and screenshot receipt from
-        # genuine Cloudflare Chromium action 42595318738, main 328ce615.
+        # Immutable 2026-11-09 native source-money phone update and screenshot receipt from
+        # genuine Cloudflare Chromium action 42599056086, main 328ce615.
         # These are historical evidence for those exact HTML bytes; they do
         # not certify later content changes or independent human finance/art.
         import hashlib
-        source_main="328ce615557390f1f0a52611496032557e87800a"
-        source_action="https://github.com/kobolibra/financials/actions/runs/42595318738"
+        source_main="b72e6074795bc0cb9aabe0b312c79f1decf567f4"
+        source_action="https://github.com/kobolibra/financials/actions/runs/42599056086"
         expected = {
-            "600900": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
-            "600276": "a333818fc584eebefeaa0d8747dc74fcc6af6bd3b5c9fa78177508065821b75d",
+            "600900": "cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88",
+            "600276": "9a51d251d271a6dc7803c4036c71a441634ef784258aabaf85e97d1081962d99",
         }
         for code,html_sha in expected.items():
             with self.subTest(code=code):
@@ -252,8 +252,8 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 self.assertEqual(receipt["actual_publication_action"],source_action)
                 self.assertEqual(receipt["verified_git_commit"],source_main)
                 self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_"+code],html_sha)
-                self.assertEqual(receipt["artifact_id"],13663491000)
-                self.assertEqual(receipt["artifact_zip_sha256"],"2b1d52f56803670afdee3d68a7d72677128ba398e0bf1702f0e82808a74b35c1")
+                self.assertEqual(receipt["artifact_id"],13664069157)
+                self.assertEqual(receipt["artifact_zip_sha256"],"1cf7ad7d908243d733678514babdd3da9a5574d8c5d9aed8fd90241a9f51d654")
                 self.assertEqual({x["name"] for x in receipt["screenshots"]},
                                  {f"live_{code}_{w}.png" for w in (1440,768,390)} |
                                  {f"live_directory_{w}.png" for w in (1440,768,390)})
@@ -289,11 +289,11 @@ class IssuerReleaseContractTests(unittest.TestCase):
                     "600900": {
                         1440:"35a8bcbb4eda7f9981ee2f5f5f180cf94aaa0c2c4c94e05bdfdab5594f1f0a2e",
                         768:"61b98129772c6be5a9327953737e5154207dc4f98da573eaca502e4afd3813f0",
-                        390:"0951efb387a5ada4844d74b791c62ec302fa12bae516084dd7062e51c86e1755"},
+                        390:"9276fd42372428f6d32fd5aa7398c686786daff00480ed6c2596f6a681b9e0a0"},
                     "600276": {
                         1440:"df7cc97970706e352ee65f9a07a953a32dc1eeeab4ed0772aded983bea897b89",
                         768:"ea61b310c8b0c86e725c8b3840909d0a5d1703ef902319acff4661318b5cbaec",
-                        390:"746a96665b9bb18f0054afc03ef353e11eb734691acd7cbb52daed8eb31e4cde"}}
+                        390:"8ece01b1849fbcea0d5918e5ad97e249a917687caa1f8ca4ae6f470f138dbb88"}}
                 png_by_name={r["name"]:r["sha256"] for r in receipt["screenshots"]}
                 for w,hash_value in proven_png[code].items():
                     self.assertEqual(png_by_name[f"live_{code}_{w}.png"],hash_value)
