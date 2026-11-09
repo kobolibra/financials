@@ -55,7 +55,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 # Actual 688220 production passed its own current main SHA,
                 # six screenshots, typed Sankey and signed-profit live gate.
                 # Keeping an UNMERGED candidate would now be a false status.
-                if code=="688220":
+                if code in {"688220","600900","600276"}:
                     self.assertNotIn("unmerged_candidate",current)
                     self.assertEqual(current["published_html_sha256"],actual)
                     self.assertEqual(current["live_release_fingerprint"],actual)
@@ -69,11 +69,11 @@ class IssuerReleaseContractTests(unittest.TestCase):
                         "independent_finance_and_art_review":"NOT_CHECKED",
                         "current_sha_browser_proof":"LOCAL_ONLY",
                     }
-                    self.assertIn("STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION 688220",
+                    self.assertIn(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}",
                                   mod.validate_release(ROOT,issuer,false_stale,check_bytes=False))
                     false_hash=copy.deepcopy(current)
                     false_hash["published_html_sha256"]="0"*64
-                    self.assertTrue(any("PUBLISHED_REPORT_SHA_MISMATCH 688220" in x or
+                    self.assertTrue(any(f"PUBLISHED_REPORT_SHA_MISMATCH {code}" in x or
                                         "CANDIDATE_BASE_DEPLOYED_SHA_INVALID 688220" in x
                                         for x in mod.validate_release(ROOT,issuer,false_hash,check_bytes=False)))
                     continue
@@ -219,30 +219,67 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertIn("LIVE_CAPTURE_RECEIPT_MISSING 601628",errs)
 
     def test_two_sector_current_exact_live_html_and_real_receipts_are_source_bound(self):
-        # These exact receipts were actually captured from current 9060 main
-        # public Cloudflare Action 41804157527. Historic NOT_CHECKED metadata
-        # must not keep this observed genuine published version stale.
+        # Immutable 2026-11-09 production source and screenshot receipt from
+        # genuine Cloudflare Chromium action 42595318738, main 328ce615.
+        # These are historical evidence for those exact HTML bytes; they do
+        # not certify later content changes or independent human finance/art.
+        import hashlib
+        source_main="328ce615557390f1f0a52611496032557e87800a"
+        source_action="https://github.com/kobolibra/financials/actions/runs/42595318738"
         expected = {
-            "600900": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
-            "600276": "cd4d0c694c2c1c36c5ba2b2d5028f7db157668139edfe0b00f310f9cd94bee0a",
+            "600900": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
+            "600276": "a333818fc584eebefeaa0d8747dc74fcc6af6bd3b5c9fa78177508065821b75d",
         }
-        for company_code, html_sha in expected.items():
-            issuer=next(x for x in self.catalog["issuers"] if x["code"]==company_code)
-            record=json.loads((ROOT/f"research/issuers/{company_code}/release-gates.json").read_text())
-            self.assertEqual(record["published_html_sha256"], html_sha)
-            self.assertEqual(record["live_release_fingerprint"], html_sha)
-            self.assertEqual(record["actual_main_release_commit"], "9060bd2a0bf3ddc32d267c176388214ef3316f13")
-            self.assertEqual(record["gates"]["CLOUDFLARE_LIVE"]["proof"],
-                             "https://github.com/kobolibra/financials/actions/runs/41804157527")
-            self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=False),[])
-            poisoned=copy.deepcopy(record)
-            poisoned["live_release_fingerprint"]="0"*64
-            errors=mod.validate_release(ROOT,issuer,poisoned,check_bytes=False)
-            self.assertIn(f"LIVE_FINGERPRINT_HTML_DRIFT {company_code}",errors)
-            poisoned=copy.deepcopy(record)
-            poisoned["actual_main_release_commit"]="0"*40
-            errors=mod.validate_release(ROOT,issuer,poisoned,check_bytes=False)
-            self.assertIn(f"LIVE_CAPTURE_MAIN_SHA_MISMATCH {company_code}",errors)
+        for code,html_sha in expected.items():
+            with self.subTest(code=code):
+                issuer=next(x for x in self.catalog["issuers"] if x["code"]==code)
+                record=json.loads((ROOT/f"research/issuers/{code}/release-gates.json").read_text())
+                receipt=json.loads((ROOT/f"research/issuers/{code}/live-release-receipt.json").read_text())
+                self.assertNotIn("unmerged_candidate",record)
+                self.assertEqual(record["published_html_sha256"],html_sha)
+                self.assertEqual(record["live_release_fingerprint"],html_sha)
+                self.assertEqual(record["actual_main_release_commit"],source_main)
+                self.assertEqual(record["gates"]["CLOUDFLARE_LIVE"]["proof"],source_action)
+                self.assertEqual(hashlib.sha256((ROOT/f"public/{code}.html").read_bytes()).hexdigest(),html_sha)
+                self.assertEqual(receipt["actual_publication_action"],source_action)
+                self.assertEqual(receipt["verified_git_commit"],source_main)
+                self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_"+code],html_sha)
+                self.assertEqual(receipt["artifact_id"],13663491000)
+                self.assertEqual(receipt["artifact_zip_sha256"],"2b1d52f56803670afdee3d68a7d72677128ba398e0bf1702f0e82808a74b35c1")
+                self.assertEqual({x["name"] for x in receipt["screenshots"]},
+                                 {f"live_{code}_{w}.png" for w in (1440,768,390)} |
+                                 {f"live_directory_{w}.png" for w in (1440,768,390)})
+                self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=True),[])
+                poisoned=copy.deepcopy(record)
+                poisoned["live_release_fingerprint"]="0"*64
+                self.assertIn(f"LIVE_FINGERPRINT_HTML_DRIFT {code}",
+                              mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
+                poisoned=copy.deepcopy(record)
+                poisoned["actual_main_release_commit"]="0"*40
+                self.assertIn(f"LIVE_CAPTURE_MAIN_SHA_MISMATCH {code}",
+                              mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
+                poisoned=copy.deepcopy(record)
+                poisoned["unmerged_candidate"]={
+                    "base_deployed_html_sha256":html_sha,
+                    "candidate_full_html_sha256":html_sha,
+                    "promotion_status":"UNMERGED_NOT_DEPLOYED",
+                    "independent_finance_and_art_review":"NOT_CHECKED",
+                    "current_sha_browser_proof":"LOCAL_ONLY",
+                }
+                self.assertIn(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}",
+                              mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
+                bad_receipt=copy.deepcopy(receipt)
+                bad_receipt["screenshots"][0]["sha256"]="0"*64
+                original=mod.read_json
+                def with_poisoned_receipt(path):
+                    if str(path).endswith(f"research/issuers/{code}/live-release-receipt.json"):
+                        return bad_receipt
+                    return original(path)
+                with mock.patch.object(mod,"read_json",side_effect=with_poisoned_receipt):
+                    # Existing contract verifies shape, but not external
+                    # screenshot file hashes when images live in Actions.
+                    # Our proof remains scoped to the immutable artifact.
+                    self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=False),[])
 
     def test_legacy_explicit_sha_not_checked_does_not_claim_new_live_fingerprint(self):
         # Historical receipts may be retained as dated claims, not backfilled.
