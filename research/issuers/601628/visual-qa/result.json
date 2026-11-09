@@ -17,7 +17,7 @@
       "source_sankey_actual_path_and_rect": "PASS",
       "cjk_font_available": true,
       "figure_count": 10,
-      "original_source_tables": 10,
+      "original_source_tables": 11,
       "figure_readability": "DESKTOP_ALL_ORIGINAL_SVG_VISIBLE",
       "svg_export": "PASS",
       "screenshot": "full_report_1440.png"
@@ -30,7 +30,7 @@
       "source_sankey_actual_path_and_rect": "PASS",
       "cjk_font_available": true,
       "figure_count": 10,
-      "original_source_tables": 10,
+      "original_source_tables": 11,
       "figure_readability": "TABLET_FULL_SOURCE_SVG",
       "svg_export": "PASS",
       "screenshot": "full_report_768.png"
@@ -43,7 +43,7 @@
       "source_sankey_actual_path_and_rect": "PASS",
       "cjk_font_available": true,
       "figure_count": 10,
-      "original_source_tables": 10,
+      "original_source_tables": 11,
       "figure_readability": "MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL",
       "svg_export": "PASS",
       "screenshot": "full_report_390.png"
