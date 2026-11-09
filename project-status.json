@@ -1,6 +1,27 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-08",
+  "updated_date": "2026-11-09",
+  "current_release_provenance_20261109": {
+      "scope": "HISTORICAL_EXACT_MAIN_SOURCE_PROOF_NOT_FUTURE_UNCONDITIONAL_LIVE",
+      "source_main_sha": "328ce615557390f1f0a52611496032557e87800a",
+      "quality_merged_prs": [
+        50,
+        51,
+        52
+      ],
+      "actual_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738",
+      "artifact_id": 13663491000,
+      "issuer_full_html_sha256": {
+        "600276": "a333818fc584eebefeaa0d8747dc74fcc6af6bd3b5c9fa78177508065821b75d",
+        "600900": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce"
+      },
+      "company_research_delivery": "TWO_SECTOR_SOURCE_TYPED_OPERATING_EDITORIAL_AND_READER_VISIBLE_QUANTIFIED_DECISIONS",
+      "finance_scope": "EXACT_ORIGINAL_CNY_CAS_SELECTED_FACTS_AND_CJK_1440_768_390",
+      "all_11_entire_article_visuals_unified": "NOT_ESTABLISHED",
+      "independent_human_finance_and_art_review": "NOT_CHECKED",
+      "complete_notes_and_8_to_12_quarter_peer_causality": "NOT_CHECKED",
+      "new_live_sha_rule": "REQUERY_CURRENT_GITHUB_MAIN_AND_PRODUCTION_HTML_FULL_BYTES"
+    },
   "active_pr35_quality_candidate": {
     "pr_number": 35,
     "status_scope": "HISTORICAL_PR35_MERGED_IN_MAIN_NEW_SOURCE_CANDIDATE_MUST_BE_REVERIFIED",

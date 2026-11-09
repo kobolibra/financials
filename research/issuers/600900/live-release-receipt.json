@@ -2,10 +2,10 @@
   "schema_version": 1,
   "issuer": "600900",
   "status": "PASS",
-  "verified_git_commit": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/41804157527",
+  "verified_git_commit": "328ce615557390f1f0a52611496032557e87800a",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/42595318738",
   "pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
-  "actual_full_content_sha256_equals_repository_main_600900": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
+  "actual_full_content_sha256_equals_repository_main_600900": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
   "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "all_11_issuer_external_routes": "PASS",
   "real_chromium_viewports": [
@@ -46,8 +46,8 @@
   "screenshots": [
     {
       "name": "live_600900_1440.png",
-      "sha256": "fbd7a32ae089ab01ae895358591f007ce0aabc3ea48394d94625e83a19275fa1",
-      "bytes": 1410127
+      "sha256": "35a8bcbb4eda7f9981ee2f5f5f180cf94aaa0c2c4c94e05bdfdab5594f1f0a2e",
+      "bytes": 1708620
     },
     {
       "name": "live_directory_1440.png",
@@ -56,8 +56,8 @@
     },
     {
       "name": "live_600900_768.png",
-      "sha256": "6951ff24687985613f61f38fba3b123ab2653f5951b21680ec956c331546eedf",
-      "bytes": 1141669
+      "sha256": "61b98129772c6be5a9327953737e5154207dc4f98da573eaca502e4afd3813f0",
+      "bytes": 1424596
     },
     {
       "name": "live_directory_768.png",
@@ -66,8 +66,8 @@
     },
     {
       "name": "live_600900_390.png",
-      "sha256": "37dec83fee7e78244aa447fa48b5323ec85f8be09e268b49acda50a1bc6ea46c",
-      "bytes": 1276045
+      "sha256": "0951efb387a5ada4844d74b791c62ec302fa12bae516084dd7062e51c86e1755",
+      "bytes": 1459799
     },
     {
       "name": "live_directory_390.png",
@@ -78,7 +78,9 @@
   "independent_second_human_financial_analyst": "NOT_CHECKED",
   "independent_human_aesthetic_editor": "NOT_CHECKED",
   "material_report_notes_exhaustive": "NOT_CHECKED",
-  "action_run_id": 41804157527,
+  "action_run_id": 42595318738,
   "issuer_count_checked": 11,
-  "real_capture_comment": "Captured from real completed GitHub Action 41804157527 on main 9060bd2; actual Cloudflare HTML and screenshots source SHA-bound. Independent human research, full notes and visual editor remain NOT_CHECKED."
+  "real_capture_comment": "Genuine current main 328ce615 source/SHA-bound screenshots and CJK finances; full immutable screenshots ZIP: https://github.com/kobolibra/financials/actions/runs/42595318738/artifacts/13663491000 . Independent human editorial and complete material note review NOT_CHECKED.",
+  "artifact_id": 13663491000,
+  "artifact_zip_sha256": "2b1d52f56803670afdee3d68a7d72677128ba398e0bf1702f0e82808a74b35c1"
 }
