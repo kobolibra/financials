@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41804157527",
-      "scope": "2026-11-04 real Cloudflare Pages current exact FULL HTML SHA at original main 9060bd2, standalone issuer and canonical homepage SHA, all 11 issuer routes, CJK Chromium 1440/768/390; 6 captured screenshot bytes/SHA, source-conserved desktop weighted money flow and 8 native 390 full-source money graphs. No independent human notes/finance/editorial certification."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/42595318738",
+      "scope": "2026-11-09 real main Cloudflare full HTML SHA for exact original source and all eleven routes, genuine Noto CJK Chromium 1440/768/390 six browser screenshots, mobile eight source charts and actual SVG finance geometry; source-limited research only; independent human financial/art review NOT_CHECKED."
     }
   },
   "blockers": [
@@ -118,17 +118,9 @@
       "issue": "CASH_EQUIVALENTS_RESTRICTED_MARGIN_EXCLUDED"
     }
   ],
-  "published_html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
-  "live_release_fingerprint": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
-  "actual_main_release_commit": "9060bd2a0bf3ddc32d267c176388214ef3316f13",
+  "published_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
+  "live_release_fingerprint": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
+  "actual_main_release_commit": "328ce615557390f1f0a52611496032557e87800a",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
-  "live_receipt_file": "research/issuers/600900/live-release-receipt.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "d928676e87ff3d415de36931ee5706614d797264a88dc4980b94426f1492eef8",
-    "candidate_full_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "This sha belongs to the changed PR source file only. Historical live release PASS and screenshots remain valid exclusively for the old main SHA. Do not claim new candidate deployed or screenshot certified until a real independent current-sha browser receipt."
-  }
+  "live_receipt_file": "research/issuers/600900/live-release-receipt.json"
 }
