@@ -35,6 +35,36 @@ class TwoRealSectorHostileTests(unittest.TestCase):
         self.assertEqual(len(x["ledger"]["cfo_adjustments"]),17)
         self.assertIn("2026年7月",x["story"]["counter"])
         self.assertIn("非现金结算"," ".join(x["story"]["other_notes"]))
+    def test_operating_subgroup_and_physical_output_source_rules(self):
+        hydro=copy.deepcopy(self.data["600900"]["ledger"])
+        pharma=copy.deepcopy(self.data["600276"]["ledger"])
+        self.assertEqual(mod.check_sector_operating_story(hydro)["conversion"],"NOT_ADDITIVE")
+        self.assertEqual(mod.check_sector_operating_story(pharma)["classification"],
+                         "MANAGEMENT_SUBSET_OF_GOODS_NOT_EXTRA_SALES")
+        hydro["facts"]["power_gen_100m_kwh"]["unit"]="亿元"
+        with self.assertRaisesRegex(AssertionError,"OPERATING_SOURCE_SEMANTIC_MISMATCH"):
+            mod.check_sector_operating_story(hydro)
+        pharma["facts"]["innovative_drug_sales_100m"]["yuan"]="999.99"
+        with self.assertRaisesRegex(AssertionError,"OPERATING_INNOVATION_NOT_GOODS_SUBSET"):
+            mod.check_sector_operating_story(pharma)
+        pharma=copy.deepcopy(self.data["600276"]["ledger"])
+        pharma["facts"]["innovative_drug_sales_100m"]["scope"]="parent"
+        with self.assertRaisesRegex(AssertionError,"OPERATING_SOURCE_SEMANTIC_MISMATCH"):
+            mod.check_sector_operating_story(pharma)
+        pharma=copy.deepcopy(self.data["600276"]["ledger"])
+        pharma["facts"]["rpo"]["type"]="flow"
+        with self.assertRaisesRegex(AssertionError,"PHARMA_RPO_STOCK_NOT_DISJOINT_FROM_REVENUE"):
+            mod.check_sector_operating_story(pharma)
+
+    def test_shared_industry_art_has_no_hardcoded_research_metrics_or_dead_sankey(self):
+        src=(ROOT/"research/shared/build_two_sector.py").read_text()
+        self.assertNotIn('function sankey(){',src)
+        self.assertNotIn('var innovation=88.09*N',src)
+        self.assertNotIn('text(245,236,"1327.44"',src)
+        self.assertIn('sourceOperatingValue("innovative_drug_sales_100m","亿元")',src)
+        self.assertIn('sourceOperatingValue("power_gen_100m_kwh","亿千瓦时")',src)
+        self.assertIn('data-subset-yuan=',src)
+
     def test_fake_pharma_innovative_sales_as_additional_disjoint_source_rejected(self):
         def wrong(d):
             d["segments"].append({"label":"创新药重复收入", "rev":"innovative_drug_sales_100m","cost":"drug_sales_cost","dimension":"contract_goods_type"})
