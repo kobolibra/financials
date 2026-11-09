@@ -13,6 +13,8 @@ on:
       - 'site/**'
       - '.github/workflows/verify-unified-research-library.yml'
       - 'scripts/check_release_contract.py'
+      - 'scripts/verify_live_optical_native.py'
+      - 'scripts/test_live_optical_source_guard.py'
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
       - 'research/issuers/**/release-gates.json'
       - 'research/issuers/**/source-ledger.json'
@@ -30,6 +32,8 @@ on:
       - 'site/**'
       - '.github/workflows/verify-unified-research-library.yml'
       - 'scripts/check_release_contract.py'
+      - 'scripts/verify_live_optical_native.py'
+      - 'scripts/test_live_optical_source_guard.py'
       - 'scripts/test_check_release_contract.py'
       - 'skills/ashare-financial-storytelling/quality-regressions.json'
       - 'research/issuers/**/release-gates.json'
@@ -52,6 +56,7 @@ jobs:
           python scripts/check_handoff.py
           python scripts/check_release_contract.py
           python -m unittest discover -s scripts -p test_check_release_contract.py -v
+          python -m unittest discover -s scripts -p test_live_optical_source_guard.py -v
           python research/shared/test_conserved_flow.py
       - name: Install Chromium, Playwright and Chinese fonts
         if: github.event_name != 'pull_request'
