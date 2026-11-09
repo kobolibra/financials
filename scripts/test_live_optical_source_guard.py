@@ -40,7 +40,6 @@ class OpticalLiveProofSmoke(unittest.TestCase):
                     "LIVE_RESEARCH_QUANTIFIED_DECISION_WRONG",
                     "LIVE_OPTICAL_PNL_FALSE_MONEY_LENGTH"):
             self.assertIn(key,content,key)
-        self.assertIn('"second_human"', "second_human") if False else None
 
 
 if __name__=="__main__":
