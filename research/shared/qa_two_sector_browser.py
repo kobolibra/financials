@@ -62,6 +62,40 @@ def main():
             pic=out/(a.code+"-profit-formation-"+str(width)+".png")
             chosen.screenshot(path=str(pic),timeout=20000)
 
+            # Source-linked sector editorial figure is a second genuine industry
+            # graphic, not a manually frozen current-period number or a money
+            # ribbon connecting generation/management subsets to cash.
+            sector=page.locator("#chart-sector > svg")
+            source=sector.evaluate("""svg=>({
+                production:[...svg.querySelectorAll('[data-source-fact]')].map(x=>({
+                    key:x.dataset.sourceFact,original:x.dataset.originalValue,yuan:x.dataset.originalYuan})),
+                contracts:[...svg.querySelectorAll('rect[data-contract-source]')].map(x=>({
+                    key:x.dataset.contractSource,yuan:x.dataset.sourceYuan,width:+x.getAttribute('width'),
+                    scale:+x.dataset.scaleYuanPerSvgUnit})),
+                innovation:svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]')?
+                  {yuan:svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').dataset.subsetYuan,
+                   parent:svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').dataset.goodsParentYuan,
+                   width:+svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').getAttribute('width'),
+                   scale:+svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').dataset.scaleYuanPerSvgUnit}:null,
+                rpo:svg.querySelector('[data-stock-fact="rpo"]')?.dataset.stockYuan
+            })""")
+            if a.code=="600900":
+                gen=next((x for x in source["production"] if x["key"]=="power_gen_100m_kwh"),None)
+                assert gen and D(gen["original"])==D(d["facts"]["power_gen_100m_kwh"]["yuan"]),(a.code,width,"HYDRO_PHYSICAL_SOURCE_SILENTLY_FROZEN")
+                for key in ("rev","cfo"):
+                    fact=next((x for x in source["production"] if x["key"]==key),None)
+                    assert fact and D(fact["yuan"])==D(d["facts"][key]["yuan"]),(a.code,width,"HYDRO_MONEY_NOT_SOURCE_BOUND",key)
+            else:
+                assert len(source["contracts"])==3,(a.code,width,"PHARMA_CONTRACT_SOURCE_MISSING")
+                total=sum((D(x["yuan"]) for x in source["contracts"]),D(0))
+                assert total==D(d["facts"]["rev"]["yuan"]),(a.code,width,"PHARMA_CONTRACT_INCOME_NOT_EXCLUSIVE")
+                assert all(x["width"]>0 and abs(D(str(x["width"]))-D(x["yuan"])/D(str(x["scale"])))<D(".02")
+                           for x in source["contracts"]),(a.code,width,"PHARMA_ORIGINAL_MONEY_AREA_CHANGED")
+                innovation=source["innovation"]
+                assert innovation and D(innovation["yuan"])==D(d["facts"]["innovative_drug_sales_100m"]["yuan"])*D(100000000)
+                assert D(innovation["parent"])==D(d["facts"]["drug_sales_rev"]["yuan"])
+                assert abs(D(str(innovation["width"]))-D(innovation["yuan"])/D(str(innovation["scale"])))<D(".02")
+                assert D(source["rpo"])==D(d["facts"]["rpo"]["yuan"]),(a.code,width,"RPO_BECAME_REVENUE")
             assert page.locator(".plot > svg").count()==8
             assert page.locator(".native-mobile-finance svg").count()==8
             assert page.locator("a[href='/#companies']").count()>=1
@@ -138,6 +172,7 @@ def main():
                 if a.code=="600276":
                     inn=page.locator("#chart-sector .native-mobile-finance .m-pharma-innovation")
                     assert inn.count()==1,(a.code,"NOT_REAL_NESTED_INNOVATIVE_DRUG_CONTRACT_SUBSET")
+                    assert inn.get_attribute("data-operating-fact")=="innovative_drug_sales_100m"
                     source_num=float(d["facts"]["innovative_drug_sales_100m"]["yuan"])*1e8
                     assert abs(float(inn.get_attribute("data-subset-yuan"))-source_num)<.02
                     assert page.locator('#chart-capital .native-mobile-finance [data-capital-supplement="true"]').count()==1
