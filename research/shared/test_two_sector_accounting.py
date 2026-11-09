@@ -55,6 +55,28 @@ class TwoRealSectorHostileTests(unittest.TestCase):
         with self.assertRaisesRegex(AssertionError,"QUANTIFIED_PHARMA_SUBSET_OR_LICENSE_MARGIN"):
             mod.quantified_editorial_panel(d)
 
+    def test_published_research_percentages_are_rederived_from_original_yuan(self):
+        hydro=self.data["600900"]["ledger"]
+        h=hydro["facts"]
+        val=lambda k:mod.D(str(h[k]["yuan"]))
+        present_gp=val("rev")-val("cogs")
+        prior_gp=val("rev_prior")-val("cogs_prior")
+        expected=f"{(present_gp/prior_gp-mod.D(1))*mod.D(100):+.2f}%"
+        html=mod.quantified_editorial_panel(hydro)
+        self.assertIn(expected,html)
+        self.assertIn('GROSS_PROFIT_YOY_VS_CFO_YOY_ARITHMETIC_ONLY',html)
+        self.assertIn('重述上年同期',html)
+        pharma=self.data["600276"]["ledger"]
+        x=pharma["facts"]
+        license=mod.D(x["licence_rev"]["yuan"])
+        cost=mod.D(x["licence_cost"]["yuan"])
+        licensed_margin=f"{((license-cost)/license)*mod.D(100):.2f}%"
+        htm=mod.quantified_editorial_panel(pharma)
+        self.assertIn(licensed_margin,htm)
+        self.assertIn('LICENSE_GROSS_MARGIN_AND_CFO_YOY_ARITHMETIC_ONLY',htm)
+        self.assertIn('管理层子集',htm)
+        self.assertNotIn('已计入本期的BMS协议',htm)
+
     def test_operating_subgroup_and_physical_output_source_rules(self):
         hydro=copy.deepcopy(self.data["600900"]["ledger"])
         pharma=copy.deepcopy(self.data["600276"]["ledger"])
