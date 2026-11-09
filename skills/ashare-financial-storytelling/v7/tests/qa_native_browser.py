@@ -46,6 +46,51 @@ with sync_playwright() as p:
                 assert abs(focus["cfoWidth"]-focus["cfo"]/focus["net"]*100)<1e-6,(code,"CASH_LEAD_SOURCE_RAW_CSS_PERCENT_CONTRADICTS_YUAN")
                 assert focus["actualBarTrack"]>100 and abs(focus["cfoRendered"]/focus["actualBarTrack"]*100-focus["cfoWidth"])<0.25,(code,width,"CASH_LEAD_ACTUAL_BROWSER_PHYSICAL_BAR_LENGTH_WRONG",focus)
                 assert 0<=focus["left"] and focus["right"]<=width+2,(code,width,"EDITORIAL_FOCUS_MOBILE_CROPPED")
+            if code in ("300394","300502"):
+                import sys
+                from decimal import Decimal as D
+                sys.path.insert(0,str(ROOT/"skills/ashare-financial-storytelling/v7/engine"))
+                from quantified_optical_decision import CONFIG, decision_values
+                fixture=(ROOT/"skills/ashare-financial-storytelling/v7/engine/sample-ledger.json"
+                         if code=="300394" else
+                         ROOT/"skills/ashare-financial-storytelling/v7/examples/xinyisheng-2026H1-ledger.json")
+                ledger=json.loads(fixture.read_text(encoding="utf-8"))
+                expected=decision_values(ledger)
+                decision=page.locator("#quantified-decision")
+                assert decision.count()==1 and decision.is_visible(),(code,width,"READER_RESEARCH_DECISION_NOT_VISIBLE")
+                assert decision.get_attribute("data-original-pdf-sha256")==ledger["document"]["source_sha256"]
+                assert decision.get_attribute("data-accounting-not-causal")=="true"
+                source=decision.evaluate("""node=>({
+                  facts:[...node.querySelectorAll('tr[data-fact-id]')].map(el=>({...el.dataset})),
+                  derived:[...node.querySelectorAll('.optical-decision-metric')].map(el=>({...el.dataset})),
+                  bbox:(()=>{const r=node.getBoundingClientRect();return {left:r.left,right:r.right,width:r.width}})(),
+                  cards:[...node.querySelectorAll('.optical-decision-metric')].map(el=>{
+                    const r=el.getBoundingClientRect();
+                    return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
+                  }),
+                  font:+getComputedStyle(node.querySelector('.optical-decision-lead')).fontSize.replace('px','')
+                })""")
+                assert len(source["facts"])==8,(code,width,"MISSING_EXACT_ORIGINAL_EVIDENCE_FACTS")
+                assert len(source["derived"])==3,(code,width,"MISSING_SOURCE_DERIVED_DECISION")
+                for raw in source["facts"]:
+                    key=raw["factId"]
+                    fact=ledger["facts"][key]
+                    spec=next(z for z in CONFIG[code] if z[0]==key)
+                    assert D(raw["originalValue"])==D(fact["amount"]),(code,width,key,"DECISION_PUBLISHED_MONEY_DRIFT")
+                    assert raw["period"]==spec[1] and raw["statementKind"]==spec[2]
+                    assert raw["sourceUnit"]==spec[3] and int(raw["physicalPage"])==fact["page"]
+                derived={z["derivedKey"]:D(z["derivedRatio"]) for z in source["derived"]}
+                assert derived==dict((k,v) for k,_,v in expected["metrics"]),(code,width,"RESEARCH_DECISION_FORMULA_DRIFT")
+                assert source["bbox"]["width"]>200 and source["bbox"]["left"]>=-1 and source["bbox"]["right"]<=width+2,(code,width,"QUANTIFIED_EDITORIAL_CARD_OFFSCREEN")
+                assert source["font"]>=14,(code,width,"QUANTIFIED_DECISION_COPY_TOO_SMALL")
+                if width==390:
+                    boxes=source["cards"]
+                    assert all(box["left"]>=source["bbox"]["left"]-1 and box["right"]<=source["bbox"]["right"]+1 for box in boxes)
+                    assert all(boxes[i]["bottom"]<=boxes[i+1]["top"]+1 for i in range(2)),(code,width,"MOBILE_RESEARCH_METRICS_OVERPRINT")
+                else:
+                    assert all(x["right"]<=source["bbox"]["right"]+1 for x in source["cards"])
+                assert "NOT_CHECKED" in decision.inner_text(),(code,width,"FALSE_INDEPENDENT_REVIEW_CLAIM")
+                decision.screenshot(path=str(out/f"{code}_decision_{width}.png"),animations="disabled")
             n=page.locator("figure.has-native-finance").count()
             assert n>=9,(code,width,"MISSING_MONEY_NATIVE_FIGURES",n)
             assert page.locator(".hero-svg").count()==1,(code,"DESKTOP_ORIGINAL_LOST")
