@@ -82,16 +82,30 @@ jobs:
           for code in ("600900","600276"):
               gate=Path("research/issuers")/code/"release-gates.json"
               record=json.loads(gate.read_text(encoding="utf8"))
-              candidate=record["unmerged_candidate"]
               assert record["release_class"]=="source_limited_preview"
-              assert candidate["base_deployed_html_sha256"]==record["published_html_sha256"]
-              assert candidate["promotion_status"]=="UNMERGED_NOT_DEPLOYED"
-              assert candidate["independent_finance_and_art_review"]=="NOT_CHECKED"
               actual=hashlib.sha256((Path("public")/(code+".html")).read_bytes()).hexdigest()
               evidence=json.loads((Path("research/issuers")/code/"visual-qa/result.json").read_text())
               assert evidence["html_sha256"]==actual,(code,"VISUAL_RECEIPT_NOT_CURRENT_HTML")
               assert {x["width"] for x in evidence["actual_3_viewport_checks"]}=={390,768,1440}
               assert evidence["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]=="PASS"
+              if actual==record["published_html_sha256"]:
+                  # A provenance-only PR must NEVER invent a ghost candidate
+                  # when its original HTML is already verified on production.
+                  assert "unmerged_candidate" not in record,(code,"GHOST_UNMERGED_CANDIDATE")
+                  assert record["live_release_fingerprint"]==actual
+                  assert record["gates"]["CLOUDFLARE_LIVE"]["status"]=="PASS"
+                  receipt=json.loads((Path("research/issuers")/code/"live-release-receipt.json").read_text())
+                  assert receipt["actual_full_content_sha256_equals_repository_main_"+code]==actual
+                  assert receipt["verified_git_commit"]==record["actual_main_release_commit"]
+                  print("ALREADY_LIVE_EXACT_HTML_NO_CANDIDATE",code,actual)
+                  continue
+              # Changed genuinely new bytes MUST be a distinct unmerged PR
+              # and cannot borrow old live receipts or independent review.
+              candidate=record.get("unmerged_candidate")
+              assert isinstance(candidate,dict),(code,"NEW_HTML_WITHOUT_PENDING_CANDIDATE")
+              assert candidate["base_deployed_html_sha256"]==record["published_html_sha256"]
+              assert candidate["promotion_status"]=="UNMERGED_NOT_DEPLOYED"
+              assert candidate["independent_finance_and_art_review"]=="NOT_CHECKED"
               candidate["candidate_full_html_sha256"]=actual
               candidate["current_sha_browser_proof"]="LOCAL_ONLY"
               gate.write_text(json.dumps(record,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
