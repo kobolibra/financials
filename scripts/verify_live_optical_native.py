@@ -209,6 +209,28 @@ def run():
                         assert D(z["before"])+D(z["delta"])==D(z["after"])
                         assert abs(D(z["width"])-abs(D(z["delta"]))/D(z["scale"]))<D(".000001"),(code,width,"LIVE_OPTICAL_PNL_FALSE_MONEY_LENGTH",z)
                         assert z["ids"] and z["pages"]
+                if width<900 and code in ("300394","300502"):
+                    # Original-yuan Sankey source business name and exact
+                    # amount/margin are now separate, genuinely legible
+                    # Noto CJK 11-unit rows. Actual screen rectangles—not
+                    # merely nominal source font-size—must not intersect.
+                    # 300308 is separately source-pinned and unchanged.
+                    legend=page.evaluate("""() => {
+                      const svg=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+                      if(!svg)return null;
+                      const words=[...svg.querySelectorAll('text[data-editorial-role="source-summary"]')];
+                      const header=svg.querySelector('text[data-editorial-role="source-stage-header"]');
+                      return {words:words.map(el=>({
+                        text:el.textContent,font:+el.getAttribute('font-size'),
+                        top:el.getBoundingClientRect().top,
+                        bottom:el.getBoundingClientRect().bottom})),
+                        headerTop:header?.getBoundingClientRect().top};
+                    }""")
+                    assert legend and len(legend["words"])==2*len(parts),(code,width,"LIVE_OPTICAL_SOURCE_NAME_AND_MONEY_ROWS_MISSING")
+                    glyphs=legend["words"]
+                    assert all(g["font"]>=11 for g in glyphs),(code,width,"LIVE_OPTICAL_MONEY_SOURCE_LABEL_TOO_SMALL")
+                    assert all(glyphs[i]["bottom"]+.5<glyphs[i+1]["top"] for i in range(len(glyphs)-1)),(code,width,"LIVE_OPTICAL_MONEY_SOURCE_LABELS_OVERPRINT",glyphs)
+                    assert legend["headerTop"] is not None and glyphs[-1]["bottom"]+2<legend["headerTop"],(code,width,"LIVE_OPTICAL_SOURCES_OVERPRINT_REVENUE_HEADER",legend)
                 if width<900:
                     assert state["nativeVisible"] and not state["desktopVisible"] and state["inner"]<=state["client"]+2,(code,width,"PUBLIC_NATIVE_MONEY_HIDDEN_OR_CROPPED",state)
                     figures=page.evaluate("""() => [...document.querySelectorAll('figure.has-native-finance')].map(f=>{
