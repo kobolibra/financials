@@ -83,6 +83,118 @@ def check_sector_operating_story(d):
     raise AssertionError("UNSUPPORTED_SECTOR_OPERATING_STORY "+industry)
 
 
+def quantified_editorial_panel(d):
+    """Reader-visible, exact-yuan decision analysis backed by actual PDF fact IDs.
+
+    This is arithmetic and falsifiable scope, never causal attribution or
+    invented quarterly/peer valuation. Keep bank/insurance models separate.
+    """
+    from html import escape as h
+    code=d["issuer"]["code"]
+    issuer=d["issuer"]
+    f=d["facts"]
+    pdf=d["source"]["official_announcement"]
+    source_sha=d["source"]["original_bytes_sha256"]
+    def disclosed(key,period="2026H1"):
+        x=f[key]
+        if (x.get("period")!=period or x.get("type")!="flow" or
+            x.get("scope")!="consolidated" or x.get("unit")!="元" or
+            x.get("currency")!="CNY" or
+            x.get("classification") not in ("DISCLOSED","DISCLOSED_RESTATED") or
+            not isinstance(x.get("page"),int) or x["page"]<1):
+            raise AssertionError("QUANTIFIED_SOURCE_SCOPE_MISMATCH "+key)
+        return D(str(x["yuan"]))
+    def yi_exact(value):
+        return f"{value/CENT:,.2f}亿元"
+    def pct(v1,v0):
+        if v0<=0:
+            raise AssertionError("QUANTIFIED_DIVISION_BASE_MISSING")
+        return f"{(v1/v0-D(1))*D(100):+.2f}%"
+    def source_line(key,label,period="2026H1",operating_unit=None):
+        x=f[key]
+        if operating_unit:
+            amount=validated_operating_metric(d,key,operating_unit)
+            show=f"{amount:,.2f}{operating_unit}"
+        else:
+            amount=disclosed(key,period)
+            show=yi_exact(amount)
+        return (
+            f'<li data-fact-id="{h(key)}" data-period="{h(period)}" '
+            f'data-exact-source-value="{h(format(amount,"f"))}" '
+            f'data-source-unit="{h(x["unit"])}" data-physical-page="{x["page"]}">'
+            f'<span>{h(label)}</span><strong>{h(show)}</strong>'
+            f'<a href="{h(pdf,quote=True)}#page={x["page"]}" '
+            f'target="_blank" rel="noopener noreferrer">原报告 p.{x["page"]}</a></li>')
+    if issuer["industry"]=="hydropower_utility":
+        current_gp=disclosed("rev")-disclosed("cogs")
+        prior_gp=disclosed("rev_prior","2025H1")-disclosed("cogs_prior","2025H1")
+        current_cfo=disclosed("cfo")
+        prior_cfo=disclosed("cfo_prior","2025H1")
+        title="毛利扩大，但水电现金创造为何几乎未变？"
+        thesis=("原始同比毛利增加 "+yi_exact(current_gp-prior_gp)+
+                "（"+pct(current_gp,prior_gp)+"），而经营现金净额仅变化 "+
+                yi_exact(current_cfo-prior_cfo)+"（"+pct(current_cfo,prior_cfo)+"）。")
+        lead="同一合并报表比较期间的会计差异，不能直接归因为来水、电价或现金回收效率。"
+        counter="比较期按同一控制合并追溯调整；缺净售电量、合同电价和水文分布，不能作量价因果归因。"
+        rows=[("rev","本期营业收入","2026H1",None),
+              ("cogs","本期营业成本","2026H1",None),
+              ("rev_prior","重述上年同期营业收入","2025H1",None),
+              ("cogs_prior","重述上年同期营业成本","2025H1",None),
+              ("cfo","本期经营现金净额","2026H1",None),
+              ("cfo_prior","上年同期经营现金净额","2025H1",None)]
+        primary_value=pct(current_gp,prior_gp)
+        secondary_value=pct(current_cfo,prior_cfo)
+        primary_label="毛利同比变化"
+        secondary_label="经营现金同比变化"
+        derived="GROSS_PROFIT_YOY_VS_CFO_YOY_ARITHMETIC_ONLY"
+    elif issuer["industry"]=="innovative_pharma":
+        licence=disclosed("licence_rev")
+        license_cogs=disclosed("licence_cost")
+        goods=disclosed("drug_sales_rev")
+        innovation=validated_operating_metric(d,"innovative_drug_sales_100m","亿元")*CENT
+        cfo=disclosed("cfo")
+        prior_cfo=disclosed("cfo_prior","2025H1")
+        if licence<=0 or not D(0)<innovation<=goods or license_cogs<0 or license_cogs>licence:
+            raise AssertionError("QUANTIFIED_PHARMA_SUBSET_OR_LICENSE_MARGIN")
+        margin=f"{((licence-license_cogs)/licence)*D(100):.2f}%"
+        subset=f"{(innovation/goods)*D(100):.2f}%"
+        title="许可业务毛利很高，为什么经营现金仍然下降？"
+        thesis=("许可收入 "+yi_exact(licence)+"、直接毛利率 "+margin+
+                "；创新药销售 "+yi_exact(innovation)+"是商品销售的 "+subset+
+                "，不是额外收入。经营现金同比 "+pct(cfo,prior_cfo)+"。")
+        lead="许可协议履约、药品销售回款和公允价值收益是不同的会计/现金驱动，不应混为经常经营盈利。"
+        counter="本期许可毛利并不能证明未来年度可重复；2026年7月才生效的合作不属于本期收入。"
+        rows=[("licence_rev","本期许可收入","2026H1",None),
+              ("licence_cost","本期许可直接成本","2026H1",None),
+              ("drug_sales_rev","本期商品销售收入","2026H1",None),
+              ("innovative_drug_sales_100m","创新药销售（管理层子集）","2026H1","亿元"),
+              ("cfo","本期经营现金净额","2026H1",None),
+              ("cfo_prior","上年同期经营现金净额","2025H1",None)]
+        primary_value=margin
+        secondary_value=pct(cfo,prior_cfo)
+        primary_label="许可业务直接毛利率"
+        secondary_label="经营现金同比变化"
+        derived="LICENSE_GROSS_MARGIN_AND_CFO_YOY_ARITHMETIC_ONLY"
+    else:
+        raise AssertionError("QUANTIFIED_EDITORIAL_SECTOR_UNSUPPORTED")
+    items="".join(source_line(*row) for row in rows)
+    return (
+        f'<section class="decision" id="quantified-decision" data-issuer="{h(code)}" '
+        f'data-source-pdf-sha256="{h(source_sha)}" data-derived-type="{h(derived)}">'
+        '<p class="eyebrow">THE QUANTIFIED DECISION / 原件可复算的核心矛盾</p>'
+        f'<h2>{h(title)}</h2><p class="decision-thesis">{h(thesis)}</p>'
+        '<div class="decision-metrics">'
+        f'<div><small>{h(primary_label)}</small><strong>{h(primary_value)}</strong></div>'
+        f'<div><small>{h(secondary_label)}</small><strong>{h(secondary_value)}</strong></div>'
+        '</div>'
+        f'<p class="decision-limit"><b>口径与替代解释：</b>{h(lead)} {h(counter)}</p>'
+        '<details class="decision-source"><summary>核对同比计算所用的原报告事实与页码</summary>'
+        f'<ul>{items}</ul></details>'
+        '<p class="decision-class">以上仅为精确元级会计关系和公开管理层口径；'
+        '因果归因、8–12季度与同行估值、独立人类财务/视觉复核均为 NOT_CHECKED。</p>'
+        '</section>')
+
+
 def check(d,briefs,story,pdf_path):
     f=d["facts"];checks={}
     def ck(label,x,y):
@@ -166,14 +278,14 @@ a{color:inherit}button{font:inherit}.wrap{max-width:1190px;margin:auto;padding:0
 .hero{padding:95px 0 68px;display:grid;grid-template-columns:minmax(0,1.8fr) minmax(250px,.8fr);gap:56px}
 .eyebrow{letter-spacing:.17em;font-size:11px;font-weight:800;color:var(--green)}h1,h2,h3{font-family:"Noto Serif CJK SC","Songti SC",STSong,serif;font-weight:650}h1{font-size:clamp(37px,5.1vw,66px);line-height:1.23;letter-spacing:-.055em;margin:20px 0 27px;max-width:15em}.dek{font-size:17px;line-height:1.95;color:#405b5e;max-width:660px}.heroaside{border-left:2px solid var(--green);padding-left:27px;align-self:start;margin-top:28px}.heroaside b{font-size:12px;letter-spacing:.08em;color:var(--green)}.heroaside p{margin:15px 0 0;font-size:15px;line-height:1.9}
 .nav{max-width:100%;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:12px;overflow-x:auto;white-space:nowrap}.nav a{font-size:12px;text-decoration:none;padding:9px 14px;border-radius:20px;background:#e8eee7}
-.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:35px}.number{border-top:1px solid var(--ink);padding-top:17px}.number label{display:block;font-size:11px;color:var(--soft);letter-spacing:.07em}.number strong{display:block;margin-top:8px;font-size:clamp(20px,2.7vw,35px);letter-spacing:-.055em;font-variant-numeric:tabular-nums}.number small{color:var(--soft);font-size:11px}
+.decision{margin:48px 0 10px;padding:36px 42px 30px;background:#fffefb;border:1px solid var(--line);border-top:4px solid var(--green)}.decision h2{font-size:clamp(27px,3.2vw,43px);max-width:940px;margin:14px 0 20px}.decision-thesis{font-size:19px;line-height:1.85;font-weight:650;color:var(--ink);max-width:940px}.decision-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin:27px 0;padding:23px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.decision-metrics small{display:block;font-size:12px;color:var(--soft)}.decision-metrics strong{display:block;font-size:clamp(31px,3.5vw,48px);font-weight:730;line-height:1.35;letter-spacing:-.04em;font-variant-numeric:tabular-nums}.decision-limit{font-size:14px;line-height:1.9;color:#6d594d}.decision-source ul{list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 24px;padding:0}.decision-source li{display:flex;align-items:center;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding:11px 0;font-size:12px}.decision-source li strong{margin-left:auto;font-variant-numeric:tabular-nums}.decision-source li a{color:var(--green);font-size:11px}.decision-class{font-size:12px;color:var(--soft);margin:15px 0 0}.numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:35px}.number{border-top:1px solid var(--ink);padding-top:17px}.number label{display:block;font-size:11px;color:var(--soft);letter-spacing:.07em}.number strong{display:block;margin-top:8px;font-size:clamp(20px,2.7vw,35px);letter-spacing:-.055em;font-variant-numeric:tabular-nums}.number small{color:var(--soft);font-size:11px}
 .chapter{padding:82px 0 68px;border-bottom:1px solid var(--line);scroll-margin-top:35px}.chaptermark{font-size:11px;color:var(--green);font-weight:900;letter-spacing:.17em}.chapter h2{font-size:clamp(27px,3.4vw,42px);line-height:1.44;letter-spacing:-.035em;max-width:1000px;margin:18px 0}.chapter .answer{font-size:17px;max-width:870px;color:var(--soft);margin-bottom:30px}
 .figure{min-width:0;max-width:100%;margin:28px 0;background:var(--paper);border:1px solid var(--line);border-radius:5px;overflow:hidden}.figure-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:23px 30px 17px;border-bottom:1px solid var(--line)}.figure-head b{font-size:12px;letter-spacing:.08em}.export{background:transparent;border:1px solid var(--line);border-radius:4px;padding:7px 12px;color:var(--soft);cursor:pointer;font-size:11px}.plot{width:100%;max-width:100%;min-width:0;padding:18px 23px 17px;overflow-x:auto;scrollbar-width:thin}.plot svg{width:100%;height:auto;display:block;min-width:760px}.native-mobile-finance{display:none}.native-mobile-finance-supplement{padding:14px;background:#eef4ed;font-size:12px;color:#395c50;line-height:1.8;border-top:1px solid var(--line)}.native-mobile-finance-supplement p{margin:0 0 10px}.native-mobile-finance-supplement strong{color:var(--green);font-variant-numeric:tabular-nums}.chart-label{font-size:12px;fill:var(--ink)}.chart-tiny{font-size:10.5px;fill:var(--soft)}.chart-value{font-weight:700;font-size:13px;fill:var(--ink)}.chart-title{font-size:12px;fill:var(--ink);font-weight:700}
 .counter{font-size:13px;color:#784e3b;background:#f4eee7;padding:18px 24px;border-left:3px solid var(--copper)}.sourcebar{padding:15px 27px 20px;border-top:1px solid var(--line);color:var(--soft);font-size:12px}
 details{margin-top:10px}summary{cursor:pointer;color:var(--green);font-weight:700;list-style:disclosure-closed;font-size:12px}
 table{border-collapse:collapse;width:100%;font-size:12px;margin-top:16px;background:white}td,th{border-bottom:1px solid var(--line);padding:9px 8px;text-align:left}td:nth-child(2),td:nth-child(3){font-variant-numeric:tabular-nums;white-space:nowrap}th{color:var(--soft);font-weight:600}td a{color:var(--green)}.tablewrap{max-width:100%;min-width:0;overflow:auto}
 .disclaimer{padding:54px 0}.disclaimer h2{font-size:27px}.notes{display:grid;grid-template-columns:1fr 1fr;gap:16px}.note{font-size:14px;padding:20px 24px;background:#eef1eb;color:#456366}.actions{padding:50px 0 85px;background:#eaf0ea;margin-top:35px}.actions h2{font-size:30px}.actions li{margin:13px 0}.footer{display:flex;justify-content:space-between;gap:16px;padding:35px 0;border-top:1px solid var(--line);font-size:11px;color:var(--soft)}
-@media(max-width:740px){.plot{overflow-x:visible!important;overflow-y:visible!important;padding:10px}.plot>svg{display:none!important}.plot .native-mobile-finance{display:block;min-width:0;max-width:100%;width:100%}.plot .native-mobile-finance svg{width:100%;max-width:100%;min-width:0;height:auto;display:block;overflow:visible}.wrap{padding:0 17px}.topbar{height:60px}.topbar .logo{font-size:11px}.hero{padding:53px 0 40px;grid-template-columns:1fr;gap:8px}h1{font-size:37px;max-width:99%;line-height:1.32}.dek{font-size:15px}.heroaside{margin:16px 0 0}.numbers{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.number strong{font-size:20px}.number label{font-size:10px}.chapter{padding:54px 0 45px}.chapter h2{font-size:26px}.chapter .answer{font-size:15px}.figure-head{padding:17px}.plot{padding:10px}.sourcebar{padding:14px 16px}.notes{grid-template-columns:1fr}.footer{flex-direction:column}.figure{border-radius:0}.counter{font-size:12px}.nav{margin:0 -17px;padding-left:17px}}
+@media(max-width:740px){.decision{margin:23px 0;padding:22px 15px}.decision h2{font-size:29px}.decision-thesis{font-size:16px}.decision-metrics{gap:10px}.decision-metrics strong{font-size:30px}.decision-source ul{grid-template-columns:1fr}.plot{overflow-x:visible!important;overflow-y:visible!important;padding:10px}.plot>svg{display:none!important}.plot .native-mobile-finance{display:block;min-width:0;max-width:100%;width:100%}.plot .native-mobile-finance svg{width:100%;max-width:100%;min-width:0;height:auto;display:block;overflow:visible}.wrap{padding:0 17px}.topbar{height:60px}.topbar .logo{font-size:11px}.hero{padding:53px 0 40px;grid-template-columns:1fr;gap:8px}h1{font-size:37px;max-width:99%;line-height:1.32}.dek{font-size:15px}.heroaside{margin:16px 0 0}.numbers{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.number strong{font-size:20px}.number label{font-size:10px}.chapter{padding:54px 0 45px}.chapter h2{font-size:26px}.chapter .answer{font-size:15px}.figure-head{padding:17px}.plot{padding:10px}.sourcebar{padding:14px 16px}.notes{grid-template-columns:1fr}.footer{flex-direction:column}.figure{border-radius:0}.counter{font-size:12px}.nav{margin:0 -17px;padding-left:17px}}
 .profit-formation{margin:30px 0 70px;padding:32px 39px 26px;background:#fffefa;border:1px solid var(--line);border-top:3px solid var(--ink)}.profit-formation h3{font:650 clamp(26px,3vw,40px)/1.25 "Noto Serif CJK SC","Songti SC",serif;letter-spacing:-.035em;margin:12px 0}.profit-formation-lead{font-size:15px;line-height:1.8;color:var(--soft);max-width:950px}.profit-viz{margin:17px 0;background:#f2f5f0;border:1px solid #dce5dd;padding:17px 9px}.profit-viz svg{display:block;width:100%;max-width:100%;height:auto}.profit-viz-phone{display:none}.profit-formation .tag{font-size:11px;letter-spacing:.15em;font-weight:800;color:var(--green)}.profit-formation-caveat{font-size:13px;line-height:1.8;color:#825d52}.profit-source-table{border-top:1px solid var(--line);padding-top:12px}.profit-source-table summary{font-size:13px;color:var(--green)}.profit-source-table table{font-size:12px}.profit-source-table code{overflow-wrap:anywhere}.profit-source-table td{overflow-wrap:anywhere}
 @media(max-width:850px){.profit-formation{padding:23px 20px}.profit-viz-desktop{display:none}.profit-viz-phone{display:block}}
 @media(max-width:740px){.profit-formation{padding:22px 12px;margin:28px 0 53px}.profit-formation h3{font-size:28px}.profit-viz{padding:13px 4px}.profit-formation-lead{font-size:14px}.profit-formation-caveat{font-size:12px}.profit-source-table th,.profit-source-table td{font-size:11px;padding:8px 4px}}
@@ -182,6 +294,7 @@ table{border-collapse:collapse;width:100%;font-size:12px;margin-top:16px;backgro
 <div class="wrap"><div class="topbar"><a class="logo" href="/#companies">FINANCIALS / IN VISUALS</a><a class="back" href="/#companies">返回唯一公司研究目录 ↗</a></div>
 <header class="hero"><div><div class="eyebrow">__EYEBROW__ · 2026 H1 · ORIGINAL FINANCIAL RESEARCH</div><h1>__TITLE__</h1><p class="dek">__DEK__</p>
 <div class="numbers" id="hero-numbers"></div></div><div class="heroaside"><b>THE CONTRADICTION / 关键矛盾</b><p>__TENSION__</p><b style="display:block;margin-top:25px">STRONGEST COUNTERCASE</b><p>__COUNTER__</p></div></header>
+__QUANTIFIED_DECISION__
 <div class="nav" id="nav"></div>__PROFIT_FORMATION__<main id="article"></main>
 <div class="disclaimer"><h2>方法、来源与明确的边界</h2><p>__DISCLAIMER__</p><div class="notes" id="notes"></div><p>本稿为来源限定的独立研究预览；所载研究与图表源于发行人原始完整 PDF，并不意味着已经取得另一名独立人类财务分析师、独立视觉编辑、机构买卖评级或完整的全部附注鉴证。每张图都附有原始事实与物理 PDF 页码。PDF 的全部重大附注独立核对仍为 NOT_CHECKED；与交易所原始主机字节同一性另作验证。</p></div></div>
 <div class="actions"><div class="wrap"><div class="eyebrow">FALSIFIABILITY / 下一轮证伪</div><h2>下一份披露应该回答的三个问题</h2><ol id="followups"></ol></div></div>
@@ -421,6 +534,7 @@ def build(code,out):
     # Ledger already passed full original PDF SHA, physical-page and
     # disclosed accounting equality checks above. Only that source is
     # eligible to construct the signed group income-to-net profile.
+    quantified_panel=quantified_editorial_panel(d)
     profit_bridge=render_profit_formation(code,d["facts"],
         d["source"]["original_bytes_sha256"],
         d["source"]["official_announcement"])
@@ -429,13 +543,13 @@ def build(code,out):
     article=HTML.replace("__NATIVE_MOBILE_SVG__", (ROOT/"research/shared/mobile_finance.js").read_text(encoding="utf-8"))
     for a,b in (("__UNIFIED_INCOME_DESKTOP__",compact(finance_desktop)),
                  ("__UNIFIED_INCOME_PHONE__",compact(finance_phone)),
-                  ("__PROFIT_FORMATION__",profit_bridge),
+                  ("__PROFIT_FORMATION__",profit_bridge),("__QUANTIFIED_DECISION__",f'<div class="wrap">{quantified_panel}</div>'),
                  ("__TITLE__",story["lead"]),("__DESCRIPTION__",story["thesis"]),("__EYEBROW__",story["eyebrow"]),
                 ("__DEK__",story["dek"]),("__TENSION__",story["tension"]),("__COUNTER__",story["counter"]),
                 ("__DISCLAIMER__",story["evidence_disclaimer"]),("__LEDGER__",compact(d)),
                 ("__BRIEFS__",compact(briefs)),("__STORY__",compact(story))):
         import html
-        if a in {"__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__","__PROFIT_FORMATION__"}:article=article.replace(a,b)
+        if a in {"__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__","__PROFIT_FORMATION__","__QUANTIFIED_DECISION__"}:article=article.replace(a,b)
         else:article=article.replace(a,html.escape(b,quote=True))
     out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(article,encoding="utf-8")
