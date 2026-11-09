@@ -23,6 +23,21 @@ def main():
             page.on("pageerror",lambda e:errors.append(str(e)))
             response=page.goto(file.resolve().as_uri(),wait_until="networkidle",timeout=30000)
             assert page.locator("h1").count()==1
+            dec=page.locator("#quantified-decision")
+            assert dec.count()==1 and dec.is_visible(),(a.code,width,"READER_VISIBLE_QUANTIFIED_ANALYSIS_MISSING")
+            assert dec.get_attribute("data-issuer")==a.code
+            assert dec.get_attribute("data-source-pdf-sha256")==d["source"]["original_bytes_sha256"]
+            rows=dec.locator("[data-fact-id]")
+            assert rows.count()==6,(a.code,width,"MISSING_QUANTIFIED_ORIGINAL_FACTS")
+            for row in rows.all():
+                key=row.get_attribute("data-fact-id")
+                fact=d["facts"][key]
+                assert row.get_attribute("data-period")==fact["period"],(a.code,width,key,"QUANTIFIED_PERIOD_SILENT_CHANGE")
+                assert row.get_attribute("data-source-unit")==fact["unit"],(a.code,width,key,"QUANTIFIED_UNIT_CHANGED")
+                assert D(row.get_attribute("data-exact-source-value"))==D(fact["yuan"]),(a.code,width,key,"QUANTIFIED_READER_NOT_ORIGINAL_VALUE")
+                assert int(row.get_attribute("data-physical-page"))==fact["page"],(a.code,width,key,"QUANTIFIED_PDF_PAGE_WRONG")
+            assert "NOT_CHECKED" in dec.inner_text(),(a.code,width,"NO_CAUSALITY_REVIEW_LIMITATION")
+
             assert page.locator("section.chapter").count()==8
             assert page.locator("figure.figure").count()==8
             assert page.locator("figure table").count()==8
