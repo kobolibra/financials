@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts"))
-from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery, check_agent_source_of_truth, check_start_here_source_of_truth
+from check_handoff import check_skill, check_catalog, check_current_state, check_repo, check_discovery, check_agent_source_of_truth, check_start_here_source_of_truth, check_active_release_authority
 
 STATUS=json.loads((ROOT/"project-status.json").read_text())
 CATALOG=json.loads((ROOT/"site/research_catalog.json").read_text())
@@ -27,6 +27,29 @@ class HandoffGateTests(unittest.TestCase):
         self.assertIn("AGENT_STALE_HARDCODED_ISSUER_COUNT", check_agent_source_of_truth(stale))
         missing = agent.replace("site/research_catalog.json", "omitted-catalog.json")
         self.assertIn("AGENT_CATALOG_SOURCE_OF_TRUTH_MISSING", check_agent_source_of_truth(missing))
+
+    def test_current_pr35_is_not_active_candidate_in_any_discovery_entry(self):
+        wrapper=(ROOT/".agents/skills/ashare-financial-storytelling/SKILL.md").read_text()
+        agent=(ROOT/"AGENTS.md").read_text()
+        protocol=(ROOT/"docs/HANDOFF_PROTOCOL.md").read_text()
+        self.assertEqual(check_active_release_authority(wrapper, agent, protocol), [])
+        stale_wrapper=wrapper.replace(
+            "seven HERO money grammar", "only the 4 PR35 V10 candidates"
+        ) if "seven HERO money grammar" in wrapper else (
+            wrapper + "\nonly the 4 PR35 V10 candidates are being migrated"
+        )
+        self.assertIn("CODEX_DISCOVERY_STALE_UNMERGED_PR35_VISUAL_STATUS",
+                      check_active_release_authority(stale_wrapper,agent,protocol))
+        stale_agent=agent + "\n**Active candidate overlay (2026-11-07):** This is an UNMERGED candidate;"
+        self.assertIn("AGENT_HISTORICAL_PR35_MISLABELED_AS_ACTIVE",
+                      check_active_release_authority(wrapper,stale_agent,protocol))
+        stale_protocol=("四家新桑基候选只按真实当前 HTML SHA 验收，其他七家 LEGACY_NOT_UNIFIED\n"
+                        +protocol)
+        self.assertIn("HANDOFF_STALE_PR35_CANDIDATE_AS_CURRENT_RELEASE",
+                      check_active_release_authority(wrapper,agent,stale_protocol))
+        missing=wrapper.replace("audit_unified_visual_corpus.py","not-a-census.py")
+        self.assertIn("CODEX_DISCOVERY_CURRENT_MACHINE_CENSUS_NOT_REFERENCED",
+                      check_active_release_authority(missing,agent,protocol))
 
     def test_start_here_never_reverts_to_fixed_current_company_count(self):
         entry=(ROOT/"START_HERE.md").read_text()
