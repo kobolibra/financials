@@ -143,17 +143,33 @@ def validate_current_published_files(root, audit, debt):
                 continue
             q=json.loads(p.read_text(encoding="utf8"))
             views=q.get("original_actual_3_viewport_checks",[])
-            valid=(q.get("code")==code and q.get("page_1440_768_390")=="PASS"
+            # Genuine 2026-11-09 insurer research upgrade has an additional
+            # thirteenth-fact source table, not a new figure. A prior
+            # 10-figure article legitimately has 10 figure tables; the
+            # 11th decision table is legal ONLY with exact 13 original
+            # source fact IDs and 4 independently derived CAS ratios.
+            editorial=html.read_text(encoding="utf8")
+            has_decision='id="quantified-decision"' in editorial
+            expected_tables=11 if has_decision else 10
+            if has_decision:
+                decision_ok=(editorial.count('data-source-key=')==13
+                             and editorial.count('data-decision-key=')==4
+                             and 'data-accounting-not-causal="true"' in editorial
+                             and 'data-pdf-sha256=' in editorial
+                             and 'NOT_CHECKED' in editorial)
+            else:
+                decision_ok=True
+            valid=(decision_ok and q.get("code")==code and q.get("page_1440_768_390")=="PASS"
                 and q.get("source_nodes_sinks_ribbons_exact_svg_geometric_proportions")=="PASS"
                 and q.get("mobile_fully_visible_financial_figures")=="PASS"
                 and q.get("mobile_ledger_exact_value_and_geometry")=="PASS"
-                and q.get("chart_count")==10 and q.get("source_table_count")==10
+                and q.get("chart_count")==10 and q.get("source_table_count")==expected_tables
                 and q.get("export_click_and_svg_download")=="PASS"
                 and len(views)==3 and {v.get("width") for v in views}==WIDTHS
                 and all(v.get("result")=="PASS" and v.get("body_no_overflow")=="PASS"
                         and v.get("source_sankey_actual_path_and_rect")=="PASS"
                         and v.get("svg_export")=="PASS" and v.get("figure_count")==10
-                        and v.get("original_source_tables")==10 and v.get("cjk_font_available") is True
+                        and v.get("original_source_tables")==expected_tables and v.get("cjk_font_available") is True
                         for v in views)
                 and next((v for v in views if v.get("width")==390),{}).get("figure_readability")
                     =="MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL")
