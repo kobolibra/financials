@@ -1,9 +1,10 @@
 FINANCIALS_IN_VISUALS_STATIC_MULTIPAGE_OK
-date=2026-10-30
-home_file=public/index.html
-homepage_links=300502.html,300308.html,300394.html
-report_300502=public/300502.html
-report_300308=public/300308.html
-report_300394=public/300394.html
+release_marker=2026-11-09-main-mobile-source-sankey
 source_branch=main
-note=If visiting /release-check.txt returns the homepage instead of this text, this Cloudflare Pages deployment has not published the new static files or is pointing at a different build output.
+canonical_directory=public/index.html
+company_count_source=site/research_catalog.json
+production_build_output=public/
+verified_original_issuer_source_html_sha_600900=cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88
+verified_original_issuer_source_html_sha_600276=9a51d251d271a6dc7803c4036c71a441634ef784258aabaf85e97d1081962d99
+source_git_commit=9d81154d24fde07a597c670ecceb14c1fb49c3e2
+note=This is a static publish-source marker, NOT evidence that Cloudflare deployed the SHA. Require actual canonical public 600900 and 600276 full HTML bytes to match main and pass original-yuan 1440/768/390 browser QA before production PASS.
