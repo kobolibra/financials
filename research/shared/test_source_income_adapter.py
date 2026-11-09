@@ -46,13 +46,21 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
             plan=compile_disclosed_income(read(code))
             labels=[x for x in root.iter(SVG+"text")
                     if x.get("data-editorial-role")=="source-summary"]
-            should=2*len(plan.sources) if len(plan.sources)<=3 else len(plan.sources)
-            self.assertEqual(len(labels),should,(code,"WRONG_MOBILE_SOURCE_ROWS"))
+            self.assertEqual(len(labels),2*len(plan.sources),(code,"WRONG_MOBILE_SOURCE_ROWS"))
+            font=[D(x.get("font-size")) for x in labels]
             if len(plan.sources)<=3:
-                font=[D(x.get("font-size")) for x in labels]
                 self.assertTrue(all(x>=D(11) for x in font),code)
+                # Separate 32-unit rows, with left-aligned amounts below
+                # their source label and never squeezed beside the name.
+                self.assertTrue(all(x.get("text-anchor")!="end" for x in labels),code)
                 yy=[D(x.get("y")) for x in labels]
                 self.assertTrue(all(yy[i]<yy[i+1] for i in range(len(yy)-1)),code)
+            else:
+                # Prior four-source 688220 two-column original phone art
+                # must remain source-byte deterministic and not silently
+                # inherit the new optional layout.
+                self.assertEqual([font[i] for i in range(0,len(font),2)],[D(10)]*len(plan.sources))
+                self.assertEqual([font[i] for i in range(1,len(font),2)],[D(9)]*len(plan.sources))
             self.assertEqual(D(root.get("data-revenue-yuan")),plan.check())
 
     def test_real_desktop_micro_business_labels_never_collide(self):
