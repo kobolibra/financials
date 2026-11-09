@@ -173,11 +173,18 @@ def main():
                     inn=page.locator("#chart-sector .native-mobile-finance .m-pharma-innovation")
                     assert inn.count()==1,(a.code,"NOT_REAL_NESTED_INNOVATIVE_DRUG_CONTRACT_SUBSET")
                     assert inn.get_attribute("data-operating-fact")=="innovative_drug_sales_100m"
+                    mobile_contract=page.locator('#chart-sector .native-mobile-finance .m-pharma-contract')
+                    assert mobile_contract.count()==3,(a.code,"PHONE_PHARMA_CONTRACT_TRIPLE_SOURCE_MISSING")
+                    mobile_sum=sum((D(z.get_attribute("data-source-yuan")) for z in mobile_contract.all()),D(0))
+                    assert mobile_sum==D(d["facts"]["rev"]["yuan"]),(a.code,"PHONE_PHARMA_CONTRACTS_NOT_RECONCILED")
                     source_num=float(d["facts"]["innovative_drug_sales_100m"]["yuan"])*1e8
                     assert abs(float(inn.get_attribute("data-subset-yuan"))-source_num)<.02
                     assert page.locator('#chart-capital .native-mobile-finance [data-capital-supplement="true"]').count()==1
                 else:
                     assert "亿千瓦时" in page.locator("#chart-sector .native-mobile-finance").inner_text()
+                    pwr=page.locator('#chart-sector .native-mobile-finance [data-source-fact="power_gen_100m_kwh"]')
+                    assert pwr.count()==1,(a.code,"PHONE_POWER_SOURCE_ID_MISSING")
+                    assert D(pwr.get_attribute("data-original-value"))==D(d["facts"]["power_gen_100m_kwh"]["yuan"]),(a.code,"PHONE_POWER_SOURCE_STALE")
             elif width==768:
                 # Tablet is allowed to scroll a true original desktop
                 # finance diagram, but a narrow 390px device is NOT.
