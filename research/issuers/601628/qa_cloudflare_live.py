@@ -12,6 +12,8 @@ ROOT=Path(__file__).resolve().parents[3]
 sys.path.insert(0,str(ROOT))
 from research.shared.live_route_evidence import make_live_navigation_receipt
 from playwright.sync_api import sync_playwright
+sys.path.insert(0,str(ROOT/'research/issuers/601628'))
+from quantified_decision import FACT_SPEC,decisions
 SITE="https://financials-in-visuals.pages.dev"
 HERE=ROOT/"research/issuers/601628"
 OUT=HERE/"live-qa"
@@ -66,6 +68,35 @@ with sync_playwright() as pw:
     page.wait_for_url(re.compile(r"/601628(?:\.html)?/?(?:[?#].*)?$"),timeout=30000)
     actual_article_url=page.url
     print("LIVE_ACTUAL_COMPANY_CANONICAL_URL",width,actual_article_url,flush=True)
+    # Real Cloudflare, not just a green issuer preview: 13 source rows and
+    # all four signed CAS calculations must match original consolidated CNY.
+    from decimal import Decimal as D
+    original,formulas=decisions(report)
+    panel=page.locator('#quantified-decision')
+    assert panel.count()==1 and panel.is_visible(),(width,"LIVE_INSURANCE_DECISION_NOT_PUBLISHED")
+    assert panel.get_attribute('data-pdf-sha256')==report['source']['original_bytes_sha256']
+    got=panel.evaluate("""e=>({
+      left:e.getBoundingClientRect().left,right:e.getBoundingClientRect().right,
+      rows:[...e.querySelectorAll('tr[data-source-key]')].map(x=>({...x.dataset})),
+      cards:[...e.querySelectorAll('.insurance-decision-card')].map(x=>{
+        const r=x.getBoundingClientRect();
+        return {key:x.dataset.decisionKey,v:x.dataset.derivedDecimal,
+          top:r.top,bottom:r.bottom};
+      })
+    })""")
+    assert len(got["rows"])==len(FACT_SPEC)==13 and len(got["cards"])==4
+    assert got["left"]>=-1 and got["right"]<=width+2
+    for item in got["rows"]:
+        key=item["sourceKey"]
+        assert D(item["exactYuan"])==D(report["facts"][key]["yuan"]),(width,key,"LIVE_INSURER_SOURCE_MONEY_FALSE")
+        assert item["period"]==FACT_SPEC[key][0] and item["financialKind"]==FACT_SPEC[key][1]
+        assert int(item["physicalPage"])==report["facts"][key]["page"]
+    assert all(D(x["v"])==formulas[x["key"]] for x in got["cards"]),(width,"LIVE_INSURER_DECISION_FORMULA_FALSE")
+    if width==390:
+        cards=got["cards"]
+        assert all(cards[i]["bottom"]<=cards[i+1]["top"]+.5 for i in range(3)),(width,"INSURER_SOURCE_DECISION_MOBILE_OVERPRINT")
+    assert "NOT_CHECKED" in panel.inner_text()
+    panel.screenshot(path=str(OUT/f"live_decision_{width}.png"),animations="disabled")
     assert page.locator("figure.figure").count()==10
     assert page.locator("figure.figure svg").count()==10
     assert page.locator("figure.figure details.audit").count()==10
@@ -152,7 +183,7 @@ results={"status":"PASS","origin":SITE,"verified_git_commit":subprocess.check_ou
          "all_11_issuer_external_routes":"PASS","real_chromium_viewports":report_check,
          "independent_human_editor":"NOT_CHECKED","external_market_peer_valuation":"NOT_CHECKED"}
 results["screenshots"]=[{"name":p.name,"sha256":hashlib.sha256(p.read_bytes()).hexdigest(),"bytes":p.stat().st_size} for p in sorted(OUT.glob("live_*.png"))]
-assert len(results["screenshots"])==6,("MISSING_PRODUCTION_THREE_VIEWS_ISSUER_AND_LIBRARY")
+assert len(results["screenshots"])==9,("MISSING_PRODUCTION_THREE_VIEWS_ISSUER_LIBRARY_AND_FINANCE_DECISION")
 assert all(z["actual_dedicated_article_final_url"] in {SITE+"/601628",SITE+"/601628.html"} for z in report_check),"LIVE_EVIDENCE_URL_CORRUPTED_AFTER_BACK"
 (OUT/"result.json").write_text(json.dumps(results,ensure_ascii=False,indent=2)+"\n")
 print("ACTUAL_CLOUDFLARE_MAIN_ELEVEN_ISSUERS_THREE_REAL_VIEWPORTS_AND_PUBLIC_HTML_SHA_PASS",expected_sha,expected_home,json.dumps(report_check))

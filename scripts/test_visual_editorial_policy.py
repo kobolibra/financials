@@ -72,6 +72,30 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
             errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
         self.assertIn("VISUAL_CHANGED_V10_ORIGINAL_SOURCE_ALL_FINANCE_3_VIEWPORT_RECEIPT_INVALID "+code,errors)
 
+    def test_insurer_new_original_decision_table_and_source_money_cannot_be_falsified(self):
+        original=Path.read_text
+        def falsify_11th_original_source_table(path,*args,**kwargs):
+            raw=original(path,*args,**kwargs)
+            if str(path).endswith("research/issuers/601628/visual-qa/result.json"):
+                obj=json.loads(raw)
+                # Ten original graph source tables are not enough after
+                # a new independently sourced 13-fact investment decision.
+                obj["source_table_count"]=10
+                return json.dumps(obj)
+            return raw
+        with mock.patch.object(Path,"read_text",new=falsify_11th_original_source_table):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_601628_CURRENT_CANDIDATE_THREE_CJK_WIDTHS_OR_SHA_MISMATCH",errors)
+
+        def falsify_decision_source(path,*args,**kwargs):
+            raw=original(path,*args,**kwargs)
+            if str(path).endswith("/public/601628.html"):
+                return raw.replace('data-source-key="insurance_finance"','data-hidden-source-key="insurance_finance"')
+            return raw
+        with mock.patch.object(Path,"read_text",new=falsify_decision_source):
+            errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+        self.assertIn("VISUAL_601628_CURRENT_CANDIDATE_THREE_CJK_WIDTHS_OR_SHA_MISMATCH",errors)
+
     def test_old_report_changed_after_census_must_have_new_three_view_source_proof(self):
         original=Path.read_bytes
         def changed(path):

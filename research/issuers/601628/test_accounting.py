@@ -65,6 +65,53 @@ class LifeInsurance2026H1(unittest.TestCase):
         self.assertIn("不等于收到的现金",brief["takeaway"])
         self.assertNotEqual(mod.amount("premium_total"),mod.amount("cfo_insurance_cash"))
 
+    def test_original_source_quantified_decision_is_permanent_finance_gate(self):
+        from quantified_decision import decisions,render,FACT_SPEC
+        from html.parser import HTMLParser
+        import copy
+        source=mod.LEDGER
+        values,formulas=decisions(source)
+        self.assertEqual(len(values),13)
+        self.assertEqual(formulas["parent_net_yoy"],
+                         (values["parent_net"]/values["parent_net_prior"]-1)*100)
+        self.assertEqual(formulas["cfo_yoy"],
+                         (values["cfo"]/values["cfo_prior"]-1)*100)
+        self.assertEqual(formulas["fair_value_delta_yuan"],
+                         values["fairvalue_income"]-values["fairvalue_income_prior"])
+        self.assertEqual(formulas["insurance_finance_delta_yuan"],
+                         values["insurance_finance"]-values["insurance_finance_prior"])
+        p=render(source)
+        self.assertEqual(p.count('data-source-key='),13)
+        self.assertEqual(p.count('data-decision-key='),4)
+        self.assertIn('data-accounting-not-causal="true"',p)
+        self.assertIn(source["source"]["original_bytes_sha256"],p)
+        self.assertIn("NOT_CHECKED",p)
+        self.assertIn("有限保证",p)
+        self.assertIn('data-financial-kind="stock"',p)
+        self.assertIn('data-financial-kind="flow"',p)
+        html,_=mod.render()
+        self.assertEqual(html.count('id="quantified-decision"'),1)
+        self.assertIn(p,html)
+        for key in FACT_SPEC:
+            self.assertIn('data-source-key="'+key+'"',html)
+        for key in ("premium_total","service_revenue","insurance_finance","cfo","csm"):
+            original=source["facts"][key]
+            for mutation,bad in (("period","2024H1"),("type","stock" if key!="csm" else "flow"),
+                                  ("scope","parent"),("page",0),("classification","ESTIMATED")):
+                d=copy.deepcopy(source)
+                d["facts"][key][mutation]=bad
+                with self.subTest(key=key,mutation=mutation):
+                    with self.assertRaisesRegex(AssertionError,"INSURER_DECISION_SOURCE_SEMANTIC_INVALID"):
+                        decisions(d)
+        wrong=copy.deepcopy(source)
+        wrong["facts"]["cfo_prior"]["yuan"]="0"
+        with self.assertRaisesRegex(AssertionError,"INSURER_DECISION_YOY_BASE_INVALID"):
+            decisions(wrong)
+        wrong=copy.deepcopy(source)
+        wrong["facts"]["fairvalue_income"]["yuan"]="-1"
+        with self.assertRaisesRegex(AssertionError,"INSURER_DECISION_AMOUNT_OR_SIGN_INVALID"):
+            decisions(wrong)
+
     def test_original_pdf_sha_not_unrelated_issuer(self):
         wrong=mod.FIG["source_sha256"]
         try:

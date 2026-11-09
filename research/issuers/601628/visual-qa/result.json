@@ -4,7 +4,7 @@
   "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
   "page_1440_768_390": "PASS",
   "chart_count": 10,
-  "source_table_count": 10,
+  "source_table_count": 11,
   "export_click_and_svg_download": "PASS",
   "mobile_fully_visible_financial_figures": "PASS",
   "mobile_ledger_exact_value_and_geometry": "PASS",
@@ -17,7 +17,7 @@
       "source_sankey_actual_path_and_rect": "PASS",
       "cjk_font_available": true,
       "figure_count": 10,
-      "original_source_tables": 10,
+      "original_source_tables": 11,
       "figure_readability": "DESKTOP_ALL_ORIGINAL_SVG_VISIBLE",
       "svg_export": "PASS",
       "screenshot": "full_report_1440.png"
@@ -30,7 +30,7 @@
       "source_sankey_actual_path_and_rect": "PASS",
       "cjk_font_available": true,
       "figure_count": 10,
-      "original_source_tables": 10,
+      "original_source_tables": 11,
       "figure_readability": "TABLET_FULL_SOURCE_SVG",
       "svg_export": "PASS",
       "screenshot": "full_report_768.png"
@@ -43,7 +43,7 @@
       "source_sankey_actual_path_and_rect": "PASS",
       "cjk_font_available": true,
       "figure_count": 10,
-      "original_source_tables": 10,
+      "original_source_tables": 11,
       "figure_readability": "MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL",
       "svg_export": "PASS",
       "screenshot": "full_report_390.png"
