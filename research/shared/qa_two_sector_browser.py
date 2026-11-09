@@ -155,6 +155,23 @@ def main():
                     ribbons:[...svg.querySelectorAll('path[data-ribbon-yuan]')].map(p=>({money:+p.getAttribute('data-ribbon-yuan'),stage:p.getAttribute('data-stage'),scale:+p.getAttribute('data-scale-yuan-per-svg-unit'),d:p.getAttribute('d')}))};
                 }""")
                 assert source and source["total"]>0 and source["scale"]>0,(a.code,"MOBILE_UNIFIED_FLOW_MISSING")
+                # The first mobile graphic was geometrically correct but its
+                # source amounts were squeezed into the same 9px line as the
+                # business name. Require two genuinely readable visual rows,
+                # not just a valid source-table under the chart.
+                spacing=page.locator('#chart-flow .native-mobile-finance svg').evaluate("""svg=>{
+                  const nodes=[...svg.querySelectorAll('text[data-editorial-role="source-summary"]')];
+                  const header=svg.querySelector('text[data-editorial-role="source-stage-header"]');
+                  const source=nodes.map(el=>({font:+el.getAttribute('font-size'),
+                    top:el.getBoundingClientRect().top,bottom:el.getBoundingClientRect().bottom,
+                    text:el.textContent}));
+                  return {source, headerTop:header?.getBoundingClientRect().top};
+                }""")
+                assert len(spacing["source"])==2*len(d["segments"]),(a.code,"MOBILE_SOURCE_NAME_AND_AMOUNT_MUST_HAVE_SEPARATE_ROWS",spacing)
+                assert all(z["font"]>=11 for z in spacing["source"]),(a.code,"MOBILE_MONEY_OR_SOURCE_LABEL_TOO_SMALL",spacing)
+                assert all(spacing["source"][i]["bottom"]+0.7<spacing["source"][i+1]["top"]
+                           for i in range(len(spacing["source"])-1)),(a.code,"MOBILE_SOURCES_OVERPRINT",spacing)
+                assert spacing["source"][-1]["bottom"]+2<spacing["headerTop"],(a.code,"MOBILE_SOURCES_OVERLAP_STAGE_HEADER",spacing)
                 total=float(d["facts"]["rev"]["yuan"])
                 assert abs(source["total"]-total)<.001
                 src=[x for x in source["nodes"] if x["role"]=="source"]
