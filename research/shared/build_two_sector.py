@@ -35,12 +35,61 @@ NAMES={
 
 def read(path): return json.loads(path.read_text(encoding="utf-8"))
 def val(d,k): return D(str(d["facts"][k]["yuan"]))
+def validated_operating_metric(d, key, unit):
+    """Operating facts cannot silently become CNY flows or stale period figures."""
+    fact=d["facts"].get(key)
+    if (not fact or fact.get("type")!="operating_metric" or
+            fact.get("classification")!="MANAGEMENT_REPORTED" or
+            fact.get("unit")!=unit or fact.get("period")!=d["issuer"]["fiscal_period"] or
+            fact.get("scope")!="consolidated" or
+            not isinstance(fact.get("page"),int) or fact["page"]<1):
+        raise AssertionError("OPERATING_SOURCE_SEMANTIC_MISMATCH "+key)
+    try:
+        amount=D(str(fact["yuan"]))
+    except (KeyError,ValueError,TypeError) as e:
+        raise AssertionError("OPERATING_SOURCE_NOT_NUMERIC "+key) from e
+    if not amount.is_finite() or amount<=0:
+        raise AssertionError("OPERATING_SOURCE_NOT_POSITIVE "+key)
+    return amount
+
+
+def check_sector_operating_story(d):
+    """A sector story must be constructed from a disclosed, typed, live source.
+
+    Product-management subgroups are subsets, not new additions to revenue.
+    Generation in kWh is physical output, not cash, billing or an ASP numerator.
+    """
+    industry=d["issuer"]["industry"]
+    if industry=="hydropower_utility":
+        gen=validated_operating_metric(d,"power_gen_100m_kwh","亿千瓦时")
+        return {"physical_generation_100m_kwh":format(gen,"f"),
+                "revenue_key":"rev","cash_key":"cfo","conversion":"NOT_ADDITIVE"}
+    if industry=="innovative_pharma":
+        innov=validated_operating_metric(d,"innovative_drug_sales_100m","亿元")*CENT
+        goods=val(d,"drug_sales_rev")
+        if not (D(0)<innov<=goods):
+            raise AssertionError("OPERATING_INNOVATION_NOT_GOODS_SUBSET")
+        rpo=d["facts"].get("rpo",{})
+        if (rpo.get("type")!="stock" or rpo.get("unit")!="元" or
+                rpo.get("period")!="2026-06-30" or
+                rpo.get("scope")!="consolidated" or
+                rpo.get("classification")!="DISCLOSED" or
+                val(d,"rpo")<0):
+            raise AssertionError("PHARMA_RPO_STOCK_NOT_DISJOINT_FROM_REVENUE")
+        return {"innovative_subset_yuan":format(innov,"f"),
+                "goods_revenue_yuan":format(goods,"f"),
+                "rpo_stock_yuan":format(val(d,"rpo"),"f"),
+                "classification":"MANAGEMENT_SUBSET_OF_GOODS_NOT_EXTRA_SALES"}
+    raise AssertionError("UNSUPPORTED_SECTOR_OPERATING_STORY "+industry)
+
+
 def check(d,briefs,story,pdf_path):
     f=d["facts"];checks={}
     def ck(label,x,y):
         if x != y: raise AssertionError(label+" "+str(x)+" vs "+str(y))
         checks[label]="PASS_EXACT_DECIMAL"
     code=d["issuer"]["code"]
+    checks["OPERATING_SOURCE_MODEL"]=check_sector_operating_story(d)
     assert briefs["issuer"]==code and briefs["source_sha256"]==d["source"]["original_bytes_sha256"]
     assert tuple(x["id"] for x in briefs["figure_briefs"])==tuple(story["figure_order"])
     assert all(x["facts"] and x["source_pages"] and x["question"] and x["counter"] for x in briefs["figure_briefs"])
@@ -161,31 +210,7 @@ document.querySelector("#hero-numbers").innerHTML=headlineNumber("rev","法定�
 document.querySelector("#nav").innerHTML=briefs.figure_briefs.map(function(x,i){return '<a href="#'+x.id+'">'+String(i+1).padStart(2,"0")+' '+e(x.id.toUpperCase())+'</a>'}).join("");
 document.querySelector("#notes").innerHTML=story.other_notes.map(function(x){return '<div class="note">'+e(x)+'</div>'}).join("");
 document.querySelector("#followups").innerHTML=story.followups.map(function(x){return '<li>'+e(x)+'</li>'}).join("");
-function sankey(){
- var S=d.segments,H=420,gap=14,available=H-gap*(S.length-1),scale=available/v("rev");
- var yy=85, costY=85, gpY=85+v("cogs")*scale+28,out="";
- out+=text(20,34,"每一类来源 → 各自披露营业成本 + 推导毛利 | 元金额比例", "chart-title");
- out+=text(20,54,"不是客户付款路线；条带厚度按本期原始元金额，严禁最小 1px 放大","chart-tiny");
- S.forEach(function(seg,i){
-  var rv=v(seg.rev),cs=v(seg.cost),gp=rv-cs,sY=yy,srcH=rv*scale;
-  out+=rect(192,sY,13,srcH,blue,"money-source",'data-source-key="'+seg.rev+'" data-yuan="'+rv.toFixed(2)+'"');
-  if(srcH>17)out+=text(12,sY+Math.min(16,srcH/2+5),seg.label,"chart-label");
-  var edges=[["cogs",cs,costY,copper],["gross_profit",gp,gpY,green]],offset=0;
-  edges.forEach(function(edge){var kind=edge[0],value=edge[1],targetY=edge[2],color=edge[3],t=value*scale;
-   if(value>0){var d0="M205 "+(sY+offset)+" C420 "+(sY+offset)+" 700 "+targetY+" 938 "+targetY+
-   " L938 "+(targetY+t)+" C700 "+(targetY+t)+" 420 "+(sY+offset+t)+" 205 "+(sY+offset+t)+" Z";
-   out+='<path class="money-ribbon" data-source-key="'+seg.rev+'" data-target-key="'+kind+'" data-yuan="'+value.toFixed(2)+'" data-thickness="'+t+'" d="'+d0+'" fill="'+color+'" opacity=".42"/>';}
-   if(kind==="cogs")costY+=t;else gpY+=t;offset+=t;
-  });
-  yy+=srcH+gap;
- });
- out+=rect(938,85,14,v("cogs")*scale,copper,"money-sink",'data-target-key="cogs" data-yuan="'+v("cogs").toFixed(2)+'"');
- out+=rect(938,85+v("cogs")*scale+28,14,(v("rev")-v("cogs"))*scale,green,"money-sink",'data-target-key="gross_profit" data-yuan="'+(v("rev")-v("cogs")).toFixed(2)+'"');
- out+=text(967,101,"营业成本","chart-title")+text(967,123,yi(v("cogs")),"chart-value");
- out+=text(967,85+v("cogs")*scale+47,"毛利","chart-title")+text(967,85+v("cogs")*scale+68,yi(v("rev")-v("cogs")),"chart-value");
- out+=text(20,555,"业务分组口径：真实收入与真实成本，非按总毛利率分摊；小额来源请查看本图元金额附表。","chart-tiny");
- return svg(1120,579,out);
-}
+// No legacy local Sankey: only the shared original-yuan renderer is allowed.
 function PNLsteps(){
  var steps=[
  ["营业毛利",null],["税金及附加",-v("tax_surcharge")],["销售+管理",-v("selling")-v("admin")],
@@ -225,7 +250,7 @@ function waterfall(o,name){
  if(i===0){cy=0;ny=o.start;fill=blue;amount=o.start}
  else if(i===steps.length-1){cy=0;ny=o.end;fill=green;amount=o.end}
  else{cy=current;ny=current+step[1];fill=step[1]>=0?green:copper;amount=step[1];current=ny}
- var a=Y(Math.max(cy,ny)),bb=Y(Math.min(cy,ny)),height=Math.max(.65,bb-a);
+ var a=Y(Math.max(cy,ny)),bb=Y(Math.min(cy,ny)),height=Math.max(0,bb-a);
  out+=rect(x,a,barW,height,fill,"waterfall-step",'data-step="'+i+'" data-value="'+amount.toFixed(2)+'"');
  var labelY=i===0||i===steps.length-1?Math.max(70,a-10):(amount>=0?Math.max(70,a-10):Math.min(503,bb+15));
  out+=text(x+barW/2,labelY,yi(amount),"chart-value",'text-anchor="middle"');
@@ -276,35 +301,80 @@ function capital(){
  if(f["bill_endorse_capex"]){out+=text(20,568,"原始现金附注 p.153：银行承兑汇票背书非现金结算 "+yi(v("bill_endorse_total"))+"，其中用于购建资产 "+yi(v("bill_endorse_capex"))+"，不计入上述现金 FCF。","chart-tiny");}
  return svg(1120,f["bill_endorse_capex"]?592:567,out);
 }
+function sourceOperatingValue(key,expectedUnit){
+ var fact=f[key];
+ if(!fact||fact.type!=="operating_metric"||fact.classification!=="MANAGEMENT_REPORTED"||
+    fact.unit!==expectedUnit||fact.period!==d.issuer.fiscal_period||
+    fact.scope!=="consolidated")throw Error("OPERATING_SOURCE_SEMANTIC_MISMATCH "+key);
+ var value=Number(fact.yuan);
+ if(!Number.isFinite(value)||value<=0)throw Error("OPERATING_SOURCE_NOT_POSITIVE "+key);
+ return value;
+}
 function sector(){
  if(story.theme==="hydro"){
-  var out=text(18,36,"水电物理产出 × 现金回收：不同计量单位必须分图、不能按一条假因果流连接。","chart-title");
-  out+='<circle cx="245" cy="248" r="165" fill="#e5f1e9" stroke="'+green+'" stroke-width="1"/>';
-  out+=text(245,236,"1327.44","chart-title",'text-anchor="middle" style="font-size:63px;fill:'+green+'"');
-  out+=text(245,270,"亿千瓦时","chart-label",'text-anchor="middle"');
-  out+=text(245,300,"六座梯级水电站发电量","chart-tiny",'text-anchor="middle"');
-  out+='<path d="M440 250 L645 250" stroke="'+copper+'" stroke-dasharray="6 8" stroke-width="2"/>';
-  out+=text(544,227,"不可直接换算为电价","chart-tiny",'text-anchor="middle"');
-  out+=rect(664,128,32,242,green,"");
-  out+=text(725,177,"营业收入","chart-title");
-  out+=text(725,216,yi(v("rev")),"chart-value",'style="font-size:27px"');
-  out+=text(725,255,"经营现金流","chart-title");
-  out+=text(725,290,yi(v("cfo")),"chart-value",'style="font-size:26px"');
-  out+=text(20,509,"缺净售电量/合同电价组合/水文和调度信息；历史合并比较期本报告已追溯调整。","chart-tiny");
-  return svg(1120,537,out);
+  var power=sourceOperatingValue("power_gen_100m_kwh","亿千瓦时");
+  var output=text(20,36,"六座梯级水电站：物理发电、会计收入与现金回收三种不同事实","chart-title");
+  output+=text(20,58,"PHYSICAL OUTPUT  /  REVENUE RECOGNITION  /  CASH COLLECTION","chart-tiny");
+  output+=rect(20,86,410,304,"#edf4ef","industry-metric");
+  output+=text(40,124,"01  经营产出 · 原报告第 8 页","chart-label");
+  output+=text(40,210,power.toLocaleString("zh-CN",{maximumFractionDigits:2}),"chart-value",
+    'style="font-size:62px;fill:'+green+'" data-source-fact="power_gen_100m_kwh" data-original-value="'+power+'"');
+  output+=text(40,252,"亿千瓦时","chart-title",'style="font-size:19px"');
+  output+=text(40,292,"发电量 ≠ 售电量","chart-label");
+  output+=text(40,320,"缺净售电量和合同电价，无法推导实际电价","chart-tiny");
+  output+=rect(454,86,301,304,"#f1f4f1","industry-metric");
+  output+=text(474,124,"02  合并收入 · 法定确认","chart-label");
+  output+=text(474,210,yi(v("rev")),"chart-value",
+    'style="font-size:32px;fill:'+blue+'" data-source-fact="rev" data-original-yuan="'+v("rev").toFixed(2)+'"');
+  output+=text(474,252,"已确认营业收入","chart-title");
+  output+=text(474,292,"金额不能由发电量直接折算","chart-tiny");
+  output+=rect(779,86,315,304,"#edf4ef","industry-metric");
+  output+=text(799,124,"03  经营现金 · 收付口径","chart-label");
+  output+=text(799,210,yi(v("cfo")),"chart-value",
+    'style="font-size:32px;fill:'+green+'" data-source-fact="cfo" data-original-yuan="'+v("cfo").toFixed(2)+'"');
+  output+=text(799,252,"经营活动现金净额","chart-title");
+  output+=text(799,292,"净利润增长与经营现金需分开解释","chart-tiny");
+  output+=text(20,449,"三张事实卡刻意不连金额色带：水文、库容、上网售电结构和结算时滞需进一步取证。","chart-label");
+  output+=text(20,486,"物理经营指标来自原披露；金额遵循合并口径，本期比较数已作相应追溯调整。","chart-tiny");
+  return svg(1120,520,output);
  }
- var rv=v("rev"),prod=v("drug_sales_rev"),lic=v("licence_rev"),other=v("other_rev");
- var w=975,sc=w/rv,x=75,out=text(20,32,"收入合同类别：商品销售、许可、其他互斥分流；创新药是商品销售的内部子集","chart-title");
- [["药品等商品",prod,green],["知识产权许可",lic,copper],["其他",other,blue]].forEach(function(a){var ww=a[1]*sc;out+=rect(x,102,ww,94,a[2],"sector-revenue");if(ww>125){out+=text(x+10,128,a[0],"chart-title",'style="fill:#fff"');out+=text(x+10,158,yi(a[1]),"chart-value",'style="fill:#fff"')}x+=ww});
- var innovation=88.09*N,prodResidual=prod-innovation;
- out+=text(20,250,"商品销售中的创新药（管理层披露子集），绝不再加到集团收入总额","chart-label");
- out+=rect(75,278,innovation*sc,70,green,"sector-nested");
- out+=rect(75+innovation*sc,278,prodResidual*sc,70,muted,"sector-nested");
- out+=text(90,317,"创新药 88.09亿元","chart-title",'style="fill:#fff"');
- out+=text(75+innovation*sc+15,317,"其他药品等商品","chart-tiny");
- out+=text(20,413,"许可收入 "+yi(lic)+" ≠ 经常性药品销售；2026年7月生效的BMS合作不属于本期收入。","chart-label");
- out+=text(20,460,"剩余履约义务 "+yi(v("rpo"))+"：合同已签但非已实现收入，且变动里程碑未必纳入。","chart-label");
- return svg(1120,496,out);
+ var revenue=v("rev"),goods=v("drug_sales_rev"),license=v("licence_rev"),other=v("other_rev");
+ var innovation=sourceOperatingValue("innovative_drug_sales_100m","亿元")*N;
+ if(!(revenue>0&&goods>0&&innovation<=goods&&innovation>0&&Math.abs(goods+license+other-revenue)<.02))
+   throw Error("PHARMA_CONTRACT_OR_INNOVATION_HIERARCHY");
+ var rpo=f.rpo;
+ if(!rpo||rpo.type!=="stock"||rpo.period!=="2026-06-30"||rpo.unit!=="元")
+   throw Error("PHARMA_RPO_IS_NOT_RECOGNIZED_REVENUE");
+ var x=75,scale=950/revenue,parts=[
+  ["药品等商品","drug_sales_rev",goods,green],
+  ["知识产权许可","licence_rev",license,copper],
+  ["其他合同收入","other_rev",other,blue]];
+ var out=text(20,34,"合同收入与创新药管理层披露：两个层级，不得重复计入营业收入","chart-title");
+ out+=text(20,55,"第一层：互斥的法定合同收入   /   第二层：商品销售中的创新药子集","chart-tiny");
+ out+=text(75,102,"合并营业收入 "+yi(revenue)+" · 原始人民币元比例尺","chart-label");
+ parts.forEach(function(row){
+  var width=row[2]*scale;
+  out+=rect(x,125,width,57,row[3],"sector-revenue",
+    'data-contract-source="'+row[1]+'" data-source-yuan="'+row[2].toFixed(2)+'" data-scale-yuan-per-svg-unit="'+(1/scale)+'"');
+  x+=width;
+ });
+ var legendX=[75,404,766];
+ parts.forEach(function(row,i){
+  out+=rect(legendX[i],216,9,9,row[3],"");
+  out+=text(legendX[i]+15,227,row[0],"chart-label");
+  out+=text(legendX[i]+15,255,yi(row[2]),"chart-value");
+ });
+ out+=text(75,319,"商品销售内部结构 · 与上方第一段同一金额尺度","chart-label");
+ out+='<path d="M75 283 L75 294 L'+(75+goods*scale).toFixed(3)+' 294 L'+(75+goods*scale).toFixed(3)+' 283" fill="none" stroke="'+green+'" stroke-width="1.3"/>';
+ out+=rect(75,349,innovation*scale,53,green,"sector-nested",
+   'data-operating-fact="innovative_drug_sales_100m" data-subset-yuan="'+innovation.toFixed(2)+'" data-goods-parent-yuan="'+goods.toFixed(2)+'" data-scale-yuan-per-svg-unit="'+(1/scale)+'"');
+ out+=rect(75+innovation*scale,349,(goods-innovation)*scale,53,muted,"sector-nested",
+   'data-subset-remainder-yuan="'+(goods-innovation).toFixed(2)+'"');
+ out+=text(75,434,"创新药（管理层口径） "+yi(innovation)+"；其余商品 "+yi(goods-innovation),"chart-label");
+ out+=text(20,484,"存量独立列示：尚未履约义务 RPO "+yi(v("rpo"))+"，并非本期已确认收入","chart-label",
+   'data-stock-fact="rpo" data-stock-yuan="'+v("rpo").toFixed(2)+'"');
+ out+=text(20,512,"许可交易与药品销售的可持续性不同；2026年7月生效的合作不属于本期收入。","chart-tiny");
+ return svg(1120,546,out);
 }
 __NATIVE_MOBILE_SVG__
 function draw(id){if(id==="flow")return unifiedIncomeDesktop;if(id==="pnl")return waterfall(PNLsteps(),"完整 CAS：营业毛利 → 营业利润 → 税后净利 → 归母");
