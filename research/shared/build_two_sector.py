@@ -543,7 +543,7 @@ def build(code,out):
     article=HTML.replace("__NATIVE_MOBILE_SVG__", (ROOT/"research/shared/mobile_finance.js").read_text(encoding="utf-8"))
     for a,b in (("__UNIFIED_INCOME_DESKTOP__",compact(finance_desktop)),
                  ("__UNIFIED_INCOME_PHONE__",compact(finance_phone)),
-                  ("__PROFIT_FORMATION__",profit_bridge),("__QUANTIFIED_DECISION__",f'<div class="wrap">{quantified_panel}</div>'),
+                  ("__PROFIT_FORMATION__",profit_bridge),("__QUANTIFIED_DECISION__",quantified_panel),
                  ("__TITLE__",story["lead"]),("__DESCRIPTION__",story["thesis"]),("__EYEBROW__",story["eyebrow"]),
                 ("__DEK__",story["dek"]),("__TENSION__",story["tension"]),("__COUNTER__",story["counter"]),
                 ("__DISCLAIMER__",story["evidence_disclaimer"]),("__LEDGER__",compact(d)),
