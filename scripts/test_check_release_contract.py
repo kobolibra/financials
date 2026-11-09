@@ -268,18 +268,28 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 }
                 self.assertIn(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}",
                               mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
-                bad_receipt=copy.deepcopy(receipt)
-                bad_receipt["screenshots"][0]["sha256"]="0"*64
-                original=mod.read_json
-                def with_poisoned_receipt(path):
-                    if str(path).endswith(f"research/issuers/{code}/live-release-receipt.json"):
-                        return bad_receipt
-                    return original(path)
-                with mock.patch.object(mod,"read_json",side_effect=with_poisoned_receipt):
-                    # Existing contract verifies shape, but not external
-                    # screenshot file hashes when images live in Actions.
-                    # Our proof remains scoped to the immutable artifact.
-                    self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=False),[])
+                # The historical immutable Actions-artifact PNG digest is
+                # an independent assertion from the stored issuer receipt;
+                # the public live source test below separately authenticates
+                # current bytes. Do not accept an arbitrary plausible digest.
+                proven_png = {
+                    "600900": {
+                        1440:"35a8bcbb4eda7f9981ee2f5f5f180cf94aaa0c2c4c94e05bdfdab5594f1f0a2e",
+                        768:"61b98129772c6be5a9327953737e5154207dc4f98da573eaca502e4afd3813f0",
+                        390:"0951efb387a5ada4844d74b791c62ec302fa12bae516084dd7062e51c86e1755"},
+                    "600276": {
+                        1440:"df7cc97970706e352ee65f9a07a953a32dc1eeeab4ed0772aded983bea897b89",
+                        768:"ea61b310c8b0c86e725c8b3840909d0a5d1703ef902319acff4661318b5cbaec",
+                        390:"746a96665b9bb18f0054afc03ef353e11eb734691acd7cbb52daed8eb31e4cde"}}
+                png_by_name={r["name"]:r["sha256"] for r in receipt["screenshots"]}
+                for w,hash_value in proven_png[code].items():
+                    self.assertEqual(png_by_name[f"live_{code}_{w}.png"],hash_value)
+                home_png={
+                    1440:"01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47",
+                    768:"f82f45d62c12049f233a1330465eafa1669db05335f3cf4ccebf6a3cf1459b79",
+                    390:"e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c"}
+                for w,hash_value in home_png.items():
+                    self.assertEqual(png_by_name[f"live_directory_{w}.png"],hash_value)
 
     def test_legacy_explicit_sha_not_checked_does_not_claim_new_live_fingerprint(self):
         # Historical receipts may be retained as dated claims, not backfilled.
