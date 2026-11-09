@@ -35,6 +35,26 @@ class TwoRealSectorHostileTests(unittest.TestCase):
         self.assertEqual(len(x["ledger"]["cfo_adjustments"]),17)
         self.assertIn("2026年7月",x["story"]["counter"])
         self.assertIn("非现金结算"," ".join(x["story"]["other_notes"]))
+    def test_reader_visible_quantified_evidence_and_adversarial_scope(self):
+        for code in ("600900","600276"):
+            d=copy.deepcopy(self.data[code]["ledger"])
+            html=mod.quantified_editorial_panel(d)
+            self.assertIn('id="quantified-decision"',html)
+            self.assertIn(d["source"]["original_bytes_sha256"],html)
+            self.assertIn('data-derived-type=',html)
+            self.assertIn('NOT_CHECKED',html)
+            self.assertEqual(html.count('data-fact-id='),6)
+            self.assertNotIn('__QUANTIFIED_DECISION__',html)
+            d["facts"]["cfo_prior"]["period"]="2026H1"
+            with self.assertRaisesRegex(AssertionError,"QUANTIFIED_SOURCE_SCOPE_MISMATCH"):
+                mod.quantified_editorial_panel(d)
+        d=copy.deepcopy(self.data["600276"]["ledger"])
+        d["facts"]["licence_cost"]["yuan"]=d["facts"]["licence_rev"]["yuan"]
+        self.assertIn('0.00%',mod.quantified_editorial_panel(d))
+        d["facts"]["licence_cost"]["yuan"]=str(mod.val(d,"licence_rev")*2)
+        with self.assertRaisesRegex(AssertionError,"QUANTIFIED_PHARMA_SUBSET_OR_LICENSE_MARGIN"):
+            mod.quantified_editorial_panel(d)
+
     def test_operating_subgroup_and_physical_output_source_rules(self):
         hydro=copy.deepcopy(self.data["600900"]["ledger"])
         pharma=copy.deepcopy(self.data["600276"]["ledger"])
