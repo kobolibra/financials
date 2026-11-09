@@ -154,12 +154,20 @@ function nativeBalance(){
  out+=mtxt(12,574,"同一共同金额尺度，两期总资产宽度可比较",10.1,"#637a72");
  return msvg("balance",603,out,"两日期末合并资产由负债和股东权益构成的真实源金额平衡表结构");
 }
+function nativeSectorOperating(key,unit){
+ var fact=f[key];
+ if(!fact||fact.type!=="operating_metric"||fact.classification!=="MANAGEMENT_REPORTED"||fact.unit!==unit||
+    fact.period!==d.issuer.fiscal_period||fact.scope!=="consolidated")throw Error("PHONE_OPERATING_SOURCE_SEMANTIC_MISMATCH "+key);
+ var v0=Number(fact.yuan);
+ if(!Number.isFinite(v0)||v0<=0)throw Error("PHONE_OPERATING_METRIC_NONPOSITIVE "+key);
+ return v0;
+}
 function nativeSector(){
  var out="";
  if(story.theme==="hydro"){
-   var power=v("power_gen_100m_kwh");
+   var power=nativeSectorOperating("power_gen_100m_kwh","亿千瓦时");
    out=mhead("水电真实产出不是账面现金流","两种不同计量单位，绝不画虚构人民币资金箭头");
-   out+=mrect(12,75,306,118,"#edf5ed",'rx="9"');
+   out+=mrect(12,75,306,118,"#edf5ed",'rx="9" data-source-fact="power_gen_100m_kwh" data-original-value="'+power+'"');
    out+=mtxt(23,105,"六座梯级电站 · 发电量",12,ink,620);
    out+=mtxt(23,151,Number(power).toLocaleString("zh-CN",{maximumFractionDigits:2})+" 亿千瓦时",23,green,760);
    out+=mtxt(13,229,"法定营业收入（确认口径）",12,ink,610);
@@ -174,7 +182,7 @@ function nativeSector(){
    return msvg("sector",471,out,"水电发电量、法定收入和经营现金流是三种不同统计口径，不得虚构同金额的加总资金流");
  }
  var rv=v("rev"),prod=v("drug_sales_rev"),lic=v("licence_rev"),other=v("other_rev");
- var innov=Number(f.innovative_drug_sales_100m.yuan); // source unit is 亿人民币, not original yuan
+ var innov=nativeSectorOperating("innovative_drug_sales_100m","亿元"); // managed subset, not independently additive revenue
  if(!(rv>0&&prod>0))throw Error("MOBILE_PHARMA_REVENUE_DENOM");
  var parts=[["药品等商品",prod,green],["知识产权许可",lic,copper],["其他合同收入",other,blue]],sc=286/rv;
  var w=0;
@@ -187,13 +195,10 @@ function nativeSector(){
    out+=mtxt(27,172+i*39,z[0],11,ink,600);
    out+=mtxt(318,172+i*39,yi(z[1]),11.5,z[2],750,"end");
  });
- var innovRMB=Number(f.innovative_drug_sales_100m.yuan)*1; // guarded by issuer source scale externally
- // The original management key is in fact stored as 100m RMB with unit="亿元" in source ledger.
- if(f.innovative_drug_sales_100m.unit!=="亿元")throw Error("INNOVATION_UNIT_CHANGED");
- innovRMB*=100000000;
+ var innovRMB=innov*100000000;
  if(innovRMB>prod||innovRMB<0)throw Error("INNOVATION_SUBSET_NOT_IN_GOODS");
  out+=mtxt(12,317,"商品销售内部分：创新药并非新增一条营收",10.5,ink,670);
- out+=mrect(16,334,innovRMB/prod*286,28,green,'class="m-pharma-innovation" data-subset-yuan="'+innovRMB.toFixed(2)+'"');
+ out+=mrect(16,334,innovRMB/prod*286,28,green,'class="m-pharma-innovation" data-operating-fact="innovative_drug_sales_100m" data-subset-yuan="'+innovRMB.toFixed(2)+'"');
  out+=mrect(16+innovRMB/prod*286,334,(prod-innovRMB)/prod*286,28,muted);
  out+=mtxt(13,399,"创新药（管理层口径）",11,ink,620);
  out+=mtxt(318,399,yi(innovRMB),13,green,700,"end");
