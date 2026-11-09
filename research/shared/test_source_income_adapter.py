@@ -38,6 +38,23 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
                 if code=="688220":
                     self.assertIn("字节等价尚未证明",plan.footnote)
 
+    def test_small_sector_native_phone_rows_are_readable_and_source_bound(self):
+        # Two/three-source phone source labels each get their own money
+        # line. Never silently alter the four-source 688220 released layout.
+        for code in CODES:
+            root=ET.fromstring(render_sector_income(read(code),mobile=True))
+            plan=compile_disclosed_income(read(code))
+            labels=[x for x in root.iter(SVG+"text")
+                    if x.get("data-editorial-role")=="source-summary"]
+            should=2*len(plan.sources) if len(plan.sources)<=3 else len(plan.sources)
+            self.assertEqual(len(labels),should,(code,"WRONG_MOBILE_SOURCE_ROWS"))
+            if len(plan.sources)<=3:
+                font=[D(x.get("font-size")) for x in labels]
+                self.assertTrue(all(x>=D(11) for x in font),code)
+                yy=[D(x.get("y")) for x in labels]
+                self.assertTrue(all(yy[i]<yy[i+1] for i in range(len(yy)-1)),code)
+            self.assertEqual(D(root.get("data-revenue-yuan")),plan.check())
+
     def test_real_desktop_micro_business_labels_never_collide(self):
         # The 688220 last two source values are tiny on a 24.51-yi
         # common scale; their THREE textual rows must not be overprinted.
