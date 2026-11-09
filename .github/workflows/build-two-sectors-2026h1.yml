@@ -14,6 +14,7 @@ on:
       - 'research/shared/qa_two_sector_browser.py'
       - 'research/shared/verify_two_sector_cells.py'
       - 'research/shared/test_two_sector_accounting.py'
+      - 'research/shared/test_source_income_adapter.py'
       - 'public/600900.html'
       - 'public/600276.html'
       - '.github/workflows/build-two-sectors-2026h1.yml'
