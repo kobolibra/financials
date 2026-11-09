@@ -13,6 +13,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 import sys
 sys.path.insert(0,str(ROOT/"research/shared"))
+sys.path.insert(0,str(Path(__file__).resolve().parent))
 from unified_insurance_premium import render_insurance_premium
 from quantified_decision import render as render_insurer_decision
 BASE=ROOT/"research/issuers/601628"
