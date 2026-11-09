@@ -12,6 +12,7 @@ from build import moneyflow, waterfall, money, y, pc, num, sign, factmeta, page,
 from audit import audit
 from editorial_charts import balance_identity, operating_cash_allocation, profitability_change
 from native_mobile_finance import make as make_native_mobile_finance
+from quantified_optical_decision import render_optical_decision
 from zhongji_signed_pnl import render_original_signed_pnl
 sys.path.insert(0,str(Path(__file__).resolve().parents[4]/"research/shared"))
 from v7_optical_income_adapter import render_optical_candidate
@@ -226,6 +227,7 @@ def build(l,m):
  support=''.join('<li>'+esc(x)+'</li>' for x in m.get('support',[]));counter=''.join('<li>'+esc(x)+'</li>' for x in m.get('counter',[]))
  facts=len(l.get('facts',{}));ind=len(l.get('indirect_cfo_adjustments',[]))
  growth_unit='收入变动 '+(n(rev-prevrev)+' 亿' if prevrev is not None else '上期不可比')+' · 成本变动 '+(n(cogs-prevcogs)+' 亿' if prevcogs is not None else '上期不可比')
+ quantified_decision=render_optical_decision(l,m) if doc['ticker'] in ('300394.SZ','300502.SZ') else ''
  hero_focus_html=''
  if m.get("hero_focus")=="cash_conversion":
   # Distinctive issuer-specific visual question, not another generic KPI grid:
@@ -274,6 +276,25 @@ def build(l,m):
 '''
  css+=r'''
 /* Responsive original finance illustrations, NOT zoomed 1250px desktop art. */
+.optical-decision{margin:42px auto 60px;padding:34px 42px 29px;background:#fffcf7;border:1px solid #dfe5da;border-top:4px solid #087e69;color:#16383c}
+.optical-decision-eyebrow{font-size:10px;font-weight:780;letter-spacing:.13em;color:#087e69;margin:0 0 14px}
+.optical-decision h2{font:600 clamp(29px,3.1vw,43px)/1.23 var(--serif);letter-spacing:-.025em;margin:0 0 16px;max-width:950px}
+.optical-decision-lead{max-width:1030px;font-size:16px;line-height:1.85;color:#405b54}
+.optical-decision-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:27px 0 22px;padding:22px 0;border-top:1px solid #cedbd2;border-bottom:1px solid #cedbd2}
+.optical-decision-metric{min-width:0}
+.optical-decision-metric small{font-size:11px;line-height:1.55;display:block;color:#5e746d}
+.optical-decision-metric strong{display:block;margin-top:9px;font:700 clamp(28px,3.3vw,42px)/1.25 var(--serif);color:#087e69;font-variant-numeric:tabular-nums}
+.optical-decision-alternative,.optical-decision-falsifier{font-size:13px;line-height:1.9;margin:13px 0;color:#4b615a}
+.optical-decision-alternative b,.optical-decision-falsifier b{color:#213d37}
+.optical-decision-sources{margin:22px 0 10px;border-top:1px solid #d6dfd7;border-bottom:1px solid #d6dfd7}
+.optical-decision-sources summary{cursor:pointer;padding:17px 0;font-size:12px;font-weight:700;color:#215d4f}
+.optical-decision-source-scroller{max-width:100%;overflow-x:auto}
+.optical-decision-source-scroller table{width:100%;border-collapse:collapse;min-width:610px;font-size:12px;text-align:left}
+.optical-decision-source-scroller th,.optical-decision-source-scroller td{padding:10px 9px;border-top:1px solid #e2e8e0}
+.optical-decision-source-scroller a{color:#087e69}
+.optical-decision-integrity{font-size:11px;line-height:1.8;color:#6e7b71}
+@media(max-width:900px){.optical-decision{padding:25px 20px;margin:27px auto 38px}.optical-decision-metrics{gap:12px}.optical-decision-metric strong{font-size:30px}}
+@media(max-width:650px){.optical-decision{width:calc(100% - 26px);padding:22px 16px}.optical-decision h2{font-size:29px}.optical-decision-lead{font-size:14px}.optical-decision-metrics{grid-template-columns:1fr;gap:0;padding:4px 0}.optical-decision-metric{padding:12px 0;border-bottom:1px solid #e2e8e0}.optical-decision-metric:last-child{border-bottom:0}.optical-decision-metric strong{font-size:32px}.optical-decision-alternative,.optical-decision-falsifier{font-size:12px}}
 .native-finance{display:none}
 .native-finance-inner{color:#16383c;background:#fffefa;padding:5px 0 10px;min-width:0}
 .native-finance h4{font:700 18px var(--serif);margin:8px 0 8px;line-height:1.45}
@@ -342,9 +363,9 @@ def build(l,m):
  # full page assembly
  html_page=f'''<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><meta name="description" content="{esc(issuer)} {period} 深度财务研究：商业模式、利润形成、现金转换、资产结构、风险与反证。原始财报可追溯。"><title>{issuer} · {period} | Financials in Visuals Research Edition</title><style>{css}</style></head><body>
 <a class="skip" href="#main">跳到正文</a><div class="tooltip" id="floatTip" role="status" aria-live="polite"></div>
-<div class="mast"><div class="wrap"><div class="bar"><a href="/" class="brand">FINANCIALS <em>IN VISUALS</em></a><nav class="nav" aria-label="研究导航"><a href="#economics">商业模式</a><a href="#profit">盈利</a><a href="#cash">现金</a><a href="#capital">资本</a><a href="#watch">风险</a><a class="site-library-link" href="/#companies" title="返回包含七家公司的统一研究库">全部七家公司 ↗</a></nav></div>
+<div class="mast"><div class="wrap"><div class="bar"><a href="/" class="brand">FINANCIALS <em>IN VISUALS</em></a><nav class="nav" aria-label="研究导航"><a href="#economics">商业模式</a><a href="#profit">盈利</a><a href="#cash">现金</a><a href="#capital">资本</a><a href="#watch">风险</a><a class="site-library-link" href="/#companies" title="返回统一的全部公司研究目录">全部公司 ↗</a></nav></div>
 <header class="hero"><span class="eyebrow">Equity research / {ticker} / {period} · filing-first</span><h1>{thesis}</h1><p class="hero-deck">{summary}</p><div class="hero-meta"><span>{issuer} · {ticker}</span><span>{period} · {esc(doc['period_start'])} 至 {esc(doc['period_end'])}</span><span>{'已审计' if doc['audited'] else '未经审计'} · 合并报表</span><span>原始 PDF {doc['pages']} 页</span></div><div class="hero-figure"></div></header></div></div>
-<div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>{hero_focus_html}
+<div class="wrap"><section class="kpi-zone" aria-label="核心财务指标">{summary_metrics}</section></div>{quantified_decision}{hero_focus_html}
 <main id="main" class="wrap paper"><div class="lead"><aside>THE CENTRAL QUESTION<br>本期研究判断</aside><p>一家公司能把收入变成利润，并不等于它已经把利润变成了<strong>可持续的现金回报</strong>。这份研究将收入、成本、现金、营运资本和资本投入放在同一条会计逻辑中检验。</p></div>
 <section class="chapter" id="economics">{section_head('01','BUSINESS MODEL / ECONOMIC ENGINE','核心产品如何将销售额转化为盈利？','先理解产品价值链，再用真实金额守恒的收入主图解释各业务成本与毛利；经营利润和非经营性收益由下一张独立利润桥解释，不能混成同一条正向流带。')}<div class="two-col"><div class="callout"><strong>公司怎样赚钱</strong>{esc(m.get('business',''))}</div><div class="fact-note"><strong>定义与边界</strong><p>管理层关于技术、市场和客户链条的描述不是独立证据。本图仅使用原始财报中有明确分类、相同口径且金额严格守恒的收入来源。{esc(l.get('revenue_partition_assertion',{}).get('scope','未完整披露的产品来源不能自动生成未分类业务。'))}。不同分类维度绝对不能叠加。</p><small>公司说明：{esc(m.get('business_sources','原报告相应章节'))}</small></div></div>{exhibit('各项业务收入如何形成营业成本与毛利？','01 / MONEY FLOW',flow,src(l,*[g['revenue_key'] for g in l.get('segments',[]) if g.get('dimension') in ('product','other_business')],'revenue','cogs','total_operating_costs'),'实线流带宽度按人民币金额缩放；其他经营净收益及营业外项目不属于本图守恒部分，见下一张利润桥。')}{source_exception_html}<div class="readout">{qualitative('主线事实',m.get('growth_explanation',''))}{qualitative('不能直接得出的因果结论',m.get('growth_counter',''),'rust')}</div>{exhibit('为什么收入翻倍而销量只增加约六成？','02 / SALES VOLUME & MIX',volume_fig,src(l,'revenue_optics','product_revenue_prior','product_volume_wan','product_volume_wan_prior'),'三个比较面板的最后一栏为平均收入/只的近似值，不等于产品型号价格。只有量价组合的数学关系，缺少规格级别因果证据。') if volume_fig else ''}</section>
 <section class="chapter" id="profit">{section_head('02','PROFIT & DURABILITY / QUALITY OF EARNINGS','利润增长究竟来自收入增长，还是成本与费用变化？','把完整利润形成、毛利润变动、利润率和真实同期比较分开处理；明确“会计桥”不等于销量、价格和良率的因果拆解。')}
