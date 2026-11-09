@@ -14,6 +14,7 @@ ROOT=Path(__file__).resolve().parents[3]
 import sys
 sys.path.insert(0,str(ROOT/"research/shared"))
 from unified_insurance_premium import render_insurance_premium
+from quantified_decision import render as render_insurer_decision
 BASE=ROOT/"research/issuers/601628"
 LEDGER=json.loads((BASE/"source-ledger.json").read_text(encoding="utf-8"))
 FIG=json.loads((BASE/"figure-briefs.json").read_text(encoding="utf-8"))
@@ -437,6 +438,24 @@ CSS += r'''
   .m-unit{font:400 10.5px/1.68 var(--font);color:#789087;border-top:1px solid #E0EAE1;padding-top:14px;margin:20px 0 0}
 }
 '''
+CSS += r'''
+/* Separate verified CAS service, market, insurance finance and cash clocks. */
+.insurance-decision{margin:35px 0 22px;padding:30px 37px;background:#fffefa;border:1px solid #d5e2d9;border-top:4px solid #087B66}
+.insurance-decision-tag{font-size:10px;font-weight:800;color:#087B66;letter-spacing:.12em;margin:0 0 13px}
+.insurance-decision h2{font:500 clamp(28px,3.1vw,42px)/1.26 var(--serif);max-width:1000px;margin:0 0 15px}
+.insurance-decision-lead{font-size:15px;line-height:1.85;color:#416359;max-width:1000px}
+.insurance-decision-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;padding:24px 0;margin:27px 0;border-top:1px solid #dce5da;border-bottom:1px solid #dce5da}
+.insurance-decision-card{min-width:0}
+.insurance-decision-card small{font-size:11px;display:block;color:#637a71;line-height:1.55}
+.insurance-decision-card strong{display:block;margin-top:7px;font-size:clamp(20px,2.4vw,30px);font-weight:700;line-height:1.38;color:#087B66;font-variant-numeric:tabular-nums}
+.insurance-decision-counter{font-size:13px;color:#4c6b60;line-height:1.85}
+.insurance-decision-evidence{margin:20px 0 15px;border-top:1px solid #dde7df;border-bottom:1px solid #dde7df}
+.insurance-decision-evidence summary{padding:15px 0;cursor:pointer;font-size:12px;font-weight:700;color:#087B66}
+.insurance-decision-table{max-width:100%;overflow-x:auto}.insurance-decision-table table{min-width:640px}
+.insurance-decision-limit{font-size:11px;line-height:1.8;color:#6d8178}
+@media(max-width:950px){.insurance-decision{padding:25px 23px}.insurance-decision-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:740px){.insurance-decision{margin:23px 0;padding:19px 16px}.insurance-decision h2{font-size:28px}.insurance-decision-lead{font-size:13px}.insurance-decision-grid{grid-template-columns:1fr;gap:0;padding:5px 0}.insurance-decision-card{padding:12px 0;border-bottom:1px solid #e2ebe4}.insurance-decision-card:last-child{border:0}.insurance-decision-card strong{font-size:28px}}
+'''
 def render():
     q=check()
     charts="\n".join(article(x,i) for i,x in enumerate(FIG["figure_briefs"],1))
@@ -450,7 +469,7 @@ def render():
 <div class="kpis"><div class="kpi"><span class="label">管理层口径总保费</span><b>{yi("premium_total")}亿</b><small>{pct("premium_total","premium_prior")} · 非保险服务收入</small></div>
 <div class="kpi"><span class="label">合并保险服务收入</span><b>{yi("service_revenue")}亿</b><small>{pct("service_revenue","service_revenue_prior")} · CAS25 损益确认</small></div>
 <div class="kpi"><span class="label">归母净利润</span><b>{yi("parent_net")}亿</b><small>{pct("parent_net","parent_net_prior")} · 资产收益/保险财务联动</small></div></div></div></div></header>
-<main class="wrap"><nav class="contents" id="chapter"><b>CHAPTERS</b>{"".join(f'<a href="#chart-{e(x["id"])}">{i:02d} {e(x["id"].upper())}</a>' for i,x in enumerate(FIG["figure_briefs"],1))}</nav>
+<main class="wrap">{render_insurer_decision(LEDGER)}<nav class="contents" id="chapter"><b>CHAPTERS</b>{"".join(f'<a href="#chart-{e(x["id"])}">{i:02d} {e(x["id"].upper())}</a>' for i,x in enumerate(FIG["figure_briefs"],1))}</nav>
 <section class="intro"><div><h2>先区分三个世界，<br>再讨论一家寿险公司的回报。</h2><p>寿险公司的保单收现、按保险服务履行确认的收入、以及投资组合的公允价值/利率对保险负债的共同影响，属于不同的会计问题。2026H1 投资收益 {yi("investment_income")}亿元、公允价值损益 {yi("fairvalue_income")}亿元，同时承保财务损益为 −{yi(-amount("insurance_finance"))}亿元。任何一种单独“赚了多少”的说法都可能遮蔽资产负债匹配。</p><p>完整合并利润表位于原报告物理 p47–48，合并现金流 p53–54，保险合同负债组成附注 p85。物理 p45–46 和 p49–50 是母公司口径，不得误当合并三表。</p></div>
 <aside class="thesis"><strong>EDITORIAL THESIS / 核心判断</strong><p>{e(STORY["thesis"])}</p></aside></section>
 <section class="figures">{charts}</section>
