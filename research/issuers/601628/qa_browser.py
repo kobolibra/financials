@@ -19,6 +19,36 @@ with sync_playwright() as p:
   errors=[]
   page.on("pageerror",lambda exc:errors.append(str(exc)))
   page.goto(HTML.as_uri(),wait_until="load",timeout=30000)
+  from decimal import Decimal as D
+  import sys
+  sys.path.insert(0,str(BASE))
+  from quantified_decision import decisions,FACT_SPEC
+  values,derived=decisions(L)
+  panel=page.locator('section#quantified-decision')
+  assert panel.count()==1 and panel.is_visible(),(width,"INSURANCE_VISIBLE_QUANTIFIED_DECISION_MISSING")
+  assert panel.get_attribute("data-pdf-sha256")==L["source"]["original_bytes_sha256"]
+  assert panel.get_attribute("data-accounting-not-causal")=="true"
+  decision=panel.evaluate("""n=>({
+     left:n.getBoundingClientRect().left,right:n.getBoundingClientRect().right,
+     source:[...n.querySelectorAll('tr[data-source-key]')].map(x=>({...x.dataset})),
+     derived:[...n.querySelectorAll('.insurance-decision-card[data-decision-key]')].map(x=>({...x.dataset})),
+     cards:[...n.querySelectorAll('.insurance-decision-card')].map(x=>{
+       const r=x.getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom};
+     }),
+     font:+getComputedStyle(n.querySelector('.insurance-decision-lead')).fontSize.replace('px','')
+  })""")
+  assert len(decision["source"])==len(FACT_SPEC)==13,(width,"DECISION_SOURCE_FACT_COUNT")
+  assert len(decision["derived"])==4,(width,"DECISION_DERIVED_CAS_METRIC_COUNT")
+  for item in decision["source"]:
+     k=item["sourceKey"];fact=F[k]
+     assert D(item["exactYuan"])==D(fact["yuan"]),(width,k,"DECISION_ORIGINAL_PDF_YUAN_DRIFT")
+     assert item["period"]==FACT_SPEC[k][0] and item["financialKind"]==FACT_SPEC[k][1]
+     assert int(item["physicalPage"])==fact["page"]
+  assert all(D(item["derivedDecimal"])==derived[item["decisionKey"]] for item in decision["derived"]),(width,"DECISION_SIGNED_CAS_ARITHMETIC_WRONG")
+  assert decision["left"]>=-1 and decision["right"]<=width+2 and decision["font"]>=13,(width,"INSURER_QUANTIFIED_DECISION_CROPPED_OR_SMALL")
+  if width==390:
+     assert all(decision["cards"][i]["bottom"]<=decision["cards"][i+1]["top"]+.5 for i in range(3)),(width,"INSURER_QUANTIFIED_CARDS_OVERPRINT")
+  panel.screenshot(path=str(OUT/f"decision_{width}.png"),animations="disabled")
   assert page.locator("figure.figure").count()==len(Q["figure_briefs"])==10,(width,"figures")
   assert page.locator("figure.figure .audit").count()==10,(width,"independent source tables")
   assert page.locator("figure.figure .chart svg").count()==10,(width,"not real SVG")
