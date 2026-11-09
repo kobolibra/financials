@@ -118,6 +118,34 @@ def check_agent_source_of_truth(agent_instructions: str) -> list[str]:
     return issues
 
 
+def check_active_release_authority(wrapper: str, agent: str, protocol: str) -> list[str]:
+    """Reject stale *active* PR35 release instructions in agent discovery and handoff.
+
+    Historical evidence is retained, but an agent's front door may not
+    relabel already merged work as an unmerged candidate or ignore the
+    seven HERO-only migrations. The machine catalog and census remain
+    authoritative when future issuers/figures change.
+    """
+    issues = []
+    if not all(key in wrapper for key in ("project-status.json", "site/research_catalog.json",
+                                             "audit_unified_visual_corpus.py")):
+        issues.append("CODEX_DISCOVERY_CURRENT_MACHINE_CENSUS_NOT_REFERENCED")
+    if ("only the 4 PR35 V10 candidates" in wrapper or
+            "seven older issuers remain `LEGACY_NOT_UNIFIED`" in wrapper):
+        issues.append("CODEX_DISCOVERY_STALE_UNMERGED_PR35_VISUAL_STATUS")
+    if "**Active candidate overlay (2026-11-07):**" in agent or "This is an UNMERGED candidate;" in agent:
+        issues.append("AGENT_HISTORICAL_PR35_MISLABELED_AS_ACTIVE")
+    front = protocol[:1800]
+    if not all(key in front for key in ("project-status.json", "site/research_catalog.json",
+                                        "audit_unified_visual_corpus.py")):
+        issues.append("HANDOFF_FRONT_DOOR_MISSING_CURRENT_SOURCE_OF_TRUTH")
+    if "四家新桑基候选只按真实当前 HTML SHA 验收" in front or "其他七家 LEGACY_NOT_UNIFIED" in front:
+        issues.append("HANDOFF_STALE_PR35_CANDIDATE_AS_CURRENT_RELEASE")
+    if "HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY" not in front:
+        issues.append("HANDOFF_HERO_ONLY_MIGRATION_BOUNDARY_MISSING")
+    return issues
+
+
 def check_start_here_source_of_truth(entry: str) -> list[str]:
     """The human-facing first link must not ossify a fixed issuer count.
 
@@ -178,6 +206,9 @@ def check_repo() -> list[str]:
 
     errors += check_start_here_source_of_truth(load("START_HERE.md"))
     errors += check_agent_source_of_truth(load("AGENTS.md"))
+    errors += check_active_release_authority(
+        load(".agents/skills/ashare-financial-storytelling/SKILL.md"),
+        load("AGENTS.md"), load("docs/HANDOFF_PROTOCOL.md"))
     if not all(term in load("AGENTS.md") for term in
                ["SKILL.md", "NOT_CHECKED", "START_HERE.md", "REPORT_RELEASE_CHECKLIST"]):
         errors.append("AGENT_INSTRUCTIONS_NOT_ACTIVATING_SKILL_AND_GATES")
