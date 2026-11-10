@@ -98,9 +98,14 @@ with sync_playwright() as pw:
     assert "NOT_CHECKED" in panel.inner_text()
     panel.screenshot(path=str(OUT/f"live_decision_{width}.png"),animations="disabled")
     assert page.locator("figure.figure").count()==10
-    assert page.locator("figure.figure svg").count()==10
+    # Ten desktop/source SVGs plus one independently authored true-money
+    # 330-unit mobile premium SVG. Counting *all* SVG descendants as ten
+    # incorrectly rejects a correct production report after exact SHA proof.
+    assert page.locator("figure.figure .chart svg").count()==10,(width,"LIVE_TEN_ORIGINAL_DESKTOP_FINANCE_SVGS_MISSING")
+    assert page.locator('#chart-premium .mobile-chart svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1,(width,"LIVE_SOURCE_CONSERVED_NATIVE_INSURANCE_PREMIUM_SVG_MISSING")
+    assert page.locator("figure.figure svg").count()==11,(width,"LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT")
     assert page.locator("figure.figure details.audit").count()==10
-    assert page.locator("figure.figure .money-ribbon").count()==6
+    assert page.locator("figure.figure .chart .money-ribbon").count()==6
     assert page.locator("figure.figure .mobile-chart").count()==10,("LIVE_MOBILE_ALTERNATIVE_DOM_MISSING",width)
     if width==390:
         assert page.locator(".mobile-chart:visible").count()==10,("LIVE_390_MOBILE_FULL_TEN_FIGURES_NOT_VISIBLE")
