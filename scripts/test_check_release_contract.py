@@ -55,7 +55,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 # Actual 688220 production passed its own current main SHA,
                 # six screenshots, typed Sankey and signed-profit live gate.
                 # Keeping an UNMERGED candidate would now be a false status.
-                if code=="688220" or (code in {"600900","600276"} and "unmerged_candidate" not in current):
+                if "unmerged_candidate" not in current:
                     self.assertNotIn("unmerged_candidate",current)
                     self.assertEqual(current["published_html_sha256"],actual)
                     self.assertEqual(current["live_release_fingerprint"],actual)
@@ -348,7 +348,14 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertEqual(receipt["independent_second_human_finance_editor"],"NOT_CHECKED")
         self.assertEqual(receipt["independent_second_human_visual_editor"],"NOT_CHECKED")
         self.assertEqual(original["gates"]["REPORTED_NOTE_TIES"]["status"],"FAIL")
-        self.assertNotIn("unmerged_candidate",original)
+        if "unmerged_candidate" in original:
+            candidate=original["unmerged_candidate"]
+            self.assertEqual(candidate["base_deployed_html_sha256"],receipt["public_html_sha256"])
+            self.assertNotEqual(candidate["candidate_full_html_sha256"],receipt["public_html_sha256"])
+            self.assertEqual(candidate["promotion_status"],"UNMERGED_NOT_DEPLOYED")
+            self.assertEqual(mod.validate_release(ROOT,self.issuer,original,check_bytes=False),[])
+        else:
+            self.assertEqual(original["published_html_sha256"],__import__('hashlib').sha256((ROOT/'public/688220.html').read_bytes()).hexdigest())
 
     def test_pdf_corruption_and_source_version_fail_closed(self):
         errors = self.poisoned(

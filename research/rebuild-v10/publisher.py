@@ -81,7 +81,7 @@ def change_lollipop(rows,title,unit='%'):
  out=txt(24,30,title,17,COL['muted'],'600')+rule(z,49,z,h-32,'#8aa49b',2)+txt(z,44,'0',12,COL['muted'],anchor='middle')
  for i,(label,value) in enumerate(rows):
   value=float(value);y=66+i*80;xval=z+value*s; c=COL['green'] if value>=0 else COL['copper']
-  out+=txt(268,y+22,label,17,anchor='end')+rule(z,y+13,xval,y+13,c,8)+f'<circle cx="{xval}" cy="{y+13}" r="9" fill="{c}" stroke="{COL["ivory"]}" stroke-width="2"/>'
+  out+=txt(268,y-4,label,17,anchor='end')+rule(z,y+13,xval,y+13,c,8)+f'<circle cx="{xval}" cy="{y+13}" r="9" fill="{c}" stroke="{COL["ivory"]}" stroke-width="2"/>'
   out+=txt(xval+(15 if value>=0 else -15),y+20,('+' if value>0 else '')+n(value,2)+unit,17,c,'700','start' if value>=0 else 'end')
  return svg_base(out,h,title)
 
@@ -158,7 +158,7 @@ def signed_cash_bars(rows,title):
     for i,(lab,val) in enumerate(rows):
         y=69+i*78;v=float(val);w=abs(v)*scale;color=COL['green'] if v>=0 else COL['copper']
         start=z if v>=0 else z-w
-        out+=txt(322,y+26,lab,16,anchor='end')+bar(start,y,max(w,2),31,color)
+        out+=txt(322,y-6,lab,16,anchor='end')+f'<rect x="{start:.8f}" y="{y}" width="{w:.8f}" height="31" fill="{color}"/>'
         out+=txt((z+w+11 if v>=0 else z-w-11),y+24,('+' if v>0 else '')+n(v,2),16,color,'700','start' if v>=0 else 'end')
     out+=txt(26,ht-12,'亿元 · 同一零轴；右侧为现金净流入，左侧为现金净流出',13,COL['muted'])
     return svg_base(out,ht,title)

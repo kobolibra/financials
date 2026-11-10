@@ -1,0 +1,31 @@
+Financials quality candidate - 2026-11-10
+Reviewed main: 2478b37dac358b3c96fd37aa0ba88ec5364ebef5
+Scope: LOCAL UNMERGED / NOT DEPLOYED
+
+PASS: scripts unittest 126 methods
+PASS: shared financial unittest 45 methods (includes 120 deterministic unseen amount/loss scenarios)
+PASS: editorial chart quality 8 methods
+PASS: profit formation 8 methods
+PASS: signed label / zero-tiny scale geometry 2 methods
+Total regular unittest methods: 189
+PASS optimized Python: comparative economics + publication 8 methods; income generalization 4 methods
+PASS: check_handoff, check_release_contract, check_pr35_quality_handoff
+PASS: check_visual_editorial_policy, audit_aei_editorial_delivery --fail-known, audit_v10_flow_contract --strict
+PASS: source-bound research depth and published research depth
+PASS: all 8 changed issuer articles deterministic byte-for-byte rebuild
+PASS: every observed article SHA equals current candidate HTML
+PASS: dynamic catalog browser matrix 11 issuers x 3 widths = 33 states / 315 figure-and-panel observations
+PASS: 0 script/overflow/ribbon amount/label clip/significant overlap blockers
+PASS: 9 new economics SVG export checks (330 native and 1040 desktop)
+PASS: issuer-specific original money, signed cash, source and visible SVG export QA
+PASS: review artifact at 1440/768/390; actual images displayed, zero script errors or body overflow
+
+Source read: canonical Skill, five manuals, repository instructions, publishing and release contracts.
+Source verification: four V10 original PDF fingerprints/page counts and numeric-page rebuilds;
+three new comparative analyses' exact original PDF income/cost rows/current/prior columns visually checked.
+600900 restatement statement: physical p7, same-control merger.
+688220 complete mirror verified; official SSE byte equivalence NOT_CHECKED.
+
+NOT_CHECKED: all material-note completeness; independent second finance/art reviewers;
+20-30 unseen real issuer-period panel; multi-quarter peer causality; current candidate Cloudflare live SHA.
+Mobile small text observations remain visible in the matrix. Zero blockers is not an aesthetic certification.

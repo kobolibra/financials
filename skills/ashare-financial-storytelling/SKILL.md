@@ -26,6 +26,14 @@ Read these **five complete research guides** when doing report research or visua
 - `research/04_ASHARE_FORENSIC_DEEP_DIVE.md`: original note cells, reclassifications and audit traps.
 - `research/05_CROSS_SECTOR_GENERALIZATION.md`: banks/insurance/industry-specific accounting; unseen samples.
 
+## 2026-11-10 repeatable delivery amendment
+
+Use `comparative_economics.py` for an explicitly industrial, same-definition, same-flow-interval, source-PDF-bound revenue/margin GP bridge. Exact rational arithmetic splits the interaction equally; visible cent rounding stays a numerical row. This is accounting attribution, NEVER independently identified price/volume/mix/FX causality. Reject bank/insurance routes, zero-revenue ratio analysis, mixed units/scopes, mismatched labels/dates and reused revenue/cost facts. Require the strongest alternative and next-disclosure falsifier. Three source-bound issuer examples do not certify unseen-industry coverage.
+
+Sankey nodes require unique nonreserved identities, real cost AND profit roles and nonreused same-axis own-cost facts. A zero-revenue source has zero ribbon and an undefined, explicitly labelled margin; never divide by zero or draw a minimum decorative flow. Run `test_income_generalization.py` and `test_comparative_economics.py`, including optimized Python.
+
+Responsive QA must observe every figure, not only the first Sankey. Use `scripts/audit_delivery_matrix.py` on the live canonical catalog: 1440/768/390, actual displayed text sizes, clipping, overlaps, ribbon endpoint amounts, screenshot SHA and article SHA. At 768, select native small-screen drawings where desktop labels shrink below legibility. Every new economics panel needs a true native phone drawing and working visible-layout SVG export. Small-font observations require editorial review; zero JS/overflow errors alone NEVER certify typography or aesthetics. Record exact scope, preserve historical live receipts and keep new candidate deployment/human review separate.
+
 ## 1. Research must precede drawing
 
 For **every** report, create five decision-bound items linked to literal source fact IDs, issuer, reporting period, original PDF SHA and physical pages:

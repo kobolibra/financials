@@ -46,7 +46,7 @@ with sync_playwright() as p:
      assert int(item["physicalPage"])==fact["page"]
   assert all(D(item["derivedDecimal"])==derived[item["decisionKey"]] for item in decision["derived"]),(width,"DECISION_SIGNED_CAS_ARITHMETIC_WRONG")
   assert decision["left"]>=-1 and decision["right"]<=width+2 and decision["font"]>=13,(width,"INSURER_QUANTIFIED_DECISION_CROPPED_OR_SMALL")
-  if width==390:
+  if width<=850:
      assert all(decision["cards"][i]["bottom"]<=decision["cards"][i+1]["top"]+.5 for i in range(3)),(width,"INSURER_QUANTIFIED_CARDS_OVERPRINT")
   panel.screenshot(path=str(OUT/f"decision_{width}.png"),animations="disabled")
   assert page.locator("figure.figure").count()==len(Q["figure_briefs"])==10,(width,"figures")
@@ -132,7 +132,7 @@ with sync_playwright() as p:
      return faults;
    }""")
    assert not clocks_collisions,("ACTUAL_CHROMIUM_601628_MONEY_AND_YOY_TEXT_COLLISION",clocks_collisions)
-  if width==390:
+  if width<=850:
    assert page.locator(".mobile-chart:visible").count()==10,(width,"MOBILE_NOT_TEN_COMPLETE_SOURCE_PLOTS")
    assert page.locator(".chart:visible").count()==0,(width,"MOBILE_STILL_USES_900PX_CROPPED_SVG_WINDOW")
    assert all(x["visible"] and x["panelOverflow"]<=1 for x in geometry["mobile"]),(width,"MOBILE_INNER_HORIZ_SCROLL",geometry["mobile"])
@@ -206,7 +206,7 @@ with sync_playwright() as p:
   statuses.append({"width":width,"height":height,"result":"PASS","body_no_overflow":"PASS",
                    "source_sankey_actual_path_and_rect":"PASS","cjk_font_available":geometry["hasFont"],
                    "figure_count":10,"original_source_tables":geometry["sourceTables"],
-                   "figure_readability":"DESKTOP_ALL_ORIGINAL_SVG_VISIBLE" if width==1440 else ("MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL" if width==390 else "TABLET_FULL_SOURCE_SVG"),
+                   "figure_readability":"DESKTOP_ALL_ORIGINAL_SVG_VISIBLE" if width==1440 else ("MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL" if width<=850 else "TABLET_FULL_SOURCE_SVG"),
                    "svg_export":"PASS","screenshot":f"full_report_{width}.png"})
   page.close()
  browser.close()

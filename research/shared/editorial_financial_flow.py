@@ -65,12 +65,14 @@ class FlowDecision:
 def _check_fact(f: FinanceFact):
     if not f.id or not f.period or not f.issuer or not f.statement:
         raise FlowSemanticError("MISSING_TYPED_SOURCE_DIMENSIONS")
-    if not isinstance(f.source_page, int) or f.source_page < 1:
+    if type(f.source_page) is not int or f.source_page < 1:
         raise FlowSemanticError(f"ORIGINAL_PHYSICAL_PAGE_REQUIRED {f.id}")
     if f.currency != "CNY":
         raise FlowSemanticError(f"NON_CNY_SOURCE_MUST_RENORMALIZE_WITH_PROOF {f.id}")
     if not f.scope:
         raise FlowSemanticError("CONSOLIDATION_SCOPE_REQUIRED")
+    if not f.group_axis or not f.hierarchy_level:
+        raise FlowSemanticError("SOURCE_CLASSIFICATION_AXIS_AND_LEVEL_REQUIRED")
     _ = f.amount
 
 
@@ -135,9 +137,15 @@ def assess_financial_income_flow(
         raise FlowSemanticError("UNREVIEWED_COST_ALLOCATION_CANNOT_BE_ASSUMED")
     if set(costs_by_source) != set(ids):
         raise FlowSemanticError("MISSING_OR_EXTRA_SOURCE_COST_FACTS")
+    cost_ids=[f.id for f in costs_by_source.values()]
+    if len(set(cost_ids))!=len(cost_ids) or set(cost_ids)&set(ids):
+        raise FlowSemanticError("REUSED_SOURCE_COST_FACT_CANNOT_PROVE_OWN_PRODUCT_GP")
     per = []
     for item in sources:
         cost = costs_by_source[item.id]
+        if (cost.group_axis!=item.group_axis or cost.hierarchy_level!=item.hierarchy_level
+                or cost.parent_id!=item.parent_id):
+            raise FlowSemanticError("SOURCE_OWN_COST_CLASSIFICATION_MISMATCH")
         own_cost = cost.amount
         own_gp = item.amount-own_cost
         if own_cost < 0 or own_gp < 0:

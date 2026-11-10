@@ -9,7 +9,7 @@ profits, overlapping segments, period-mismatched facts or balance stocks.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal as D
+from decimal import Decimal as D, InvalidOperation
 from html import escape
 from collections import defaultdict
 
@@ -21,7 +21,10 @@ PALETTE = {
 }
 
 def yuan(v):
-    x=D(str(v))
+    try:
+        x=D(str(v))
+    except (InvalidOperation, ValueError) as exc:
+        raise ValueError("INVALID_DECIMAL_MONEY") from exc
     if not x.is_finite():
         raise ValueError("NON_FINITE_MONEY")
     return x
@@ -95,6 +98,17 @@ class FlowPlan:
             raise ValueError("WRONG_GRAMMAR_FOR_POSITIVE_MONEY_SANKEY")
         if not 2<=len(self.sources)<=8 or not 2<=len(self.outcomes)<=8:
             raise ValueError("SOURCES_AND_OUTCOMES_REQUIRED")
+        # Identifiers are used as dictionary keys AND serialized DOM IDs.
+        # Coercing only some of them to str makes valid-looking plans lose
+        # allocations, and a source named revenue-total collides with the trunk.
+        ids=[k for k,_,_ in self.sources]+[k for k,_,_,_ in self.outcomes]
+        if any(not isinstance(k,str) or not k.strip() or k!=k.strip() for k in ids):
+            raise ValueError("NONEMPTY_STRING_NODE_IDENTIFIER_REQUIRED")
+        if len(set(ids))!=len(ids) or "revenue-total" in ids:
+            raise ValueError("DUPLICATE_NODE_IDENTIFIER")
+        if any(not isinstance(name,str) or not name.strip()
+               for _,name,*_ in (*self.sources,*self.outcomes)):
+            raise ValueError("MEANINGFUL_FINANCIAL_LABEL_REQUIRED")
         sources={str(k):yuan(v) for k,_,v in self.sources}
         outcomes={str(k):yuan(v) for k,_,v,_ in self.outcomes}
         if len(sources)!=len(self.sources) or len(outcomes)!=len(self.outcomes):
@@ -106,6 +120,8 @@ class FlowPlan:
             raise ValueError("SOURCE_AND_OUTCOME_TOTAL_MISMATCH")
         if any(role not in ("cost","profit") for _,_,_,role in self.outcomes):
             raise ValueError("INVALID_OUTCOME_ROLE")
+        if {role for _,_,_,role in self.outcomes}!={"cost","profit"}:
+            raise ValueError("COST_AND_PROFIT_ROLES_REQUIRED")
         if self.kind=="TYPE_A_SOURCE_OWN_COST_GP":
             if not self.allocations:
                 raise ValueError("SOURCE_OWN_COST_CANNOT_BE_INFERRED_FROM_GROUP")
@@ -194,7 +210,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
                 own_gp=sum((yuan(value) for source,outcome,value in plan.allocations
                             if source==sid and any(key==outcome and role=="profit"
                                                    for key,_,_,role in plan.outcomes)),D(0))
-                label+=f' · 毛利{own_gp/v*100:.1f}%'
+                label+=(f' · 毛利{own_gp/v*100:.1f}%' if v else ' · 毛利率不适用')
             if readable_source_rows:
                 out.append(text(28,leg_y+D(20),label,11,PALETTE["source_dark"],600,role="source-summary"))
             else:
@@ -266,7 +282,8 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
             if plan.allocations:
                 own=[(o,yuan(a)) for s,o,a in plan.allocations if s==sid]
                 profit=sum((a for oid,a in own if next(r for k,_,_,r in plan.outcomes if k==oid)=="profit"),D(0))
-                out.append(text(24,sy+34,f'毛利率 {profit/v*100:.1f}%',13,PALETTE["profit"],700,role="source-item-margin"))
+                margin=f'毛利率 {profit/v*100:.1f}%' if v else '毛利率不适用（收入为零）'
+                out.append(text(24,sy+34,margin,13,PALETTE["profit"],700,role="source-item-margin"))
     out.append(rect(xrev,mid_base,rev_width,HVAL,PALETTE["trunk"],
                     f'data-node-id="revenue-total" data-node-yuan="{esc(total)}" data-node-role="total"'))
     if not mobile:

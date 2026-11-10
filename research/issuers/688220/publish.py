@@ -14,6 +14,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"shared"))
 from source_income_adapter import render_sector_income
+from economics_exhibit import render_panel as render_economics_panel
 ROOT=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser()
 ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
@@ -134,6 +135,8 @@ checks["SHARED_FULL_SIGNED_PNL_DESKTOP_PHONE"]="PASS"
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display)
     .replace("__SOURCE_SHA__",actual_sha).replace("__UNIFIED_DESKTOP__",income_json)
     .replace("__UNIFIED_PNL_DESKTOP__",pnl_desktop_json))
+comparison_brief=json.loads((ROOT/"comparative-economics.json").read_text(encoding="utf-8"))
+output=output.replace('<main class="wrap">','<main class="wrap">'+render_economics_panel(data,comparison_brief),1)
 # The full standalone article retains its original nine desktop editable SVG
 # graphs and financial evidence tables. At <=820, a second issuer-specific
 # original-money narrative is shown without horizontally cropping the reader.

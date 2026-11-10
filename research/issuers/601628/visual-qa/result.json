@@ -31,7 +31,7 @@
       "cjk_font_available": true,
       "figure_count": 10,
       "original_source_tables": 11,
-      "figure_readability": "TABLET_FULL_SOURCE_SVG",
+      "figure_readability": "MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL",
       "svg_export": "PASS",
       "screenshot": "full_report_768.png"
     },

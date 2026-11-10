@@ -1,0 +1,20 @@
+{
+  "schema": "financials.comparative_economics_brief.v1",
+  "statement": "industrial_operating_income",
+  "current_period": "2026H1",
+  "prior_period": "2025H1",
+  "current_interval": [
+    "2026-01-01",
+    "2026-06-30"
+  ],
+  "prior_interval": [
+    "2025-01-01",
+    "2025-06-30"
+  ],
+  "definition": "合并营业收入减营业成本；不含期间费用、金融投资和税项",
+  "question": "毛利增长，规模与综合毛利率如何共同贡献？",
+  "prior_restated": false,
+  "comparability_evidence": "采用已归档224页报告副本p86合并利润表的本期及上年同期收入、成本原值。副本SHA已核验；与上交所官网PDF逐字节等价尚未证明，不以副本替代官方等价认证。",
+  "strongest_alternative": "芯片销售与定制开发的结构、验收及成本结转都可能抬升综合毛利率；毛利扩张不足以证明持续盈利，研发与存货占款仍可能压低现金回报。",
+  "next_disclosure_falsifier": "后续核对芯片与定制各自收入成本、项目验收、存货减值、应收回款和研发覆盖；若毛利率回落且现金占用持续扩大，应降低经营改善的判断。"
+}

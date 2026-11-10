@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-09",
+  "updated_date": "2026-11-10",
   "current_release_provenance_20261109": {
     "scope": "HISTORICAL_EXACT_MAIN_SOURCE_PROOF_NOT_FUTURE_UNCONDITIONAL_LIVE",
     "source_main_sha": "b72e6074795bc0cb9aabe0b312c79f1decf567f4",
@@ -57,10 +57,10 @@
     "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
     "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "600036": "dd47ace2259c0e00edad896b9ac2cfd1a1b118d1d2c495414ef5b22436fdeccd",
-      "600519": "1be2828a85fb7dfece58c287a82a2d4a0687678fca11399de1ee6f2aceb532ae",
-      "688111": "339ea620baad9cdfa4085d53b6637ddb0246c53152df6d27a8e1efeb9038ec10",
-      "000333": "8594d7a9a93cfde5c28aab37eac62112b14757503b46fb80695adb2969645822"
+      "688111": "0e68403c73b5c10718fe9175d3e16a41afd10839b582b16feaa6c6b6f71b458e",
+      "600519": "737b145ebee5498a934a9587ebbf476d6e9127fe3277f970e664b287ac49911a",
+      "000333": "006b80d2f944cca4b6c55519920d47082c526f6a6fe5c001d1157c3a35afe7a5",
+      "600036": "eec779faa002ae748b18240d3b85a7cacb5a4ebb87a26bef2641b1e32cfbcb5b"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
@@ -1504,5 +1504,52 @@
       "Do not force insurer/bank into industrial profit bridge or negative profit into positive Sankey",
       "Historical PR35 unmerged language is archive only; old active-pr35 file is a historical provenance record"
     ]
+  },
+  "quality_upgrade_20261110": {
+    "scope": "LOCAL_UNMERGED_CANDIDATE_NOT_PRODUCTION",
+    "reviewed_main_sha": "2478b37dac358b3c96fd37aa0ba88ec5364ebef5",
+    "changed_issuer_articles": [
+      "600900",
+      "600276",
+      "688220",
+      "601628",
+      "688111",
+      "600519",
+      "000333",
+      "600036"
+    ],
+    "new_quantified_comparative_analysis": [
+      "600900",
+      "600276",
+      "688220"
+    ],
+    "browser_matrix": "research/quality/delivery-20261110/result.json",
+    "browser_article_viewports": 33,
+    "figure_and_analysis_panel_observations": 315,
+    "browser_blockers": [],
+    "new_economics_svg_export_checks": 9,
+    "tablet_below_10px_labels_before_after": {
+      "600900": [
+        112,
+        0
+      ],
+      "600276": [
+        114,
+        0
+      ],
+      "601628": [
+        144,
+        0
+      ]
+    },
+    "source_and_semantics": "EXACT_YUAN_GUARDS_AND_SOURCE_BOUND_SYMMETRIC_ACCOUNTING_DECOMPOSITION",
+    "all_11_entire_article_art_unified": "NOT_ESTABLISHED",
+    "unseen_real_20_30_issuer_period_panel": "NOT_CHECKED",
+    "independent_human_finance_and_art_review": "NOT_CHECKED",
+    "new_candidate_cloudflare_live_sha": "NOT_CHECKED",
+    "remaining_mobile_small_text": "RECORDED_IN_MATRIX_EDITORIAL_REVIEW_REQUIRED",
+    "documentation": "docs/QUALITY_REVIEW_20261110.html",
+    "new_workflow_activation": "PENDING_GITHUB_WORKFLOW_WRITE_SCOPE",
+    "prepared_workflow": "docs/ci-candidates/verify-comparative-economics.yml"
   }
 }
