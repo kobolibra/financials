@@ -4,7 +4,6 @@ The full production HTML passed its exact SHA, original 13-source decision
 values and four CAS formulas, but an older live test miscounted 10 source
 desktop SVGs + 1 independent mobile SVG as exactly 10 all-descendant SVGs.
 """
-import ast
 from pathlib import Path
 import unittest
 
@@ -33,13 +32,10 @@ class LiveInsurerTwoLayoutContract(unittest.TestCase):
             "expected_sha", "expected_home", "b.body()", "decisions(report)",
             "LIVE_INSURER_SOURCE_MONEY_FALSE", "LIVE_INSURER_DECISION_FORMULA_FALSE",
             "LIVE_390_MOBILE_FULL_TEN_FIGURES_NOT_VISIBLE",
-            "LIVE_FINAL", "LIVE_WRONG_PREMIUM_TOTAL_GEOMETRY",
+            "SOURCE_PREMIUM_NOT_CLOSED", "LIVE_ORIGINAL_YUAN_RIBBON_GEOMETRY_FALSE",
             "all_11_issuer_external_routes", "MISSING_PRODUCTION_THREE_VIEWS",
         ):
-            if required=="LIVE_FINAL":
-                self.assertIn("LIVE_WRONG_PREMIUM_TOTAL_SOURCE",s)
-            else:
-                self.assertIn(required,s)
+            self.assertIn(required,s)
         self.assertIn('assert len(results["screenshots"])==9',s)
 
 if __name__=="__main__":
