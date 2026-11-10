@@ -29,3 +29,6 @@ three new comparative analyses' exact original PDF income/cost rows/current/prio
 NOT_CHECKED: all material-note completeness; independent second finance/art reviewers;
 20-30 unseen real issuer-period panel; multi-quarter peer causality; current candidate Cloudflare live SHA.
 Mobile small text observations remain visible in the matrix. Zero blockers is not an aesthetic certification.
+
+REMOTE WORKFLOW: GitHub credential rejected workflow creation (missing workflow scope).
+Prepared workflow is retained at docs/ci-candidates/verify-comparative-economics.yml; NOT ACTIVE.
