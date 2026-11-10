@@ -22,7 +22,10 @@ class LiveInsurerTwoLayoutContract(unittest.TestCase):
         self.assertNotIn('page.locator("figure.figure svg").count()==10',s)
         self.assertIn('figure.figure details.audit',s)
         self.assertIn('figure.figure .mobile-chart',s)
-        self.assertIn('figure.figure .chart .money-ribbon',s)
+        self.assertIn('SOURCE_PREMIUM_NOT_CLOSED',s)
+        self.assertIn('LIVE_ORIGINAL_YUAN_RIBBON_GEOMETRY_FALSE',s)
+        self.assertNotIn('rect.money-source',s)
+        self.assertNotIn('rect.money-sink',s)
 
     def test_live_release_checks_exact_html_source_decision_and_layout(self):
         s=LIVE.read_text(encoding="utf-8")
