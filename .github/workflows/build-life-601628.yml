@@ -37,6 +37,7 @@ jobs:
           fi
           python research/issuers/601628/verify_source.py
           python -m unittest research/issuers/601628/test_accounting.py -v
+          python -m unittest discover -s research/issuers/601628 -p test_live_release_contract.py -v
           python -m py_compile research/issuers/601628/quantified_decision.py
           python -m unittest discover -s research/shared -p test_unified_insurance_premium.py -v
           python research/issuers/601628/publish.py --out public/601628.html
