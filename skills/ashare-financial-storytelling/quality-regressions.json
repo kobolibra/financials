@@ -532,6 +532,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-055",
+      "root_cause": "Both periods can be valid break-even statements, leaving no nonzero GP domain; rejecting this output harms unseen-company transfer.",
+      "correction": "Use an explicit zero-only source-bound state with no bars or invented one-yuan scale.",
+      "proof_file": "research/shared/test_economics_exhibit.py",
+      "assertion_marker": "NO_NONZERO_MONEY_DOMAIN",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

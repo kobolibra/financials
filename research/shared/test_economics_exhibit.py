@@ -57,5 +57,11 @@ class EconomicsPublicationTests(unittest.TestCase):
                     if not delta:self.assertEqual(D(a['width']),0)
                 bad=copy.deepcopy(result);bad['effects'][0]['yuan']='1000.00'
                 with self.assertRaisesRegex(ValueError,'DISPLAY_BRIDGE_NOT_CLOSED'):render_bridge(bad,mobile=mobile)
+        zero=gross_profit_bridge(period(2025,'100','100'),period(2026,'200','200'),comparability_evidence='Same consolidated scope and comparable operating revenue/cost definitions.')
+        for mobile in (True,False):
+            root=ET.fromstring(render_bridge(zero,mobile=mobile))
+            self.assertEqual(root.attrib['data-comparative-zero-state'],'NO_NONZERO_MONEY_DOMAIN')
+            self.assertEqual(root.findall('{http://www.w3.org/2000/svg}rect'),[])
+
 
 if __name__=='__main__':unittest.main()

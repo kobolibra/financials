@@ -111,7 +111,25 @@ def render_bridge(result:dict,*,mobile:bool=False)->str:
     width=D(330 if mobile else 1040);left=D(16 if mobile else 28)
     chart_left=left if mobile else D(280);right=width-left
     lo=min([D(0)]+[min(a,b) for _,_,a,b in rows]);hi=max([D(0)]+[max(a,b) for _,_,a,b in rows])
-    if hi==lo:raise ValueError("EMPTY_COMPARATIVE_MONEY_DOMAIN")
+    if hi==lo:
+        # A valid break-even company can have zero GP in both periods.
+        # No artificial one-yuan domain, minimum bar or undefined scale.
+        height=100+55*len(rows)
+        zero_rows="".join(
+            f'<text x="16" y="{100+i*55}" font-size="12">{E(label)}: 0</text>'
+            for i,(_,label,_,_) in enumerate(rows))
+        return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {nu(width)} {height}" '
+                f'role="img" data-comparative-grammar="SYMMETRIC_GP_SIGNED_V1" '
+                f'data-comparative-zero-state="NO_NONZERO_MONEY_DOMAIN" data-issuer="{E(result["issuer"])}" '
+                f'data-layout="{"native-330" if mobile else "editorial-1040"}" '
+                f'data-current-pdf-sha256="{E(result["current"]["pdf_sha256"])}" '
+                f'data-prior-pdf-sha256="{E(result["prior"]["pdf_sha256"])}" '
+                'aria-label="Zero gross profit in both periods; no nonzero money scale.">'
+                '<title>两期毛利及会计贡献均为零</title>'
+                '<g fill="#19333C" font-family="Noto Sans CJK SC,PingFang SC,sans-serif">'
+                '<text x="16" y="30" font-size="14">两期毛利与贡献均为零</text>'
+                '<text x="16" y="55" font-size="11">人民币元 · 无非零金额比例尺</text>'
+                +zero_rows+'</g></svg>')
     scale=(hi-lo)/(right-chart_left)
     zero=chart_left-lo/scale
     height=D(82)+D(88 if mobile else 69)*len(rows)+D(35)
