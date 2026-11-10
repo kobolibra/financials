@@ -98,14 +98,14 @@ with sync_playwright() as pw:
     assert "NOT_CHECKED" in panel.inner_text()
     panel.screenshot(path=str(OUT/f"live_decision_{width}.png"),animations="disabled")
     assert page.locator("figure.figure").count()==10
-    # Ten desktop/source SVGs plus one independently authored true-money
-    # 330-unit mobile premium SVG. Counting *all* SVG descendants as ten
-    # incorrectly rejects a correct production report after exact SHA proof.
+    # Exactly ten original editable desktop/source SVGs and one independent
+    # true-yuan mobile premium SVG. A generic descendant-SVG count of ten
+    # rejects the actual financial report, which correctly has eleven.
     assert page.locator("figure.figure .chart svg").count()==10,(width,"LIVE_TEN_ORIGINAL_DESKTOP_FINANCE_SVGS_MISSING")
     assert page.locator('#chart-premium .mobile-chart svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1,(width,"LIVE_SOURCE_CONSERVED_NATIVE_INSURANCE_PREMIUM_SVG_MISSING")
     assert page.locator("figure.figure svg").count()==11,(width,"LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT")
     assert page.locator("figure.figure details.audit").count()==10
-    assert page.locator("figure.figure .chart .money-ribbon").count()==6
+    assert page.locator('#chart-premium .mobile-chart').count()==1
     assert page.locator("figure.figure .mobile-chart").count()==10,("LIVE_MOBILE_ALTERNATIVE_DOM_MISSING",width)
     if width==390:
         assert page.locator(".mobile-chart:visible").count()==10,("LIVE_390_MOBILE_FULL_TEN_FIGURES_NOT_VISIBLE")
@@ -118,63 +118,93 @@ with sync_playwright() as pw:
           }))
         }))""")
         assert len(mobile)==10
-        for panel in mobile:
-            assert panel["overflow"]<=1,("LIVE_390_MOBILE_INNER_HORIZ_OVERFLOW",panel["family"],panel["overflow"])
-            assert len(panel["rows"])>=5,("LIVE_MOBILE_FAMILY_INCOMPLETE",panel["family"])
+        for family in mobile:
+            assert family["overflow"]<=1,("LIVE_390_MOBILE_INNER_HORIZ_OVERFLOW",family["family"],family["overflow"])
+            assert len(family["rows"])>=5,("LIVE_MOBILE_FAMILY_INCOMPLETE",family["family"])
             scales={}
-            for item in panel["rows"]:
+            for item in family["rows"]:
                 raw=int(item["exact"])
                 scales[item["scaleGroup"]]=max(scales.get(item["scaleGroup"],0),abs(raw))
                 if item["key"]!="derived":
                     assert item["key"] in report["facts"],("LIVE_MOBILE_FAKE_LEDGER_KEY",item)
                     assert item["exact"]==report["facts"][item["key"]]["yuan"],("LIVE_MOBILE_LEDGER_SOURCE_MISMATCH",item)
-            for item in panel["rows"]:
+            for item in family["rows"]:
                 expected=abs(int(item["exact"]))/scales[item["scaleGroup"]]*100
-                assert abs(item["width"]-expected)<0.000055,("LIVE_MOBILE_MONEY_BAR_INFLATED",panel["family"],item,expected)
-    assert page.locator('#chart-premium [data-value-million="536634"]').count()==1
-    assert "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943" in page.content()
-    assert page.locator('a[href="/#companies"]').count()>=1
+                assert abs(item["width"]-expected)<0.000055,("LIVE_MOBILE_MONEY_BAR_INFLATED",family["family"],item,expected)
     graph=page.evaluate("""() => {
-      const premium=document.querySelector('#chart-premium svg');
-      const sources=[...premium.querySelectorAll('rect.money-source')].map(x=>({
-        key:x.dataset.sourceKey,value:x.dataset.valueMillion,exact:x.dataset.exactYuan,
-        fill:x.getAttribute('fill'),height:+x.getAttribute('height')
-      }));
-      const sink=premium.querySelector('rect.money-sink');
-      const invalid=[...document.querySelectorAll('.chart svg rect')].filter(x=>
-        !/^#[0-9a-fA-F]{6}$/.test(x.getAttribute('fill')||'') ||
-        (x.getAttribute('class')||'').includes('=')).map(x=>x.outerHTML.slice(0,180));
+      const details=(root)=>{
+        if(!root)return null;
+        const attr=(x,key)=>x.getAttribute(key);
+        return {
+          grammar:attr(root,'data-chart-grammar'),
+          unit:attr(root,'data-premium-yuan'),
+          scale:attr(root,'data-scale-yuan-per-svg-unit'),
+          width:root.viewBox.baseVal.width,
+          nodes:[...root.querySelectorAll('rect[data-node-role]')].map(x=>({
+            id:attr(x,'data-node-id'), role:attr(x,'data-node-role'),
+            yuan:attr(x,'data-node-yuan'), h:attr(x,'height'),
+            y:attr(x,'y'),fill:attr(x,'fill')
+          })),
+          ribbons:[...root.querySelectorAll('path[data-ribbon-yuan]')].map(x=>({
+            source:attr(x,'data-source-id'),stage:attr(x,'data-stage'),
+            yuan:attr(x,'data-ribbon-yuan'),
+            scale:attr(x,'data-scale-yuan-per-svg-unit'),
+            d:attr(x,'d')
+          }))
+        };
+      };
       return {
-        width:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,
+        width:document.documentElement.clientWidth,
+        scroll:document.documentElement.scrollWidth,
         charts:[...document.querySelectorAll('.chart')].map(x=>({w:x.scrollWidth,c:x.clientWidth})),
-        premiumSources:sources,invalidPaintedSVGRectangles:invalid,
-        premiumSink:sink?{fill:sink.getAttribute('fill'),klass:sink.getAttribute('class'),
-          value:sink.dataset.valueMillion,exact:sink.dataset.exactYuan,
-          height:+sink.getAttribute('height'),y:+sink.getAttribute('y')}:null
-      }
+        malformed:[...document.querySelectorAll('.chart svg rect')].filter(x=>
+          !/^#[0-9a-fA-F]{6}$/.test(x.getAttribute('fill')||'')||
+          (x.getAttribute('class')||'').includes('=')).map(x=>x.outerHTML.slice(0,180)),
+        desktop:details(document.querySelector('#chart-premium .chart svg')),
+        mobile:details(document.querySelector('#chart-premium .mobile-chart svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'))
+      };
     }""")
-    assert not graph["invalidPaintedSVGRectangles"],("PRODUCTION_SVG_RECT_NOT_VISIBLY_PAINTED",width,graph["invalidPaintedSVGRectangles"])
-    expected_sources={"premium_first_regular":101294,"premium_single":17696,"premium_short":61049,"premium_renew":356595}
-    assert len(graph["premiumSources"])==4,("LIVE_FOUR_EXCLUSIVE_PREMIUM_SOURCES_MISSING",width,graph["premiumSources"])
-    for node in graph["premiumSources"]:
-        k=node["key"]
-        assert k in expected_sources,("EXTRA_PREMIUM_SOURCE",k)
-        assert node["value"]==str(expected_sources[k]),("SOURCE_VALUE_MISMATCH",width,k)
-        assert node["exact"]==report["facts"][k]["yuan"],("SOURCE_PRECISE_YUAN_MISMATCH",width,k)
-        assert abs(node["height"]-268*expected_sources[k]/536634)<0.001,("SOURCE_MONEY_GEOMETRY_DRIFT",width,k)
-    sink=graph["premiumSink"]
-    assert sink is not None and sink["fill"]=="#123F3A" and sink["klass"]=="money-sink",("LIVE_UNPAINTED_OR_MALFORMED_SINK",width,sink)
-    assert sink["value"]=="536634" and sink["exact"]==report["facts"]["premium_total"]["yuan"],("LIVE_WRONG_PREMIUM_TOTAL_SOURCE",width,sink)
-    assert sink["height"]==268 and sink["y"]==82,("LIVE_WRONG_PREMIUM_TOTAL_GEOMETRY",width,sink)
-    assert graph["scroll"]<=width+1,("LIVE_ARTICLE_MOBILE_OVERFLOW",width,graph)
-    if width==1440:assert all(x["w"]<=x["c"]+2 for x in graph["charts"]),("LIVE_DESKTOP_FIGURE_INNER_CLIPPING",graph)
+    assert graph["scroll"]<=width+1,(width,"LIVE_ARTICLE_MOBILE_OVERFLOW",graph["scroll"])
+    assert not graph["malformed"],(width,"LIVE_MALFORMED_DESKTOP_SVG_RECT",graph["malformed"])
+    if width==1440:assert all(x["w"]<=x["c"]+2 for x in graph["charts"]),(width,"LIVE_DESKTOP_FIGURE_INNER_CLIPPING",graph["charts"])
+    from decimal import Decimal as D
+    total=D(report["facts"]["premium_total"]["yuan"])
+    expected_sources=("premium_first_regular","premium_single","premium_short","premium_renew")
+    expected_buckets={"premium_new","premium_renew"}
+    for view,fig in (("desktop",graph["desktop"]),("mobile",graph["mobile"])):
+        assert fig and fig["grammar"]=="INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL",(width,view,"WRONG_CAS_OR_PREMIUM_GRAPH")
+        assert fig["width"]==(1100 if view=="desktop" else 330),(width,view,"NON_NATIVE_SOURCE_SVG")
+        assert D(fig["unit"])==total and D(fig["scale"])>0,(width,view,"FALSE_PREMIUM_TOTAL_OR_SCALE")
+        nodes=fig["nodes"]; ribbons=fig["ribbons"]
+        sources=[x for x in nodes if x["role"]=="premium-source"]
+        buckets=[x for x in nodes if x["role"]=="premium-bucket"]
+        totals=[x for x in nodes if x["role"]=="premium-total"]
+        assert len(sources)==4 and len(buckets)==2 and len(totals)==1,(width,view,"SANKY_NODES_MISSING")
+        assert {x["id"] for x in sources}==set(expected_sources)
+        assert {x["id"] for x in buckets}==expected_buckets
+        for node in nodes:
+            key=node["id"]
+            assert D(node["yuan"])==D(report["facts"][key]["yuan"]),(width,view,key,"ORIGINAL_PREMIUM_CNY_WRONG")
+            assert abs(D(node["h"])-D(node["yuan"])/D(fig["scale"]))<D(".001"),(width,view,key,"ORIGINAL_NODE_MONEY_HEIGHT_WRONG")
+        left=[x for x in ribbons if x["stage"]=="premium-source-to-new-or-renew"]
+        right=[x for x in ribbons if x["stage"]=="new-or-renew-to-premium-total"]
+        assert len(left)==4 and len(right)==2,(width,view,"SOURCE_TO_NEW_TO_RENEW_TO_TOTAL_NOT_CONNECTED")
+        assert {x["source"] for x in left}==set(expected_sources)
+        assert sum((D(x["yuan"]) for x in left),D(0))==total,(width,view,"SOURCE_PREMIUM_NOT_CLOSED")
+        assert sum((D(x["yuan"]) for x in right),D(0))==total,(width,view,"NEW_RENEW_PREMIUM_NOT_CLOSED")
+        for ribbon in ribbons:
+            d=ribbon["d"]
+            assert d.startswith("M ") and " C " in d and " L " in d,(width,view,"SVG_NOT_A_CURVED_RIBBON")
+            top=D(d.split(" L ")[0].split()[-1])
+            bottom=D(d.split(" L ")[1].split(" C ")[0].split()[-1])
+            assert abs(abs(bottom-top)-D(ribbon["yuan"])/D(ribbon["scale"]))<D(".001"),(width,view,ribbon["source"],"LIVE_ORIGINAL_YUAN_RIBBON_GEOMETRY_FALSE")
     page.screenshot(path=str(OUT/f"live_601628_{width}.png"),full_page=True)
     page.locator('a[href="/#companies"]').first.click()
     page.wait_for_url(re.compile(r"/#companies$"),timeout=30000)
     actual_back_url=page.url
     nav=make_live_navigation_receipt(report_url=actual_article_url,back_url=actual_back_url,code=CODE,origin=SITE)
     assert page.locator("a.company").count()==11,("LIVE_BACK_NAV_DIRECTORY",width)
-    report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_svg_figures":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","mobile_ten_full_width_source_exact_money_exhibits":"PASS" if width==390 else "DESKTOP_OR_TABLET_SVG","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
+    report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_desktop_svg_plus_native_mobile_premium_sankey":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","mobile_ten_full_width_source_exact_money_exhibits":"PASS" if width==390 else "DESKTOP_OR_TABLET_SVG","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
     page.close()
  assert not errors,("LIVE_CHROMIUM_PAGE_ERRORS",errors)
  # All prior issuer routes: actual GET and matching company code in HTML
