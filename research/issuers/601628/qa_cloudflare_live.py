@@ -183,7 +183,7 @@ with sync_playwright() as pw:
         assert {x["id"] for x in sources}==set(expected_sources)
         assert {x["id"] for x in buckets}==expected_buckets
         for node in nodes:
-            key=node["id"]
+            key="premium_total" if node["id"]=="premium-total" else node["id"]
             assert D(node["yuan"])==D(report["facts"][key]["yuan"]),(width,view,key,"ORIGINAL_PREMIUM_CNY_WRONG")
             assert abs(D(node["h"])-D(node["yuan"])/D(fig["scale"]))<D(".001"),(width,view,key,"ORIGINAL_NODE_MONEY_HEIGHT_WRONG")
         left=[x for x in ribbons if x["stage"]=="premium-source-to-new-or-renew"]
