@@ -325,10 +325,10 @@
     },
     {
       "id": "VIS-034",
-      "root_cause": "原始寿险 SVG 只有本地构建检查能确认 money-sink fill/class/value，有风险在 Cloudflare 发布或脚本修改后将无效的最终汇总节点按合法统计输出PASS。旧 live-qa 仅检查有6条money-ribbon及新源节点的data-value，未验证全部实绘矩形属性/高度。",
-      "correction": "生产真 Chromium 三屏逐个检查 10图所有 rect 六位HEX填充和合法 class、来源四个排他 rect 金额与按536634汇总比例，最终 money-sink fill #123F3A/class money-sink/真实100万为单位的536634值/268尺寸；哪怕其余六条路径都闭合，最终节点缺失或非法即 FAIL。",
+      "root_cause": "寿险生产验收仍按退休的money-source/money-sink类与固定268条高检查，实际来源已升级为统一原始人民币元 source→new/renew→premium-total 守恒SVG（桌面1100、手机330各一张）；旧测试把合法手机SVG视为多余，且无法验证新几何。",
+      "correction": "Cloudflare 真三屏Chromium分别核对桌面10张源SVG及手机1张独立保费SVG；每版核对4个互斥来源、2个新单/续期中间节点和1个实际汇总节点的原始CNY/共同金额比例尺，4+2条色带金额加总以及每条曲线目标端实际厚度与原始金额比一致。全部桌面SVG rect仍必须为六位HEX合法填充；任何财报来源、节点或宽度失真FAIL。",
       "proof_file": "research/issuers/601628/qa_cloudflare_live.py",
-      "assertion_marker": "LIVE_UNPAINTED_OR_MALFORMED_SINK",
+      "assertion_marker": "LIVE_ORIGINAL_YUAN_RIBBON_GEOMETRY_FALSE",
       "scope": "single_issuer",
       "transfer_gate": "CLOUDFLARE_LIVE",
       "status": "TESTED_ISSUER_ONLY"
