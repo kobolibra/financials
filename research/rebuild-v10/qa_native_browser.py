@@ -18,7 +18,7 @@ BRIEFS=json.loads((HERE.parents[1]/"research/quality/pr35-hero-figure-briefs.jso
 QUANTIFIED={row["issuer"]:row["quantified_driver"] for row in BRIEFS["hero_figures"]}
 EXPECTED = {"688111":"TYPE_A_SOURCE_OWN_COST_GP",
             "600519":"TYPE_C_SANKEY_OMITTED",
-            "000333":"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+            "000333":"TYPE_A_SOURCE_OWN_COST_GP",
             "600036":"BANK_NET_INCOME_TO_OPERATING_PROFIT"}
 records=[]
 errors=[]
@@ -195,9 +195,10 @@ with sync_playwright() as p:
                 assert flow.locator(".native-finance svg").get_attribute("data-figure-kind")=="TYPE_C_SANKEY_OMITTED"
                 assert flow.locator(".native-finance svg rect[data-signed-yuan]").count()==3
             if code=="000333":
-                assert flow.locator('.native-finance svg[data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED"]').count()==1
-                assert flow.locator("text=未披露各业务").count()>=1
-                assert flow.locator('text=PRODUCT_LEVEL_GP_NOT_ESTABLISHED').count()==0
+                selected=flow.locator(".native-finance svg") if width<=850 else flow.locator(".desktop-finance svg")
+                assert selected.get_attribute('data-figure-kind')=='TYPE_A_SOURCE_OWN_COST_GP'
+                assert selected.locator('path[data-stage="revenue-to-outcome"][data-source-id][data-cost-yuan]').count()==6
+                assert '未披露各业务毛利' not in flow.inner_text()
             if code=="600036":
                 assert "净利息" in flow.inner_text()
             records.append(page_result)

@@ -542,6 +542,26 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-056",
+      "root_cause": "Midea source model omitted real same-axis note46 own costs and falsely generalized them as unavailable.",
+      "correction": "Compile three disclosed original thousand-yuan costs into exact original yuan and Type A; keep genuine missing-cost Type B synthetic cases.",
+      "proof_file": "scripts/test_audit_v10_flow_contract.py",
+      "assertion_marker": "test_midea_note46_original_costs_are_same_axis_and_exact",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-057",
+      "root_cause": "Independent zero-origin rows were called signed insurance bridges; bank debit expenses appeared green.",
+      "correction": "Use source-ID-bound cumulative coordinates, nonadditive checkpoints, negative debit colors and visible-edition export equality.",
+      "proof_file": "research/rebuild-v10/test_bank_profit_bridge.py",
+      "assertion_marker": "test_expenses_are_deducted_once_with_real_continuous_endpoints",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

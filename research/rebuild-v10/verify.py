@@ -29,7 +29,7 @@ def facts(code):
   if key.endswith('_prior'): return '2025H1'
   if key.endswith('_begin_bs'): return '2025-12-31'
   return '2026H1'
- return {**(LEDGER[code]['facts'] if code in LEDGER else {}),**{k:{'yuan':v['val'],'page':v['page'],'label':v['label'],'period':stated_period(k,v),'scope':'consolidated','status':v.get('status','DISCLOSED'),'reported_unit':v.get('unit',EXTRA[code]['statement_unit'])} for k,v in EXTRA[code].items() if isinstance(v,dict)}}
+ return {**(LEDGER[code]['facts'] if code in LEDGER else {}),**{k:{'yuan':v['val'],'page':v['page'],'label':v['label'],'period':stated_period(k,v),'scope':'consolidated','status':v.get('status','DISCLOSED'),'unit':'%' if v.get('unit',EXTRA[code]['statement_unit'])=='%' else '元','reported_unit':v.get('unit',EXTRA[code]['statement_unit'])} for k,v in EXTRA[code].items() if isinstance(v,dict)}}
 def check(code):
  p=SRC[code];assert p.is_file(),p
  assert hashlib.sha256(p.read_bytes()).hexdigest()==SHA[code], 'source hash mismatch '+code

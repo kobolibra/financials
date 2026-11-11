@@ -554,6 +554,8 @@ def build(code,out):
         if a in {"__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__","__PROFIT_FORMATION__","__QUANTIFIED_DECISION__"}:article=article.replace(a,b)
         else:article=article.replace(a,html.escape(b,quote=True))
     out.parent.mkdir(parents=True,exist_ok=True)
+    from research_context import render as render_research_context
+    article=article.replace("</main>",render_research_context(code)+"</main>",1)
     out.write_text(article,encoding="utf-8")
     qa=base/"qa.json"
     qa.write_text(json.dumps({"company":code,"report":"2026H1","source_sha256":d["source"]["original_bytes_sha256"],

@@ -28,6 +28,24 @@ class RealOriginalChinaLifePremium(unittest.TestCase):
             for stage in ("premium-source-to-new-or-renew","new-or-renew-to-premium-total"):
                 self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in paths if p.get("data-stage")==stage),D(0)),D("536634000000"))
             self.assertNotIn("营业成本",ET.tostring(svg,encoding="unicode"))
+    def test_mobile_type_hierarchy_and_source_lanes_are_readable(self):
+        svg=ET.fromstring(render_insurance_premium(load(),mobile=True))
+        width,height=map(D,svg.get("viewBox").split()[2:])
+        for text in svg.iter(SVG+"text"):
+            size=D(text.get("font-size"))
+            self.assertGreaterEqual(size,D(11),text.text)
+            if text.get("data-editorial-role") in ("premium-source-name","premium-source-money"):
+                self.assertGreaterEqual(size,D(12))
+            y=D(text.get("y"))
+            self.assertGreaterEqual(y-size,D(0))
+            self.assertLessEqual(y+size/D(4),height)
+        source_labels=[t for t in svg.iter(SVG+"text") if t.get("data-editorial-role")=="premium-source-name"]
+        source_nodes=[n for n in svg.iter(SVG+"rect") if n.get("data-node-role")=="premium-source"]
+        self.assertGreater(D(source_nodes[0].get("y"))-D(source_labels[-1].get("y")),D(30))
+        visible=" ".join(t.text or "" for t in svg.iter(SVG+"text"))
+        self.assertIn("不是法定保险服务收入",visible)
+        self.assertIn("不等于实际收现",visible)
+
     def test_hostile_source_forgery_fails_before_render(self):
         data=load()
         for field in ("premium_first_regular","premium_new","premium_total"):

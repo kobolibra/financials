@@ -63,7 +63,7 @@ def render_insurance_premium(ledger:dict,*,mobile:bool=False)->str:
     sw,mw,ow=(D(6),D(9),D(9)) if mobile else (D(14),D(16),D(15))
     src_gap=D(42 if mobile else 66)
     middle_gap=D(30 if mobile else 46)
-    top=D(218 if mobile else 185)
+    top=D(248 if mobile else 185)
     src=[]
     yy=top
     for key,name in SOURCES:
@@ -79,18 +79,19 @@ def render_insurance_premium(ledger:dict,*,mobile:bool=False)->str:
     out=[]
     if mobile:
         out.extend([
-            text(13,23,"2026H1 · 中国人寿 · 保费统计原口径",11,PALETTE["ink"],700),
-            text(13,43,"原始第10页 · 金额人民币亿元 · 流带同一比例",9,PALETTE["muted"]),
-            text(13,63,"首年期交+趸交+短期险=新单；续期独立",9,PALETTE["muted"]),
-            text(13,82,"注意：总保费不是CAS保险服务收入或实际收现",9,GOLD,700),
+            text(13,23,"2026H1 · 中国人寿 · 保费统计原口径",12,PALETTE["ink"],700),
+            text(13,43,"原始第10页 · 人民币亿元 · 流带同一比例",11,PALETTE["muted"]),
+            text(13,63,"首年期交+趸交+短期险=新单；续期独立",11,PALETTE["muted"]),
+            text(13,84,"注意：总保费不是法定保险服务收入",12,GOLD,700),
+            text(13,104,"也不等于实际收现；CAS25口径另列",11,GOLD,700),
         ])
         for idx,(key,name,v,_,__) in enumerate(src):
-            y=D(110)+D(idx)*D(22)
-            out.append(text(13,y,name,10,PALETTE["ink"],600,role="premium-source-name"))
-            out.append(text(315,y,fmt(v),10,PALETTE["source_dark"],600,"end",role="premium-source-money"))
-        out.extend([text(13,top-14,"保费来源",10,PALETTE["muted"],600),
-                    text(xmid+mw/2,top-14,"新单 / 续期",10,PALETTE["muted"],600,"middle"),
-                    text(xout+ow/2,top-14,"总保费",10,PALETTE["muted"],600,"middle")])
+            y=D(132)+D(idx)*D(26)
+            out.append(text(13,y,name,12,PALETTE["ink"],600,role="premium-source-name"))
+            out.append(text(315,y,fmt(v),12,PALETTE["source_dark"],600,"end",role="premium-source-money"))
+        out.extend([text(13,top-14,"保费来源",12,PALETTE["muted"],600),
+                    text(xmid+mw/2,top-14,"新单 / 续期",12,PALETTE["muted"],600,"middle"),
+                    text(xout+ow/2,top-14,"总保费",12,PALETTE["muted"],600,"middle")])
     else:
         out.extend([text(25,36,"保费不等于保险服务收入 · 管理层旧合同统计 · 财报原文 p.10",16,PALETTE["ink"],700),
                     text(25,65,"四条保费来源先分为新单与续期，再汇成总保费；不连接现金、CSM及CAS25损益",13,PALETTE["muted"]),
@@ -132,19 +133,19 @@ def render_insurance_premium(ledger:dict,*,mobile:bool=False)->str:
         out.append(text(xout+ow+D(14),total_y+30,"管理层总保费",16,PALETTE["ink"],700))
         out.append(text(xout+ow+D(14),total_y+55,fmt(total),19,PALETTE["profit"],700))
     else:
-        out.append(text(13,bottom+D(31),"保费统计组成（非保险服务收入）",11,PALETTE["ink"],700))
-        out.append(text(13,bottom+D(53),"新单保费",10,PALETTE["ink"]))
-        out.append(text(315,bottom+D(53),fmt(new),10,PALETTE["profit"],700,"end"))
-        out.append(text(13,bottom+D(75),"续期保费",10,PALETTE["ink"]))
-        out.append(text(315,bottom+D(75),fmt(renew),10,GOLD,700,"end"))
-        out.append(text(13,bottom+D(97),"管理层合计",10,PALETTE["ink"],700))
-        out.append(text(315,bottom+D(97),fmt(total),10,PALETTE["trunk"],700,"end"))
+        out.append(text(13,bottom+D(31),"保费统计组成（非保险服务收入）",12,PALETTE["ink"],700))
+        out.append(text(13,bottom+D(53),"新单保费",12,PALETTE["ink"]))
+        out.append(text(315,bottom+D(53),fmt(new),12,PALETTE["profit"],700,"end"))
+        out.append(text(13,bottom+D(75),"续期保费",12,PALETTE["ink"]))
+        out.append(text(315,bottom+D(75),fmt(renew),12,GOLD,700,"end"))
+        out.append(text(13,bottom+D(97),"管理层合计",12,PALETTE["ink"],700))
+        out.append(text(315,bottom+D(97),fmt(total),12,PALETTE["trunk"],700,"end"))
     note="原始2026半年报物理页10：四类保费、新单和续期（旧保险合同管理层统计）。不等于法定CAS25保险服务收入、现金收款、利润或保险合同负债。"
     if not mobile:
         out.append(text(25,bottom+D(42),"管理层总保费（旧保险合同统计）≠ CAS25保险服务收入 ≠ 实际现金收款",14,GOLD,700))
         out.append(text(25,bottom+D(67),note,11,PALETTE["muted"]))
     else:
-        out.append(text(13,bottom+D(120),"物理页10来源与会计口径见下方逐图原始数据表",9,PALETTE["muted"]))
+        out.append(text(13,bottom+D(120),"物理页10来源与会计口径见下方原始数据表",11,PALETTE["muted"]))
     desc=f"中国人寿2026H1旧保险合同保费四类来源合计{fmt(total)}，新单{fmt(new)}，续期{fmt(renew)}。{note}"
     return (f'<svg xmlns="http://www.w3.org/2000/svg" role="img" '
         f'viewBox="0 0 {nu(W)} {nu(H)}" '

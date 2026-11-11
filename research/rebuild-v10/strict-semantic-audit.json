@@ -6,7 +6,7 @@
   "records": [
     {
       "issuer": "688111",
-      "actual_html_sha256": "0e68403c73b5c10718fe9175d3e16a41afd10839b582b16feaa6c6b6f71b458e",
+      "actual_html_sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
       "expected_semantics": {
         "kind": "TYPE_A_SOURCE_OWN_COST_GP",
         "reason": "EXACT_SOURCE_TO_OWN_COST_AND_GP",
@@ -45,6 +45,12 @@
             "73943117.26"
           ]
         ],
+        "source_cost_keys": {
+          "wps_personal": "wps_personal_cost",
+          "wps365": "wps365_cost",
+          "wps_software": "wps_software_cost",
+          "other_rev": "other_cost"
+        },
         "product_gp_claim_allowed": true
       },
       "published_figure_issues": [],
@@ -57,7 +63,7 @@
     },
     {
       "issuer": "600519",
-      "actual_html_sha256": "737b145ebee5498a934a9587ebbf476d6e9127fe3277f970e664b287ac49911a",
+      "actual_html_sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
       "expected_semantics": {
         "kind": "TYPE_C_SANKEY_OMITTED",
         "reason": "AT_LEAST_ONE_PRODUCT_HAS_NEGATIVE_GROSS_PROFIT_OR_COST",
@@ -70,6 +76,11 @@
         "exact_yuan_cogs": "9473762565.88",
         "exact_yuan_group_gp": "81229498398.60",
         "source_own_cost_gp": [],
+        "source_cost_keys": {
+          "maotai_rev": "maotai_cogs",
+          "series_rev": "series_cogs",
+          "other_rev": "other_cogs"
+        },
         "product_gp_claim_allowed": false
       },
       "published_figure_issues": [],
@@ -82,10 +93,10 @@
     },
     {
       "issuer": "000333",
-      "actual_html_sha256": "006b80d2f944cca4b6c55519920d47082c526f6a6fe5c001d1157c3a35afe7a5",
+      "actual_html_sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
       "expected_semantics": {
-        "kind": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
-        "reason": "PRODUCT_LEVEL_GP_NOT_ESTABLISHED",
+        "kind": "TYPE_A_SOURCE_OWN_COST_GP",
+        "reason": "EXACT_SOURCE_TO_OWN_COST_AND_GP",
         "source_keys": [
           "home",
           "industrial_solution",
@@ -94,8 +105,32 @@
         "exact_yuan_total": "260042490000",
         "exact_yuan_cogs": "194366771000",
         "exact_yuan_group_gp": "65675719000",
-        "source_own_cost_gp": [],
-        "product_gp_claim_allowed": false
+        "source_own_cost_gp": [
+          [
+            "home",
+            "174340606000",
+            "125613918000",
+            "48726688000"
+          ],
+          [
+            "industrial_solution",
+            "66666119000",
+            "52775673000",
+            "13890446000"
+          ],
+          [
+            "other_total",
+            "19035765000",
+            "15977180000",
+            "3058585000"
+          ]
+        ],
+        "source_cost_keys": {
+          "home": "home_cost",
+          "industrial_solution": "industrial_solution_cost",
+          "other_total": "other_total_cost"
+        },
+        "product_gp_claim_allowed": true
       },
       "published_figure_issues": [],
       "historical_exact_source_waiver": false,
@@ -107,7 +142,7 @@
     },
     {
       "issuer": "600036",
-      "actual_html_sha256": "eec779faa002ae748b18240d3b85a7cacb5a4ebb87a26bef2641b1e32cfbcb5b",
+      "actual_html_sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
       "expected_semantics": {
         "kind": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
         "reason": "BANK_NET_INTEREST_ALREADY_AFTER_INTEREST_EXPENSE",

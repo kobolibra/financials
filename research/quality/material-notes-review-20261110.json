@@ -1,0 +1,2106 @@
+{
+  "schema": "financials.material_notes_ai_review.v1",
+  "review_date": "2026-11-10",
+  "reviewer": "独立AI二审子代理；非独立人类审阅，非注册会计师审计意见",
+  "human_review": "NOT_CHECKED",
+  "status_legend": {
+    "PASS": "已阅读列明原PDF注释并完成所述语义/等式检查；仅覆盖明确检查，非保证估计正确",
+    "EXCEPTION": "原披露矛盾或不能闭合的关系，必须保留和披露",
+    "NOT_APPLICABLE": "已阅读对应原注释，报告明确不适用；不能外推为法律尽调无风险",
+    "EXTERNAL_UNRESOLVED": "原注释已读但需外部合同/估值/监管/后期披露才能判断，不是未读"
+  },
+  "scope_limit": "重大主题覆盖表；各主题记录实际页码和检查，未逐笔凭证审计。PASS不代表所有披露数字均逐项复算、管理层估值独立验证或整份PDF无错。保留发行人矛盾，不擅改源数据。",
+  "issuers": {
+    "600900": {
+      "source_path": "research/issuers/600900/source/600900_2026H1_complete_original.pdf",
+      "source_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+      "physical_page_count": 214,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "收入确认与收入成本",
+          "physical_pages": [
+            93,
+            94,
+            50,
+            154
+          ],
+          "status": "PASS",
+          "materiality": "高：379.29亿元收入",
+          "accounting_and_cash_meaning": "控制权转移确认不等于发电量或回款；主营与其他不得重叠",
+          "checks_and_source_evidence": "p154主营收入37833721459.40+其他95547467.78=37929268927.18；成本15950944260.20+20216434.34=15971160694.54；与p50合并利润表两期一致",
+          "conclusion_and_limit": "毛利21958108232.64；收入/毛利桥属会计分解，不识别水情、电价或结构独立因果"
+        },
+        {
+          "topic": "合同负债与履约义务",
+          "physical_pages": [
+            91,
+            139,
+            154
+          ],
+          "status": "PASS",
+          "materiality": "中：预收1.14亿元",
+          "accounting_and_cash_meaning": "预收合同款是待履约负债，不是新增收入或全量订单",
+          "checks_and_source_evidence": "合同负债113608512.26 vs181189318.46；收入附注RPO与履约说明不适用",
+          "conclusion_and_limit": "已读实际附注；RPO未提供，不能将不适用计为零合同订单"
+        },
+        {
+          "topic": "应收信用与集中风险",
+          "physical_pages": [
+            101,
+            102,
+            103,
+            104,
+            105,
+            176
+          ],
+          "status": "PASS",
+          "materiality": "高：净额103.20亿元",
+          "accounting_and_cash_meaning": "回款时点影响营运现金，欠款资产与客户收入集中度不同",
+          "checks_and_source_evidence": "10440250444.71-120088536.30=10320161908.41；期初7365132398.65-113284859.42=7251847539.23；净增长3068314369.18。大水电原值7749202829.11 vs4794785517.71；管理层说明电网信誉良好",
+          "conclusion_and_limit": "计提不是独立信用评级；应收增长不等于违约或收入失真"
+        },
+        {
+          "topic": "存货与备件减值",
+          "physical_pages": [
+            79,
+            80,
+            113,
+            114,
+            157
+          ],
+          "status": "PASS",
+          "materiality": "中：净存货8.57亿元",
+          "accounting_and_cash_meaning": "备品备件占主，准备减少不可全当利润转回",
+          "checks_and_source_evidence": "1115371607.00-258745550.76=856626056.24；266571690.62+252149.15-7596114.28-482174.73=258745550.76",
+          "conclusion_and_limit": "跌价转回或转销合列，禁止将全部减少认定收益或现金"
+        },
+        {
+          "topic": "研发与开发支出",
+          "physical_pages": [
+            90,
+            155,
+            165
+          ],
+          "status": "PASS",
+          "materiality": "中：研发费用3.28亿元",
+          "accounting_and_cash_meaning": "费用化与开发资产转移不同，水电也有研发投入",
+          "checks_and_source_evidence": "141121499.27+328588864.64-4623678.49-327570293.83=137516391.59；转入损益327570293.83与研发费用一致",
+          "conclusion_and_limit": "不能称全部研发为资本化，也不能从开发增加直接得到现金投入"
+        },
+        {
+          "topic": "固定资产在建工程与借款资本化",
+          "physical_pages": [
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130
+          ],
+          "status": "PASS",
+          "materiality": "极高：固定资产4072.96亿元",
+          "accounting_and_cash_meaning": "折旧影响利润、资本开支消耗现金；在建转固不是本期全量现金资本开支",
+          "checks_and_source_evidence": "固定资产625896734321.16-218601145996.97=407295588324.19；主要工程13104108067.96+2198780713.33-406113.44=15302482667.85；本期利息资本化50982951.24",
+          "conclusion_and_limit": "其余工程与总CIP另列；未把主要工程小计当全部工程"
+        },
+        {
+          "topic": "商誉及无限期特许经营权",
+          "physical_pages": [
+            89,
+            90,
+            91,
+            132,
+            133,
+            134
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高：无限期特许权230.17亿元、商誉净额10.83亿元",
+          "accounting_and_cash_meaning": "不摊销资产与商誉需要减值估计；未计提不能证明无风险",
+          "checks_and_source_evidence": "商誉1128072954.26-33740781.42=1094332172.84；减值11526689.59，净1082805483.25。秘鲁特许经营无终止期；特许权净23016874853.79。附注可收回金额方法/参数不适用",
+          "conclusion_and_limit": "本期未提供足够DCF参数与敏感性，无法独立判断资产估值；要求后续年报估值/秘鲁经营证据"
+        },
+        {
+          "topic": "借款债券到期与受限资产",
+          "physical_pages": [
+            137,
+            138,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            176,
+            177
+          ],
+          "status": "PASS",
+          "materiality": "极高：期限与再融资",
+          "accounting_and_cash_meaning": "一年内到期重分类应避免与长期借款重复计入；未折现到期现金不能当资产负债表债务",
+          "checks_and_source_evidence": "p144质押4082533421.33+抵押15440000+信用229859050408.85+利息362669469.87-流动重分类58871760252.34=175447933047.71；债券41749332900.20-6777443799.89=34971889100.31；p142流动部分含利息，不能只对照本金",
+          "conclusion_and_limit": "已核读分类和本金/利息边界；未逐笔确认全部债券条款及银行授信真实性"
+        },
+        {
+          "topic": "担保承诺与租赁",
+          "physical_pages": [
+            149,
+            188,
+            199
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：母公司担保与土地租赁",
+          "accounting_and_cash_meaning": "被担保≠对外担保；关联土地租赁构成长期支付约束",
+          "checks_and_source_evidence": "集团为公司债券担保余额300000万元；已偿还130亿元，原担保160亿元。葛洲坝和三峡土地各20年、每三年可议租金；重要或有事项不适用；p149预计负债含未决诉讼58031075.53、弃置59530565.27，合计117561640.80，但p199重大或有事项不适用。",
+          "conclusion_and_limit": "披露已确认诉讼预计负债与重大或有栏目不适用并存；可能重要性与已确认负债边界不同，来源未给调节，禁止称无诉讼或无或有风险。"
+        },
+        {
+          "topic": "关联交易及集团金融敞口",
+          "physical_pages": [
+            184,
+            185,
+            186,
+            187,
+            188,
+            189,
+            190,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198
+          ],
+          "status": "PASS",
+          "materiality": "极高：关联融资/存款",
+          "accounting_and_cash_meaning": "关联金融公司存款仍有对手方及集中风险；万元转换不能错10000倍",
+          "checks_and_source_evidence": "p198三峡财务存款759339.53万元=7593395300元；p193关联利息合计329259.10万元；借款、租赁、担保分列且不混为营业成本",
+          "conclusion_and_limit": "原披露定价机制是管理层证据，不是独立公允性认证；未对全部关联清单逐笔重算"
+        },
+        {
+          "topic": "税项及递延税",
+          "physical_pages": [
+            98,
+            99,
+            100,
+            135,
+            136,
+            158
+          ],
+          "status": "PASS",
+          "materiality": "高：优惠与投资税差",
+          "accounting_and_cash_meaning": "所得税费用与现金税款不同，白鹤滩7.5%优惠影响可持续税率",
+          "checks_and_source_evidence": "2783350726.06+291916511.25=3075267237.31；税率调节4527198299.93-806322210.49+2070058.74-670790374.14+42880.05-4650916.88+10412662.45+17306837.65=3075267237.31",
+          "conclusion_and_limit": "不能把25%法定税率机械套合并利润；优惠到期风险需后续报告"
+        },
+        {
+          "topic": "重述与合并范围",
+          "physical_pages": [
+            6,
+            7,
+            98,
+            165,
+            166,
+            200
+          ],
+          "status": "PASS",
+          "materiality": "高：可比期间",
+          "accounting_and_cash_meaning": "2025年10月同一控制合并追溯不等于2026新增并表增长",
+          "checks_and_source_evidence": "p7明确追溯调整，p6收入调整前后均36697614066.72；本期同一/非同一控制合并均不适用，差错更正不适用",
+          "conclusion_and_limit": "采用本报告比较期；无证据量化此次重述收入影响，不强造调整额"
+        },
+        {
+          "topic": "期后事项",
+          "physical_pages": [
+            199,
+            200
+          ],
+          "status": "PASS",
+          "materiality": "高：90亿元融资",
+          "accounting_and_cash_meaning": "期后发行不应算入June债务/现金，但属于已知再融资事实",
+          "checks_and_source_evidence": "7月8日MTN003/004各20亿元、10年、利率2.05%/2.06%；7月9日SCP001/002各25亿元、150/230天、1.32%/1.34%",
+          "conclusion_and_limit": "合计90亿元；截至审阅日Q3已存在，H1后续证伪应实际执行，跨期验证另由主agent负责"
+        }
+      ]
+    },
+    "600276": {
+      "source_path": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+      "source_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+      "physical_page_count": 182,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "收入确认许可及成本",
+          "physical_pages": [
+            105,
+            106,
+            145,
+            146
+          ],
+          "status": "PASS",
+          "materiality": "极高：许可节奏",
+          "accounting_and_cash_meaning": "商品控制权与许可时点/时段履约区分；许可回款可能早于收入",
+          "checks_and_source_evidence": "销售13948104757.72-成本2035077592.03=GP11913027165.69；许可1422301939.04-22191700.84=1400110238.20；其他85177031.35-56073736.48=29103294.87；三GP和13342240698.76",
+          "conclusion_and_limit": "许可毛利98.44%不可套到商品；前期许可精确成本未分拆，不能独立归因全部同比毛利变化"
+        },
+        {
+          "topic": "合同负债RPO与BMS交易",
+          "physical_pages": [
+            138,
+            142,
+            145,
+            146
+          ],
+          "status": "PASS",
+          "materiality": "极高：确认与回款分离",
+          "accounting_and_cash_meaning": "预收GSK已于2025收现，本期履约确认不能作本期许可现金收入；未来里程碑高度或有",
+          "checks_and_source_evidence": "1732201255.90=949214435.81+782986820.09；期初3077113027.33；GSK预收本期变化1176097094.11。BMS协议7月生效，JuneRPO不含；可变里程碑受约束亦不含",
+          "conclusion_and_limit": "RPO既不是全部潜在合同价值也不是保证利润；不把152亿美元潜在额计入收入或应收"
+        },
+        {
+          "topic": "AR信用/账龄/集中",
+          "physical_pages": [
+            115,
+            116,
+            117
+          ],
+          "status": "PASS",
+          "materiality": "高：49.20亿元净应收",
+          "accounting_and_cash_meaning": "invoice age≠逾期；总额降低不意味着无信用风险",
+          "checks_and_source_evidence": "4988230877.46-67931667.70=4920299209.76；净额较期初下降226262914.24；逾期总735958760.49；前五3070033805.37/gross=61.55%",
+          "conclusion_and_limit": "采用合并而非母公司59.72%；未取得客户外部信用或期后逐笔回款"
+        },
+        {
+          "topic": "存货减值与履约成本",
+          "physical_pages": [
+            94,
+            95,
+            124,
+            125,
+            149
+          ],
+          "status": "PASS",
+          "materiality": "中高：29.94亿元净存货",
+          "accounting_and_cash_meaning": "药品存货增加与跌价，履约成本很小不能混同研发资产",
+          "checks_and_source_evidence": "3050526517.26-56555467.89=2993971049.37；52570255.94+18334072.43-14348860.48=56555467.89；净增加115558552.49",
+          "conclusion_and_limit": "转回或转销合列，不全当利润；合同履约成本7832819.09单列"
+        },
+        {
+          "topic": "研发资本化与开发支出",
+          "physical_pages": [
+            99,
+            100,
+            101,
+            133,
+            134,
+            147,
+            156,
+            157
+          ],
+          "status": "PASS",
+          "materiality": "极高：研发46.05亿元",
+          "accounting_and_cash_meaning": "费用研发34.93亿不是总投入；资本化提升当期利润但非现金创造",
+          "checks_and_source_evidence": "4605118095.21=3492911607.38+1112206487.83；资本化24.15% vs16.62%。开发4877890710.83+1143485781.64-1343863339.80-31279293.81=4646233858.86；内部增加减资本化研发=31279293.81与转损益等额；转无形1343863339.80与p133一致",
+          "conclusion_and_limit": "数字差有闭合解释，不能报成财务矛盾；III期并专家评估资本化依据已读，临床商业可行性需外部验证"
+        },
+        {
+          "topic": "商誉/长期资产减值",
+          "physical_pages": [
+            102,
+            131,
+            132,
+            133,
+            134,
+            135,
+            157
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高：开发与专利资产",
+          "accounting_and_cash_meaning": "无商誉不等于无临床项目减值风险；开发支出和专利需未来商业回报",
+          "checks_and_source_evidence": "商誉原值与减值注均不适用；无形3716243176.23-399659912.10=3316583264.13；开发支出4646233858.86；开发减值不适用",
+          "conclusion_and_limit": "已阅读资产与项目披露；无外部临床成功概率/销售预测，不能独立认证无减值"
+        },
+        {
+          "topic": "借款债务与租赁",
+          "physical_pages": [
+            137,
+            140,
+            141,
+            142
+          ],
+          "status": "PASS",
+          "materiality": "中：无传统借款，租赁仍有义务",
+          "accounting_and_cash_meaning": "不能从短/长期借款不适用说企业无任何债务",
+          "checks_and_source_evidence": "短期借款、长期借款、应付债券均不适用；租赁69682354.39-1698652.50-29754360.83=38229341.06，流动29754360.83",
+          "conclusion_and_limit": "租赁负债合计67880966.31；未把全部应付当有息债务"
+        },
+        {
+          "topic": "担保承诺或有",
+          "physical_pages": [
+            167,
+            170
+          ],
+          "status": "PASS",
+          "materiality": "中高：资本承诺5.10亿元",
+          "accounting_and_cash_meaning": "资本承诺是未来支出约束，不是本期成本或已确认债务",
+          "checks_and_source_evidence": "资本承诺509904777.77；关联担保、资金拆借与重要或有事项不适用",
+          "conclusion_and_limit": "仅就报告已披露范围，不代表独立法律尽调"
+        },
+        {
+          "topic": "关联交易",
+          "physical_pages": [
+            165,
+            166,
+            167,
+            168
+          ],
+          "status": "PASS",
+          "materiality": "中高：许可与服务",
+          "accounting_and_cash_meaning": "关联许可收入仍需履约，报酬有万元单位",
+          "checks_and_source_evidence": "豪森提供许可56603773.58、接受特许权30000000、接受服务25120000；关联应收及准备另列；关键管理报酬2558.28万元",
+          "conclusion_and_limit": "不独立证明价格公允；母公司与集团、报酬万元与交易元不得混合"
+        },
+        {
+          "topic": "税项及递延税",
+          "physical_pages": [
+            112,
+            113,
+            114,
+            135,
+            136,
+            150
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：研发扣除与递延确认",
+          "accounting_and_cash_meaning": "税费减少不全是经营效率；税优惠非现金收入",
+          "checks_and_source_evidence": "335510453.47+151624594.49=487135047.96；742862620.18-23169720.67-17760569.11+151382658.79+113950101.30-480130042.53=487135047.96；未确认亏损3000441233.98；p112税表企业所得税计税依据栏印作“实际缴纳的增值税税额”，与所得税性质不一致；按原文记录，不作为税额复算基础。",
+          "conclusion_and_limit": "15%母公司税率不代表集团统一税率；未确认亏损不能机械乘税率作资产 来源模板计税依据错误须提示，不能将打印表错误转写为有效税收规则。"
+        },
+        {
+          "topic": "非经常投资与汇率",
+          "physical_pages": [
+            147,
+            148,
+            149,
+            150
+          ],
+          "status": "PASS",
+          "materiality": "高：公允价值收益8.43亿元",
+          "accounting_and_cash_meaning": "投资估值与汇兑影响净利，不等于药品定价权与现金",
+          "checks_and_source_evidence": "843222978.34=-3392222.78+846615201.12；财务费用-32391800.64中有利息收入701326009.94与汇兑损失665525662.95",
+          "conclusion_and_limit": "应在主毛利之外解释净利；不能以投资收益归入工业毛利"
+        },
+        {
+          "topic": "重述合并范围",
+          "physical_pages": [
+            145,
+            157,
+            158,
+            170
+          ],
+          "status": "PASS",
+          "materiality": "高：比较口径",
+          "accounting_and_cash_meaning": "利润桥两期来自同份报告；期内设立清算不自动导致追溯",
+          "checks_and_source_evidence": "期初未分配利润五项调整均0；同一/非同一控制合并不适用，差错更正不适用；其他范围变化披露新设/注销",
+          "conclusion_and_limit": "未见需要对当前比较列另外造重述额的证据"
+        },
+        {
+          "topic": "期后事项与合同交叉",
+          "physical_pages": [
+            146,
+            170
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：重大许可生效",
+          "accounting_and_cash_meaning": "p170期后事项全不适用，但p146文字已披露BMS协议7月生效",
+          "checks_and_source_evidence": "p146明确7月生效并不含JuneRPO；p170重要非调整事项和其他期后事项均不适用",
+          "conclusion_and_limit": "保留栏目与文字披露不一致；不能依据p170说没有期后重大合同，也不改写发行人勾选"
+        }
+      ]
+    },
+    "688220": {
+      "source_path": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+      "source_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "physical_page_count": 224,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "收入确认/定制验收",
+          "physical_pages": [
+            125,
+            126,
+            127,
+            147,
+            178
+          ],
+          "status": "PASS",
+          "materiality": "极高：芯片与定制利润结构",
+          "accounting_and_cash_meaning": "直销/买断交付、代理代销结算、定制工程样片交付且功能验收；定制不满足时段权利，不能用完工百分比提前确认",
+          "checks_and_source_evidence": "四类收入2113622293.11+321902456.53+15670582.71+79769.92=2451275102.27；四成本1526733108.74+202918826.51+27287.82+79769.92=1729758992.99",
+          "conclusion_and_limit": "合同履约摊销157643639.62比较的是2025年度45812221.98，不能称H1同比；总定制成本与摊销差45275186.89不可臆造来源"
+        },
+        {
+          "topic": "管理层芯片口径冲突",
+          "physical_pages": [
+            9,
+            178
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：20.22亿vs21.1362亿",
+          "accounting_and_cash_meaning": "管理层叙事不是注释财务科目同义词",
+          "checks_and_source_evidence": "p9芯片约20.22亿元；p178芯片产品销售2113622293.11",
+          "conclusion_and_limit": "未找到确证的口径调节；收入图用附注，不偷改管理层数字"
+        },
+        {
+          "topic": "合同负债及RPO",
+          "physical_pages": [
+            127,
+            166,
+            179
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：预收与订单兑现",
+          "accounting_and_cash_meaning": "合同负债465911510.87是待履约，不等于2364139874.78的RPO，更非现金流全额",
+          "checks_and_source_evidence": "合同负债291867010.73+171870048.96+2174451.18=465911510.87；RPO1878194944.41+485944930.38=2364139874.79，比总计多0.01；RPO栏目不适用但其他说明给数",
+          "conclusion_and_limit": "保留0.01差异和勾选/文字差别，不能把RPO归零或假称完全闭合"
+        },
+        {
+          "topic": "AR信用分类与组合明细",
+          "physical_pages": [
+            135,
+            136,
+            137,
+            138
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：4.56亿元净应收",
+          "accounting_and_cash_meaning": "单项与组合必须排他；账龄与逾期维度不同",
+          "checks_and_source_evidence": "总原值464113067.29-8175303.66=455937763.63；p135组合457256532.09/准备7584956.52，p136组合463454119.09/7694271.47；差6197587和109314.95恰为单项客户2+3；p136已渲染目视确认",
+          "conclusion_and_limit": "来源内部不一致，可能明细重复是推断，不认定根因；不能把两表全加总"
+        },
+        {
+          "topic": "AR前五集中分母",
+          "physical_pages": [
+            135,
+            137,
+            138
+          ],
+          "status": "EXCEPTION",
+          "materiality": "高：客户资产集中",
+          "accounting_and_cash_meaning": "应收集中≠收入集中，合同资产应在分母内",
+          "checks_and_source_evidence": "414844022.57/(464113067.29+1113000)=89.17%，原披露90.50%；净额分母仍不符",
+          "conclusion_and_limit": "未闭合；保留原披露和复算并列，不用母公司95.01%替代"
+        },
+        {
+          "topic": "存货及合同履约成本",
+          "physical_pages": [
+            145,
+            146,
+            147,
+            183
+          ],
+          "status": "PASS",
+          "materiality": "极高：净存货21.55亿元",
+          "accounting_and_cash_meaning": "库存占款与减值降低现金回报，减值准备减少不等于全额转回",
+          "checks_and_source_evidence": "2295213429.38-139854986.55=2155358442.83；153068393.37+55097071.34-45920614.66-22389863.50=139854986.55；合同履约成本92343348.77",
+          "conclusion_and_limit": "准备转回或转销合列；利润表存货/履约损失20117213与准备本期计提不直接相等，需成本转销/汇兑等调节，不能强拉平"
+        },
+        {
+          "topic": "研发费用与资本化",
+          "physical_pages": [
+            159,
+            180,
+            192
+          ],
+          "status": "PASS",
+          "materiality": "极高：费用研发6.63亿元",
+          "accounting_and_cash_meaning": "研发全部费用化；毛利仍未覆盖全部经营成本",
+          "checks_and_source_evidence": "研发663322721.74，费用化同额，资本化0；期初668450954.77；无形资产内部研发比例0%",
+          "conclusion_and_limit": "毛利721516109.28减研发仅58193387.54，尚未扣销售管理等，不能由毛利增长推持续盈利"
+        },
+        {
+          "topic": "商誉与长期资产估值",
+          "physical_pages": [
+            159,
+            160,
+            161,
+            162
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "中高：商誉剩余1623.66万元",
+          "accounting_and_cash_meaning": "历史商誉已大部分减值，本期DCF管理层假设不等于独立估值",
+          "checks_and_source_evidence": "265098380.27-248861772.33=16236607.94；p161五年增长31.61%、稳定2%、毛利25.70%-31.59%、折现18.06%，回收76.97亿元vs账面3.97亿元；方法勾选不适用但正文给DCF",
+          "conclusion_and_limit": "已读参数与异常高覆盖，未重建产品现金流或验证估值，需预算与资产组边界外部证据；不能核销风险"
+        },
+        {
+          "topic": "借款债务及应付知识产权费",
+          "physical_pages": [
+            165,
+            166,
+            169,
+            170,
+            171,
+            187
+          ],
+          "status": "PASS",
+          "materiality": "高：短借4.99亿元及IP费",
+          "accounting_and_cash_meaning": "短借、租赁和长期应付款不同；质量保证准备不是融资",
+          "checks_and_source_evidence": "12007561.64+486812140.83=498819702.47；350319046.03+255588457.37+5208497.26-112296298.19=498819702.47；一年内到期70307643.67+22289817.82=92597461.49；超过一年IP应付51743493.79",
+          "conclusion_and_limit": "未到期/尚未结算不能直接称违约；长期借款与债券不适用，不代表无债务"
+        },
+        {
+          "topic": "担保承诺或有事项",
+          "physical_pages": [
+            165,
+            206,
+            209
+          ],
+          "status": "NOT_APPLICABLE",
+          "materiality": "中：报告无重大担保/承诺",
+          "accounting_and_cash_meaning": "无法把不适用外推成无一般合同负担",
+          "checks_and_source_evidence": "重要承诺、重要或有、关联担保双方均不适用；受限资产不适用，但短借表有保证借款12007561.64",
+          "conclusion_and_limit": "保证借款可能第三方担保，关联担保不适用不构成直接矛盾；法律或银行函证仍未执行"
+        },
+        {
+          "topic": "关联交易",
+          "physical_pages": [
+            204,
+            205,
+            206,
+            207,
+            208
+          ],
+          "status": "PASS",
+          "materiality": "中：管理层报酬和股份支付",
+          "accounting_and_cash_meaning": "关键管理层报酬减少含监事会取消/股份支付变化，不等于人均工资同比下降",
+          "checks_and_source_evidence": "购销、租赁、资金拆借、关联应收应付均不适用；关键管理1208.58万元vs1838.73万元，原文说明人员口径与股份支付变化",
+          "conclusion_and_limit": "不将管理薪酬变化归因总人工效率；未独立确认关联方完整性"
+        },
+        {
+          "topic": "所得税及递延资产",
+          "physical_pages": [
+            131,
+            132,
+            162,
+            163,
+            164,
+            184,
+            185
+          ],
+          "status": "PASS",
+          "materiality": "极高：税收利益推动净利",
+          "accounting_and_cash_meaning": "负税费为正利润贡献，不是现金退税；未确认亏损很大",
+          "checks_and_source_evidence": "14085307.53-43127544.65=-29042237.12；55201531.55-(-29042237.12)=84243768.67；DTA65495481.47-互抵59988582.76=5506898.71，DTL62918133.53-互抵=2929550.77；未确认亏损11616116837.41",
+          "conclusion_and_limit": "递延税可回收依赖未来利润，不把全部亏损乘15%认资产；高新续期风险原文明确"
+        },
+        {
+          "topic": "投资公允价值与经常利润",
+          "physical_pages": [
+            9,
+            181,
+            182,
+            183,
+            184
+          ],
+          "status": "PASS",
+          "materiality": "高：扭亏驱动力",
+          "accounting_and_cash_meaning": "公允价值和投资贡献不可混为芯片毛利或现金收入",
+          "checks_and_source_evidence": "投资20007277.63，公允价值69402297.53；政府其他收益8318389.30；非经常性扣除后仍为负",
+          "conclusion_and_limit": "会计净利转正与持续经营盈利不同，披露负扣非，研发/占款约束应并列"
+        },
+        {
+          "topic": "重述合并范围及期后事项",
+          "physical_pages": [
+            131,
+            178,
+            192,
+            193,
+            194,
+            209
+          ],
+          "status": "NOT_APPLICABLE",
+          "materiality": "中：比较口径",
+          "accounting_and_cash_meaning": "本期重述并购/期后重要事项报告不适用，不据此证明外部无事件",
+          "checks_and_source_evidence": "会计政策/估计变更、差错更正、期后重要非调整等均不适用；期初未分配利润五项调整均0",
+          "conclusion_and_limit": "已读对应原注；截至审阅日后续Q3另需核验，不用H1不适用覆盖后续信息"
+        }
+      ]
+    },
+    "688111": {
+      "source_path": "work/financials_v8_case_study/sources/688111_2026H1_original.pdf",
+      "source_sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+      "physical_page_count": 199,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "收入确认与来源自有毛利",
+          "physical_pages": [
+            94,
+            95,
+            141,
+            142
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "许可验收时点、订阅期间分摊、定制交付验收；不能由预收当收入",
+          "checks_and_source_evidence": "2014142306.56+496654213.27+722293544.62+80172534.75=3313262599.20；四项成本411342024.15+45285972.27+37600693.78+6229417.49=500458107.69",
+          "conclusion_and_limit": "允许披露来源own GP；订阅收入增长尚不能拆成ARPU与付费人数因果"
+        },
+        {
+          "topic": "合同负债与RPO",
+          "physical_pages": [
+            133,
+            142
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "订阅预收是待服务负债，不是未识别增量毛利",
+          "checks_and_source_evidence": "待履行合同2764215464.83 vs2598812963.28，增加165402501.55；RPO分摊说明不适用",
+          "conclusion_and_limit": "不能从不适用断言无未履约订单；无全量RPO金额供独立复核"
+        },
+        {
+          "topic": "应收信用与账龄",
+          "physical_pages": [
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "企业验收与回款周期导致占款；个人预付模型不覆盖所有客户",
+          "checks_and_source_evidence": "815503054.81-60414748.28=755088306.53；单项25584312.33全额准备；组合789918742.48-34830435.95=755088306.53；超过一年总232073648.21",
+          "conclusion_and_limit": "净应收较期初增加118766547.54；未外部函证回款"
+        },
+        {
+          "topic": "存货与研发资本化",
+          "physical_pages": [
+            113,
+            143,
+            153,
+            154
+          ],
+          "status": "PASS",
+          "materiality": "高研发/低存货",
+          "accounting_and_cash_meaning": "软件研发主要人力；不把费用资本化以美化利润",
+          "checks_and_source_evidence": "存货561949.41-165969.23=395980.18；研发总1151832387.74=费用化同额，资本化空白且符合资本化项目不适用",
+          "conclusion_and_limit": "不将软件订阅毛利当扣研发后利润；无资本化项目披露，不虚构资本化资产"
+        },
+        {
+          "topic": "商誉减值",
+          "physical_pages": [
+            128,
+            129
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "中高",
+          "accounting_and_cash_meaning": "北京数科商誉估值取决于未来现金流",
+          "checks_and_source_evidence": "商誉184668972.58不变；减值准备不适用；可收回金额方法/敏感性不适用",
+          "conclusion_and_limit": "已读来源，缺本期估值参数，无法独立证明无减值风险"
+        },
+        {
+          "topic": "联营投资与超额利润",
+          "physical_pages": [
+            118,
+            119,
+            120,
+            144
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "净利高度受权益法收益影响，非软件营业收入与经营回款",
+          "checks_and_source_evidence": "投资1913904465.46=权益法1755904309.66+交易16107150.06+定存141893005.74；长期股权1707802910.89+906266.93+1755904309.66+3056571.77=3467670059.25；99.9986%顺金顺赢因全体一致决策列联营",
+          "conclusion_and_limit": "读到控制权判断原文；高持股不自动并表。权益法收益的现金可回收及底层投资估值需穿透外部证据；禁止归因订阅利润"
+        },
+        {
+          "topic": "借款债务与受限资产",
+          "physical_pages": [
+            131,
+            136
+          ],
+          "status": "PASS",
+          "materiality": "中",
+          "accounting_and_cash_meaning": "无银行借款不等于无租赁/履约负担",
+          "checks_and_source_evidence": "短借/长借/应付债券不适用；租赁64391524.63-33964615.56=30426909.07；履约保函受限2593600元",
+          "conclusion_and_limit": "已核分类；不宣称企业所有资金均可自由支取，定存亦须区分"
+        },
+        {
+          "topic": "担保承诺或有",
+          "physical_pages": [
+            171,
+            183
+          ],
+          "status": "NOT_APPLICABLE",
+          "materiality": "中",
+          "accounting_and_cash_meaning": "原报告无重大承诺或有关联担保",
+          "checks_and_source_evidence": "重要承诺、或有事项、关联担保双方均不适用",
+          "conclusion_and_limit": "已读对应注释；不代替法律尽调"
+        },
+        {
+          "topic": "关联交易及云成本",
+          "physical_pages": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "云服务是成本依赖；实际业务成本不可凭关联采购全额分配到某产品",
+          "checks_and_source_evidence": "北京金山云服务147151827.12、批准额350000000、未超；相关应付58058449.79；关键管理462.38万元",
+          "conclusion_and_limit": "已核读性质、单位、交易与余额区别；未独立认证市场定价公允性"
+        },
+        {
+          "topic": "税项与递延税",
+          "physical_pages": [
+            100,
+            129,
+            130,
+            147
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "软件10%优惠和递延税变化影响净利质量",
+          "checks_and_source_evidence": "49534089.68+197434903.62=246968993.30；276456332.42+5075787.99+5700209.91+7385920.08-516013.06+10245732.94-57546131.80+167154.82=246968993.30",
+          "conclusion_and_limit": "研发加计扣除与递延税非经营现金；母公司10%不是所有子公司税率"
+        },
+        {
+          "topic": "重述合并及期后分红",
+          "physical_pages": [
+            141,
+            154,
+            155,
+            183
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "股利批准形成义务与实际支付跨期",
+          "checks_and_source_evidence": "期初五项调整0；本期同一/非同一控制合并不适用；580017310.38分红7月3日完成，6月股东会已批准",
+          "conclusion_and_limit": "不将7月支付计入H1现金；差错更正不适用仅限本报告披露"
+        }
+      ]
+    },
+    "600519": {
+      "source_path": "work/financials_v8_case_study/sources/600519_2026H1_original.pdf",
+      "source_sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+      "physical_page_count": 110,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "收入确认与负毛利业务",
+          "physical_pages": [
+            50,
+            73,
+            74
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "交付商品控制权后确认，预收不等于已售",
+          "checks_and_source_evidence": "90703260964.48-9473762565.88=81229498398.60；其他44636527.18-57082846.60=-12446319.42；茅台/系列收入合计90658624437.30",
+          "conclusion_and_limit": "负其他GP禁止正Sankey假平衡；金融利息收入另列，不混作酒收入"
+        },
+        {
+          "topic": "合同负债及RPO",
+          "physical_pages": [
+            69,
+            74
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "经销预付下降反映履约/收款差异，不能直接称需求崩溃",
+          "checks_and_source_evidence": "预收3177561597.07 vs8006739780.94；RPO3177561597.07预计2026年确认",
+          "conclusion_and_limit": "同比/环比因果需渠道库存及订单信息，不能从余额直接替销量"
+        },
+        {
+          "topic": "应收信用与金融信用资产",
+          "physical_pages": [
+            53,
+            54,
+            59,
+            60,
+            61
+          ],
+          "status": "PASS",
+          "materiality": "高金融/低酒业AR",
+          "accounting_and_cash_meaning": "酒应收很小不意味着集团无金融信用敞口",
+          "checks_and_source_evidence": "酒AR原值570895.04；一年内债权1798589386.19-482940.63=1798106445.56；拆出/同业140816004868.24+300715333.33-32562077.56=141084158124.01",
+          "conclusion_and_limit": "贷款和金融投资必须单列风险，不能因酒业预收就认定集团零信用风险"
+        },
+        {
+          "topic": "存货与长周期基酒",
+          "physical_pages": [
+            45,
+            58,
+            59
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "在制和自制半成品与成品结构变化不等于存货变现收入",
+          "checks_and_source_evidence": "61318492356.13-1283984.83=61317208371.30；主要自制半成品34923053030.16、在产品19296804753.90；准备与期初同额",
+          "conclusion_and_limit": "基酒储存经济机制不自动证明可变现净值；未外部评估库存市场价"
+        },
+        {
+          "topic": "研发资本化",
+          "physical_pages": [
+            75,
+            84,
+            85
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "中",
+          "accounting_and_cash_meaning": "研发费用与总投资/现金不同",
+          "checks_and_source_evidence": "研发费用114926219.60；八研发支出合计412059920.01=费用化376750612.43+资本化35309307.58；开发117009982.85+35309307.58-14782038.92=137537251.51。费用化研发与利润表研发费用差261824392.83，报表科目与归集范围不能直接互换。",
+          "conclusion_and_limit": "已核验费用化与资本化合计及开发滚动；费用化归集与期间费用差额可能列生产成本等，但未取得来源明确分配调节，不能认定全部为当期研发费用，也不直接认定源报告错误。"
+        },
+        {
+          "topic": "商誉与长期资产减值",
+          "physical_pages": [
+            63,
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "中高",
+          "accounting_and_cash_meaning": "资本资产减值与现金支出不同",
+          "checks_and_source_evidence": "长期资产附注按固定/在建/无形列示；递延税减值可抵扣差异35160615.75；金融与工业资产减值不应互换",
+          "conclusion_and_limit": "此行只完成资产性质与列示边界阅读，缺外部可收回金额评估，不能确认无减值风险"
+        },
+        {
+          "topic": "财务子公司现金与负债",
+          "physical_pages": [
+            53,
+            69,
+            74,
+            97,
+            98,
+            99
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "吸收关联存款是负债；其现金流不可当酒业自由现金流",
+          "checks_and_source_evidence": "吸收存款25426316668.17与关联存款总额同数；利息收入1574811118.73、利息支出76587662.57；受限准备金8358830124.37",
+          "conclusion_and_limit": "未做全部金融资产现金可支配性函证，不把集团现金减普通借款当可分配现金"
+        },
+        {
+          "topic": "借款租赁与承诺",
+          "physical_pages": [
+            69,
+            101,
+            102
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "租赁与基金认缴均限制未来现金，承诺不重复作已付投资",
+          "checks_and_source_evidence": "基金各50亿认缴、各已付20亿、各尚付30亿，未来合计60亿；关联租赁含流动137958943.66等；回购已支付2999933749.57并注销",
+          "conclusion_and_limit": "重要或有不适用不能核销未来资本承诺；需法律条款才能判断认缴节奏"
+        },
+        {
+          "topic": "关联采购与金融往来",
+          "physical_pages": [
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "商标许可/服务/金融存贷款不同性质，不应重复计入工业成本",
+          "checks_and_source_evidence": "管理费商标许可1265631280.62；贵州银行存款880615.93万元与普通元交易区别；关联贷款19840000-155600.4=19684399.60",
+          "conclusion_and_limit": "已核交易性质与单位，未逐笔重算所有关联方金额或认证定价"
+        },
+        {
+          "topic": "税项消费税与递延税",
+          "physical_pages": [
+            52,
+            53,
+            68,
+            74,
+            75,
+            78
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "消费税列税金附加不在工业COGS，毛利率非税后盈利率",
+          "checks_and_source_evidence": "消费税11710560826.88；税金附加14682159453.47；15255249283.39+149839327.12=15405088610.51；递延税主因内部未实现利润5584448876.37",
+          "conclusion_and_limit": "税费与现金缴税分离，25%税率不能直接套所有子公司"
+        },
+        {
+          "topic": "合并重述及期后事项",
+          "physical_pages": [
+            73,
+            85,
+            86,
+            102
+          ],
+          "status": "PASS",
+          "materiality": "中高",
+          "accounting_and_cash_meaning": "回购注销与期后事项不能误分类成营业支出",
+          "checks_and_source_evidence": "期初未分配利润无调整；本期合并变更对应附注；p102重要非调整、分配等期后不适用；已完成回购2999933749.57",
+          "conclusion_and_limit": "已读披露，不代表期后所有外部新闻尽调；回购不计利润费用"
+        }
+      ]
+    },
+    "000333": {
+      "source_path": "work/financials_v8_case_study/sources/000333_2026H1_original.pdf",
+      "source_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+      "physical_page_count": 205,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "收入确认返利与业务own GP",
+          "physical_pages": [
+            128,
+            129,
+            130,
+            131,
+            132,
+            171,
+            172
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "内销验收外销报关离港、时段服务进度、退货返利抵收入；部分具体业务成本已披露",
+          "checks_and_source_evidence": "单位千元：收入241006725+19035765=260042490；成本178389591+15977180=194366771；智能家居GP48726688、商业工业GP13890446；其四子项收入成本亦披露",
+          "conclusion_and_limit": "不能笼统写美的只有集团成本；更细HERO来源若无法对齐附注则仍不得分配推算毛利。金融利息另列"
+        },
+        {
+          "topic": "合同负债与销售返利",
+          "physical_pages": [
+            130,
+            131,
+            165,
+            166
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "预收工程/货款是履约负债，预提返利与预收不同",
+          "checks_and_source_evidence": "千元：41497654+3960463=45458117合同负债；返利56972705列其他流动负债；不可将二者全算订单",
+          "conclusion_and_limit": "返利预估影响收入质量，需期后结算验证；无完整RPO现金承诺表"
+        },
+        {
+          "topic": "AR信用与票据终止确认",
+          "physical_pages": [
+            147,
+            148,
+            149,
+            151,
+            152,
+            163
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "应收增长占用现金；票据背书未终止确认仍有风险",
+          "checks_and_source_evidence": "千元：64042458-2087632=61954826，较期初40450097增21504729；818461+63223997=64042458；776243+1311389=2087632；本期准备1719771+588473-60567-138776-21269=2087632",
+          "conclusion_and_limit": "收入增长不能单独证明回款；未终止背书银行票4325952千元不能当应收出表"
+        },
+        {
+          "topic": "存货及跌价",
+          "physical_pages": [
+            154,
+            163,
+            174
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "库存去化与准备转销不同；成本不能等同现金采购",
+          "checks_and_source_evidence": "千元：56455229-1014260=55440969；1099351+450987-8971-478887-48220=1014260；p154合列487858中p163分明转回8971、转销478887",
+          "conclusion_and_limit": "此处可据细表分辨，不能将合列全当转回收益；库存净额减少9187865千元"
+        },
+        {
+          "topic": "研发与资本化政策",
+          "physical_pages": [
+            123,
+            160,
+            173
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "费用研发并非总技术投资；政策允许开发满足条件资本化",
+          "checks_and_source_evidence": "千元：研发费用8467401 vs8766551；p123技术可行/预算批准/市场能力/资金/可靠归集五条件已读；p160无形资产原值增加252449千元=购置55741+其他196708，其他未明确全为内部研发；不得强指认为资本化研发。",
+          "conclusion_and_limit": "当前选定附注未给完整本期资本化总额，不能从费用下降说投入下降或断言全费用化；需完整无形开发滚动和管理研发统计进一步调节"
+        },
+        {
+          "topic": "商誉减值及准备滚动",
+          "physical_pages": [
+            161,
+            163,
+            174
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "损益计提与准备余额净变动不同，商誉下降不能全当汇兑",
+          "checks_and_source_evidence": "千元：32673093-1096473=31576620；准备556411+计提1096473-转销547751-其他8660=1096473；本期损益商誉减值1096473",
+          "conclusion_and_limit": "确认有10.96473亿元本期商誉损失，不把准备仅增5.40062亿当全部损失；外部估值适当性仍未独立认证"
+        },
+        {
+          "topic": "借款可转债及受限资产",
+          "physical_pages": [
+            164,
+            166,
+            167,
+            168
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "可转债零息不等于零融资成本，流动/非流动分类不能遗漏",
+          "checks_and_source_evidence": "千元：短借19047514+843444+27414080=47305038；长借15991975-574675=15417300；2027可转7269104在其他流动，2033可转6665757在应付债；受限42038671",
+          "conclusion_and_limit": "境外货币面值与人民币账面不可混；现金净债需剔受限投资并含全部融资工具"
+        },
+        {
+          "topic": "担保承诺与巴西税诉讼",
+          "physical_pages": [
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            193
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "母公司对子公司担保不另加集团债；赔偿承诺未必全额收回",
+          "checks_and_source_evidence": "p193巴西最大潜在7.35亿元、原股东最高赔付1.73亿元，不能假定完全覆盖；已计预计负债，管理层称败诉低概率。资本承诺8192824千元=4805381+3387443",
+          "conclusion_and_limit": "已读案件及承诺；未获律师函/完整担保逐笔余额调节，不认证法律概率或担保无风险"
+        },
+        {
+          "topic": "关联交易金融产品",
+          "physical_pages": [
+            190,
+            191
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "关联商品/金融投资与融资余额不同",
+          "checks_and_source_evidence": "千元：会通采购784897，其他采购2741725；关联销售2687367=1738039+949328；顺德农商行投资4268837，收益100240",
+          "conclusion_and_limit": "董事商业定价说明非独立公允认证；不得把关联余额与本期交易相加"
+        },
+        {
+          "topic": "税项及金融投资/汇率",
+          "physical_pages": [
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            173,
+            174,
+            175
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "汇兑、公允价值与衍生处置不同阶段，不能直接合成同一经营驱动",
+          "checks_and_source_evidence": "千元：税6499185-1237503=5261682；FV4997108=2311768+2677893+7447；投资3040102含衍生1421269；非金融财务收入-3273004含汇兑-5976109",
+          "conclusion_and_limit": "金融业务利息1009683另列；不得对冲项错期双算或称毛利增长解释全部净利"
+        },
+        {
+          "topic": "合并重述与期后股利",
+          "physical_pages": [
+            182,
+            183,
+            193
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "新设范围不是本期重大收购；拟派股利未确认负债",
+          "checks_and_source_evidence": "本年无非同一控制新增子公司，主要新设清单披露；8月28日提议中期3724298992元、每10股5元、未在June确认负债",
+          "conclusion_and_limit": "不要把期后拟分红计入H1现金或已确认债务；比较数字调整未作外部重构"
+        }
+      ]
+    },
+    "600036": {
+      "source_path": "work/additional/600036_2026H1_original.pdf",
+      "source_sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+      "physical_page_count": 247,
+      "basis": "2026H1 consolidated; currency and units stated in each issuer",
+      "topics": [
+        {
+          "topic": "银行收入/净息差与手续费口径",
+          "physical_pages": [
+            101,
+            167,
+            168,
+            169,
+            170
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "银行净利息已减利息支出，不能走工业GP；净息差分母为平均生息资产",
+          "checks_and_source_evidence": "单位百万元：172733-60711=112022净利息；手续费总44442不是净手续费；FV4581、投资12811与其他收入分别披露",
+          "conclusion_and_limit": "H1政策明确需与2025年报合读。已审H1列示边界，年报全部政策验证单列外部待补；不装作H1含全政策"
+        },
+        {
+          "topic": "客户存款与流动性",
+          "physical_pages": [
+            102,
+            156
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "客户存款为融资负债，不是工业合同负债或收入；法定准备金不能日常支用",
+          "checks_and_source_evidence": "百万元：5516506+4645992=10162498存款本金；加应计78031=10240529；法定央行准备515923",
+          "conclusion_and_limit": "不把存款增长直接称盈利增长；银行现金流不能工业CFO比较"
+        },
+        {
+          "topic": "贷款信用/逾期/阶段迁移",
+          "physical_pages": [
+            107,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            169
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "逾期、阶段3、监管NPL非同一概念；核销降低余额不代表资产自然改善",
+          "checks_and_source_evidence": "百万元：6938749-268222=6670527摊余贷款净本金；6609181+259327+70241=6938749；262973+27398-28371+6698-476=268222准备；逾期97348 vs90646；FVOCI准备4249-1935=2314，不再从FVOCI账面重复扣减",
+          "conclusion_and_limit": "总贷款含交易分类、利息等，不用单一分母假算全覆盖率；未独立重估PD/LGD/抵押物"
+        },
+        {
+          "topic": "工业AR存货/研发资本化适用边界",
+          "physical_pages": [
+            101,
+            107,
+            169
+          ],
+          "status": "NOT_APPLICABLE",
+          "materiality": "高：防跨行业误用",
+          "accounting_and_cash_meaning": "银行主要业务无工业产销毛利及库存周转；IT费用不自动等于研发费用",
+          "checks_and_source_evidence": "业务及管理费52912百万元内有员工/折旧/无形摊销，未将其重标工业R&D；贷款是银行资产而非商品应收",
+          "conclusion_and_limit": "仅否定工业经济模型适用，不声称银行没有软件开发或任何库存资产"
+        },
+        {
+          "topic": "商誉及无形估值",
+          "physical_pages": [
+            145,
+            232
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "商誉账面与监管扣除有税/范围差别，不能强求一致",
+          "checks_and_source_evidence": "百万元：10533-579=9954商誉净；监管扣除9953是扣递延税负债口径",
+          "conclusion_and_limit": "缺本期DCF/敏感性及2025完整政策，无法独立认证减值充分；1百万元差异不直接报错"
+        },
+        {
+          "topic": "税项与递延资产资本约束",
+          "physical_pages": [
+            102,
+            145,
+            146,
+            147,
+            148,
+            149,
+            170,
+            232,
+            234
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "DTA依赖未来盈利；监管资本扣减与账面净额不同",
+          "checks_and_source_evidence": "百万元：17826-4008=13818税费；92649-1247=91402DTA净；22684+2963-11031-522-245-31=13818；监管列亏损DTA扣除1359及其他DTA90354",
+          "conclusion_and_limit": "免税收入重要，25%税率不等于实际税率；未独立验证DTA未来回收"
+        },
+        {
+          "topic": "债券及资本工具",
+          "physical_pages": [
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164,
+            232,
+            233,
+            234
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "优先/永续工具会计权益与监管吸损条件不同，不能作普通CFO",
+          "checks_and_source_evidence": "百万元：债券76392+存单3115+存款证55655+利息875=136037；本行债34839+3000+4-298-7703=29842；资本构成核心净1115273=1128242-12969",
+          "conclusion_and_limit": "本行高级法13.67%与集团/标准法不同，不能混用资本率；未逐笔法律复核吸损条款"
+        },
+        {
+          "topic": "担保授信承诺与诉讼",
+          "physical_pages": [
+            157,
+            176,
+            177,
+            178,
+            179
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "未用额度是或有，不是全部损失或已发放贷款，撤销额度与不可撤销分开",
+          "checks_and_source_evidence": "百万元：承诺3546625+23351+355=3570331；可撤销5524072另不含；表外ECL17168+1140+327=18635；未决被诉2287，资本承诺1571=246+1325",
+          "conclusion_and_limit": "管理层称不重大不是独立律师意见；不能从额度全算风险现金出流"
+        },
+        {
+          "topic": "关联交易及合并抵销",
+          "physical_pages": [
+            218,
+            219,
+            220,
+            221,
+            222,
+            223,
+            224,
+            225,
+            226,
+            227,
+            228,
+            229
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "本行对子公司余额不能重复加集团资产；关联授信有表外敞口",
+          "checks_and_source_evidence": "百万元：招商局控制公司集团贷款69833、存款78720；关联信用证5418、保函21502、承兑4834、不可撤销承诺9079；本行子公司贷款14900另列",
+          "conclusion_and_limit": "已读关联范围和条款，董事一般商业定价是披露不是独立公允认证"
+        },
+        {
+          "topic": "结构化主体及金融风险",
+          "physical_pages": [
+            230,
+            231
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "代客管理规模不等于银行自有资产；自持另认账面敞口",
+          "checks_and_source_evidence": "百万元：第三方结构化权益217161+65131+67174=349466最大账面敞口；发起未并表理财2740295、基金1487644、管理计划278815；自持理财3243、基金11432",
+          "conclusion_and_limit": "合并控制判断依赖权力与可变回报；不能将全部理财规模加集团资产或推定刚兑"
+        },
+        {
+          "topic": "重列合并与期后分红",
+          "physical_pages": [
+            5,
+            101,
+            130,
+            131,
+            132,
+            231
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "个别比较数字重新列报已明确；期后现金分配计划非本期现金",
+          "checks_and_source_evidence": "p231附注56为符合列报对个别比较数字重新列报；p5中期分红2027年1–2月支付，另公告；H1简化报表要求2025年报合读",
+          "conclusion_and_limit": "H1重列已读，但完整前期原表/所有重列调节未独立重建，不能把比较完全未变当事实；年报与分红后续公告需另证"
+        }
+      ]
+    },
+    "601628": {
+      "source_path": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+      "source_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+      "physical_page_count": 104,
+      "basis": "2026H1 consolidated; 人民币百万元；物理页=印刷页+2",
+      "topics": [
+        {
+          "topic": "保费管理口径与CAS25保险服务收入",
+          "physical_pages": [
+            10,
+            47,
+            87
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "管理保费536634不等保险服务收入112525，不是工业销售毛利",
+          "checks_and_source_evidence": "百万元：管理新单180039+续期356595=536634；服务24572+1099+35155+25133=85959，加PAA26566=112525",
+          "conclusion_and_limit": "管理保费按旧原保险/再保险规定的经营统计；不可将536634流入CAS25服务利润桥或叫营业收入"
+        },
+        {
+          "topic": "保险服务净额与再保险",
+          "physical_pages": [
+            47,
+            87,
+            89
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "服务费用、再保费用和保险财务损益分属不同，禁止工业COGS称谓",
+          "checks_and_source_evidence": "百万元：112525-70442-2885+1979=41177保险服务净额；费用22339+25133-4179+450=43743，加PAA26699=70442",
+          "conclusion_and_limit": "亏损部分转回4179改善当期服务结果，不能全归因销售效率；分出再保财务372不混服务净额"
+        },
+        {
+          "topic": "CSM与负债组成",
+          "physical_pages": [
+            84,
+            85,
+            87
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "CSM为未赚服务利润，不是权益或可分股息；存量上升不等于当期赚取",
+          "checks_and_source_evidence": "百万元：未来现金流6018422+风险调整41039+CSM813253=6872714，加PAA38027=6910741；未到期6844701+已发生赔款66040=6910741；CSM期初768369、本期摊销35155",
+          "conclusion_and_limit": "H1只给组成而非完整CSM新业务/假设/金融变动滚动，不以净增加44884当新业务价值；需要年报精算/合同组证据"
+        },
+        {
+          "topic": "投资收益与保险财务抵配",
+          "physical_pages": [
+            17,
+            47,
+            48,
+            88,
+            89
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "投资市场收益须并列保单融资成本，FVOCI与损益不能双算",
+          "checks_and_source_evidence": "百万元：利息66635+投资112902+FV135835-承保财务188067+分出财务372=127677（未扣利息支出1973与其他项目）；综合净136003-OCI48038=87965",
+          "conclusion_and_limit": "总投资收益314504经营统计不等利润表单一行；5.58%收益率只部分年化，不能直接与全部年化回报混比"
+        },
+        {
+          "topic": "信用风险和金融减值",
+          "physical_pages": [
+            61,
+            62,
+            63,
+            79,
+            80,
+            90
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "信用损失为前瞻估计；AAA评级不是无风险证明",
+          "checks_and_source_evidence": "百万元：ECL范围5019700+6537+322=5026559；债权投资stage2为2685，其他债权3852；信用减值-100-60-9+2+1=-166（净转回）",
+          "conclusion_and_limit": "逾期30天是显著增加标准之一；未独立验证PD/LGD或担保可执行，不能称无信用损失风险"
+        },
+        {
+          "topic": "资产负债久期和回购融资",
+          "physical_pages": [
+            64,
+            65,
+            84
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "保险负债现金表含未来保费净流入，不是工业债务到期表；未折现不能等于账面",
+          "checks_and_source_evidence": "回购156652+67228=223880百万元，均30天内；银行间质押债191158、交易所质押库235487受限；现金流表未考虑未来新业务",
+          "conclusion_and_limit": "长期净流出与短期保费流入依赖精算行为假设；不把全部投资资产当自由可分现金"
+        },
+        {
+          "topic": "非上市估值与资产减值",
+          "physical_pages": [
+            67,
+            68,
+            69,
+            70
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "第三层级非观察参数影响净利/OCI，非现金回报保证",
+          "checks_and_source_evidence": "百万元：601161+22817+5454+965-35521=594876第三层级余额；占FV资产约8.7%；流动性折扣14%-33%、贴现率1.20%-11.00%",
+          "conclusion_and_limit": "已审滚动与参数披露，缺逐项模型和市场可比，无法独立认证估值；未计提或FV上升不等无减值"
+        },
+        {
+          "topic": "偿付资本与监管口径",
+          "physical_pages": [
+            21,
+            66
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "偿付资本不同于CAS权益，分红受资本与监管限制",
+          "checks_and_source_evidence": "百万元：1058166/674846=156.80%核心、1334688/674846=197.78%综合；附注取整157%/198%与MD&A一致",
+          "conclusion_and_limit": "监管规则因子变化可能影响同比，资本率上升不能全归因经营改善；未来偿付率需季度原件检验"
+        },
+        {
+          "topic": "税项与递延税",
+          "physical_pages": [
+            71,
+            83,
+            91
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "投资非应税/递延大幅变化导致费用非现金税；DTA与DTL列示抵销",
+          "checks_and_source_evidence": "百万元：1617+25429=27046；40762-400-13594+261+33-16=27046；178665-156982=21683，净列23869-2186=21683",
+          "conclusion_and_limit": "净税资产不能全立即兑现；税率25%不能直接套投资总收益"
+        },
+        {
+          "topic": "关联投资与母子公司抵销",
+          "physical_pages": [
+            99,
+            100,
+            101
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "集团关联交易与母公司对子公司交易不同，后者合并抵销",
+          "checks_and_source_evidence": "百万元：广发存款12313、借款127、理财债8546；集团收保单代理费220等；母公司付子公司投资管理费2281另列；关键管理7为预发非最终薪酬",
+          "conclusion_and_limit": "不将内部委托收益重复加集团投资收益；关联公允性仅有原披露，未外部独立评估"
+        },
+        {
+          "topic": "承诺或有及工业指标边界",
+          "physical_pages": [
+            58,
+            71,
+            102
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "保险赔付负债不是存货/商品AR，工业研发资本化模型不适用；投资承诺需现金",
+          "checks_and_source_evidence": "百万元：未决法律诉讼901 vs816；资本承诺75771+768+226=76765；未可可靠估计且不重大其他或有无法量化",
+          "conclusion_and_limit": "已读披露不等诉讼无损失；无工业存货/R&D当作N/A不影响保险合同估值风险"
+        },
+        {
+          "topic": "合并范围与期后股利",
+          "physical_pages": [
+            35,
+            57,
+            74,
+            75,
+            76,
+            77,
+            87,
+            102
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "控制判断含结构化主体，管理资产不自动并表；期后拟股利与June已批准末期分红分开",
+          "checks_and_source_evidence": "2025末期0.618元/股共17468百万元已股东会批准；2026中期0.358拟10119百万元需股东会批准；CSM不等可派利润",
+          "conclusion_and_limit": "中期拟分红不能计入H1现金，母公司归母与集团136003净利区分；完整2025会计政策仍需合读"
+        }
+      ]
+    },
+    "300308": {
+      "source_path": "research/issuers/300308/original-2026h1.pdf",
+      "source_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+      "physical_page_count": 184,
+      "basis": "2026H1 consolidated; 人民币元；184页原件",
+      "topics": [
+        {
+          "topic": "收入确认与分部/一元矛盾",
+          "physical_pages": [
+            89,
+            90,
+            139,
+            140
+          ],
+          "status": "EXCEPTION",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "控制权/客户验收；自有来源成本可计算毛利，负数与差额保留",
+          "checks_and_source_evidence": "集团41777861795.03-22454688140.44=19323173654.59；p139光通信41355212182.06、其他一列422649612.97另一列422649613.97，相差1元；成本不差",
+          "conclusion_and_limit": "用集团/与集团闭合来源列，不更改原披露；本期增长不能直接叫800G价格/量贡献"
+        },
+        {
+          "topic": "合同负债与履约订单",
+          "physical_pages": [
+            90,
+            131,
+            140
+          ],
+          "status": "PASS",
+          "materiality": "中高",
+          "accounting_and_cash_meaning": "预收是履约负债，订单与收入时点不相同",
+          "checks_and_source_evidence": "合同负债20708561.80 vs26327404.33；一年以上1245343；p140RPO打印0.00",
+          "conclusion_and_limit": "只按原披露说明RPO，不外推无客户未来采购或无订单；保证2年/汽车3年确认为COGS及预计负债"
+        },
+        {
+          "topic": "应收信用及客户集中",
+          "physical_pages": [
+            101,
+            102,
+            103
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "应收集中不等销售集中；账龄短不排除信用风险",
+          "checks_and_source_evidence": "15051526664.79-50632671.21=15000893993.58；55841638.27+13525228.90-7302171.10-10952538.21-479486.65=50632671.21；前五10911298954.24/原值=72.49%",
+          "conclusion_and_limit": "集团净应收较期初6276876022.07增长87.24亿，不能忽略资金占用；未经客户函证"
+        },
+        {
+          "topic": "预付款账龄与前五名冲突",
+          "physical_pages": [
+            111
+          ],
+          "status": "EXCEPTION",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "原表预付增长影响现金，来源数字彼此不能同时成立",
+          "checks_and_source_evidence": "账龄表总953622834.48；>一年4582264.54+166083+169471.77=4917819.31；正文>一年813565692.24；前五3183862401.46>总953622834.48。该页已渲染目视确认",
+          "conclusion_and_limit": "保留三处原文并公开不一致，拒绝从互相矛盾数字算集中度；不得擅修发行人表"
+        },
+        {
+          "topic": "存货占款与跌价",
+          "physical_pages": [
+            111,
+            112,
+            144
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "备料/在制扩张，准备减少不等同全额收益",
+          "checks_and_source_evidence": "20109875322.93-283966059.42=19825909263.51；297815229.40+13062926.18+31215.07-26885983.40-57327.83=283966059.42",
+          "conclusion_and_limit": "净存货较期初12680707624.68增71.45亿；转回/转销合列不可全当利润；不能由扩产断言全部可售"
+        },
+        {
+          "topic": "研发及资本化",
+          "physical_pages": [
+            142,
+            152
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "费用研发≠总研发、股权激励不等现金",
+          "checks_and_source_evidence": "1234050709.33=1153028870.98+81021838.35；开发54085496.27+81021838.35-4219.74-36086.38=135067028.50",
+          "conclusion_and_limit": "保留光通信项目资本化，禁止称全费用化；技术成功和资产可回收未外部验证"
+        },
+        {
+          "topic": "在建扩产及商誉",
+          "physical_pages": [
+            121,
+            125,
+            126
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "CIP增长不等全部当期已投产；商誉需未来现金回报",
+          "checks_and_source_evidence": "待安装2446936833.79+装修1256024362.02+其他4455381.89=3707416577.70；商誉2018391758.61-79516426.69=1938875331.92",
+          "conclusion_and_limit": "本期商誉估值参数不适用、CIP详细主要项目表空白；无法独立确认产能效率、订单匹配及回收价值"
+        },
+        {
+          "topic": "借款债务与资本承诺",
+          "physical_pages": [
+            129,
+            131,
+            134,
+            171
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "工程应付与借款不同，已签未付资本合同是约束",
+          "checks_and_source_evidence": "短借49800000+349507920.07=399307920.07；长借467999999.97+18933690=486933689.97；资本承诺8582332357.86+221771386.16=8804103744.02",
+          "conclusion_and_limit": "期末现金不可全当自由现金；工程应付2449105582.35另列，承诺不再重复作资产负债表债务"
+        },
+        {
+          "topic": "境外汇率与税项",
+          "physical_pages": [
+            139,
+            140,
+            142,
+            145,
+            149
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "外销及美元AR形成货币敞口，毛利与汇兑分离",
+          "checks_and_source_evidence": "境外39614660881.74与境内2163200913.29合41777861795.03；汇兑损失708793883.87；美元AR13014895051.86；2535752903.08-38577120.37=2497175782.71税费，另有支柱二补税382783898.48",
+          "conclusion_and_limit": "海外收入不等海外产能；税优惠/支柱二和汇兑不能独立冒充产品效率"
+        },
+        {
+          "topic": "现金转换",
+          "physical_pages": [
+            147,
+            148,
+            149
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "高利润同期存货/应收吸收现金；净利与归母不同",
+          "checks_and_source_evidence": "CFO1799674832.02 vs集团净14733426763.13；经营应收-9241842184.65、存货-7239286403.36、应付+2555941200.83；现金6363673080.79-10943807433.04=-4580134352.25",
+          "conclusion_and_limit": "CFO/集团净利约12.21%，不能用归母混算；汇率与非现金项目使余额变化不等现金桥"
+        },
+        {
+          "topic": "关联交易及担保或有",
+          "physical_pages": [
+            167,
+            168,
+            169,
+            171
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "联营企业购销不是集团内全额抵销，仍需独立商业解释",
+          "checks_and_source_evidence": "联营采购514728002.59、销售1538600872.68；关联应收528017935.88、应付284340072.01；租赁/固定转让另列；原文无重大或有",
+          "conclusion_and_limit": "未独立确认定价和终端客户重叠，不从空担保表推出无一般法律风险"
+        },
+        {
+          "topic": "合并重述与期后融资分红",
+          "physical_pages": [
+            139,
+            153,
+            154,
+            155,
+            156,
+            171,
+            172
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "期后H股大额融资不可算H1现金；比较列仍按本报告",
+          "checks_and_source_evidence": "7月30日发行54500000股H股，每股980港元、募534.10亿港元；中期拟1403681569.20元待批准；期初未分配利润无调整数",
+          "conclusion_and_limit": "不将H股融资填H1现金缺口；原件一元等矛盾保留，非全文无错认证"
+        }
+      ]
+    },
+    "300394": {
+      "source_path": "research/quality/historical-peer-evidence/300394_2026H1.pdf",
+      "source_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+      "physical_page_count": 185,
+      "basis": "2026H1 consolidated; 人民币元；185页官方CNINFO原件",
+      "topics": [
+        {
+          "topic": "收入确认及自身成本",
+          "physical_pages": [
+            94,
+            95,
+            140
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "国内验收对账、出口非寄售报关/寄售领用对账，出货不等已认收入",
+          "checks_and_source_evidence": "2790287559.11+37651189.26=2827938748.37；1097496423.37+9087378.57=1106583801.94；集团GP1721354946.43",
+          "conclusion_and_limit": "不能从综合GP给有源/无源各分配同毛利；披露分类是光通信元器件及其他"
+        },
+        {
+          "topic": "合同负债与长账龄预收",
+          "physical_pages": [
+            132
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "旧预收不等新销售；履约未完可能时点/合同条件问题",
+          "checks_and_source_evidence": "预收112080142.55 vs160561056.09；客户1一年以上102676509.16、原文未履行完毕",
+          "conclusion_and_limit": "约91.61%预收来自长账龄单客，需后续履约；不可把全部预收判为增长订单"
+        },
+        {
+          "topic": "应收账龄与信用",
+          "physical_pages": [
+            102,
+            103,
+            104
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "均在1年内仍计5%组合准备，不与其他公司0.06%直接比较成信用强弱",
+          "checks_and_source_evidence": "1528182068.40-76409103.42=1451772964.98；59051859.37+17903952.47-546708.42=76409103.42；合同资产0",
+          "conclusion_and_limit": "总应收增长与回款风险需后续现金验证，未独立重估损失率"
+        },
+        {
+          "topic": "客户/预付集中",
+          "physical_pages": [
+            103,
+            111,
+            112
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "欠款集中和供应商预付集中不同于销售客户集中",
+          "checks_and_source_evidence": "前五AR1287923163.36/gross=84.27%，第一599999491.18占39.26%；前五预付90424608.02占94.65%，供应商1为79682681.06",
+          "conclusion_and_limit": "不将84.27%叫营收占比；原件未给客户真名，不猜终端大客户"
+        },
+        {
+          "topic": "存货跌价与备料",
+          "physical_pages": [
+            112,
+            113
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "净存货翻倍，准备转销与汇兑影响不同",
+          "checks_and_source_evidence": "981119698.61-52289008.50=928830690.11；57053591.91+10359168.79-688678-14435074.20=52289008.50",
+          "conclusion_and_limit": "较期初净457195929.70增471634760.41；毛利提高同时占款上升，不能忽略存货风险"
+        },
+        {
+          "topic": "研发费用化",
+          "physical_pages": [
+            142,
+            152
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "研发人力和材料投入影响当期利润，不是全现金",
+          "checks_and_source_evidence": "总194927204.07=费用化同额、资本化0；上期125502253.16；材料69581232.18",
+          "conclusion_and_limit": "不能说靠研发资本化抬利润；未证明新项目商业回报"
+        },
+        {
+          "topic": "在建工程扩产及产权",
+          "physical_pages": [
+            121,
+            122
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "已转固进度与CIP余额不同，证书未办影响法律完整性",
+          "checks_and_source_evidence": "主要工程24928695.80+48813025.96-43525114.80-1585906.17=28630700.79；总CIP120543923.79；江西二期未办证固定资产126355315.18",
+          "conclusion_and_limit": "预算投入129.29%与工程100%并存，不能当无限扩产；产权审核原因已披露，未法律核验"
+        },
+        {
+          "topic": "商誉估值",
+          "physical_pages": [
+            126,
+            127
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "中",
+          "accounting_and_cash_meaning": "精密/北极光商誉资产组已确认，不摊销需估值",
+          "checks_and_source_evidence": "5748132.75+23899440.43=29647573.18；减值0；精密2024注销后产品线资产组转苏州天孚",
+          "conclusion_and_limit": "本期DCF/敏感性不适用，无法独立认证无减值风险，不以注销认商誉应全销"
+        },
+        {
+          "topic": "债务受限与或有承诺",
+          "physical_pages": [
+            129,
+            134,
+            147,
+            171
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "无银行借款不等零租赁/担保保证金负担",
+          "checks_and_source_evidence": "受限51700000+1573.42=51701573.42；租赁4469500.67+83535.17-904862.88=3648172.96；短/长借表无额；原文无重大或有，承诺栏目无金额",
+          "conclusion_and_limit": "空承诺表不能证明没有任何采购合同；受限解冻75814642.47计经营现金需与经营创造区分"
+        },
+        {
+          "topic": "境外汇率与所得税",
+          "physical_pages": [
+            140,
+            142,
+            145,
+            150
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "出口收入与货币资产敞口不等，税优惠影响净利",
+          "checks_and_source_evidence": "外销1654826572.03+内销1173112176.34=2827938748.37；美元现金2427197561.80、美元AR576289265.51；汇兑损失85846526.99；175343857.06-2476942.93=172866914.13税费",
+          "conclusion_and_limit": "未将汇兑损失归收入毛利；子公司税率与研发扣除重要，不简单用25%估集团税"
+        },
+        {
+          "topic": "现金转换及关联交易",
+          "physical_pages": [
+            145,
+            147,
+            148,
+            167,
+            168,
+            169
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "CFO受解冻/营运资金影响；小额关联租赁仍需如实披露",
+          "checks_and_source_evidence": "CFO1000881668.42、净1204413560.86；存货-481305251.18、应收-372601134.59、应付+422925206.40；租赁天孚仁和3428.57；关键管理5876212.51",
+          "conclusion_and_limit": "CFO/净约83.10%不等纯回款率；购销/担保/关联资金表无额，未外部确认关联完整性"
+        },
+        {
+          "topic": "重述合并及期后事项",
+          "physical_pages": [
+            140,
+            153,
+            154,
+            155,
+            156,
+            172
+          ],
+          "status": "NOT_APPLICABLE",
+          "materiality": "中",
+          "accounting_and_cash_meaning": "本期比较调整及期后重大事项无具体列示，不创造事件",
+          "checks_and_source_evidence": "期初会计政策/差错/同控等调整0；期后非调整/分红等表空；同一/非同一控制合并模板无交易额",
+          "conclusion_and_limit": "仅就本份H1披露无该类事件；后续Q3/港股进展须另核，不把预付港股费用13593525.30当已完成融资"
+        }
+      ]
+    },
+    "300502": {
+      "source_path": "research/quality/historical-peer-evidence/300502_2026H1.pdf",
+      "source_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+      "physical_page_count": 134,
+      "basis": "2026H1 consolidated; 人民币元；134页官方CNINFO原件",
+      "topics": [
+        {
+          "topic": "收入确认及自身成本",
+          "physical_pages": [
+            72,
+            73,
+            104,
+            105
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "FOB/FCA/DDP/DAP/寄售不同交付条件，不能全部按报关认收入",
+          "checks_and_source_evidence": "20882640848.88+27106113.32=20909746962.20；10763586516.02+17534949.75=10781121465.77；GP10128625496.43",
+          "conclusion_and_limit": "光互联/其他可own GP，不能仅凭总量识别800G单价/出货；30–180天付款条件不等逾期"
+        },
+        {
+          "topic": "合同负债与RPO",
+          "physical_pages": [
+            100,
+            104,
+            105
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "预收履约负债与future采购非同一对象",
+          "checks_and_source_evidence": "217046814.51 vs90697430.17；p105剩余履约收入打印0.00，合同资产0",
+          "conclusion_and_limit": "原文0.00只按披露范围，不外推无任何客户订单；预收增加不全当当期营收"
+        },
+        {
+          "topic": "应收信用与客户集中",
+          "physical_pages": [
+            80,
+            81,
+            82
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "极低损失率依赖客户/账龄假设，前五零准备需理解其实际模型",
+          "checks_and_source_evidence": "7553090927.71-4821057.21=7548269870.50；1038309.28+3805099.51-21917.83-433.75=4821057.21；前五4645791511.90占61.51%、各准备0；组合1年内总4687175.73",
+          "conclusion_and_limit": "集中客户0准备与整体1年内0.06%并存，未逐客户损失率说明，不能认前五无风险或直接认错；需期后收现及信用模型"
+        },
+        {
+          "topic": "存货跌价及预付占款",
+          "physical_pages": [
+            87,
+            88,
+            98
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "材料预付含非流动项，存货不能按期末价直接等同未来销售",
+          "checks_and_source_evidence": "12255777145.48-600384900.13=11655392245.35；532898861.62+115483840.79-8511582.42-39486219.86=600384900.13；流动预付869541267.52、非流动材料预付1607924745.82",
+          "conclusion_and_limit": "净存货增44.21亿，前五预付86.07%；非流动预付不得漏作现金投资约束"
+        },
+        {
+          "topic": "研发费用与开发资产披露",
+          "physical_pages": [
+            98,
+            106,
+            114,
+            115
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "费用研发不自动等于所有研发/开发资产；源附注缺调节",
+          "checks_and_source_evidence": "p114总439990921.22=费用化同额，资本化项目表空；但p98其他非流动资产新增开发支出57176280.00，未给与研发表调节",
+          "conclusion_and_limit": "保留5717.63万元开发资产来源待解；不能擅称本期研发全费用化也不直接认其为资本化新增，需项目/收购明细"
+        },
+        {
+          "topic": "在建扩产",
+          "physical_pages": [
+            92,
+            93
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "在建转固不是全部新增资本开支或已具备销售能力",
+          "checks_and_source_evidence": "326835237.75+866933417.95-598247816.85-38522310.69=556998528.16；建筑174283833.05+设备382714695.11=556998528.16",
+          "conclusion_and_limit": "自有资金但仍形成未来折旧约束；没有客户需求/产能利用率独立证据"
+        },
+        {
+          "topic": "商誉及资产减值",
+          "physical_pages": [
+            95,
+            96,
+            98
+          ],
+          "status": "EXTERNAL_UNRESOLVED",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "Alpine商誉不摊销，估值需未来收益",
+          "checks_and_source_evidence": "Alpine商誉201572522.49不变，减值表空，资产组由固定/无形/长期待摊构成",
+          "conclusion_and_limit": "本期可收回金额方法/参数不适用，不能独立认证无减值；不因技术业务盈利推商誉安全"
+        },
+        {
+          "topic": "债务应付担保与承诺",
+          "physical_pages": [
+            98,
+            99,
+            100,
+            123,
+            125
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "商业票据与应付形成供应链融资，银行借款不大不代表无现金义务",
+          "checks_and_source_evidence": "应付票据2230361001.81、应付7125196010.21；关联担保明确无；未付大额工程5878.58万元+设备53308.67万元=59187.25万元",
+          "conclusion_and_limit": "票据到期义务必须计流动性；资本承诺不重复计为已确认负债，原文无重大或有仅为披露"
+        },
+        {
+          "topic": "境外汇率与税项",
+          "physical_pages": [
+            104,
+            106,
+            108,
+            112
+          ],
+          "status": "PASS",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "境外营收与美元AR大，汇兑及税优惠压缩净利桥",
+          "checks_and_source_evidence": "境外20474923217.01+境内434823745.19=20909746962.20；汇兑744066330.98，美元AR7497246814.80；1264361014.53-140426701.47=1123934313.06税费",
+          "conclusion_and_limit": "不将汇率损失混入COGS；同一报告6.8067折算率与他司不同不擅统一改源"
+        },
+        {
+          "topic": "现金转换与受限现金矛盾",
+          "physical_pages": [
+            98,
+            110,
+            111
+          ],
+          "status": "EXCEPTION",
+          "materiality": "极高",
+          "accounting_and_cash_meaning": "利润增长同时应收存货吸现；保证金不是可自由现金",
+          "checks_and_source_evidence": "CFO1616408524.15 vs净7566314696.14；存货-4488544814.87、应收-5754015079.03、应付+4186276023.31；p111既在“其中受限制现金等价物”列55955931.99又在“不属于现金等价物”列同额",
+          "conclusion_and_limit": "保留表内标签矛盾，主现金7184114558.40不可再随意加减该数修饰；需要货币资金调节表/公司说明"
+        },
+        {
+          "topic": "关联采购及股权支付",
+          "physical_pages": [
+            123,
+            124,
+            125
+          ],
+          "status": "PASS",
+          "materiality": "高",
+          "accounting_and_cash_meaning": "关联原材料采购和应付上升，股份支付非现金",
+          "checks_and_source_evidence": "亲属参股企业采购247810050.76 vs27901444.01，批准1500000000未超；应付158578441.55；联营销售12818433.21、应收10827209.40；股份支付12307466.90",
+          "conclusion_and_limit": "商业公允性未经外部认证，不把关联交易直接推为输送或把股份支付全称现金研发"
+        },
+        {
+          "topic": "合并重述与期后事项",
+          "physical_pages": [
+            104,
+            115,
+            126
+          ],
+          "status": "PASS",
+          "materiality": "中高",
+          "accounting_and_cash_meaning": "母公司AR19216509645.58不等集团7553090927.71；合并抵销不可混用",
+          "checks_and_source_evidence": "期初未分配利润会计政策/差错/同控等调整均0；本期处置子公司否；子公司列表含Alpine/泰国/新加坡；期后说明空",
+          "conclusion_and_limit": "不将母公司内部应收当外部客户集中；空期后说明仅此报告披露范围，不是外部尽调结论"
+        }
+      ]
+    }
+  },
+  "coverage_summary": {
+    "600900": {
+      "topics": 13,
+      "statuses": {
+        "PASS": 11,
+        "EXCEPTION": 1,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 1
+      }
+    },
+    "600276": {
+      "topics": 13,
+      "statuses": {
+        "PASS": 10,
+        "EXCEPTION": 2,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 1
+      }
+    },
+    "688220": {
+      "topics": 14,
+      "statuses": {
+        "PASS": 7,
+        "EXCEPTION": 4,
+        "NOT_APPLICABLE": 2,
+        "EXTERNAL_UNRESOLVED": 1
+      }
+    },
+    "688111": {
+      "topics": 11,
+      "statuses": {
+        "PASS": 8,
+        "EXCEPTION": 0,
+        "NOT_APPLICABLE": 1,
+        "EXTERNAL_UNRESOLVED": 2
+      }
+    },
+    "600519": {
+      "topics": 11,
+      "statuses": {
+        "PASS": 9,
+        "EXCEPTION": 0,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 2
+      }
+    },
+    "000333": {
+      "topics": 11,
+      "statuses": {
+        "PASS": 9,
+        "EXCEPTION": 0,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 2
+      }
+    },
+    "600036": {
+      "topics": 11,
+      "statuses": {
+        "PASS": 8,
+        "EXCEPTION": 0,
+        "NOT_APPLICABLE": 1,
+        "EXTERNAL_UNRESOLVED": 2
+      }
+    },
+    "601628": {
+      "topics": 12,
+      "statuses": {
+        "PASS": 10,
+        "EXCEPTION": 0,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 2
+      }
+    },
+    "300308": {
+      "topics": 12,
+      "statuses": {
+        "PASS": 9,
+        "EXCEPTION": 2,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 1
+      }
+    },
+    "300394": {
+      "topics": 12,
+      "statuses": {
+        "PASS": 10,
+        "EXCEPTION": 0,
+        "NOT_APPLICABLE": 1,
+        "EXTERNAL_UNRESOLVED": 1
+      }
+    },
+    "300502": {
+      "topics": 12,
+      "statuses": {
+        "PASS": 8,
+        "EXCEPTION": 1,
+        "NOT_APPLICABLE": 0,
+        "EXTERNAL_UNRESOLVED": 3
+      }
+    }
+  },
+  "systematic_review_statement": "11家现有发行人重大主题已按列明原注释阅读并记录具体复核与例外；132主题是实际主题清单数量，不是质量评分或逐格全文审计。EXTERNAL_UNRESOLVED表示已读但需合同、估值、精算、法律或期后验证；不改写为无风险或独立人类批准。",
+  "followup_completed_local_date": "2026-11-11"
+}

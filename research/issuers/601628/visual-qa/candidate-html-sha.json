@@ -1,18 +1,18 @@
 {
-  "candidate_html_sha256": "991f2099486bb28d7937b896358e2fa4e58e036642866df1e1fd3cc198310c76",
+  "candidate_html_sha256": "9b89858ed050a96d5a9d952f2e9bd6c1d8de369127aee6d3bc55b3c5465538b0",
   "scope": "LOCAL_CURRENT_CANDIDATE_NOT_PRODUCTION",
   "screenshots": {
     "full_report_1440.png": {
-      "sha256": "067dd06cae9b410fd6b8c9900be86d4db2a8db032b6dea843b9ec23b95d61822",
-      "bytes": 2395022
+      "sha256": "75a48eb2fcdcd63d09855a1f7c940ff1730ee9bd20822c1c39ddf0322d16aa01",
+      "bytes": 2540296
     },
     "full_report_768.png": {
-      "sha256": "e84be4eff98fd6e1796921a84a54db5b83bbdc791e3cfccb0caef7cbee57a148",
-      "bytes": 2320122
+      "sha256": "a5932da4e012c360f8f38a2f087eb2b0132d56e0ff121bdae45f2d6769ded448",
+      "bytes": 2867834
     },
     "full_report_390.png": {
-      "sha256": "d5baefab0251723697e486eceb48818f10f2c34d3fea084b4bb2374552649c3d",
-      "bytes": 2218424
+      "sha256": "4f4b522cea6b1a036f86c67c4c83ce3f8a9c63aa351712ced653a38da3121d0f",
+      "bytes": 2383103
     }
   }
 }

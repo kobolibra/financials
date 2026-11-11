@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-10",
+  "updated_date": "2026-11-11",
   "current_release_provenance_20261109": {
     "scope": "HISTORICAL_EXACT_MAIN_SOURCE_PROOF_NOT_FUTURE_UNCONDITIONAL_LIVE",
     "source_main_sha": "b72e6074795bc0cb9aabe0b312c79f1decf567f4",
@@ -57,10 +57,10 @@
     "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
     "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "688111": "0e68403c73b5c10718fe9175d3e16a41afd10839b582b16feaa6c6b6f71b458e",
-      "600519": "737b145ebee5498a934a9587ebbf476d6e9127fe3277f970e664b287ac49911a",
-      "000333": "006b80d2f944cca4b6c55519920d47082c526f6a6fe5c001d1157c3a35afe7a5",
-      "600036": "eec779faa002ae748b18240d3b85a7cacb5a4ebb87a26bef2641b1e32cfbcb5b"
+      "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
@@ -1549,7 +1549,35 @@
     "new_candidate_cloudflare_live_sha": "NOT_CHECKED",
     "remaining_mobile_small_text": "RECORDED_IN_MATRIX_EDITORIAL_REVIEW_REQUIRED",
     "documentation": "docs/QUALITY_REVIEW_20261110.html",
-    "new_workflow_activation": "PENDING_GITHUB_WORKFLOW_WRITE_SCOPE",
+    "new_workflow_activation": "SUPERSEDED_BY_EXISTING_PIPELINE_INTEGRATION",
     "prepared_workflow": "docs/ci-candidates/verify-comparative-economics.yml"
+  },
+  "quality_upgrade_20261111": {
+    "scope": "PR62_SOURCE_REBUILT_LOCAL_VERIFIED_PENDING_NEW_HEAD_CLOUD_AND_LIVE",
+    "pull_request": "https://github.com/kobolibra/financials/pull/62",
+    "material_note_coverage": {
+      "issuers": 11,
+      "themes": 132,
+      "proof": "research/quality/material-notes-review-20261110.json",
+      "method": "INDEPENDENT_AI_SECOND_REVIEW_WITH_DISCLOSED_SOURCE_EXCEPTIONS_NOT_HUMAN_AUDIT"
+    },
+    "historical_peer_research": {
+      "official_pdfs": 41,
+      "quarters": 24,
+      "quarter_metric_differences": 96,
+      "peer_issuers": 3,
+      "comparative_revision_cases_isolated": 5,
+      "tests": 6,
+      "proof": "research/quality/historical-peer-evidence/README.md"
+    },
+    "midea_income_grammar": "TYPE_A_SOURCE_OWN_COST_GP_NOTE46_PHYSICAL_171",
+    "browser_matrix": "research/quality/delivery-20261111/result.json",
+    "article_viewports": 33,
+    "figure_panel_observations": 315,
+    "new_browser_blockers": [],
+    "automation": "FULL_LIBRARY_SUITE_IN_EXISTING_TWO_SECTOR_WORKFLOW_NO_NEW_WORKFLOW_SCOPE_NEEDED",
+    "source_and_tests": "PASS_LOCAL_NEW_CLOUD_HEAD_PENDING",
+    "production": "PENDING_MERGE_AND_EXACT_LIVE_SHA",
+    "independent_human_audit": "NOT_CLAIMED"
   }
 }

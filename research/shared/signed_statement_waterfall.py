@@ -106,8 +106,8 @@ def render_signed_statement(plan:SignedStatement,facts:dict,*,mobile:bool)->str:
     width=D(330 if mobile else 1040)
     left=D(16 if mobile else 35)
     right=width-left
-    row_h=D(94 if mobile else 89)
-    top=D(82 if mobile else 100)
+    row_h=D(102 if mobile else 89)
+    top=D(94 if mobile else 100)
     height=top+row_h*len(rows)+D(26)
     lo=min([D(0)]+[min(a,b) for _,a,b,_ in rows])
     hi=max([D(0)]+[max(a,b) for _,a,b,_ in rows])
@@ -121,10 +121,10 @@ def render_signed_statement(plan:SignedStatement,facts:dict,*,mobile:bool)->str:
                 f'font-weight="{weight}" text-anchor="{anchor}" '
                 f'font-family="Noto Sans CJK SC,PingFang SC,Arial,sans-serif" '
                 f'data-editorial-role="{role}">{E(str(words))}</text>')
-    out=[t(left,24,"SIGNED PROFIT FORMATION / ORIGINAL CNY",10 if mobile else 14,
+    out=[t(left,24,"合并利润 · 原始金额有符号桥",14 if mobile else 14,
            fill=COLORS["muted"],weight=750,role="kicker"),
-         t(left,47,"零点与每一步金额使用同一比例尺；负值保留方向",
-           10 if mobile else 13,fill=COLORS["muted"],role="scale-law"),
+         t(left,47,"同一金额比例尺；保留负值与跨零累计",
+           12 if mobile else 13,fill=COLORS["muted"],role="scale-law"),
          f'<line x1="{_fmt(axis)}" x2="{_fmt(axis)}" y1="{_fmt(top-9)}" '
          f'y2="{_fmt(height-35)}" stroke="{COLORS["muted"]}" '
          f'opacity=".6" stroke-dasharray="4 5" stroke-width="1" data-axis-yuan="0"/>']
@@ -139,10 +139,10 @@ def render_signed_statement(plan:SignedStatement,facts:dict,*,mobile:bool)->str:
             print_name="销售与管理费用"
         if mobile and print_name=="扣减：税金及财务费用":
             print_name="税金及财务费用"
-        out.append(t(left,y,print_name,11 if mobile else 16,weight=700,role="signed-stage-label"))
-        out.append(t(right,y+D(19 if mobile else 0),_label(z.delta),
-                     11 if mobile else 16,fill=color,weight=750,anchor="end",role="signed-exact-change"))
-        bar_y=y+D(35 if mobile else 21)
+        out.append(t(left,y,print_name,13 if mobile else 16,weight=700,role="signed-stage-label"))
+        out.append(t(right,y+D(22 if mobile else 0),_label(z.delta),
+                     13 if mobile else 16,fill=color,weight=750,anchor="end",role="signed-exact-change"))
+        bar_y=y+D(41 if mobile else 21)
         out.append(f'<line x1="{_fmt(left)}" y1="{_fmt(bar_y+9)}" '
                    f'x2="{_fmt(right)}" y2="{_fmt(bar_y+9)}" '
                    f'stroke="{COLORS["rule"]}" stroke-width="0.65"/>')
@@ -156,8 +156,8 @@ def render_signed_statement(plan:SignedStatement,facts:dict,*,mobile:bool)->str:
                    f'data-money-provenance="{E(z.provenance)}"><title>'
                    f'{E(z.name)}：{E(str(z.delta))}元，累计{E(str(after))}元；原始PDF物理页'
                    f'{",".join(map(str,pages))}</title></rect>')
-        out.append(t(left,y+D(73 if mobile else 68),
-                     "累计 "+_label(after),10 if mobile else 13,
+        out.append(t(left,y+D(82 if mobile else 68),
+                     "累计 "+_label(after),12 if mobile else 13,
                      fill=COLORS["muted"],role="cumulative-net-position"))
     source_scope=("完整原始 PDF 副本 SHA 已核验；交易所官网与副本字节同一性尚未验证"
                   if "MIRROR" in plan.source_status else "原始 PDF SHA 核验")

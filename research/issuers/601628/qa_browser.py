@@ -3,6 +3,8 @@
 from __future__ import annotations
 from pathlib import Path
 import hashlib,json,math
+import xml.etree.ElementTree as ET
+from qa_signed_geometry import FAMILIES, check_signed_svg, expected_steps
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3]
 BASE=ROOT/"research/issuers/601628"
@@ -19,6 +21,9 @@ with sync_playwright() as p:
   errors=[]
   page.on("pageerror",lambda exc:errors.append(str(exc)))
   page.goto(HTML.as_uri(),wait_until="load",timeout=30000)
+  page.evaluate("document.fonts.ready")
+  signed_results=[]
+  bridge_exports=[]
   from decimal import Decimal as D
   import sys
   sys.path.insert(0,str(BASE))
@@ -72,7 +77,7 @@ with sync_playwright() as p:
     const money=node=>[...document.querySelectorAll(node)].map(x=>({w:x.scrollWidth,visible:x.clientWidth}));
     const domContents=[...document.querySelectorAll('h1,h2,p,.intro,.closing,.figure,.wrap,footer,header,.topbar')].map(x=>({tag:x.tagName,rect:x.getBoundingClientRect().toJSON()}));
     return {width:innerWidth,bodyWidth:body.scrollWidth,graph,phone,malformedRects,charts:money('.chart'),visible:domContents,
-      hasFont:document.fonts.check('16px "Noto Sans CJK SC"'),sourceTables:document.querySelectorAll('table').length,
+      hasFont:document.fonts.check('16px "Noto Sans CJK SC"'),sourceTables:[...document.querySelectorAll('table')].filter(t=>!t.closest('.research-context')).length,
       mobile:[...document.querySelectorAll('.mobile-chart')].map(el=>({
         family:el.dataset.mobileFigure,visible:getComputedStyle(el).display!=='none',
         panelOverflow:el.scrollWidth-el.clientWidth,
@@ -138,6 +143,11 @@ with sync_playwright() as p:
    assert all(x["visible"] and x["panelOverflow"]<=1 for x in geometry["mobile"]),(width,"MOBILE_INNER_HORIZ_SCROLL",geometry["mobile"])
    assert len({x["family"] for x in geometry["mobile"]})==10
    for panel in geometry["mobile"]:
+    if panel["family"] in FAMILIES:
+     graph=page.locator('#chart-'+panel["family"]+' .mobile-chart svg')
+     assert graph.count()==1 and graph.is_visible(),(width,panel["family"],"VISIBLE_SIGNED_BRIDGE_REQUIRED")
+     signed_results.append(check_signed_svg(graph.evaluate("el=>el.outerHTML"),panel["family"],L))
+     continue
     assert len(panel["rows"])>=5,(panel["family"],"MOBILE_NO_FULL_FINANCIAL_ITEMS")
     groups={}
     for item in panel["rows"]:
@@ -193,6 +203,40 @@ with sync_playwright() as p:
     assert source and abs(source["amount"]-float(F[key]["yuan"]))<.001,(width,view,"INSURANCE_P10_ORIGINAL_DISJOINT_SOURCE_WRONG",key)
    assert abs(next(x for x in buckets if x["id"]=="premium_new")["amount"]-float(F["premium_new"]["yuan"]))<.001
    assert abs(next(x for x in buckets if x["id"]=="premium_renew")["amount"]-float(F["premium_renew"]["yuan"]))<.001
+  for family in sorted(FAMILIES):
+   dependencies=set().union(*(step[1] for step in expected_steps(family,F)))
+   brief=next(b for b in Q['figure_briefs'] if b['id']==family)
+   assert dependencies<=set(brief['facts']),(width,family,'SOURCE_TABLE_DEPENDENCIES_INCOMPLETE')
+   table=page.locator('#chart-'+family+' details.audit tbody tr')
+   actual=table.evaluate_all("rows=>rows.map(r=>({label:r.querySelector('th').textContent,amount:r.querySelector('td.number').textContent,href:r.querySelector('a').getAttribute('href')}))")
+   assert len(actual)==len(brief['facts']),(width,family,'SOURCE_TABLE_ROW_COUNT')
+   for row,key in zip(actual,brief['facts']):
+    fact=F[key]
+    assert row['label']==fact['label'] and row['amount']==f"{D(fact['yuan'])/D(1000000):+,.0f} 百万元",(width,family,key,'SOURCE_TABLE_EXACT_DISCLOSURE')
+    assert row['href']==L['source']['official_announcement']+'#page='+str(fact['page']),(width,family,key,'SOURCE_TABLE_ORIGINAL_PAGE')
+  # Exercise the actual visible SVG download for every new bridge at every width.
+  # Desktop exports must retain their own full-width drawing; phone exports
+  # must be the audited native bridge, rather than the hidden desktop SVG.
+  for family in sorted(FAMILIES):
+   container=page.locator('#chart-'+family)
+   visible=container.locator('.mobile-chart svg' if width<=850 else '.chart svg')
+   assert visible.count()==1 and visible.is_visible(),(width,family,"VISIBLE_EXPORT_SOURCE")
+   raw_visible=visible.evaluate("el=>el.outerHTML")
+   with page.expect_download(timeout=10000) as pending:
+    container.locator('[data-export]').click()
+   downloaded=pending.value
+   assert downloaded.failure() is None,(width,family,"DOWNLOAD_FAILED")
+   assert downloaded.suggested_filename==f"601628-2026H1-{family}.svg"
+   dest=OUT/f"export-{family}-{width}.svg"
+   downloaded.save_as(dest)
+   raw=dest.read_text();actual=ET.fromstring(raw);expected=ET.fromstring(raw_visible)
+   assert actual.get('viewBox')==expected.get('viewBox'),(width,family,"EXPORTED_HIDDEN_LAYOUT")
+   assert actual.get('data-chart-grammar')==expected.get('data-chart-grammar'),(width,family,"EXPORTED_WRONG_GRAMMAR")
+   ns='{http://www.w3.org/2000/svg}'
+   for tag in ('rect','text','path'):
+    assert [(n.attrib,n.text) for n in actual.iter(ns+tag)]==[(n.attrib,n.text) for n in expected.iter(ns+tag)],(width,family,"EXPORTED_VISIBLE_VECTOR_DRIFT",tag)
+   if width<=850:check_signed_svg(raw,family,L)
+   bridge_exports.append({'family':family,'visible_layout':'native-330' if width<=850 else 'desktop','download_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'actual_visible_svg_match':'PASS'})
   with page.expect_download(timeout=10000) as download:
    page.locator('[data-export="premium"]').click()
   got=download.value
@@ -207,10 +251,11 @@ with sync_playwright() as p:
                    "source_sankey_actual_path_and_rect":"PASS","cjk_font_available":geometry["hasFont"],
                    "figure_count":10,"original_source_tables":geometry["sourceTables"],
                    "figure_readability":"DESKTOP_ALL_ORIGINAL_SVG_VISIBLE" if width==1440 else ("MOBILE_ALL_TEN_COMPLETE_NO_HORIZ_SCROLL" if width<=850 else "TABLET_FULL_SOURCE_SVG"),
-                   "svg_export":"PASS","screenshot":f"full_report_{width}.png"})
+                   "svg_export":"PASS","signed_bridge_source_and_geometry":signed_results,"visible_bridge_svg_exports":bridge_exports,"screenshot_sha256":hashlib.sha256((OUT/f"full_report_{width}.png").read_bytes()).hexdigest(),"screenshot":f"full_report_{width}.png"})
   page.close()
  browser.close()
 result={"code":"601628","source_sha":L["source"]["original_bytes_sha256"],
+        "candidate_html_sha256":hashlib.sha256(HTML.read_bytes()).hexdigest(),
         "source_nodes_sinks_ribbons_exact_svg_geometric_proportions":"PASS",
         "page_1440_768_390":"PASS","chart_count":10,"source_table_count":statuses[0]["original_source_tables"],
         "export_click_and_svg_download":"PASS","mobile_fully_visible_financial_figures":"PASS","mobile_ledger_exact_value_and_geometry":"PASS","original_actual_3_viewport_checks":statuses,

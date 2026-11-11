@@ -1,5 +1,1 @@
-The current GitHub credential lacks workflow write permission.
-The reviewed workflow is preserved here without activation.
-After an authorized connection with workflow scope is available, move
-verify-comparative-economics.yml to .github/workflows/ and run on the PR.
-All existing local validation receipts remain local, not GitHub Actions results.
+The standalone workflow proposal is archived. Its full-library tests and browser matrix are now implemented by research/shared/delivery_quality_suite.py, invoked by the EXISTING build-two-sectors workflow through qa_two_sector_browser.py on the 600276 job. No new workflow-write scope is needed. Inspect actual PR62 job logs for current-head execution proof.

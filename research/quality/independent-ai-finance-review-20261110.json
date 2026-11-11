@@ -1,0 +1,255 @@
+{
+  "schema": "financials.independent_ai_finance_review.v1",
+  "review_date": "2026-11-10",
+  "reviewer": "Separate AI subagent performing a second financial review; NOT an independent human analyst",
+  "independent_human_financial_review": "NOT_CHECKED",
+  "overall": "QUALIFIED_AI_SECOND_REVIEW_WITH_OPEN_SOURCE_DISCREPANCIES",
+  "scope": "600900/600276/688220 H1 source-PDF selected statement and material-note semantic review plus comparative compiler code review. Not full-report audit, not institutional sign-off, no causal identification, no browser aesthetic certification.",
+  "source_method": "Read original archived PDF bytes using PyMuPDF, examined complete selected pages and row/column headings; rendered and visually examined ASR physical p136 to eliminate extraction ambiguity. Physical pages equal printed pages for cited pages.",
+  "sources": [
+    {
+      "issuer": "600900",
+      "path": "research/issuers/600900/source/600900_2026H1_complete_original.pdf",
+      "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+      "official_byte_equivalence": "NOT_RECHECKED_IN_THIS_SECOND_REVIEW"
+    },
+    {
+      "issuer": "600276",
+      "path": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+      "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+      "official_byte_equivalence": "NOT_RECHECKED_IN_THIS_SECOND_REVIEW"
+    },
+    {
+      "issuer": "688220",
+      "path": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+      "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "official_byte_equivalence": "NOT_CHECKED"
+    }
+  ],
+  "independent_recalculations": [
+    {
+      "issuer": "600900",
+      "physical_page": 50,
+      "gp_prior": "20595632001.38",
+      "gp_current": "21958108232.64",
+      "delta_gp_yuan": "1362476231.26",
+      "revenue_effect_yuan_2dp": "702134349.26",
+      "margin_effect_yuan_2dp": "660341882.00",
+      "status": "FOUR_STATEMENT_CELLS_AND_SYMMETRIC_FORMULA_RECALCULATED",
+      "interpretation": "Accounting decomposition only; no price/volume/mix/FX/consolidation identification"
+    },
+    {
+      "issuer": "600276",
+      "physical_page": 77,
+      "gp_prior": "13646231459.72",
+      "gp_current": "13342240698.76",
+      "delta_gp_yuan": "-303990760.96",
+      "revenue_effect_yuan_2dp": "-264211298.57",
+      "margin_effect_yuan_2dp": "-39779462.39",
+      "status": "FOUR_STATEMENT_CELLS_AND_SYMMETRIC_FORMULA_RECALCULATED",
+      "interpretation": "Accounting decomposition only; no price/volume/mix/FX/consolidation identification"
+    },
+    {
+      "issuer": "688220",
+      "physical_page": 86,
+      "gp_prior": "469152451.43",
+      "gp_current": "721516109.28",
+      "delta_gp_yuan": "252363657.85",
+      "revenue_effect_yuan_2dp": "149785979.64",
+      "margin_effect_yuan_2dp": "102577678.21",
+      "status": "FOUR_STATEMENT_CELLS_AND_SYMMETRIC_FORMULA_RECALCULATED",
+      "interpretation": "Accounting decomposition only; no price/volume/mix/FX/consolidation identification"
+    }
+  ],
+  "findings": [
+    {
+      "id": "AI2-ASR-AR-CATEGORY-MISMATCH",
+      "issuer": "688220",
+      "physical_pages": [
+        135,
+        136
+      ],
+      "severity": "P1",
+      "evidence": "p135 combination gross 457256532.09 / allowance 7584956.52 versus p136 detailed combination 463454119.09 / 7694271.47; differences 6197587.00 / 109314.95 equal p136 individually assessed customers 2+3 (768600+5428987; 13556.80+95758.15). p136 visually verified. Possible overlap is an inference, not confirmed explanation.",
+      "required_action": "Publish both disclosed totals and unreconciled difference; do not sum p136 detailed combination with all individual balances or silently repair company disclosure. Investigate issuer clarification.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-ASR-TOP5-DENOMINATOR",
+      "issuer": "688220",
+      "physical_pages": [
+        135,
+        137,
+        138
+      ],
+      "severity": "P1",
+      "evidence": "414844022.57/(464113067.29+1113000)*100 = 89.17041665066583461950963285%; source prints 90.50%. Net denominator also fails.",
+      "required_action": "Retain disclosed numerator and source ratio with unresolved denominator warning. Never label as customer revenue concentration.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-ASR-RPO-CENT",
+      "issuer": "688220",
+      "physical_pages": [
+        179
+      ],
+      "severity": "P2",
+      "evidence": "Disclosed total 2364139874.78; within one year 1878194944.41 plus after one year 485944930.38 = 2364139874.79; difference +0.01. Checkbox says not applicable but subsequent other explanation supplies actual RPO.",
+      "required_action": "Preserve original values and one-cent discrepancy; do not substitute zero RPO from checkbox, or claim full original-note reconciliation.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-ASR-FULFILMENT-PERIOD",
+      "issuer": "688220",
+      "physical_pages": [
+        147,
+        178
+      ],
+      "severity": "P1",
+      "evidence": "Contract fulfilment amortization 157643639.62 is H1 2026; comparator explicitly FY2025 45812221.98, not H1. Custom-service cost 202918826.51 exceeds amortization by 45275186.89.",
+      "required_action": "Do not calculate H1 YoY amortization growth; do not equate all custom cost with fulfilment amortization or invent gap attribution.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-ASR-MANAGEMENT-VS-NOTE",
+      "issuer": "688220",
+      "physical_pages": [
+        9,
+        178
+      ],
+      "severity": "P1",
+      "evidence": "Management narrative chip revenue about 20.22亿元 versus contract table 2113622293.11 (21.1362亿元). Different definition not reconciled by source. Custom 321902456.53 agrees approximately 3.22亿元.",
+      "required_action": "Keep management number separately classified; use financial-note exact four-category facts for money graphics; explicitly acknowledge unresolved chip definition difference.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-ASR-WORKING-CAPITAL-RD",
+      "issuer": "688220",
+      "physical_pages": [
+        135,
+        146,
+        147,
+        192
+      ],
+      "severity": "P2",
+      "evidence": "Inventory net increases 451644416.22 to 2155358442.83; gross increases 438431009.40. Allowance decreases 13213406.82 despite additions 55097071.34 because reductions aggregate 68310478.16; reductions combine reversal/writeoff/other and are not all cash. AR net increases 147109275.65. R&D 663322721.74 all expensed, capitalized zero, consumes 91.94% of current GP 721516109.28 before sales, administration and other expenses.",
+      "required_action": "Explain inventory and receivables absorption alongside margin expansion; do not interpret allowance decrease entirely as reversal income or cash recovery; no semiconductor R&D capitalization claim.",
+      "status": "REVIEWED_WITH_LIMITATIONS"
+    },
+    {
+      "id": "AI2-HR-RD-CAPITALIZATION",
+      "issuer": "600276",
+      "physical_pages": [
+        147,
+        156,
+        157
+      ],
+      "severity": "P1",
+      "evidence": "Total R&D 4605118095.21 = expensed3492911607.38 + capitalized1112206487.83. Prior total3871157204.47 =3227933482.10+643223722.37. Capitalized share 24.15153020694210419733919074% versus 16.61579957608731980579080603%. Development rollforward 4877890710.83+1143485781.64-1343863339.80-31279293.81=4646233858.86. Internal additions minus capitalized R&D =31279293.81, equal transfer to P&L; no unexplained numeric contradiction established.",
+      "required_action": "Disclose capitalization alongside earnings interpretation; do not equate expensed R&D with investment or cash, or mislabel explained 31.279m difference a source error.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-HR-LICENSE-RPO",
+      "issuer": "600276",
+      "physical_pages": [
+        145,
+        146
+      ],
+      "severity": "P1",
+      "evidence": "License revenue1422301939.04, cost22191700.84, GP1400110238.20, margin98.44%. Commodity GP11913027165.69; other GP29103294.87; sum=13342240698.76 group GP. RPO1732201255.90=949214435.81+782986820.09 versus3077113027.33 beginning. Variable milestone consideration excluded; BMS contract effective July2026 and excluded from June RPO.",
+      "required_action": "Do not equate headline deal maximums with H1 revenue, RPO or cash. Need prior license-specific cost/revenue for causal mix attribution; current exact split alone cannot prove license explains total GP decline.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-HR-AR-AGING",
+      "issuer": "600276",
+      "physical_pages": [
+        115,
+        116,
+        117
+      ],
+      "severity": "P2",
+      "evidence": "AR gross4988230877.46-allowance67931667.70=net4920299209.76; opening net5146562124.00, decrease226262914.24. Overdue gross735958760.49 (14.75% of gross), despite most invoice-age balances under3months. Top5 3070033805.37/gross=61.55%.",
+      "required_action": "Distinguish invoice age from overdue status; lower overall AR does not prove absence of collection risk; do not use parent top5 59.72% as group.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-CYPC-RESTATEMENT",
+      "issuer": "600900",
+      "physical_pages": [
+        6,
+        7,
+        50,
+        154
+      ],
+      "severity": "P2",
+      "evidence": "p7 explicitly says Oct2025 common-control combination and retrospective comparison adjustment. p6 adjusted/unadjusted revenue both36697614066.72; no nonzero revenue adjustment demonstrated. p50 and p154 agree four group revenue/cost facts.",
+      "required_action": "Label prior comparison as current-report retrospective basis; do not imply restatement numerically drives revenue growth without a quantified adjustment. Ledger DISCLOSED vs compiled DISCLOSED_RESTATED metadata should align.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-CYPC-CASH-CONSTRAINT",
+      "issuer": "600900",
+      "physical_pages": [
+        103,
+        154,
+        176
+      ],
+      "severity": "P2",
+      "evidence": "AR net increases3068314369.18 to10320161908.41; large-hydro gross increase2954417311.40 explains most gross growth; source says major grid counterparties reliable, so receivable increase is not evidence of default.",
+      "required_action": "Present collection timing and counterparties as alternative, avoid direct hydrology/efficiency causality from total margin.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-CODE-CLASSIFICATION-DRIFT",
+      "issuer": "ALL",
+      "physical_pages": [],
+      "severity": "P2",
+      "evidence": "compile_ledger_comparison checks row classification but recreates it from brief.prior_restated and defaults DISCLOSED, potentially downgrading a DISCLOSED_RESTATED row or upgrading an ordinary row without matching semantic proof. Same definition text and >=20-character evidence are declarations, not independent source validation.",
+      "required_action": "Preserve actual fact classification and require explicit consistent restatement provenance. Keep external PDF semantic gate; do not describe compiler PASS as semantic validation.",
+      "status": "OPEN"
+    },
+    {
+      "id": "AI2-FUTURE-FALSIFIER-STALE",
+      "issuer": "ALL",
+      "physical_pages": [],
+      "severity": "P1",
+      "evidence": "As of 2026-11-10, parent reviewer has identified Q3 disclosures. H1 briefs only prescribe future follow-up; this second review has not independently opened Q3 originals.",
+      "required_action": "Use actual Q3 original PDFs to run specified falsifiers now; retain untested full-year/quarterly causal mechanisms as NOT_CHECKED. Do not present future check list as already-tested durability.",
+      "status": "OPEN"
+    }
+  ],
+  "graphics_review": {
+    "status": "CODE_AND_FINANCIAL_SEMANTICS_ONLY",
+    "result": "Exact signed common-scale rectangles, real zero baseline, no minimum decorative bar, explicit noncausal caveat and rounding row are appropriate. H1 comparative graphics do not prove business drivers or current durability. Browser clipping, typography, export and aesthetic approval NOT_CHECKED by this reviewer."
+  },
+  "not_checked": [
+    "Independent human review",
+    "Q3 PDFs and falsifier application in this subagent",
+    "Peer and 8–12 quarter causal identification",
+    "688220 SSE official-byte equivalence",
+    "Browser visual QA",
+    "Every original page/table cell exhaustive audit beyond the 132 documented material-topic checks"
+  ],
+  "material_notes_followup": {
+    "evidence_file": "research/quality/material-notes-review-20261110.json",
+    "issuers": [
+      "600900",
+      "600276",
+      "688220",
+      "688111",
+      "600519",
+      "000333",
+      "600036",
+      "601628",
+      "300308",
+      "300394",
+      "300502"
+    ],
+    "topic_records": 132,
+    "scope": "Systematic material-topic semantic review with named PASS/EXCEPTION/NOT_APPLICABLE/EXTERNAL_UNRESOLVED. Not every table-cell audit; external estimate/contract/annual-policy items remain explicitly unresolved.",
+    "human_review": "NOT_CHECKED",
+    "completed_local_date": "2026-11-11"
+  }
+}

@@ -152,11 +152,13 @@
   },
   "unmerged_candidate": {
     "base_deployed_html_sha256": "b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0",
-    "candidate_full_html_sha256": "991f2099486bb28d7937b896358e2fa4e58e036642866df1e1fd3cc198310c76",
+    "candidate_full_html_sha256": "9b89858ed050a96d5a9d952f2e9bd6c1d8de369127aee6d3bc55b3c5465538b0",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "2026-11-10 original-source comparative economics and/or native tablet layout candidate. Historical production proof remains bound exclusively to its deployed HTML SHA.",
-    "browser_matrix": "research/quality/delivery-20261110/result.json"
+    "note": "2026-11-11 source-bound note/history/peer and native signed graphics candidate. Formal human audit signature is separate. Production receipt stays bound exclusively to historical deployed bytes.",
+    "browser_matrix": "research/quality/delivery-20261110/result.json",
+    "ai_second_review": "COMPLETED_WITH_DISCLOSED_SOURCE_EXCEPTIONS",
+    "material_note_review": "research/quality/material-notes-review-20261110.json"
   }
 }

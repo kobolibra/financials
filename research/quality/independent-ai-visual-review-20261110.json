@@ -1,0 +1,499 @@
+{
+  "schema": "financials.independent_ai_visual_review.v1",
+  "date": "2026-11-10",
+  "reviewer": "Independent AI second reviewer (separate delegated agent)",
+  "human_signoff": "NOT_CHECKED",
+  "financial_source_signoff": "NOT_CHECKED",
+  "overall_visual_editorial_verdict": "CHANGES_REQUIRED",
+  "review_scope": {
+    "matrix": "outputs/evidence/delivery-matrix.json",
+    "matrix_sha256": "21e2c8cc8bc5a14bdeacd690c26eb95e3547b8d82de2e89e7e2a3b0ebff76935",
+    "machine_observations": 315,
+    "article_viewports": 33,
+    "all_11_mobile_contact_sheets_reviewed": true,
+    "full_resolution_targeted_figures": [
+      "601628-390-04",
+      "601628-390-01",
+      "600036-390-02",
+      "688111-768-01",
+      "300394-390-00",
+      "600036-1440-02",
+      "300502-1440-07",
+      "688220-390-04"
+    ],
+    "limitations": "并未声称315张逐字全尺寸精审；全部105张390图卡以接触表独立扫视，重点图全尺寸核对；1440/768其余图采用矩阵客观观测。未新跑浏览器、未核原始财务PDF、未签署人类财务/艺术审批、未认证线上SHA。工作目录work/final-browser仅作为候选截图位置参考，本意见绑定outputs/evidence所列截图与matrix SHA。"
+  },
+  "standards_read": [
+    "AGENTS.md",
+    "skills/ashare-financial-storytelling/SKILL.md",
+    "docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md"
+  ],
+  "positive_observations": [
+    "已标记canonical ribbon端点矩阵未报告金额比例错误；未发现足够证据支持新增P0比例错误。不能由此认证所有非canonical图。",
+    "600036桌面P&L保留费用负号红色与利润终点，手机应保留这一语法。",
+    "翱捷手机签名桥保留跨零累计和负税额收益，优于同零点条图。",
+    "保险主图明确隔离管理保费与CAS25收入，未把保费连到法定服务收入。"
+  ],
+  "issuer_reviews": [
+    {
+      "issuer": "300394",
+      "name": "天孚通信",
+      "article_sha256": "d60fee1e293ce8fdba656cdb53340a41a33f24c58f01a2abb1f1411caa404fa5",
+      "mobile_figures_overview_reviewed": 10,
+      "minimum_observed_svg_font_px": 8.672651933701658,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "300308",
+      "name": "中际旭创",
+      "article_sha256": "03cbaf03cff75fbee5fb3cc5ef79bc972b3a24be7333d674bbe8f5c545346422",
+      "mobile_figures_overview_reviewed": 10,
+      "minimum_observed_svg_font_px": 8.672487745098039,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "300502",
+      "name": "新易盛",
+      "article_sha256": "deba066704625ed316b3578da5843bc570c1071e07264ef818d2ee1504eb97b1",
+      "mobile_figures_overview_reviewed": 11,
+      "minimum_observed_svg_font_px": 8.672548767967145,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "600036",
+      "name": "招商银行",
+      "article_sha256": "eec779faa002ae748b18240d3b85a7cacb5a4ebb87a26bef2641b1e32cfbcb5b",
+      "mobile_figures_overview_reviewed": 8,
+      "minimum_observed_svg_font_px": 9.490791984732823,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "688111",
+      "name": "金山办公",
+      "article_sha256": "0e68403c73b5c10718fe9175d3e16a41afd10839b582b16feaa6c6b6f71b458e",
+      "mobile_figures_overview_reviewed": 9,
+      "minimum_observed_svg_font_px": 8.78169404973357,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "600519",
+      "name": "贵州茅台",
+      "article_sha256": "737b145ebee5498a934a9587ebbf476d6e9127fe3277f970e664b287ac49911a",
+      "mobile_figures_overview_reviewed": 9,
+      "minimum_observed_svg_font_px": 10.544668079096045,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "000333",
+      "name": "美的集团",
+      "article_sha256": "006b80d2f944cca4b6c55519920d47082c526f6a6fe5c001d1157c3a35afe7a5",
+      "mobile_figures_overview_reviewed": 10,
+      "minimum_observed_svg_font_px": 8.781700493171472,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "688220",
+      "name": "翱捷科技-U",
+      "article_sha256": "d7541601f5920ab8a71a5bbb9339ddfab712c9342de412eae97a2a47e050a9f0",
+      "mobile_figures_overview_reviewed": 10,
+      "minimum_observed_svg_font_px": 10.060132575757576,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "600900",
+      "name": "长江电力",
+      "article_sha256": "f66a7642aee18f6a32eedebd6afc175af2c26e3ac9f0e9bef64f64d502604989",
+      "mobile_figures_overview_reviewed": 9,
+      "minimum_observed_svg_font_px": 8.72724245115453,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "600276",
+      "name": "恒瑞医药",
+      "article_sha256": "21b3009dcb99be4346be67c98fecfa4c015aa9f4e537532bcf8563daf2e2401f",
+      "mobile_figures_overview_reviewed": 9,
+      "minimum_observed_svg_font_px": 8.72724245115453,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    },
+    {
+      "issuer": "601628",
+      "name": "中国人寿",
+      "article_sha256": "991f2099486bb28d7937b896358e2fa4e58e036642866df1e1fd3cc198310c76",
+      "mobile_figures_overview_reviewed": 10,
+      "minimum_observed_svg_font_px": 8.9452880859375,
+      "status": "CHANGES_REQUIRED",
+      "note": "本公司全部390图卡接触表已观察；不把缩略总览当作逐字精审。"
+    }
+  ],
+  "findings": [
+    {
+      "id": "AI-VIS-001",
+      "priority": "P1",
+      "issuers": [
+        "300394",
+        "300308",
+        "300502",
+        "601628"
+      ],
+      "figure_ids": [
+        "hero / chart-premium"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "真实手机关键来源与金额文字仅8.67–8.95px。保费图23个SVG标签中21个小于10px；光通信主图13–17个标签小于10px。即便无裁切，密集列表和曲线远隔，读者需上下追踪来源，无法五秒阅读。",
+      "required_fix": "重排原生330版，关键标签与金额至少约12px，优先14px；直接标注关键业务与利润贡献，缩短来源列表至曲线的距离；保持金额比例。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/300394-390-00.png",
+          "sha256": "48c10c912ececb2a808f0fdb8ad24b41875c0600b817af803c026a9e7b4e063e"
+        },
+        {
+          "path": "outputs/evidence/all-figures/300308-390-00.png",
+          "sha256": "fec0b584c97a5a66be250448adbf1893fc34584fa5ecb1b029e13c0de706f899"
+        },
+        {
+          "path": "outputs/evidence/all-figures/300502-390-00.png",
+          "sha256": "0c1e11e18038f0d34233b15e23a097349f37f4b62bb33c3ee5ffb70c453e9a98"
+        },
+        {
+          "path": "outputs/evidence/all-figures/601628-390-01.png",
+          "sha256": "6e8a6b889f5fad52afd2966189378d93266c56724f2cb14c0d1f52e8f49b5c6e"
+        }
+      ],
+      "source_files": []
+    },
+    {
+      "id": "AI-VIS-002",
+      "priority": "P1",
+      "issuers": [
+        "600036",
+        "688111",
+        "600519",
+        "000333"
+      ],
+      "figure_ids": [
+        "fig-03 / fig-02 / fig-08 / fig-09"
+      ],
+      "viewport_widths": [
+        390,
+        768
+      ],
+      "problem": "sticky导航在图卡截图内横贯并遮盖曲线或标签；688111 768主图中部和600036 390利润条图清晰可见。矩阵只测SVG内部文本重叠，没有检测固定导航遮挡。截图污染已确定；滚动阅读遮挡范围需交互复验。",
+      "required_fix": "修复图卡滚动定位及sticky遮挡；图卡取证前明确导航位置，增加固定元素遮挡检测；不能裁图掩盖页面问题。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/688111-768-01.png",
+          "sha256": "d0bb1502e0f66e404413554d6b2d8f4b1476f5d911116a62b83343a6fb7b5a9c"
+        },
+        {
+          "path": "outputs/evidence/all-figures/600036-390-02.png",
+          "sha256": "4d42852f85462bf2de88484e2570dd3bd225d068cc49319f0ed2e565c92d18ae"
+        }
+      ],
+      "source_files": []
+    },
+    {
+      "id": "AI-VIS-003",
+      "priority": "P1",
+      "issuers": [
+        "600036",
+        "688111",
+        "000333"
+      ],
+      "figure_ids": [
+        "600036 fig-03",
+        "688111 fig-09"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "手机通用SIGNED_SOURCE_VALUES把业务管理费529.12亿、信用减值291.77亿、税费138.18亿、研发费用11.52亿和资本开支画成正号绿条。标签虽写正数表示扣减，视觉颜色仍暗示利润/流入；600036桌面同图为正确负号红色瀑布，手机会计语法发生变化。",
+      "required_fix": "从原始行项金额另外编译经济角色和桥接符号，费用保持红色扣减；手机保留桌面的签名桥和终点，禁止只凭原始字段正负选择颜色。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/600036-390-02.png",
+          "sha256": "4d42852f85462bf2de88484e2570dd3bd225d068cc49319f0ed2e565c92d18ae"
+        },
+        {
+          "path": "outputs/evidence/all-figures/600036-1440-02.png",
+          "sha256": "43948d67ccd7b8b93a3d1af5b8c4ccb4f9c8d0833a9008345158eb9913324d94"
+        },
+        {
+          "path": "outputs/evidence/all-figures/688111-390-08.png",
+          "sha256": "dcf7545aba0d7c5e77613677073ed3f4a73c513b7ee8fa60867deee7aae7b85f"
+        }
+      ],
+      "source_files": [
+        "research/rebuild-v10/site/688111.html"
+      ]
+    },
+    {
+      "id": "AI-VIS-004",
+      "priority": "P1",
+      "issuers": [
+        "601628"
+      ],
+      "figure_ids": [
+        "chart-insurance",
+        "chart-pnl",
+        "chart-delta",
+        "chart-cash",
+        "chart-cashclose"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "标题/英文kicker承诺SIGNED BRIDGE或WATERFALL，实际手机一律各行同零点独立长度条。最终利润与收入/费用并列，无法沿图追踪累计抵销；这不是签名瀑布。数字解释并不修复图形语义。",
+      "required_fix": "将各合法独立会计桥编译为原生签名瀑布并标累计检查点；保费、CAS25、CSM继续隔离。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/601628-390-04.png",
+          "sha256": "a195c19630a2698d0227c9300ad183af81212c222b514447c5ff85bbfd7fb94e"
+        },
+        {
+          "path": "outputs/evidence/all-figures/601628-390-05.png",
+          "sha256": "04e29716852790d2f9be14ce054cde8eb25c16fcff544a49167639705628bd14"
+        },
+        {
+          "path": "outputs/evidence/all-figures/601628-390-06.png",
+          "sha256": "b6253d00274561c3f21368ba89ebe0201c868291584c9df197d812f1a686cd14"
+        },
+        {
+          "path": "outputs/evidence/all-figures/601628-390-07.png",
+          "sha256": "f75676cd0cd5fe7e1a306bcb139f6d256cd1a330cd38dfaa02dd49f3ff31394a"
+        }
+      ],
+      "source_files": [
+        "research/issuers/601628/publish.py:365"
+      ]
+    },
+    {
+      "id": "AI-VIS-005",
+      "priority": "P1",
+      "issuers": [
+        "300394",
+        "300308",
+        "300502",
+        "600900",
+        "600276",
+        "600036",
+        "688111",
+        "600519",
+        "000333"
+      ],
+      "figure_ids": [
+        "nonhero figures"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "大量非主图正文虽原生布局，最小实际字仍9.63–10.55px。三家光通信的现金桥等为9.64px，长江/恒瑞利润桥10.12px，V10约10.55px。机械阈值10px不能等同中文可舒适阅读。",
+      "required_fix": "按阅读角色设字体级别，关键值/业务名12–14px以上，精确来源细节折叠；以真实390不放大阅读为最终验收。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/300394-390-04.png",
+          "sha256": "546de6495af3901953145114fc6d238231f64b7a512a5d875849f0ac63765c40"
+        },
+        {
+          "path": "outputs/evidence/all-figures/600900-390-03.png",
+          "sha256": "1c5ff1020173d5a2fe98a6da5dfd0f9e3a846c21807a4b80005a794430a1e298"
+        },
+        {
+          "path": "outputs/evidence/all-figures/600276-390-04.png",
+          "sha256": "1d886e3ad6e2e6469a77522c1f7d14a05651e2a73a5ea363ecdb340533d0fe7d"
+        },
+        {
+          "path": "outputs/evidence/all-figures/000333-390-08.png",
+          "sha256": "9099bbea86f0a45abee506960a6c3d622688a85f0f453acf48ce2ec52d384ca8"
+        }
+      ],
+      "source_files": []
+    },
+    {
+      "id": "AI-VIS-006",
+      "priority": "P2",
+      "issuers": [
+        "600036",
+        "688111",
+        "000333",
+        "600519"
+      ],
+      "figure_ids": [
+        "fig-03 and source-data cards"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "图后每个原始事实重复为巨大的金额卡，600036利润图截图高3104像素；图本身只是一组同零点条，读者经历多屏重复数字而未得到新增解释。视觉重心落在证据抄录。",
+      "required_fix": "保留关键三到五个原始值与结论，完整可核对行项收进现有details；图中突出最大扣减项、营业/归母终点和有价值反证。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/600036-390-02.png",
+          "sha256": "4d42852f85462bf2de88484e2570dd3bd225d068cc49319f0ed2e565c92d18ae"
+        },
+        {
+          "path": "outputs/evidence/all-figures/688111-390-01.png",
+          "sha256": "938c89a21d3440b463303000ce0ef0c454a4ec6ffaaf8273638f7b527579bf02"
+        },
+        {
+          "path": "outputs/evidence/all-figures/000333-390-01.png",
+          "sha256": "6f064e4db371e4dddcc63cdf7a30a71402423385afb15f19a7c88ae022564290"
+        }
+      ],
+      "source_files": []
+    },
+    {
+      "id": "AI-VIS-007",
+      "priority": "P2",
+      "issuers": [
+        "601628",
+        "688111",
+        "000333",
+        "600519"
+      ],
+      "figure_ids": [
+        "chart-pnl",
+        "chart-premium",
+        "fig-08",
+        "fig-09"
+      ],
+      "viewport_widths": [
+        390,
+        1440
+      ],
+      "problem": "读者正文仍露出英语实现说明与机器字段，如op_profit163178、pretax163049、net136003、parent134489；其他图可见working、noncash等键作为标签。MOBILE FINANCIAL EXHIBIT及FULL/SIGNED/CAS长英文kicker抢占标题前层级。",
+      "required_fix": "内部键保留在DOM元数据，正文改为自然中文口径和精确来源；kicker缩为简明图类别。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/601628-390-04.png",
+          "sha256": "a195c19630a2698d0227c9300ad183af81212c222b514447c5ff85bbfd7fb94e"
+        },
+        {
+          "path": "outputs/evidence/all-figures/601628-390-01.png",
+          "sha256": "6e8a6b889f5fad52afd2966189378d93266c56724f2cb14c0d1f52e8f49b5c6e"
+        },
+        {
+          "path": "outputs/evidence/all-figures/688111-390-07.png",
+          "sha256": "5d78b258e69eb7cfed4198af6191d547484445a0c0ca8a2e65f35e34d8cf9ed0"
+        },
+        {
+          "path": "outputs/evidence/all-figures/000333-390-09.png",
+          "sha256": "08d90da1777975730360ae79f16f24d1c5c50cdc19f96259b4cbea183e8c647f"
+        }
+      ],
+      "source_files": [
+        "research/issuers/601628/figure-briefs.json",
+        "research/issuers/601628/publish.py:394"
+      ]
+    },
+    {
+      "id": "AI-VIS-008",
+      "priority": "P2",
+      "issuers": [
+        "600900",
+        "600276",
+        "300394",
+        "300308",
+        "300502"
+      ],
+      "figure_ids": [
+        "fig-trend",
+        "fig-pnl",
+        "fig-cfo",
+        "fig-cash"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "许多标题仅提出财报通用问题，如收入毛利经营现金流为什么不同步、利润为何未全部变成现金；虽正文有数据，首要图题没有一眼传达具体公司的最大驱动和约束，多个图仍像报表目录。",
+      "required_fix": "用原始证据已证明的金额贡献改写标题，例如恒瑞现金流同比下降53.8%，先突出经营性调整32.09亿而非笼统提问；避免将会计归因写成独立因果。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/600276-390-03.png",
+          "sha256": "a85e540f93254f193ae70fafba291a5a7d1a8c688bfea10431c451d9fc13ea72"
+        },
+        {
+          "path": "outputs/evidence/all-figures/600276-390-05.png",
+          "sha256": "4c1a8c4275b84622e754635a680928e5363e36db1e32fbeac5ea0d805e9d7232"
+        },
+        {
+          "path": "outputs/evidence/all-figures/600900-390-04.png",
+          "sha256": "4a438a4b8e8da5d9c419f3fdb0ff81330f3f972afc432feb6baaaf11c7257909"
+        },
+        {
+          "path": "outputs/evidence/all-figures/300394-390-04.png",
+          "sha256": "546de6495af3901953145114fc6d238231f64b7a512a5d875849f0ac63765c40"
+        }
+      ],
+      "source_files": []
+    },
+    {
+      "id": "AI-VIS-009",
+      "priority": "P2",
+      "issuers": [
+        "688220",
+        "300308",
+        "600900",
+        "600276"
+      ],
+      "figure_ids": [
+        "fig-pnl / signed formation"
+      ],
+      "viewport_widths": [
+        390
+      ],
+      "problem": "签名桥逻辑比通用零点条更好，但全部次要行项同权逐行拉长，翱捷10步图约1800px高，累计值约10px；核心研发吞噬毛利这一结论被次要行项稀释。",
+      "required_fix": "原始精确全序列保留；视觉分组并突出研发和最终盈利两个关键检查点，合并可合法合并的次要行项并给展开证据；不改变累计符号或虚构金额。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/688220-390-04.png",
+          "sha256": "dbcffb5dc66aca00493de1e9528e980175a88e4b2b45116c2a6ab1c7ea431bd2"
+        },
+        {
+          "path": "outputs/evidence/all-figures/300308-390-01.png",
+          "sha256": "efe99b433ffd8e174e3dd2d16418b3889cb2db7e25d5e20d218cfee747239f6b"
+        }
+      ],
+      "source_files": []
+    },
+    {
+      "id": "AI-VIS-010",
+      "priority": "P2",
+      "issuers": [
+        "all 11"
+      ],
+      "figure_ids": [
+        "audit_delivery_matrix"
+      ],
+      "viewport_widths": [
+        1440,
+        768,
+        390
+      ],
+      "problem": "矩阵315观测、33页、零blocker仅覆盖SVG文字/横溢出/已标记canonical ribbon端点。601628除保费外手机均HTML条图，字体与相互遮挡不在svgs观测中；visibleSvgCount=0不意味缺图，但也不能据此认证图字。",
+      "required_fix": "增加HTML图标签实际字号、固定元素遮挡、经济角色颜色、标题图形一致性和当前可见版导出检查；人工/AI编辑判断单独记录。",
+      "evidence": [
+        {
+          "path": "outputs/evidence/all-figures/601628-390-04.png",
+          "sha256": "a195c19630a2698d0227c9300ad183af81212c222b514447c5ff85bbfd7fb94e"
+        }
+      ],
+      "source_files": [
+        "scripts/audit_delivery_matrix.py:24",
+        "scripts/audit_delivery_matrix.py:107"
+      ]
+    }
+  ],
+  "release_recommendation": "不能宣布十一报告高质量审美完成。先修P1，再以同一候选HTML SHA重拍相关390/768/1440并独立AI复验。人类二审维持NOT_CHECKED。"
+}

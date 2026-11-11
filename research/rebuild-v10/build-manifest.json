@@ -39,8 +39,8 @@
       "ticker": "000333",
       "sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
       "pdf_pages": 205,
-      "selected_facts": 54,
-      "literal_page_numeric_found": 54,
+      "selected_facts": 57,
+      "literal_page_numeric_found": 57,
       "literal_page_numeric_missing": [],
       "accounting_identities": [
         "BS_2026",
@@ -78,28 +78,28 @@
   ],
   "files": {
     "index.html": {
-      "sha256": "4e963db4654f79c03e81a1ea03ed697313f5f5a132060de69fd0e8a6f0fdaf38",
-      "bytes": 18498,
+      "sha256": "187f7adee20488bcf6e7d8010965697ea5b7056c7b79ea90c865c3919d5d2ad7",
+      "bytes": 18489,
       "figures": 0
     },
     "688111.html": {
-      "sha256": "0e68403c73b5c10718fe9175d3e16a41afd10839b582b16feaa6c6b6f71b458e",
-      "bytes": 153977,
+      "sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "bytes": 160640,
       "figures": 9
     },
     "600519.html": {
-      "sha256": "737b145ebee5498a934a9587ebbf476d6e9127fe3277f970e664b287ac49911a",
-      "bytes": 114594,
+      "sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "bytes": 121925,
       "figures": 9
     },
     "600036.html": {
-      "sha256": "eec779faa002ae748b18240d3b85a7cacb5a4ebb87a26bef2641b1e32cfbcb5b",
-      "bytes": 130962,
+      "sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+      "bytes": 137845,
       "figures": 8
     },
     "000333.html": {
-      "sha256": "006b80d2f944cca4b6c55519920d47082c526f6a6fe5c001d1157c3a35afe7a5",
-      "bytes": 159557,
+      "sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "bytes": 173426,
       "figures": 10
     }
   }

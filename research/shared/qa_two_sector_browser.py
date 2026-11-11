@@ -41,7 +41,7 @@ def main():
             assert page.locator("section.chapter").count()==8
             assert page.locator("figure.figure").count()==8
             assert page.locator("figure table").count()==8
-            assert page.locator("table").count()==10,("SOURCE_TYPED_PROFIT_DETAILS_TABLE_MISSING",a.code,width)
+            assert page.locator("table").count()-page.locator(".research-context table").count()==10,("SOURCE_TYPED_PROFIT_DETAILS_TABLE_MISSING",a.code,width)
             assert page.locator("figure svg").count()==16,("EIGHT_DESKTOP_AND_EIGHT_NATIVE_MOBILE_SVG_MISSING",a.code,width)
             # Signed V10-compatible research bridge: the two existing signed
             # PNL/CFO exhibits stay intact; this is a separately source-typed
@@ -292,4 +292,12 @@ def main():
           "CJK_FONTS_RUNNER_INSTALLED":"NOT_CHECKED_LOCAL_FONT_INSTALLATION","CJK_text_geometry":"MEASURED_ACTUAL_RENDERED_GLYPHS","human_editor":"NOT_CHECKED"}
     (out/"result.json").write_text(json.dumps(data,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
     print("ACTUAL_CHROMIUM_TWO_SECTOR_QA_PASS",a.code,"screenshots",len(list(out.glob("*.png"))),"views",record)
-if __name__=="__main__":main()
+if __name__=="__main__":
+    main()
+    # Existing build-two-sectors workflow installs PDF/browser/CJK dependencies
+    # and calls 600276 last; extend that actual job rather than require a new
+    # workflow credential or silently leave the full-library checks inactive.
+    import os
+    if os.environ.get('GITHUB_ACTIONS')=='true' and '--code' in sys.argv and sys.argv[sys.argv.index('--code')+1]=='600276':
+        from delivery_quality_suite import run
+        run(ROOT/'research/issuers/600276/visual-qa/full-library')

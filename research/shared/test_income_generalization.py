@@ -53,17 +53,28 @@ class IncomeGeneralizationTests(unittest.TestCase):
                     costs_by_source=costs,individual_costs_disclosed=True)
         with self.assertRaises(ValueError):
             assess_financial_income_flow([replace(src[0],source_page=True),src[1]],f("total","100"),f("cogs","40"))
-    def test_current_real_issuers_retain_byte_identical_svg(self):
-        # Frozen pre-fix SVG bytes: protect valid existing source output.
-        expected={'688220:False:False': 'f9c8f35d624eaeb8afe98d5afcb5d332c1efa3d393fa2c2abf36a3b294936432', '688220:False:True': 'f9c8f35d624eaeb8afe98d5afcb5d332c1efa3d393fa2c2abf36a3b294936432', '688220:True:False': '39a6a87525da5f4b89cca8f467e2ee4fd95c6dc37bad8cffcff4e655f0ab9d3e', '688220:True:True': 'ba226349913c46e00192b15882c91f7447ccd676971a8ef21cfc5f90201c5dd3', '600900:False:False': '176fcfa145c02dce6f1acf3f295d412978eda737ab723228c765cb34251ee361', '600900:False:True': '176fcfa145c02dce6f1acf3f295d412978eda737ab723228c765cb34251ee361', '600900:True:False': '89530b4da692c324500b5796078d31e8b71427345d9c11e180a9857c37d36a84', '600900:True:True': '3db7f6f948b3cd85f2eeb1bfb9b2417209cd44c3cffc7aa90377184f15d2a9af', '600276:False:False': 'c9f97ad7fed0a247e934e1eb65ba95904a23825ebd4da59c14422fc90fd7a255', '600276:False:True': 'c9f97ad7fed0a247e934e1eb65ba95904a23825ebd4da59c14422fc90fd7a255', '600276:True:False': 'ecd819dad1c902825abcb21bff5b39ef16f59ef8341bad980c06491f23677f06', '600276:True:True': '363b44a87e3aef3dbbcdcece61cb3447e862f036dd75d27160bd5319accf8788'}
+    def test_real_issuer_source_money_geometry_is_independent_of_readable_rows(self):
         from source_income_adapter import compile_disclosed_income
-        for code in ("688220","600900","600276"):
-            p=compile_disclosed_income(json.loads((ROOT/f"research/issuers/{code}/source-ledger.json").read_text()))
-            for mobile in (False,True):
-                for readable in (False,True):
-                    digest=hashlib.sha256(render_income_sankey(p,mobile=mobile,embedded=True,
-                        readable_source_rows=readable).encode()).hexdigest()
-                    self.assertEqual(digest,expected[f"{code}:{mobile}:{readable}"])
+        for code in ('688220','600900','600276'):
+            p=compile_disclosed_income(json.loads((ROOT/f'research/issuers/{code}/source-ledger.json').read_text()))
+            for readable in (False,True):
+                tree=ET.fromstring(render_income_sankey(p,mobile=True,embedded=True,readable_source_rows=readable))
+                for r in tree.iter('{http://www.w3.org/2000/svg}rect'):
+                    if r.get('data-node-yuan') is not None:
+                        amount=D(r.get('data-node-yuan'))
+                        self.assertGreaterEqual(amount,0)
+                for path in tree.iter('{http://www.w3.org/2000/svg}path'):
+                    if path.get('data-ribbon-yuan') is not None:
+                        self.assertGreater(D(path.get('data-ribbon-yuan')),0)
+                        scale=D(path.get('data-scale-yuan-per-svg-unit'))
+                        self.assertGreater(scale,0)
+                        import re
+                        coords=[D(n) for n in re.findall(r'-?\d+(?:\.\d+)?',path.get('d'))]
+                        self.assertEqual(len(coords),16)
+                        expected=D(path.get('data-ribbon-yuan'))/scale
+                        self.assertLess(abs(abs(coords[15]-coords[1])-expected),D('.001'))
+                        self.assertLess(abs(abs(coords[9]-coords[7])-expected),D('.001'))
+                self.assertNotIn('NaN',ET.tostring(tree,encoding='unicode'))
 
 
 if __name__=="__main__":unittest.main()

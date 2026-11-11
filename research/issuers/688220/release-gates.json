@@ -116,11 +116,13 @@
   "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
   "unmerged_candidate": {
     "base_deployed_html_sha256": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
-    "candidate_full_html_sha256": "d7541601f5920ab8a71a5bbb9339ddfab712c9342de412eae97a2a47e050a9f0",
+    "candidate_full_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "2026-11-10 original-source comparative economics and/or native tablet layout candidate. Historical production proof remains bound exclusively to its deployed HTML SHA.",
-    "browser_matrix": "research/quality/delivery-20261110/result.json"
+    "note": "2026-11-11 source-bound note/history/peer and native signed graphics candidate. Formal human audit signature is separate. Production receipt stays bound exclusively to historical deployed bytes.",
+    "browser_matrix": "research/quality/delivery-20261110/result.json",
+    "ai_second_review": "COMPLETED_WITH_DISCLOSED_SOURCE_EXCEPTIONS",
+    "material_note_review": "research/quality/material-notes-review-20261110.json"
   }
 }

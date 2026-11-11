@@ -36,7 +36,7 @@ def test_four_true_conservation_equations():
 def test_presentation_has_original_source_native_finance_and_type():
     kinds={'688111':'TYPE_A_SOURCE_OWN_COST_GP',
            '600519':'TYPE_C_SANKEY_OMITTED',
-           '000333':'TYPE_B_GROUP_ONLY_GROSS_ALLOCATION',
+           '000333':'TYPE_A_SOURCE_OWN_COST_GP',
            '600036':'BANK_NET_INCOME_TO_OPERATING_PROFIT'}
     for code,kind in kinds.items():
         html=(OUTPUT/(code+'.html')).read_text()
@@ -65,7 +65,10 @@ def test_presentation_has_original_source_native_finance_and_type():
             assert 'FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON' in figure
             assert 'data-signed-yuan=' in figure
         elif code=='000333':
-            assert 'PRODUCT_LEVEL_GP_NOT_ESTABLISHED' in figure
+            assert 'PRODUCT_LEVEL_GP_NOT_ESTABLISHED' not in figure
+            for key in ('home','industrial_solution','other_total'):
+                assert 'data-source-id="'+key+'"' in figure
+            assert 'data-gp-yuan=' in figure and 'data-cost-yuan=' in figure
         else:
             assert '净利息' in figure
 

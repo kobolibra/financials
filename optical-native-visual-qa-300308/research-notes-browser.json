@@ -1,0 +1,89 @@
+{
+  "cases": [
+    {
+      "issuer": "300308",
+      "width": 1440,
+      "candidate_html_sha256": "81cf708be584507845e60be50c5836ff2d81c6be4d2340f8267bdcb577de8883",
+      "source_pdf_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+      "notes_measurements": {
+        "left": 100,
+        "right": 1260,
+        "bodyWidth": 1440,
+        "textLength": 2973,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300308_research_notes_1440.png",
+      "screenshot_sha256": "1cb83bec3ca5f9dc231a947b68c40c0d400fa282d91279085651dddd896242d7",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300308",
+      "width": 768,
+      "candidate_html_sha256": "81cf708be584507845e60be50c5836ff2d81c6be4d2340f8267bdcb577de8883",
+      "source_pdf_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+      "notes_measurements": {
+        "left": 21,
+        "right": 747,
+        "bodyWidth": 768,
+        "textLength": 2973,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300308_research_notes_768.png",
+      "screenshot_sha256": "c8eedf1b4effafa80c8896ed1051e9cc01ba2008476a4681f6e6cd564f843c5d",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300308",
+      "width": 390,
+      "candidate_html_sha256": "81cf708be584507845e60be50c5836ff2d81c6be4d2340f8267bdcb577de8883",
+      "source_pdf_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+      "notes_measurements": {
+        "left": 21,
+        "right": 369,
+        "bodyWidth": 390,
+        "textLength": 2973,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300308_research_notes_390.png",
+      "screenshot_sha256": "8f6f53a6fb06c6e81f1200c3fb62c190529f2a0a52d27a1efdbb42e848f4410d",
+      "source_and_bounds": "PASS"
+    }
+  ],
+  "human_editor": "NOT_CHECKED"
+}

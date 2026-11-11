@@ -1,0 +1,82 @@
+[
+  {
+    "id": "600900_2025Q1",
+    "url": "https://static.cninfo.com.cn/finalpage/2025-04-30/1223421165.PDF",
+    "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+    "bytes": 190052,
+    "pages": 16,
+    "file": "600900_2025Q1.pdf"
+  },
+  {
+    "id": "600900_2026Q1",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262110.PDF",
+    "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+    "bytes": 181581,
+    "pages": 17,
+    "file": "600900_2026Q1.pdf"
+  },
+  {
+    "id": "600025_2026H1",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-26/1225504979.PDF",
+    "sha256": "9e26512d5899d8738e81c6a6d258dfbfa03924d34c9e44883d6da6541bcbc48b",
+    "bytes": 1241235,
+    "pages": 228,
+    "file": "600025_2026H1.pdf"
+  },
+  {
+    "id": "600900_2026Q3",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-10-31/1225648852.PDF",
+    "sha256": "ba9cad3b152085beb53f5753982e76002c607291738839c42d5dae150a9e179e",
+    "bytes": 190821,
+    "pages": 18,
+    "file": "600900_2026Q3.pdf"
+  },
+  {
+    "id": "600276_2026Q3",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-10-28/1225629197.PDF",
+    "sha256": "9fc0702f6de6d25d8bd2e8bfdbc57cc69b964459f38db9d87be83baa9dc0c073",
+    "bytes": 297239,
+    "pages": 11,
+    "file": "600276_2026Q3.pdf"
+  },
+  {
+    "id": "600900_2025Q3",
+    "url": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224776945.PDF",
+    "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+    "bytes": 216779,
+    "pages": 17,
+    "file": "600900_2025Q3.pdf"
+  },
+  {
+    "id": "688220_2025Q3",
+    "url": "https://static.cninfo.com.cn/finalpage/2025-10-31/1224769356.PDF",
+    "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+    "bytes": 182700,
+    "pages": 14,
+    "file": "688220_2025Q3.pdf"
+  },
+  {
+    "id": "600900_2025FY",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-04-30/1225262036.PDF",
+    "sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+    "bytes": 1533692,
+    "pages": 259,
+    "file": "600900_2025FY.pdf"
+  },
+  {
+    "id": "688099_2026H1",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482822.PDF",
+    "sha256": "78894bf6c06c93c55364101c9b239cadadc97b653878a451767c7a27a1f0d5f3",
+    "bytes": 1304307,
+    "pages": 200,
+    "file": "688099_2026H1.pdf"
+  },
+  {
+    "id": "600196_2026H1",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-26/1225505529.PDF",
+    "sha256": "f2636b097c6b7ec16d30d9970ea78bb43fa95545f38ece35f011ed6e8e309c65",
+    "bytes": 5734167,
+    "pages": 227,
+    "file": "600196_2026H1.pdf"
+  }
+]

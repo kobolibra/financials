@@ -35,6 +35,9 @@ def plan_for(code:str, typed:dict, get, names:dict):
         for sid,revenue,cost,gross in rows:
             if D(revenue)!=expected_source[sid]:
                 raise ValueError("SOURCE_OWN_REVENUE_ROW_MISMATCH " + sid)
+            cost_key=typed.get("source_cost_keys",{}).get(sid)
+            if cost_key and D(cost)!=D(get(code,cost_key)):
+                raise ValueError("SOURCE_OWN_COST_ORIGINAL_FACT_MISMATCH " + sid)
             if D(cost)+D(gross)!=D(revenue):
                 raise ValueError("SOURCE_OWN_COST_GP_ARITHMETIC_MISMATCH " + sid)
         costs=sum((D(c) for _,_,c,_ in rows),D(0))
@@ -43,7 +46,7 @@ def plan_for(code:str, typed:dict, get, names:dict):
             raise ValueError("SOURCE_OWN_COST_TOTAL_MISMATCH " + code)
         if gp!=D(typed["exact_yuan_group_gp"]):
             raise ValueError("SOURCE_OWN_GP_TOTAL_MISMATCH " + code)
-        # The group cost/GP sink is backed by 4 separate independently
+        # The group cost/GP sink is backed by separate independently
         # disclosed own-product cost/GP values, NOT by corporate average.
         allocations=tuple(
             pair
@@ -54,7 +57,7 @@ def plan_for(code:str, typed:dict, get, names:dict):
         return FlowPlan(
             issuer=code,kind=kind,
             title="哪些业务收入真正创造了集团毛利？",
-            source_label="四项披露业务收入",outcome_label="集团毛利归因",
+            source_label=f"{len(original_sources)}项披露业务收入",outcome_label="集团毛利归因",
             sources=original_sources,
             outcomes=(("group_cogs","营业成本",str(costs),"cost"),
                       ("group_gp","营业毛利",str(gp),"profit")),

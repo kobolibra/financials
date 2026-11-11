@@ -281,8 +281,8 @@ def build(l,m):
 .native-finance{display:none}
 .native-finance-inner{color:#16383c;background:#fffefa;padding:5px 0 10px;min-width:0}
 .native-finance h4{font:700 18px var(--serif);margin:8px 0 8px;line-height:1.45}
-.native-finance-dek{font-size:11px;line-height:1.75;color:#5d736c;margin:0 0 12px}
-.native-finance-foot{font-size:10.5px;line-height:1.75;color:#586d67;margin:15px 0}
+.native-finance-dek{font-size:12px;line-height:1.75;color:#5d736c;margin:0 0 12px}
+.native-finance-foot{font-size:11px;line-height:1.75;color:#586d67;margin:15px 0}
 .native-finance svg{width:100%;height:auto;display:block;overflow:visible}
 .native-money-total,.native-money-pair{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:10px 0}
 .native-money-total{font-size:13px;border-bottom:1px solid #cad6d0;padding-bottom:9px}
@@ -295,8 +295,8 @@ def build(l,m):
 .native-money-ribbon.is-muted{opacity:.08}
 .native-money-ribbon.is-selected{opacity:1;fill-opacity:.82}
 .native-source-row strong{white-space:nowrap;text-align:right;color:#164d48}
-.native-source-row small{font-size:10px;color:#607b72}
-.native-source-row>span:last-child{grid-column:1 / -1;color:#637973;font-size:10.5px}
+.native-source-row small{font-size:11px;color:#607b72}
+.native-source-row>span:last-child{grid-column:1 / -1;color:#637973;font-size:11px}
 .native-pair-row{border-bottom:1px solid #dde6dd;padding:10px 0;font-size:12px;display:grid;grid-template-columns:1fr auto;gap:8px}
 .native-pair-row small{font-size:10px;color:#678078}
 .native-pair-row strong{text-align:right}
@@ -398,6 +398,8 @@ def build(l,m):
 <details><summary>展开：净利润到经营现金流的全部 {ind} 项附注调节</summary><div class="table-scroll"><table class="indtable"><thead><tr><th>补充资料原文</th><th>带符号金额（元）</th><th>页码</th></tr></thead><tbody>{''.join(f'<tr><td>{esc(x["source_label"])}</td><td>{D(x["amount"]):,.2f}</td><td>p.{esc(x.get("page","—"))}</td></tr>' for x in l['indirect_cfo_adjustments'])}</tbody></table></div></details>
 <details><summary>展开：研究限制与未决问题</summary><ul>{''.join('<li>'+esc(x)+'</li>' for x in m.get('limits',[]))}</ul></details></div></div>
 <footer class="page-footer"><div class="wrap"><span>FINANCIALS IN VISUALS · INDEPENDENT RESEARCH / {ticker}</span><span>研究辅助材料，非证券投资建议 · PDF SHA + 页码可追溯</span></div></footer><script>{js}</script></body></html>'''
+ from research_context import render as render_research_context
+ html_page=html_page.replace('</main>',render_research_context(doc['ticker'].split('.')[0])+'</main>',1)
  return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':(9 if not m.get('source_notes',{}).get('top5_ar_percent') and not m.get('source_notes',{}).get('top1_prepay_percent') else 10)+int(bool(volume_fig)),'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'UPLOADED_SOURCE_PDF_SHA_VERIFIED__CORE_FINANCIAL_NUMBERS_CHECKED__EDITORIAL_SECOND_REVIEW_PENDING'}
 
 def main():
