@@ -1553,7 +1553,7 @@
     "prepared_workflow": "docs/ci-candidates/verify-comparative-economics.yml"
   },
   "quality_upgrade_20261111": {
-    "scope": "PR62_SOURCE_REBUILT_LOCAL_VERIFIED_PENDING_NEW_HEAD_CLOUD_AND_LIVE",
+    "scope": "MERGED_AND_PRODUCTION_SOURCE_EXACT_VERIFIED",
     "pull_request": "https://github.com/kobolibra/financials/pull/62",
     "material_note_coverage": {
       "issuers": 11,
@@ -1575,9 +1575,37 @@
     "article_viewports": 33,
     "figure_panel_observations": 315,
     "new_browser_blockers": [],
-    "automation": "FULL_LIBRARY_SUITE_IN_EXISTING_TWO_SECTOR_WORKFLOW_NO_NEW_WORKFLOW_SCOPE_NEEDED",
-    "source_and_tests": "PASS_LOCAL_NEW_CLOUD_HEAD_PENDING",
-    "production": "PENDING_MERGE_AND_EXACT_LIVE_SHA",
-    "independent_human_audit": "NOT_CLAIMED"
+    "automation": "ACTIVE_EXISTING_FULL_LIBRARY_SUITE_AND_UPDATED_LIVE_ACCEPTANCE",
+    "source_and_tests": "PASS_GITHUB_ACTIONS_AND_LOCAL",
+    "production": "LIVE_E72_ARTICLE_BYTES_VERIFIED_AFTER_PR63",
+    "independent_human_audit": "NOT_CLAIMED",
+    "acceptance_pull_request": "https://github.com/kobolibra/financials/pull/63",
+    "production_interactions": "research/quality/release-20261111/production-interactions.json",
+    "actual_report_release_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+    "acceptance_release_commit": "9101d76b178d50c8f76b9ffbb03b769c9ff5b6e4",
+    "github_connection": "RESTORED_WORKFLOW_UPDATE_SUCCEEDED"
+  },
+  "current_release_provenance_20261111": {
+    "origin": "https://financials-in-visuals.pages.dev",
+    "content_pr": 62,
+    "acceptance_pr": 63,
+    "content_main": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+    "acceptance_main": "9101d76b178d50c8f76b9ffbb03b769c9ff5b6e4",
+    "source_exact_articles": 11,
+    "browser_engines": [
+      "Chromium",
+      "WebKit"
+    ],
+    "real_svg_downloads": 108,
+    "sector_live_action": "https://github.com/kobolibra/financials/actions/runs/43008612952",
+    "asr_live_action": "https://github.com/kobolibra/financials/actions/runs/43008612929",
+    "insurer_live_action": "https://github.com/kobolibra/financials/actions/runs/43010535098",
+    "independent_review": "AI_SECOND_REVIEW_COMPLETED_WITH_SOURCE_EXCEPTIONS; HUMAN_SIGNATURE_NOT_CLAIMED",
+    "limits": [
+      "Original issuer note discrepancies remain visible and unresolved",
+      "Eight-quarter/peer coverage is three issuers, not all eleven",
+      "Seven historical figure families retain partial design migration debt",
+      "Unseen 20-30 issuer/period generalization and market valuation are not certified"
+    ]
   }
 }

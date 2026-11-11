@@ -1,0 +1,191 @@
+{
+  "schema": "financials.production_interaction_summary.v1",
+  "raw_result_sha256": "ea6ef83d87e039e5aa830731b6051e370d17a4f73936b0e5b7e4b664408fbee6",
+  "execution_context": {
+    "actual_target": "https://financials-in-visuals.pages.dev",
+    "invocation_environment": "FINANCIALS_PR_PREVIEW=https://financials-in-visuals.pages.dev GITHUB_SHA=e72bae81a9df22f54db7ba365f25bb8160c34111",
+    "scope": "Actual production target; generic runner retains legacy preview labels in source/overall fields. Raw observations and their original labels are preserved. This manual run has no GitHub Actions identity."
+  },
+  "candidate_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+  "company_routes": [
+    {
+      "code": "300394",
+      "route": "/300394.html",
+      "actual_online_full_html_sha256": "9449655050c63d716e9a60e8b31f32adb1ad8d1144b866925d8bf617b032b51d",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "300308",
+      "route": "/300308.html",
+      "actual_online_full_html_sha256": "81cf708be584507845e60be50c5836ff2d81c6be4d2340f8267bdcb577de8883",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "300502",
+      "route": "/300502.html",
+      "actual_online_full_html_sha256": "5772104c6dbf4eb4f5a661a87eeeaef776f246c1d349b9ce2201eb5ca9a06f61",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600036",
+      "route": "/research/2026-h1-v10/600036.html",
+      "actual_online_full_html_sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "688111",
+      "route": "/research/2026-h1-v10/688111.html",
+      "actual_online_full_html_sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600519",
+      "route": "/research/2026-h1-v10/600519.html",
+      "actual_online_full_html_sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "000333",
+      "route": "/research/2026-h1-v10/000333.html",
+      "actual_online_full_html_sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "688220",
+      "route": "/688220.html",
+      "actual_online_full_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600900",
+      "route": "/600900.html",
+      "actual_online_full_html_sha256": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600276",
+      "route": "/600276.html",
+      "actual_online_full_html_sha256": "a0bd6542cdfdde39a620c3bd9af381fc6bc7b1bf7e8bfe3006241f14acfca0ea",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "601628",
+      "route": "/601628.html",
+      "actual_online_full_html_sha256": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    }
+  ],
+  "browser_cases": [
+    {
+      "issuer": "688111",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "tested_original_source_svg_downloads": 9
+    },
+    {
+      "issuer": "600519",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "tested_original_source_svg_downloads": 9
+    },
+    {
+      "issuer": "000333",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "tested_original_source_svg_downloads": 10
+    },
+    {
+      "issuer": "600036",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+      "tested_original_source_svg_downloads": 8
+    },
+    {
+      "issuer": "688111",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "tested_original_source_svg_downloads": 9
+    },
+    {
+      "issuer": "600519",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "tested_original_source_svg_downloads": 9
+    },
+    {
+      "issuer": "000333",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "tested_original_source_svg_downloads": 10
+    },
+    {
+      "issuer": "600036",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+      "tested_original_source_svg_downloads": 8
+    },
+    {
+      "issuer": "688111",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "tested_original_source_svg_downloads": 9
+    },
+    {
+      "issuer": "600519",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "tested_original_source_svg_downloads": 9
+    },
+    {
+      "issuer": "000333",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "tested_original_source_svg_downloads": 10
+    },
+    {
+      "issuer": "600036",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+      "tested_original_source_svg_downloads": 8
+    }
+  ],
+  "all_108_exact_edition_svg_exports": "PASS",
+  "unified_11_issuer_organic_routes": "PASS",
+  "blocking_issues": [],
+  "interpretation": "PRODUCTION_SOURCE_EXACT_AND_108_REAL_EXPORTS_PASS; NO_HUMAN_OR_PHYSICAL_DEVICE_CERTIFICATION"
+}

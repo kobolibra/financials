@@ -64,7 +64,7 @@
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
       "proof": null,
-      "scope": "full-page critical note review beyond 118 selected numbers not completed"
+      "scope": "Independent AI review covers all twelve material note themes with visible original-source exceptions. Formal completeness/human audit certification is not established."
     },
     "REPORTED_NOTE_TIES": {
       "status": "FAIL",
@@ -79,7 +79,7 @@
     "HISTORICAL_PEERS_VALUATION": {
       "status": "NOT_CHECKED",
       "proof": null,
-      "scope": "external 8–12Q and market inputs unavailable"
+      "scope": "Eight consecutive quarters and one sourced peer are complete for this issuer; full independent market valuation and wider unseen-period validation are not established."
     },
     "INDEPENDENT_HUMAN_REVIEW": {
       "status": "NOT_CHECKED",
@@ -88,8 +88,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/42457017812",
-      "scope": "Current 688220 2026H1 exact complete HTML matches main b365e40f, all 11 live routes, 1440/768/390 genuine CJK Chromium, lawful 4-source group Sankey and 10-stage source-bound signed P&L. It is NOT a proof of official SSE byte equivalence, all material note resolution, peer/period reliability or independent finance/art approval."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43008612929",
+      "scope": "Actual main e72bae81 source-exact full report HTML, eleven public routes, 1440/768/390 CJK Chromium screenshots and source-money checks; not independent human certification or resolved original note exceptions."
     }
   },
   "blockers": [
@@ -108,21 +108,10 @@
   "figure_briefs_file": "research/issuers/688220/figure-briefs.json",
   "sector_adapter": "semiconductor",
   "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment",
-  "published_html_sha256": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
-  "live_release_fingerprint": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
+  "published_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+  "live_release_fingerprint": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
-  "actual_main_release_commit": "b365e40f4d0c0fe63f2948778de4ae375e0446f8",
+  "actual_main_release_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
-  "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
-    "candidate_full_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "2026-11-11 source-bound note/history/peer and native signed graphics candidate. Formal human audit signature is separate. Production receipt stays bound exclusively to historical deployed bytes.",
-    "browser_matrix": "research/quality/delivery-20261110/result.json",
-    "ai_second_review": "COMPLETED_WITH_DISCLOSED_SOURCE_EXCEPTIONS",
-    "material_note_review": "research/quality/material-notes-review-20261110.json"
-  }
+  "live_receipt_file": "research/issuers/688220/live-release-receipt.json"
 }

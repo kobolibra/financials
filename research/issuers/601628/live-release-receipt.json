@@ -1,96 +1,311 @@
 {
-  "schema_version": 1,
-  "issuer": "601628",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/41786674737",
-  "action_run_id": 41786674737,
-  "issuer_count_checked": 11,
-  "real_capture_comment": "Authentic current main 601628 actual public Cloudflare browser receipt, title-value corrected candidate SHA b065 now live. Not independent human art-director certification.",
-  "actual_full_content_sha256_equals_repository_main_601628": "b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0",
+  "status": "PASS",
+  "origin": "https://financials-in-visuals.pages.dev",
+  "verified_git_commit": "9101d76b178d50c8f76b9ffbb03b769c9ff5b6e4",
+  "pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+  "actual_full_content_sha256_equals_repository_main_601628": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
   "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "all_11_issuer_external_routes": "PASS",
-  "external_market_peer_valuation": "NOT_CHECKED",
-  "independent_human_editor": "NOT_CHECKED",
-  "origin": "https://financials-in-visuals.pages.dev",
-  "pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
   "real_chromium_viewports": [
     {
+      "width": 1440,
       "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
       "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
-      "back_to_same_home": "PASS",
-      "live_final_sink_geometrically_conserved": "PASS",
-      "mobile_ten_full_width_source_exact_money_exhibits": "DESKTOP_OR_TABLET_SVG",
-      "new_601628_main_route": "PASS",
-      "no_page_horizontal_overflow": "PASS",
       "public_home_11_cards": "PASS",
-      "real_live_screenshots": "PASS",
+      "new_601628_main_route": "PASS",
+      "ten_desktop_plus_premium_and_five_native_bridges": "PASS",
+      "source_signed_bridge_checks": [],
+      "visible_bridge_exports": [
+        {
+          "family": "cash",
+          "layout": "desktop",
+          "sha256": "325cebeecd6cee209c4a06758523db58b3e3c07b9dffc6525813cc8a6380fa5b",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "layout": "desktop",
+          "sha256": "39a5ae14b1767cd90a0611afd71b965d100aa7a742bd2a443bab3d10207a4328",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "delta",
+          "layout": "desktop",
+          "sha256": "cb8d56de3b2791dd472c36a348423974bd6176a6e9ba1e0bf41f135e84a86756",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "insurance",
+          "layout": "desktop",
+          "sha256": "b6ae07c3437dad4072c98b58646d0a22abf15c3ebe310c7f2f97225474e91da1",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "pnl",
+          "layout": "desktop",
+          "sha256": "136a9770f2fc392901a77351a3a59a61a812222da2cb32fd14e4f11d654f79df",
+          "actual_visible_vector_match": "PASS"
+        }
+      ],
       "source_table_10": "PASS",
-      "ten_svg_figures": "PASS",
       "visible_real_svg_ribbons": "PASS",
-      "width": 1440
+      "live_final_sink_geometrically_conserved": "PASS",
+      "mobile_ten_full_width_source_exact_money_exhibits": "DESKTOP_SVG",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS"
     },
     {
+      "width": 768,
       "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
       "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
-      "back_to_same_home": "PASS",
-      "live_final_sink_geometrically_conserved": "PASS",
-      "mobile_ten_full_width_source_exact_money_exhibits": "DESKTOP_OR_TABLET_SVG",
-      "new_601628_main_route": "PASS",
-      "no_page_horizontal_overflow": "PASS",
       "public_home_11_cards": "PASS",
-      "real_live_screenshots": "PASS",
+      "new_601628_main_route": "PASS",
+      "ten_desktop_plus_premium_and_five_native_bridges": "PASS",
+      "source_signed_bridge_checks": [
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        }
+      ],
+      "visible_bridge_exports": [
+        {
+          "family": "cash",
+          "layout": "native-330",
+          "sha256": "ce88d11c50aa6e8d7a529d92224fbeaa5d4b7ccef932c904928c939bbaf3d2f5",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "layout": "native-330",
+          "sha256": "0d64590a59178e3c8172ae6d1d37ce7e5471a181577c9fb976bd963ea43ad35b",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "delta",
+          "layout": "native-330",
+          "sha256": "3ab70d9d620be66e20aea9d6dcc45f6946dd4f18b89e1d5e657fe818e37d6b0f",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "insurance",
+          "layout": "native-330",
+          "sha256": "b1d7c8240e80e03377c4c1c61aef7c836d8a515478d92e68e37edf489e8cb56c",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "pnl",
+          "layout": "native-330",
+          "sha256": "15b90cfa9a4bebf548edd0731be0afbf25bc428f20e19c23cda65faf8b1b1c61",
+          "actual_visible_vector_match": "PASS"
+        }
+      ],
       "source_table_10": "PASS",
-      "ten_svg_figures": "PASS",
       "visible_real_svg_ribbons": "PASS",
-      "width": 768
-    },
-    {
-      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
-      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
-      "back_to_same_home": "PASS",
       "live_final_sink_geometrically_conserved": "PASS",
       "mobile_ten_full_width_source_exact_money_exhibits": "PASS",
-      "new_601628_main_route": "PASS",
+      "back_to_same_home": "PASS",
       "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS"
+    },
+    {
+      "width": 390,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
       "public_home_11_cards": "PASS",
-      "real_live_screenshots": "PASS",
+      "new_601628_main_route": "PASS",
+      "ten_desktop_plus_premium_and_five_native_bridges": "PASS",
+      "source_signed_bridge_checks": [
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        }
+      ],
+      "visible_bridge_exports": [
+        {
+          "family": "cash",
+          "layout": "native-330",
+          "sha256": "ce88d11c50aa6e8d7a529d92224fbeaa5d4b7ccef932c904928c939bbaf3d2f5",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "layout": "native-330",
+          "sha256": "0d64590a59178e3c8172ae6d1d37ce7e5471a181577c9fb976bd963ea43ad35b",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "delta",
+          "layout": "native-330",
+          "sha256": "3ab70d9d620be66e20aea9d6dcc45f6946dd4f18b89e1d5e657fe818e37d6b0f",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "insurance",
+          "layout": "native-330",
+          "sha256": "b1d7c8240e80e03377c4c1c61aef7c836d8a515478d92e68e37edf489e8cb56c",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "pnl",
+          "layout": "native-330",
+          "sha256": "15b90cfa9a4bebf548edd0731be0afbf25bc428f20e19c23cda65faf8b1b1c61",
+          "actual_visible_vector_match": "PASS"
+        }
+      ],
       "source_table_10": "PASS",
-      "ten_svg_figures": "PASS",
       "visible_real_svg_ribbons": "PASS",
-      "width": 390
+      "live_final_sink_geometrically_conserved": "PASS",
+      "mobile_ten_full_width_source_exact_money_exhibits": "PASS",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS"
     }
   ],
+  "independent_human_editor": "NOT_CHECKED",
+  "external_market_peer_valuation": "NOT_CHECKED",
   "screenshots": [
     {
-      "bytes": 2127836,
       "name": "live_601628_1440.png",
-      "sha256": "cb7edb88310d61aa83a611ab0dcb9ebcbd67683b795db33a3518854e61e66b84"
+      "sha256": "e0e3398a308d536b0f9ef47a84285e7eba7feb82638fd760cc215d74ede21e2d",
+      "bytes": 2431845
     },
     {
-      "bytes": 2026421,
       "name": "live_601628_390.png",
-      "sha256": "11ea193bc60a154813a89668c8e18d56ce9e436deb3a5f0db0a33f538f7a0342"
+      "sha256": "bdac00a07837962be130e5f38473e1f49b54739239b83940ce7a320af68d9217",
+      "bytes": 2330121
     },
     {
-      "bytes": 1701577,
       "name": "live_601628_768.png",
-      "sha256": "19efd163e6fc4661ecad790ed65aa3a46ba30b9389330b93d56f567fb054fca2"
+      "sha256": "dbc0776a13bbb9b99cc9caaef6da20ec1523e04d030789f74286a4547c34633d",
+      "bytes": 2817603
     },
     {
-      "bytes": 748616,
+      "name": "live_decision_1440.png",
+      "sha256": "c8c62b8a3438f88875b0d6aa86ad03ce03cc47bd20dfd1a02c817f7076d5dab9",
+      "bytes": 130238
+    },
+    {
+      "name": "live_decision_390.png",
+      "sha256": "cf3a751f69c7793b1c6bd6662a3e92acee74b6b803fdceebd32f36a8d9622742",
+      "bytes": 121429
+    },
+    {
+      "name": "live_decision_768.png",
+      "sha256": "853a2b1f2e0ade6248fadd14bdb0a0dd7c24b06ee7c30af1ee1cd85e0bd0a368",
+      "bytes": 123821
+    },
+    {
       "name": "live_directory_1440.png",
-      "sha256": "01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47"
+      "sha256": "01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47",
+      "bytes": 748616
     },
     {
-      "bytes": 740026,
       "name": "live_directory_390.png",
-      "sha256": "e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c"
+      "sha256": "e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c",
+      "bytes": 740026
     },
     {
-      "bytes": 728295,
       "name": "live_directory_768.png",
-      "sha256": "f82f45d62c12049f233a1330465eafa1669db05335f3cf4ccebf6a3cf1459b79"
+      "sha256": "f82f45d62c12049f233a1330465eafa1669db05335f3cf4ccebf6a3cf1459b79",
+      "bytes": 728295
     }
   ],
-  "status": "PASS",
-  "verified_git_commit": "eba76b207a7bb5a5f1e027acbb2e59b1f58445d5"
+  "schema_version": 1,
+  "issuer": "601628",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43010535098",
+  "artifact_id": 13851160292,
+  "artifact_zip_sha256": "7a47dc277207facf42987a00c3212fcbf7796ea4203ced087ca819dca2f508b7"
 }

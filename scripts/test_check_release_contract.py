@@ -101,6 +101,28 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 self.assertIn(f"PUBLISHED_REPORT_SHA_MISMATCH {code}",
                               mod.validate_release(ROOT,issuer,missing,check_bytes=False))
 
+    def test_insurer_supplementary_decision_captures_preserve_mandatory_views(self):
+        code="601628"
+        issuer=next(x for x in self.catalog["issuers"] if x["code"]==code)
+        record=json.loads((ROOT/f"research/issuers/{code}/release-gates.json").read_text())
+        receipt_path=ROOT/record["live_receipt_file"]
+        receipt=json.loads(receipt_path.read_text())
+        base=[x for x in receipt["screenshots"] if not x["name"].startswith("live_decision_")]
+        extras=[dict(base[0],name=f"live_decision_{w}.png") for w in (1440,768,390)]
+        # Poison only the screenshot inventory, retaining actual source and live identities.
+        real_read=mod.read_json
+        def errors(screens):
+            altered=copy.deepcopy(receipt);altered["screenshots"]=screens
+            def read(path):
+                return altered if Path(path)==receipt_path else real_read(path)
+            with mock.patch.object(mod,"read_json",side_effect=read):
+                return mod.validate_release(ROOT,issuer,record,check_bytes=False)
+        marker="LIVE_CAPTURE_SCREENSHOT_SET_INVALID 601628"
+        self.assertNotIn(marker,errors(base+extras))
+        self.assertIn(marker,errors(base[1:]+extras))
+        self.assertIn(marker,errors(base+extras+[base[0]]))
+        self.assertIn(marker,errors(base+extras+[dict(base[0],name="unrelated.png")]))
+
     def test_published_html_sha_cannot_silently_lag_generated_insurance_article(self):
         insurance = next(x for x in self.catalog["issuers"] if x["code"] == "601628")
         record = json.loads((ROOT / "research/issuers/601628/release-gates.json").read_text())
@@ -157,7 +179,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertEqual(mod.validate_release(ROOT,insurer,current,check_bytes=False),[])
         receipt=json.loads((ROOT/"research/issuers/601628/live-release-receipt.json").read_text())
         self.assertEqual(receipt["status"],"PASS")
-        self.assertEqual(len(receipt["screenshots"]),6)
+        self.assertEqual({x["name"] for x in receipt["screenshots"]}, {f"live_{kind}_{w}.png" for kind in ("601628","directory","decision") for w in (1440,768,390)})
         self.assertEqual({x["width"] for x in receipt["real_chromium_viewports"]},{1440,768,390})
         if current["gates"]["CLOUDFLARE_LIVE"]["status"]=="PASS":
             self.assertEqual(receipt["verified_git_commit"],current["actual_main_release_commit"])
@@ -219,16 +241,16 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertIn("LIVE_CAPTURE_RECEIPT_MISSING 601628",errs)
 
     def test_two_sector_current_exact_live_html_and_real_receipts_are_source_bound(self):
-        # Immutable 2026-11-09 native source-money phone update and screenshot receipt from
-        # genuine Cloudflare Chromium action 42599056086, main 328ce615.
+        # Immutable 2026-11-11 notes, historical research and native source-money update and screenshot receipt from
+        # genuine Cloudflare Chromium action 43008612952, main e72bae81.
         # These are historical evidence for those exact HTML bytes; they do
         # not certify later content changes or independent human finance/art.
         import hashlib
-        source_main="b72e6074795bc0cb9aabe0b312c79f1decf567f4"
-        source_action="https://github.com/kobolibra/financials/actions/runs/42599056086"
+        source_main="e72bae81a9df22f54db7ba365f25bb8160c34111"
+        source_action="https://github.com/kobolibra/financials/actions/runs/43008612952"
         expected = {
-            "600900": "cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88",
-            "600276": "9a51d251d271a6dc7803c4036c71a441634ef784258aabaf85e97d1081962d99",
+            "600900": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
+            "600276": "a0bd6542cdfdde39a620c3bd9af381fc6bc7b1bf7e8bfe3006241f14acfca0ea",
         }
         for code,html_sha in expected.items():
             with self.subTest(code=code):
@@ -252,8 +274,8 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 self.assertEqual(receipt["actual_publication_action"],source_action)
                 self.assertEqual(receipt["verified_git_commit"],source_main)
                 self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_"+code],html_sha)
-                self.assertEqual(receipt["artifact_id"],13664069157)
-                self.assertEqual(receipt["artifact_zip_sha256"],"1cf7ad7d908243d733678514babdd3da9a5574d8c5d9aed8fd90241a9f51d654")
+                self.assertEqual(receipt["artifact_id"],13849004163)
+                self.assertEqual(receipt["artifact_zip_sha256"],"ca45d89cab7c3e70d225b45252de8b253012b9ac272ccc6e982a31b431c6b9c7")
                 self.assertEqual({x["name"] for x in receipt["screenshots"]},
                                  {f"live_{code}_{w}.png" for w in (1440,768,390)} |
                                  {f"live_directory_{w}.png" for w in (1440,768,390)})
@@ -287,13 +309,13 @@ class IssuerReleaseContractTests(unittest.TestCase):
                 # current bytes. Do not accept an arbitrary plausible digest.
                 proven_png = {
                     "600900": {
-                        1440:"35a8bcbb4eda7f9981ee2f5f5f180cf94aaa0c2c4c94e05bdfdab5594f1f0a2e",
-                        768:"61b98129772c6be5a9327953737e5154207dc4f98da573eaca502e4afd3813f0",
-                        390:"9276fd42372428f6d32fd5aa7398c686786daff00480ed6c2596f6a681b9e0a0"},
+                        1440:"5a0b63444dc06cb736cb467e0e812341525d76725a6a52cd77ec0f6483bba80f",
+                        768:"83169a11f75a1d4b38df4c7501c4f923867c76adaf2ea70a87d5624cdf43648c",
+                        390:"c7e266ba81d651a348819567fa2d2de946b9bb2912543527c9550a96430f52e7"},
                     "600276": {
-                        1440:"df7cc97970706e352ee65f9a07a953a32dc1eeeab4ed0772aded983bea897b89",
-                        768:"ea61b310c8b0c86e725c8b3840909d0a5d1703ef902319acff4661318b5cbaec",
-                        390:"8ece01b1849fbcea0d5918e5ad97e249a917687caa1f8ca4ae6f470f138dbb88"}}
+                        1440:"d21a64d011c5c4c4d06140f5cc01bc99367d7f4b603da1edeccc26f8d02b33b3",
+                        768:"a9185ab06ff04f9609be5273276a8fe12650b9b372f4b446f9c975c99e0a0feb",
+                        390:"72702765eb211a553defd679d328ed741254fb56a765393071fbd7810797b19f"}}
                 png_by_name={r["name"]:r["sha256"] for r in receipt["screenshots"]}
                 for w,hash_value in proven_png[code].items():
                     self.assertEqual(png_by_name[f"live_{code}_{w}.png"],hash_value)
@@ -322,7 +344,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
 
     def test_current_actual_public_live_pass_does_not_erase_note_failure_or_invent_human_review(self):
         self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["status"], "PASS")
-        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["proof"], "https://github.com/kobolibra/financials/actions/runs/42457017812")
+        self.assertEqual(self.original["gates"]["CLOUDFLARE_LIVE"]["proof"], "https://github.com/kobolibra/financials/actions/runs/43008612929")
         self.assertEqual(self.original["gates"]["INDEPENDENT_HUMAN_REVIEW"]["status"], "NOT_CHECKED")
         self.assertEqual(self.original["gates"]["REPORTED_NOTE_TIES"]["status"], "FAIL")
         self.assertEqual(self.original["gates"]["OFFICIAL_PDF_BYTE_EQUIVALENCE"]["status"], "NOT_CHECKED")
