@@ -1,5 +1,8 @@
 # Financials in Visuals — ACTIVE PROJECT STATE
 
+**2026-11-11 当前正式交付（覆盖下方历史候选快照）：** [PR #62](https://github.com/kobolibra/financials/pull/62) 已合并并正式发布，内容主分支 `e72bae81a9df22f54db7ba365f25bb8160c34111`；[PR #63](https://github.com/kobolibra/financials/pull/63) 已合并，修复新版研究附表、ASR隔离验收数据和保险累计桥的三处旧验收规则，主分支 `9101d76b178d50c8f76b9ffbb03b769c9ff5b6e4`。正式站11篇报告整页字节与源码一致，Chromium/WebKit共108次真实SVG导出通过；33屏/315图形观察未发现新阻断。11家132项重大附注主题经独立AI二审，3家24个连续单季/96项差分、41份官方PDF、3家同行及三季报反证已写入正文。美的依据物理p171附注46的自身成本改用Type A；银行利润桥及保险五幅累计桥按原金额验证。GitHub连接已恢复，验收规则成功更新，先前“权限不足未启用”是历史状态。真实线上证据见 `project-status.json.current_release_provenance_20261111` 与各发行人 `live-release-receipt.json`。独立人类签署未声称；原披露矛盾仍公开，三家跨期样本不能外推全行业泛化。 [历史四家交接](docs/ACTIVE_PR35_HANDOFF.md) 保留为历史证据。
+
+
 **2026-11-11 current PR #62 source candidate:** All eleven source publishers now include the 132-theme independent-AI material-note review, with source exceptions visible; three cases add 24 single quarters/96 differences, 41 official PDFs, three peers and actual Q3 thesis tests. Midea note46 physical p171 proves own costs: TYPE A now replaces the historical TYPE B snapshot. Insurance five mobile bridges and bank source-to-parent bridge are truly cumulative; native fonts improved. New all-library checks use `delivery_quality_suite.py` through the existing two-sector workflow entrypoint, so the earlier missing-workflow-scope blocker is superseded. Current local same-source 33-view/315-figure matrix has zero blockers; cloud on the new head and production promotion remain pending until actually verified. [Historical four-issuer contract](docs/ACTIVE_PR35_HANDOFF.md) remains linked, not current deployment authority.
 
 

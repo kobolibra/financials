@@ -362,7 +362,12 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                     screens=receipt.get("screenshots",[])
                     expected_screens={f"live_{code}_{w}.png" for w in (1440,768,390)}
                     expected_screens|={f"live_directory_{w}.png" for w in (1440,768,390)}
-                    if not isinstance(screens,list) or {x.get("name") for x in screens if isinstance(x,dict)}!=expected_screens:
+                    # Insurer acceptance also captures the source decision panel.
+                    # Keep every required report/directory view and reject missing,
+                    # duplicate or unrelated captures; supplementary proof is valid.
+                    allowed_screens=expected_screens | ({f"live_decision_{w}.png" for w in (1440,768,390)} if code=="601628" else set())
+                    names={x.get("name") for x in screens if isinstance(x,dict)} if isinstance(screens,list) else set()
+                    if not isinstance(screens,list) or len(names)!=len(screens) or not expected_screens<=names<=allowed_screens:
                         errors.append(f"LIVE_CAPTURE_SCREENSHOT_SET_INVALID {code}")
                     elif any(not isinstance(x.get("sha256"),str) or not re.fullmatch("[a-f0-9]{64}",x["sha256"]) or not isinstance(x.get("bytes"),int) or x["bytes"]<10000 for x in screens):
                         errors.append(f"LIVE_CAPTURE_SCREENSHOT_HASH_INVALID {code}")

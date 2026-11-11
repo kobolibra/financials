@@ -1,5 +1,8 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
+**2026-11-11 当前正式交付（覆盖下方历史候选快照）：** [PR #62](https://github.com/kobolibra/financials/pull/62) 已合并并正式发布，内容主分支 `e72bae81a9df22f54db7ba365f25bb8160c34111`；[PR #63](https://github.com/kobolibra/financials/pull/63) 已合并，修复新版研究附表、ASR隔离验收数据和保险累计桥的三处旧验收规则，主分支 `9101d76b178d50c8f76b9ffbb03b769c9ff5b6e4`。正式站11篇报告整页字节与源码一致，Chromium/WebKit共108次真实SVG导出通过；33屏/315图形观察未发现新阻断。11家132项重大附注主题经独立AI二审，3家24个连续单季/96项差分、41份官方PDF、3家同行及三季报反证已写入正文。美的依据物理p171附注46的自身成本改用Type A；银行利润桥及保险五幅累计桥按原金额验证。GitHub连接已恢复，验收规则成功更新，先前“权限不足未启用”是历史状态。真实线上证据见 `project-status.json.current_release_provenance_20261111` 与各发行人 `live-release-receipt.json`。独立人类签署未声称；原披露矛盾仍公开，三家跨期样本不能外推全行业泛化。 [历史四家交接](docs/ACTIVE_PR35_HANDOFF.md) 保留为历史证据。
+
+
 **机器入口优先级：** `project-status.json` 与 `site/research_catalog.json` 是动态发行人清单、最新交接状态的唯一当前源；任何本文日期和 SHA 仅为历史证据，必须重新查询 GitHub main 与生产 HTML 字节。
 
 **2026-11-09 最新已验证线上记录（源码精确对应，不外推未来提交）：** PR [#54](https://github.com/kobolibra/financials/pull/54) 已合并，长江电力 600900、恒瑞医药 600276 的 390px 真实金额守恒桑基来源名称、金额/毛利率改为更清晰的分行排版，并按真实 Noto CJK 字符边界修正行距；PR [#55](https://github.com/kobolibra/financials/pull/55) 修复了 GitHub 主分支与 Cloudflare 已发布字节不同步时的 fail-closed 门禁。主分支 `b72e6074795bc0cb9aabe0b312c79f1decf567f4` 经 [Cloudflare 正式站 11 路由、原始整页 SHA、1440/768/390 中文浏览器验证](https://github.com/kobolibra/financials/actions/runs/42599056086) PASS。对应源 HTML SHA：600900=`cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88`，600276=`9a51d251d271a6dc7803c4036c71a441634ef784258aabaf85e97d1081962d99`；冻结截图及现场证据 artifact `13664069157`。发行人 `release-gates.json` 和 `live-release-receipt.json` 只能以这份真实线上回执晋升，不能用先前线上版本伪装成新版上线。详细机器源见 `project-status.json.current_release_provenance_20261109`。**此验收仅涉及两家具体已取证财务图、页面及指定数据；11 家全篇研究审美、跨期/同行、材料附注完备性、独立金融研究与视觉审查依然 NOT_CHECKED。**
