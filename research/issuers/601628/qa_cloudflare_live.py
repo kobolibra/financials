@@ -4,7 +4,8 @@
 Performs content SHA comparison with checked-out main. A Pages provider 'success'
 or prior issuer cloudflare screenshot is not an actual new issuer live PASS.
 """
-import hashlib,json,re,time,subprocess,sys
+import hashlib,json,re,time,subprocess,sys,os
+import xml.etree.ElementTree as ET
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 # Direct execution (python research/issuers/601628/qa_cloudflare_live.py)
@@ -14,6 +15,17 @@ from research.shared.live_route_evidence import make_live_navigation_receipt
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(ROOT/'research/issuers/601628'))
 from quantified_decision import FACT_SPEC,decisions
+from qa_signed_geometry import FAMILIES,check_signed_svg,expected_steps
+
+def verified_git_commit(environ=None,rev_parse=None):
+    """Bind CI to its checked-out deployment SHA; local defaults to Git HEAD."""
+    env=os.environ if environ is None else environ
+    sha=env.get("GITHUB_SHA")
+    if not sha:
+        sha=(rev_parse() if rev_parse else subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True)).strip()
+    if not re.fullmatch(r"[0-9a-fA-F]{40}",sha):
+        raise ValueError("VERIFIED_GIT_COMMIT_MUST_BE_FULL_SHA")
+    return sha.lower()
 SITE="https://financials-in-visuals.pages.dev"
 HERE=ROOT/"research/issuers/601628"
 OUT=HERE/"live-qa"
@@ -67,6 +79,9 @@ with sync_playwright() as pw:
     # actual source-linked figures, NOT a literal browser URL suffix.
     page.wait_for_url(re.compile(r"/601628(?:\.html)?/?(?:[?#].*)?$"),timeout=30000)
     actual_article_url=page.url
+    page.evaluate("document.fonts.ready")
+    signed_bridge_checks=[]
+    visible_bridge_exports=[]
     print("LIVE_ACTUAL_COMPANY_CANONICAL_URL",width,actual_article_url,flush=True)
     # Real Cloudflare, not just a green issuer preview: 13 source rows and
     # all four signed CAS calculations must match original consolidated CNY.
@@ -98,16 +113,15 @@ with sync_playwright() as pw:
     assert "NOT_CHECKED" in panel.inner_text()
     panel.screenshot(path=str(OUT/f"live_decision_{width}.png"),animations="disabled")
     assert page.locator("figure.figure").count()==10
-    # Exactly ten original editable desktop/source SVGs and one independent
-    # true-yuan mobile premium SVG. A generic descendant-SVG count of ten
-    # rejects the actual financial report, which correctly has eleven.
+    # Ten desktop source figures, one native premium Sankey and five native
+    # signed bridges are distinct legitimate editions; inspect every family.
     assert page.locator("figure.figure .chart svg").count()==10,(width,"LIVE_TEN_ORIGINAL_DESKTOP_FINANCE_SVGS_MISSING")
     assert page.locator('#chart-premium .mobile-chart svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1,(width,"LIVE_SOURCE_CONSERVED_NATIVE_INSURANCE_PREMIUM_SVG_MISSING")
-    assert page.locator("figure.figure svg").count()==11,(width,"LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT")
+    assert page.locator("figure.figure svg").count()==10+1+len(FAMILIES),(width,"LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT")
     assert page.locator("figure.figure details.audit").count()==10
     assert page.locator('#chart-premium .mobile-chart').count()==1
     assert page.locator("figure.figure .mobile-chart").count()==10,("LIVE_MOBILE_ALTERNATIVE_DOM_MISSING",width)
-    if width==390:
+    if width<=850:
         assert page.locator(".mobile-chart:visible").count()==10,("LIVE_390_MOBILE_FULL_TEN_FIGURES_NOT_VISIBLE")
         assert page.locator(".chart:visible").count()==0,("LIVE_390_STILL_TRAPPED_IN_DESKTOP_900PX_SCROLL_WINDOWS")
         mobile=page.evaluate("""() => [...document.querySelectorAll('.mobile-chart')].map(panel=>({
@@ -120,6 +134,11 @@ with sync_playwright() as pw:
         assert len(mobile)==10
         for family in mobile:
             assert family["overflow"]<=1,("LIVE_390_MOBILE_INNER_HORIZ_OVERFLOW",family["family"],family["overflow"])
+            if family["family"] in FAMILIES:
+                svg=page.locator('#chart-'+family['family']+' .mobile-chart svg')
+                assert svg.count()==1 and svg.is_visible(),(width,family['family'],'LIVE_NATIVE_BRIDGE_MISSING')
+                signed_bridge_checks.append(check_signed_svg(svg.evaluate('el=>el.outerHTML'),family['family'],report))
+                continue
             assert len(family["rows"])>=5,("LIVE_MOBILE_FAMILY_INCOMPLETE",family["family"])
             scales={}
             for item in family["rows"]:
@@ -131,6 +150,38 @@ with sync_playwright() as pw:
             for item in family["rows"]:
                 expected=abs(int(item["exact"]))/scales[item["scaleGroup"]]*100
                 assert abs(item["width"]-expected)<0.000055,("LIVE_MOBILE_MONEY_BAR_INFLATED",family["family"],item,expected)
+    # Every derived source must also appear in the actual online figure table.
+    briefs=json.loads((HERE/'figure-briefs.json').read_text())['figure_briefs']
+    for family in sorted(FAMILIES):
+        dependencies=set().union(*(step[1] for step in expected_steps(family,report['facts'])))
+        brief=next(b for b in briefs if b['id']==family)
+        assert dependencies<=set(brief['facts']),(width,family,'LIVE_SOURCE_TABLE_DEPENDENCIES_INCOMPLETE')
+        rows=page.locator('#chart-'+family+' details.audit tbody tr').evaluate_all("rows=>rows.map(r=>({label:r.querySelector('th').textContent,amount:r.querySelector('td.number').textContent,href:r.querySelector('a').getAttribute('href')}))")
+        assert len(rows)==len(brief['facts']),(width,family,'LIVE_FIGURE_SOURCE_TABLE_COUNT')
+        for row,key in zip(rows,brief['facts']):
+            fact=report['facts'][key]
+            assert row['label']==fact['label'] and row['amount']==f"{D(fact['yuan'])/D(1000000):+,.0f} 百万元",(width,family,key,'LIVE_SOURCE_TABLE_EXACT_YUAN')
+            assert row['href']==report['source']['official_announcement']+'#page='+str(fact['page']),(width,family,key,'LIVE_SOURCE_TABLE_PDF_PHYSICAL_PAGE')
+        # Keep notes/context tables separate from the ten figure-source tables.
+        assert page.locator('figure.figure details.audit table').count()==10
+        container=page.locator('#chart-'+family)
+        visible=container.locator('.mobile-chart svg' if width<=850 else '.chart svg')
+        assert visible.count()==1 and visible.is_visible(),(width,family,'LIVE_VISIBLE_SVG_EXPORT_SOURCE')
+        expected_vector=ET.fromstring(visible.evaluate('el=>el.outerHTML'))
+        with page.expect_download(timeout=10000) as pending:
+            container.locator('[data-export]').click()
+        download=pending.value
+        assert download.failure() is None
+        assert download.suggested_filename==f"601628-2026H1-{family}.svg"
+        target=OUT/f'export-{family}-{width}.svg';download.save_as(target)
+        raw=target.read_text();actual_vector=ET.fromstring(raw)
+        assert actual_vector.get('viewBox')==expected_vector.get('viewBox'),(width,family,'LIVE_EXPORTED_HIDDEN_LAYOUT')
+        assert actual_vector.get('data-chart-grammar')==expected_vector.get('data-chart-grammar'),(width,family,'LIVE_EXPORTED_WRONG_GRAMMAR')
+        ns='{http://www.w3.org/2000/svg}'
+        for tag in ('rect','text','path'):
+            assert [(n.attrib,n.text) for n in actual_vector.iter(ns+tag)]==[(n.attrib,n.text) for n in expected_vector.iter(ns+tag)],(width,family,'LIVE_EXPORT_VISIBLE_VECTOR_DRIFT',tag)
+        if width<=850:check_signed_svg(raw,family,report)
+        visible_bridge_exports.append({'family':family,'layout':'native-330' if width<=850 else 'desktop','sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'actual_visible_vector_match':'PASS'})
     graph=page.evaluate("""() => {
       const details=(root)=>{
         if(!root)return null;
@@ -204,7 +255,7 @@ with sync_playwright() as pw:
     actual_back_url=page.url
     nav=make_live_navigation_receipt(report_url=actual_article_url,back_url=actual_back_url,code=CODE,origin=SITE)
     assert page.locator("a.company").count()==11,("LIVE_BACK_NAV_DIRECTORY",width)
-    report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_desktop_svg_plus_native_mobile_premium_sankey":"PASS","source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","mobile_ten_full_width_source_exact_money_exhibits":"PASS" if width==390 else "DESKTOP_OR_TABLET_SVG","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
+    report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_desktop_plus_premium_and_five_native_bridges":"PASS","source_signed_bridge_checks":signed_bridge_checks,"visible_bridge_exports":visible_bridge_exports,"source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","mobile_ten_full_width_source_exact_money_exhibits":"PASS" if width<=850 else "DESKTOP_SVG","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
     page.close()
  assert not errors,("LIVE_CHROMIUM_PAGE_ERRORS",errors)
  # All prior issuer routes: actual GET and matching company code in HTML
@@ -212,7 +263,7 @@ with sync_playwright() as pw:
     q=req.get(SITE+card["href"],timeout=25000)
     assert q.status==200 and card["code"].encode() in q.body(),("LIVE_PRIOR_ISSUER_MISSING",card["code"],q.status)
  browser.close();req.dispose()
-results={"status":"PASS","origin":SITE,"verified_git_commit":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),"pdf_sha256":report["source"]["original_bytes_sha256"],
+results={"status":"PASS","origin":SITE,"verified_git_commit":verified_git_commit(),"pdf_sha256":report["source"]["original_bytes_sha256"],
          "actual_full_content_sha256_equals_repository_main_601628":expected_sha,
          "actual_full_content_sha256_equals_repository_main_index":expected_home,
          "all_11_issuer_external_routes":"PASS","real_chromium_viewports":report_check,
