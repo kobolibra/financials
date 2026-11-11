@@ -562,6 +562,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-058",
+      "root_cause": "Linux Noto CJK glyph boxes caused new/renew premium names to overlap amount labels despite local system-font checks passing.",
+      "correction": "Increase native desktop label/value baselines while preserving all source-yuan geometry; retain real all-library Linux overlap gate.",
+      "proof_file": "scripts/audit_delivery_matrix.py",
+      "assertion_marker": "SVG_LABEL_OVERLAP_REQUIRES_REVIEW",
+      "scope": "single_issuer",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }

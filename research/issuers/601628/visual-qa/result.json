@@ -1,7 +1,7 @@
 {
   "code": "601628",
   "source_sha": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
-  "candidate_html_sha256": "9b89858ed050a96d5a9d952f2e9bd6c1d8de369127aee6d3bc55b3c5465538b0",
+  "candidate_html_sha256": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
   "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
   "page_1440_768_390": "PASS",
   "chart_count": 10,
@@ -54,7 +54,7 @@
           "actual_visible_svg_match": "PASS"
         }
       ],
-      "screenshot_sha256": "75a48eb2fcdcd63d09855a1f7c940ff1730ee9bd20822c1c39ddf0322d16aa01",
+      "screenshot_sha256": "8ebc6afc5ba5baa14b573b35db33cca7cdbb5ea4ab71e5022e712855588414b1",
       "screenshot": "full_report_1440.png"
     },
     {

@@ -1,10 +1,10 @@
 {
-  "candidate_html_sha256": "9b89858ed050a96d5a9d952f2e9bd6c1d8de369127aee6d3bc55b3c5465538b0",
+  "candidate_html_sha256": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
   "scope": "LOCAL_CURRENT_CANDIDATE_NOT_PRODUCTION",
   "screenshots": {
     "full_report_1440.png": {
-      "sha256": "75a48eb2fcdcd63d09855a1f7c940ff1730ee9bd20822c1c39ddf0322d16aa01",
-      "bytes": 2540296
+      "sha256": "8ebc6afc5ba5baa14b573b35db33cca7cdbb5ea4ab71e5022e712855588414b1",
+      "bytes": 2540243
     },
     "full_report_768.png": {
       "sha256": "a5932da4e012c360f8f38a2f087eb2b0132d56e0ff121bdae45f2d6769ded448",

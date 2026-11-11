@@ -120,18 +120,18 @@ def render_insurance_premium(ledger:dict,*,mobile:bool=False)->str:
                         f'data-node-id="{key}" data-node-role="premium-source" data-node-yuan="{value}"'))
         if not mobile:
             out.append(text(25,sy-8,name,15,PALETTE["ink"],700,role="premium-source-name"))
-            out.append(text(25,sy+12,fmt(value),14,PALETTE["muted"],600,role="premium-source-money"))
+            out.append(text(25,sy+20,fmt(value),14,PALETTE["muted"],600,role="premium-source-money"))
     for key,name,value,sy,color in mid:
         out.append(rect(xmid,sy,mw,value/scale,color,
                         f'data-node-id="{key}" data-node-role="premium-bucket" data-node-yuan="{value}"'))
         if not mobile:
             out.append(text(xmid+mw+D(12),sy+20,name,15,PALETTE["ink"],700))
-            out.append(text(xmid+mw+D(12),sy+39,fmt(value),15,color,700))
+            out.append(text(xmid+mw+D(12),sy+48,fmt(value),15,color,700))
     out.append(rect(xout,total_y,ow,HVAL,PALETTE["trunk"],
                     f'data-node-id="premium-total" data-node-role="premium-total" data-node-yuan="{total}"'))
     if not mobile:
         out.append(text(xout+ow+D(14),total_y+30,"管理层总保费",16,PALETTE["ink"],700))
-        out.append(text(xout+ow+D(14),total_y+55,fmt(total),19,PALETTE["profit"],700))
+        out.append(text(xout+ow+D(14),total_y+64,fmt(total),19,PALETTE["profit"],700))
     else:
         out.append(text(13,bottom+D(31),"保费统计组成（非保险服务收入）",12,PALETTE["ink"],700))
         out.append(text(13,bottom+D(53),"新单保费",12,PALETTE["ink"]))
