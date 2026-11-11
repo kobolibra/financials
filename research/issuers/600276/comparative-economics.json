@@ -1,0 +1,20 @@
+{
+  "schema": "financials.comparative_economics_brief.v1",
+  "statement": "industrial_operating_income",
+  "current_period": "2026H1",
+  "prior_period": "2025H1",
+  "current_interval": [
+    "2026-01-01",
+    "2026-06-30"
+  ],
+  "prior_interval": [
+    "2025-01-01",
+    "2025-06-30"
+  ],
+  "definition": "合并营业收入减营业成本；不含期间费用、金融投资和税项",
+  "question": "毛利下降，收入基数与综合毛利率各解释多少？",
+  "prior_restated": false,
+  "comparability_evidence": "使用同一份2026年半年报p77合并利润表两期营业收入与营业成本；许可、商品与其他业务按报表原分类，创新药销售作为商品子集，未重复计入。",
+  "strongest_alternative": "高毛利许可收入确认节奏、药品结构与成本结转都可能改变综合毛利率；综合指标变化不能直接证明药品定价权或许可业务经常性。",
+  "next_disclosure_falsifier": "分开核对许可履约与确认时点、药品销售与成本、许可实际回款；若未来毛利率仅随一次性许可波动，应撤回经营效率改善的解释。"
+}

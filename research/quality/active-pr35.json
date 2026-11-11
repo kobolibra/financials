@@ -58,7 +58,7 @@
     "000333": {
       "source_type": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
       "exhibits": 10,
-      "figure_02_design": "UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_GROUP_COST_GP_NOT_OWN_MARGIN"
+      "figure_02_design": "UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_SOURCE_OWN_COST_GP_NOTE46"
     }
   },
   "exact_byte_rule": "DERIVE_SHA256_FROM_CURRENT_PUBLIC_HTML; REJECT_ANY_STALE_BUILD_MANIFEST_OR_BROWSER_RECEIPT; PR_PREVIEW_SHA_ONLY_COVERS_RECORDED_CANDIDATE_BYTES",
@@ -108,10 +108,10 @@
     "original_pdf_full_rebuild_run": "SEE_THIS_CURRENT_HEAD_GITHUB_ACTIONS_NO_STORED_LIVE_ID",
     "typed_and_editorial_handoff_pr_check_run": "REVALIDATE_LATEST_GITHUB_HEAD",
     "four_actual_public_full_html_sha256": {
-      "688111": "339ea620baad9cdfa4085d53b6637ddb0246c53152df6d27a8e1efeb9038ec10",
-      "600519": "1be2828a85fb7dfece58c287a82a2d4a0687678fca11399de1ee6f2aceb532ae",
-      "000333": "8594d7a9a93cfde5c28aab37eac62112b14757503b46fb80695adb2969645822",
-      "600036": "dd47ace2259c0e00edad896b9ac2cfd1a1b118d1d2c495414ef5b22436fdeccd"
+      "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a"
     },
     "original_browser_figures": 36,
     "desktop_phone_original_money_editorial_spotcheck": "NOT_CHECKED_CURRENT_SVG_WITH_HUMAN_EDITOR",

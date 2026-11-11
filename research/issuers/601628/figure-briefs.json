@@ -25,7 +25,7 @@
         10,
         47
       ],
-      "identity": "Each current/prior comparable as its own 2026H1 vs 2025H1 flow; independent zero scales; NEVER one denominator",
+      "identity": "四组指标各自比较2025H1与2026H1，保费、保险服务收入、归母利润与经营现金流不互相加总。",
       "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
       "counter": "投资市场与承保财务损益均可改变利润，不可直接把净利润弹性归给销售和NBV。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -53,7 +53,7 @@
       "source_pages": [
         10
       ],
-      "identity": "101294+17696+61049=180039; +356595=536634 RMB million; geometry segment height exactly v/536634*chart height; not earnings or cash",
+      "identity": "首年期交、趸交与短期险合计新单保费；新单保费加续期保费等于管理层统计总保费。这不是保险服务收入或现金收款。",
       "zero": "EXACT_AMOUNT_WEIGHTED_RIBBON",
       "counter": "报告p10脚注声明总保费遵循旧保险合同统计规则；不能将536634直接流进112525保险服务收入。",
       "mobile": "390px 手机完整源账本原数可读：四个来源+新单+总保费用真实原数和同比/存量关系逐项显示，不使用900px内部横向滚动 SVG；桌面仍输出可编辑/可导出原始完整保费加权桑基。",
@@ -84,7 +84,7 @@
         85,
         87
       ],
-      "identity": "24572+1099+35155+25133+26566=112525; income category not premium source",
+      "identity": "预计赔款及相关金额、非金融风险调整、合同服务边际摊销、获取现金流摊销与短期险服务收入合计法定保险服务收入；期末合同服务边际存量不计入此加总。",
       "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
       "counter": "合同服务边际摊销并非当期保费的直接百分比，也不能由期初期末存量差直接得出。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -114,7 +114,7 @@
       "source_pages": [
         47
       ],
-      "identity": "Service result=service revenue+service expense+ceded reinsurance premium+recovered expense; 2026 41177 vs 2025 18160; do not treat as net profit",
+      "identity": "保险服务收入减保险服务费用和分出保费，加摊回保险服务费用，得到保险服务净结果；投资及承保财务损益另列。",
       "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
       "counter": "保险服务结果不包含承保财务损益，不可等同寿险全部经营利润。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -146,13 +146,26 @@
         "income_tax",
         "net_profit",
         "nci_profit",
-        "parent_net"
+        "parent_net",
+        "administrative_expense",
+        "commission_expense",
+        "credit_impair",
+        "disposal_income",
+        "fx_income",
+        "interest_expense",
+        "nonoperating_expense",
+        "nonoperating_income",
+        "other_asset_impair",
+        "other_business_cost",
+        "other_business_income",
+        "other_income",
+        "reinsurance_finance",
+        "tax_surcharge"
       ],
       "source_pages": [
-        47,
-        48
+        47
       ],
-      "identity": "All original CAS revenue/expense items signed; group residual only as explicitly enumerated 12 CAS rows; op_profit163178, pretax163049, net136003, parent134489",
+      "identity": "保险服务净结果加利息、投资及公允价值收益，计入承保财务损益与其余十二项法定损益行，得到营业利润；再计营业外净收支、所得税及少数股东损益，勾稽归母净利润。",
       "zero": "SIGNED_EXPLICIT_ZERO",
       "counter": "资产端估值波动与浮动收费法保险合同负债计量相关，不能按单一单年盈利暴涨推断持续投资 alpha。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -181,12 +194,42 @@
         "service_revenue",
         "service_revenue_prior",
         "service_cost",
-        "service_cost_prior"
+        "service_cost_prior",
+        "administrative_expense",
+        "administrative_expense_prior",
+        "commission_expense",
+        "commission_expense_prior",
+        "credit_impair",
+        "credit_impair_prior",
+        "disposal_income",
+        "disposal_income_prior",
+        "fx_income",
+        "fx_income_prior",
+        "interest_expense",
+        "interest_expense_prior",
+        "interest_income",
+        "interest_income_prior",
+        "other_asset_impair",
+        "other_asset_impair_prior",
+        "other_business_cost",
+        "other_business_cost_prior",
+        "other_business_income",
+        "other_business_income_prior",
+        "other_income",
+        "other_income_prior",
+        "reinsurance_finance",
+        "reinsurance_finance_prior",
+        "reinsurance_premium",
+        "reinsurance_premium_prior",
+        "reinsurance_recovered",
+        "reinsurance_recovered_prior",
+        "tax_surcharge",
+        "tax_surcharge_prior"
       ],
       "source_pages": [
         47
       ],
-      "identity": "All signed year-on-year CAS line differences exactly reconcile 120667 RMB million; restatement and definition checked against filing",
+      "identity": "上年同期营业利润，加各法定营业损益行本期与上期的带符号差额，得到本期营业利润；这是会计贡献拆分，不是经营因果识别。",
       "zero": "SIGNED_EXPLICIT_ZERO",
       "counter": "损益变动仅是会计恒等式贡献，不是能独立识别的市场利率或产品费率因果效应。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -220,10 +263,10 @@
         "net_profit"
       ],
       "source_pages": [
-        20,
+        47,
         53
       ],
-      "identity": "Direct cash signed: receipts 630015 + six disbursements(-347136)=CFO282879; NO fabricated net-income→CFO indirect disclosure",
+      "identity": "经营现金流入减赔付、手续费佣金、职工、税费、保单质押贷款及其他经营付现，得到经营现金流量净额；不从净利润虚构间接桥。",
       "zero": "SIGNED_EXPLICIT_ZERO",
       "counter": "收到保单现金626732不是总保费536634，投资资产交易流动性主要属于CFI；净利润不能被代入不存在的间接CFO附注。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -251,12 +294,11 @@
         "repo_liab"
       ],
       "source_pages": [
-        20,
         53,
         54,
         84
       ],
-      "identity": "142373+282879−175434−101937−59=147822; restricted deposits excluded by equivalent definition",
+      "identity": "期初现金及现金等价物加经营、投资、筹资现金流量净额及汇率影响，等于期末现金及现金等价物。",
       "zero": "SIGNED_EXPLICIT_ZERO",
       "counter": "卖出回购余额223880有短期流动性安排，不能简单套工业公司FCF估值或把全部投资支出叫维持性资本开支。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -287,7 +329,7 @@
         84,
         85
       ],
-      "identity": "6018422+41039+813253+38027=6910741 at June30; CSM=unearned future service stock, not revenue",
+      "identity": "未来履约现金流现值加非金融风险调整、合同服务边际及短期险负债，等于期末保险合同负债。这是同一时点存量结构，不是当期资金流。",
       "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
       "counter": "CSM期末−期初44884不等于本期新业务CSM/服务摊销净值，利率、业务新增、计量假设等变动需要完整滚动附注。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",
@@ -322,7 +364,7 @@
         48,
         84
       ],
-      "identity": "2026 8090712=7412816+664203+13693; 2025 7591004=6982611+595205+13188, both same stock dates; not cash transfer",
+      "identity": "每个报告时点的合并资产等于全部合并负债、归母权益与少数股东权益之和；两个时点共用金额尺度。",
       "zero": "COMMON_OR_DECLARED_INDEPENDENT_ZERO",
       "counter": "保险合同负债是未来履约义务，不能直接与同规模工业借款等义讨论，其他综合收益波动会影响权益。",
       "mobile": "390px 先提供可读标题、真实关键金额及全部原始数据表；SVG仅图内允许横向滚动，桌面 1440px 全图可见；不以悬停传达关键结论。",

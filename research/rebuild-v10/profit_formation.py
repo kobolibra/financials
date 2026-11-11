@@ -136,13 +136,13 @@ def render_svg(plan:ProfitFormation, *,mobile:bool=False)->str:
     if max_value<=0:
         raise ValueError("ZERO_MONEY_AXIS")
     scale=max_value/area
-    row_height=D(96 if mobile else 88)
-    head=D(65 if mobile else 72)
+    row_height=D(100 if mobile else 88)
+    head=D(76 if mobile else 72)
     height=head+row_height*len(plan.steps)+D(18)
-    out=[_tag_text(pad,D(27),"CONSOLIDATED PROFIT / SIGNED MONEY BRIDGE",
-                   size=9 if mobile else 13,fill=MUTED,weight=700,role="figure-kicker"),
-         _tag_text(pad,D(47),"一条实际元金额刻度 · 不人为加宽小额残差",
-                   size=10 if mobile else 13,fill=MUTED,role="scale-disclosure")]
+    out=[_tag_text(pad,D(27),"合并利润 · 有符号金额桥",
+                   size=14 if mobile else 13,fill=MUTED,weight=700,role="figure-kicker"),
+         _tag_text(pad,D(47),"同一金额比例尺；小额净差不人为放大",
+                   size=12 if mobile else 13,fill=MUTED,role="scale-disclosure")]
     for i,row in enumerate(plan.steps):
         y=head+D(i)*row_height
         label=row.title
@@ -151,12 +151,12 @@ def render_svg(plan:ProfitFormation, *,mobile:bool=False)->str:
         if mobile and row.id=="nonoperating_tax":
             label="营业外/税项合并净影响"
         amount=_fmt(row.delta)
-        out.append(_tag_text(pad,y,label,size=11 if mobile else 16,weight=700,role="step-label"))
-        out.append(_tag_text(width-pad,y+D(18 if mobile else 0),amount,
-                             size=11 if mobile else 15,anchor="end",
+        out.append(_tag_text(pad,y,label,size=13 if mobile else 16,weight=700,role="step-label"))
+        out.append(_tag_text(width-pad,y+D(21 if mobile else 0),amount,
+                             size=13 if mobile else 15,anchor="end",
                              fill=COST if row.delta<0 else GAIN if row.role=="profit" else INK,
                              weight=700,role="step-money"))
-        bar_y=y+D(35 if mobile else 17)
+        bar_y=y+D(39 if mobile else 17)
         out.append(f'<line x1="{_q(pad)}" y1="{_q(bar_y+D(8))}" x2="{_q(width-pad)}" '
                    f'y2="{_q(bar_y+D(8))}" stroke="{LINE}" stroke-width=".7"/>')
         left=pad+min(row.before,row.after)/scale
@@ -173,9 +173,9 @@ def render_svg(plan:ProfitFormation, *,mobile:bool=False)->str:
                    f'data-money-scale-yuan-per-unit="{scale}" '
                    f'data-step-evidence="{row.evidence}" '
                    f'data-source-fact-ids="{E(",".join(row.source_ids))}"/>')
-        out.append(_tag_text(pad,y+D(70 if mobile else 63),
+        out.append(_tag_text(pad,y+D(78 if mobile else 63),
                              "累积 "+_fmt(row.after) if row.id!="net_income" else "终值 "+_fmt(row.after),
-                             size=10 if mobile else 12,fill=MUTED,role="cumulative"))
+                             size=12 if mobile else 12,fill=MUTED,role="cumulative"))
     layout="native-mobile-330" if mobile else "desktop-1040"
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {_q(width)} {_q(height)}" '
             f'role="img" aria-label="披露收入、成本与合并净利润的可勾稽有符号桥；未披露单项仅显示净差额" '
@@ -196,11 +196,15 @@ def render_profit_formation(code:str, facts:dict, source_sha:str, pdf_url:str)->
     if not pdf_url.startswith("https://"):
         raise ValueError("ORIGINAL_DISCLOSURE_PDF_LINK_REQUIRED")
     source_rows=[]
+    source_labels={"rev":"营业收入", "cogs":"营业成本", "operating_profit":"营业利润",
+                   "net_consolidated":"合并净利润", "consolidated_ni":"合并净利润",
+                   "net_profit":"合并净利润", "total_rev":"营业总收入",
+                   "interest_income":"金融利息收入", "fee_income":"金融手续费收入"}
     for row in plan.sources:
         source_rows.append(
             f'<tr data-fact-id="{E(row.key)}" data-exact-yuan="{row.yuan}" '
             f'data-period="{row.period}" data-physical-page="{row.page}">'
-            f'<td>{E(row.key)}</td><td>{row.yuan:,.2f} 元</td>'
+            f'<td>{E(source_labels[row.key])}</td><td>{row.yuan:,.2f} 元</td>'
             f'<td><a href="{E(pdf_url,quote=True)}#page={row.page}" target="_blank" '
             f'rel="noopener">原始 PDF p.{row.page}</a></td></tr>')
     finance_note=('美的的财务子公司利息与手续费收入先单独加回到集团总收入；'
@@ -213,7 +217,7 @@ def render_profit_formation(code:str, facts:dict, source_sha:str, pdf_url:str)->
             f'data-profit-formation="SOURCE_BOUND_SIGNED_V1" '
             f'data-issuer="{code}" data-source-pdf-sha256="{source_sha}" '
             f'data-unattributed-steps="2">'
-            f'<div class="tag">PROFIT FORMATION / VERIFIED SIGNED ACCOUNTING</div>'
+            f'<div class="tag">利润形成 · 来源可核对</div>'
             f'<h3>收入怎样经过成本，最终成为合并净利润？</h3>'
             f'<p class="profit-formation-lead">这是同一报告期间的有符号会计累计桥，不是把所有金额强制画成一条桑基流。'
             f'每步按实际人民币元比例绘制；未取得逐项明细的两段仅显示有明确标注的净差额，不虚构归因。</p>'
@@ -222,10 +226,10 @@ def render_profit_formation(code:str, facts:dict, source_sha:str, pdf_url:str)->
             f'<p class="profit-formation-caveat">{E(finance_note)} 营业利润至合并净利润净差额不代表单独的所得税金额，'
             f'还包含营业外净损益。源事实经选定 PDF 页码核验；具体净残差构成与因果归因仍须专项附注复核。</p>'
             f'<details class="profit-source-table"><summary>查看全部原始元金额、报告页码及会计残差口径</summary>'
-            f'<table><thead><tr><th>披露事实 ID</th><th>精确元金额</th><th>原始来源</th></tr></thead>'
+            f'<table><thead><tr><th>原报表行项</th><th>精确元金额</th><th>原始来源</th></tr></thead>'
             f'<tbody>{"".join(source_rows)}</tbody></table>'
             f'<p>集团毛利（营业收入－营业成本）：{plan.gross_profit:,.2f} 元；'
             f'营业利润：{next(s.after for s in plan.steps if s.id=="unallocated_operating"):,.2f} 元；'
             f'合并净利润：{plan.steps[-1].after:,.2f} 元。</p>'
-            f'<p>原始 PDF SHA-256：<code>{source_sha}</code>；独立财务分析师/视觉总编验收：NOT_CHECKED。</p>'
+            f'<p>原始 PDF SHA-256：<code>{source_sha}</code>；独立财务分析师/视觉总编验收：尚未核验。</p>'
             f'</details></section>')

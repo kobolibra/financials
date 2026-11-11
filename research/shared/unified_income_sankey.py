@@ -9,7 +9,7 @@ profits, overlapping segments, period-mismatched facts or balance stocks.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal as D
+from decimal import Decimal as D, InvalidOperation
 from html import escape
 from collections import defaultdict
 
@@ -21,7 +21,10 @@ PALETTE = {
 }
 
 def yuan(v):
-    x=D(str(v))
+    try:
+        x=D(str(v))
+    except (InvalidOperation, ValueError) as exc:
+        raise ValueError("INVALID_DECIMAL_MONEY") from exc
     if not x.is_finite():
         raise ValueError("NON_FINITE_MONEY")
     return x
@@ -95,6 +98,17 @@ class FlowPlan:
             raise ValueError("WRONG_GRAMMAR_FOR_POSITIVE_MONEY_SANKEY")
         if not 2<=len(self.sources)<=8 or not 2<=len(self.outcomes)<=8:
             raise ValueError("SOURCES_AND_OUTCOMES_REQUIRED")
+        # Identifiers are used as dictionary keys AND serialized DOM IDs.
+        # Coercing only some of them to str makes valid-looking plans lose
+        # allocations, and a source named revenue-total collides with the trunk.
+        ids=[k for k,_,_ in self.sources]+[k for k,_,_,_ in self.outcomes]
+        if any(not isinstance(k,str) or not k.strip() or k!=k.strip() for k in ids):
+            raise ValueError("NONEMPTY_STRING_NODE_IDENTIFIER_REQUIRED")
+        if len(set(ids))!=len(ids) or "revenue-total" in ids:
+            raise ValueError("DUPLICATE_NODE_IDENTIFIER")
+        if any(not isinstance(name,str) or not name.strip()
+               for _,name,*_ in (*self.sources,*self.outcomes)):
+            raise ValueError("MEANINGFUL_FINANCIAL_LABEL_REQUIRED")
         sources={str(k):yuan(v) for k,_,v in self.sources}
         outcomes={str(k):yuan(v) for k,_,v,_ in self.outcomes}
         if len(sources)!=len(self.sources) or len(outcomes)!=len(self.outcomes):
@@ -106,6 +120,8 @@ class FlowPlan:
             raise ValueError("SOURCE_AND_OUTCOME_TOTAL_MISMATCH")
         if any(role not in ("cost","profit") for _,_,_,role in self.outcomes):
             raise ValueError("INVALID_OUTCOME_ROLE")
+        if {role for _,_,_,role in self.outcomes}!={"cost","profit"}:
+            raise ValueError("COST_AND_PROFIT_ROLES_REQUIRED")
         if self.kind=="TYPE_A_SOURCE_OWN_COST_GP":
             if not self.allocations:
                 raise ValueError("SOURCE_OWN_COST_CANNOT_BE_INFERRED_FROM_GROUP")
@@ -178,8 +194,8 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
     if mobile:
         if not embedded:
             out.append(text(12,24,title[:23],title_size,weight=700))
-        out.append(text(12,43,f'{plan.period} · 人民币亿元 · 金额按同一比例',10,PALETTE["muted"]))
-        out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",10,PALETTE["muted"]))
+        out.append(text(12,43,f'{plan.period} · 人民币亿元 · 金额按同一比例',11.5,PALETTE["muted"]))
+        out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",11.5,PALETTE["muted"]))
         for i,(sid,name,v,_,__) in enumerate(src_nodes):
             leg_y=D(89+i*(44 if readable_source_rows else 21))
             # Genuine CJK glyph bbox is often ~16px tall at 11 SVG font-size.
@@ -188,20 +204,20 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
             # source/ribbon money scales remain completely unchanged.
             # Own line for the source and own line for money: never collide
             # with long Chinese names or the directly readable gross margin.
-            out.append(text(12,leg_y,f'{i+1:02d}  {name}',11 if readable_source_rows else 10,PALETTE["ink"],600,role="source-summary"))
+            out.append(text(12,leg_y,f'{i+1:02d}  {name}',12 if readable_source_rows else 10,PALETTE["ink"],600,role="source-summary"))
             label=fmt(v)
             if plan.allocations:
                 own_gp=sum((yuan(value) for source,outcome,value in plan.allocations
                             if source==sid and any(key==outcome and role=="profit"
                                                    for key,_,_,role in plan.outcomes)),D(0))
-                label+=f' · 毛利{own_gp/v*100:.1f}%'
+                label+=(f' · 毛利{own_gp/v*100:.1f}%' if v else ' · 毛利率不适用')
             if readable_source_rows:
-                out.append(text(28,leg_y+D(20),label,11,PALETTE["source_dark"],600,role="source-summary"))
+                out.append(text(28,leg_y+D(20),label,12,PALETTE["source_dark"],600,role="source-summary"))
             else:
                 out.append(text(315,leg_y,label,9,PALETTE["source_dark"],600,"end",role="source-summary"))
-        out.append(text(12,top-D(16),"来源",10,PALETTE["muted"],600,role="source-stage-header"))
-        out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",10,PALETTE["muted"],600,"middle",role="total-stage-header"))
-        out.append(text(xout,top-D(16),"去向",10,PALETTE["muted"],600,"middle"))
+        out.append(text(12,top-D(16),"来源",11.5,PALETTE["muted"],600,role="source-stage-header"))
+        out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",11.5,PALETTE["muted"],600,"middle",role="total-stage-header"))
+        out.append(text(xout,top-D(16),"去向",11.5,PALETTE["muted"],600,"middle"))
     else:
         if not embedded:
             out.append(text(26,46,title,28,PALETTE["ink"],700))
@@ -266,7 +282,8 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
             if plan.allocations:
                 own=[(o,yuan(a)) for s,o,a in plan.allocations if s==sid]
                 profit=sum((a for oid,a in own if next(r for k,_,_,r in plan.outcomes if k==oid)=="profit"),D(0))
-                out.append(text(24,sy+34,f'毛利率 {profit/v*100:.1f}%',13,PALETTE["profit"],700,role="source-item-margin"))
+                margin=f'毛利率 {profit/v*100:.1f}%' if v else '毛利率不适用（收入为零）'
+                out.append(text(24,sy+34,margin,13,PALETTE["profit"],700,role="source-item-margin"))
     out.append(rect(xrev,mid_base,rev_width,HVAL,PALETTE["trunk"],
                     f'data-node-id="revenue-total" data-node-yuan="{esc(total)}" data-node-role="total"'))
     if not mobile:
@@ -281,7 +298,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         else:
             short=name.replace("营业","").replace("及管理","")
             if len(short)>4: short=short[:4]
-            out.append(text(274,sy+10,short,10 if readable_source_rows else 9,color,700))
+            out.append(text(274,sy+10,short,11.5 if readable_source_rows else 9,color,700))
     if mobile:
         # The financial outcome list, accounting warning and source note are
         # stacked using ACTUAL row count, never fixed H offsets (which caused
@@ -290,8 +307,8 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         out.append(text(12,footer,"成本与利润 · 对应原报表",11,PALETTE["ink"],700,role="outcome-list-title"))
         for i,(oid,name,v,role,_,__) in enumerate(sink_nodes):
             ypos=footer+D(20+i*20)
-            out.append(text(12,ypos,name,10,PALETTE["ink"],500,role="outcome-value"))
-            out.append(text(315,ypos,fmt(v),10,
+            out.append(text(12,ypos,name,12,PALETTE["ink"],500,role="outcome-value"))
+            out.append(text(315,ypos,fmt(v),12,
                             PALETTE["profit"] if role=="profit" else PALETTE["cost"],
                             700,"end",role="outcome-value"))
         last_value_y=footer+D(20+(len(sink_nodes)-1)*20)
@@ -299,15 +316,15 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         source_y=hint_y+D(20)
         if plan.kind=="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION":
             out.append(text(12,hint_y,"未披露各业务毛利，不能倒推分部盈利",
-                            10,PALETTE["cost"],700,role="accounting-limitation"))
+                            11.5,PALETTE["cost"],700,role="accounting-limitation"))
         elif plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT":
             out.append(text(12,hint_y,"净利息已扣息，信用成本另列",
-                            10,PALETTE["cost"],700,role="accounting-limitation"))
+                            11.5,PALETTE["cost"],700,role="accounting-limitation"))
         else:
             out.append(text(12,hint_y,"各业务成本来自本业务披露",
-                            10,PALETTE["muted"],700,role="accounting-limitation"))
+                            11.5,PALETTE["muted"],700,role="accounting-limitation"))
         out.append(text(12,source_y,"详细来源和会计口径见下方数据表",
-                        9,PALETTE["muted"],role="source-caveat"))
+                        11.5,PALETTE["muted"],role="source-caveat"))
         H=max(H,source_y+D(21))
     else:
         # Give the last small source's directly labeled margin enough air

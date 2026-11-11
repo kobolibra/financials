@@ -29,6 +29,7 @@ SOURCES = {
 COSTS = {
     "688111": ("wps_personal_cost", "wps365_cost", "wps_software_cost", "other_cost"),
     "600519": ("maotai_cogs", "series_cogs", "other_cogs"),
+    "000333": ("home_cost", "industrial_solution_cost", "other_total_cost"),
 }
 
 
@@ -102,6 +103,21 @@ def classify(root: Path, code: str) -> dict:
     total = _fact(code, rows, "rev", "operating_revenue")
     cogs = _fact(code, rows, "cogs", "operating_revenue")
     own = None
+    if code == "000333":
+        # Note 46 physical p171 discloses same-axis own costs in CNY thousands.
+        # Reject a group-cost proxy, child category, stale period or wrong conversion.
+        for source_key, cost_key in zip(SOURCES[code], COSTS[code]):
+            for key in (source_key,cost_key):
+                row=rows[key]
+                if (row.get("status")!="DISCLOSED" or row.get("page")!=171
+                    or row.get("reported_unit")!="人民币千元"
+                    or row.get("group_axis")!="exclusive_issuer_business"
+                    or row.get("hierarchy_level")!="top"):
+                    raise ValueError("MIDEA_NOTE46_SAME_AXIS_DISCLOSED_FACT_REQUIRED "+key)
+                _assert_yuan_equal(D(row["reported_amount"])*1000,row["yuan"],
+                                   "MIDEA_NOTE46_THOUSAND_YUAN_CONVERSION "+key)
+            if rows[cost_key].get("revenue_source_id")!=source_key:
+                raise ValueError("MIDEA_NOTE46_OWN_COST_SOURCE_MISMATCH "+cost_key)
     if code in COSTS:
         own = {src_key: _fact(code, rows, cost_key, "operating_revenue")
                for src_key, cost_key in zip(SOURCES[code], COSTS[code])}
@@ -117,6 +133,7 @@ def classify(root: Path, code: str) -> dict:
         "exact_yuan_cogs": decision.exact_yuan_group_cost,
         "exact_yuan_group_gp": decision.exact_yuan_group_gp,
         "source_own_cost_gp": [list(t) for t in decision.source_own_cost_gp],
+        "source_cost_keys": dict(zip(SOURCES[code],COSTS.get(code,()))),
         "product_gp_claim_allowed": decision.kind == "TYPE_A_SOURCE_OWN_COST_GP",
     }
 

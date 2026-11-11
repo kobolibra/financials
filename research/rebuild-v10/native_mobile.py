@@ -222,6 +222,56 @@ def signed_source_bars(code, index, keys, get, facts, label="原始财务金额�
     return _svg(out,h,label,"SIGNED_SOURCE_VALUES",code+"-"+str(index))
 
 
+
+def bank_profit_bridge(code,index,get,facts,source_sha):
+    """Actual revenue-to-parent bank P&L; expenses are negative once only."""
+    if not isinstance(source_sha,str) or len(source_sha)!=64 or any(c not in '0123456789abcdef' for c in source_sha):
+        raise ValueError('BANK_PROFIT_ORIGINAL_SOURCE_SHA_REQUIRED')
+    costs=('administrative_expense','credit_impairment_expense','other_operating_cost',
+           'nonoperating_expense','income_tax_expense','nci_ni')
+    stages=[('administrative_expense',-1),('credit_impairment_expense',-1),('other_operating_cost',-1),
+            ('nonoperating_income',1),('nonoperating_expense',-1),('income_tax_expense',-1),('nci_ni',-1)]
+    required={'revenue','operating_profit','consolidated_ni','parent_ni'}|{k for k,_ in stages}
+    for key in required:
+        f=facts[key]
+        if f.get('scope')!='consolidated' or f.get('period')!='2026H1' or f.get('unit')!='元':
+            raise ValueError('BANK_PROFIT_SCOPE_PERIOD_UNIT_MISMATCH '+key)
+        if type(f.get('page')) is not int or f['page']<1:
+            raise ValueError('BANK_PROFIT_PHYSICAL_PAGE_REQUIRED '+key)
+    start=D(get(code,'revenue'));end=D(get(code,'parent_ni'))
+    rows=[('revenue','营业收入',D(0),start,'total')];current=start
+    names={'administrative_expense':'业务及管理费','credit_impairment_expense':'信用减值损失',
+           'other_operating_cost':'其他营业支出','nonoperating_income':'营业外收入',
+           'nonoperating_expense':'营业外支出','income_tax_expense':'所得税费用','nci_ni':'少数股东损益'}
+    for i,(key,sign) in enumerate(stages):
+        delta=D(get(code,key))*sign;before=current;current+=delta
+        rows.append((key,names[key],before,current,'change'))
+        if i==2 and current!=D(get(code,'operating_profit')):raise ValueError('BANK_OPERATING_PROFIT_NOT_CLOSED')
+        if i==5 and current!=D(get(code,'consolidated_ni')):raise ValueError('BANK_CONSOLIDATED_PROFIT_NOT_CLOSED')
+    if current!=end:raise ValueError('BANK_PARENT_PROFIT_NOT_CLOSED')
+    rows.append(('parent_ni','归属于本行股东净利润',D(0),end,'total'))
+    lo=min(D(0),*(min(a,b) for _,_,a,b,_ in rows));hi=max(D(0),*(max(a,b) for _,_,a,b,_ in rows))
+    if hi<=lo:raise ValueError('BANK_EMPTY_PROFIT_DOMAIN')
+    scale=(hi-lo)/D(302);axis=D(14)-lo/scale
+    h=88+94*len(rows)
+    out=_text(14,25,'营业收入怎样形成归母利润',14,INK,True)
+    out+=_text(14,49,'亿元 · 费用向左扣减 · 同一金额比例尺',12,MUTED)
+    out+=f'<line x1="{_num(axis)}" x2="{_num(axis)}" y1="65" y2="{h-15}" stroke="{MUTED}" stroke-dasharray="3 4"/>'
+    for i,(key,label,before,after,role) in enumerate(rows):
+        delta=after-before;y=D(85+94*i);color=BLUE if role=='total' else GREEN if delta>=0 else COPPER
+        out+=_text(14,y,label,13,INK,True)
+        out+=_text(316,y+21,('+' if delta>0 and role!='total' else '')+_fmt(delta),13,color,True,'end')
+        x=D(14)+(min(before,after)-lo)/scale
+        out+=_box(x,y+35,abs(delta)/scale,17,color,
+            f'data-bank-profit-step="{key}" data-before-yuan="{before}" data-after-yuan="{after}" '
+            f'data-exact-signed-yuan="{delta}" data-money-scale-yuan-per-unit="{scale}" '
+            f'data-physical-page="{facts[key]["page"]}" data-statement-role="{role}"')
+        if role!='total':out+=_text(14,y+75,'累计 '+_fmt(after),12,MUTED)
+    return _svg(out,h,'银行营业收入扣除经营费用、信用成本、税项和少数股东后形成归母利润',
+                'BANK_SIGNED_REVENUE_TO_PARENT',code+'-'+str(index)).replace('role="img"',
+                f'role="img" data-original-pdf-sha256="{source_sha}" data-bank-interest-already-net="true"',1)
+
+
 def ratio_bars(code,index,keys,get,facts):
     rows=[(k,v) for k,v in ((key,facts.get(key)) for key in keys)
           if v is not None and (v.get("reported_unit",v.get("unit"))=="%" or "pct" in k)]
@@ -332,7 +382,7 @@ NAME={
 }
 
 
-def mobile_for(code,index,keys,get,facts,cfo_components,typed):
+def mobile_for(code,index,keys,get,facts,cfo_components,typed,*,source_sha=None):
     # Fail closed on a new issuer/exhibit. Never silently turn a promised
     # signed CFO/profit bridge into generic bars or repeat an irrelevant
     # legacy figure simply because a new report number was unrecognized.
@@ -353,7 +403,7 @@ def mobile_for(code,index,keys,get,facts,cfo_components,typed):
     if family=="cash":
         return cash_waterfall(code,index,get,facts,cfo_components)
     if family=="bank_profit":
-        return signed_source_bars(code,index,keys,get,facts,"银行净收入、信用成本及利润各口径")
+        return bank_profit_bridge(code,index,get,facts,source_sha)
     if family=="bank_interest":
         return signed_source_bars(code,index,keys,get,facts,"利息收入、利息支出与净额（均为原始金额）")
     if family=="ratio":

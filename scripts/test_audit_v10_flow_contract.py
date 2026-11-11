@@ -38,7 +38,7 @@ class TypedV10FlowContractTests(unittest.TestCase):
         expected = {
             "688111": "TYPE_A_SOURCE_OWN_COST_GP",
             "600519": "TYPE_C_SANKEY_OMITTED",
-            "000333": "TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+            "000333": "TYPE_A_SOURCE_OWN_COST_GP",
             "600036": "BANK_NET_INCOME_TO_OPERATING_PROFIT",
         }
         for code, kind in expected.items():
@@ -130,22 +130,22 @@ class TypedV10FlowContractTests(unittest.TestCase):
         self.assertIn("INDEPENDENT_SCALE_NOT_DISCLOSED_TO_READERS",
                       MOD.inspect_published_figure("600519", expected, not_disclosed))
 
-    def test_midea_group_only_needs_readable_disclosure_without_internal_codes(self):
-        expected = MOD.classify(ROOT, "000333")
+    def test_synthetic_group_only_needs_readable_disclosure_without_internal_codes(self):
+        expected = {"kind":"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION"}
         weak = ('<figure data-flow-kind="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION">'
                 '会计守恒财务桑基图<details>PRODUCT_LEVEL_GP_NOT_ESTABLISHED</details></figure>')
         self.assertIn("GROUP_ONLY_NO_VISIBLE_PRODUCT_GP_LIMITATION",
-                      MOD.inspect_published_figure("000333", expected, weak))
+                      MOD.inspect_published_figure("SYNTHETIC_UNKNOWN_COST", expected, weak))
         good = ('<figure data-flow-kind="TYPE_B_GROUP_ONLY_GROSS_ALLOCATION">'
                 '<svg data-gp-limitation="PRODUCT_LEVEL_GP_NOT_ESTABLISHED">'
                 '会计守恒财务桑基图<text>未披露各业务毛利，不能倒推分部盈利</text>'
                 '</svg></figure>')
-        self.assertFalse(MOD.inspect_published_figure("000333", expected, good))
+        self.assertFalse(MOD.inspect_published_figure("SYNTHETIC_UNKNOWN_COST", expected, good))
         raw_machine_in_text = good.replace(
             "未披露各业务毛利，不能倒推分部盈利",
             "未披露各业务毛利，不能倒推分部盈利 PRODUCT_LEVEL_GP_NOT_ESTABLISHED")
         self.assertIn("GROUP_ONLY_INTERNAL_MACHINE_TAG_VISIBLE_TO_READER",
-                      MOD.inspect_published_figure("000333", expected, raw_machine_in_text))
+                      MOD.inspect_published_figure("SYNTHETIC_UNKNOWN_COST", expected, raw_machine_in_text))
 
     def test_bank_cannot_be_labeled_as_industrial_gross_profit(self):
         expected = MOD.classify(ROOT, "600036")
@@ -156,6 +156,30 @@ class TypedV10FlowContractTests(unittest.TestCase):
         good = ('<figure data-flow-kind="BANK_NET_INCOME_TO_OPERATING_PROFIT">'
                 '银行净利息收入 → 支出与营业利润 · 会计守恒财务桑基图</figure>')
         self.assertFalse(MOD.inspect_published_figure("600036", expected, good))
+
+    def test_midea_note46_original_costs_are_same_axis_and_exact(self):
+        expected=MOD.classify(ROOT,"000333")
+        self.assertTrue(expected["product_gp_claim_allowed"])
+        self.assertEqual(expected["source_own_cost_gp"],[
+            ["home","174340606000","125613918000","48726688000"],
+            ["industrial_solution","66666119000","52775673000","13890446000"],
+            ["other_total","19035765000","15977180000","3058585000"]])
+        with tempfile.TemporaryDirectory() as d:
+            tmp=Path(d);fixture_copy(tmp)
+            path=tmp/"research/rebuild-v10/input-ledgers/000333.json"
+            original=json.loads(path.read_text())
+            for key,field,value in [
+                ("home_cost","yuan","125613918"),
+                ("home_cost","page",172),
+                ("home_cost","period","2025H1"),
+                ("industrial_solution_cost","hierarchy_level","child"),
+                ("other_total_cost","revenue_source_id","industrial_solution"),
+                ("home_cost","status","DERIVED")]:
+                import copy
+                bad=copy.deepcopy(original);bad["facts"][key][field]=value
+                path.write_text(json.dumps(bad))
+                with self.subTest(key=key,field=field), self.assertRaises(ValueError):
+                    MOD.classify(tmp,"000333")
 
     def test_original_cost_tamper_triggers_decimal_conservation_failure(self):
         with tempfile.TemporaryDirectory() as d:

@@ -1,0 +1,20 @@
+{
+  "schema": "financials.comparative_economics_brief.v1",
+  "statement": "industrial_operating_income",
+  "current_period": "2026H1",
+  "prior_period": "2025H1",
+  "current_interval": [
+    "2026-01-01",
+    "2026-06-30"
+  ],
+  "prior_interval": [
+    "2025-01-01",
+    "2025-06-30"
+  ],
+  "definition": "合并营业收入减营业成本；不含期间费用、金融投资和税项",
+  "question": "毛利增加，来自收入基数还是综合毛利率？",
+  "prior_restated": true,
+  "comparability_evidence": "采用同一份2026年半年报合并利润表p50的本期与上年同期比较列；上年同期按同一控制合并追溯调整。只拆解合并营业收入与营业成本，不将发电量作为售电量。",
+  "strongest_alternative": "综合毛利率提高可能来自成本变化、合并范围、境内外业务结构或收入确认时点；单凭总量不能确认来水、电价或单位发电效率改善。",
+  "next_disclosure_falsifier": "核对后续同口径净售电量、电价、梯级来水和分部成本；若毛利率回落且成本优势消失，应下调改善可持续性的判断。"
+}

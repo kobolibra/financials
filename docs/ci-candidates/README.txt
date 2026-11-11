@@ -1,0 +1,1 @@
+The standalone workflow proposal is archived. Its full-library tests and browser matrix are now implemented by research/shared/delivery_quality_suite.py, invoked by the EXISTING build-two-sectors workflow through qa_two_sector_browser.py on the 600276 job. No new workflow-write scope is needed. Inspect actual PR62 job logs for current-head execution proof.

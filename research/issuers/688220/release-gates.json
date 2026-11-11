@@ -113,5 +113,16 @@
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "actual_main_release_commit": "b365e40f4d0c0fe63f2948778de4ae375e0446f8",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
-  "live_receipt_file": "research/issuers/688220/live-release-receipt.json"
+  "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "1957fc6edb3c5113aba0d39c482750edf451aded431c14f5fc9e6163c01caee3",
+    "candidate_full_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "note": "2026-11-11 source-bound note/history/peer and native signed graphics candidate. Formal human audit signature is separate. Production receipt stays bound exclusively to historical deployed bytes.",
+    "browser_matrix": "research/quality/delivery-20261110/result.json",
+    "ai_second_review": "COMPLETED_WITH_DISCLOSED_SOURCE_EXCEPTIONS",
+    "material_note_review": "research/quality/material-notes-review-20261110.json"
+  }
 }

@@ -59,7 +59,7 @@ def sync():
     active["review_state"]="MERGED_MAIN_PENDING_INDEPENDENT_FINANCE_AND_ART_REVIEW"
     latest["current_main_live_new_figures"]="MERGED_MAIN__CURRENT_LIVE_SHA_MUST_BE_REVERIFIED"
     active["four_issuers"]["688111"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_SOURCE_TO_ONE_TOTAL_TO_OWN_COST_GP"
-    active["four_issuers"]["000333"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_GROUP_COST_GP_NOT_OWN_MARGIN"
+    active["four_issuers"]["000333"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_SOURCE_OWN_COST_GP_NOTE46"
     active["four_issuers"]["600036"]["figure_02_design"]="UNIFIED_1100_DESKTOP_AND_330_PHONE_CONNECTED_BANK_NET_INCOME_TO_OPERATING_PROFIT"
     active["four_issuers"]["600519"]["figure_02_design"]="TYPE_C_SIGNED_1040_DESKTOP_AND_330_PHONE_NEGATIVE_WITH_INDEPENDENT_SCALE_INSET"
     # The seven former sector publishers now have a common lawful HERO;

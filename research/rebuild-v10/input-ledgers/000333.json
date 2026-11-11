@@ -11,7 +11,15 @@
     "pdf_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
     "source_validation": "ORIGINAL_PDF_SHA256_VERIFIED_AND_AUTOMATED_FIELD_REVIEW_PARTIAL",
     "reviewed_at": "2026-11-02",
-    "audit_file": "../qa/000333_source_check.json"
+    "audit_file": "../qa/000333_source_check.json",
+    "own_cost_review": {
+      "physical_page": 171,
+      "note": "附注46 营业收入和营业成本，本期数收入/成本两列；智能家居、商业及工业解决方案，以及其他业务合计三互斥来源。商业及工业的子项不另加总。",
+      "reported_unit": "人民币千元",
+      "yuan_multiplier": "1000",
+      "pdf_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+      "reviewer": "AI original-page visual second review; human signoff NOT_CHECKED"
+    }
   },
   "facts": {
     "rev": {
@@ -124,21 +132,29 @@
     },
     "home": {
       "yuan": "174340606000",
-      "page": 51,
+      "page": 171,
       "label": "智能家居业务营收",
       "period": "2026H1",
       "scope": "consolidated",
       "status": "DISCLOSED",
-      "reported_unit": "人民币千元"
+      "reported_unit": "人民币千元",
+      "reported_amount": "174340606",
+      "source_note": "附注46 营业收入和营业成本；本期数收入列；同层级互斥来源，不叠加商业及工业子类",
+      "group_axis": "exclusive_issuer_business",
+      "hierarchy_level": "top"
     },
     "industrial_solution": {
       "yuan": "66666119000",
-      "page": 51,
+      "page": 171,
       "label": "商业及工业解决方案（父层）营收",
       "period": "2026H1",
       "scope": "consolidated",
       "status": "DISCLOSED",
-      "reported_unit": "人民币千元"
+      "reported_unit": "人民币千元",
+      "reported_amount": "66666119",
+      "source_note": "附注46 营业收入和营业成本；本期数收入列；同层级互斥来源，不叠加商业及工业子类",
+      "group_axis": "exclusive_issuer_business",
+      "hierarchy_level": "top"
     },
     "building": {
       "yuan": "21625109000",
@@ -178,12 +194,16 @@
     },
     "other_total": {
       "yuan": "19035765000",
-      "page": 52,
+      "page": 171,
       "label": "其他（总收入的第三类）",
       "period": "2026H1",
       "scope": "consolidated",
       "status": "DISCLOSED",
-      "reported_unit": "人民币千元"
+      "reported_unit": "人民币千元",
+      "reported_amount": "19035765",
+      "source_note": "附注46 营业收入和营业成本；本期数收入列；同层级互斥来源，不叠加商业及工业子类",
+      "group_axis": "exclusive_issuer_business",
+      "hierarchy_level": "top"
     },
     "domestic": {
       "yuan": "146915462000",
@@ -301,6 +321,48 @@
       "scope": "consolidated",
       "status": "DISCLOSED",
       "reported_unit": "人民币千元"
+    },
+    "home_cost": {
+      "yuan": "125613918000",
+      "page": 171,
+      "label": "智能家居业务营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元",
+      "reported_amount": "125613918",
+      "source_note": "附注46 营业收入和营业成本；本期数成本列；其他业务取同页其他业务成本合计，不取商业及工业子类",
+      "group_axis": "exclusive_issuer_business",
+      "hierarchy_level": "top",
+      "revenue_source_id": "home"
+    },
+    "industrial_solution_cost": {
+      "yuan": "52775673000",
+      "page": 171,
+      "label": "商业及工业解决方案（父层）营业成本",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元",
+      "reported_amount": "52775673",
+      "source_note": "附注46 营业收入和营业成本；本期数成本列；其他业务取同页其他业务成本合计，不取商业及工业子类",
+      "group_axis": "exclusive_issuer_business",
+      "hierarchy_level": "top",
+      "revenue_source_id": "industrial_solution"
+    },
+    "other_total_cost": {
+      "yuan": "15977180000",
+      "page": 171,
+      "label": "其他业务营业成本（总收入第三类）",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "status": "DISCLOSED",
+      "reported_unit": "人民币千元",
+      "reported_amount": "15977180",
+      "source_note": "附注46 营业收入和营业成本；本期数成本列；其他业务取同页其他业务成本合计，不取商业及工业子类",
+      "group_axis": "exclusive_issuer_business",
+      "hierarchy_level": "top",
+      "revenue_source_id": "other_total"
     }
   },
   "analyst": {

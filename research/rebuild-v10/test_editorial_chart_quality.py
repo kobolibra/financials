@@ -116,14 +116,14 @@ class OriginalVisualGrammarTests(unittest.TestCase):
                     self.assertEqual(len(inflows),nsource)
                     self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in inflows),D(0)),total)
                     self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in outflows),D(0)),total)
-                    self.assertEqual(len(outflows),8 if code=="688111" else nsink)
-                    if code=="688111":
+                    self.assertEqual(len(outflows),nsource*2 if code in ("688111","000333") else nsink)
+                    if code in ("688111","000333"):
                         for sid,rev,c,gp in typed["source_own_cost_gp"]:
                             own=[p for p in outflows if p.get("data-source-id")==sid]
                             self.assertCountEqual([D(p.get("data-ribbon-yuan")) for p in own],[D(c),D(gp)])
                             self.assertEqual({p.get("data-revenue-yuan") for p in own},{rev})
                     if code=="000333":
-                        self.assertEqual(graph.get("data-gp-limitation"),"PRODUCT_LEVEL_GP_NOT_ESTABLISHED")
+                        self.assertIsNone(graph.get("data-gp-limitation"))
                     if code=="600036":
                         self.assertEqual(graph.get("data-bank-interest-already-net"),"true")
 
@@ -171,14 +171,19 @@ class OriginalVisualGrammarTests(unittest.TestCase):
         from unified_finance import plan_for
         from dataclasses import replace
         a=plan_for("688111",classify(ROOT,"688111"),RAW_GET,{})
-        b=plan_for("000333",classify(ROOT,"000333"),RAW_GET,{})
+        # Genuine missing-own-cost synthetic Type B remains protected.
+        missing={"kind":"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+                 "source_keys":["product_a","product_b"],"exact_yuan_total":"1000",
+                 "exact_yuan_cogs":"600","exact_yuan_group_gp":"400"}
+        b=plan_for("SYNTHETIC_UNKNOWN_COST",missing,
+                   lambda code,key:{"product_a":D(800),"product_b":D(200)}[key],{})
         bank=plan_for("600036",classify(ROOT,"600036"),RAW_GET,{})
         with self.assertRaisesRegex(ValueError,"SOURCE_AND_OUTCOME_TOTAL_MISMATCH"):
-            replace(b,sources=b.sources[:-1]).check()
+            replace(b,sources=(("product_a","A","801"),("product_b","B","200"))).check()
         with self.assertRaisesRegex(ValueError,"NEGATIVE_IN_POSITIVE_FLOW"):
             replace(b,outcomes=(("fake","fake","-1","profit"),)+b.outcomes).check()
         with self.assertRaisesRegex(ValueError,"MUST_NOT_INVENT_PRODUCT_GP"):
-            replace(b,allocations=(("home","group_gp","1"),)).check()
+            replace(b,allocations=(("product_a","group_gp","1"),)).check()
         with self.assertRaisesRegex(ValueError,"SOURCE_OWN_COST_CANNOT_BE_INFERRED"):
             replace(a,allocations=()).check()
         with self.assertRaisesRegex(ValueError,"MUST_NOT_INVENT_PRODUCT_GP"):
@@ -200,6 +205,14 @@ class OriginalVisualGrammarTests(unittest.TestCase):
 
     def test_typed_adapter_rejects_stale_source_and_group_facts(self):
         from unified_finance import plan_for
+        midea=classify(ROOT,"000333")
+        forged=dict(midea)
+        own=[list(row) for row in midea["source_own_cost_gp"]]
+        own[0][2]=str(D(own[0][2])+1)
+        own[0][3]=str(D(own[0][3])-1)
+        forged["source_own_cost_gp"]=own
+        with self.assertRaisesRegex(ValueError,"SOURCE_OWN_COST_ORIGINAL_FACT_MISMATCH"):
+            plan_for("000333",forged,RAW_GET,{})
         source=classify(ROOT,"688111")
         bad=dict(source)
         bad["exact_yuan_total"]=str(D(source["exact_yuan_total"])+1)
@@ -215,11 +228,13 @@ class OriginalVisualGrammarTests(unittest.TestCase):
         bad["exact_yuan_group_gp"]=str(D(source["exact_yuan_group_gp"])+1)
         with self.assertRaisesRegex(ValueError,"SOURCE_OWN_GP_TOTAL_MISMATCH"):
             plan_for("688111",bad,RAW_GET,{})
-        group=classify(ROOT,"000333")
+        group={"kind":"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
+               "source_keys":["product_a","product_b"],"exact_yuan_total":"1000",
+               "exact_yuan_cogs":"600","exact_yuan_group_gp":"400"}
         bad=dict(group)
         bad["exact_yuan_group_gp"]=str(D(group["exact_yuan_group_gp"])+1)
         with self.assertRaisesRegex(ValueError,"GROUP_COST_GP_TOTAL_MISMATCH"):
-            plan_for("000333",bad,RAW_GET,{})
+            plan_for("SYNTHETIC_UNKNOWN_COST",bad,lambda code,key:{"product_a":D(800),"product_b":D(200)}[key],{})
         bank=classify(ROOT,"600036")
         bad=dict(bank)
         bad["exact_yuan_result"]=str(D(bank["exact_yuan_result"])+1)

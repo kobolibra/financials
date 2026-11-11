@@ -1,0 +1,272 @@
+[
+  {
+    "issuer": "600900",
+    "quarter": "2024Q4",
+    "metric": "revenue",
+    "annual_disclosed": "18161189820.97",
+    "derived": "18161189820.97",
+    "physical_page": 6,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2024Q4",
+    "metric": "cfo",
+    "annual_disclosed": "12000144699.04",
+    "derived": "12000144699.04",
+    "physical_page": 6,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q1",
+    "metric": "revenue",
+    "annual_disclosed": "17015283778.59",
+    "derived": "17015283778.59",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q2",
+    "metric": "revenue",
+    "annual_disclosed": "19682330288.13",
+    "derived": "19682330288.13",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q3",
+    "metric": "revenue",
+    "annual_disclosed": "29043671615.00",
+    "derived": "29043671615.00",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q4",
+    "metric": "revenue",
+    "annual_disclosed": "20500654540.48",
+    "derived": "20500654540.48",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q1",
+    "metric": "cfo",
+    "annual_disclosed": "11847251953.10",
+    "derived": "11847251953.10",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q2",
+    "metric": "cfo",
+    "annual_disclosed": "12143934558.51",
+    "derived": "12143934558.51",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q3",
+    "metric": "cfo",
+    "annual_disclosed": "18904027940.23",
+    "derived": "18904027940.23",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600900",
+    "quarter": "2025Q4",
+    "metric": "cfo",
+    "annual_disclosed": "17667711118.57",
+    "derived": "17667711118.57",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2024Q4",
+    "metric": "revenue",
+    "annual_disclosed": "7795301496.96",
+    "derived": "7795301496.96",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2024Q4",
+    "metric": "cfo",
+    "annual_disclosed": "2837307029.59",
+    "derived": "2837307029.59",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q1",
+    "metric": "revenue",
+    "annual_disclosed": "7205611122.72",
+    "derived": "7205611122.72",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q2",
+    "metric": "revenue",
+    "annual_disclosed": "8555582506.18",
+    "derived": "8555582506.18",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q3",
+    "metric": "revenue",
+    "annual_disclosed": "7426888299.87",
+    "derived": "7426888299.87",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q4",
+    "metric": "revenue",
+    "annual_disclosed": "8441334265.06",
+    "derived": "8441334265.06",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q1",
+    "metric": "cfo",
+    "annual_disclosed": "555174088.51",
+    "derived": "555174088.51",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q2",
+    "metric": "cfo",
+    "annual_disclosed": "3745279162.89",
+    "derived": "3745279162.89",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q3",
+    "metric": "cfo",
+    "annual_disclosed": "4809977038.87",
+    "derived": "4809977038.87",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "600276",
+    "quarter": "2025Q4",
+    "metric": "cfo",
+    "annual_disclosed": "2124947840.36",
+    "derived": "2124947840.36",
+    "physical_page": 7,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2024Q4",
+    "metric": "revenue",
+    "annual_disclosed": "846104518.78",
+    "derived": "846104518.78",
+    "physical_page": 13,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2024Q4",
+    "metric": "cfo",
+    "annual_disclosed": "-37558114.15",
+    "derived": "-37558114.15",
+    "physical_page": 13,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q1",
+    "metric": "revenue",
+    "annual_disclosed": "909945198.53",
+    "derived": "909945198.53",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q2",
+    "metric": "revenue",
+    "annual_disclosed": "988121193.67",
+    "derived": "988121193.67",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q3",
+    "metric": "revenue",
+    "annual_disclosed": "982324018.87",
+    "derived": "982324018.87",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q4",
+    "metric": "revenue",
+    "annual_disclosed": "936413087.29",
+    "derived": "936413087.29",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q1",
+    "metric": "cfo",
+    "annual_disclosed": "-183222888.41",
+    "derived": "-183222888.41",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q2",
+    "metric": "cfo",
+    "annual_disclosed": "-83230327.81",
+    "derived": "-83230327.81",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q3",
+    "metric": "cfo",
+    "annual_disclosed": "-23618512.76",
+    "derived": "-23618512.76",
+    "physical_page": 11,
+    "match": true
+  },
+  {
+    "issuer": "688220",
+    "quarter": "2025Q4",
+    "metric": "cfo",
+    "annual_disclosed": "-141953569.23",
+    "derived": "-141953569.23",
+    "physical_page": 11,
+    "match": true
+  }
+]

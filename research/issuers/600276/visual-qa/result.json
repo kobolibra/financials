@@ -1,6 +1,6 @@
 {
   "issuer": "600276",
-  "html_sha256": "9a51d251d271a6dc7803c4036c71a441634ef784258aabaf85e97d1081962d99",
+  "html_sha256": "a0bd6542cdfdde39a620c3bd9af381fc6bc7b1bf7e8bfe3006241f14acfca0ea",
   "actual_3_viewport_checks": [
     {
       "width": 1440,
@@ -21,8 +21,8 @@
       "tables": 8,
       "actual_money_geometry": "PASS",
       "body_no_overflow": "PASS",
-      "actual_native_mobile_financial_figures_and_390_no_inner_scroll": "NOT_RELEVANT_THIS_WIDTH",
-      "svg_export": "NOT_RUN_THIS_VIEW"
+      "actual_native_mobile_financial_figures_and_390_no_inner_scroll": "PASS",
+      "svg_export": "PASS"
     },
     {
       "width": 390,
@@ -33,12 +33,13 @@
       "actual_money_geometry": "PASS",
       "body_no_overflow": "PASS",
       "actual_native_mobile_financial_figures_and_390_no_inner_scroll": "PASS",
-      "svg_export": "NOT_RUN_THIS_VIEW"
+      "svg_export": "PASS"
     }
   ],
   "all_eight_figures_visible": "PASS",
   "all_eight_390px_native_money_visuals_readable_and_source_reconciled": "PASS",
   "source_nodes_sinks_ribbons_exact_svg_geometric_proportions": "PASS",
-  "CJK_FONTS_RUNNER_INSTALLED": "PASS",
+  "CJK_FONTS_RUNNER_INSTALLED": "NOT_CHECKED_LOCAL_FONT_INSTALLATION",
+  "CJK_text_geometry": "MEASURED_ACTUAL_RENDERED_GLYPHS",
   "human_editor": "NOT_CHECKED"
 }

@@ -492,6 +492,86 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "FIN-051",
+      "root_cause": "Zero source revenue divided by zero and node/role aliases escaped money closure.",
+      "correction": "Keep zero-source geometry at zero, undefined margin explicit, reject identity collisions and missing cost/profit roles.",
+      "proof_file": "research/shared/test_income_generalization.py",
+      "assertion_marker": "test_",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-052",
+      "root_cause": "A ratio change is often mislabeled price/volume causality; rounded ratios can introduce hidden residuals.",
+      "correction": "Use source-bound same-period-definition rational symmetric decomposition with explicit rounding, countercase and falsifier.",
+      "proof_file": "research/shared/test_comparative_economics.py",
+      "assertion_marker": "test_source_and_comparability_poison_cases",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-053",
+      "root_cause": "Hero-only browser QA missed tablet desktop artwork shrinking many labels below 10px.",
+      "correction": "Inspect every figure at 1440/768/390 and retain actual rendered font measurements; native tablet layouts for affected publishers.",
+      "proof_file": "scripts/audit_delivery_matrix.py",
+      "assertion_marker": "actualFont",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-054",
+      "root_cause": "Negative desktop labels shared a baseline with leftward amount labels; minimum 2 SVG-unit cash bars exaggerated tiny FX flows.",
+      "correction": "Separate label and amount baselines, preserve true zero and eight-decimal tiny cash width; all-catalog browser audit now blocks label clipping and significant intersections.",
+      "proof_file": "research/rebuild-v10/test_signed_label_geometry.py",
+      "assertion_marker": "test_zero_tiny_and_large_cash_keep_the_same_scale",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-055",
+      "root_cause": "Both periods can be valid break-even statements, leaving no nonzero GP domain; rejecting this output harms unseen-company transfer.",
+      "correction": "Use an explicit zero-only source-bound state with no bars or invented one-yuan scale.",
+      "proof_file": "research/shared/test_economics_exhibit.py",
+      "assertion_marker": "NO_NONZERO_MONEY_DOMAIN",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-056",
+      "root_cause": "Midea source model omitted real same-axis note46 own costs and falsely generalized them as unavailable.",
+      "correction": "Compile three disclosed original thousand-yuan costs into exact original yuan and Type A; keep genuine missing-cost Type B synthetic cases.",
+      "proof_file": "scripts/test_audit_v10_flow_contract.py",
+      "assertion_marker": "test_midea_note46_original_costs_are_same_axis_and_exact",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-057",
+      "root_cause": "Independent zero-origin rows were called signed insurance bridges; bank debit expenses appeared green.",
+      "correction": "Use source-ID-bound cumulative coordinates, nonadditive checkpoints, negative debit colors and visible-edition export equality.",
+      "proof_file": "research/rebuild-v10/test_bank_profit_bridge.py",
+      "assertion_marker": "test_expenses_are_deducted_once_with_real_continuous_endpoints",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-058",
+      "root_cause": "Linux Noto CJK glyph boxes caused new/renew premium names to overlap amount labels despite local system-font checks passing.",
+      "correction": "Increase native desktop label/value baselines while preserving all source-yuan geometry; retain real all-library Linux overlap gate.",
+      "proof_file": "scripts/audit_delivery_matrix.py",
+      "assertion_marker": "SVG_LABEL_OVERLAP_REQUIRES_REVIEW",
+      "scope": "single_issuer",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }

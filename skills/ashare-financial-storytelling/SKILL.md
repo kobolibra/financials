@@ -6,6 +6,8 @@ description: Original-PDF-grounded A-share public company research, institutiona
 **Current 2026-11-08 signed-source delivery contract:** #43–#48 have been merged to main. In addition to #35 lawful 11-company HERO Sankeys and #37–#42 source-bound WPS/Midea/hydro/pharma profit visual work, **688220** now uses the shared original-amount signed 10-step 1040/330 P&L renderer in existing FIGURE04, and **300308** uses shared signed 7-step 1040/330 in existing FIGURE03. Keep the independent industrial, bank and insurer accounting boundaries, p139 original one-yuan disclosure discrepancy, 688220 full PDF mirror SHA vs official SSE byte NOT_CHECKED. PR #48 repaired and verified actual V9 optical original CNY source→group total→source cost and GP production QA at [run 42458196003](https://github.com/kobolibra/financials/actions/runs/42458196003); PR #47 repaired 688220 already-deployed vs new candidate rebuild QA [run 42458241039](https://github.com/kobolibra/financials/actions/runs/42458241039). **Current main HEAD must always be fetched, this is a dated evidence checkpoint only.** NEVER certify 11 entire financial reports visually unified, independent finance/art or 8–12 quarterly causal study. For exact current status use `project-status.json.current_release_provenance_20261108` and real live complete SHA receipts.
 
 
+**2026-11-11 current source correction:** Original Midea PDF physical p171 note46 DOES disclose top-level own business costs; source inputs now compile TYPE A (home/industrial/other plus own costs), not the historical Type B snapshot below. Maintain genuine Type B rejection/unknown-cost examples using actual missing-cost inputs. Eleven issuer material-note AI second reviews cover 132 themes, openly preserving source exceptions; eight-quarter/peer/Q3 tests have 41 official PDFs and source-version controls. This is AI review, never a human audit signature. New full-library automatic checks run through `delivery_quality_suite.py` called by the EXISTING two-sector browser workflow entrypoint; no additional workflow-write credential is required. Local versus cloud versus production proof remain distinct.
+
 # Financials in Visuals — one production contract
 
 Contract version: 9.0.0
@@ -25,6 +27,14 @@ Read these **five complete research guides** when doing report research or visua
 - `research/03_VISUAL_EDITORIAL_SYSTEM.md`: editorial hierarchy, color semantics and precise chart selection.
 - `research/04_ASHARE_FORENSIC_DEEP_DIVE.md`: original note cells, reclassifications and audit traps.
 - `research/05_CROSS_SECTOR_GENERALIZATION.md`: banks/insurance/industry-specific accounting; unseen samples.
+
+## 2026-11-10 repeatable delivery amendment
+
+Use `comparative_economics.py` for an explicitly industrial, same-definition, same-flow-interval, source-PDF-bound revenue/margin GP bridge. Exact rational arithmetic splits the interaction equally; visible cent rounding stays a numerical row. This is accounting attribution, NEVER independently identified price/volume/mix/FX causality. Reject bank/insurance routes, zero-revenue ratio analysis, mixed units/scopes, mismatched labels/dates and reused revenue/cost facts. Require the strongest alternative and next-disclosure falsifier. Three source-bound issuer examples do not certify unseen-industry coverage.
+
+Sankey nodes require unique nonreserved identities, real cost AND profit roles and nonreused same-axis own-cost facts. A valid industrial comparison with zero GP in both periods uses an explicit zero-only text state, with no invented nonzero money domain. A zero-revenue source has zero ribbon and an undefined, explicitly labelled margin; never divide by zero or draw a minimum decorative flow. Run `test_income_generalization.py` and `test_comparative_economics.py`, including optimized Python.
+
+Responsive QA must observe every figure, not only the first Sankey. Use `scripts/audit_delivery_matrix.py` on the live canonical catalog: 1440/768/390, actual displayed text sizes, clipping, overlaps, ribbon endpoint amounts, screenshot SHA and article SHA. At 768, select native small-screen drawings where desktop labels shrink below legibility. Every new economics panel needs a true native phone drawing and working visible-layout SVG export. Small-font observations require editorial review; zero JS/overflow errors alone NEVER certify typography or aesthetics. Record exact scope, preserve historical live receipts and keep new candidate deployment/human review separate.
 
 ## 1. Research must precede drawing
 

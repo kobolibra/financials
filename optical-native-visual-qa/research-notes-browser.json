@@ -1,0 +1,164 @@
+{
+  "cases": [
+    {
+      "issuer": "300394",
+      "width": 1440,
+      "candidate_html_sha256": "9449655050c63d716e9a60e8b31f32adb1ad8d1144b866925d8bf617b032b51d",
+      "source_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+      "notes_measurements": {
+        "left": 100,
+        "right": 1260,
+        "bodyWidth": 1440,
+        "textLength": 2278,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300394_research_notes_1440.png",
+      "screenshot_sha256": "63d8e2d29769c73ad24c569ac04c84b12ced7d25b15cb98b683c2cfbbce9e243",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300394",
+      "width": 768,
+      "candidate_html_sha256": "9449655050c63d716e9a60e8b31f32adb1ad8d1144b866925d8bf617b032b51d",
+      "source_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+      "notes_measurements": {
+        "left": 21,
+        "right": 747,
+        "bodyWidth": 768,
+        "textLength": 2278,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300394_research_notes_768.png",
+      "screenshot_sha256": "7970bd9a7d9307c78772574f9f692ce4e1f6517d757855dfc43eb91b015aa0e4",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300394",
+      "width": 390,
+      "candidate_html_sha256": "9449655050c63d716e9a60e8b31f32adb1ad8d1144b866925d8bf617b032b51d",
+      "source_pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+      "notes_measurements": {
+        "left": 21,
+        "right": 369,
+        "bodyWidth": 390,
+        "textLength": 2278,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300394_research_notes_390.png",
+      "screenshot_sha256": "15def4cb301003a5d678f83a46b68c24dad37de4c51188af4fbefdc531d714f2",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300502",
+      "width": 1440,
+      "candidate_html_sha256": "5772104c6dbf4eb4f5a661a87eeeaef776f246c1d349b9ce2201eb5ca9a06f61",
+      "source_pdf_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+      "notes_measurements": {
+        "left": 100,
+        "right": 1260,
+        "bodyWidth": 1440,
+        "textLength": 3049,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300502_research_notes_1440.png",
+      "screenshot_sha256": "9f3578b12fe8c54043380146191c3f3d291876a5d2771bc1aa3a92c320ff7148",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300502",
+      "width": 768,
+      "candidate_html_sha256": "5772104c6dbf4eb4f5a661a87eeeaef776f246c1d349b9ce2201eb5ca9a06f61",
+      "source_pdf_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+      "notes_measurements": {
+        "left": 21,
+        "right": 747,
+        "bodyWidth": 768,
+        "textLength": 3049,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300502_research_notes_768.png",
+      "screenshot_sha256": "481562c112265229c6901ed6ef7037b7c4e9641c20aa55eb9a76c427c5843036",
+      "source_and_bounds": "PASS"
+    },
+    {
+      "issuer": "300502",
+      "width": 390,
+      "candidate_html_sha256": "5772104c6dbf4eb4f5a661a87eeeaef776f246c1d349b9ce2201eb5ca9a06f61",
+      "source_pdf_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+      "notes_measurements": {
+        "left": 21,
+        "right": 369,
+        "bodyWidth": 390,
+        "textLength": 3049,
+        "paragraphFonts": [
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14,
+          14
+        ],
+        "tables": 1
+      },
+      "screenshot": "300502_research_notes_390.png",
+      "screenshot_sha256": "35d7d40eea749db56aa82f04dbeb0e34a6829438ec4f8d01f456b0f0fc86af0a",
+      "source_and_bounds": "PASS"
+    }
+  ],
+  "human_editor": "NOT_CHECKED"
+}

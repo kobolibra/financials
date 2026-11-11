@@ -55,6 +55,32 @@ class OriginalFinanceMobiles(unittest.TestCase):
                 self.assertEqual(report.count('class="chart-shell '), 10 if code=="300394" else 11)
                 self.assertIn("在窄屏上可横向滑动",report) if False else None
 
+    def test_three_optical_signed_panels_readable_and_same_money_scale(self):
+        import re
+        import xml.etree.ElementTree as ET
+        ns="{http://www.w3.org/2000/svg}"
+        for code in ("300394","300502","300308"):
+            panels=native.make(get_ledger(code))
+            for figure in ("03","04","06","07","08"):
+                root=ET.fromstring(re.search(r"<svg.*?</svg>",panels[figure],re.S).group())
+                width,height=map(Decimal,root.attrib['viewBox'].split()[2:])
+                for node in root.iter(ns+'text'):
+                    font=Decimal(node.attrib['font-size'])
+                    self.assertGreaterEqual(font,12,(code,figure,node.text))
+                    self.assertGreaterEqual(font*Decimal(320)/width,Decimal(11.5))
+                    self.assertNotIn('…',node.text or '')
+                    y=Decimal(node.attrib['y'])
+                    self.assertGreaterEqual(y-font,0)
+                    self.assertLessEqual(y+font/4,height)
+                for group in root.iter(ns+'g'):
+                    labels=list(group.iter(ns+'text'))
+                    self.assertEqual(len(labels),3)
+                    self.assertGreaterEqual(Decimal(labels[1].attrib['y'])-Decimal(labels[0].attrib['y']),21)
+                for bar in root.iter(ns+'rect'):
+                    self.assertLess(abs(Decimal(bar.attrib['width'])-
+                        abs(Decimal(bar.attrib['data-signed-yuan']))/
+                        Decimal(bar.attrib['data-yuan-per-svg-unit'])),Decimal('.000001'))
+
     def test_wrong_source_cost_breaks_real_mobile_flow(self):
         l=get_ledger("300394")
         cost=l["segments"][0]["cost_key"]

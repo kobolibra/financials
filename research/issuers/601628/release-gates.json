@@ -152,10 +152,13 @@
   },
   "unmerged_candidate": {
     "base_deployed_html_sha256": "b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0",
-    "candidate_full_html_sha256": "75d985b83defdc3d9da0352d688920bd751a238b3541e74cfac69be92ebb28b7",
+    "candidate_full_html_sha256": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "This sha belongs to the changed PR source file only. Historical live release PASS and screenshots remain valid exclusively for the old main SHA. Do not claim new candidate deployed or screenshot certified until a real independent current-sha browser receipt."
+    "note": "2026-11-11 source-bound note/history/peer and native signed graphics candidate. Formal human audit signature is separate. Production receipt stays bound exclusively to historical deployed bytes.",
+    "browser_matrix": "research/quality/delivery-20261110/result.json",
+    "ai_second_review": "COMPLETED_WITH_DISCLOSED_SOURCE_EXCEPTIONS",
+    "material_note_review": "research/quality/material-notes-review-20261110.json"
   }
 }

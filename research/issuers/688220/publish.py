@@ -14,6 +14,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parents[2]/"shared"))
 from source_income_adapter import render_sector_income
+from economics_exhibit import render_panel as render_economics_panel
 ROOT=Path(__file__).resolve().parent
 ap=argparse.ArgumentParser()
 ap.add_argument("--out",type=Path,default=ROOT/"preview"/"688220.html")
@@ -134,6 +135,8 @@ checks["SHARED_FULL_SIGNED_PNL_DESKTOP_PHONE"]="PASS"
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display)
     .replace("__SOURCE_SHA__",actual_sha).replace("__UNIFIED_DESKTOP__",income_json)
     .replace("__UNIFIED_PNL_DESKTOP__",pnl_desktop_json))
+comparison_brief=json.loads((ROOT/"comparative-economics.json").read_text(encoding="utf-8"))
+output=output.replace('<main class="wrap">','<main class="wrap">'+render_economics_panel(data,comparison_brief),1)
 # The full standalone article retains its original nine desktop editable SVG
 # graphs and financial evidence tables. At <=820, a second issuer-specific
 # original-money narrative is shown without horizontally cropping the reader.
@@ -165,6 +168,8 @@ assert output.count('__UNIFIED_PNL_DESKTOP__')==0
 
 assert "<script src=" not in output and "<iframe" not in output and "https://fonts" not in output
 a.out.parent.mkdir(parents=True,exist_ok=True)
+from research_context import render as render_research_context
+output=output.replace("</main>",render_research_context("688220")+"</main>",1)
 a.out.write_text(output,encoding="utf-8")
 a.qa.parent.mkdir(parents=True,exist_ok=True)
 a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","figure_briefs_schema":briefs["schema"],"figures_required":len(REQUIRED_FIGURES),"source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

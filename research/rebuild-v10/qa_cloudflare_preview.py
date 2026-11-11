@@ -35,7 +35,7 @@ PREVIEW=os.environ.get("FINANCIALS_PR_PREVIEW","https://quality-aei-sankey-sourc
 PRODUCTION=os.environ.get("FINANCIALS_PRODUCTION","https://financials-in-visuals.pages.dev").rstrip("/")
 CODES={"688111":(9,"TYPE_A_SOURCE_OWN_COST_GP"),
        "600519":(9,"TYPE_C_SANKEY_OMITTED"),
-       "000333":(10,"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION"),
+       "000333":(10,"TYPE_A_SOURCE_OWN_COST_GP"),
        "600036":(8,"BANK_NET_INCOME_TO_OPERATING_PROFIT")}
 CONTEXTS=(
     ("chromium",390,844,True,3,"Android-size Chromium touchscreen"),

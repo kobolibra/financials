@@ -127,5 +127,16 @@
     "original_main": "328ce615557390f1f0a52611496032557e87800a",
     "prior_full_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
     "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "cf18a4e1ff655d989d439bb16a0684adeff9a300d46ca6a892aef86284680f88",
+    "candidate_full_html_sha256": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "note": "2026-11-11 source-bound note/history/peer and native signed graphics candidate. Formal human audit signature is separate. Production receipt stays bound exclusively to historical deployed bytes.",
+    "browser_matrix": "research/quality/delivery-20261110/result.json",
+    "ai_second_review": "COMPLETED_WITH_DISCLOSED_SOURCE_EXCEPTIONS",
+    "material_note_review": "research/quality/material-notes-review-20261110.json"
   }
 }

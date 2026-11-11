@@ -15,7 +15,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 CODES={"688111":(9,"TYPE_A_SOURCE_OWN_COST_GP"),
        "600519":(9,"TYPE_C_SANKEY_OMITTED"),
-       "000333":(10,"TYPE_B_GROUP_ONLY_GROSS_ALLOCATION"),
+       "000333":(10,"TYPE_A_SOURCE_OWN_COST_GP"),
        "600036":(8,"BANK_NET_INCOME_TO_OPERATING_PROFIT")}
 PR=35
 MANIFEST="research/quality/active-pr35.json"

@@ -1,0 +1,1881 @@
+{
+  "status": "24 quarter rows / 96 exact differences, NOT fully comparable causal panel",
+  "rows": [
+    {
+      "issuer": "600900",
+      "quarter": "2024Q4",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "18161189820.97",
+          "formula": "84491870566.52 - 66330680745.55",
+          "sources": [
+            {
+              "id": "600900_2024FY",
+              "sha256": "556767ca1f7c06bb679c827aa6522ff9927d2a63dc2ab64b57194fdc57192048",
+              "page": 92,
+              "operand": "84491870566.52"
+            },
+            {
+              "id": "600900_2024Q3",
+              "sha256": "ca56555310e8284a0620693cc547ec3f0b46660415ab988d9b8514a046c98ccb",
+              "page": 10,
+              "operand": "66330680745.55"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8786541789.90",
+          "formula": "34528346186.67 - 25741804396.77",
+          "sources": [
+            {
+              "id": "600900_2024FY",
+              "sha256": "556767ca1f7c06bb679c827aa6522ff9927d2a63dc2ab64b57194fdc57192048",
+              "page": 92,
+              "operand": "34528346186.67"
+            },
+            {
+              "id": "600900_2024Q3",
+              "sha256": "ca56555310e8284a0620693cc547ec3f0b46660415ab988d9b8514a046c98ccb",
+              "page": 10,
+              "operand": "25741804396.77"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "541374042.34",
+          "formula": "890719278.34 - 349345236.00",
+          "sources": [
+            {
+              "id": "600900_2024FY",
+              "sha256": "556767ca1f7c06bb679c827aa6522ff9927d2a63dc2ab64b57194fdc57192048",
+              "page": 92,
+              "operand": "890719278.34"
+            },
+            {
+              "id": "600900_2024Q3",
+              "sha256": "ca56555310e8284a0620693cc547ec3f0b46660415ab988d9b8514a046c98ccb",
+              "page": 10,
+              "operand": "349345236.00"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "12000144699.04",
+          "formula": "59648468284.22 - 47648323585.18",
+          "sources": [
+            {
+              "id": "600900_2024FY",
+              "sha256": "556767ca1f7c06bb679c827aa6522ff9927d2a63dc2ab64b57194fdc57192048",
+              "page": 96,
+              "operand": "59648468284.22"
+            },
+            {
+              "id": "600900_2024Q3",
+              "sha256": "ca56555310e8284a0620693cc547ec3f0b46660415ab988d9b8514a046c98ccb",
+              "page": 12,
+              "operand": "47648323585.18"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2025Q1",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DISCLOSED_Q1",
+      "facts": {
+        "revenue": {
+          "value": "17015283778.59",
+          "formula": "17015283778.59 - 0",
+          "sources": [
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 7,
+              "operand": "17015283778.59"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8001152247.68",
+          "formula": "8001152247.68 - 0",
+          "sources": [
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 8,
+              "operand": "8001152247.68"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "96286515.29",
+          "formula": "96286515.29 - 0",
+          "sources": [
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 8,
+              "operand": "96286515.29"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "11847251953.10",
+          "formula": "11847251953.10 - 0",
+          "sources": [
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 10,
+              "operand": "11847251953.10"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2025Q2",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "19682330288.13",
+          "formula": "36697614066.72 - 17015283778.59",
+          "sources": [
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 44,
+              "operand": "36697614066.72"
+            },
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 7,
+              "operand": "17015283778.59"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8100829817.66",
+          "formula": "16101982065.34 - 8001152247.68",
+          "sources": [
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 44,
+              "operand": "16101982065.34"
+            },
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 8,
+              "operand": "8001152247.68"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "131520500.48",
+          "formula": "227807015.77 - 96286515.29",
+          "sources": [
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 44,
+              "operand": "227807015.77"
+            },
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 8,
+              "operand": "96286515.29"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "12143934558.51",
+          "formula": "23991186511.61 - 11847251953.10",
+          "sources": [
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 48,
+              "operand": "23991186511.61"
+            },
+            {
+              "id": "600900_2025Q1",
+              "sha256": "f99878c81236eb98a0748d3cbb45464d9082109217ad639ba454f976da1a2c56",
+              "page": 10,
+              "operand": "11847251953.10"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2025Q3",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "29043671615.00",
+          "formula": "65741285681.72 - 36697614066.72",
+          "sources": [
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 8,
+              "operand": "65741285681.72"
+            },
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 44,
+              "operand": "36697614066.72"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8565991012.57",
+          "formula": "24667973077.91 - 16101982065.34",
+          "sources": [
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 9,
+              "operand": "24667973077.91"
+            },
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 44,
+              "operand": "16101982065.34"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "183875980.00",
+          "formula": "411682995.77 - 227807015.77",
+          "sources": [
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 9,
+              "operand": "411682995.77"
+            },
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 44,
+              "operand": "227807015.77"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "18904027940.23",
+          "formula": "42895214451.84 - 23991186511.61",
+          "sources": [
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 11,
+              "operand": "42895214451.84"
+            },
+            {
+              "id": "600900_2025H1",
+              "sha256": "856f2e23502c6db50f6bbd10cddc041718cdd8b1b6554df91c326c9efa514b20",
+              "page": 48,
+              "operand": "23991186511.61"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2025Q4",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "20500654540.48",
+          "formula": "86241940222.20 - 65741285681.72",
+          "sources": [
+            {
+              "id": "600900_2025FY",
+              "sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+              "page": 84,
+              "operand": "86241940222.20"
+            },
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 8,
+              "operand": "65741285681.72"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8389866956.86",
+          "formula": "33057840034.77 - 24667973077.91",
+          "sources": [
+            {
+              "id": "600900_2025FY",
+              "sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+              "page": 84,
+              "operand": "33057840034.77"
+            },
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 9,
+              "operand": "24667973077.91"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "755209838.95",
+          "formula": "1166892834.72 - 411682995.77",
+          "sources": [
+            {
+              "id": "600900_2025FY",
+              "sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+              "page": 84,
+              "operand": "1166892834.72"
+            },
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 9,
+              "operand": "411682995.77"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "17667711118.57",
+          "formula": "60562925570.41 - 42895214451.84",
+          "sources": [
+            {
+              "id": "600900_2025FY",
+              "sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+              "page": 88,
+              "operand": "60562925570.41"
+            },
+            {
+              "id": "600900_2025Q3",
+              "sha256": "1efb73a0c2327419f6c9d571bd34814f8c4672cbc4d3def87c414e65b3f6d3c0",
+              "page": 11,
+              "operand": "42895214451.84"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2026Q1",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DISCLOSED_Q1",
+      "facts": {
+        "revenue": {
+          "value": "18111540767.50",
+          "formula": "18111540767.50 - 0",
+          "sources": [
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 8,
+              "operand": "18111540767.50"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8033135242.20",
+          "formula": "8033135242.20 - 0",
+          "sources": [
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 8,
+              "operand": "8033135242.20"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "132360569.04",
+          "formula": "132360569.04 - 0",
+          "sources": [
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 8,
+              "operand": "132360569.04"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "11710663090.90",
+          "formula": "11710663090.90 - 0",
+          "sources": [
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 11,
+              "operand": "11710663090.90"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2026Q2",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "19817728159.68",
+          "formula": "37929268927.18 - 18111540767.50",
+          "sources": [
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 50,
+              "operand": "37929268927.18"
+            },
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 8,
+              "operand": "18111540767.50"
+            }
+          ]
+        },
+        "cost": {
+          "value": "7938025452.34",
+          "formula": "15971160694.54 - 8033135242.20",
+          "sources": [
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 50,
+              "operand": "15971160694.54"
+            },
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 8,
+              "operand": "8033135242.20"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "195209724.79",
+          "formula": "327570293.83 - 132360569.04",
+          "sources": [
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 51,
+              "operand": "327570293.83"
+            },
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 8,
+              "operand": "132360569.04"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "12417650683.47",
+          "formula": "24128313774.37 - 11710663090.90",
+          "sources": [
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 55,
+              "operand": "24128313774.37"
+            },
+            {
+              "id": "600900_2026Q1",
+              "sha256": "3536efda5117d4ef071729a16b9de8449846aedca0a8f2d7ff9a5eafa2cafe84",
+              "page": 11,
+              "operand": "11710663090.90"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600900",
+      "quarter": "2026Q3",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "25126945941.07",
+          "formula": "63056214868.25 - 37929268927.18",
+          "sources": [
+            {
+              "id": "600900_2026Q3",
+              "sha256": "ba9cad3b152085beb53f5753982e76002c607291738839c42d5dae150a9e179e",
+              "page": 8,
+              "operand": "63056214868.25"
+            },
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 50,
+              "operand": "37929268927.18"
+            }
+          ]
+        },
+        "cost": {
+          "value": "8460170352.28",
+          "formula": "24431331046.82 - 15971160694.54",
+          "sources": [
+            {
+              "id": "600900_2026Q3",
+              "sha256": "ba9cad3b152085beb53f5753982e76002c607291738839c42d5dae150a9e179e",
+              "page": 9,
+              "operand": "24431331046.82"
+            },
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 50,
+              "operand": "15971160694.54"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "212742283.27",
+          "formula": "540312577.10 - 327570293.83",
+          "sources": [
+            {
+              "id": "600900_2026Q3",
+              "sha256": "ba9cad3b152085beb53f5753982e76002c607291738839c42d5dae150a9e179e",
+              "page": 9,
+              "operand": "540312577.10"
+            },
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 51,
+              "operand": "327570293.83"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "16214777287.58",
+          "formula": "40343091061.95 - 24128313774.37",
+          "sources": [
+            {
+              "id": "600900_2026Q3",
+              "sha256": "ba9cad3b152085beb53f5753982e76002c607291738839c42d5dae150a9e179e",
+              "page": 11,
+              "operand": "40343091061.95"
+            },
+            {
+              "id": "600900_2026H1",
+              "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+              "page": 55,
+              "operand": "24128313774.37"
+            }
+          ]
+        }
+      },
+      "comparability": "CAUTION: 2025 common-control acquisition restates 2024 Q1/H1; 2024Q4 retained as-original, no causal cross-break inference"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2024Q4",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "7795301496.96",
+          "formula": "27984605342.06 - 20189303845.10",
+          "sources": [
+            {
+              "id": "600276_2024FY",
+              "sha256": "7fad40fef23755f81ce5322f45483ea257ef026ebf1f7f5655c8d5998d7049fc",
+              "page": 146,
+              "operand": "27984605342.06"
+            },
+            {
+              "id": "600276_2024Q3",
+              "sha256": "f44231bc4c6a03e313c613f28f4a1fd7f99bfae6402af2692f7009093f9ec20c",
+              "page": 7,
+              "operand": "20189303845.10"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1014994714.18",
+          "formula": "3848177391.88 - 2833182677.70",
+          "sources": [
+            {
+              "id": "600276_2024FY",
+              "sha256": "7fad40fef23755f81ce5322f45483ea257ef026ebf1f7f5655c8d5998d7049fc",
+              "page": 146,
+              "operand": "3848177391.88"
+            },
+            {
+              "id": "600276_2024Q3",
+              "sha256": "f44231bc4c6a03e313c613f28f4a1fd7f99bfae6402af2692f7009093f9ec20c",
+              "page": 7,
+              "operand": "2833182677.70"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "2034045199.73",
+          "formula": "6582915544.87 - 4548870345.14",
+          "sources": [
+            {
+              "id": "600276_2024FY",
+              "sha256": "7fad40fef23755f81ce5322f45483ea257ef026ebf1f7f5655c8d5998d7049fc",
+              "page": 146,
+              "operand": "6582915544.87"
+            },
+            {
+              "id": "600276_2024Q3",
+              "sha256": "f44231bc4c6a03e313c613f28f4a1fd7f99bfae6402af2692f7009093f9ec20c",
+              "page": 7,
+              "operand": "4548870345.14"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "2837307029.59",
+          "formula": "7422753038.71 - 4585446009.12",
+          "sources": [
+            {
+              "id": "600276_2024FY",
+              "sha256": "7fad40fef23755f81ce5322f45483ea257ef026ebf1f7f5655c8d5998d7049fc",
+              "page": 149,
+              "operand": "7422753038.71"
+            },
+            {
+              "id": "600276_2024Q3",
+              "sha256": "f44231bc4c6a03e313c613f28f4a1fd7f99bfae6402af2692f7009093f9ec20c",
+              "page": 9,
+              "operand": "4585446009.12"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2025Q1",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DISCLOSED_Q1",
+      "facts": {
+        "revenue": {
+          "value": "7205611122.72",
+          "formula": "7205611122.72 - 0",
+          "sources": [
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 6,
+              "operand": "7205611122.72"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1068662516.36",
+          "formula": "1068662516.36 - 0",
+          "sources": [
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 6,
+              "operand": "1068662516.36"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "1533207293.28",
+          "formula": "1533207293.28 - 0",
+          "sources": [
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 6,
+              "operand": "1533207293.28"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "555174088.51",
+          "formula": "555174088.51 - 0",
+          "sources": [
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 8,
+              "operand": "555174088.51"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2025Q2",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "8555582506.18",
+          "formula": "15761193628.90 - 7205611122.72",
+          "sources": [
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 49,
+              "operand": "15761193628.90"
+            },
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 6,
+              "operand": "7205611122.72"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1046299652.82",
+          "formula": "2114962169.18 - 1068662516.36",
+          "sources": [
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 49,
+              "operand": "2114962169.18"
+            },
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 6,
+              "operand": "1068662516.36"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "1694726188.82",
+          "formula": "3227933482.10 - 1533207293.28",
+          "sources": [
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 49,
+              "operand": "3227933482.10"
+            },
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 6,
+              "operand": "1533207293.28"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "3745279162.89",
+          "formula": "4300453251.40 - 555174088.51",
+          "sources": [
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 52,
+              "operand": "4300453251.40"
+            },
+            {
+              "id": "600276_2025Q1",
+              "sha256": "84e0d61c0226b0759a49af21408217463861c8f76478e04d4c3d805eb388e721",
+              "page": 8,
+              "operand": "555174088.51"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2025Q3",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "7426888299.87",
+          "formula": "23188081928.77 - 15761193628.90",
+          "sources": [
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 6,
+              "operand": "23188081928.77"
+            },
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 49,
+              "operand": "15761193628.90"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1080479014.16",
+          "formula": "3195441183.34 - 2114962169.18",
+          "sources": [
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 6,
+              "operand": "3195441183.34"
+            },
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 49,
+              "operand": "2114962169.18"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "1717385098.13",
+          "formula": "4945318580.23 - 3227933482.10",
+          "sources": [
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 6,
+              "operand": "4945318580.23"
+            },
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 49,
+              "operand": "3227933482.10"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "4809977038.87",
+          "formula": "9110430290.27 - 4300453251.40",
+          "sources": [
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 8,
+              "operand": "9110430290.27"
+            },
+            {
+              "id": "600276_2025H1",
+              "sha256": "f09165808c0c622c84802a02eb058ff969fc5d06a1f468ec7d284f9484bbc8cc",
+              "page": 52,
+              "operand": "4300453251.40"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2025Q4",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "8441334265.06",
+          "formula": "31629416193.83 - 23188081928.77",
+          "sources": [
+            {
+              "id": "600276_2025FY",
+              "sha256": "fae80e2d132f5b6f2bfbb8bcdfd40e1267edb91d689389d63c8e291b0856ace6",
+              "page": 135,
+              "operand": "31629416193.83"
+            },
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 6,
+              "operand": "23188081928.77"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1167214632.09",
+          "formula": "4362655815.43 - 3195441183.34",
+          "sources": [
+            {
+              "id": "600276_2025FY",
+              "sha256": "fae80e2d132f5b6f2bfbb8bcdfd40e1267edb91d689389d63c8e291b0856ace6",
+              "page": 135,
+              "operand": "4362655815.43"
+            },
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 6,
+              "operand": "3195441183.34"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "2015836833.00",
+          "formula": "6961155413.23 - 4945318580.23",
+          "sources": [
+            {
+              "id": "600276_2025FY",
+              "sha256": "fae80e2d132f5b6f2bfbb8bcdfd40e1267edb91d689389d63c8e291b0856ace6",
+              "page": 135,
+              "operand": "6961155413.23"
+            },
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 6,
+              "operand": "4945318580.23"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "2124947840.36",
+          "formula": "11235378130.63 - 9110430290.27",
+          "sources": [
+            {
+              "id": "600276_2025FY",
+              "sha256": "fae80e2d132f5b6f2bfbb8bcdfd40e1267edb91d689389d63c8e291b0856ace6",
+              "page": 137,
+              "operand": "11235378130.63"
+            },
+            {
+              "id": "600276_2025Q3",
+              "sha256": "15136c6bfd4c60e46e7ba36f6744f833aebf1f9aca05e000601d2fc3365abfb2",
+              "page": 8,
+              "operand": "9110430290.27"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2026Q1",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DISCLOSED_Q1",
+      "facts": {
+        "revenue": {
+          "value": "8140565320.77",
+          "formula": "8140565320.77 - 0",
+          "sources": [
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 8,
+              "operand": "8140565320.77"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1090949138.37",
+          "formula": "1090949138.37 - 0",
+          "sources": [
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 8,
+              "operand": "1090949138.37"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "1650624680.45",
+          "formula": "1650624680.45 - 0",
+          "sources": [
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 8,
+              "operand": "1650624680.45"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "786445900.71",
+          "formula": "786445900.71 - 0",
+          "sources": [
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 10,
+              "operand": "786445900.71"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2026Q2",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "7315018407.34",
+          "formula": "15455583728.11 - 8140565320.77",
+          "sources": [
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 77,
+              "operand": "15455583728.11"
+            },
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 8,
+              "operand": "8140565320.77"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1022393890.98",
+          "formula": "2113343029.35 - 1090949138.37",
+          "sources": [
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 77,
+              "operand": "2113343029.35"
+            },
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 8,
+              "operand": "1090949138.37"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "1842286926.93",
+          "formula": "3492911607.38 - 1650624680.45",
+          "sources": [
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 77,
+              "operand": "3492911607.38"
+            },
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 8,
+              "operand": "1650624680.45"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "1200557971.63",
+          "formula": "1987003872.34 - 786445900.71",
+          "sources": [
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 80,
+              "operand": "1987003872.34"
+            },
+            {
+              "id": "600276_2026Q1",
+              "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+              "page": 10,
+              "operand": "786445900.71"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "600276",
+      "quarter": "2026Q3",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "8953178996.08",
+          "formula": "24408762724.19 - 15455583728.11",
+          "sources": [
+            {
+              "id": "600276_2026Q3",
+              "sha256": "9fc0702f6de6d25d8bd2e8bfdbc57cc69b964459f38db9d87be83baa9dc0c073",
+              "page": 9,
+              "operand": "24408762724.19"
+            },
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 77,
+              "operand": "15455583728.11"
+            }
+          ]
+        },
+        "cost": {
+          "value": "1112450196.29",
+          "formula": "3225793225.64 - 2113343029.35",
+          "sources": [
+            {
+              "id": "600276_2026Q3",
+              "sha256": "9fc0702f6de6d25d8bd2e8bfdbc57cc69b964459f38db9d87be83baa9dc0c073",
+              "page": 9,
+              "operand": "3225793225.64"
+            },
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 77,
+              "operand": "2113343029.35"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "1930057752.59",
+          "formula": "5422969359.97 - 3492911607.38",
+          "sources": [
+            {
+              "id": "600276_2026Q3",
+              "sha256": "9fc0702f6de6d25d8bd2e8bfdbc57cc69b964459f38db9d87be83baa9dc0c073",
+              "page": 9,
+              "operand": "5422969359.97"
+            },
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 77,
+              "operand": "3492911607.38"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "5856646257.07",
+          "formula": "7843650129.41 - 1987003872.34",
+          "sources": [
+            {
+              "id": "600276_2026Q3",
+              "sha256": "9fc0702f6de6d25d8bd2e8bfdbc57cc69b964459f38db9d87be83baa9dc0c073",
+              "page": 10,
+              "operand": "7843650129.41"
+            },
+            {
+              "id": "600276_2026H1",
+              "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+              "page": 80,
+              "operand": "1987003872.34"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2024Q4",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "846104518.78",
+          "formula": "3385742818.95 - 2539638300.17",
+          "sources": [
+            {
+              "id": "688220_2024FY",
+              "sha256": "6ecdcee26e2107726786650f3fc686a893e91894f1b52b4e597de98057afa00f",
+              "page": 164,
+              "operand": "3385742818.95"
+            },
+            {
+              "id": "688220_2024Q3",
+              "sha256": "8c4f1efb22177bff54c4ed673f9c1c2809b1101482befd9f76e6c262c6977d99",
+              "page": 10,
+              "operand": "2539638300.17"
+            }
+          ]
+        },
+        "cost": {
+          "value": "656684325.30",
+          "formula": "2600546514.67 - 1943862189.37",
+          "sources": [
+            {
+              "id": "688220_2024FY",
+              "sha256": "6ecdcee26e2107726786650f3fc686a893e91894f1b52b4e597de98057afa00f",
+              "page": 164,
+              "operand": "2600546514.67"
+            },
+            {
+              "id": "688220_2024Q3",
+              "sha256": "8c4f1efb22177bff54c4ed673f9c1c2809b1101482befd9f76e6c262c6977d99",
+              "page": 10,
+              "operand": "1943862189.37"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "337268640.09",
+          "formula": "1241806638.15 - 904537998.06",
+          "sources": [
+            {
+              "id": "688220_2024FY",
+              "sha256": "6ecdcee26e2107726786650f3fc686a893e91894f1b52b4e597de98057afa00f",
+              "page": 164,
+              "operand": "1241806638.15"
+            },
+            {
+              "id": "688220_2024Q3",
+              "sha256": "8c4f1efb22177bff54c4ed673f9c1c2809b1101482befd9f76e6c262c6977d99",
+              "page": 10,
+              "operand": "904537998.06"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-37558114.15",
+          "formula": "-403598869.75 - -366040755.60",
+          "sources": [
+            {
+              "id": "688220_2024FY",
+              "sha256": "6ecdcee26e2107726786650f3fc686a893e91894f1b52b4e597de98057afa00f",
+              "page": 168,
+              "operand": "-403598869.75"
+            },
+            {
+              "id": "688220_2024Q3",
+              "sha256": "8c4f1efb22177bff54c4ed673f9c1c2809b1101482befd9f76e6c262c6977d99",
+              "page": 13,
+              "operand": "-366040755.60"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2025Q1",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DISCLOSED_Q1",
+      "facts": {
+        "revenue": {
+          "value": "909945198.53",
+          "formula": "909945198.53 - 0",
+          "sources": [
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 8,
+              "operand": "909945198.53"
+            }
+          ]
+        },
+        "cost": {
+          "value": "670182339.64",
+          "formula": "670182339.64 - 0",
+          "sources": [
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 8,
+              "operand": "670182339.64"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "357257685.32",
+          "formula": "357257685.32 - 0",
+          "sources": [
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 9,
+              "operand": "357257685.32"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-183222888.41",
+          "formula": "-183222888.41 - 0",
+          "sources": [
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 11,
+              "operand": "-183222888.41"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2025Q2",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "988121193.67",
+          "formula": "1898066392.20 - 909945198.53",
+          "sources": [
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 112,
+              "operand": "1898066392.20"
+            },
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 8,
+              "operand": "909945198.53"
+            }
+          ]
+        },
+        "cost": {
+          "value": "758731601.13",
+          "formula": "1428913940.77 - 670182339.64",
+          "sources": [
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 112,
+              "operand": "1428913940.77"
+            },
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 8,
+              "operand": "670182339.64"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "311193269.45",
+          "formula": "668450954.77 - 357257685.32",
+          "sources": [
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 112,
+              "operand": "668450954.77"
+            },
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 9,
+              "operand": "357257685.32"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-83230327.81",
+          "formula": "-266453216.22 - -183222888.41",
+          "sources": [
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 117,
+              "operand": "-266453216.22"
+            },
+            {
+              "id": "688220_2025Q1",
+              "sha256": "d5c32dc9b5998f330ce54d72885a27483454bcf2c976327876b61fd0caf44dec",
+              "page": 11,
+              "operand": "-183222888.41"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2025Q3",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "982324018.87",
+          "formula": "2880390411.07 - 1898066392.20",
+          "sources": [
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 10,
+              "operand": "2880390411.07"
+            },
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 112,
+              "operand": "1898066392.20"
+            }
+          ]
+        },
+        "cost": {
+          "value": "720534882.86",
+          "formula": "2149448823.63 - 1428913940.77",
+          "sources": [
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 10,
+              "operand": "2149448823.63"
+            },
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 112,
+              "operand": "1428913940.77"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "336196626.63",
+          "formula": "1004647581.40 - 668450954.77",
+          "sources": [
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 10,
+              "operand": "1004647581.40"
+            },
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 112,
+              "operand": "668450954.77"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-23618512.76",
+          "formula": "-290071728.98 - -266453216.22",
+          "sources": [
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 13,
+              "operand": "-290071728.98"
+            },
+            {
+              "id": "688220_2025H1",
+              "sha256": "b9b3b380656bc1e85c815eadcc257aff7b8f07f3bef53a814fcfd4847e6476f3",
+              "page": 117,
+              "operand": "-266453216.22"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2025Q4",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "936413087.29",
+          "formula": "3816803498.36 - 2880390411.07",
+          "sources": [
+            {
+              "id": "688220_2025FY",
+              "sha256": "0ddcb6663924f756430e892888a73e386493f518f928fe0415288036d163050e",
+              "page": 146,
+              "operand": "3816803498.36"
+            },
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 10,
+              "operand": "2880390411.07"
+            }
+          ]
+        },
+        "cost": {
+          "value": "714946189.41",
+          "formula": "2864395013.04 - 2149448823.63",
+          "sources": [
+            {
+              "id": "688220_2025FY",
+              "sha256": "0ddcb6663924f756430e892888a73e386493f518f928fe0415288036d163050e",
+              "page": 146,
+              "operand": "2864395013.04"
+            },
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 10,
+              "operand": "2149448823.63"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "294098834.73",
+          "formula": "1298746416.13 - 1004647581.40",
+          "sources": [
+            {
+              "id": "688220_2025FY",
+              "sha256": "0ddcb6663924f756430e892888a73e386493f518f928fe0415288036d163050e",
+              "page": 146,
+              "operand": "1298746416.13"
+            },
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 10,
+              "operand": "1004647581.40"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-141953569.23",
+          "formula": "-432025298.21 - -290071728.98",
+          "sources": [
+            {
+              "id": "688220_2025FY",
+              "sha256": "0ddcb6663924f756430e892888a73e386493f518f928fe0415288036d163050e",
+              "page": 150,
+              "operand": "-432025298.21"
+            },
+            {
+              "id": "688220_2025Q3",
+              "sha256": "259605541dc04ae9f16dfb06cd06f76052d39106f9bfa80881f503fecd47004c",
+              "page": 13,
+              "operand": "-290071728.98"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2026Q1",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DISCLOSED_Q1",
+      "facts": {
+        "revenue": {
+          "value": "1129984554.24",
+          "formula": "1129984554.24 - 0",
+          "sources": [
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 9,
+              "operand": "1129984554.24"
+            }
+          ]
+        },
+        "cost": {
+          "value": "789409290.72",
+          "formula": "789409290.72 - 0",
+          "sources": [
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 9,
+              "operand": "789409290.72"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "343594839.24",
+          "formula": "343594839.24 - 0",
+          "sources": [
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 10,
+              "operand": "343594839.24"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-298510815.48",
+          "formula": "-298510815.48 - 0",
+          "sources": [
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 12,
+              "operand": "-298510815.48"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2026Q2",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "1321290548.03",
+          "formula": "2451275102.27 - 1129984554.24",
+          "sources": [
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 86,
+              "operand": "2451275102.27"
+            },
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 9,
+              "operand": "1129984554.24"
+            }
+          ]
+        },
+        "cost": {
+          "value": "940349702.27",
+          "formula": "1729758992.99 - 789409290.72",
+          "sources": [
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 86,
+              "operand": "1729758992.99"
+            },
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 9,
+              "operand": "789409290.72"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "319727882.50",
+          "formula": "663322721.74 - 343594839.24",
+          "sources": [
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 86,
+              "operand": "663322721.74"
+            },
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 10,
+              "operand": "343594839.24"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "-78674562.83",
+          "formula": "-377185378.31 - -298510815.48",
+          "sources": [
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 90,
+              "operand": "-377185378.31"
+            },
+            {
+              "id": "688220_2026Q1",
+              "sha256": "d7d29887aa6365b307a6c0dbdf0a3390902ec7356f3f3b7effc416db6887b0fa",
+              "page": 12,
+              "operand": "-298510815.48"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    },
+    {
+      "issuer": "688220",
+      "quarter": "2026Q3",
+      "unit": "CNY yuan",
+      "scope": "consolidated",
+      "classification": "DERIVED_SINGLE_QUARTER",
+      "facts": {
+        "revenue": {
+          "value": "1363095552.55",
+          "formula": "3814370654.82 - 2451275102.27",
+          "sources": [
+            {
+              "id": "688220_2026Q3",
+              "sha256": "e7a56ad1303933c502acbb855c7bcdbc1e0fb4d0569ad8e4ed042f3bca5d6887",
+              "page": 10,
+              "operand": "3814370654.82"
+            },
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 86,
+              "operand": "2451275102.27"
+            }
+          ]
+        },
+        "cost": {
+          "value": "909885271.97",
+          "formula": "2639644264.96 - 1729758992.99",
+          "sources": [
+            {
+              "id": "688220_2026Q3",
+              "sha256": "e7a56ad1303933c502acbb855c7bcdbc1e0fb4d0569ad8e4ed042f3bca5d6887",
+              "page": 10,
+              "operand": "2639644264.96"
+            },
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 86,
+              "operand": "1729758992.99"
+            }
+          ]
+        },
+        "rd_expense": {
+          "value": "240222479.94",
+          "formula": "903545201.68 - 663322721.74",
+          "sources": [
+            {
+              "id": "688220_2026Q3",
+              "sha256": "e7a56ad1303933c502acbb855c7bcdbc1e0fb4d0569ad8e4ed042f3bca5d6887",
+              "page": 10,
+              "operand": "903545201.68"
+            },
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 86,
+              "operand": "663322721.74"
+            }
+          ]
+        },
+        "cfo": {
+          "value": "140416730.69",
+          "formula": "-236768647.62 - -377185378.31",
+          "sources": [
+            {
+              "id": "688220_2026Q3",
+              "sha256": "e7a56ad1303933c502acbb855c7bcdbc1e0fb4d0569ad8e4ed042f3bca5d6887",
+              "page": 13,
+              "operand": "-236768647.62"
+            },
+            {
+              "id": "688220_2026H1",
+              "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+              "page": 90,
+              "operand": "-377185378.31"
+            }
+          ]
+        }
+      },
+      "comparability": "AS_REPORTED_SCOPE; full note and acquisition audit NOT_CHECKED"
+    }
+  ],
+  "comparative_revisions": [
+    {
+      "issuer": "600900",
+      "period": "2024Q1",
+      "metric": "revenue",
+      "original": "15640900490.43",
+      "later_comparative": "15656758358.43",
+      "original_source": "600900_2024Q1",
+      "later_source": "600900_2025Q1",
+      "resolution": "REQUIRES_NOTE_RECONCILIATION; do not mechanically splice"
+    },
+    {
+      "issuer": "600900",
+      "period": "2024Q1",
+      "metric": "cost",
+      "original": "8111694928.75",
+      "later_comparative": "8122615907.15",
+      "original_source": "600900_2024Q1",
+      "later_source": "600900_2025Q1",
+      "resolution": "REQUIRES_NOTE_RECONCILIATION; do not mechanically splice"
+    },
+    {
+      "issuer": "600900",
+      "period": "2024Q1",
+      "metric": "cfo",
+      "original": "12093344021.00",
+      "later_comparative": "12114272426.38",
+      "original_source": "600900_2024Q1",
+      "later_source": "600900_2025Q1",
+      "resolution": "REQUIRES_NOTE_RECONCILIATION; do not mechanically splice"
+    },
+    {
+      "issuer": "600900",
+      "period": "2024H1",
+      "metric": "cfo",
+      "original": "22983963923.72",
+      "later_comparative": "23021419364.46",
+      "original_source": "600900_2024H1",
+      "later_source": "600900_2025H1",
+      "resolution": "REQUIRES_NOTE_RECONCILIATION; do not mechanically splice"
+    },
+    {
+      "issuer": "688220",
+      "period": "2024Q1",
+      "metric": "cost",
+      "original": "632639321.85",
+      "later_comparative": "633125397.15",
+      "original_source": "688220_2024Q1",
+      "later_source": "688220_2025Q1",
+      "resolution": "REQUIRES_NOTE_RECONCILIATION; do not mechanically splice"
+    }
+  ]
+}

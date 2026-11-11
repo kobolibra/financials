@@ -93,18 +93,18 @@ def signed(l, title, subtitle, rows, foot):
     if hi==lo:hi=lo+D(1)
     scale=D(298)/(hi-lo)
     x=lambda k:float(D(16)+(k-lo)*scale)
-    svg=['<svg class="native-signed-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 '+str(32+len(segments)*68)+'" role="img" aria-label="'+E(title)+'，每行精确人民币元累计，同一线性货币坐标，有符号连贯瀑布">']
+    svg=['<svg class="native-signed-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 '+str(40+len(segments)*88)+'" role="img" aria-label="'+E(title)+'，每行精确人民币元累计，同一线性货币坐标，有符号连贯瀑布">']
     zero=x(D(0))
-    svg.append(f'<path d="M{zero:.6f},24 L{zero:.6f},{24+len(segments)*68}" stroke="#c5d3cc" stroke-dasharray="3 5"/>')
+    svg.append(f'<path d="M{zero:.6f},24 L{zero:.6f},{24+len(segments)*88}" stroke="#c5d3cc" stroke-dasharray="3 5"/>')
     for i,(name,a,b,amt,kind,source) in enumerate(segments):
-        y=32+i*68
+        y=32+i*88
         shown=amt if kind not in ("start","total") else b
         col=INK if kind in ("start","total") else GREEN if amt>=0 else RUST
         x0=x(min(a,b));w=x(max(a,b))-x0
-        svg.append('<g><text x="14" y="'+str(y)+'" font-size="12" fill="'+INK+'" font-weight="600">'+E((name[:17]+"…" if len(name)>18 else name))+'</text>')
-        svg.append('<text x="317" y="'+str(y)+'" text-anchor="end" font-size="12" fill="'+col+'" font-weight="700">'+E(("+" if amt>0 and kind=="step" else "")+money(shown))+'</text>')
-        svg.append(f'<rect class="native-signed-money" data-step="{i}" data-kind="{kind}" data-signed-yuan="{str(amt)}" data-cumulative-yuan="{str(b)}" x="{x0:.8f}" y="{y+10}" width="{w:.8f}" height="16" fill="{col}"/>')
-        svg.append('<text x="317" y="'+str(y+44)+'" text-anchor="end" font-size="10" fill="#637b76">累计 '+E(money(b))+'</text></g>')
+        svg.append('<g><text x="14" y="'+str(y)+'" font-size="13" fill="'+INK+'" font-weight="600">'+E(name)+'</text>')
+        svg.append('<text x="317" y="'+str(y+21)+'" text-anchor="end" font-size="13" fill="'+col+'" font-weight="700">'+E(("+" if amt>0 and kind=="step" else "")+money(shown))+'</text>')
+        svg.append(f'<rect class="native-signed-money" data-step="{i}" data-kind="{kind}" data-signed-yuan="{str(amt)}" data-cumulative-yuan="{str(b)}" data-before-yuan="{str(a)}" data-yuan-per-svg-unit="{str(D(1)/scale)}" data-source-page="{E(source)}" x="{x0:.8f}" y="{y+34}" width="{w:.8f}" height="16" fill="{col}"/>')
+        svg.append('<text x="317" y="'+str(y+70)+'" text-anchor="end" font-size="12" fill="#637b76">累计 '+E(money(b))+'</text></g>')
     svg.append('</svg>')
     return card(title,subtitle,''.join(svg),foot)
 
@@ -192,7 +192,7 @@ def paired(l,title,pairs,note,percent=False):
 def margin(l):
     q=lambda k:v(l,k)
     a=q("revenue_prior");b=q("revenue")
-    if not a or not b:return card("盈利率比较","可比期间缺失",'<p>NOT_CHECKED</p>')
+    if not a or not b:return card("盈利率比较","可比期间缺失",'<p>尚未核验</p>')
     pairs=[("毛利率",((q("revenue_prior")-q("cogs_prior"))/a*100),(q("gross_profit")/b*100),"gross")]
     if q("cfo_prior") is not None:pairs.append(("经营现金流/收入",q("cfo_prior")/a*100,q("cfo")/b*100,"cfo"))
     if q("capex_cash_prior") is not None and q("cfo_prior") is not None:

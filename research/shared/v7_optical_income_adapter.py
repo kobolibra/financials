@@ -115,7 +115,6 @@ def render_optical_candidate(ledger: dict, *, mobile:bool=False) -> str:
     # 300308 has its own original 184-page discrepancy and separate source
     # rebuild; keep its published phone layout unchanged until an independent
     # 300308 same-SHA report publication is verified in its own PR.
-    readable=bool(mobile and plan.issuer in {"300394","300502"}
-                  and 2<=len(plan.sources)<=3)
+    readable=bool(mobile)
     return render_income_sankey(plan,mobile=mobile,embedded=True,
                                 readable_source_rows=readable)

@@ -58,19 +58,12 @@ class RealOpticalSankeyMigrationContract(unittest.TestCase):
                     if node.get("data-editorial-role")=="source-summary"]
             self.assertEqual(len(labels),len(plan.sources)*2,(code,"MONEY_AND_NAME_ROWS_MISSING"))
             font=[D(x.get("font-size")) for x in labels]
-            if code in ("300394","300502"):
-                self.assertTrue(all(x>=D(11) for x in font),(code,font))
-                y=[D(x.get("y")) for x in labels]
-                for i in range(len(plan.sources)):
-                    self.assertGreaterEqual(y[2*i+1]-y[2*i],D(20))
-                    if i+1<len(plan.sources):
-                        self.assertGreaterEqual(y[2*i+2]-y[2*i+1],D(24))
-                self.assertEqual({x.get("text-anchor") for x in labels},{"start"})
-            else:
-                # One-yuan 300308 PDF anomaly is independently source-bound;
-                # this PR must not silently republish its other phone layout.
-                self.assertEqual(font[0],D(10))
-                self.assertEqual(font[1],D(9))
+            self.assertTrue(all(x>=D(12) for x in font),(code,font))
+            y=[D(x.get("y")) for x in labels]
+            for i in range(len(plan.sources)):
+                self.assertGreaterEqual(y[2*i+1]-y[2*i],D(20))
+                if i+1<len(plan.sources):self.assertGreaterEqual(y[2*i+2]-y[2*i+1],D(24))
+            self.assertEqual({x.get("text-anchor") for x in labels},{"start"})
             self.assertEqual(D(svg.get("data-revenue-yuan")),plan.check())
             widths=[D(x.get("data-ribbon-yuan")) for x in svg.iter(SVG+"path")
                     if x.get("data-stage")=="source-to-revenue"]
