@@ -132,7 +132,12 @@ jobs:
                     assert page.locator('figure.figure').count()==8,(ticker,'new sector preview lost any sourced figure')
                     assert page.locator('figure table').count()==8,(ticker,'new sector preview source figure tables missing')
                     assert page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"] table').count()==1,(ticker,'source financial profit bridge facts table missing')
-                    assert page.locator('table').count()==9,(ticker,'missing signed profit or sourced original figure evidence')
+                    assert page.locator('table').count()>=9,(ticker,'missing signed profit or sourced original figure evidence')
+                    context=page.locator('section[data-research-context="SOURCE_NOTES_AND_HISTORY_V1"]')
+                    assert context.count()==1,(ticker,'source notes and history missing')
+                    assert context.get_attribute('data-issuer')==ticker,(ticker,'borrowed research context')
+                    assert len(context.get_attribute('data-note-pdf-sha256') or '')==64,(ticker,'note source fingerprint missing')
+                    assert context.locator('tr[data-period]').count()==8,(ticker,'eight sourced quarters missing')
                     # Same source-bound V9 graph as ASR. Reject false money edges,
                     # duplicated source groups or an invisible/imaginary trunk.
                     # The old .money-source / .money-ribbon CSS nodes were
