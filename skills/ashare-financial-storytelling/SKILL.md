@@ -36,6 +36,10 @@ Sankey nodes require unique nonreserved identities, real cost AND profit roles a
 
 Responsive QA must observe every figure, not only the first Sankey. Use `scripts/audit_delivery_matrix.py` on the live canonical catalog: 1440/768/390, actual displayed text sizes, clipping, overlaps, ribbon endpoint amounts, screenshot SHA and article SHA. At 768, select native small-screen drawings where desktop labels shrink below legibility. Every new economics panel needs a true native phone drawing and working visible-layout SVG export. Small-font observations require editorial review; zero JS/overflow errors alone NEVER certify typography or aesthetics. Record exact scope, preserve historical live receipts and keep new candidate deployment/human review separate.
 
+## 2026-11-12 transfer rule: explicit reporting periods
+
+The shared signed P&L plan accepts `period` from the original report, never an issuer-name lookup. Existing 2026H1 callers retain byte-compatible defaults; every new-period adapter must supply the actual source period explicitly. Every cited fact must match that period and consolidated CNY-yuan basis. Reject borrowed issuer facts, foreign currencies, nonfinite money, boolean/missing physical pages and mixed reporting periods before drawing. Run `test_signed_period_generalization.py` in normal and optimized Python. Its 60 deterministic unseen synthetic issuer/period cases test arithmetic and renderer geometry only: they do not certify real unseen PDF extraction or investment analysis. Existing full-PDF issuer rebuilds and real browser/art review remain mandatory; seven historical nonhero migrations are still pending.
+
 ## 1. Research must precede drawing
 
 For **every** report, create five decision-bound items linked to literal source fact IDs, issuer, reporting period, original PDF SHA and physical pages:

@@ -56,8 +56,15 @@ class SignedStatement:
     checkpoints:tuple[tuple[str,str],...]  # (stage id, disclosed fact key)
     end_fact_id:str
     end_yuan:D
+    period:str="2026H1"  # Backward-compatible; new adapters pass the actual source period.
 
     def check(self,facts:dict)->tuple[tuple[SignedStage,D,D,tuple[int,...]],...]:
+        if not isinstance(self.period,str) or not self.period.strip():
+            raise ValueError("SIGNED_SOURCE_PERIOD_REQUIRED")
+        if not isinstance(self.issuer,str) or not self.issuer.strip():
+            raise ValueError("SIGNED_SOURCE_ISSUER_REQUIRED")
+        if len(self.start_fact_ids)!=2:
+            raise ValueError("SIGNED_GROSS_REVENUE_COST_PAIR_REQUIRED")
         if len(self.source_sha256)!=64 or any(ch not in "0123456789abcdef" for ch in self.source_sha256):
             raise ValueError("SIGNED_SOURCE_SHA_NOT_PROVEN")
         if self.source_status not in ("MIRROR_COMPLETE_PDF_SHA_PASS__OFFICIAL_EQUIVALENCE_NOT_CHECKED",
@@ -77,10 +84,14 @@ class SignedStatement:
             v=facts.get(key)
             if not isinstance(v,dict):
                 raise ValueError("SIGNED_DISCONNECTED_FACT "+key)
-            if v.get("scope")!="consolidated" or v.get("period")!="2026H1" or v.get("unit")!="元":
+            if v.get("scope")!="consolidated" or v.get("period")!=self.period or v.get("unit")!="元":
                 raise ValueError("SIGNED_CROSS_PERIOD_SCOPE_UNIT "+key)
-            if not isinstance(v.get("page"),int) or v["page"]<=0:
+            if type(v.get("page")) is not int or v["page"]<=0:
                 raise ValueError("SIGNED_MISSING_SOURCE_PAGE "+key)
+            if "issuer" in v and v["issuer"]!=self.issuer:
+                raise ValueError("SIGNED_BORROWED_ISSUER_FACT "+key)
+            if "currency" in v and v["currency"]!="CNY":
+                raise ValueError("SIGNED_FOREIGN_CURRENCY_FACT "+key)
             money(v["yuan"])
         current=D(0)
         rows=[]
@@ -169,7 +180,7 @@ def render_signed_statement(plan:SignedStatement,facts:dict,*,mobile:bool)->str:
             f'role="img" aria-label="{E(desc)}" '
             f'data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1" '
             f'data-issuer="{E(plan.issuer)}" data-accounting-scope="consolidated" '
-            f'data-period="2026H1" data-layout="{"native-330" if mobile else "editorial-1040"}" '
+            f'data-period="{E(plan.period)}" data-layout="{"native-330" if mobile else "editorial-1040"}" '
             f'data-original-pdf-sha256="{E(plan.source_sha256)}" '
             f'data-source-status="{E(plan.source_status)}" '
             f'data-start-gross-yuan="{plan.start_yuan}" data-end-net-yuan="{plan.end_yuan}" '
