@@ -54,7 +54,7 @@ jobs:
               plan=optical_flow_plan(json.loads(ledger_path.read_text()))
               total=plan.check()
               count=len(plan.sources)
-              assert h.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2,(code,'TWO_NATIVE_UNIFIED_FIGURES_REQUIRED')
+              assert h.count('data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"')==2,(code,'TWO_NATIVE_UNIFIED_FIGURES_REQUIRED')
               assert h.count('data-node-id="revenue-total"')==2,(code,'SINGLE_SHARED_TOTAL_PER_FIGURE_REQUIRED')
               assert h.count('data-stage="source-to-revenue"')==2*count,(code,'ALL_EXCLUSIVE_SOURCES_MUST_CONNECT')
               assert h.count('data-stage="revenue-to-outcome"')==4*count,(code,'OWN_PRODUCT_GP_AND_COST_MUST_CONNECT')
