@@ -44,7 +44,7 @@ jobs:
           from pathlib import Path
           for c in ('300394','300502','300308'):
               src=Path('public/'+c+'.html').read_text()
-              assert src.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"')==2
+              assert src.count('data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"')==2
               assert src.count('data-node-id="revenue-total"')==2
               assert src.count('class="native-finance"')>=9
           PY
