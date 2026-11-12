@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43010535098",
-      "scope": "Actual production main 9101d76b, exact full HTML and original PDF fingerprints, eleven routes, ten figures, five cumulative signed bridges with source dependencies and fifteen real visible-layout SVG downloads; all three CJK viewports pass."
+      "proof": "research/issuers/601628/live-release-receipt.json",
+      "scope": "Actual public main full HTML SHA, 1440/768/390 source and geometry, real visible SVG exports. Local real-browser receipt, not an Actions run; merged publication PR is cited."
     }
   },
   "blockers": [
@@ -124,9 +124,9 @@
     }
   ],
   "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41777012329",
-  "published_html_sha256": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
-  "live_release_fingerprint": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
-  "actual_main_release_commit": "9101d76b178d50c8f76b9ffbb03b769c9ff5b6e4",
+  "published_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+  "live_release_fingerprint": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+  "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
   "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41786674737",
   "actual_live_canonical_route": "/601628",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
@@ -150,14 +150,5 @@
     "status": "PASS",
     "scope": "Old real live source 6f386 original verified at b886 before typographic label collision repair; still available in old main history, not equivalent to new b065 html"
   },
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "b444b4990b2ae2b2f5256c059c0f87463ec4934d33bd5c10bffb5c909025c4bf",
-    "candidate_full_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "Complete nonhero common renderer migration; current production proof remains bound to previously deployed source bytes.",
-    "browser_matrix": "research/quality/full-figure-20261113/result.json",
-    "figure_count": 10
-  }
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
 }

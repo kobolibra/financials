@@ -1610,7 +1610,7 @@
   },
   "quality_upgrade_20261113": {
     "scope": "ALL_SEVEN_COMPLETE_SOURCE_FIGURE_MIGRATION",
-    "publication": "UNMERGED_CANDIDATE_LOCAL_VERIFIED",
+    "publication": "MERGED_PRODUCTION_FULL_FIGURES_VERIFIED",
     "branch": "quality/common-nonhero-20261112",
     "full_figure_receipt": "research/quality/full-figure-20261113/result.json",
     "financial_figures": 65,
@@ -1624,6 +1624,12 @@
     ],
     "future_issuer_policy": "FULL_SOURCE_FIGURES_V1_REQUIRED_OUTSIDE_FOUR_HISTORICAL_V10_CASES_AND_AUTOMATIC_BROWSER_CI_INCLUSION",
     "independent_human_audit": "NOT_CLAIMED",
-    "unseen_real_report_stability": "NOT_CERTIFIED"
+    "unseen_real_report_stability": "NOT_CERTIFIED",
+    "merged_main_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+    "merged_pr": "https://github.com/kobolibra/financials/pull/66",
+    "production_figure_receipt": "research/quality/full-figure-production-20261113/result.json",
+    "production_execution": "LOCAL_REAL_CHROMIUM_PUBLIC_MAIN_NOT_ACTIONS",
+    "production_status": "PASS_65_FIGURES_21_LAYOUTS_195_VISIBLE_SVG_DOWNLOADS",
+    "insurance_live_check_fix": "Current local three-width original-fact check passes; CI source fix accompanies this evidence PR."
   }
 }

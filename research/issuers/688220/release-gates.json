@@ -88,8 +88,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43008612929",
-      "scope": "Actual main e72bae81 source-exact full report HTML, eleven public routes, 1440/768/390 CJK Chromium screenshots and source-money checks; not independent human certification or resolved original note exceptions."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43267776708",
+      "scope": "Actual public main full HTML SHA, 1440/768/390 source and geometry, real visible SVG exports. Downloaded genuine main Actions artifact with ZIP SHA."
     }
   },
   "blockers": [
@@ -108,20 +108,11 @@
   "figure_briefs_file": "research/issuers/688220/figure-briefs.json",
   "sector_adapter": "semiconductor",
   "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment",
-  "published_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
-  "live_release_fingerprint": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+  "published_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+  "live_release_fingerprint": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
-  "actual_main_release_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+  "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
   "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
-    "candidate_full_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "Complete nonhero common renderer migration; current production proof remains bound to previously deployed source bytes.",
-    "browser_matrix": "research/quality/full-figure-20261113/result.json",
-    "figure_count": 9
-  }
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
 }

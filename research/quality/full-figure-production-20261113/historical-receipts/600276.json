@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "issuer": "600276",
+  "status": "PASS",
+  "verified_git_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43008612952",
+  "pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+  "actual_full_content_sha256_equals_repository_main_600276": "a0bd6542cdfdde39a620c3bd9af381fc6bc7b1bf7e8bfe3006241f14acfca0ea",
+  "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "all_11_issuer_external_routes": "PASS",
+  "real_chromium_viewports": [
+    {
+      "width": 1440,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600276",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "mobile_eight_full_width_source_exact_money_exhibits": "DESKTOP_OR_TABLET_SOURCE_SVG",
+      "source_weighted_ribbons_exact": "ORIGINAL_DESKTOP_SOURCE_SVG",
+      "signed_finance_bridges_exact": "ORIGINAL_DESKTOP_SOURCE_SVG"
+    },
+    {
+      "width": 768,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600276",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "mobile_eight_full_width_source_exact_money_exhibits": "DESKTOP_OR_TABLET_SOURCE_SVG",
+      "source_weighted_ribbons_exact": "ORIGINAL_DESKTOP_SOURCE_SVG",
+      "signed_finance_bridges_exact": "ORIGINAL_DESKTOP_SOURCE_SVG"
+    },
+    {
+      "width": 390,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600276",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "mobile_eight_full_width_source_exact_money_exhibits": "PASS",
+      "source_weighted_ribbons_exact": "PASS",
+      "signed_finance_bridges_exact": "PASS"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "live_600276_1440.png",
+      "sha256": "d21a64d011c5c4c4d06140f5cc01bc99367d7f4b603da1edeccc26f8d02b33b3",
+      "bytes": 2444480
+    },
+    {
+      "name": "live_directory_1440.png",
+      "sha256": "01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47",
+      "bytes": 748616
+    },
+    {
+      "name": "live_600276_768.png",
+      "sha256": "a9185ab06ff04f9609be5273276a8fe12650b9b372f4b446f9c975c99e0a0feb",
+      "bytes": 2775824
+    },
+    {
+      "name": "live_directory_768.png",
+      "sha256": "f82f45d62c12049f233a1330465eafa1669db05335f3cf4ccebf6a3cf1459b79",
+      "bytes": 728295
+    },
+    {
+      "name": "live_600276_390.png",
+      "sha256": "72702765eb211a553defd679d328ed741254fb56a765393071fbd7810797b19f",
+      "bytes": 2207939
+    },
+    {
+      "name": "live_directory_390.png",
+      "sha256": "e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c",
+      "bytes": 740026
+    }
+  ],
+  "independent_second_human_financial_analyst": "NOT_CHECKED",
+  "independent_human_aesthetic_editor": "NOT_CHECKED",
+  "material_report_notes_exhaustive": "NOT_CHECKED",
+  "artifact_id": 13849004163,
+  "artifact_zip_sha256": "ca45d89cab7c3e70d225b45252de8b253012b9ac272ccc6e982a31b431c6b9c7"
+}

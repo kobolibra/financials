@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43008612952",
-      "scope": "Actual main e72bae81 source-exact full report HTML, eleven public routes, 1440/768/390 CJK Chromium screenshots and source-money checks; not independent human certification or resolved original note exceptions."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43267775579",
+      "scope": "Actual public main full HTML SHA, 1440/768/390 source and geometry, real visible SVG exports. Downloaded genuine main Actions artifact with ZIP SHA."
     }
   },
   "blockers": [
@@ -118,9 +118,9 @@
       "issue": "CASH_EQUIVALENTS_RESTRICTED_MARGIN_EXCLUDED"
     }
   ],
-  "published_html_sha256": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
-  "live_release_fingerprint": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
-  "actual_main_release_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+  "published_html_sha256": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
+  "live_release_fingerprint": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
+  "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "live_receipt_file": "research/issuers/600900/live-release-receipt.json",
   "last_verified_previous_release": {
@@ -128,14 +128,5 @@
     "prior_full_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
     "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
   },
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
-    "candidate_full_html_sha256": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "note": "Complete nonhero common renderer migration; current production proof remains bound to previously deployed source bytes.",
-    "browser_matrix": "research/quality/full-figure-20261113/result.json",
-    "figure_count": 8
-  }
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
 }
