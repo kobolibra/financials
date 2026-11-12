@@ -85,14 +85,19 @@ jobs:
           python - <<'PY'
           import json
           v=json.load(open('v10-11-issuer-actual-visual-adoption.json'))
-          assert v["canonical_issuer_count"]==11
+          catalog=json.load(open('site/research_catalog.json'))
+          codes={r['code'] for r in catalog['issuers']}
+          full={r['code'] for r in catalog['issuers'] if r.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1'}
+          assert v["canonical_issuer_count"]==len(codes)
+          assert {r['issuer'] for r in v['rows']}==codes
+          assert set(v["fully_migrated_source_article_issuers"])==full
           assert set(v["unified_positive_sankey_issuers"])=={"688111","000333","600036"}
           assert set(v["lawful_signed_exception_issuers"])=={"600519"}
-          assert set(v["partial_hero_only_unified_remaining_art_legacy"])=={"300394","300308","300502","688220","600900","600276","601628"}
+          assert not v["partial_hero_only_unified_remaining_art_legacy"]
           assert not v["legacy_not_unified"] and not v["failed_new_grammar"]
-          assert v["strict_all_11_visual_unification"]=="NOT_ESTABLISHED"
+          assert v["strict_all_11_visual_unification"]=="PASS"
           assert v["independent_visual_art_director"]=="NOT_CHECKED"
-          print("ELEVEN_REAL_ISSUERS_SEVEN_HERO_ONLY_REMAINING_ART_LEGACY_NOT_CERTIFIED")
+          print("DYNAMIC_CATALOG_ALL_SOURCE_FIGURES_VERIFIED_HUMAN_SIGNOFF_NOT_CLAIMED")
           PY
           python scripts/check_release_contract.py
           python scripts/check_visual_editorial_policy.py
