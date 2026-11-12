@@ -572,6 +572,16 @@
       "scope": "single_issuer",
       "transfer_gate": "BROWSER_LOCAL",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "GEN-059",
+      "root_cause": "Shared signed P&L validation and SVG metadata hardcoded 2026H1, preventing lawful new-period transfer.",
+      "correction": "Bind plan and every cited source fact to an explicit reporting period; reject borrowed issuer, currency and invalid physical-page values. Preserve current report bytes.",
+      "proof_file": "research/shared/test_signed_period_generalization.py",
+      "assertion_marker": "test_unseen_issuers_periods_scales_and_negative_positions",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
