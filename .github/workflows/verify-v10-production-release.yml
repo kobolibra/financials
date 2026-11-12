@@ -40,7 +40,8 @@ jobs:
           assert d['all_108_exact_edition_svg_exports']=='PASS'
           assert d['real_online_reader_interaction']=='PASS'
           assert d['overall']=='PASS_PREVIEW_ONLY_INDEPENDENT_HUMAN_AND_PHYSICAL_DEVICES_NOT_CHECKED'
-          assert len(d['company_routes'])==11
+          catalog=json.loads(pathlib.Path('site/research_catalog.json').read_text())
+          assert {r['code'] for r in d['company_routes']}=={r['code'] for r in catalog['issuers']}
           assert len(d['browser_cases'])==12
           assert not d['blocking_issues'],d['blocking_issues']
           print('ACTUAL_MAIN_LIVE_PRODUCTION_ORIGINAL_BYTES_AND_ALL_108_EXPORTS_PASS',os.environ.get('GITHUB_SHA'))

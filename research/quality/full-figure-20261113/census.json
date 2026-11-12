@@ -1,0 +1,114 @@
+{
+  "schema": "financials.visual_unification_census.v1",
+  "scope": "CURRENT_REPOSITORY_ARTICLE_HTML_SHA_ONLY",
+  "canonical_issuer_count": 11,
+  "unified_positive_sankey_issuers": [
+    "600036",
+    "688111",
+    "000333"
+  ],
+  "fully_migrated_source_article_issuers": [
+    "300394",
+    "300308",
+    "300502",
+    "688220",
+    "600900",
+    "600276",
+    "601628"
+  ],
+  "lawful_signed_exception_issuers": [
+    "600519"
+  ],
+  "legacy_not_unified": [],
+  "partial_hero_only_unified_remaining_art_legacy": [],
+  "strict_all_11_visual_unification": "PASS",
+  "failed_new_grammar": [],
+  "independent_visual_art_director": "NOT_CHECKED",
+  "all_11_original_source_PDF_verified_and_in_same_renderer": "NOT_ESTABLISHED",
+  "rows": [
+    {
+      "issuer": "300394",
+      "route": "/300394.html",
+      "actual_full_html_sha256": "b95939891b138cb739e76c83ed7ec9ecd5bb71ef20a63f8bd76df70412faab7a",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    },
+    {
+      "issuer": "300308",
+      "route": "/300308.html",
+      "actual_full_html_sha256": "be73f257259847a0f62c5f8566ac95bab281b9452f4d236a12e34fb207b32d31",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    },
+    {
+      "issuer": "300502",
+      "route": "/300502.html",
+      "actual_full_html_sha256": "941bd62314329a1d2c1e2565adbab83fc2002df059c2fedafa346a259563af68",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    },
+    {
+      "issuer": "600036",
+      "route": "/research/2026-h1-v10/600036.html",
+      "actual_full_html_sha256": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+      "visual_grammar_status": "UNIFIED_FINANCIAL_INCOME_FLOW",
+      "issues": []
+    },
+    {
+      "issuer": "688111",
+      "route": "/research/2026-h1-v10/688111.html",
+      "actual_full_html_sha256": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "visual_grammar_status": "UNIFIED_FINANCIAL_INCOME_FLOW",
+      "issues": []
+    },
+    {
+      "issuer": "600519",
+      "route": "/research/2026-h1-v10/600519.html",
+      "actual_full_html_sha256": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+      "visual_grammar_status": "UNIFIED_SEMANTICS_SIGNED_EXCEPTION",
+      "issues": []
+    },
+    {
+      "issuer": "000333",
+      "route": "/research/2026-h1-v10/000333.html",
+      "actual_full_html_sha256": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
+      "visual_grammar_status": "UNIFIED_FINANCIAL_INCOME_FLOW",
+      "issues": []
+    },
+    {
+      "issuer": "688220",
+      "route": "/688220.html",
+      "actual_full_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    },
+    {
+      "issuer": "600900",
+      "route": "/600900.html",
+      "actual_full_html_sha256": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    },
+    {
+      "issuer": "600276",
+      "route": "/600276.html",
+      "actual_full_html_sha256": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    },
+    {
+      "issuer": "601628",
+      "route": "/601628.html",
+      "actual_full_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+      "visual_grammar_status": "UNIFIED_FULL_ARTICLE_SOURCE_FIGURES",
+      "issues": [],
+      "proof_scope": "CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF"
+    }
+  ]
+}

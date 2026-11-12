@@ -131,10 +131,13 @@ pnl_plan=original_plan(data)
 pnl_desktop=render_asr_pnl(data,mobile=False)
 pnl_phone=render_asr_pnl(data,mobile=True)
 pnl_desktop_json=json.dumps(pnl_desktop,ensure_ascii=False).replace("<","\\u003c")
+editorial_desktop_panels=make_native_mobile(data,mobile=False)
+editorial_desktop={key:re.search(r'<svg.*?</svg>',editorial_desktop_panels[key],re.S).group() for key in ('segment','gp','earnings','cfo','cash','balance','capital')}
+editorial_json=json.dumps(editorial_desktop,ensure_ascii=False).replace('<','\\u003c')
 checks["SHARED_FULL_SIGNED_PNL_DESKTOP_PHONE"]="PASS"
 output=(template.replace("__RESEARCH_JSON__",encoded).replace("__SOURCE_STATUS__",source_display)
     .replace("__SOURCE_SHA__",actual_sha).replace("__UNIFIED_DESKTOP__",income_json)
-    .replace("__UNIFIED_PNL_DESKTOP__",pnl_desktop_json))
+    .replace("__UNIFIED_PNL_DESKTOP__",pnl_desktop_json).replace("__EDITORIAL_BRIDGES__",editorial_json))
 comparison_brief=json.loads((ROOT/"comparative-economics.json").read_text(encoding="utf-8"))
 output=output.replace('<main class="wrap">','<main class="wrap">'+render_economics_panel(data,comparison_brief),1)
 # The full standalone article retains its original nine desktop editable SVG

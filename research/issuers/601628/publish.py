@@ -265,61 +265,64 @@ def source_table(brief):
         rows.append(f'<tr class="{class_}"><th scope="row">{e(f["label"])}</th><td>{e(period)}</td><td class="number">{e(f"{val:+,.0f}")} 百万元</td><td><a href="{e(PDF)}#page={p}" target="_blank" rel="noopener noreferrer">原始 PDF p.{p}</a></td></tr>')
     return f'<details class="audit"><summary>逐图原始金额、合并/期间与来源行列 <span>展开 {len(rows)} 项</span></summary><div class="table-shell"><table><thead><tr><th>原报表行 / 注释</th><th>报告时点/期间</th><th>原报表单位</th><th>物理页</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div></details>'
 
-def mobile_signed_bridge(brief, rows):
-    """Insurance-only adapter: signed CAS/direct cash rows, never gross profit.
-
-    Subtotals are checkpoints drawn from zero, not additional contributions.
-    Decimal positions share one domain including every cumulative balance.
-    """
-    fid=brief["id"]
-    checkpoints={"insurance":{len(rows)-1}, "pnl":{6,len(rows)-1},
-                 "delta":{len(rows)-1}, "cash":{len(rows)-1},
-                 "cashclose":{len(rows)-1}}[fid]
-    current=D(0); steps=[]
+def mobile_signed_bridge(brief, rows, mobile=True):
+    """Insurance adapter preserves its independent source IDs and checkpoints."""
+    import xml.etree.ElementTree as ET
+    from editorial_bridge import render_bridge
+    fid=brief['id']
+    checkpoints={'insurance':{len(rows)-1},'pnl':{6,len(rows)-1},'delta':{len(rows)-1},'cash':{len(rows)-1},'cashclose':{len(rows)-1}}[fid]
+    staged=[]
     for i,(label,value,key,_) in enumerate(rows):
-        before=current
-        if i in checkpoints:
-            eq(current,value,"MOBILE_"+fid+"_CHECKPOINT_"+str(i))
-            start,end=D(0),current
-        else:
-            current+=value
-            start,end=before,current
-        steps.append((label,value,key,start,end,current,i in checkpoints))
-    lo=min([D(0)]+[min(s[3],s[4]) for s in steps])
-    hi=max([D(0)]+[max(s[3],s[4]) for s in steps])
-    assert hi>lo,"INSURER_EMPTY_SIGNED_DOMAIN"
-    scale=(hi-lo)/D(298)
-    def x(v): return D(16)+(v-lo)/scale
-    height=74+len(steps)*92
-    body=t(16,22,"同一金额轴 · 带符号累计桥",14,"#19333C",700)
-    body+=t(16,45,"亿元；小额不放大；合计行从零点绘制",12,"#63747A")
-    body+=line(float(x(D(0))),59,float(x(D(0))),height-10,"#63747A",1,"4 4")
-    previous_y=None
-    for i,(label,value,key,start,end,cumulative,is_total) in enumerate(steps):
-        y=74+i*92
-        col="#263F47" if i==0 or is_total else ("#CD7271" if value<0 else "#239878")
-        # Two lines avoid shrinking long Chinese accounting names.
-        label=label.replace("归母利润需扣除的少数股东损益","扣减少数股东损益").replace("保险服务净结果（四项签名合计）","保险服务净结果")
-        body+=t(16,y,label,13,"#19333C",700)
-        body+=t(314,y+20,("" if is_total else ("+" if value>0 else ""))+yi(value)+" 亿",13,col,700,"end")
-        if previous_y is not None and not is_total:
-            body+=line(float(x(start)),previous_y,float(x(start)),y+33,"#B7C5C4",1,"3 3")
-        body+=rect(float(x(min(start,end))),y+33,float(abs(end-start)/scale),16,col,
-            extra=f'data-signed-yuan="{value*M}" data-before-yuan="{start*M}" data-after-yuan="{end*M}" data-checkpoint="{str(is_total).lower()}" data-source-fact-ids="{e(key or ",".join(brief["facts"]))}" data-money-scale-yuan-per-unit="{scale*M}"')
-        body+=t(16,y+72,"累计 "+yi(cumulative)+" 亿",12,"#63747A")
-        previous_y=y+49
-    result=svg(body,h=height,w=330,desc=brief["question"]+"；各步带符号同轴累计，合计不重复加总")
-    return result.replace('data-original-coordinates="true"',
-        f'data-original-coordinates="true" data-chart-grammar="INSURANCE_SIGNED_CUMULATIVE_BRIDGE" data-accounting-scope="consolidated" data-period="{e("2025H1_TO_2026H1" if fid=="delta" else "2026H1")}" data-layout="native-330" data-original-pdf-sha256="{e(SOURCE["original_bytes_sha256"])}"')
+        staged.append((label,value*M,'start' if i==0 else 'total' if i in checkpoints else 'step',key or ','.join(brief['facts'])))
+    period=(FACTS['op_profit_prior']['period']+'_TO_'+FACTS['op_profit']['period']) if fid=='delta' else LEDGER['issuer']['fiscal_period']
+    markup=render_bridge(staged,brief['question'],issuer=LEDGER['issuer']['code'],period=period,pdf_sha256=SOURCE['original_bytes_sha256'],mobile=mobile)
+    root=ET.fromstring(markup)
+    root.set('data-chart-grammar','INSURANCE_SIGNED_CUMULATIVE_BRIDGE')
+    root.set('data-accounting-scope','consolidated')
+    bars=[x for x in root.iter('{http://www.w3.org/2000/svg}rect') if x.get('data-signed-yuan') is not None]
+    for i,(bar,row) in enumerate(zip(bars,staged)):
+        bar.set('data-checkpoint',str(i in checkpoints).lower())
+        bar.set('data-source-fact-ids',row[3])
+        bar.set('data-money-scale-yuan-per-unit',bar.get('data-scale-yuan-per-unit'))
+    ET.register_namespace('','http://www.w3.org/2000/svg')
+    return ET.tostring(root,encoding='unicode')
 
 
-def mobile_figure(brief):
+def common_insurance_figure(brief,mobile):
+    from editorial_bridge import render_comparison,render_components,render_balance
+    fid=brief['id'];identity=LEDGER['issuer']
+    common=dict(issuer=identity['code'],pdf_sha256=SOURCE['original_bytes_sha256'],mobile=mobile)
+    def v(key):return D(FACTS[key]['yuan'])
+    def ref(*keys):return '; '.join(key+' p.'+str(FACTS[key]['page']) for key in keys)
+    if fid=='clocks':
+        entries=[]
+        for label,prior,current in [('旧口径总保费','premium_prior','premium_total'),('法定保险服务收入','service_revenue_prior','service_revenue'),('归母净利润','parent_net_prior','parent_net'),('经营现金','cfo_prior','cfo')]:
+            entries.append((label+' · 同比 '+pct(current,prior),v(prior),v(current),ref(prior,current)))
+        return render_comparison(entries,brief['question'],periods=(FACTS['service_revenue_prior']['period'],FACTS['service_revenue']['period']),**common)
+    if fid in ('service','csm'):
+        keys=['service_expected_claims','service_risk_release','service_csm_release','service_acq_amort','service_paa'] if fid=='service' else ['future_cash_flow_liab','risk_adjustment_liab','csm','paa_liab']
+        total='service_revenue' if fid=='service' else 'insurance_contract_liab'
+        entries=[(FACTS[k]['label'],v(k),ref(k)) for k in keys]
+        return render_components(entries,v(total),brief['question'],period=FACTS[total]['period'],**common)
+    if fid=='balance':
+        dates=[]
+        for suffix in ('_prior',''):
+            keys=[k+suffix for k in ('assets','liabilities','parent_equity','minority_equity')]
+            dates.append((FACTS[keys[0]]['period'],v(keys[0]),v(keys[1]),v(keys[2])+v(keys[3]),ref(*keys)))
+        return render_balance(dates,brief['question'],**common)
+    raise ValueError('UNSUPPORTED_COMMON_INSURANCE_FAMILY '+fid)
+
+
+def mobile_figure(brief,desktop=False):
     """A complete no-horizontal-scroll, original-ledger mobile figure.
 
     Same exact source values as desktop. Signed flows retain cumulative bridges;
     stock/comparison figures remain independent same-scale magnitude displays.
     """
     fid=brief["id"]
+    if fid in {'clocks','service','csm','balance'}:
+        result=common_insurance_figure(brief,mobile=not desktop)
+        return result if desktop else '<section class="mobile-chart" data-mobile-figure="'+e(fid)+'">'+result+'</section>'
     def r(label,key,group="all"):
         return (label,amount(key),key,group)
     def calc(label,value,source_ids):
@@ -411,6 +414,7 @@ def mobile_figure(brief):
         raise AssertionError("MOBILE_FIGURE_FAMILY_NOT_DEFINED:"+fid)
 
     if fid in {"insurance","pnl","delta","cash","cashclose"}:
+        if desktop:return mobile_signed_bridge(brief,rows,mobile=False)
         return ('<section class="mobile-chart" data-mobile-figure="'+e(fid)+'">'
                 '<p class="m-method">'+e(note)+'</p>'+mobile_signed_bridge(brief,rows)+'</section>')
     assert len(rows)>=5,(fid,len(rows))
@@ -457,7 +461,7 @@ def article(brief,num):
       <figcaption><span class="figure-num">{num:02d} / 10 · {e(display_family)}</span>
         <h2>{e(brief["question"])}</h2><p class="take">{e(brief["takeaway"])}</p></figcaption>
       <div class="figure-toolbar"><span>原始百万元事实 · 视觉按明确金额/时点比例绘制</span><button type="button" data-export="{e(fid)}" aria-label="导出当前可见 SVG">导出当前图 SVG</button></div>
-      <div class="chart" role="region" aria-label="{e(brief["question"])}，桌面及平板的原始可编辑向量图">{FIGS[fid]()}</div>
+      <div class="chart" role="region" aria-label="{e(brief["question"])}，桌面及平板的原始可编辑向量图">{FIGS[fid]() if fid=="premium" else mobile_figure(brief,desktop=True)}</div>
       {mobile_figure(brief)}
       <div class="caption"><strong>会计关系：</strong>{e(brief["identity"])}<br><strong>强制反证：</strong>{e(brief["counter"])} <br><strong>数据范围：</strong>合并/报告明确范围，原始 PDF 物理页 {", ".join(str(x) for x in brief["source_pages"])}。图外金额精确到亿元两位，底层按原始百万元计算。</div>
       {source_table(brief)}

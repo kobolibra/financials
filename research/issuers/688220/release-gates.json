@@ -113,5 +113,15 @@
   "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "actual_main_release_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
-  "live_receipt_file": "research/issuers/688220/live-release-receipt.json"
+  "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+    "candidate_full_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "note": "Complete nonhero common renderer migration; current production proof remains bound to previously deployed source bytes.",
+    "browser_matrix": "research/quality/full-figure-20261113/result.json",
+    "figure_count": 9
+  }
 }

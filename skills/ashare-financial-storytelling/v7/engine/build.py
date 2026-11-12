@@ -86,39 +86,16 @@ def moneyflow(l):
     return svg,len(groups)*1+4
 
 def waterfall(l,series,title,units='亿元',maximum=None):
-    """Correct signed bridge. Items [label, signed yuan, page, kind=start|step|total]."""
-    # Derive coordinates from values; zero and negative levels supported
-    levels=[];cur=D('0');all_heights=[D('0')]
-    for label,amount,p,kind in series:
-        if kind=='start':cur=amount;before=D('0');after=cur
-        elif kind=='total':before=D('0');after=amount;cur=amount
-        else:before=cur;cur+=amount;after=cur
-        levels.append((before,after));all_heights.extend([before,after])
-    hi=max(all_heights);lo=min(all_heights)
-    span=hi-lo if hi!=lo else D(1)
-    top,bottom=75,355;scale=(bottom-top)/dot(span);zero=top+dot(hi)*scale
-    pad,left,plotw=84,60,1110;gap=plotw/(len(series)+0.3);w=min(72,gap*0.58)
-    chunks=[f'<svg class="waterfall" role="img" aria-label="{esc(title)}，各步骤正负号按会计金额绘制" viewBox="0 0 1220 445" xmlns="http://www.w3.org/2000/svg">', f'<line x1="40" y1="{zero:.1f}" x2="1160" y2="{zero:.1f}" stroke="#a4afa7" stroke-width="1.4" stroke-dasharray="5 6"/>']
-    for i,((label,value,p,kind),(before,after)) in enumerate(zip(series,levels)):
-        center=left+i*gap+w/2;x=center-w/2
-        if kind in ('start','total'): y1=top+dot(hi-max(D(0),after))*scale; y2=top+dot(hi-min(D(0),after))*scale;color='#163e49' if kind=='start' else '#0e8e70'
-        else:y1=top+dot(hi-max(before,after))*scale;y2=top+dot(hi-min(before,after))*scale;color='#0e9072' if value>=0 else '#d0766b'
-        height=max(2, y2-y1)
-        detail=f'{label}｜{(sign(value) if kind=="step" else y(value))} 亿｜{p or "来源页未提供"}'
-        chunks.append(f'<rect x="{x:.2f}" y="{y1:.2f}" width="{w:.2f}" height="{height:.2f}" rx="3" fill="{color}" {tooltip(detail)} role="img" aria-label="{esc(detail)}"/>')
-        # label top, first row top 45 second bottom x wrap via SVG tspans? use 2-lines with split label
-        short=(label[:7]+'…') if len(label)>8 else label
-        ylab=403
-        chunks.append(f'<text x="{center:.1f}" y="{ylab}" text-anchor="middle" class="svg-step-label">{esc(short)}</text>')
-        shown=sign(value) if kind=='step' else y(value)
-        ty=max(39,y1-9) if kind=='step' else max(39,y1-9)
-        chunks.append(f'<text x="{center:.1f}" y="{ty:.1f}" text-anchor="middle" class="svg-step-value">{shown}</text>')
-        if i<len(series)-1 and kind!='total':
-            nxtx=left+(i+1)*gap
-            connect=top+dot(hi-after)*scale
-            chunks.append(f'<line x1="{x+w:.1f}" y1="{connect:.1f}" x2="{nxtx:.1f}" y2="{connect:.1f}" stroke="#9baba3" stroke-width="1.2" stroke-dasharray="3 4"/>')
-    chunks.append('</svg>')
-    return ''.join(chunks)
+    """Shared source-money grammar; issuer adapter retains the accounting rows."""
+    import sys
+    sys.path.insert(0,str(Path(__file__).resolve().parents[4]/'research/shared'))
+    from editorial_bridge import render_bridge
+    if units!='亿元' or maximum is not None:
+        raise ValueError('SHARED_BRIDGE_EXACT_YUAN_DOMAIN_REQUIRED')
+    doc=l['document']
+    return render_bridge([(label,value,kind,source) for label,value,source,kind in series],title,issuer=doc['ticker'].split('.')[0],
+        period=doc['period_key'],pdf_sha256=doc['source_sha256'],mobile=False).replace('<svg ','<svg class="waterfall" ',1)
+
 
 def cmpbars(l, pairs):
     # pairs of (label,prior,current,source). Draw paired proportional horizontal bars with same cross-metric common width.

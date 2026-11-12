@@ -1607,5 +1607,23 @@
       "Seven historical figure families retain partial design migration debt",
       "Unseen 20-30 issuer/period generalization and market valuation are not certified"
     ]
+  },
+  "quality_upgrade_20261113": {
+    "scope": "ALL_SEVEN_COMPLETE_SOURCE_FIGURE_MIGRATION",
+    "publication": "UNMERGED_CANDIDATE_LOCAL_VERIFIED",
+    "branch": "quality/common-nonhero-20261112",
+    "full_figure_receipt": "research/quality/full-figure-20261113/result.json",
+    "financial_figures": 65,
+    "actual_viewports": 21,
+    "actual_svg_downloads": 195,
+    "shared_core": "research/shared/editorial_bridge.py",
+    "independent_source_geometry": [
+      "research/shared/editorial_geometry.py",
+      "research/shared/sector_geometry.py",
+      "research/issuers/601628/qa_signed_geometry.py"
+    ],
+    "future_issuer_policy": "FULL_SOURCE_FIGURES_V1_REQUIRED_OUTSIDE_FOUR_HISTORICAL_V10_CASES_AND_AUTOMATIC_BROWSER_CI_INCLUSION",
+    "independent_human_audit": "NOT_CLAIMED",
+    "unseen_real_report_stability": "NOT_CERTIFIED"
   }
 }

@@ -76,7 +76,7 @@ def main():
               return {n:native.length,visible:native.filter(n=>getComputedStyle(n).display!=='none').length,
                 originals:[...document.querySelectorAll('.vizscroll')].filter(n=>getComputedStyle(n).display!=='none').length,
                 cropped:native.filter(n=>n.scrollWidth>n.clientWidth+2).length,root:document.documentElement.scrollWidth,
-                source,desktopGraph:!!desktopSvg,bbox,steps:document.querySelectorAll('.native-asr-signed').length,
+                source,desktopGraph:!!desktopSvg,bbox,steps:document.querySelectorAll('.native-asr svg[data-editorial-grammar="SOURCE_SIGNED_BRIDGE_V1"] rect[data-signed-yuan]').length,
                 tables:document.querySelectorAll('table.evidence-table').length,
                 exports:document.querySelectorAll('[data-export]').length};
             }""")

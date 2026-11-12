@@ -38,6 +38,23 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
                 if code=="688220":
                     self.assertIn("字节等价尚未证明",plan.footnote)
 
+    def test_unseen_explicit_industrial_profile_and_new_period(self):
+        # Synthetic transfer fixture, not a claim of unseen PDF interpretation.
+        data=read('600900');data['issuer'].update(code='999999',fiscal_period='2031H1',accounting_route='industrial_own_cost_income',sector_adapter='utility')
+        data['income_partition']={'axis':'contract_goods_type','period':'2031H1','scope':'consolidated','completeness':'SOURCE_EXHAUSTIVE_MUTUALLY_EXCLUSIVE'}
+        for fact in data['facts'].values():
+            if fact.get('type')=='flow':fact['period']='2031H1'
+        plan=compile_disclosed_income(data)
+        self.assertEqual(plan.issuer,'999999');self.assertEqual(plan.period,'2031H1')
+        for mobile in (False,True):
+            root=ET.fromstring(render_sector_income(data,mobile=mobile))
+            self.assertEqual(root.get('data-period'),'2031H1')
+        for field,value in [('sector_adapter','bank'),('accounting_route','insurance_premium')]:
+            fake=copy.deepcopy(data);fake['issuer'][field]=value
+            with self.assertRaises(ValueError):compile_disclosed_income(fake)
+        fake=copy.deepcopy(data);fake['facts']['rev']['page']=True
+        with self.assertRaises(ValueError):compile_disclosed_income(fake)
+
     def test_small_sector_native_phone_rows_are_readable_and_source_bound(self):
         # Two/three-source phone source labels each get their own money
         # line. Never silently alter the four-source 688220 released layout.

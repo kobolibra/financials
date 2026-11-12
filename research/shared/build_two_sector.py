@@ -15,6 +15,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from source_income_adapter import render_sector_income
+from sector_editorial import figures as editorial_figures
 from economics_exhibit import render_panel as render_economics_panel
 # Reuse the very same source-ledger signed profit grammar as the V10
 # industrial research; no bespoke hydro/pharma margin-to-net geometry.
@@ -308,6 +309,8 @@ __QUANTIFIED_DECISION__
 var d=JSON.parse(document.querySelector("#ledger-data").textContent);
 var unifiedIncomeDesktop=__UNIFIED_INCOME_DESKTOP__;
 var unifiedIncomePhone=__UNIFIED_INCOME_PHONE__;
+var desktopEditorial=__EDITORIAL_DESKTOP__;
+var mobileEditorial=__EDITORIAL_MOBILE__;
 var briefs=JSON.parse(document.querySelector("#figure-briefs").textContent);
 var story=JSON.parse(document.querySelector("#story-data").textContent);
 var f=d.facts,code=d.issuer.code, N=100000000;
@@ -492,7 +495,7 @@ function sector(){
  return svg(1120,546,out);
 }
 __NATIVE_MOBILE_SVG__
-function draw(id){if(id==="flow")return unifiedIncomeDesktop;if(id==="pnl")return waterfall(PNLsteps(),"完整 CAS：营业毛利 → 营业利润 → 税后净利 → 归母");
+function draw(id){if(desktopEditorial[id])return desktopEditorial[id];if(id==="flow")return unifiedIncomeDesktop;if(id==="pnl")return waterfall(PNLsteps(),"完整 CAS：营业毛利 → 营业利润 → 税后净利 → 归母");
  if(id==="cfo")return waterfall(cfoSteps(),"合并净利润 + 原始全部调节项 → 经营现金流");
  if(id==="cash")return waterfall(cashSteps(),"现金及现金等价物：真实四项带符号现金变动");
  if(id==="balance")return balance();if(id==="trend")return trend();if(id==="capital")return capital();if(id==="sector")return sector();throw Error("UNKNOWN_FIGURE "+id)}
@@ -512,7 +515,7 @@ section.innerHTML='<div class="chaptermark">FIGURE '+String(i+1).padStart(2,"0")
  '<div id="table-'+q.id+'">'+sourceTable(q)+'</div></figcaption></figure>';
  article.appendChild(section);
  document.querySelector("#chart-"+q.id).innerHTML=draw(q.id)+
-  '<div class="native-mobile-finance" data-native-mobile-id="'+e(q.id)+'" role="group" aria-label="财报原数据驱动的手机原生财务图，完整纵向阅读">'+(q.id==="flow"?unifiedIncomePhone:nativeMoneyFigure(q.id))+'</div>';
+  '<div class="native-mobile-finance" data-native-mobile-id="'+e(q.id)+'" role="group" aria-label="财报原数据驱动的手机原生财务图，完整纵向阅读">'+(q.id==="flow"?unifiedIncomePhone:(mobileEditorial[q.id]||nativeMoneyFigure(q.id)))+'</div>';
 });
 document.querySelectorAll("[data-export]").forEach(function(button){button.addEventListener("click",function(){
 var id=button.getAttribute("data-export"),svgs=Array.from(button.closest("figure").querySelectorAll("svg")),s=svgs.find(function(el){var r=el.getBoundingClientRect(),v=getComputedStyle(el);return r.width>0&&r.height>0&&v.display!=="none"&&v.visibility!=="hidden"});if(!s)return;var file=new Blob([new XMLSerializer().serializeToString(s)],{type:"image/svg+xml;charset=utf-8"});
@@ -543,7 +546,7 @@ def build(code,out):
     def compact(x):return json.dumps(x,ensure_ascii=False,separators=(",",":")).replace("<","\\u003c")
     # Native mobile original finance grammar is INLINED: one offline standalone HTML per issuer.
     article=HTML.replace("__NATIVE_MOBILE_SVG__", (ROOT/"research/shared/mobile_finance.js").read_text(encoding="utf-8"))
-    for a,b in (("__UNIFIED_INCOME_DESKTOP__",compact(finance_desktop)),
+    for a,b in (("__EDITORIAL_DESKTOP__",compact(editorial_figures(d,mobile=False))),("__EDITORIAL_MOBILE__",compact(editorial_figures(d,mobile=True))),("__UNIFIED_INCOME_DESKTOP__",compact(finance_desktop)),
                  ("__UNIFIED_INCOME_PHONE__",compact(finance_phone)),
                   ("__PROFIT_FORMATION__",profit_bridge),("__QUANTIFIED_DECISION__",quantified_panel),
                  ("__TITLE__",story["lead"]),("__DESCRIPTION__",story["thesis"]),("__EYEBROW__",story["eyebrow"]),
@@ -551,7 +554,7 @@ def build(code,out):
                 ("__DISCLAIMER__",story["evidence_disclaimer"]),("__LEDGER__",compact(d)),
                 ("__BRIEFS__",compact(briefs)),("__STORY__",compact(story))):
         import html
-        if a in {"__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__","__PROFIT_FORMATION__","__QUANTIFIED_DECISION__"}:article=article.replace(a,b)
+        if a in {"__EDITORIAL_DESKTOP__","__EDITORIAL_MOBILE__","__LEDGER__","__BRIEFS__","__STORY__","__UNIFIED_INCOME_DESKTOP__","__UNIFIED_INCOME_PHONE__","__PROFIT_FORMATION__","__QUANTIFIED_DECISION__"}:article=article.replace(a,b)
         else:article=article.replace(a,html.escape(b,quote=True))
     out.parent.mkdir(parents=True,exist_ok=True)
     from research_context import render as render_research_context

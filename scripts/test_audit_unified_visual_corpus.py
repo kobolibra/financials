@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import copy
 from pathlib import Path
 import unittest
 
@@ -27,6 +28,27 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
         self.assertEqual(census["strict_all_11_visual_unification"],"NOT_ESTABLISHED")
         self.assertEqual(census["failed_new_grammar"],[])
         self.assertEqual(census["independent_visual_art_director"],"NOT_CHECKED")
+
+    def test_full_migration_requires_current_bytes_and_all_three_real_exports(self):
+        catalog,pages=actual()
+        receipt=catalog['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['local_migration_receipt']
+        evidence=json.loads((ROOT/receipt).read_text())
+        complete=inspect(catalog,pages,evidence)
+        self.assertEqual(complete['strict_all_11_visual_unification'],'PASS')
+        self.assertEqual(len(complete['fully_migrated_source_article_issuers']),7)
+        for kind in ('stale_html','missing_width','missing_figure','unproved_download','unknown_grammar'):
+            poisoned=copy.deepcopy(evidence)
+            if kind=='stale_html':poisoned['issuers']['300394']['html_sha256']='0'*64
+            elif kind=='missing_width':poisoned['cases']=[c for c in poisoned['cases'] if not(c['issuer']=='300394' and c['width']==390)]
+            else:
+                case=next(c for c in poisoned['cases'] if c['issuer']=='300394')
+                if kind=='missing_figure':case['figures'].pop()
+                elif kind=='unproved_download':case['figures'][0]['visible_edition_download']='NOT_CHECKED'
+                else:case['figures'][0]['grammar']='UNKNOWN_DECORATIVE_RIBBON'
+            with self.subTest(kind=kind):
+                audited=inspect(catalog,pages,poisoned)
+                self.assertIn('300394',audited['partial_hero_only_unified_remaining_art_legacy'])
+                self.assertEqual(audited['strict_all_11_visual_unification'],'NOT_ESTABLISHED')
 
     def test_actual_optical_main_flow_cannot_disappear_behind_partial_migration_claim(self):
         catalog,pages=actual()

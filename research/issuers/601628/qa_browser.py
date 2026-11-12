@@ -4,7 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 import hashlib,json,math
 import xml.etree.ElementTree as ET
-from qa_signed_geometry import FAMILIES, check_signed_svg, expected_steps
+from qa_signed_geometry import FAMILIES, check_signed_svg, expected_steps, COMMON_FAMILIES, check_common_insurance_svg
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[3]
 BASE=ROOT/"research/issuers/601628"
@@ -93,50 +93,23 @@ with sync_playwright() as p:
   if width==1440:
    assert all(x["w"]<=x["visible"]+2 for x in geometry["charts"]),(width,"HIDDEN_DESKTOP_FIGURE",geometry["charts"])
    collisions=page.evaluate("""() => {
-     const issues=[];
-     for(const id of ['insurance','pnl','delta','cash','cashclose']){
-       const svg=document.querySelector('#chart-'+id+' .chart svg');
-       const texts=[...svg.querySelectorAll('text')];
-       const title=texts.find(t=>t.getAttribute('font-size')==='16'&&t.getAttribute('font-weight')==='650'&&t.getAttribute('y')==='38.00');
-       const values=texts.filter(t=>t.getAttribute('font-size')==='12'&&t.getAttribute('font-weight')==='650');
-       if(!title || !values.length){issues.push({id,error:'MISSING_MONEY_WATERFALL_LABELS'});continue;}
-       const t=title.getBBox();
-       for(const label of values){
-         const b=label.getBBox();
-         // Source value labels must sit below the editorial chart title,
-         // not merely above their own bar, even when bars approach chart top.
-         if(b.y<t.y+t.height+12){issues.push({id,error:'DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP',title:t.y+t.height,valueY:b.y,label:label.textContent});}
-       }
-     }
-     return issues;
-   }""")
-   assert not collisions,("DESKTOP_WATERFALL_TITLE_VALUE_OVERLAP",collisions)
-   clocks_collisions=page.evaluate("""() => {
-     const svg=document.querySelector('#chart-clocks .chart svg');
-     if(!svg)return [{error:'MISSING_DISCLOSED_CLOCKS_SVG'}];
-     const texts=[...svg.querySelectorAll('text')];
-     const amounts=texts.filter(x=>/^202[56] [0-9,]+\\.[0-9]+亿$/.test(x.textContent.trim()));
-     const yoy=texts.filter(x=>/^[+−-][0-9,.]+%$/.test(x.textContent.trim()));
      const faults=[];
-     if(amounts.length!==8 || yoy.length!==4)return [{error:'CLOCK_VALUE_OR_YOY_LABEL_MISSING',amounts:amounts.length,yoy:yoy.length}];
-     const intersects=(a,b)=>{
-        const x=a.getBBox(),y=b.getBBox();
-        return Math.min(x.x+x.width,y.x+y.width)-Math.max(x.x,y.x)>1 &&
-               Math.min(x.y+x.height,y.y+y.height)-Math.max(x.y,y.y)>1;
-     };
-     for(const yr of amounts)for(const pct of yoy){
-        if(intersects(yr,pct))faults.push({error:'CLOCK_AMOUNT_YOY_COLLISION',
-             yearAmount:yr.textContent,percentage:pct.textContent,
-             a:yr.getBBox().toJSON(),b:pct.getBBox().toJSON()});
-     }
-     const vw=svg.viewBox.baseVal.width;
-     for(const v of [...amounts,...yoy]){
-        const r=v.getBBox();
-        if(r.x<0||r.x+r.width>vw+0.5)faults.push({error:'CLOCK_LABEL_CROPPED',label:v.textContent,rect:r.toJSON(),viewBox:vw});
+     for(const svg of document.querySelectorAll('figure .chart svg')){
+       const labels=[...svg.querySelectorAll('text')].map(t=>({text:t.textContent,b:t.getBoundingClientRect()}));
+       for(let i=0;i<labels.length;i++)for(let j=i+1;j<labels.length;j++){
+         const a=labels[i].b,b=labels[j].b,iw=Math.min(a.right,b.right)-Math.max(a.left,b.left),ih=Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top);
+         if(iw>2&&ih>2&&iw*ih>Math.min(a.width*a.height,b.width*b.height)*.15)faults.push([labels[i].text,labels[j].text]);
+       }
      }
      return faults;
    }""")
-   assert not clocks_collisions,("ACTUAL_CHROMIUM_601628_MONEY_AND_YOY_TEXT_COLLISION",clocks_collisions)
+   assert not collisions,('ACTUAL_CHROMIUM_INSURER_TEXT_COLLISION',collisions)
+  for family in sorted(FAMILIES|COMMON_FAMILIES):
+   current=page.locator('#chart-'+family+(' .mobile-chart > svg' if width<=850 else ' .chart > svg'))
+   assert current.count()==1 and current.is_visible()
+   if family in FAMILIES:checked=check_signed_svg(current.evaluate('e=>e.outerHTML'),family,L,mobile=width<=850)
+   else:checked=check_common_insurance_svg(current.evaluate('e=>e.outerHTML'),family,L)
+   if width>850:signed_results.append(checked)
   if width<=850:
    assert page.locator(".mobile-chart:visible").count()==10,(width,"MOBILE_NOT_TEN_COMPLETE_SOURCE_PLOTS")
    assert page.locator(".chart:visible").count()==0,(width,"MOBILE_STILL_USES_900PX_CROPPED_SVG_WINDOW")
@@ -147,6 +120,11 @@ with sync_playwright() as p:
      graph=page.locator('#chart-'+panel["family"]+' .mobile-chart svg')
      assert graph.count()==1 and graph.is_visible(),(width,panel["family"],"VISIBLE_SIGNED_BRIDGE_REQUIRED")
      signed_results.append(check_signed_svg(graph.evaluate("el=>el.outerHTML"),panel["family"],L))
+     continue
+    if panel["family"] in COMMON_FAMILIES:
+     graph=page.locator('#chart-'+panel['family']+' .mobile-chart > svg')
+     assert graph.count()==1 and graph.is_visible()
+     signed_results.append(check_common_insurance_svg(graph.evaluate('e=>e.outerHTML'),panel['family'],L))
      continue
     assert len(panel["rows"])>=5,(panel["family"],"MOBILE_NO_FULL_FINANCIAL_ITEMS")
     groups={}
@@ -260,5 +238,11 @@ result={"code":"601628","source_sha":L["source"]["original_bytes_sha256"],
         "page_1440_768_390":"PASS","chart_count":10,"source_table_count":statuses[0]["original_source_tables"],
         "export_click_and_svg_download":"PASS","mobile_fully_visible_financial_figures":"PASS","mobile_ledger_exact_value_and_geometry":"PASS","original_actual_3_viewport_checks":statuses,
         "human_editor":"NOT_CHECKED","scope":"real Chromium financial SVG and source-structure invariants, not human financial/aesthetic certification"}
+candidate={'candidate_html_sha256':result['candidate_html_sha256'],'scope':'LOCAL_CURRENT_CANDIDATE_NOT_PRODUCTION','screenshots':{}}
+for item in statuses:
+    image=OUT/item['screenshot'];digest=hashlib.sha256(image.read_bytes()).hexdigest()
+    if digest!=item['screenshot_sha256']:raise ValueError('CANDIDATE_SCREENSHOT_CHANGED_AFTER_CAPTURE')
+    candidate['screenshots'][image.name]={'sha256':digest,'bytes':image.stat().st_size}
+(OUT/'candidate-html-sha.json').write_text(json.dumps(candidate,ensure_ascii=False,indent=2)+'\n')
 (OUT/"result.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n")
 print("INSURANCE_ACTUAL_CHROMIUM_1440_768_390_AND_SVG_GEOMETRY_PASS",json.dumps(statuses,ensure_ascii=False))

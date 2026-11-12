@@ -28,9 +28,18 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
     issuer=ledger.get("issuer",{})
     source=ledger.get("source",{})
     code=issuer.get("code")
-    if code not in TITLES:
-        raise ValueError("SECTOR_CANNOT_REUSE_INDUSTRIAL_GROSS_FLOW")
-    if issuer.get("fiscal_period")!="2026H1" or issuer.get("base_unit")!="人民币元":
+    period=issuer.get('fiscal_period')
+    legacy_profile=code in SECTOR_DIMENSIONS and not issuer.get('accounting_route')
+    partition=ledger.get('income_partition',{})
+    if not legacy_profile:
+        if (issuer.get('accounting_route')!='industrial_own_cost_income'
+            or issuer.get('sector_adapter') not in {'manufacturing','software','consumer','utility','pharma','semiconductor','energy','services'}
+            or partition.get('completeness')!='SOURCE_EXHAUSTIVE_MUTUALLY_EXCLUSIVE'
+            or partition.get('period')!=period or partition.get('scope')!='consolidated'
+            or not isinstance(partition.get('axis'),str) or not partition['axis'].strip()):
+            raise ValueError("SECTOR_CANNOT_REUSE_INDUSTRIAL_GROSS_FLOW")
+    dimension=SECTOR_DIMENSIONS[code] if legacy_profile else partition['axis']
+    if not isinstance(period,str) or not period.strip() or issuer.get("base_unit")!="人民币元":
         raise ValueError("SECTOR_ISSUER_PERIOD_UNIT_MISMATCH")
     sha=source.get("original_bytes_sha256","")
     gate=source.get("original_bytes_gate","")
@@ -39,12 +48,12 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
     facts=ledger.get("facts",{})
     def value(key: str) -> D:
         row=facts.get(key)
-        if (not row or row.get("type")!="flow" or row.get("period")!="2026H1"
+        if (not row or row.get("type")!="flow" or row.get("period")!=period
                 or row.get("scope")!="consolidated" or row.get("unit")!="元"
                 or row.get("currency")!="CNY" or row.get("classification")!="DISCLOSED"):
             raise ValueError("SECTOR_ORIGINAL_TYPED_FACT_INCOMPATIBLE "+str(key))
         page=row.get("page")
-        if not isinstance(page,int) or page<1 or page>source.get("physical_pages_observed",0):
+        if type(page) is not int or page<1 or page>source.get("physical_pages_observed",0):
             raise ValueError("SECTOR_REAL_ORIGINAL_PDF_PHYSICAL_PAGE_MISSING "+key)
         try:
             val=D(str(row.get("yuan","NaN")))
@@ -68,8 +77,8 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
         if not rk or not ck or rk==ck or rk in seen or ck in seen:
             raise ValueError("SECTOR_DUPLICATED_OR_OVERLAPPING_BUSINESS_FACT")
         seen.update((rk,ck))
-        dim=seg.get("dimension",SECTOR_DIMENSIONS[code] if code=="688220" else "")
-        if dim!=SECTOR_DIMENSIONS[code]:
+        dim=seg.get("dimension",dimension if legacy_profile and code=="688220" else "")
+        if dim!=dimension:
             raise ValueError("SECTOR_MIXED_BUSINESS_AND_GEOGRAPHY_OR_CHILD_GROUPS")
         dims.add(dim)
         if not seg.get("label"):
@@ -85,8 +94,8 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
         raise ValueError("SECTOR_NONEXHAUSTIVE_OR_MIXED_SOURCE_COST_PARTITION")
     scope="；".join("p."+str(p) for p in sorted(pages))
     mirror="，完整源PDF与官方文件字节等价尚未证明" if code=="688220" else ""
-    plan=FlowPlan(issuer=code,period="2026H1",kind="TYPE_A_SOURCE_OWN_COST_GP",
-        title=TITLES[code],source_label="原报告互斥业务来源",
+    plan=FlowPlan(issuer=code,period=period,kind="TYPE_A_SOURCE_OWN_COST_GP",
+        title=TITLES.get(code,issuer.get("income_figure_title") or "原始业务收入如何形成自身成本和毛利？"),source_label="原报告互斥业务来源",
         outcome_label="实际营业成本及毛利",
         sources=tuple(parts),
         outcomes=(("group_cogs","营业成本",str(cogs),"cost"),

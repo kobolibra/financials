@@ -8,6 +8,7 @@ from pathlib import Path
 import argparse,hashlib,json,sys
 from decimal import Decimal as D
 from playwright.sync_api import sync_playwright
+from sector_geometry import check_sector_svg
 ROOT=Path(__file__).resolve().parents[2]
 def main():
     p=argparse.ArgumentParser();p.add_argument("--code",choices=["600900","600276"],required=True);a=p.parse_args()
@@ -80,37 +81,10 @@ def main():
             # Source-linked sector editorial figure is a second genuine industry
             # graphic, not a manually frozen current-period number or a money
             # ribbon connecting generation/management subsets to cash.
-            sector=page.locator("#chart-sector > svg")
-            source=sector.evaluate("""svg=>({
-                production:[...svg.querySelectorAll('[data-source-fact]')].map(x=>({
-                    key:x.dataset.sourceFact,original:x.dataset.originalValue,yuan:x.dataset.originalYuan})),
-                contracts:[...svg.querySelectorAll('rect[data-contract-source]')].map(x=>({
-                    key:x.dataset.contractSource,yuan:x.dataset.sourceYuan,width:+x.getAttribute('width'),
-                    scale:+x.dataset.scaleYuanPerSvgUnit})),
-                innovation:svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]')?
-                  {yuan:svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').dataset.subsetYuan,
-                   parent:svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').dataset.goodsParentYuan,
-                   width:+svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').getAttribute('width'),
-                   scale:+svg.querySelector('[data-operating-fact="innovative_drug_sales_100m"]').dataset.scaleYuanPerSvgUnit}:null,
-                rpo:svg.querySelector('[data-stock-fact="rpo"]')?.dataset.stockYuan
-            })""")
-            if a.code=="600900":
-                gen=next((x for x in source["production"] if x["key"]=="power_gen_100m_kwh"),None)
-                assert gen and D(gen["original"])==D(d["facts"]["power_gen_100m_kwh"]["yuan"]),(a.code,width,"HYDRO_PHYSICAL_SOURCE_SILENTLY_FROZEN")
-                for key in ("rev","cfo"):
-                    fact=next((x for x in source["production"] if x["key"]==key),None)
-                    assert fact and D(fact["yuan"])==D(d["facts"][key]["yuan"]),(a.code,width,"HYDRO_MONEY_NOT_SOURCE_BOUND",key)
-            else:
-                assert len(source["contracts"])==3,(a.code,width,"PHARMA_CONTRACT_SOURCE_MISSING")
-                total=sum((D(x["yuan"]) for x in source["contracts"]),D(0))
-                assert total==D(d["facts"]["rev"]["yuan"]),(a.code,width,"PHARMA_CONTRACT_INCOME_NOT_EXCLUSIVE")
-                assert all(x["width"]>0 and abs(D(str(x["width"]))-D(x["yuan"])/D(str(x["scale"])))<D(".02")
-                           for x in source["contracts"]),(a.code,width,"PHARMA_ORIGINAL_MONEY_AREA_CHANGED")
-                innovation=source["innovation"]
-                assert innovation and D(innovation["yuan"])==D(d["facts"]["innovative_drug_sales_100m"]["yuan"])*D(100000000)
-                assert D(innovation["parent"])==D(d["facts"]["drug_sales_rev"]["yuan"])
-                assert abs(D(str(innovation["width"]))-D(innovation["yuan"])/D(str(innovation["scale"])))<D(".02")
-                assert D(source["rpo"])==D(d["facts"]["rpo"]["yuan"]),(a.code,width,"RPO_BECAME_REVENUE")
+            for family in ('pnl','cfo','cash','capital','balance','trend','sector'):
+                sector=page.locator('#chart-'+family+' > svg')
+                assert sector.count()==1
+                check_sector_svg(sector.evaluate('e=>e.outerHTML'),family,d)
             assert page.locator(".plot > svg").count()==8
             assert page.locator(".native-mobile-finance svg").count()==8
             assert page.locator("a[href='/#companies']").count()>=1
@@ -187,36 +161,10 @@ def main():
                 assert abs(sum(x["money"] for x in outgoing)-total)<.001
                 assert all(abs(x["h"]-x["money"]/source["scale"])<.001 for x in source["nodes"]),(a.code,"MOBILE_YUAN_NODE_SCALE")
                 assert all(x["scale"]>0 and x["money"]>=0 and x["d"].startswith("M ") for x in source["ribbons"]),(a.code,"MOBILE_GENUINE_MONEY_PATH")
-                for fig in ["pnl","cfo","cash","capital"]:
-                    signed=page.locator(f'#chart-{fig} .native-mobile-finance .m-signed-bridge')
-                    assert signed.count()>=2,(a.code,fig,"NO_SIGNED_CUMULATIVE_NATIVE_MOBILE_BRIDGE")
-                    for item in signed.all():
-                        data=item.evaluate("""(e)=>({a:+e.dataset.startYuan,b:+e.dataset.endYuan,
-                            d:+e.dataset.deltaYuan,fill:e.getAttribute('fill'),width:+e.getAttribute('width')})""")
-                        assert abs(data["a"]+data["d"]-data["b"])<.026,(a.code,fig,"SIGNED_SOURCE_CUMULATION_BROKEN",data)
-                        assert data["width"]>=0,(a.code,fig,"SIGNED_WIDTH_INVALID")
-                        if data["d"]<0 and fig!="capital":
-                            assert data["fill"]=="#aa5949",(a.code,fig,"NEGATIVE_DELTA_WAS_DRAWN_POSITIVE_GREEN",data)
-                balance=page.evaluate("""() => [...document.querySelectorAll('#chart-balance .native-mobile-finance .m-balance-component')].map(e=>({p:e.dataset.period,v:+e.dataset.amountYuan}))""")
-                for tag,k in [("0","assets_prior"),("1","assets")]:
-                    assert abs(sum(x["v"] for x in balance if x["p"]==tag)-float(d["facts"][k]["yuan"]))<.02,(a.code,"MOBILE_BALANCE_MUST_BE_TWO_DATE_EQUAL_TOTALS")
-                assert page.locator("#chart-trend .native-mobile-finance .m-trend-pair").count()==6
-                if a.code=="600276":
-                    inn=page.locator("#chart-sector .native-mobile-finance .m-pharma-innovation")
-                    assert inn.count()==1,(a.code,"NOT_REAL_NESTED_INNOVATIVE_DRUG_CONTRACT_SUBSET")
-                    assert inn.get_attribute("data-operating-fact")=="innovative_drug_sales_100m"
-                    mobile_contract=page.locator('#chart-sector .native-mobile-finance .m-pharma-contract')
-                    assert mobile_contract.count()==3,(a.code,"PHONE_PHARMA_CONTRACT_TRIPLE_SOURCE_MISSING")
-                    mobile_sum=sum((D(z.get_attribute("data-source-yuan")) for z in mobile_contract.all()),D(0))
-                    assert mobile_sum==D(d["facts"]["rev"]["yuan"]),(a.code,"PHONE_PHARMA_CONTRACTS_NOT_RECONCILED")
-                    source_num=float(d["facts"]["innovative_drug_sales_100m"]["yuan"])*1e8
-                    assert abs(float(inn.get_attribute("data-subset-yuan"))-source_num)<.02
-                    assert page.locator('#chart-capital .native-mobile-finance [data-capital-supplement="true"]').count()==1
-                else:
-                    assert "亿千瓦时" in page.locator("#chart-sector .native-mobile-finance").inner_text()
-                    pwr=page.locator('#chart-sector .native-mobile-finance [data-source-fact="power_gen_100m_kwh"]')
-                    assert pwr.count()==1,(a.code,"PHONE_POWER_SOURCE_ID_MISSING")
-                    assert D(pwr.get_attribute("data-original-value"))==D(d["facts"]["power_gen_100m_kwh"]["yuan"]),(a.code,"PHONE_POWER_SOURCE_STALE")
+                for fig in ('pnl','cfo','cash','capital','balance','trend','sector'):
+                    chart=page.locator(f'#chart-{fig} .native-mobile-finance > svg')
+                    assert chart.count()==1 and chart.is_visible(),(a.code,fig,'SHARED_SOURCE_FIGURE_MISSING')
+                    check_sector_svg(chart.evaluate('e=>e.outerHTML'),fig,d)
             elif width==768:
                 # Tablet is allowed to scroll a true original desktop
                 # finance diagram, but a narrow 390px device is NOT.

@@ -28,6 +28,8 @@ for code in CODELIST:
     assert local["html_sha256"]==sha and local["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]=="PASS",("NO_SOURCE_MATCHING_LOCAL_CJK",code)
     expected[code]={"sha256":sha,"ledger":json.loads(ledger.read_text())}
 
+from sector_geometry import check_sector_svg
+
 def wait_for_real_main_source_bytes():
     """Fail closed, but tolerate deploy/edge propagation after latest main merge.
 
@@ -129,22 +131,10 @@ def live_dom(page,code,width):
         assert abs(sum(x["money"] for x in outflow)-money)<.001
         assert all(abs(x["h"]-x["money"]/src["scale"])<.001 for x in src["nodes"])
         assert all(x["d"].startswith("M ") and " C " in x["d"] and x["scale"]>0 for x in src["ribbons"])
-        for kind in ["pnl","cfo","cash","capital"]:
-            svg=page.locator(f'#chart-{kind} .native-mobile-finance svg')
-            assert svg.count()==1
-            lines=svg.locator(".m-signed-bridge")
-            assert lines.count()>=2,(code,kind,"ACTUAL_LIVE_MOBILE_SIGNED_STEPS_MISSING")
-            for z in lines.all():
-                t=z.evaluate("""x=>({a:+x.dataset.startYuan,b:+x.dataset.endYuan,d:+x.dataset.deltaYuan,color:x.getAttribute('fill')})""")
-                assert abs(t["a"]+t["d"]-t["b"])<.03,(code,kind,"ACTUAL_LIVE_SIGNED_BRIDGE_WRONG",t)
-                if t["d"]<0 and kind!="capital": assert t["color"]=="#aa5949",(code,kind,"SIGN_REVERSED")
-        if code=="600276":
-            sub=page.locator('#chart-sector .native-mobile-finance .m-pharma-innovation')
-            assert sub.count()==1,(code,"INNOVATIVE_DRUG_MUST_STAY_SUBSET")
-            assert abs(float(sub.get_attribute('data-subset-yuan'))-float(ledger["facts"]["innovative_drug_sales_100m"]["yuan"])*1e8)<.03
-            assert page.locator('#chart-capital [data-capital-supplement="true"]').count()==1
-        else:
-            assert "亿千瓦时" in page.locator('#chart-sector .native-mobile-finance').inner_text()
+        for kind in ('pnl','cfo','cash','capital','balance','trend','sector'):
+            svg=page.locator(f'#chart-{kind} .native-mobile-finance > svg')
+            assert svg.count()==1 and svg.is_visible(),(code,kind,'ACTUAL_SHARED_SOURCE_FIGURE_MISSING')
+            check_sector_svg(svg.evaluate('e=>e.outerHTML'),kind,ledger)
     elif width==1440:
         assert page.locator('.plot > svg:visible').count()==8
         assert page.locator('.native-mobile-finance:visible').count()==0
@@ -163,7 +153,7 @@ with sync_playwright() as p:
         errors=[]
         page.on("pageerror",lambda err:errors.append(str(err)))
         home=page.goto(ORIGIN,wait_until="networkidle",timeout=45000)
-        assert home and home.status==200 and page.locator('a.company').count()==len(CATALOG)==11,(width,"CURRENT_REAL_ONE_ROOT_11_COMPANIES_MISSING")
+        assert home and home.status==200 and page.locator('a.company').count()==len(CATALOG),(width,"CURRENT_REAL_ONE_ROOT_11_COMPANIES_MISSING")
         # Full raw public homepage byte identity, not merely a count of cards.
         h=hashlib.sha256(home.body()).hexdigest()
         local_home=hashlib.sha256((ROOT/"public/index.html").read_bytes()).hexdigest()

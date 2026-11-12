@@ -81,7 +81,7 @@ def main() -> int:
     try:
         catalog=json.loads((ROOT/"site/research_catalog.json").read_text(encoding="utf8"))
         issuers=catalog["issuers"]
-        assert catalog["published_issuer_count"]==len(issuers)==11,(len(issuers),catalog["published_issuer_count"])
+        assert catalog["published_issuer_count"]==len(issuers) and len(issuers)>=11,(len(issuers),catalog["published_issuer_count"])
         expected_index=(ROOT/"public/index.html").read_bytes()
         index=live_exact_after_deploy(DOMAIN+"/",expected_index)
         assert b'id="companies"' in index,("MAIN_DIRECTORY_ANCHOR_MISSING")
