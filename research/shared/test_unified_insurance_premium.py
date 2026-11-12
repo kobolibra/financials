@@ -28,6 +28,27 @@ class RealOriginalChinaLifePremium(unittest.TestCase):
             for stage in ("premium-source-to-new-or-renew","new-or-renew-to-premium-total"):
                 self.assertEqual(sum((D(p.get("data-ribbon-yuan")) for p in paths if p.get("data-stage")==stage),D(0)),D("536634000000"))
             self.assertNotIn("营业成本",ET.tostring(svg,encoding="unicode"))
+    def test_unseen_insurer_period_and_explicit_source_page_profile(self):
+        # Synthetic schema transfer, not a second real insurance source audit.
+        data=load();data['issuer'].update(code='999998',short='示例寿险',fiscal_period='2031H1',accounting_route='insurance_premium_statistics')
+        data['source'].update(physical_pages_observed=130,original_bytes_gate='ORIGINAL_PDF_SHA256_VERIFIED')
+        data['insurance_premium_profile']={'basis':'MANAGEMENT_LEGACY_PREMIUM_STATISTICS_NOT_CAS25','source_taxonomy':'FIRST_REGULAR_SINGLE_SHORT_RENEW','service_basis':'CAS25_INSURANCE_SERVICE_REVENUE','period':'2031H1','scope':'consolidated','premium_physical_pages':[12],'service_physical_pages':[44]}
+        for key in ('premium_first_regular','premium_single','premium_short','premium_renew','premium_new','premium_total'):
+            data['facts'][key].update(page=12,period='2031H1')
+        data['facts']['service_revenue'].update(page=44,period='2031H1')
+        for mobile in (False,True):
+            root=ET.fromstring(render_insurance_premium(data,mobile=mobile))
+            self.assertEqual(root.get('data-issuer'),'999998');self.assertEqual(root.get('data-period'),'2031H1')
+            self.assertNotIn('中国人寿',ET.tostring(root,encoding='unicode'))
+        same_value=copy.deepcopy(data);same_value['facts']['service_revenue']['yuan']=same_value['facts']['premium_total']['yuan']
+        self.assertIsNotNone(ET.fromstring(render_insurance_premium(same_value)))
+        fake=copy.deepcopy(data);fake['insurance_premium_profile']['premium_physical_pages']=[True]
+        with self.assertRaises(ValueError):render_insurance_premium(fake)
+        fake=copy.deepcopy(data);fake['insurance_premium_profile']['basis']='CAS25_SERVICE_REVENUE'
+        with self.assertRaises(ValueError):render_insurance_premium(fake)
+        fake=copy.deepcopy(data);fake['facts']['premium_short']['period']='2030H1'
+        with self.assertRaises(ValueError):render_insurance_premium(fake)
+
     def test_mobile_type_hierarchy_and_source_lanes_are_readable(self):
         svg=ET.fromstring(render_insurance_premium(load(),mobile=True))
         width,height=map(D,svg.get("viewBox").split()[2:])

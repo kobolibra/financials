@@ -47,7 +47,7 @@ with sync_playwright() as p:
     mobileFlowSource:[...document.querySelectorAll('.native-asr-source')].map(e=>({yuan:e.dataset.exactYuan,width:+e.getAttribute('width')})),
     mobileFlowSink:[...document.querySelectorAll('.native-asr-sink')].map(e=>({yuan:e.dataset.exactYuan,width:+e.getAttribute('width')})),
     mobileFlowRibbon:[...document.querySelectorAll('.native-asr-ribbon')].map(e=>({yuan:e.dataset.exactYuan,width:+e.dataset.width,source:e.dataset.sourceKey,sink:e.dataset.sink,path:e.getAttribute('d')})),
-    mobileSigned:[...document.querySelectorAll('.native-asr-signed')].map(e=>({kind:e.dataset.kind,step:+e.dataset.step,yuan:e.dataset.signedYuan,cumulative:e.dataset.cumulativeYuan,width:+e.getAttribute('width'),fill:e.getAttribute('fill'),svg:e.closest('svg').getAttribute('aria-label')})),
+    mobileSigned:[...document.querySelectorAll('.native-asr svg[data-editorial-grammar="SOURCE_SIGNED_BRIDGE_V1"] rect[data-signed-yuan]')].map(e=>({kind:e.dataset.kind,step:+e.dataset.step,yuan:e.dataset.signedYuan,cumulative:e.dataset.cumulativeYuan,width:+e.getAttribute('width'),fill:e.getAttribute('fill'),svg:e.closest('svg').getAttribute('aria-label')})),
     sharedSigned:[...document.querySelectorAll('#fig-pnl svg[data-signed-statement-grammar="FINANCIALS_TYPED_FULL_PNL_SIGNED_V1"]')].map(svg=>{
       const box=svg.getBoundingClientRect(),vb=svg.viewBox.baseVal,labels=[...svg.querySelectorAll('text')].map(t=>{const b=t.getBBox();return {name:t.textContent,left:b.x,right:b.x+b.width,bottom:b.y+b.height}});
       return {layout:svg.dataset.layout,source:svg.dataset.originalPdfSha256,status:svg.dataset.sourceStatus,
@@ -158,7 +158,7 @@ with sync_playwright() as p:
       delta=D(step["yuan"]);now=D(step["cumulative"])
       if step["kind"]=="step":
         assert cumulative is not None and abs(cumulative+delta-now)<=D("0.01"),(title,"BROKEN_SIGNED_CAS_CUMULATION",step)
-        assert step["fill"]==("#087b65" if delta>=0 else "#a84f40"),(title,"WRONG_MONEY_SIGN_COLOR",step)
+        assert step["fill"]==("#239878" if delta>=0 else "#CD7271"),(title,"WRONG_MONEY_SIGN_COLOR",step)
       elif step["kind"]=="total":
         assert abs(cumulative-now)<=D("0.01"),(title,"TOTAL_WRONG_AMOUNT")
       cumulative=now

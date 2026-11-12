@@ -132,5 +132,15 @@
     "original_main": "328ce615557390f1f0a52611496032557e87800a",
     "prior_full_html_sha256": "a333818fc584eebefeaa0d8747dc74fcc6af6bd3b5c9fa78177508065821b75d",
     "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "a0bd6542cdfdde39a620c3bd9af381fc6bc7b1bf7e8bfe3006241f14acfca0ea",
+    "candidate_full_html_sha256": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "note": "Complete nonhero common renderer migration; current production proof remains bound to previously deployed source bytes.",
+    "browser_matrix": "research/quality/full-figure-20261113/result.json",
+    "figure_count": 8
   }
 }

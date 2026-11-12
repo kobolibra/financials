@@ -77,66 +77,48 @@ def flow(l):
     diagram=svg(labels+paths+nodes+sinks,330,280,"2026H1原始金额严格守恒的四类业务收入对各自营业成本和毛利的手机原生图")
     return shell("nonnegative_conserved_source_cost_gp",diagram+details,"原始元金额严格满足：营业收入＝营业成本＋毛利润。图上四舍五入显示收入 "+money(revenue)+"、成本 "+money(cost)+"、毛利 "+money(gp)+"；小额业务显示万元或元，不能被显示为零。")
 
-def signed(l,title,start,changes,end):
-    start=D(start);end=D(end);cur=start
-    rows=[(title,D(0),start,start,"start")]
-    for label,delta in changes:
-        delta=D(delta);following=cur+delta
-        rows.append((label,cur,following,delta,"step"));cur=following
-    assert abs(cur-end)<=D("0.01"),("MOBILE_CAS_SIGNED_BRIDGE_ERROR",title,cur,end)
-    rows.append(("会计闭合总额",D(0),end,end,"total"))
-    low=min([D(0)]+[min(a,b) for _,a,b,_,_ in rows]);high=max([D(0)]+[max(a,b) for _,a,b,_,_ in rows])
-    span=max(D(1),high-low);scale=D(296)/span
-    pos=lambda x:D(17)+(x-low)*scale
-    height=29+len(rows)*64
-    code=f'<path d="M{fmt(pos(0))},18 V{height-8}" stroke="#bdcbc3" stroke-dasharray="3 4"/>'
-    for i,(label,before,after,delta,kind) in enumerate(rows):
-        y=25+i*64;color=INK if kind in ("start","total") else GREEN if delta>=0 else RUST
-        startx=pos(min(before,after));width=abs(after-before)*scale
-        code+=txt(label,17,y,11)+txt(plus(delta) if kind=="step" else money(after),313,y,11,"end",color,700)
-        code+=f'<rect class="native-asr-signed" data-kind="{kind}" data-step="{i}" data-signed-yuan="{delta}" data-cumulative-yuan="{after}" x="{fmt(startx)}" y="{y+10}" width="{fmt(width)}" height="15" fill="{color}"/>'
-        code+=txt("累计 "+money(after),313,y+47,10,"end",GREY,500)
-    return shell("signed_cumulative_finance",svg(code,330,height,title+"：原始元金额带符号累计瀑布"),"每一步共用同一人民币元比例轴；绿色增加、铜色减少，负现金也不伪装为正流。")
+def signed(l,title,start,changes,end,mobile=True):
+    from editorial_bridge import render_bridge
+    source='本图完整原始账本及物理PDF页码附表'
+    rows=[(title,D(start),'start',source)]+[(label,D(delta),'step',source) for label,delta in changes]+[('会计闭合总额',D(end),'total',source)]
+    diagram=render_bridge(rows,title,issuer=l['issuer']['code'],period=l['issuer']['fiscal_period'],
+        pdf_sha256=l['source']['original_bytes_sha256'],mobile=mobile)
+    return shell('shared_exact_signed_finance',diagram,'同一人民币元比例尺，合计不重复累加；保留负值与跨零累计。')
 
-def compare(l,title,entries,periods):
-    vals=[abs(v(l,key)) for _,a,b in entries for key in (a,b)]
-    maxnum=max(vals+[D(1)])
-    scale=D(295)/maxnum
-    y=10;code=""
-    for label,one,two in entries:
-        code+=txt(label,16,y+14,12)
-        for idx,(k,p,color) in enumerate(((one,periods[0],GREY),(two,periods[1],GREEN))):
-            value=v(l,k);dy=y+22+idx*32
-            code+=txt(p+" "+money(value),16,dy+12,11)
-            code+=f'<rect class="native-asr-comparable" data-exact-yuan="{value}" data-source-field="{k}" x="16" y="{dy+18}" width="{fmt(abs(value)*scale)}" height="10" fill="{color}"/>'
-        y+=100
-    return shell("two_date_stock_comparison",svg(code,330,y+14,title+"；独立日期与相同货币比例尺"),"两期为 2025 年末和 2026 年六月末的资产负债表存量，并非半年期间的经营现金收支。")
 
-def segment(l):
-    pairs=[(q["label"],v(l,q["rev"]),v(l,q["cost"])) for q in l["segments"]]
-    maximum=max([x-y for _,x,y in pairs]+[D(1)])
-    code=""
-    for i,(name,rev,cost) in enumerate(pairs):
-        gp=rev-cost;y=23+i*62
-        code+=txt(name,16,y,12)+txt(money(gp)+" · "+f"{gp/rev*100:.1f}%",314,y,10,"end")
-        code+=f'<rect class="native-asr-gp" data-gp-yuan="{gp}" x="16" y="{y+12}" width="{fmt(gp/maximum*D(298))}" height="18" fill="{[GREEN,BLUE,COPPER,GREY][i]}"/>'
-    return shell("source_gp_contribution_with_rate",svg(code,330,285,"翱捷科技四类业务毛利润原始元比例与不同分母的毛利率"),"“半导体 IP 授权”毛利率接近100%，但分母很小，不应把高毛利率误认为主要集团盈利贡献。")
+def compare(l,title,entries,periods,mobile=True):
+    from editorial_bridge import render_comparison
+    pairs=[(label,v(l,a),v(l,b),a+' / '+b+'；本图源金额及物理页附表') for label,a,b in entries]
+    return shell('shared_two_date_comparison',render_comparison(pairs,title,issuer=l['issuer']['code'],
+        periods=periods,pdf_sha256=l['source']['original_bytes_sha256'],mobile=mobile),'两个时点的存量比较，不是期间经营现金收支。')
 
-def balance(l):
-    total=max(v(l,"assets"),v(l,"assets_prior"));scale=D(294)/total
-    out=""
-    for i,(when,a,lkey,e) in enumerate((("2025-12-31","assets_prior","liabilities_prior","equity_prior"),("2026-06-30","assets","liabilities","equity"))):
-        a0=v(l,a);liab=v(l,lkey);equity=v(l,e)
-        assert a0==liab+equity
-        y=26+i*95
-        out+=txt(when+" 合并资产 "+money(a0),18,y,12)
-        out+=f'<rect data-assets-yuan="{a0}" x="18" y="{y+10}" width="{fmt(a0*scale)}" height="16" fill="#bdcbc4"/>'
-        out+=f'<rect data-liabilities-yuan="{liab}" x="18" y="{y+34}" width="{fmt(liab*scale)}" height="17" fill="{COPPER}"/>'
-        out+=f'<rect data-equity-yuan="{equity}" x="{fmt(D(18)+liab*scale)}" y="{y+34}" width="{fmt(equity*scale)}" height="17" fill="{GREEN}"/>'
-        out+=txt("负债 "+money(liab)+" · 权益 "+money(equity),18,y+75,11)
-    return shell("same_date_balanced_stock",svg(out,330,220,"两个时点资产=负债+所有者权益且人民币元比例一致"),"资产＝负债＋总权益为同一日期的存量恒等式；不是“资产现金流入负债”。")
 
-def make(l):
+def segment(l,mobile=True):
+    from editorial_bridge import render_components
+    parts=[]
+    for q in l['segments']:
+        revenue,cost=v(l,q['rev']),v(l,q['cost']);gp=revenue-cost
+        margin=f'{gp/revenue*100:.1f}%' if revenue else '未定义'
+        parts.append((q['label']+' · 自身毛利率 '+margin,gp,q['rev']+' / '+q['cost']+'；本图原始事实及物理页附表'))
+    total=sum((x[1] for x in parts),D(0))
+    if total==0:return shell('zero_gp_components','<p>各业务毛利均为零，不绘制非零金额比例尺。</p>')
+    return shell('shared_gp_components',render_components(parts,total,'各业务毛利贡献与自身毛利率',
+        issuer=l['issuer']['code'],period=l['issuer']['fiscal_period'],pdf_sha256=l['source']['original_bytes_sha256'],mobile=mobile),
+        '占合计为各业务毛利占集团毛利的比例；自身毛利率以各业务收入为分母，二者不能混同。')
+
+
+def balance(l,mobile=True):
+    from editorial_bridge import render_balance
+    dates=[]
+    for period,suffix in (('2025-12-31','_prior'),('2026-06-30','')):
+        a,liab,e=[k+suffix for k in ('assets','liabilities','equity')]
+        dates.append((l['facts'][a]['period'],v(l,a),v(l,liab),v(l,e),'本图资产负债表原始事实及页码附表'))
+    return shell('shared_equal_stock_identity',render_balance(dates,'同日资产与负债权益结构',
+        issuer=l['issuer']['code'],pdf_sha256=l['source']['original_bytes_sha256'],mobile=mobile),'同一日期资产等于负债加全部权益，不是现金流向。')
+
+
+def make(l,mobile=True):
+    bridge=lambda *args:signed(*args,mobile=mobile)
     f=lambda k:v(l,k)
     prior=f("rev_prior")-f("cogs_prior");gp=f("rev")-f("cogs")
     op_exp=f("rnd_expense")+sum((f(k) for k in ("tax_surcharge","sell","admin","finance_expense")),D(0))
@@ -147,17 +129,17 @@ def make(l):
     other=sum((c(i) for i in range(13)),D(0))
     return {
        "flow":flow(l),
-       "segment":segment(l),
-       "gp":signed(l,"上年同期毛利润",prior,[("营业收入变化",f("rev")-f("rev_prior")),("减：营业成本变化",f("cogs_prior")-f("cogs"))],gp),
-       "pnl":signed(l,"2026H1 合并毛利润",gp,[("研发费用",-f("rnd_expense")),("其他期间费用及税金",-(op_exp-f("rnd_expense"))),("其他经营损益净额",extra),("营业外收支净额",f("nonoperating_income")-f("nonoperating_expense")),("所得税影响",-f("income_tax_expense"))],f("consolidated_net_profit")),
-       "earnings":signed(l,"扣非归母净利润",f("deducted_parent_ni"),[("非经常项目（归母税后）",f("nonrec_parent_net"))],f("parent_ni")),
-       "cfo":signed(l,"合并净利润",f("consolidated_net_profit"),[("其他13项附注调整",other),("存货调整",c(13)),("经营性应收调整",c(14)),("经营性应付调整",c(15)),("其他调整",c(16))],f("cash_cfo")),
-       "cash":signed(l,"期初现金及等价物",f("cash_start"),[("经营现金流",f("cash_cfo")),("投资现金流",f("cash_cfi")),("筹资现金流",f("cash_cff")),("汇率对现金影响",f("cash_fx"))],f("cash_end")),
-       "balance":balance(l),
+       "segment":segment(l,mobile=mobile),
+       "gp":bridge(l,"上年同期毛利润",prior,[("营业收入变化",f("rev")-f("rev_prior")),("减：营业成本变化",f("cogs_prior")-f("cogs"))],gp),
+       "pnl":bridge(l,"2026H1 合并毛利润",gp,[("研发费用",-f("rnd_expense")),("其他期间费用及税金",-(op_exp-f("rnd_expense"))),("其他经营损益净额",extra),("营业外收支净额",f("nonoperating_income")-f("nonoperating_expense")),("所得税影响",-f("income_tax_expense"))],f("consolidated_net_profit")),
+       "earnings":bridge(l,"扣非归母净利润",f("deducted_parent_ni"),[("非经常项目（归母税后）",f("nonrec_parent_net"))],f("parent_ni")),
+       "cfo":bridge(l,"合并净利润",f("consolidated_net_profit"),[(part["label"],D(part["yuan"])) for part in cfo],f("cash_cfo")),
+       "cash":bridge(l,"期初现金及等价物",f("cash_start"),[("经营现金流",f("cash_cfo")),("投资现金流",f("cash_cfi")),("筹资现金流",f("cash_cff")),("汇率对现金影响",f("cash_fx"))],f("cash_end")),
+       "balance":balance(l,mobile=mobile),
        "capital":compare(l,"营运资产与合同负债两日期比较",[
          ("存货净额","inventory_net_prior","inventory_net"),
          ("应收账款净额","ar_prior","ar"),
          ("预付款项","prepayments_prior","prepayments"),
          ("合同负债","contract_liabilities_prior","contract_liabilities")
-       ],("2025-12-31","2026-06-30"))
+       ],(l["facts"]["inventory_net_prior"]["period"],l["facts"]["inventory_net"]["period"]),mobile=mobile)
     }

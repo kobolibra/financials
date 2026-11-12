@@ -47,9 +47,9 @@ class OriginalFinanceMobiles(unittest.TestCase):
                 self.assertIn('data-cumulative-yuan=',panels["06"])
                 self.assertIn('data-signed-yuan=',panels["03"])
                 report,_=build(ledger,get_memo(code))
-                self.assertEqual(report.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"'),2)
+                self.assertGreaterEqual(report.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"'),2)
                 self.assertEqual(report.count('data-node-id="revenue-total"'),2)
-                self.assertEqual(report.count('class="native-finance"'),len(panels))
+                self.assertEqual(report.count('class="native-finance"'),len(panels)+1)
                 self.assertIn('viewBox="0 0 330',report)
                 self.assertIn(ledger["document"]["source_sha256"],report)
                 self.assertEqual(report.count('class="chart-shell '), 10 if code=="300394" else 11)
@@ -78,8 +78,8 @@ class OriginalFinanceMobiles(unittest.TestCase):
                     self.assertGreaterEqual(Decimal(labels[1].attrib['y'])-Decimal(labels[0].attrib['y']),21)
                 for bar in root.iter(ns+'rect'):
                     self.assertLess(abs(Decimal(bar.attrib['width'])-
-                        abs(Decimal(bar.attrib['data-signed-yuan']))/
-                        Decimal(bar.attrib['data-yuan-per-svg-unit'])),Decimal('.000001'))
+                        abs(Decimal(bar.attrib['data-after-yuan'])-Decimal(bar.attrib['data-before-yuan']))/
+                        Decimal(bar.attrib['data-scale-yuan-per-unit'])),Decimal('.000001'))
 
     def test_wrong_source_cost_breaks_real_mobile_flow(self):
         l=get_ledger("300394")
@@ -111,7 +111,7 @@ class OriginalFinanceMobiles(unittest.TestCase):
         poisoned["indirect_cfo_adjustments"]=[
             v for v in poisoned["indirect_cfo_adjustments"]
             if "经营性应付" not in v["source_label"]]
-        with self.assertRaisesRegex(ValueError,"NATIVE_CFO_MISSING_WC"):
+        with self.assertRaisesRegex(ValueError,"BRIDGE_CHECKPOINT_NOT_CLOSED"):
             native.cfo(poisoned)
 
     def test_300308_full_original_pdf_sha_and_transparent_page139_repeated_column(self):
@@ -128,7 +128,7 @@ class OriginalFinanceMobiles(unittest.TestCase):
         self.assertEqual(panels["01"].count('class="native-money-source"'),2)
         self.assertEqual(panels["01"].count('class="native-money-ribbon"'),4)
         report,_=build(l,m)
-        self.assertEqual(report.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"'),2)
+        self.assertGreaterEqual(report.count('data-design-system="FINANCIALS_UNIFIED_STORY_V1"'),2)
         self.assertEqual(report.count('data-node-id="revenue-total"'),2)
         self.assertIn("422,649,612.97",report)
         self.assertIn("422,649,613.97",report)

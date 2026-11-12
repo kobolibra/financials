@@ -28,7 +28,8 @@
         "毛利",
         "成本"
       ],
-      "rank": 1
+      "rank": 1,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "300308",
@@ -54,7 +55,8 @@
         "毛利",
         "成本"
       ],
-      "rank": 2
+      "rank": 2,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "300502",
@@ -80,7 +82,8 @@
         "毛利",
         "成本"
       ],
-      "rank": 3
+      "rank": 3,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "600036",
@@ -187,7 +190,8 @@
       "spark": null,
       "spark_names": null,
       "rank": 8,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "600900",
@@ -208,7 +212,8 @@
       "spark": null,
       "spark_names": null,
       "rank": 9,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "600276",
@@ -229,7 +234,8 @@
       "spark": null,
       "spark_names": null,
       "rank": 10,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "601628",
@@ -250,12 +256,28 @@
       "spark": null,
       "spark_names": null,
       "rank": 11,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     }
   ],
   "topic": {
     "name": "光互连产业链比较",
     "href": "/optical-2026h1.html"
   },
-  "research_scope": "SOURCE_LIMITED_ELEVEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION"
+  "research_scope": "SOURCE_LIMITED_ELEVEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION",
+  "figure_quality_contracts": {
+    "FULL_SOURCE_FIGURES_V1": {
+      "source_review_indices": [
+        "research/quality/material-notes-review-20261110.json"
+      ],
+      "local_migration_receipt": "research/quality/full-figure-20261113/result.json",
+      "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
+      "historical_exact_html_snapshots": {
+        "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+        "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+        "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+        "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
+      }
+    }
+  }
 }

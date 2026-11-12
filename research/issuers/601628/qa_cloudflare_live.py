@@ -15,7 +15,7 @@ from research.shared.live_route_evidence import make_live_navigation_receipt
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(ROOT/'research/issuers/601628'))
 from quantified_decision import FACT_SPEC,decisions
-from qa_signed_geometry import FAMILIES,check_signed_svg,expected_steps
+from qa_signed_geometry import FAMILIES,check_signed_svg,expected_steps,COMMON_FAMILIES,check_common_insurance_svg
 
 def verified_git_commit(environ=None,rev_parse=None):
     """Bind CI to its checked-out deployment SHA; local defaults to Git HEAD."""
@@ -36,7 +36,7 @@ local_home=(ROOT/"public/index.html").read_bytes()
 expected_sha=hashlib.sha256(local_html).hexdigest()
 expected_home=hashlib.sha256(local_home).hexdigest()
 catalog=json.loads((ROOT/"site/research_catalog.json").read_text(encoding="utf-8"))
-assert len(catalog["issuers"])==11 and catalog["published_issuer_count"]==11
+assert len(catalog["issuers"])==catalog["published_issuer_count"] and len(catalog["issuers"])>=11
 report=json.loads((HERE/"source-ledger.json").read_text())
 assert report["source"]["original_bytes_sha256"]=="b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943"
 report_check=[]
@@ -65,7 +65,7 @@ with sync_playwright() as pw:
     page.on("pageerror",lambda x:errors.append(str(x)))
     page.goto(SITE+"/",wait_until="load",timeout=40000)
     links=page.locator("a.company")
-    assert links.count()==11,("LIVE_DIRECTORY_CARD_COUNT",width,links.count())
+    assert links.count()==len(catalog["issuers"]),("LIVE_DIRECTORY_CARD_COUNT",width,links.count())
     hrefs=links.evaluate_all("els=>els.map(x=>x.getAttribute('href'))")
     assert set(hrefs)==set(x["href"] for x in catalog["issuers"]),("LIVE_DIRECTORY_ROUTE_SET",width,hrefs)
     assert page.locator('a.company[href="/601628.html"]').count()==1
@@ -138,6 +138,11 @@ with sync_playwright() as pw:
                 svg=page.locator('#chart-'+family['family']+' .mobile-chart svg')
                 assert svg.count()==1 and svg.is_visible(),(width,family['family'],'LIVE_NATIVE_BRIDGE_MISSING')
                 signed_bridge_checks.append(check_signed_svg(svg.evaluate('el=>el.outerHTML'),family['family'],report))
+                continue
+            if family['family'] in COMMON_FAMILIES:
+                svg=page.locator('#chart-'+family['family']+' .mobile-chart > svg')
+                assert svg.count()==1 and svg.is_visible()
+                signed_bridge_checks.append(check_common_insurance_svg(svg.evaluate('e=>e.outerHTML'),family['family'],report))
                 continue
             assert len(family["rows"])>=5,("LIVE_MOBILE_FAMILY_INCOMPLETE",family["family"])
             scales={}
@@ -254,7 +259,7 @@ with sync_playwright() as pw:
     page.wait_for_url(re.compile(r"/#companies$"),timeout=30000)
     actual_back_url=page.url
     nav=make_live_navigation_receipt(report_url=actual_article_url,back_url=actual_back_url,code=CODE,origin=SITE)
-    assert page.locator("a.company").count()==11,("LIVE_BACK_NAV_DIRECTORY",width)
+    assert page.locator("a.company").count()==len(catalog["issuers"]),("LIVE_BACK_NAV_DIRECTORY",width)
     report_check.append({"width":width,**nav,"public_home_11_cards":"PASS","new_601628_main_route":"PASS","ten_desktop_plus_premium_and_five_native_bridges":"PASS","source_signed_bridge_checks":signed_bridge_checks,"visible_bridge_exports":visible_bridge_exports,"source_table_10":"PASS","visible_real_svg_ribbons":"PASS","live_final_sink_geometrically_conserved":"PASS","mobile_ten_full_width_source_exact_money_exhibits":"PASS" if width<=850 else "DESKTOP_SVG","back_to_same_home":"PASS","no_page_horizontal_overflow":"PASS","real_live_screenshots":"PASS"})
     page.close()
  assert not errors,("LIVE_CHROMIUM_PAGE_ERRORS",errors)

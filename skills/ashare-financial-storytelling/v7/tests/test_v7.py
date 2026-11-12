@@ -10,8 +10,8 @@ class ResearchPipelineQA(unittest.TestCase):
   self.assertNotEqual(check(BASE)['status'],'BLOCKED')
  def test_real_case_exhibits_and_source(self):
   h,q=build(BASE,MEMO)
-  self.assertEqual(h.count('<figure class="exhibit">'),10)
-  self.assertIn('现金及现金等价物不同于',h)
+  self.assertEqual(h.count('<figure class="exhibit'),10)
+  self.assertIn('现金等价物不等于',h)
   self.assertIn('应收集中度 ≠ 销售收入集中度',h)
   self.assertIn(BASE['document']['source_sha256'],h)
   self.assertEqual(q['money_flow_ribbons'],7)
@@ -55,8 +55,8 @@ class ResearchPipelineQA(unittest.TestCase):
   self.assertNotIn('2026 H1',h)
   self.assertNotIn('天孚通信',h)
  def test_unreviewed_memo_rejected_by_cli_entry(self):
-  source=(root/'engine/render_v7.py').read_text()
-  self.assertIn("m.get('review_status')!='ANALYST_REVIEWED'",source)
+  bad=copy.deepcopy(MEMO);bad['review_status']='UNREVIEWED'
+  with self.assertRaisesRegex(ValueError,'not source-reviewed'):build(BASE,bad)
  def test_regulated_sector_does_not_silently_fall_through(self):
   source=(root/'engine/render_v7.py').read_text()
   self.assertIn("'industrial','manufacturing','services'",source)

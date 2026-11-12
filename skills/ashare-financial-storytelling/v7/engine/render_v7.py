@@ -44,11 +44,20 @@ def section_head(idx,kicker,heading,dek):
  return f'<div class="chapter-head"><span class="chapter-num">{idx}</span><div><span class="eyebrow soft">{esc(kicker)}</span><h2>{esc(heading)}</h2><p>{esc(dek)}</p></div></div>'
 
 _NATIVE_PANELS = {}
+_DESKTOP_PANELS = {}
 
 def exhibit(title,stamp,chart,source_note,readout='',scrolly=True):
  # Same original yuan fact corpus, different chart grammar for full-width phone.
  # Desktop 1250-viewBox authored SVG stays in the DOM for exact SVG export.
- native=_NATIVE_PANELS.get(stamp.split(' / ')[0],'')
+ key=stamp.split(' / ')[0]
+ native=_NATIVE_PANELS.get(key,'')
+ # Preserve a source-typed signed P&L or lawful hero already on its canonical engine.
+ desktop=_DESKTOP_PANELS.get(key,'')
+ if key!='01' and desktop and 'data-signed-statement-grammar=' not in chart:
+  match=re.search(r'<svg.*?</svg>',desktop,re.S)
+  if match:chart=match.group()
+ if '<svg' not in chart and '<svg' not in native:
+  return '<aside class="no-data" data-graphic-omission="SOURCE_UNAVAILABLE"><h3>'+esc(title)+'</h3>'+chart+'</aside>'
  klass='exhibit has-native-finance' if native else 'exhibit'
  mobile='<div class="native-finance" data-source-native="'+esc(stamp.split(' / ')[0])+'">'+native+'</div>' if native else ''
  hint='<div class="chart-scroll-hint">在窄屏上可横向滑动查看完整图形 ↔</div>' if scrolly and not native else ''
@@ -67,15 +76,15 @@ def journal_figure(l):
   out.append(f'''<div class="journal-line"><div class="journal-label"><b>{esc(label)}</b><small>{src(l,'inventory','raw_material','accounts_receivable','prepayment')}</small></div><div class="journal-values"><div class="period-bar"><span>上期末</span><i style="width:{float(a/top*100):.3f}%;background:#bfc9c5"></i><strong>{n(a)} 亿</strong></div><div class="period-bar"><span>本期末</span><i style="width:{float(b/top*100):.3f}%;background:{color}"></i><strong>{n(b)} 亿</strong></div></div></div>''')
  return '<div class="journal">'+''.join(out)+'</div>'
 
-def concentration(l,m):
- ratios=[('前五名客户应收与合同资产占比',m.get('source_notes',{}).get('top5_ar_percent'),'分母：期末应收账款及合同资产余额','应收集中度 ≠ 销售收入集中度','top_five_ar'),('最大预付对象占比',m.get('source_notes',{}).get('top1_prepay_percent'),'分母：期末预付款项余额','预付款集中度 ≠ 采购额集中度','top_prepay')]
- arr=[]
- for title,share,denom,caveat,key in ratios:
-  if share is None:continue
-  q=D(str(share));
-  if not 0<=q<=100:raise ValueError('Bad reported concentration')
-  arr.append(f'''<div class="concentration-item"><div class="ci-top"><span>{esc(title)}</span><strong>{q:.2f}%</strong></div><div class="ci-track"><div style="width:{q:.2f}%"></div></div><small>{esc(denom)} · {esc(caveat)} · {page(l,key)}</small></div>''')
- return '<div class="concentration-set">'+''.join(arr)+'</div>' if arr else '<div class="no-data">原报告尚未确认可比的前五客户应收余额占比或最大供应商预付款占比；不绘制未经披露的比例图。应收和预付款金额见营运资本章节。</div>'
+def concentration(l,m,mobile=False):
+ from editorial_bridge import render_shares
+ doc=l['document'];entries=[]
+ for label,key,denominator,fact in [('前五名客户应收及合同资产占比','top5_ar_percent','期末应收账款及合同资产余额','top_five_ar'),('最大预付对象占比','top1_prepay_percent','期末预付款项余额','top_prepay')]:
+  value=m.get('source_notes',{}).get(key)
+  if value is not None:entries.append((label,D(str(value)),denominator,src(l,fact)))
+ if not entries:return '<div class="no-data">原报告尚未确认同口径集中度，不生成图形；应收和预付款不能冒充收入或采购集中度。</div>'
+ return render_shares(entries,'集中度必须有明确分母',issuer=doc['ticker'].split('.')[0],period=doc['period_key'],pdf_sha256=doc['source_sha256'],mobile=mobile)+'<p>应收集中度 ≠ 销售收入集中度；预付款集中度也不等于采购额集中度。</p>'
+
 
 def original_profit_bridge(l):
  v=lambda k:num(l,k)
@@ -173,10 +182,13 @@ def _review_source_gate(l,m):
  return review
 
 def build(l,m):
- global _NATIVE_PANELS
+ global _NATIVE_PANELS,_DESKTOP_PANELS
+ if l.get('document',{}).get('business_type') not in ('industrial','manufacturing','services'):
+  raise ValueError('Sector unsupported: bank/insurance/property need domain-specific renderer')
  review=_review_source_gate(l,m)
  QA=check(l)
- _NATIVE_PANELS=make_native_mobile_finance(l)
+ _NATIVE_PANELS=make_native_mobile_finance(l,mobile=True)
+ _DESKTOP_PANELS=make_native_mobile_finance(l,mobile=False)
  if not {'01','03','04','05','06','07','08','09','10'}.issubset(_NATIVE_PANELS):
   raise ValueError('NATIVE_FINANCIAL_EDITORIAL_FIGURES_MISSING')
  doc=l['document'];v=lambda k:num(l,k)
@@ -213,6 +225,9 @@ def build(l,m):
  fcfsvg=(waterfall(l,[('经营现金流',cfo,src(l,'cfo'),'start'),('现金资本开支',-capex,src(l,'capex_cash'),'step'),('简化自由现金流',cfo-capex,src(l,'cfo','capex_cash'),'total')],'简化自由现金流：经营现金流减资本开支') if cfo<capex else operating_cash_allocation(l))
  marg=profitability_change(l)
  im=journal_figure(l);con=concentration(l,m)
+ if '<svg' in con:
+  _DESKTOP_PANELS['11']=con
+  _NATIVE_PANELS['11']=concentration(l,m,mobile=True)
  issuer=esc(m.get('issuer_short',doc['issuer'])); ticker=esc(doc['ticker']); period=esc(doc['period_key']); cmp=esc(doc['comparative_period_key']);unit='人民币亿元'
  thesis=esc(m.get('headline','本期经营质量存在需要检验的变化'))
  summary=esc(m.get('summary',''))
@@ -227,7 +242,12 @@ def build(l,m):
  support=''.join('<li>'+esc(x)+'</li>' for x in m.get('support',[]));counter=''.join('<li>'+esc(x)+'</li>' for x in m.get('counter',[]))
  facts=len(l.get('facts',{}));ind=len(l.get('indirect_cfo_adjustments',[]))
  growth_unit='收入变动 '+(n(rev-prevrev)+' 亿' if prevrev is not None else '上期不可比')+' · 成本变动 '+(n(cogs-prevcogs)+' 亿' if prevcogs is not None else '上期不可比')
- quantified_decision=render_optical_decision(l,m) if doc['ticker'] in ('300394.SZ','300502.SZ') else ''
+ quantified_decision=''
+ if doc['ticker'] in ('300394.SZ','300502.SZ'):
+  if prevrev is not None and prevcogs is not None:
+   quantified_decision=render_optical_decision(l,m)
+  else:
+   quantified_decision='<section data-research-status="COMPARATIVE_SOURCE_UNAVAILABLE"><h2>缺少可比两期财务数据</h2><p>不生成毛利润同比归因；缺失比较期不能按零处理。</p></section>'
  library_title='返回统一的全部公司研究目录' if quantified_decision else '返回包含七家公司的统一研究库'
  library_text='全部公司 ↗' if quantified_decision else '全部七家公司 ↗'
  hero_focus_html=''
@@ -381,7 +401,7 @@ def build(l,m):
 {exhibit('毛利率、经营现金流率、简化 FCF 率：两期比较','05 / MARGIN PROFILE',marg,src(l,'revenue','cogs','cfo','capex_cash')+'；上期同口径见原报表比较列','仅比较两个半年同期，不冒充 8–12 个季度的长期趋势。简化 FCF 率是分析师定义。')}
 <div class="readout">{qualitative('主要解释',gp_analysis_text)}{qualitative('技术、研发与利润质量',r_and_d_context+' 研发费用率变化并不直接证明定价权或技术壁垒。','rust')}</div></section>
 <section class="chapter" id="cash">{section_head('03','CASH CONVERSION / CAPITAL ALLOCATION','利润能否真正转化为现金？','先完整勾稽合并净利润到经营现金流，再解释经营、投资、融资及汇率因素怎样改变期末现金。两层关系不能混成一张误导性的资金流图。')}
-{exhibit('合并净利润经过哪些调整，才成为经营现金流？','06 / NET INCOME → CFO',cash1,'现金流量表补充资料 '+(' / '.join(sorted({'p.'+str(x['page']) for x in l['indirect_cfo_adjustments'] if x.get('page')})))+'，合并净利润 '+page(l,'net_profit')+'，CFO '+page(l,'cfo'),'间接法全部 '+str(ind)+' 项逐一参与原值校验；图中合并了其中的非营运资本调整，原文项目可于后面的审计表查看。')}
+{exhibit('合并净利润经过哪些调整，才成为经营现金流？','06 / NET INCOME → CFO',cash1,'现金流量表补充资料 '+(' / '.join(sorted({'p.'+str(x['page']) for x in l['indirect_cfo_adjustments'] if x.get('page')})))+'，合并净利润 '+page(l,'net_profit')+'，CFO '+page(l,'cfo'),'间接法全部 '+str(ind)+' 项逐一参与原值校验；图中逐项保留全部原始调整；原文项目亦可于后面的审计表查看。')}
 {exhibit('经营现金流形成后，期末现金为什么反而减少？','07 / CASH MOVEMENT',cash2,src(l,'cash_open','cfo','cfi','cff','fx_effect','cash_close'),'现金及现金等价物不同于资产负债表的货币资金，汇率对现金的影响不同于利润表汇兑损益。')}
 {exhibit('经营现金流扣除现金资本开支，留下多少简化 FCF？','08 / REINVESTMENT & FCF',fcfsvg,src(l,'cfo','capex_cash'),'这是一项分析定义，不表示 CFO 逐笔流向资本开支，也不等于股东可以自由分配的现金。')}
 <div class="callout"><strong>现金质量的反证</strong>{esc(m.get('cash_explanation',''))}</div></section>
@@ -400,7 +420,7 @@ def build(l,m):
 <footer class="page-footer"><div class="wrap"><span>FINANCIALS IN VISUALS · INDEPENDENT RESEARCH / {ticker}</span><span>研究辅助材料，非证券投资建议 · PDF SHA + 页码可追溯</span></div></footer><script>{js}</script></body></html>'''
  from research_context import render as render_research_context
  html_page=html_page.replace('</main>',render_research_context(doc['ticker'].split('.')[0])+'</main>',1)
- return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':(9 if not m.get('source_notes',{}).get('top5_ar_percent') and not m.get('source_notes',{}).get('top1_prepay_percent') else 10)+int(bool(volume_fig)),'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'UPLOADED_SOURCE_PDF_SHA_VERIFIED__CORE_FINANCIAL_NUMBERS_CHECKED__EDITORIAL_SECOND_REVIEW_PENDING'}
+ return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':html_page.count('<figure'),'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'UPLOADED_SOURCE_PDF_SHA_VERIFIED__CORE_FINANCIAL_NUMBERS_CHECKED__EDITORIAL_SECOND_REVIEW_PENDING'}
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--ledger',required=True);p.add_argument('--memo',required=True);p.add_argument('--out',required=True);p.add_argument('--qa',required=True);a=p.parse_args()

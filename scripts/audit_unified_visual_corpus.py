@@ -32,7 +32,27 @@ def has_native_viewbox(html:str,width:int)->bool:
     return token in html or token.replace('"',chr(92)+'"') in html
 
 
-def inspect(catalog:dict,pages:dict[str,bytes])->dict:
+def verified_complete_migration(evidence,code,html_sha):
+    """Current bytes and complete real browser/exports; never a profile badge."""
+    if not isinstance(evidence,dict) or evidence.get('schema')!='financials.complete_figure_migration.v1' or evidence.get('status') not in ('PASS_LOCAL','PASS_PRODUCTION'):return False
+    row=evidence.get('issuers',{}).get(code,{})
+    if row.get('html_sha256')!=html_sha or row.get('complete_figure_migration') not in ('PASS_LOCAL','PASS_PRODUCTION'):return False
+    if not re.fullmatch('[a-f0-9]{64}',row.get('pdf_sha256','')):return False
+    count=row.get('figure_count')
+    if type(count) is not int or count<1:return False
+    cases=[c for c in evidence.get('cases',[]) if c.get('issuer')==code]
+    if len(cases)!=3 or {c.get('width') for c in cases}!={1440,768,390}:return False
+    known={'SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY','INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL','FINANCIALS_TYPED_FULL_PNL_SIGNED_V1','SOURCE_SIGNED_BRIDGE_V1','SOURCE_EQUAL_STOCK_BALANCE_V1','SOURCE_NONNEGATIVE_COMPONENTS_V1','SOURCE_TWO_PERIOD_COMPARISON_V1','SOURCE_REPORTED_RATIO_V1','SOURCE_INDEPENDENT_METRICS_V1','SOURCE_SEPARATE_PANELS_V1'}
+    for case in cases:
+        figures=case.get('figures',[])
+        if case.get('html_sha256')!=html_sha or len(figures)!=count or {f.get('index') for f in figures}!=set(range(count)):return False
+        for figure in figures:
+            if figure.get('grammar') not in known or figure.get('source_and_actual_geometry')!='PASS' or figure.get('visible_edition_download')!='PASS':return False
+            if any(not re.fullmatch('[a-f0-9]{64}',figure.get(key,'')) for key in ('vector_sha256','screenshot_sha256')):return False
+    return True
+
+
+def inspect(catalog:dict,pages:dict[str,bytes],migration_evidence=None)->dict:
     rows=[]
     seen=set()
     for item in catalog["issuers"]:
@@ -130,9 +150,14 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
                 row["issues"].append("INSURANCE_TEN_FIGURES_MONEY_EDITION_PRESERVED_BUT_OTHER_ART_NOT_UNIFIED")
         else:
             row["issues"].append("NOT_YET_MIGRATED_TO_CANONICAL_V9_EDITORIAL_SYSTEM")
+        if item.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1' and not row['visual_grammar_status'].startswith('FAIL_'):
+            if verified_complete_migration(migration_evidence,code,row['actual_full_html_sha256']):
+                row['visual_grammar_status']='UNIFIED_FULL_ARTICLE_SOURCE_FIGURES'
+                row['issues']=[]
+                row['proof_scope']='CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF'
         rows.append(row)
-    if len(rows)!=11 or set(x["issuer"] for x in rows)!=POSITIVE|LEGACY|{"600519"}:
-        raise AssertionError("CANONICAL_11_COMPANY_SCOPE_CHANGED_WITHOUT_MIGRATION")
+    if len(rows)!=len(catalog['issuers']) or len({x['issuer'] for x in rows})!=len(rows):
+        raise AssertionError('CANONICAL_CATALOG_SCOPE_OR_DUPLICATE_CHANGED')
     adopted=[x["issuer"] for x in rows if x["visual_grammar_status"]=="UNIFIED_FINANCIAL_INCOME_FLOW"]
     legitimate_signed=[x["issuer"] for x in rows if x["visual_grammar_status"]=="UNIFIED_SEMANTICS_SIGNED_EXCEPTION"]
     old=[x["issuer"] for x in rows if x["visual_grammar_status"]=="LEGACY_NOT_UNIFIED"]
@@ -142,6 +167,7 @@ def inspect(catalog:dict,pages:dict[str,bytes])->dict:
             "scope":"CURRENT_REPOSITORY_ARTICLE_HTML_SHA_ONLY",
             "canonical_issuer_count":len(rows),
             "unified_positive_sankey_issuers":adopted,
+            "fully_migrated_source_article_issuers":[x["issuer"] for x in rows if x["visual_grammar_status"]=="UNIFIED_FULL_ARTICLE_SOURCE_FIGURES"],
             "lawful_signed_exception_issuers":legitimate_signed,
             "legacy_not_unified":old,
             "partial_hero_only_unified_remaining_art_legacy":partial,
@@ -159,7 +185,10 @@ def main():
     args=parser.parse_args()
     catalog=json.loads((ROOT/"site/research_catalog.json").read_text(encoding="utf8"))
     pages={x["code"]:(ROOT/"public"/x["href"].lstrip("/")).read_bytes() for x in catalog["issuers"]}
-    verdict=inspect(catalog,pages)
+    profile=catalog.get('figure_quality_contracts',{}).get('FULL_SOURCE_FIGURES_V1',{})
+    receipt=ROOT/profile['local_migration_receipt'] if profile.get('local_migration_receipt') else None
+    evidence=json.loads(receipt.read_text()) if receipt and receipt.is_file() else None
+    verdict=inspect(catalog,pages,evidence)
     result=json.dumps(verdict,ensure_ascii=False,indent=2)+"\n"
     print(result)
     if args.out:

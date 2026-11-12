@@ -158,7 +158,7 @@ with sync_playwright() as p:
                     assert m,(code,"INVALID_RIBBON_PATH",edge["d"])
                     assert abs(float(m.group(4))-float(m.group(1))-edge["yuan"]/rev*302)<1e-6,(code,"FALSE_RIBBON_AREA")
             signed=page.evaluate("""() => [...document.querySelectorAll('.native-signed-svg')].map(svg=>{
-              const all=[...svg.querySelectorAll('rect.native-signed-money')];
+              const all=[...svg.querySelectorAll('rect[data-signed-yuan]')];
               const view=svg.viewBox.baseVal;
               const steps=all.map(el=>({kind:el.dataset.kind,step:+el.dataset.step,
                 amount:+el.dataset.signedYuan,cumulative:+el.dataset.cumulativeYuan,
@@ -217,7 +217,7 @@ with sync_playwright() as p:
                         assert abs(z["cumulative"]-prev)<0.01
                     else:
                         assert abs(prev+z["amount"]-z["cumulative"])<0.01,(code,width,"SIGNED_CASH_WATERFALL_ACCOUNTING_BROKEN")
-                        assert z["fill"]==("#087e69" if z["amount"]>=0 else "#af745b"),(code,width,"WRONG_FINANCIAL_SIGN_COLOR")
+                        assert z["fill"]==("#239878" if z["amount"]>=0 else "#CD7271"),(code,width,"WRONG_FINANCIAL_SIGN_COLOR")
                     prev=z["cumulative"]
                 assert all(t["x"]>=-2 and t["right"]<=panel["view"][0]+2 and t["y"]>=-2 and t["bottom"]<=panel["view"][1]+2 for t in panel["texts"]),(code,width,"CJK_SVG_TEXT_BBOX_CLIPPED",panel["texts"])
             if width in (768,390):

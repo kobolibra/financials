@@ -78,37 +78,20 @@ def flow(l):
         rows.append('<button type="button" class="native-source-row" data-source-key="'+E(key)+'" aria-pressed="false" aria-label="选择 '+E(name)+' 的真实成本和毛利路径"><span>'+E(name)+' <small>'+page+'</small></span><strong>'+money(r)+'</strong><span>成本 '+money(c)+' · 毛利 '+money(g)+'</span></button>')
     return card("收入如何分成成本与毛利润？","2026H1 · 合并人民币元 · 同比例真实来源→成本／毛利。不能把股权/现金/其他会计维度合并。",''.join(svg+rows),"两端所有真实 SVG 路径宽度按同一原始金额比例生成，微小来源不设最小可见宽度。")
 
-def signed(l, title, subtitle, rows, foot):
-    """Same money x-axis, source-true signed cumulative step geometry."""
-    if not rows or rows[0][2]!="start":raise ValueError("SIGNED_MOBILE_START_REQUIRED")
-    cum=rows[0][1];segments=[(rows[0][0],D(0),cum,cum,"start",rows[0][3])]
-    for name,delta,kind,src in rows[1:]:
-        if kind=="total":
-            if delta!=cum:raise ValueError("SIGNED_MOBILE_SUBTOTAL_DIFFERENCE "+name)
-            segments.append((name,D(0),cum,cum,kind,src))
-        else:
-            old=cum;cum+=delta;segments.append((name,old,cum,delta,kind,src))
-    lo=min([D(0)]+[min(a,b) for _,a,b,_,_,_ in segments])
-    hi=max([D(0)]+[max(a,b) for _,a,b,_,_,_ in segments])
-    if hi==lo:hi=lo+D(1)
-    scale=D(298)/(hi-lo)
-    x=lambda k:float(D(16)+(k-lo)*scale)
-    svg=['<svg class="native-signed-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 '+str(40+len(segments)*88)+'" role="img" aria-label="'+E(title)+'，每行精确人民币元累计，同一线性货币坐标，有符号连贯瀑布">']
-    zero=x(D(0))
-    svg.append(f'<path d="M{zero:.6f},24 L{zero:.6f},{24+len(segments)*88}" stroke="#c5d3cc" stroke-dasharray="3 5"/>')
-    for i,(name,a,b,amt,kind,source) in enumerate(segments):
-        y=32+i*88
-        shown=amt if kind not in ("start","total") else b
-        col=INK if kind in ("start","total") else GREEN if amt>=0 else RUST
-        x0=x(min(a,b));w=x(max(a,b))-x0
-        svg.append('<g><text x="14" y="'+str(y)+'" font-size="13" fill="'+INK+'" font-weight="600">'+E(name)+'</text>')
-        svg.append('<text x="317" y="'+str(y+21)+'" text-anchor="end" font-size="13" fill="'+col+'" font-weight="700">'+E(("+" if amt>0 and kind=="step" else "")+money(shown))+'</text>')
-        svg.append(f'<rect class="native-signed-money" data-step="{i}" data-kind="{kind}" data-signed-yuan="{str(amt)}" data-cumulative-yuan="{str(b)}" data-before-yuan="{str(a)}" data-yuan-per-svg-unit="{str(D(1)/scale)}" data-source-page="{E(source)}" x="{x0:.8f}" y="{y+34}" width="{w:.8f}" height="16" fill="{col}"/>')
-        svg.append('<text x="317" y="'+str(y+70)+'" text-anchor="end" font-size="12" fill="#637b76">累计 '+E(money(b))+'</text></g>')
-    svg.append('</svg>')
-    return card(title,subtitle,''.join(svg),foot)
+def signed(l, title, subtitle, rows, foot,mobile=True):
+    from pathlib import Path
+    import sys
+    sys.path.insert(0,str(Path(__file__).resolve().parents[4]/'research/shared'))
+    from editorial_bridge import render_bridge
+    doc=l['document']
+    ordered=[(label,value,kind,source) for label,value,kind,source in rows]
+    diagram=render_bridge(ordered,title,issuer=doc['ticker'].split('.')[0],
+        period=doc['period_key'],pdf_sha256=doc['source_sha256'],mobile=mobile)
+    diagram=diagram.replace('<svg ','<svg class="native-signed-svg" ',1)
+    return card(title,subtitle,diagram,foot)
 
-def pnl(l):
+
+def pnl(l,mobile=True):
     q=lambda k:v(l,k)
     gp=q("gross_profit");cogs=q("cogs");rev=q("revenue")
     extra=-(q("total_operating_costs")-cogs)
@@ -122,42 +105,38 @@ def pnl(l):
        ("营业外净额",nonop,"step",p(l,"nonop_income")),
        ("所得税",-q("income_tax"),"step",p(l,"income_tax")),
        ("合并净利润",q("net_profit"),"total",p(l,"net_profit"))
-    ],"其他经营净损益是从原营业利润反算的*明确命名会计汇总项*，并非虚构业务；明细和原始页在原财报来源表中。")
+    ],"其他经营净损益是从原营业利润反算的*明确命名会计汇总项*，并非虚构业务；明细和原始页在原财报来源表中。",mobile=mobile)
 
-def delta_gp(l):
+def delta_gp(l,mobile=True):
     q=lambda k:v(l,k)
+    if q("revenue_prior") is None or q("cogs_prior") is None:
+        return card("毛利润变化", "缺少可比两期财务数据", '<p>不生成虚构的毛利润同比桥。</p>')
     prev=q("revenue_prior")-q("cogs_prior");new=q("gross_profit")
     return signed(l,"毛利润变化来自什么算术关系？","2025H1 → 2026H1；收入与成本变动是会计恒等，不足以证明售价/数量/良率因果。",[
       ("2025H1 毛利润",prev,"start",p(l,"revenue_prior")),
       ("收入的变动",q("revenue")-q("revenue_prior"),"step",p(l,"revenue")),
       ("减：成本变动",q("cogs_prior")-q("cogs"),"step",p(l,"cogs")),
       ("2026H1 毛利润",new,"total",p(l,"gross_profit"))
-    ],"只有可比期间/合并口径才能做桥；不是价格×销量贡献。")
+    ],"只有可比期间/合并口径才能做桥；不是价格×销量贡献。",mobile=mobile)
 
-def cfo(l):
-    q=lambda k:v(l,k)
-    wc={};other=D(0);count=0
-    for z in l["indirect_cfo_adjustments"]:
-        name=z["source_label"];amount=D(z["amount"])
-        if "存货减少" in name or "存货的减少" in name:key="存货变化"
-        elif "经营性应收" in name:key="经营性应收"
-        elif "经营性应付" in name:key="经营性应付"
-        else:key=None
-        if key:
-            if key in wc:raise ValueError("NATIVE_DUPLICATED_CFO_GROUP")
-            wc[key]=amount
-        else:other+=amount;count+=1
-    if set(wc)!={"存货变化","经营性应收","经营性应付"}:raise ValueError("NATIVE_CFO_MISSING_WC")
-    return signed(l,"净利润为何没有完全转为现金？","真实净利润 + 原始全部间接调节（其余逐项保留在原报表表格中）→ CFO。",[
-       ("合并净利润",q("net_profit"),"start",p(l,"net_profit")),
-       (str(count)+"项非营运资本调整",other,"step","原附注"),
-       ("存货调整",wc["存货变化"],"step","原附注"),
-       ("应收调整",wc["经营性应收"],"step","原附注"),
-       ("应付调整",wc["经营性应付"],"step","原附注"),
-       ("经营活动现金净额",q("cfo"),"total",p(l,"cfo"))
-    ],"不能使用资产负债表存货/应收余额的简单变化替代法定现金流量表间接调节。")
+def cfo(l,mobile=True):
+    adjustments=l.get('indirect_cfo_adjustments',[])
+    if not adjustments:raise ValueError('NATIVE_CFO_MISSING_SOURCE_ADJUSTMENTS')
+    rows=[('合并净利润',v(l,'net_profit'),'start',p(l,'net_profit'))]
+    seen=set()
+    for item in adjustments:
+        label=item['source_label'];page=item.get('page')
+        if type(page) is not int or not 1<=page<=l['document']['pages']:raise ValueError('NATIVE_CFO_SOURCE_PHYSICAL_PAGE_REQUIRED')
+        identity=(label,page)
+        if identity in seen:raise ValueError('NATIVE_DUPLICATED_CFO_GROUP')
+        seen.add(identity)
+        rows.append((label,D(item['amount']),'step','p.'+str(page)))
+    rows.append(('经营活动现金净额',v(l,'cfo'),'total',p(l,'cfo')))
+    return signed(l,'净利润为何没有完全转为现金？','全部原始间接现金调节逐项保留，按同一金额轴累计。',rows,
+        '不得用资产负债表余额变化替代真实间接现金调节；所有原始行与页码保留。',mobile=mobile)
 
-def cash(l):
+
+def cash(l,mobile=True):
     q=lambda k:v(l,k)
     return signed(l,"现金及现金等价物怎样变化？","同一现金等价物口径，经营/投资/筹资/汇率带符号结账。",[
        ("期初现金及等价物",q("cash_open"),"start",p(l,"cash_open")),
@@ -166,30 +145,31 @@ def cash(l):
        ("筹资现金流",q("cff"),"step",p(l,"cff")),
        ("现金汇率影响",q("fx_effect"),"step",p(l,"fx_effect")),
        ("期末现金及等价物",q("cash_close"),"total",p(l,"cash_close"))
-    ],"现金等价物不等于资产负债表货币资金，受限资金及其他币种损益不得混用。")
+    ],"现金等价物不等于资产负债表货币资金，受限资金及其他币种损益不得混用。",mobile=mobile)
 
-def fcf(l):
+def fcf(l,mobile=True):
     q=lambda k:v(l,k)
     return signed(l,"经营现金扣除现金资本开支剩多少？","简化 FCF = CFO − 原报告实际购建长期资产支付的现金。",[
         ("经营现金流",q("cfo"),"start",p(l,"cfo")),
         ("现金购建长期资产",-q("capex_cash"),"step",p(l,"capex_cash")),
         ("简化现金 FCF",q("cfo")-q("capex_cash"),"total",p(l,"cfo"))
-    ],"仅为指定现金指标，不等同可分配现金；不用固定资产账面变动推导现金资本开支。")
+    ],"仅为指定现金指标，不等同可分配现金；不用固定资产账面变动推导现金资本开支。",mobile=mobile)
 
-def paired(l,title,pairs,note,percent=False):
-    parts=[]
-    for label,prior,now,source in pairs:
-        if prior is None or now is None:continue
-        top=max(abs(prior),abs(now),D("0.00001"))
-        for period,value,color in (("2025H1" if percent else "2025-12-31",prior,GREY),("2026H1" if percent else "2026-06-30",now,GREEN)):
-            width=max(D(0),abs(value)/top*D(100))
-            if percent:
-                formatted=f"{value:.2f}%"
-            else:formatted=money(value)
-            parts.append('<div class="native-pair-row"><span>'+E(label)+' <small>'+period+'</small></span><strong>'+formatted+'</strong><div class="native-pair-track"><i style="width:'+str(width)+'%;background:'+color+'"></i></div></div>')
-    return card(title,note,''.join(parts),"每对数据独立标定零起点；不把不同金额/百分比类别的图条作为同一绝对尺度对比。")
+def paired(l,title,pairs,note,percent=False,mobile=True):
+    from pathlib import Path
+    import sys
+    sys.path.insert(0,str(Path(__file__).resolve().parents[4]/'research/shared'))
+    from editorial_bridge import render_comparison
+    doc=l['document']
+    periods=(doc['comparative_period_key'],doc['period_key']) if percent else (doc['previous_stock_date'],doc['period_end'])
+    valid=[(label,prior,now,source) for label,prior,now,source in pairs if prior is not None and now is not None]
+    if not valid:return card(title,note,'<p>缺少可比原始数据，暂不绘图。</p>')
+    diagram=render_comparison(valid,title,issuer=doc['ticker'].split('.')[0],periods=periods,
+        pdf_sha256=doc['source_sha256'],mobile=mobile,percent=percent)
+    return card(title,note,diagram,'每项独立零基准；负值保留方向，不把不同指标的条长比较。')
 
-def margin(l):
+
+def margin(l,mobile=True):
     q=lambda k:v(l,k)
     a=q("revenue_prior");b=q("revenue")
     if not a or not b:return card("盈利率比较","可比期间缺失",'<p>尚未核验</p>')
@@ -197,43 +177,59 @@ def margin(l):
     if q("cfo_prior") is not None:pairs.append(("经营现金流/收入",q("cfo_prior")/a*100,q("cfo")/b*100,"cfo"))
     if q("capex_cash_prior") is not None and q("cfo_prior") is not None:
         pairs.append(("简化现金FCF/收入",(q("cfo_prior")-q("capex_cash_prior"))/a*100,(q("cfo")-q("capex_cash"))/b*100,"fcf"))
-    return paired(l,"毛利率与现金率：不同指标不能混成利润率",pairs,"两个半年同期，数值使用百分比；不是8–12季度趋势。",True)
+    return paired(l,"毛利率与现金率：不同指标不能混成利润率",pairs,"两个半年同期，数值使用百分比；不是8–12季度趋势。",True,mobile=mobile)
 
-def volume(l):
+def volume(l,mobile=True):
     q=lambda k:v(l,k)
     keys=["revenue_optics","product_revenue_prior","product_volume_wan","product_volume_wan_prior"]
     if any(q(k) is None for k in keys):return ""
     r0=q("product_revenue_prior");r1=q("revenue_optics")
     n0=q("product_volume_wan_prior");n1=q("product_volume_wan")
     if min(r0,r1,n0,n1)<=0:return ""
-    metrics=[("产品收入(亿元)",r0/B,r1/B),("销量(万只)",n0,n1),("平均收入/只(元)",r0/n0/D(10000),r1/n1/D(10000))]
-    items=[]
-    for name,a,b in metrics:
-        maximum=max(a,b,D("0.0001"))
-        items.append('<div class="native-metric-pair"><strong>'+E(name)+'</strong><div>2025H1 '+f"{a:,.2f}"+'</div><i style="width:'+str(a/maximum*100)+'%;background:'+GREY+'"></i><div>2026H1 '+f"{b:,.2f}"+'</div><i style="width:'+str(b/maximum*100)+'%;background:'+GREEN+'"></i></div>')
-    return card("产品收入、销量、混合单位收入","三个面板各自零基准；单位收入仅为不同产品组合的总体均值。",''.join(items),"不得将总体收入÷不同型号总销量解释为固定规格产品价格或价格上涨因果。")
+    from pathlib import Path
+    import sys
+    sys.path.insert(0,str(Path(__file__).resolve().parents[4]/'research/shared'))
+    from editorial_bridge import render_comparison
+    doc=l['document']
+    metrics=[('产品收入',r0/B,r1/B,p(l,'revenue_optics'),'亿元'),
+             ('产品销量',n0,n1,p(l,'product_volume_wan'),'万只'),
+             ('混合单位收入',r0/n0/D(10000),r1/n1/D(10000),p(l,'product_volume_wan'),'元/只')]
+    diagram=render_comparison(metrics,'产品收入、销量与混合单位收入',issuer=doc['ticker'].split('.')[0],
+        periods=(doc['comparative_period_key'],doc['period_key']),pdf_sha256=doc['source_sha256'],mobile=mobile)
+    return card('产品收入、销量、混合单位收入','三个指标分别标明单位，各自零基准。',diagram,'混合单位收入不是固定规格产品售价；不得据此识别价格变化因果。')
 
-def balance(l):
-    q=lambda k:v(l,k)
-    total=q("assets");liab=q("liabilities");equity=q("equity")
-    if total!=liab+equity:raise ValueError("NATIVE_BALANCE_NOT_CLOSED")
-    w1=liab/total*D(100);w2=equity/total*D(100)
-    html='<div class="native-money-total"><strong>2026-06-30 合并总资产</strong><b>'+money(total)+'</b></div>'
-    html+='<div class="native-stock-track"><i style="width:'+str(w1)+'%;background:'+RUST+'"></i><i style="width:'+str(w2)+'%;background:'+GREEN+'"></i></div>'
-    html+='<div class="native-money-pair"><span>负债 '+money(liab)+'</span><span>权益 '+money(equity)+'</span></div>'
-    return card("同日资产如何由负债和权益支撑？","资产＝负债＋所有者权益，是存量恒等式，不是现金转移。",html,"不得混入不同日期或经营现金流期间。")
 
-def working_capital(l):
+def balance(l,mobile=True):
+    from pathlib import Path
+    import sys
+    sys.path.insert(0,str(Path(__file__).resolve().parents[4]/'research/shared'))
+    from editorial_bridge import render_balance,render_components,combine_panels
+    doc=l['document']
+    common=dict(issuer=doc['ticker'].split('.')[0],pdf_sha256=doc['source_sha256'],mobile=mobile)
+    identity=render_balance([(doc['period_end'],v(l,'assets'),v(l,'liabilities'),v(l,'equity'),p(l,'assets'))],
+        '资产与负债权益同日相等',**common)
+    pieces=[]
+    for name,key in [('货币资金，不等于现金等价物','monetary_funds'),('应收账款净额','accounts_receivable'),('存货净额','inventory'),('预付款项','prepayment')]:
+        amount=v(l,key)
+        if amount is not None:pieces.append((name,amount,p(l,key)))
+    residual=v(l,'current_assets')-sum((r[1] for r in pieces),D(0))
+    if residual<0:raise ValueError('SOURCE_ASSET_COMPONENTS_OVERLAP')
+    pieces.extend([('其他流动资产，计算差额',residual,p(l,'current_assets')),('非流动资产',v(l,'noncurrent_assets'),p(l,'noncurrent_assets'))])
+    detail=render_components(pieces,v(l,'assets'),'完整资产结构，不是现金流向',period=doc['period_end'],**common)
+    return card('同日资产如何由负债和权益支撑？','同日存量恒等式；各类资产及资金结构分别绘制。',combine_panels([identity,detail],'资产结构与同日资金来源'),'货币资金与现金等价物、资产存量与期间现金流必须区分。')
+
+
+def working_capital(l,mobile=True):
     pairs=[]
-    for label,prior,current in (("存货","inventory_prior","inventory"),("应收净额","accounts_receivable_prior","accounts_receivable"),("预付款项","prepayment_prior","prepayment")):
+    for label,prior,current in (("原材料","raw_material_prior","raw_material"),("存货","inventory_prior","inventory"),("应收净额","accounts_receivable_prior","accounts_receivable"),("预付款项","prepayment_prior","prepayment")):
         a=v(l,prior);b=v(l,current)
         if a is not None and b is not None:pairs.append((label,a,b,p(l,current)))
-    return paired(l,"期初至六月末的营运资产存量比较",pairs,"2025-12-31 vs 2026-06-30；这不是半年同比，也不是CFO间接现金调整。")
+    return paired(l,"期初至六月末的营运资产存量比较",pairs,"2025-12-31 vs 2026-06-30；这不是半年同比，也不是CFO间接现金调整。",mobile=mobile)
 
-def make(l):
+def make(l,mobile=True):
     required=("revenue","cogs","gross_profit","assets","liabilities","equity","cfo","net_profit")
     if any(v(l,k) is None for k in required):raise ValueError("NATIVE_INCOMPLETE_FINANCIAL_LEDGER")
-    panels={"01":flow(l),"03":pnl(l),"04":delta_gp(l),"05":margin(l),"06":cfo(l),"07":cash(l),"08":fcf(l),"09":balance(l),"10":working_capital(l)}
-    vol=volume(l)
+    panels={"01":flow(l),"03":pnl(l,mobile=mobile),"04":delta_gp(l,mobile=mobile),"05":margin(l,mobile=mobile),"06":cfo(l,mobile=mobile),"07":cash(l,mobile=mobile),"08":fcf(l,mobile=mobile),"09":balance(l,mobile=mobile),"10":working_capital(l,mobile=mobile)}
+    vol=volume(l,mobile=mobile)
     if vol:panels["02"]=vol
     return panels
