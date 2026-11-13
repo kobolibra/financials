@@ -25,7 +25,15 @@ for code in CODELIST:
     assert source.is_file() and audit.is_file() and ledger.is_file()
     sha=hashlib.sha256(source.read_bytes()).hexdigest()
     local=json.loads(audit.read_text())
-    assert local["html_sha256"]==sha and local["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]=="PASS",("NO_SOURCE_MATCHING_LOCAL_CJK",code)
+    if local.get('html_sha256')!=sha:
+        import sys
+        sys.path.insert(0,str(ROOT/'scripts'))
+        from audit_unified_visual_corpus import verified_complete_migration
+        catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+        proof=json.loads((ROOT/catalog['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['local_migration_receipt']).read_text())
+        assert verified_complete_migration(proof,code,sha),('NO_CURRENT_COMPLETE_SOURCE_CJK',code)
+    else:
+        assert local["all_eight_390px_native_money_visuals_readable_and_source_reconciled"]=="PASS",("NO_SOURCE_MATCHING_LOCAL_CJK",code)
     expected[code]={"sha256":sha,"ledger":json.loads(ledger.read_text())}
 
 from sector_geometry import check_sector_svg

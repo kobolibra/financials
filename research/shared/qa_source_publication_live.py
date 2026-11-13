@@ -78,7 +78,9 @@ def run(out=None):
      expected=render_bridge(compiled,mobile=width<=850)
      assert ET.tostring(ET.fromstring(raw))==ET.tostring(ET.fromstring(expected)),('LIVE_COMPARATIVE_SOURCE_VECTOR',code,engine,width)
      with page.expect_download() as event:panel.locator('[data-export-economics]').click()
-     dest=folder/f'{engine}-{width}-supplemental-economics-{n+1}.svg';event.value.save_as(dest);assert dest.read_text()==raw
+     dest=folder/f'{engine}-{width}-supplemental-economics-{n+1}.svg';event.value.save_as(dest)
+     expected_export=svg.evaluate("e=>{const c=e.cloneNode(true),v=e.viewBox.baseVal;c.setAttribute('width',v.width);c.setAttribute('height',v.height);return new XMLSerializer().serializeToString(c)}")
+     assert dest.read_text()==expected_export,('LIVE_SUPPLEMENTAL_CURRENT_EDITION_EXPORT',code,engine,width)
      economics_exports.append({'file':dest.name,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'source_rebuild_and_visible_svg':'PASS'})
     if engine=='webkit':
      for i,f in enumerate(page.locator('figure').all()):
