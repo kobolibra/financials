@@ -1677,7 +1677,7 @@
     "main_cloud_acceptance": "https://github.com/kobolibra/financials/actions/runs/43384888642"
   },
   "new_issuer_300570_20261113": {
-    "status": "LOCAL_SOURCE_ACCOUNTING_BROWSER_PASS_PENDING_MERGE_AND_LIVE",
+    "status": "MERGED_AND_ACTUAL_PRODUCTION_BROWSER_PASS",
     "branch": "research/tfc-original-2026h1",
     "baseline_main": "f523b010ff0a765fd45e956d34c17994e331d9ce",
     "original_pdf_pages": 189,
@@ -1687,6 +1687,11 @@
     "source_figures": 10,
     "material_note_topics": 12,
     "independent_human_review": "NOT_CHECKED",
-    "external_historical_peers_valuation": "NOT_CHECKED"
+    "external_historical_peers_valuation": "NOT_CHECKED",
+    "merged_pr": 72,
+    "actual_main_commit": "ee4f5af45aff2f9ebe3da03eb6f5e0b57de14949",
+    "live_url": "https://financials-in-visuals.pages.dev/300570",
+    "live_receipt": "research/issuers/300570/live-release-receipt.json",
+    "main_cloud_acceptance": "https://github.com/kobolibra/financials/actions/runs/43392465881"
   }
 }

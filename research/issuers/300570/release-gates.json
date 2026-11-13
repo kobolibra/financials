@@ -90,9 +90,9 @@
       "scope": "真实第二名人类财经与视觉编辑签字尚未获得，不将机器检查表述为人类认证。"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "NOT_CHECKED",
-      "proof": null,
-      "scope": "等待合并后的真实正式站完整字节、同一首页导航、全部图形下载和第二浏览器验收。"
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43392465881",
+      "scope": "真实主分支ee4f5af4云端正式站验收：14家公司全文、太辰光10图Chromium三档30次及WebKit375的10次实际SVG下载、首页往返与六张截图通过；原始附件SHA核对后归档真实收据，非人类签字。"
     }
   },
   "blockers": [
@@ -101,5 +101,13 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY"
+  "published_html_sha256": "9be4b6cd9e78d9a3cb8bd23020d318fb8f3c9830bf3e2584e613da53512bb549",
+  "live_release_fingerprint": "9be4b6cd9e78d9a3cb8bd23020d318fb8f3c9830bf3e2584e613da53512bb549",
+  "actual_main_release_commit": "ee4f5af45aff2f9ebe3da03eb6f5e0b57de14949",
+  "actual_directory_fingerprint": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+  "live_receipt_file": "research/issuers/300570/live-release-receipt.json",
+  "production_artifact": {
+    "id": 14021786566,
+    "zip_sha256": "b26351d3e1732e55f587469a15a071892e5fbdbc819da805ee0440462190798c"
+  }
 }
