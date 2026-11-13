@@ -277,8 +277,8 @@
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
     "semiconductor_report": "/688220.html",
     "insurance_report": "/601628.html",
-    "current_candidate_branch": "research/haier-original-2026h1",
-    "company_report_stage": "TWELVE_ARTICLE_CATALOG_CANDIDATE_NEW_HAIER_SOURCE_BOUND_PREVIEW_OLD_ELEVEN_ARTICLES_BYTE_UNCHANGED",
+    "current_candidate_branch": null,
+    "company_report_stage": "CURRENT_MAIN_12_INDEPENDENT_SOURCE_REPORTS_HAIER_REAL_PRODUCTION_VERIFIED",
     "last_published_issuer_candidate_branch": "work/insurance-601628-original-2026h1-skill-stress",
     "latest_mobile_601628_main_release": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
     "visual_quality_legacy_mobile_status": "HISTORIC_10_SOURCE_FROZEN_390_FAIL; NOW_SOURCE_RELEASE_FIXED_300394_300308_300502_600900_600276_601628_688220; 4_REMAIN_600036_688111_600519_000333__AEI_INDEPENDENT_AESTHETIC_SIGNOFF_NOT_CHECKED",
@@ -1634,13 +1634,25 @@
     "insurance_live_check_fix": "Current local three-width original-fact check passes; CI source fix accompanies this evidence PR."
   },
   "new_issuer_600690": {
-    "state": "UNMERGED_REAL_ORIGINAL_SOURCE_CANDIDATE",
+    "state": "MERGED_AND_REAL_PRODUCTION_VERIFIED",
     "branch": "research/haier-original-2026h1",
     "report_route": "/600690.html",
     "pdf_sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
     "source_ledger": "research/issuers/600690/source-ledger.json",
     "research": "research/issuers/600690/publication.json",
     "browser": "research/issuers/600690/visual-qa/result.json",
-    "independent_human_review": "NOT_CHECKED"
+    "independent_human_review": "NOT_CHECKED",
+    "merged_source_main": "17d05366a712c570f4a822aa2356119c4cdd9ac2",
+    "merged_pr": "https://github.com/kobolibra/financials/pull/68",
+    "actual_live_action": "https://github.com/kobolibra/financials/actions/runs/43359460118",
+    "html_sha256": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
+    "live_receipt": "research/issuers/600690/live-release-receipt.json",
+    "production_figure_receipt": "research/issuers/600690/production-qa/all-financial-figures/result.json",
+    "chromium_actual_svg_downloads": 36,
+    "webkit_actual_svg_downloads": 12,
+    "financial_figures": 12,
+    "material_note_themes": 12,
+    "typed_facts": 181,
+    "accounting_identities": 23
   }
 }

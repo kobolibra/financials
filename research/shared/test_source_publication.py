@@ -33,6 +33,11 @@ class OriginalUnseenIssuerDossier(unittest.TestCase):
   raw=chart(self.l,next(f for f in self.s['figures'] if f['id']=='capital'),True);root=ET.fromstring(raw)
   node=next(n for n in root.iter() if n.get('data-signed-yuan'));node.set('data-signed-yuan','1')
   with self.assertRaisesRegex(ValueError,'SOURCE_AMOUNT_FALSE'):check_vector_source(ET.tostring(root,encoding='unicode'),self.l)
+ def test_original_half_year_cannot_be_relabelled_full_year_even_with_all_metadata_changed(self):
+  bad=copy.deepcopy(self.l);bad['issuer']['fiscal_period']='2026FY';bad['issuer']['comparative_period']='2025FY';bad['income_partition']['period']='2026FY'
+  for fact in bad['facts'].values():
+   if fact['type']=='flow':fact['period']=fact['period'].replace('H1','FY')
+  with self.assertRaisesRegex(ValueError,'ORIGINAL_REPORT_PERIOD'):validate(bad,self.s)
  def test_publication_numeric_claims_come_from_exact_source_expressions(self):
   result=expand_claims(self.s,self.l)
   claim=next(f for f in result['figures'] if f['id']=='product-gp-change')['takeaway']

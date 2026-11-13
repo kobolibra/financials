@@ -14,4 +14,4 @@ python scripts/check_release_contract.py
 python scripts/check_handoff.py
 ```
 
-`visual-qa/result.json` 与33份实际可见SVG、33张逐图PNG绑定当前完整HTML字节；截图和源码检查不是人类审稿认证。所有新公司通过目录 `source_publication` 自动纳入同一云端确定性重建、全图源金额、几何和三屏导出检查。当前待真实合并及生产核验；不得借旧站点绿色。8–12季度、独立同行市场估值、独立人类二审尚未完成，不发布其结论或认证。
+`visual-qa/result.json` 与36份实际可见SVG、36张逐图PNG绑定当前完整HTML字节；截图和源码检查不是人类审稿认证。所有新公司通过目录 `source_publication` 自动纳入同一云端确定性重建、全图源金额、几何和三屏导出检查。已在PR68合并后的真实主分支17d05366通过正式站生产核验；实际Action 43359460118及附件14006874042的源码、HTML、图形、下载、导航和截图指纹永久保存在 production-qa 与 live-release-receipt.json。8–12季度、独立同行市场估值、独立人类二审尚未完成，不发布其结论或认证。
