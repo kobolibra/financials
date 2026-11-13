@@ -51,18 +51,18 @@
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
-      "proof": "research/issuers/300548/visual-qa/result.json",
-      "scope": "实际三档完整图形PNG与关键原图审阅，字形边界与最小字号检查；不声称独立人类视觉签字。"
+      "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+      "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "research/issuers/300548/visual-qa/result.json",
-      "scope": "全部11图真实Chromium1440/768/390三档33次当前可见SVG下载，独立几何与源金额核查；另有WebKit375复核。"
+      "proof": "research/quality/editorial-20261113-local/result.json",
+      "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
-      "proof": "research/issuers/300548/rebuild-proof.json",
-      "scope": "两次从归档原件及源账本确定性重建，完整HTML逐字节一致；不以手改HTML替代源修正。"
+      "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+      "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
@@ -91,8 +91,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43384888642",
-      "scope": "真实主分支31610214云端正式站验收：13家公司全文、11幅图Chromium三档33次及WebKit375的11次真实下载、六张导航截图全部通过；原Action附件SHA已核对并抽取真实收据，不是人类签字。"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "scope": "真实主分支c9248749正式站14家公司全文、12幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
     }
   },
   "blockers": [
@@ -101,22 +101,136 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
-  "live_release_fingerprint": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
-  "actual_main_release_commit": "31610214134c5812a886acb6465265d532f9349b",
-  "actual_directory_fingerprint": "1bbff0eb30381ce01b41a9e803386828ac700a7db7098300184ab159199fa813",
+  "published_html_sha256": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+  "live_release_fingerprint": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+  "actual_main_release_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+  "actual_directory_fingerprint": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
   "live_receipt_file": "research/issuers/300548/live-release-receipt.json",
   "production_artifact": {
-    "id": 14018116655,
-    "zip_sha256": "c9050a041c5de58450db88907c3197b458c672394f5c4184cdc7dafdc42424bb"
+    "id": 14050205196,
+    "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
   },
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
-    "candidate_full_html_sha256": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
-  }
+  "prior_production_release": {
+    "schema_version": 1,
+    "code": "300548",
+    "company": "长芯博创科技股份有限公司",
+    "period": "2026H1",
+    "release_class": "source_limited_preview",
+    "report_route": "/300548.html",
+    "report_file": "public/300548.html",
+    "status_label": "原始财报来源限定研究 · 人类独立二审和外部估值未完成",
+    "sector_adapter": "optical",
+    "accounting_basis": "industrial_own_cost_income_disclosed_telecom_interconnect_and_other_business_market_axis_not_separate_operating_segments",
+    "source_pdf": {
+      "path": "research/issuers/300548/source/300548_2026H1_complete_original.pdf",
+      "sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+      "bytes": 929958,
+      "physical_pages": 143,
+      "official_original_byte_equivalence": "NOT_CHECKED"
+    },
+    "ledger_file": "research/issuers/300548/source-ledger.json",
+    "figure_briefs_file": "research/issuers/300548/figure-briefs.json",
+    "sankey": {
+      "decision": "USED_CONSERVED",
+      "source_scope": "原文p16市场分类自身营业成本、p135主营市场收入及p107明确其他业务收入成本；三项互斥完整合计至合并收入与成本，无比例分摊。",
+      "omission_reason": null
+    },
+    "gates": {
+      "PDF_BYTES": {
+        "status": "PASS",
+        "proof": "research/issuers/300548/source/300548_2026H1_complete_original.pdf",
+        "scope": "完整143页发行人原始PDF字节、物理页数与SHA核验；封面法定名称加p7股票代码交叉识别。"
+      },
+      "SOURCE_ROW_COLUMN": {
+        "status": "PASS",
+        "proof": "research/issuers/300548/qa.json",
+        "scope": "166条原始事实的源格坐标与金额核对，跨行数字只在自身单元格规范化；关键市场、利润与现金表原页视觉检查。"
+      },
+      "ACCOUNTING_CORE": {
+        "status": "PASS",
+        "proof": "research/issuers/300548/qa.json",
+        "scope": "26项原始元勾稽：两期法定利润、归属、收入成本、现金全部调节与首尾、资产负债及存货净额。"
+      },
+      "RESEARCH_COUNTERCASE": {
+        "status": "PASS",
+        "proof": "research/issuers/300548/publication.json",
+        "scope": "针对少数权益、互联市场混合分类、备货与客户集中提出独立可证伪判断；不把数通混合收入全部称AI收入。"
+      },
+      "CHART_SEMANTICS": {
+        "status": "PASS",
+        "proof": "research/issuers/300548/figure-briefs.json",
+        "scope": "11幅问题驱动图形按正流、有符号桥、两期比较、资产负债及构成选择语法，无虚构收入和成本分配。"
+      },
+      "VISUAL_EDITORIAL_SELF": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+        "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
+      },
+      "BROWSER_LOCAL": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/result.json",
+        "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
+      },
+      "OFFLINE_REBUILD": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+        "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
+      },
+      "MAJOR_NOTES_COMPLETE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "已记录12个重大来源主题与明确影响边界；不宣称全附注无遗漏、交易级审计或真实人类独立二审。"
+      },
+      "REPORTED_NOTE_TIES": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "原文股份支付与现金调节其他存在0.01元差额，保留各自原值；未把全部附注交易一致性冒充完全验证。"
+      },
+      "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "CNINFO完整原件已归档；单独发行人或交易所副本的字节等价未额外复核。"
+      },
+      "HISTORICAL_PEERS_VALUATION": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "本次使用中报两期可比数据；8–12季度和独立同行估值数据库未建立，不给出对应预测。"
+      },
+      "INDEPENDENT_HUMAN_REVIEW": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "真实第二名人类财经与视觉编辑签字尚未获得，不将机器检查表述为人类认证。"
+      },
+      "CLOUDFLARE_LIVE": {
+        "status": "PASS",
+        "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+        "scope": "真实主分支c9248749正式站14家公司全文、12幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
+      }
+    },
+    "blockers": [
+      {
+        "kind": "RESEARCH",
+        "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
+      }
+    ],
+    "published_html_sha256": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
+    "live_release_fingerprint": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
+    "actual_main_release_commit": "31610214134c5812a886acb6465265d532f9349b",
+    "actual_directory_fingerprint": "1bbff0eb30381ce01b41a9e803386828ac700a7db7098300184ab159199fa813",
+    "live_receipt_file": "research/quality/profit-chain-production-20261113/prior-production/300548-live-release-receipt.json",
+    "production_artifact": {
+      "id": 14018116655,
+      "zip_sha256": "c9050a041c5de58450db88907c3197b458c672394f5c4184cdc7dafdc42424bb"
+    },
+    "unmerged_candidate": {
+      "base_deployed_html_sha256": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
+      "candidate_full_html_sha256": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+      "promotion_status": "UNMERGED_NOT_DEPLOYED",
+      "independent_finance_and_art_review": "NOT_CHECKED",
+      "current_sha_browser_proof": "LOCAL_ONLY",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+    }
+  },
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
 }

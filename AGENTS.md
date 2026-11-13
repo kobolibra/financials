@@ -1,4 +1,4 @@
-**2026-11-13 当前候选：14家公司完整利润主线与阅读层级改版。** 尚未合并上线，勿借用此前生产PASS。当前状态见 `project-status.json.active_editorial_redesign`；标准见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。目录和实际HTML为范围依据；独立人类二审仍 NOT_CHECKED。下方已上线记录保留各自历史版本含义。
+**2026-11-13 当前已上线并实测：14家公司完整利润主线与阅读层级改版。** PR #74 已合并；148幅图、Chromium三档444次及WebKit手机148次真实下载、14份全文字节及首页往返通过主分支 Action 43448868917。来源与图证见 `research/quality/profit-chain-production-20261113/main-action-provenance.json`；当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。Skill9.1.0，独立人类二审仍 NOT_CHECKED；[历史PR35](docs/ACTIVE_PR35_HANDOFF.md)只保留原版本含义。
 
 **2026-11-13 太辰光300570已合并并实测上线。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。PR #72、源码主分支ee4f5af4：189页完整原件、161条事实、27项勾稽、12项重大附注主题及10幅财务图；同一14家公司正式站全文一致，全部10图Chromium三档30次与WebKit手机10次真实SVG下载、首页往返和六张截图通过真实Action43392465881。收据与附件SHA归档于 `research/issuers/300570/live-release-receipt.json` 和 `release-gates.json`。来源限定研究；人类二审与完整历史同行估值未完成。
 

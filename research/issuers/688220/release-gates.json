@@ -48,18 +48,18 @@
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41871662195",
-      "scope": "Actual 6 public Chromium images/21 candidate screenshots manually inspected for source geometry/readability; no independent second visual editor and no AEI excellence certification."
+      "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+      "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/42456717534",
-      "scope": "Real original Noto CJK 1440/768/390 tested current 9-figure HTML and both shared signed 1040/330 P&L, source money geometry, original page trace and exact current SHA screenshots."
+      "proof": "research/quality/editorial-20261113-local/result.json",
+      "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
-      "proof": "research/issuers/688220/publish.py",
-      "scope": "clean publisher rebuild checked in main workflow"
+      "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+      "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
@@ -88,8 +88,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43267776708",
-      "scope": "Actual public main full HTML SHA, 1440/768/390 source and geometry, real visible SVG exports. Downloaded genuine main Actions artifact with ZIP SHA."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "scope": "真实主分支c9248749正式站14家公司全文、10幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
     }
   },
   "blockers": [
@@ -108,20 +108,143 @@
   "figure_briefs_file": "research/issuers/688220/figure-briefs.json",
   "sector_adapter": "semiconductor",
   "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment",
-  "published_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
-  "live_release_fingerprint": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
-  "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
-  "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+  "published_html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+  "live_release_fingerprint": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+  "actual_directory_fingerprint": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+  "actual_main_release_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
   "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
   "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
-    "candidate_full_html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  "prior_production_release": {
+    "schema_version": 1,
+    "code": "688220",
+    "company": "翱捷科技-U",
+    "period": "2026H1",
+    "release_class": "source_limited_preview",
+    "report_route": "/688220.html",
+    "report_file": "public/688220.html",
+    "status_label": "来源受限研究预览：新版统一利润表图形线上已按完整 SHA 核验；原报告重大附注差异仍未结",
+    "source_pdf": {
+      "path": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+      "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "bytes": 1449510,
+      "physical_pages": 224,
+      "official_original_byte_equivalence": "NOT_CHECKED",
+      "note": "归档的完整 PDF 镜像；SSE 官方直链返回 HTML，官方字节同一性未核"
+    },
+    "sankey": {
+      "decision": "USED_CONSERVED",
+      "source_scope": "p178 exclusive contract-goods business types; 4 revenue sources, 4 cost and 4 GP edges, one exact zero GP",
+      "omission_reason": null
+    },
+    "gates": {
+      "PDF_BYTES": {
+        "status": "PASS",
+        "proof": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+        "scope": "repo mirror SHA and byte size; not official SSE equivalence"
+      },
+      "SOURCE_ROW_COLUMN": {
+        "status": "PASS",
+        "proof": "research/issuers/688220/source-cells.json",
+        "scope": "selected 118 cells only; not all PDF notes"
+      },
+      "ACCOUNTING_CORE": {
+        "status": "PASS",
+        "proof": "research/issuers/688220/qa.json",
+        "scope": "29 targeted exact checks including signed CFO; material note exceptions separate"
+      },
+      "RESEARCH_COUNTERCASE": {
+        "status": "PASS",
+        "proof": "research/issuers/688220/research-memo.md",
+        "scope": "source-bounded issuer thesis + alternate explanation, not verified market model"
+      },
+      "CHART_SEMANTICS": {
+        "status": "PASS",
+        "proof": "research/issuers/688220/qa_browser.py",
+        "scope": "Actual shared V9 four-source→one total→cost/GP original-CNY nonnegative Sankey; separate canonical shared 10-stage signed P&L with disclosed negative interim and taxable benefit; no false money ribbon."
+      },
+      "VISUAL_EDITORIAL_SELF": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+        "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
+      },
+      "BROWSER_LOCAL": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/result.json",
+        "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
+      },
+      "OFFLINE_REBUILD": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+        "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
+      },
+      "MAJOR_NOTES_COMPLETE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Independent AI review covers all twelve material note themes with visible original-source exceptions. Formal completeness/human audit certification is not established."
+      },
+      "REPORTED_NOTE_TIES": {
+        "status": "FAIL",
+        "proof": "research/issuers/688220/research-memo.md",
+        "scope": "p137 AR concentration 90.50% vs derived 89.17%; p179 RPO 0.01-yuan disclosure mismatch"
+      },
+      "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "SSE official direct PDF byte hash unavailable"
+      },
+      "HISTORICAL_PEERS_VALUATION": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Eight consecutive quarters and one sourced peer are complete for this issuer; full independent market valuation and wider unseen-period validation are not established."
+      },
+      "INDEPENDENT_HUMAN_REVIEW": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "no second professional reviewer has signed"
+      },
+      "CLOUDFLARE_LIVE": {
+        "status": "PASS",
+        "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+        "scope": "真实主分支c9248749正式站14家公司全文、10幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
+      }
+    },
+    "blockers": [
+      {
+        "kind": "SOURCE_NOTE",
+        "page": 137,
+        "issue": "90.50% reported top-five AR/contract asset versus 89.17% derived, denominator unresolved"
+      },
+      {
+        "kind": "SOURCE_NOTE",
+        "page": 179,
+        "issue": "RPO disclosed partitions differ by RMB 0.01"
+      }
+    ],
+    "ledger_file": "research/issuers/688220/source-ledger.json",
+    "figure_briefs_file": "research/issuers/688220/figure-briefs.json",
+    "sector_adapter": "semiconductor",
+    "accounting_basis": "industrial_revenue_cogs_with_chip_design_specific_inventory_rd_impairment",
+    "published_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+    "live_release_fingerprint": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+    "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+    "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+    "live_site_origin": "https://financials-in-visuals.pages.dev",
+    "live_receipt_file": "research/quality/profit-chain-production-20261113/prior-production/688220-live-release-receipt.json",
+    "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+    "unmerged_candidate": {
+      "base_deployed_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+      "candidate_full_html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+      "promotion_status": "UNMERGED_NOT_DEPLOYED",
+      "independent_finance_and_art_review": "NOT_CHECKED",
+      "current_sha_browser_proof": "LOCAL_ONLY",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+    }
+  },
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "production_artifact": {
+    "id": 14050205196,
+    "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
   }
 }

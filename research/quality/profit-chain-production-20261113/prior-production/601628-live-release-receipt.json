@@ -1,0 +1,605 @@
+{
+  "status": "PASS",
+  "origin": "https://financials-in-visuals.pages.dev",
+  "verified_git_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+  "pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+  "actual_full_content_sha256_equals_repository_main_601628": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+  "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "all_11_issuer_external_routes": "PASS",
+  "real_chromium_viewports": [
+    {
+      "width": 1440,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "public_home_11_cards": "PASS",
+      "new_601628_main_route": "PASS",
+      "ten_desktop_plus_premium_and_five_native_bridges": "PASS",
+      "source_signed_bridge_checks": [
+        {
+          "family": "balance",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 6,
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "clocks",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 8,
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1"
+        },
+        {
+          "family": "csm",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 4,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "service",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 5,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        }
+      ],
+      "visible_bridge_exports": [
+        {
+          "family": "cash",
+          "layout": "desktop",
+          "sha256": "63a5475ed178752d87098af69396c5f62c3541cc9756df4b3ea3483d5535a1f2",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "layout": "desktop",
+          "sha256": "b2f4a8a9f9a5d6aadb271f7041d520511e8aef97b41ca0171201cf455ae9a2a5",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "delta",
+          "layout": "desktop",
+          "sha256": "7522b5e6d9c483237f8d744dde35617cb65421fdb7f6b1a1324858f3beb1f8c1",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "insurance",
+          "layout": "desktop",
+          "sha256": "909705a645f5f7516fc444e1cb3fd2df64d48ee8344360c5f2f0add451d8868e",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "pnl",
+          "layout": "desktop",
+          "sha256": "3c2164cb9f80ab854f627e9dffbafe6922f77043af91b14abb37b43c94a267ab",
+          "actual_visible_vector_match": "PASS"
+        }
+      ],
+      "source_table_10": "PASS",
+      "visible_real_svg_ribbons": "PASS",
+      "live_final_sink_geometrically_conserved": "PASS",
+      "mobile_ten_full_width_source_exact_money_exhibits": "DESKTOP_SVG",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS"
+    },
+    {
+      "width": 768,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "public_home_11_cards": "PASS",
+      "new_601628_main_route": "PASS",
+      "ten_desktop_plus_premium_and_five_native_bridges": "PASS",
+      "source_signed_bridge_checks": [
+        {
+          "family": "balance",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 6,
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "clocks",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 8,
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1"
+        },
+        {
+          "family": "csm",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 4,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "service",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 5,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "clocks",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 8,
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1"
+        },
+        {
+          "family": "service",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 5,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "csm",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 4,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "balance",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 6,
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1"
+        }
+      ],
+      "visible_bridge_exports": [
+        {
+          "family": "cash",
+          "layout": "native-330",
+          "sha256": "f5b673d6acba5dd5faa3b18478ad667e027e02b8e56ae10a4fcfe2c864295656",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "layout": "native-330",
+          "sha256": "5b92eb1a6015ac0dc910be46c59c45bc2c9971742c25284b8b2be584a318cbd2",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "delta",
+          "layout": "native-330",
+          "sha256": "7bba6570cc41d3584565337f34f7f613e17d76a50108a0df84966b9705c9139f",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "insurance",
+          "layout": "native-330",
+          "sha256": "26447a1d15230b46b54da8bc0868dd01f6c2a734100d691c25f33cf59cd0f5c1",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "pnl",
+          "layout": "native-330",
+          "sha256": "9fd1a651a071377f4a976e26c7c5ba0c2d27970e12307da1ed4ba5cd4ff66391",
+          "actual_visible_vector_match": "PASS"
+        }
+      ],
+      "source_table_10": "PASS",
+      "visible_real_svg_ribbons": "PASS",
+      "live_final_sink_geometrically_conserved": "PASS",
+      "mobile_ten_full_width_source_exact_money_exhibits": "PASS",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS"
+    },
+    {
+      "width": 390,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "public_home_11_cards": "PASS",
+      "new_601628_main_route": "PASS",
+      "ten_desktop_plus_premium_and_five_native_bridges": "PASS",
+      "source_signed_bridge_checks": [
+        {
+          "family": "balance",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 6,
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "clocks",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 8,
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1"
+        },
+        {
+          "family": "csm",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 4,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "service",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 5,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "clocks",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 8,
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1"
+        },
+        {
+          "family": "service",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 5,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "insurance",
+          "stage_count": 5,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "pnl",
+          "stage_count": 11,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "delta",
+          "stage_count": 9,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cash",
+          "stage_count": 8,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "stage_count": 6,
+          "source_signed_yuan": "PASS",
+          "cumulative_and_nonadditive_checkpoints": "PASS",
+          "source_ids": "PASS",
+          "negative_cost_color": "PASS",
+          "actual_vector_x_width_proportional": "PASS",
+          "original_pdf_sha": "PASS"
+        },
+        {
+          "family": "csm",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 4,
+          "grammar": "SOURCE_NONNEGATIVE_COMPONENTS_V1"
+        },
+        {
+          "family": "balance",
+          "independent_original_fact_values": "PASS",
+          "status": "PASS",
+          "observed_source_rows": 6,
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1"
+        }
+      ],
+      "visible_bridge_exports": [
+        {
+          "family": "cash",
+          "layout": "native-330",
+          "sha256": "f5b673d6acba5dd5faa3b18478ad667e027e02b8e56ae10a4fcfe2c864295656",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "cashclose",
+          "layout": "native-330",
+          "sha256": "5b92eb1a6015ac0dc910be46c59c45bc2c9971742c25284b8b2be584a318cbd2",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "delta",
+          "layout": "native-330",
+          "sha256": "7bba6570cc41d3584565337f34f7f613e17d76a50108a0df84966b9705c9139f",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "insurance",
+          "layout": "native-330",
+          "sha256": "26447a1d15230b46b54da8bc0868dd01f6c2a734100d691c25f33cf59cd0f5c1",
+          "actual_visible_vector_match": "PASS"
+        },
+        {
+          "family": "pnl",
+          "layout": "native-330",
+          "sha256": "9fd1a651a071377f4a976e26c7c5ba0c2d27970e12307da1ed4ba5cd4ff66391",
+          "actual_visible_vector_match": "PASS"
+        }
+      ],
+      "source_table_10": "PASS",
+      "visible_real_svg_ribbons": "PASS",
+      "live_final_sink_geometrically_conserved": "PASS",
+      "mobile_ten_full_width_source_exact_money_exhibits": "PASS",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS"
+    }
+  ],
+  "independent_human_editor": "NOT_CHECKED",
+  "external_market_peer_valuation": "NOT_CHECKED",
+  "screenshots": [
+    {
+      "name": "live_601628_1440.png",
+      "sha256": "858ea0c4ed2e2dfb5797f76e25decfd1fd8137c0e151e033473bafa46b367cb0",
+      "bytes": 2801787
+    },
+    {
+      "name": "live_601628_390.png",
+      "sha256": "70af7f7f5efb146fbc949b85152aa0032a3f0f0adf701806022e8a0040013f18",
+      "bytes": 2270077
+    },
+    {
+      "name": "live_601628_768.png",
+      "sha256": "76ad5da36d80ca4e661c64d9d344b5e5ec517dbf01ae32f0e914436f60a15fa7",
+      "bytes": 2957567
+    },
+    {
+      "name": "live_decision_1440.png",
+      "sha256": "da7e7e8e6c9acd3f55d0ec5fe390abdc7d4fe3fc37b61c255529fb1ed5e7f249",
+      "bytes": 137281
+    },
+    {
+      "name": "live_decision_390.png",
+      "sha256": "fe762961f726a6731df26e44a4ed6f5dcaf64593d09128ddf355f0e63b939316",
+      "bytes": 124379
+    },
+    {
+      "name": "live_decision_768.png",
+      "sha256": "12b0b8abc474ed8c89bc9bc32658b7af35f9ea21b06e4eb170000104acbffd58",
+      "bytes": 127245
+    },
+    {
+      "name": "live_directory_1440.png",
+      "sha256": "34278bb76d5d1e909600c62072e14adc8aceae14cac5ceb8f704e25150942adf",
+      "bytes": 797565
+    },
+    {
+      "name": "live_directory_390.png",
+      "sha256": "7c0fe4b10da0ecb5e696a4c246c824bf265793fef80a0f9a008f560caf2ece50",
+      "bytes": 754805
+    },
+    {
+      "name": "live_directory_768.png",
+      "sha256": "89367bb93ed0fe9c490fd1eda07f30f5871a95e51f2bf30b73132b47d3efef01",
+      "bytes": 746922
+    }
+  ],
+  "schema_version": 1,
+  "issuer": "601628",
+  "actual_publication_action": "research/issuers/601628/live-release-receipt.json",
+  "execution_provenance": "LOCAL_REAL_CHROMIUM_AGAINST_PUBLIC_MAIN_NOT_GITHUB_ACTIONS",
+  "capture_directory": "research/quality/full-figure-production-20261113/insurer-navigation",
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+  "publication_pr": "https://github.com/kobolibra/financials/pull/66",
+  "proof_kind": "LOCAL_PUBLIC_PRODUCTION_BROWSER_RECEIPT_NOT_ACTIONS"
+}

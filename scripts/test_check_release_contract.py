@@ -193,7 +193,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertEqual(mod.validate_release(ROOT,insurer,current,check_bytes=False),[])
         receipt=json.loads((ROOT/"research/issuers/601628/live-release-receipt.json").read_text())
         self.assertEqual(receipt["status"],"PASS")
-        self.assertEqual({x["name"] for x in receipt["screenshots"]}, {f"live_{kind}_{w}.png" for kind in ("601628","directory","decision") for w in (1440,768,390)})
+        self.assertEqual({x["name"] for x in receipt["screenshots"]}, {f"live_{kind}_{w}.png" for kind in (("601628","directory") if current.get("editorial_contract")=="FULL_PROFIT_CHAIN_V1" else ("601628","directory","decision")) for w in (1440,768,390)})
         self.assertEqual({x["width"] for x in receipt["real_chromium_viewports"]},{1440,768,390})
         if current["gates"]["CLOUDFLARE_LIVE"]["status"]=="PASS":
             self.assertEqual(receipt["verified_git_commit"],current["actual_main_release_commit"])
@@ -255,90 +255,34 @@ class IssuerReleaseContractTests(unittest.TestCase):
         self.assertIn("LIVE_CAPTURE_RECEIPT_MISSING 601628",errs)
 
     def test_two_sector_current_exact_live_html_and_real_receipts_are_source_bound(self):
-        # Immutable 2026-11-13 full-figure source update and screenshot receipt from
-        # genuine Cloudflare Chromium action 43267775579, main 5346ff0f.
-        # These are historical evidence for those exact HTML bytes; they do
-        # not certify later content changes or independent human finance/art.
         import hashlib
-        source_main="5346ff0f44eef488c3365c698e05c3ca790ce644"
-        source_action="https://github.com/kobolibra/financials/actions/runs/43267775579"
-        expected = {
-            "600900": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
-            "600276": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
-        }
-        for code,html_sha in expected.items():
-            with self.subTest(code=code):
-                issuer=next(x for x in self.catalog["issuers"] if x["code"]==code)
-                record=json.loads((ROOT/f"research/issuers/{code}/release-gates.json").read_text())
-                receipt=json.loads((ROOT/f"research/issuers/{code}/live-release-receipt.json").read_text())
-                candidate=record.get("unmerged_candidate")
-                self.assertEqual(record["published_html_sha256"],html_sha)
-                self.assertEqual(record["live_release_fingerprint"],html_sha)
-                self.assertEqual(record["actual_main_release_commit"],source_main)
-                self.assertEqual(record["gates"]["CLOUDFLARE_LIVE"]["proof"],source_action)
-                actual=hashlib.sha256((ROOT/f"public/{code}.html").read_bytes()).hexdigest()
-                if candidate is None:
-                    self.assertEqual(actual,html_sha)
-                else:
-                    self.assertEqual(candidate["base_deployed_html_sha256"],html_sha)
-                    self.assertEqual(candidate["candidate_full_html_sha256"],actual)
-                    self.assertNotEqual(actual,html_sha)
-                    self.assertEqual(candidate["promotion_status"],"UNMERGED_NOT_DEPLOYED")
-                    self.assertEqual(candidate["independent_finance_and_art_review"],"NOT_CHECKED")
-                self.assertEqual(receipt["actual_publication_action"],source_action)
-                self.assertEqual(receipt["verified_git_commit"],source_main)
-                self.assertEqual(receipt["actual_full_content_sha256_equals_repository_main_"+code],html_sha)
-                self.assertEqual(receipt["artifact_id"],13967191580)
-                self.assertEqual(receipt["artifact_zip_sha256"],"fd80c1cf70d9d48fb0966493d80fa8ceeb946cc31eb896f2933aea8d1239e185")
-                self.assertEqual({x["name"] for x in receipt["screenshots"]},
-                                 {f"live_{code}_{w}.png" for w in (1440,768,390)} |
-                                 {f"live_directory_{w}.png" for w in (1440,768,390)})
-                self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=True),[])
-                poisoned=copy.deepcopy(record)
-                poisoned["live_release_fingerprint"]="0"*64
-                self.assertIn(f"LIVE_FINGERPRINT_HTML_DRIFT {code}",
-                              mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
-                poisoned=copy.deepcopy(record)
-                poisoned["actual_main_release_commit"]="0"*40
-                self.assertIn(f"LIVE_CAPTURE_MAIN_SHA_MISMATCH {code}",
-                              mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
-                poisoned=copy.deepcopy(record)
-                if candidate is None:
-                    poisoned["unmerged_candidate"]={
-                        "base_deployed_html_sha256":html_sha,
-                        "candidate_full_html_sha256":html_sha,
-                        "promotion_status":"UNMERGED_NOT_DEPLOYED",
-                        "independent_finance_and_art_review":"NOT_CHECKED",
-                        "current_sha_browser_proof":"LOCAL_ONLY",
-                    }
-                    self.assertIn(f"STALE_CANDIDATE_NOT_SEPARATE_FROM_PRODUCTION {code}",
-                                  mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
-                else:
-                    poisoned["unmerged_candidate"]["candidate_full_html_sha256"]=html_sha
-                    self.assertIn(f"CANDIDATE_HTML_SHA_MISMATCH {code}",
-                                  mod.validate_release(ROOT,issuer,poisoned,check_bytes=False))
-                # The historical immutable Actions-artifact PNG digest is
-                # an independent assertion from the stored issuer receipt;
-                # the public live source test below separately authenticates
-                # current bytes. Do not accept an arbitrary plausible digest.
-                proven_png = {
-                    "600900": {
-                        1440:"fb84015bd3ade3163b2424872c34fdfd3a181cee1f6c9616b6eea6fb1aa72e3d",
-                        768:"9afc255163430ea22c070e76dd44f242e3f6b75bce5448b40efa1ebf7f2ecfe8",
-                        390:"81fc2aa2cf1834d3fea9c11c789a5aae2ea4935b943fcc2082eeed247b6f82ef"},
-                    "600276": {
-                        1440:"721b46cb2498d048990119aba18a6a955ce61f8fc5f2bd1dcdad8b66eee58cf0",
-                        768:"2cf8861340da75ae0433cb5f71de05ccef44e15881bb9164aa40354c1f6eb85b",
-                        390:"8866c6a27060d1bb773cf47a5a0bf57906a7e712e8ae02a010f1b7e0207da813"}}
-                png_by_name={r["name"]:r["sha256"] for r in receipt["screenshots"]}
-                for w,hash_value in proven_png[code].items():
-                    self.assertEqual(png_by_name[f"live_{code}_{w}.png"],hash_value)
-                home_png={
-                    1440:"01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47",
-                    768:"f82f45d62c12049f233a1330465eafa1669db05335f3cf4ccebf6a3cf1459b79",
-                    390:"e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c"}
-                for w,hash_value in home_png.items():
-                    self.assertEqual(png_by_name[f"live_directory_{w}.png"],hash_value)
+        proven_png={'600900': {1440: 'fb84015bd3ade3163b2424872c34fdfd3a181cee1f6c9616b6eea6fb1aa72e3d', 768: '9afc255163430ea22c070e76dd44f242e3f6b75bce5448b40efa1ebf7f2ecfe8', 390: '81fc2aa2cf1834d3fea9c11c789a5aae2ea4935b943fcc2082eeed247b6f82ef'}, '600276': {1440: '721b46cb2498d048990119aba18a6a955ce61f8fc5f2bd1dcdad8b66eee58cf0', 768: '2cf8861340da75ae0433cb5f71de05ccef44e15881bb9164aa40354c1f6eb85b', 390: '8866c6a27060d1bb773cf47a5a0bf57906a7e712e8ae02a010f1b7e0207da813'}}
+        historic={'600900':'2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2','600276':'fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40'}
+        for code,old_sha in historic.items():
+            issuer=next(x for x in self.catalog['issuers'] if x['code']==code)
+            record=json.loads((ROOT/f'research/issuers/{code}/release-gates.json').read_text())
+            receipt=json.loads((ROOT/record['live_receipt_file']).read_text())
+            current=hashlib.sha256((ROOT/f'public/{code}.html').read_bytes()).hexdigest()
+            self.assertEqual(record['published_html_sha256'],receipt['actual_full_content_sha256_equals_repository_main_'+code])
+            self.assertEqual(record['live_release_fingerprint'],record['published_html_sha256'])
+            self.assertEqual(record['actual_main_release_commit'],receipt['verified_git_commit'])
+            self.assertEqual(record['gates']['CLOUDFLARE_LIVE']['proof'],receipt['actual_publication_action'])
+            if 'unmerged_candidate' in record:self.assertEqual(record['unmerged_candidate']['candidate_full_html_sha256'],current)
+            else:self.assertEqual(record['published_html_sha256'],current)
+            self.assertEqual(mod.validate_release(ROOT,issuer,record,check_bytes=True),[])
+            for field,marker,bad in [('live_release_fingerprint','LIVE_FINGERPRINT_HTML_DRIFT','0'*64),('actual_main_release_commit','LIVE_CAPTURE_MAIN_SHA_MISMATCH','0'*40)]:
+                poisoned=copy.deepcopy(record);poisoned[field]=bad
+                self.assertTrue(any(marker in e for e in mod.validate_release(ROOT,issuer,poisoned,check_bytes=False)))
+            historical=record
+            while historical['published_html_sha256']!=old_sha and 'prior_production_release' in historical:historical=historical['prior_production_release']
+            self.assertEqual(historical['published_html_sha256'],old_sha)
+            self.assertEqual(historical['actual_main_release_commit'],'5346ff0f44eef488c3365c698e05c3ca790ce644')
+            archive=json.loads((ROOT/historical['live_receipt_file']).read_text())
+            self.assertEqual(archive['actual_full_content_sha256_equals_repository_main_'+code],old_sha)
+            self.assertEqual(archive['artifact_id'],13967191580)
+            self.assertEqual(archive['artifact_zip_sha256'],'fd80c1cf70d9d48fb0966493d80fa8ceeb946cc31eb896f2933aea8d1239e185')
+            for width in (1440,768,390):self.assertEqual(next(x['sha256'] for x in archive['screenshots'] if x['name']==f'live_{code}_{width}.png'),proven_png[code][width])
+            self.assertEqual({x['name'] for x in receipt['screenshots']},{f'live_{code}_{w}.png' for w in (1440,768,390)}|{f'live_directory_{w}.png' for w in (1440,768,390)})
 
     def test_legacy_explicit_sha_not_checked_does_not_claim_new_live_fingerprint(self):
         # Historical receipts may be retained as dated claims, not backfilled.

@@ -1,6 +1,6 @@
-# ACTIVE PROJECT STATE — 完整利润主线候选 · Skill 9.1.0
+# ACTIVE PROJECT STATE — 完整利润主线已上线 · Skill 9.1.0
 
-**2026-11-13 当前候选：14家公司完整利润主线与阅读层级改版。** 尚未合并上线，勿借用此前生产PASS。当前状态见 `project-status.json.active_editorial_redesign`；标准见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。目录和实际HTML为范围依据；独立人类二审仍 NOT_CHECKED。下方已上线记录保留各自历史版本含义。
+**2026-11-13 当前已上线并实测：14家公司完整利润主线与阅读层级改版。** PR #74 已合并；148幅图、Chromium三档444次及WebKit手机148次真实下载、14份全文字节及首页往返通过主分支 Action 43448868917。来源与图证见 `research/quality/profit-chain-production-20261113/main-action-provenance.json`；当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。Skill9.1.0，独立人类二审仍 NOT_CHECKED；[历史PR35](docs/ACTIVE_PR35_HANDOFF.md)只保留原版本含义。
 
 # ACTIVE PROJECT STATE — 太辰光原始财报生产交付
 

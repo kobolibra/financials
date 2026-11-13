@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "issuer": "600519",
+  "status": "PASS",
+  "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+  "pdf_sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+  "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+  "actual_full_content_sha256_equals_repository_main_600519": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+  "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+  "all_11_issuer_external_routes": "PASS",
+  "actual_catalog_issuer_count": 14,
+  "real_chromium_viewports": [
+    {
+      "width": 1440,
+      "supplemental_economics_exports": [],
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 10
+    },
+    {
+      "width": 768,
+      "supplemental_economics_exports": [],
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 10
+    },
+    {
+      "width": 390,
+      "supplemental_economics_exports": [],
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 10
+    }
+  ],
+  "additional_webkit_checks": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "all_source_figures": 10,
+      "real_visible_svg_exports": "PASS",
+      "text_bounds": "PASS",
+      "supplemental_economics_exports": [],
+      "screenshot_sha256": "24967736daa18b1c7f024bfd97b90ea5ed79c407ac97970d23ce8f1d8ce3221f"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "live_600519_1440.png",
+      "sha256": "0d27adf7a4a3ef1559e5b76b543e1ec056b7b27798ce170d8571e4940baa5214",
+      "bytes": 2045732
+    },
+    {
+      "name": "live_600519_390.png",
+      "sha256": "8c1e04e10bd82db8f8ce0754195276ae30b2c1077ae65982bda8a379be9015da",
+      "bytes": 1793452
+    },
+    {
+      "name": "live_600519_768.png",
+      "sha256": "0bb7970543a7000a6d580ed67636d068cdca4ee3f9ea907978a049af02b1f263",
+      "bytes": 2080007
+    },
+    {
+      "name": "live_directory_1440.png",
+      "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+      "bytes": 864208
+    },
+    {
+      "name": "live_directory_390.png",
+      "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+      "bytes": 873704
+    },
+    {
+      "name": "live_directory_768.png",
+      "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+      "bytes": 858909
+    }
+  ],
+  "independent_human_finance_and_art": "NOT_CHECKED",
+  "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+  "permanent_production_archive": {
+    "file": "research/quality/profit-chain-production-20261113/600519-actual-production-evidence.zip",
+    "sha256": "f05fd8af0f23dee4deb7904ae398cfdf4d9a6a319c3612019d0b6fc80cf6b738",
+    "bytes": 336866,
+    "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+  }
+}

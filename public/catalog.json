@@ -386,7 +386,7 @@
     "name": "光互连产业链比较",
     "href": "/optical-2026h1.html"
   },
-  "research_scope": "SOURCE_LIMITED_ELEVEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION",
+  "research_scope": "SOURCE_LIMITED_CATALOG_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION",
   "figure_quality_contracts": {
     "FULL_SOURCE_FIGURES_V1": {
       "source_review_indices": [
@@ -403,7 +403,7 @@
         "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
         "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
       },
-      "production_migration_receipt": "research/quality/full-figure-production-20261113/result.json"
+      "production_migration_receipt": "research/quality/profit-chain-production-20261113/result.json"
     }
   },
   "editorial_quality_contracts": {
