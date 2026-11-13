@@ -1,5 +1,9 @@
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
+当前机器依据：`project-status.json` 与 `site/research_catalog.json`；本次候选、历史生产回执分别读取。
+
+**2026-11-13 新公司真实生产候选：海尔智家600690。** 已取得192页原中报，181条原始/推导事实，23项会计勾稽，12项重大附注主题和11项问题驱动财务图；真实三屏与33次当前SVG下载通过。目录扩至12家；新图全部进入同一强制质量合同及自动源码重建，原11家公司文章保持原字节。当前新公司尚未合并上线，不借用旧Cloudflare绿色；人类二审、8–12季度同行估值仍单列未完成。见 `research/issuers/600690/release-gates.json` 与 `publication.json`。
+
 **2026-11-13 已合并并核验正式站：七个历史系列的完整财务图已统一。** [PR #66](https://github.com/kobolibra/financials/pull/66) 合并源码 `5346ff0`；三家光通信、翱捷、长江、恒瑞、中国人寿共65幅源财务图，正式站1440/768/390共21个布局及195次当前可见SVG下载全部通过，线上完整HTML与发布源码逐字节相同。生产证据见 `research/quality/full-figure-production-20261113/result.json`，明确为本地真实浏览器访问正式站；本地源码证据见 `research/quality/full-figure-20261113/result.json`。公共图形核心与行业适配保留原始会计差异；新公司/新期间必须通过目录 `FULL_SOURCE_FIGURES_V1` 进入同一套逐图云端验收。下方旧HERO-only、未合并及权限受阻内容是历史记录，不能覆盖当前字节证据。人类审稿及未见真实财报的长期稳定性不声称通过。[历史四家合同](docs/ACTIVE_PR35_HANDOFF.md) 保留。
 
 

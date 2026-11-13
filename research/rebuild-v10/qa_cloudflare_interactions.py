@@ -261,6 +261,10 @@ def main() -> int:
         assert sum(z["tested_original_source_svg_downloads"] for z in result["browser_cases"])==108
         result["all_108_exact_edition_svg_exports"]="PASS"
         result["real_online_reader_interaction"]="PASS"
+        # New source dossiers inherit the same real post-merge release job.
+        sys.path.insert(0,str(ROOT/'research/shared'))
+        from qa_source_publication_live import run as check_new_publications
+        result['new_source_publication_receipts']=check_new_publications(OUT/'source-publications') if DOMAIN=='https://financials-in-visuals.pages.dev' else []
         result["overall"]="PASS_PREVIEW_ONLY_INDEPENDENT_HUMAN_AND_PHYSICAL_DEVICES_NOT_CHECKED"
         return 0
     except Exception as exc:

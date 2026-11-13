@@ -632,6 +632,46 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "BROWSER_LOCAL",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-065",
+      "root_cause": "Real new issuer provides main-product costs but only a disclosed total/main split for other-business cost.",
+      "correction": "Resolve an explicit same-period disclosed subtraction, validate exact closure and display derivation rather than claiming a standalone source cost.",
+      "proof_file": "research/shared/test_source_publication.py",
+      "assertion_marker": "test_original_disclosed_difference_is_computed_never_invented",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-066",
+      "root_cause": "Four-source new-company phone Sankey inherited legacy 9px labels despite 2/3-source readable layouts.",
+      "correction": "Explicit typed new industrial profiles use source-name and money rows at legible sizes for four-plus sources; verify all actual exported diagrams and preserve frozen historical output.",
+      "proof_file": "research/shared/test_source_publication.py",
+      "assertion_marker": "test_all_actual_figures_both_editions_match_independent_original_fact_audit",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-067",
+      "root_cause": "Prior-half-year cash closing and previous-year-end cash opening are different stocks and cannot share the same prior-period key.",
+      "correction": "Keep exact date-tagged cash stocks and separately close both flow periods and same-date monetary-funds notes.",
+      "proof_file": "research/shared/test_source_publication.py",
+      "assertion_marker": "test_prior_stock_and_prior_flow_are_not_the_same_cash_date",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-068",
+      "root_cause": "Historical eleven-issuer baseline counts and selected-issuer evidence schemas blocked a real twelfth issuer despite original-source full-figure receipts.",
+      "correction": "Keep archived baseline semantics and no-removal checks while requiring every new catalog dossier to present its own current three-width source-bound images and actual downloads; never inherit old screenshots.",
+      "proof_file": "scripts/test_visual_editorial_policy.py",
+      "assertion_marker": "test_new_dossier_cannot_inherit_historical_census_or_stale_current_proof",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

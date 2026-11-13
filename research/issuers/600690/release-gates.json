@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "code": "600690",
+  "company": "海尔智家股份有限公司",
+  "period": "2026H1",
+  "release_class": "source_limited_preview",
+  "report_route": "/600690.html",
+  "report_file": "public/600690.html",
+  "status_label": "原始财报来源限定研究 · 人类独立二审和外部估值未完成",
+  "sector_adapter": "manufacturing",
+  "accounting_basis": "industrial_own_cost_income_product_main_business_and_disclosed_other_business_difference_not_management_segment_total_cost",
+  "source_pdf": {
+    "path": "research/issuers/600690/source/600690_2026H1_complete_original.pdf",
+    "sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
+    "bytes": 1310754,
+    "physical_pages": 192,
+    "official_original_byte_equivalence": "NOT_CHECKED"
+  },
+  "ledger_file": "research/issuers/600690/source-ledger.json",
+  "figure_briefs_file": "research/issuers/600690/figure-briefs.json",
+  "sankey": {
+    "decision": "USED_CONSERVED",
+    "source_scope": "p151三类主营产品与明确披露的其他业务；其他成本由p70总成本减p151主营成本推导并明确标注",
+    "omission_reason": null
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/source/600690_2026H1_complete_original.pdf",
+      "scope": "完整192页发行人PDF字节、魔数、发行人及报告期和原始SHA核验；不声称SSE副本等价。"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/qa.json",
+      "scope": "原始PDF物理坐标源格逐元核验；利润表、产品分类与现金调节原页视觉检查；不是全报告逐笔审计。"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/qa.json",
+      "scope": "两期收入成本、资产负债、归属净利、16项现金调节、现金首尾、应收存货净额及研发差额勾稽。"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/publication.json",
+      "scope": "公司独有论点、最强汇率替代解释及三项后续可证伪观察；未做未经来源支持的因果或估值。"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/figure-briefs.json",
+      "scope": "11项独立研究问题按会计关系选择共用语法；其他业务成本明确标示为原值相减计算。"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/visual-qa/result.json",
+      "scope": "真实1440/768/390全图阅读与PNG审阅；文本边界、最小字体、原始金额和下载单列；非独立人类审美签字。"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/visual-qa/result.json",
+      "scope": "全部11图在三种真实浏览器屏宽、逐图PNG及33次当前可见SVG下载，独立源金额与实际几何检查。"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "research/issuers/600690/rebuild-proof.json",
+      "scope": "从归档原PDF、类型化账本及研究稿确定性重建完整离线HTML，两次完整文件逐字节比较。"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "已阅读并记录12个重大附注主题；不宣称完整披露无遗漏、估值独立验证或正式审计认证。"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "核心报表、产品、现金、研发和应收存货勾稽覆盖明确；全部附注与交易逐笔一致性未全部验证。"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "CNINFO完整原件已归档；单独SSE或发行人网站副本的字节等价未复核。"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "本篇使用中报两期可比数据；尚未建立8–12季度与独立同行估值数据库，不发布对应趋势和目标价。"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "未获得真实第二名人类财经和视觉编辑签字，不标为verified_research。"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "当前新发行人候选尚未合并；真实主分支正式站HTTP及浏览器需发布后核验。"
+    }
+  },
+  "blockers": [
+    {
+      "kind": "RESEARCH",
+      "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
+    }
+  ],
+  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY"
+}

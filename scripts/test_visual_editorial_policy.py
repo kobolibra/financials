@@ -27,9 +27,25 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
                 (ROOT/"public/research/2026-h1-v10"/(code+".html")).read_bytes()).hexdigest()
             if source_hash!=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"][code]:
                 expected.add(code)
+        catalog=json.loads((ROOT/"site/research_catalog.json").read_text())
+        expected.update(r["code"] for r in catalog["issuers"] if r.get("source_publication"))
         self.assertEqual({x["code"] for x in fixed},expected)
         self.assertEqual(set(stale),
             (v10-expected) | ({"688220"} if "688220" not in expected else set()))
+    def test_new_dossier_cannot_inherit_historical_census_or_stale_current_proof(self):
+        catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+        for issuer in catalog['issuers']:
+            if not issuer.get('source_publication'):continue
+            original=Path.read_text
+            def corrupt(path,*args,**kwargs):
+                raw=original(path,*args,**kwargs)
+                if str(path).endswith(issuer['source_publication']+'/visual-qa/result.json'):
+                    d=json.loads(raw);d['cases']=[c for c in d['cases'] if c['width']!=390]
+                    return json.dumps(d)
+                return raw
+            with mock.patch.object(Path,'read_text',corrupt):
+                errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
+            self.assertIn('VISUAL_NEW_SOURCE_DOSSIER_CURRENT_COMPLETE_PROOF_REQUIRED '+issuer['code'],errors)
     def test_new_v10_report_cannot_steal_wrong_CJK_sha_receipt(self):
         code="688111"
         import hashlib

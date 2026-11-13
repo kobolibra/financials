@@ -16,6 +16,14 @@ def run(out):
     for code in ('688111','600519','000333','600036'):
         if (ROOT/'research/rebuild-v10/site'/f'{code}.html').read_bytes()!=(ROOT/'public/research/2026-h1-v10'/f'{code}.html').read_bytes():
             raise ValueError('ORIGINAL_PDF_REBUILD_BYTES_DRIFT '+code)
+    catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+    from source_publication import publish
+    for issuer in catalog['issuers']:
+        if issuer.get('source_publication'):
+            original=ROOT/'public'/issuer['href'].lstrip('/')
+            rebuilt=Path(out)/('rebuilt-'+issuer['code']+'.html')
+            publish(ROOT/issuer['source_publication'],rebuilt)
+            if rebuilt.read_bytes()!=original.read_bytes():raise ValueError('NEW_DOSSIER_CLEAN_REBUILD_DRIFT '+issuer['code'])
     checks=[['-O','-m','unittest','discover','-s','research/shared','-p','test_signed_period_generalization.py'],['-O','-m','unittest','discover','-s','research/shared','-p','test_editorial_bridge.py'],['-m','unittest','discover','-s','research/quality/historical-peer-evidence','-p','test_evidence.py'],['-m','unittest','discover','-s','research/shared','-p','test_*.py'],
             ['-O','-m','unittest','discover','-s','research/shared','-p','test_*economics*.py'],
             ['-O','-m','unittest','discover','-s','research/shared','-p','test_income_generalization.py'],

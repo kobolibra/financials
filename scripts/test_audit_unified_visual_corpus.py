@@ -18,11 +18,11 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
     def test_incomplete_11_issuers_must_not_be_presented_as_unified(self):
         catalog,pages=actual()
         census=inspect(catalog,pages)
-        self.assertEqual(census["canonical_issuer_count"],11)
+        self.assertEqual(census["canonical_issuer_count"],len(catalog["issuers"]))
         self.assertEqual(set(census["unified_positive_sankey_issuers"]),{"688111","000333","600036"})
         self.assertEqual(census["lawful_signed_exception_issuers"],["600519"])
         self.assertEqual(set(census["legacy_not_unified"]),
-                         set())
+                         {r["code"] for r in catalog["issuers"] if r["code"] not in {"300394","300308","300502","688220","600900","600276","601628","600036","688111","600519","000333"}})
         self.assertEqual(set(census["partial_hero_only_unified_remaining_art_legacy"]),
                          {"300394","300502","300308","688220","600900","600276","601628"})
         self.assertEqual(census["strict_all_11_visual_unification"],"NOT_ESTABLISHED")
@@ -35,7 +35,7 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
         evidence=json.loads((ROOT/receipt).read_text())
         complete=inspect(catalog,pages,evidence)
         self.assertEqual(complete['strict_all_11_visual_unification'],'PASS')
-        self.assertEqual(len(complete['fully_migrated_source_article_issuers']),7)
+        self.assertEqual(set(complete['fully_migrated_source_article_issuers']),{r['code'] for r in catalog['issuers'] if r.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1'})
         for kind in ('stale_html','missing_width','missing_figure','unproved_download','unknown_grammar'):
             poisoned=copy.deepcopy(evidence)
             if kind=='stale_html':poisoned['issuers']['300394']['html_sha256']='0'*64
