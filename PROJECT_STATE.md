@@ -1,6 +1,6 @@
 # ACTIVE PROJECT STATE — 太辰光原始财报生产交付
 
-**2026-11-13 太辰光300570新增候选。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。189页原始中报、161条事实、27项勾稽与10项研究图形；重点分析毛利率、汇兑、成品应收占用及分红时点。正在执行双浏览器、合并和正式站验收；人类二审与完整历史同行仍未完成。
+**2026-11-13 太辰光300570已合并并实测上线。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。PR #72、源码主分支ee4f5af4：189页完整原件、161条事实、27项勾稽、12项重大附注主题及10幅财务图；同一14家公司正式站全文一致，全部10图Chromium三档30次与WebKit手机10次真实SVG下载、首页往返和六张截图通过真实Action43392465881。收据与附件SHA归档于 `research/issuers/300570/live-release-receipt.json` 和 `release-gates.json`。来源限定研究；人类二审与完整历史同行估值未完成。
 
 # ACTIVE PROJECT STATE — 长芯博创原始财报生产交付
 
