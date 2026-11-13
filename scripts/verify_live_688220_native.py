@@ -56,6 +56,10 @@ def main():
             page.locator('a.company[href="/688220.html"]').click()
             assert page.url.rstrip("/").endswith("/688220.html") or page.url.rstrip("/").endswith("/688220"),(width,page.url)
             actual_article_url=page.url
+            import sys
+            sys.path.insert(0,str(ROOT/"research/shared"))
+            from profit_chain_audit import check_reader
+            check_reader(page);check_reader(page,expanded=True)
             page.wait_for_selector("#chart-flow svg",state="attached")
             facts=page.evaluate("""() => {
               const sourceSvg=document.querySelector('#fig-flow .native-asr svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');

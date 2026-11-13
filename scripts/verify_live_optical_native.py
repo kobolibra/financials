@@ -80,6 +80,10 @@ def run():
                 page.goto(ORIGIN+"/",wait_until="networkidle")
                 page.locator(f'a.company[href="/{code}.html"]').click()
                 page.wait_for_load_state("networkidle")
+                import sys
+                sys.path.insert(0,str(ROOT/"research/shared"))
+                from profit_chain_audit import check_reader
+                check_reader(page);check_reader(page,expanded=True)
                 article_url=page.url
                 assert article_url in (ORIGIN+f"/{code}",ORIGIN+f"/{code}.html"),(code,width,"ARTICLE_REDIRECTED_TO_DIRECTORY",article_url)
                 assert page.locator("figure.exhibit.has-native-finance").count()>=9
@@ -128,7 +132,7 @@ def run():
                 # were removed. Never let a stale selector hide a real
                 # financial regression or falsely fail a lawful upgrade.
                 state=page.evaluate("""() => {
-                  const f=[...document.querySelectorAll('figure.has-native-finance')][0];
+                  const f=document.querySelector('.native-finance svg[data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]').closest('figure');
                   const native=f.querySelector('.native-finance'),desktop=f.querySelector('.chart-shell');
                   const sourceSvg=native.querySelector('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
                   const desktopSvg=desktop.querySelector('svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
@@ -216,7 +220,7 @@ def run():
                     # merely nominal source font-size—must not intersect.
                     # 300308 is separately source-pinned and unchanged.
                     legend=page.evaluate("""() => {
-                      const svg=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+                      const svg=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
                       if(!svg)return null;
                       const words=[...svg.querySelectorAll('text[data-editorial-role="source-summary"]')];
                       const header=svg.querySelector('text[data-editorial-role="source-stage-header"]');

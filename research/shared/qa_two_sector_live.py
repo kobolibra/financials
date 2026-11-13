@@ -66,9 +66,13 @@ def wait_for_real_main_source_bytes():
 
 
 def live_dom(page,code,width):
+    import sys
+    sys.path.insert(0,str(ROOT/"research/shared"))
+    from profit_chain_audit import check_reader
+    check_reader(page);check_reader(page,expanded=True)
     ledger=expected[code]["ledger"];source=ledger["source"]
     assert page.locator('figure.figure').count()==8,(code,width,"NOT_EIGHT_SOURCE_FIGURES")
-    assert page.locator('figure table').count()==8,(code,width,"ORIGINAL_PDF_TABLE_LOST")
+    assert page.locator('figure.figure table').count()==8,(code,width,"ORIGINAL_PDF_TABLE_LOST")
     panel=page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"]')
     assert panel.count()==1 and panel.is_visible(),(code,width,"LIVE_SOURCE_PROFIT_FORMATION_MISSING")
     assert panel.get_attribute("data-source-pdf-sha256")==source["original_bytes_sha256"],(code,width,"LIVE_PROFIT_ORIGINAL_PDF_SHA_WRONG")
