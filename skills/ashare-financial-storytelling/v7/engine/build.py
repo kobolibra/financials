@@ -240,7 +240,7 @@ def main():
     import sys
     sys.path.insert(0,str(Path(__file__).resolve().parents[4]/'research/shared'))
     from publication_editorial import finalize_publication
-    result=finalize_publication(doc['ticker'].split('.')[0],result)
+    result=finalize_publication(doc['ticker'].split('.')[0],result,period=doc['period_key'])
     meta['output_sha256']=hashlib.sha256(result.encode()).hexdigest();meta['html_bytes']=len(result.encode())
     path=Path(a.out);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(result,encoding='utf-8')
     Path(a.qa).parent.mkdir(parents=True,exist_ok=True);Path(a.qa).write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')

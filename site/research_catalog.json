@@ -31,7 +31,10 @@
       "rank": 1,
       "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
       "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-      "editorial_manifest": "research/editorial-20261113/300394.json"
+      "editorial_manifest": "research/editorial-20261113/300394.json",
+      "legacy_report_aliases": [
+        "/300394/2026-H1/index.html"
+      ]
     },
     {
       "code": "300308",
@@ -89,7 +92,10 @@
       "rank": 3,
       "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
       "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-      "editorial_manifest": "research/editorial-20261113/300502.json"
+      "editorial_manifest": "research/editorial-20261113/300502.json",
+      "legacy_report_aliases": [
+        "/300502/2026-H1/index.html"
+      ]
     },
     {
       "code": "600036",

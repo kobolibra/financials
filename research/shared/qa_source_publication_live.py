@@ -26,6 +26,8 @@ def run(out=None):
    time.sleep(10)
   for x in catalog['issuers']:
    response=req.get(SITE+x['href']);assert response.status==200 and response.body()==(ROOT/'public'/x['href'].lstrip('/')).read_bytes(),('LIVE_ROUTE_SOURCE_BYTES',x['code'])
+   for alias in x.get('legacy_report_aliases',[]):
+    response=req.get(SITE+alias);assert response.status==200 and response.body()==(ROOT/'public'/x['href'].lstrip('/')).read_bytes(),('LIVE_CANONICAL_ALIAS_BYTES',x['code'],alias)
   req.dispose()
  # Audit every visible source vector and all actual downloads on live HTTP.
  audit([x['code'] for x in issuers],out/'all-financial-figures',SITE)
@@ -58,7 +60,7 @@ def run(out=None):
     else:
      page.locator('details.editorial-reference').evaluate_all('ds=>ds.forEach(d=>d.open=false)')
      page.screenshot(path=str(folder/f'live_{code}_{width}.png'),full_page=True)
-    page.locator('a[href="/#companies"]').first.click();page.wait_for_url(re.compile('/#companies$'));back_url=page.url;nav=make_live_navigation_receipt(report_url=article_url,back_url=back_url,code=code,origin=SITE)
+    page.locator('a[href="/#companies"]').first.click();page.wait_for_url(re.compile('/#companies$'));back_url=page.url;nav=make_live_navigation_receipt(report_url=article_url,back_url=back_url,code=code,origin=SITE,report_route=issuer['href'])
     assert not errors,errors
     if engine=='chromium':views.append({'width':width,**nav,'back_to_same_home':'PASS','no_page_horizontal_overflow':'PASS','real_live_screenshots':'PASS','all_source_figures':issuer['figures']})
     page.close()

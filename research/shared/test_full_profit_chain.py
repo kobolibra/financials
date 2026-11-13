@@ -16,6 +16,10 @@ class FullProfitChainTests(unittest.TestCase):
    with self.subTest(code=code):
     self.assertEqual(validate_source(b)['status'],'PASS')
     for mobile in (False,True):self.assertEqual(check_svg(render(b,mobile=mobile),code,b['source_pdf']['source_sha256'])['status'],'PASS')
+ def test_new_period_cannot_borrow_old_issuer_manifest(self):
+  from publication_editorial import finalize_publication
+  with self.assertRaisesRegex(ValueError,'EDITORIAL_SOURCE_PERIOD_OR_ISSUER_MISMATCH'):
+   finalize_publication('300394','<html><body></body></html>',period='2030H1')
  def test_geometry_poison_nodes_ribbon_controls_and_source_terms_rejected(self):
   b=load('688111');raw=render(b)
   for what in ('node','path','terms','sha','period'):

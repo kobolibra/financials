@@ -421,7 +421,7 @@ def build(l,m):
  from research_context import render as render_research_context
  html_page=html_page.replace('</main>',render_research_context(doc['ticker'].split('.')[0])+'</main>',1)
  from publication_editorial import finalize_publication
- html_page=finalize_publication(doc['ticker'].split('.')[0],html_page)
+ html_page=finalize_publication(doc['ticker'].split('.')[0],html_page,period=doc['period_key'])
  return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':html_page.count('<figure'),'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'UPLOADED_SOURCE_PDF_SHA_VERIFIED__CORE_FINANCIAL_NUMBERS_CHECKED__EDITORIAL_SECOND_REVIEW_PENDING'}
 
 def main():
@@ -433,4 +433,12 @@ def main():
 
  page_html,meta=build(l,m)
  out=Path(a.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(page_html,encoding='utf-8');q=Path(a.qa);q.parent.mkdir(parents=True,exist_ok=True);q.write_text(json.dumps(meta,ensure_ascii=False,indent=2)+'\n',encoding='utf-8');print(json.dumps(meta,ensure_ascii=False,indent=2))
+ # Preserve explicitly catalogued older full-report URLs byte-for-byte.
+ root=Path(__file__).resolve().parents[4];code=l['document']['ticker'].split('.')[0]
+ if out.resolve()==(root/'public'/(code+'.html')).resolve():
+  catalog=json.loads((root/'site/research_catalog.json').read_text())
+  row=next(r for r in catalog['issuers'] if r['code']==code)
+  for route in row.get('legacy_report_aliases',[]):
+   alias=(root/'public'/route.lstrip('/')).resolve();alias.relative_to((root/'public').resolve())
+   alias.parent.mkdir(parents=True,exist_ok=True);alias.write_text(page_html,encoding='utf-8')
 if __name__=='__main__':main()

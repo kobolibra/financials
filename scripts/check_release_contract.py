@@ -376,7 +376,7 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                         errors.append(f"LIVE_CAPTURE_REAL_VIEWPORTS_INVALID {code}")
                     else:
                         site=record.get("live_site_origin","https://financials-in-visuals.pages.dev")
-                        good_articles={site+f"/{code}",site+f"/{code}.html"}
+                        good_articles={site+catalog_issuer["href"],site+catalog_issuer["href"].removesuffix(".html")}
                         if catalog_issuer.get('editorial_contract') and record.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1':
                             if any(v.get('all_source_figures')!=catalog_issuer['figures'] for v in views):errors.append('LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT '+code)
                             wk=receipt.get('additional_webkit_checks',[])

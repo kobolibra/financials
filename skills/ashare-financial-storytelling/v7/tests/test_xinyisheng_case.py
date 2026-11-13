@@ -24,7 +24,10 @@ class EoptolinkReleaseQA(unittest.TestCase):
         published = (ROOT.parents[2] / "public/300502/2026-H1/index.html").read_text(encoding="utf-8")
         self.assertEqual(generated, published)
         self.assertEqual(hashlib.sha256(generated.encode()).digest(), hashlib.sha256(published.encode()).digest())
-        self.assertEqual(metadata["charts"], 11)
+        catalog=json.loads((ROOT.parents[2]/'site/research_catalog.json').read_text())
+        declared=next(r['figures'] for r in catalog['issuers'] if r['code']=='300502')
+        self.assertEqual(metadata['charts'],declared)
+        self.assertEqual(generated.count('data-chart-grammar="FULL_PROFIT_CHAIN_V1"'),2)
 
     def test_identity_and_source(self):
         html, _ = build(LEDGER, MEMO)

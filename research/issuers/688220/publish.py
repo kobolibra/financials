@@ -174,7 +174,7 @@ a.out.parent.mkdir(parents=True,exist_ok=True)
 from research_context import render as render_research_context
 output=output.replace("</main>",render_research_context("688220")+"</main>",1)
 from publication_editorial import finalize_publication
-output=finalize_publication('688220',output)
+output=finalize_publication('688220',output,period=data['issuer']['fiscal_period'])
 a.out.write_text(output,encoding="utf-8")
 a.qa.parent.mkdir(parents=True,exist_ok=True)
 a.qa.write_text(json.dumps({"issuer":"688220","report_period":"2026H1","source_sha":actual_sha,"source_bytes":source_status,"checks":checks,"research":"SELF_REVIEWED_SOURCE_LIMITED","full_material_notes":"NOT_CHECKED","second_independent_human":"NOT_CHECKED","industry":"semiconductor-chip-design","figure_briefs_schema":briefs["schema"],"figures_required":len(REQUIRED_FIGURES),"source_screenshots":"SELECTED_PAGES_SCREENED","ar_top5_concentration_denominator":unresolved_ratio,"article":"RESEARCH_PREVIEW"},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")

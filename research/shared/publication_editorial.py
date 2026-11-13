@@ -64,9 +64,11 @@ function apply(){try{
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();})();
 </script>'''
 
-def finalize_publication(code,markup):
+def finalize_publication(code,markup,*,period):
  if 'id="editorial-profit-chain-contract"' in markup:raise ValueError('EDITORIAL_DOUBLE_COMPOSITION')
- bundle=load(code);compile_chain(bundle)
+ bundle=load(code)
+ if bundle['issuer']!=code or bundle['period']!=period:raise ValueError('EDITORIAL_SOURCE_PERIOD_OR_ISSUER_MISMATCH')
+ compile_chain(bundle)
  decisions=bundle['editorial']['figures'];raw=json.dumps(bundle,ensure_ascii=False,separators=(',',':'));manifest_sha=hashlib.sha256(raw.encode()).hexdigest()
  contract={'issuer':code,'manifest_sha':manifest_sha,'figures':decisions}
  payload=STYLE+'<template id="editorial-profit-chain-template">'+figure(bundle)+'</template><script type="application/json" id="editorial-profit-chain-contract">'+json.dumps(contract,ensure_ascii=False).replace('</','<\\/')+'</script><script type="application/json" id="editorial-profit-chain-data">'+raw.replace('</','<\\/')+'</script>'+SCRIPT

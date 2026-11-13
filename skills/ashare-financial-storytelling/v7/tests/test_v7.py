@@ -47,7 +47,14 @@ class ResearchPipelineQA(unittest.TestCase):
   memo['cash_explanation']='现金模拟推断';memo['risk_explanation']='风险模拟推断';memo['watchlist']=[]
   memo['source_notes']={'top5_ar_percent':None,'top1_prepay_percent':None,'limitations':'测试中不提供'}
   memo['forensic_lenses']=[]
-  h,qa=build(bad,memo)
+  # A new issuer must supply its own authored source manifest; it cannot
+  # silently borrow the current published company's profit-chain evidence.
+  with self.assertRaisesRegex(ValueError,'EXPLICIT_SOURCE_MANIFEST_REQUIRED'):build(bad,memo)
+  from unittest.mock import patch
+  from full_profit_chain import load
+  bundle=copy.deepcopy(load('300394'));bundle.update(issuer='999999',name='示例工业公司',period='2030H1')
+  for fact in bundle['facts'].values():fact['period']='2030H1'
+  with patch('publication_editorial.load',return_value=bundle):h,qa=build(bad,memo)
   self.assertIn('2030H1',h)
   self.assertIn('2029H1',h)
   self.assertIn('999999.SH',h)
