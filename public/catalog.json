@@ -1,7 +1,7 @@
 {
   "edition": "2026H1",
   "primary_home": "/",
-  "published_issuer_count": 11,
+  "published_issuer_count": 12,
   "unified_directory": true,
   "issuers": [
     {
@@ -28,7 +28,8 @@
         "毛利",
         "成本"
       ],
-      "rank": 1
+      "rank": 1,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "300308",
@@ -42,7 +43,7 @@
       "kind": "原有研究",
       "stage": "source-review",
       "note": "待完成独立来源语义复核",
-      "figures": 10,
+      "figures": 9,
       "signal": "46.3%",
       "signal_label": "2026H1 综合毛利率",
       "source": "原始2026H1完整披露",
@@ -54,7 +55,8 @@
         "毛利",
         "成本"
       ],
-      "rank": 2
+      "rank": 2,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "300502",
@@ -80,7 +82,8 @@
         "毛利",
         "成本"
       ],
-      "rank": 3
+      "rank": 3,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "600036",
@@ -187,7 +190,8 @@
       "spark": null,
       "spark_names": null,
       "rank": 8,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "600900",
@@ -208,7 +212,8 @@
       "spark": null,
       "spark_names": null,
       "rank": 9,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "600276",
@@ -229,7 +234,8 @@
       "spark": null,
       "spark_names": null,
       "rank": 10,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
     },
     {
       "code": "601628",
@@ -250,12 +256,58 @@
       "spark": null,
       "spark_names": null,
       "rank": 11,
-      "period": "2026H1"
+      "period": "2026H1",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+    },
+    {
+      "code": "600690",
+      "name": "海尔智家",
+      "exchange": "SH",
+      "industry": "制造",
+      "sub": "全球家电与智慧家庭",
+      "story": "毛利率改善，利润与现金为何仍承压？",
+      "deck": "暖通增长与成本改善，能否覆盖费用、汇率及应收占用？用原始中报拆解业务毛利、扣非盈利与现金。",
+      "href": "/600690.html",
+      "kind": "原始财报研究",
+      "stage": "source-review",
+      "note": "原件与计算核验 · 人类二审未完成",
+      "figures": 12,
+      "signal": "−14.27%",
+      "signal_label": "2026H1归母净利润同比",
+      "source": "2026H1完整原始中报",
+      "spark": [
+        414.1990221531,
+        1106.9514802232
+      ],
+      "spark_names": [
+        "毛利",
+        "成本"
+      ],
+      "rank": 12,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "source_publication": "research/issuers/600690"
     }
   ],
   "topic": {
     "name": "光互连产业链比较",
     "href": "/optical-2026h1.html"
   },
-  "research_scope": "SOURCE_LIMITED_ELEVEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION"
+  "research_scope": "SOURCE_LIMITED_ELEVEN_INDEPENDENT_ISSUER_REPORTS_WITH_SEPARATE_GATE_EVIDENCE_NOT_INDEPENDENT_HUMAN_CERTIFICATION",
+  "figure_quality_contracts": {
+    "FULL_SOURCE_FIGURES_V1": {
+      "source_review_indices": [
+        "research/quality/material-notes-review-20261110.json",
+        "research/issuers/600690/material-notes-review.json"
+      ],
+      "local_migration_receipt": "research/quality/source-library-20261113.json",
+      "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
+      "historical_exact_html_snapshots": {
+        "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
+        "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+        "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+        "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
+      },
+      "production_migration_receipt": "research/quality/full-figure-production-20261113/result.json"
+    }
+  }
 }

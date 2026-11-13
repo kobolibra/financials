@@ -64,6 +64,7 @@ def audit(codes,out,origin=None):
         browser=p.chromium.launch(headless=True)
         for code in codes:
             row=by_code[code];path=ROOT/'public'/row['href'].lstrip('/');raw=path.read_bytes();sha=hashlib.sha256(raw).hexdigest()
+            dossier=json.loads((ROOT/row['source_publication']/'source-ledger.json').read_text()) if row.get('source_publication') else None
             pdf=notes[code]['source_sha256']
             require_path=ROOT/notes[code]['source_path']
             if hashlib.sha256(require_path.read_bytes()).hexdigest()!=pdf:raise ValueError('ORIGINAL_PDF_ARCHIVE_SHA_DRIFT '+code)
@@ -83,6 +84,9 @@ def audit(codes,out,origin=None):
                     visible=figure.locator('svg:visible')
                     if visible.count()!=1:raise ValueError('EACH_FIGURE_NEEDS_ONE_VISIBLE_VECTOR '+code+' '+str(index))
                     diagram=visible.first;markup=diagram.evaluate('e=>e.outerHTML');checked=check_vector(markup,code,pdf)
+                    if dossier:
+                        from source_publication_audit import check_vector_source
+                        check_vector_source(markup,dossier)
                     vb=diagram.get_attribute('viewBox').split();expected=330 if width<=850 else (1040,1100)
                     if (width<=850 and float(vb[2])!=expected) or (width>850 and float(vb[2]) not in expected):raise ValueError('NOT_INDEPENDENT_NATIVE_EDITION')
                     stem=f'{code}-{width}-figure-{index+1:02d}'

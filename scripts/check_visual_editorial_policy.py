@@ -88,6 +88,25 @@ def validate_current_published_files(root, audit, debt):
         if baseline=={sha}:
             if code in old:unresolved.append(code)
             continue
+        if issuer.get('source_publication'):
+            from audit_unified_visual_corpus import verified_complete_migration
+            folder=(root/issuer['source_publication']).resolve()
+            try:
+                folder.relative_to(root.resolve())
+                proof=folder/'visual-qa/result.json'
+                q=json.loads(proof.read_text())
+                valid=verified_complete_migration(q,code,sha)
+                for case in q.get('cases',[]):
+                    for figure in case.get('figures',[]):
+                        for path_key,hash_key in (('screenshot_file','screenshot_sha256'),('export_file','vector_sha256')):
+                            f=(proof.parent/figure[path_key]).resolve();f.relative_to(proof.parent.resolve())
+                            valid=valid and hashlib.sha256(f.read_bytes()).hexdigest()==figure[hash_key]
+                if not valid:raise ValueError('current source browser proof differs')
+            except (OSError,ValueError,KeyError,TypeError):
+                errors.append('VISUAL_NEW_SOURCE_DOSSIER_CURRENT_COMPLETE_PROOF_REQUIRED '+code)
+                continue
+            fixed.append({'code':code,'source_html_sha256':sha,'mobile_original_money_grammar':'PASS_ALL_SOURCE_FIGURES_CURRENT_BYTES_REAL_DOWNLOADS_NOT_HUMAN_CERTIFICATION'})
+            continue
         # Insurer had a separately authenticated current production source
         # before this comparative audit. Its HTML SHA changed from first
         # baseline after screenshot-proven typo correction; require BOTH real
@@ -278,7 +297,7 @@ def validate_current_published_files(root, audit, debt):
         fixed.append({"code":code,"source_html_sha256":sha,"mobile_original_money_grammar":"PASS_REAL_CHROMIUM_AND_SOURCE_GEOMETRY"})
     for code in before.keys()-seen:
         errors.append(f"VISUAL_ISSUER_CATALOG_REMOVED_WITHOUT_REVIEW {code}")
-    if len(catalog)!=audit["count_issuers"]:
+    if len(catalog)!=len(seen):
         errors.append("VISUAL_CURRENT_CATALOG_COUNT_DIFFERS_FROM_ACTUAL_SCREENSHOT_CENSUS")
     return errors,fixed,unresolved
 
@@ -295,4 +314,4 @@ if __name__=="__main__":
     print("ORIGINAL_SOURCE_SHA_HISTORICAL_FINANCIAL_VISUAL_FAIL_COUNT",len(legacy),[x["code"] for x in legacy])
     print("ACTUAL_CURRENT_STANDALONE_HTML_MOBILE_FIXED_BY_REAL_3_SCREEN_BROWSER_AND_ORIGINAL_MONEY_GEOMETRY",len(fixed),fixed)
     print("ACTUAL_CURRENT_390_FINANCE_INNER_SCROLL_SOURCE_UNRESOLVED_FAIL",len(still),still)
-    print("EXACT_OLD_FINGERPRINT_OR_NEW_ACTUAL_CHROMIUM_SOURCE_ARTIFACT_PUBLISH_POLICY_PASS",audit["count_issuers"])
+    print("EXACT_OLD_FINGERPRINT_OR_NEW_ACTUAL_CHROMIUM_SOURCE_ARTIFACT_PUBLISH_POLICY_PASS",len(json.loads((ROOT/"site/research_catalog.json").read_text())["issuers"]))

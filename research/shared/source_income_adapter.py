@@ -46,11 +46,13 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
     if not re.fullmatch("[0-9a-f]{64}",sha) or "SHA_PASS" not in gate:
         raise ValueError("SECTOR_ORIGINAL_COMPLETE_PDF_BYTES_NOT_PROVEN")
     facts=ledger.get("facts",{})
-    def value(key: str) -> D:
+    def value(key: str, ancestry=(), allow_derived=False) -> D:
+        if key in ancestry:
+            raise ValueError('SECTOR_CYCLIC_SOURCE_DERIVATION')
         row=facts.get(key)
         if (not row or row.get("type")!="flow" or row.get("period")!=period
                 or row.get("scope")!="consolidated" or row.get("unit")!="元"
-                or row.get("currency")!="CNY" or row.get("classification")!="DISCLOSED"):
+                or row.get("currency")!="CNY" or row.get("classification") not in {"DISCLOSED","DERIVED"}):
             raise ValueError("SECTOR_ORIGINAL_TYPED_FACT_INCOMPATIBLE "+str(key))
         page=row.get("page")
         if type(page) is not int or page<1 or page>source.get("physical_pages_observed",0):
@@ -61,6 +63,15 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
             raise ValueError("SECTOR_INVALID_DECIMAL_FACT "+key) from exc
         if not val.is_finite():
             raise ValueError("SECTOR_NONFINITE_ORIGINAL_YUAN "+key)
+        if row.get('classification')=='DERIVED':
+            if not allow_derived:raise ValueError('SECTOR_DERIVED_REVENUE_OR_GROUP_TOTAL_NOT_DISCLOSED')
+            derivation=row.get('derivation',{})
+            terms=derivation.get('terms',[])
+            if (derivation.get('operation')!='subtract' or len(terms)!=2
+                    or len(set(terms))!=2 or any(facts.get(t,{}).get('classification')!='DISCLOSED' for t in terms)):
+                raise ValueError('SECTOR_EXPLICIT_DISCLOSED_DIFFERENCE_REQUIRED')
+            if value(terms[0],ancestry+(key,))-value(terms[1],ancestry+(key,))!=val:
+                raise ValueError('SECTOR_SOURCE_DIFFERENCE_NOT_CLOSED')
         return val
     total=value("rev");cogs=value("cogs")
     if total<=0 or cogs<0 or cogs>total:
@@ -83,7 +94,7 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
         dims.add(dim)
         if not seg.get("label"):
             raise ValueError("SECTOR_UNNAMED_FINANCIAL_SOURCE")
-        r=value(rk);cost=value(ck)
+        r=value(rk);cost=value(ck,allow_derived=True)
         pages.add(facts[rk]["page"]);pages.add(facts[ck]["page"])
         if r<=0 or cost<0 or cost>r:
             raise ValueError("SECTOR_SIGNED_OR_LOSS_BUSINESS_REQUIRES_SEPARATE_CHART")
@@ -94,14 +105,16 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
         raise ValueError("SECTOR_NONEXHAUSTIVE_OR_MIXED_SOURCE_COST_PARTITION")
     scope="；".join("p."+str(p) for p in sorted(pages))
     mirror="，完整源PDF与官方文件字节等价尚未证明" if code=="688220" else ""
-    plan=FlowPlan(issuer=code,period=period,kind="TYPE_A_SOURCE_OWN_COST_GP",
+    derived_costs=[seg['label']+'成本='+facts[facts[seg['cost']]['derivation']['terms'][0]]['label']+'减'+facts[facts[seg['cost']]['derivation']['terms'][1]]['label'] for seg in rows if facts[seg['cost']].get('classification')=='DERIVED']
+    derivation_note=('；'+ '、'.join(derived_costs)+'；为原值相减的计算值，不是原文单列值') if derived_costs else ''
+    plan=FlowPlan(issuer=code,period=period,cost_source_note="部分成本为披露原值相减的计算" if derived_costs else "",kind="TYPE_A_SOURCE_OWN_COST_GP",
         title=TITLES.get(code,issuer.get("income_figure_title") or "原始业务收入如何形成自身成本和毛利？"),source_label="原报告互斥业务来源",
         outcome_label="实际营业成本及毛利",
         sources=tuple(parts),
         outcomes=(("group_cogs","营业成本",str(cogs),"cost"),
                   ("group_gp","营业毛利",str(total-cogs),"profit")),
         allocations=tuple(allocs),
-        footnote=f"原始财报物理页{scope}，仅各业务真实收入及本业务成本{mirror}；不含期间费用与净利润。")
+        footnote=f"原始财报物理页{scope}，仅各业务真实收入及本业务成本{mirror}；不含期间费用与净利润。{derivation_note}")
     plan.check()
     return plan
 
@@ -112,6 +125,6 @@ def render_sector_income(ledger:dict, *,mobile:bool=False,embedded:bool=True)->s
     # choice, never an issuer-specific invented cost/GP allocation.
     # Four-or-more-source reports retain their previously source-verified
     # layout until they are deliberately rebuilt and re-verified.
-    readable=bool(mobile and 2<=len(plan.sources)<=3)
+    readable=bool(mobile and (2<=len(plan.sources)<=3 or ledger["issuer"].get("accounting_route")=="industrial_own_cost_income"))
     return render_income_sankey(plan,mobile=mobile,embedded=embedded,
                                 readable_source_rows=readable)

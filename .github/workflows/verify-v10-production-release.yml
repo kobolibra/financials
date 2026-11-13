@@ -6,6 +6,10 @@ on:
       - '.github/workflows/verify-v10-production-release.yml'
       - 'research/rebuild-v10/qa_cloudflare_interactions.py'
       - 'public/index.html'
+      - 'public/*.html'
+      - 'research/shared/**'
+      - 'research/issuers/**'
+      - 'scripts/qa_editorial_migration.py'
       - 'site/research_catalog.json'
       - 'public/research/2026-h1-v10/**'
       - 'research/rebuild-v10/publisher.py'
@@ -43,6 +47,12 @@ jobs:
           catalog=json.loads(pathlib.Path('site/research_catalog.json').read_text())
           assert {r['code'] for r in d['company_routes']}=={r['code'] for r in catalog['issuers']}
           assert len(d['browser_cases'])==12
+          new=d.get('new_source_publication_receipts',[])
+          expected={r['code'] for r in catalog['issuers'] if r.get('source_publication')}
+          assert {r['issuer'] for r in new}==expected
+          assert all(r['status']=='PASS' and r['verified_git_commit']==os.environ['GITHUB_SHA'] for r in new)
+          assert all({v['width'] for v in r['real_chromium_viewports']}=={1440,768,390} and len(r['screenshots'])==6 for r in new)
+          assert all(r['additional_webkit_checks'][0]['real_visible_svg_exports']=='PASS' for r in new)
           assert not d['blocking_issues'],d['blocking_issues']
           print('ACTUAL_MAIN_LIVE_PRODUCTION_ORIGINAL_BYTES_AND_ALL_108_EXPORTS_PASS',os.environ.get('GITHUB_SHA'))
           PY

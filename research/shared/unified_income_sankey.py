@@ -91,6 +91,7 @@ class FlowPlan:
     allocations:tuple=() # ((source_id, outcome_id, amount_yuan), ...); only TYPE_A
     footnote:str=""
     period:str="2026H1"
+    cost_source_note:str=""
 
     def check(self):
         if self.kind not in ("TYPE_A_SOURCE_OWN_COST_GP","TYPE_B_GROUP_ONLY_GROSS_ALLOCATION",
@@ -321,7 +322,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
             out.append(text(12,hint_y,"净利息已扣息，信用成本另列",
                             11.5,PALETTE["cost"],700,role="accounting-limitation"))
         else:
-            out.append(text(12,hint_y,"各业务成本来自本业务披露",
+            out.append(text(12,hint_y,plan.cost_source_note or "各业务成本来自本业务披露",
                             11.5,PALETTE["muted"],700,role="accounting-limitation"))
         out.append(text(12,source_y,"详细来源和会计口径见下方数据表",
                         11.5,PALETTE["muted"],role="source-caveat"))
@@ -335,7 +336,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         elif plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT":
             out.append(text(26,y,"银行净利息收入已扣利息支出；仅分流经营费用、信用成本和营业利润",15,PALETTE["cost"],700))
         else:
-            out.append(text(26,y,"各业务成本直接来自本业务披露；集团总毛利不等于归母净利润",15,PALETTE["muted"],600))
+            out.append(text(26,y,(plan.cost_source_note+"；集团毛利不等于归母净利润") if plan.cost_source_note else "各业务成本直接来自本业务披露；集团总毛利不等于归母净利润",15,PALETTE["muted"],600))
         if not embedded:
             out.append(text(26,y+28,plan.footnote[:78],12,PALETTE["muted"]))
         else:

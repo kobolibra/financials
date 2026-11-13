@@ -48,7 +48,7 @@ def validate_artifact_integrity(active:dict,build:dict,browser:dict,typed:dict,
     codes_actual=[row.get("code") for row in catalog.get("issuers",[])]
     if len(set(codes_actual))!=len(codes_actual) or not set(CODES).issubset(codes_actual):
         errors.append("CANDIDATE_OR_CATALOG_ISSUER_IDENTITY_DRIFT")
-    if len(catalog.get("issuers",[]))!=11:
+    if len(catalog.get("issuers",[]))<11 or len(catalog["issuers"])!=catalog.get("published_issuer_count"):
         errors.append("ISSUER_COUNT_DIFFERS_FROM_VERIFIED_CANDIDATE_SCOPE")
     fixtures={x["issuer"]:x for x in typed.get("records",[])}
     if set(fixtures)!=codes or typed.get("conclusion")!="STATIC_SCOPE_PASS_BROWSER_GEOMETRY_AND_HUMAN_NOT_CHECKED":
