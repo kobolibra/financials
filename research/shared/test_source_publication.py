@@ -1,7 +1,7 @@
 from pathlib import Path
 import json,copy,unittest,sys,xml.etree.ElementTree as ET
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from source_publication import validate,chart,ROOT
+from source_publication import validate,chart,expand_claims,ROOT
 from source_publication_audit import check_vector_source
 from source_income_adapter import compile_disclosed_income
 from editorial_geometry import check_editorial_svg
@@ -33,6 +33,14 @@ class OriginalUnseenIssuerDossier(unittest.TestCase):
   raw=chart(self.l,next(f for f in self.s['figures'] if f['id']=='capital'),True);root=ET.fromstring(raw)
   node=next(n for n in root.iter() if n.get('data-signed-yuan'));node.set('data-signed-yuan','1')
   with self.assertRaisesRegex(ValueError,'SOURCE_AMOUNT_FALSE'):check_vector_source(ET.tostring(root,encoding='unicode'),self.l)
+ def test_publication_numeric_claims_come_from_exact_source_expressions(self):
+  result=expand_claims(self.s,self.l)
+  claim=next(f for f in result['figures'] if f['id']=='product-gp-change')['takeaway']
+  self.assertIn('27.44亿元',claim);self.assertNotIn('27.45亿元',claim);self.assertNotIn('{{',claim)
+  bad=copy.deepcopy(self.s);bad['metrics'][0]['value']='{{invented}}'
+  with self.assertRaisesRegex(ValueError,'UNSOURCED_QUANTIFIED_CLAIM'):validate(self.l,bad)
+  bad=copy.deepcopy(self.s);bad['quantified_claims']['living_gp_change']['scale']='0'
+  with self.assertRaisesRegex(ValueError,'INVALID_CLAIM_UNIT_SCALE'):validate(self.l,bad)
  def test_prior_stock_and_prior_flow_are_not_the_same_cash_date(self):
   self.assertEqual(self.l['facts']['cash_close_prior']['period'],'2025-06-30')
   self.assertEqual(self.l['facts']['cash_open']['period'],'2025-12-31')

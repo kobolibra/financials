@@ -17,7 +17,32 @@ def amount(ledger,expr):
     return sum((D(str(coef))*D(ledger['facts'][key]['yuan']) for key,coef in expr),D(0))
 def reference(expr):return expr if isinstance(expr,str) else json.dumps(expr,separators=(',',':'),ensure_ascii=False)
 def dependencies(expr):return [expr] if isinstance(expr,str) else [k for k,c in expr]
+def expand_claims(story,ledger):
+    """Render authored numeric placeholders directly from explicit source math."""
+    def substitute(match):
+        spec=story.get('quantified_claims',{}).get(match.group(1))
+        if not isinstance(spec,dict):raise ValueError('DOSSIER_UNSOURCED_QUANTIFIED_CLAIM')
+        value=amount(ledger,spec['expression'])
+        if 'denominator' in spec:
+            denominator=amount(ledger,spec['denominator'])
+            if not denominator:raise ValueError('DOSSIER_UNDEFINED_CLAIM_RATIO')
+            value/=denominator
+        scale=D(str(spec.get('scale','1')));multiplier=D(str(spec.get('multiplier','1')))
+        if not scale.is_finite() or scale<=0 or not multiplier.is_finite():raise ValueError('DOSSIER_INVALID_CLAIM_UNIT_SCALE')
+        value=value/scale*multiplier
+        if spec.get('absolute'):value=abs(value)
+        if not value.is_finite():raise ValueError('DOSSIER_NONFINITE_QUANTIFIED_CLAIM')
+        places=spec.get('decimals',2)
+        if type(places) is not int or not 0<=places<=6:raise ValueError('DOSSIER_INVALID_CLAIM_PRECISION')
+        return format(value,(',' if spec.get('grouping') else '')+'.'+str(places)+'f')
+    def walk(value):
+        if isinstance(value,str):return re.sub(r'\{\{([a-z0-9_]+)\}\}',substitute,value)
+        if isinstance(value,list):return [walk(x) for x in value]
+        if isinstance(value,dict):return {k:walk(v) for k,v in value.items()}
+        return value
+    return walk(story)
 def validate(ledger,story,root=ROOT):
+    expand_claims(story,ledger)
     source=ledger['source'];issuer=ledger['issuer'];path=(root/source['source_path']).resolve();path.relative_to(root.resolve())
     if not re.fullmatch(r'[0-9]{6}',issuer['code']):raise ValueError('DOSSIER_INVALID_ISSUER_CODE')
     from urllib.parse import urlsplit
@@ -70,7 +95,7 @@ def cited(figure):
     if 'total' in figure:expr+=dependencies(figure['total'])
     return list(dict.fromkeys(expr))
 def publish(folder,out=None):
-    folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
+    folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);story=expand_claims(story,ledger);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
     for i,f in enumerate(story['figures']):
         keys=cited(f);pages=sorted({ledger['facts'][k]['page'] for k in keys})
         table=''.join('<tr><th>'+H(ledger['facts'][k]['label'])+'</th><td>'+H(ledger['facts'][k]['period'])+'</td><td class="number">'+H(ledger['facts'][k]['yuan'])+'</td><td>'+('原文披露' if ledger['facts'][k]['classification']=='DISCLOSED' else '原值计算')+'</td><td><a href="'+source['official_announcement']+'#page='+str(ledger['facts'][k]['page'])+'">原件 p.'+str(ledger['facts'][k]['page'])+'</a></td></tr>' for k in keys)

@@ -30,6 +30,41 @@
       ]
     },
     {
+      "id": "product-gp-change",
+      "family": "signed_bridge",
+      "question": "毛利少了6.36亿元，哪些业务在对冲？",
+      "takeaway": "生活电器毛利减少27.44亿元；暖通增加10.63亿元，生态及其他增加13.61亿元。收入增长并非毛利改善的唯一来源。",
+      "identity": "2025H1集团毛利+四项互斥业务的各自毛利变化=2026H1集团毛利。",
+      "counter": "这些是可勾稽的产品会计贡献，不识别价格、销量、渠道、汇率或退税的独立因果；生态及其他的毛利改善需要下一期同口径披露验证持续性。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        70,
+        151
+      ],
+      "facts": [
+        "rev_prior",
+        "cogs_prior",
+        "living_rev",
+        "living_cost",
+        "living_rev_prior",
+        "living_cost_prior",
+        "hvac_rev",
+        "hvac_cost",
+        "hvac_rev_prior",
+        "hvac_cost_prior",
+        "ecosystem_rev",
+        "ecosystem_cost",
+        "ecosystem_rev_prior",
+        "ecosystem_cost_prior",
+        "other_rev",
+        "other_cost",
+        "other_rev_prior",
+        "other_cost_prior",
+        "rev",
+        "cogs"
+      ]
+    },
+    {
       "id": "profit",
       "family": "signed_bridge",
       "question": "414.20亿元毛利，如何走到103.16亿元归母净利润？",

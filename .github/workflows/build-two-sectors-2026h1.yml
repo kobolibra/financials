@@ -54,7 +54,7 @@ jobs:
           fc-cache -f
           fc-list :lang=zh family | grep -qi 'Noto'
           python -m pip install -q playwright
-          python -m playwright install --with-deps chromium
+          python -m playwright install --with-deps chromium webkit
       - name: Real original 8-figure finance SVG geometry / 1440 768 390 / exports
         run: |
           python research/shared/qa_two_sector_browser.py --code 600900

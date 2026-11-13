@@ -43,5 +43,7 @@ def run(out):
              hashlib.sha256((ROOT/'public'/r['href'].lstrip('/')).read_bytes()).hexdigest()!=snapshots.get(r['code'])]
     if missing:raise ValueError('NEW_ISSUER_WITHOUT_COMPLETE_FIGURE_CONTRACT '+repr(missing))
     full_figure_audit(codes,Path(out)/'complete-source-figures')
+    from qa_source_publication_local import run as check_source_webkit
+    check_source_webkit(Path(out)/'new-source-webkit')
     print('FULL_LIBRARY_FINANCIAL_AND_BROWSER_CI_GATE_PASS',flush=True)
 if __name__=='__main__':run(ROOT/'research/issuers/600276/visual-qa/full-library')

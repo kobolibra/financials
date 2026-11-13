@@ -47,7 +47,7 @@
     "CHART_SEMANTICS": {
       "status": "PASS",
       "proof": "research/issuers/600690/figure-briefs.json",
-      "scope": "11项独立研究问题按会计关系选择共用语法；其他业务成本明确标示为原值相减计算。"
+      "scope": "12项独立研究问题按会计关系选择共用语法；其他业务成本明确标示为原值相减计算。"
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
@@ -57,7 +57,7 @@
     "BROWSER_LOCAL": {
       "status": "PASS",
       "proof": "research/issuers/600690/visual-qa/result.json",
-      "scope": "全部11图在三种真实浏览器屏宽、逐图PNG及33次当前可见SVG下载，独立源金额与实际几何检查。"
+      "scope": "全部12图在三种真实浏览器屏宽、逐图PNG及36次当前可见SVG下载，独立源金额与实际几何检查。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",

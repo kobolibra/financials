@@ -271,7 +271,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 11,
+      "figures": 12,
       "signal": "−14.27%",
       "signal_label": "2026H1归母净利润同比",
       "source": "2026H1完整原始中报",
@@ -299,7 +299,7 @@
         "research/quality/material-notes-review-20261110.json",
         "research/issuers/600690/material-notes-review.json"
       ],
-      "local_migration_receipt": "research/quality/full-figure-20261113/result.json",
+      "local_migration_receipt": "research/quality/source-library-20261113.json",
       "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
       "historical_exact_html_snapshots": {
         "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",

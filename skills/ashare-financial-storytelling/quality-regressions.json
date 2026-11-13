@@ -672,6 +672,16 @@
       "scope": "cross_issuer_process",
       "transfer_gate": "BROWSER_LOCAL",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-069",
+      "root_cause": "A revenue-growth-led narrative can miss a larger product gross-profit contribution, while hand-retyped rounded claims can diverge from exact source arithmetic.",
+      "correction": "Add the exhaustive product GP-change bridge and render material narrative amounts through explicit original-fact expressions; reject unknown claim references and invalid unit scales.",
+      "proof_file": "research/shared/test_source_publication.py",
+      "assertion_marker": "test_publication_numeric_claims_come_from_exact_source_expressions",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "RESEARCH_COUNTERCASE",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
