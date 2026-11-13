@@ -1,0 +1,2005 @@
+{
+  "title": "利润接近翻倍，现金为何慢了一拍？",
+  "deck": "长芯博创 2026H1：数通、消费及工业互联带来毛利增长，但少数权益、备货和应收决定了增长最终落到谁、何时成为现金。",
+  "thesis": {
+    "title": "核心判断：盈利改善成立，现金兑现仍需验证",
+    "body": "收入增长{{rev_growth}}%、扣非归母增长{{adjusted_parent_growth}}%，说明本期改善不能简单归结为非经常性收益。但CFO增长{{cfo_growth}}%，且合并利润中{{nci_share}}%属于少数股东。判断增长质量，应同时检验订单与备货的后续转化、客户回款及少数股权交易后的归母盈利，而非只看收入增速。"
+  },
+  "metrics": [
+    {
+      "label": "营业收入 / 合并",
+      "value": "{{rev_yi}} 亿",
+      "context": "同比 +{{rev_growth}}%"
+    },
+    {
+      "label": "归母净利润",
+      "value": "{{parent_net_yi}} 亿",
+      "context": "同比 +{{parent_net_growth}}%"
+    },
+    {
+      "label": "经营现金净流入",
+      "value": "{{cfo_yi}} 亿",
+      "context": "同比 +{{cfo_growth}}%"
+    }
+  ],
+  "figures": [
+    {
+      "id": "income",
+      "family": "income",
+      "nav": "业务毛利",
+      "question": "哪类业务把收入转化为毛利？",
+      "takeaway": "数通、消费及工业互联贡献{{interconnect_gp_share}}%合并毛利；该类别包含多种应用，不能等同于AI光模块。",
+      "analysis": "三个互斥类别逐项采用自身营业成本，合计闭合至收入{{rev_yi}}亿元与毛利{{gp}}亿元。电信业务毛利空间更低，但不能据此推断所有产品盈利水平。",
+      "counter": "p135明确只有一个经营分部。本图是市场产品分类，并非多个法定经营分部；不把境外收入再加进业务总额。",
+      "identity": "三类收入=合并收入；三类成本=合并成本；收入−成本=各类毛利。",
+      "eyebrow": "BUSINESS ECONOMICS",
+      "facts": [
+        "rev",
+        "cogs",
+        "main_rev",
+        "main_cost",
+        "telecom_rev",
+        "telecom_cost",
+        "interconnect_rev",
+        "interconnect_cost",
+        "other_rev",
+        "other_cost"
+      ]
+    },
+    {
+      "id": "profit",
+      "family": "signed_bridge",
+      "nav": "利润形成",
+      "question": "合并赚取的利润，多少属于上市公司股东？",
+      "takeaway": "合并净利润{{net_profit_yi}}亿元，其中{{nci_yi}}亿元归属于少数股东；归母净利润为{{parent_net_yi}}亿元。",
+      "analysis": "费用、减值、税收与权益归属逐层分开。少数股东损益占合并净利润{{nci_share}}%，分析归母盈利与现金转换都必须先对齐合并范围。",
+      "counter": "少数股东损益是利润归属，不是当期现金分红；买入少数股权也不能直接当作当期利润费用。",
+      "identity": "毛利逐项加减=营业利润；营业外净额及所得税后=合并净利润；减少数损益=归母净利润。",
+      "eyebrow": "SIGNED MONEY BRIDGE",
+      "rows": [
+        [
+          "营业毛利",
+          [
+            [
+              "rev",
+              1
+            ],
+            [
+              "cogs",
+              -1
+            ]
+          ],
+          "start"
+        ],
+        [
+          "税金及附加",
+          [
+            [
+              "tax_surcharge",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "销售费用",
+          [
+            [
+              "selling",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "管理费用",
+          [
+            [
+              "admin",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "研发费用",
+          [
+            [
+              "rd_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "财务费用",
+          [
+            [
+              "finance",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "其他收益",
+          [
+            [
+              "other_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "投资收益",
+          [
+            [
+              "investment_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "公允价值变动收益",
+          [
+            [
+              "fair_value",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "信用减值损失",
+          [
+            [
+              "credit_impairment",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产减值损失",
+          [
+            [
+              "asset_impairment",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产处置收益",
+          [
+            [
+              "asset_disposal",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "营业利润",
+          "operating_profit",
+          "total"
+        ],
+        [
+          "营业外收入",
+          "nonop_income",
+          "step"
+        ],
+        [
+          "营业外支出",
+          [
+            [
+              "nonop_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "税前利润",
+          "pretax",
+          "total"
+        ],
+        [
+          "所得税",
+          [
+            [
+              "income_tax",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "合并净利润",
+          "net_profit",
+          "total"
+        ],
+        [
+          "少数股东损益",
+          [
+            [
+              "nci",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "归母净利润",
+          "parent_net",
+          "total"
+        ]
+      ]
+    },
+    {
+      "id": "performance",
+      "family": "comparison",
+      "nav": "利润与现金",
+      "question": "利润接近翻倍，现金是否同步？",
+      "takeaway": "归母利润增长{{parent_net_growth}}%，扣非归母增长{{adjusted_parent_growth}}%，CFO仅增长{{cfo_growth}}%。",
+      "analysis": "CFO/合并净利润由{{prior_cash_conversion}}%变为{{cash_conversion}}%。选择合并净利润作为分母，避免用归母利润掩盖子公司现金与少数权益。",
+      "counter": "短期现金滞后可能来自旺季备货和结算时点，不能单凭半年转换率认定盈利失真；扣非增长也不能替代收现验证。",
+      "identity": "同一项目比较2025H1与2026H1，分别保留合并净利润、归母及扣非归母口径。",
+      "eyebrow": "COMPARABLE BASES",
+      "periods": [
+        "2025H1",
+        "2026H1"
+      ],
+      "pairs": [
+        [
+          "合并净利润",
+          "net_profit_prior",
+          "net_profit"
+        ],
+        [
+          "归母净利润",
+          "parent_net_prior",
+          "parent_net"
+        ],
+        [
+          "扣非归母净利润",
+          "adjusted_parent_prior",
+          "adjusted_parent"
+        ],
+        [
+          "经营现金净额",
+          "cfo_prior",
+          "cfo"
+        ]
+      ]
+    },
+    {
+      "id": "cfo",
+      "family": "signed_bridge",
+      "nav": "净利到现金",
+      "question": "增长的利润，被哪些项目占用了？",
+      "takeaway": "存货与经营性应收占用，部分被经营性应付增加抵消；三项合计影响{{wc_drag}}亿元。",
+      "analysis": "严格保留现金流补充资料16项调节。应付增加支持本期现金，却意味着供应商与经营负债也承担了扩张资金。",
+      "counter": "现金调节中的存货减少不等于两张资产负债表存货净额之差；汇率、减值和其他非现金因素不能未经核验就全部归因为采购。",
+      "identity": "合并净利润+16项原始有符号调节=经营现金流量净额。",
+      "eyebrow": "SIGNED MONEY BRIDGE",
+      "rows": [
+        [
+          "合并净利润",
+          "net_profit",
+          "start"
+        ],
+        [
+          "资产减值准备",
+          "provisions",
+          "step"
+        ],
+        [
+          "固定资产折旧",
+          "depreciation",
+          "step"
+        ],
+        [
+          "使用权资产折旧",
+          "rou_amort",
+          "step"
+        ],
+        [
+          "无形资产摊销",
+          "intangible_amort",
+          "step"
+        ],
+        [
+          "长期待摊费用摊销",
+          "deferred_amort",
+          "step"
+        ],
+        [
+          "处置长期资产损失",
+          "disposal_loss",
+          "step"
+        ],
+        [
+          "固定资产报废损失",
+          "scrap_loss",
+          "step"
+        ],
+        [
+          "公允价值变动损失",
+          "fair_loss",
+          "step"
+        ],
+        [
+          "现金调节财务费用",
+          "finance_adjustment",
+          "step"
+        ],
+        [
+          "投资损失",
+          "investment_loss",
+          "step"
+        ],
+        [
+          "递延所得税资产减少",
+          "dta_decrease",
+          "step"
+        ],
+        [
+          "递延所得税负债增加",
+          "dtl_increase",
+          "step"
+        ],
+        [
+          "存货的减少",
+          "inventory_release",
+          "step"
+        ],
+        [
+          "经营性应收项目减少",
+          "operating_ar_change",
+          "step"
+        ],
+        [
+          "经营性应付项目增加",
+          "operating_ap_change",
+          "step"
+        ],
+        [
+          "其他现金调节",
+          "cfo_other",
+          "step"
+        ],
+        [
+          "经营现金净额",
+          "cfo",
+          "total"
+        ]
+      ]
+    },
+    {
+      "id": "cash-change",
+      "family": "signed_bridge",
+      "nav": "现金增量",
+      "question": "为什么盈利增量没有变成现金增量？",
+      "takeaway": "应付增长缓冲了备货与应收扩张，但未能让现金增长跟上利润增长。",
+      "analysis": "以去年同期CFO为起点，逐项展示利润和调节项的同比变化。它回答增长落在何处，避免将本期占用与同比恶化混为一谈。",
+      "counter": "这是会计差额闭合，不提供销售量、采购价格或客户信用变化的独立因果识别。",
+      "identity": "去年CFO+净利润变化+全部现金调节项变化=本年CFO。",
+      "eyebrow": "SIGNED MONEY BRIDGE",
+      "rows": [
+        [
+          "2025H1经营现金",
+          "cfo_prior",
+          "start"
+        ],
+        [
+          "合并净利润增加",
+          [
+            [
+              "net_profit",
+              1
+            ],
+            [
+              "net_profit_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产减值准备变化",
+          [
+            [
+              "provisions",
+              1
+            ],
+            [
+              "provisions_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "固定资产折旧变化",
+          [
+            [
+              "depreciation",
+              1
+            ],
+            [
+              "depreciation_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "使用权资产折旧变化",
+          [
+            [
+              "rou_amort",
+              1
+            ],
+            [
+              "rou_amort_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "无形资产摊销变化",
+          [
+            [
+              "intangible_amort",
+              1
+            ],
+            [
+              "intangible_amort_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "长期待摊费用摊销变化",
+          [
+            [
+              "deferred_amort",
+              1
+            ],
+            [
+              "deferred_amort_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "处置长期资产损失变化",
+          [
+            [
+              "disposal_loss",
+              1
+            ],
+            [
+              "disposal_loss_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "固定资产报废损失变化",
+          [
+            [
+              "scrap_loss",
+              1
+            ],
+            [
+              "scrap_loss_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "公允价值变动损失变化",
+          [
+            [
+              "fair_loss",
+              1
+            ],
+            [
+              "fair_loss_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "现金调节财务费用变化",
+          [
+            [
+              "finance_adjustment",
+              1
+            ],
+            [
+              "finance_adjustment_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "投资损失变化",
+          [
+            [
+              "investment_loss",
+              1
+            ],
+            [
+              "investment_loss_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "递延所得税资产减少变化",
+          [
+            [
+              "dta_decrease",
+              1
+            ],
+            [
+              "dta_decrease_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "递延所得税负债增加变化",
+          [
+            [
+              "dtl_increase",
+              1
+            ],
+            [
+              "dtl_increase_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "存货的减少变化",
+          [
+            [
+              "inventory_release",
+              1
+            ],
+            [
+              "inventory_release_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "经营性应收项目减少变化",
+          [
+            [
+              "operating_ar_change",
+              1
+            ],
+            [
+              "operating_ar_change_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "经营性应付项目增加变化",
+          [
+            [
+              "operating_ap_change",
+              1
+            ],
+            [
+              "operating_ap_change_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "其他现金调节变化",
+          [
+            [
+              "cfo_other",
+              1
+            ],
+            [
+              "cfo_other_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "2026H1经营现金",
+          "cfo",
+          "total"
+        ]
+      ]
+    },
+    {
+      "id": "inventory",
+      "family": "components",
+      "nav": "备货结构",
+      "question": "期末备货，主要沉淀在哪个环节？",
+      "takeaway": "存货净额{{inventory_yi}}亿元，较年初增加{{inventory_change}}亿元；原材料是主要存量。",
+      "analysis": "按原材料、在产品、库存商品、发出商品和委托加工净额展示；其和完整闭合至期末存货净额。另核对存货账面余额减跌价准备。",
+      "counter": "原材料备货可能对应真实需求，也可能在产品迭代时带来风险；没有订单明细、库龄与后续销售，不能把全部存货当作确定收入。",
+      "identity": "五类期末净额=期末存货净额；存货账面余额−跌价准备=账面价值。",
+      "eyebrow": "OWNERSHIP & COMPOSITION",
+      "period": "2026-06-30",
+      "parts": [
+        [
+          "原材料净额",
+          "raw_inventory"
+        ],
+        [
+          "在产品净额",
+          "wip_inventory"
+        ],
+        [
+          "库存商品净额",
+          "finished_inventory"
+        ],
+        [
+          "发出商品净额",
+          "shipped_inventory"
+        ],
+        [
+          "委托加工物资净额",
+          "outsourced_inventory"
+        ]
+      ],
+      "total": "inventory"
+    },
+    {
+      "id": "working-capital",
+      "family": "comparison",
+      "nav": "营运资金",
+      "question": "业务扩张所需的资金，主要由谁提供？",
+      "takeaway": "应收账款净额较年初增加{{ar_change}}亿元；应付与合同负债也上升。",
+      "analysis": "这是2025年末至2026年6月末的存量比较，呈现应收、存货和供应链融资，不把半年资产变化称为同比。",
+      "counter": "应付账款余额与现金补充资料经营性应付不是同一个范围；应收净额增长也不直接等于逾期或坏账增长。",
+      "identity": "各项目只作相同时点定义的两期比较；不把四项存量相加冒充CFO。",
+      "eyebrow": "COMPARABLE BASES",
+      "periods": [
+        "2025-12-31",
+        "2026-06-30"
+      ],
+      "pairs": [
+        [
+          "应收账款净额",
+          "ar_prior",
+          "ar"
+        ],
+        [
+          "存货净额",
+          "inventory_prior",
+          "inventory"
+        ],
+        [
+          "应付账款",
+          "ap_prior",
+          "ap"
+        ],
+        [
+          "合同负债",
+          "contract_liabilities_prior",
+          "contract_liabilities"
+        ]
+      ]
+    },
+    {
+      "id": "balance",
+      "family": "balance",
+      "nav": "资产负债",
+      "question": "扩张后的资产，由多少负债和权益支撑？",
+      "takeaway": "资产扩张同时伴随负债增加；集团权益包含少数股东权益。",
+      "analysis": "两张资产负债表均使用完整合并口径。归母权益与少数权益另作精确核对，不用归母权益单独平衡集团资产。",
+      "counter": "资产负债率较低不能替代流动性判断；理财可赎回条件、应收集中和已承诺支出需要单独阅读。",
+      "identity": "资产=负债+全部权益；全部权益=归母权益+少数股东权益。",
+      "eyebrow": "STOCKS, NOT FLOWS",
+      "dates": [
+        [
+          "2025-12-31",
+          "assets_prior",
+          "liabilities_prior",
+          "equity_prior"
+        ],
+        [
+          "2026-06-30",
+          "assets",
+          "liabilities",
+          "equity"
+        ]
+      ]
+    },
+    {
+      "id": "cash",
+      "family": "signed_bridge",
+      "nav": "现金去向",
+      "question": "经营仍有净流入，期末现金为何减少？",
+      "takeaway": "投资与筹资净流出超过经营现金净流入；期末现金等价物为{{cash_close_yi}}亿元。",
+      "analysis": "投资活动包含理财申赎和长期投资，不能全部称为资本开支。购建长期资产现金{{cash_capex_yi}}亿元；购买少数权益相关款项在筹资流中披露。",
+      "counter": "期末交易性金融资产{{financial_assets_yi}}亿元是另一个资产类别，不能直接加进现金等价物，也不代表全部可随时无损变现。",
+      "identity": "期初现金+CFO+CFI+CFF+汇率影响=期末现金。",
+      "eyebrow": "SIGNED MONEY BRIDGE",
+      "rows": [
+        [
+          "年初现金",
+          "cash_open",
+          "start"
+        ],
+        [
+          "经营现金",
+          "cfo",
+          "step"
+        ],
+        [
+          "投资现金",
+          "cfi",
+          "step"
+        ],
+        [
+          "筹资现金",
+          "cff",
+          "step"
+        ],
+        [
+          "汇率影响",
+          "cash_fx",
+          "step"
+        ],
+        [
+          "期末现金",
+          "cash_close",
+          "total"
+        ]
+      ]
+    },
+    {
+      "id": "capital",
+      "family": "comparison",
+      "nav": "资金配置",
+      "question": "哪些现金支出属于扩张，哪些属于权益交易？",
+      "takeaway": "购建长期资产现金与投资子公司款项分列；理财及股权等投资支付与收回投资按原表呈现。",
+      "analysis": "本期投资支付减收回投资为{{net_invest}}亿元；不能将该差额全部解释为理财。管理层称投资现金变化主要受理财产品影响，此解释与原始现金分类分列。",
+      "counter": "投资子公司现金{{sub_equity_pay_yi}}亿元列筹资活动，收购少数股权与新增控制权不是同一种会计交易；不把两张图中同一支出重复相加。",
+      "identity": "比较各现金流原始项目2025H1与2026H1；CFO减长期资产购建现金只是分析口径，不等于法定自由现金流。",
+      "eyebrow": "COMPARABLE BASES",
+      "periods": [
+        "2025H1",
+        "2026H1"
+      ],
+      "pairs": [
+        [
+          "购建长期资产支付现金",
+          "cash_capex_prior",
+          "cash_capex"
+        ],
+        [
+          "投资支付现金",
+          "invest_pay_prior",
+          "invest_pay"
+        ],
+        [
+          "收回投资收到现金",
+          "invest_return_prior",
+          "invest_return"
+        ],
+        [
+          "投资子公司支付现金",
+          "sub_equity_pay_prior",
+          "sub_equity_pay"
+        ],
+        [
+          "偿还债务支付现金",
+          "debt_repay_prior",
+          "debt_repay"
+        ]
+      ]
+    },
+    {
+      "id": "geography",
+      "family": "comparison",
+      "nav": "海外敞口",
+      "question": "增长集中在哪里，汇率风险跟到哪里？",
+      "takeaway": "其余地区主营收入同比增长{{overseas_growth}}%；出口业务主要以美元结算，汇兑净费用{{fx_pnl_yi}}亿元。",
+      "analysis": "地区图采用p135对外主营收入，合计闭合至主营收入；不与p107包含其他业务的地区总营业收入混同。",
+      "counter": "人民币收入增长包含汇率、产品组合和规模变化；不能据此判断当地销量或全球份额。海外增长也不直接等于境外现金可自由调回。",
+      "identity": "大陆与其余地区对外主营收入=集团主营收入，且不与产品分类重复合计。",
+      "eyebrow": "COMPARABLE BASES",
+      "periods": [
+        "2025H1",
+        "2026H1"
+      ],
+      "pairs": [
+        [
+          "中国大陆主营",
+          "mainland_rev_prior",
+          "mainland_rev"
+        ],
+        [
+          "其余地区主营",
+          "overseas_rev_prior",
+          "overseas_rev"
+        ]
+      ]
+    }
+  ],
+  "accounting_identities": [
+    {
+      "name": "法定营业利润",
+      "left": [
+        [
+          "rev",
+          1
+        ],
+        [
+          "cogs",
+          -1
+        ],
+        [
+          "tax_surcharge",
+          -1
+        ],
+        [
+          "selling",
+          -1
+        ],
+        [
+          "admin",
+          -1
+        ],
+        [
+          "rd_expense",
+          -1
+        ],
+        [
+          "finance",
+          -1
+        ],
+        [
+          "other_income",
+          1
+        ],
+        [
+          "investment_income",
+          1
+        ],
+        [
+          "fair_value",
+          1
+        ],
+        [
+          "credit_impairment",
+          1
+        ],
+        [
+          "asset_impairment",
+          1
+        ],
+        [
+          "asset_disposal",
+          1
+        ]
+      ],
+      "right": "operating_profit"
+    },
+    {
+      "name": "税前利润",
+      "left": [
+        [
+          "operating_profit",
+          1
+        ],
+        [
+          "nonop_income",
+          1
+        ],
+        [
+          "nonop_expense",
+          -1
+        ]
+      ],
+      "right": "pretax"
+    },
+    {
+      "name": "所得税及利润归属",
+      "left": [
+        [
+          "pretax",
+          1
+        ],
+        [
+          "income_tax",
+          -1
+        ]
+      ],
+      "right": [
+        [
+          "parent_net",
+          1
+        ],
+        [
+          "nci",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "间接CFO全部调节",
+      "left": [
+        [
+          "net_profit",
+          1
+        ],
+        [
+          "provisions",
+          1
+        ],
+        [
+          "depreciation",
+          1
+        ],
+        [
+          "rou_amort",
+          1
+        ],
+        [
+          "intangible_amort",
+          1
+        ],
+        [
+          "deferred_amort",
+          1
+        ],
+        [
+          "disposal_loss",
+          1
+        ],
+        [
+          "scrap_loss",
+          1
+        ],
+        [
+          "fair_loss",
+          1
+        ],
+        [
+          "finance_adjustment",
+          1
+        ],
+        [
+          "investment_loss",
+          1
+        ],
+        [
+          "dta_decrease",
+          1
+        ],
+        [
+          "dtl_increase",
+          1
+        ],
+        [
+          "inventory_release",
+          1
+        ],
+        [
+          "operating_ar_change",
+          1
+        ],
+        [
+          "operating_ap_change",
+          1
+        ],
+        [
+          "cfo_other",
+          1
+        ]
+      ],
+      "right": "cfo"
+    },
+    {
+      "name": "现金首尾",
+      "left": [
+        [
+          "cash_open",
+          1
+        ],
+        [
+          "cfo",
+          1
+        ],
+        [
+          "cfi",
+          1
+        ],
+        [
+          "cff",
+          1
+        ],
+        [
+          "cash_fx",
+          1
+        ]
+      ],
+      "right": "cash_close"
+    },
+    {
+      "name": "资产负债",
+      "left": "assets",
+      "right": [
+        [
+          "liabilities",
+          1
+        ],
+        [
+          "equity",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "集团权益归属",
+      "left": "equity",
+      "right": [
+        [
+          "parent_equity",
+          1
+        ],
+        [
+          "nci_equity",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "收入附注",
+      "left": "rev",
+      "right": [
+        [
+          "main_rev",
+          1
+        ],
+        [
+          "other_rev",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "成本附注",
+      "left": "cogs",
+      "right": [
+        [
+          "main_cost",
+          1
+        ],
+        [
+          "other_cost",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "地区主营口径",
+      "left": "main_rev",
+      "right": [
+        [
+          "mainland_rev",
+          1
+        ],
+        [
+          "overseas_rev",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "存货原值净额",
+      "left": "inventory",
+      "right": [
+        [
+          "inventory_gross",
+          1
+        ],
+        [
+          "inventory_allowance",
+          -1
+        ]
+      ]
+    },
+    {
+      "name": "法定营业利润_prior",
+      "left": [
+        [
+          "rev_prior",
+          1
+        ],
+        [
+          "cogs_prior",
+          -1
+        ],
+        [
+          "tax_surcharge_prior",
+          -1
+        ],
+        [
+          "selling_prior",
+          -1
+        ],
+        [
+          "admin_prior",
+          -1
+        ],
+        [
+          "rd_expense_prior",
+          -1
+        ],
+        [
+          "finance_prior",
+          -1
+        ],
+        [
+          "other_income_prior",
+          1
+        ],
+        [
+          "investment_income_prior",
+          1
+        ],
+        [
+          "fair_value_prior",
+          1
+        ],
+        [
+          "credit_impairment_prior",
+          1
+        ],
+        [
+          "asset_impairment_prior",
+          1
+        ],
+        [
+          "asset_disposal_prior",
+          1
+        ]
+      ],
+      "right": "operating_profit_prior"
+    },
+    {
+      "name": "税前利润_prior",
+      "left": [
+        [
+          "operating_profit_prior",
+          1
+        ],
+        [
+          "nonop_income_prior",
+          1
+        ],
+        [
+          "nonop_expense_prior",
+          -1
+        ]
+      ],
+      "right": "pretax_prior"
+    },
+    {
+      "name": "所得税及利润归属_prior",
+      "left": [
+        [
+          "pretax_prior",
+          1
+        ],
+        [
+          "income_tax_prior",
+          -1
+        ]
+      ],
+      "right": [
+        [
+          "parent_net_prior",
+          1
+        ],
+        [
+          "nci_prior",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "间接CFO全部调节_prior",
+      "left": [
+        [
+          "net_profit_prior",
+          1
+        ],
+        [
+          "provisions_prior",
+          1
+        ],
+        [
+          "depreciation_prior",
+          1
+        ],
+        [
+          "rou_amort_prior",
+          1
+        ],
+        [
+          "intangible_amort_prior",
+          1
+        ],
+        [
+          "deferred_amort_prior",
+          1
+        ],
+        [
+          "disposal_loss_prior",
+          1
+        ],
+        [
+          "scrap_loss_prior",
+          1
+        ],
+        [
+          "fair_loss_prior",
+          1
+        ],
+        [
+          "finance_adjustment_prior",
+          1
+        ],
+        [
+          "investment_loss_prior",
+          1
+        ],
+        [
+          "dta_decrease_prior",
+          1
+        ],
+        [
+          "dtl_increase_prior",
+          1
+        ],
+        [
+          "inventory_release_prior",
+          1
+        ],
+        [
+          "operating_ar_change_prior",
+          1
+        ],
+        [
+          "operating_ap_change_prior",
+          1
+        ],
+        [
+          "cfo_other_prior",
+          1
+        ]
+      ],
+      "right": "cfo_prior"
+    },
+    {
+      "name": "现金首尾_prior",
+      "left": [
+        [
+          "cash_open_prior",
+          1
+        ],
+        [
+          "cfo_prior",
+          1
+        ],
+        [
+          "cfi_prior",
+          1
+        ],
+        [
+          "cff_prior",
+          1
+        ],
+        [
+          "cash_fx_prior",
+          1
+        ]
+      ],
+      "right": "cash_close_prior"
+    },
+    {
+      "name": "资产负债_prior",
+      "left": "assets_prior",
+      "right": [
+        [
+          "liabilities_prior",
+          1
+        ],
+        [
+          "equity_prior",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "集团权益归属_prior",
+      "left": "equity_prior",
+      "right": [
+        [
+          "parent_equity_prior",
+          1
+        ],
+        [
+          "nci_equity_prior",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "收入附注_prior",
+      "left": "rev_prior",
+      "right": [
+        [
+          "main_rev_prior",
+          1
+        ],
+        [
+          "other_rev_prior",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "成本附注_prior",
+      "left": "cogs_prior",
+      "right": [
+        [
+          "main_cost_prior",
+          1
+        ],
+        [
+          "other_cost_prior",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "地区主营口径_prior",
+      "left": "main_rev_prior",
+      "right": [
+        [
+          "mainland_rev_prior",
+          1
+        ],
+        [
+          "overseas_rev_prior",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "存货原值净额_prior",
+      "left": "inventory_prior",
+      "right": [
+        [
+          "inventory_gross_prior",
+          1
+        ],
+        [
+          "inventory_allowance_prior",
+          -1
+        ]
+      ]
+    },
+    {
+      "name": "市场分类主营收入",
+      "left": "main_rev",
+      "right": [
+        [
+          "telecom_rev",
+          1
+        ],
+        [
+          "interconnect_rev",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "市场分类主营成本",
+      "left": "main_cost",
+      "right": [
+        [
+          "telecom_cost",
+          1
+        ],
+        [
+          "interconnect_cost",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "扣非桥",
+      "left": "parent_net",
+      "right": [
+        [
+          "adjusted_parent",
+          1
+        ],
+        [
+          "nonrecurring_net",
+          1
+        ]
+      ]
+    },
+    {
+      "name": "期末存货构成",
+      "left": "inventory",
+      "right": [
+        [
+          "raw_inventory",
+          1
+        ],
+        [
+          "wip_inventory",
+          1
+        ],
+        [
+          "finished_inventory",
+          1
+        ],
+        [
+          "shipped_inventory",
+          1
+        ],
+        [
+          "outsourced_inventory",
+          1
+        ]
+      ]
+    }
+  ],
+  "quantified_claims": {
+    "rev_yi": {
+      "expression": "rev",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "parent_net_yi": {
+      "expression": "parent_net",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "net_profit_yi": {
+      "expression": "net_profit",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "cfo_yi": {
+      "expression": "cfo",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "nci_yi": {
+      "expression": "nci",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "inventory_yi": {
+      "expression": "inventory",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "ar_yi": {
+      "expression": "ar",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "financial_assets_yi": {
+      "expression": "financial_assets",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "sub_equity_pay_yi": {
+      "expression": "sub_equity_pay",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "cash_capex_yi": {
+      "expression": "cash_capex",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "cash_close_yi": {
+      "expression": "cash_close",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "fx_pnl_yi": {
+      "expression": "fx_pnl",
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "rev_growth": {
+      "expression": [
+        [
+          "rev",
+          1
+        ],
+        [
+          "rev_prior",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "rev_prior"
+    },
+    "parent_net_growth": {
+      "expression": [
+        [
+          "parent_net",
+          1
+        ],
+        [
+          "parent_net_prior",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "parent_net_prior"
+    },
+    "cfo_growth": {
+      "expression": [
+        [
+          "cfo",
+          1
+        ],
+        [
+          "cfo_prior",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "cfo_prior"
+    },
+    "adjusted_parent_growth": {
+      "expression": [
+        [
+          "adjusted_parent",
+          1
+        ],
+        [
+          "adjusted_parent_prior",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "adjusted_parent_prior"
+    },
+    "gp": {
+      "expression": [
+        [
+          "rev",
+          1
+        ],
+        [
+          "cogs",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "group_margin": {
+      "expression": [
+        [
+          "rev",
+          1
+        ],
+        [
+          "cogs",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "rev"
+    },
+    "interconnect_gp": {
+      "expression": [
+        [
+          "interconnect_rev",
+          1
+        ],
+        [
+          "interconnect_cost",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "interconnect_gp_share": {
+      "expression": [
+        [
+          "interconnect_rev",
+          1
+        ],
+        [
+          "interconnect_cost",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": [
+        [
+          "rev",
+          1
+        ],
+        [
+          "cogs",
+          -1
+        ]
+      ]
+    },
+    "nci_share": {
+      "expression": "nci",
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "net_profit"
+    },
+    "cash_conversion": {
+      "expression": "cfo",
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "net_profit"
+    },
+    "prior_cash_conversion": {
+      "expression": "cfo_prior",
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "net_profit_prior"
+    },
+    "wc_drag": {
+      "expression": [
+        [
+          "inventory_release",
+          1
+        ],
+        [
+          "operating_ar_change",
+          1
+        ],
+        [
+          "operating_ap_change",
+          1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "inventory_change": {
+      "expression": [
+        [
+          "inventory",
+          1
+        ],
+        [
+          "inventory_prior",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "ar_change": {
+      "expression": [
+        [
+          "ar",
+          1
+        ],
+        [
+          "ar_prior",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "net_invest": {
+      "expression": [
+        [
+          "invest_pay",
+          1
+        ],
+        [
+          "invest_return",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "cash_excluded": {
+      "expression": [
+        [
+          "money_funds",
+          1
+        ],
+        [
+          "cash_close",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "cfo_after_capex": {
+      "expression": [
+        [
+          "cfo",
+          1
+        ],
+        [
+          "cash_capex",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "nci_growth": {
+      "expression": [
+        [
+          "nci",
+          1
+        ],
+        [
+          "nci_prior",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "multiplier": "1",
+      "decimals": 2
+    },
+    "overseas_growth": {
+      "expression": [
+        [
+          "overseas_rev",
+          1
+        ],
+        [
+          "overseas_rev_prior",
+          -1
+        ]
+      ],
+      "scale": "1",
+      "multiplier": "100",
+      "decimals": 2,
+      "denominator": "overseas_rev_prior"
+    }
+  },
+  "essays": [
+    {
+      "id": "research",
+      "eyebrow": "BUSINESS MODEL / FALSIFIABLE THESIS",
+      "title": "把产业增长、会计利润与现金兑现连起来",
+      "paragraphs": [
+        "商业机制：光通信与互联产品依赖客户导入、器件与芯片能力、量产交付和产品更新。当前数通/消费/工业互联创造{{interconnect_gp}}亿元毛利，是主要盈利来源；但这个集合包含不同终端应用，原文没有允许把全部增量归因于AI服务器的精确拆分。",
+        "最强替代解释：现金转换下降可能来自增长前置备货与结算时点，采购与经营负债增长又提供缓冲。如果后续出货和回款兑现，本期占用可能释放；因此不能仅凭半年CFO慢于利润就判定盈利质量恶化。",
+        "需要反向验证：若原材料与库存商品继续快于收入上升、应收集中进一步提高，且经营性应收和存货占用不能被真实回款消化，增长对资金的要求将持续上升。相反，库存转换、回款和毛利同时改善，会削弱现金风险判断。",
+        "权益机制：购买仍受控制子公司的少数权益影响权益归属和筹资现金，不是新增营业收入。集团的现金与全部净利润一致比较，归母盈利还需要交易时间与子公司盈利贡献资料，不能用期末持股比例简单乘算。"
+      ]
+    },
+    {
+      "id": "follow-up",
+      "eyebrow": "NEXT DISCLOSURE / DECISION TESTS",
+      "title": "下一份披露，先看这三项证据",
+      "paragraphs": [
+        "一，看备货兑现：核对后续数通/消费/工业互联收入、原材料与发出商品变化以及存货跌价，而非把任何存货增长都当需求强劲。",
+        "二，看资金兑现：分别检查经营性应收与应付调节、客户集中、实际收现和理财赎回，不把供应商融资当作永久现金来源。",
+        "三，看股东兑现：核对归母与少数净利润的分配、少数股权价款、分红实际支付和潜在新增资本需求。",
+        "研究范围：本篇基于2026H1完整原始中报及其可比数据；未提供8–12季度同行估值数据库、订单级验证或真实人类独立二审，不据此给出目标价。"
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "theme": "业务范围与收入确认",
+      "pages": [
+        10,
+        16,
+        107,
+        108,
+        135
+      ],
+      "finding": "电信与数通/消费/工业互联市场加其他业务构成完整收入成本；收入在某一时点确认，只有一个经营分部。",
+      "boundary": "市场分类不能改写为AI、800G或1.6T独立收入；报告未提供可闭合的对应销量价格。"
+    },
+    {
+      "theme": "应收集中与信用损失",
+      "pages": [
+        45,
+        85,
+        111,
+        122
+      ],
+      "finding": "应收净额{{ar_yi}}亿元；前五大客户应收占比66.05%，上年末55.59%。信用减值损失单列。",
+      "boundary": "集中不代表已经违约；需结合回款与账龄，不能以销售收现/收入比替代回收率。"
+    },
+    {
+      "theme": "存货及跌价",
+      "pages": [
+        89,
+        90,
+        111,
+        115
+      ],
+      "finding": "原材料等五类期末净额闭合；存货原值减跌价准备与资产负债表一致。",
+      "boundary": "现金调节存货变化与净存货存量变化不同，未验证的差额不硬归因；跌价计提并不消除后续迭代风险。"
+    },
+    {
+      "theme": "现金、冻结与理财",
+      "pages": [
+        83,
+        115,
+        116
+      ],
+      "finding": "货币资金与现金等价物差{{cash_excluded}}元；不属于现金等价物的冻结资金与存出投资款原表可核对。交易性金融资产单列。",
+      "boundary": "理财不自动视作现金；账户专用、赎回条件与银行授信不是同一个流动性概念。"
+    },
+    {
+      "theme": "现金流间接调节",
+      "pages": [
+        114,
+        115
+      ],
+      "finding": "从合并净利润出发，16项原始调节精确闭合至CFO；两期分别核验。",
+      "boundary": "不能用归母净利润起桥；经营性应收/应付大于单一应收账款/应付账款范围。"
+    },
+    {
+      "theme": "少数股权与利润归属",
+      "pages": [
+        51,
+        114,
+        119,
+        120
+      ],
+      "finding": "长芯盛持股由60.45%升至62.65%；本期投资子公司款项列其他筹资支出。合并利润中{{nci_share}}%归少数股东。",
+      "boundary": "期末持股比例不等于全年利润分配比例；不能用期末比例乘整个集团净利润预测归母收益。"
+    },
+    {
+      "theme": "所得税与扣非",
+      "pages": [
+        8,
+        82,
+        112,
+        143
+      ],
+      "finding": "税费、税收优惠及研发加计扣除在税率调节表单列；扣非归母增长{{adjusted_parent_growth}}%。",
+      "boundary": "税率变化受主体与税收优惠影响，不能将本期有效税率机械外推；扣非不等于收到现金。"
+    },
+    {
+      "theme": "汇率与海外经营",
+      "pages": [
+        15,
+        110,
+        116,
+        117,
+        124
+      ],
+      "finding": "汇兑净损益费用{{fx_pnl_yi}}亿元；境外经营与外币应收应付披露。",
+      "boundary": "利润表汇兑费用、现金流汇率影响与其他综合收益折算差额是三种口径，不能互换。"
+    },
+    {
+      "theme": "研发与激励",
+      "pages": [
+        16,
+        109,
+        132,
+        133
+      ],
+      "finding": "研发费用与研发投入披露可对应；激励费用分布于管理、研发、销售及生产。",
+      "boundary": "股份支付总额2,379,502.31元与现金调节其他2,379,502.30元相差0.01元；保留原值，不强行说两者完全相等。"
+    },
+    {
+      "theme": "商誉与并购会计",
+      "pages": [
+        46,
+        97,
+        98,
+        99,
+        118,
+        120
+      ],
+      "finding": "资产负债表商誉账面额期初期末相同；控制下购买少数权益与取得新控制权区分。",
+      "boundary": "账面未减少不构成经济价值未减损的独立证明；需要实际资产组测试与业绩兑现验证。"
+    },
+    {
+      "theme": "关联方及承诺",
+      "pages": [
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        134
+      ],
+      "finding": "关联交易与往来分项披露；已签订履行中和未履行合同承诺66,743,758.49元。",
+      "boundary": "关联采购销售不能全部当外部新增需求；承诺不是本期费用，也不与已付款重复累计。"
+    },
+    {
+      "theme": "分红时点",
+      "pages": [
+        46,
+        107
+      ],
+      "finding": "股东会批准现金股利85,493,392.87元；原文说明2026年7月13日派发。",
+      "boundary": "批准并计入应付款不等于六月末已经现金分红，不能用拟派股利替代半年现金流表股利利息支出。"
+    }
+  ]
+}

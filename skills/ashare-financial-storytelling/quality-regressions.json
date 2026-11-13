@@ -692,6 +692,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-046",
+      "root_cause": "新发行人封面没有股票代码，且单个数字在原始表格同一单元格内换行；假定封面必有代码或把换行当金额缺失，阻断真实新报告。",
+      "correction": "封面法定全称加显式身份页代码交叉核验；仅在真实源格坐标内去除排版空白，不补零、不改金额。",
+      "proof_file": "research/shared/test_everprox_source.py",
+      "assertion_marker": "test_real_wrapped_cost_and_explicit_identity_page",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

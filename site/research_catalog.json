@@ -1,7 +1,7 @@
 {
   "edition": "2026H1",
   "primary_home": "/",
-  "published_issuer_count": 12,
+  "published_issuer_count": 13,
   "unified_directory": true,
   "issuers": [
     {
@@ -286,6 +286,34 @@
       "rank": 12,
       "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
       "source_publication": "research/issuers/600690"
+    },
+    {
+      "code": "300548",
+      "name": "长芯博创",
+      "exchange": "SZ",
+      "industry": "光通信",
+      "sub": "光电芯片、器件与互联产品",
+      "story": "利润接近翻倍，现金为何慢了一拍？",
+      "deck": "长芯博创 2026H1：数通、消费及工业互联带来毛利增长，但少数权益、备货和应收决定了增长最终落到谁、何时成为现金。",
+      "href": "/300548.html",
+      "kind": "原始财报研究",
+      "stage": "source-review",
+      "note": "原件与计算核验 · 人类二审未完成",
+      "figures": 11,
+      "signal": "+91.08%",
+      "signal_label": "2026H1归母净利润同比",
+      "source": "2026H1完整原始中报",
+      "spark": [
+        8.2526602584,
+        8.6317975503
+      ],
+      "spark_names": [
+        "毛利",
+        "成本"
+      ],
+      "rank": 13,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "source_publication": "research/issuers/300548"
     }
   ],
   "topic": {
@@ -297,7 +325,8 @@
     "FULL_SOURCE_FIGURES_V1": {
       "source_review_indices": [
         "research/quality/material-notes-review-20261110.json",
-        "research/issuers/600690/material-notes-review.json"
+        "research/issuers/600690/material-notes-review.json",
+        "research/issuers/300548/material-notes-review.json"
       ],
       "local_migration_receipt": "research/quality/source-library-20261113.json",
       "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
