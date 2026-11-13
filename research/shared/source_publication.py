@@ -78,7 +78,7 @@ def validate(ledger,story,root=ROOT):
             for cell in cells:
                 region=doc[f['page']-1].get_textbox(pymupdf.Rect(cell['bbox'])+(-.5,-.5,.5,.5)).replace(',','')
                 if cell.get('wrapped_number') is True:region=re.sub(r'\s+','',region)
-                if not re.search(r'(?<![0-9.])'+re.escape(f['yuan'])+r'(?![0-9.])',region):raise ValueError('DOSSIER_SOURCE_CELL_FALSE '+k)
+                if not re.search(r'(?<![0-9.+-])'+re.escape(f['yuan'])+r'(?![0-9.])',region):raise ValueError('DOSSIER_SOURCE_CELL_FALSE '+k)
         else:raise ValueError('DOSSIER_CLASSIFICATION_UNKNOWN '+k)
     for test in story['accounting_identities']:
         if amount(ledger,test['left'])!=amount(ledger,test['right']):raise ValueError('DOSSIER_ACCOUNTING_IDENTITY '+test['name'])

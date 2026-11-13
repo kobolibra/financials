@@ -1,0 +1,277 @@
+{
+  "issuer": "300570",
+  "report": "2026H1",
+  "source_sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+  "figure_briefs": [
+    {
+      "id": "income",
+      "family": "income",
+      "question": "光器件增长，究竟留下多少毛利？",
+      "takeaway": "光器件是收入与毛利的主要来源；三项产品采用各自披露成本，不分摊集团毛利率。",
+      "identity": "三个互斥产品收入=集团收入；各自成本=集团成本；每项收入−自身成本=自身毛利。",
+      "counter": "产品分类中的“其他”不是主营/其他业务表里的“其他业务”，不能把两者再加一次。光器件包含多种产品，不能全部称为MPO或高速光模块。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        15,
+        40,
+        142
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "optical_rev",
+        "optical_cost",
+        "sensor_rev",
+        "sensor_cost",
+        "other_rev",
+        "other_cost"
+      ]
+    },
+    {
+      "id": "profit",
+      "family": "signed_bridge",
+      "question": "营业毛利如何变成上市股东的利润？",
+      "takeaway": "财务费用和减值侵蚀毛利，投资收益及税负变化构成另一面。",
+      "identity": "毛利加减法定损益=营业利润；营业外净额与税收后=合并净利润；再减少数权益=归母。",
+      "counter": "会计费用不等于本期现金支付；合并净利润、归母及扣非净利润需要分别比较。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        40,
+        41
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "tax_surcharge",
+        "selling",
+        "admin",
+        "rd_expense",
+        "finance",
+        "other_income",
+        "investment_income",
+        "fair_value",
+        "credit_impairment",
+        "asset_impairment",
+        "operating_profit",
+        "nonop_income",
+        "nonop_expense",
+        "pretax",
+        "income_tax",
+        "net_profit",
+        "nci",
+        "parent_net"
+      ]
+    },
+    {
+      "id": "profit-change",
+      "family": "signed_bridge",
+      "question": "收入增两成，为何归母利润几乎没增长？",
+      "takeaway": "收入与成本变化合计增加毛利0.26亿元；财务费用同比恶化0.34亿元，抵消了这部分增长。",
+      "identity": "上期归母净利润+全部损益项目有符号差额=本期归母净利润。",
+      "counter": "这是会计差额归因，不能独立识别价格、销量、产品组合或汇率的因果贡献。集团毛利率下降仍需与汇兑压力分开检验。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        40,
+        41
+      ],
+      "facts": [
+        "parent_net_prior",
+        "rev",
+        "rev_prior",
+        "cogs_prior",
+        "cogs",
+        "tax_surcharge",
+        "tax_surcharge_prior",
+        "selling",
+        "selling_prior",
+        "admin",
+        "admin_prior",
+        "rd_expense",
+        "rd_expense_prior",
+        "finance",
+        "finance_prior",
+        "other_income",
+        "other_income_prior",
+        "investment_income",
+        "investment_income_prior",
+        "fair_value",
+        "fair_value_prior",
+        "credit_impairment",
+        "credit_impairment_prior",
+        "asset_impairment",
+        "asset_impairment_prior",
+        "nonop_income",
+        "nonop_income_prior",
+        "nonop_expense_prior",
+        "nonop_expense",
+        "income_tax_prior",
+        "income_tax",
+        "nci_prior",
+        "nci",
+        "parent_net"
+      ]
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "question": "归母微增之后，扣非与现金是否支持？",
+      "takeaway": "归母利润同比1.71%，扣非归母同比-2.55%；经营现金净额为-0.73亿元。",
+      "identity": "各行分别比较2025H1与2026H1原始披露值，CFO负数保留在真实零基线另一侧。",
+      "counter": "扣非下降不单独证明主业长期恶化；半年现金滞后也可能是备货和账期，但必须由后续出货、回款验证。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        7,
+        41,
+        44
+      ],
+      "facts": [
+        "parent_net_prior",
+        "parent_net",
+        "adjusted_parent_prior",
+        "adjusted_parent",
+        "net_profit_prior",
+        "net_profit",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "cfo",
+      "family": "signed_bridge",
+      "question": "净利润为何未能变成经营现金？",
+      "takeaway": "存货、经营性应收及应付三项合计影响-3.57亿元；供应商及其他经营负债增长只提供部分对冲。",
+      "identity": "合并净利润+全部原始非现金及营运资本调节=经营现金净额。",
+      "counter": "应收增加不能直接称为逾期；经营性应收与应付也不能分别简化成资产负债表中的单一科目。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        41,
+        44,
+        149,
+        150
+      ],
+      "facts": [
+        "net_profit",
+        "provisions",
+        "depreciation",
+        "rou_amort",
+        "intangible_amort",
+        "deferred_amort",
+        "scrap_loss",
+        "fair_loss",
+        "finance_adjustment",
+        "investment_loss",
+        "dta_decrease",
+        "inventory_release",
+        "operating_ar_change",
+        "operating_ap_change",
+        "cfo_other",
+        "cfo"
+      ]
+    },
+    {
+      "id": "working-capital",
+      "family": "comparison",
+      "question": "增长的收入，沉淀在应收还是备货？",
+      "takeaway": "应收净额较年初增加3.54亿元，存货增加2.63亿元；两项增长远大于半年净利润。",
+      "identity": "两张资产负债表相同科目、相同合并范围比较，不把四项存量直接累计为CFO。",
+      "counter": "存量变化不是收入同比；客户集中不等于客户违约。现金流补充资料的口径须单独核对。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        35,
+        36
+      ],
+      "facts": [
+        "ar_prior",
+        "ar",
+        "inventory_prior",
+        "inventory",
+        "ap_prior",
+        "ap",
+        "financial_assets_prior",
+        "financial_assets"
+      ]
+    },
+    {
+      "id": "inventory",
+      "family": "components",
+      "question": "增加的备货，是否已经进入成品环节？",
+      "takeaway": "库存商品和在产品是重要期末存量；不能只用“原材料备货”解释库存扩张。",
+      "identity": "六类期末净额=存货净额；原值−存货跌价准备=账面净额。",
+      "counter": "成品增加可能等待交付，也可能是需求与迭代风险；没有订单、库龄与后续销售，不能推断全部库存都已锁定客户。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        35,
+        114,
+        115
+      ],
+      "facts": [
+        "raw_inventory",
+        "wip_inventory",
+        "finished_inventory",
+        "turnover_inventory",
+        "shipped_inventory",
+        "outsourced_inventory",
+        "inventory"
+      ]
+    },
+    {
+      "id": "cash",
+      "family": "signed_bridge",
+      "question": "经营流出时，期末现金为何反而增加？",
+      "takeaway": "投资现金净流入1.33亿元、筹资净流入0.55亿元支持现金；不是经营收现改善。",
+      "identity": "期初现金+CFO+CFI+CFF+汇率影响=期末现金，两期首尾均逐元核验。",
+      "counter": "期末应付股利2.27亿元仍是负债，不能把账户现金全看作可自由再投资资金；原始半年支付额不等于已批准分红额。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        44
+      ],
+      "facts": [
+        "cash_open",
+        "cfo",
+        "cfi",
+        "cff",
+        "cash_fx",
+        "cash_close"
+      ]
+    },
+    {
+      "id": "balance",
+      "family": "balance",
+      "question": "资产扩张背后，负债与权益如何变化？",
+      "takeaway": "集团资产增加，但全部权益较年初下降；不能仅凭收入增长推断资本回报改善。",
+      "identity": "资产=负债+全部权益；全部权益=归母权益+少数权益，两期分别闭合。",
+      "counter": "已确认分配的股利会影响权益及负债，但未必在本期付款；负债增长不能全部归结为有息借款。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        36,
+        37
+      ],
+      "facts": [
+        "assets_prior",
+        "liabilities_prior",
+        "equity_prior",
+        "assets",
+        "liabilities",
+        "equity"
+      ]
+    },
+    {
+      "id": "geography",
+      "family": "components",
+      "question": "内外销结构如何影响经营与汇率风险？",
+      "takeaway": "外销仍是主要收入来源，人民币报告收入与外币回款之间存在结算及汇率风险。",
+      "identity": "内销收入+外销收入=合并营业收入；对应各自成本之和=合并营业成本。",
+      "counter": "披露回款含不同销售时点和账期，不能将同页北美回款除以收入直接称为逾期比例或当期销售回收率。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        15,
+        40
+      ],
+      "facts": [
+        "domestic_rev",
+        "export_rev",
+        "rev"
+      ]
+    }
+  ]
+}

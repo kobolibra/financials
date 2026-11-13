@@ -258,7 +258,7 @@
     "catalog": "site/research_catalog.json",
     "builder": "site/portal_builder.py",
     "root_html": "public/index.html",
-    "company_count": 13,
+    "company_count": 14,
     "company_codes": [
       "300394",
       "300308",
@@ -272,7 +272,8 @@
       "600276",
       "601628",
       "600690",
-      "300548"
+      "300548",
+      "300570"
     ],
     "topic": "/optical-2026h1.html",
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
@@ -1674,5 +1675,18 @@
     "live_receipt": "research/issuers/300548/live-release-receipt.json",
     "premerge_full_library_ci": "https://github.com/kobolibra/financials/actions/runs/43364085300",
     "main_cloud_acceptance": "https://github.com/kobolibra/financials/actions/runs/43384888642"
+  },
+  "new_issuer_300570_20261113": {
+    "status": "LOCAL_SOURCE_ACCOUNTING_BROWSER_PASS_PENDING_MERGE_AND_LIVE",
+    "branch": "research/tfc-original-2026h1",
+    "baseline_main": "f523b010ff0a765fd45e956d34c17994e331d9ce",
+    "original_pdf_pages": 189,
+    "original_pdf_sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+    "source_facts": 161,
+    "accounting_identities": 27,
+    "source_figures": 10,
+    "material_note_topics": 12,
+    "independent_human_review": "NOT_CHECKED",
+    "external_historical_peers_valuation": "NOT_CHECKED"
   }
 }
