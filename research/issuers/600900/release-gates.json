@@ -128,5 +128,14 @@
     "prior_full_html_sha256": "32768c81cf47c88bc1eaeba1e2e45c4c82c5db6575342ad42a5e392734c0f5ce",
     "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
   },
-  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
+    "candidate_full_html_sha256": "de0d9e473f33710d40781ce80ec5965b74d80e2052a0d78db4308234e4080158",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  }
 }

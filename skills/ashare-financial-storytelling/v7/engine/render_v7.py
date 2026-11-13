@@ -420,6 +420,8 @@ def build(l,m):
 <footer class="page-footer"><div class="wrap"><span>FINANCIALS IN VISUALS · INDEPENDENT RESEARCH / {ticker}</span><span>研究辅助材料，非证券投资建议 · PDF SHA + 页码可追溯</span></div></footer><script>{js}</script></body></html>'''
  from research_context import render as render_research_context
  html_page=html_page.replace('</main>',render_research_context(doc['ticker'].split('.')[0])+'</main>',1)
+ from publication_editorial import finalize_publication
+ html_page=finalize_publication(doc['ticker'].split('.')[0],html_page)
  return html_page,{'issuer':doc['issuer'],'period':doc['period_key'],'pdf_sha256':doc['source_sha256'],'pdf_pages':doc['pages'],'facts':facts,'indirect_cash_adjustments':ind,'charts':html_page.count('<figure'),'money_flow_ribbons':count,'accounting_status':QA['status'],'hash_sha256':hashlib.sha256(html_page.encode()).hexdigest(),'bytes':len(html_page.encode()),'browser_status':'NOT_CHECKED','public_http_status':'NOT_CHECKED','source_quality':'UPLOADED_SOURCE_PDF_SHA_VERIFIED__CORE_FINANCIAL_NUMBERS_CHECKED__EDITORIAL_SECOND_REVIEW_PENDING'}
 
 def main():

@@ -1,5 +1,7 @@
 # Independent Visual Research Benchmark | App Economy Insights
 
+当前执行补充（2026-11-13）：完整源账核查、重点正文表达、完整对账下沉。优先遵循 `../../../docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`：合法同口径利润链贯通归母；正负调整、行业收入基准、源格和实际几何分别验收；独立详细桥仅在回答新增重要问题时留正文。下方有日期的案例是历史证据，不覆盖当前目录和本次HTML字节。
+
 **Research scope**: publicly accessible App Economy Insights articles; not a reconstruction of its proprietary templates, paid archives or source code. **Benchmark is a workflow and visual grammar, not a brand to copy.** Research date 2026-10-30. First party links below.
 
 ## 1. What was actually read

@@ -17,6 +17,9 @@ def run(out):
         if (ROOT/'research/rebuild-v10/site'/f'{code}.html').read_bytes()!=(ROOT/'public/research/2026-h1-v10'/f'{code}.html').read_bytes():
             raise ValueError('ORIGINAL_PDF_REBUILD_BYTES_DRIFT '+code)
     catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+    from profit_chain_audit import validate_source, bundle_for
+    for issuer in catalog['issuers']:
+        if issuer.get('editorial_contract'):validate_source(bundle_for(issuer['code']))
     from source_publication import publish
     for issuer in catalog['issuers']:
         if issuer.get('source_publication'):

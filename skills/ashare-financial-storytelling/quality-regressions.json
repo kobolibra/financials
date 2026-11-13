@@ -668,7 +668,7 @@
       "root_cause": "Historical eleven-issuer baseline counts and selected-issuer evidence schemas blocked a real twelfth issuer despite original-source full-figure receipts.",
       "correction": "Keep archived baseline semantics and no-removal checks while requiring every new catalog dossier to present its own current three-width source-bound images and actual downloads; never inherit old screenshots.",
       "proof_file": "scripts/test_visual_editorial_policy.py",
-      "assertion_marker": "test_new_dossier_cannot_inherit_historical_census_or_stale_current_proof",
+      "assertion_marker": "test_each_current_issuer_cannot_borrow_old_or_incomplete_evidence",
       "scope": "cross_issuer_process",
       "transfer_gate": "BROWSER_LOCAL",
       "status": "TESTED_GENERIC_MECHANISM"
@@ -711,6 +711,26 @@
       "assertion_marker": "test_source_minus_sign_cannot_be_ignored_in_an_uncharted_note_fact",
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDT-031",
+      "root_cause": "桑基只到毛利，另用长利润桥重复正文，完整核查与重点表达混淆。",
+      "correction": "合法集团利润链贯通归母；本期构成和同比贡献分开；完整原图下沉。",
+      "proof_file": "research/shared/test_full_profit_chain.py",
+      "assertion_marker": "additional_gains_do_not_inflate_reported_checkpoint",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDT-032",
+      "root_cause": "压缩长桥时可能删除细项或重复归组，破坏全量对账。",
+      "correction": "汇总组显式穷尽且唯一覆盖全部源行，完整原明细保持可展开。",
+      "proof_file": "research/shared/test_full_profit_chain.py",
+      "assertion_marker": "compact_change_groups_cannot_drop_or_repeat_original_rows",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
       "status": "TESTED_GENERIC_MECHANISM"
     }
   ]

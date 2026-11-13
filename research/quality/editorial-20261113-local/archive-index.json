@@ -1,0 +1,89 @@
+{
+  "schema": "financials.real_browser_archive.v1",
+  "issuers": {
+    "300394": {
+      "file": "300394-actual-browser-evidence.zip",
+      "sha256": "6e07357e9fdb0b1d92cf5eaa1e0288dea3e38a0f2afed385dd00d482a1fd7f85",
+      "bytes": 3528861,
+      "original_files": 66
+    },
+    "600036": {
+      "file": "600036-actual-browser-evidence.zip",
+      "sha256": "5e09e537d6ae9c5078076e18e514880dd23126ed303b4505e8ad04d2e956c995",
+      "bytes": 3216625,
+      "original_files": 54
+    },
+    "000333": {
+      "file": "000333-actual-browser-evidence.zip",
+      "sha256": "78a5982fe48aeb89c61b93a8a033538fa6066b092690be380a008098cd039183",
+      "bytes": 3629644,
+      "original_files": 66
+    },
+    "600276": {
+      "file": "600276-actual-browser-evidence.zip",
+      "sha256": "70bbd40e79665034791752602dc9a2640575ff6bfd5e79dadc06861f9231970c",
+      "bytes": 3187478,
+      "original_files": 54
+    },
+    "300548": {
+      "file": "300548-actual-browser-evidence.zip",
+      "sha256": "6425c3e98d7c84f737fb783b101bf5e0e11bf523ab4037db1b5b006ad270fcf3",
+      "bytes": 5662288,
+      "original_files": 72
+    },
+    "300308": {
+      "file": "300308-actual-browser-evidence.zip",
+      "sha256": "caa9e35aa6636d96ccd6b11fe53c65874cc8f10bac4540575cef964919a7f11c",
+      "bytes": 3459656,
+      "original_files": 60
+    },
+    "688111": {
+      "file": "688111-actual-browser-evidence.zip",
+      "sha256": "133005d07dab2f9df75d06a4998eb3a11296a718c9dee1dbfb4afd257445d3bf",
+      "bytes": 3215240,
+      "original_files": 60
+    },
+    "688220": {
+      "file": "688220-actual-browser-evidence.zip",
+      "sha256": "258e580483e44de257c62cbb09b2a3e1f2c654e76cfc5550719226f8d1c98360",
+      "bytes": 3889322,
+      "original_files": 60
+    },
+    "601628": {
+      "file": "601628-actual-browser-evidence.zip",
+      "sha256": "0a4926e0204fb81a8c79f9f94656856d60c453ad26dc87034e942da7740a8b33",
+      "bytes": 5515021,
+      "original_files": 66
+    },
+    "300570": {
+      "file": "300570-actual-browser-evidence.zip",
+      "sha256": "dd305002733514b7b39705425eabfcbde34c6f1e86a4e1109c2e703b81b1e109",
+      "bytes": 4825990,
+      "original_files": 66
+    },
+    "300502": {
+      "file": "300502-actual-browser-evidence.zip",
+      "sha256": "e470c2d9d7f4f28d993ba5bfffe5ecbb31675b90661a2ee6320300bd1caadf13",
+      "bytes": 3854646,
+      "original_files": 72
+    },
+    "600519": {
+      "file": "600519-actual-browser-evidence.zip",
+      "sha256": "9a753935de1cdf19f7003174775ec0c0a6057c0819fba376a851a421cd87c05c",
+      "bytes": 3130045,
+      "original_files": 60
+    },
+    "600900": {
+      "file": "600900-actual-browser-evidence.zip",
+      "sha256": "199c65d0bec2d21fc73a7ff84e42b0a905110331f1142ed2d82d2cc42b073541",
+      "bytes": 2976057,
+      "original_files": 54
+    },
+    "600690": {
+      "file": "600690-actual-browser-evidence.zip",
+      "sha256": "b4e7c20f527af41488b419d26f36f9ccb51c0746458ae9df06e8ee15ca9940b4",
+      "bytes": 6136752,
+      "original_files": 78
+    }
+  }
+}

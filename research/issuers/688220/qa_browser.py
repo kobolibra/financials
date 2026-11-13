@@ -23,6 +23,10 @@ with sync_playwright() as p:
   page.on("pageerror",lambda e:errors.append("JS "+str(e)))
   page.on("console",lambda m:errors.append("CONSOLE "+m.text) if m.type=="error" else None)
   page.goto(html.as_uri(),wait_until="load")
+  import sys
+  sys.path.insert(0,str(pathlib.Path(__file__).resolve().parents[3]/"research/shared"))
+  from profit_chain_audit import check_reader
+  check_reader(page);check_reader(page,expanded=True)
   page.wait_for_selector("#chart-flow svg",state="attached",timeout=15000)
   info=page.evaluate("""() => ({
     scrollWidth:document.documentElement.scrollWidth,

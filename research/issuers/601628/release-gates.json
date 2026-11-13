@@ -150,5 +150,14 @@
     "status": "PASS",
     "scope": "Old real live source 6f386 original verified at b886 before typographic label collision repair; still available in old main history, not equivalent to new b065 html"
   },
-  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+    "candidate_full_html_sha256": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  }
 }

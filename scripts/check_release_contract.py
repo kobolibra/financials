@@ -377,16 +377,20 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                     else:
                         site=record.get("live_site_origin","https://financials-in-visuals.pages.dev")
                         good_articles={site+f"/{code}",site+f"/{code}.html"}
+                        if catalog_issuer.get('editorial_contract') and record.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1':
+                            if any(v.get('all_source_figures')!=catalog_issuer['figures'] for v in views):errors.append('LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT '+code)
+                            wk=receipt.get('additional_webkit_checks',[])
+                            if len(wk)!=1 or wk[0].get('all_source_figures')!=catalog_issuer['figures'] or wk[0].get('real_visible_svg_exports')!='PASS':errors.append('LIVE_CAPTURE_CURRENT_ALL_FIGURES_WEBKIT '+code)
                         for view in views:
                             if view.get("actual_dedicated_article_final_url") not in good_articles or view.get("actual_return_to_library_url")!=site+"/#companies":
                                 errors.append(f"LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID {code}")
                                 break
-                            if any(view.get(z)!="PASS" for z in ("new_601628_main_route" if code=="601628" else "back_to_same_home","no_page_horizontal_overflow","real_live_screenshots")):
+                            if any(view.get(z)!="PASS" for z in ("new_601628_main_route" if code=="601628" and record.get("editorial_contract")!="FULL_PROFIT_CHAIN_V1" else "back_to_same_home","no_page_horizontal_overflow","real_live_screenshots")):
                                 errors.append(f"LIVE_CAPTURE_VIEWPORT_PROOF_INVALID {code}")
                                 break
                         if receipt.get("all_11_issuer_external_routes")!="PASS" and code=="601628":
                             errors.append(f"LIVE_CAPTURE_ELEVEN_ISSUER_ROUTE_INVALID {code}")
-                        if code=="601628" and next(x for x in views if x["width"]==390).get("mobile_ten_full_width_source_exact_money_exhibits")!="PASS":
+                        if code=="601628" and record.get("editorial_contract")!="FULL_PROFIT_CHAIN_V1" and next(x for x in views if x["width"]==390).get("mobile_ten_full_width_source_exact_money_exhibits")!="PASS":
                             errors.append(f"LIVE_CAPTURE_PHONE_FINANCE_FIGURES_INVALID {code}")
                 except (OSError,ValueError,KeyError,TypeError,AttributeError,json.JSONDecodeError) as exc:
                     errors.append(f"LIVE_CAPTURE_RECEIPT_UNREADABLE {code}: {type(exc).__name__}")

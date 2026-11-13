@@ -105,5 +105,14 @@
   "live_release_fingerprint": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
   "actual_main_release_commit": "17d05366a712c570f4a822aa2356119c4cdd9ac2",
   "actual_directory_fingerprint": "c488b94d6a92e2c692b843d639b6def75fe0f5ca70a48f2a6e3132617a4f210e",
-  "live_receipt_file": "research/issuers/600690/live-release-receipt.json"
+  "live_receipt_file": "research/issuers/600690/live-release-receipt.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
+    "candidate_full_html_sha256": "0fe032c77c56ffd3a859dc12edcff5bf07cf907b8b07ae22b19d9613e46f260a",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  }
 }

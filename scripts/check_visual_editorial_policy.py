@@ -88,6 +88,32 @@ def validate_current_published_files(root, audit, debt):
         if baseline=={sha}:
             if code in old:unresolved.append(code)
             continue
+        if issuer.get('editorial_contract'):
+            try:
+                import sys
+                sys.path.insert(0,str(root/'research/shared'))
+                from audit_unified_visual_corpus import verified_complete_migration
+                from browser_evidence_archive import EvidenceReader
+                from qa_editorial_migration import check_vector
+                catalog_full=json.loads((root/'site/research_catalog.json').read_text())
+                proof=(root/catalog_full['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['local_migration_receipt']).resolve()
+                proof.relative_to(root.resolve());q=json.loads(proof.read_text());reader=EvidenceReader(root,proof)
+                if not verified_complete_migration(q,code,sha):raise ValueError('CURRENT_COMPLETE_PROOF')
+                bundle=json.loads((root/issuer['editorial_manifest']).read_text())
+                if q['issuers'][code]['pdf_sha256']!=bundle['source_pdf']['source_sha256']:raise ValueError('CURRENT_ORIGINAL_PDF')
+                for case in (c for c in q['cases'] if c['issuer']==code):
+                    if case.get('editorial_main_layer')!='PASS' or len(case['figures'])!=issuer['figures']:raise ValueError('READING_LAYER_OR_MISSING_REFERENCE')
+                    if sum(f['grammar']=='FULL_PROFIT_CHAIN_V1' for f in case['figures'])!=1:raise ValueError('ONE_PROFIT_CHAIN')
+                    for f in case['figures']:
+                        for path_key,hash_key in (('screenshot_file','screenshot_sha256'),('export_file','vector_sha256')):
+                            raw=reader.read(f[path_key],code)
+                            if hashlib.sha256(raw).hexdigest()!=f[hash_key]:raise ValueError('REAL_EVIDENCE_BYTES')
+                            if path_key=='export_file':check_vector(raw.decode(),code,q['issuers'][code]['pdf_sha256'])
+            except (OSError,ValueError,KeyError,TypeError,ImportError):
+                errors.append('VISUAL_CURRENT_FULL_PROFIT_CHAIN_COMPLETE_PROOF_REQUIRED '+code)
+                continue
+            fixed.append({'code':code,'source_html_sha256':sha,'mobile_original_money_grammar':'PASS_CURRENT_ALL_FIGURES_AND_DOWNSTREAM_RECONCILIATION_NOT_HUMAN_CERTIFICATION'})
+            continue
         if issuer.get('source_publication'):
             from audit_unified_visual_corpus import verified_complete_migration
             folder=(root/issuer['source_publication']).resolve()

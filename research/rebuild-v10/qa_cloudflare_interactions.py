@@ -119,6 +119,10 @@ def main() -> int:
                         page.on("pageerror",lambda exc:faults.append(str(exc)))
                         url=f"{DOMAIN}/research/2026-h1-v10/{code}.html"
                         response=page.goto(url,wait_until="networkidle",timeout=60000)
+                        if page.locator('#editorial-profit-chain-contract').count():
+                            sys.path.insert(0,str(ROOT/'research/shared'))
+                            from profit_chain_audit import check_reader
+                            check_reader(page);check_reader(page,expanded=True)
                         assert response and response.status==200,(engine,width,code,"REAL_HTML_LOAD_FAILURE")
                         page.evaluate("document.fonts.ready")
                         assert page.title().strip(),(code,"MISSING_DOCUMENT_TITLE")

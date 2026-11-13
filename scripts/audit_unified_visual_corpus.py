@@ -42,7 +42,7 @@ def verified_complete_migration(evidence,code,html_sha):
     if type(count) is not int or count<1:return False
     cases=[c for c in evidence.get('cases',[]) if c.get('issuer')==code]
     if len(cases)!=3 or {c.get('width') for c in cases}!={1440,768,390}:return False
-    known={'SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY','INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL','FINANCIALS_TYPED_FULL_PNL_SIGNED_V1','SOURCE_SIGNED_BRIDGE_V1','SOURCE_EQUAL_STOCK_BALANCE_V1','SOURCE_NONNEGATIVE_COMPONENTS_V1','SOURCE_TWO_PERIOD_COMPARISON_V1','SOURCE_REPORTED_RATIO_V1','SOURCE_INDEPENDENT_METRICS_V1','SOURCE_SEPARATE_PANELS_V1'}
+    known={'FULL_PROFIT_CHAIN_V1','IMMUTABLE_PREEXISTING_SOURCE_V10_VECTOR','SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY','INSURANCE_PREMIUM_SOURCE_NEW_RENEW_TOTAL','FINANCIALS_TYPED_FULL_PNL_SIGNED_V1','SOURCE_SIGNED_BRIDGE_V1','SOURCE_EQUAL_STOCK_BALANCE_V1','SOURCE_NONNEGATIVE_COMPONENTS_V1','SOURCE_TWO_PERIOD_COMPARISON_V1','SOURCE_REPORTED_RATIO_V1','SOURCE_INDEPENDENT_METRICS_V1','SOURCE_SEPARATE_PANELS_V1'}
     for case in cases:
         figures=case.get('figures',[])
         if case.get('html_sha256')!=html_sha or len(figures)!=count or {f.get('index') for f in figures}!=set(range(count)):return False
@@ -152,6 +152,10 @@ def inspect(catalog:dict,pages:dict[str,bytes],migration_evidence=None)->dict:
             row["issues"].append("NOT_YET_MIGRATED_TO_CANONICAL_V9_EDITORIAL_SYSTEM")
         if item.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1' and not row['visual_grammar_status'].startswith('FAIL_'):
             if verified_complete_migration(migration_evidence,code,row['actual_full_html_sha256']):
+                if item.get('editorial_contract'):
+                    cases=[c for c in migration_evidence['cases'] if c['issuer']==code]
+                    if any(c.get('editorial_main_layer')!='PASS' or sum(f.get('grammar')=='FULL_PROFIT_CHAIN_V1' for f in c['figures'])!=1 for c in cases):
+                        row['issues'].append('COMPLETE_PROFIT_BACKBONE_OR_READING_LAYER_NOT_PROVEN');rows.append(row);continue
                 row['visual_grammar_status']='UNIFIED_FULL_ARTICLE_SOURCE_FIGURES'
                 row['issues']=[]
                 row['proof_scope']='CURRENT_HTML_SHA_ALL_FINANCIAL_FIGURES_THREE_VIEWPORTS_REAL_EXPORTS_NOT_HUMAN_SIGNOFF'

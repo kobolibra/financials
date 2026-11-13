@@ -1,5 +1,7 @@
 # Financials in Visuals — Institutional A-share Financial Forensics & Investment Research
 
+当前执行补充（2026-11-13）：完整源账核查、重点正文表达、完整对账下沉。优先遵循 `../../../docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`：合法同口径利润链贯通归母；正负调整、行业收入基准、源格和实际几何分别验收；独立详细桥仅在回答新增重要问题时留正文。下方有日期的案例是历史证据，不覆盖当前目录和本次HTML字节。
+
 **Date:** 2026-11-01  
 **Product:** Source-limited PDF review **and** full institutional public-equity note. Never merge the two without data. This document is an independent analyst procedure derived from Chinese rules and accounting practice; it is **not** the text of a law.
 

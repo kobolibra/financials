@@ -16,6 +16,9 @@ NS='{http://www.w3.org/2000/svg}'
 
 def check_vector(markup,issuer,pdf_sha):
     svg=ET.fromstring(markup)
+    if svg.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1':
+        from profit_chain_audit import check_svg
+        return check_svg(markup,issuer,pdf_sha)
     if svg.get('data-editorial-grammar'):return check_editorial_svg(markup,issuer=issuer,pdf_sha256=pdf_sha)
     grammar=svg.get('data-chart-grammar') or svg.get('data-signed-statement-grammar')
     def require(test,why):
@@ -48,6 +51,9 @@ def check_vector(markup,issuer,pdf_sha):
             require(abs(D(r.get('width'))-abs(delta)/D(r.get('data-money-scale-yuan-per-unit')))<D('.00001'),'SIGNED_MONEY_WIDTH')
             require(bool(r.get('data-source-fact-ids')) and bool(r.get('data-physical-pages')),'SIGNED_ORIGINAL_FACTS')
         return {'status':'PASS','grammar':grammar,'observed_source_rows':len(rows)}
+    from profit_chain_audit import immutable_v10
+    original=immutable_v10(markup,issuer,pdf_sha)
+    if original:return original
     raise ValueError('UNMIGRATED_FINANCIAL_FIGURE '+str(grammar))
 
 
@@ -75,11 +81,16 @@ def audit(codes,out,origin=None):
                 response=page.goto(origin.rstrip('/')+row['href'] if origin else path.as_uri(),wait_until='load',timeout=45000)
                 if origin and (not response or response.body()!=raw):raise ValueError('LIVE_FULL_HTML_BYTES_DIFFER '+code)
                 page.evaluate('document.fonts.ready')
+                if row.get('editorial_contract'):
+                    from profit_chain_audit import check_reader
+                    check_reader(page)
+                    check_reader(page,expanded=True)
                 measured=page.evaluate(MEASURE)
                 faults=[s for s in measured['svgs'] if s['clippedLabels'] or s['possibleLabelOverlaps'] or s['below10px']]
                 if faults or errors or measured['body']['scroll']>measured['body']['client']+1:
                     (out/'failure.json').write_text(json.dumps({'issuer':code,'width':width,'faults':faults,'errors':errors},ensure_ascii=False,indent=2));raise ValueError('ACTUAL_RENDER_BLOCKED '+code+' '+str(width))
                 case={'issuer':code,'width':width,'html_sha256':sha,'figures':[]}
+                if row.get('editorial_contract'):case['editorial_main_layer']='PASS'
                 for index,figure in enumerate(page.locator('figure').all()):
                     visible=figure.locator('svg:visible')
                     if visible.count()!=1:raise ValueError('EACH_FIGURE_NEEDS_ONE_VISIBLE_VECTOR '+code+' '+str(index))

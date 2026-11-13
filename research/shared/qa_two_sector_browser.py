@@ -23,6 +23,10 @@ def main():
             page=browser.new_page(viewport={"width":width,"height":height},device_scale_factor=1)
             page.on("pageerror",lambda e:errors.append(str(e)))
             response=page.goto(file.resolve().as_uri(),wait_until="networkidle",timeout=30000)
+            import sys
+            sys.path.insert(0,str(ROOT/"research/shared"))
+            from profit_chain_audit import check_reader
+            check_reader(page);check_reader(page,expanded=True)
             assert page.locator("h1").count()==1
             dec=page.locator("#quantified-decision")
             assert dec.count()==1 and dec.is_visible(),(a.code,width,"READER_VISIBLE_QUANTIFIED_ANALYSIS_MISSING")
@@ -41,9 +45,9 @@ def main():
 
             assert page.locator("section.chapter").count()==8
             assert page.locator("figure.figure").count()==8
-            assert page.locator("figure table").count()==8
-            assert page.locator("table").count()-page.locator(".research-context table").count()==10,("SOURCE_TYPED_PROFIT_DETAILS_TABLE_MISSING",a.code,width)
-            assert page.locator("figure svg").count()==16,("EIGHT_DESKTOP_AND_EIGHT_NATIVE_MOBILE_SVG_MISSING",a.code,width)
+            assert page.locator("figure.figure table").count()==8
+            assert page.locator("table").count()-page.locator("#profit-chain-overview table").count()-page.locator(".research-context table").count()==10,("SOURCE_TYPED_PROFIT_DETAILS_TABLE_MISSING",a.code,width)
+            assert page.locator("figure.figure svg").count()==16,("EIGHT_DESKTOP_AND_EIGHT_NATIVE_MOBILE_SVG_MISSING",a.code,width)
             # Signed V10-compatible research bridge: the two existing signed
             # PNL/CFO exhibits stay intact; this is a separately source-typed
             # exact original Yuan summary with explicit unattributed residual.

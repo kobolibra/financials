@@ -67,6 +67,11 @@ def audit(out:Path, widths=(1440,768,390)):
                 page.on("pageerror",lambda error: errors.append(str(error)))
                 page.goto(file.as_uri(),wait_until="load")
                 page.evaluate("document.fonts.ready")
+                if issuer.get('editorial_contract'):
+                    import sys
+                    sys.path.insert(0,str(ROOT/'research/shared'))
+                    from profit_chain_audit import check_reader
+                    check_reader(page);check_reader(page,expanded=True)
                 measured=page.evaluate(MEASURE)
                 exports=[]
                 for button in page.locator('[data-export-economics]').all():

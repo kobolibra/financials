@@ -25,10 +25,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install live Chromium WebKit and Chinese font system
         run: |
-          python -m pip install --disable-pip-version-check playwright
+          python -m pip install --disable-pip-version-check playwright pymupdf
           python -m playwright install --with-deps chromium webkit
           sudo apt-get install -y -qq fonts-noto-cjk
           fc-cache -f
+      - name: Restore exact original four archived-source PDFs for the full14 graph audit
+        run: python research/rebuild-v10/download_originals.py
       - name: Confirm the deployed LIVE production full HTML is exactly current main for all 11 companies, then execute original mobile finance downloads
         env:
           FINANCIALS_PR_PREVIEW: https://financials-in-visuals.pages.dev
@@ -48,7 +50,7 @@ jobs:
           assert {r['code'] for r in d['company_routes']}=={r['code'] for r in catalog['issuers']}
           assert len(d['browser_cases'])==12
           new=d.get('new_source_publication_receipts',[])
-          expected={r['code'] for r in catalog['issuers'] if r.get('source_publication')}
+          expected={r['code'] for r in catalog['issuers'] if r.get('source_publication') or r.get('editorial_contract')}
           assert {r['issuer'] for r in new}==expected
           assert all(r['status']=='PASS' and r['verified_git_commit']==os.environ['GITHUB_SHA'] for r in new)
           assert all({v['width'] for v in r['real_chromium_viewports']}=={1440,768,390} and len(r['screenshots'])==6 for r in new)

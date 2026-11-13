@@ -432,6 +432,8 @@ if __name__=='__main__':
  portfolio_data=portfolio()
  for code,c in portfolio_data.items():
   content=render_case(c,code)
+  from publication_editorial import finalize_publication
+  content=finalize_publication(code,content)
   path=OUTPUT/f'{code}.html';path.write_text(content)
   print('BUILD',code,'bytes',path.stat().st_size,'figures',content.count('<figure'),'tables',content.count('<table'))
  (OUTPUT/'index.html').write_text(render_index(portfolio_data))

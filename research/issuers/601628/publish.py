@@ -549,6 +549,8 @@ def main():
     markup,checks=render()
     from research_context import render as render_research_context
     markup=markup.replace("</main>",render_research_context("601628")+"</main>",1)
+    from publication_editorial import finalize_publication
+    markup=finalize_publication('601628',markup)
     out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True);out.write_text(markup,encoding="utf-8")
     checks.update({"original_pdf_sha256":SOURCE["original_bytes_sha256"],"source_page_count":SOURCE["physical_pages_observed"],"figure_count":len(FIG["figure_briefs"]),"chart_ids":[x["id"] for x in FIG["figure_briefs"]],"output_sha256":hashlib.sha256(markup.encode()).hexdigest()})
     (BASE/"qa.json").write_text(json.dumps(checks,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
