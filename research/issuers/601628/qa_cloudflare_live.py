@@ -78,6 +78,10 @@ with sync_playwright() as pw:
     # release condition is an independently navigated COMPANY page with ten
     # actual source-linked figures, NOT a literal browser URL suffix.
     page.wait_for_url(re.compile(r"/601628(?:\.html)?/?(?:[?#].*)?$"),timeout=30000)
+    import sys
+    sys.path.insert(0,str(ROOT/"research/shared"))
+    from profit_chain_audit import check_reader
+    check_reader(page);check_reader(page,expanded=True)
     actual_article_url=page.url
     page.evaluate("document.fonts.ready")
     signed_bridge_checks=[]

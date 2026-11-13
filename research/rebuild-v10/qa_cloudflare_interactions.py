@@ -177,7 +177,7 @@ def main() -> int:
                         assert figs.count()==count,(code,"FIGURE_COUNT",figs.count(),count)
                         tested=[]
                         for idx in range(count):
-                            fig=figs.nth(idx)
+                            fig=page.locator(f"figure.graphic#fig-{idx+1:02d}")
                             fid=fig.get_attribute("id")
                             assert fid==f"fig-{idx+1:02d}",(code,width,fid,"FIGURE_ID_UNEXPECTED")
                             desktop=fig.locator(".desktop-finance svg")
