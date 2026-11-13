@@ -702,6 +702,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-047",
+      "root_cause": "源格金额匹配只限制数字边界，可能把负数子串当作同额正数，未进入会计恒等式的附注会影响量化结论。",
+      "correction": "源格数字边界同时拒绝前置正负号；真实太辰光比较期汇兑收益被改为同额费用时必须在源格校验处失败。",
+      "proof_file": "research/shared/test_tfc_source.py",
+      "assertion_marker": "test_source_minus_sign_cannot_be_ignored_in_an_uncharted_note_fact",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

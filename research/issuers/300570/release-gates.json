@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "code": "300570",
+  "company": "深圳太辰光通信股份有限公司",
+  "period": "2026H1",
+  "release_class": "source_limited_preview",
+  "report_route": "/300570.html",
+  "report_file": "public/300570.html",
+  "status_label": "原始财报来源限定研究 · 人类独立二审和外部估值未完成",
+  "sector_adapter": "optical",
+  "accounting_basis": "industrial_own_cost_income_disclosed_optical_devices_sensor_and_other_product_axis_not_main_other_business_axis",
+  "source_pdf": {
+    "path": "research/issuers/300570/source/300570_2026H1_complete_original.pdf",
+    "sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+    "bytes": 3161587,
+    "physical_pages": 189,
+    "official_original_byte_equivalence": "NOT_CHECKED"
+  },
+  "ledger_file": "research/issuers/300570/source-ledger.json",
+  "figure_briefs_file": "research/issuers/300570/figure-briefs.json",
+  "sankey": {
+    "decision": "USED_CONSERVED",
+    "source_scope": "p15光器件及p142光传感与其他产品分类收入和自身成本；三个产品口径互斥完整，原文数字不分摊，不与其他业务轴混加。",
+    "omission_reason": null
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/source/300570_2026H1_complete_original.pdf",
+      "scope": "189页完整原始中报字节、封面法定名称、p6股票代码、报告期、物理页和SHA核验。"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/qa.json",
+      "scope": "161条原始源格金额、坐标、行列及符号核验；产品、利润及现金调节关键原页视觉复核，非全报告审计。"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/qa.json",
+      "scope": "27项逐元勾稽：两期三表、全部14项间接现金调节、归属、应收存货净额、产品与地区及股份支付。"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/publication.json",
+      "scope": "检验毛利率与汇兑双重约束、成品应收占用和非经营现金支持，提出后续出货回款反证。"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/figure-briefs.json",
+      "scope": "10项研究问题使用守恒桑基、有符号损益和现金桥、两期比较、构成及完整资产负债图。"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/visual-qa/result.json",
+      "scope": "三档10图真实PNG与关键图形阅读、字体和边界检查；不声称独立人类视觉签字。"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/visual-qa/result.json",
+      "scope": "真实Chromium1440/768/390全部10图、30次可见SVG下载及原始金额与几何检查；WebKit375另复核10图。"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "research/issuers/300570/rebuild-proof.json",
+      "scope": "两次归档原始财报和类型化账本确定性重建完整离线HTML，逐字节与发布文件一致。"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "本次阅读并记录12个重大来源主题，不能由机器元数据校验推断完整审计、无遗漏或独立人类签字。"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "两期核心三表与产品、地区、应收存货及股份支付精确勾稽；全部附注交易级核查尚未完成。"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "CNINFO完整原件已归档；单独发行人或交易所副本的字节等价未额外复核。"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "本次使用中报两期可比数据；8–12季度和独立同行估值数据库未建立，不给出对应预测。"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "真实第二名人类财经与视觉编辑签字尚未获得，不将机器检查表述为人类认证。"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "NOT_CHECKED",
+      "proof": null,
+      "scope": "等待合并后的真实正式站完整字节、同一首页导航、全部图形下载和第二浏览器验收。"
+    }
+  },
+  "blockers": [
+    {
+      "kind": "RESEARCH",
+      "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
+    }
+  ],
+  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY"
+}

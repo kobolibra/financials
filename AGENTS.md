@@ -1,3 +1,5 @@
+**2026-11-13 太辰光300570新增候选。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。189页原始中报、161条事实、27项勾稽与10项研究图形；重点分析毛利率、汇兑、成品应收占用及分红时点。正在执行双浏览器、合并和正式站验收；人类二审与完整历史同行仍未完成。
+
 **2026-11-13 长芯博创300548已合并并实测上线。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。PR #70、实际源码主分支31610214：143页完整原件、166条事实、26项勾稽、12个重大附注主题、11幅财务图；同一13家公司正式站全文与源码一致。真实生产Chromium三档33次及WebKit手机11次当前可见SVG下载、首页往返和六张截图通过，证据见 `research/issuers/300548/live-release-receipt.json`（真实主分支Action 43384888642附件收据，ZIP SHA已核对）。人类二审与完整历史同行估值仍未完成。
 
 # AGENTS.md — Financials in Visuals (repository-wide agent operating contract)
