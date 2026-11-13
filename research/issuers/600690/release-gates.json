@@ -90,9 +90,9 @@
       "scope": "未获得真实第二名人类财经和视觉编辑签字，不标为verified_research。"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "NOT_CHECKED",
-      "proof": null,
-      "scope": "当前新发行人候选尚未合并；真实主分支正式站HTTP及浏览器需发布后核验。"
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43359460118",
+      "scope": "真实主分支17d05366正式站全文与首页字节、12公司路径、全部12图三档Chromium及WebKit375、36+12次可见SVG下载与六张实际截图；附件SHA及图证已永久归档，不等于人类财经/审美签字。"
     }
   },
   "blockers": [
@@ -101,5 +101,9 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "NOT_CHECKED_PENDING_MAIN_DEPLOY"
+  "published_html_sha256": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
+  "live_release_fingerprint": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
+  "actual_main_release_commit": "17d05366a712c570f4a822aa2356119c4cdd9ac2",
+  "actual_directory_fingerprint": "c488b94d6a92e2c692b843d639b6def75fe0f5ca70a48f2a6e3132617a4f210e",
+  "live_receipt_file": "research/issuers/600690/live-release-receipt.json"
 }

@@ -682,6 +682,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "RESEARCH_COUNTERCASE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-070",
+      "root_cause": "Matching only the year on the original cover could let a half-year PDF be relabelled as a full-year report when all metadata was changed together.",
+      "correction": "Compare actual original cover year and half-year/annual/quarter report type to the explicit issuer period before source cells, calculations or rendering; reject unsupported report types.",
+      "proof_file": "research/shared/test_source_publication.py",
+      "assertion_marker": "test_original_half_year_cannot_be_relabelled_full_year_even_with_all_metadata_changed",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

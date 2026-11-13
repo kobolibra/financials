@@ -1,0 +1,90 @@
+{
+  "verified_main": "17d05366a712c570f4a822aa2356119c4cdd9ac2",
+  "scope": "ACTUAL_TRIGGERED_MAIN_CHECKS",
+  "checks": [
+    {
+      "name": "Cloudflare Pages",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://dash.cloudflare.com/?to=/bf415e60b6f79256f6b285eb1730874a/pages/view/financials-in-visuals/e27be567-d5a2-40a6-98e9-beeb609423e9",
+      "completed_at": "2026-11-13T03:31:07Z"
+    },
+    {
+      "name": "cloudflare-11-live-content-actual-browser",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460437/job/131669253354",
+      "completed_at": "2026-11-13T03:32:06Z"
+    },
+    {
+      "name": "zj-original-physical-184p-exact-yuan-and-mobile-390",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460340/job/131669252536",
+      "completed_at": "2026-11-13T03:32:03Z"
+    },
+    {
+      "name": "accounting-and-publication",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460393/job/131669252464",
+      "completed_at": "2026-11-13T03:32:16Z"
+    },
+    {
+      "name": "typed-source-ledger-and-published-page",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460292/job/131669252385",
+      "completed_at": "2026-11-13T03:31:26Z"
+    },
+    {
+      "name": "route-and-deployment-qa",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460295/job/131669252336",
+      "completed_at": "2026-11-13T03:31:53Z"
+    },
+    {
+      "name": "actual-original-web-page-visual-editorial-debt-and-malicious-release-redteam",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460223/job/131669252246",
+      "completed_at": "2026-11-13T03:31:06Z"
+    },
+    {
+      "name": "insurer-original-cas-and-editorial",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460220/job/131669251929",
+      "completed_at": "2026-11-13T03:32:20Z"
+    },
+    {
+      "name": "unified-route-and-editorial",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460203/job/131669251812",
+      "completed_at": "2026-11-13T03:32:36Z"
+    },
+    {
+      "name": "live-source-exact-and-real-device-engine",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460118/job/131669251800",
+      "completed_at": "2026-11-13T03:32:33Z"
+    },
+    {
+      "name": "two-business-models-source-to-publication",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460169/job/131669251793",
+      "completed_at": "2026-11-13T03:34:14Z"
+    },
+    {
+      "name": "handoff-source-of-truth",
+      "status": "completed",
+      "conclusion": "success",
+      "details_url": "https://github.com/kobolibra/financials/actions/runs/43359460142/job/131669251733",
+      "completed_at": "2026-11-13T03:31:03Z"
+    }
+  ]
+}

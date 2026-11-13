@@ -53,7 +53,11 @@ def validate(ledger,story,root=ROOT):
     import pymupdf
     doc=pymupdf.open(path)
     if len(doc)!=source['physical_pages_observed'] or issuer['code'] not in doc[0].get_text():raise ValueError('DOSSIER_ORIGINAL_PDF_IDENTITY')
-    if issuer['fiscal_period'][:4] not in doc[0].get_text():raise ValueError('DOSSIER_ORIGINAL_REPORT_PERIOD')
+    cover=re.sub(r'\s+','',doc[0].get_text())
+    report=re.search(r'(20[0-9]{2})年(半年度|第一季度|第三季度|年度)报告',cover)
+    expected_kind={'H1':'半年度','FY':'年度','Q1':'第一季度','9M':'第三季度'}
+    period=issuer['fiscal_period']
+    if not report or report.group(1)!=period[:4] or expected_kind.get(period[4:])!=report.group(2):raise ValueError('DOSSIER_ORIGINAL_REPORT_PERIOD')
     for k,f in ledger['facts'].items():
         if f['type']=='flow' and f['classification']=='DISCLOSED':
             wanted=issuer['comparative_period'] if f.get('source_column')=='上期/期初' else issuer['fiscal_period']
