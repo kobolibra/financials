@@ -47,7 +47,7 @@ MEASURE=r"""() => {
 }"""
 
 
-def audit(out:Path, widths=(1440,768,390)):
+def audit(out:Path, widths=(1440,768,390), *, capture_all_figures=True):
     from playwright.sync_api import sync_playwright
     from decimal import Decimal as D
     import re
@@ -98,6 +98,11 @@ def audit(out:Path, widths=(1440,768,390)):
                             geometry.append("RIBBON_ENDPOINT_AMOUNT_MISMATCH")
                     svg["canonical_ribbon_endpoint_issues"]=geometry
                 for fig in measured["figures"]:
+                    if not capture_all_figures:
+                        selected=page.locator("figure,section[data-comparative-economics]").nth(fig['index'])
+                        if selected.evaluate('e=>e.tagName.toLowerCase()')=='figure':
+                            fig['screenshot_evidence']='DEDICATED_COMPLETE_SOURCE_FIGURE_AUDIT_REQUIRED_IN_SAME_SUITE'
+                            continue
                     image=out/f'{issuer["code"]}-{width}-{fig["index"]:02d}.png'
                     locator=page.locator("figure,section[data-comparative-economics]").nth(fig["index"])
                     locator.screenshot(path=str(image),animations="disabled")

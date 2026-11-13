@@ -63,8 +63,8 @@ def run(out=None):
      for f in page.locator('figure:not(#profit-chain-overview)').all():
       assert f.get_attribute('data-editorial-role') in ('secondary','reference')
       assert f.get_attribute('data-editorial-rationale')
-      citations=f.locator('table,.source-note,.audit,.sourcebar')
-      assert citations.count()>0 and any(c.inner_text().strip() for c in citations.all()),('RETAINED_FIGURE_SOURCE_CONTEXT',code)
+      citations=f.locator('table,.source-note,.figure-source,.audit,.sourcebar')
+      assert citations.count()>0 and any((c.text_content() or '').strip() for c in citations.all()),('RETAINED_FIGURE_SOURCE_CONTEXT',code)
     # Supplemental economics panels have their own source-bound grammar and
     # export; do not pretend they are a catalogued <figure> or skip them.
     economics_exports=[]

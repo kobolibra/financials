@@ -57,7 +57,7 @@ def check_vector(markup,issuer,pdf_sha):
     raise ValueError('UNMIGRATED_FINANCIAL_FIGURE '+str(grammar))
 
 
-def audit(codes,out,origin=None):
+def _audit_sequential(codes,out,origin=None):
     from playwright.sync_api import sync_playwright
     catalog_data=json.loads((ROOT/'site/research_catalog.json').read_text())
     catalog=catalog_data['issuers'];by_code={r['code']:r for r in catalog}
@@ -121,6 +121,31 @@ def audit(codes,out,origin=None):
     result['status']='PASS_LOCAL' if not origin else 'PASS_PRODUCTION'
     result['independent_human_art_review']='NOT_CHECKED'
     result['svg_exports']=sum(len(c['figures']) for c in result['cases'])
+    (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    return result
+
+def audit(codes,out,origin=None,workers=3):
+    """Independent browser workers; every original case/file survives merging."""
+    from concurrent.futures import ThreadPoolExecutor
+    import shutil
+    codes=list(codes);out=Path(out)
+    if not codes or len(codes)!=len(set(codes)):raise ValueError('QA_EMPTY_OR_DUPLICATE_ISSUER')
+    out.mkdir(parents=True,exist_ok=True);(out/'result.json').unlink(missing_ok=True)
+    if len(codes)<4 or workers==1:return _audit_sequential(codes,out,origin)
+    count=min(workers,len(codes));folders=[out/('worker-'+str(i+1)) for i in range(count)]
+    def one(i):return _audit_sequential(codes[i::count],folders[i],origin)
+    with ThreadPoolExecutor(max_workers=count) as pool:parts=list(pool.map(one,range(count)))
+    result=dict(parts[0]);result['issuers']={};result['cases']=[]
+    for folder,part in zip(folders,parts):
+        if part['origin']!=result['origin'] or part['status']!=result['status']:raise ValueError('QA_WORKER_ORIGIN_OR_STATUS')
+        if set(result['issuers'])&set(part['issuers']):raise ValueError('QA_WORKER_ISSUER_OVERLAP')
+        result['issuers'].update(part['issuers']);result['cases'].extend(part['cases'])
+        for f in folder.iterdir():
+            if f.suffix in ('.svg','.png'):shutil.copyfile(f,out/f.name)
+    expected={(code,w) for code in codes for w in (1440,768,390)}
+    if set(result['issuers'])!=set(codes) or len(result['cases'])!=len(expected) or {(c['issuer'],c['width']) for c in result['cases']}!=expected:raise ValueError('QA_INCOMPLETE_PARALLEL_RESULT')
+    result['svg_exports']=sum(len(c['figures']) for c in result['cases'])
+    result['execution_workers']=count
     (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     return result
 
