@@ -1,0 +1,12 @@
+{
+  "run_id": 43448868917,
+  "run_url": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+  "artifact_id": 14050205196,
+  "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06",
+  "head_sha": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+  "branch": "main",
+  "conclusion": "success",
+  "archive_validation": "GITHUB_REPORTED_SHA256; SELECTIVE_OFFICIAL_MEMBERS_CRC32; ALL28_PRIMARY_PNG_SHA256; ALL444_EXPORTED_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVE",
+  "extracted_members": 44,
+  "actual_downloaded_vectors_bound_to_existing_source_archive": 444
+}

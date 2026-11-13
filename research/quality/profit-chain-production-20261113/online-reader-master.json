@@ -1,0 +1,2697 @@
+{
+  "schema": "financials.v10.pr35.actual_online_reader_interaction.v1",
+  "source": "Cloudflare PR branch HTTPS, not file://",
+  "candidate_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+  "actual_hardware": "NOT_CHECKED",
+  "independent_financial_editorial_review": "NOT_CHECKED",
+  "company_routes": [
+    {
+      "code": "300394",
+      "route": "/300394.html",
+      "actual_online_full_html_sha256": "a4ce355ffe53f8d15ed7c06841b7f0885d523ab316efbc24b37a0dc59911888d",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "300308",
+      "route": "/300308.html",
+      "actual_online_full_html_sha256": "5c8b50b85fff1db173be11b9cda01ad1d43ea040e6feb8a5ab7d04c64ef96647",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "300502",
+      "route": "/300502.html",
+      "actual_online_full_html_sha256": "c3250f180d3576b7565b854a0ab85fae40a5848206a5d145dc2478f37512b0e2",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600036",
+      "route": "/research/2026-h1-v10/600036.html",
+      "actual_online_full_html_sha256": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "688111",
+      "route": "/research/2026-h1-v10/688111.html",
+      "actual_online_full_html_sha256": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600519",
+      "route": "/research/2026-h1-v10/600519.html",
+      "actual_online_full_html_sha256": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "000333",
+      "route": "/research/2026-h1-v10/000333.html",
+      "actual_online_full_html_sha256": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "688220",
+      "route": "/688220.html",
+      "actual_online_full_html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600900",
+      "route": "/600900.html",
+      "actual_online_full_html_sha256": "de0d9e473f33710d40781ce80ec5965b74d80e2052a0d78db4308234e4080158",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600276",
+      "route": "/600276.html",
+      "actual_online_full_html_sha256": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "601628",
+      "route": "/601628.html",
+      "actual_online_full_html_sha256": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "600690",
+      "route": "/600690.html",
+      "actual_online_full_html_sha256": "0fe032c77c56ffd3a859dc12edcff5bf07cf907b8b07ae22b19d9613e46f260a",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "300548",
+      "route": "/300548.html",
+      "actual_online_full_html_sha256": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    },
+    {
+      "code": "300570",
+      "route": "/300570.html",
+      "actual_online_full_html_sha256": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
+      "full_online_html_byte_equal": "PASS",
+      "main_directory_link": "PASS"
+    }
+  ],
+  "browser_cases": [
+    {
+      "issuer": "688111",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+      "original_finance_exhibits": 9,
+      "tested_original_source_svg_downloads": 9,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "9d96784af48d79dbf15d0c6eda365890ba503fd6b75d01196194907a24e62043",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "b19466e4c5e4bb1316b0ac235cf8a133b725aa6dbe184821ec5f3f8d7cb1e82b",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "44d57b0c66b9bac4a44c684b085a39f5b18a56153dbaac5d669d47d6158bbb24",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "add75b8e4852289afff64293b6e69b77e8aafb03fdb54147820adb1281c159c7",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "e7245372c22608d6a45f447c5c080f12ee3a656cb21ab4274640e72964892294",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "63fcdedb21904b627fa24d7a8187977deafcfd7c8bea504ce3a3bd0d91334558",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "03e2e16420344400296f12a5903928e52334da7bf6c43ae3b1bcfc5107380501",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "b5c81de0c7b72ba814f8775985d4e7619213685e46c0eb4e8c1dd64461b26cbc",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1d2efb4b73decd83f0217a04ab3d24ccc9e669ce3e5e8576ae5a069c4feac263",
+          "actual_exported_source_svg_archive": "688111-chromium-390-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "600519",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+      "original_finance_exhibits": 9,
+      "tested_original_source_svg_downloads": 9,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "fd723a23c8d2709d739e8c3667a05581e206bad245c39d013cc6819dab9567b8",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "10b08675949970aa17714da642863cb758a978769288dd017ab102a475b6712f",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "ba2d334f1f3edd3d94c7af374db50038176cdf3ea42f8e05b7cbc5841b920d86",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1d1c7ab62f72b85d58c0f2b72c5c391e07df76ac259aad2daa449233b9eda490",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "24945773ea727391740ce60454fa4492901eb67771da7dc64ffbf9817d6320a2",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "5f4435c86a076e0a211f98148019d04b756416d26c93a833ac7c91a2f14147cf",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "120c7312bdbe6752a6194edd41e3756bf542c85e54602b42f6152fac20aa17cf",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "56189a8051e06525d54654128c9125bd6595d810c8c17cee0577342ef04804cd",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "4302dafa82fe7eb6e943f5ce915f9f13c1bf9bfd6b300ffdd05e661bbfe8c9b2",
+          "actual_exported_source_svg_archive": "600519-chromium-390-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "000333",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+      "original_finance_exhibits": 10,
+      "tested_original_source_svg_downloads": 10,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1db8846a0b1a75baa38f400964663aaadd24dfdad9ad82fce1a7b2c1c51aa311",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "115d444d6c950620302687966d65c3eeb5aa483895e17f05fa121455a202be9a",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "791cef63c24c41a1e11c2469cc3669bd34c99e391460f7025f42f75bfd592a9f",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "73ad1479d4976c8c732e6b386ff5b84ef45e247268d3c461dbee982a8fed6c4b",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "98f67a0f741c197d9c16fd270a17a0ca335d358c62d2eb7c5f66d7919d11853a",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "6d102dc6c31b43ef57ee6e5fc78fd324090773d4958e5822c69079613947bf45",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "ab6d66b11a56edb141e0b995373fa62c508f3d4ac295b08cde58740ea3ae9644",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "8b2e19940ea6f4973db2208148c579ed5d003cafa102fb593acb4c62f5858b3f",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "19cf0d27d1a6a04abf929cf9ecb4a0c3345bdc4152bab00761c5dca734a0ea98",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-10",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "2acbb9e932aa89790e35015e51a1b545823e13b26574e02081ee83e1c6a0bae2",
+          "actual_exported_source_svg_archive": "000333-chromium-390-fig-10.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "600036",
+      "engine": "chromium",
+      "viewport_width": 390,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+      "original_finance_exhibits": 8,
+      "tested_original_source_svg_downloads": 8,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "c159fc4190379978090ea2aa92759f6b316b9a5e49c85ced1e325aa3767dd019",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "7a6a3fd2d2e893779bfd0909e9bfb8ec43f765a63af2bc163541d5b35f74de03",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "db4d233a36652d3caefdd0e572b16e4d25ef224c117422e3fb382025d2844cd7",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1b710275b242c6900a1297cd203c5f1a88ffbe16ae4bf2b924343d02f42f3318",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "47d08b1eac5173fa91c4477e298612b4ecfdead54ce97dde5407e42ff531aeb4",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "964ccc59234589836e4451e18643dca86c6aba1f13dc02818a37d3691affd4c7",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "d2224a30c6605fc17d1a9b2fdfff6f82f3c8c1191fbec324ec13480b74c4543e",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "de6563258c6ee04dd3c8a2b597fbbdc1e7671747ece505487f55a6fc5f8a5632",
+          "actual_exported_source_svg_archive": "600036-chromium-390-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "688111",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+      "original_finance_exhibits": 9,
+      "tested_original_source_svg_downloads": 9,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "9d96784af48d79dbf15d0c6eda365890ba503fd6b75d01196194907a24e62043",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "b19466e4c5e4bb1316b0ac235cf8a133b725aa6dbe184821ec5f3f8d7cb1e82b",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "44d57b0c66b9bac4a44c684b085a39f5b18a56153dbaac5d669d47d6158bbb24",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "add75b8e4852289afff64293b6e69b77e8aafb03fdb54147820adb1281c159c7",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "e7245372c22608d6a45f447c5c080f12ee3a656cb21ab4274640e72964892294",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "63fcdedb21904b627fa24d7a8187977deafcfd7c8bea504ce3a3bd0d91334558",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "03e2e16420344400296f12a5903928e52334da7bf6c43ae3b1bcfc5107380501",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "b5c81de0c7b72ba814f8775985d4e7619213685e46c0eb4e8c1dd64461b26cbc",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1d2efb4b73decd83f0217a04ab3d24ccc9e669ce3e5e8576ae5a069c4feac263",
+          "actual_exported_source_svg_archive": "688111-webkit-375-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "600519",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+      "original_finance_exhibits": 9,
+      "tested_original_source_svg_downloads": 9,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "fd723a23c8d2709d739e8c3667a05581e206bad245c39d013cc6819dab9567b8",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "10b08675949970aa17714da642863cb758a978769288dd017ab102a475b6712f",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "ba2d334f1f3edd3d94c7af374db50038176cdf3ea42f8e05b7cbc5841b920d86",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1d1c7ab62f72b85d58c0f2b72c5c391e07df76ac259aad2daa449233b9eda490",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "24945773ea727391740ce60454fa4492901eb67771da7dc64ffbf9817d6320a2",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "5f4435c86a076e0a211f98148019d04b756416d26c93a833ac7c91a2f14147cf",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "120c7312bdbe6752a6194edd41e3756bf542c85e54602b42f6152fac20aa17cf",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "56189a8051e06525d54654128c9125bd6595d810c8c17cee0577342ef04804cd",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "4302dafa82fe7eb6e943f5ce915f9f13c1bf9bfd6b300ffdd05e661bbfe8c9b2",
+          "actual_exported_source_svg_archive": "600519-webkit-375-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "000333",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+      "original_finance_exhibits": 10,
+      "tested_original_source_svg_downloads": 10,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1db8846a0b1a75baa38f400964663aaadd24dfdad9ad82fce1a7b2c1c51aa311",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "115d444d6c950620302687966d65c3eeb5aa483895e17f05fa121455a202be9a",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "791cef63c24c41a1e11c2469cc3669bd34c99e391460f7025f42f75bfd592a9f",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "73ad1479d4976c8c732e6b386ff5b84ef45e247268d3c461dbee982a8fed6c4b",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "98f67a0f741c197d9c16fd270a17a0ca335d358c62d2eb7c5f66d7919d11853a",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "6d102dc6c31b43ef57ee6e5fc78fd324090773d4958e5822c69079613947bf45",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "ab6d66b11a56edb141e0b995373fa62c508f3d4ac295b08cde58740ea3ae9644",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "8b2e19940ea6f4973db2208148c579ed5d003cafa102fb593acb4c62f5858b3f",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "19cf0d27d1a6a04abf929cf9ecb4a0c3345bdc4152bab00761c5dca734a0ea98",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-10",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "2acbb9e932aa89790e35015e51a1b545823e13b26574e02081ee83e1c6a0bae2",
+          "actual_exported_source_svg_archive": "000333-webkit-375-fig-10.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "600036",
+      "engine": "webkit",
+      "viewport_width": 375,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+      "original_finance_exhibits": 8,
+      "tested_original_source_svg_downloads": 8,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "c159fc4190379978090ea2aa92759f6b316b9a5e49c85ced1e325aa3767dd019",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "7a6a3fd2d2e893779bfd0909e9bfb8ec43f765a63af2bc163541d5b35f74de03",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "db4d233a36652d3caefdd0e572b16e4d25ef224c117422e3fb382025d2844cd7",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "1b710275b242c6900a1297cd203c5f1a88ffbe16ae4bf2b924343d02f42f3318",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "47d08b1eac5173fa91c4477e298612b4ecfdead54ce97dde5407e42ff531aeb4",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "964ccc59234589836e4451e18643dca86c6aba1f13dc02818a37d3691affd4c7",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "d2224a30c6605fc17d1a9b2fdfff6f82f3c8c1191fbec324ec13480b74c4543e",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "native_mobile",
+          "downloaded_exact_currently_visible_svg_sha256": "de6563258c6ee04dd3c8a2b597fbbdc1e7671747ece505487f55a6fc5f8a5632",
+          "actual_exported_source_svg_archive": "600036-webkit-375-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "688111",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111.html",
+      "source_html_sha256": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+      "original_finance_exhibits": 9,
+      "tested_original_source_svg_downloads": 9,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "e56fc35f5de85acf9bf87c4d9a5be8bdac29a49c8c161c1bf2ddfac45eadc119",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "4d10df9de2df4d702afabb81bef47d288b0862d8cda94f138bf7568fe2d5537b",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "ece367a553e6a7777ba41d5a7d6eee494cb8586f56a9098dd7b5bd9c2d31ae15",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "1f47ebd43e1d3f42e042bee4522a1f63e1e801507c0e9376eff4f7bf3988a175",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "1b6c7550a2fb202070a539be33ce18599ed044792e1aecb18e79e35088087daa",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "da0faa6a5f0113714f4f05d16848c951906b3eb8c14fd9930bc0305b9ef456a1",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "49cc4b27f77fcf177dfd3d2b0dafbc56eb4ef926d3d03ca6906eb2e30c944fe6",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "a7d9e02d6fe3a98dfdfe27e61e9a50231999411397a381a401e596771156d6c4",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "c226fdf5e58aba361fedb34edd89cf5de1b998dbf61fa599ce71bfd77156da0c",
+          "actual_exported_source_svg_archive": "688111-chromium-1440-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "600519",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519.html",
+      "source_html_sha256": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+      "original_finance_exhibits": 9,
+      "tested_original_source_svg_downloads": 9,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "94e8817c69a931e64d1f752c07f40cf3c5597f02d7d9bf3e1f5ed0729448327c",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "5c0c702cac722ccd868fc046bb356bf1a71bfc0f200d5b6f6131f64db8a81718",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "d629de31182817a0b719ea3d2be34b7adfff8a088e87b93b9f57da91033e1deb",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "e24dbd9caead7ba18d53d1aee2cf1b4bf95cd9ae07062dac351772688b4d9b5d",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "de1e5d24b36486db9cf9fad4e92be68b39db9d96373210eb85a6c334d34b8c2b",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "3f7ec2c5d5efb66c36a5066e57ae3f6097405a76d8ac4d718cd2bab48e758679",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "db4f1cf6595515f6d13737ba1fa10814c65816fb3b00fb46c67c1ea2ee42b45b",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "fb9dafffe266e8a0d78ede951b19c64dc92d277a9baeda1ffe53240dccef7752",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "23002e60a21179bc132f6717c1485330ae1be5d5be98cd4b84b7157683ba50fc",
+          "actual_exported_source_svg_archive": "600519-chromium-1440-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "000333",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333.html",
+      "source_html_sha256": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+      "original_finance_exhibits": 10,
+      "tested_original_source_svg_downloads": 10,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "57bdaa3421568f58fcdc3be2af4cf4660b7f11720a45d68fc0329d323952d40c",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "02cd5ddddb64e926ef7e9016cee351c7d271ea738636ea2aa95848d8e6f9e869",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "d5b1aacb14ebd89d14f7143222704528671b438d6917d29ddcdea66079a955e9",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "ad721d3c093198d68f25ba01a881014cddc356e3577de1c976f4fe7cf3df011e",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "2f87370b713406cc61d115a3d26555e9fb47072e48980ba3077a78957d8db761",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "ce83b95e03a799e941c82d4db06dd2cdab19079fb51597276b4676afd19fbb44",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "86f492a0c5c321585b75e9e7eb3ae15208a185010042e313e4576ff92c5729cb",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "9adc690250ab223ada8b0b4385752a50dab5c9aa48d584130afc93274ce235da",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-09",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "c30e4300f8697394a007f17e1fe090517c125317af722f6b6adcd64090f73d3f",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-09.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-10",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "b2fa7e465c356c880ab3d4f8caeafb13c2529792fdf4c3fc64ba9799b03dec28",
+          "actual_exported_source_svg_archive": "000333-chromium-1440-fig-10.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    },
+    {
+      "issuer": "600036",
+      "engine": "chromium",
+      "viewport_width": 1440,
+      "real_https_source_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036.html",
+      "source_html_sha256": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+      "original_finance_exhibits": 8,
+      "tested_original_source_svg_downloads": 8,
+      "interactive_figure_receipts": [
+        {
+          "figure": "fig-01",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "7b2b0a68847d24b360b540f93ef1aaf4ea711b273f48705bbff8f6f8bbf4949d",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-01.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-02",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "0859f1ff362c23e3fce88d5e4a8f35de874e0e5dc2e0788b1adcb53b9d30ab4b",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-02.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-03",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "feb274dc0835270dc1287e241386ac514ecc361ae3699e722fd2972bfe3b45d7",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-03.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-04",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "2585481ba941a4fd09723e476066d87a87ad41832019de7726bd181ca6bfd671",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-04.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-05",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "e11bfd052c21fc8a2b47578ab9512367010d3a03264eb9a981c86c345696bcff",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-05.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-06",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "d231c8a34f2af3be509d4f0bc16d4f719dabc6d31ef907d8b5dd8e5404631335",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-06.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-07",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "af9dbb8a1a20637ba0b90d4f19a059a26a1dc3b9c90b7bd726e332bb7c226ec2",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-07.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        },
+        {
+          "figure": "fig-08",
+          "active_source_original_edition": "desktop",
+          "downloaded_exact_currently_visible_svg_sha256": "9426c2c9b105f2bff4060a1bde94a45837af25d0e232d1f174d931b6142c81ec",
+          "actual_exported_source_svg_archive": "600036-chromium-1440-fig-08.svg",
+          "actual_original_svg_download_matches_visible_renderer": "PASS",
+          "source_disclosure_mouse_and_keyboard": "PASS",
+          "source_pdf_page_links": "PASS"
+        }
+      ],
+      "keyboard_enter_source_table": "PASS",
+      "original_source_pdf_physical_page_anchor": "PASS",
+      "visible_SVG_matches_exported_exact_XML": "PASS",
+      "page_native_issuer_nav": "PASS",
+      "page_js_exceptions": []
+    }
+  ],
+  "blocking_issues": [],
+  "unified_home_sha256": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+  "unified_11_issuer_organic_routes": "PASS",
+  "all_108_exact_edition_svg_exports": "PASS",
+  "real_online_reader_interaction": "PASS",
+  "new_source_publication_receipts": [
+    {
+      "schema_version": 1,
+      "issuer": "300394",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_300394": "a4ce355ffe53f8d15ed7c06841b7f0885d523ab316efbc24b37a0dc59911888d",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300394",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300394",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300394",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 11,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "432b5a735eb11ebd039f901d0e5b12b1b370506dad3ceb019d80e0466df9275b"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_300394_1440.png",
+          "sha256": "a00e5d0713bb0a1019275c15045ca9959ba10634d623a13ae28375b09d57702f",
+          "bytes": 1932691
+        },
+        {
+          "name": "live_300394_390.png",
+          "sha256": "476582a71d77c73541f5275346cdcac416ba1332d378b2b9a8c6c7f9aa56dfd2",
+          "bytes": 1766497
+        },
+        {
+          "name": "live_300394_768.png",
+          "sha256": "f5689fdb3d3cba7e9ebf18cd51e0fce95a683f58db01a4703756cb8eea361735",
+          "bytes": 2023845
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/300394-actual-production-evidence.zip",
+        "sha256": "501df3460e344b6521bd5e0b5367e9b03231be88ed3878351a618de2fa0c914e",
+        "bytes": 317411,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "300308",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_300308": "5c8b50b85fff1db173be11b9cda01ad1d43ea040e6feb8a5ab7d04c64ef96647",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300308",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300308",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300308",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 10,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "60ef066110e127b4badef53e68863e5325ed573a610d590085d285b74621f340"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_300308_1440.png",
+          "sha256": "2c91f180da0928af04dc620ab98a6b6dfdbc00afd25bf1890893653d4791b8fc",
+          "bytes": 2226141
+        },
+        {
+          "name": "live_300308_390.png",
+          "sha256": "84cb08de2b94c108bc8e9f13d36208d19219372fd121f3a83bc9f8eacfa8719d",
+          "bytes": 2064609
+        },
+        {
+          "name": "live_300308_768.png",
+          "sha256": "975680dab4eacfa678ed06a23f18269cf4a6532942473fed00a087df56671394",
+          "bytes": 2294842
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/300308-actual-production-evidence.zip",
+        "sha256": "b2731dd8693e96b57e3d21b1d29cc93d2b1cc3c080eaa64e3dfd60eab4965a32",
+        "bytes": 315332,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "300502",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_300502": "c3250f180d3576b7565b854a0ab85fae40a5848206a5d145dc2478f37512b0e2",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300502",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 12
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300502",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 12
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300502",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 12
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 12,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "407d8254e5ce4655fef24d33c4abf40b5c5810e971449b7469794bb8d3bf2fcd"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_300502_1440.png",
+          "sha256": "026b8b93664db4b0784d6a3731ce4abf0193f3ba9b75c25bace17fad2c232517",
+          "bytes": 2247256
+        },
+        {
+          "name": "live_300502_390.png",
+          "sha256": "4848b2a724cf439b999ae8bad43aaef4649e9a3867cf867bec8ced0fdf775bd2",
+          "bytes": 2074168
+        },
+        {
+          "name": "live_300502_768.png",
+          "sha256": "0c9013d58eba48b6b61f53d23d4a2f13f899aa5a8c2c5880d09ae369dd00fa21",
+          "bytes": 2375063
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/300502-actual-production-evidence.zip",
+        "sha256": "b553f8c209300230f624ce4f3eb6718abc6bea5c2949a1a69e1dc7ffca2250d8",
+        "bytes": 311746,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "600036",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_600036": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600036",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 9,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "cf023d6a4e89d1555fbc341bf20e4ace262a435b0ebf77ec0d0c7f731a934e6c"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_600036_1440.png",
+          "sha256": "f1ed70adbb11448d201e9e2c0c5bd49e268f870f59ec9e008d9b4bd0e8c63678",
+          "bytes": 1672049
+        },
+        {
+          "name": "live_600036_390.png",
+          "sha256": "5b23b9ab25d3a886cc1cabe6a9ed832eeab5146ca575e559233875bf488f466c",
+          "bytes": 1448010
+        },
+        {
+          "name": "live_600036_768.png",
+          "sha256": "8d015055a194a22983e0471cc83419c3445c4fe9f0022dc5d6e14a8b14dba4c6",
+          "bytes": 1584543
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/600036-actual-production-evidence.zip",
+        "sha256": "9320de880c56a82cc269f063706094c4e3f88c9d1e5271b63764ce12b9172451",
+        "bytes": 301753,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "688111",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_688111": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/688111",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 10,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "a4bbe6111ce7f92c6aae9f0eb48033b29158af87f38fe5df1467469a2346eae1"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_688111_1440.png",
+          "sha256": "7643c95b754ae4652b30ed5bd6b7e82af3486985ede8b8076dda3151aa554afd",
+          "bytes": 1755395
+        },
+        {
+          "name": "live_688111_390.png",
+          "sha256": "5653b5bd52c4a0e6265cc05faf420a8c291a6a483ef694403233e6984d623035",
+          "bytes": 1568023
+        },
+        {
+          "name": "live_688111_768.png",
+          "sha256": "bbd2bef4fca9cc60536ec84dd0a62adb89747680134ce20c360638fe35cf455d",
+          "bytes": 1765072
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/688111-actual-production-evidence.zip",
+        "sha256": "2605b2e89f6f341240589e9900f8b731984aa05d39efb229519e05f12f9dce76",
+        "bytes": 328072,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "600519",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_600519": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/600519",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 10,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "24967736daa18b1c7f024bfd97b90ea5ed79c407ac97970d23ce8f1d8ce3221f"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_600519_1440.png",
+          "sha256": "0d27adf7a4a3ef1559e5b76b543e1ec056b7b27798ce170d8571e4940baa5214",
+          "bytes": 2045732
+        },
+        {
+          "name": "live_600519_390.png",
+          "sha256": "8c1e04e10bd82db8f8ce0754195276ae30b2c1077ae65982bda8a379be9015da",
+          "bytes": 1793452
+        },
+        {
+          "name": "live_600519_768.png",
+          "sha256": "0bb7970543a7000a6d580ed67636d068cdca4ee3f9ea907978a049af02b1f263",
+          "bytes": 2080007
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/600519-actual-production-evidence.zip",
+        "sha256": "f05fd8af0f23dee4deb7904ae398cfdf4d9a6a319c3612019d0b6fc80cf6b738",
+        "bytes": 336866,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "000333",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_000333": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/research/2026-h1-v10/000333",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 11,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "a4baab68ca5749b735bc6db2e8d48b6b7ff5ccb711d0f2323c3cb931335f37b8"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_000333_1440.png",
+          "sha256": "f44ee33cdf02797b715c4c564a11ccc60257c3614c140341bffe92e4e5e62fcf",
+          "bytes": 1885143
+        },
+        {
+          "name": "live_000333_390.png",
+          "sha256": "d1e149f9e656043fb27e9280087b07e3c2811416ac0a38f8ead070cb2f53bd9f",
+          "bytes": 1667900
+        },
+        {
+          "name": "live_000333_768.png",
+          "sha256": "4e1ead622f8d929a609610561f52508da228df4f9ef97fc72b937d2d7dfaa71e",
+          "bytes": 1895999
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/000333-actual-production-evidence.zip",
+        "sha256": "6388a94acd47552426ad4c7f28b7f25898538888fc6c8d16d510e3bfd1b583b6",
+        "bytes": 339760,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "688220",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_688220": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-1440-supplemental-economics-1.svg",
+              "sha256": "aaeed7f9ec706ada07381d9c277ec06e6a46280b94dfe790e309d49ffdfbae70",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-768-supplemental-economics-1.svg",
+              "sha256": "32a58cb57a6968a0e4544e8bb1220861cf634540ca0415593d5141e424456bda",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-390-supplemental-economics-1.svg",
+              "sha256": "32a58cb57a6968a0e4544e8bb1220861cf634540ca0415593d5141e424456bda",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 10
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 10,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [
+            {
+              "file": "webkit-375-supplemental-economics-1.svg",
+              "sha256": "32a58cb57a6968a0e4544e8bb1220861cf634540ca0415593d5141e424456bda",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "screenshot_sha256": "d29c927f0939d6586251ab3f25c0d3e401fc60a5fb202fbfda3a4d84d9f7126e"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_688220_1440.png",
+          "sha256": "59f5dae282016783b50b4e9288280a93249dc643d01ae82e57b96b70ca57a9f5",
+          "bytes": 2633203
+        },
+        {
+          "name": "live_688220_390.png",
+          "sha256": "6d786be71dff640ea6ef69469c6cf80e674d16e5f5108ea829fe81dce693f588",
+          "bytes": 2365304
+        },
+        {
+          "name": "live_688220_768.png",
+          "sha256": "6cf8094ef7144bdcbf17e5ed0823bd69857402cd6dfbcd65785a0340db6690c1",
+          "bytes": 2630718
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/688220-actual-production-evidence.zip",
+        "sha256": "8dcbfdc7965cdea0c56fb56c2acec9a8352a7d378a2ea80882f07b874d4af489",
+        "bytes": 305264,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "600900",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_600900": "de0d9e473f33710d40781ce80ec5965b74d80e2052a0d78db4308234e4080158",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-1440-supplemental-economics-1.svg",
+              "sha256": "9bc9e0a592c6f8bca6bb5277f5656cd7372d3d6827d078e6b719f5a992d0f5ce",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600900",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-768-supplemental-economics-1.svg",
+              "sha256": "39b73fcc4cbc28791955a3bb2dda926f1e2ac9b7a4c76a40c86144b39e2106d9",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600900",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-390-supplemental-economics-1.svg",
+              "sha256": "39b73fcc4cbc28791955a3bb2dda926f1e2ac9b7a4c76a40c86144b39e2106d9",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600900",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 9,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [
+            {
+              "file": "webkit-375-supplemental-economics-1.svg",
+              "sha256": "39b73fcc4cbc28791955a3bb2dda926f1e2ac9b7a4c76a40c86144b39e2106d9",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "screenshot_sha256": "e4af80eb44cbe0cb8609b3cc02f921da0d3e48153a90b4fe844b13b5e2bf7637"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_600900_1440.png",
+          "sha256": "f31ba2919cbfefa5af7f7e1fce75f9b50b83c3cf096ccab7c67b40d6cfec1363",
+          "bytes": 2200149
+        },
+        {
+          "name": "live_600900_390.png",
+          "sha256": "98bc670bd83c47bf7cb2a16018d0429765e12948fab8854b0e08ee89a6cfabe5",
+          "bytes": 1951443
+        },
+        {
+          "name": "live_600900_768.png",
+          "sha256": "f9ed4dda4559db0d2677240f4fa531d3c8371902832a17cb1b9717dd44105a51",
+          "bytes": 2172229
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/600900-actual-production-evidence.zip",
+        "sha256": "b51b6953f48f5ee81de9163dffdb1f5d8032699eace30715aced55e11733e831",
+        "bytes": 319647,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "600276",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_600276": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-1440-supplemental-economics-1.svg",
+              "sha256": "968e359b436ec4c179ff9e344668e705ce09fbaccfc1372c77ba258de88a5d5b",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600276",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-768-supplemental-economics-1.svg",
+              "sha256": "b2ddd36310b0b94b06d63579792c320bcf11a94834cbb6feb4a70f1e084c168c",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600276",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [
+            {
+              "file": "chromium-390-supplemental-economics-1.svg",
+              "sha256": "b2ddd36310b0b94b06d63579792c320bcf11a94834cbb6feb4a70f1e084c168c",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600276",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 9
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 9,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [
+            {
+              "file": "webkit-375-supplemental-economics-1.svg",
+              "sha256": "b2ddd36310b0b94b06d63579792c320bcf11a94834cbb6feb4a70f1e084c168c",
+              "source_rebuild_and_visible_svg": "PASS"
+            }
+          ],
+          "screenshot_sha256": "872d10fdd65efd49d1e29409597ce9fe6a5b1851f255fef4bd5d69e541c0b11c"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_600276_1440.png",
+          "sha256": "9e67ec90e932443257c23ddf9e719d2c6fd503b1ff60588c5cf5fa82a9ff4a1c",
+          "bytes": 2469774
+        },
+        {
+          "name": "live_600276_390.png",
+          "sha256": "a5be7b4ff7220aec23df0fd9e01ef94df5b3faa705dc01466033abce9be7e464",
+          "bytes": 2151953
+        },
+        {
+          "name": "live_600276_768.png",
+          "sha256": "b29d89e6cdc33368e1a2267ac6d8e89c55f0827cadc641e66d28c59d051e0d89",
+          "bytes": 2423522
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/600276-actual-production-evidence.zip",
+        "sha256": "12eea2318c40dba1e0658defe861e754bc204403a0e0222e4bb2a60035d99698",
+        "bytes": 332932,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "601628",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_601628": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/601628",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 11,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "006fe20bf60b0bb42ba241b8e1114bb124735f92968327a62fff708c59210618"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_601628_1440.png",
+          "sha256": "89cc7e7930e66f986a9a8fec5d849b1f5c571c9ae5d4b7bf0b44d8d59a16aa02",
+          "bytes": 2472495
+        },
+        {
+          "name": "live_601628_390.png",
+          "sha256": "cd23351b94fc30a275fe3359962bb94cc4eb6130e7aeee7bdc5f45d14b249177",
+          "bytes": 2069470
+        },
+        {
+          "name": "live_601628_768.png",
+          "sha256": "367cd2eb35af20083a4041d6c37a3e492b38798b69f05b17c4ee0c411d8a722a",
+          "bytes": 2577272
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/601628-actual-production-evidence.zip",
+        "sha256": "27ef982a002dbde034f80bd538f87c4bae09a4984612ec207a96dfd90ae6cd58",
+        "bytes": 310443,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "600690",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_600690": "0fe032c77c56ffd3a859dc12edcff5bf07cf907b8b07ae22b19d9613e46f260a",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600690",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 13
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600690",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 13
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600690",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 13
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 13,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "9210ae18678d41268b1e04b9f5347beeac47d7712917c5f87b1b1e996df72f12"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_600690_1440.png",
+          "sha256": "78eeaa4afc51f0e05a2a0d33c250256cdb41788db0ddcc0a9db0483847595343",
+          "bytes": 1998583
+        },
+        {
+          "name": "live_600690_390.png",
+          "sha256": "00e5f686e2c1dd3fc18df45a7a3a7bf3d51af209994edeffe706c4bc5ee1fac0",
+          "bytes": 1807742
+        },
+        {
+          "name": "live_600690_768.png",
+          "sha256": "809810ad4a68b70ac4e3d16bd17ffb391dfcc7d64c4aaf750bb0702e759f2bb9",
+          "bytes": 2265415
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/600690-actual-production-evidence.zip",
+        "sha256": "7a184c41d814093ae0700ae40f3cab6f57fa1ed501a851e24ca64e6edc9e31cf",
+        "bytes": 329255,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "300548",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_300548": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300548",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 12
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300548",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 12
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300548",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 12
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 12,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "4d839b97c093e4e5499fe9c00bcaff3c2a6e9df90c737036e9187d8146365f83"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_300548_1440.png",
+          "sha256": "43ab3eb7e3ff6aa75b81aa1c48cfbbcf19d8b6be980709b319d221b13ffca44e",
+          "bytes": 1633620
+        },
+        {
+          "name": "live_300548_390.png",
+          "sha256": "449e85a069b5b40fa2399726b6987dd18d4afffa015471c892cac41eff150c3c",
+          "bytes": 1459848
+        },
+        {
+          "name": "live_300548_768.png",
+          "sha256": "320c863a89c63a5c627cad995912bfedf05b652a7f309bd01b2cac573f4fe68d",
+          "bytes": 1817269
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/300548-actual-production-evidence.zip",
+        "sha256": "2dd497f381fa31caa1577020e0ae237a8b71d6da56965b83b9dc211546756239",
+        "bytes": 323080,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    },
+    {
+      "schema_version": 1,
+      "issuer": "300570",
+      "status": "PASS",
+      "verified_git_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+      "pdf_sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+      "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+      "actual_full_content_sha256_equals_repository_main_300570": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
+      "actual_full_content_sha256_equals_repository_main_index": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+      "all_11_issuer_external_routes": "PASS",
+      "actual_catalog_issuer_count": 14,
+      "real_chromium_viewports": [
+        {
+          "width": 1440,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300570",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 768,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300570",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        },
+        {
+          "width": 390,
+          "supplemental_economics_exports": [],
+          "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300570",
+          "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+          "back_to_same_home": "PASS",
+          "no_page_horizontal_overflow": "PASS",
+          "real_live_screenshots": "PASS",
+          "all_source_figures": 11
+        }
+      ],
+      "additional_webkit_checks": [
+        {
+          "engine": "webkit",
+          "width": 375,
+          "all_source_figures": 11,
+          "real_visible_svg_exports": "PASS",
+          "text_bounds": "PASS",
+          "supplemental_economics_exports": [],
+          "screenshot_sha256": "2c1c99462129c7c1f8b02808f9b8a973426d466e3c0006fcbafe2a69a81bdd3a"
+        }
+      ],
+      "screenshots": [
+        {
+          "name": "live_300570_1440.png",
+          "sha256": "b658b11f972d356a73a34acdbd252c71e726fedb7baab9f7b813dd3f0e837c00",
+          "bytes": 1738088
+        },
+        {
+          "name": "live_300570_390.png",
+          "sha256": "7aa3e75118e9422fc3c28dc607fb5e0b27c62fc75733f2aee63a39ee7e1acc7f",
+          "bytes": 1564525
+        },
+        {
+          "name": "live_300570_768.png",
+          "sha256": "567abe3fab17e6d003a9b732215641df970820b0bdaf703449e3d3ebbeeee69f",
+          "bytes": 1927763
+        },
+        {
+          "name": "live_directory_1440.png",
+          "sha256": "e3304459ad896c59ec7dc3b78176c7d1d5846bfa0263f8ffbba57628855e7bf3",
+          "bytes": 864208
+        },
+        {
+          "name": "live_directory_390.png",
+          "sha256": "4464dc18df3a470dc4072e021b34d7fc0485651998fdbb86abe1c20562565947",
+          "bytes": 873704
+        },
+        {
+          "name": "live_directory_768.png",
+          "sha256": "cf99237f7e6c73e28b3c21da2131f2938da27f16c50b515a67c8964f338d8ee2",
+          "bytes": 858909
+        }
+      ],
+      "independent_human_finance_and_art": "NOT_CHECKED",
+      "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json",
+      "permanent_production_archive": {
+        "file": "research/quality/profit-chain-production-20261113/300570-actual-production-evidence.zip",
+        "sha256": "351034ab960e13ed8a5bf432fb998bd14ccad2a0efe91ae3fbbc8ed80ee5556e",
+        "bytes": 317398,
+        "scope": "ACTUAL_PRIMARY_PNG_1440_390_AND_RECEIPT; ALL444_LIVE_VECTOR_HASHES_EQUAL_PERMANENT_SOURCE_ARCHIVES; FULL_SCREENSHOTS_IN_OFFICIAL_ACTION_ARTIFACT"
+      }
+    }
+  ],
+  "overall": "PASS_PREVIEW_ONLY_INDEPENDENT_HUMAN_AND_PHYSICAL_DEVICES_NOT_CHECKED"
+}

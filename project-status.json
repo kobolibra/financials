@@ -1695,12 +1695,29 @@
     "main_cloud_acceptance": "https://github.com/kobolibra/financials/actions/runs/43392465881"
   },
   "active_editorial_redesign": {
-    "state": "CANDIDATE_UNMERGED_NOT_DEPLOYED",
-    "branch": "editorial/full-profit-chain-14",
-    "base_main": "6334ac5046eaa14b0708d8bd68e4c474d51355e7",
+    "state": "MERGED_MAIN_PRODUCTION_VERIFIED",
+    "pr_number": 74,
+    "source_main_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+    "actual_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+    "production_evidence": "research/quality/profit-chain-production-20261113/main-action-provenance.json",
     "issuer_count": 14,
-    "profit_chain_contract": "FULL_PROFIT_CHAIN_V1",
-    "current_evidence": "research/quality/editorial-20261113-local/result.json",
+    "financial_figures": 148,
+    "actual_chromium_svg_downloads": 444,
+    "actual_webkit_svg_downloads": 148,
+    "skill_version": "9.1.0",
+    "independent_human_review": "NOT_CHECKED"
+  },
+  "current_release_provenance_20261113_profit_chain": {
+    "state": "MERGED_MAIN_PRODUCTION_VERIFIED",
+    "pr_number": 74,
+    "source_main_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+    "actual_action": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+    "production_evidence": "research/quality/profit-chain-production-20261113/main-action-provenance.json",
+    "issuer_count": 14,
+    "financial_figures": 148,
+    "actual_chromium_svg_downloads": 444,
+    "actual_webkit_svg_downloads": 148,
+    "skill_version": "9.1.0",
     "independent_human_review": "NOT_CHECKED"
   }
 }

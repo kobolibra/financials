@@ -52,18 +52,18 @@
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
-      "proof": "research/issuers/601628/visual-qa/result.json",
-      "scope": "Actual edited 1440 CJK screenshot source figure clocks now original 2025 & 2026 amounts in dedicated x833 column and growth rate in x1073 column, real SVG getBBox no exact finance label collisions; all ten figures and mobile still native full-width. First original source money relationships unaffected. Actual other 10 company phones still original FAIL; no human separate director."
+      "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+      "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41784420788",
-      "scope": "New candidate rebuilt insurer source financials and 1440/768/390 CJK; original exact CAS financial + title/value/numeric labels overlap checked via real DOM getBBox and 10 full mobile figures; same old source PDF."
+      "proof": "research/quality/editorial-20261113-local/result.json",
+      "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41784420788",
-      "scope": "Candidate SHA b065071a19803465d6f1f62994d190d2b8e0212317ea7db9c08de453cfa3e8b0 built twice byte-identically, true current production still old 6f386 until merged/revalidated."
+      "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+      "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "research/issuers/601628/live-release-receipt.json",
-      "scope": "Actual public main full HTML SHA, 1440/768/390 source and geometry, real visible SVG exports. Local real-browser receipt, not an Actions run; merged publication PR is cited."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "scope": "真实主分支c9248749正式站14家公司全文、11幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
     }
   },
   "blockers": [
@@ -124,12 +124,12 @@
     }
   ],
   "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41777012329",
-  "published_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
-  "live_release_fingerprint": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
-  "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+  "published_html_sha256": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+  "live_release_fingerprint": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+  "actual_main_release_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
   "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41786674737",
   "actual_live_canonical_route": "/601628",
-  "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "actual_directory_fingerprint": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
   "historical_live_before_mobile_editorial_rebuild": {
     "status": "PASS",
     "proof": "https://github.com/kobolibra/financials/actions/runs/41771178361",
@@ -151,13 +151,172 @@
     "scope": "Old real live source 6f386 original verified at b886 before typographic label collision repair; still available in old main history, not equivalent to new b065 html"
   },
   "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
-    "candidate_full_html_sha256": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  "prior_production_release": {
+    "schema_version": 1,
+    "code": "601628",
+    "company": "中国人寿保险股份有限公司",
+    "period": "2026H1",
+    "release_class": "source_limited_preview",
+    "report_route": "/601628.html",
+    "report_file": "public/601628.html",
+    "status_label": "原创中国寿险财报研究 · 全套10张原创SVG / 本报告原件 / 33原始行列 / 历史外部同业/人类复核尚不完整",
+    "sector_adapter": "insurance",
+    "accounting_basis": "CAS25 insurance recognized service vs management legacy insurance premiums, with signed insured investment finance result, precise PAA/CSM stock, actual complete consolidated insurer direct cash and money-conserved premium hierarchy; insurer group no industrial gross margin/FCF",
+    "source_pdf": {
+      "path": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+      "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+      "bytes": 4867339,
+      "physical_pages": 104,
+      "official_original_byte_equivalence": "NOT_CHECKED",
+      "note": "True original official CNINFO PDF fully downloaded and archived by Actions 41765739795; SSE direct counterpart did not return an independently verifiable PDF."
+    },
+    "ledger_file": "research/issuers/601628/source-ledger.json",
+    "figure_briefs_file": "research/issuers/601628/figure-briefs.json",
+    "sankey": {
+      "decision": "USED_CONSERVED",
+      "source_scope": "p10 old-standard premium management statistics only, 4 original mutually-exclusive sources -> new/renewal -> total 536634 million, all geometries exact 268/536634; NEVER 536634 -> CAS insurance service revenue112525 or cash receipt626732",
+      "omission_reason": "Industrial revenue-to-COGS margin Sankey omitted: premium is not insurer CAS P&L service revenue, and insurance service expense does not match per-premium category commercial COGS."
+    },
+    "gates": {
+      "PDF_BYTES": {
+        "status": "PASS",
+        "proof": "research/issuers/601628/source-verification.json",
+        "scope": "Original full CNINFO PDF 4,867,339 bytes 104 physical pages sha256 b094... independently read from archived byte stream by Actions #41765739795"
+      },
+      "SOURCE_ROW_COLUMN": {
+        "status": "PASS",
+        "proof": "research/issuers/601628/source-critical-cells.json",
+        "scope": "33 selected row-anchor and physical page x/y original 2026 comparative-column records rechecked from real PDF bytes; not complete 104-page notes review"
+      },
+      "ACCOUNTING_CORE": {
+        "status": "PASS",
+        "proof": "research/issuers/601628/qa.json",
+        "scope": "18 original signed consolidated insurer CAS/CFO/CSM/same-date balance + two-period regulatory capital coverage and EY limited review source, all hostile mutation tests; not full independent actuarial certification."
+      },
+      "RESEARCH_COUNTERCASE": {
+        "status": "PASS",
+        "proof": "research/issuers/601628/story.json",
+        "scope": "Source-linked issuer special case: premium vs recognized insurance service vs cash; FV linked with insurance finance and OCI, CSM stock, solvency capital vs CAS equity, EY interim limited review and direct cash deterioration."
+      },
+      "CHART_SEMANTICS": {
+        "status": "PASS",
+        "proof": "research/issuers/601628/figure-briefs.json",
+        "scope": "Real original premium 4 mutually exclusive source categories to new/renewal to total SVG fully conserved; on mobile all ten figures now source-driven 390px vertical originals with same money ledger, true signed values, no 900px internal horizontal viewport or false premium-as-cash caption."
+      },
+      "VISUAL_EDITORIAL_SELF": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+        "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
+      },
+      "BROWSER_LOCAL": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/result.json",
+        "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
+      },
+      "OFFLINE_REBUILD": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+        "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
+      },
+      "MAJOR_NOTES_COMPLETE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Independent AI review of twelve material note themes is complete with visible source limitations; formal human audit certification is not established."
+      },
+      "REPORTED_NOTE_TIES": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "33 critical original cells checked, but exhaustive reinsurance policies, CSM actuarial opening/closing attribution, derivatives and all tax notes are not completely certified"
+      },
+      "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Original complete CNINFO PDF byte SHA PASS; SSE separate document endpoint returned HTML/non-PDF, byte equality NOT_CHECKED"
+      },
+      "HISTORICAL_PEERS_VALUATION": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Neither external eight-to-twelve quarter peer cohort nor same-basis market prices, embedded value sensitivities or enterprise valuation independently sourced"
+      },
+      "INDEPENDENT_HUMAN_REVIEW": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "No separate human finance analyst or professional visual art director has performed independent factual and design signoff"
+      },
+      "CLOUDFLARE_LIVE": {
+        "status": "PASS",
+        "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+        "scope": "真实主分支c9248749正式站14家公司全文、11幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
+      }
+    },
+    "blockers": [
+      {
+        "kind": "SOURCE_NOTE",
+        "page": 10,
+        "issue": "MANAGEMENT_PREMIUM_OLD_INSURANCE_STANDARD_NOT_CAS_SERVICE_REVENUE"
+      },
+      {
+        "kind": "SOURCE_NOTE",
+        "page": 85,
+        "issue": "FULL_CSM_ACTUARIAL_ROLLFORWARD_AND_SENSITIVITY_NOT_INDEPENDENTLY_CERTIFIED"
+      },
+      {
+        "kind": "RESEARCH",
+        "page": null,
+        "issue": "MARKET_VALUES_NOT_INSURANCE_MARGIN_MARKET_CYCLE_2026_H1"
+      },
+      {
+        "kind": "RELEASE",
+        "page": null,
+        "issue": "SSE_PDF_BYTE_EQUIVALENCE_SSE_ENDPOINT_NOT_PDF"
+      },
+      {
+        "kind": "RELEASE",
+        "page": null,
+        "issue": "INDEPENDENT_HUMAN_FINANCIAL_AND_DESIGN_REVIEW_NOT_PERFORMED"
+      }
+    ],
+    "actual_build_action": "https://github.com/kobolibra/financials/actions/runs/41777012329",
+    "published_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+    "live_release_fingerprint": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+    "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+    "actual_live_qa_action": "https://github.com/kobolibra/financials/actions/runs/41786674737",
+    "actual_live_canonical_route": "/601628",
+    "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+    "historical_live_before_mobile_editorial_rebuild": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41771178361",
+      "sha": "051a8ecb56cb200f4c411bb53ad672096cfb299e297f149fd58aad334cbfb763",
+      "commit": "d11638f0c76ff8aef2beb163a1028f176123bbdc",
+      "site": "https://financials-in-visuals.pages.dev/601628",
+      "scope": "TRUE PASS ON PREVIOUS SOURCE HTML ONLY, NOT PROOF OF NEW MOBILE REBUILD; retained for audit history"
+    },
+    "actual_live_site_origin": "https://financials-in-visuals.pages.dev",
+    "live_site_origin": "https://financials-in-visuals.pages.dev",
+    "live_receipt_file": "research/quality/profit-chain-production-20261113/prior-production/601628-live-release-receipt.json",
+    "current_released_mobile_10_source_exhibits": true,
+    "historical_live_before_1440_label_collision_qa_fix": {
+      "source_commit": "b88698a0cf1cfcd89c16eda1e399796d9418ea04",
+      "public_article_sha256": "6f38612a58fe5e50bbe3d7fe43a35d64cc6652328f4446525b6981cdeb3b22dd",
+      "home_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/41778320066",
+      "status": "PASS",
+      "scope": "Old real live source 6f386 original verified at b886 before typographic label collision repair; still available in old main history, not equivalent to new b065 html"
+    },
+    "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+    "unmerged_candidate": {
+      "base_deployed_html_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+      "candidate_full_html_sha256": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+      "promotion_status": "UNMERGED_NOT_DEPLOYED",
+      "independent_finance_and_art_review": "NOT_CHECKED",
+      "current_sha_browser_proof": "LOCAL_ONLY",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+    }
+  },
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "production_artifact": {
+    "id": 14050205196,
+    "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
   }
 }

@@ -52,18 +52,18 @@
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
-      "scope": "Actual desktop 1440 and mobile 390 source screenshots opened and reviewed; independent second editor NOT_CHECKED"
+      "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+      "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
-      "scope": "8 real figures, 8 source tables, 1440/768/390 screenshots, source-to-ribbon SVG path geometry and no body overflow"
+      "proof": "research/quality/editorial-20261113-local/result.json",
+      "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/41674789940",
-      "scope": "Real standalone HTML generated twice and byte-for-byte compared by successful Actions"
+      "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+      "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
     },
     "MAJOR_NOTES_COMPLETE": {
       "status": "NOT_CHECKED",
@@ -92,8 +92,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43267775579",
-      "scope": "Actual public main full HTML SHA, 1440/768/390 source and geometry, real visible SVG exports. Downloaded genuine main Actions artifact with ZIP SHA."
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+      "scope": "真实主分支c9248749正式站14家公司全文、9幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
     }
   },
   "blockers": [
@@ -123,10 +123,10 @@
       "issue": "FAIR_VALUE_KAILERA_NOT_PRODUCT_CASH"
     }
   ],
-  "published_html_sha256": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
-  "live_release_fingerprint": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
-  "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
-  "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "published_html_sha256": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+  "live_release_fingerprint": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+  "actual_main_release_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
+  "actual_directory_fingerprint": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
   "live_receipt_file": "research/issuers/600276/live-release-receipt.json",
   "last_verified_previous_release": {
     "original_main": "328ce615557390f1f0a52611496032557e87800a",
@@ -134,13 +134,155 @@
     "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
   },
   "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
-    "candidate_full_html_sha256": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  "prior_production_release": {
+    "schema_version": 1,
+    "code": "600276",
+    "company": "江苏恒瑞医药股份有限公司",
+    "period": "2026H1",
+    "release_class": "source_limited_preview",
+    "report_route": "/600276.html",
+    "report_file": "public/600276.html",
+    "status_label": "原创原始财报分析预览 · 原报告关键附注边界与第二名人类审稿未全部复核",
+    "sector_adapter": "pharma",
+    "accounting_basis": "pharma_goods_vs_IP_license_p145_independent_contract_earnings_and_non_cash_bill_endorsement_vs_CFO",
+    "source_pdf": {
+      "path": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+      "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+      "bytes": 4594202,
+      "physical_pages": 182,
+      "official_original_byte_equivalence": "NOT_CHECKED",
+      "note": "Exact complete issuer PDF downloaded directly from official CNINFO disclosure URL and SHA verified. Independent SSE endpoint byte comparison not checked."
+    },
+    "ledger_file": "research/issuers/600276/source-ledger.json",
+    "figure_briefs_file": "research/issuers/600276/figure-briefs.json",
+    "sankey": {
+      "decision": "USED_CONSERVED",
+      "source_scope": "p145 mutually-exclusive contract income types: goods, license, others; NOT geographic/time or management innovative sales nested subset",
+      "omission_reason": null
+    },
+    "gates": {
+      "PDF_BYTES": {
+        "status": "PASS",
+        "proof": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+        "scope": "Complete official CNINFO downloaded PDF magic, SHA256, full archive bytes, physical pages and issuer cover checked"
+      },
+      "SOURCE_ROW_COLUMN": {
+        "status": "PASS",
+        "proof": "research/issuers/600276/source-critical-cells.json",
+        "scope": "Selected 20/26 critical original physical page x/y and row-anchor cells validated by PyMuPDF; not all PDF note cells"
+      },
+      "ACCOUNTING_CORE": {
+        "status": "PASS",
+        "proof": "research/issuers/600276/qa.json",
+        "scope": "Full signed CAS P&L, BS, cash flow and all signed CFO supplemental rows exact yuan, 14-17 invariants"
+      },
+      "RESEARCH_COUNTERCASE": {
+        "status": "PASS",
+        "proof": "research/issuers/600276/story.json",
+        "scope": "Company-specific operating model, strong alternative explanations, research caveats and next period falsification"
+      },
+      "CHART_SEMANTICS": {
+        "status": "PASS",
+        "proof": "research/issuers/600276/figure-briefs.json",
+        "scope": "8 authored chart briefs and original weighted revenue to cost/gross profit ribbons; negative fields in signed waterfall"
+      },
+      "VISUAL_EDITORIAL_SELF": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/editorial-review.json",
+        "scope": "AI视觉自审：完整集团利润主线、重点正文及可展开完整核对；真实桌面和手机图证，非独立人类审稿。"
+      },
+      "BROWSER_LOCAL": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/result.json",
+        "scope": "当前HTML全部原图和完整利润主线在三档Chromium真实截图、实际几何、源金额与当前可见SVG下载均通过；WebKit手机另复核。"
+      },
+      "OFFLINE_REBUILD": {
+        "status": "PASS",
+        "proof": "research/quality/editorial-20261113-local/rebuild-and-source.json",
+        "scope": "14家全部原始财报字节、源格与当前HTML确定性重建逐字节相同；新增主图不借用此前版本的生产证明。"
+      },
+      "MAJOR_NOTES_COMPLETE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Independent AI review covers all twelve material note themes with visible original-source exceptions. Formal completeness/human audit certification is not established."
+      },
+      "REPORTED_NOTE_TIES": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Several core original cash/restricted/contract notes checked; exhaustive issuer notes reconciliation is not completed"
+      },
+      "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Direct CNINFO PDF archive SHA PASS; separate SSE versus CNINFO byte-identity not separately reproduced"
+      },
+      "HISTORICAL_PEERS_VALUATION": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "Eight consecutive quarters and one sourced peer are complete for this issuer; full independent market valuation and wider unseen-period validation are not established."
+      },
+      "INDEPENDENT_HUMAN_REVIEW": {
+        "status": "NOT_CHECKED",
+        "proof": null,
+        "scope": "No genuine second independent human finance and visual editor approval"
+      },
+      "CLOUDFLARE_LIVE": {
+        "status": "PASS",
+        "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
+        "scope": "真实主分支c9248749正式站14家公司全文、9幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
+      }
+    },
+    "blockers": [
+      {
+        "kind": "RESEARCH",
+        "page": null,
+        "issue": "DRUG_SALES_INNOVATIVE_SUBSET_NOT_ADDITIVE"
+      },
+      {
+        "kind": "RESEARCH",
+        "page": null,
+        "issue": "LICENSE_CONTRACT_PERFORMANCE_OBLIGATION_INCOME_TIMING"
+      },
+      {
+        "kind": "RESEARCH",
+        "page": null,
+        "issue": "NONCASH_ACCEPTANCE_BILL_ENDORSEMENT_P153_19_94BN"
+      },
+      {
+        "kind": "RESEARCH",
+        "page": null,
+        "issue": "BMS_CONTRACT_EFFECTIVE_2026_JULY_NOT_H1_REVENUE"
+      },
+      {
+        "kind": "RESEARCH",
+        "page": null,
+        "issue": "FAIR_VALUE_KAILERA_NOT_PRODUCT_CASH"
+      }
+    ],
+    "published_html_sha256": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
+    "live_release_fingerprint": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
+    "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+    "actual_directory_fingerprint": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+    "live_receipt_file": "research/quality/profit-chain-production-20261113/prior-production/600276-live-release-receipt.json",
+    "last_verified_previous_release": {
+      "original_main": "328ce615557390f1f0a52611496032557e87800a",
+      "prior_full_html_sha256": "a333818fc584eebefeaa0d8747dc74fcc6af6bd3b5c9fa78177508065821b75d",
+      "prior_cloudflare_action": "https://github.com/kobolibra/financials/actions/runs/42595318738"
+    },
+    "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+    "unmerged_candidate": {
+      "base_deployed_html_sha256": "fe4aded0123b436777a74924dc026c961ec4d70f7ed4f98ff9f455afacb70e40",
+      "candidate_full_html_sha256": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+      "promotion_status": "UNMERGED_NOT_DEPLOYED",
+      "independent_finance_and_art_review": "NOT_CHECKED",
+      "current_sha_browser_proof": "LOCAL_ONLY",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+    }
+  },
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "production_artifact": {
+    "id": 14050205196,
+    "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
   }
 }
