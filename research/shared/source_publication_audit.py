@@ -11,6 +11,9 @@ def expected(ledger,expr):
     return sum((D(str(c))*D(ledger['facts'][k]['yuan']) for k,c in expr),D(0))
 def check_vector_source(markup,ledger):
     root=ET.fromstring(markup);f=ledger['facts'];count=0
+    if root.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1':
+        from profit_chain_audit import check_svg
+        return check_svg(markup,ledger['issuer']['code'],ledger['source']['original_bytes_sha256'])
     if root.get('data-issuer')!=ledger['issuer']['code']:raise ValueError('DOSSIER_VECTOR_WRONG_ISSUER')
     for node in root.iter():
         ref=node.get('data-source-reference')

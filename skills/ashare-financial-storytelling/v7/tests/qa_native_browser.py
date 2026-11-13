@@ -22,6 +22,10 @@ with sync_playwright() as p:
         for width in (1440,768,390):
             page=browser.new_page(viewport={"width":width,"height":900})
             page.goto(file.resolve().as_uri(),wait_until="load")
+            import sys
+            sys.path.insert(0,str(ROOT/"research/shared"))
+            from profit_chain_audit import check_reader
+            check_reader(page);check_reader(page,expanded=True)
             if code=="300308":
                 assert page.locator("aside.disclosure-conflict").count()==1,(code,"REAL_P139_PRINTED_DUPLICATE_VALUE_CONFLICT_HIDDEN")
                 assert "422,649,612.97" in page.locator("aside.disclosure-conflict").inner_text()
@@ -99,7 +103,7 @@ with sync_playwright() as p:
                 graph=page.evaluate("""() => {
                   const selector=window.innerWidth>900
                     ? '.chart-shell .hero-svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]'
-                    : '.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]';
+                    : '.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]';
                   const s=document.querySelector(selector);
                   if(!s)return null;
                   return {total:+s.getAttribute('data-revenue-yuan'),
@@ -121,7 +125,7 @@ with sync_playwright() as p:
                 assert len(srcs)>=2 and len(sinks)==2*len(srcs),(code,width,"NOT_TRUE_CONNECTED_SANKEY")
                 if width<=900 and code in ("300394","300502"):
                     legend=page.evaluate("""() => {
-                      const svg=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]');
+                      const svg=document.querySelector('.native-finance svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"][data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]');
                       if(!svg)return null;
                       const labels=[...svg.querySelectorAll('text[data-editorial-role="source-summary"]')];
                       const header=svg.querySelector('text[data-editorial-role="source-stage-header"]');

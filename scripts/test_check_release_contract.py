@@ -31,6 +31,12 @@ class IssuerReleaseContractTests(unittest.TestCase):
         change(value)
         return mod.validate_release(ROOT, self.issuer, value, check_bytes=check_bytes)
 
+    def test_new_profit_chain_release_cannot_inherit_old_figure_count_or_skip_webkit(self):
+        value=copy.deepcopy(self.original);value['editorial_contract']='FULL_PROFIT_CHAIN_V1'
+        errors=mod.validate_release(ROOT,self.issuer,value,check_bytes=False)
+        self.assertIn('LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT 688220',errors)
+        self.assertIn('LIVE_CAPTURE_CURRENT_ALL_FIGURES_WEBKIT 688220',errors)
+
     def test_only_insurance_adapter_may_use_issuer_regulatory_scope(self):
         original_read = mod.read_json
         def wrong_sector_reg_scope(path):

@@ -16,7 +16,7 @@
       "kind": "原有研究",
       "stage": "research-preview",
       "note": "原始研究 · 后续独立复核",
-      "figures": 10,
+      "figures": 11,
       "signal": "60.9%",
       "signal_label": "2026H1 综合毛利率",
       "source": "原始2026H1完整披露",
@@ -29,7 +29,12 @@
         "成本"
       ],
       "rank": 1,
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300394.json",
+      "legacy_report_aliases": [
+        "/300394/2026-H1/index.html"
+      ]
     },
     {
       "code": "300308",
@@ -43,7 +48,7 @@
       "kind": "原有研究",
       "stage": "source-review",
       "note": "待完成独立来源语义复核",
-      "figures": 9,
+      "figures": 10,
       "signal": "46.3%",
       "signal_label": "2026H1 综合毛利率",
       "source": "原始2026H1完整披露",
@@ -56,7 +61,9 @@
         "成本"
       ],
       "rank": 2,
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300308.json"
     },
     {
       "code": "300502",
@@ -70,7 +77,7 @@
       "kind": "原有研究",
       "stage": "research-preview",
       "note": "原始研究 · 后续独立复核",
-      "figures": 11,
+      "figures": 12,
       "signal": "48.4%",
       "signal_label": "2026H1 综合毛利率",
       "source": "原始2026H1完整披露",
@@ -83,7 +90,12 @@
         "成本"
       ],
       "rank": 3,
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300502.json",
+      "legacy_report_aliases": [
+        "/300502/2026-H1/index.html"
+      ]
     },
     {
       "code": "600036",
@@ -97,7 +109,7 @@
       "kind": "研究预览",
       "stage": "research-preview",
       "note": "银行专属会计逻辑",
-      "figures": 8,
+      "figures": 9,
       "signal": "62.9%",
       "signal_label": "净利息收入占营业收入",
       "source": "2026H1 原始报告",
@@ -109,7 +121,10 @@
         "净利息",
         "其他净收入"
       ],
-      "rank": 4
+      "rank": 4,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/600036.json"
     },
     {
       "code": "688111",
@@ -123,13 +138,16 @@
       "kind": "研究预览",
       "stage": "research-preview",
       "note": "非经常收益与现金调节",
-      "figures": 9,
+      "figures": 10,
       "signal": "25.18 亿",
       "signal_label": "2026H1 合并净利润",
       "source": "2026H1 原始报告",
       "spark": null,
       "spark_names": null,
-      "rank": 5
+      "rank": 5,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/688111.json"
     },
     {
       "code": "600519",
@@ -143,13 +161,16 @@
       "kind": "研究预览",
       "stage": "research-preview",
       "note": "财务公司现金流专属口径",
-      "figures": 9,
+      "figures": 10,
       "signal": "706.91 亿",
       "signal_label": "2026H1 经营现金流",
       "source": "2026H1 原始报告",
       "spark": null,
       "spark_names": null,
-      "rank": 6
+      "rank": 6,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/600519.json"
     },
     {
       "code": "000333",
@@ -163,13 +184,16 @@
       "kind": "研究预览",
       "stage": "research-preview",
       "note": "分部层级及金融业务口径",
-      "figures": 10,
+      "figures": 11,
       "signal": "2,610.52 亿",
       "signal_label": "2026H1 合并营业总收入",
       "source": "2026H1 原始报告",
       "spark": null,
       "spark_names": null,
-      "rank": 7
+      "rank": 7,
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/000333.json"
     },
     {
       "code": "688220",
@@ -183,7 +207,7 @@
       "kind": "研究预览",
       "stage": "source-review",
       "note": "九项独立财务图形 · 完整披露副本来源证据 · 应收附注比率口径存在未解差异",
-      "figures": 9,
+      "figures": 10,
       "signal": "−3.77 亿",
       "signal_label": "2026H1 经营现金流净额",
       "source": "2026H1 完整报告副本，224物理页",
@@ -191,7 +215,9 @@
       "spark_names": null,
       "rank": 8,
       "period": "2026H1",
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/688220.json"
     },
     {
       "code": "600900",
@@ -205,7 +231,7 @@
       "kind": "研究预览",
       "stage": "source-review",
       "note": "水电原报告214页 · 完整三表与全间接法CFO核算 · 不以发电量冒充售电量",
-      "figures": 8,
+      "figures": 9,
       "signal": "241.28亿",
       "signal_label": "2026H1经营现金流净额",
       "source": "2026H1 CNINFO完整原始披露214物理页",
@@ -213,7 +239,9 @@
       "spark_names": null,
       "rank": 9,
       "period": "2026H1",
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/600900.json"
     },
     {
       "code": "600276",
@@ -227,7 +255,7 @@
       "kind": "研究预览",
       "stage": "source-review",
       "note": "医药原报告182页 · 许可与药品分源真实桑基 · 全间接法CFO与票据非现金结算",
-      "figures": 8,
+      "figures": 9,
       "signal": "19.87亿",
       "signal_label": "2026H1经营现金流净额",
       "source": "2026H1 CNINFO完整原始披露182物理页",
@@ -235,7 +263,9 @@
       "spark_names": null,
       "rank": 10,
       "period": "2026H1",
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/600276.json"
     },
     {
       "code": "601628",
@@ -249,7 +279,7 @@
       "kind": "研究预览",
       "stage": "source-review",
       "note": "104页官方原件 · 33行列源格 · 10组原创图 · 安永华明有限保证审阅（非审计）· 无独立第二人类研究审稿",
-      "figures": 10,
+      "figures": 11,
       "signal": "2,828.79亿",
       "signal_label": "2026H1 经营现金流净额（同比−5.8%）",
       "source": "2026H1 CNINFO完整原始半年度报告104物理页",
@@ -257,7 +287,9 @@
       "spark_names": null,
       "rank": 11,
       "period": "2026H1",
-      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1"
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/601628.json"
     },
     {
       "code": "600690",
@@ -271,7 +303,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 12,
+      "figures": 13,
       "signal": "−14.27%",
       "signal_label": "2026H1归母净利润同比",
       "source": "2026H1完整原始中报",
@@ -285,7 +317,9 @@
       ],
       "rank": 12,
       "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
-      "source_publication": "research/issuers/600690"
+      "source_publication": "research/issuers/600690",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/600690.json"
     },
     {
       "code": "300548",
@@ -299,7 +333,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 11,
+      "figures": 12,
       "signal": "+91.08%",
       "signal_label": "2026H1归母净利润同比",
       "source": "2026H1完整原始中报",
@@ -313,7 +347,9 @@
       ],
       "rank": 13,
       "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
-      "source_publication": "research/issuers/300548"
+      "source_publication": "research/issuers/300548",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300548.json"
     },
     {
       "code": "300570",
@@ -327,7 +363,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 10,
+      "figures": 11,
       "signal": "−2.55%",
       "signal_label": "2026H1扣非归母同比",
       "source": "2026H1完整原始中报",
@@ -341,7 +377,9 @@
       ],
       "rank": 14,
       "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
-      "source_publication": "research/issuers/300570"
+      "source_publication": "research/issuers/300570",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300570.json"
     }
   ],
   "topic": {
@@ -357,7 +395,7 @@
         "research/issuers/300548/material-notes-review.json",
         "research/issuers/300570/material-notes-review.json"
       ],
-      "local_migration_receipt": "research/quality/source-library-20261113.json",
+      "local_migration_receipt": "research/quality/editorial-20261113-local/result.json",
       "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
       "historical_exact_html_snapshots": {
         "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
@@ -366,6 +404,13 @@
         "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
       },
       "production_migration_receipt": "research/quality/full-figure-production-20261113/result.json"
+    }
+  },
+  "editorial_quality_contracts": {
+    "FULL_PROFIT_CHAIN_V1": {
+      "source_manifests": "research/editorial-20261113",
+      "acceptance": "research/shared/profit_chain_audit.py",
+      "reading_policy": "Group profit backbone first; material business/variance/risk questions retained; complete original reconciliations expandable; no product after-tax allocation or inferred causality."
     }
   }
 }

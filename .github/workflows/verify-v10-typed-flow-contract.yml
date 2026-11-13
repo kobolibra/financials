@@ -91,8 +91,18 @@ jobs:
           assert v["canonical_issuer_count"]==len(codes)
           assert {r['issuer'] for r in v['rows']}==codes
           assert set(v["fully_migrated_source_article_issuers"])==full
-          assert set(v["unified_positive_sankey_issuers"])=={"688111","000333","600036"}
-          assert set(v["lawful_signed_exception_issuers"])=={"600519"}
+          # Current full-article classification supersedes the old hero-only
+          # bucket. Original TYPE_A/BANK/negative-product semantics are checked
+          # by audit_v10_flow_contract above; every new backbone needs all3
+          # current real-browser source-geometry/export receipts too.
+          from pathlib import Path
+          proof=json.loads(Path(catalog['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['local_migration_receipt']).read_text())
+          for issuer in catalog['issuers']:
+              if not issuer.get('editorial_contract'):continue
+              cases=[c for c in proof['cases'] if c['issuer']==issuer['code']]
+              assert len(cases)==3 and {c['width'] for c in cases}=={390,768,1440}
+              assert all(c.get('editorial_main_layer')=='PASS' and sum(f['grammar']=='FULL_PROFIT_CHAIN_V1' for f in c['figures'])==1 for c in cases)
+
           assert not v["partial_hero_only_unified_remaining_art_legacy"]
           assert not v["legacy_not_unified"] and not v["failed_new_grammar"]
           assert v["strict_all_11_visual_unification"]=="PASS"

@@ -1,3 +1,5 @@
+**2026-11-13 当前候选：14家公司完整利润主线与阅读层级改版。** 尚未合并上线，勿借用此前生产PASS。当前状态见 `project-status.json.active_editorial_redesign`；标准见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。目录和实际HTML为范围依据；独立人类二审仍 NOT_CHECKED。下方已上线记录保留各自历史版本含义。
+
 **2026-11-13 太辰光300570已合并并实测上线。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。PR #72、源码主分支ee4f5af4：189页完整原件、161条事实、27项勾稽、12项重大附注主题及10幅财务图；同一14家公司正式站全文一致，全部10图Chromium三档30次与WebKit手机10次真实SVG下载、首页往返和六张截图通过真实Action43392465881。收据与附件SHA归档于 `research/issuers/300570/live-release-receipt.json` 和 `release-gates.json`。来源限定研究；人类二审与完整历史同行估值未完成。
 
 **2026-11-13 长芯博创300548已合并并实测上线。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。PR #70、实际源码主分支31610214：143页完整原件、166条事实、26项勾稽、12个重大附注主题、11幅财务图；同一13家公司正式站全文与源码一致。真实生产Chromium三档33次及WebKit手机11次当前可见SVG下载、首页往返和六张截图通过，证据见 `research/issuers/300548/live-release-receipt.json`（真实主分支Action 43384888642附件收据，ZIP SHA已核对）。人类二审与完整历史同行估值仍未完成。

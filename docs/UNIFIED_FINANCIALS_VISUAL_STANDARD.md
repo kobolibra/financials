@@ -1,5 +1,7 @@
 # Financials Unified Visual Standard v1 — AEI 方法对照 + A股行业会计语义
 
+当前优先规则：见 [完整利润主线与重点表达](PROFIT_CHAIN_EDITORIAL_STANDARD.md)。以下旧公司状态与两层主图限制是历史记录；当前公司数量、原图角色和完整验收由目录及当次HTML字节确定。集团正利润链与负毛利产品图可以合法并存。
+
 **2026-11-13 已合并并核验正式站：七个历史系列的完整财务图已统一。** [PR #66](https://github.com/kobolibra/financials/pull/66) 合并源码 `5346ff0`；三家光通信、翱捷、长江、恒瑞、中国人寿共65幅源财务图，正式站1440/768/390共21个布局及195次当前可见SVG下载全部通过，线上完整HTML与发布源码逐字节相同。生产证据见 `research/quality/full-figure-production-20261113/result.json`，明确为本地真实浏览器访问正式站；本地源码证据见 `research/quality/full-figure-20261113/result.json`。公共图形核心与行业适配保留原始会计差异；新公司/新期间必须通过目录 `FULL_SOURCE_FIGURES_V1` 进入同一套逐图云端验收。下方旧HERO-only、未合并及权限受阻内容是历史记录，不能覆盖当前字节证据。人类审稿及未见真实财报的长期稳定性不声称通过。[历史四家合同](docs/ACTIVE_PR35_HANDOFF.md) 保留。
 
 

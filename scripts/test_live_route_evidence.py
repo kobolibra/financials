@@ -10,6 +10,15 @@ class LiveRouteEvidenceTests(unittest.TestCase):
         b=f"{ORIGIN}/#companies"
         self.assertEqual(make_live_navigation_receipt(report_url=a,back_url=b,code="601628",origin=ORIGIN),
             {"actual_dedicated_article_final_url":a,"actual_return_to_library_url":b})
+    def test_canonical_nested_routes_are_explicit_and_source_issuer_bound(self):
+        route='/research/2026-h1-v10/688111.html'
+        for path in (route,route[:-5]):
+            self.assertEqual(verify_issuer_article_url(ORIGIN+path,code='688111',origin=ORIGIN,report_route=route),ORIGIN+path)
+        for bad in ('/research/2026-h1-v10/600036','/688111','/research/2026-h1-v10/688111-copy'):
+            with self.assertRaises(AssertionError):verify_issuer_article_url(ORIGIN+bad,code='688111',origin=ORIGIN,report_route=route)
+        for bad_route in ('https://evil.com/688111.html','//evil.com/688111.html','/../688111.html','/research/600036.html'):
+            with self.assertRaises(AssertionError):verify_issuer_article_url(ORIGIN+route,code='688111',origin=ORIGIN,report_route=bad_route)
+
     def test_legacy_html_route_also_is_true_company(self):
         self.assertEqual(verify_issuer_article_url(f"{ORIGIN}/601628.html",code="601628",origin=ORIGIN),
             f"{ORIGIN}/601628.html")

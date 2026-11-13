@@ -21,6 +21,10 @@ with sync_playwright() as p:
   errors=[]
   page.on("pageerror",lambda exc:errors.append(str(exc)))
   page.goto(HTML.as_uri(),wait_until="load",timeout=30000)
+  import sys
+  sys.path.insert(0,str(ROOT/"research/shared"))
+  from profit_chain_audit import check_reader
+  check_reader(page);check_reader(page,expanded=True)
   page.evaluate("document.fonts.ready")
   signed_results=[]
   bridge_exports=[]

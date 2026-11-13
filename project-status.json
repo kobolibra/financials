@@ -166,7 +166,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "9.0.0",
+    "version": "9.1.0",
     "loading": "REPO_CANONICAL_V9_PRODUCTION_SKILL_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -1693,5 +1693,14 @@
     "live_url": "https://financials-in-visuals.pages.dev/300570",
     "live_receipt": "research/issuers/300570/live-release-receipt.json",
     "main_cloud_acceptance": "https://github.com/kobolibra/financials/actions/runs/43392465881"
+  },
+  "active_editorial_redesign": {
+    "state": "CANDIDATE_UNMERGED_NOT_DEPLOYED",
+    "branch": "editorial/full-profit-chain-14",
+    "base_main": "6334ac5046eaa14b0708d8bd68e4c474d51355e7",
+    "issuer_count": 14,
+    "profit_chain_contract": "FULL_PROFIT_CHAIN_V1",
+    "current_evidence": "research/quality/editorial-20261113-local/result.json",
+    "independent_human_review": "NOT_CHECKED"
   }
 }

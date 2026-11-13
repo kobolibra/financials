@@ -671,7 +671,56 @@
           "total"
         ]
       ],
-      "period": "2025H1 → 2026H1"
+      "period": "2025H1 → 2026H1",
+      "editorial_groups": [
+        {
+          "label": "营业毛利变化",
+          "indices": [
+            1,
+            2
+          ]
+        },
+        {
+          "label": "销售费用变化",
+          "indices": [
+            4
+          ]
+        },
+        {
+          "label": "研发费用变化",
+          "indices": [
+            6
+          ]
+        },
+        {
+          "label": "财务费用变化",
+          "indices": [
+            7
+          ]
+        },
+        {
+          "label": "信用与资产减值变化",
+          "indices": [
+            11,
+            12
+          ]
+        },
+        {
+          "label": "其余损益、税收及归属净变化",
+          "indices": [
+            3,
+            5,
+            8,
+            9,
+            10,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        }
+      ]
     },
     {
       "id": "cash-conversion",

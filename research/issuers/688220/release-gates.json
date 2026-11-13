@@ -114,5 +114,14 @@
   "actual_main_release_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
   "live_site_origin": "https://financials-in-visuals.pages.dev",
   "live_receipt_file": "research/issuers/688220/live-release-receipt.json",
-  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+    "candidate_full_html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
+  }
 }

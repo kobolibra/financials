@@ -1,0 +1,26 @@
+{
+  "status": "PASS_LOCAL",
+  "worker_count": 3,
+  "issuers": 14,
+  "viewports": 42,
+  "real_downloads": 444,
+  "all444_exported_vector_hashes_equal_prior_complete_source_evidence": true,
+  "duplicates_removed": "Only redundant figure PNG captures in the separate matrix; all148 PNGs per viewport remain in the complete source-figure audit. Supplemental economics panels retain their own screenshots and downloads.",
+  "source_html_sha256": {
+    "300394": "a4ce355ffe53f8d15ed7c06841b7f0885d523ab316efbc24b37a0dc59911888d",
+    "600036": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+    "000333": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+    "600276": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+    "300548": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+    "300308": "5c8b50b85fff1db173be11b9cda01ad1d43ea040e6feb8a5ab7d04c64ef96647",
+    "688111": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+    "688220": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+    "601628": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+    "300570": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
+    "300502": "c3250f180d3576b7565b854a0ab85fae40a5848206a5d145dc2478f37512b0e2",
+    "600519": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+    "600900": "de0d9e473f33710d40781ce80ec5965b74d80e2052a0d78db4308234e4080158",
+    "600690": "0fe032c77c56ffd3a859dc12edcff5bf07cf907b8b07ae22b19d9613e46f260a"
+  },
+  "independent_human_review": "NOT_CHECKED"
+}

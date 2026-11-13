@@ -386,3 +386,9 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
             f'data-revenue-yuan="{esc(total)}" data-scale-yuan-per-svg-unit="{esc(scale)}" '
             f'{extra} aria-label="{esc(description)}"><title>{esc(plan.title)}</title>'
             f'<desc>{esc(description)}</desc>{body}</svg>')
+
+
+def render_full_profit_chain(bundle, *, mobile=False):
+    """Source-bound sequential group P&L extension of this canonical engine."""
+    from full_profit_chain import render
+    return render(bundle,mobile=mobile)

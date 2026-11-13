@@ -16,6 +16,9 @@ NS='{http://www.w3.org/2000/svg}'
 
 def check_vector(markup,issuer,pdf_sha):
     svg=ET.fromstring(markup)
+    if svg.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1':
+        from profit_chain_audit import check_svg
+        return check_svg(markup,issuer,pdf_sha)
     if svg.get('data-editorial-grammar'):return check_editorial_svg(markup,issuer=issuer,pdf_sha256=pdf_sha)
     grammar=svg.get('data-chart-grammar') or svg.get('data-signed-statement-grammar')
     def require(test,why):
@@ -48,10 +51,13 @@ def check_vector(markup,issuer,pdf_sha):
             require(abs(D(r.get('width'))-abs(delta)/D(r.get('data-money-scale-yuan-per-unit')))<D('.00001'),'SIGNED_MONEY_WIDTH')
             require(bool(r.get('data-source-fact-ids')) and bool(r.get('data-physical-pages')),'SIGNED_ORIGINAL_FACTS')
         return {'status':'PASS','grammar':grammar,'observed_source_rows':len(rows)}
+    from profit_chain_audit import immutable_v10
+    original=immutable_v10(markup,issuer,pdf_sha)
+    if original:return original
     raise ValueError('UNMIGRATED_FINANCIAL_FIGURE '+str(grammar))
 
 
-def audit(codes,out,origin=None):
+def _audit_sequential(codes,out,origin=None):
     from playwright.sync_api import sync_playwright
     catalog_data=json.loads((ROOT/'site/research_catalog.json').read_text())
     catalog=catalog_data['issuers'];by_code={r['code']:r for r in catalog}
@@ -75,11 +81,16 @@ def audit(codes,out,origin=None):
                 response=page.goto(origin.rstrip('/')+row['href'] if origin else path.as_uri(),wait_until='load',timeout=45000)
                 if origin and (not response or response.body()!=raw):raise ValueError('LIVE_FULL_HTML_BYTES_DIFFER '+code)
                 page.evaluate('document.fonts.ready')
+                if row.get('editorial_contract'):
+                    from profit_chain_audit import check_reader
+                    check_reader(page)
+                    check_reader(page,expanded=True)
                 measured=page.evaluate(MEASURE)
                 faults=[s for s in measured['svgs'] if s['clippedLabels'] or s['possibleLabelOverlaps'] or s['below10px']]
                 if faults or errors or measured['body']['scroll']>measured['body']['client']+1:
                     (out/'failure.json').write_text(json.dumps({'issuer':code,'width':width,'faults':faults,'errors':errors},ensure_ascii=False,indent=2));raise ValueError('ACTUAL_RENDER_BLOCKED '+code+' '+str(width))
                 case={'issuer':code,'width':width,'html_sha256':sha,'figures':[]}
+                if row.get('editorial_contract'):case['editorial_main_layer']='PASS'
                 for index,figure in enumerate(page.locator('figure').all()):
                     visible=figure.locator('svg:visible')
                     if visible.count()!=1:raise ValueError('EACH_FIGURE_NEEDS_ONE_VISIBLE_VECTOR '+code+' '+str(index))
@@ -110,6 +121,31 @@ def audit(codes,out,origin=None):
     result['status']='PASS_LOCAL' if not origin else 'PASS_PRODUCTION'
     result['independent_human_art_review']='NOT_CHECKED'
     result['svg_exports']=sum(len(c['figures']) for c in result['cases'])
+    (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    return result
+
+def audit(codes,out,origin=None,workers=3):
+    """Independent browser workers; every original case/file survives merging."""
+    from concurrent.futures import ThreadPoolExecutor
+    import shutil
+    codes=list(codes);out=Path(out)
+    if not codes or len(codes)!=len(set(codes)):raise ValueError('QA_EMPTY_OR_DUPLICATE_ISSUER')
+    out.mkdir(parents=True,exist_ok=True);(out/'result.json').unlink(missing_ok=True)
+    if len(codes)<4 or workers==1:return _audit_sequential(codes,out,origin)
+    count=min(workers,len(codes));folders=[out/('worker-'+str(i+1)) for i in range(count)]
+    def one(i):return _audit_sequential(codes[i::count],folders[i],origin)
+    with ThreadPoolExecutor(max_workers=count) as pool:parts=list(pool.map(one,range(count)))
+    result=dict(parts[0]);result['issuers']={};result['cases']=[]
+    for folder,part in zip(folders,parts):
+        if part['origin']!=result['origin'] or part['status']!=result['status']:raise ValueError('QA_WORKER_ORIGIN_OR_STATUS')
+        if set(result['issuers'])&set(part['issuers']):raise ValueError('QA_WORKER_ISSUER_OVERLAP')
+        result['issuers'].update(part['issuers']);result['cases'].extend(part['cases'])
+        for f in folder.iterdir():
+            if f.suffix in ('.svg','.png'):shutil.copyfile(f,out/f.name)
+    expected={(code,w) for code in codes for w in (1440,768,390)}
+    if set(result['issuers'])!=set(codes) or len(result['cases'])!=len(expected) or {(c['issuer'],c['width']) for c in result['cases']}!=expected:raise ValueError('QA_INCOMPLETE_PARALLEL_RESULT')
+    result['svg_exports']=sum(len(c['figures']) for c in result['cases'])
+    result['execution_workers']=count
     (out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     return result
 

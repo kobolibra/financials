@@ -1,0 +1,993 @@
+{
+  "schema": "financials.editorial_profit_chain.v1",
+  "issuer": "300308",
+  "name": "中际旭创",
+  "period": "2026H1",
+  "scope": "consolidated",
+  "currency": "CNY",
+  "unit": "元",
+  "source_pdf": {
+    "source_path": "research/issuers/300308/original-2026h1.pdf",
+    "source_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+    "physical_page_count": 184,
+    "basis": "2026H1 consolidated; 人民币元；184页原件",
+    "topics": [
+      {
+        "topic": "收入确认与分部/一元矛盾",
+        "physical_pages": [
+          89,
+          90,
+          139,
+          140
+        ],
+        "status": "EXCEPTION",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "控制权/客户验收；自有来源成本可计算毛利，负数与差额保留",
+        "checks_and_source_evidence": "集团41777861795.03-22454688140.44=19323173654.59；p139光通信41355212182.06、其他一列422649612.97另一列422649613.97，相差1元；成本不差",
+        "conclusion_and_limit": "用集团/与集团闭合来源列，不更改原披露；本期增长不能直接叫800G价格/量贡献"
+      },
+      {
+        "topic": "合同负债与履约订单",
+        "physical_pages": [
+          90,
+          131,
+          140
+        ],
+        "status": "PASS",
+        "materiality": "中高",
+        "accounting_and_cash_meaning": "预收是履约负债，订单与收入时点不相同",
+        "checks_and_source_evidence": "合同负债20708561.80 vs26327404.33；一年以上1245343；p140RPO打印0.00",
+        "conclusion_and_limit": "只按原披露说明RPO，不外推无客户未来采购或无订单；保证2年/汽车3年确认为COGS及预计负债"
+      },
+      {
+        "topic": "应收信用及客户集中",
+        "physical_pages": [
+          101,
+          102,
+          103
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "应收集中不等销售集中；账龄短不排除信用风险",
+        "checks_and_source_evidence": "15051526664.79-50632671.21=15000893993.58；55841638.27+13525228.90-7302171.10-10952538.21-479486.65=50632671.21；前五10911298954.24/原值=72.49%",
+        "conclusion_and_limit": "集团净应收较期初6276876022.07增长87.24亿，不能忽略资金占用；未经客户函证"
+      },
+      {
+        "topic": "预付款账龄与前五名冲突",
+        "physical_pages": [
+          111
+        ],
+        "status": "EXCEPTION",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "原表预付增长影响现金，来源数字彼此不能同时成立",
+        "checks_and_source_evidence": "账龄表总953622834.48；>一年4582264.54+166083+169471.77=4917819.31；正文>一年813565692.24；前五3183862401.46>总953622834.48。该页已渲染目视确认",
+        "conclusion_and_limit": "保留三处原文并公开不一致，拒绝从互相矛盾数字算集中度；不得擅修发行人表"
+      },
+      {
+        "topic": "存货占款与跌价",
+        "physical_pages": [
+          111,
+          112,
+          144
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "备料/在制扩张，准备减少不等同全额收益",
+        "checks_and_source_evidence": "20109875322.93-283966059.42=19825909263.51；297815229.40+13062926.18+31215.07-26885983.40-57327.83=283966059.42",
+        "conclusion_and_limit": "净存货较期初12680707624.68增71.45亿；转回/转销合列不可全当利润；不能由扩产断言全部可售"
+      },
+      {
+        "topic": "研发及资本化",
+        "physical_pages": [
+          142,
+          152
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "费用研发≠总研发、股权激励不等现金",
+        "checks_and_source_evidence": "1234050709.33=1153028870.98+81021838.35；开发54085496.27+81021838.35-4219.74-36086.38=135067028.50",
+        "conclusion_and_limit": "保留光通信项目资本化，禁止称全费用化；技术成功和资产可回收未外部验证"
+      },
+      {
+        "topic": "在建扩产及商誉",
+        "physical_pages": [
+          121,
+          125,
+          126
+        ],
+        "status": "EXTERNAL_UNRESOLVED",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "CIP增长不等全部当期已投产；商誉需未来现金回报",
+        "checks_and_source_evidence": "待安装2446936833.79+装修1256024362.02+其他4455381.89=3707416577.70；商誉2018391758.61-79516426.69=1938875331.92",
+        "conclusion_and_limit": "本期商誉估值参数不适用、CIP详细主要项目表空白；无法独立确认产能效率、订单匹配及回收价值"
+      },
+      {
+        "topic": "借款债务与资本承诺",
+        "physical_pages": [
+          129,
+          131,
+          134,
+          171
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "工程应付与借款不同，已签未付资本合同是约束",
+        "checks_and_source_evidence": "短借49800000+349507920.07=399307920.07；长借467999999.97+18933690=486933689.97；资本承诺8582332357.86+221771386.16=8804103744.02",
+        "conclusion_and_limit": "期末现金不可全当自由现金；工程应付2449105582.35另列，承诺不再重复作资产负债表债务"
+      },
+      {
+        "topic": "境外汇率与税项",
+        "physical_pages": [
+          139,
+          140,
+          142,
+          145,
+          149
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "外销及美元AR形成货币敞口，毛利与汇兑分离",
+        "checks_and_source_evidence": "境外39614660881.74与境内2163200913.29合41777861795.03；汇兑损失708793883.87；美元AR13014895051.86；2535752903.08-38577120.37=2497175782.71税费，另有支柱二补税382783898.48",
+        "conclusion_and_limit": "海外收入不等海外产能；税优惠/支柱二和汇兑不能独立冒充产品效率"
+      },
+      {
+        "topic": "现金转换",
+        "physical_pages": [
+          147,
+          148,
+          149
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "高利润同期存货/应收吸收现金；净利与归母不同",
+        "checks_and_source_evidence": "CFO1799674832.02 vs集团净14733426763.13；经营应收-9241842184.65、存货-7239286403.36、应付+2555941200.83；现金6363673080.79-10943807433.04=-4580134352.25",
+        "conclusion_and_limit": "CFO/集团净利约12.21%，不能用归母混算；汇率与非现金项目使余额变化不等现金桥"
+      },
+      {
+        "topic": "关联交易及担保或有",
+        "physical_pages": [
+          167,
+          168,
+          169,
+          171
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "联营企业购销不是集团内全额抵销，仍需独立商业解释",
+        "checks_and_source_evidence": "联营采购514728002.59、销售1538600872.68；关联应收528017935.88、应付284340072.01；租赁/固定转让另列；原文无重大或有",
+        "conclusion_and_limit": "未独立确认定价和终端客户重叠，不从空担保表推出无一般法律风险"
+      },
+      {
+        "topic": "合并重述与期后融资分红",
+        "physical_pages": [
+          139,
+          153,
+          154,
+          155,
+          156,
+          171,
+          172
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "期后H股大额融资不可算H1现金；比较列仍按本报告",
+        "checks_and_source_evidence": "7月30日发行54500000股H股，每股980港元、募534.10亿港元；中期拟1403681569.20元待批准；期初未分配利润无调整数",
+        "conclusion_and_limit": "不将H股融资填H1现金缺口；原件一元等矛盾保留，非全文无错认证"
+      }
+    ]
+  },
+  "source_ledger": "skills/ashare-financial-storytelling/v7/examples/zhongji-2026H1-ledger.json",
+  "facts": {
+    "revenue": {
+      "yuan": "41777861795.03",
+      "page": 56,
+      "label": "营业收入",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            306.8399963378906,
+            76.34066772460938,
+            374.4327392578125,
+            86.30408477783203
+          ],
+          "printed": "41,777,861,795.03",
+          "original_number": "41777861795.03",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "cogs": {
+      "yuan": "22454688140.44",
+      "page": 56,
+      "label": "营业成本",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            306.8399963378906,
+            162.62066650390625,
+            374.4327392578125,
+            172.58407592773438
+          ],
+          "printed": "22,454,688,140.44",
+          "original_number": "22454688140.44",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "total_operating_costs": {
+      "yuan": "25266330732.20",
+      "page": 56,
+      "label": "营业总成本",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            306.8399963378906,
+            145.34066772460938,
+            374.4327392578125,
+            155.3040771484375
+          ],
+          "printed": "25,266,330,732.20",
+          "original_number": "25266330732.20",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "operating_profit": {
+      "yuan": "17231320005.52",
+      "page": 56,
+      "label": "营业利润",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            306.8399963378906,
+            670.8206176757812,
+            374.4327392578125,
+            680.7840576171875
+          ],
+          "printed": "17,231,320,005.52",
+          "original_number": "17231320005.52",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "other_income": {
+      "yuan": "13891729.92",
+      "page": 56,
+      "label": "其他收益",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            322.67999267578125,
+            421.34063720703125,
+            374.4320983886719,
+            431.3040771484375
+          ],
+          "printed": "13,891,729.92",
+          "original_number": "13891729.92",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "investment_income": {
+      "yuan": "189517732.88",
+      "page": 56,
+      "label": "投资收益",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            318.1199951171875,
+            438.62066650390625,
+            374.4622802734375,
+            448.5841064453125
+          ],
+          "printed": "189,517,732.88",
+          "original_number": "189517732.88",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "fair_value_income": {
+      "yuan": "537120000.00",
+      "page": 56,
+      "label": "公允价值变动收益",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            318.1199951171875,
+            563.3006591796875,
+            374.4622802734375,
+            573.2640991210938
+          ],
+          "printed": "537,120,000.00",
+          "original_number": "537120000.00",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "credit_impairment": {
+      "yuan": "-6255695.67",
+      "page": 56,
+      "label": "信用减值损失",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            324.1199951171875,
+            591.6206665039062,
+            374.4591064453125,
+            601.5841064453125
+          ],
+          "printed": "-6,255,695.67",
+          "original_number": "-6255695.67",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "asset_impairment": {
+      "yuan": "-13062926.18",
+      "page": 56,
+      "label": "资产减值损失",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            319.67999267578125,
+            619.8206176757812,
+            374.4292907714844,
+            629.7840576171875
+          ],
+          "printed": "-13,062,926.18",
+          "original_number": "-13062926.18",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "disposal_income": {
+      "yuan": "-1421898.26",
+      "page": 56,
+      "label": "资产处置收益",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            324.1199951171875,
+            648.1406860351562,
+            374.4591064453125,
+            658.1041259765625
+          ],
+          "printed": "-1,421,898.26",
+          "original_number": "-1421898.26",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "nonop_income": {
+      "yuan": "1895964.69",
+      "page": 56,
+      "label": "营业外收入",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            327.1199951171875,
+            688.1006469726562,
+            374.4619140625,
+            698.0640869140625
+          ],
+          "printed": "1,895,964.69",
+          "original_number": "1895964.69",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "nonop_expense": {
+      "yuan": "2613424.37",
+      "page": 56,
+      "label": "营业外支出",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            327.1199951171875,
+            705.3806762695312,
+            374.4619140625,
+            715.3441162109375
+          ],
+          "printed": "2,613,424.37",
+          "original_number": "2613424.37",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "income_tax": {
+      "yuan": "2497175782.71",
+      "page": 56,
+      "label": "所得税费用",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            311.4000244140625,
+            750.8606567382812,
+            374.4925537109375,
+            760.8240966796875
+          ],
+          "printed": "2,497,175,782.71",
+          "original_number": "2497175782.71",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "net_profit": {
+      "yuan": "14733426763.13",
+      "page": 57,
+      "label": "合并净利润",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            306.814453125,
+            76.34066772460938,
+            374.4971923828125,
+            86.30408477783203
+          ],
+          "printed": "14,733,426,763.13",
+          "original_number": "14733426763.13",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        },
+        {
+          "bbox": [
+            306.8399963378906,
+            114.38066101074219,
+            374.4327392578125,
+            124.34407806396484
+          ],
+          "printed": "14,733,426,763.13",
+          "original_number": "14733426763.13",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "parent_profit": {
+      "yuan": "13651149693.27",
+      "page": 57,
+      "label": "归母净利润",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            306.8399963378906,
+            180.1406707763672,
+            374.4327392578125,
+            190.1040802001953
+          ],
+          "printed": "13,651,149,693.27",
+          "original_number": "13651149693.27",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "minority_profit": {
+      "yuan": "1082277069.86",
+      "page": 57,
+      "label": "少数股东损益",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            311.4000244140625,
+            204.38067626953125,
+            374.4925537109375,
+            214.34408569335938
+          ],
+          "printed": "1,082,277,069.86",
+          "original_number": "1082277069.86",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "research_expenses": {
+      "yuan": "1153028870.98",
+      "page": 56,
+      "label": "研发费用",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            311.4000244140625,
+            352.3406677246094,
+            374.4925537109375,
+            362.3041076660156
+          ],
+          "printed": "1,153,028,870.98",
+          "original_number": "1153028870.98",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "financial_expenses": {
+      "yuan": "562247445.89",
+      "page": 56,
+      "label": "财务费用",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            318.1199951171875,
+            369.6206359863281,
+            374.4622802734375,
+            379.5840759277344
+          ],
+          "printed": "562,247,445.89",
+          "original_number": "562247445.89",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "optical_revenue": {
+      "yuan": "41355212182.06",
+      "page": 26,
+      "label": "光通信收发模块营业收入",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            123.83999633789062,
+            648.1406860351562,
+            191.43275451660156,
+            658.1041259765625
+          ],
+          "printed": "41,355,212,182.06",
+          "original_number": "41355212182.06",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "other_product_revenue": {
+      "yuan": "422649612.97",
+      "page": 139,
+      "label": "其他产品/服务营业收入",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "source_cells": [
+        {
+          "bbox": [
+            332.0400085449219,
+            708.5408935546875,
+            372.63165283203125,
+            729.541259765625
+          ],
+          "printed": "422,649,612.97",
+          "original_number": "422649612.97",
+          "unit_scale": "1",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": true
+        }
+      ]
+    },
+    "remaining_operating_expense": {
+      "yuan": "-1096366274.89",
+      "page": 56,
+      "label": "其余营业费用（总成本减营业成本、研发和财务费用）",
+      "period": "2026H1",
+      "source_kind": "derived",
+      "classification": "DERIVED",
+      "terms": [
+        [
+          "total_operating_costs",
+          -1
+        ],
+        [
+          "cogs",
+          1
+        ],
+        [
+          "research_expenses",
+          1
+        ],
+        [
+          "financial_expenses",
+          1
+        ]
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "光通信收发模块",
+      "terms": [
+        [
+          "optical_revenue",
+          1
+        ]
+      ]
+    },
+    {
+      "label": "其他",
+      "terms": [
+        [
+          "other_product_revenue",
+          1
+        ]
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "revenue",
+      "label": "营业收入",
+      "terms": [
+        [
+          "revenue",
+          1
+        ]
+      ],
+      "adjustments": []
+    },
+    {
+      "id": "gross",
+      "label": "营业毛利",
+      "terms": [
+        [
+          "revenue",
+          1
+        ],
+        [
+          "cogs",
+          -1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "营业成本",
+          "terms": [
+            [
+              "cogs",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "operating",
+      "label": "营业利润",
+      "terms": [
+        [
+          "operating_profit",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "研发费用",
+          "terms": [
+            [
+              "research_expenses",
+              -1
+            ]
+          ]
+        },
+        {
+          "label": "财务净损益",
+          "terms": [
+            [
+              "financial_expenses",
+              -1
+            ]
+          ]
+        },
+        {
+          "label": "其余营业费用（计算）",
+          "terms": [
+            [
+              "remaining_operating_expense",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "其他收益",
+          "terms": [
+            [
+              "other_income",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "投资收益",
+          "terms": [
+            [
+              "investment_income",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "公允价值变动收益",
+          "terms": [
+            [
+              "fair_value_income",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "信用减值损失",
+          "terms": [
+            [
+              "credit_impairment",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "资产减值损失",
+          "terms": [
+            [
+              "asset_impairment",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "资产处置收益",
+          "terms": [
+            [
+              "disposal_income",
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pretax",
+      "label": "税前利润",
+      "terms": [
+        [
+          "operating_profit",
+          1
+        ],
+        [
+          "nonop_income",
+          1
+        ],
+        [
+          "nonop_expense",
+          -1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "营业外收益",
+          "terms": [
+            [
+              "nonop_income",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "营业外支出",
+          "terms": [
+            [
+              "nonop_expense",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net",
+      "label": "合并净利润",
+      "terms": [
+        [
+          "net_profit",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "所得税费用",
+          "terms": [
+            [
+              "income_tax",
+              -1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parent",
+      "label": "归母净利润",
+      "terms": [
+        [
+          "parent_profit",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "少数股东归属调整",
+          "terms": [
+            [
+              "minority_profit",
+              -1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "editorial": {
+    "primary_question": "收入如何形成归母净利润？",
+    "income_basis": "营业收入起点；其他收益和金融业务收入在相应层另列；不分摊产品税后利润",
+    "full_reconciliation": "REFERENCE_EXPANDABLE_NOT_PRIMARY",
+    "human_review": "NOT_CHECKED",
+    "figures": [
+      {
+        "index": 0,
+        "id": "",
+        "title": "各项业务收入如何形成营业成本与毛利？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 1,
+        "id": "",
+        "title": "从毛利润到合并净利润：完整有符号会计桥",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
+        "id": "",
+        "title": "毛利润同比多出多少？收入与成本变化分别起了什么算术作用？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 3,
+        "id": "",
+        "title": "毛利率、经营现金流率、简化 FCF 率：两期比较",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 4,
+        "id": "",
+        "title": "合并净利润经过哪些调整，才成为经营现金流？",
+        "role": "reference",
+        "rationale": "正文保留主要现金占用与反证，全部附注调节移入可展开核对层",
+        "summary": true,
+        "focus": [
+          "存货",
+          "经营性应收",
+          "经营性应付"
+        ]
+      },
+      {
+        "index": 5,
+        "id": "",
+        "title": "经营现金流形成后，期末现金为什么反而减少？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 6,
+        "id": "",
+        "title": "经营现金流扣除现金资本开支，留下多少简化 FCF？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 7,
+        "id": "",
+        "title": "总资产由哪些部分构成，并由负债和股东权益如何支撑？",
+        "role": "reference",
+        "rationale": "保留原始结构与风险证据，正文优先经营驱动和重要资本约束",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 8,
+        "id": "",
+        "title": "哪些营运资本项目比年初增加得更快？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      }
+    ],
+    "takeaway": "主线贯通光模块收入、营业利润和股东归属，完整费用及现金调节下沉。",
+    "counter": "原始p139的一元列示矛盾继续保留；不按集团利润率虚分产品税后利润。",
+    "level_component_count": 3,
+    "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
+    "original_article_sha256": "be73f257259847a0f62c5f8566ac95bab281b9452f4d236a12e34fb207b32d31",
+    "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。"
+  },
+  "report_identity_page": 1,
+  "source_url": "https://pdf.dfcfw.com/pdf/H2_AN202608211828276722_1.pdf"
+}

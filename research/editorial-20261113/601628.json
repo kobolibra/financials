@@ -1,0 +1,949 @@
+{
+  "schema": "financials.editorial_profit_chain.v1",
+  "issuer": "601628",
+  "name": "中国人寿",
+  "period": "2026H1",
+  "scope": "consolidated",
+  "currency": "CNY",
+  "unit": "元",
+  "source_pdf": {
+    "source_path": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+    "source_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+    "physical_page_count": 104,
+    "basis": "2026H1 consolidated; 人民币百万元；物理页=印刷页+2",
+    "topics": [
+      {
+        "topic": "保费管理口径与CAS25保险服务收入",
+        "physical_pages": [
+          10,
+          47,
+          87
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "管理保费536634不等保险服务收入112525，不是工业销售毛利",
+        "checks_and_source_evidence": "百万元：管理新单180039+续期356595=536634；服务24572+1099+35155+25133=85959，加PAA26566=112525",
+        "conclusion_and_limit": "管理保费按旧原保险/再保险规定的经营统计；不可将536634流入CAS25服务利润桥或叫营业收入"
+      },
+      {
+        "topic": "保险服务净额与再保险",
+        "physical_pages": [
+          47,
+          87,
+          89
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "服务费用、再保费用和保险财务损益分属不同，禁止工业COGS称谓",
+        "checks_and_source_evidence": "百万元：112525-70442-2885+1979=41177保险服务净额；费用22339+25133-4179+450=43743，加PAA26699=70442",
+        "conclusion_and_limit": "亏损部分转回4179改善当期服务结果，不能全归因销售效率；分出再保财务372不混服务净额"
+      },
+      {
+        "topic": "CSM与负债组成",
+        "physical_pages": [
+          84,
+          85,
+          87
+        ],
+        "status": "EXTERNAL_UNRESOLVED",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "CSM为未赚服务利润，不是权益或可分股息；存量上升不等于当期赚取",
+        "checks_and_source_evidence": "百万元：未来现金流6018422+风险调整41039+CSM813253=6872714，加PAA38027=6910741；未到期6844701+已发生赔款66040=6910741；CSM期初768369、本期摊销35155",
+        "conclusion_and_limit": "H1只给组成而非完整CSM新业务/假设/金融变动滚动，不以净增加44884当新业务价值；需要年报精算/合同组证据"
+      },
+      {
+        "topic": "投资收益与保险财务抵配",
+        "physical_pages": [
+          17,
+          47,
+          48,
+          88,
+          89
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "投资市场收益须并列保单融资成本，FVOCI与损益不能双算",
+        "checks_and_source_evidence": "百万元：利息66635+投资112902+FV135835-承保财务188067+分出财务372=127677（未扣利息支出1973与其他项目）；综合净136003-OCI48038=87965",
+        "conclusion_and_limit": "总投资收益314504经营统计不等利润表单一行；5.58%收益率只部分年化，不能直接与全部年化回报混比"
+      },
+      {
+        "topic": "信用风险和金融减值",
+        "physical_pages": [
+          61,
+          62,
+          63,
+          79,
+          80,
+          90
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "信用损失为前瞻估计；AAA评级不是无风险证明",
+        "checks_and_source_evidence": "百万元：ECL范围5019700+6537+322=5026559；债权投资stage2为2685，其他债权3852；信用减值-100-60-9+2+1=-166（净转回）",
+        "conclusion_and_limit": "逾期30天是显著增加标准之一；未独立验证PD/LGD或担保可执行，不能称无信用损失风险"
+      },
+      {
+        "topic": "资产负债久期和回购融资",
+        "physical_pages": [
+          64,
+          65,
+          84
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "保险负债现金表含未来保费净流入，不是工业债务到期表；未折现不能等于账面",
+        "checks_and_source_evidence": "回购156652+67228=223880百万元，均30天内；银行间质押债191158、交易所质押库235487受限；现金流表未考虑未来新业务",
+        "conclusion_and_limit": "长期净流出与短期保费流入依赖精算行为假设；不把全部投资资产当自由可分现金"
+      },
+      {
+        "topic": "非上市估值与资产减值",
+        "physical_pages": [
+          67,
+          68,
+          69,
+          70
+        ],
+        "status": "EXTERNAL_UNRESOLVED",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "第三层级非观察参数影响净利/OCI，非现金回报保证",
+        "checks_and_source_evidence": "百万元：601161+22817+5454+965-35521=594876第三层级余额；占FV资产约8.7%；流动性折扣14%-33%、贴现率1.20%-11.00%",
+        "conclusion_and_limit": "已审滚动与参数披露，缺逐项模型和市场可比，无法独立认证估值；未计提或FV上升不等无减值"
+      },
+      {
+        "topic": "偿付资本与监管口径",
+        "physical_pages": [
+          21,
+          66
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "偿付资本不同于CAS权益，分红受资本与监管限制",
+        "checks_and_source_evidence": "百万元：1058166/674846=156.80%核心、1334688/674846=197.78%综合；附注取整157%/198%与MD&A一致",
+        "conclusion_and_limit": "监管规则因子变化可能影响同比，资本率上升不能全归因经营改善；未来偿付率需季度原件检验"
+      },
+      {
+        "topic": "税项与递延税",
+        "physical_pages": [
+          71,
+          83,
+          91
+        ],
+        "status": "PASS",
+        "materiality": "极高",
+        "accounting_and_cash_meaning": "投资非应税/递延大幅变化导致费用非现金税；DTA与DTL列示抵销",
+        "checks_and_source_evidence": "百万元：1617+25429=27046；40762-400-13594+261+33-16=27046；178665-156982=21683，净列23869-2186=21683",
+        "conclusion_and_limit": "净税资产不能全立即兑现；税率25%不能直接套投资总收益"
+      },
+      {
+        "topic": "关联投资与母子公司抵销",
+        "physical_pages": [
+          99,
+          100,
+          101
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "集团关联交易与母公司对子公司交易不同，后者合并抵销",
+        "checks_and_source_evidence": "百万元：广发存款12313、借款127、理财债8546；集团收保单代理费220等；母公司付子公司投资管理费2281另列；关键管理7为预发非最终薪酬",
+        "conclusion_and_limit": "不将内部委托收益重复加集团投资收益；关联公允性仅有原披露，未外部独立评估"
+      },
+      {
+        "topic": "承诺或有及工业指标边界",
+        "physical_pages": [
+          58,
+          71,
+          102
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "保险赔付负债不是存货/商品AR，工业研发资本化模型不适用；投资承诺需现金",
+        "checks_and_source_evidence": "百万元：未决法律诉讼901 vs816；资本承诺75771+768+226=76765；未可可靠估计且不重大其他或有无法量化",
+        "conclusion_and_limit": "已读披露不等诉讼无损失；无工业存货/R&D当作N/A不影响保险合同估值风险"
+      },
+      {
+        "topic": "合并范围与期后股利",
+        "physical_pages": [
+          35,
+          57,
+          74,
+          75,
+          76,
+          77,
+          87,
+          102
+        ],
+        "status": "PASS",
+        "materiality": "高",
+        "accounting_and_cash_meaning": "控制判断含结构化主体，管理资产不自动并表；期后拟股利与June已批准末期分红分开",
+        "checks_and_source_evidence": "2025末期0.618元/股共17468百万元已股东会批准；2026中期0.358拟10119百万元需股东会批准；CSM不等可派利润",
+        "conclusion_and_limit": "中期拟分红不能计入H1现金，母公司归母与集团136003净利区分；完整2025会计政策仍需合读"
+      }
+    ]
+  },
+  "source_ledger": "research/issuers/601628/source-ledger.json",
+  "facts": {
+    "total_revenue": {
+      "yuan": "434307000000",
+      "page": 47,
+      "label": "合并利润表营业收入",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            439.9572448730469,
+            160.804931640625,
+            473.40130615234375,
+            172.56793212890625
+          ],
+          "printed": "434,307",
+          "original_number": "434307",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "service_cost": {
+      "yuan": "-70442000000",
+      "page": 47,
+      "label": "保险服务费用（负数计入营业支出）",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            441.82666015625,
+            331.8409423828125,
+            476.4137268066406,
+            343.60394287109375
+          ],
+          "printed": "(70,442)",
+          "original_number": "-70442",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "reinsurance_premium": {
+      "yuan": "-2885000000",
+      "page": 47,
+      "label": "分出保费的分摊",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            446.974609375,
+            346.84393310546875,
+            476.4046630859375,
+            358.60693359375
+          ],
+          "printed": "(2,885)",
+          "original_number": "-2885",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "reinsurance_recovered": {
+      "yuan": "1979000000",
+      "page": 47,
+      "label": "摊回保险服务费用",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            450.277587890625,
+            361.846923828125,
+            473.4076232910156,
+            373.60992431640625
+          ],
+          "printed": "1,979",
+          "original_number": "1979",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "insurance_finance": {
+      "yuan": "-188067000000",
+      "page": 47,
+      "label": "承保财务损益（利润表负数）",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            436.6695556640625,
+            376.84991455078125,
+            476.41363525390625,
+            388.6129150390625
+          ],
+          "printed": "(188,067)",
+          "original_number": "-188067",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "reinsurance_finance": {
+      "yuan": "372000000",
+      "page": 47,
+      "label": "分出再保险财务损益（收益方向）",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            458.071533203125,
+            391.8529052734375,
+            473.3895568847656,
+            403.61590576171875
+          ],
+          "printed": "372",
+          "original_number": "372",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "interest_expense": {
+      "yuan": "-1973000000",
+      "page": 47,
+      "label": "利息支出",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            446.9744873046875,
+            406.85589599609375,
+            476.404541015625,
+            418.618896484375
+          ],
+          "printed": "(1,973)",
+          "original_number": "-1973",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "commission_expense": {
+      "yuan": "-810000000",
+      "page": 47,
+      "label": "手续费及佣金支出",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            454.7864685058594,
+            421.85888671875,
+            476.4045104980469,
+            433.62188720703125
+          ],
+          "printed": "(810)",
+          "original_number": "-810",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "tax_surcharge": {
+      "yuan": "-1132000000",
+      "page": 47,
+      "label": "税金及附加",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            446.9744567871094,
+            436.86187744140625,
+            476.4045104980469,
+            448.6248779296875
+          ],
+          "printed": "(1,132)",
+          "original_number": "-1132",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "administrative_expense": {
+      "yuan": "-3820000000",
+      "page": 47,
+      "label": "业务及管理费",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            446.9744567871094,
+            451.8648681640625,
+            476.4045104980469,
+            463.62786865234375
+          ],
+          "printed": "(3,820)",
+          "original_number": "-3820",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "credit_impair": {
+      "yuan": "166000000",
+      "page": 47,
+      "label": "信用减值损失（正数为净转回方向）",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            458.0804748535156,
+            466.86785888671875,
+            473.39849853515625,
+            478.630859375
+          ],
+          "printed": "166",
+          "original_number": "166",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "other_asset_impair": {
+      "yuan": "-1029000000",
+      "page": 47,
+      "label": "其他资产减值损失",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            446.9744873046875,
+            481.870849609375,
+            476.404541015625,
+            493.63385009765625
+          ],
+          "printed": "(1,029)",
+          "original_number": "-1029",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "other_business_cost": {
+      "yuan": "-3488000000",
+      "page": 47,
+      "label": "其他业务成本",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            446.9744873046875,
+            496.87384033203125,
+            476.404541015625,
+            508.6368408203125
+          ],
+          "printed": "(3,488)",
+          "original_number": "-3488",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "op_profit": {
+      "yuan": "163178000000",
+      "page": 47,
+      "label": "合并营业利润",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            439.9572448730469,
+            514.8320922851562,
+            473.40130615234375,
+            526.5950927734375
+          ],
+          "printed": "163,178",
+          "original_number": "163178",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "nonoperating_income": {
+      "yuan": "13000000",
+      "page": 47,
+      "label": "营业外收入",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            463.2287902832031,
+            532.8411254882812,
+            473.3898010253906,
+            544.6041259765625
+          ],
+          "printed": "13",
+          "original_number": "13",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "nonoperating_expense": {
+      "yuan": "-142000000",
+      "page": 47,
+      "label": "营业外支出",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            454.7778015136719,
+            547.8441162109375,
+            476.3958435058594,
+            559.6071166992188
+          ],
+          "printed": "(142)",
+          "original_number": "-142",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "income_tax": {
+      "yuan": "-27046000000",
+      "page": 47,
+      "label": "所得税费用",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            441.81781005859375,
+            583.8591918945312,
+            476.4048767089844,
+            595.6221923828125
+          ],
+          "printed": "(27,046)",
+          "original_number": "-27046",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "net_profit": {
+      "yuan": "136003000000",
+      "page": 47,
+      "label": "合并净利润",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            439.95733642578125,
+            601.8683471679688,
+            473.4013977050781,
+            613.63134765625
+          ],
+          "printed": "136,003",
+          "original_number": "136003",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        },
+        {
+          "bbox": [
+            439.9548034667969,
+            634.8804321289062,
+            473.39886474609375,
+            646.6434326171875
+          ],
+          "printed": "136,003",
+          "original_number": "136003",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "parent_net": {
+      "yuan": "134489000000",
+      "page": 47,
+      "label": "归属于母公司股东的净利润",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            439.94580078125,
+            664.8864135742188,
+            473.3898620605469,
+            676.6494140625
+          ],
+          "printed": "134,489",
+          "original_number": "134489",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    },
+    "nci_profit": {
+      "yuan": "1514000000",
+      "page": 47,
+      "label": "少数股东损益",
+      "period": "2026H1",
+      "source_kind": "legacy_typed",
+      "classification": "DISCLOSED",
+      "source_cells": [
+        {
+          "bbox": [
+            450.2507629394531,
+            679.8894653320312,
+            473.38079833984375,
+            691.6524658203125
+          ],
+          "printed": "1,514",
+          "original_number": "1514",
+          "unit_scale": "1000000",
+          "normalization": "SIGNED_ORIGINAL",
+          "wrapped_number": false
+        }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "label": "法定营业总收入",
+      "terms": [
+        [
+          "total_revenue",
+          1
+        ]
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "revenue",
+      "label": "法定营业总收入",
+      "terms": [
+        [
+          "total_revenue",
+          1
+        ]
+      ],
+      "adjustments": []
+    },
+    {
+      "id": "operating",
+      "label": "营业利润",
+      "terms": [
+        [
+          "op_profit",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "保险服务与分保成本",
+          "terms": [
+            [
+              "service_cost",
+              1
+            ],
+            [
+              "reinsurance_premium",
+              1
+            ],
+            [
+              "reinsurance_recovered",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "保险财务及融资净损益",
+          "terms": [
+            [
+              "insurance_finance",
+              1
+            ],
+            [
+              "reinsurance_finance",
+              1
+            ],
+            [
+              "interest_expense",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "运营管理、佣金和税费",
+          "terms": [
+            [
+              "commission_expense",
+              1
+            ],
+            [
+              "tax_surcharge",
+              1
+            ],
+            [
+              "administrative_expense",
+              1
+            ],
+            [
+              "other_business_cost",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "信用及其他资产减值",
+          "terms": [
+            [
+              "credit_impair",
+              1
+            ],
+            [
+              "other_asset_impair",
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pretax",
+      "label": "税前利润",
+      "terms": [
+        [
+          "op_profit",
+          1
+        ],
+        [
+          "nonoperating_income",
+          1
+        ],
+        [
+          "nonoperating_expense",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "营业外收益",
+          "terms": [
+            [
+              "nonoperating_income",
+              1
+            ]
+          ]
+        },
+        {
+          "label": "营业外支出",
+          "terms": [
+            [
+              "nonoperating_expense",
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "net",
+      "label": "合并净利润",
+      "terms": [
+        [
+          "net_profit",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "所得税费用",
+          "terms": [
+            [
+              "income_tax",
+              1
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "parent",
+      "label": "归母净利润",
+      "terms": [
+        [
+          "parent_net",
+          1
+        ]
+      ],
+      "adjustments": [
+        {
+          "label": "少数股东归属调整",
+          "terms": [
+            [
+              "nci_profit",
+              -1
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "editorial": {
+    "primary_question": "法定收入如何形成归母利润？",
+    "income_basis": "法定收入含保险服务及投资损益；管理层保费不接入利润链",
+    "full_reconciliation": "REFERENCE_EXPANDABLE_NOT_PRIMARY",
+    "human_review": "NOT_CHECKED",
+    "figures": [
+      {
+        "index": 0,
+        "id": "chart-clocks",
+        "title": "保费仅增2.2%，服务收入仅增5.3%，为何归母利润增228.6%？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 1,
+        "id": "chart-premium",
+        "title": "2026H1总保费如何由四个真实业务分组汇成新单与续期？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
+        "id": "chart-service",
+        "title": "合并保险服务收入靠什么确认，而非简单收到了多少保费？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 3,
+        "id": "chart-insurance",
+        "title": "承保服务本身按法定行项贡献了多少，不计投资估值？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 4,
+        "id": "chart-pnl",
+        "title": "资本市场估值收益如何被保险财务负担和税收抵消后抵达归母利润？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 5,
+        "id": "chart-delta",
+        "title": "营业利润增量真正的会计贡献和抵销各是什么？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 6,
+        "id": "chart-cash",
+        "title": "保单保费收现及赔付、佣金、税费如何精确生成经营现金流？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 7,
+        "id": "chart-cashclose",
+        "title": "经营现金282879为何期末现金只净增5449？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 8,
+        "id": "chart-csm",
+        "title": "69,107.41亿元的保险合同负债里，CSM是什么而不是什么？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 9,
+        "id": "chart-balance",
+        "title": "8.09万亿元资产由什么融资？负债与归母股权如何分层？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      }
+    ],
+    "takeaway": "本图从法定营业总收入进入承保、投资与保险财务、税收及利润归属，最终抵达归母。",
+    "counter": "管理层保费统计不接入法定利润链；保险财务净损益及投资估值不能简单当现金收现。",
+    "level_component_count": 3,
+    "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
+    "original_article_sha256": "25b337ead21596661f3f9ec30163555d3a79a4c59b6d19e2a9e8c59f0b2e961a",
+    "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。"
+  },
+  "report_identity_page": 1,
+  "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225516873.PDF"
+}

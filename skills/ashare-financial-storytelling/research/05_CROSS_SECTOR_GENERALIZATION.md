@@ -1,5 +1,7 @@
 # Cross-Sector Financial Research Adapter Protocol · Candidate v8.2
 
+当前执行补充（2026-11-13）：完整源账核查、重点正文表达、完整对账下沉。优先遵循 `../../../docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`：合法同口径利润链贯通归母；正负调整、行业收入基准、源格和实际几何分别验收；独立详细桥仅在回答新增重要问题时留正文。下方有日期的案例是历史证据，不覆盖当前目录和本次HTML字节。
+
 This document is an original engineering specification. It does not certify that every industry is production-ready.
 
 ## Core design

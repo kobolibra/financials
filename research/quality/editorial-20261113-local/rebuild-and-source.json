@@ -1,0 +1,284 @@
+{
+  "status": "PASS_LOCAL_SOURCE_NOT_PRODUCTION",
+  "records": [
+    {
+      "issuer": "300394",
+      "html_sha256": "a4ce355ffe53f8d15ed7c06841b7f0885d523ab316efbc24b37a0dc59911888d",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 21,
+        "pdf_sha256": "6f508be2da82fb7b1728e2e638b5ce721baa3cf98a64234db636358019d913f5"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 11
+    },
+    {
+      "issuer": "300308",
+      "html_sha256": "5c8b50b85fff1db173be11b9cda01ad1d43ea040e6feb8a5ab7d04c64ef96647",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 21,
+        "pdf_sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 10
+    },
+    {
+      "issuer": "300502",
+      "html_sha256": "c3250f180d3576b7565b854a0ab85fae40a5848206a5d145dc2478f37512b0e2",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 21,
+        "pdf_sha256": "bc164fb2026947ef377e0f242cb80566b30afcb06d202e47b20222fd45c93d3e"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 12
+    },
+    {
+      "issuer": "600036",
+      "html_sha256": "521cddc76ea1835dda663fd6e178ab1040f0e72063e7a1f6452af54f25413bf9",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 16,
+        "pdf_sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c"
+      },
+      "profit_stages": [
+        "revenue",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 5,
+      "current_financial_figures": 9
+    },
+    {
+      "issuer": "688111",
+      "html_sha256": "b11452f4d6c3c09f240e14ad6221a2efe51d3947f5d95ab25bdac3d46f8c3df7",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 23,
+        "pdf_sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 10
+    },
+    {
+      "issuer": "600519",
+      "html_sha256": "e94fd86792a12dfa05a84c8184e3186dc0c29e736358a36a7a63b9a7214f3ede",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 25,
+        "pdf_sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 1,
+      "current_financial_figures": 10
+    },
+    {
+      "issuer": "000333",
+      "html_sha256": "6ce5e9362f9d334cb8f4ee98dc15a47a1198868baa0e98f7cfb271f395b2bd59",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 28,
+        "pdf_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 11
+    },
+    {
+      "issuer": "688220",
+      "html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 24,
+        "pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 10
+    },
+    {
+      "issuer": "600900",
+      "html_sha256": "de0d9e473f33710d40781ce80ec5965b74d80e2052a0d78db4308234e4080158",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 22,
+        "pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 3,
+      "current_financial_figures": 9
+    },
+    {
+      "issuer": "600276",
+      "html_sha256": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 23,
+        "pdf_sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 9
+    },
+    {
+      "issuer": "601628",
+      "html_sha256": "c8b6a00f9bcc6564b040e6e129708db9e357427bba0ecffbcefd4db5d33bd379",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 20,
+        "pdf_sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943"
+      },
+      "profit_stages": [
+        "revenue",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 2,
+      "current_financial_figures": 11
+    },
+    {
+      "issuer": "600690",
+      "html_sha256": "0fe032c77c56ffd3a859dc12edcff5bf07cf907b8b07ae22b19d9613e46f260a",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 24,
+        "pdf_sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 5,
+      "current_financial_figures": 13
+    },
+    {
+      "issuer": "300548",
+      "html_sha256": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 23,
+        "pdf_sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 5,
+      "current_financial_figures": 12
+    },
+    {
+      "issuer": "300570",
+      "html_sha256": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
+      "deterministic_rebuild": "PASS",
+      "original_source": {
+        "status": "PASS",
+        "source_cells_and_derivations": 22,
+        "pdf_sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2"
+      },
+      "profit_stages": [
+        "revenue",
+        "gross",
+        "operating",
+        "pretax",
+        "net",
+        "parent"
+      ],
+      "original_reference_figures": 4,
+      "current_financial_figures": 11
+    }
+  ],
+  "independent_human_review": "NOT_CHECKED"
+}

@@ -17,6 +17,9 @@ def run(out):
         if (ROOT/'research/rebuild-v10/site'/f'{code}.html').read_bytes()!=(ROOT/'public/research/2026-h1-v10'/f'{code}.html').read_bytes():
             raise ValueError('ORIGINAL_PDF_REBUILD_BYTES_DRIFT '+code)
     catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+    from profit_chain_audit import validate_source, bundle_for
+    for issuer in catalog['issuers']:
+        if issuer.get('editorial_contract'):validate_source(bundle_for(issuer['code']))
     from source_publication import publish
     for issuer in catalog['issuers']:
         if issuer.get('source_publication'):
@@ -24,7 +27,7 @@ def run(out):
             rebuilt=Path(out)/('rebuilt-'+issuer['code']+'.html')
             publish(ROOT/issuer['source_publication'],rebuilt)
             if rebuilt.read_bytes()!=original.read_bytes():raise ValueError('NEW_DOSSIER_CLEAN_REBUILD_DRIFT '+issuer['code'])
-    checks=[['-O','-m','unittest','discover','-s','research/shared','-p','test_signed_period_generalization.py'],['-O','-m','unittest','discover','-s','research/shared','-p','test_editorial_bridge.py'],['-m','unittest','discover','-s','research/quality/historical-peer-evidence','-p','test_evidence.py'],['-m','unittest','discover','-s','research/shared','-p','test_*.py'],
+    checks=[['-m','unittest','discover','-s','scripts','-p','test_parallel_figure_audit.py'],['-O','-m','unittest','discover','-s','research/shared','-p','test_signed_period_generalization.py'],['-O','-m','unittest','discover','-s','research/shared','-p','test_editorial_bridge.py'],['-m','unittest','discover','-s','research/quality/historical-peer-evidence','-p','test_evidence.py'],['-m','unittest','discover','-s','research/shared','-p','test_*.py'],
             ['-O','-m','unittest','discover','-s','research/shared','-p','test_*economics*.py'],
             ['-O','-m','unittest','discover','-s','research/shared','-p','test_income_generalization.py'],
             ['-m','unittest','discover','-s','research/rebuild-v10','-p','test_bank_profit_bridge.py'],
@@ -32,7 +35,7 @@ def run(out):
     for args in checks:subprocess.run([sys.executable,*args],cwd=ROOT,check=True)
     sys.path.insert(0,str(ROOT/'scripts'))
     from audit_delivery_matrix import audit
-    result=audit(Path(out))
+    result=audit(Path(out),capture_all_figures=False)
     if result['blockers']:raise ValueError('FULL_LIBRARY_DELIVERY_BLOCKED '+repr(result['blockers']))
     from qa_editorial_migration import audit as full_figure_audit
     catalog=json.loads((ROOT/'site/research_catalog.json').read_text())

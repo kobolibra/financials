@@ -196,11 +196,15 @@ def validate_handoff_documents(active:dict,status:dict,
 
 def check_repo(root:Path=ROOT)->list[str]:
     active=jread(root,MANIFEST)
-    build=jread(root,"research/rebuild-v10/build-manifest.json")
-    browser=jread(root,"research/rebuild-v10/real-browser-qa/result.json")
-    typed=jread(root,"research/rebuild-v10/strict-semantic-audit.json")
     catalog=jread(root,"site/research_catalog.json")
-    pages={code:(root/"public/research/2026-h1-v10"/(code+".html")).read_bytes()
+    # PR35 is immutable provenance, never a certificate for later report bytes.
+    upgraded={r['code'] for r in catalog['issuers'] if r.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1'}
+    archived=set(CODES).issubset(upgraded)
+    base="research/editorial-20261113/original-v10" if archived else "research/rebuild-v10"
+    build=jread(root,base+"/build-manifest.json")
+    browser=jread(root,"research/rebuild-v10/real-browser-qa/result.json")
+    typed=jread(root,base+"/strict-semantic-audit.json")
+    pages={code:(root/(base if archived else "public/research/2026-h1-v10")/(code+".html")).read_bytes()
            for code in CODES}
     errors=validate_artifact_integrity(active,build,browser,typed,pages,catalog)
     texts=lambda path:(root/path).read_text(encoding="utf8")

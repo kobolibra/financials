@@ -109,5 +109,14 @@
   "production_artifact": {
     "id": 14021786566,
     "zip_sha256": "b26351d3e1732e55f587469a15a071892e5fbdbc819da805ee0440462190798c"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "9be4b6cd9e78d9a3cb8bd23020d318fb8f3c9830bf3e2584e613da53512bb549",
+    "candidate_full_html_sha256": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+    "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
   }
 }

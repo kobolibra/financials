@@ -559,6 +559,8 @@ def build(code,out):
     out.parent.mkdir(parents=True,exist_ok=True)
     from research_context import render as render_research_context
     article=article.replace("</main>",render_research_context(code)+"</main>",1)
+    from publication_editorial import finalize_publication
+    article=finalize_publication(code,article,period=d['issuer']['fiscal_period'])
     out.write_text(article,encoding="utf-8")
     qa=base/"qa.json"
     qa.write_text(json.dumps({"company":code,"report":"2026H1","source_sha256":d["source"]["original_bytes_sha256"],

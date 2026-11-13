@@ -5,6 +5,16 @@ description: Original-PDF-grounded A-share public company research, institutiona
 
 Current authority: `project-status.json`, `site/research_catalog.json` and current-byte receipts. Read `docs/ACTIVE_PR35_HANDOFF.md` for archived PR35 provenance, not current deployment authority. Midea note46 physical p171 provides own costs (Type A); real missing-cost inputs remain Type B. Material-note AI reviews are not human audit signatures.
 
+## 当前优先执行：完整利润主线、重点叙事、完整对账下沉
+
+先完整阅读 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。它覆盖下文旧“独立详细利润桥必须留正文”的排版约定：合法同口径时默认贯通收入至归母净利；集团亏损或不兼容口径采用有符号例外。产品负毛利不能一概阻止合法集团利润链。银行净收入、保险法定收入与管理保费分别处理；不分摊产品税后利润。
+
+公司输入明确源格、单位/符号、各利润小计与所有调整、收入互斥分类、公司特定判断与反证，以及每幅旧图的正文/参考角色和理由。`unified_income_sankey.py.render_full_profit_chain` 调用公共 `full_profit_chain.py`，不写公司专用形状。收益单独流入本层汇合点，原披露利润小计保持原值；负少数权益以归属调整体现。
+
+完整核查不等于事无巨细展示。按照重要金额、同比贡献、方向变化和特殊风险挑选正文重点；原完整科目与原图下沉可展开核对。不能用固定Top3、图数或机器PASS替代专业判断。当前营业层金额卡仅表达本期构成，绝不是同比归因；原已披露逐业务自身毛利仍保留核查和独立分析。
+
+每次新增公司或换期都执行同一独立源格与节点/路径审计、默认阅读层验收、展开后全部原图三档Chromium及手机WebKit真实下载、确定性重建、合并后生产全文件与图形复核。`research/shared/test_full_profit_chain.py` 和 `profit_chain_audit.py` 是必跑回归。当前14家公司样本不认证全行业或未见真实财报的自动理解；真实独立人类二审及未完成多期同行仍 NOT_CHECKED。
+
 ## Real new-issuer production intake: source dossier contract
 
 Original covers need not print a stock code: cross-check the full legal issuer name on the cover with the code on an explicitly recorded company-information physical page (`issuer_identity_page`). A number wrapped within one genuine PDF cell may be normalized for whitespace inside its recorded bounds; do not combine adjacent columns, fill blank cells with zero, or infer missing amounts. Real 300548 source and poisoned identities/cells are covered by `research/shared/test_everprox_source.py`.
@@ -31,7 +41,7 @@ Current merged source and production evidence: PR #66, original release main `53
 
 # Financials in Visuals — one production contract
 
-Contract version: 9.0.0
+Contract version: 9.1.0
 
 
 **2026-11-08 merged-main amendment:** #35/#36/#37 are merged. This Skill applies on current `main` and subsequent branches; the old PR35 candidate handoff is history. For `research/rebuild-v10` use `readable_source_rows=True` in the shared renderer, but preserve legacy issuer outputs through the default false layout until their other financial exhibits and full original-source HTML are deliberately rebuilt and reverified. The dated checkpoint was HERO-only; current whole-article status is determined by the full-figure transfer contract and matching receipts. Independent professional review and unseen multi-period causal drivers remain NOT_CHECKED. Never call the new main live SHA verified merely because Cloudflare deploy succeeded.

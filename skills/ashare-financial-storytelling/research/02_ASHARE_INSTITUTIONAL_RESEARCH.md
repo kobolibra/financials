@@ -1,5 +1,7 @@
 # A-Share Institutional Financial Research | Source-Based Framework
 
+当前执行补充（2026-11-13）：完整源账核查、重点正文表达、完整对账下沉。优先遵循 `../../../docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`：合法同口径利润链贯通归母；正负调整、行业收入基准、源格和实际几何分别验收；独立详细桥仅在回答新增重要问题时留正文。下方有日期的案例是历史证据，不覆盖当前目录和本次HTML字节。
+
 **Source hierarchy:** (1) issuer disclosure PDF and revisions; (2) applicable CSRC/PRC Accounting Standards and exchange rules; (3) independently verified industry/customer/peer filings; (4) dated market data; (5) analyst inference. Source citation and as-of date are non-negotiable. **Framework is professional analytical synthesis, not a regulation itself.**
 
 ## 1. Rules and the current regulatory signal
