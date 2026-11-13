@@ -33,7 +33,15 @@ class IssuerReleaseContractTests(unittest.TestCase):
 
     def test_new_profit_chain_release_cannot_inherit_old_figure_count_or_skip_webkit(self):
         value=copy.deepcopy(self.original);value['editorial_contract']='FULL_PROFIT_CHAIN_V1'
-        errors=mod.validate_release(ROOT,self.issuer,value,check_bytes=False)
+        real_read=mod.read_json
+        def legacy_capture(path):
+            data=real_read(path)
+            if str(path).endswith(value['live_receipt_file']):
+                data=copy.deepcopy(data)
+                for view in data['real_chromium_viewports']:view.pop('all_source_figures',None)
+                data['additional_webkit_checks']=[]
+            return data
+        with mock.patch.object(mod,'read_json',side_effect=legacy_capture):errors=mod.validate_release(ROOT,self.issuer,value,check_bytes=False)
         self.assertIn('LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT 688220',errors)
         self.assertIn('LIVE_CAPTURE_CURRENT_ALL_FIGURES_WEBKIT 688220',errors)
 
@@ -227,7 +235,7 @@ class IssuerReleaseContractTests(unittest.TestCase):
             ("LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID",lambda x:x["real_chromium_viewports"][0].update(actual_dedicated_article_final_url="https://financials-in-visuals.pages.dev/#companies")),
             ("LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID",lambda x:x["real_chromium_viewports"][0].update(actual_return_to_library_url="https://financials-in-visuals.pages.dev/601628")),
             ("LIVE_CAPTURE_SCREENSHOT_SET_INVALID",lambda x:x["screenshots"].pop()),
-            ("LIVE_CAPTURE_PHONE_FINANCE_FIGURES_INVALID",lambda x:next(y for y in x["real_chromium_viewports"] if y["width"]==390).update(mobile_ten_full_width_source_exact_money_exhibits="FAIL")),
+            (("LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT" if original.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1' else "LIVE_CAPTURE_PHONE_FINANCE_FIGURES_INVALID"),lambda x:next(y for y in x["real_chromium_viewports"] if y["width"]==390).update(**({'all_source_figures':0} if original.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1' else {'mobile_ten_full_width_source_exact_money_exhibits':'FAIL'}))),
         ]
         for marker,poison in cases:
             with self.subTest(marker=marker):

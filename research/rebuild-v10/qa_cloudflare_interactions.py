@@ -272,6 +272,8 @@ def main() -> int:
         result["overall"]="PASS_PREVIEW_ONLY_INDEPENDENT_HUMAN_AND_PHYSICAL_DEVICES_NOT_CHECKED"
         return 0
     except Exception as exc:
+        import traceback
+        traceback.print_exc()
         result["blocking_issues"].append(f"{type(exc).__name__}: {exc}")
         result["overall"]="FAIL_NO_PREMERGE_SIGNOFF"
         print("ONLINE_READER_INTERACTION_BLOCKED",repr(exc),file=sys.stderr,flush=True)

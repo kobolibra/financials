@@ -105,6 +105,10 @@ jobs:
               assert page.locator('a.company:visible').count()==count
               for ticker,path in allroutes.items():
                 page.goto(home+path,wait_until='networkidle',timeout=45000)
+                import sys
+                sys.path.insert(0,str(pathlib.Path('research/shared').resolve()))
+                from profit_chain_audit import check_reader
+                check_reader(page);check_reader(page,expanded=True)
                 assert page.locator('figure').count()>=(6 if ticker in old or ticker in initial_new else 1),(ticker,'report figures; finance/editorial gate is independent')
                 if ticker in old:
                   # V9 replaced the legacy .money-ribbon hero; test the
@@ -130,7 +134,7 @@ jobs:
                     issuer_data=json.loads(pathlib.Path('research/issuers',ticker,'source-ledger.json').read_text())
                     n_sources=len(issuer_data['segments'])
                     assert page.locator('figure.figure').count()==8,(ticker,'new sector preview lost any sourced figure')
-                    assert page.locator('figure table').count()==8,(ticker,'new sector preview source figure tables missing')
+                    assert page.locator('figure.figure table').count()==8,(ticker,'new sector preview source figure tables missing')
                     assert page.locator('section[data-profit-formation="SOURCE_BOUND_SIGNED_V1"] table').count()==1,(ticker,'source financial profit bridge facts table missing')
                     assert page.locator('table').count()>=9,(ticker,'missing signed profit or sourced original figure evidence')
                     context=page.locator('section[data-research-context="SOURCE_NOTES_AND_HISTORY_V1"]')

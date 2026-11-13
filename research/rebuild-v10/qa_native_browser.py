@@ -34,6 +34,10 @@ with sync_playwright() as p:
         for width,height in ((1440,960),(768,1024),(390,844)):
             page=browser.new_page(viewport={"width":width,"height":height},device_scale_factor=1)
             page.goto(file.resolve().as_uri(),wait_until="load",timeout=45000)
+            import sys
+            sys.path.insert(0,str(HERE.parents[1]/"research/shared"))
+            from profit_chain_audit import check_reader
+            check_reader(page);check_reader(page,expanded=True)
             page.evaluate("document.fonts.ready")
             page.locator("figure.graphic").first.wait_for()
             figs=page.locator("figure.graphic")
@@ -114,7 +118,7 @@ with sync_playwright() as p:
             page.screenshot(path=str(screenshot),full_page=True,timeout=45000)
             page_result["full_page_screenshot_sha256"]=sha(screenshot)
             for idx in range(count):
-                fig=figs.nth(idx)
+                fig=page.locator(f"figure.graphic#fig-{idx+1:02d}")
                 fid=fig.get_attribute("id")
                 desktop=fig.locator(".desktop-finance svg")
                 native=fig.locator(".native-finance svg")
