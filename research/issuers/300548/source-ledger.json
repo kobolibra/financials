@@ -1,0 +1,4260 @@
+{
+  "issuer": {
+    "code": "300548",
+    "name": "长芯博创科技股份有限公司",
+    "short": "长芯博创",
+    "industry": "optical_interconnect",
+    "sector_adapter": "manufacturing",
+    "accounting_route": "industrial_own_cost_income",
+    "fiscal_period": "2026H1",
+    "comparative_period": "2025H1",
+    "base_unit": "人民币元",
+    "audit": "未经审计",
+    "income_figure_title": "哪类业务把收入转化为毛利？"
+  },
+  "source": {
+    "official_announcement": "https://static.cninfo.com.cn/finalpage/2026-08-22/1225492397.PDF",
+    "original_bytes_sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+    "original_bytes_gate": "COMPLETE_ARCHIVED_PDF_SHA_PASS",
+    "source_path": "research/issuers/300548/source/300548_2026H1_complete_original.pdf",
+    "physical_pages_observed": 143,
+    "issuer_identity_page": 7,
+    "source_provider": "CNINFO完整发行人原始报告；封面法定名称及p7代码交叉识别"
+  },
+  "income_partition": {
+    "axis": "disclosed_market_main_business_plus_other_business",
+    "period": "2026H1",
+    "scope": "consolidated",
+    "completeness": "SOURCE_EXHAUSTIVE_MUTUALLY_EXCLUSIVE"
+  },
+  "facts": {
+    "rev": {
+      "yuan": "1688445780.87",
+      "label": "营业收入",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            76.1912612915039,
+            367.2540588378906,
+            85.1912612915039
+          ],
+          "printed": "1,688,445,780.87",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业收入",
+      "source_column": "本期/期末"
+    },
+    "rev_prior": {
+      "yuan": "1199860667.48",
+      "label": "营业收入（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            76.1912612915039,
+            527.9340209960938,
+            85.1912612915039
+          ],
+          "printed": "1,199,860,667.48",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业收入",
+      "source_column": "上期/期初"
+    },
+    "cogs": {
+      "yuan": "863179755.03",
+      "label": "营业成本",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            157.43125915527344,
+            367.25482177734375,
+            166.43125915527344
+          ],
+          "printed": "863,179,755.03",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业成本",
+      "source_column": "本期/期末"
+    },
+    "cogs_prior": {
+      "yuan": "717579304.12",
+      "label": "营业成本（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            157.43125915527344,
+            527.9348754882812,
+            166.43125915527344
+          ],
+          "printed": "717,579,304.12",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业成本",
+      "source_column": "上期/期初"
+    },
+    "tax_surcharge": {
+      "yuan": "11792444.94",
+      "label": "税金及附加",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            287.3912658691406,
+            367.13543701171875,
+            296.3912658691406
+          ],
+          "printed": "11,792,444.94",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "税金及附加",
+      "source_column": "本期/期末"
+    },
+    "tax_surcharge_prior": {
+      "yuan": "8657173.40",
+      "label": "税金及附加（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            287.3912658691406,
+            527.9356079101562,
+            296.3912658691406
+          ],
+          "printed": "8,657,173.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "税金及附加",
+      "source_column": "上期/期初"
+    },
+    "selling": {
+      "yuan": "26744105.73",
+      "label": "销售费用",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            303.7112731933594,
+            367.13543701171875,
+            312.7112731933594
+          ],
+          "printed": "26,744,105.73",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "销售费用",
+      "source_column": "本期/期末"
+    },
+    "selling_prior": {
+      "yuan": "23145398.87",
+      "label": "销售费用（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            303.7112731933594,
+            527.814453125,
+            312.7112731933594
+          ],
+          "printed": "23,145,398.87",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "销售费用",
+      "source_column": "上期/期初"
+    },
+    "admin": {
+      "yuan": "61012877.77",
+      "label": "管理费用",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            319.9112548828125,
+            367.13543701171875,
+            328.9112548828125
+          ],
+          "printed": "61,012,877.77",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "管理费用",
+      "source_column": "本期/期末"
+    },
+    "admin_prior": {
+      "yuan": "63571004.87",
+      "label": "管理费用（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            319.9112548828125,
+            527.814453125,
+            328.9112548828125
+          ],
+          "printed": "63,571,004.87",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "管理费用",
+      "source_column": "上期/期初"
+    },
+    "rd_expense": {
+      "yuan": "69103510.08",
+      "label": "研发费用",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            336.11126708984375,
+            367.13543701171875,
+            345.11126708984375
+          ],
+          "printed": "69,103,510.08",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "研发费用",
+      "source_column": "本期/期末"
+    },
+    "rd_expense_prior": {
+      "yuan": "56184068.79",
+      "label": "研发费用（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            336.11126708984375,
+            527.814453125,
+            345.11126708984375
+          ],
+          "printed": "56,184,068.79",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "研发费用",
+      "source_column": "上期/期初"
+    },
+    "finance": {
+      "yuan": "25158508.03",
+      "label": "财务费用",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            352.4302673339844,
+            367.13543701171875,
+            361.4302673339844
+          ],
+          "printed": "25,158,508.03",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "财务费用",
+      "source_column": "本期/期末"
+    },
+    "finance_prior": {
+      "yuan": "251236.97",
+      "label": "财务费用（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            482.8800048828125,
+            352.4302673339844,
+            527.9363403320312,
+            361.4302673339844
+          ],
+          "printed": "251,236.97",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "财务费用",
+      "source_column": "上期/期初"
+    },
+    "other_income": {
+      "yuan": "6347167.73",
+      "label": "其他收益",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            401.1512756347656,
+            367.2555847167969,
+            410.1512756347656
+          ],
+          "printed": "6,347,167.73",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他收益",
+      "source_column": "本期/期末"
+    },
+    "other_income_prior": {
+      "yuan": "5524191.38",
+      "label": "其他收益（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            401.1512756347656,
+            527.9356079101562,
+            410.1512756347656
+          ],
+          "printed": "5,524,191.38",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他收益",
+      "source_column": "上期/期初"
+    },
+    "investment_income": {
+      "yuan": "80820.78",
+      "label": "投资收益",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            326.6400146484375,
+            423.35125732421875,
+            367.136962890625,
+            432.35125732421875
+          ],
+          "printed": "80,820.78",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资收益",
+      "source_column": "本期/期末"
+    },
+    "investment_income_prior": {
+      "yuan": "-2612121.46",
+      "label": "投资收益（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            423.35125732421875,
+            527.814453125,
+            432.35125732421875
+          ],
+          "printed": "-2,612,121.46",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资收益",
+      "source_column": "上期/期初"
+    },
+    "fair_value": {
+      "yuan": "3768639.16",
+      "label": "公允价值变动收益",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            564.7113037109375,
+            367.2555847167969,
+            573.7113037109375
+          ],
+          "printed": "3,768,639.16",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "公允价值变动收益",
+      "source_column": "本期/期末"
+    },
+    "fair_value_prior": {
+      "yuan": "4203145.77",
+      "label": "公允价值变动收益（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            564.7113037109375,
+            527.9356079101562,
+            573.7113037109375
+          ],
+          "printed": "4,203,145.77",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "公允价值变动收益",
+      "source_column": "上期/期初"
+    },
+    "credit_impairment": {
+      "yuan": "-13487714.83",
+      "label": "信用减值损失",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            592.9112548828125,
+            367.25482177734375,
+            601.9113159179688
+          ],
+          "printed": "-13,487,714.83",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "信用减值损失",
+      "source_column": "本期/期末"
+    },
+    "credit_impairment_prior": {
+      "yuan": "-15301610.78",
+      "label": "信用减值损失（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            592.9112548828125,
+            527.9348754882812,
+            601.9113159179688
+          ],
+          "printed": "-15,301,610.78",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "信用减值损失",
+      "source_column": "上期/期初"
+    },
+    "asset_impairment": {
+      "yuan": "-23380857.08",
+      "label": "资产减值损失",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            621.1112060546875,
+            367.25482177734375,
+            630.1112670898438
+          ],
+          "printed": "-23,380,857.08",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产减值损失",
+      "source_column": "本期/期末"
+    },
+    "asset_impairment_prior": {
+      "yuan": "-20049867.60",
+      "label": "资产减值损失（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            621.1112060546875,
+            527.9348754882812,
+            630.1112670898438
+          ],
+          "printed": "-20,049,867.60",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产减值损失",
+      "source_column": "上期/期初"
+    },
+    "asset_disposal": {
+      "yuan": "50077.59",
+      "label": "资产处置收益",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            326.6400146484375,
+            649.4302978515625,
+            367.136962890625,
+            658.4302978515625
+          ],
+          "printed": "50,077.59",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产处置收益",
+      "source_column": "本期/期末"
+    },
+    "asset_disposal_prior": {
+      "yuan": "47025.40",
+      "label": "资产处置收益（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            487.3190002441406,
+            649.4302978515625,
+            527.81591796875,
+            658.4302978515625
+          ],
+          "printed": "47,025.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产处置收益",
+      "source_column": "上期/期初"
+    },
+    "operating_profit": {
+      "yuan": "604832712.64",
+      "label": "营业利润",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            677.6312255859375,
+            367.25482177734375,
+            686.6312866210938
+          ],
+          "printed": "604,832,712.64",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业利润",
+      "source_column": "本期/期末"
+    },
+    "operating_profit_prior": {
+      "yuan": "302283243.17",
+      "label": "营业利润（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            677.6312255859375,
+            527.9348754882812,
+            686.6312866210938
+          ],
+          "printed": "302,283,243.17",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业利润",
+      "source_column": "上期/期初"
+    },
+    "nonop_income": {
+      "yuan": "1759166.67",
+      "label": "营业外收入",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            699.9512939453125,
+            367.2555847167969,
+            708.9512939453125
+          ],
+          "printed": "1,759,166.67",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业外收入",
+      "source_column": "本期/期末"
+    },
+    "nonop_income_prior": {
+      "yuan": "1705008.93",
+      "label": "营业外收入（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            699.9512939453125,
+            527.9356079101562,
+            708.9512939453125
+          ],
+          "printed": "1,705,008.93",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业外收入",
+      "source_column": "上期/期初"
+    },
+    "nonop_expense": {
+      "yuan": "235581.92",
+      "label": "营业外支出",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            322.20001220703125,
+            716.1512451171875,
+            367.25634765625,
+            725.1513061523438
+          ],
+          "printed": "235,581.92",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业外支出",
+      "source_column": "本期/期末"
+    },
+    "nonop_expense_prior": {
+      "yuan": "157613.36",
+      "label": "营业外支出（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            482.8800048828125,
+            716.1512451171875,
+            527.9363403320312,
+            725.1513061523438
+          ],
+          "printed": "157,613.36",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "营业外支出",
+      "source_column": "上期/期初"
+    },
+    "pretax": {
+      "yuan": "606356297.39",
+      "label": "利润总额",
+      "page": 50,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            738.351318359375,
+            367.25482177734375,
+            747.351318359375
+          ],
+          "printed": "606,356,297.39",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "利润总额",
+      "source_column": "本期/期末"
+    },
+    "pretax_prior": {
+      "yuan": "303830638.74",
+      "label": "利润总额（比较期）",
+      "page": 50,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            738.351318359375,
+            527.9348754882812,
+            747.351318359375
+          ],
+          "printed": "303,830,638.74",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "利润总额",
+      "source_column": "上期/期初"
+    },
+    "income_tax": {
+      "yuan": "77777614.92",
+      "label": "所得税费用",
+      "page": 51,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            76.1912612915039,
+            367.13543701171875,
+            85.1912612915039
+          ],
+          "printed": "77,777,614.92",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "所得税费用",
+      "source_column": "本期/期末"
+    },
+    "income_tax_prior": {
+      "yuan": "19104282.08",
+      "label": "所得税费用（比较期）",
+      "page": 51,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            76.1912612915039,
+            527.814453125,
+            85.1912612915039
+          ],
+          "printed": "19,104,282.08",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "所得税费用",
+      "source_column": "上期/期初"
+    },
+    "net_profit": {
+      "yuan": "528578682.47",
+      "label": "合并净利润",
+      "page": 51,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            96.35125732421875,
+            367.25482177734375,
+            105.35125732421875
+          ],
+          "printed": "528,578,682.47",
+          "wrapped_number": false
+        },
+        {
+          "bbox": [
+            304.20001220703125,
+            132.95126342773438,
+            367.25482177734375,
+            141.95126342773438
+          ],
+          "printed": "528,578,682.47",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "合并净利润",
+      "source_column": "本期/期末"
+    },
+    "net_profit_prior": {
+      "yuan": "284726356.66",
+      "label": "合并净利润（比较期）",
+      "page": 51,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            96.35125732421875,
+            527.9348754882812,
+            105.35125732421875
+          ],
+          "printed": "284,726,356.66",
+          "wrapped_number": false
+        },
+        {
+          "bbox": [
+            464.8800048828125,
+            132.95126342773438,
+            527.9348754882812,
+            141.95126342773438
+          ],
+          "printed": "284,726,356.66",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "合并净利润",
+      "source_column": "上期/期初"
+    },
+    "parent_net": {
+      "yuan": "321433658.94",
+      "label": "归母净利润",
+      "page": 51,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            193.791259765625,
+            367.25482177734375,
+            202.791259765625
+          ],
+          "printed": "321,433,658.94",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "归母净利润",
+      "source_column": "本期/期末"
+    },
+    "parent_net_prior": {
+      "yuan": "168221541.28",
+      "label": "归母净利润（比较期）",
+      "page": 51,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            193.791259765625,
+            527.9348754882812,
+            202.791259765625
+          ],
+          "printed": "168,221,541.28",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "归母净利润",
+      "source_column": "上期/期初"
+    },
+    "nci": {
+      "yuan": "207145023.53",
+      "label": "少数股东损益",
+      "page": 51,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            218.03126525878906,
+            367.25482177734375,
+            227.03126525878906
+          ],
+          "printed": "207,145,023.53",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "少数股东损益",
+      "source_column": "本期/期末"
+    },
+    "nci_prior": {
+      "yuan": "116504815.38",
+      "label": "少数股东损益（比较期）",
+      "page": 51,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            218.03126525878906,
+            527.9348754882812,
+            227.03126525878906
+          ],
+          "printed": "116,504,815.38",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "少数股东损益",
+      "source_column": "上期/期初"
+    },
+    "main_rev": {
+      "yuan": "1682538887.47",
+      "label": "主营业务收入",
+      "page": 107,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            166.67999267578125,
+            532.55126953125,
+            238.73416137695312,
+            541.55126953125
+          ],
+          "printed": "1,682,538,887.47",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "主营业务收入",
+      "source_column": "本期/期末"
+    },
+    "main_rev_prior": {
+      "yuan": "1197671941.41",
+      "label": "主营业务收入（比较期）",
+      "page": 107,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            359.5199890136719,
+            532.55126953125,
+            431.57403564453125,
+            541.55126953125
+          ],
+          "printed": "1,197,671,941.41",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "主营业务收入",
+      "source_column": "上期/期初"
+    },
+    "main_cost": {
+      "yuan": "860327646.19",
+      "label": "主营业务成本",
+      "page": 107,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            272.0400085449219,
+            532.55126953125,
+            335.0948181152344,
+            541.55126953125
+          ],
+          "printed": "860,327,646.19",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "主营业务成本",
+      "source_column": "本期/期末"
+    },
+    "main_cost_prior": {
+      "yuan": "716781622.73",
+      "label": "主营业务成本（比较期）",
+      "page": 107,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            532.55126953125,
+            527.9348754882812,
+            541.55126953125
+          ],
+          "printed": "716,781,622.73",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "主营业务成本",
+      "source_column": "上期/期初"
+    },
+    "other_rev": {
+      "yuan": "5906893.40",
+      "label": "其他业务收入",
+      "page": 107,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            184.67999267578125,
+            548.8702392578125,
+            238.73565673828125,
+            557.8703002929688
+          ],
+          "printed": "5,906,893.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他业务收入",
+      "source_column": "本期/期末"
+    },
+    "other_rev_prior": {
+      "yuan": "2188726.07",
+      "label": "其他业务收入（比较期）",
+      "page": 107,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            377.5199890136719,
+            548.8702392578125,
+            431.5755615234375,
+            557.8703002929688
+          ],
+          "printed": "2,188,726.07",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他业务收入",
+      "source_column": "上期/期初"
+    },
+    "other_cost": {
+      "yuan": "2852108.84",
+      "label": "其他业务成本",
+      "page": 107,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            281.0400085449219,
+            548.8702392578125,
+            335.0955810546875,
+            557.8703002929688
+          ],
+          "printed": "2,852,108.84",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他业务成本",
+      "source_column": "本期/期末"
+    },
+    "other_cost_prior": {
+      "yuan": "797681.39",
+      "label": "其他业务成本（比较期）",
+      "page": 107,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            482.8800048828125,
+            548.8702392578125,
+            527.9363403320312,
+            557.8703002929688
+          ],
+          "printed": "797,681.39",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他业务成本",
+      "source_column": "上期/期初"
+    },
+    "telecom_rev": {
+      "yuan": "202353849.03",
+      "label": "电信市场收入",
+      "page": 135,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.0799865722656,
+            402.35125732421875,
+            532.1348266601562,
+            411.35125732421875
+          ],
+          "printed": "202,353,849.03",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "电信市场收入",
+      "source_column": "本期/期末"
+    },
+    "telecom_cost": {
+      "yuan": "162980482.18",
+      "label": "电信市场营业成本",
+      "page": 16,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            198.47999572753906,
+            242.15126037597656,
+            252.53939819335938,
+            263.1512756347656
+          ],
+          "printed": "162,980,482.18",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "电信市场营业成本",
+      "source_column": "本期/期末"
+    },
+    "interconnect_rev": {
+      "yuan": "1480185038.44",
+      "label": "数据通信消费及工业互联收入",
+      "page": 135,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            459.9590148925781,
+            414.9512634277344,
+            532.0131225585938,
+            423.9512634277344
+          ],
+          "printed": "1,480,185,038.44",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "数据通信消费及工业互联收入",
+      "source_column": "本期/期末"
+    },
+    "interconnect_cost": {
+      "yuan": "697347164.01",
+      "label": "数据通信消费及工业互联营业成本",
+      "page": 16,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            198.47999572753906,
+            272.3912658691406,
+            252.53939819335938,
+            293.3912658691406
+          ],
+          "printed": "697,347,164.01",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "数据通信消费及工业互联营业成本",
+      "source_column": "本期/期末"
+    },
+    "cfo": {
+      "yuan": "310502086.56",
+      "label": "经营活动现金流量净额",
+      "page": 53,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            718.791259765625,
+            367.25482177734375,
+            727.7913208007812
+          ],
+          "printed": "310,502,086.56",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "经营活动现金流量净额",
+      "source_column": "本期/期末"
+    },
+    "cfo_prior": {
+      "yuan": "296923165.65",
+      "label": "经营活动现金流量净额（比较期）",
+      "page": 53,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            718.791259765625,
+            527.9348754882812,
+            727.7913208007812
+          ],
+          "printed": "296,923,165.65",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "经营活动现金流量净额",
+      "source_column": "上期/期初"
+    },
+    "cfi": {
+      "yuan": "-501591351.29",
+      "label": "投资活动现金流量净额",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            299.6400146484375,
+            248.63125610351562,
+            367.1346740722656,
+            257.6312561035156
+          ],
+          "printed": "-501,591,351.29",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资活动现金流量净额",
+      "source_column": "本期/期末"
+    },
+    "cfi_prior": {
+      "yuan": "-194208856.24",
+      "label": "投资活动现金流量净额（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            460.32000732421875,
+            248.63125610351562,
+            527.814697265625,
+            257.6312561035156
+          ],
+          "printed": "-194,208,856.24",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资活动现金流量净额",
+      "source_column": "上期/期初"
+    },
+    "cff": {
+      "yuan": "-227153708.23",
+      "label": "筹资活动现金流量净额",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            299.6400146484375,
+            439.6702575683594,
+            367.1346740722656,
+            448.6702575683594
+          ],
+          "printed": "-227,153,708.23",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "筹资活动现金流量净额",
+      "source_column": "本期/期末"
+    },
+    "cff_prior": {
+      "yuan": "-491821080.32",
+      "label": "筹资活动现金流量净额（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            460.32000732421875,
+            439.6702575683594,
+            527.814697265625,
+            448.6702575683594
+          ],
+          "printed": "-491,821,080.32",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "筹资活动现金流量净额",
+      "source_column": "上期/期初"
+    },
+    "cash_fx": {
+      "yuan": "-11886082.61",
+      "label": "汇率变动对现金的影响",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            457.9112548828125,
+            367.25482177734375,
+            466.9112548828125
+          ],
+          "printed": "-11,886,082.61",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "汇率变动对现金的影响",
+      "source_column": "本期/期末"
+    },
+    "cash_fx_prior": {
+      "yuan": "4594532.60",
+      "label": "汇率变动对现金的影响（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            457.9112548828125,
+            527.9356079101562,
+            466.9112548828125
+          ],
+          "printed": "4,594,532.60",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "汇率变动对现金的影响",
+      "source_column": "上期/期初"
+    },
+    "cash_open": {
+      "yuan": "1210137830.85",
+      "label": "期初现金等价物",
+      "page": 54,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            488.5112609863281,
+            367.2540588378906,
+            497.5112609863281
+          ],
+          "printed": "1,210,137,830.85",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "期初现金等价物",
+      "source_column": "本期/期末"
+    },
+    "cash_open_prior": {
+      "yuan": "988943349.00",
+      "label": "期初现金等价物（比较期）",
+      "page": 54,
+      "type": "stock",
+      "period": "2024-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            488.5112609863281,
+            527.9348754882812,
+            497.5112609863281
+          ],
+          "printed": "988,943,349.00",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "期初现金等价物",
+      "source_column": "上期/期初"
+    },
+    "cash_close": {
+      "yuan": "780008775.28",
+      "label": "期末现金等价物",
+      "page": 54,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            500.7512512207031,
+            367.25482177734375,
+            509.7512512207031
+          ],
+          "printed": "780,008,775.28",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "期末现金等价物",
+      "source_column": "本期/期末"
+    },
+    "cash_close_prior": {
+      "yuan": "604431110.69",
+      "label": "期末现金等价物（比较期）",
+      "page": 54,
+      "type": "stock",
+      "period": "2025-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            500.7512512207031,
+            527.9348754882812,
+            509.7512512207031
+          ],
+          "printed": "604,431,110.69",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "期末现金等价物",
+      "source_column": "上期/期初"
+    },
+    "cash_capex": {
+      "yuan": "99745246.00",
+      "label": "购建长期资产支付现金",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            153.11126708984375,
+            367.13543701171875,
+            162.11126708984375
+          ],
+          "printed": "99,745,246.00",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "购建长期资产支付现金",
+      "source_column": "本期/期末"
+    },
+    "cash_capex_prior": {
+      "yuan": "88669031.13",
+      "label": "购建长期资产支付现金（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            153.11126708984375,
+            527.814453125,
+            162.11126708984375
+          ],
+          "printed": "88,669,031.13",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "购建长期资产支付现金",
+      "source_column": "上期/期初"
+    },
+    "invest_pay": {
+      "yuan": "2470389680.00",
+      "label": "投资支付现金",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            171.35125732421875,
+            367.2540588378906,
+            180.35125732421875
+          ],
+          "printed": "2,470,389,680.00",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资支付现金",
+      "source_column": "本期/期末"
+    },
+    "invest_pay_prior": {
+      "yuan": "1466240000.00",
+      "label": "投资支付现金（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            171.35125732421875,
+            527.9340209960938,
+            180.35125732421875
+          ],
+          "printed": "1,466,240,000.00",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资支付现金",
+      "source_column": "上期/期初"
+    },
+    "invest_return": {
+      "yuan": "2068385574.71",
+      "label": "收回投资收到现金",
+      "page": 53,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            743.3912353515625,
+            367.2540588378906,
+            752.3912963867188
+          ],
+          "printed": "2,068,385,574.71",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "收回投资收到现金",
+      "source_column": "本期/期末"
+    },
+    "invest_return_prior": {
+      "yuan": "1360264374.89",
+      "label": "收回投资收到现金（比较期）",
+      "page": 53,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            743.3912353515625,
+            527.9340209960938,
+            752.3912963867188
+          ],
+          "printed": "1,360,264,374.89",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "收回投资收到现金",
+      "source_column": "上期/期初"
+    },
+    "sub_equity_pay": {
+      "yuan": "195590000.00",
+      "label": "投资子公司支付现金",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            162.7112579345703,
+            367.25482177734375,
+            171.7112579345703
+          ],
+          "printed": "195,590,000.00",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资子公司支付现金",
+      "source_column": "本期/期末"
+    },
+    "sub_equity_pay_prior": {
+      "yuan": "391485972.18",
+      "label": "投资子公司支付现金（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            162.7112579345703,
+            527.9348754882812,
+            171.7112579345703
+          ],
+          "printed": "391,485,972.18",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资子公司支付现金",
+      "source_column": "上期/期初"
+    },
+    "debt_repay": {
+      "yuan": "102339370.75",
+      "label": "偿还债务支付现金",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            348.47027587890625,
+            367.25482177734375,
+            357.47027587890625
+          ],
+          "printed": "102,339,370.75",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "偿还债务支付现金",
+      "source_column": "本期/期末"
+    },
+    "debt_repay_prior": {
+      "yuan": "152743132.40",
+      "label": "偿还债务支付现金（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            348.47027587890625,
+            527.9348754882812,
+            357.47027587890625
+          ],
+          "printed": "152,743,132.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "偿还债务支付现金",
+      "source_column": "上期/期初"
+    },
+    "dividend_interest": {
+      "yuan": "3862015.90",
+      "label": "分红利润利息支付现金",
+      "page": 54,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            370.6702575683594,
+            367.2555847167969,
+            379.6702575683594
+          ],
+          "printed": "3,862,015.90",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "分红利润利息支付现金",
+      "source_column": "本期/期末"
+    },
+    "dividend_interest_prior": {
+      "yuan": "5402816.32",
+      "label": "分红利润利息支付现金（比较期）",
+      "page": 54,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            370.6702575683594,
+            527.9356079101562,
+            379.6702575683594
+          ],
+          "printed": "5,402,816.32",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "分红利润利息支付现金",
+      "source_column": "上期/期初"
+    },
+    "sales_cash": {
+      "yuan": "1418486508.96",
+      "label": "销售商品提供劳务收到现金",
+      "page": 53,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            364.55126953125,
+            367.2540588378906,
+            373.55126953125
+          ],
+          "printed": "1,418,486,508.96",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "销售商品提供劳务收到现金",
+      "source_column": "本期/期末"
+    },
+    "sales_cash_prior": {
+      "yuan": "1098001410.84",
+      "label": "销售商品提供劳务收到现金（比较期）",
+      "page": 53,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            364.55126953125,
+            527.9340209960938,
+            373.55126953125
+          ],
+          "printed": "1,098,001,410.84",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "销售商品提供劳务收到现金",
+      "source_column": "上期/期初"
+    },
+    "adjusted_parent": {
+      "yuan": "314542947.34",
+      "label": "扣非归母净利润",
+      "page": 8,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            223.9199981689453,
+            213.95126342773438,
+            286.974853515625,
+            222.95126342773438
+          ],
+          "printed": "314,542,947.34",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "扣非归母净利润",
+      "source_column": "本期/期末"
+    },
+    "adjusted_parent_prior": {
+      "yuan": "161726172.11",
+      "label": "扣非归母净利润（比较期）",
+      "page": 8,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            344.3999938964844,
+            213.95126342773438,
+            407.4548034667969,
+            222.95126342773438
+          ],
+          "printed": "161,726,172.11",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "扣非归母净利润",
+      "source_column": "上期/期初"
+    },
+    "nonrecurring_net": {
+      "yuan": "6890711.60",
+      "label": "归母非经常性损益净额",
+      "page": 143,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            167.39126586914062,
+            367.2555847167969,
+            176.39126586914062
+          ],
+          "printed": "6,890,711.60",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "归母非经常性损益净额",
+      "source_column": "本期/期末"
+    },
+    "fx_pnl": {
+      "yuan": "26470207.11",
+      "label": "汇兑净损益费用",
+      "page": 110,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            157.9112548828125,
+            367.13543701171875,
+            166.9112548828125
+          ],
+          "printed": "26,470,207.11",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "汇兑净损益费用",
+      "source_column": "本期/期末"
+    },
+    "fx_pnl_prior": {
+      "yuan": "-516611.07",
+      "label": "汇兑净损益费用（比较期）",
+      "page": 110,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            478.3190002441406,
+            157.9112548828125,
+            527.815185546875,
+            166.9112548828125
+          ],
+          "printed": "-516,611.07",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "汇兑净损益费用",
+      "source_column": "上期/期初"
+    },
+    "mainland_rev": {
+      "yuan": "512666995.28",
+      "label": "大陆对外主营收入",
+      "page": 135,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            171.0,
+            282.23126220703125,
+            234.05491638183594,
+            291.23126220703125
+          ],
+          "printed": "512,666,995.28",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "大陆对外主营收入",
+      "source_column": "本期/期末"
+    },
+    "mainland_rev_prior": {
+      "yuan": "460779911.75",
+      "label": "大陆对外主营收入（比较期）",
+      "page": 135,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            270.239990234375,
+            282.23126220703125,
+            333.2947998046875,
+            291.23126220703125
+          ],
+          "printed": "460,779,911.75",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "大陆对外主营收入",
+      "source_column": "上期/期初"
+    },
+    "overseas_rev": {
+      "yuan": "1169871892.19",
+      "label": "其余地区对外主营收入",
+      "page": 135,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            162.0,
+            301.07025146484375,
+            234.05416870117188,
+            310.07025146484375
+          ],
+          "printed": "1,169,871,892.19",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其余地区对外主营收入",
+      "source_column": "本期/期末"
+    },
+    "overseas_rev_prior": {
+      "yuan": "736892029.66",
+      "label": "其余地区对外主营收入（比较期）",
+      "page": 135,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            270.239990234375,
+            301.07025146484375,
+            333.2947998046875,
+            310.07025146484375
+          ],
+          "printed": "736,892,029.66",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其余地区对外主营收入",
+      "source_column": "上期/期初"
+    },
+    "approved_dividend": {
+      "yuan": "85493392.87",
+      "label": "股东会批准现金股利",
+      "page": 107,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            296.5199890136719,
+            380.3912658691406,
+            355.0154113769531,
+            389.3912658691406
+          ],
+          "printed": "85,493,392.87",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "股东会批准现金股利",
+      "source_column": "本期/期末"
+    },
+    "assets": {
+      "yuan": "4480121614.70",
+      "label": "资产总计",
+      "page": 46,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            433.6702575683594,
+            367.2540588378906,
+            442.6702575683594
+          ],
+          "printed": "4,480,121,614.70",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产总计",
+      "source_column": "本期/期末"
+    },
+    "assets_prior": {
+      "yuan": "3826271419.40",
+      "label": "资产总计（比较期）",
+      "page": 46,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            433.6702575683594,
+            527.9340209960938,
+            442.6702575683594
+          ],
+          "printed": "3,826,271,419.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产总计",
+      "source_column": "上期/期初"
+    },
+    "liabilities": {
+      "yuan": "1533126433.64",
+      "label": "负债合计",
+      "page": 47,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            401.1512756347656,
+            367.2540588378906,
+            410.1512756347656
+          ],
+          "printed": "1,533,126,433.64",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "负债合计",
+      "source_column": "本期/期末"
+    },
+    "liabilities_prior": {
+      "yuan": "1161734082.59",
+      "label": "负债合计（比较期）",
+      "page": 47,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            401.1512756347656,
+            527.9340209960938,
+            410.1512756347656
+          ],
+          "printed": "1,161,734,082.59",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "负债合计",
+      "source_column": "上期/期初"
+    },
+    "equity": {
+      "yuan": "2946995181.06",
+      "label": "所有者权益合计",
+      "page": 47,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            590.9912109375,
+            367.2540588378906,
+            599.9912719726562
+          ],
+          "printed": "2,946,995,181.06",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "所有者权益合计",
+      "source_column": "本期/期末"
+    },
+    "equity_prior": {
+      "yuan": "2664537336.81",
+      "label": "所有者权益合计（比较期）",
+      "page": 47,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            590.9912109375,
+            527.9340209960938,
+            599.9912719726562
+          ],
+          "printed": "2,664,537,336.81",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "所有者权益合计",
+      "source_column": "上期/期初"
+    },
+    "parent_equity": {
+      "yuan": "2089885936.30",
+      "label": "归母所有者权益",
+      "page": 47,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            295.20001220703125,
+            566.51123046875,
+            367.2540588378906,
+            575.5112915039062
+          ],
+          "printed": "2,089,885,936.30",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "归母所有者权益",
+      "source_column": "本期/期末"
+    },
+    "parent_equity_prior": {
+      "yuan": "1964346201.84",
+      "label": "归母所有者权益（比较期）",
+      "page": 47,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            566.51123046875,
+            527.9340209960938,
+            575.5112915039062
+          ],
+          "printed": "1,964,346,201.84",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "归母所有者权益",
+      "source_column": "上期/期初"
+    },
+    "nci_equity": {
+      "yuan": "857109244.76",
+      "label": "少数股东权益",
+      "page": 47,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            578.751220703125,
+            367.25482177734375,
+            587.7512817382812
+          ],
+          "printed": "857,109,244.76",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "少数股东权益",
+      "source_column": "本期/期末"
+    },
+    "nci_equity_prior": {
+      "yuan": "700191134.97",
+      "label": "少数股东权益（比较期）",
+      "page": 47,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            578.751220703125,
+            527.9348754882812,
+            587.7512817382812
+          ],
+          "printed": "700,191,134.97",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "少数股东权益",
+      "source_column": "上期/期初"
+    },
+    "money_funds": {
+      "yuan": "780160308.99",
+      "label": "货币资金",
+      "page": 45,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            378.83026123046875,
+            367.25482177734375,
+            387.83026123046875
+          ],
+          "printed": "780,160,308.99",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "货币资金",
+      "source_column": "本期/期末"
+    },
+    "money_funds_prior": {
+      "yuan": "1210138330.85",
+      "label": "货币资金（比较期）",
+      "page": 45,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            455.8800048828125,
+            378.83026123046875,
+            527.9340209960938,
+            387.83026123046875
+          ],
+          "printed": "1,210,138,330.85",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "货币资金",
+      "source_column": "上期/期初"
+    },
+    "financial_assets": {
+      "yuan": "765614477.42",
+      "label": "交易性金融资产",
+      "page": 45,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            427.55126953125,
+            367.25482177734375,
+            436.55126953125
+          ],
+          "printed": "765,614,477.42",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "交易性金融资产",
+      "source_column": "本期/期末"
+    },
+    "financial_assets_prior": {
+      "yuan": "418891228.62",
+      "label": "交易性金融资产（比较期）",
+      "page": 45,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            427.55126953125,
+            527.9348754882812,
+            436.55126953125
+          ],
+          "printed": "418,891,228.62",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "交易性金融资产",
+      "source_column": "上期/期初"
+    },
+    "ar": {
+      "yuan": "825801382.58",
+      "label": "应收账款净额",
+      "page": 45,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            476.270263671875,
+            367.25482177734375,
+            485.270263671875
+          ],
+          "printed": "825,801,382.58",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应收账款净额",
+      "source_column": "本期/期末"
+    },
+    "ar_prior": {
+      "yuan": "552252049.83",
+      "label": "应收账款净额（比较期）",
+      "page": 45,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            476.270263671875,
+            527.9348754882812,
+            485.270263671875
+          ],
+          "printed": "552,252,049.83",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应收账款净额",
+      "source_column": "上期/期初"
+    },
+    "inventory": {
+      "yuan": "688968135.01",
+      "label": "存货净额",
+      "page": 45,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            638.751220703125,
+            367.25482177734375,
+            647.7512817382812
+          ],
+          "printed": "688,968,135.01",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "存货净额",
+      "source_column": "本期/期末"
+    },
+    "inventory_prior": {
+      "yuan": "346813786.28",
+      "label": "存货净额（比较期）",
+      "page": 45,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            638.751220703125,
+            527.9348754882812,
+            647.7512817382812
+          ],
+          "printed": "346,813,786.28",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "存货净额",
+      "source_column": "上期/期初"
+    },
+    "notes_receivable": {
+      "yuan": "47724025.95",
+      "label": "应收票据",
+      "page": 45,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            460.07025146484375,
+            367.13543701171875,
+            469.07025146484375
+          ],
+          "printed": "47,724,025.95",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应收票据",
+      "source_column": "本期/期末"
+    },
+    "notes_receivable_prior": {
+      "yuan": "115693807.61",
+      "label": "应收票据（比较期）",
+      "page": 45,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            460.07025146484375,
+            527.9348754882812,
+            469.07025146484375
+          ],
+          "printed": "115,693,807.61",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应收票据",
+      "source_column": "上期/期初"
+    },
+    "ap": {
+      "yuan": "767888989.31",
+      "label": "应付账款",
+      "page": 46,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            563.6312255859375,
+            367.25482177734375,
+            572.6312866210938
+          ],
+          "printed": "767,888,989.31",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应付账款",
+      "source_column": "本期/期末"
+    },
+    "ap_prior": {
+      "yuan": "422068401.89",
+      "label": "应付账款（比较期）",
+      "page": 46,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            563.6312255859375,
+            527.9348754882812,
+            572.6312866210938
+          ],
+          "printed": "422,068,401.89",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应付账款",
+      "source_column": "上期/期初"
+    },
+    "contract_liabilities": {
+      "yuan": "23013963.33",
+      "label": "合同负债",
+      "page": 46,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            596.1512451171875,
+            367.13543701171875,
+            605.1513061523438
+          ],
+          "printed": "23,013,963.33",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "合同负债",
+      "source_column": "本期/期末"
+    },
+    "contract_liabilities_prior": {
+      "yuan": "5383796.54",
+      "label": "合同负债（比较期）",
+      "page": 46,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            596.1512451171875,
+            527.9356079101562,
+            605.1513061523438
+          ],
+          "printed": "5,383,796.54",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "合同负债",
+      "source_column": "上期/期初"
+    },
+    "goodwill": {
+      "yuan": "206794252.69",
+      "label": "商誉账面价值",
+      "page": 46,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            352.4302673339844,
+            367.25482177734375,
+            361.4302673339844
+          ],
+          "printed": "206,794,252.69",
+          "wrapped_number": false
+        },
+        {
+          "bbox": [
+            464.8800048828125,
+            352.4302673339844,
+            527.9348754882812,
+            361.4302673339844
+          ],
+          "printed": "206,794,252.69",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "商誉",
+      "source_column": "本期/期末"
+    },
+    "goodwill_prior": {
+      "yuan": "206794252.69",
+      "label": "商誉（比较期）",
+      "page": 46,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            352.4302673339844,
+            367.25482177734375,
+            361.4302673339844
+          ],
+          "printed": "206,794,252.69",
+          "wrapped_number": false
+        },
+        {
+          "bbox": [
+            464.8800048828125,
+            352.4302673339844,
+            527.9348754882812,
+            361.4302673339844
+          ],
+          "printed": "206,794,252.69",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "商誉",
+      "source_column": "上期/期初"
+    },
+    "long_debt": {
+      "yuan": "178595507.62",
+      "label": "长期借款",
+      "page": 47,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            206.15126037597656,
+            367.25482177734375,
+            215.15126037597656
+          ],
+          "printed": "178,595,507.62",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "长期借款",
+      "source_column": "本期/期末"
+    },
+    "long_debt_prior": {
+      "yuan": "269495507.62",
+      "label": "长期借款（比较期）",
+      "page": 47,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            206.15126037597656,
+            527.9348754882812,
+            215.15126037597656
+          ],
+          "printed": "269,495,507.62",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "长期借款",
+      "source_column": "上期/期初"
+    },
+    "current_debt": {
+      "yuan": "99219095.24",
+      "label": "一年内到期非流动负债",
+      "page": 47,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            124.9112548828125,
+            367.13543701171875,
+            133.9112548828125
+          ],
+          "printed": "99,219,095.24",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "一年内到期非流动负债",
+      "source_column": "本期/期末"
+    },
+    "current_debt_prior": {
+      "yuan": "82472560.90",
+      "label": "一年内到期非流动负债（比较期）",
+      "page": 47,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            124.9112548828125,
+            527.814453125,
+            133.9112548828125
+          ],
+          "printed": "82,472,560.90",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "一年内到期非流动负债",
+      "source_column": "上期/期初"
+    },
+    "inventory_gross": {
+      "yuan": "777445438.66",
+      "label": "存货账面余额",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            129.60000610351562,
+            555.7113037109375,
+            183.65940856933594,
+            576.7113037109375
+          ],
+          "printed": "777,445,438.66",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "存货账面余额",
+      "source_column": "本期/期末"
+    },
+    "inventory_gross_prior": {
+      "yuan": "421477919.08",
+      "label": "存货账面余额（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            336.1199951171875,
+            555.7113037109375,
+            390.17938232421875,
+            576.7113037109375
+          ],
+          "printed": "421,477,919.08",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "存货账面余额",
+      "source_column": "上期/期初"
+    },
+    "inventory_allowance": {
+      "yuan": "88477303.65",
+      "label": "存货跌价准备",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            198.47999572753906,
+            555.7113037109375,
+            252.53565979003906,
+            576.7113037109375
+          ],
+          "printed": "88,477,303.65",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "存货跌价准备",
+      "source_column": "本期/期末"
+    },
+    "inventory_allowance_prior": {
+      "yuan": "74664132.80",
+      "label": "存货跌价准备（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            405.0,
+            555.7113037109375,
+            459.0555725097656,
+            576.7113037109375
+          ],
+          "printed": "74,664,132.80",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "存货跌价准备",
+      "source_column": "上期/期初"
+    },
+    "raw_inventory": {
+      "yuan": "409424096.22",
+      "label": "原材料净额",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            267.239990234375,
+            422.270263671875,
+            321.29937744140625,
+            443.270263671875
+          ],
+          "printed": "409,424,096.22",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "原材料净额",
+      "source_column": "本期/期末"
+    },
+    "raw_inventory_prior": {
+      "yuan": "210298437.65",
+      "label": "原材料净额（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            422.270263671875,
+            527.9393920898438,
+            443.270263671875
+          ],
+          "printed": "210,298,437.65",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "原材料净额",
+      "source_column": "上期/期初"
+    },
+    "wip_inventory": {
+      "yuan": "61749673.21",
+      "label": "在产品净额",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            267.239990234375,
+            446.5112609863281,
+            321.29998779296875,
+            467.5112609863281
+          ],
+          "printed": "61,749,673.21",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "在产品净额",
+      "source_column": "本期/期末"
+    },
+    "wip_inventory_prior": {
+      "yuan": "29706331.54",
+      "label": "在产品净额（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            446.5112609863281,
+            527.9356079101562,
+            467.5112609863281
+          ],
+          "printed": "29,706,331.54",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "在产品净额",
+      "source_column": "上期/期初"
+    },
+    "finished_inventory": {
+      "yuan": "143861183.31",
+      "label": "库存商品净额",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            267.239990234375,
+            470.7512512207031,
+            321.29937744140625,
+            491.7512512207031
+          ],
+          "printed": "143,861,183.31",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "库存商品净额",
+      "source_column": "本期/期末"
+    },
+    "finished_inventory_prior": {
+      "yuan": "87587718.77",
+      "label": "库存商品净额（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            470.7512512207031,
+            527.9356079101562,
+            491.7512512207031
+          ],
+          "printed": "87,587,718.77",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "库存商品净额",
+      "source_column": "上期/期初"
+    },
+    "shipped_inventory": {
+      "yuan": "33970701.81",
+      "label": "发出商品净额",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            267.239990234375,
+            494.99127197265625,
+            321.29998779296875,
+            515.9912719726562
+          ],
+          "printed": "33,970,701.81",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "发出商品净额",
+      "source_column": "本期/期末"
+    },
+    "shipped_inventory_prior": {
+      "yuan": "10721311.81",
+      "label": "发出商品净额（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            494.99127197265625,
+            527.9356079101562,
+            515.9912719726562
+          ],
+          "printed": "10,721,311.81",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "发出商品净额",
+      "source_column": "上期/期初"
+    },
+    "outsourced_inventory": {
+      "yuan": "39962480.46",
+      "label": "委托加工物资净额",
+      "page": 89,
+      "type": "stock",
+      "period": "2026-06-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            267.239990234375,
+            519.230224609375,
+            321.29998779296875,
+            540.2302856445312
+          ],
+          "printed": "39,962,480.46",
+          "wrapped_number": true
+        }
+      ],
+      "source_row_label": "委托加工物资净额",
+      "source_column": "本期/期末"
+    },
+    "outsourced_inventory_prior": {
+      "yuan": "8120509.78",
+      "label": "委托加工物资净额（比较期）",
+      "page": 89,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            525.230224609375,
+            527.9356079101562,
+            534.2302856445312
+          ],
+          "printed": "8,120,509.78",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "委托加工物资净额",
+      "source_column": "上期/期初"
+    },
+    "provisions": {
+      "yuan": "36868571.91",
+      "label": "资产减值准备",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            620.751220703125,
+            367.13543701171875,
+            629.7512817382812
+          ],
+          "printed": "36,868,571.91",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产减值准备",
+      "source_column": "本期/期末"
+    },
+    "provisions_prior": {
+      "yuan": "35351478.38",
+      "label": "资产减值准备（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            620.751220703125,
+            527.814453125,
+            629.7512817382812
+          ],
+          "printed": "35,351,478.38",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "资产减值准备",
+      "source_column": "上期/期初"
+    },
+    "depreciation": {
+      "yuan": "23533874.42",
+      "label": "固定资产折旧",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            642.9512939453125,
+            367.13543701171875,
+            651.9512939453125
+          ],
+          "printed": "23,533,874.42",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "固定资产折旧",
+      "source_column": "本期/期末"
+    },
+    "depreciation_prior": {
+      "yuan": "20724122.53",
+      "label": "固定资产折旧（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            642.9512939453125,
+            527.814453125,
+            651.9512939453125
+          ],
+          "printed": "20,724,122.53",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "固定资产折旧",
+      "source_column": "上期/期初"
+    },
+    "rou_amort": {
+      "yuan": "2744572.56",
+      "label": "使用权资产折旧",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            665.270263671875,
+            367.2555847167969,
+            674.270263671875
+          ],
+          "printed": "2,744,572.56",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "使用权资产折旧",
+      "source_column": "本期/期末"
+    },
+    "rou_amort_prior": {
+      "yuan": "3352362.93",
+      "label": "使用权资产折旧（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            665.270263671875,
+            527.9356079101562,
+            674.270263671875
+          ],
+          "printed": "3,352,362.93",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "使用权资产折旧",
+      "source_column": "上期/期初"
+    },
+    "intangible_amort": {
+      "yuan": "3666201.53",
+      "label": "无形资产摊销",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            681.47021484375,
+            367.2555847167969,
+            690.4702758789062
+          ],
+          "printed": "3,666,201.53",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "无形资产摊销",
+      "source_column": "本期/期末"
+    },
+    "intangible_amort_prior": {
+      "yuan": "3705000.56",
+      "label": "无形资产摊销（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            681.47021484375,
+            527.9356079101562,
+            690.4702758789062
+          ],
+          "printed": "3,705,000.56",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "无形资产摊销",
+      "source_column": "上期/期初"
+    },
+    "deferred_amort": {
+      "yuan": "141716.90",
+      "label": "长期待摊费用摊销",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            322.20001220703125,
+            697.791259765625,
+            367.25634765625,
+            706.7913208007812
+          ],
+          "printed": "141,716.90",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "长期待摊费用摊销",
+      "source_column": "本期/期末"
+    },
+    "deferred_amort_prior": {
+      "yuan": "485059.71",
+      "label": "长期待摊费用摊销（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            482.8800048828125,
+            697.791259765625,
+            527.9363403320312,
+            706.7913208007812
+          ],
+          "printed": "485,059.71",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "长期待摊费用摊销",
+      "source_column": "上期/期初"
+    },
+    "disposal_loss": {
+      "yuan": "-50077.59",
+      "label": "处置长期资产损失",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            322.20001220703125,
+            725.9912109375,
+            367.25634765625,
+            734.9912719726562
+          ],
+          "printed": "-50,077.59",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "处置长期资产损失",
+      "source_column": "本期/期末"
+    },
+    "disposal_loss_prior": {
+      "yuan": "-47025.40",
+      "label": "处置长期资产损失（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            482.8800048828125,
+            725.9912109375,
+            527.9363403320312,
+            734.9912719726562
+          ],
+          "printed": "-47,025.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "处置长期资产损失",
+      "source_column": "上期/期初"
+    },
+    "scrap_loss": {
+      "yuan": "235581.85",
+      "label": "固定资产报废损失",
+      "page": 114,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            322.20001220703125,
+            753.230224609375,
+            367.25634765625,
+            762.2302856445312
+          ],
+          "printed": "235,581.85",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "固定资产报废损失",
+      "source_column": "本期/期末"
+    },
+    "scrap_loss_prior": {
+      "yuan": "105014.50",
+      "label": "固定资产报废损失（比较期）",
+      "page": 114,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            482.8800048828125,
+            753.230224609375,
+            527.9363403320312,
+            762.2302856445312
+          ],
+          "printed": "105,014.50",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "固定资产报废损失",
+      "source_column": "上期/期初"
+    },
+    "fair_loss": {
+      "yuan": "-3768639.16",
+      "label": "公允价值变动损失",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            96.35125732421875,
+            367.13543701171875,
+            105.35125732421875
+          ],
+          "printed": "-3,768,639.16",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "公允价值变动损失",
+      "source_column": "本期/期末"
+    },
+    "fair_loss_prior": {
+      "yuan": "-4203145.77",
+      "label": "公允价值变动损失（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            96.35125732421875,
+            527.814453125,
+            105.35125732421875
+          ],
+          "printed": "-4,203,145.77",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "公允价值变动损失",
+      "source_column": "上期/期初"
+    },
+    "finance_adjustment": {
+      "yuan": "30927722.41",
+      "label": "现金调节财务费用",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            308.6400146484375,
+            124.67025756835938,
+            367.13543701171875,
+            133.67025756835938
+          ],
+          "printed": "30,927,722.41",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "现金调节财务费用",
+      "source_column": "本期/期末"
+    },
+    "finance_adjustment_prior": {
+      "yuan": "6175243.42",
+      "label": "现金调节财务费用（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            124.67025756835938,
+            527.9356079101562,
+            133.67025756835938
+          ],
+          "printed": "6,175,243.42",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "现金调节财务费用",
+      "source_column": "上期/期初"
+    },
+    "investment_loss": {
+      "yuan": "-80820.78",
+      "label": "投资损失",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            322.20001220703125,
+            152.87025451660156,
+            367.25634765625,
+            161.87025451660156
+          ],
+          "printed": "-80,820.78",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资损失",
+      "source_column": "本期/期末"
+    },
+    "investment_loss_prior": {
+      "yuan": "2612121.46",
+      "label": "投资损失（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            473.8800048828125,
+            152.87025451660156,
+            527.9356079101562,
+            161.87025451660156
+          ],
+          "printed": "2,612,121.46",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "投资损失",
+      "source_column": "上期/期初"
+    },
+    "dta_decrease": {
+      "yuan": "-15331164.28",
+      "label": "递延所得税资产减少",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            181.19125366210938,
+            367.25482177734375,
+            190.19125366210938
+          ],
+          "printed": "-15,331,164.28",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "递延所得税资产减少",
+      "source_column": "本期/期末"
+    },
+    "dta_decrease_prior": {
+      "yuan": "-16041425.39",
+      "label": "递延所得税资产减少（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            181.19125366210938,
+            527.9348754882812,
+            190.19125366210938
+          ],
+          "printed": "-16,041,425.39",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "递延所得税资产减少",
+      "source_column": "上期/期初"
+    },
+    "dtl_increase": {
+      "yuan": "-492093.60",
+      "label": "递延所得税负债增加",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            317.6400146484375,
+            209.39126586914062,
+            367.1361999511719,
+            218.39126586914062
+          ],
+          "printed": "-492,093.60",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "递延所得税负债增加",
+      "source_column": "本期/期末"
+    },
+    "dtl_increase_prior": {
+      "yuan": "-830678.74",
+      "label": "递延所得税负债增加（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            478.3190002441406,
+            209.39126586914062,
+            527.815185546875,
+            218.39126586914062
+          ],
+          "printed": "-830,678.74",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "递延所得税负债增加",
+      "source_column": "上期/期初"
+    },
+    "inventory_release": {
+      "yuan": "-365535205.81",
+      "label": "存货的减少",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            299.6400146484375,
+            237.7112579345703,
+            367.1346740722656,
+            246.7112579345703
+          ],
+          "printed": "-365,535,205.81",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "存货的减少",
+      "source_column": "本期/期末"
+    },
+    "inventory_release_prior": {
+      "yuan": "-57130216.46",
+      "label": "存货的减少（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            237.7112579345703,
+            527.9348754882812,
+            246.7112579345703
+          ],
+          "printed": "-57,130,216.46",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "存货的减少",
+      "source_column": "上期/期初"
+    },
+    "operating_ar_change": {
+      "yuan": "-240776274.40",
+      "label": "经营性应收项目减少",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            299.6400146484375,
+            265.9112548828125,
+            367.1346740722656,
+            274.9112548828125
+          ],
+          "printed": "-240,776,274.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "经营性应收项目减少",
+      "source_column": "本期/期末"
+    },
+    "operating_ar_change_prior": {
+      "yuan": "-122999018.01",
+      "label": "经营性应收项目减少（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            460.32000732421875,
+            265.9112548828125,
+            527.814697265625,
+            274.9112548828125
+          ],
+          "printed": "-122,999,018.01",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "经营性应收项目减少",
+      "source_column": "上期/期初"
+    },
+    "operating_ap_change": {
+      "yuan": "307459935.83",
+      "label": "经营性应付项目增加",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            304.20001220703125,
+            294.11126708984375,
+            367.25482177734375,
+            303.11126708984375
+          ],
+          "printed": "307,459,935.83",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "经营性应付项目增加",
+      "source_column": "本期/期末"
+    },
+    "operating_ap_change_prior": {
+      "yuan": "126050369.24",
+      "label": "经营性应付项目增加（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            464.8800048828125,
+            294.11126708984375,
+            527.9348754882812,
+            303.11126708984375
+          ],
+          "printed": "126,050,369.24",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "经营性应付项目增加",
+      "source_column": "上期/期初"
+    },
+    "cfo_other": {
+      "yuan": "2379502.30",
+      "label": "其他现金调节",
+      "page": 115,
+      "type": "flow",
+      "period": "2026H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            313.20001220703125,
+            316.4302673339844,
+            367.2555847167969,
+            325.4302673339844
+          ],
+          "printed": "2,379,502.30",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他现金调节",
+      "source_column": "本期/期末"
+    },
+    "cfo_other_prior": {
+      "yuan": "14887546.03",
+      "label": "其他现金调节（比较期）",
+      "page": 115,
+      "type": "flow",
+      "period": "2025H1",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            469.3190002441406,
+            316.4302673339844,
+            527.814453125,
+            325.4302673339844
+          ],
+          "printed": "14,887,546.03",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "其他现金调节",
+      "source_column": "上期/期初"
+    }
+  },
+  "segments": [
+    {
+      "label": "电信市场",
+      "rev": "telecom_rev",
+      "cost": "telecom_cost",
+      "dimension": "disclosed_market_main_business_plus_other_business"
+    },
+    {
+      "label": "数通/消费/工业互联",
+      "rev": "interconnect_rev",
+      "cost": "interconnect_cost",
+      "dimension": "disclosed_market_main_business_plus_other_business"
+    },
+    {
+      "label": "其他业务",
+      "rev": "other_rev",
+      "cost": "other_cost",
+      "dimension": "disclosed_market_main_business_plus_other_business"
+    }
+  ],
+  "cfo_adjustments": [
+    "provisions",
+    "depreciation",
+    "rou_amort",
+    "intangible_amort",
+    "deferred_amort",
+    "disposal_loss",
+    "scrap_loss",
+    "fair_loss",
+    "finance_adjustment",
+    "investment_loss",
+    "dta_decrease",
+    "dtl_increase",
+    "inventory_release",
+    "operating_ar_change",
+    "operating_ap_change",
+    "cfo_other"
+  ]
+}

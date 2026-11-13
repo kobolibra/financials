@@ -1,3 +1,7 @@
+# ACTIVE PROJECT STATE — 长芯博创原始财报生产交付
+
+**2026-11-13 长芯博创300548新增候选。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。已归档143页完整中报、166条原文事实、26项会计勾稽及11项问题驱动图形；13家公司同一目录。正走真实双浏览器、合并和正式站逐字节验收；不得用本地结果冒充线上完成。人类二审及8–12季度同行估值仍未完成。
+
 # Financials in Visuals — ACTIVE PROJECT STATE
 
 **2026-11-13 新公司已真实生产交付：海尔智家600690。** [PR #68](https://github.com/kobolibra/financials/pull/68) 已合并，源码主分支 `17d05366`；192页原中报、181条事实、23项会计勾稽、12项重大附注主题及12幅问题驱动财务图。正式站12家公司完整文件字节核对通过；海尔三档Chromium36次与WebKit375的12次真实可见SVG下载、独立公司与同一首页导航及六张实际截图均通过真实主分支 [Action 43359460118](https://github.com/kobolibra/financials/actions/runs/43359460118)。`research/issuers/600690/production-qa` 永久归档原附件图证；`live-release-receipt.json` 和 `release-gates.json` 绑定同一版本。新增每家自动走同样的干净重建、双浏览器全图和正式站验收；下方旧候选描述是历史记录。人类二审、8–12季度/同行估值仍未冒充完成。机器依据为 `project-status.json` 与 `site/research_catalog.json`。

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-11",
+  "updated_date": "2026-11-13",
   "current_release_provenance_20261109": {
     "scope": "HISTORICAL_EXACT_MAIN_SOURCE_PROOF_NOT_FUTURE_UNCONDITIONAL_LIVE",
     "source_main_sha": "b72e6074795bc0cb9aabe0b312c79f1decf567f4",
@@ -258,7 +258,7 @@
     "catalog": "site/research_catalog.json",
     "builder": "site/portal_builder.py",
     "root_html": "public/index.html",
-    "company_count": 12,
+    "company_count": 13,
     "company_codes": [
       "300394",
       "300308",
@@ -271,7 +271,8 @@
       "600900",
       "600276",
       "601628",
-      "600690"
+      "600690",
+      "300548"
     ],
     "topic": "/optical-2026h1.html",
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
@@ -1654,5 +1655,18 @@
     "material_note_themes": 12,
     "typed_facts": 181,
     "accounting_identities": 23
+  },
+  "new_issuer_300548_20261113": {
+    "status": "LOCAL_SOURCE_ACCOUNTING_3_VIEWPORT_PASS_PENDING_MAIN_AND_LIVE",
+    "branch": "research/everprox-original-2026h1",
+    "baseline_main": "b0642f1e56e3a154cdf086a13138a3455961ff18",
+    "original_pdf_pages": 143,
+    "original_pdf_sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+    "source_facts": 166,
+    "accounting_identities": 26,
+    "source_figures": 11,
+    "material_note_topics": 12,
+    "independent_human_review": "NOT_CHECKED",
+    "external_historical_peers_valuation": "NOT_CHECKED"
   }
 }

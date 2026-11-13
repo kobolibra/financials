@@ -1,3 +1,5 @@
+**2026-11-13 长芯博创300548新增候选。** 当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。已归档143页完整中报、166条原文事实、26项会计勾稽及11项问题驱动图形；13家公司同一目录。正走真实双浏览器、合并和正式站逐字节验收；不得用本地结果冒充线上完成。人类二审及8–12季度同行估值仍未完成。
+
 # FINANCIALS IN VISUALS — 从这里开始（最新项目入口）
 
 当前机器依据：`project-status.json` 与 `site/research_catalog.json`；本次候选、历史生产回执分别读取。

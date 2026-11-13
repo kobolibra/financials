@@ -52,7 +52,11 @@ def validate(ledger,story,root=ROOT):
     if hashlib.sha256(data).hexdigest()!=source['original_bytes_sha256'] or not data.startswith(b'%PDF'):raise ValueError('DOSSIER_ORIGINAL_PDF_BYTES_DRIFT')
     import pymupdf
     doc=pymupdf.open(path)
-    if len(doc)!=source['physical_pages_observed'] or issuer['code'] not in doc[0].get_text():raise ValueError('DOSSIER_ORIGINAL_PDF_IDENTITY')
+    identity_page=source.get('issuer_identity_page',1)
+    if type(identity_page) is not int or not 1<=identity_page<=len(doc):raise ValueError('DOSSIER_ORIGINAL_PDF_IDENTITY')
+    if (len(doc)!=source['physical_pages_observed']
+        or issuer['code'] not in doc[identity_page-1].get_text()
+        or re.sub(r'\s+','',issuer['name']) not in re.sub(r'\s+','',doc[0].get_text())):raise ValueError('DOSSIER_ORIGINAL_PDF_IDENTITY')
     cover=re.sub(r'\s+','',doc[0].get_text())
     report=re.search(r'(20[0-9]{2})年(半年度|第一季度|第三季度|年度)报告',cover)
     expected_kind={'H1':'半年度','FY':'年度','Q1':'第一季度','9M':'第三季度'}
@@ -73,6 +77,7 @@ def validate(ledger,story,root=ROOT):
             if not cells:raise ValueError('DOSSIER_PHYSICAL_SOURCE_CELLS_REQUIRED '+k)
             for cell in cells:
                 region=doc[f['page']-1].get_textbox(pymupdf.Rect(cell['bbox'])+(-.5,-.5,.5,.5)).replace(',','')
+                if cell.get('wrapped_number') is True:region=re.sub(r'\s+','',region)
                 if not re.search(r'(?<![0-9.])'+re.escape(f['yuan'])+r'(?![0-9.])',region):raise ValueError('DOSSIER_SOURCE_CELL_FALSE '+k)
         else:raise ValueError('DOSSIER_CLASSIFICATION_UNKNOWN '+k)
     for test in story['accounting_identities']:

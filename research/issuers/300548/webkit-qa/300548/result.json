@@ -1,0 +1,73 @@
+{
+  "status": "PASS_LOCAL",
+  "engine": "webkit",
+  "issuer": "300548",
+  "width": 375,
+  "figures": 11,
+  "real_visible_svg_downloads": 11,
+  "html_sha256": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
+  "geometry_and_source_values": "PASS",
+  "text_bounds": "PASS",
+  "artifacts": [
+    {
+      "file": "figure-01.svg",
+      "sha256": "dab09cc25918b2c5b1dd1f61e1227259094c2b473ed36a533f0a09c1da6490b0",
+      "bytes": 10455
+    },
+    {
+      "file": "figure-02.svg",
+      "sha256": "e3152a123a89760d8e143ef5692a5a16836333eb761c30475a61465996b26089",
+      "bytes": 23225
+    },
+    {
+      "file": "figure-03.svg",
+      "sha256": "47c8c056369fd42f5083ebbd72558d466d0d41a0656a2bc13beaaf73f2a4fea5",
+      "bytes": 6521
+    },
+    {
+      "file": "figure-04.svg",
+      "sha256": "c84df6e7e0fa430dc9d49d8425459ee82edbb8971543bcba68f7dbfb3ced736f",
+      "bytes": 21628
+    },
+    {
+      "file": "figure-05.svg",
+      "sha256": "d7fe5310937229e6f7e57e43d8d57873bed28e8566af498b796ff0238b3ca169",
+      "bytes": 24542
+    },
+    {
+      "file": "figure-06.svg",
+      "sha256": "a608d71b9f7c01597483b62e7e13a6ebe66e31ccff63eed611616349db56dd7b",
+      "bytes": 4070
+    },
+    {
+      "file": "figure-07.svg",
+      "sha256": "9ccd23c0ad30a035690d230e9939d76eba1392d2ee610ed67d0eb98fe5276882",
+      "bytes": 6626
+    },
+    {
+      "file": "figure-08.svg",
+      "sha256": "90e62ff1510b317c3c90fc14266552f9614572c17e9f2676acfda4bde2414f5c",
+      "bytes": 3935
+    },
+    {
+      "file": "figure-09.svg",
+      "sha256": "991376d607468142afbd2d03f26f467154b3aa701a1ebc9f3a9e7577d9ba68de",
+      "bytes": 7495
+    },
+    {
+      "file": "figure-10.svg",
+      "sha256": "f790bef6b798baa923ad8922a27705b668fcaa3c9b7d5564ea799fe34cb18b1d",
+      "bytes": 8049
+    },
+    {
+      "file": "figure-11.svg",
+      "sha256": "71966e4acfe5fe98cb60db4445b06ef00ab783100b417a736591e2edfee5a123",
+      "bytes": 3746
+    },
+    {
+      "file": "full-375.png",
+      "sha256": "03d9293a9df96ef157bcf971eaacadaafdffe29f5836fb8d2cc44e2217ad3afd",
+      "bytes": 2360737
+    }
+  ]
+}
