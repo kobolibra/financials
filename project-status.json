@@ -1657,7 +1657,7 @@
     "accounting_identities": 23
   },
   "new_issuer_300548_20261113": {
-    "status": "LOCAL_SOURCE_ACCOUNTING_3_VIEWPORT_PASS_PENDING_MAIN_AND_LIVE",
+    "status": "MERGED_AND_ACTUAL_PRODUCTION_BROWSER_PASS",
     "branch": "research/everprox-original-2026h1",
     "baseline_main": "b0642f1e56e3a154cdf086a13138a3455961ff18",
     "original_pdf_pages": 143,
@@ -1667,6 +1667,12 @@
     "source_figures": 11,
     "material_note_topics": 12,
     "independent_human_review": "NOT_CHECKED",
-    "external_historical_peers_valuation": "NOT_CHECKED"
+    "external_historical_peers_valuation": "NOT_CHECKED",
+    "merged_pr": 70,
+    "actual_main_commit": "31610214134c5812a886acb6465265d532f9349b",
+    "live_url": "https://financials-in-visuals.pages.dev/300548",
+    "live_receipt": "research/issuers/300548/live-release-receipt.json",
+    "premerge_full_library_ci": "https://github.com/kobolibra/financials/actions/runs/43364085300",
+    "main_cloud_acceptance": "https://github.com/kobolibra/financials/actions/runs/43384888642"
   }
 }
