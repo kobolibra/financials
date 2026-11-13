@@ -2,10 +2,10 @@
   "schema_version": 1,
   "issuer": "600900",
   "status": "PASS",
-  "verified_git_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43008612952",
+  "verified_git_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43267775579",
   "pdf_sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
-  "actual_full_content_sha256_equals_repository_main_600900": "ac6c61b915fd45e76eed04721585c3d282b3f1d1a88f6586a567783647122fb7",
+  "actual_full_content_sha256_equals_repository_main_600900": "2d77b19170bec9bfd6e94842ec2bed2c37c41e767c63d5b13e485d5f2d2847e2",
   "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "all_11_issuer_external_routes": "PASS",
   "real_chromium_viewports": [
@@ -46,8 +46,8 @@
   "screenshots": [
     {
       "name": "live_600900_1440.png",
-      "sha256": "5a0b63444dc06cb736cb467e0e812341525d76725a6a52cd77ec0f6483bba80f",
-      "bytes": 2321125
+      "sha256": "fb84015bd3ade3163b2424872c34fdfd3a181cee1f6c9616b6eea6fb1aa72e3d",
+      "bytes": 2474305
     },
     {
       "name": "live_directory_1440.png",
@@ -56,8 +56,8 @@
     },
     {
       "name": "live_600900_768.png",
-      "sha256": "83169a11f75a1d4b38df4c7501c4f923867c76adaf2ea70a87d5624cdf43648c",
-      "bytes": 2644885
+      "sha256": "9afc255163430ea22c070e76dd44f242e3f6b75bce5448b40efa1ebf7f2ecfe8",
+      "bytes": 2682421
     },
     {
       "name": "live_directory_768.png",
@@ -66,8 +66,8 @@
     },
     {
       "name": "live_600900_390.png",
-      "sha256": "c7e266ba81d651a348819567fa2d2de946b9bb2912543527c9550a96430f52e7",
-      "bytes": 2087032
+      "sha256": "81fc2aa2cf1834d3fea9c11c789a5aae2ea4935b943fcc2082eeed247b6f82ef",
+      "bytes": 2112778
     },
     {
       "name": "live_directory_390.png",
@@ -78,6 +78,7 @@
   "independent_second_human_financial_analyst": "NOT_CHECKED",
   "independent_human_aesthetic_editor": "NOT_CHECKED",
   "material_report_notes_exhaustive": "NOT_CHECKED",
-  "artifact_id": 13849004163,
-  "artifact_zip_sha256": "ca45d89cab7c3e70d225b45252de8b253012b9ac272ccc6e982a31b431c6b9c7"
+  "artifact_id": 13967191580,
+  "artifact_zip_sha256": "fd80c1cf70d9d48fb0966493d80fa8ceeb946cc31eb896f2933aea8d1239e185",
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
 }

@@ -96,6 +96,7 @@ def audit(codes,out,origin=None):
                     check_vector(export,code,pdf)
                     case['figures'].append({'index':index,'id':figure.get_attribute('id'),'grammar':checked['grammar'],'vector_sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'screenshot_sha256':hashlib.sha256(screenshot.read_bytes()).hexdigest(),'screenshot_file':str(screenshot.relative_to(out)),'export_file':dest.name,'source_and_actual_geometry':'PASS','visible_edition_download':'PASS'})
                 if not case['figures']:raise ValueError('NO_SOURCE_FINANCIAL_FIGURES')
+                if len(case['figures'])!=row['figures']:raise ValueError('CATALOG_ACTUAL_FIGURE_COUNT_DRIFT '+code)
                 result['cases'].append(case);page.close()
                 print('COMPLETE_SOURCE_FIGURE_MIGRATION',code,width,len(case['figures']),flush=True)
             counts={len(c['figures']) for c in result['cases'] if c['issuer']==code}

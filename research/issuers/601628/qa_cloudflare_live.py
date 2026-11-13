@@ -113,11 +113,17 @@ with sync_playwright() as pw:
     assert "NOT_CHECKED" in panel.inner_text()
     panel.screenshot(path=str(OUT/f"live_decision_{width}.png"),animations="disabled")
     assert page.locator("figure.figure").count()==10
-    # Ten desktop source figures, one native premium Sankey and five native
-    # signed bridges are distinct legitimate editions; inspect every family.
+    # Every one of the ten figures has distinct desktop and native editions.
+    # Validate the visible edition against original insurance facts at each width.
     assert page.locator("figure.figure .chart svg").count()==10,(width,"LIVE_TEN_ORIGINAL_DESKTOP_FINANCE_SVGS_MISSING")
     assert page.locator('#chart-premium .mobile-chart svg[data-design-system="FINANCIALS_UNIFIED_STORY_V1"]').count()==1,(width,"LIVE_SOURCE_CONSERVED_NATIVE_INSURANCE_PREMIUM_SVG_MISSING")
-    assert page.locator("figure.figure svg").count()==10+1+len(FAMILIES),(width,"LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT")
+    assert page.locator("figure.figure svg").count()==2*(1+len(FAMILIES)+len(COMMON_FAMILIES)),(width,"LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT")
+    for family in sorted(FAMILIES|COMMON_FAMILIES):
+        current=page.locator('#chart-'+family+(' .mobile-chart > svg' if width<=850 else ' .chart > svg'))
+        assert current.count()==1 and current.is_visible(),(width,family,'LIVE_VISIBLE_SOURCE_FAMILY_MISSING')
+        raw=current.evaluate('e=>e.outerHTML')
+        checked=check_signed_svg(raw,family,report,mobile=width<=850) if family in FAMILIES else check_common_insurance_svg(raw,family,report)
+        signed_bridge_checks.append(checked)
     assert page.locator("figure.figure details.audit").count()==10
     assert page.locator('#chart-premium .mobile-chart').count()==1
     assert page.locator("figure.figure .mobile-chart").count()==10,("LIVE_MOBILE_ALTERNATIVE_DOM_MISSING",width)
@@ -185,7 +191,7 @@ with sync_playwright() as pw:
         ns='{http://www.w3.org/2000/svg}'
         for tag in ('rect','text','path'):
             assert [(n.attrib,n.text) for n in actual_vector.iter(ns+tag)]==[(n.attrib,n.text) for n in expected_vector.iter(ns+tag)],(width,family,'LIVE_EXPORT_VISIBLE_VECTOR_DRIFT',tag)
-        if width<=850:check_signed_svg(raw,family,report)
+        check_signed_svg(raw,family,report,mobile=width<=850)
         visible_bridge_exports.append({'family':family,'layout':'native-330' if width<=850 else 'desktop','sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'actual_visible_vector_match':'PASS'})
     graph=page.evaluate("""() => {
       const details=(root)=>{

@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "issuer": "688220",
+  "source_main_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+  "verified_git_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43008612929",
+  "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+  "public_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+  "actual_full_content_sha256_equals_repository_main_688220": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+  "home_html_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
+  "public_origin": "https://financials-in-visuals.pages.dev",
+  "unified_company_count": 11,
+  "all_11_issuer_external_routes": "PASS",
+  "real_browser": [
+    {
+      "width": 1440,
+      "viewport": 1440,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "source_graph_real_yuan": "PASS",
+      "original_production_route": "PASS",
+      "CJK_label_bbox": "PASS",
+      "nine_figure_phone_no_inner_scroll": "ORIGINAL_DESKTOP",
+      "evidence_tables": 9
+    },
+    {
+      "width": 768,
+      "viewport": 768,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "source_graph_real_yuan": "PASS",
+      "original_production_route": "PASS",
+      "CJK_label_bbox": "PASS",
+      "nine_figure_phone_no_inner_scroll": "PASS",
+      "evidence_tables": 9
+    },
+    {
+      "width": 390,
+      "viewport": 390,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "source_graph_real_yuan": "PASS",
+      "original_production_route": "PASS",
+      "CJK_label_bbox": "PASS",
+      "nine_figure_phone_no_inner_scroll": "PASS",
+      "evidence_tables": 9
+    }
+  ],
+  "real_chromium_viewports": [
+    {
+      "width": 1440,
+      "viewport": 1440,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "source_graph_real_yuan": "PASS",
+      "original_production_route": "PASS",
+      "CJK_label_bbox": "PASS",
+      "nine_figure_phone_no_inner_scroll": "ORIGINAL_DESKTOP",
+      "evidence_tables": 9
+    },
+    {
+      "width": 768,
+      "viewport": 768,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "source_graph_real_yuan": "PASS",
+      "original_production_route": "PASS",
+      "CJK_label_bbox": "PASS",
+      "nine_figure_phone_no_inner_scroll": "PASS",
+      "evidence_tables": 9
+    },
+    {
+      "width": 390,
+      "viewport": 390,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/688220",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "source_graph_real_yuan": "PASS",
+      "original_production_route": "PASS",
+      "CJK_label_bbox": "PASS",
+      "nine_figure_phone_no_inner_scroll": "PASS",
+      "evidence_tables": 9
+    }
+  ],
+  "screenshots": [
+    {
+      "viewport": 1440,
+      "sha256": "01ff7dbf02c11b9fe30b40dd8b0f0ec5bcf972aba5007da3fc977992fb5b1e47",
+      "bytes": 748616,
+      "name": "live_directory_1440.png"
+    },
+    {
+      "viewport": 1440,
+      "sha256": "aeacb451bd3d1993c646542beb41c27e3bdf1de07aa743eeb80ae68b41ddc00b",
+      "bytes": 2823099,
+      "name": "live_688220_1440.png"
+    },
+    {
+      "viewport": 768,
+      "sha256": "f82f45d62c12049f233a1330465eafa1669db05335f3cf4ccebf6a3cf1459b79",
+      "bytes": 728295,
+      "name": "live_directory_768.png"
+    },
+    {
+      "viewport": 768,
+      "sha256": "ee1fdd0bee9f212089731bdc00808369b9e7f58129fd7578905430b8682cb718",
+      "bytes": 2942530,
+      "name": "live_688220_768.png"
+    },
+    {
+      "viewport": 390,
+      "sha256": "e2c1ee3c412869e8fd268047c57d2159585f8465ecc47b290548e70a2f1e1d2c",
+      "bytes": 740026,
+      "name": "live_directory_390.png"
+    },
+    {
+      "viewport": 390,
+      "sha256": "18d08181465426151a6b95b569d1fa71477860db9162db4e2c6ab5c72061ccb2",
+      "bytes": 2521193,
+      "name": "live_688220_390.png"
+    }
+  ],
+  "independent_second_human_finance_editor": "NOT_CHECKED",
+  "independent_second_human_visual_editor": "NOT_CHECKED",
+  "SSE_original_bytes_equivalence": "NOT_CHECKED",
+  "AR_top5_reported_ratio_vs_derived": "FAIL_BOUNDED_DENOMINATOR_UNKNOWN",
+  "artifact_id": 13849073910,
+  "artifact_zip_sha256": "9da82f04c985a586b67115e0df77a8c178dcec2f3d12861c51e52e4724960297"
+}

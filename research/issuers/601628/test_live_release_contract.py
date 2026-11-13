@@ -2,7 +2,7 @@
 
 The full production HTML passed its exact SHA, original 13-source decision
 values and four CAS formulas, but an older live test miscounted 10 source
-desktop SVGs + premium + five signed bridges as an old fixed 11 count.
+desktop SVGs plus incomplete native coverage; every current family now has two editions.
 """
 from pathlib import Path
 import unittest
@@ -19,7 +19,15 @@ class LiveInsurerTwoLayoutContract(unittest.TestCase):
         self.assertIn("LIVE_SOURCE_CONSERVED_NATIVE_INSURANCE_PREMIUM_SVG_MISSING",s)
         self.assertIn("LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT",s)
         self.assertNotRegex(s,r'page\.locator\("figure\.figure svg"\)\.count\(\)==(?:10|11),')
-        self.assertIn('count()==10+1+len(FAMILIES)',s)
+        import ast
+        tree=ast.parse(s)
+        guard=next(n for n in ast.walk(tree) if isinstance(n,ast.Assert)
+                   and n.msg and 'LIVE_UNEXPECTED_DESKTOP_OR_MOBILE_SVG_FAMILY_COUNT' in ast.unparse(n.msg))
+        expected=compile(ast.Expression(guard.test.comparators[0]),str(LIVE),'eval')
+        for signed,common in ((5,4),(6,4),(5,5)):
+            self.assertEqual(eval(expected,{'FAMILIES':set(range(signed)),
+                                            'COMMON_FAMILIES':set(range(common))}),
+                             2*(1+signed+common))
         self.assertIn('figure.figure details.audit',s)
         self.assertIn('figure.figure .mobile-chart',s)
         self.assertIn('SOURCE_PREMIUM_NOT_CLOSED',s)
@@ -37,7 +45,9 @@ class LiveInsurerTwoLayoutContract(unittest.TestCase):
                          'LIVE_SOURCE_TABLE_PDF_PHYSICAL_PAGE',
                          'LIVE_EXPORTED_HIDDEN_LAYOUT',
                          'LIVE_EXPORT_VISIBLE_VECTOR_DRIFT',
-                         'check_signed_svg(raw,family,report)',
+                         'check_signed_svg(raw,family,report,mobile=width<=850)',
+                         'LIVE_VISIBLE_SOURCE_FAMILY_MISSING',
+                         'check_common_insurance_svg(raw,family,report)',
                          'assert len(family["rows"])>=5',
                          'LIVE_MOBILE_MONEY_BAR_INFLATED'):
             self.assertIn(required,s)

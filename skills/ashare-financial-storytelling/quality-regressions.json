@@ -612,6 +612,26 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "ACCOUNTING_CORE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-063",
+      "root_cause": "Insurance production QA retained the historical count of ten desktop SVGs plus only six native SVGs after all ten native figures migrated.",
+      "correction": "Count both complete editions and independently check every visible signed/common source family at all three actual production widths, including desktop signed exports.",
+      "proof_file": "research/issuers/601628/qa_cloudflare_live.py",
+      "assertion_marker": "LIVE_VISIBLE_SOURCE_FAMILY_MISSING",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CLOUDFLARE_LIVE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-064",
+      "root_cause": "A catalog retained the pre-migration figure count after an unavailable source comparison became an explicit omission rather than a fake figure.",
+      "correction": "Require each catalog figure count to equal every actual browser figure at all three widths; update 300308 from ten to its actual nine source-backed figures.",
+      "proof_file": "scripts/qa_editorial_migration.py",
+      "assertion_marker": "CATALOG_ACTUAL_FIGURE_COUNT_DRIFT",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

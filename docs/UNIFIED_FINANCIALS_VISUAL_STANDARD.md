@@ -1,6 +1,6 @@
 # Financials Unified Visual Standard v1 — AEI 方法对照 + A股行业会计语义
 
-**2026-11-13 当前源码候选：七个历史系列的完整财务图已迁移，尚未合并上线。** 三家光通信、翱捷、长江、恒瑞、中国人寿共65幅源财务图，真实1440/768/390共21个布局及195次当前可见SVG下载通过；完整原件SHA、独立源金额与几何检查见 `research/quality/full-figure-20261113/result.json`。公共核心 `editorial_bridge.py` 按图形语法复用，行业适配保留原始会计差异；新公司通过目录的 `FULL_SOURCE_FIGURES_V1` 自动进入同样的逐图验收。旧 `HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY` 是已被这份当前字节本地证据替代的历史迁移基线；生产状态仍以真实主分支/Cloudflare为准。人类审稿和未见真实财报的长期稳定性不声称通过。[历史四家合同](docs/ACTIVE_PR35_HANDOFF.md) 继续保留，不作为本次新图的部署证明。
+**2026-11-13 已合并并核验正式站：七个历史系列的完整财务图已统一。** [PR #66](https://github.com/kobolibra/financials/pull/66) 合并源码 `5346ff0`；三家光通信、翱捷、长江、恒瑞、中国人寿共65幅源财务图，正式站1440/768/390共21个布局及195次当前可见SVG下载全部通过，线上完整HTML与发布源码逐字节相同。生产证据见 `research/quality/full-figure-production-20261113/result.json`，明确为本地真实浏览器访问正式站；本地源码证据见 `research/quality/full-figure-20261113/result.json`。公共图形核心与行业适配保留原始会计差异；新公司/新期间必须通过目录 `FULL_SOURCE_FIGURES_V1` 进入同一套逐图云端验收。下方旧HERO-only、未合并及权限受阻内容是历史记录，不能覆盖当前字节证据。人类审稿及未见真实财报的长期稳定性不声称通过。[历史四家合同](docs/ACTIVE_PR35_HANDOFF.md) 保留。
 
 
 **目标：所有公司共用同一编辑判断、颜色/版式 token、图形语法、来源验证与发布门槛；不是硬把银行、保险、白酒、软件画成同一张图。** 本文是正在执行的生产标准，绝不是声称全部 11 家已经改造完成。

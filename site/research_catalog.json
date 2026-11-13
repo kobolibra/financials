@@ -43,7 +43,7 @@
       "kind": "原有研究",
       "stage": "source-review",
       "note": "待完成独立来源语义复核",
-      "figures": 10,
+      "figures": 9,
       "signal": "46.3%",
       "signal_label": "2026H1 综合毛利率",
       "source": "原始2026H1完整披露",
@@ -277,7 +277,8 @@
         "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
         "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
         "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
-      }
+      },
+      "production_migration_receipt": "research/quality/full-figure-production-20261113/result.json"
     }
   }
 }

@@ -2,13 +2,13 @@
   "schema_version": 1,
   "status": "PASS",
   "issuer": "688220",
-  "source_main_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
-  "verified_git_commit": "e72bae81a9df22f54db7ba365f25bb8160c34111",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43008612929",
+  "source_main_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+  "verified_git_commit": "5346ff0f44eef488c3365c698e05c3ca790ce644",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43267776708",
   "source_pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
   "pdf_sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
-  "public_html_sha256": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
-  "actual_full_content_sha256_equals_repository_main_688220": "83a6175a82e9428425e0b0b28863cc72b7bb8f32e6d888056da93f47272b91e2",
+  "public_html_sha256": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
+  "actual_full_content_sha256_equals_repository_main_688220": "b185d3d02ffe32f2d05ac9dc1a5ee6d94c7447f5545998da6a7fc15c111bcba0",
   "home_html_sha256": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "actual_full_content_sha256_equals_repository_main_index": "f625453172a83b7db38d0c5a67ddbecd84fbf078bc9f78c2e20c45b00b23ab41",
   "public_origin": "https://financials-in-visuals.pages.dev",
@@ -111,8 +111,8 @@
     },
     {
       "viewport": 1440,
-      "sha256": "aeacb451bd3d1993c646542beb41c27e3bdf1de07aa743eeb80ae68b41ddc00b",
-      "bytes": 2823099,
+      "sha256": "5a51735dbca97488bf8e9672d99de9ae068fcebac7a4fe4b2b3bc533f28c43a2",
+      "bytes": 3013400,
       "name": "live_688220_1440.png"
     },
     {
@@ -123,8 +123,8 @@
     },
     {
       "viewport": 768,
-      "sha256": "ee1fdd0bee9f212089731bdc00808369b9e7f58129fd7578905430b8682cb718",
-      "bytes": 2942530,
+      "sha256": "d327a4f2668d4284d8c163482ff8a3d4373eb5dcf46f2d0cc53ebca7f16d5745",
+      "bytes": 3241871,
       "name": "live_688220_768.png"
     },
     {
@@ -135,8 +135,8 @@
     },
     {
       "viewport": 390,
-      "sha256": "18d08181465426151a6b95b569d1fa71477860db9162db4e2c6ab5c72061ccb2",
-      "bytes": 2521193,
+      "sha256": "2a270030ed390308a87aaa3dfe7dd48d558222242abfb9a2be826b7ed45014e4",
+      "bytes": 2641697,
       "name": "live_688220_390.png"
     }
   ],
@@ -144,6 +144,7 @@
   "independent_second_human_visual_editor": "NOT_CHECKED",
   "SSE_original_bytes_equivalence": "NOT_CHECKED",
   "AR_top5_reported_ratio_vs_derived": "FAIL_BOUNDED_DENOMINATOR_UNKNOWN",
-  "artifact_id": 13849073910,
-  "artifact_zip_sha256": "9da82f04c985a586b67115e0df77a8c178dcec2f3d12861c51e52e4724960297"
+  "artifact_id": 13966478525,
+  "artifact_zip_sha256": "9df3ac44422f62435e8274fd8073baccf64f8643e789a3ed597d659f9e5792bf",
+  "complete_figure_production_receipt": "research/quality/full-figure-production-20261113/result.json"
 }
