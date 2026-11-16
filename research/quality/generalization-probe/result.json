@@ -1,0 +1,868 @@
+{
+ "schema": "financials.generalization_probe.v1",
+ "company_specific_input": "NONE",
+ "reports": 19,
+ "all_stages_pass": 19,
+ "scope": "STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe",
+ "rows": [
+  {
+   "pdf": "research/issuers/300308/original-2026h1.pdf",
+   "sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+   "code": "300308",
+   "pages": 184,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 9"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     51,
+     52,
+     53
+    ],
+    "is": [
+     55,
+     56,
+     57,
+     58
+    ],
+    "cf": [
+     59,
+     60,
+     61
+    ]
+   },
+   "canonical_facts": 209,
+   "unmapped_rows": 17,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "营业利润同比+253.30%，营业收入同比+182.49%：利润增速高于收入，经营杠杆为正。",
+    "营业收入同比+182.49%，营业成本同比+150.25%，毛利率上升6.93个百分点。",
+    "存货较年初增加71.45亿元，备货在增加。",
+    "经营现金净额相当于净利润的12.21%（上年同期75.86%），利润的现金含量下降。",
+    "资产负债率较年初上升5.90个百分点。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/300548/source/300548_2026H1_complete_original.pdf",
+   "sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+   "code": "300548",
+   "pages": 143,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 11"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     45,
+     46,
+     47
+    ],
+    "is": [
+     49,
+     50,
+     51
+    ],
+    "cf": [
+     53,
+     54
+    ]
+   },
+   "canonical_facts": 197,
+   "unmapped_rows": 16,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "营业利润同比+100.09%，营业收入同比+40.72%：利润增速高于收入，经营杠杆为正。",
+    "存货较年初增加3.42亿元，备货在增加。",
+    "营业收入同比+40.72%，营业成本同比+20.29%，毛利率上升8.68个百分点。",
+    "经营现金净额相当于净利润的58.74%（上年同期104.28%），利润的现金含量下降。",
+    "少数股东损益占净利润的39.19%，归母利润明显低于合并利润。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/300570/source/300570_2026H1_complete_original.pdf",
+   "sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+   "code": "300570",
+   "pages": 189,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 11"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     35,
+     36,
+     37
+    ],
+    "is": [
+     40,
+     41,
+     42
+    ],
+    "cf": [
+     43,
+     44
+    ]
+   },
+   "canonical_facts": 183,
+   "unmapped_rows": 14,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的-39.93%（上年同期72.45%），利润的现金含量下降。",
+    "存货较年初增加2.63亿元，备货在增加。",
+    "资产负债率较年初上升20.04个百分点。",
+    "应收账款较年初增加3.54亿元，营业收入同比+20.81%：应收增速快于收入，回款需要下一期验证。",
+    "营业利润同比-0.52%，营业收入同比+20.81%：收入增长没有带来同等的营业利润增长。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/600276/source/600276_2026H1_complete_original.pdf",
+   "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+   "code": "600276",
+   "pages": 182,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     75,
+     76
+    ],
+    "is": [
+     77,
+     78,
+     79
+    ],
+    "cf": [
+     80,
+     81
+    ]
+   },
+   "canonical_facts": 189,
+   "unmapped_rows": 15,
+   "identities_passed": 20,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的44.50%（上年同期96.54%），利润的现金含量下降。",
+    "资产负债率较年初下降3.38个百分点。",
+    "研发费用率上升2.12个百分点。",
+    "营业收入同比-1.94%，营业成本同比-0.08%，毛利率下降0.25个百分点。",
+    "存货较年初增加1.16亿元，备货在增加。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/600690/source/600690_2026H1_complete_original.pdf",
+   "sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
+   "code": "600690",
+   "pages": 192,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 10"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     66,
+     67,
+     68
+    ],
+    "is": [
+     70,
+     71,
+     72
+    ],
+    "cf": [
+     73,
+     74,
+     75
+    ]
+   },
+   "canonical_facts": 218,
+   "unmapped_rows": 29,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "应收账款较年初增加58.89亿元，营业收入同比-2.80%：收入下降而应收增加，回款条件需要下一期验证。",
+    "营业利润同比-13.90%，营业收入同比-2.80%：收入下降时营业利润降得更多。",
+    "资产负债率较年初上升1.11个百分点。",
+    "财务费用由上年同期的净收益转为净支出，本期为11.03亿元。",
+    "存货较年初减少15.31亿元，库存在释放。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/600900/source/600900_2026H1_complete_original.pdf",
+   "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+   "code": "600900",
+   "pages": 214,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 7"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     46,
+     47,
+     48
+    ],
+    "is": [
+     50,
+     51,
+     52
+    ],
+    "cf": [
+     54,
+     55,
+     56
+    ]
+   },
+   "canonical_facts": 206,
+   "unmapped_rows": 22,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "应收账款较年初增加30.68亿元，营业收入同比+3.36%：应收增速快于收入，回款需要下一期验证。",
+    "营业利润同比+14.99%，营业收入同比+3.36%：利润增速高于收入，经营杠杆为正。",
+    "营业收入同比+3.36%，营业成本同比-0.81%，毛利率上升1.77个百分点。",
+    "经营现金净额相当于净利润的160.50%（上年同期180.62%），利润的现金含量下降。",
+    "资产负债率较年初上升1.09个百分点。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/601628/source/601628_2026H1_complete_original.pdf",
+   "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+   "code": "601628",
+   "pages": 104,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 2"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "insurance",
+   "sign_convention": "expenses_negative",
+   "statement_pages": {
+    "bs": [
+     43,
+     44
+    ],
+    "is": [
+     47,
+     48
+    ],
+    "cf": [
+     53,
+     54
+    ]
+   },
+   "canonical_facts": 199,
+   "unmapped_rows": 28,
+   "identities_passed": 18,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的207.99%（上年同期716.09%），利润的现金含量下降。",
+    "营业利润同比+283.85%，营业收入同比+81.54%：利润增速高于收入，经营杠杆为正。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/688220/source/688220_2026H1_20260829_original.pdf",
+   "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+   "code": "688220",
+   "pages": 224,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_GAINS_EXCEED_CARRIED_PROFIT_USE_SIGNED_BRIDGE)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 7"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     81,
+     82,
+     83
+    ],
+    "is": [
+     86,
+     87,
+     88
+    ],
+    "cf": [
+     90,
+     91,
+     92
+    ]
+   },
+   "canonical_facts": 187,
+   "unmapped_rows": 15,
+   "identities_passed": 17,
+   "identities_failed": [],
+   "findings_top5": [
+    "研发费用率下降8.16个百分点。",
+    "营业收入同比+29.15%，营业成本同比+21.05%，毛利率上升4.72个百分点。",
+    "存货较年初增加4.52亿元，备货在增加。",
+    "应收账款较年初增加1.47亿元，营业收入同比+29.15%：应收增速快于收入，回款需要下一期验证。",
+    "资产负债率较年初上升3.21个百分点。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/300394/20269M/source/300394_20269M_complete_original.pdf",
+   "sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+   "code": "300394",
+   "pages": 12,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 10"
+   },
+   "fiscal_period": "20269M",
+   "comparative_period": "20259M",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     6,
+     7,
+     8
+    ],
+    "is": [
+     8,
+     9,
+     10
+    ],
+    "cf": [
+     10,
+     11,
+     12
+    ]
+   },
+   "canonical_facts": 195,
+   "unmapped_rows": 14,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "存货较年初增加8.17亿元，备货在增加。",
+    "营业收入同比+21.25%，营业成本同比-5.69%，毛利率上升10.69个百分点。",
+    "应收账款较年初增加8.23亿元，营业收入同比+21.25%：应收增速快于收入，回款需要下一期验证。",
+    "营业利润同比+42.48%，营业收入同比+21.25%：利润增速高于收入，经营杠杆为正。",
+    "资产负债率较年初上升5.59个百分点。"
+   ]
+  },
+  {
+   "pdf": "research/issuers/300394/2026Q1/source/300394_2026Q1_complete_original.pdf",
+   "sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
+   "code": "300394",
+   "pages": 11,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2026Q1",
+   "comparative_period": "2025Q1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     6,
+     7,
+     8
+    ],
+    "is": [
+     8,
+     9,
+     10
+    ],
+    "cf": [
+     10,
+     11
+    ]
+   },
+   "canonical_facts": 187,
+   "unmapped_rows": 13,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "营业收入同比+40.82%，营业成本同比+30.15%，毛利率上升3.56个百分点。",
+    "经营现金净额相当于净利润的37.03%（上年同期86.94%），利润的现金含量下降。",
+    "存货较年初增加0.81亿元，备货在增加。",
+    "财务费用由上年同期的净收益转为净支出，本期为0.24亿元。",
+    "营业利润同比+46.19%，营业收入同比+40.82%：利润增速高于收入，经营杠杆为正。"
+   ]
+  },
+  {
+   "pdf": "work/additional/600036_2026H1_original.pdf",
+   "sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+   "code": "600036",
+   "pages": 247,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 2"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "bank",
+   "sign_convention": "expenses_negative",
+   "statement_pages": {
+    "bs": [
+     85,
+     86,
+     87
+    ],
+    "is": [
+     89,
+     90,
+     91
+    ],
+    "cf": [
+     93,
+     94,
+     95
+    ]
+   },
+   "canonical_facts": 140,
+   "unmapped_rows": 84,
+   "identities_passed": 10,
+   "identities_failed": [],
+   "findings_top5": [
+    "信用及资产减值损失合计比上年同期增加。",
+    "营业利润同比+2.06%，营业收入同比+4.83%：收入增长没有带来同等的营业利润增长。"
+   ]
+  },
+  {
+   "pdf": "work/financials_v8_case_study/sources/000333_2026H1_original.pdf",
+   "sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+   "code": "000333",
+   "pages": 205,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_negative",
+   "statement_pages": {
+    "bs": [
+     96,
+     97,
+     98
+    ],
+    "is": [
+     98,
+     99
+    ],
+    "cf": [
+     99,
+     100
+    ]
+   },
+   "canonical_facts": 220,
+   "unmapped_rows": 45,
+   "identities_passed": 16,
+   "identities_failed": [],
+   "findings_top5": [
+    "应收账款较年初增加215.05亿元，营业收入同比+3.55%：应收增速快于收入，回款需要下一期验证。",
+    "资产负债率较年初上升3.73个百分点。",
+    "财务费用由上年同期的净收益转为净支出，本期为32.73亿元。",
+    "存货较年初减少91.88亿元，库存在释放。",
+    "营业利润同比+1.39%，营业收入同比+3.55%：收入增长没有带来同等的营业利润增长。"
+   ]
+  },
+  {
+   "pdf": "work/financials_v8_case_study/sources/600519_2026H1_original.pdf",
+   "sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+   "code": "600519",
+   "pages": 110,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 6"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     25,
+     26,
+     27,
+     28
+    ],
+    "is": [
+     30,
+     31,
+     32
+    ],
+    "cf": [
+     33,
+     34,
+     35
+    ]
+   },
+   "canonical_facts": 191,
+   "unmapped_rows": 28,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的153.56%（上年同期27.92%），利润的现金含量提高。",
+    "营业收入同比+1.47%，营业成本同比+21.81%，毛利率下降1.74个百分点。",
+    "营业利润同比-2.16%，营业收入同比+1.47%：收入增长没有带来同等的营业利润增长。",
+    "资产负债率较年初下降1.22个百分点。",
+    "存货较年初减少1.10亿元，库存在释放。"
+   ]
+  },
+  {
+   "pdf": "work/financials_v8_case_study/sources/688111_2026H1_original.pdf",
+   "sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+   "code": "688111",
+   "pages": 199,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 9"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     55,
+     56,
+     57
+    ],
+    "is": [
+     59,
+     60,
+     61
+    ],
+    "cf": [
+     62,
+     63,
+     64
+    ]
+   },
+   "canonical_facts": 189,
+   "unmapped_rows": 17,
+   "identities_passed": 19,
+   "identities_failed": [],
+   "findings_top5": [
+    "营业利润同比+253.66%，营业收入同比+24.69%：利润增速高于收入，经营杠杆为正。",
+    "经营现金净额相当于净利润的25.53%（上年同期100.78%），利润的现金含量下降。",
+    "存货较年初减少0.00亿元，库存在释放。",
+    "资产负债率较年初下降1.41个百分点。",
+    "研发费用率下降1.31个百分点。"
+   ]
+  },
+  {
+   "pdf": "000002_2026.pdf",
+   "sha256": "50813d4f08f812bab70d14fc257638b46d1b5ae138b91db7d11b1845f31c649a",
+   "code": "000002",
+   "pages": 234,
+   "stages": {
+    "ledger": "PASS 原件异常已列出",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_NEGATIVE_OR_ZERO_SUBTOTAL_USE_SIGNED_BRIDGE)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 5"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [
+    "current:营业总成本=各成本费用项 原件小计与明细差额 -10358747241.93",
+    "prior:营业总成本=各成本费用项 原件小计与明细差额 -13241981526.65"
+   ],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     86,
+     87,
+     88
+    ],
+    "is": [
+     89,
+     90,
+     91
+    ],
+    "cf": [
+     92,
+     93,
+     94
+    ]
+   },
+   "canonical_facts": 208,
+   "unmapped_rows": 27,
+   "identities_passed": 16,
+   "identities_failed": [],
+   "findings_top5": [
+    "应收账款较年初增加15.49亿元，营业收入同比-33.38%：收入下降而应收增加，回款条件需要下一期验证。",
+    "存货较年初减少277.80亿元，库存在释放。",
+    "营业收入同比-33.38%，营业成本同比-31.87%，毛利率下降2.03个百分点。",
+    "管理费用率上升0.84个百分点。",
+    "销售费用率下降0.52个百分点。"
+   ]
+  },
+  {
+   "pdf": "002714_2026.pdf",
+   "sha256": "06f3f6284318122399c6cf1156f5a142c9b9abd8157c669ccd37bdb298002c53",
+   "code": "002714",
+   "pages": 196,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_NEGATIVE_OR_ZERO_SUBTOTAL_USE_SIGNED_BRIDGE)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 6"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     58,
+     59,
+     60,
+     61
+    ],
+    "is": [
+     63,
+     64,
+     65
+    ],
+    "cf": [
+     66,
+     67,
+     68
+    ]
+   },
+   "canonical_facts": 203,
+   "unmapped_rows": 18,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "营业利润同比-148.93%，营业收入同比-22.30%：收入下降时营业利润降得更多。",
+    "营业收入同比-22.30%，营业成本同比-0.70%，毛利率下降22.09个百分点。",
+    "应收账款较年初减少0.36亿元，营业收入同比-22.30%：应收增速快于收入，回款需要下一期验证。",
+    "存货较年初增加11.20亿元，备货在增加。",
+    "管理费用率上升0.59个百分点。"
+   ]
+  },
+  {
+   "pdf": "300750_2026.pdf",
+   "sha256": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+   "code": "300750",
+   "pages": 182,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     72,
+     73,
+     74,
+     75
+    ],
+    "is": [
+     77,
+     78,
+     79
+    ],
+    "cf": [
+     80,
+     81,
+     82
+    ]
+   },
+   "canonical_facts": 215,
+   "unmapped_rows": 33,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的128.04%（上年同期181.33%），利润的现金含量下降。",
+    "存货较年初增加362.93亿元，备货在增加。",
+    "营业利润同比+43.39%，营业收入同比+54.80%：收入增长没有带来同等的营业利润增长。",
+    "营业收入同比+54.80%，营业成本同比+57.06%，毛利率下降1.09个百分点。",
+    "资产负债率较年初上升1.71个百分点。"
+   ]
+  },
+  {
+   "pdf": "600030_2026.pdf",
+   "sha256": "df83d43874a9173a3100e4f5296be06e877ed4107b98aabdb2b2f120f5f30fc7",
+   "code": "600030",
+   "pages": 280,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 3"
+   },
+   "fiscal_period": "2026H1",
+   "comparative_period": "2025H1",
+   "source_anomalies": [],
+   "format": "securities",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     109,
+     110,
+     111,
+     112
+    ],
+    "is": [
+     115,
+     116,
+     117,
+     118,
+     119
+    ],
+    "cf": [
+     125,
+     126,
+     127,
+     128,
+     129
+    ]
+   },
+   "canonical_facts": 174,
+   "unmapped_rows": 51,
+   "identities_passed": 14,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的442.15%（上年同期213.85%），利润的现金含量提高。",
+    "营业利润同比+73.23%，营业收入同比+50.00%：利润增速高于收入，经营杠杆为正。",
+    "资产负债率较年初上升1.20个百分点。"
+   ]
+  },
+  {
+   "pdf": "600031_2026.pdf",
+   "sha256": "a0d1b4814e0ddcdb865ed22cace6e3719e77bb31e7e79dd7fae945347002e235",
+   "code": "600031",
+   "pages": 18,
+   "stages": {
+    "ledger": "PASS",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "20269M",
+   "comparative_period": "20259M",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "is": [
+     8,
+     9,
+     10
+    ],
+    "cf": [
+     10,
+     11,
+     12
+    ]
+   },
+   "canonical_facts": 224,
+   "unmapped_rows": 39,
+   "identities_passed": 20,
+   "identities_failed": [],
+   "findings_top5": [
+    "经营现金净额相当于净利润的154.12%（上年同期200.96%），利润的现金含量下降。",
+    "存货较年初增加45.21亿元，备货在增加。",
+    "营业利润同比+11.13%，营业收入同比+18.81%：收入增长没有带来同等的营业利润增长。",
+    "财务费用由上年同期的净收益转为净支出，本期为22.64亿元。",
+    "营业收入同比+18.81%，营业成本同比+18.20%，毛利率上升0.37个百分点。"
+   ]
+  }
+ ],
+ "blind_sources": {
+  "600030": "https://static.cninfo.com.cn/finalpage/2026-08-21/1225486473.PDF",
+  "000002": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225521951.PDF",
+  "300750": "https://static.cninfo.com.cn/finalpage/2026-07-25/1225441586.PDF",
+  "600031": "https://static.cninfo.com.cn/finalpage/2026-10-30/1225639954.PDF",
+  "002714": "https://static.cninfo.com.cn/finalpage/2026-08-21/1225485220.PDF"
+ },
+ "ci_downloaded_sources": "research/rebuild-v10/download_originals.py (600036, 688111, 600519, 000333)",
+ "note": "盲测 5 份（中信证券、万科A、宁德时代、三一重工三季报、牧原股份）首次运行暴露 7 类问题，全部以通用规则修复；修复后 19/19 通过。PDF 未入库，按 SHA 与巨潮链接可复现。"
+}

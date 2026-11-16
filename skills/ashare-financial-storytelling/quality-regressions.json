@@ -1012,6 +1012,46 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-080",
+      "root_cause": "每家公司都要手写三张表的页码、行和列规格，无法覆盖没见过的公司、行业和格式变化。",
+      "correction": "statement_extract：按准则格式定位三张合并报表、规范项目名（附注列、折行、填列说明、符号提示）、按几何取本期与上期列、读单位、判断报表格式与费用符号口径、映射到标准键，并对两期跑分格式恒等式；残差连同未映射行一起报出，从不吞掉。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_statement_extract.py",
+      "assertion_marker": "test_every_archived_report_closes_every_identity_in_both_columns",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-081",
+      "root_cause": "自动抽取若与人工账本不一致，就不能替代人工；国际准则风格报告把费用印成负数，同一个键在不同公司的符号不同。",
+      "correction": "抽取值与仓库内全部人工账本逐值一致（> 600 个值）；费用为负数打印的报告统一转为“费用为正”，单元格标 sign_flipped，校验器读回原件时按翻转后的值核对。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_statement_extract.py",
+      "assertion_marker": "test_extraction_reproduces_every_hand_built_ledger_value",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-082",
+      "root_cause": "泛化只在见过的公司上验证，等于没有验证。",
+      "correction": "generalization_probe：只给 PDF，跑完 期间识别 → 账本 → 恒等式 → 损益流向图或降级的签名桥 → 四张图族 → 分析要点，每一步都过独立审计。19 份原件 18 家公司 4 种报表格式全部通过，其中 5 份盲测第一次运行暴露的 7 类问题全部用通用规则修复。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_statement_extract.py",
+      "assertion_marker": "test_pdf_only_chain_passes_for_every_archived_report",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-083",
+      "root_cause": "万科 2026H1 原件印出的营业总成本与营业成本相同，用小计做恒等式会把原件错误当成抽取错误，或者被迫修补数字。",
+      "correction": "恒等式以明细行为证据；打印小计与明细不符时记为 source_anomalies，在文章中披露，不修补。千元/百万元报表两个打印单位以内的差额记为“报表尾差（四舍五入）”，作为可审计的净额单列。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_statement_extract.py",
+      "assertion_marker": "test_a_missed_line_item_is_reported_never_absorbed",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

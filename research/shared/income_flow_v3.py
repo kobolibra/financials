@@ -56,6 +56,13 @@ def split(bundle, groups):
     """Split every source term by its real sign: (gains, costs) lists of (label, terms, value)."""
     gains, costs = [], []
     for g in groups:
+        if g.get('net'):  # a rounding tail is ONE signed amount; splitting its large offsetting terms would be meaningless
+            v = amount(bundle, g['terms'])
+            if v > 0:
+                gains.append((g['label'], g['terms'], v))
+            elif v < 0:
+                costs.append((g['label'], [[k, -c] for k, c in g['terms']], -v))
+            continue
         pos = [[k, c] for k, c in g['terms'] if amount(bundle, [[k, c]]) > 0]
         neg = [[k, -c] for k, c in g['terms'] if amount(bundle, [[k, c]]) < 0]
         if pos:

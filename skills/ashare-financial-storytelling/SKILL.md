@@ -27,7 +27,7 @@ Contract version: 10.0.0
 
 | 场景 | 必读 |
 |---|---|
-| 新公司 / 新报告期 | `playbooks/01_REPORT_TYPES.md`、`playbooks/02_ANALYSIS_FRAMEWORK.md`、`playbooks/03_EXHIBIT_SYSTEM.md`、`playbooks/04_PRODUCTION_RUNBOOK.md`、`playbooks/05_QUALITY_RUBRIC.md` |
+| 新公司 / 新报告期 / 新行业 | `playbooks/06_GENERALIZATION.md`（先读：任意公司的通用流程与降级规则）、`playbooks/01_REPORT_TYPES.md`、`playbooks/02_ANALYSIS_FRAMEWORK.md`、`playbooks/03_EXHIBIT_SYSTEM.md`、`playbooks/04_PRODUCTION_RUNBOOK.md`、`playbooks/05_QUALITY_RUBRIC.md` |
 | 只改图形/版式 | `playbooks/03_EXHIBIT_SYSTEM.md`、`docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md`、`docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md` |
 | 银行/保险/券商/地产 | `playbooks/02_ANALYSIS_FRAMEWORK.md` 第5节 + `research/05_CROSS_SECTOR_GENERALIZATION.md` |
 | 发布/验收 | `docs/REPORT_RELEASE_CHECKLIST.md`、`docs/HANDOFF_PROTOCOL.md`、`playbooks/05_QUALITY_RUBRIC.md` |
@@ -40,14 +40,14 @@ Contract version: 10.0.0
 | 阶段 | 产出物 | 退出条件 |
 |---|---|---|
 | P1 来源 | `source/…complete_original.pdf`、`extracted/pNNN.txt`、骨架账本 | 完整报告（非摘要/英文版）；封面年份+报告类型；全称+证券代码页；SHA、物理页数 |
-| P2 账本 | `source-ledger.json` 事实 | 三表本期+比较期全行；每个事实有 bbox 源格；`fin_intake.py preflight` 的会计恒等式全部闭合 |
+| P2 账本 | `source-ledger.json` 事实 | 三表由 `fin_intake.py auto` 自动抽取为标准键（任意公司、四种报表格式），恒等式两期全部闭合；附注事实用 `facts` 规格；每个事实有 bbox 源格 |
 | P3 研究 | `analyst-memo.md`（模板见 `templates/`） | 核心判断、驱动式、最强替代解释、证伪条件、利润质量、现金/资本约束、NOT_CHECKED 清单全部写完，**在画图之前** |
 | P4 图序 | `publication.json` figures + 编辑清单 `research/editorial-20261113/<code>.json` | 每图一个问题、一句答案、一个反证；图种由关系决定（§4）；故事顺序先于图数 |
 | P5 出版 | `public/<code>.html`、`figure-briefs.json`、`qa.json` | 共享出版器生成；无公司专用绘图代码；干净重建逐字节一致 |
 | P6 验收 | 截图、矢量审计、`release-gates.json` | §6 全部适用门槛有证据；逐图截图自评（rubric）无 P0 |
 | P7 交接 | 目录条目、首页、状态文件、PR | 合并后对生产全文件字节、导航、下载复验；未做的写 NOT_CHECKED |
 
-效率原则：P1–P2 用 `skills/ashare-financial-storytelling/tools/fin_intake.py` 的 `init / find / scan / facts / preflight`，不手抄坐标；P3 是唯一不能省的人工判断环节；P5–P6 用现有共享出版器与审计器，不另写。
+效率原则：P1–P2 用 `fin_intake.py init → auto --write`，三张表**不写任何公司规格**；只有附注（分部、地区、补充资料）用 `find / scan / facts`。出现残差或未映射行时，按 `playbooks/06_GENERALIZATION.md` §2 处理：加通用同义词并补回归测试，不写公司补丁；P3 是唯一不能省的人工判断环节；P5–P6 用现有共享出版器与审计器，不另写。
 
 **P4 标准做法（EDITORIAL_V2，每份报告都用）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
 1. `python $T2 numbers --code <c> [--period P]`：打印每行同比、占收入比例、分部/地区增速与毛利率、营运资本余额变动。**叙事只按这里的方向写**。

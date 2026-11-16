@@ -46,7 +46,7 @@ def check_exhibit_values(root,ledger):
             label=nxt.get('data-delta-label')
             need(label in ('同比','较年初','较上期','较上年末'),'KPI_DELTA_LABEL')
             if t.get('data-kpi-kind')=='money':
-                want=f'{label} {q1((cur/prior-1)*100):+}%' if prior>0 else '上期为负或零，不计算增速'
+                want=f'{label} {q1((cur/prior-1)*100):+}%' if prior>0 else '上期≤0，不计增速'
             else:want=f'{label} {q1(cur-prior):+}pp'
             need(nxt.text==want,'KPI_DELTA_TEXT');count+=2
     elif grammar=='SOURCE_RATIO_DUMBBELL_V1':
