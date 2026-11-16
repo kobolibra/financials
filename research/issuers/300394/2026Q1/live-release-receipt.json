@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "issuer": "300394",
+  "period": "2026Q1",
+  "status": "PASS",
+  "verified_git_commit": "9075ad18730a8d18f2a71bf416e4ad96d959e6fd",
+  "pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43809199528",
+  "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
+  "actual_full_content_sha256_equals_repository_main_300394": "f843dcb3f51a26ace62e2328513e72f2e508274df120819ac472077667f01787",
+  "actual_full_content_sha256_equals_repository_main_index": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
+  "all_11_issuer_external_routes": "PASS",
+  "actual_catalog_issuer_count": 14,
+  "real_chromium_viewports": [
+    {
+      "width": 1440,
+      "supplemental_economics_exports": [],
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300394-2026q1",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 7
+    },
+    {
+      "width": 768,
+      "supplemental_economics_exports": [],
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300394-2026q1",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 7
+    },
+    {
+      "width": 390,
+      "supplemental_economics_exports": [],
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/300394-2026q1",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 7
+    }
+  ],
+  "additional_webkit_checks": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "all_source_figures": 7,
+      "real_visible_svg_exports": "PASS",
+      "text_bounds": "PASS",
+      "supplemental_economics_exports": [],
+      "screenshot_sha256": "2d9609654d1be814aeb6e21b2bf8ab547f78083222b96e0b4fbbc91ae80a2063"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "live_300394_1440.png",
+      "sha256": "26468b80e3bdffc27e77c1b07512c9cc8515100c7c4b4f4ca4cd86b913ac3bba",
+      "bytes": 1766956
+    },
+    {
+      "name": "live_300394_390.png",
+      "sha256": "49c19507ec8c356fec0576bd341e1bef45359f5ad9c82c09919b94d2689007ba",
+      "bytes": 1618420
+    },
+    {
+      "name": "live_300394_768.png",
+      "sha256": "78a6604190319b3151d6e4a41f511280333bd8a394394a5a0d779bab7c58e216",
+      "bytes": 2004551
+    },
+    {
+      "name": "live_directory_1440.png",
+      "sha256": "ef93a17db7e3ff1b35be8584e1c522e217f5db41bce43380a887afe0c5422785",
+      "bytes": 959386
+    },
+    {
+      "name": "live_directory_390.png",
+      "sha256": "7f60dd621023571e8399651a4cbb997e0d0322ef7d30e2d44f0fe9fa879310da",
+      "bytes": 971275
+    },
+    {
+      "name": "live_directory_768.png",
+      "sha256": "2f64cb0a51d67d42b6487e0993835ec3aff5f6b8de41a8ac4170fa28b23fa3c8",
+      "bytes": 957887
+    }
+  ],
+  "independent_human_finance_and_art": "NOT_CHECKED",
+  "complete_figure_receipt": "research/rebuild-v10/cloudflare-interaction-qa/source-publications/all-financial-figures/result.json"
+}
