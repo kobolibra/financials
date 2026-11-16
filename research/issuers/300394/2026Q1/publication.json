@@ -28,6 +28,248 @@
  ],
  "figures": [
   {
+   "id": "glance",
+   "family": "kpi_board",
+   "nav": "本期一览",
+   "eyebrow": "AT A GLANCE",
+   "question": "这一季最重要的六个数字是什么？",
+   "takeaway": "收入{{v2g_rev}}%，毛利率升至{{v2r_gm}}%，归母利润{{v2g_parent}}%；经营现金同比{{v2g_cfo}}%。",
+   "trend": "利润跟着收入高增长，现金反向下降。",
+   "analysis": "前三格是“赚得更多”，后三格是“收得更少”：销售收现增速明显低于收入，应收较年初继续增加。",
+   "counter": "一季度回款有季节性；一季度的低收现率能否在后续季度修复，需要半年报与三季报检验（三季报已部分回答）。",
+   "identity": "各格为合并口径；流量与上年同期比较，应收为期末与年初余额比较。",
+   "periods": [
+    "2025年一季度",
+    "2026年一季度"
+   ],
+   "tiles": [
+    {
+     "label": "营业收入",
+     "kind": "money",
+     "value": "rev",
+     "prior": "rev_prior"
+    },
+    {
+     "label": "毛利率",
+     "kind": "ratio",
+     "num": [
+      [
+       "rev",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ],
+     "den": "rev",
+     "prior_num": [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "cogs_prior",
+       -1
+      ]
+     ],
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "归母净利润",
+     "kind": "money",
+     "value": "parent_net",
+     "prior": "parent_net_prior"
+    },
+    {
+     "label": "经营现金净额",
+     "kind": "money",
+     "value": "cfo",
+     "prior": "cfo_prior"
+    },
+    {
+     "label": "销售商品收到的现金",
+     "kind": "money",
+     "value": "sales_cash",
+     "prior": "sales_cash_prior"
+    },
+    {
+     "label": "应收账款（期末余额）",
+     "kind": "money",
+     "value": "ar",
+     "prior": "ar_prior",
+     "delta_label": "较年初",
+     "prior_period": "2025-12-31",
+     "lower_is_better": true
+    }
+   ],
+   "chapter": {
+    "kicker": "01 / 本期一览",
+    "title": "利润高增，现金反向",
+    "summary": "六个数字看清这一季：收入与利润同步高增长，经营现金却比上年同期少。"
+   }
+  },
+  {
+   "id": "growth",
+   "family": "growth_bars",
+   "nav": "增速对比",
+   "eyebrow": "GROWTH, LINE BY LINE",
+   "question": "利润表哪一行跑得最快？",
+   "takeaway": "营业收入同比{{v2g_rev}}%，营业成本{{v2g_cogs}}%，研发费用{{v2g_rd}}%；销售收现只增{{v2g_sc}}%。",
+   "trend": "利润表各行都在高增长；现金类两行明显落后，经营现金为负增长。",
+   "analysis": "成本增速低于收入，毛利率提升；研发费用增速与收入相当，管理与销售费用几乎不增，经营杠杆放大了利润。",
+   "counter": "季报不披露分产品数据，成本增速低于收入的原因（结构、价格、规模）无法区分。",
+   "identity": "各条为本期相对上年同期的同比增速；成本费用类增加标红。",
+   "periods": [
+    "2025年一季度",
+    "2026年一季度"
+   ],
+   "pairs": [
+    [
+     "营业收入",
+     "rev_prior",
+     "rev"
+    ],
+    [
+     "营业成本",
+     "cogs_prior",
+     "cogs",
+     {
+      "lower_is_better": true
+     }
+    ],
+    [
+     "营业毛利",
+     [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "cogs_prior",
+       -1
+      ]
+     ],
+     [
+      [
+       "rev",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ]
+    ],
+    [
+     "研发费用",
+     "rd_expense_prior",
+     "rd_expense",
+     {
+      "lower_is_better": true
+     }
+    ],
+    [
+     "营业利润",
+     "operating_profit_prior",
+     "operating_profit"
+    ],
+    [
+     "归母净利润",
+     "parent_net_prior",
+     "parent_net"
+    ],
+    [
+     "销售商品收到的现金",
+     "sales_cash_prior",
+     "sales_cash"
+    ],
+    [
+     "经营现金净额",
+     "cfo_prior",
+     "cfo"
+    ]
+   ],
+   "chapter": {
+    "kicker": "02 / 盈利",
+    "title": "经营杠杆放大利润",
+    "summary": "成本慢于收入、费用几乎不增，利润率全面上移；唯一的反向项是财务费用。"
+   }
+  },
+  {
+   "id": "margins",
+   "family": "ratio_dumbbell",
+   "nav": "利润率",
+   "eyebrow": "MARGINS & COST RATIOS",
+   "question": "利润率的提升来自哪里？",
+   "takeaway": "毛利率变化{{v2p_gm}}个百分点，管理费用率变化{{v2p_adm}}个百分点，营业利润率变化{{v2p_op}}个百分点。",
+   "trend": "毛利率和营业利润率上移，研发费用率持平，管理费用率下降。",
+   "analysis": "营业利润率的提升小于毛利率的提升，差额主要是财务费用由净收益转为占收入{{v2r_fin}}%的净支出（汇率影响见“汇率渠道”图）。",
+   "counter": "一个季度的利润率受交付结构影响较大，需要与后续季度对照。",
+   "identity": "空心点为上年同期，实心点为本期；比率均以合并营业收入为分母。",
+   "periods": [
+    "2025年一季度",
+    "2026年一季度"
+   ],
+   "rows": [
+    {
+     "label": "毛利率",
+     "num": [
+      [
+       "rev",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ],
+     "den": "rev",
+     "prior_num": [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "cogs_prior",
+       -1
+      ]
+     ],
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "营业利润率",
+     "num": "operating_profit",
+     "den": "rev",
+     "prior_num": "operating_profit_prior",
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "归母净利率",
+     "num": "parent_net",
+     "den": "rev",
+     "prior_num": "parent_net_prior",
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "研发费用率",
+     "num": "rd_expense",
+     "den": "rev",
+     "prior_num": "rd_expense_prior",
+     "prior_den": "rev_prior",
+     "lower_is_better": true
+    },
+    {
+     "label": "管理费用率",
+     "num": "admin",
+     "den": "rev",
+     "prior_num": "admin_prior",
+     "prior_den": "rev_prior",
+     "lower_is_better": true
+    }
+   ]
+  },
+  {
    "id": "profit-change",
    "family": "signed_bridge",
    "nav": "增长归因",
@@ -380,6 +622,65 @@
    ]
   },
   {
+   "id": "stock-delta",
+   "family": "stock_delta",
+   "nav": "资本占用",
+   "eyebrow": "WHERE THE CASH WENT",
+   "question": "增长把资金沉淀在哪里？",
+   "takeaway": "应收增加{{v2d_ar}}亿元、存货增加{{v2d_inv}}亿元、预付增加{{v2d_pre}}亿元；应付票据增加{{v2d_np}}亿元提供了一部分资金。",
+   "trend": "资产端三项都在增加；负债端只有应付票据增加，应付账款和合同负债反而下降。",
+   "analysis": "应付账款与合同负债同时下降，说明供应商和客户都没有为扩张提供更多资金；增加的应付票据是用票据替代了部分账款。",
+   "counter": "余额变动不等于现金流量表调节项；预付增加的用途（备料或设备）季报未披露。",
+   "identity": "各条为期末余额减年初余额；资产增加或负债减少占用资金。",
+   "dates": [
+    "2025-12-31",
+    "2026-03-31"
+   ],
+   "items": [
+    [
+     "应收账款",
+     "asset",
+     "ar_prior",
+     "ar"
+    ],
+    [
+     "存货",
+     "asset",
+     "inventory_prior",
+     "inventory"
+    ],
+    [
+     "预付款项",
+     "asset",
+     "prepayments_prior",
+     "prepayments"
+    ],
+    [
+     "应付票据",
+     "liability",
+     "notes_payable_prior",
+     "notes_payable"
+    ],
+    [
+     "应付账款",
+     "liability",
+     "ap_prior",
+     "ap"
+    ],
+    [
+     "合同负债",
+     "liability",
+     "contract_liabilities_prior",
+     "contract_liabilities"
+    ]
+   ],
+   "chapter": {
+    "kicker": "03 / 现金与资本",
+    "title": "现金被营运资本吸收",
+    "summary": "应收、存货、预付同时增加，应付和预收下降，经营现金因此低于上年同期。"
+   }
+  },
+  {
    "id": "cash-direct",
    "family": "signed_bridge",
    "nav": "经营现金",
@@ -453,53 +754,6 @@
      "经营活动现金净额",
      "cfo",
      "total"
-    ]
-   ]
-  },
-  {
-   "id": "working-capital",
-   "family": "comparison",
-   "nav": "票据与预付",
-   "eyebrow": "COMPARABLE BASES",
-   "question": "增长占用了哪些资产？",
-   "takeaway": "应收账款与应收款项融资合计增加{{recv_delta_yi}}亿元，其中应收款项融资+{{rf_growth}}%；预付款项+{{prepay_growth}}%，应付票据+{{np_growth}}%。",
-   "analysis": "管理层称应收款项融资增加主要是应收票据两期在手规模变化，预付款项增加主要是预付材料款，应付票据增加主要是以承兑汇票支付的采购增加。应收账款相当于一季度收入的{{ar_ratio}}%。",
-   "counter": "应收款项融资通常是可贴现或背书的银行承兑汇票，信用风险与应收账款不同，但本报告没有披露票据承兑人构成，也没有账龄与坏账准备。存货仅增加{{inv_delta_yi}}亿元，一季度的备货压力不在存货上。",
-   "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
-   "periods": [
-    "2025-12-31",
-    "2026-03-31"
-   ],
-   "pairs": [
-    [
-     "应收账款",
-     "ar_prior",
-     "ar"
-    ],
-    [
-     "应收款项融资",
-     "receivable_financing_prior",
-     "receivable_financing"
-    ],
-    [
-     "预付款项",
-     "prepayments_prior",
-     "prepayments"
-    ],
-    [
-     "存货",
-     "inventory_prior",
-     "inventory"
-    ],
-    [
-     "应付票据",
-     "notes_payable_prior",
-     "notes_payable"
-    ],
-    [
-     "应付账款",
-     "ap_prior",
-     "ap"
     ]
    ]
   },
@@ -2602,6 +2856,452 @@
    "multiplier": "1",
    "decimals": 2,
    "absolute": true
+  },
+  "v2g_rev": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "rev_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2y_rev": {
+   "expression": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2
+  },
+  "v2r_gm": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2r_gm_p": {
+   "expression": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2g_cogs": {
+   "expression": [
+    [
+     "cogs",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "cogs_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2g_parent": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ],
+    [
+     "parent_net_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "parent_net_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2y_parent": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2
+  },
+  "v2g_adj": {
+   "expression": [
+    [
+     "adjusted_parent",
+     1
+    ],
+    [
+     "adjusted_parent_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "adjusted_parent_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2y_cfo": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2
+  },
+  "v2g_cfo": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ],
+    [
+     "cfo_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "cfo_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2r_sc": {
+   "expression": [
+    [
+     "sales_cash",
+     1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2d_ar": {
+   "expression": [
+    [
+     "ar",
+     1
+    ],
+    [
+     "ar_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2d_inv": {
+   "expression": [
+    [
+     "inventory",
+     1
+    ],
+    [
+     "inventory_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2d_pre": {
+   "expression": [
+    [
+     "prepayments",
+     1
+    ],
+    [
+     "prepayments_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2y_fin": {
+   "expression": [
+    [
+     "finance",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2
+  },
+  "v2g_rd": {
+   "expression": [
+    [
+     "rd_expense",
+     1
+    ],
+    [
+     "rd_expense_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "rd_expense_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2g_sc": {
+   "expression": [
+    [
+     "sales_cash",
+     1
+    ],
+    [
+     "sales_cash_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "sales_cash_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2b_gm": {
+   "expression": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2p_gm": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "less": "v2b_gm",
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2b_adm": {
+   "expression": [
+    [
+     "admin_prior",
+     1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2p_adm": {
+   "expression": [
+    [
+     "admin",
+     1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "less": "v2b_adm",
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2b_op": {
+   "expression": [
+    [
+     "operating_profit_prior",
+     1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2p_op": {
+   "expression": [
+    [
+     "operating_profit",
+     1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "less": "v2b_op",
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "signed": true
+  },
+  "v2r_fin": {
+   "expression": [
+    [
+     "finance",
+     1
+    ]
+   ],
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2
+  },
+  "v2d_np": {
+   "expression": [
+    [
+     "notes_payable",
+     1
+    ],
+    [
+     "notes_payable_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2,
+   "signed": true
   }
  },
  "essays": [
@@ -2619,7 +3319,7 @@
   },
   {
    "id": "cash-risk",
-   "after": "working-capital",
+   "after": "stock-delta",
    "eyebrow": "EARNINGS QUALITY / CASH CONVERSION",
    "title": "利润已经赚到，现金为什么没有收到？",
    "paragraphs": [
@@ -2732,5 +3432,14 @@
    "period": "20269M",
    "pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5"
   }
- }
+ },
+ "glance": [
+  "营业收入 {{v2g_rev}}% 至 {{v2y_rev}} 亿元",
+  "毛利率 {{v2r_gm}}%（上年同期 {{v2r_gm_p}}%），营业成本同比 {{v2g_cogs}}%",
+  "归母净利润 {{v2g_parent}}% 至 {{v2y_parent}} 亿元；扣非 {{v2g_adj}}%",
+  "经营现金净额 {{v2y_cfo}} 亿元，同比 {{v2g_cfo}}%；销售收现占收入 {{v2r_sc}}%",
+  "应收较年初 {{v2d_ar}} 亿元，存货 {{v2d_inv}} 亿元，预付 {{v2d_pre}} 亿元",
+  "财务费用由上年同期净收益转为净支出 {{v2y_fin}} 亿元"
+ ],
+ "design": "EDITORIAL_V2"
 }

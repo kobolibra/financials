@@ -786,11 +786,39 @@
     "counter": "季报没有分产品数据，毛利率提升的来源不能由此图识别；经营现金下降的原因见现金图。",
     "level_component_count": 3,
     "layout": "INCOME_FLOW_V3",
+    "hero_position": "after_first",
     "full_reconciliation": "REFERENCE_EXPANDABLE_NOT_PRIMARY",
     "human_review": "NOT_CHECKED",
     "figures": [
       {
         "index": 0,
+        "id": "glance",
+        "title": "这一季最重要的六个数字是什么？",
+        "role": "secondary",
+        "rationale": "At a glance：本期六个关键数字",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 1,
+        "id": "growth",
+        "title": "利润表哪一行跑得最快？",
+        "role": "secondary",
+        "rationale": "逐行同比",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
+        "id": "margins",
+        "title": "利润率的提升来自哪里？",
+        "role": "secondary",
+        "rationale": "利润率与费用率前后对比",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 3,
         "id": "profit-change",
         "title": "利润增速为何略快于收入？",
         "role": "secondary",
@@ -799,7 +827,7 @@
         "focus": []
       },
       {
-        "index": 1,
+        "index": 4,
         "id": "earnings",
         "title": "利润与现金为何背离？",
         "role": "secondary",
@@ -808,7 +836,16 @@
         "focus": []
       },
       {
-        "index": 2,
+        "index": 5,
+        "id": "stock-delta",
+        "title": "增长把资金沉淀在哪里？",
+        "role": "secondary",
+        "rationale": "营运资本占用，取代两期对比表",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 6,
         "id": "cash-direct",
         "title": "经营现金少了1亿，差在哪里？",
         "role": "secondary",
@@ -817,16 +854,7 @@
         "focus": []
       },
       {
-        "index": 3,
-        "id": "working-capital",
-        "title": "增长占用了哪些资产？",
-        "role": "secondary",
-        "rationale": "票据与预付占用资产是解释背离的另一半，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 4,
+        "index": 7,
         "id": "fx",
         "title": "汇率从哪几个渠道冲击？",
         "role": "secondary",
@@ -835,7 +863,7 @@
         "focus": []
       },
       {
-        "index": 5,
+        "index": 8,
         "id": "cash",
         "title": "现金余额为何基本没动？",
         "role": "reference",
