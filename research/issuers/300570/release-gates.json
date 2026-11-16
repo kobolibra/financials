@@ -91,8 +91,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43812155433",
-      "scope": "合并利润主图版式V2后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43825339949",
+      "scope": "合并损益流向图V3后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
     }
   },
   "blockers": [
@@ -101,14 +101,14 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "b2a5420ed69a5740912517151850eb0509c540301610e2c67df2b6965b759e44",
-  "live_release_fingerprint": "b2a5420ed69a5740912517151850eb0509c540301610e2c67df2b6965b759e44",
-  "actual_main_release_commit": "f13a6d9ba7d0e1fe68beeda4c42728dbe7972bfe",
+  "published_html_sha256": "819cb5b33438a48b1818f2322c2f40cdb6d80e039ff520aee583f26db852f683",
+  "live_release_fingerprint": "819cb5b33438a48b1818f2322c2f40cdb6d80e039ff520aee583f26db852f683",
+  "actual_main_release_commit": "c6dccfc43d2eb30fcd5f90e4b20879fe0628ef7d",
   "actual_directory_fingerprint": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
   "live_receipt_file": "research/issuers/300570/live-release-receipt.json",
   "production_artifact": {
-    "id": 14201246199,
-    "zip_sha256": "09e9997cd32160ef5496b4d524c13d2a8410b36e6e916bbf2b8c019c70435a00"
+    "id": 14205973883,
+    "zip_sha256": "b3128bedd495b5f709ba76d50facde336a795bcd9a144d465efa53c9325001db"
   },
   "prior_production_release": {
     "schema_version": 1,
@@ -232,14 +232,5 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "b2a5420ed69a5740912517151850eb0509c540301610e2c67df2b6965b759e44",
-    "candidate_full_html_sha256": "819cb5b33438a48b1818f2322c2f40cdb6d80e039ff520aee583f26db852f683",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "change": "利润主图改为AEI语法损益流向图（INCOME_FLOW_V3）：费用与最终扣减拆成具名叶子并标占营收比例，利润节点标利润率与同比；去掉重复的金额构成卡片。正文其余图表字节不变。",
-    "local_receipt": "research/quality/aei-v3-exhibits-local/result.json"
-  }
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
 }

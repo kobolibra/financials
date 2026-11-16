@@ -339,11 +339,11 @@
         "code": "300394",
         "period": "20269M",
         "href": "/300394-2026q3.html",
-        "status": "MERGED_MAIN_f13a6d9_REAL_ACTIONS_PRODUCTION_PROOF_PASS_LAYOUT_V2",
+        "status": "MERGED_MAIN_c6dccfc_REAL_ACTIONS_PRODUCTION_PROOF_PASS_INCOME_FLOW_V3_EDITORIAL_V2",
         "source_pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
         "gates": "research/issuers/300394/20269M/release-gates.json",
         "local_browser_receipt": "research/issuers/300394/20269M/visual-qa/result.json",
-        "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43812155433)",
+        "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949)",
         "independent_human_review": "NOT_CHECKED",
         "production_bytes_check": "2026-11-16 本地HTTP逐字节核对：首页、14家公司与该报告均与仓库一致；真实Actions浏览器回执待 PR #80 合并后产生",
         "live_receipt": "research/issuers/300394/20269M/live-release-receipt.json"
@@ -352,11 +352,11 @@
         "code": "300394",
         "period": "2026Q1",
         "href": "/300394-2026q1.html",
-        "status": "MERGED_MAIN_f13a6d9_REAL_ACTIONS_PRODUCTION_PROOF_PASS_LAYOUT_V2",
+        "status": "MERGED_MAIN_c6dccfc_REAL_ACTIONS_PRODUCTION_PROOF_PASS_INCOME_FLOW_V3",
         "source_pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
         "gates": "research/issuers/300394/2026Q1/release-gates.json",
         "local_browser_receipt": "research/issuers/300394/2026Q1/visual-qa/result.json",
-        "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43812155433)",
+        "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949)",
         "independent_human_review": "NOT_CHECKED",
         "live_receipt": "research/issuers/300394/2026Q1/live-release-receipt.json"
       }
@@ -372,6 +372,22 @@
       ],
       "local_receipt": "research/quality/profit-chain-layout-v2-local/result.json",
       "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43812155433, Chromium 1440/768/390 + WebKit 375)"
+    },
+    "income_flow_v3": {
+      "status": "MERGED_MAIN_c6dccfc_REAL_ACTIONS_PRODUCTION_PROOF_PASS",
+      "reports": [
+        "300570",
+        "300548",
+        "600690",
+        "300394@20269M",
+        "300394@2026Q1"
+      ],
+      "editorial_v2_reports": [
+        "300394@20269M"
+      ],
+      "local_receipt": "research/quality/aei-v3-exhibits-local/result.json",
+      "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949; first post-merge run 43823304600 failed WebKit 375 on the Q3 KPI footnote, fixed in PR #87)",
+      "independent_human_review": "NOT_CHECKED"
     }
   },
   "source_engines": {
