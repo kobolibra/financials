@@ -4,6 +4,92 @@
   "source_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
   "figure_briefs": [
     {
+      "id": "glance",
+      "family": "kpi_board",
+      "question": "这一季最重要的六个数字是什么？",
+      "takeaway": "收入+40.82%，毛利率升至56.60%，归母利润+45.79%；经营现金同比-37.92%。",
+      "identity": "各格为合并口径；流量与上年同期比较，应收为期末与年初余额比较。",
+      "counter": "一季度回款有季节性；一季度的低收现率能否在后续季度修复，需要半年报与三季报检验（三季报已部分回答）。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "facts": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "cfo",
+        "cfo_prior",
+        "sales_cash",
+        "sales_cash_prior",
+        "ar",
+        "ar_prior"
+      ]
+    },
+    {
+      "id": "growth",
+      "family": "growth_bars",
+      "question": "利润表哪一行跑得最快？",
+      "takeaway": "营业收入同比+40.82%，营业成本+30.15%，研发费用+41.98%；销售收现只增+19.60%。",
+      "identity": "各条为本期相对上年同期的同比增速；成本费用类增加标红。",
+      "counter": "季报不披露分产品数据，成本增速低于收入的原因（结构、价格、规模）无法区分。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9,
+        10
+      ],
+      "facts": [
+        "rev_prior",
+        "rev",
+        "cogs_prior",
+        "cogs",
+        "rd_expense_prior",
+        "rd_expense",
+        "operating_profit_prior",
+        "operating_profit",
+        "parent_net_prior",
+        "parent_net",
+        "sales_cash_prior",
+        "sales_cash",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "margins",
+      "family": "ratio_dumbbell",
+      "question": "利润率的提升来自哪里？",
+      "takeaway": "毛利率变化+3.56个百分点，管理费用率变化-0.91个百分点，营业利润率变化+1.59个百分点。",
+      "identity": "空心点为上年同期，实心点为本期；比率均以合并营业收入为分母。",
+      "counter": "一个季度的利润率受交付结构影响较大，需要与后续季度对照。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "rev_prior",
+        "cogs_prior",
+        "operating_profit",
+        "operating_profit_prior",
+        "parent_net",
+        "parent_net_prior",
+        "rd_expense",
+        "rd_expense_prior",
+        "admin",
+        "admin_prior"
+      ]
+    },
+    {
       "id": "profit-change",
       "family": "signed_bridge",
       "question": "利润增速为何略快于收入？",
@@ -79,6 +165,33 @@
       ]
     },
     {
+      "id": "stock-delta",
+      "family": "stock_delta",
+      "question": "增长把资金沉淀在哪里？",
+      "takeaway": "应收增加+1.20亿元、存货增加+0.81亿元、预付增加+0.76亿元；应付票据增加+1.47亿元提供了一部分资金。",
+      "identity": "各条为期末余额减年初余额；资产增加或负债减少占用资金。",
+      "counter": "余额变动不等于现金流量表调节项；预付增加的用途（备料或设备）季报未披露。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        6,
+        7
+      ],
+      "facts": [
+        "ar_prior",
+        "ar",
+        "inventory_prior",
+        "inventory",
+        "prepayments_prior",
+        "prepayments",
+        "notes_payable_prior",
+        "notes_payable",
+        "ap_prior",
+        "ap",
+        "contract_liabilities_prior",
+        "contract_liabilities"
+      ]
+    },
+    {
       "id": "cash-direct",
       "family": "signed_bridge",
       "question": "经营现金少了1亿，差在哪里？",
@@ -98,33 +211,6 @@
         "tax_paid",
         "other_op_out",
         "cfo"
-      ]
-    },
-    {
-      "id": "working-capital",
-      "family": "comparison",
-      "question": "增长占用了哪些资产？",
-      "takeaway": "应收账款与应收款项融资合计增加2.40亿元，其中应收款项融资+714%；预付款项+365%，应付票据+158%。",
-      "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
-      "counter": "应收款项融资通常是可贴现或背书的银行承兑汇票，信用风险与应收账款不同，但本报告没有披露票据承兑人构成，也没有账龄与坏账准备。存货仅增加0.81亿元，一季度的备货压力不在存货上。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        6,
-        7
-      ],
-      "facts": [
-        "ar_prior",
-        "ar",
-        "receivable_financing_prior",
-        "receivable_financing",
-        "prepayments_prior",
-        "prepayments",
-        "inventory_prior",
-        "inventory",
-        "notes_payable_prior",
-        "notes_payable",
-        "ap_prior",
-        "ap"
       ]
     },
     {

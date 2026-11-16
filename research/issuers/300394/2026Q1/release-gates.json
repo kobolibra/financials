@@ -109,5 +109,15 @@
   "production_artifact": {
     "id": 14205973883,
     "zip_sha256": "b3128bedd495b5f709ba76d50facde336a795bcd9a144d465efa53c9325001db"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "462a8461320a9de5ac5fbdb5ff5fc2f7a07a2d1a4c1fa6869cdd463234b53215",
+    "candidate_full_html_sha256": "c39ab7e4067f4d011d6ceaf92b66c710ef98ebf3ca8a568f38ed4677e489be18",
+    "base_figure_count": 7,
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "正文改为EDITORIAL_V2：本期一览、KPI看板、逐行同比、利润率哑铃、营运资本余额变动与主题章节；两期营运资本表由余额变动图取代",
+    "local_receipt": "research/issuers/300394/2026Q1/visual-qa/result.json"
   }
 }

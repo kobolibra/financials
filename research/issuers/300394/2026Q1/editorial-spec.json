@@ -225,7 +225,8 @@
   "takeaway": "一季度成本随收入同步增长，毛利率温和提升；研发、财务费用和所得税吃掉部分毛利增量，现金端的背离见后续图。",
   "counter": "季报没有分产品数据，毛利率提升的来源不能由此图识别；经营现金下降的原因见现金图。",
   "level_component_count": 3,
-  "layout": "INCOME_FLOW_V3"
+  "layout": "INCOME_FLOW_V3",
+  "hero_position": "after_first"
  },
  "figure_roles": {
   "profit-change": {
@@ -240,10 +241,6 @@
    "role": "secondary",
    "rationale": "季报无间接法调节，直接法付现拆解回答现金少在哪里，保留正文"
   },
-  "working-capital": {
-   "role": "secondary",
-   "rationale": "票据与预付占用资产是解释背离的另一半，保留正文"
-  },
   "fx": {
    "role": "secondary",
    "rationale": "汇率同时影响利润、现金和权益，三个渠道口径不同，保留正文"
@@ -251,6 +248,22 @@
   "cash": {
    "role": "reference",
    "rationale": "现金首尾桥已由经营现金与汇率两图覆盖，完整对账保留于核对层"
+  },
+  "glance": {
+   "role": "secondary",
+   "rationale": "At a glance：本期六个关键数字"
+  },
+  "growth": {
+   "role": "secondary",
+   "rationale": "逐行同比"
+  },
+  "margins": {
+   "role": "secondary",
+   "rationale": "利润率与费用率前后对比"
+  },
+  "stock-delta": {
+   "role": "secondary",
+   "rationale": "营运资本占用，取代两期对比表"
   }
  },
  "topics": [
