@@ -3,11 +3,11 @@
   "issuer": "300394",
   "period": "2026Q1",
   "status": "PASS",
-  "verified_git_commit": "c6dccfc43d2eb30fcd5f90e4b20879fe0628ef7d",
+  "verified_git_commit": "bd10f3657278fb240f5eda7ace0773ff926d1af2",
   "pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43825339949",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43835459331",
   "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
-  "actual_full_content_sha256_equals_repository_main_300394": "462a8461320a9de5ac5fbdb5ff5fc2f7a07a2d1a4c1fa6869cdd463234b53215",
+  "actual_full_content_sha256_equals_repository_main_300394": "c39ab7e4067f4d011d6ceaf92b66c710ef98ebf3ca8a568f38ed4677e489be18",
   "actual_full_content_sha256_equals_repository_main_index": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
   "all_11_issuer_external_routes": "PASS",
   "actual_catalog_issuer_count": 14,
@@ -20,7 +20,7 @@
       "back_to_same_home": "PASS",
       "no_page_horizontal_overflow": "PASS",
       "real_live_screenshots": "PASS",
-      "all_source_figures": 7
+      "all_source_figures": 10
     },
     {
       "width": 768,
@@ -30,7 +30,7 @@
       "back_to_same_home": "PASS",
       "no_page_horizontal_overflow": "PASS",
       "real_live_screenshots": "PASS",
-      "all_source_figures": 7
+      "all_source_figures": 10
     },
     {
       "width": 390,
@@ -40,35 +40,35 @@
       "back_to_same_home": "PASS",
       "no_page_horizontal_overflow": "PASS",
       "real_live_screenshots": "PASS",
-      "all_source_figures": 7
+      "all_source_figures": 10
     }
   ],
   "additional_webkit_checks": [
     {
       "engine": "webkit",
       "width": 375,
-      "all_source_figures": 7,
+      "all_source_figures": 10,
       "real_visible_svg_exports": "PASS",
       "text_bounds": "PASS",
       "supplemental_economics_exports": [],
-      "screenshot_sha256": "0fdd6545979fb37c4bd2e6bf50965776369f8ce51f748311044dd15f259bd83a"
+      "screenshot_sha256": "4d25d466acf1fd187e16b0ab9d64b29c12b03d5ee6b3424472519a65a408adc1"
     }
   ],
   "screenshots": [
     {
       "name": "live_300394_1440.png",
-      "sha256": "90bb0d99a5909b25ff854480b5776bb911bcca38ea22bc18c44d25d35f6e4658",
-      "bytes": 1854109
+      "sha256": "f10e1005aae1ce683161348623d0f109e125e82480f0950517355cc220d9c16f",
+      "bytes": 2270961
     },
     {
       "name": "live_300394_390.png",
-      "sha256": "81f9761c4253fdf4d95346884378ef1931fb36a20446f0dca9b8500c96077651",
-      "bytes": 1653224
+      "sha256": "a905911b279c30430e03777965e252dec4e2fdd964c9acd38f589c2ae919428a",
+      "bytes": 2030569
     },
     {
       "name": "live_300394_768.png",
-      "sha256": "f375262b7f283b2cedbc8cb54c796d3a3df83c9c51ba199aa1ab062e58604e49",
-      "bytes": 2048770
+      "sha256": "8bc09424fc9c69515032ab71cf1868e0ca903ae5176c8be0460f74732be29789",
+      "bytes": 2533063
     },
     {
       "name": "live_directory_1440.png",

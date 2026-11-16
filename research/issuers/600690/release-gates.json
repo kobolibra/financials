@@ -91,8 +91,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43825339949",
-      "scope": "合并损益流向图V3后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43835459331",
+      "scope": "合并EDITORIAL_V2正文后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
     }
   },
   "blockers": [
@@ -101,9 +101,9 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "d0529d76d105ac4af17b6e93a8c5499b8661a07b043013a578ea22bf8c68e1f3",
-  "live_release_fingerprint": "d0529d76d105ac4af17b6e93a8c5499b8661a07b043013a578ea22bf8c68e1f3",
-  "actual_main_release_commit": "c6dccfc43d2eb30fcd5f90e4b20879fe0628ef7d",
+  "published_html_sha256": "683755dbecaee611747e398befb989957f1abb1b9f545b1b29ec2de7c791cc42",
+  "live_release_fingerprint": "683755dbecaee611747e398befb989957f1abb1b9f545b1b29ec2de7c791cc42",
+  "actual_main_release_commit": "bd10f3657278fb240f5eda7ace0773ff926d1af2",
   "actual_directory_fingerprint": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
   "live_receipt_file": "research/issuers/600690/live-release-receipt.json",
   "prior_production_release": {
@@ -226,17 +226,7 @@
   },
   "editorial_contract": "FULL_PROFIT_CHAIN_V1",
   "production_artifact": {
-    "id": 14205973883,
-    "zip_sha256": "b3128bedd495b5f709ba76d50facde336a795bcd9a144d465efa53c9325001db"
-  },
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "d0529d76d105ac4af17b6e93a8c5499b8661a07b043013a578ea22bf8c68e1f3",
-    "candidate_full_html_sha256": "683755dbecaee611747e398befb989957f1abb1b9f545b1b29ec2de7c791cc42",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "change": "正文改为EDITORIAL_V2：本期一览、KPI看板、逐行/分部同比增速条、利润率哑铃、营运资本余额变动、主题章节；正文签名桥不超过两张，重叠的两期对比表移除",
-    "local_receipt": "research/quality/editorial-20261113-local/result.json",
-    "base_figure_count": 13
+    "id": 14210872027,
+    "zip_sha256": "283ac507d3615c4c15d83b5e6383c1755236aa8cb53abe3718b73486cffda9c0"
   }
 }

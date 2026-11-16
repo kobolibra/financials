@@ -91,8 +91,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43825339949",
-      "scope": "合并损益流向图V3后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43835459331",
+      "scope": "合并EDITORIAL_V2正文后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
     }
   },
   "blockers": [
@@ -101,14 +101,14 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "819cb5b33438a48b1818f2322c2f40cdb6d80e039ff520aee583f26db852f683",
-  "live_release_fingerprint": "819cb5b33438a48b1818f2322c2f40cdb6d80e039ff520aee583f26db852f683",
-  "actual_main_release_commit": "c6dccfc43d2eb30fcd5f90e4b20879fe0628ef7d",
+  "published_html_sha256": "c37492c8d9d0a379af094aaf6604e82d8a8a4414741b18056647022c0f3d9b61",
+  "live_release_fingerprint": "c37492c8d9d0a379af094aaf6604e82d8a8a4414741b18056647022c0f3d9b61",
+  "actual_main_release_commit": "bd10f3657278fb240f5eda7ace0773ff926d1af2",
   "actual_directory_fingerprint": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
   "live_receipt_file": "research/issuers/300570/live-release-receipt.json",
   "production_artifact": {
-    "id": 14205973883,
-    "zip_sha256": "b3128bedd495b5f709ba76d50facde336a795bcd9a144d465efa53c9325001db"
+    "id": 14210872027,
+    "zip_sha256": "283ac507d3615c4c15d83b5e6383c1755236aa8cb53abe3718b73486cffda9c0"
   },
   "prior_production_release": {
     "schema_version": 1,
@@ -232,15 +232,5 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "819cb5b33438a48b1818f2322c2f40cdb6d80e039ff520aee583f26db852f683",
-    "candidate_full_html_sha256": "c37492c8d9d0a379af094aaf6604e82d8a8a4414741b18056647022c0f3d9b61",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "change": "正文改为EDITORIAL_V2：本期一览、KPI看板、逐行/分部同比增速条、利润率哑铃、营运资本余额变动、主题章节；正文签名桥不超过两张，重叠的两期对比表移除",
-    "local_receipt": "research/quality/editorial-20261113-local/result.json",
-    "base_figure_count": 11
-  }
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
 }
