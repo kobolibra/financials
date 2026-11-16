@@ -11,7 +11,10 @@ SITE='https://financials-in-visuals.pages.dev'
 def run(out=None):
  from playwright.sync_api import sync_playwright
  out=Path(out or ROOT/'research/quality/source-publication-live');out.mkdir(parents=True,exist_ok=True)
- catalog=json.loads((ROOT/'site/research_catalog.json').read_text());issuers=[x for x in catalog['issuers'] if x.get('source_publication') or x.get('editorial_contract')]
+ catalog=json.loads((ROOT/'site/research_catalog.json').read_text());issuers=[dict(x,key=x['code']) for x in catalog['issuers'] if x.get('source_publication') or x.get('editorial_contract')]
+ issuers+=[dict(x,key=x['code']+'@'+x['period']) for x in catalog.get('period_reports',[]) if x.get('source_publication') or x.get('editorial_contract')]
+ only=os.environ.get('FINANCIALS_LIVE_ONLY')  # comma-separated catalogue keys, for targeted re-runs; unset in CI
+ if only:issuers=[x for x in issuers if x['key'] in only.split(',')]
  if not issuers:return []
  git_sha=os.environ.get('GITHUB_SHA') or subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
  if not re.fullmatch('[a-f0-9]{40}',git_sha):raise ValueError('SOURCE_LIVE_FULL_COMMIT_REQUIRED')
@@ -24,26 +27,26 @@ def run(out=None):
    except Exception:pass
    if attempt==29:raise ValueError('SOURCE_LIVE_EXACT_MAIN_BYTES_NOT_DEPLOYED')
    time.sleep(10)
-  for x in catalog['issuers']:
+  for x in catalog['issuers']+catalog.get('period_reports',[]):
    response=req.get(SITE+x['href']);assert response.status==200 and response.body()==(ROOT/'public'/x['href'].lstrip('/')).read_bytes(),('LIVE_ROUTE_SOURCE_BYTES',x['code'])
    for alias in x.get('legacy_report_aliases',[]):
     response=req.get(SITE+alias);assert response.status==200 and response.body()==(ROOT/'public'/x['href'].lstrip('/')).read_bytes(),('LIVE_CANONICAL_ALIAS_BYTES',x['code'],alias)
   req.dispose()
  # Audit every visible source vector and all actual downloads on live HTTP.
- audit([x['code'] for x in issuers],out/'all-financial-figures',SITE)
+ audit([x['key'] for x in issuers],out/'all-financial-figures',SITE)
  with sync_playwright() as p:
   chrome=p.chromium.launch(headless=True);webkit=p.webkit.launch(headless=True)
   for issuer in issuers:
-   code=issuer['code'];folder=out/code;folder.mkdir(exist_ok=True);ledger=json.loads((ROOT/issuer['source_publication']/'source-ledger.json').read_text()) if issuer.get('source_publication') else None
+   code=issuer['code'];key=issuer['key'];folder=out/key.replace('@','-');folder.mkdir(exist_ok=True);ledger=json.loads((ROOT/issuer['source_publication']/'source-ledger.json').read_text()) if issuer.get('source_publication') else None
    from profit_chain_audit import bundle_for,check_reader
-   pdf_sha=ledger['source']['original_bytes_sha256'] if ledger else bundle_for(code)['source_pdf']['source_sha256']
+   pdf_sha=ledger['source']['original_bytes_sha256'] if ledger else bundle_for(key)['source_pdf']['source_sha256']
    views=[];extra=[]
    for engine,width in [('chromium',1440),('chromium',768),('chromium',390),('webkit',375)]:
     browser=chrome if engine=='chromium' else webkit;page=browser.new_page(viewport={'width':width,'height':960},accept_downloads=True);errors=[]
     page.on('pageerror',lambda e:errors.append(str(e)))
     page.goto(SITE+'/',wait_until='load');assert page.locator('a.company').count()==len(catalog['issuers'])
     if engine=='chromium':page.screenshot(path=str(folder/f'live_directory_{width}.png'),full_page=True)
-    page.locator('a.company[href="'+issuer['href']+'"]').click();page.wait_for_url(re.compile('/'+code+r'(?:\.html)?(?:[?#].*)?$'));article_url=page.url;page.evaluate('document.fonts.ready')
+    page.locator(('a.update-card' if '@' in key else 'a.company')+'[href="'+issuer['href']+'"]').click();page.wait_for_url(re.compile(('/'+re.escape(issuer['href'][1:-5]) if '@' in key else '/'+code)+r'(?:\.html)?(?:[?#].*)?$'));article_url=page.url;page.evaluate('document.fonts.ready')
     response=page.request.get(page.url);assert response.body()==(ROOT/'public'/issuer['href'].lstrip('/')).read_bytes()
     check_reader(page);check_reader(page,expanded=True)
     observed=page.evaluate(MEASURE);assert observed['body']['scroll']<=observed['body']['client']+1
@@ -71,7 +74,7 @@ def run(out=None):
     for n,panel in enumerate(page.locator('section[data-comparative-economics]').all()):
      from economics_exhibit import compile_ledger_comparison,render_bridge
      import xml.etree.ElementTree as ET
-     source_path=ROOT/bundle_for(code)['source_ledger']
+     source_path=ROOT/bundle_for(key)['source_ledger']
      raw_ledger=json.loads(source_path.read_text());brief=json.loads((source_path.parent/'comparative-economics.json').read_text())
      compiled=compile_ledger_comparison(raw_ledger,brief)
      svg=panel.locator('svg:visible');raw=svg.evaluate('e=>new XMLSerializer().serializeToString(e)')
@@ -84,7 +87,7 @@ def run(out=None):
      economics_exports.append({'file':dest.name,'sha256':hashlib.sha256(dest.read_bytes()).hexdigest(),'source_rebuild_and_visible_svg':'PASS'})
     if engine=='webkit':
      for i,f in enumerate(page.locator('figure').all()):
-      svg=f.locator('svg:visible');raw=svg.evaluate('e=>new XMLSerializer().serializeToString(e)');check_vector(raw,code,pdf_sha)
+      svg=f.locator('svg:visible');raw=svg.evaluate('e=>new XMLSerializer().serializeToString(e)');check_vector(raw,key,pdf_sha)
       if ledger:check_vector_source(raw,ledger)
       with page.expect_download() as event:f.locator('button').click()
       dest=folder/f'webkit-375-figure-{i+1}.svg';event.value.save_as(dest);assert dest.read_text()==raw
@@ -97,8 +100,8 @@ def run(out=None):
     assert not errors,errors
     if engine=='chromium':views.append({'width':width,'supplemental_economics_exports':economics_exports,**nav,'back_to_same_home':'PASS','no_page_horizontal_overflow':'PASS','real_live_screenshots':'PASS','all_source_figures':issuer['figures']})
     page.close()
-   receipt={'schema_version':1,'issuer':code,'status':'PASS','verified_git_commit':git_sha,'pdf_sha256':pdf_sha,'actual_publication_action':('https://github.com/kobolibra/financials/actions/runs/'+os.environ['GITHUB_RUN_ID']) if os.environ.get('GITHUB_RUN_ID') else str((folder/'live-release-receipt.json').relative_to(ROOT)),'execution_provenance':'GITHUB_ACTIONS_REAL_PUBLIC_BROWSER' if os.environ.get('GITHUB_RUN_ID') else 'LOCAL_REAL_PUBLIC_BROWSER_NOT_ACTIONS','actual_full_content_sha256_equals_repository_main_'+code:hashlib.sha256((ROOT/'public'/issuer['href'].lstrip('/')).read_bytes()).hexdigest(),'actual_full_content_sha256_equals_repository_main_index':hashlib.sha256(home).hexdigest(),'all_11_issuer_external_routes':'PASS','actual_catalog_issuer_count':len(catalog['issuers']),'real_chromium_viewports':views,'additional_webkit_checks':extra,'screenshots':[{'name':f.name,'sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'bytes':f.stat().st_size} for f in sorted(folder.glob('live_*.png'))],'independent_human_finance_and_art':'NOT_CHECKED','complete_figure_receipt':str((out/'all-financial-figures/result.json').relative_to(ROOT))}
-   (folder/'live-release-receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n');receipts.append(receipt);print('SOURCE_PUBLICATION_REAL_PRODUCTION_PASS',code,git_sha,flush=True)
+   receipt={'schema_version':1,'issuer':code,**({'period':issuer['period']} if '@' in key else {}),'status':'PASS','verified_git_commit':git_sha,'pdf_sha256':pdf_sha,'actual_publication_action':('https://github.com/kobolibra/financials/actions/runs/'+os.environ['GITHUB_RUN_ID']) if os.environ.get('GITHUB_RUN_ID') else str((folder/'live-release-receipt.json').relative_to(ROOT)),'execution_provenance':'GITHUB_ACTIONS_REAL_PUBLIC_BROWSER' if os.environ.get('GITHUB_RUN_ID') else 'LOCAL_REAL_PUBLIC_BROWSER_NOT_ACTIONS','actual_full_content_sha256_equals_repository_main_'+code:hashlib.sha256((ROOT/'public'/issuer['href'].lstrip('/')).read_bytes()).hexdigest(),'actual_full_content_sha256_equals_repository_main_index':hashlib.sha256(home).hexdigest(),'all_11_issuer_external_routes':'PASS','actual_catalog_issuer_count':len(catalog['issuers']),'real_chromium_viewports':views,'additional_webkit_checks':extra,'screenshots':[{'name':f.name,'sha256':hashlib.sha256(f.read_bytes()).hexdigest(),'bytes':f.stat().st_size} for f in sorted(folder.glob('live_*.png'))],'independent_human_finance_and_art':'NOT_CHECKED','complete_figure_receipt':str((out/'all-financial-figures/result.json').relative_to(ROOT))}
+   (folder/'live-release-receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n');receipts.append(receipt);print('SOURCE_PUBLICATION_REAL_PRODUCTION_PASS',key,git_sha,flush=True)
   chrome.close();webkit.close()
  return receipts
 if __name__=='__main__':run()
