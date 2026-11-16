@@ -1,0 +1,52 @@
+name: Pre-merge WebKit 375 text bounds on a Cloudflare preview
+# Chromium passes locally while WebKit renders CJK wider. Run before merging a visual change:
+#   gh workflow run verify-preview-webkit.yml -f origin=https://<hash>.financials-in-visuals.pages.dev
+on:
+  workflow_dispatch:
+    inputs:
+      origin:
+        description: Cloudflare preview origin (from the PR's "Cloudflare Pages" check)
+        required: true
+permissions:
+  contents: read
+jobs:
+  webkit-375:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install WebKit and Chinese fonts
+        run: |
+          python -m pip install --disable-pip-version-check -q playwright
+          python -m playwright install --with-deps webkit
+          sudo apt-get install -y -qq fonts-noto-cjk && fc-cache -f
+      - name: Every catalogued report, WebKit 375, no clipped / overlapping / tiny labels, no page error, no horizontal scroll
+        env:
+          ORIGIN: ${{ inputs.origin }}
+        run: |
+          python - <<'PY'
+          import json, os, re, sys
+          sys.path.insert(0, 'scripts'); sys.path.insert(0, 'research/shared')
+          from audit_delivery_matrix import MEASURE
+          from playwright.sync_api import sync_playwright
+          origin = os.environ['ORIGIN'].rstrip('/')
+          assert re.fullmatch(r'https://[a-z0-9-]+\.financials-in-visuals\.pages\.dev', origin), origin
+          cat = json.load(open('site/research_catalog.json'))
+          hrefs = [r['href'] for r in cat['issuers'] + cat.get('period_reports', [])]
+          bad = []
+          with sync_playwright() as p:
+              b = p.webkit.launch()
+              for h in hrefs:
+                  pg = b.new_page(viewport={'width': 375, 'height': 960}); errs = []
+                  pg.on('pageerror', lambda e: errs.append(str(e)))
+                  pg.goto(origin + h, wait_until='load'); pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(600)
+                  o = pg.evaluate(MEASURE)
+                  faults = [{'figure': s.get('figure'), 'clipped': [c['text'] for c in s['clippedLabels']], 'overlaps': s['possibleLabelOverlaps'], 'below10px': s['below10px']}
+                            for s in o['svgs'] if s['clippedLabels'] or s['possibleLabelOverlaps'] or s['below10px']]
+                  if faults or errs or o['body']['scroll'] > o['body']['client'] + 1:
+                      bad.append({'href': h, 'faults': faults, 'errors': errs, 'body': o['body']})
+                  print(h, 'svgs', len(o['svgs']), 'faults', len(faults), 'errors', len(errs), flush=True)
+                  pg.close()
+          print(json.dumps(bad, ensure_ascii=False, indent=1))
+          sys.exit(1 if bad else 0)
+          PY
