@@ -44,6 +44,11 @@ def reread(doc, facts):
     import pymupdf
     bad = []
     for k, f in facts.items():
+        if f.get('classification') == 'DERIVED':
+            t = f['derivation']['terms']
+            if D(facts[t[0]]['yuan']) - D(facts[t[1]]['yuan']) != D(f['yuan']):
+                bad.append(k)
+            continue
         c = f['source_cells'][0]
         region = doc[f['page'] - 1].get_textbox(pymupdf.Rect(c['bbox']) + (-.5, -.5, .5, .5)).replace(',', '')
         printed = c['printed'].strip().replace(',', '')
@@ -89,9 +94,29 @@ def probe(pdf: Path):
     row.update(source_anomalies=result.get('source_anomalies', []))
     row.update(format=result['format'], sign_convention=result['convention'], statement_pages=result['pages'], canonical_facts=len(facts),
                unmapped_rows=len(result['unmapped']), identities_passed=len(ok), identities_failed=bad)
+    import notes_extract as ne
+    note_facts, segments, partition, notes_report = ne.extract_notes(doc, fi.rows_on_page, fi.squash, se.unit_of, se.norm, facts)
+    facts.update({k: f for k, f in note_facts.items() if k not in facts})
+    row['notes'] = notes_report
     false_cells = reread(doc, facts)
     row['stages']['ledger'] = ('PASS' + (' 原件异常已列出' if result.get('source_anomalies') else '')) if not bad and not false_cells and not result['notes'] else f'FAIL identities={bad} cells={false_cells[:5]} {result["notes"]}'
-    ledger = {'issuer': issuer, 'facts': facts, 'source': {'original_bytes_sha256': sha}}
+    ledger = {'issuer': issuer, 'facts': facts, 'source': {'original_bytes_sha256': sha}, 'segments': segments, 'income_partition': partition or {}}
+    # revenue -> gross profit Sankey by business, only when the notes proved a complete partition
+    if partition:
+        try:
+            from source_income_adapter import compile_disclosed_income
+            from source_publication import chart
+            from source_publication_audit import check_vector_source as cvs
+            led2 = dict(ledger, issuer=dict(issuer, sector_adapter='manufacturing', accounting_route='industrial_own_cost_income', base_unit='人民币元'),
+                        source=dict(ledger['source'], physical_pages_observed=len(doc), source_path=str(pdf.relative_to(ROOT)) if pdf.is_relative_to(ROOT) else str(pdf), original_bytes_gate='COMPLETE_ARCHIVED_PDF_SHA_PASS'))
+            compile_disclosed_income(led2)
+            for mobile in (False, True):
+                cvs(chart(led2, {'id': 'income', 'family': 'income', 'question': '哪个业务留下了毛利？'}, mobile), led2)
+            row['stages']['business_sankey'] = 'PASS ' + partition['axis'] + f' {len(segments)} rows'
+        except Exception as e:  # noqa: BLE001
+            row['stages']['business_sankey'] = 'FAIL ' + type(e).__name__ + ' ' + str(e)[:160]
+    else:
+        row['stages']['business_sankey'] = 'NOT_AVAILABLE no complete revenue+cost partition proven in the notes'
     # income flow V3
     try:
         b = bundle_for(code, issuer, facts, sha)
@@ -171,7 +196,8 @@ def main(argv=None):
         print(r.get('code'), r.get('fiscal_period'), r.get('format'), json.dumps(r.get('stages', r.get('crash')), ensure_ascii=False), flush=True)
     passed = sum(1 for r in rows if r.get('stages', {}).get('ledger', '').startswith('PASS') and r['stages'].get('exhibits', '').startswith('PASS')
                  and (r['stages'].get('income_flow_v3') == 'PASS' or r['stages'].get('income_flow_v3', '').startswith('REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS'))
-                 and r['stages'].get('findings', '').startswith('PASS'))
+                 and r['stages'].get('findings', '').startswith('PASS')
+                 and not r['stages'].get('business_sankey', '').startswith('FAIL'))
     out = {'schema': 'financials.generalization_probe.v1', 'company_specific_input': 'NONE', 'reports': len(rows), 'all_stages_pass': passed,
            'scope': 'STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe', 'rows': rows}
     if a.out:

@@ -271,7 +271,7 @@
       "EDITORIAL_V2 body design on all 5 source publications (300394 Q3/Q1, 300570, 300548, 600690); 10 legacy V1 reports keep the earlier body figures",
       "multi-year segment trend exhibits need several archived annual ledgers",
       "income-flow V3 gains at the operating->parent step are drawn as a small ochre inflow whose label sits near the operating node; no independent human art review",
-      "statement_extract covers the three consolidated statements for any issuer (19/19 PDF-only probe incl. 5 blind); segment/region notes still need a facts spec; annual-report full text not yet probed"
+      "statement_extract + notes_extract: three statements and revenue/segment/region notes, cash-flow reconciliation and 扣非 for any issuer; 30/30 PDF-only probe incl. 11 annual reports; business Sankey proven for 16/30, reconciliation 22/27, 扣非 26/30; bank/securities/insurance notes not covered"
     ],
     "generalization_probe": "research/quality/generalization-probe/result.json"
   },

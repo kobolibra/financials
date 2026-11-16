@@ -1,5 +1,7 @@
 # ACTIVE PROJECT STATE — Skill 10.0.0 + 天孚通信 2026 一季报/三季报（已上线并验证）
 
+**2026-11-16 附注与年报泛化（候选）：** `fin_intake.py auto` 同时抽取主营/其他业务、分产品/分行业/分地区/分销售模式、现金流量表补充资料和扣非，每一列的含义都由报告自身合计证明，读不回原件的表格整表丢弃。只给 PDF 的探针扩展到 30 份（新增 11 份 2025 年报），30/30 通过；业务毛利桑基 16 份可证明，补充资料闭合 22/27，扣非 26/30，其余如实报出。见 playbook 06 §1b–1c、`research/quality/generalization-probe/result.json`。
+
 **2026-11-16 泛化引擎（候选）：** `fin_intake.py auto` 不写公司规格，自动从任意 A 股完整报告抽取三张合并报表到标准账本（一般/银行/证券/保险四种格式、元/千元/百万元、两种费用符号口径、附注列、折行、续页、合并及公司同表），两期恒等式闭合，残差和原件异常照实报出。端到端探针只给 PDF：19 份原件 18 家公司全部通过，其中 5 份盲测（中信证券、万科A、宁德时代、三一三季报、牧原）。见 `skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md`、`research/quality/generalization-probe/result.json`。
 
 **2026-11-16 AEI 级重构（PR #86–#90 已合并并经生产验收）：** 损益流向图 `INCOME_FLOW_V3`（具名费用叶子、利润率与同比，独立审计 `income_flow_audit.py`）与图族 `kpi_board / period_columns / growth_bars / ratio_dumbbell / stock_delta`（几何 + 原件取值审计）；文章结构 EDITORIAL_V2（本期一览 → KPI 看板 → 损益流向图 → 主题章节，正文签名桥 ≤2）。已用于全部 5 份来源驱动报告：天孚三季报、一季报，300570、300548、600690。600690 旧稿手写金额全部改为公式占位符。生产锁定 run 43825339949（V3 主图）与 run 43835459331（EDITORIAL_V2 正文，main `bd10f36`）均通过：整页字节一致，Chromium 三档 + WebKit 375。证据：`research/quality/aei-v3-exhibits-local/`。独立人类二审 NOT_CHECKED。

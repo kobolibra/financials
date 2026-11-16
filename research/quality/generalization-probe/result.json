@@ -1,8 +1,8 @@
 {
  "schema": "financials.generalization_probe.v1",
  "company_specific_input": "NONE",
- "reports": 19,
- "all_stages_pass": 19,
+ "reports": 30,
+ "all_stages_pass": 30,
  "scope": "STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe",
  "rows": [
   {
@@ -12,6 +12,7 @@
    "pages": 184,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 9"
@@ -43,6 +44,33 @@
    "unmapped_rows": 17,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p8 plain",
+     "p21 plain",
+     "p25 plain",
+     "p26 margin",
+     "p26 plain",
+     "p27 plain",
+     "p30 plain",
+     "p56 plain",
+     "p58 plain",
+     "p139 plain",
+     "p159 plain",
+     "p173 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 147,
+     "status": "CLOSED",
+     "lines": 15,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "营业利润同比+253.30%，营业收入同比+182.49%：利润增速高于收入，经营杠杆为正。",
     "营业收入同比+182.49%，营业成本同比+150.25%，毛利率上升6.93个百分点。",
@@ -58,9 +86,10 @@
    "pages": 143,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 11"
+    "findings": "PASS 12"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -87,12 +116,74 @@
    "unmapped_rows": 16,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "region",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 135,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "中国大陆",
+       "其余地区"
+      ]
+     },
+     {
+      "dimension": "unlabelled",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 135,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 0,
+      "roles": [
+       "rev"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "电信市场",
+       "数据通信、消费及工业互联"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p8 plain",
+     "p14 plain",
+     "p15 plain",
+     "p16 plain",
+     "p22 plain",
+     "p50 plain",
+     "p52 plain",
+     "p107 plain",
+     "p121 plain",
+     "p135 plain",
+     "p141 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 114,
+     "status": "CLOSED",
+     "lines": 16,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "营业利润同比+100.09%，营业收入同比+40.72%：利润增速高于收入，经营杠杆为正。",
     "存货较年初增加3.42亿元，备货在增加。",
     "营业收入同比+40.72%，营业成本同比+20.29%，毛利率上升8.68个百分点。",
-    "经营现金净额相当于净利润的58.74%（上年同期104.28%），利润的现金含量下降。",
-    "少数股东损益占净利润的39.19%，归母利润明显低于合并利润。"
+    "其余同比+58.76%，中国大陆同比+11.26%，分部走势分化。",
+    "经营现金净额相当于净利润的58.74%（上年同期104.28%），利润的现金含量下降。"
    ]
   },
   {
@@ -102,9 +193,10 @@
    "pages": 189,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_region_axis 2 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 11"
+    "findings": "PASS 12"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -131,6 +223,51 @@
    "unmapped_rows": 14,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "margin",
+      "page": 15,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "内销",
+       "外销"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p7 plain",
+     "p13 plain",
+     "p14 plain",
+     "p15 margin",
+     "p15 plain",
+     "p40 plain",
+     "p42 plain",
+     "p141 plain",
+     "p142 plain",
+     "p160 plain",
+     "p186 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 149,
+     "status": "CLOSED",
+     "lines": 14,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的-39.93%（上年同期72.45%），利润的现金含量下降。",
     "存货较年初增加2.63亿元，备货在增加。",
@@ -146,9 +283,10 @@
    "pages": 182,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_region_axis 2 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 8"
+    "findings": "PASS 9"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -174,12 +312,73 @@
    "unmapped_rows": 15,
    "identities_passed": 20,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "unlabelled",
+      "scope": "rev",
+      "table": "plain",
+      "page": 145,
+      "rows": 3,
+      "with_prior": false,
+      "with_cost": 3,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "销售商品",
+       "许可收入",
+       "其他"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 145,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "国内",
+       "国外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p56 plain",
+     "p57 plain",
+     "p59 plain",
+     "p77 plain",
+     "p79 plain",
+     "p145 plain",
+     "p180 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 152,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的44.50%（上年同期96.54%），利润的现金含量下降。",
+    "非经常性损益使归母净利润高于扣非利润；扣非同比-12.71%，归母同比+0.34%。",
     "资产负债率较年初下降3.38个百分点。",
     "研发费用率上升2.12个百分点。",
-    "营业收入同比-1.94%，营业成本同比-0.08%，毛利率下降0.25个百分点。",
-    "存货较年初增加1.16亿元，备货在增加。"
+    "营业收入同比-1.94%，营业成本同比-0.08%，毛利率下降0.25个百分点。"
    ]
   },
   {
@@ -189,9 +388,10 @@
    "pages": 192,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 4 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 10"
+    "findings": "PASS 12"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -219,12 +419,58 @@
    "unmapped_rows": 29,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 151,
+      "rows": 3,
+      "with_prior": true,
+      "with_cost": 3,
+      "roles": [
+       "cost",
+       "cost_prior",
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": "HEADER_CONSISTENT_WITH_PROVEN_REVENUE_COLUMNS",
+      "labels": [
+       "智慧生活电器",
+       "智慧暖通方案",
+       "智慧家庭生态及其他"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p16 plain",
+     "p33 plain",
+     "p35 plain",
+     "p70 plain",
+     "p72 plain",
+     "p151 plain",
+     "p169 plain",
+     "p191 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 157,
+     "status": "CLOSED",
+     "lines": 16,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "应收账款较年初增加58.89亿元，营业收入同比-2.80%：收入下降而应收增加，回款条件需要下一期验证。",
     "营业利润同比-13.90%，营业收入同比-2.80%：收入下降时营业利润降得更多。",
-    "资产负债率较年初上升1.11个百分点。",
-    "财务费用由上年同期的净收益转为净支出，本期为11.03亿元。",
-    "存货较年初减少15.31亿元，库存在释放。"
+    "智慧暖通方案同比+5.70%，智慧生活电器同比-6.04%，分部走势分化。",
+    "非经常性损益使归母净利润高于扣非利润；扣非同比-20.54%，归母同比-14.27%。",
+    "资产负债率较年初上升1.11个百分点。"
    ]
   },
   {
@@ -234,6 +480,7 @@
    "pages": 214,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 7"
@@ -264,6 +511,29 @@
    "unmapped_rows": 22,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p9 plain",
+     "p13 plain",
+     "p50 plain",
+     "p52 plain",
+     "p154 plain",
+     "p172 plain",
+     "p212 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 160,
+     "status": "CLOSED",
+     "lines": 16,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "应收账款较年初增加30.68亿元，营业收入同比+3.36%：应收增速快于收入，回款需要下一期验证。",
     "营业利润同比+14.99%，营业收入同比+3.36%：利润增速高于收入，经营杠杆为正。",
@@ -279,6 +549,7 @@
    "pages": 104,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 2"
@@ -306,6 +577,23 @@
    "unmapped_rows": 28,
    "identities_passed": 18,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p5 plain",
+     "p22 plain",
+     "p47 plain",
+     "p49 plain",
+     "p72 plain",
+     "p73 plain"
+    ],
+    "cash_reconciliation": {
+     "status": "NOT_FOUND"
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的207.99%（上年同期716.09%），利润的现金含量下降。",
     "营业利润同比+283.85%，营业收入同比+81.54%：利润增速高于收入，经营杠杆为正。"
@@ -318,9 +606,10 @@
    "pages": 224,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 4 rows",
     "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_GAINS_EXCEED_CARRIED_PROFIT_USE_SIGNED_BRIDGE)",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 7"
+    "findings": "PASS 8"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -348,12 +637,61 @@
    "unmapped_rows": 15,
    "identities_passed": 17,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "plain",
+      "page": 178,
+      "rows": 4,
+      "with_prior": false,
+      "with_cost": 4,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "芯片产品销售",
+       "芯片定制业务",
+       "半导体IP授权",
+       "测试服务与其他"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p8 plain",
+     "p9 plain",
+     "p31 plain",
+     "p36 plain",
+     "p42 plain",
+     "p86 plain",
+     "p88 plain",
+     "p147 plain",
+     "p178 plain",
+     "p221 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 187,
+     "status": "CLOSED",
+     "lines": 18,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "使用权资产处置收益",
+      "递延收益摊销"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
+    "非经常性损益使归母净利润高于扣非利润；扣非同比-83.32%，归母同比-134.33%。",
     "研发费用率下降8.16个百分点。",
     "营业收入同比+29.15%，营业成本同比+21.05%，毛利率上升4.72个百分点。",
     "存货较年初增加4.52亿元，备货在增加。",
-    "应收账款较年初增加1.47亿元，营业收入同比+29.15%：应收增速快于收入，回款需要下一期验证。",
-    "资产负债率较年初上升3.21个百分点。"
+    "应收账款较年初增加1.47亿元，营业收入同比+29.15%：应收增速快于收入，回款需要下一期验证。"
    ]
   },
   {
@@ -363,6 +701,7 @@
    "pages": 12,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 10"
@@ -393,6 +732,24 @@
    "unmapped_rows": 14,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p1 plain",
+     "p3 margin",
+     "p3 plain",
+     "p8 plain"
+    ],
+    "cash_reconciliation": {
+     "status": "NOT_FOUND"
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": [
+     "adjusted_parent",
+     "adjusted_parent_prior"
+    ]
+   },
    "findings_top5": [
     "存货较年初增加8.17亿元，备货在增加。",
     "营业收入同比+21.25%，营业成本同比-5.69%，毛利率上升10.69个百分点。",
@@ -408,6 +765,7 @@
    "pages": 11,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 8"
@@ -437,6 +795,20 @@
    "unmapped_rows": 13,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p1 plain",
+     "p3 plain",
+     "p8 plain"
+    ],
+    "cash_reconciliation": {
+     "status": "NOT_FOUND"
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "营业收入同比+40.82%，营业成本同比+30.15%，毛利率上升3.56个百分点。",
     "经营现金净额相当于净利润的37.03%（上年同期86.94%），利润的现金含量下降。",
@@ -452,6 +824,7 @@
    "pages": 247,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 2"
@@ -482,6 +855,26 @@
    "unmapped_rows": 84,
    "identities_passed": 10,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p8 plain",
+     "p10 plain",
+     "p13 plain",
+     "p34 plain",
+     "p44 plain",
+     "p89 plain",
+     "p91 plain",
+     "p173 margin",
+     "p173 plain",
+     "p174 plain",
+     "p175 plain"
+    ],
+    "cash_reconciliation": null,
+    "adjusted_parent": false,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "信用及资产减值损失合计比上年同期增加。",
     "营业利润同比+2.06%，营业收入同比+4.83%：收入增长没有带来同等的营业利润增长。"
@@ -494,9 +887,10 @@
    "pages": 205,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_industry_axis 2 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 8"
+    "findings": "PASS 10"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -518,16 +912,88 @@
      100
     ]
    },
-   "canonical_facts": 220,
-   "unmapped_rows": 45,
-   "identities_passed": 16,
+   "canonical_facts": 228,
+   "unmapped_rows": 41,
+   "identities_passed": 20,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "margin",
+      "page": 52,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "制造业",
+       "其他业务"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "margin",
+      "page": 52,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "国内",
+       "海外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p7 margin",
+     "p7 plain",
+     "p27 plain",
+     "p50 plain",
+     "p51 composition",
+     "p51 margin",
+     "p51 plain",
+     "p52 composition",
+     "p52 margin",
+     "p98 plain",
+     "p171 plain",
+     "p172 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 177,
+     "status": "CLOSED",
+     "lines": 13,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "折旧和摊销",
+      "资产处置损失",
+      "公允价值变动收益",
+      "投资收益",
+      "递延所得税资产增加",
+      "递延所得税负债减少",
+      "股份支付及其他"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_industry_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "应收账款较年初增加215.05亿元，营业收入同比+3.55%：应收增速快于收入，回款需要下一期验证。",
+    "非经常性损益使归母净利润高于扣非利润；扣非同比-25.31%，归母同比+1.66%。",
     "资产负债率较年初上升3.73个百分点。",
     "财务费用由上年同期的净收益转为净支出，本期为32.73亿元。",
-    "存货较年初减少91.88亿元，库存在释放。",
-    "营业利润同比+1.39%，营业收入同比+3.55%：收入增长没有带来同等的营业利润增长。"
+    "存货较年初减少91.88亿元，库存在释放。"
    ]
   },
   {
@@ -537,6 +1003,7 @@
    "pages": 110,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_region_axis 2 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 6"
@@ -568,6 +1035,89 @@
    "unmapped_rows": 28,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "plain",
+      "page": 74,
+      "rows": 3,
+      "with_prior": false,
+      "with_cost": 3,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "skipped": "NEGATIVE_GROSS_ROW",
+      "labels": [
+       "茅台酒",
+       "其他系列酒",
+       "其他业务"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 74,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "国内",
+       "国外"
+      ]
+     },
+     {
+      "dimension": "channel",
+      "scope": "rev",
+      "table": "plain",
+      "page": 74,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "批发代理",
+       "直销"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p5 plain",
+     "p6 plain",
+     "p7 plain",
+     "p8 plain",
+     "p11 plain",
+     "p30 plain",
+     "p32 plain",
+     "p73 plain",
+     "p74 plain",
+     "p87 plain",
+     "p108 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 81,
+     "status": "CLOSED",
+     "lines": 15,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的153.56%（上年同期27.92%），利润的现金含量提高。",
     "营业收入同比+1.47%，营业成本同比+21.81%，毛利率下降1.74个百分点。",
@@ -583,6 +1133,7 @@
    "pages": 199,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 4 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 9"
@@ -613,6 +1164,72 @@
    "unmapped_rows": 17,
    "identities_passed": 19,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "plain",
+      "page": 142,
+      "rows": 4,
+      "with_prior": false,
+      "with_cost": 4,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "WPS个人业务",
+       "WPS业务",
+       "WPS软件业务",
+       "其他"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 142,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "境内",
+       "境外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p27 plain",
+     "p28 plain",
+     "p29 plain",
+     "p34 plain",
+     "p59 plain",
+     "p61 plain",
+     "p141 plain",
+     "p142 plain",
+     "p197 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 149,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "处置固定资产、无形资产和其他长期资产的"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "营业利润同比+253.66%，营业收入同比+24.69%：利润增速高于收入，经营杠杆为正。",
     "经营现金净额相当于净利润的25.53%（上年同期100.78%），利润的现金含量下降。",
@@ -628,9 +1245,10 @@
    "pages": 234,
    "stages": {
     "ledger": "PASS 原件异常已列出",
+    "business_sankey": "PASS disclosed_revenue_axis 3 rows",
     "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_NEGATIVE_OR_ZERO_SUBTOTAL_USE_SIGNED_BRIDGE)",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 5"
+    "findings": "PASS 6"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -661,12 +1279,70 @@
    "unmapped_rows": 27,
    "identities_passed": 16,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "unlabelled",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 188,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "cost_prior",
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "房地产开发及相关资产经营业务",
+       "物业服务"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p8 plain",
+     "p13 plain",
+     "p14 plain",
+     "p15 composition",
+     "p25 plain",
+     "p26 plain",
+     "p89 plain",
+     "p91 plain",
+     "p145 plain",
+     "p188 plain",
+     "p189 plain",
+     "p193 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 195,
+     "status": "CLOSED",
+     "lines": 14,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "信用损失准备",
+      "固定资产及投资性房地产的折旧",
+      "无形资产及长期待摊费用摊销",
+      "资产处置损失收益",
+      "投资损失收益",
+      "递延所得税资产减少(增加)",
+      "递延所得税负债增加(减少)",
+      "经营性应收项目的减少(增加)",
+      "经营性应付项目的增加(减少)"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_revenue_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
+    "物业服务同比+8.01%，房地产开发及相关资产经营业务同比-42.33%，分部走势分化。",
     "应收账款较年初增加15.49亿元，营业收入同比-33.38%：收入下降而应收增加，回款条件需要下一期验证。",
     "存货较年初减少277.80亿元，库存在释放。",
     "营业收入同比-33.38%，营业成本同比-31.87%，毛利率下降2.03个百分点。",
-    "管理费用率上升0.84个百分点。",
-    "销售费用率下降0.52个百分点。"
+    "管理费用率上升0.84个百分点。"
    ]
   },
   {
@@ -676,9 +1352,10 @@
    "pages": 196,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_NEGATIVE_OR_ZERO_SUBTOTAL_USE_SIGNED_BRIDGE)",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 6"
+    "findings": "PASS 7"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -707,12 +1384,102 @@
    "unmapped_rows": 18,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "composition",
+      "page": 19,
+      "rows": 5,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "养殖业务",
+       "屠宰、肉食业务",
+       "贸易业务",
+       "其他业务",
+       "宰、肉食之间销"
+      ]
+     },
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "composition",
+      "page": 19,
+      "rows": 5,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "生猪",
+       "屠宰、肉食产品",
+       "饲料原料",
+       "其他",
+       "宰、肉食之间销"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "composition",
+      "page": 20,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "国内",
+       "国外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p7 plain",
+     "p19 margin",
+     "p19 plain",
+     "p20 margin",
+     "p20 plain",
+     "p63 plain",
+     "p65 plain",
+     "p143 plain",
+     "p144 plain",
+     "p158 plain",
+     "p160 plain",
+     "p180 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 151,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "投资性房地产折旧"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
+    "国外同比+935.47%，养殖业务同比-30.51%，分部走势分化。",
     "营业利润同比-148.93%，营业收入同比-22.30%：收入下降时营业利润降得更多。",
     "营业收入同比-22.30%，营业成本同比-0.70%，毛利率下降22.09个百分点。",
     "应收账款较年初减少0.36亿元，营业收入同比-22.30%：应收增速快于收入，回款需要下一期验证。",
-    "存货较年初增加11.20亿元，备货在增加。",
-    "管理费用率上升0.59个百分点。"
+    "存货较年初增加11.20亿元，备货在增加。"
    ]
   },
   {
@@ -722,9 +1489,10 @@
    "pages": 182,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "PASS disclosed_region_axis 2 rows",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 8"
+    "findings": "PASS 9"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -753,12 +1521,73 @@
    "unmapped_rows": 33,
    "identities_passed": 22,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "margin",
+      "page": 16,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "境内",
+       "境外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p7 plain",
+     "p15 plain",
+     "p16 margin",
+     "p17 plain",
+     "p41 plain",
+     "p77 plain",
+     "p79 plain",
+     "p151 plain",
+     "p174 plain",
+     "p181 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 156,
+     "status": "NOT_CLOSED",
+     "residual": "173000",
+     "lines": [
+      "资产减值准备",
+      "信用减值损失",
+      "固定资产折旧、油气资产折耗、生产性生物资产折旧",
+      "使用权资产折旧",
+      "无形资产摊销",
+      "长期待摊费用摊销",
+      "处置固定资产、无形资产和其他长期资产的损失",
+      "固定资产报废损失",
+      "公允价值变动损失",
+      "财务费用",
+      "投资损失",
+      "递延所得税资产减少",
+      "递延所得税负债增加",
+      "存货的减少",
+      "经营性应收项目的减少",
+      "经营性应付项目的增加",
+      "其他"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的128.04%（上年同期181.33%），利润的现金含量下降。",
     "存货较年初增加362.93亿元，备货在增加。",
     "营业利润同比+43.39%，营业收入同比+54.80%：收入增长没有带来同等的营业利润增长。",
-    "营业收入同比+54.80%，营业成本同比+57.06%，毛利率下降1.09个百分点。",
-    "资产负债率较年初上升1.71个百分点。"
+    "非经常性损益使归母净利润高于扣非利润；扣非同比+43.44%，归母同比+41.98%。",
+    "营业收入同比+54.80%，营业成本同比+57.06%，毛利率下降1.09个百分点。"
    ]
   },
   {
@@ -768,9 +1597,10 @@
    "pages": 280,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
-    "findings": "PASS 3"
+    "findings": "PASS 4"
    },
    "fiscal_period": "2026H1",
    "comparative_period": "2025H1",
@@ -799,13 +1629,91 @@
      129
     ]
    },
-   "canonical_facts": 174,
-   "unmapped_rows": 51,
+   "canonical_facts": 179,
+   "unmapped_rows": 48,
    "identities_passed": 14,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 264,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "中国内地",
+       "中国内地以外地区"
+      ]
+     },
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "plain",
+      "page": 27,
+      "rows": 5,
+      "with_prior": false,
+      "with_cost": 0,
+      "roles": [
+       "rev"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "经纪业务",
+       "资产管理业务",
+       "证券投资业务",
+       "证券承销业务",
+       "其他业务"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p11 plain",
+     "p25 plain",
+     "p26 plain",
+     "p27 plain",
+     "p30 plain",
+     "p59 plain",
+     "p60 plain",
+     "p115 plain",
+     "p119 plain",
+     "p228 plain",
+     "p262 plain",
+     "p263 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 214,
+     "status": "CLOSED",
+     "lines": 15,
+     "prior_closed": false,
+     "unmapped_lines": [
+      "资产及信用减值损失/(转回)",
+      "公允价值变动收益",
+      "利息支出",
+      "汇兑损失",
+      "投资收益",
+      "递延所得税资产减少/(增加)",
+      "增加",
+      "仓单的增加",
+      "经营性应收项目的(增加)/减少",
+      "经营性应付项目的增加/(减少)"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的442.15%（上年同期213.85%），利润的现金含量提高。",
     "营业利润同比+73.23%，营业收入同比+50.00%：利润增速高于收入，经营杠杆为正。",
+    "中国内地以外同比+70.54%，中国内地同比+44.59%，分部走势分化。",
     "资产负债率较年初上升1.20个百分点。"
    ]
   },
@@ -816,6 +1724,7 @@
    "pages": 18,
    "stages": {
     "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
     "income_flow_v3": "PASS",
     "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
     "findings": "PASS 8"
@@ -847,12 +1756,1218 @@
    "unmapped_rows": 39,
    "identities_passed": 20,
    "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p1 plain",
+     "p8 plain",
+     "p14 plain",
+     "p15 plain"
+    ],
+    "cash_reconciliation": {
+     "status": "NOT_FOUND"
+    },
+    "adjusted_parent": false,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
    "findings_top5": [
     "经营现金净额相当于净利润的154.12%（上年同期200.96%），利润的现金含量下降。",
     "存货较年初增加45.21亿元，备货在增加。",
     "营业利润同比+11.13%，营业收入同比+18.81%：收入增长没有带来同等的营业利润增长。",
     "财务费用由上年同期的净收益转为净支出，本期为22.64亿元。",
     "营业收入同比+18.81%，营业成本同比+18.20%，毛利率上升0.37个百分点。"
+   ]
+  },
+  {
+   "pdf": "000002_2025FY.pdf",
+   "sha256": "b2befc9da2a9e09c798702c351e6af65a4b148e32baa07737b941edc2caf1eba",
+   "code": "000002",
+   "pages": 298,
+   "stages": {
+    "ledger": "PASS 原件异常已列出",
+    "business_sankey": "PASS disclosed_industry_axis 3 rows",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOW_V3_NEGATIVE_OR_ZERO_SUBTOTAL_USE_SIGNED_BRIDGE)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 7"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [
+    "current:营业总成本=各成本费用项 原件小计与明细差额 -31073894591.53",
+    "prior:营业总成本=各成本费用项 原件小计与明细差额 -41585281131.12"
+   ],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     152,
+     153,
+     154
+    ],
+    "is": [
+     155,
+     156,
+     157
+    ],
+    "cf": [
+     158,
+     159,
+     160
+    ]
+   },
+   "canonical_facts": 205,
+   "unmapped_rows": 31,
+   "identities_passed": 16,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "industry",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 250,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "cost_prior",
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "房地产开发及相关资产经营业务(注)",
+       "物业服务"
+      ]
+     },
+     {
+      "dimension": "unlabelled",
+      "scope": "rev",
+      "table": "plain",
+      "page": 250,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "合同产生的收入",
+       "租金收入"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p10 plain",
+     "p11 plain",
+     "p16 plain",
+     "p18 composition",
+     "p32 plain",
+     "p155 plain",
+     "p157 plain",
+     "p235 plain",
+     "p250 plain",
+     "p251 plain",
+     "p255 plain",
+     "p297 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 257,
+     "status": "CLOSED",
+     "lines": 14,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "信用损失准备",
+      "固定资产及投资性房地产的折旧",
+      "无形资产及长期待摊费用摊销",
+      "资产处置损失收益",
+      "投资损失收益",
+      "递延所得税资产减少(增加)",
+      "递延所得税负债增加(减少)",
+      "经营性应收项目的减少(增加)",
+      "经营性应付项目的增加(减少)"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_industry_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "应收账款较年初增加14.08亿元，营业收入同比-31.98%：收入下降而应收增加，回款条件需要下一期验证。",
+    "物业服务同比+7.22%，房地产开发及相关资产经营业务同比-36.67%，分部走势分化。",
+    "信用及资产减值损失合计比上年同期增加。",
+    "存货较年初减少1452.71亿元，库存在释放。",
+    "资产负债率较年初上升3.23个百分点。"
+   ]
+  },
+  {
+   "pdf": "002714_2025FY.pdf",
+   "sha256": "aa44a1f4244a6efbc6e54e7dbd4307235d39117bb4ff4d9590f386b02b0d9a04",
+   "code": "002714",
+   "pages": 253,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 9"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     110,
+     111,
+     112
+    ],
+    "is": [
+     114,
+     115,
+     116
+    ],
+    "cf": [
+     118,
+     119
+    ]
+   },
+   "canonical_facts": 203,
+   "unmapped_rows": 21,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "composition",
+      "page": 28,
+      "rows": 5,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "养殖业务",
+       "屠宰、肉食业务",
+       "贸易业务",
+       "其他业务",
+       "宰、肉食之间销"
+      ]
+     },
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "composition",
+      "page": 28,
+      "rows": 5,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "生猪",
+       "屠宰、肉食产品",
+       "饲料原料",
+       "其他",
+       "宰、肉食之间销"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p11 plain",
+     "p12 plain",
+     "p28 composition",
+     "p28 plain",
+     "p29 margin",
+     "p29 plain",
+     "p30 composition",
+     "p30 plain",
+     "p31 plain",
+     "p33 margin",
+     "p33 plain",
+     "p34 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 206,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": [
+      "投资性房地产折旧"
+     ]
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "其他同比+156.36%，养殖业务同比+2.92%，分部走势分化。",
+    "应收账款较年初增加3.57亿元，营业收入同比+4.49%：应收增速快于收入，回款需要下一期验证。",
+    "营业利润同比-15.57%，营业收入同比+4.49%：收入增长没有带来同等的营业利润增长。",
+    "资产负债率较年初下降4.53个百分点。",
+    "营业收入同比+4.49%，营业成本同比+8.36%，毛利率下降2.93个百分点。"
+   ]
+  },
+  {
+   "pdf": "300394_2025FY.pdf",
+   "sha256": "969e5142ee753b68e1f01c26e25215310d643dda43e4a25ae72bcc01f1265268",
+   "code": "300394",
+   "pages": 265,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 3 rows",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 10"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     133,
+     134,
+     135
+    ],
+    "is": [
+     137,
+     138,
+     139
+    ],
+    "cf": [
+     141,
+     142
+    ]
+   },
+   "canonical_facts": 197,
+   "unmapped_rows": 14,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "margin",
+      "page": 26,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "内销",
+       "外销"
+      ]
+     },
+     {
+      "dimension": "product",
+      "scope": "main_rev",
+      "table": "margin",
+      "page": 26,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "无源光器件",
+       "有源光器件"
+      ]
+     },
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "composition",
+      "page": 25,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "光互连元器件",
+       "其他"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p11 plain",
+     "p12 plain",
+     "p26 composition",
+     "p26 margin",
+     "p26 plain",
+     "p27 composition",
+     "p27 plain",
+     "p28 margin",
+     "p28 plain",
+     "p29 plain",
+     "p30 plain",
+     "p34 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 228,
+     "status": "CLOSED",
+     "lines": 15,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": false,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "其他同比+303.56%，光互连元器件同比+57.27%，分部走势分化。",
+    "营业收入同比+58.79%，营业成本同比+70.87%，毛利率下降3.25个百分点。",
+    "存货较年初增加1.07亿元，备货在增加。",
+    "营业利润同比+53.16%，营业收入同比+58.79%：收入增长没有带来同等的营业利润增长。",
+    "研发费用率下降1.98个百分点。"
+   ]
+  },
+  {
+   "pdf": "300570_2025FY.pdf",
+   "sha256": "380dfdf72e08fdfe531a63f856d2f928aba0f3bcef24e432e9894fd2d3438def",
+   "code": "300570",
+   "pages": 225,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 9"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     68,
+     69,
+     70,
+     71
+    ],
+    "is": [
+     73,
+     74,
+     75
+    ],
+    "cf": [
+     76,
+     77,
+     78
+    ]
+   },
+   "canonical_facts": 182,
+   "unmapped_rows": 15,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p7 plain",
+     "p8 plain",
+     "p15 composition",
+     "p15 plain",
+     "p16 margin",
+     "p16 plain",
+     "p17 plain",
+     "p19 plain",
+     "p20 plain",
+     "p65 plain",
+     "p73 plain",
+     "p75 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 185,
+     "status": "CLOSED",
+     "lines": 15,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "应收账款较年初增加1.58亿元，营业收入同比+12.26%：应收增速快于收入，回款需要下一期验证。",
+    "资产负债率较年初下降4.61个百分点。",
+    "营业收入同比+12.26%，营业成本同比+8.10%，毛利率上升2.39个百分点。",
+    "经营现金净额相当于净利润的49.43%（上年同期68.09%），利润的现金含量下降。",
+    "非经常性损益使归母净利润高于扣非利润；扣非同比+12.61%，归母同比+14.43%。"
+   ]
+  },
+  {
+   "pdf": "300750_2025FY.pdf",
+   "sha256": "c15272977147dee7e6935a38ea0e4fd6855370aabb106f54cfe20f7cf6048ec9",
+   "code": "300750",
+   "pages": 232,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "PASS disclosed_region_axis 2 rows",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     111,
+     112,
+     113
+    ],
+    "is": [
+     116,
+     117,
+     118
+    ],
+    "cf": [
+     119,
+     120,
+     121
+    ]
+   },
+   "canonical_facts": 217,
+   "unmapped_rows": 34,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "unlabelled",
+      "scope": "rev",
+      "table": "margin",
+      "page": 25,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "电气机械及器材制造业",
+       "采选冶炼行业"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "margin",
+      "page": 25,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "境内",
+       "境外"
+      ]
+     },
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "composition",
+      "page": 24,
+      "rows": 2,
+      "with_prior": true,
+      "with_cost": 0,
+      "roles": [
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "电气机械及器材制造业",
+       "采选冶炼行业"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p11 plain",
+     "p12 plain",
+     "p24 composition",
+     "p25 composition",
+     "p25 margin",
+     "p27 plain",
+     "p28 plain",
+     "p30 plain",
+     "p116 plain",
+     "p118 plain",
+     "p195 plain",
+     "p223 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 200,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": [],
+     "rounding_tail": "2000"
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "存货较年初增加346.91亿元，备货在增加。",
+    "营业利润同比+39.76%，营业收入同比+17.04%：利润增速高于收入，经营杠杆为正。",
+    "非经常性损益使归母净利润高于扣非利润；扣非同比+43.37%，归母同比+42.28%。",
+    "资产负债率较年初下降3.30个百分点。",
+    "营业收入同比+17.04%，营业成本同比+14.21%，毛利率上升1.83个百分点。"
+   ]
+  },
+  {
+   "pdf": "600030_2025FY.pdf",
+   "sha256": "438f2a53dcf4bf0569b6783b51674aae25076d23d53198b08cf7b539e14003c2",
+   "code": "600030",
+   "pages": 389,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 3"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "securities",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     176,
+     177,
+     178,
+     179
+    ],
+    "is": [
+     182,
+     183,
+     184,
+     185,
+     186
+    ],
+    "cf": [
+     193,
+     194,
+     195,
+     196,
+     197
+    ]
+   },
+   "canonical_facts": 178,
+   "unmapped_rows": 50,
+   "identities_passed": 14,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "industry",
+      "scope": "rev",
+      "table": "plain",
+      "page": 38,
+      "rows": 5,
+      "with_prior": false,
+      "with_cost": 0,
+      "roles": [
+       "rev"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "经纪业务",
+       "资产管理业务",
+       "证券投资业务",
+       "证券承销业务",
+       "其他业务"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p19 plain",
+     "p21 plain",
+     "p36 plain",
+     "p37 plain",
+     "p38 plain",
+     "p39 plain",
+     "p41 plain",
+     "p42 plain",
+     "p109 plain",
+     "p110 plain",
+     "p111 plain",
+     "p182 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 317,
+     "status": "NOT_CONSOLIDATED_OR_INCOMPLETE"
+    },
+    "adjusted_parent": false,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "经营现金净额相当于净利润的238.99%（上年同期763.91%），利润的现金含量下降。",
+    "营业利润同比+40.90%，营业收入同比+28.79%：利润增速高于收入，经营杠杆为正。",
+    "资产负债率较年初上升1.81个百分点。"
+   ]
+  },
+  {
+   "pdf": "600031_2025FY.pdf",
+   "sha256": "d3f470600ec7d03ff9eb6257a74d1a07486406e02beb55b1f2bab5aaabb173e5",
+   "code": "600031",
+   "pages": 250,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 6 rows",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 10"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     85,
+     86,
+     87
+    ],
+    "is": [
+     89,
+     90,
+     91
+    ],
+    "cf": [
+     92,
+     93
+    ]
+   },
+   "canonical_facts": 226,
+   "unmapped_rows": 41,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "plain",
+      "page": 170,
+      "rows": 6,
+      "with_prior": false,
+      "with_cost": 6,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "混凝土机械",
+       "挖掘机械",
+       "起重机械",
+       "桩工机械",
+       "路面机械",
+       "其他"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 170,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "国内",
+       "国际"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p7 plain",
+     "p17 plain",
+     "p18 plain",
+     "p19 plain",
+     "p20 plain",
+     "p21 plain",
+     "p22 plain",
+     "p26 plain",
+     "p89 plain",
+     "p91 plain",
+     "p169 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 178,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "营业利润同比+42.04%，营业收入同比+14.73%：利润增速高于收入，经营杠杆为正。",
+    "资产负债率较年初下降3.62个百分点。",
+    "存货较年初增加25.79亿元，备货在增加。",
+    "营业收入同比+14.73%，营业成本同比+13.01%，毛利率上升1.10个百分点。",
+    "经营现金净额相当于净利润的235.35%（上年同期243.15%），利润的现金含量下降。"
+   ]
+  },
+  {
+   "pdf": "600519_2025FY.pdf",
+   "sha256": "474905deeaf0f875fc0a1b097a626c0c7852c427faadc5d7fc7816cbf45ea288",
+   "code": "600519",
+   "pages": 143,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "PASS disclosed_region_axis 2 rows",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     56,
+     57,
+     58,
+     59
+    ],
+    "is": [
+     61,
+     62,
+     63
+    ],
+    "cf": [
+     64,
+     65,
+     66
+    ]
+   },
+   "canonical_facts": 188,
+   "unmapped_rows": 27,
+   "identities_passed": 20,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "plain",
+      "page": 107,
+      "rows": 3,
+      "with_prior": false,
+      "with_cost": 3,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "skipped": "NEGATIVE_GROSS_ROW",
+      "labels": [
+       "茅台酒",
+       "其他系列酒",
+       "其他业务"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 107,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "国内",
+       "国外"
+      ]
+     },
+     {
+      "dimension": "channel",
+      "scope": "rev",
+      "table": "plain",
+      "page": 107,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "批发代理",
+       "直销"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p7 plain",
+     "p8 plain",
+     "p9 plain",
+     "p10 plain",
+     "p12 plain",
+     "p14 plain",
+     "p17 plain",
+     "p20 plain",
+     "p61 plain",
+     "p63 margin",
+     "p63 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 115,
+     "status": "CLOSED",
+     "lines": 15,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "营业收入同比-1.21%，营业成本同比+8.00%，毛利率下降0.75个百分点。",
+    "经营现金净额相当于净利润的72.12%（上年同期103.50%），利润的现金含量下降。",
+    "存货较年初增加70.84亿元，备货在增加。",
+    "资产负债率较年初下降2.63个百分点。",
+    "营业利润同比-4.08%，营业收入同比-1.21%：收入下降时营业利润降得更多。"
+   ]
+  },
+  {
+   "pdf": "600690_2025FY.pdf",
+   "sha256": "14186f9f9b47f687c527ba14825664f3b09e51759d581636cddcc248f26e3660",
+   "code": "600690",
+   "pages": 245,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 7 rows",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 11"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     118,
+     119,
+     120
+    ],
+    "is": [
+     122,
+     123,
+     124
+    ],
+    "cf": [
+     125,
+     126,
+     127
+    ]
+   },
+   "canonical_facts": 218,
+   "unmapped_rows": 30,
+   "identities_passed": 22,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 201,
+      "rows": 6,
+      "with_prior": true,
+      "with_cost": 6,
+      "roles": [
+       "cost",
+       "cost_prior",
+       "rev",
+       "rev_prior"
+      ],
+      "cost_proof": "HEADER_CONSISTENT_WITH_PROVEN_REVENUE_COLUMNS",
+      "labels": [
+       "空调",
+       "电冰箱",
+       "厨电",
+       "水家电",
+       "洗衣机",
+       "装备部品及渠道综合服务"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "main_rev",
+      "table": "plain",
+      "page": 42,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 0,
+      "roles": [
+       "rev"
+      ],
+      "cost_proof": null,
+      "labels": [
+       "国内",
+       "海外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p12 plain",
+     "p13 plain",
+     "p41 plain",
+     "p42 plain",
+     "p43 plain",
+     "p44 plain",
+     "p45 plain",
+     "p46 plain",
+     "p122 plain",
+     "p124 plain",
+     "p201 plain",
+     "p221 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 207,
+     "status": "CLOSED",
+     "lines": 16,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "装备部品及渠道综合服务同比+19.93%，厨电同比+0.51%，分部走势分化。",
+    "存货较年初增加36.59亿元，备货在增加。",
+    "资产负债率较年初下降1.73个百分点。",
+    "营业收入同比+5.71%，营业成本同比+7.41%，毛利率下降1.16个百分点。",
+    "经营现金净额相当于净利润的128.96%（上年同期134.51%），利润的现金含量下降。"
+   ]
+  },
+  {
+   "pdf": "601628_2025FY.pdf",
+   "sha256": "575a833fd7b83ad3568483273645236eddb751a92ab89f7e1c09105d92cedb27",
+   "code": "601628",
+   "pages": 228,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+    "income_flow_v3": "REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS (FLOWSPEC_NEEDS_cogs: income flow V3 is defined for the 一般企业 format; financial fo)",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 2"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "insurance",
+   "sign_convention": "expenses_negative",
+   "statement_pages": {
+    "bs": [
+     89,
+     90
+    ],
+    "is": [
+     93,
+     94
+    ],
+    "cf": [
+     99,
+     100
+    ]
+   },
+   "canonical_facts": 188,
+   "unmapped_rows": 39,
+   "identities_passed": 12,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [],
+    "unproven_segment_tables": [
+     "p8 plain",
+     "p26 plain",
+     "p93 plain",
+     "p95 plain",
+     "p159 plain",
+     "p160 plain"
+    ],
+    "cash_reconciliation": null,
+    "adjusted_parent": true,
+    "income_partition": null,
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "营业利润同比+57.44%，营业收入同比+16.48%：利润增速高于收入，经营杠杆为正。",
+    "信用及资产减值损失合计比上年同期增加。"
+   ]
+  },
+  {
+   "pdf": "688111_2025FY.pdf",
+   "sha256": "bf6ade124527896edb1c1be6af04a7d6b4c0eb964de42a96a77db7dbc6cee281",
+   "code": "688111",
+   "pages": 262,
+   "stages": {
+    "ledger": "PASS",
+    "business_sankey": "PASS disclosed_product_axis 4 rows",
+    "income_flow_v3": "PASS",
+    "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+    "findings": "PASS 8"
+   },
+   "fiscal_period": "2025FY",
+   "comparative_period": "2024FY",
+   "source_anomalies": [],
+   "format": "general",
+   "sign_convention": "expenses_positive",
+   "statement_pages": {
+    "bs": [
+     105,
+     106,
+     107
+    ],
+    "is": [
+     109,
+     110,
+     111
+    ],
+    "cf": [
+     113,
+     114
+    ]
+   },
+   "canonical_facts": 194,
+   "unmapped_rows": 18,
+   "identities_passed": 21,
+   "identities_failed": [],
+   "notes": {
+    "dimensions": [
+     {
+      "dimension": "product",
+      "scope": "rev",
+      "table": "plain",
+      "page": 204,
+      "rows": 4,
+      "with_prior": false,
+      "with_cost": 4,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "WPS个人业务",
+       "WPS业务",
+       "WPS软件业务",
+       "其他"
+      ]
+     },
+     {
+      "dimension": "region",
+      "scope": "rev",
+      "table": "plain",
+      "page": 204,
+      "rows": 2,
+      "with_prior": false,
+      "with_cost": 2,
+      "roles": [
+       "cost",
+       "rev"
+      ],
+      "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+      "labels": [
+       "境内",
+       "境外"
+      ]
+     }
+    ],
+    "unproven_segment_tables": [
+     "p6 plain",
+     "p7 plain",
+     "p32 plain",
+     "p35 plain",
+     "p36 plain",
+     "p37 plain",
+     "p38 plain",
+     "p39 plain",
+     "p40 plain",
+     "p45 plain",
+     "p64 plain",
+     "p70 plain"
+    ],
+    "cash_reconciliation": {
+     "page": 212,
+     "status": "CLOSED",
+     "lines": 17,
+     "prior_closed": true,
+     "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_product_axis",
+    "dropped_unreadable_cells": []
+   },
+   "findings_top5": [
+    "存货较年初减少0.00亿元，库存在释放。",
+    "营业收入同比+15.78%，营业成本同比+9.51%，毛利率上升0.80个百分点。",
+    "应收账款较年初增加1.32亿元，营业收入同比+15.78%：应收增速快于收入，回款需要下一期验证。",
+    "研发费用率上升2.23个百分点。",
+    "营业利润同比+11.81%，营业收入同比+15.78%：收入增长没有带来同等的营业利润增长。"
    ]
   }
  ],
@@ -863,6 +2978,26 @@
   "600031": "https://static.cninfo.com.cn/finalpage/2026-10-30/1225639954.PDF",
   "002714": "https://static.cninfo.com.cn/finalpage/2026-08-21/1225485220.PDF"
  },
- "ci_downloaded_sources": "research/rebuild-v10/download_originals.py (600036, 688111, 600519, 000333)",
- "note": "盲测 5 份（中信证券、万科A、宁德时代、三一重工三季报、牧原股份）首次运行暴露 7 类问题，全部以通用规则修复；修复后 19/19 通过。PDF 未入库，按 SHA 与巨潮链接可复现。"
+ "annual_sources": {
+  "300394": "https://static.cninfo.com.cn/finalpage/2026-04-08/1225082705.PDF",
+  "600519": "https://static.cninfo.com.cn/finalpage/2026-04-17/1225114741.PDF",
+  "000002": "https://static.cninfo.com.cn/finalpage/2026-04-01/1225067794.PDF",
+  "300750": "https://static.cninfo.com.cn/finalpage/2026-03-10/1225002214.PDF",
+  "601628": "https://static.cninfo.com.cn/finalpage/2026-03-26/1225030448.PDF",
+  "600030": "https://static.cninfo.com.cn/finalpage/2026-03-27/1225036081.PDF",
+  "600690": "https://static.cninfo.com.cn/finalpage/2026-03-27/1225038336.PDF",
+  "300570": "https://static.cninfo.com.cn/finalpage/2026-03-31/1225061015.PDF",
+  "002714": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225042507.PDF",
+  "600031": "https://static.cninfo.com.cn/finalpage/2026-03-31/1225061378.PDF",
+  "688111": "https://static.cninfo.com.cn/finalpage/2026-03-26/1225032227.PDF"
+ },
+ "notes_summary": {
+  "reports": 30,
+  "annual_reports": 11,
+  "business_sankey_from_notes": 16,
+  "cash_reconciliation_closed": 22,
+  "cash_reconciliation_disclosed_reports": 27,
+  "adjusted_parent": 26
+ },
+ "note": "30 份原件（19 份半年报/季报 + 11 份 2025 年报），只给 PDF。年报首轮 9/11，两个标签变体以通用规则修复后 11/11。附注表格逐列由报告自身合计证明；不能证明的表格不使用。"
 }
