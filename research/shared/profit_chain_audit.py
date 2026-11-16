@@ -23,7 +23,7 @@ def key_for(code,period):
  catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
  return code+'@'+period if any(r['code']==code and r['period']==period for r in catalog.get('period_reports',[])) else code
 def value(b,terms):return sum((D(b['facts'][k]['yuan'])*D(str(c)) for k,c in terms),D(0))
-def validate_source(b):
+def validate_source(b,*,_comparative=False):
  import pymupdf
  path=(ROOT/b['source_pdf']['source_path']).resolve();path.relative_to(ROOT.resolve());raw=path.read_bytes()
  if hashlib.sha256(raw).hexdigest()!=b['source_pdf']['source_sha256']:raise ValueError('CHAIN_SOURCE_PDF_DRIFT')
@@ -33,7 +33,7 @@ def validate_source(b):
  identity_page=b.get('report_identity_page',1)
  if type(identity_page) is not int or not 1<=identity_page<=len(doc):raise ValueError('CHAIN_SOURCE_COVER_PAGE')
  cover=re.sub(r'\s+','',doc[identity_page-1].get_text()).replace('報告','报告');kind={'H1':'半年度','FY':'年度','Q1':'第一季度','9M':'第三季度'}.get(b['period'][4:])
- if not re.search(re.escape(b['period'][:4])+r'年?'+str(kind)+'报告',cover):raise ValueError('CHAIN_SOURCE_PERIOD')
+ if not _comparative and not re.search(re.escape(b['period'][:4])+r'年?'+str(kind)+'报告',cover):raise ValueError('CHAIN_SOURCE_PERIOD')
  visiting=set();done=set()
  def fact(k):
   if k in done:return
@@ -63,6 +63,15 @@ def validate_source(b):
  for prev,nxt in zip(b['stages'],b['stages'][1:]):
   if value(b,prev['terms'])+sum((value(b,a['terms']) for a in nxt['adjustments']),D(0))!=value(b,nxt['terms']):raise ValueError('CHAIN_SOURCE_STAGE_NOT_CLOSED')
  if value(b,b['stages'][-1]['terms'])<0:pass # Signed publication route, never a positive ribbon.
+ comp=b.get('comparatives')
+ if comp and not _comparative:
+  # Prior-period cells are verified exactly like current cells, then the same stage chain must close on them.
+  P=lambda terms:[[k+'_prior',c] for k,c in terms]
+  prior_stages=[{'id':s['id'],'terms':P(s['terms']),'adjustments':[{'terms':P(a['terms'])} for a in s['adjustments']]} for s in b['stages']]
+  prior={'issuer':b['issuer'],'period':comp['period'],'source_pdf':b['source_pdf'],'facts':comp['facts'],'stages':prior_stages,'report_identity_page':b.get('report_identity_page',1)}
+  need={k+'_prior' for s in b['stages'] for k,c in s['terms']}|{k+'_prior' for s in b['stages'] for a in s['adjustments'] for k,c in a['terms']}
+  if need!=set(comp['facts']):raise ValueError('CHAIN_COMPARATIVE_FACT_SET')
+  validate_source(prior,_comparative=True)
  return {'status':'PASS','source_cells_and_derivations':len(done),'pdf_sha256':b['source_pdf']['source_sha256']}
 
 def check_svg(markup,code,pdf_sha):
@@ -92,6 +101,8 @@ def check_svg(markup,code,pdf_sha):
   if q:
    target='cost-'+nxt['id'];node(target,[[k,-c] for k,c in neg],'cost');edge(from_id,target,q)
   edge(from_id,nxt['id'],value(b,nxt['terms']))
+ layout2=root.get('data-chain-layout')
+ need((layout2 is not None)==(b.get('editorial',{}).get('layout')=='PROFIT_CHAIN_LAYOUT_V2'),'LAYOUT_DECLARATION')
  actual={n.get('data-chain-node'):n for n in root.iter(NS+'rect') if n.get('data-chain-node')}
  need(set(actual)==set(expected),'NODE_SET')
  axis=root.get('data-chain-axis');need(axis in ('width','height'),'AXIS');scale=D(root.get('data-chain-scale'));need(scale>0 and scale==max(v for v,t,r in expected.values())/D(150 if axis=='width' else 340),'EXACT_COMMON_SCALE')
@@ -120,6 +131,21 @@ def check_svg(markup,code,pdf_sha):
    cursor=D(0)
    for start,end in sorted(ports):need(close(start,cursor) and end>=start,'PORT_GAP_OR_OVERLAP');cursor=end
    need(close(cursor,actual[key].get(axis)),'NODE_PORT_NOT_CONSERVED')
+ if layout2:
+  need(layout2=='PROFIT_CHAIN_LAYOUT_V2' and b.get('comparatives') is not None,'LAYOUT_V2_REQUIRES_COMPARATIVES')
+  def half_up(x):return D(x).quantize(D('0.1'),rounding='ROUND_HALF_UP')
+  names={'gross':'毛利率','operating':'营业利润率','pretax':'税前利润率','net':'净利率','parent':'归母净利率'}
+  pv=lambda s:sum((D(b['comparatives']['facts'][k+'_prior']['yuan'])*D(str(c)) for k,c in s['terms']),D(0))
+  rev=value(b,b['stages'][0]['terms']);prior_rev=pv(b['stages'][0]);wanted=set()
+  for s in b['stages']:
+   cur=value(b,s['terms']);prior=pv(s)
+   need(actual[s['id']].get('data-chain-prior-yuan') is not None and D(actual[s['id']].get('data-chain-prior-yuan'))==prior,'PRIOR_NODE_AMOUNT')
+   if s['id']!='revenue' and rev>0 and prior_rev>0:
+    m=cur/rev*100;pm=prior/prior_rev*100;wanted.add(f"{names[s['id']]} {half_up(m)}%（{half_up(m-pm):+}pp）")
+   if prior>0:wanted.add(f"同比 {half_up((cur/prior-1)*100):+}%")
+  texts=[piece for t in root.iter(NS+'text') for piece in (t.text or '').split(' · ')]  # the phone edition prints margin and growth on one line
+  shown=[x for x in texts if re.search(r'同比 [+-]|利润率 |毛利率 |净利率 ',x)]
+  need(sorted(shown)==sorted([x for x in texts if x in wanted]) and all(w in texts for w in wanted),'ANNOTATION_TEXT_NOT_THE_INDEPENDENT_RECOMPUTATION')
  return {'status':'PASS','grammar':'FULL_PROFIT_CHAIN_V1','original_source_vector_values':'PASS','source_rows':len(expected),'edges':len(links),'endpoint':'parent','actual_path_geometry':'PASS'}
 
 def immutable_v10(markup,code,pdf_sha):

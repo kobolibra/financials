@@ -224,7 +224,8 @@
   "income_basis": "营业收入起点；季报不披露分产品收入，来源节点为合并营业收入；其他收益和金融业务收入在相应层另列；不分摊产品税后利润",
   "takeaway": "营业成本不增反降使毛利率升至六成，研发、财务费用与所得税吃掉部分毛利增量；增长是否可持续取决于分产品毛利率。",
   "counter": "季报没有分产品数据，毛利率提升的来源不能由此图识别；备货与应收对现金的占用另见后续图。",
-  "level_component_count": 3
+  "level_component_count": 3,
+  "layout": "PROFIT_CHAIN_LAYOUT_V2"
  },
  "figure_roles": {
   "profit-change": {

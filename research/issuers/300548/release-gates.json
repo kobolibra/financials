@@ -232,5 +232,14 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "2a203df1aae484f1f024a26580a36f42e2757269812bb98606901feba43a0aeb",
+    "candidate_full_html_sha256": "8a5ec1c8da5eb7e69bb16faf9532d205140ff9c8719c259826d701720727b332",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "利润主图版式V2：层间距按扣减比例分配，每个利润层标利润率（含百分点变化）与同比，标注由独立审计器从上年同期原件源格重新计算",
+    "local_receipt": "research/quality/profit-chain-layout-v2-local/result.json"
+  }
 }

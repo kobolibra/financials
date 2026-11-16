@@ -423,6 +423,20 @@ def cmd_editorial(a) -> None:
                  for c in f["source_cells"]]
         facts[k] = {"yuan": f["yuan"], "page": f["page"], "label": f["label"], "period": f["period"],
                     "source_kind": "ledger_typed", "classification": f["classification"], "source_cells": cells}
+    comparatives = None
+    if spec["editorial"].get("layout") == "PROFIT_CHAIN_LAYOUT_V2":
+        # Margins and year-over-year come from the same issuer's prior-period source cells (fact key + "_prior").
+        prior_facts = {}
+        stage_keys = {k for s in spec["stages"] for k, _ in s["terms"]} | {k for s in spec["stages"] for g in s["adjustments"] for k, _ in g["terms"]}
+        for k in sorted(stage_keys):
+            f = ledger["facts"].get(k + "_prior")
+            if f is None:
+                sys.exit(f"LAYOUT_V2_NEEDS_PRIOR_FACT {k}_prior: add the comparative-period cell to the ledger")
+            cells = [{"bbox": c["bbox"], "printed": c["printed"], "original_number": f["yuan"], "unit_scale": "1",
+                      "normalization": "SIGNED_ORIGINAL", "wrapped_number": c.get("wrapped_number", False)} for c in f["source_cells"]]
+            prior_facts[k + "_prior"] = {"yuan": f["yuan"], "page": f["page"], "label": f["label"], "period": f["period"],
+                                         "source_kind": "ledger_typed", "classification": f["classification"], "source_cells": cells}
+        comparatives = {"period": issuer["comparative_period"], "facts": prior_facts}
     roles = spec["figure_roles"]
     figures = []
     for i, fg in enumerate(story["figures"]):
@@ -440,6 +454,8 @@ def cmd_editorial(a) -> None:
                 "source_ledger": str((base / "source-ledger.json").relative_to(ROOT)), "facts": facts,
                 "sources": spec["sources"], "stages": spec["stages"], "editorial": ed,
                 "report_identity_page": source.get("issuer_identity_page", 1), "source_url": source["official_announcement"]}
+    if comparatives:
+        manifest["comparatives"] = comparatives
     out = editorial_path(a.code, issuer["fiscal_period"], a.period)
     out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     print("EDITORIAL_MANIFEST_WRITTEN", out.relative_to(ROOT), "facts", len(facts), "figures", len(figures))
