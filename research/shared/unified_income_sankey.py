@@ -391,4 +391,7 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
 def render_full_profit_chain(bundle, *, mobile=False):
     """Source-bound sequential group P&L extension of this canonical engine."""
     from full_profit_chain import render
+    if bundle.get('editorial',{}).get('layout')=='INCOME_FLOW_V3':
+        from income_flow_v3 import render as render_v3
+        return render_v3(bundle,mobile=mobile)
     return render(bundle,mobile=mobile)

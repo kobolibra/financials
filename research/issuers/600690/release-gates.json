@@ -228,5 +228,14 @@
   "production_artifact": {
     "id": 14201246199,
     "zip_sha256": "09e9997cd32160ef5496b4d524c13d2a8410b36e6e916bbf2b8c019c70435a00"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "92000fd49d8b9daec83cd20c12b481a00be95392f0b1c7078ee78e11fd9b1226",
+    "candidate_full_html_sha256": "d0529d76d105ac4af17b6e93a8c5499b8661a07b043013a578ea22bf8c68e1f3",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "利润主图改为AEI语法损益流向图（INCOME_FLOW_V3）：费用与最终扣减拆成具名叶子并标占营收比例，利润节点标利润率与同比；去掉重复的金额构成卡片。正文其余图表字节不变。",
+    "local_receipt": "research/quality/aei-v3-exhibits-local/result.json"
   }
 }

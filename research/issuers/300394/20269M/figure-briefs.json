@@ -4,6 +4,131 @@
   "source_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
   "figure_briefs": [
     {
+      "id": "glance",
+      "family": "kpi_board",
+      "question": "这一季最重要的六个数字是什么？",
+      "takeaway": "收入+21.25%、毛利率升至62.56%、归母净利润+42.18%；经营现金只增8.75%，存货较年初增加8.17亿元。",
+      "identity": "每格为两期原始披露值或其比率；毛利率=（营业收入−营业成本）/营业收入；存货为年初与期末余额。",
+      "counter": "毛利率跃升的来源（产品结构、价格、成本）季报无法识别；存货增长可能是为订单备货，也可能是需求放缓的前兆，需要下一期验证。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1,
+        6,
+        8,
+        9,
+        11
+      ],
+      "facts": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "cfo",
+        "cfo_prior",
+        "q3_rev",
+        "q3_rev_prior",
+        "inventory",
+        "inventory_prior"
+      ]
+    },
+    {
+      "id": "rev-quarters",
+      "family": "period_columns",
+      "question": "单季营收是在加速、放缓，还是先停后升？",
+      "takeaway": "2026年三个季度营收同比为+40.82%、-0.90%、+31.50%：二季度持平，三季度重新提速至19.23亿元，为六个季度最高。",
+      "identity": "各柱为同一合并口径的单季营业收入；第二季度为同年度累计数之差。",
+      "counter": "单季数受交付节奏与上年基数影响，三个季度不足以确认长期趋势；第二季度单季是计算值，季报未单独披露。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1,
+        8
+      ],
+      "facts": [
+        "rev_prior",
+        "q3_rev_prior",
+        "rev",
+        "q3_rev"
+      ]
+    },
+    {
+      "id": "profit-quarters",
+      "family": "period_columns",
+      "question": "单季利润是否同步加速？",
+      "takeaway": "2026年三个季度归母净利润同比分别为+45.79%、+26.79%、+55.30%；即使在营收持平的第二季度，利润仍增长，第三季度单季8.79亿元。",
+      "identity": "各柱为同一合并口径的单季归属于母公司股东的净利润；第二季度为同年度累计数之差。",
+      "counter": "第三季度利润增速包含汇兑等非经营因素的影响，季报不披露单季费用明细，无法拆分。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1,
+        9
+      ],
+      "facts": [
+        "parent_net_prior",
+        "q3_parent_net_prior",
+        "parent_net",
+        "q3_parent_net"
+      ]
+    },
+    {
+      "id": "growth",
+      "family": "growth_bars",
+      "question": "利润表哪一行增长最快？",
+      "takeaway": "营业成本同比-5.69%，与收入+21.25%背道而驰，毛利+46.25%；研发费用+47.71%是增长最快的费用；经营现金只增8.75%。",
+      "identity": "各行增速=本期/上年同期−1，两期均为原始披露值；上年为负或零的行不计算增速。",
+      "counter": "增速比较不能替代金额比较：研发费用增速最快，但金额只占收入约6%。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9,
+        11
+      ],
+      "facts": [
+        "rev_prior",
+        "rev",
+        "cogs_prior",
+        "cogs",
+        "rd_expense_prior",
+        "rd_expense",
+        "operating_profit_prior",
+        "operating_profit",
+        "parent_net_prior",
+        "parent_net",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "margins",
+      "family": "ratio_dumbbell",
+      "question": "利润率与费用率怎样变化？",
+      "takeaway": "毛利率51.87%→62.56%，营业利润率和归母净利率同步上移；研发费用率上升，销售和管理费用率下降。",
+      "identity": "各比率=对应科目/营业收入，分子分母均为同一期原始披露值。",
+      "counter": "毛利率的提升来源季报无法识别（结构、价格、成本或基数），需要年报分产品毛利率验证。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "rev_prior",
+        "cogs_prior",
+        "operating_profit",
+        "operating_profit_prior",
+        "parent_net",
+        "parent_net_prior",
+        "rd_expense",
+        "rd_expense_prior",
+        "selling",
+        "admin",
+        "selling_prior",
+        "admin_prior"
+      ]
+    },
+    {
       "id": "profit-change",
       "family": "signed_bridge",
       "question": "利润增速为何是收入增速的两倍？",
@@ -55,26 +180,6 @@
       ]
     },
     {
-      "id": "quarter",
-      "family": "comparison",
-      "question": "三季度单季是否在加速？",
-      "takeaway": "三季度单季收入同比+31.50%、归母净利同比+55.30%，均快于前九个月的+21.25%和+42.18%。",
-      "identity": "各项均为季报首页直接披露的单季值，没有做减法推算；单季与累计分别核对。",
-      "counter": "单季增速受上年基数和确认节奏影响。三季度单季毛利率需要用前九个月减半年报才能得到，本篇没有把两份报告混合入账，该项为 NOT_CHECKED。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        1
-      ],
-      "facts": [
-        "q3_rev_prior",
-        "q3_rev",
-        "q3_parent_net_prior",
-        "q3_parent_net",
-        "q3_adjusted_parent_prior",
-        "q3_adjusted_parent"
-      ]
-    },
-    {
       "id": "earnings",
       "family": "comparison",
       "question": "利润与现金是否同向？",
@@ -96,6 +201,58 @@
         "net_profit",
         "cfo_prior",
         "cfo"
+      ]
+    },
+    {
+      "id": "stock-delta",
+      "family": "stock_delta",
+      "question": "增长把资金沉淀在哪里？",
+      "takeaway": "应收、存货和预付合计增加17.11亿元，合同负债、应付账款和应付票据合计提供7.02亿元，净占用10.08亿元。",
+      "identity": "各行为合并资产负债表同一科目的期末余额−年初余额。",
+      "counter": "季报不披露账龄、坏账准备和存货分类，无法判断应收是否逾期、存货是否已进入成品；存量变动不等于现金流调节项目。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        6,
+        7
+      ],
+      "facts": [
+        "ar_prior",
+        "ar",
+        "inventory_prior",
+        "inventory",
+        "prepayments_prior",
+        "prepayments",
+        "contract_liabilities_prior",
+        "contract_liabilities",
+        "ap_prior",
+        "ap",
+        "notes_payable_prior",
+        "notes_payable"
+      ]
+    },
+    {
+      "id": "cash",
+      "family": "signed_bridge",
+      "question": "经营现金很强，期末现金为何骤降？",
+      "takeaway": "现金及现金等价物由28.64亿元降至9.39亿元，主因是其他投资活动付款17.02亿元，以及筹资流出10.84亿元。",
+      "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
+      "counter": "季报未披露定期存款的期限、币种明细和是否受限，货币资金中受限部分无法确认；其他投资活动付款的性质依赖管理层说明。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        11
+      ],
+      "facts": [
+        "cash_open",
+        "cfo",
+        "capex_cash",
+        "other_invest_pay",
+        "invest_recover",
+        "invest_income_cash",
+        "disposal_cash",
+        "invest_pay",
+        "cff",
+        "cash_fx",
+        "cash_close"
       ]
     },
     {
@@ -141,58 +298,6 @@
         "tax_paid",
         "other_op_out",
         "cfo"
-      ]
-    },
-    {
-      "id": "working-capital",
-      "family": "comparison",
-      "question": "增长占用了多少营运资金？",
-      "takeaway": "应收、存货和预付合计增加17.11亿元，合同负债、应付账款和应付票据合计增加7.02亿元，净占用10.08亿元。",
-      "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
-      "counter": "季报不披露账龄、坏账准备和存货分类，无法判断应收是否逾期、存货是否已进入成品。信用减值损失同比多计提0.27亿元，方向与应收增长一致，但金额不足以说明回款问题。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        6,
-        7
-      ],
-      "facts": [
-        "ar_prior",
-        "ar",
-        "inventory_prior",
-        "inventory",
-        "prepayments_prior",
-        "prepayments",
-        "contract_liabilities_prior",
-        "contract_liabilities",
-        "ap_prior",
-        "ap",
-        "notes_payable_prior",
-        "notes_payable"
-      ]
-    },
-    {
-      "id": "cash",
-      "family": "signed_bridge",
-      "question": "经营现金很强，期末现金为何骤降？",
-      "takeaway": "现金及现金等价物由28.64亿元降至9.39亿元，主因是其他投资活动付款17.02亿元，以及筹资流出10.84亿元。",
-      "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
-      "counter": "季报未披露定期存款的期限、币种明细和是否受限，货币资金中受限部分无法确认；其他投资活动付款的性质依赖管理层说明。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        11
-      ],
-      "facts": [
-        "cash_open",
-        "cfo",
-        "capex_cash",
-        "other_invest_pay",
-        "invest_recover",
-        "invest_income_cash",
-        "disposal_cash",
-        "invest_pay",
-        "cff",
-        "cash_fx",
-        "cash_close"
       ]
     },
     {

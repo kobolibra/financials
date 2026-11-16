@@ -24,6 +24,429 @@
  ],
  "figures": [
   {
+   "id": "glance",
+   "family": "kpi_board",
+   "nav": "本期一览",
+   "eyebrow": "AT A GLANCE",
+   "chapter": {
+    "kicker": "01 / 本期一览",
+    "title": "三季度：收入加速，利润跑得更快",
+    "summary": "前九个月的六个关键数字：增长、盈利能力、利润、现金、单季动能与备货。"
+   },
+   "question": "这一季最重要的六个数字是什么？",
+   "takeaway": "收入+{{rev_growth}}%、毛利率升至{{margin}}%、归母净利润+{{parent_growth}}%；经营现金只增{{cfo_growth}}%，存货较年初增加{{inv_delta_yi}}亿元。",
+   "analysis": "前三个数字说明“赚得更多”，后三个数字说明“现金和库存没有同步”。第三季度单季营收增速快于前九个月累计增速，增长在第三季度重新加速。",
+   "counter": "毛利率跃升的来源（产品结构、价格、成本）季报无法识别；存货增长可能是为订单备货，也可能是需求放缓的前兆，需要下一期验证。",
+   "identity": "每格为两期原始披露值或其比率；毛利率=（营业收入−营业成本）/营业收入；存货为年初与期末余额。",
+   "periods": [
+    "2025年前三季度",
+    "2026年前三季度"
+   ],
+   "tiles": [
+    {
+     "label": "营业收入",
+     "kind": "money",
+     "value": "rev",
+     "prior": "rev_prior"
+    },
+    {
+     "label": "毛利率",
+     "kind": "ratio",
+     "num": [
+      [
+       "rev",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ],
+     "den": "rev",
+     "prior_num": [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "cogs_prior",
+       -1
+      ]
+     ],
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "归母净利润",
+     "kind": "money",
+     "value": "parent_net",
+     "prior": "parent_net_prior"
+    },
+    {
+     "label": "经营现金净额",
+     "kind": "money",
+     "value": "cfo",
+     "prior": "cfo_prior"
+    },
+    {
+     "label": "三季度单季营收",
+     "kind": "money",
+     "value": "q3_rev",
+     "prior": "q3_rev_prior"
+    },
+    {
+     "label": "存货（期末余额）",
+     "kind": "money",
+     "value": "inventory",
+     "prior": "inventory_prior",
+     "delta_label": "较年初",
+     "prior_period": "2025-12-31",
+     "lower_is_better": true
+    }
+   ]
+  },
+  {
+   "id": "rev-quarters",
+   "family": "period_columns",
+   "nav": "季度营收",
+   "eyebrow": "QUARTERLY TREND",
+   "chapter": {
+    "kicker": "02 / 增长",
+    "title": "平台期之后，第三季度重新提速",
+    "summary": "把三季报的累计数拆回单季：第二季度营收与上年持平，第三季度单季同比重新回到三成以上。"
+   },
+   "question": "单季营收是在加速、放缓，还是先停后升？",
+   "takeaway": "2026年三个季度营收同比为{{q1_rev_yoy}}%、{{q2_rev_yoy}}%、+{{q3_rev_growth}}%：二季度持平，三季度重新提速至{{q3_rev_yi}}亿元，为六个季度最高。",
+   "trend": "2025年第二季度至2026年第二季度，单季营收连续四个季度停在13亿至15亿元区间；第三季度首次突破这一区间。",
+   "analysis": "一季度增速最高，但对应的上年同期也是六个季度中最低的基数。第二季度单季=前三季度累计−第一季度−第三季度单季，三个数均为合并口径原始披露值，属于同一会计年度，由按原件哈希固定的一季报与三季报账本计算。",
+   "counter": "单季数受交付节奏与上年基数影响，三个季度不足以确认长期趋势；第二季度单季是计算值，季报未单独披露。",
+   "identity": "各柱为同一合并口径的单季营业收入；第二季度为同年度累计数之差。",
+   "unit_label": "单季营业收入",
+   "columns": [
+    {
+     "label": "2025Q1",
+     "value": [
+      [
+       "qone:rev_prior",
+       1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+    },
+    {
+     "label": "2025Q2",
+     "value": [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "qone:rev_prior",
+       -1
+      ],
+      [
+       "q3_rev_prior",
+       -1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+    },
+    {
+     "label": "2025Q3",
+     "value": "q3_rev_prior"
+    },
+    {
+     "label": "2026Q1",
+     "value": [
+      [
+       "qone:rev",
+       1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR",
+     "compare": 0
+    },
+    {
+     "label": "2026Q2",
+     "value": [
+      [
+       "rev",
+       1
+      ],
+      [
+       "qone:rev",
+       -1
+      ],
+      [
+       "q3_rev",
+       -1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR",
+     "compare": 1
+    },
+    {
+     "label": "2026Q3",
+     "value": "q3_rev",
+     "compare": 2,
+     "highlight": true
+    }
+   ]
+  },
+  {
+   "id": "profit-quarters",
+   "family": "period_columns",
+   "nav": "季度利润",
+   "eyebrow": "QUARTERLY TREND",
+   "question": "单季利润是否同步加速？",
+   "takeaway": "2026年三个季度归母净利润同比分别为{{q1_parent_yoy}}%、{{q2_parent_yoy}}%、+{{q3_parent_growth}}%；即使在营收持平的第二季度，利润仍增长，第三季度单季{{q3_parent_yi}}亿元。",
+   "trend": "三个季度的利润增速都高于同季营收增速，二季度最明显：收入没有增长，利润仍在增长，增量来自利润率而非规模。",
+   "analysis": "同上，第二季度单季为同一会计年度累计归母净利润之差。",
+   "counter": "第三季度利润增速包含汇兑等非经营因素的影响，季报不披露单季费用明细，无法拆分。",
+   "identity": "各柱为同一合并口径的单季归属于母公司股东的净利润；第二季度为同年度累计数之差。",
+   "unit_label": "单季归母净利润",
+   "columns": [
+    {
+     "label": "2025Q1",
+     "value": [
+      [
+       "qone:parent_net_prior",
+       1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+    },
+    {
+     "label": "2025Q2",
+     "value": [
+      [
+       "parent_net_prior",
+       1
+      ],
+      [
+       "qone:parent_net_prior",
+       -1
+      ],
+      [
+       "q3_parent_net_prior",
+       -1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+    },
+    {
+     "label": "2025Q3",
+     "value": "q3_parent_net_prior"
+    },
+    {
+     "label": "2026Q1",
+     "value": [
+      [
+       "qone:parent_net",
+       1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR",
+     "compare": 0
+    },
+    {
+     "label": "2026Q2",
+     "value": [
+      [
+       "parent_net",
+       1
+      ],
+      [
+       "qone:parent_net",
+       -1
+      ],
+      [
+       "q3_parent_net",
+       -1
+      ]
+     ],
+     "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR",
+     "compare": 1
+    },
+    {
+     "label": "2026Q3",
+     "value": "q3_parent_net",
+     "compare": 2,
+     "highlight": true
+    }
+   ]
+  },
+  {
+   "id": "growth",
+   "family": "growth_bars",
+   "nav": "增速对比",
+   "eyebrow": "GROWTH, LINE BY LINE",
+   "question": "利润表哪一行增长最快？",
+   "takeaway": "营业成本同比{{cogs_growth}}%，与收入+{{rev_growth}}%背道而驰，毛利+{{gp_growth}}%；研发费用+{{rd_growth}}%是增长最快的费用；经营现金只增{{cfo_growth}}%。",
+   "analysis": "同一根零轴上比较各行同比，最长的条就是本期的故事：成本下降带来的毛利跃升，以及利润与现金的增速差。",
+   "counter": "增速比较不能替代金额比较：研发费用增速最快，但金额只占收入约6%。",
+   "identity": "各行增速=本期/上年同期−1，两期均为原始披露值；上年为负或零的行不计算增速。",
+   "periods": [
+    "2025年前三季度",
+    "2026年前三季度"
+   ],
+   "pairs": [
+    [
+     "营业收入",
+     "rev_prior",
+     "rev"
+    ],
+    [
+     "营业成本",
+     "cogs_prior",
+     "cogs",
+     {
+      "lower_is_better": true
+     }
+    ],
+    [
+     "营业毛利",
+     [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "cogs_prior",
+       -1
+      ]
+     ],
+     [
+      [
+       "rev",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ]
+    ],
+    [
+     "研发费用",
+     "rd_expense_prior",
+     "rd_expense",
+     {
+      "lower_is_better": true
+     }
+    ],
+    [
+     "营业利润",
+     "operating_profit_prior",
+     "operating_profit"
+    ],
+    [
+     "归母净利润",
+     "parent_net_prior",
+     "parent_net"
+    ],
+    [
+     "经营现金净额",
+     "cfo_prior",
+     "cfo"
+    ]
+   ]
+  },
+  {
+   "id": "margins",
+   "family": "ratio_dumbbell",
+   "nav": "利润率",
+   "eyebrow": "MARGINS & COST RATIOS",
+   "chapter": {
+    "kicker": "03 / 盈利",
+    "title": "毛利率决定了利润的弹性",
+    "summary": "毛利率提高超过10个百分点，费用率基本稳定，利润率随之整体上移。"
+   },
+   "question": "利润率与费用率怎样变化？",
+   "takeaway": "毛利率{{prior_margin}}%→{{margin}}%，营业利润率和归母净利率同步上移；研发费用率上升，销售和管理费用率下降。",
+   "analysis": "利润率的提升全部来自毛利率：期间费用及损失合计占营收反而上升（见利润主图），研发费用率上升多于销售及管理费用率下降，不是靠压缩费用。",
+   "counter": "毛利率的提升来源季报无法识别（结构、价格、成本或基数），需要年报分产品毛利率验证。",
+   "identity": "各比率=对应科目/营业收入，分子分母均为同一期原始披露值。",
+   "periods": [
+    "2025年前三季度",
+    "2026年前三季度"
+   ],
+   "rows": [
+    {
+     "label": "毛利率",
+     "num": [
+      [
+       "rev",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ],
+     "den": "rev",
+     "prior_num": [
+      [
+       "rev_prior",
+       1
+      ],
+      [
+       "cogs_prior",
+       -1
+      ]
+     ],
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "营业利润率",
+     "num": "operating_profit",
+     "den": "rev",
+     "prior_num": "operating_profit_prior",
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "归母净利率",
+     "num": "parent_net",
+     "den": "rev",
+     "prior_num": "parent_net_prior",
+     "prior_den": "rev_prior"
+    },
+    {
+     "label": "研发费用率",
+     "num": "rd_expense",
+     "den": "rev",
+     "prior_num": "rd_expense_prior",
+     "prior_den": "rev_prior",
+     "lower_is_better": true
+    },
+    {
+     "label": "销售及管理费用率",
+     "num": [
+      [
+       "selling",
+       1
+      ],
+      [
+       "admin",
+       1
+      ]
+     ],
+     "den": "rev",
+     "prior_num": [
+      [
+       "selling_prior",
+       1
+      ],
+      [
+       "admin_prior",
+       1
+      ]
+     ],
+     "prior_den": "rev_prior",
+     "lower_is_better": true
+    }
+   ]
+  },
+  {
    "id": "profit-change",
    "family": "signed_bridge",
    "nav": "增长归因",
@@ -339,38 +762,6 @@
    ]
   },
   {
-   "id": "quarter",
-   "family": "comparison",
-   "nav": "单季加速",
-   "eyebrow": "COMPARABLE BASES",
-   "question": "三季度单季是否在加速？",
-   "takeaway": "三季度单季收入同比+{{q3_rev_growth}}%、归母净利同比+{{q3_parent_growth}}%，均快于前九个月的+{{rev_growth}}%和+{{parent_growth}}%。",
-   "analysis": "单季数取自季报首页的主要财务数据表，上年同期取调整后口径，收入与利润在调整前后相同。三季度单季归母净利润占收入{{q3_net_margin}}%，上年同期{{q3_net_margin_prior}}%。",
-   "counter": "单季增速受上年基数和确认节奏影响。三季度单季毛利率需要用前九个月减半年报才能得到，本篇没有把两份报告混合入账，该项为 NOT_CHECKED。",
-   "identity": "各项均为季报首页直接披露的单季值，没有做减法推算；单季与累计分别核对。",
-   "periods": [
-    "2025Q3单季",
-    "2026Q3单季"
-   ],
-   "pairs": [
-    [
-     "营业收入",
-     "q3_rev_prior",
-     "q3_rev"
-    ],
-    [
-     "归母净利润",
-     "q3_parent_net_prior",
-     "q3_parent_net"
-    ],
-    [
-     "扣非归母净利润",
-     "q3_adjusted_parent_prior",
-     "q3_adjusted_parent"
-    ]
-   ]
-  },
-  {
    "id": "earnings",
    "family": "comparison",
    "nav": "利润与现金",
@@ -404,6 +795,144 @@
      "经营现金净额",
      "cfo_prior",
      "cfo"
+    ]
+   ],
+   "chapter": {
+    "kicker": "04 / 现金",
+    "title": "利润没有全部变成现金",
+    "summary": "经营现金占净利润的比例下降，增长的一部分沉淀为存货、应收与预付。"
+   }
+  },
+  {
+   "id": "stock-delta",
+   "family": "stock_delta",
+   "nav": "资本占用",
+   "eyebrow": "WHERE THE CASH WENT",
+   "question": "增长把资金沉淀在哪里？",
+   "takeaway": "应收、存货和预付合计增加{{tieup_yi}}亿元，合同负债、应付账款和应付票据合计提供{{funding_delta_yi}}亿元，净占用{{net_tie_yi}}亿元。",
+   "analysis": "红色是资产增加（占用资金），绿色是负债增加（客户和供应商提供的资金）。存货和应收是两根最长的红条，与管理层“战略性备货”“销售增长带来应收增加”的说明一致。",
+   "counter": "季报不披露账龄、坏账准备和存货分类，无法判断应收是否逾期、存货是否已进入成品；存量变动不等于现金流调节项目。",
+   "identity": "各行为合并资产负债表同一科目的期末余额−年初余额。",
+   "dates": [
+    "2025-12-31",
+    "2026-09-30"
+   ],
+   "items": [
+    [
+     "应收账款",
+     "asset",
+     "ar_prior",
+     "ar"
+    ],
+    [
+     "存货",
+     "asset",
+     "inventory_prior",
+     "inventory"
+    ],
+    [
+     "预付款项",
+     "asset",
+     "prepayments_prior",
+     "prepayments"
+    ],
+    [
+     "合同负债",
+     "liability",
+     "contract_liabilities_prior",
+     "contract_liabilities"
+    ],
+    [
+     "应付账款",
+     "liability",
+     "ap_prior",
+     "ap"
+    ],
+    [
+     "应付票据",
+     "liability",
+     "notes_payable_prior",
+     "notes_payable"
+    ]
+   ]
+  },
+  {
+   "id": "cash",
+   "family": "signed_bridge",
+   "nav": "现金去向",
+   "eyebrow": "SIGNED MONEY BRIDGE",
+   "question": "经营现金很强，期末现金为何骤降？",
+   "takeaway": "现金及现金等价物由{{cash_open_yi}}亿元降至{{cash_close_yi}}亿元，主因是其他投资活动付款{{other_invest_pay_yi}}亿元，以及筹资流出{{cff_out_yi}}亿元。",
+   "analysis": "管理层称投资现金流出增加主要是购入美元定期存款。定期存款不属于现金等价物，因此货币资金仍有{{money_funds_yi}}亿元，现金等价物下降不等于可动用资金同等减少。分红与利息支付{{dividend_cash_yi}}亿元，相当于归母净利润的{{dividend_ratio}}%；汇率变动使现金减少{{cash_fx_abs_yi}}亿元。",
+   "counter": "季报未披露定期存款的期限、币种明细和是否受限，货币资金中受限部分无法确认；其他投资活动付款的性质依赖管理层说明。",
+   "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
+   "rows": [
+    [
+     "期初现金及现金等价物",
+     "cash_open",
+     "start"
+    ],
+    [
+     "经营活动现金净额",
+     "cfo",
+     "step"
+    ],
+    [
+     "购建长期资产付现",
+     [
+      [
+       "capex_cash",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "其他投资活动付款",
+     [
+      [
+       "other_invest_pay",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "理财及其他投资净额",
+     [
+      [
+       "invest_recover",
+       1
+      ],
+      [
+       "invest_income_cash",
+       1
+      ],
+      [
+       "disposal_cash",
+       1
+      ],
+      [
+       "invest_pay",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "筹资活动现金净额",
+     "cff",
+     "step"
+    ],
+    [
+     "汇率变动影响",
+     "cash_fx",
+     "step"
+    ],
+    [
+     "期末现金及现金等价物",
+     "cash_close",
+     "total"
     ]
    ]
   },
@@ -553,133 +1082,6 @@
     [
      "经营活动现金净额",
      "cfo",
-     "total"
-    ]
-   ]
-  },
-  {
-   "id": "working-capital",
-   "family": "comparison",
-   "nav": "营运资金",
-   "eyebrow": "COMPARABLE BASES",
-   "question": "增长占用了多少营运资金？",
-   "takeaway": "应收、存货和预付合计增加{{tieup_yi}}亿元，合同负债、应付账款和应付票据合计增加{{funding_delta_yi}}亿元，净占用{{net_tie_yi}}亿元。",
-   "analysis": "管理层称存货增加主要是战略性备货带来的原材料增加，应收增加主要是销售增长，预付增加主要是预付材料款，合同负债增加主要是预收客户款项。应收账款相当于三季度单季收入的{{ar_q3_pct}}%。",
-   "counter": "季报不披露账龄、坏账准备和存货分类，无法判断应收是否逾期、存货是否已进入成品。信用减值损失同比多计提{{credit_delta_yi}}亿元，方向与应收增长一致，但金额不足以说明回款问题。",
-   "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
-   "periods": [
-    "2025-12-31",
-    "2026-09-30"
-   ],
-   "pairs": [
-    [
-     "应收账款",
-     "ar_prior",
-     "ar"
-    ],
-    [
-     "存货",
-     "inventory_prior",
-     "inventory"
-    ],
-    [
-     "预付款项",
-     "prepayments_prior",
-     "prepayments"
-    ],
-    [
-     "合同负债",
-     "contract_liabilities_prior",
-     "contract_liabilities"
-    ],
-    [
-     "应付账款",
-     "ap_prior",
-     "ap"
-    ],
-    [
-     "应付票据",
-     "notes_payable_prior",
-     "notes_payable"
-    ]
-   ]
-  },
-  {
-   "id": "cash",
-   "family": "signed_bridge",
-   "nav": "现金去向",
-   "eyebrow": "SIGNED MONEY BRIDGE",
-   "question": "经营现金很强，期末现金为何骤降？",
-   "takeaway": "现金及现金等价物由{{cash_open_yi}}亿元降至{{cash_close_yi}}亿元，主因是其他投资活动付款{{other_invest_pay_yi}}亿元，以及筹资流出{{cff_out_yi}}亿元。",
-   "analysis": "管理层称投资现金流出增加主要是购入美元定期存款。定期存款不属于现金等价物，因此货币资金仍有{{money_funds_yi}}亿元，现金等价物下降不等于可动用资金同等减少。分红与利息支付{{dividend_cash_yi}}亿元，相当于归母净利润的{{dividend_ratio}}%；汇率变动使现金减少{{cash_fx_abs_yi}}亿元。",
-   "counter": "季报未披露定期存款的期限、币种明细和是否受限，货币资金中受限部分无法确认；其他投资活动付款的性质依赖管理层说明。",
-   "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
-   "rows": [
-    [
-     "期初现金及现金等价物",
-     "cash_open",
-     "start"
-    ],
-    [
-     "经营活动现金净额",
-     "cfo",
-     "step"
-    ],
-    [
-     "购建长期资产付现",
-     [
-      [
-       "capex_cash",
-       -1
-      ]
-     ],
-     "step"
-    ],
-    [
-     "其他投资活动付款",
-     [
-      [
-       "other_invest_pay",
-       -1
-      ]
-     ],
-     "step"
-    ],
-    [
-     "理财及其他投资净额",
-     [
-      [
-       "invest_recover",
-       1
-      ],
-      [
-       "invest_income_cash",
-       1
-      ],
-      [
-       "disposal_cash",
-       1
-      ],
-      [
-       "invest_pay",
-       -1
-      ]
-     ],
-     "step"
-    ],
-    [
-     "筹资活动现金净额",
-     "cff",
-     "step"
-    ],
-    [
-     "汇率变动影响",
-     "cash_fx",
-     "step"
-    ],
-    [
-     "期末现金及现金等价物",
-     "cash_close",
      "total"
     ]
    ]
@@ -1412,23 +1814,13 @@
    "decimals": 2
   },
   "q3_rev_yi": {
-   "expression": [
-    [
-     "q3_rev",
-     1
-    ]
-   ],
+   "expression": "q3_rev",
    "scale": "100000000",
    "multiplier": "1",
    "decimals": 2
   },
   "q3_parent_yi": {
-   "expression": [
-    [
-     "q3_parent_net",
-     1
-    ]
-   ],
+   "expression": "q3_parent_net",
    "scale": "100000000",
    "multiplier": "1",
    "decimals": 2
@@ -2904,6 +3296,179 @@
    "multiplier": "1",
    "decimals": 2,
    "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION"
+  },
+  "q1_rev_yoy": {
+   "expression": [
+    [
+     "qone:rev",
+     1
+    ],
+    [
+     "qone:rev_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "qone:rev_prior",
+     1
+    ]
+   ],
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION",
+   "signed": true
+  },
+  "q2_rev_yoy": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "qone:rev",
+     -1
+    ],
+    [
+     "q3_rev",
+     -1
+    ],
+    [
+     "rev_prior",
+     -1
+    ],
+    [
+     "qone:rev_prior",
+     1
+    ],
+    [
+     "q3_rev_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "qone:rev_prior",
+     -1
+    ],
+    [
+     "q3_rev_prior",
+     -1
+    ]
+   ],
+   "cross_period": "YOY_OF_SAME_FISCAL_YEAR_DIFFERENCES",
+   "signed": true
+  },
+  "q1_parent_yoy": {
+   "expression": [
+    [
+     "qone:parent_net",
+     1
+    ],
+    [
+     "qone:parent_net_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "qone:parent_net_prior",
+     1
+    ]
+   ],
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION",
+   "signed": true
+  },
+  "q2_parent_yoy": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ],
+    [
+     "qone:parent_net",
+     -1
+    ],
+    [
+     "q3_parent_net",
+     -1
+    ],
+    [
+     "parent_net_prior",
+     -1
+    ],
+    [
+     "qone:parent_net_prior",
+     1
+    ],
+    [
+     "q3_parent_net_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "parent_net_prior",
+     1
+    ],
+    [
+     "qone:parent_net_prior",
+     -1
+    ],
+    [
+     "q3_parent_net_prior",
+     -1
+    ]
+   ],
+   "cross_period": "YOY_OF_SAME_FISCAL_YEAR_DIFFERENCES",
+   "signed": true
+  },
+  "gp_growth": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ],
+    [
+     "rev_prior",
+     -1
+    ],
+    [
+     "cogs_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ]
   }
  },
  "essays": [
@@ -2932,7 +3497,7 @@
   },
   {
    "id": "cash-risk",
-   "after": "working-capital",
+   "after": "stock-delta",
    "eyebrow": "EARNINGS QUALITY / CASH CONVERSION",
    "title": "增长是否已经变成可回收的资产？",
    "paragraphs": [
@@ -3043,5 +3608,14 @@
    "period": "2026Q1",
    "pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e"
   }
- }
+ },
+ "design": "EDITORIAL_V2",
+ "glance": [
+  "营业收入 +{{rev_growth}}% 至 {{rev_yi}} 亿元；第三季度单季 +{{q3_rev_growth}}%",
+  "毛利率 {{margin}}%（上年同期 {{prior_margin}}%），营业成本同比 {{cogs_growth}}%",
+  "归母净利润 +{{parent_growth}}% 至 {{parent_yi}} 亿元；扣非 +{{adjusted_growth}}%",
+  "经营现金净额 {{cfo_yi}} 亿元（+{{cfo_growth}}%），占净利润 {{cfo_ratio}}%",
+  "存货较年初 +{{inv_delta_yi}} 亿元，应收较年初 +{{ar_delta_yi}} 亿元",
+  "现金及等价物 {{cash_close_yi}} 亿元；货币资金 {{money_funds_yi}} 亿元（含美元定期存款）"
+ ]
 }

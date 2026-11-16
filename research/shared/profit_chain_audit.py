@@ -101,8 +101,15 @@ def check_svg(markup,code,pdf_sha):
   if q:
    target='cost-'+nxt['id'];node(target,[[k,-c] for k,c in neg],'cost');edge(from_id,target,q)
   edge(from_id,nxt['id'],value(b,nxt['terms']))
+ declared=b.get('editorial',{}).get('layout')
+ if root.get('data-chain-layout')=='INCOME_FLOW_V3' or declared=='INCOME_FLOW_V3':
+  need(root.get('data-chain-layout')==declared=='INCOME_FLOW_V3','LAYOUT_DECLARATION')
+  need(root.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1' and root.get('data-issuer')==code.split('@')[0] and root.get('data-period')==b['period'],'ISSUER_PERIOD')
+  need(root.get('data-original-pdf-sha256')==pdf_sha==b['source_pdf']['source_sha256'],'PDF')
+  from income_flow_audit import check as check_v3
+  return check_v3(markup,b)
  layout2=root.get('data-chain-layout')
- need((layout2 is not None)==(b.get('editorial',{}).get('layout')=='PROFIT_CHAIN_LAYOUT_V2'),'LAYOUT_DECLARATION')
+ need((layout2 is not None)==(declared=='PROFIT_CHAIN_LAYOUT_V2'),'LAYOUT_DECLARATION')
  actual={n.get('data-chain-node'):n for n in root.iter(NS+'rect') if n.get('data-chain-node')}
  need(set(actual)==set(expected),'NODE_SET')
  axis=root.get('data-chain-axis');need(axis in ('width','height'),'AXIS');scale=D(root.get('data-chain-scale'));need(scale>0 and scale==max(v for v,t,r in expected.values())/D(150 if axis=='width' else 340),'EXACT_COMMON_SCALE')

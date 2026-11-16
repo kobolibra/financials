@@ -774,84 +774,121 @@
     }
   ],
   "editorial": {
-    "primary_question": "收入如何形成归母净利润？",
+    "primary_question": "四十七亿收入，最后有多少成为股东的利润？",
     "income_basis": "营业收入起点；季报不披露分产品收入，来源节点为合并营业收入；其他收益和金融业务收入在相应层另列；不分摊产品税后利润",
     "takeaway": "营业成本不增反降使毛利率升至六成，研发、财务费用与所得税吃掉部分毛利增量；增长是否可持续取决于分产品毛利率。",
     "counter": "季报没有分产品数据，毛利率提升的来源不能由此图识别；备货与应收对现金的占用另见后续图。",
     "level_component_count": 3,
-    "layout": "PROFIT_CHAIN_LAYOUT_V2",
+    "layout": "INCOME_FLOW_V3",
+    "hero_position": "after_first",
     "full_reconciliation": "REFERENCE_EXPANDABLE_NOT_PRIMARY",
     "human_review": "NOT_CHECKED",
     "figures": [
       {
         "index": 0,
-        "id": "profit-change",
-        "title": "利润增速为何是收入增速的两倍？",
+        "id": "glance",
+        "title": "这一季最重要的六个数字是什么？",
         "role": "secondary",
-        "rationale": "回答独立问题：利润增速为何是收入的两倍，保留正文",
+        "rationale": "本期一览：六个关键数字，正文首图",
         "summary": false,
         "focus": []
       },
       {
         "index": 1,
-        "id": "quarter",
-        "title": "三季度单季是否在加速？",
+        "id": "rev-quarters",
+        "title": "单季营收是在加速、放缓，还是先停后升？",
         "role": "secondary",
-        "rationale": "三季度单季是否加速，是季报独有的新增信息，保留正文",
+        "rationale": "单季营收走势是三季报独有、最能回答增长是否加速的证据",
         "summary": false,
         "focus": []
       },
       {
         "index": 2,
-        "id": "earnings",
-        "title": "利润与现金是否同向？",
+        "id": "profit-quarters",
+        "title": "单季利润是否同步加速？",
         "role": "secondary",
-        "rationale": "利润与现金是否同向，回答独立的盈利质量问题，保留正文",
+        "rationale": "检验利润是否与营收同步加速",
         "summary": false,
         "focus": []
       },
       {
         "index": 3,
-        "id": "quality",
-        "title": "利润里一次性项目有多少？",
+        "id": "growth",
+        "title": "利润表哪一行增长最快？",
         "role": "secondary",
-        "rationale": "一次性项目占比决定利润质量判断，保留正文",
+        "rationale": "同一零轴比较利润表各行同比，找出本期的主线",
         "summary": false,
         "focus": []
       },
       {
         "index": 4,
-        "id": "cash-direct",
-        "title": "经营现金从哪里来，用到哪里？",
+        "id": "margins",
+        "title": "利润率与费用率怎样变化？",
         "role": "secondary",
-        "rationale": "季报无间接法调节，直接法付现拆解回答现金转换为何下降，保留正文",
+        "rationale": "利润率与费用率的位移说明利润弹性的来源",
         "summary": false,
         "focus": []
       },
       {
         "index": 5,
-        "id": "working-capital",
-        "title": "增长占用了多少营运资金？",
+        "id": "profit-change",
+        "title": "利润增速为何是收入增速的两倍？",
         "role": "secondary",
-        "rationale": "备货与应收占用资金是本期最大的现金约束，保留正文",
+        "rationale": "唯一保留在正文的利润桥：毛利增量如何被费用与税负吃掉",
         "summary": false,
         "focus": []
       },
       {
         "index": 6,
-        "id": "cash",
-        "title": "经营现金很强，期末现金为何骤降？",
+        "id": "earnings",
+        "title": "利润与现金是否同向？",
         "role": "secondary",
-        "rationale": "现金等价物骤降与投资付款相关，回答独立的资本问题，保留正文",
+        "rationale": "利润与现金是否同向，是本期最大矛盾",
         "summary": false,
         "focus": []
       },
       {
         "index": 7,
+        "id": "stock-delta",
+        "title": "增长把资金沉淀在哪里？",
+        "role": "secondary",
+        "rationale": "资金沉淀在哪些资产负债表科目",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 8,
+        "id": "cash",
+        "title": "经营现金很强，期末现金为何骤降？",
+        "role": "secondary",
+        "rationale": "现金等价物骤降与定期存款有关，回答独立的资本问题",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 9,
+        "id": "quality",
+        "title": "利润里一次性项目有多少？",
+        "role": "reference",
+        "rationale": "一次性项目很小，结论已写入本期一览，完整对账下沉",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 10,
+        "id": "cash-direct",
+        "title": "经营现金从哪里来，用到哪里？",
+        "role": "reference",
+        "rationale": "直接法逐项付现为核对层，正文用增速与资本占用图表达",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 11,
         "id": "balance",
         "title": "扩张靠负债还是权益？",
         "role": "reference",
-        "rationale": "资产负债结构变化已由营运资金与现金图覆盖，完整两日期对账保留于核对层",
+        "rationale": "资产负债结构已由资本占用图覆盖，完整对账下沉",
         "summary": false,
         "focus": []
       }

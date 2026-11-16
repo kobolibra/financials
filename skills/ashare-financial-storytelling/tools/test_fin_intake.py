@@ -65,6 +65,15 @@ class EditorialLint(unittest.TestCase):
 
 
 class QuarterlyGeneralization(unittest.TestCase):
+    def test_editorial_v2_lint_refuses_a_bridge_parade_and_passes_the_real_q3_story(self):
+        q3 = json.loads((ROOT / "research/issuers/300394/20269M/publication.json").read_text())
+        self.assertEqual(q3["design"], "EDITORIAL_V2")
+        self.assertEqual(fi.lint_v2(q3["figures"]), [])
+        parade = [dict(f, family="signed_bridge", chapter=None) for f in q3["figures"]]
+        issues = " ".join(fi.lint_v2(parade))
+        for code in ("V2_FIRST_FIGURE_MUST_BE_KPI_BOARD", "V2_FAMILY_VARIETY", "V2_NO_TREND_EXHIBIT", "V2_BRIDGE_PARADE", "V2_TOO_FEW_CHAPTERS"):
+            self.assertIn(code, issues)
+
     def test_nine_month_report_declares_single_quarter_columns(self):
         class Page:
             def __init__(self, t): self.t = t

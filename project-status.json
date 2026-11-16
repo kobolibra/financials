@@ -263,14 +263,14 @@
     },
     "archived_previous": "docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md",
     "v10_known_capability_gaps": [
-      "8-12 quarter trend and margin-trend exhibits",
       "TYPE B and BANK routes in source_publication.py",
       "post-merge live production QA (qa_source_publication_live.py) does not yet iterate period_reports",
       "WebKit phone pass for period reports (local environment has Chromium headless shell only)",
       "single-quarter derivation across THREE reports (Q2 alone = H1 - Q1) needs an H1 ledger for the issuer",
-      "CUMULATIVE_FLOW_DIFFERENCE claims cannot yet feed a figure (text only)",
-      "profit-chain layout V2 migrated for 5 source-publication reports only; 10 legacy manifests still V1 (need prior-period source cells)",
-      "profit-chain small-branch grouping and cost-node proximity"
+      "INCOME_FLOW_V3 hero on 5 source-publication reports; 10 legacy manifests still V1 (need prior-period source cells)",
+      "EDITORIAL_V2 exhibit design published for 300394 Q3 only; other reports keep the earlier body figures",
+      "multi-year segment trend exhibits need several archived annual ledgers",
+      "income-flow V3 gains at the operating->parent step are drawn as a small ochre inflow whose label sits near the operating node; no independent human art review"
     ]
   },
   "entrypoints": {

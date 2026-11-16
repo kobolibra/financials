@@ -44,6 +44,7 @@ def with_externals(ledger,story,root=None):
 CROSS_PERIOD='CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR'
 SAME_DATE='SAME_DATE_STOCK_RECONCILIATION'
 CITATION='SINGLE_EXTERNAL_REPORT_CITATION'
+YOY='YOY_OF_SAME_FISCAL_YEAR_DIFFERENCES'
 def check_cross_period_claims(ledger,story):
     """Claims that read another report period must declare the lawful mode and obey it.
 
@@ -59,23 +60,41 @@ def check_cross_period_claims(ledger,story):
             if part is None:continue
             out+=[part] if isinstance(part,str) else [k for k,c in part]
         return out
-    for name,spec in story.get('quantified_claims',{}).items():
+    specs=dict(story.get('quantified_claims',{}))
+    for fig in story.get('figures',[]):
+        for j,col in enumerate(fig.get('columns',[])):
+            # every figure value that reads another report must also declare its lawful mode
+            specs['figure:'+fig['id']+':'+str(j)]={'expression':col['value'],**({'cross_period':col['cross_period']} if col.get('cross_period') else {})}
+    for name,spec in specs.items():
         keys=keys_of(spec);mode=spec.get('cross_period')
         if not any(':' in k for k in keys):
             if mode:raise ValueError('DOSSIER_CROSS_PERIOD_DECLARED_WITHOUT_EXTERNAL_FACT '+name)
             continue
-        if mode not in (CROSS_PERIOD,SAME_DATE,CITATION):raise ValueError('DOSSIER_CROSS_PERIOD_CLAIM_NOT_DECLARED '+name)
+        if mode not in (CROSS_PERIOD,SAME_DATE,CITATION,YOY):raise ValueError('DOSSIER_CROSS_PERIOD_CLAIM_NOT_DECLARED '+name)
         facts=[fact_of(lg,k) for k in keys]
         if any(f['scope']!='consolidated' or f['classification']!='DISCLOSED' for f in facts):raise ValueError('DOSSIER_CROSS_PERIOD_ONLY_DISCLOSED_CONSOLIDATED_FACTS '+name)
         if mode==CROSS_PERIOD:
             if any(f['type']!='flow' for f in facts) or len({f['period'][:4] for f in facts})!=1:raise ValueError('DOSSIER_CROSS_PERIOD_MIXED_FISCAL_YEARS_OR_NONFLOW '+name)
+        elif mode==YOY:
+            # (current-year quantity - prior-year quantity) / prior-year quantity, each built inside ONE fiscal year
+            if any(f['type']!='flow' for f in facts):raise ValueError('DOSSIER_YOY_NONFLOW '+name)
+            den=spec.get('denominator');expr=spec['expression']
+            if not isinstance(den,list) or not isinstance(expr,list):raise ValueError('DOSSIER_YOY_REQUIRES_EXPLICIT_TERMS '+name)
+            year=lambda k:fact_of(lg,k)['period'][:4]
+            prior_years={year(k) for k,c in den}
+            if len(prior_years)!=1:raise ValueError('DOSSIER_YOY_PRIOR_NOT_ONE_YEAR '+name)
+            py=prior_years.pop();cur=[(k,c) for k,c in expr if year(k)!=py];old=[(k,c) for k,c in expr if year(k)==py]
+            if sorted((k,-D(str(c))) for k,c in old)!=sorted((k,D(str(c))) for k,c in den):raise ValueError('DOSSIER_YOY_PRIOR_PART_MUST_EQUAL_DENOMINATOR '+name)
+            if len({year(k) for k,c in cur})!=1 or int(year(cur[0][0]))!=int(py)+1:raise ValueError('DOSSIER_YOY_CURRENT_NOT_NEXT_YEAR '+name)
         elif mode==SAME_DATE:
             if any(f['type']!='stock' for f in facts) or len({f['period'] for f in facts})!=1:raise ValueError('DOSSIER_CROSS_PERIOD_STOCKS_MUST_SHARE_ONE_DATE '+name)
         else:
             # Citation: every operand comes from ONE external report, so the arithmetic is
             # exactly what that report's own validated ledger supports (flows of one year, or stocks of one date).
             if any(':' not in k for k in keys) or len({k.split(':',1)[0] for k in keys})!=1:raise ValueError('DOSSIER_CITATION_MUST_USE_ONE_EXTERNAL_REPORT '+name)
-            if not (all(f['type']=='flow' for f in facts) and len({f['period'] for f in facts})==1) and not (all(f['type']=='stock' for f in facts) and len({f['period'] for f in facts})==1):
+            other=lg['_external'][keys[0].split(':',1)[0]]['issuer']
+            own={other['fiscal_period'],other['comparative_period']}|set(other.get('flow_columns',{}).values())
+            if len({f['type'] for f in facts})!=1 or (facts[0]['type']=='flow' and not {f['period'] for f in facts}<=own):
                 raise ValueError('DOSSIER_CITATION_MIXED_TYPES_OR_PERIODS '+name)
         for k in keys:
             if ':' in k and k.split(':',1)[0] not in story['external_ledgers']:raise ValueError('DOSSIER_CROSS_PERIOD_UNKNOWN_ALIAS '+name)
@@ -132,7 +151,8 @@ def expand_claims(story,ledger):
         if not value.is_finite():raise ValueError('DOSSIER_NONFINITE_QUANTIFIED_CLAIM')
         places=spec.get('decimals',2)
         if type(places) is not int or not 0<=places<=6:raise ValueError('DOSSIER_INVALID_CLAIM_PRECISION')
-        return format(value,(',' if spec.get('grouping') else '')+'.'+str(places)+'f')
+        if 'signed' in spec and type(spec['signed']) is not bool:raise ValueError('DOSSIER_INVALID_CLAIM_SIGN')
+        return format(value,('+' if spec.get('signed') else '')+(',' if spec.get('grouping') else '')+'.'+str(places)+'f')
     def walk(value):
         if isinstance(value,str):return re.sub(r'\{\{([a-z0-9_]+)\}\}',substitute,value)
         if isinstance(value,list):return [walk(x) for x in value]
@@ -199,15 +219,57 @@ def chart(ledger,figure,mobile):
     if family=='signed_bridge':return render_bridge([(l,v(e),role,reference(e)) for l,e,role in presentation_rows(figure)],title,period=figure.get('period',period),**kw)
     if family=='comparison':return render_comparison([(l,v(p),v(n),json.dumps({'periods':figure['periods'],'prior':p,'current':n},ensure_ascii=False,separators=(',',':'))) for l,p,n in figure['pairs']],title,periods=figure['periods'],**kw)
     if family=='balance':return render_balance([(date,v(a),v(l),v(e),json.dumps({'assets':a,'liabilities':l,'equity':e},separators=(',',':'))) for date,a,l,e in figure['dates']],title,**kw)
+    if family in EXHIBIT_FAMILIES:return render_exhibit(ledger,figure,mobile,kw,title,period)
     if family=='components':return render_components([(l,v(e),reference(e)) for l,e in figure['parts']],v(figure['total']),title,period=figure.get('period',period),**kw)
+    raise ValueError('DOSSIER_UNKNOWN_FINANCIAL_GRAMMAR '+family)
+EXHIBIT_FAMILIES=('kpi_board','ratio_dumbbell','growth_bars','period_columns','stock_delta')
+def ratio_of(ledger,num,den):
+    d=amount(ledger,den)
+    if not d:raise ValueError('DOSSIER_RATIO_ZERO_DENOMINATOR')
+    return amount(ledger,num)/d*100
+def render_exhibit(ledger,figure,mobile,kw,title,period):
+    import exhibits as X
+    family=figure['family'];periods=figure.get('periods',[ledger['issuer']['comparative_period'],period])
+    ident=dict(issuer=kw['issuer'],period=period,pdf_sha256=kw['pdf_sha256'])
+    if family=='kpi_board':
+        tiles=[]
+        for t in figure['tiles']:
+            if t['kind']=='money':
+                tiles.append(dict(label=t['label'],kind='money',value=amount(ledger,t['value']),prior=amount(ledger,t['prior']),value_ref=t['value'],prior_ref=t['prior'],period=periods[1],prior_period=t.get('prior_period',periods[0]),lower_is_better=t.get('lower_is_better',False),delta_label=t.get('delta_label','同比')))
+            elif t['kind']=='ratio':
+                tiles.append(dict(label=t['label'],kind='ratio',value=ratio_of(ledger,t['num'],t['den']),prior=ratio_of(ledger,t['prior_num'],t['prior_den']),value_ref={'num':t['num'],'den':t['den']},prior_ref={'num':t['prior_num'],'den':t['prior_den']},period=periods[1],prior_period=periods[0],lower_is_better=t.get('lower_is_better',False)))
+            else:raise ValueError('DOSSIER_KPI_KIND '+str(t.get('kind')))
+        return X.render_kpi_board(tiles,title,mobile=mobile,**ident)
+    if family=='ratio_dumbbell':
+        rows=[dict(label=r['label'],value=ratio_of(ledger,r['num'],r['den']),prior=ratio_of(ledger,r['prior_num'],r['prior_den']),value_ref={'num':r['num'],'den':r['den']},prior_ref={'num':r['prior_num'],'den':r['prior_den']},lower_is_better=r.get('lower_is_better',False)) for r in figure['rows']]
+        return X.render_ratio_dumbbell(rows,title,periods=periods,mobile=mobile,**ident)
+    if family=='growth_bars':
+        rows=[dict(label=r[0],prior=amount(ledger,r[1]),value=amount(ledger,r[2]),prior_ref=r[1],value_ref=r[2],lower_is_better=(r[3] if len(r)>3 else {}).get('lower_is_better',False)) for r in figure['pairs']]
+        return X.render_growth_bars(rows,title,periods=periods,mobile=mobile,**ident)
+    if family=='period_columns':
+        ext={a:{'path':s['path'],'period':s['period'],'pdf_sha256':s['pdf_sha256']} for a,s in (figure.get('_external_specs') or {}).items()}
+        series=[dict(label=c['label'],value=amount(ledger,c['value']),value_ref=c['value'],compare=c.get('compare'),highlight=c.get('highlight',False)) for c in figure['columns']]
+        return X.render_period_columns(series,title,unit_label=figure['unit_label'],mobile=mobile,external=ext or None,**ident)
+    if family=='stock_delta':
+        rows=[dict(label=l,side=s,prior=amount(ledger,p),value=amount(ledger,c),prior_ref=p,value_ref=c) for l,s,p,c in figure['items']]
+        return X.render_stock_delta(rows,title,dates=figure['dates'],mobile=mobile,**ident)
     raise ValueError('DOSSIER_UNKNOWN_FINANCIAL_GRAMMAR '+family)
 def cited(figure):
     if 'facts' in figure:return figure['facts']
     expr=[]
-    for l,e,role in figure.get('rows',[]):expr+=dependencies(e)
-    for l,p,n in figure.get('pairs',[]):expr+=dependencies(p)+dependencies(n)
-    for date,a,l,e in figure.get('dates',[]):expr += [a,l,e]
+    for l,e,role in (figure.get('rows',[]) if figure.get('family')=='signed_bridge' else []):expr+=dependencies(e)
+    for l,p,n in (figure.get('pairs',[]) if figure.get('family')=='comparison' else []):expr+=dependencies(p)+dependencies(n)
+    for date,a,l,e in (figure.get('dates',[]) if figure.get('family')=='balance' else []):expr += [a,l,e]
     for l,e in figure.get('parts',[]):expr+=dependencies(e)
+    def deps(x):
+        if x is None:return []
+        if isinstance(x,dict):return deps(x.get('num'))+deps(x.get('den'))
+        return dependencies(x)
+    for t in figure.get('tiles',[]):expr+=sum((deps(t.get(k)) for k in ('value','prior','num','den','prior_num','prior_den')),[])
+    for r in (figure.get('rows',[]) if figure.get('family')=='ratio_dumbbell' else []):expr+=sum((deps(r.get(k)) for k in ('num','den','prior_num','prior_den')),[])
+    for r in (figure.get('pairs',[]) if figure.get('family')=='growth_bars' else []):expr+=deps(r[1])+deps(r[2])
+    for c in figure.get('columns',[]):expr+=deps(c['value'])
+    for it in figure.get('items',[]):expr+=deps(it[2])+deps(it[3])
     if 'total' in figure:expr+=dependencies(figure['total'])
     return list(dict.fromkeys(expr))
 def title_markup(story):
@@ -221,10 +283,23 @@ def title_markup(story):
 def ids_of(story):return [f['id'] for f in story['figures']]
 def publish(folder,out=None):
     folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);story=expand_claims(story,ledger);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
+    lx=with_externals(ledger,story)
+    def source_row(k):
+        if ':' not in k:return None
+        alias,name=k.split(':',1);other=lx['_external'][alias];fx=other['facts'][name]
+        return '<tr><th>'+H(fx['label'])+'</th><td>'+H(fx['period'])+'</td><td class="number">'+H(fx['yuan'])+'</td><td>另一期原件披露</td><td><a href="'+other['source']['official_announcement']+'#page='+str(fx['page'])+'">'+H(other['issuer']['fiscal_period'])+' 原件 p.'+str(fx['page'])+'</a></td></tr>'
     for i,f in enumerate(story['figures']):
-        keys=cited(f);pages=sorted({ledger['facts'][k]['page'] for k in keys})
-        table=''.join('<tr><th>'+H(ledger['facts'][k]['label'])+'</th><td>'+H(ledger['facts'][k]['period'])+'</td><td class="number">'+H(ledger['facts'][k]['yuan'])+'</td><td>'+('原文披露' if ledger['facts'][k]['classification']=='DISCLOSED' else '原值计算')+'</td><td><a href="'+source['official_announcement']+'#page='+str(ledger['facts'][k]['page'])+'">原件 p.'+str(ledger['facts'][k]['page'])+'</a></td></tr>' for k in keys)
-        parts.append(f'<figure id="{f["id"]}"><div class="figure-head"><span>FIGURE / {i+1:02d} · {H(f["eyebrow"])}</span><h2>{H(f["question"])}</h2><p>{H(f["takeaway"])}</p><button type="button" data-export="{f["id"]}">导出当前图 SVG ↗</button></div><div class="desktop-art">{chart(ledger,f,False)}</div><div class="native-art">{chart(ledger,f,True)}</div><figcaption><b>读图结论</b> / {H(f["analysis"])}<br><b>反证与边界</b> / {H(f["counter"])}<br><span>来源：原始披露报告 · 物理页 '+', '.join(map(str,pages))+' · 人民币原始元；图中金额适度舍入。</span></figcaption><details><summary>核对原始数据与计算口径</summary><div class="table-scroll"><table><thead><tr><th>原始项目</th><th>期间/时点</th><th>人民币元</th><th>性质</th><th>来源</th></tr></thead><tbody>'+table+'</tbody></table></div></details></figure>')
+        if f['family']=='period_columns':f=dict(f,_external_specs=story.get('external_ledgers',{}))
+        allkeys=cited(f);keys=[k for k in allkeys if ':' not in k];external_rows=''.join(source_row(k) for k in dict.fromkeys(allkeys) if ':' in k)
+        pages=sorted({ledger['facts'][k]['page'] for k in keys})
+        table=external_rows+''.join('<tr><th>'+H(ledger['facts'][k]['label'])+'</th><td>'+H(ledger['facts'][k]['period'])+'</td><td class="number">'+H(ledger['facts'][k]['yuan'])+'</td><td>'+('原文披露' if ledger['facts'][k]['classification']=='DISCLOSED' else '原值计算')+'</td><td><a href="'+source['official_announcement']+'#page='+str(ledger['facts'][k]['page'])+'">原件 p.'+str(ledger['facts'][k]['page'])+'</a></td></tr>' for k in keys)
+        v2=story.get('design')=='EDITORIAL_V2'
+        if v2:
+            chap=f.get('chapter')
+            lead=('<header class="chapter" id="ch-'+f['id']+'"><span>'+H(chap['kicker'])+'</span><h2>'+H(chap['title'])+'</h2><p>'+H(chap['summary'])+'</p></header>') if chap else ''
+            trend=('<p><b>趋势</b>'+H(f['trend'])+'</p>') if f.get('trend') else ''
+            parts.append(lead+f'<figure id="{f["id"]}" class="v2"><div class="figure-head"><span>图 {i+1:02d}</span><h2>{H(f["question"])}</h2><p>{H(f["takeaway"])}</p></div><div class="desktop-art">{chart(lx,f,False)}</div><div class="native-art">{chart(lx,f,True)}</div><figcaption>{trend}<p><b>重点</b>{H(f["analysis"])}</p><p><b>反证</b>{H(f["counter"])}</p><span>来源：原始披露报告 · 物理页 '+', '.join(map(str,pages))+' · 人民币原始元；图中金额适度舍入。<button type="button" data-export="{f["id"]}">导出当前图 SVG ↗</button></span></figcaption><details><summary>核对原始数据与计算口径</summary><div class="table-scroll"><table><thead><tr><th>原始项目</th><th>期间/时点</th><th>人民币元</th><th>性质</th><th>来源</th></tr></thead><tbody>'+table+'</tbody></table></div></details></figure>')
+        else:parts.append(f'<figure id="{f["id"]}"><div class="figure-head"><span>FIGURE / {i+1:02d} · {H(f["eyebrow"])}</span><h2>{H(f["question"])}</h2><p>{H(f["takeaway"])}</p><button type="button" data-export="{f["id"]}">导出当前图 SVG ↗</button></div><div class="desktop-art">{chart(lx,f,False)}</div><div class="native-art">{chart(lx,f,True)}</div><figcaption><b>读图结论</b> / {H(f["analysis"])}<br><b>反证与边界</b> / {H(f["counter"])}<br><span>来源：原始披露报告 · 物理页 '+', '.join(map(str,pages))+' · 人民币原始元；图中金额适度舍入。</span></figcaption><details><summary>核对原始数据与计算口径</summary><div class="table-scroll"><table><thead><tr><th>原始项目</th><th>期间/时点</th><th>人民币元</th><th>性质</th><th>来源</th></tr></thead><tbody>'+table+'</tbody></table></div></details></figure>')
         if f.get('editorial_groups'):
             full_rows=''.join('<tr><td>'+H(label)+'</td><td>'+H(str(amount(ledger,expr)))+'</td><td>'+H(role)+'</td></tr>' for label,expr,role in f['rows'])
             parts[-1]=parts[-1].replace('</figure>','<details><summary>展开完整原始变动逐项对账（人民币元）</summary><div class="table-scroll"><table><tr><th>原始变动项目</th><th>精确金额</th><th>会计角色</th></tr>'+full_rows+'</table></div></details></figure>')
@@ -243,9 +318,11 @@ def publish(folder,out=None):
     notes=''.join('<tr><th>'+H(n['theme'])+'</th><td>'+H(n['finding'])+'</td><td>'+H(n['boundary'])+'</td><td>'+''.join('<a href="'+source['official_announcement']+'#page='+str(p)+'">p.'+str(p)+'</a> ' for p in n['pages'])+'</td></tr>' for n in story['notes'])
     nav=''.join('<a href="#'+f['id']+'">'+H(f['nav'])+'</a>' for f in story['figures'])
     metrics=''.join('<div><span>'+H(m['label'])+'</span><strong>'+H(m['value'])+'</strong><small>'+H(m['context'])+'</small></div>' for m in story['metrics'])
+    glance=''.join('<li>'+H(g)+'</li>' for g in story.get('glance',[]))
+    style_v2='''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#FFFFFF;color:#1D2B33;font:17px/1.8 "Noto Sans CJK SC","PingFang SC",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit}header{border-bottom:1px solid #E3E6E8;padding:16px 5vw;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;color:#5E6B73}main{max-width:1120px;margin:auto;padding:56px 28px}h1,h2{font-family:"Noto Serif CJK SC","Songti SC",serif;font-weight:700;line-height:1.35;letter-spacing:-.01em}h1{font-size:clamp(34px,4.6vw,56px);margin:14px 0 18px}.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:700;color:#16824A}.deck{font-size:21px;line-height:1.75;max-width:900px;color:#33434C}.status{font-size:13px;color:#5E6B73}.glance{margin:34px 0;padding:22px 26px;background:#F6F7F8;border-radius:12px}.glance h2{font-size:20px;margin:0 0 8px}.glance ul{margin:0;padding-left:20px;columns:2;column-gap:40px}.glance li{break-inside:avoid;margin:4px 0;font-size:15px}.metrics{display:none}nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}nav a{font-size:13px;text-decoration:none;padding:6px 12px;border:1px solid #E3E6E8;border-radius:999px;color:#33434C}nav a:hover{border-color:#16824A;color:#16824A}.thesis{border-left:4px solid #16824A;padding:6px 0 6px 22px;margin:36px 0}.thesis h2{font-size:24px;margin:0 0 8px}.chapter{margin:84px 0 6px;padding-top:26px;border-top:2px solid #1D2B33}.chapter span{font-size:12px;letter-spacing:.14em;font-weight:700;color:#16824A}.chapter h2{font-size:34px;margin:8px 0}.chapter p{font-size:18px;color:#33434C;max-width:860px;margin:0}figure.v2{margin:40px 0 56px}figure.v2 .figure-head span{font-size:12px;font-weight:700;letter-spacing:.12em;color:#5E6B73}figure.v2 .figure-head h2{font-size:26px;margin:6px 0 6px}figure.v2 .figure-head p{font-size:17px;color:#33434C;margin:0 0 14px;max-width:920px}svg{display:block;width:100%;height:auto}.desktop-art{padding:8px 0}.native-art{display:none}figure.v2 figcaption{font-size:15px;line-height:1.85;color:#33434C;padding:12px 0 0;border-top:1px solid #E3E6E8}figure.v2 figcaption p{margin:6px 0}figure.v2 figcaption b{display:inline-block;min-width:44px;color:#1D2B33;margin-right:6px}figure.v2 figcaption span{display:flex;justify-content:space-between;gap:12px;align-items:center;color:#5E6B73;font-size:12px;margin-top:10px}button{background:transparent;border:1px solid #CFD5D9;color:#33434C;padding:7px 12px;font:inherit;font-size:12px;border-radius:999px;cursor:pointer;white-space:nowrap}details{border-top:1px solid #E3E6E8;padding:12px 0;font-size:13px}summary{cursor:pointer;color:#16824A}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:14px;font-size:12px}th,td{border-bottom:1px solid #E3E6E8;padding:10px 8px;text-align:left;vertical-align:top}td.number{font-variant-numeric:tabular-nums;white-space:nowrap}.essay{max-width:860px;margin:48px 0;padding:24px 28px;background:#F6F7F8;border-radius:12px}.essay h2{font-size:24px;margin:6px 0 6px}.essay p{margin:12px 0;font-size:16px}#notes{margin-top:80px}#notes table{min-width:650px}footer{overflow-wrap:anywhere;border-top:1px solid #E3E6E8;margin-top:60px;padding:28px 0;color:#5E6B73;font-size:12px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #16824A;outline-offset:3px}@media(max-width:850px){main{padding:30px 18px}.desktop-art{display:none}.native-art{display:block}h1{font-size:34px}.deck{font-size:18px}.glance{padding:16px 18px}.glance ul{columns:1}.chapter{margin-top:56px}.chapter h2{font-size:27px}.chapter p{font-size:16px}figure.v2 .figure-head h2{font-size:22px}figure.v2 .figure-head p{font-size:15px}figure.v2 figcaption span{flex-direction:column;align-items:flex-start}.essay{padding:18px}}'''
     style='''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f6f1;color:#17393d;font:16px/1.85 "Noto Sans CJK SC","PingFang SC",sans-serif}a{color:inherit}header{border-bottom:1px solid #ced8cf;padding:18px 5vw;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em}main{max-width:1180px;margin:auto;padding:50px 28px}h1,h2{font-family:"Noto Serif CJK SC","Songti SC",serif;font-weight:550;line-height:1.4}h1{font-size:clamp(34px,4.5vw,62px);max-width:1000px;margin:22px 0}h2{font-size:30px}.eyebrow,.figure-head>span{font-size:11px;letter-spacing:.15em;font-weight:700;color:#087f68}.deck{font-size:21px;max-width:900px}.status{font-size:13px;color:#617875;max-width:950px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:1px solid #cbd8ce;border-bottom:1px solid #cbd8ce;padding:28px 0;margin:38px 0}.metrics span,.metrics small{display:block;font-size:13px;color:#617875}.metrics strong{font-size:36px;font-weight:500}nav{display:flex;flex-wrap:wrap;gap:12px 22px;padding:0 0 35px;font-size:13px}.essay{max-width:860px;margin:55px 0}.essay p{margin:18px 0}.thesis{border-left:3px solid #087f68;padding:20px 28px;background:#eeeee6;margin:40px 0}.thesis h2{font-size:25px;margin-top:0}figure{margin:65px 0 90px;background:#fffefb;border-top:1px solid #b7cac0}.figure-head{padding:28px 30px 12px}.figure-head h2{font-size:29px;margin:12px 0}.figure-head p{max-width:930px;color:#536e6b}button{background:transparent;border:1px solid #b9cec2;color:#087f68;padding:10px 15px;font:inherit;font-size:12px;cursor:pointer}svg{display:block;width:100%;height:auto}.desktop-art{padding:12px 20px}.native-art{display:none}figcaption{padding:24px 30px;font-size:14px;border-top:1px solid #e2e7df}figcaption span{display:block;color:#647c73;font-size:12px;margin-top:12px}details{border-top:1px solid #d5dfd5;padding:16px 30px;font-size:13px}summary{cursor:pointer;color:#087f68}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:20px;font-size:12px}th,td{border-bottom:1px solid #d8e0d5;padding:12px 10px;text-align:left;vertical-align:top}td.number{font-variant-numeric:tabular-nums;white-space:nowrap}footer{overflow-wrap:anywhere;border-top:1px solid #becfc3;margin-top:65px;padding:30px 0;color:#617875;font-size:12px}#notes table{min-width:650px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #087f68;outline-offset:3px}@media(max-width:850px){main{padding:35px 18px}.desktop-art{display:none}.native-art{display:block;padding:20px 0}h1{font-size:36px}.deck{font-size:18px}.metrics{gap:12px}.metrics strong{font-size:25px}.metrics span,.metrics small{font-size:11px}.figure-head,figcaption,details{padding-left:16px;padding-right:16px}.figure-head h2{font-size:25px}.thesis{padding:18px}h2{font-size:27px}}'''
     scripts='''document.querySelectorAll('[data-export]').forEach(b=>b.addEventListener('click',()=>{const f=b.closest('figure'),s=[...f.querySelectorAll('svg')].find(s=>s.getBoundingClientRect().width>0);const text=new XMLSerializer().serializeToString(s),u=URL.createObjectURL(new Blob([text],{type:'image/svg+xml'})),a=document.createElement('a');a.href=u;a.download=document.body.dataset.issuer+'-'+document.body.dataset.period+'-'+b.dataset.export+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}));'''
-    html='<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+H(issuer['short']+'｜'+story['title'])+'</title><style>'+style+'</style><body data-issuer="'+code+'" data-period="'+issuer['fiscal_period']+'"><header><a href="/#companies">← 返回公司研究目录</a><span>FINANCIALS IN VISUALS</span></header><main><div class="eyebrow">'+H(issuer['short']+' / '+code+' / '+issuer.get('period_label',issuer['fiscal_period']))+'</div><h1>'+title_markup(story)+'</h1><p class="deck">'+H(story['deck'])+'</p><p class="status">来源限定研究 · '+H(issuer['audit'])+' · 原始披露、管理层解释和研究计算分列 · 独立人类二审尚未完成。</p><div class="metrics">'+metrics+'</div><nav aria-label="报告章节">'+nav+'<a href="#research">研究判断</a><a href="#notes">重大附注</a></nav><aside class="thesis"><h2>'+H(story['thesis']['title'])+'</h2><p>'+H(story['thesis']['body'])+'</p></aside>'+(body+''.join(parts[2:]) if body is not None else ''.join(p+''.join(placed.get(fid,[])) for p,fid in zip(parts,figure_ids))+''.join(placed.get('end',[])))+'<section id="notes"><div class="eyebrow">SOURCE NOTES / COUNTEREVIDENCE</div><h2>重大附注：哪些事实会改变判断？</h2><p>逐项阅读范围及计算边界如下。源金额校验不等于审计意见或独立人类二审。</p><div class="table-scroll"><table><tr><th>主题</th><th>核查发现</th><th>影响与边界</th><th>原件</th></tr>'+notes+'</table></div></section><footer><a href="'+source['official_announcement']+'">完整原始报告 ↗</a><p>归档原件 SHA256：'+source['original_bytes_sha256']+'</p><p>本报告不提供未经来源支持的估值目标、价格预测、销量归因或行业认证，不构成投资建议。</p><a href="/#companies">返回同一公司研究目录</a></footer></main><script type="application/json" id="ledger-data">'+json.dumps(ledger,ensure_ascii=False).replace('</','<\\/')+'</script><script>'+scripts+'</script></body></html>'
+    html='<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+H(issuer['short']+'｜'+story['title'])+'</title><style>'+(style_v2 if story.get('design')=='EDITORIAL_V2' else style)+'</style><body data-issuer="'+code+'" data-period="'+issuer['fiscal_period']+'"><header><a href="/#companies">← 返回公司研究目录</a><span>FINANCIALS IN VISUALS</span></header><main><div class="eyebrow">'+H(issuer['short']+' / '+code+' / '+issuer.get('period_label',issuer['fiscal_period']))+'</div><h1>'+title_markup(story)+'</h1><p class="deck">'+H(story['deck'])+'</p><p class="status">来源限定研究 · '+H(issuer['audit'])+' · 原始披露、管理层解释和研究计算分列 · 独立人类二审尚未完成。</p><div class="metrics">'+metrics+'</div>'+(('<section class="glance" aria-label="本期一览"><h2>本期一览</h2><ul>'+glance+'</ul></section>') if glance else '')+'<nav aria-label="报告章节">'+nav+'<a href="#research">研究判断</a><a href="#notes">重大附注</a></nav><aside class="thesis"><h2>'+H(story['thesis']['title'])+'</h2><p>'+H(story['thesis']['body'])+'</p></aside>'+(body+''.join(parts[2:]) if body is not None else ''.join(p+''.join(placed.get(fid,[])) for p,fid in zip(parts,figure_ids))+''.join(placed.get('end',[])))+'<section id="notes"><div class="eyebrow">SOURCE NOTES / COUNTEREVIDENCE</div><h2>重大附注：哪些事实会改变判断？</h2><p>逐项阅读范围及计算边界如下。源金额校验不等于审计意见或独立人类二审。</p><div class="table-scroll"><table><tr><th>主题</th><th>核查发现</th><th>影响与边界</th><th>原件</th></tr>'+notes+'</table></div></section><footer><a href="'+source['official_announcement']+'">完整原始报告 ↗</a><p>归档原件 SHA256：'+source['original_bytes_sha256']+'</p><p>本报告不提供未经来源支持的估值目标、价格预测、销量归因或行业认证，不构成投资建议。</p><a href="/#companies">返回同一公司研究目录</a></footer></main><script type="application/json" id="ledger-data">'+json.dumps(ledger,ensure_ascii=False).replace('</','<\\/')+'</script><script>'+scripts+'</script></body></html>'
     route=issuer.get('route',f'/{code}.html')
     if not re.fullmatch(r'/[0-9]{6}(-[a-z0-9]+)?\.html',route):raise ValueError('DOSSIER_INVALID_ROUTE')
     target=Path(out) if out else ROOT/'public'/route.lstrip('/');target.parent.mkdir(exist_ok=True,parents=True)

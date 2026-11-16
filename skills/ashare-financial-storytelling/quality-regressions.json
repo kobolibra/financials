@@ -912,6 +912,66 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-070",
+      "root_cause": "利润主图只是一张逐层扣减的桑基，费用合并成一块、成本不分项，审美与信息密度都达不到AEI损益流向图的水准。",
+      "correction": "INCOME_FLOW_V3：从左到右营收→毛利（绿升）/成本（红降）→营业利润/费用→归母净利润，费用与最终扣减拆成具名红色叶子并标占营收比例，利润节点标金额、利润率（pp）与同比；小于营收1%的费用归并为“其他费用及损失”。",
+      "proof_file": "research/shared/test_income_flow_v3.py",
+      "assertion_marker": "test_all_five_real_bundles_pass_the_independent_audit_in_both_editions",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-071",
+      "root_cause": "新版损益流向图的叶子、注记和对比期金额若只由渲染器自己产生，就失去独立审计。",
+      "correction": "income_flow_audit 独立重算节点、彩带、叶子与全部注记文字（含上年同期源格），篡改注记、彩带金额或对比期金额均被拦截；手机版叶子以列表条形呈现并同样受审。",
+      "proof_file": "research/shared/test_income_flow_v3.py",
+      "assertion_marker": "test_tampered_annotation_ribbon_or_prior_amount_is_caught",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-072",
+      "root_cause": "正文图表几乎全是累计桥，形式单调、逐项罗列，读者看不出趋势与重点。",
+      "correction": "图表族库：KPI看板、利润率哑铃、同比增速条、单季柱、余额变动条；正文签名桥最多两张，其余进核对层；每张图配“趋势/重点/反证”三句。每族都有几何审计与原件取值审计。",
+      "proof_file": "research/shared/test_exhibits.py",
+      "assertion_marker": "test_every_family_is_published_in_both_editions_and_passes",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-073",
+      "root_cause": "手机版条形图把长条和末端标签都画到画布外，标签被裁掉。",
+      "correction": "手机版：单一符号数据从边缘起画满宽，数值标签移到行标题同一行右对齐；几何审计新增条形必须留在画布内。",
+      "proof_file": "research/shared/test_exhibits.py",
+      "assertion_marker": "test_a_bar_pushed_off_the_phone_canvas_is_caught",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-074",
+      "root_cause": "把累计数拆回单季后，叙事仍写“逐季提速”，实际2026年二季度营收同比-0.90%；正文还印出“+-0.90%”。",
+      "correction": "数字一律由声明的公式生成，带符号的增速用 signed 选项输出，禁止手写“+”；单季叙事改为按真实数据描述（二季度持平、三季度重新提速）。",
+      "proof_file": "research/shared/test_exhibits.py",
+      "assertion_marker": "test_signed_claims_never_print_a_hand_typed_plus_before_a_negative",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-075",
+      "root_cause": "同比口径的单季增速需要跨两份报告、两个年度的累计数差，原有跨期规则要么拒绝要么只能放宽到危险程度。",
+      "correction": "新增 YOY_OF_SAME_FISCAL_YEAR_DIFFERENCES：分子中的上年部分必须与分母逐项相同、本年部分必须全部来自下一年度，且只允许已披露合并口径流量；混年或分母不符被拒绝。",
+      "proof_file": "research/shared/test_exhibits.py",
+      "assertion_marker": "test_yoy_of_same_year_differences_rejects_hostile_claims",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

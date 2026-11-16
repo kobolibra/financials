@@ -424,7 +424,7 @@ def cmd_editorial(a) -> None:
         facts[k] = {"yuan": f["yuan"], "page": f["page"], "label": f["label"], "period": f["period"],
                     "source_kind": "ledger_typed", "classification": f["classification"], "source_cells": cells}
     comparatives = None
-    if spec["editorial"].get("layout") == "PROFIT_CHAIN_LAYOUT_V2":
+    if spec["editorial"].get("layout") in ("PROFIT_CHAIN_LAYOUT_V2", "INCOME_FLOW_V3"):
         # Margins and year-over-year come from the same issuer's prior-period source cells (fact key + "_prior").
         prior_facts = {}
         stage_keys = {k for s in spec["stages"] for k, _ in s["terms"]} | {k for s in spec["stages"] for g in s["adjustments"] for k, _ in g["terms"]}
@@ -513,6 +513,33 @@ def lint(story: dict, expanded: dict | None = None) -> list[str]:
         issues.append("MATERIAL_NOTES_FEWER_THAN_6: review revenue, AR, inventory, CFO, debt/cash, nonrecurring at minimum")
     if len(story.get("metrics", [])) != 3:
         issues.append("HERO_METRICS_SHOULD_BE_3")
+    if story.get("design") == "EDITORIAL_V2":
+        issues += lint_v2(figs)
+    return issues
+
+
+TREND_FAMILIES = {"period_columns", "ratio_dumbbell", "growth_bars"}
+
+
+def lint_v2(figs) -> list:
+    """EDITORIAL_V2 (AEI earnings-post structure): at-a-glance board first, a varied exhibit mix,
+    at least one trend exhibit, chaptered themes, and no parade of cumulative bridges."""
+    issues = []
+    fams = [f.get("family") for f in figs]
+    if not figs or fams[0] != "kpi_board":
+        issues.append("V2_FIRST_FIGURE_MUST_BE_KPI_BOARD: open with the at-a-glance numbers")
+    if len(set(fams)) < 5:
+        issues.append(f"V2_FAMILY_VARIETY_{len(set(fams))}: use at least 5 distinct exhibit families")
+    if not TREND_FAMILIES & set(fams):
+        issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
+    if fams.count("signed_bridge") * 2 > len(fams):
+        issues.append("V2_BRIDGE_PARADE: signed bridges exceed half of the figures; move overlapping ones to reference")
+    if sum(1 for f in figs if f.get("chapter")) < 3:
+        issues.append("V2_TOO_FEW_CHAPTERS: group figures into 3-4 themed takeaways")
+    for f in figs:
+        ch = f.get("chapter")
+        if ch and not all(ch.get(k) for k in ("kicker", "title", "summary")):
+            issues.append(f"V2_FIGURE_{f.get('id')}_CHAPTER_INCOMPLETE")
     return issues
 
 
