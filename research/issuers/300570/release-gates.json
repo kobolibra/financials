@@ -91,8 +91,8 @@
     },
     "CLOUDFLARE_LIVE": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/43448868917",
-      "scope": "真实主分支c9248749正式站14家公司全文、11幅本公司原图及主图三档Chromium和WebKit375、真实下载及同一首页往返均通过；实际Action附件SHA核对后归档，非人类签字。"
+      "proof": "https://github.com/kobolibra/financials/actions/runs/43812155433",
+      "scope": "合并利润主图版式V2后，主分支真实Actions对公开生产站：整页字节与仓库一致，Chromium 1440/768/390全部图形与WebKit 375的真实SVG下载、首页往返通过。不含独立人类审稿。"
     }
   },
   "blockers": [
@@ -101,14 +101,14 @@
       "detail": "独立人类二审、完整历史同行估值未完成；不发布相关认证与价格判断。"
     }
   ],
-  "published_html_sha256": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
-  "live_release_fingerprint": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
-  "actual_main_release_commit": "c9248749b8e7d42b513695b40a2f97acc26b29de",
-  "actual_directory_fingerprint": "b4b98b50c2dce8cf2ade3f46331173ed9f7b5cef64c717300aa644585f6faa0d",
+  "published_html_sha256": "b2a5420ed69a5740912517151850eb0509c540301610e2c67df2b6965b759e44",
+  "live_release_fingerprint": "b2a5420ed69a5740912517151850eb0509c540301610e2c67df2b6965b759e44",
+  "actual_main_release_commit": "f13a6d9ba7d0e1fe68beeda4c42728dbe7972bfe",
+  "actual_directory_fingerprint": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
   "live_receipt_file": "research/issuers/300570/live-release-receipt.json",
   "production_artifact": {
-    "id": 14050205196,
-    "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
+    "id": 14201246199,
+    "zip_sha256": "09e9997cd32160ef5496b4d524c13d2a8410b36e6e916bbf2b8c019c70435a00"
   },
   "prior_production_release": {
     "schema_version": 1,
@@ -232,14 +232,5 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
-  "unmerged_candidate": {
-    "base_deployed_html_sha256": "62f2853dfc14475fb85dedb9d3caca759533a8d4557b9377b3ba5fbfbd7794e4",
-    "candidate_full_html_sha256": "b2a5420ed69a5740912517151850eb0509c540301610e2c67df2b6965b759e44",
-    "promotion_status": "UNMERGED_NOT_DEPLOYED",
-    "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "LOCAL_ONLY",
-    "change": "利润主图版式V2：层间距按扣减比例分配，每个利润层标利润率（含百分点变化）与同比，标注由独立审计器从上年同期原件源格重新计算",
-    "local_receipt": "research/quality/profit-chain-layout-v2-local/result.json"
-  }
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
 }

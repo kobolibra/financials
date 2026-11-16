@@ -3,11 +3,11 @@
   "issuer": "300394",
   "period": "2026Q1",
   "status": "PASS",
-  "verified_git_commit": "9075ad18730a8d18f2a71bf416e4ad96d959e6fd",
+  "verified_git_commit": "f13a6d9ba7d0e1fe68beeda4c42728dbe7972bfe",
   "pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
-  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43809199528",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/43812155433",
   "execution_provenance": "GITHUB_ACTIONS_REAL_PUBLIC_BROWSER",
-  "actual_full_content_sha256_equals_repository_main_300394": "f843dcb3f51a26ace62e2328513e72f2e508274df120819ac472077667f01787",
+  "actual_full_content_sha256_equals_repository_main_300394": "0a3179bf50ed738b3b655e71a1d4f77e27726078fd460a6c31d2086c5b803072",
   "actual_full_content_sha256_equals_repository_main_index": "04d168fa501104b910a54084e4227ffb7c480008baa3c59c4b4e9cbbed747719",
   "all_11_issuer_external_routes": "PASS",
   "actual_catalog_issuer_count": 14,
@@ -51,24 +51,24 @@
       "real_visible_svg_exports": "PASS",
       "text_bounds": "PASS",
       "supplemental_economics_exports": [],
-      "screenshot_sha256": "2d9609654d1be814aeb6e21b2bf8ab547f78083222b96e0b4fbbc91ae80a2063"
+      "screenshot_sha256": "54e79489c02e8c720ba6209e7e932b2b5268b9686d5e70cb78ee9e8287af7cc2"
     }
   ],
   "screenshots": [
     {
       "name": "live_300394_1440.png",
-      "sha256": "26468b80e3bdffc27e77c1b07512c9cc8515100c7c4b4f4ca4cd86b913ac3bba",
-      "bytes": 1766956
+      "sha256": "09f23e10b25b9ef7120cc3ccfb142eadfe982cd23c4891c1d575977252bd577e",
+      "bytes": 1789168
     },
     {
       "name": "live_300394_390.png",
-      "sha256": "49c19507ec8c356fec0576bd341e1bef45359f5ad9c82c09919b94d2689007ba",
-      "bytes": 1618420
+      "sha256": "75374be30ab0758722a086c80fb533c1494a70c9f43ce0c06ec25e34330adc6b",
+      "bytes": 1640429
     },
     {
       "name": "live_300394_768.png",
-      "sha256": "78a6604190319b3151d6e4a41f511280333bd8a394394a5a0d779bab7c58e216",
-      "bytes": 2004551
+      "sha256": "4f8d7ea0dd085d42392101496b26883b538400c3ec4ba556bfa405a6d60e21a9",
+      "bytes": 2030005
     },
     {
       "name": "live_directory_1440.png",
