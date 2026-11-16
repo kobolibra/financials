@@ -1,0 +1,10 @@
+{
+  "rev": {"page": 40, "row": "其中：营业收入", "column": 1, "type": "flow", "label": "营业收入", "expect": "1,000,911,536.29"},
+  "rev_prior": {"page": 40, "row": "其中：营业收入", "column": 2, "type": "flow", "label": "营业收入（比较期）", "prior": true},
+  "cogs": {"page": 40, "row": "其中：营业成本", "column": 1, "type": "flow", "label": "营业成本"},
+  "cogs_prior": {"page": 40, "row": "其中：营业成本", "column": 2, "type": "flow", "label": "营业成本（比较期）", "prior": true},
+  "finance": {"page": 40, "row": "^财务费用$", "column": 1, "type": "flow", "label": "财务费用"},
+  "finance_prior": {"page": 40, "row": "^财务费用$", "column": 2, "type": "flow", "label": "财务费用（比较期）", "prior": true},
+  "assets": {"page": 36, "row": "^资产总计$", "column": 1, "type": "stock", "period": "2026-06-30", "label": "资产总计"},
+  "assets_prior": {"page": 36, "row": "^资产总计$", "column": 2, "type": "stock", "period": "2025-12-31", "label": "资产总计（年初）", "source_column": "上期/期初"}
+}

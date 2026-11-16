@@ -1,0 +1,44 @@
+{
+  "title": "<一个可被回答的问题，≤24字>？",
+  "deck": "<公司简称><报告期>：<答案方向与需要验证的约束，1–2句>",
+  "thesis": {
+    "title": "核心判断：<一句话>",
+    "body": "<判断 + 机制 + {{占位符}}量化 + 最强替代解释 + 下一步证伪条件>"
+  },
+  "metrics": [
+    {"label": "营业收入 / 合并", "value": "{{rev_yi}} 亿", "context": "同比 {{rev_growth}}%"},
+    {"label": "扣非归母净利润", "value": "{{adjusted_parent_yi}} 亿", "context": "同比 {{adjusted_parent_growth}}%"},
+    {"label": "经营现金净额", "value": "{{cfo_yi}} 亿", "context": "<方向> · 合并口径"}
+  ],
+  "figures": [
+    {"id": "income", "family": "income", "nav": "业务毛利", "eyebrow": "BUSINESS ECONOMICS",
+     "question": "<哪个业务留下了毛利？>", "takeaway": "<一句话答案>", "analysis": "<读图结论>",
+     "counter": "<反证与边界>", "identity": "互斥收入=集团收入；各自成本=集团成本", "facts": ["rev", "cogs"]},
+    {"id": "profit-change", "family": "signed_bridge", "nav": "增长归因", "eyebrow": "SIGNED MONEY BRIDGE",
+     "question": "<利润为何与收入增速不同？>", "takeaway": "<…>", "analysis": "<…>", "counter": "会计差额归因，不识别价格、销量或汇率因果。",
+     "identity": "上期归母+全部损益项目有符号差额=本期归母",
+     "rows": [["<上期>归母净利润", "parent_net_prior", "start"], ["收入变化", [["rev", 1], ["rev_prior", -1]], "step"], ["<本期>归母净利润", "parent_net", "total"]]},
+    {"id": "earnings", "family": "comparison", "nav": "扣非与现金", "eyebrow": "COMPARABLE BASES",
+     "question": "<利润与现金是否同向？>", "takeaway": "<…>", "analysis": "<…>", "counter": "<…>", "identity": "两期原始披露值分别比较",
+     "periods": ["<上期>", "<本期>"], "pairs": [["归母净利润", "parent_net_prior", "parent_net"], ["经营现金净额", "cfo_prior", "cfo"]]},
+    {"id": "balance", "family": "balance", "nav": "资本约束", "eyebrow": "STOCKS, NOT FLOWS",
+     "question": "<扩张靠负债还是权益？>", "takeaway": "<…>", "analysis": "<…>", "counter": "<…>", "identity": "资产=负债+全部权益",
+     "dates": [["<上年末>", "assets_prior", "liabilities_prior", "equity_prior"], ["<期末>", "assets", "liabilities", "equity"]]}
+  ],
+  "accounting_identities": [
+    {"name": "资产负债", "left": "assets", "right": [["liabilities", 1], ["equity", 1]]}
+  ],
+  "quantified_claims": {
+    "rev_yi": {"expression": "rev", "scale": "100000000", "multiplier": "1", "decimals": 2},
+    "rev_growth": {"expression": [["rev", 1], ["rev_prior", -1]], "scale": "1", "multiplier": "100", "decimals": 2, "denominator": "rev_prior"}
+  },
+  "essays": [
+    {"id": "research", "eyebrow": "BUSINESS MODEL / FALSIFIABLE THESIS", "title": "<研究判断标题>",
+     "paragraphs": ["商业机制：…", "盈利拆解：…", "最强替代解释：…", "反向证据：…"]},
+    {"id": "follow-up", "eyebrow": "NEXT DISCLOSURE / DECISION TESTS", "title": "下一次披露，用三组证据验证判断",
+     "paragraphs": ["一，盈利：…", "二，现金：…", "三，资本：…", "本篇未建立8–12季度、同行估值研究，未经独立人类二审。"]}
+  ],
+  "notes": [
+    {"theme": "收入确认与分类", "pages": [], "finding": "…", "boundary": "…"}
+  ]
+}

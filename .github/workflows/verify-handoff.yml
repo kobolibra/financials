@@ -22,6 +22,9 @@ on:
       - 'scripts/audit_aei_editorial_delivery.py'
       - 'scripts/test_audit_aei_editorial_delivery.py'
       - 'skills/ashare-financial-storytelling/research/**'
+      - 'skills/ashare-financial-storytelling/playbooks/**'
+      - 'skills/ashare-financial-storytelling/tools/**'
+      - 'skills/ashare-financial-storytelling/templates/**'
       - 'site/research_catalog.json'
       - 'site/portal_builder.py'
       - 'public/index.html'
@@ -93,6 +96,11 @@ jobs:
       - name: Test exact-Yuan source/type/negative/segment financial flow semantics
         run: |
           python research/shared/test_editorial_financial_flow.py
+      - name: Skill v10 intake tool reproduces real 300570 source cells and quarterly generalization
+        run: |
+          python -m pip install --disable-pip-version-check -q pymupdf
+          python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'test_*.py' -v
+          python -m unittest discover -s research/shared -p 'test_source_publication.py' -v
       - name: Existing unified-root generator still reproduces the homepage
         run: |
           python -m unittest discover -s site -p test_portal.py -v
