@@ -1,0 +1,1495 @@
+{
+ "rev_key": {
+  "page": 1,
+  "y": [
+   523.6,
+   528.6
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "营业收入（主要财务数据表）"
+ },
+ "rev_key_prior": {
+  "page": 1,
+  "y": [
+   523.6,
+   528.6
+  ],
+  "column": 3,
+  "type": "flow",
+  "label": "上年同期营业收入（主要财务数据表）",
+  "prior": true
+ },
+ "parent_net_key": {
+  "page": 1,
+  "y": [
+   541.9,
+   546.9
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "归属于上市公司股东的净利润（主要财务数据表）"
+ },
+ "parent_net_key_prior": {
+  "page": 1,
+  "y": [
+   541.9,
+   546.9
+  ],
+  "column": 3,
+  "type": "flow",
+  "label": "上年同期归属于上市公司股东的净利润（主要财务数据表）",
+  "prior": true
+ },
+ "adjusted_parent": {
+  "page": 1,
+  "y": [
+   572.1,
+   577.1
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "扣非归母净利润"
+ },
+ "adjusted_parent_prior": {
+  "page": 1,
+  "y": [
+   572.1,
+   577.1
+  ],
+  "column": 3,
+  "type": "flow",
+  "label": "上年同期扣非归母净利润",
+  "prior": true
+ },
+ "cfo_key": {
+  "page": 1,
+  "y": [
+   602.4,
+   607.4
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "经营现金净额（主要财务数据表）"
+ },
+ "cfo_key_prior": {
+  "page": 1,
+  "y": [
+   602.4,
+   607.4
+  ],
+  "column": 3,
+  "type": "flow",
+  "label": "上年同期经营现金净额（主要财务数据表）",
+  "prior": true
+ },
+ "nr_disposal": {
+  "page": 2,
+  "y": [
+   153.4,
+   158.4
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "非流动性资产处置损益"
+ },
+ "nr_grants": {
+  "page": 2,
+  "y": [
+   193.6,
+   198.6
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "计入当期损益的政府补助"
+ },
+ "nr_fair": {
+  "page": 2,
+  "y": [
+   251.8,
+   256.8
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "金融资产公允价值变动及处置损益"
+ },
+ "nr_other": {
+  "page": 2,
+  "y": [
+   298.1,
+   303.1
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "其他营业外收入和支出"
+ },
+ "nr_tax": {
+  "page": 2,
+  "y": [
+   320.4,
+   325.4
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "非经常性损益所得税影响额"
+ },
+ "nonrecurring_net": {
+  "page": 2,
+  "y": [
+   336.6,
+   341.6
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "非经常性损益合计"
+ },
+ "money_funds": {
+  "page": 6,
+  "type": "stock",
+  "label": "货币资金",
+  "row": "^货币资金$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "money_funds_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "货币资金（上年度末）",
+  "row": "^货币资金$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "financial_assets": {
+  "page": 6,
+  "type": "stock",
+  "label": "交易性金融资产",
+  "row": "^交易性金融资产$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "financial_assets_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "交易性金融资产（上年度末）",
+  "row": "^交易性金融资产$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "ar": {
+  "page": 6,
+  "type": "stock",
+  "label": "应收账款",
+  "row": "^应收账款$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "ar_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "应收账款（上年度末）",
+  "row": "^应收账款$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "receivable_financing": {
+  "page": 6,
+  "type": "stock",
+  "label": "应收款项融资",
+  "row": "^应收款项融资$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "receivable_financing_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "应收款项融资（上年度末）",
+  "row": "^应收款项融资$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "prepayments": {
+  "page": 6,
+  "type": "stock",
+  "label": "预付款项",
+  "row": "^预付款项$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "prepayments_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "预付款项（上年度末）",
+  "row": "^预付款项$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "inventory": {
+  "page": 6,
+  "type": "stock",
+  "label": "存货（账面价值）",
+  "row": "^存货$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "inventory_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "存货（账面价值）（上年度末）",
+  "row": "^存货$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "current_assets": {
+  "page": 6,
+  "type": "stock",
+  "label": "流动资产合计",
+  "row": "^流动资产合计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "current_assets_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "流动资产合计（上年度末）",
+  "row": "^流动资产合计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "fixed_assets": {
+  "page": 6,
+  "type": "stock",
+  "label": "固定资产",
+  "row": "^固定资产$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "fixed_assets_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "固定资产（上年度末）",
+  "row": "^固定资产$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "construction": {
+  "page": 6,
+  "type": "stock",
+  "label": "在建工程",
+  "row": "^在建工程$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "construction_prior": {
+  "page": 6,
+  "type": "stock",
+  "label": "在建工程（上年度末）",
+  "row": "^在建工程$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "assets": {
+  "page": 7,
+  "type": "stock",
+  "label": "资产总计",
+  "row": "^资产总计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "assets_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "资产总计（上年度末）",
+  "row": "^资产总计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "notes_payable": {
+  "page": 7,
+  "type": "stock",
+  "label": "应付票据",
+  "row": "^应付票据$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "notes_payable_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "应付票据（上年度末）",
+  "row": "^应付票据$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "ap": {
+  "page": 7,
+  "type": "stock",
+  "label": "应付账款",
+  "row": "^应付账款$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "ap_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "应付账款（上年度末）",
+  "row": "^应付账款$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "contract_liabilities": {
+  "page": 7,
+  "type": "stock",
+  "label": "合同负债",
+  "row": "^合同负债$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "contract_liabilities_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "合同负债（上年度末）",
+  "row": "^合同负债$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "current_liabilities": {
+  "page": 7,
+  "type": "stock",
+  "label": "流动负债合计",
+  "row": "^流动负债合计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "current_liabilities_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "流动负债合计（上年度末）",
+  "row": "^流动负债合计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "liabilities": {
+  "page": 7,
+  "type": "stock",
+  "label": "负债合计",
+  "row": "^负债合计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "liabilities_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "负债合计（上年度末）",
+  "row": "^负债合计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "share_capital": {
+  "page": 7,
+  "type": "stock",
+  "label": "股本（总股本）",
+  "row": "^股本$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "share_capital_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "股本（总股本）（上年度末）",
+  "row": "^股本$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "capital_reserve": {
+  "page": 7,
+  "type": "stock",
+  "label": "资本公积",
+  "row": "^资本公积$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "capital_reserve_prior": {
+  "page": 7,
+  "type": "stock",
+  "label": "资本公积（上年度末）",
+  "row": "^资本公积$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "parent_equity": {
+  "page": 8,
+  "type": "stock",
+  "label": "归属于母公司所有者权益合计",
+  "row": "^归属于母公司所有者权益合计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "parent_equity_prior": {
+  "page": 8,
+  "type": "stock",
+  "label": "归属于母公司所有者权益合计（上年度末）",
+  "row": "^归属于母公司所有者权益合计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "nci_equity": {
+  "page": 8,
+  "type": "stock",
+  "label": "少数股东权益",
+  "row": "^少数股东权益$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "nci_equity_prior": {
+  "page": 8,
+  "type": "stock",
+  "label": "少数股东权益（上年度末）",
+  "row": "^少数股东权益$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "equity": {
+  "page": 8,
+  "type": "stock",
+  "label": "所有者权益合计",
+  "row": "^所有者权益合计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "equity_prior": {
+  "page": 8,
+  "type": "stock",
+  "label": "所有者权益合计（上年度末）",
+  "row": "^所有者权益合计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "liabilities_equity": {
+  "page": 8,
+  "type": "stock",
+  "label": "负债和所有者权益总计",
+  "row": "^负债和所有者权益总计$",
+  "column": 1,
+  "period": "2026-03-31"
+ },
+ "liabilities_equity_prior": {
+  "page": 8,
+  "type": "stock",
+  "label": "负债和所有者权益总计（上年度末）",
+  "row": "^负债和所有者权益总计$",
+  "column": 2,
+  "period": "2025-12-31",
+  "source_column": "上期/期初"
+ },
+ "rev": {
+  "page": 8,
+  "type": "flow",
+  "label": "营业收入",
+  "row": "其中：营业收入",
+  "column": 1
+ },
+ "rev_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "营业收入（上年同期）",
+  "row": "其中：营业收入",
+  "column": 2,
+  "prior": true
+ },
+ "cogs": {
+  "page": 8,
+  "type": "flow",
+  "label": "营业成本",
+  "row": "其中：营业成本",
+  "column": 1
+ },
+ "cogs_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "营业成本（上年同期）",
+  "row": "其中：营业成本",
+  "column": 2,
+  "prior": true
+ },
+ "tax_surcharge": {
+  "page": 8,
+  "type": "flow",
+  "label": "税金及附加",
+  "row": "^税金及附加$",
+  "column": 1
+ },
+ "tax_surcharge_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "税金及附加（上年同期）",
+  "row": "^税金及附加$",
+  "column": 2,
+  "prior": true
+ },
+ "selling": {
+  "page": 8,
+  "type": "flow",
+  "label": "销售费用",
+  "row": "^销售费用$",
+  "column": 1
+ },
+ "selling_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "销售费用（上年同期）",
+  "row": "^销售费用$",
+  "column": 2,
+  "prior": true
+ },
+ "admin": {
+  "page": 8,
+  "type": "flow",
+  "label": "管理费用",
+  "row": "^管理费用$",
+  "column": 1
+ },
+ "admin_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "管理费用（上年同期）",
+  "row": "^管理费用$",
+  "column": 2,
+  "prior": true
+ },
+ "rd_expense": {
+  "page": 8,
+  "type": "flow",
+  "label": "研发费用",
+  "row": "^研发费用$",
+  "column": 1
+ },
+ "rd_expense_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "研发费用（上年同期）",
+  "row": "^研发费用$",
+  "column": 2,
+  "prior": true
+ },
+ "finance": {
+  "page": 8,
+  "type": "flow",
+  "label": "财务费用",
+  "row": "^财务费用$",
+  "column": 1
+ },
+ "finance_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "财务费用（上年同期）",
+  "row": "^财务费用$",
+  "column": 2,
+  "prior": true
+ },
+ "interest_expense": {
+  "page": 8,
+  "type": "flow",
+  "label": "财务费用中的利息费用",
+  "row": "其中：利息费用",
+  "column": 1
+ },
+ "interest_expense_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "财务费用中的利息费用（上年同期）",
+  "row": "其中：利息费用",
+  "column": 2,
+  "prior": true
+ },
+ "interest_income": {
+  "page": 8,
+  "type": "flow",
+  "label": "财务费用中的利息收入",
+  "row": "^利息收入$",
+  "column": 1
+ },
+ "interest_income_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "财务费用中的利息收入（上年同期）",
+  "row": "^利息收入$",
+  "column": 2,
+  "prior": true
+ },
+ "other_income": {
+  "page": 8,
+  "type": "flow",
+  "label": "其他收益",
+  "row": "加：其他收益",
+  "column": 1
+ },
+ "other_income_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "其他收益（上年同期）",
+  "row": "加：其他收益",
+  "column": 2,
+  "prior": true
+ },
+ "investment_income": {
+  "page": 8,
+  "type": "flow",
+  "label": "投资收益",
+  "y": [
+   549.1,
+   554.1
+  ],
+  "column": 1
+ },
+ "investment_income_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "投资收益（上年同期）",
+  "y": [
+   549.1,
+   554.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "fair_value": {
+  "page": 8,
+  "type": "flow",
+  "label": "公允价值变动收益",
+  "y": [
+   690.4,
+   695.4
+  ],
+  "column": 1
+ },
+ "fair_value_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "公允价值变动收益（上年同期）",
+  "y": [
+   690.4,
+   695.4
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "credit_impairment": {
+  "page": 8,
+  "type": "flow",
+  "label": "信用减值损失",
+  "y": [
+   716.6,
+   721.6
+  ],
+  "column": 1
+ },
+ "credit_impairment_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "信用减值损失（上年同期）",
+  "y": [
+   716.6,
+   721.6
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "asset_impairment": {
+  "page": 8,
+  "type": "flow",
+  "label": "资产减值损失",
+  "y": [
+   740.8,
+   745.8
+  ],
+  "column": 1
+ },
+ "asset_impairment_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "资产减值损失（上年同期）",
+  "y": [
+   740.8,
+   745.8
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "asset_disposal": {
+  "page": 8,
+  "type": "flow",
+  "label": "资产处置收益",
+  "y": [
+   759.1,
+   764.1
+  ],
+  "column": 1
+ },
+ "asset_disposal_prior": {
+  "page": 8,
+  "type": "flow",
+  "label": "资产处置收益（上年同期）",
+  "y": [
+   759.1,
+   764.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "operating_profit": {
+  "page": 9,
+  "type": "flow",
+  "label": "营业利润",
+  "y": [
+   94.3,
+   99.3
+  ],
+  "column": 1
+ },
+ "operating_profit_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "营业利润（上年同期）",
+  "y": [
+   94.3,
+   99.3
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "nonop_income": {
+  "page": 9,
+  "type": "flow",
+  "label": "营业外收入",
+  "row": "加：营业外收入",
+  "column": 1
+ },
+ "nonop_income_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "营业外收入（上年同期）",
+  "row": "加：营业外收入",
+  "column": 2,
+  "prior": true
+ },
+ "nonop_expense": {
+  "page": 9,
+  "type": "flow",
+  "label": "营业外支出",
+  "row": "减：营业外支出",
+  "column": 1
+ },
+ "nonop_expense_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "营业外支出（上年同期）",
+  "row": "减：营业外支出",
+  "column": 2,
+  "prior": true
+ },
+ "pretax": {
+  "page": 9,
+  "type": "flow",
+  "label": "利润总额",
+  "y": [
+   143.1,
+   148.1
+  ],
+  "column": 1
+ },
+ "pretax_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "利润总额（上年同期）",
+  "y": [
+   143.1,
+   148.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "income_tax": {
+  "page": 9,
+  "type": "flow",
+  "label": "所得税费用",
+  "row": "减：所得税费用",
+  "column": 1
+ },
+ "income_tax_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "所得税费用（上年同期）",
+  "row": "减：所得税费用",
+  "column": 2,
+  "prior": true
+ },
+ "net_profit": {
+  "page": 9,
+  "type": "flow",
+  "label": "净利润",
+  "y": [
+   179.6,
+   184.6
+  ],
+  "column": 1
+ },
+ "net_profit_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "净利润（上年同期）",
+  "y": [
+   179.6,
+   184.6
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "parent_net": {
+  "page": 9,
+  "type": "flow",
+  "label": "归属于母公司股东的净利润",
+  "y": [
+   275.3,
+   280.3
+  ],
+  "column": 1
+ },
+ "parent_net_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "归属于母公司股东的净利润（上年同期）",
+  "y": [
+   275.3,
+   280.3
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "nci": {
+  "page": 9,
+  "type": "flow",
+  "label": "少数股东损益",
+  "y": [
+   287.5,
+   292.5
+  ],
+  "column": 1
+ },
+ "nci_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "少数股东损益（上年同期）",
+  "y": [
+   287.5,
+   292.5
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "oci_net": {
+  "page": 9,
+  "type": "flow",
+  "label": "其他综合收益的税后净额",
+  "row": "六、其他综合收益的税后净额",
+  "column": 1
+ },
+ "oci_net_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "其他综合收益的税后净额（上年同期）",
+  "row": "六、其他综合收益的税后净额",
+  "column": 2,
+  "prior": true
+ },
+ "oci_translation": {
+  "page": 9,
+  "type": "flow",
+  "label": "外币财务报表折算差额",
+  "y": [
+   579.3,
+   584.3
+  ],
+  "column": 1
+ },
+ "oci_translation_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "外币财务报表折算差额（上年同期）",
+  "y": [
+   579.3,
+   584.3
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "comprehensive": {
+  "page": 9,
+  "type": "flow",
+  "label": "综合收益总额",
+  "row": "七、综合收益总额",
+  "column": 1
+ },
+ "comprehensive_prior": {
+  "page": 9,
+  "type": "flow",
+  "label": "综合收益总额（上年同期）",
+  "row": "七、综合收益总额",
+  "column": 2,
+  "prior": true
+ },
+ "sales_cash": {
+  "page": 10,
+  "type": "flow",
+  "label": "销售商品、提供劳务收到的现金",
+  "y": [
+   149.8,
+   154.8
+  ],
+  "column": 1
+ },
+ "sales_cash_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "销售商品、提供劳务收到的现金（上年同期）",
+  "y": [
+   149.8,
+   154.8
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "tax_refund": {
+  "page": 10,
+  "type": "flow",
+  "label": "收到的税费返还",
+  "y": [
+   310.6,
+   315.6
+  ],
+  "column": 1
+ },
+ "tax_refund_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "收到的税费返还（上年同期）",
+  "y": [
+   310.6,
+   315.6
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "other_op_in": {
+  "page": 10,
+  "type": "flow",
+  "label": "收到其他与经营活动有关的现金",
+  "y": [
+   324.9,
+   329.9
+  ],
+  "column": 1
+ },
+ "other_op_in_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "收到其他与经营活动有关的现金（上年同期）",
+  "y": [
+   324.9,
+   329.9
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "op_inflow": {
+  "page": 10,
+  "type": "flow",
+  "label": "经营活动现金流入小计",
+  "y": [
+   337.1,
+   342.1
+  ],
+  "column": 1
+ },
+ "op_inflow_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "经营活动现金流入小计（上年同期）",
+  "y": [
+   337.1,
+   342.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "purchase_cash": {
+  "page": 10,
+  "type": "flow",
+  "label": "购买商品、接受劳务支付的现金",
+  "y": [
+   351.3,
+   356.3
+  ],
+  "column": 1
+ },
+ "purchase_cash_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "购买商品、接受劳务支付的现金（上年同期）",
+  "y": [
+   351.3,
+   356.3
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "employee_cash": {
+  "page": 10,
+  "type": "flow",
+  "label": "支付给职工及为职工支付的现金",
+  "y": [
+   455.1,
+   460.1
+  ],
+  "column": 1
+ },
+ "employee_cash_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "支付给职工及为职工支付的现金（上年同期）",
+  "y": [
+   455.1,
+   460.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "tax_paid": {
+  "page": 10,
+  "type": "flow",
+  "label": "支付的各项税费",
+  "y": [
+   467.4,
+   472.4
+  ],
+  "column": 1
+ },
+ "tax_paid_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "支付的各项税费（上年同期）",
+  "y": [
+   467.4,
+   472.4
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "other_op_out": {
+  "page": 10,
+  "type": "flow",
+  "label": "支付其他与经营活动有关的现金",
+  "y": [
+   479.6,
+   484.6
+  ],
+  "column": 1
+ },
+ "other_op_out_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "支付其他与经营活动有关的现金（上年同期）",
+  "y": [
+   479.6,
+   484.6
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "op_outflow": {
+  "page": 10,
+  "type": "flow",
+  "label": "经营活动现金流出小计",
+  "y": [
+   491.8,
+   496.8
+  ],
+  "column": 1
+ },
+ "op_outflow_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "经营活动现金流出小计（上年同期）",
+  "y": [
+   491.8,
+   496.8
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "cfo": {
+  "page": 10,
+  "type": "flow",
+  "label": "经营活动产生的现金流量净额",
+  "y": [
+   504.1,
+   509.1
+  ],
+  "column": 1
+ },
+ "cfo_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "经营活动产生的现金流量净额（上年同期）",
+  "y": [
+   504.1,
+   509.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "invest_recover": {
+  "page": 10,
+  "type": "flow",
+  "label": "收回投资收到的现金",
+  "y": [
+   530.8,
+   535.8
+  ],
+  "column": 1
+ },
+ "invest_recover_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "收回投资收到的现金（上年同期）",
+  "y": [
+   530.8,
+   535.8
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "invest_income_cash": {
+  "page": 10,
+  "type": "flow",
+  "label": "取得投资收益收到的现金",
+  "y": [
+   543.1,
+   548.1
+  ],
+  "column": 1
+ },
+ "invest_income_cash_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "取得投资收益收到的现金（上年同期）",
+  "y": [
+   543.1,
+   548.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "invest_inflow": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资活动现金流入小计",
+  "y": [
+   616.0,
+   621.0
+  ],
+  "column": 1
+ },
+ "invest_inflow_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资活动现金流入小计（上年同期）",
+  "y": [
+   616.0,
+   621.0
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "capex_cash": {
+  "page": 10,
+  "type": "flow",
+  "label": "购建长期资产支付的现金",
+  "y": [
+   636.3,
+   641.3
+  ],
+  "column": 1
+ },
+ "capex_cash_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "购建长期资产支付的现金（上年同期）",
+  "y": [
+   636.3,
+   641.3
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "invest_pay": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资支付的现金",
+  "y": [
+   656.5,
+   661.5
+  ],
+  "column": 1
+ },
+ "invest_pay_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资支付的现金（上年同期）",
+  "y": [
+   656.5,
+   661.5
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "invest_outflow": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资活动现金流出小计",
+  "y": [
+   721.6,
+   726.6
+  ],
+  "column": 1
+ },
+ "invest_outflow_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资活动现金流出小计（上年同期）",
+  "y": [
+   721.6,
+   726.6
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "cfi": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资活动产生的现金流量净额",
+  "y": [
+   733.8,
+   738.8
+  ],
+  "column": 1
+ },
+ "cfi_prior": {
+  "page": 10,
+  "type": "flow",
+  "label": "投资活动产生的现金流量净额（上年同期）",
+  "y": [
+   733.8,
+   738.8
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "fin_outflow": {
+  "page": 11,
+  "type": "flow",
+  "label": "筹资活动现金流出小计",
+  "y": [
+   226.3,
+   231.3
+  ],
+  "column": 1
+ },
+ "fin_outflow_prior": {
+  "page": 11,
+  "type": "flow",
+  "label": "筹资活动现金流出小计（上年同期）",
+  "y": [
+   226.3,
+   231.3
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "cff": {
+  "page": 11,
+  "type": "flow",
+  "label": "筹资活动产生的现金流量净额",
+  "y": [
+   238.6,
+   243.6
+  ],
+  "column": 1
+ },
+ "cff_prior": {
+  "page": 11,
+  "type": "flow",
+  "label": "筹资活动产生的现金流量净额（上年同期）",
+  "y": [
+   238.6,
+   243.6
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "cash_fx": {
+  "page": 11,
+  "type": "flow",
+  "label": "汇率变动对现金及现金等价物的影响",
+  "y": [
+   256.9,
+   261.9
+  ],
+  "column": 1
+ },
+ "cash_fx_prior": {
+  "page": 11,
+  "type": "flow",
+  "label": "汇率变动对现金及现金等价物的影响（上年同期）",
+  "y": [
+   256.9,
+   261.9
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "net_cash_change": {
+  "page": 11,
+  "type": "flow",
+  "label": "现金及现金等价物净增加额",
+  "y": [
+   275.1,
+   280.1
+  ],
+  "column": 1
+ },
+ "net_cash_change_prior": {
+  "page": 11,
+  "type": "flow",
+  "label": "现金及现金等价物净增加额（上年同期）",
+  "y": [
+   275.1,
+   280.1
+  ],
+  "column": 2,
+  "prior": true
+ },
+ "disposal_cash_prior": {
+  "page": 10,
+  "y": [
+   561.3,
+   566.3
+  ],
+  "column": 2,
+  "type": "flow",
+  "label": "处置长期资产收回的现金净额（上年同期）",
+  "prior": true
+ },
+ "other_fin_pay": {
+  "page": 11,
+  "y": [
+   214.1,
+   219.1
+  ],
+  "column": 1,
+  "type": "flow",
+  "label": "支付其他与筹资活动有关的现金"
+ },
+ "dividend_cash_prior": {
+  "page": 11,
+  "y": [
+   171.6,
+   176.6
+  ],
+  "column": 2,
+  "type": "flow",
+  "label": "分配股利、利润或偿付利息支付的现金（上年同期）",
+  "prior": true
+ },
+ "cash_open": {
+  "page": 11,
+  "y": [
+   287.4,
+   292.4
+  ],
+  "column": 1,
+  "type": "stock",
+  "period": "2025-12-31",
+  "label": "期初现金及现金等价物余额"
+ },
+ "cash_open_prior": {
+  "page": 11,
+  "y": [
+   287.4,
+   292.4
+  ],
+  "column": 2,
+  "type": "stock",
+  "period": "2024-12-31",
+  "label": "期初现金及现金等价物余额（上年同期）",
+  "source_column": "上期/期初"
+ },
+ "cash_close": {
+  "page": 11,
+  "y": [
+   299.6,
+   304.6
+  ],
+  "column": 1,
+  "type": "stock",
+  "period": "2026-03-31",
+  "label": "期末现金及现金等价物余额"
+ },
+ "cash_close_prior": {
+  "page": 11,
+  "y": [
+   299.6,
+   304.6
+  ],
+  "column": 2,
+  "type": "stock",
+  "period": "2025-03-31",
+  "label": "期末现金及现金等价物余额（上年同期）",
+  "source_column": "上期/期初"
+ },
+ "other_noncurrent": {
+  "page": 7,
+  "row": "^其他非流动资产$",
+  "column": 1,
+  "type": "stock",
+  "period": "2026-03-31",
+  "label": "其他非流动资产"
+ },
+ "other_noncurrent_prior": {
+  "page": 7,
+  "row": "^其他非流动资产$",
+  "column": 2,
+  "type": "stock",
+  "period": "2025-12-31",
+  "label": "其他非流动资产（上年度末）",
+  "source_column": "上期/期初"
+ }
+}

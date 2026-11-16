@@ -832,6 +832,56 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "NEW_CONTRACT"
+    },
+    {
+      "id": "XPR-001",
+      "root_cause": "后续报告引用另一份报告的数字，若直接手打或不固定来源，原件变化后文章数字会悄悄漂移。",
+      "correction": "只能通过 external_ledgers 引用同一公司另一期的账本，按期间与原件SHA固定；期间相同或哈希不符即拒绝。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_changed_external_source_hash_or_same_period_is_refused",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "XPR-002",
+      "root_cause": "跨报告运算若混用流量与存量、不同会计年度，结果无会计含义。",
+      "correction": "每条跨期占位符必须声明模式：同年度累计流量之差、同日期存量对账、或单一外部报告引用；声明与事实类型和期间不符即拒绝。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_stock_and_flow_or_unknown_alias_cannot_be_mixed",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "XPR-003",
+      "root_cause": "上一期写下的可证伪判断在下一期无人检验，系列研究失去连续性。",
+      "correction": "后续报告用受审计的跨期占位符逐条检验上期判断，结论区分“被推翻的部分”与“仍成立的部分”。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_prior_thesis_check_numbers_come_from_two_pinned_ledgers",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "RESEARCH_COUNTERCASE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "XPR-004",
+      "root_cause": "同一日期的存量在两份报告中不一致（2025-12-31 现金等价物 29.40 亿 vs 28.64 亿）时，只引用一份会掩盖差异。",
+      "correction": "同日期存量对账模式把两份报告的数字并列并计算差额，差异原因未披露时写 NOT_CHECKED，不猜。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_same_date_stock_reconciliation_requires_one_balance_date",
+      "scope": "single_issuer",
+      "transfer_gate": "ACCOUNTING_CORE",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "FXC-001",
+      "root_cause": "汇率对利润、现金、权益三个口径的符号不一致（费用为正、现金为负）会让读者把方向读反，也容易被相加。",
+      "correction": "三个渠道统一按“对利润/现金/权益的影响”取符号，负数为不利，并在文字中声明口径不同、不能相加。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_fx_channels_use_one_sign_convention_and_are_never_added",
+      "scope": "single_issuer",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }

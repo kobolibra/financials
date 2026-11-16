@@ -267,10 +267,10 @@
       "profit-chain near-duplicate stage compaction and small-branch grouping",
       "8-12 quarter trend and margin-trend exhibits",
       "TYPE B and BANK routes in source_publication.py",
-      "cross-report single-quarter derivation (Q3 = 9M - H1)",
       "post-merge live production QA (qa_source_publication_live.py) does not yet iterate period_reports",
-      "automatic check-off of the previous period thesis in a later-period report",
-      "WebKit phone pass for period reports (local environment has Chromium headless shell only)"
+      "WebKit phone pass for period reports (local environment has Chromium headless shell only)",
+      "single-quarter derivation across THREE reports (Q2 alone = H1 - Q1) needs an H1 ledger for the issuer",
+      "CUMULATIVE_FLOW_DIFFERENCE claims cannot yet feed a figure (text only)"
     ]
   },
   "entrypoints": {
@@ -339,10 +339,22 @@
         "code": "300394",
         "period": "20269M",
         "href": "/300394-2026q3.html",
-        "status": "LOCAL_PR_CANDIDATE_NOT_MERGED_NOT_DEPLOYED",
+        "status": "MERGED_MAIN_68f5fd5_PRODUCTION_BYTES_EQUAL_REPOSITORY_BROWSER_RECEIPT_PENDING_ACTIONS",
         "source_pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
         "gates": "research/issuers/300394/20269M/release-gates.json",
         "local_browser_receipt": "research/issuers/300394/20269M/visual-qa/result.json",
+        "live_production": "NOT_CHECKED",
+        "independent_human_review": "NOT_CHECKED",
+        "production_bytes_check": "2026-11-16 本地HTTP逐字节核对：首页、14家公司与该报告均与仓库一致；真实Actions浏览器回执待 PR #80 合并后产生"
+      },
+      {
+        "code": "300394",
+        "period": "2026Q1",
+        "href": "/300394-2026q1.html",
+        "status": "LOCAL_PR_CANDIDATE_NOT_MERGED_NOT_DEPLOYED",
+        "source_pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
+        "gates": "research/issuers/300394/2026Q1/release-gates.json",
+        "local_browser_receipt": "research/issuers/300394/2026Q1/visual-qa/result.json",
         "live_production": "NOT_CHECKED",
         "independent_human_review": "NOT_CHECKED"
       }

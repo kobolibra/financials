@@ -394,7 +394,8 @@
         "research/issuers/600690/material-notes-review.json",
         "research/issuers/300548/material-notes-review.json",
         "research/issuers/300570/material-notes-review.json",
-        "research/issuers/300394/20269M/material-notes-review.json"
+        "research/issuers/300394/20269M/material-notes-review.json",
+        "research/issuers/300394/2026Q1/material-notes-review.json"
       ],
       "local_migration_receipt": "research/quality/editorial-20261113-local/result.json",
       "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
@@ -438,6 +439,30 @@
       "source_publication": "research/issuers/300394/20269M",
       "editorial_contract": "FULL_PROFIT_CHAIN_V1",
       "editorial_manifest": "research/editorial-20261113/300394-20269M.json"
+    },
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "period": "2026Q1",
+      "period_label": "2026年一季报",
+      "exchange": "SZ",
+      "industry": "光通信",
+      "sub": "光器件与光连接 · 一季度",
+      "story": "收入增41%、利润增46%，经营现金为何下降38%？",
+      "deck": "一季度收入与利润高增长，销售收现只增20%，应收款项融资、预付款和应付票据同时放大；把“赚到”和“收到”分开验证。",
+      "href": "/300394-2026q1.html",
+      "kind": "原始财报研究",
+      "stage": "source-review",
+      "note": "一季报 · 原件与计算核验 · 人类二审未完成",
+      "figures": 7,
+      "signal": "−37.92%",
+      "signal_label": "2026Q1经营现金净额同比",
+      "source": "2026年第一季度报告（11页）",
+      "parent_href": "/300394.html",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "source_publication": "research/issuers/300394/2026Q1",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300394-2026Q1.json"
     }
   ]
 }

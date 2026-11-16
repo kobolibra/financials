@@ -50,4 +50,49 @@ class PeriodReport(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    out=Path(d)/'x.html';publish(B,out);self.assertEqual(out.read_bytes(),(ROOT/'public/300394-2026q3.html').read_bytes())
   self.assertNotEqual((ROOT/'public/300394-2026q3.html').read_bytes(),(ROOT/'public/300394.html').read_bytes())
+Q1=ROOT/'research/issuers/300394/2026Q1'
+class CrossPeriodClaims(unittest.TestCase):
+ """A report may quote another report of the same issuer, but only inside strict, declared arithmetic."""
+ def setUp(self):
+  self.l=json.loads((B/'source-ledger.json').read_text());self.s=json.loads((B/'publication.json').read_text())
+  self.q1l=json.loads((Q1/'source-ledger.json').read_text());self.q1s=json.loads((Q1/'publication.json').read_text())
+ def test_prior_thesis_check_numbers_come_from_two_pinned_ledgers(self):
+  x=json.dumps(expand_claims(self.s,self.l),ensure_ascii=False)
+  self.assertIn('占比96.1%，一季度为86.1%',x);self.assertIn('占同期合并净利润80.4%，一季度为37.0%',x)
+  self.assertEqual(validate(self.l,self.s)['status'],'PASS')
+ def test_changed_external_source_hash_or_same_period_is_refused(self):
+  bad=copy.deepcopy(self.s);bad['external_ledgers']['qone']['pdf_sha256']='0'*64
+  with self.assertRaisesRegex(ValueError,'EXTERNAL_LEDGER_IDENTITY'):expand_claims(bad,self.l)
+  bad=copy.deepcopy(self.s);bad['external_ledgers']['qone']['path']='research/issuers/300394/20269M/source-ledger.json';bad['external_ledgers']['qone']['period']='20269M'
+  bad['external_ledgers']['qone']['pdf_sha256']=self.l['source']['original_bytes_sha256']
+  with self.assertRaisesRegex(ValueError,'EXTERNAL_LEDGER_IDENTITY'):expand_claims(bad,self.l)
+ def test_external_fact_without_declared_mode_or_mode_without_external_fact_fails(self):
+  bad=copy.deepcopy(self.s);del bad['quantified_claims']['q23_sales_ratio']['cross_period']
+  with self.assertRaisesRegex(ValueError,'CROSS_PERIOD_CLAIM_NOT_DECLARED'):validate(self.l,bad)
+  bad=copy.deepcopy(self.s);bad['quantified_claims']['rev_yi']['cross_period']='CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR'
+  with self.assertRaisesRegex(ValueError,'DECLARED_WITHOUT_EXTERNAL_FACT'):validate(self.l,bad)
+ def test_stock_and_flow_or_unknown_alias_cannot_be_mixed(self):
+  bad=copy.deepcopy(self.s);bad['quantified_claims']['q23_sales_ratio']['expression']=[['sales_cash',1],['qone:cash_close',-1]]
+  with self.assertRaisesRegex(ValueError,'MIXED_FISCAL_YEARS_OR_NONFLOW'):validate(self.l,bad)
+  bad=copy.deepcopy(self.s);bad['quantified_claims']['q23_sales_ratio']['expression']=[['sales_cash',1],['ghost:sales_cash',-1]]
+  with self.assertRaises((KeyError,ValueError)):validate(self.l,bad)
+ def test_same_date_stock_reconciliation_requires_one_balance_date(self):
+  x=json.dumps(expand_claims(self.q1s,self.q1l),ensure_ascii=False);self.assertIn('29.40亿元',x);self.assertIn('28.64亿元',x);self.assertIn('0.76亿元',x)
+  bad=copy.deepcopy(self.q1s);bad['quantified_claims']['cash_open_gap_yi']['expression']=[['cash_close',1],['qthree:cash_open',-1]]
+  with self.assertRaisesRegex(ValueError,'STOCKS_MUST_SHARE_ONE_DATE'):validate(self.q1l,bad)
+ def test_citation_must_use_a_single_external_report(self):
+  bad=copy.deepcopy(self.s);bad['quantified_claims']['q1_sales_ratio']['expression']=[['sales_cash',1]]
+  with self.assertRaisesRegex(ValueError,'CITATION_MUST_USE_ONE_EXTERNAL_REPORT'):validate(self.l,bad)
+class QuarterlyOne(unittest.TestCase):
+ def test_q1_report_validates_and_rebuilds_on_its_own_route(self):
+  import tempfile
+  from source_publication import publish
+  l=json.loads((Q1/'source-ledger.json').read_text());s=json.loads((Q1/'publication.json').read_text())
+  self.assertEqual(validate(l,s)['status'],'PASS');self.assertEqual(l['issuer']['fiscal_period'],'2026Q1');self.assertEqual(l['issuer'].get('flow_columns',{}),{})
+  self.assertEqual(validate_source(bundle_for('300394@2026Q1'))['status'],'PASS')
+  with tempfile.TemporaryDirectory() as d:
+   out=Path(d)/'q1.html';publish(Q1,out);self.assertEqual(out.read_bytes(),(ROOT/'public/300394-2026q1.html').read_bytes())
+ def test_fx_channels_use_one_sign_convention_and_are_never_added(self):
+  s=json.loads((Q1/'publication.json').read_text());fx=next(f for f in s['figures'] if f['id']=='fx')
+  self.assertEqual(fx['pairs'][0][1:],[[['finance_prior',-1]],[['finance',-1]]]);self.assertIn('不能相加',fx['analysis'])
 if __name__=='__main__':unittest.main()
