@@ -49,6 +49,13 @@ Contract version: 10.0.0
 
 效率原则：P1–P2 用 `skills/ashare-financial-storytelling/tools/fin_intake.py` 的 `init / find / scan / facts / preflight`，不手抄坐标；P3 是唯一不能省的人工判断环节；P5–P6 用现有共享出版器与审计器，不另写。
 
+**P4 标准做法（EDITORIAL_V2，每份报告都用）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
+1. `python $T2 numbers --code <c> [--period P]`：打印每行同比、占收入比例、分部/地区增速与毛利率、营运资本余额变动。**叙事只按这里的方向写**。
+2. `python $T2 scaffold …`：生成 `v2-draft.json`，含 KPI 看板、增速条（有上年同期源格的分部与地区自动入选）、利润率哑铃（含分部毛利率）、余额变动四张图的数据定义，文字留 TODO。
+3. 只写文字：结论、趋势、重点、反证、章节、本期一览。数字一律写宏：`[g:rev]` 同比、`[r:gm]` 比率、`[p:gm]` 百分点变化、`[y:parent_net]` 亿元、`[d:ar]` 余额变动。正文签名桥 ≤2，其余在 `roles` 设为 reference；与新图重复的两期表放进 `remove`。
+4. `python $T2 apply …`：拒绝 TODO、手写小数金额、未知宏，以及没有上年同期源格的宏；跑完整编辑 lint；同步编辑清单的角色、主图位置和展开后的标题。
+5. 出版 → 目录 `figures` 改为 `qa.json` 的图数 → 浏览器验收（§6）。
+
 ## 3. 研究必须先于画图
 
 对每份报告写出五个与源事实 ID 绑定的决策项：
@@ -119,6 +126,9 @@ Contract version: 10.0.0
 - `python research/shared/source_publication.py research/issuers/<code> /tmp/<code>.html && cmp /tmp/<code>.html public/<code>.html`
 - `python scripts/check_handoff.py`、`python scripts/check_release_contract.py`、`python scripts/check_pr35_quality_handoff.py`
 - 浏览器：`python scripts/qa_editorial_migration.py --codes <code> --out <dir>`（1440/768/390 每图可见、无裁切/重叠/小于10px金额字、当前可见 SVG 真实下载），WebKit 375 复验；中文字体必须是真实 Noto CJK，出现豆腐块的截图不能作视觉证据。
+- **合并前 WebKit**：WebKit 的中文字宽大于 Chromium，本地 Chromium 通过不代表手机 Safari 通过。PR 的 Cloudflare 预览出来后运行 `gh workflow run verify-preview-webkit.yml -f origin=<预览地址>`，对目录中全部报告做 375 宽验收，通过后再合并。
+- **合并后**：生产锁定工作流通过后运行 `python scripts/promote_live_receipts.py --run <run id>`，自动归档回执、移除候选、把 CLOUDFLARE_LIVE 改为 PASS。字节不符就拒绝晋升。
+- 候选改变图数时，在 `unmerged_candidate.base_figure_count` 写已部署的图数，生产回执按已部署字节核对。
 
 CI 会对目录中声明 `source_publication` 的公司自动干净重建并跑全部图的双浏览器验收；合并后对生产站同一主分支复验全文件字节、导航与下载。门槛状态逐项写入 `release-gates.json`：`PASS / FAIL / NOT_CHECKED`，不得平均掉 P0。
 

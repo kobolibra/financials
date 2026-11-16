@@ -95,7 +95,8 @@ python scripts/check_release_contract.py && python scripts/check_handoff.py
 ## 7. 交接与发布（P7）
 
 - 提交分支，开 PR；等待 CI 的干净重建与双浏览器全图验收通过。
-- 合并后核对生产站全文件字节与源码一致、首页往返、每图下载；回执写入 `live-release-receipt.json` 并更新 `release-gates.json` 的 LIVE 门。
+- PR 的 Cloudflare 预览出来后：`gh workflow run verify-preview-webkit.yml -f origin=https://<hash>.financials-in-visuals.pages.dev`，WebKit 375 通过后再合并（2026-11-16 曾因漏掉这一步，生产锁定在 WebKit 下失败一次）。
+- 合并后等 "V10 post-merge Cloudflare production release lock" 通过，再运行 `python scripts/promote_live_receipts.py --run <run id>`，然后开一个只含回执的 PR。
 - 更新 `project-status.json`、`PROJECT_STATE.md` 顶部；其他入口文件只在规则变化时修改。
 
 ## 8. 常见卡点
@@ -108,3 +109,8 @@ python scripts/check_release_contract.py && python scripts/check_handoff.py
 | `SECTOR_NONEXHAUSTIVE_OR_MIXED_SOURCE_COST_PARTITION` | 分部不完整或混用产品/地区 | 只用一个维度并闭合到集团收入与成本 |
 | `SECTOR_SIGNED_OR_LOSS_BUSINESS_REQUIRES_SEPARATE_CHART` | 某业务负毛利 | 不用 TYPE A；改用 components/comparison 并说明 |
 | 季报 preflight 要求分部 | figures 中包含 `income` | 季报去掉 `income` family |
+| `EXHIBIT_TEXT_EXCEEDS_CANVAS` | 手机 330 宽放不下这一行（保守估计） | 缩短文字；不要放宽估计 |
+| `EDITORIAL_UNREVIEWED_QUESTION n` | 编辑清单标题和展开后的问题不一致（问题里有占位符或改过） | 用 `v2_builder.py apply` 或重跑 `fin_intake.py editorial` 同步 |
+| `V2_BRIDGE_PARADE_n` | 正文签名桥超过两张 | 把重叠的桥在 `roles` 设为 reference |
+| `LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT` | 候选改变了图数 | 候选写 `base_figure_count` |
+| `PROJECT_STATE_HAS_NO_ACTIVE_PR_HANDBACK` | PROJECT_STATE 顶部新增内容过长，把交接链接推出前 3500 字 | 合并为一段，旧条目移到下方 |

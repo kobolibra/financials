@@ -107,6 +107,7 @@ jobs:
           python -m unittest discover -s research/shared -p 'test_profit_chain_layout_v2.py' -v
           python -m unittest discover -s research/shared -p 'test_income_flow_v3.py' -v
           python -m unittest discover -s research/shared -p 'test_exhibits.py' -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'test_v2_builder.py' -v
       - name: Existing unified-root generator still reproduces the homepage
         run: |
           python -m unittest discover -s site -p test_portal.py -v
