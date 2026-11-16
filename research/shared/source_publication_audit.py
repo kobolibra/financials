@@ -12,8 +12,8 @@ def expected(ledger,expr):
 def check_vector_source(markup,ledger):
     root=ET.fromstring(markup);f=ledger['facts'];count=0
     if root.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1':
-        from profit_chain_audit import check_svg
-        return check_svg(markup,ledger['issuer']['code'],ledger['source']['original_bytes_sha256'])
+        from profit_chain_audit import check_svg,key_for
+        return check_svg(markup,key_for(ledger['issuer']['code'],ledger['issuer']['fiscal_period']),ledger['source']['original_bytes_sha256'])
     if root.get('data-issuer')!=ledger['issuer']['code']:raise ValueError('DOSSIER_VECTOR_WRONG_ISSUER')
     for node in root.iter():
         ref=node.get('data-source-reference')
@@ -23,8 +23,13 @@ def check_vector_source(markup,ledger):
                 expr=expr[node.get('data-stock-role')];observed=node.get('data-exact-yuan')
             elif node.get('data-comparison-pair') is not None:
                 i=expr['periods'].index(node.get('data-period'));expr=expr['prior' if i==0 else 'current'];observed=node.get('data-exact-value')
+                # Reader-facing labels (e.g. 2026年前三季度) map to ledger period codes
+                # only through the ledger's own declared `period_names`; unknown labels
+                # are compared literally, so a mislabelled column still fails.
+                names={v:k for k,v in ledger['issuer'].get('period_names',{}).items()}
+                wanted=names.get(node.get('data-period'),node.get('data-period'))
                 for key in ([expr] if isinstance(expr,str) else [k for k,c in expr]):
-                    if f[key]['period']!=node.get('data-period'):raise ValueError('DOSSIER_VECTOR_COMPARISON_WRONG_PERIOD')
+                    if f[key]['period']!=wanted:raise ValueError('DOSSIER_VECTOR_COMPARISON_WRONG_PERIOD')
             else:observed=node.get('data-signed-yuan') or node.get('data-exact-yuan') or node.get('data-exact-value')
             if observed is not None:
                 if D(observed)!=expected(ledger,expr):raise ValueError('DOSSIER_VECTOR_SOURCE_AMOUNT_FALSE')

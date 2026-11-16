@@ -8,7 +8,7 @@ from pathlib import Path
 from html import escape as H
 from decimal import Decimal as D
 import hashlib,json,re
-from full_profit_chain import load,amount,compile_chain
+from full_profit_chain import load,amount,compile_chain,catalog_row
 from unified_income_sankey import render_full_profit_chain
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -26,7 +26,7 @@ def figure(bundle):
  # the largest level components as LEVELS, never pretends these are YoY causes.
  for a in ranked[:bundle['editorial'].get('level_component_count',3)]:
   v=amount(bundle,a['terms']);drivers.append('<li><span>'+H(a['label'])+'</span><strong data-chain-level-yuan="'+str(v)+'">'+H(_money(v))+'</strong></li>')
- return '<figure id="profit-chain-overview" class="editorial-profit-chain" data-editorial-role="primary" data-editorial-need="complete-group-profit-backbone"><div class="editorial-chain-heading"><div class="editorial-kicker">THE PROFIT STORY / 完整利润主线</div><h2>'+H(bundle['editorial']['primary_question'])+'</h2><p>'+H(bundle['name']+' · '+bundle['period']+' · 合并口径；'+bundle['editorial']['income_basis'])+'。</p><button type="button" data-chain-export>导出当前利润主图 SVG ↗</button></div><div class="editorial-chain-desktop">'+render_full_profit_chain(bundle,mobile=False)+'</div><div class="editorial-chain-phone">'+render_full_profit_chain(bundle,mobile=True)+'</div><div class="editorial-components"><p>本期营业层主要金额构成 · 不等于同比因果贡献</p><ul>'+''.join(drivers)+'</ul></div><figcaption><b>读图结论</b> / '+H(bundle['editorial']['takeaway'])+'<br><b>反证与边界</b> / '+H(bundle['editorial']['counter'])+'<br>来源：<a href="'+H(bundle['source_url'],quote=True)+'">完整原始财报 ↗</a>；物理页 '+', '.join(map(str,pages))+'；人民币元逐层闭合。图示为会计形成关系，不是现金流，不分摊产品税后利润。</figcaption><details><summary>核对完整利润科目、符号与来源</summary><div class="table-scroll"><table><thead><tr><th>原始项目 / 层级</th><th>人民币元</th><th>来源及分类</th></tr></thead><tbody>'+''.join(table)+'</tbody></table></div></details></figure>'
+ return '<figure id="profit-chain-overview" class="editorial-profit-chain" data-editorial-role="primary" data-editorial-need="complete-group-profit-backbone"><div class="editorial-chain-heading"><div class="editorial-kicker">THE PROFIT STORY / 完整利润主线</div><h2>'+H(bundle['editorial']['primary_question'])+'</h2><p>'+H(bundle['name']+' · '+bundle.get('period_label',bundle['period'])+' · 合并口径；'+bundle['editorial']['income_basis'])+'。</p><button type="button" data-chain-export>导出当前利润主图 SVG ↗</button></div><div class="editorial-chain-desktop">'+render_full_profit_chain(bundle,mobile=False)+'</div><div class="editorial-chain-phone">'+render_full_profit_chain(bundle,mobile=True)+'</div><div class="editorial-components"><p>本期营业层主要金额构成 · 不等于同比因果贡献</p><ul>'+''.join(drivers)+'</ul></div><figcaption><b>读图结论</b> / '+H(bundle['editorial']['takeaway'])+'<br><b>反证与边界</b> / '+H(bundle['editorial']['counter'])+'<br>来源：<a href="'+H(bundle['source_url'],quote=True)+'">完整原始财报 ↗</a>；物理页 '+', '.join(map(str,pages))+'；人民币元逐层闭合。图示为会计形成关系，不是现金流，不分摊产品税后利润。</figcaption><details><summary>核对完整利润科目、符号与来源</summary><div class="table-scroll"><table><thead><tr><th>原始项目 / 层级</th><th>人民币元</th><th>来源及分类</th></tr></thead><tbody>'+''.join(table)+'</tbody></table></div></details></figure>'
 
 def _money(v):
  from editorial_bridge import money
@@ -66,7 +66,8 @@ function apply(){try{
 
 def finalize_publication(code,markup,*,period):
  if 'id="editorial-profit-chain-contract"' in markup:raise ValueError('EDITORIAL_DOUBLE_COMPOSITION')
- bundle=load(code)
+ catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+ bundle=load(code+'@'+period if catalog_row(catalog,code+'@'+period) else code)
  if bundle['issuer']!=code or bundle['period']!=period:raise ValueError('EDITORIAL_SOURCE_PERIOD_OR_ISSUER_MISMATCH')
  compile_chain(bundle)
  decisions=bundle['editorial']['figures'];raw=json.dumps(bundle,ensure_ascii=False,separators=(',',':'));manifest_sha=hashlib.sha256(raw.encode()).hexdigest()

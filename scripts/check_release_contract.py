@@ -433,6 +433,18 @@ def validate_registry(root: Path) -> list[str]:
     return errors
 
 
+def validate_period_report(root: Path, row: dict, *, check_bytes: bool = True) -> list[str]:
+    """A later report period of an existing issuer: same gates, record under research/issuers/<code>/<period>/."""
+    code, period = row["code"], row["period"]
+    record_path = root / "research" / "issuers" / code / period / "release-gates.json"
+    if not record_path.is_file():
+        return [f"UNREGISTERED_PERIOD_REPORT {code}@{period}"]
+    errors = validate_release(root, row, read_json(record_path), check_bytes=check_bytes)
+    if read_json(record_path).get("period") != period:
+        errors.append(f"PERIOD_REPORT_RECORD_PERIOD {code}@{period}")
+    return errors
+
+
 def validate_repository(root: Path = ROOT, *, check_bytes: bool = True) -> list[str]:
     errors = validate_registry(root)
     issuers = read_json(root / "site/research_catalog.json")["issuers"]
@@ -451,6 +463,14 @@ def validate_repository(root: Path = ROOT, *, check_bytes: bool = True) -> list[
             continue
         errors += validate_release(root, issuer, read_json(record_path),
                                    check_bytes=check_bytes)
+    reports = read_json(root / "site/research_catalog.json").get("period_reports", [])
+    keys = [(r["code"], r["period"]) for r in reports]
+    if len(set(keys)) != len(keys) or len({r["href"] for r in reports}) != len(reports):
+        errors.append("DUPLICATE_PERIOD_REPORT_OR_ROUTE")
+    if any(r["href"] in {x["href"] for x in issuers} for r in reports):
+        errors.append("PERIOD_REPORT_OVERWRITES_ISSUER_ROUTE")
+    for row in reports:
+        errors += validate_period_report(root, row, check_bytes=check_bytes)
     return errors
 
 

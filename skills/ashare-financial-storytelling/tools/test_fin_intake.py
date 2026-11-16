@@ -38,13 +38,13 @@ class RealLedgerReproduction(unittest.TestCase):
 
     def test_ambiguous_row_blank_column_and_expect_mismatch_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "ROW_AMBIGUOUS"):
-            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "营业", "column": 1, "type": "flow", "label": "x"})
+            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "营业", "column": 1, "type": "flow", "label": "测试事实项"})
         with self.assertRaisesRegex(ValueError, "COLUMN_BLANK"):
-            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "其中：营业收入", "column": 3, "type": "flow", "label": "x"})
+            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "其中：营业收入", "column": 3, "type": "flow", "label": "测试事实项"})
         with self.assertRaisesRegex(ValueError, "EXPECTED_VALUE_MISMATCH"):
-            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "其中：营业收入", "column": 1, "type": "flow", "label": "x", "expect": "1"})
+            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "其中：营业收入", "column": 1, "type": "flow", "label": "测试事实项", "expect": "1"})
         with self.assertRaisesRegex(ValueError, "STORE_PRINTED_YUAN_AS_IS"):
-            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "其中：营业成本", "column": 1, "type": "flow", "label": "x", "sign": -1})
+            fi.build_fact(self.doc, self.ledger, "x", {"page": 40, "row": "其中：营业成本", "column": 1, "type": "flow", "label": "测试事实项", "sign": -1})
 
     def test_tool_output_passes_the_publication_cell_validator(self):
         sys.path.insert(0, str(ROOT / "research" / "shared"))
@@ -98,6 +98,45 @@ class QuarterlyGeneralization(unittest.TestCase):
         ledger["issuer"]["flow_columns"] = {"本期/期末": "2026H1"}
         with self.assertRaisesRegex(ValueError, "INVALID_EXTRA_FLOW_COLUMNS"):
             validate(ledger, story)
+
+
+class RealQuarterlyReport(unittest.TestCase):
+    """300394 2026 third-quarter report: wrapped headline cells, blank cells, dash placeholders."""
+    PERIOD = "20269M"
+
+    @classmethod
+    def setUpClass(cls):
+        cls.m, cls.doc, cls.ledger = fi.open_source("300394", cls.PERIOD)
+
+    def build(self, spec):
+        return fi.build_fact(self.doc, self.ledger, "x", {"type": "flow", "label": "测试事实项", **spec})
+
+    def test_wrapped_headline_cells_are_rejoined_and_reproduce_printed_growth(self):
+        q3 = self.build({"page": 1, "y": [583.8, 588.8], "column": 1, "source_column": "本报告期"})
+        prior = self.build({"page": 1, "y": [583.8, 588.8], "column": 3, "source_column": "上年同期本报告期"})
+        self.assertEqual(q3["yuan"], "1923161156.63")
+        self.assertTrue(q3["source_cells"][0]["wrapped_number"])
+        self.assertEqual((q3["period"], prior["period"]), ("2026Q3", "2025Q3"))
+        growth = (Decimal(q3["yuan"]) / Decimal(prior["yuan"]) - 1) * 100
+        self.assertEqual(f"{growth:.2f}", "31.50")  # printed 31.50%
+
+    def test_blank_current_cell_is_not_filled_from_prior_year(self):
+        with self.assertRaisesRegex(ValueError, "COLUMN_BLANK"):
+            self.build({"page": 11, "y": [513.7, 518.7], "column": 1})
+        prior = self.build({"page": 11, "y": [513.7, 518.7], "column": 2, "prior": True})
+        self.assertEqual(prior["yuan"], "40000000.00")
+        self.assertEqual(prior["period"], "20259M")
+
+    def test_dash_placeholder_is_not_zero_and_short_labels_are_refused(self):
+        with self.assertRaisesRegex(ValueError, "DASH_PLACEHOLDER"):
+            self.build({"page": 1, "y": [746.4, 751.4], "column": 1})
+        with self.assertRaisesRegex(ValueError, "LABEL_TOO_SHORT"):
+            fi.build_fact(self.doc, self.ledger, "x", {"page": 1, "y": [583.8, 588.8], "column": 5, "type": "flow", "label": "收入"})
+
+    def test_lone_table_row_borrows_columns_from_neighbouring_block(self):
+        sales = self.build({"page": 10, "y": [514.1, 519.1], "column": 1})
+        prior = self.build({"page": 10, "y": [514.1, 519.1], "column": 2, "prior": True})
+        self.assertEqual((sales["yuan"], prior["yuan"]), ("4432650235.40", "3676244492.30"))
 
 
 if __name__ == "__main__":

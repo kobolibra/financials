@@ -31,15 +31,36 @@ def presentation_rows(figure):
         result.append((g['label'],terms,'step'))
     return result+[rows[-1]]
 def expand_claims(story,ledger):
-    """Render authored numeric placeholders directly from explicit source math."""
+    """Render authored numeric placeholders directly from explicit source math.
+
+    A claim is `expression` (signed fact terms) optionally divided by
+    `denominator`, multiplied by a second ratio `times` ({expression,denominator})
+    and reduced by another named claim's raw value (`less`). Raw values are
+    exact Decimals before unit scaling, so a scale/margin split such as
+    (rev - rev_prior) * prior_margin is computed, never retyped.
+    """
+    claims=story.get('quantified_claims',{})
+    def ratio(expr,den):
+        value=amount(ledger,expr)
+        if den is not None:
+            d=amount(ledger,den)
+            if not d:raise ValueError('DOSSIER_UNDEFINED_CLAIM_RATIO')
+            value/=d
+        return value
+    def raw(name,trail=()):
+        spec=claims.get(name)
+        if not isinstance(spec,dict) or name in trail:raise ValueError('DOSSIER_UNSOURCED_QUANTIFIED_CLAIM')
+        value=ratio(spec['expression'],spec.get('denominator'))
+        if 'times' in spec:
+            t=spec['times']
+            if not isinstance(t,dict) or 'expression' not in t:raise ValueError('DOSSIER_INVALID_CLAIM_TIMES')
+            value*=ratio(t['expression'],t.get('denominator'))
+        if 'less' in spec:value-=raw(spec['less'],trail+(name,))
+        return value
     def substitute(match):
-        spec=story.get('quantified_claims',{}).get(match.group(1))
+        spec=claims.get(match.group(1))
         if not isinstance(spec,dict):raise ValueError('DOSSIER_UNSOURCED_QUANTIFIED_CLAIM')
-        value=amount(ledger,spec['expression'])
-        if 'denominator' in spec:
-            denominator=amount(ledger,spec['denominator'])
-            if not denominator:raise ValueError('DOSSIER_UNDEFINED_CLAIM_RATIO')
-            value/=denominator
+        value=raw(match.group(1))
         scale=D(str(spec.get('scale','1')));multiplier=D(str(spec.get('multiplier','1')))
         if not scale.is_finite() or scale<=0 or not multiplier.is_finite():raise ValueError('DOSSIER_INVALID_CLAIM_UNIT_SCALE')
         value=value/scale*multiplier
@@ -125,6 +146,15 @@ def cited(figure):
     for l,e in figure.get('parts',[]):expr+=dependencies(e)
     if 'total' in figure:expr+=dependencies(figure['total'])
     return list(dict.fromkeys(expr))
+def title_markup(story):
+    """Optional editorial line breaks. `title_lines` are display lines whose phrase units are
+    separated by '|'; a unit never wraps internally, so Chinese breaks only at phrase edges.
+    Without `title_lines` the original markup is unchanged."""
+    lines=story.get('title_lines')
+    if lines is None:return H(story['title'])
+    if not isinstance(lines,list) or not 2<=len(lines)<=3 or ''.join(lines).replace('|','')!=story['title']:raise ValueError('DOSSIER_TITLE_LINES_MUST_SPLIT_TITLE')
+    return ''.join('<span style="display:block">'+''.join('<span style="display:inline-block">'+H(u)+'</span>' for u in line.split('|') if u)+'</span>' for line in lines)
+def ids_of(story):return [f['id'] for f in story['figures']]
 def publish(folder,out=None):
     folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);story=expand_claims(story,ledger);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
     for i,f in enumerate(story['figures']):
@@ -135,14 +165,26 @@ def publish(folder,out=None):
             full_rows=''.join('<tr><td>'+H(label)+'</td><td>'+H(str(amount(ledger,expr)))+'</td><td>'+H(role)+'</td></tr>' for label,expr,role in f['rows'])
             parts[-1]=parts[-1].replace('</figure>','<details><summary>展开完整原始变动逐项对账（人民币元）</summary><div class="table-scroll"><table><tr><th>原始变动项目</th><th>精确金额</th><th>会计角色</th></tr>'+full_rows+'</table></div></details></figure>')
         briefs.append({'id':f['id'],'family':f['family'],'question':f['question'],'takeaway':f['takeaway'],'identity':f['identity'],'counter':f['counter'],'mobile':'桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。','source_pages':pages,'facts':keys})
-    sections=''.join('<section id="'+s['id']+'" class="essay"><div class="eyebrow">'+H(s['eyebrow'])+'</div><h2>'+H(s['title'])+'</h2>'+''.join('<p>'+H(p)+'</p>' for p in s['paragraphs'])+'</section>' for s in story['essays'])
+    def essay(s):return '<section id="'+s['id']+'" class="essay"><div class="eyebrow">'+H(s['eyebrow'])+'</div><h2>'+H(s['title'])+'</h2>'+''.join('<p>'+H(p)+'</p>' for p in s['paragraphs'])+'</section>'
+    # Essays without `after` keep the original position (after the second figure).
+    # `after: <figure id>` or `after: end` interleaves prose with figures for reading rhythm.
+    figure_ids=ids_of(story)
+    for s in story['essays']:
+        if s.get('after') and s['after']!='end' and s['after'] not in figure_ids:raise ValueError('DOSSIER_ESSAY_AFTER_UNKNOWN_FIGURE')
+    sections=''.join(essay(s) for s in story['essays'] if not s.get('after'))
+    placed={}
+    for s in story['essays']:
+        if s.get('after'):placed.setdefault(s['after'],[]).append(essay(s))
+    body=''.join(parts[:2])+sections if not placed else None
     notes=''.join('<tr><th>'+H(n['theme'])+'</th><td>'+H(n['finding'])+'</td><td>'+H(n['boundary'])+'</td><td>'+''.join('<a href="'+source['official_announcement']+'#page='+str(p)+'">p.'+str(p)+'</a> ' for p in n['pages'])+'</td></tr>' for n in story['notes'])
     nav=''.join('<a href="#'+f['id']+'">'+H(f['nav'])+'</a>' for f in story['figures'])
     metrics=''.join('<div><span>'+H(m['label'])+'</span><strong>'+H(m['value'])+'</strong><small>'+H(m['context'])+'</small></div>' for m in story['metrics'])
     style='''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f6f1;color:#17393d;font:16px/1.85 "Noto Sans CJK SC","PingFang SC",sans-serif}a{color:inherit}header{border-bottom:1px solid #ced8cf;padding:18px 5vw;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em}main{max-width:1180px;margin:auto;padding:50px 28px}h1,h2{font-family:"Noto Serif CJK SC","Songti SC",serif;font-weight:550;line-height:1.4}h1{font-size:clamp(34px,4.5vw,62px);max-width:1000px;margin:22px 0}h2{font-size:30px}.eyebrow,.figure-head>span{font-size:11px;letter-spacing:.15em;font-weight:700;color:#087f68}.deck{font-size:21px;max-width:900px}.status{font-size:13px;color:#617875;max-width:950px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:1px solid #cbd8ce;border-bottom:1px solid #cbd8ce;padding:28px 0;margin:38px 0}.metrics span,.metrics small{display:block;font-size:13px;color:#617875}.metrics strong{font-size:36px;font-weight:500}nav{display:flex;flex-wrap:wrap;gap:12px 22px;padding:0 0 35px;font-size:13px}.essay{max-width:860px;margin:55px 0}.essay p{margin:18px 0}.thesis{border-left:3px solid #087f68;padding:20px 28px;background:#eeeee6;margin:40px 0}.thesis h2{font-size:25px;margin-top:0}figure{margin:65px 0 90px;background:#fffefb;border-top:1px solid #b7cac0}.figure-head{padding:28px 30px 12px}.figure-head h2{font-size:29px;margin:12px 0}.figure-head p{max-width:930px;color:#536e6b}button{background:transparent;border:1px solid #b9cec2;color:#087f68;padding:10px 15px;font:inherit;font-size:12px;cursor:pointer}svg{display:block;width:100%;height:auto}.desktop-art{padding:12px 20px}.native-art{display:none}figcaption{padding:24px 30px;font-size:14px;border-top:1px solid #e2e7df}figcaption span{display:block;color:#647c73;font-size:12px;margin-top:12px}details{border-top:1px solid #d5dfd5;padding:16px 30px;font-size:13px}summary{cursor:pointer;color:#087f68}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:20px;font-size:12px}th,td{border-bottom:1px solid #d8e0d5;padding:12px 10px;text-align:left;vertical-align:top}td.number{font-variant-numeric:tabular-nums;white-space:nowrap}footer{overflow-wrap:anywhere;border-top:1px solid #becfc3;margin-top:65px;padding:30px 0;color:#617875;font-size:12px}#notes table{min-width:650px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #087f68;outline-offset:3px}@media(max-width:850px){main{padding:35px 18px}.desktop-art{display:none}.native-art{display:block;padding:20px 0}h1{font-size:36px}.deck{font-size:18px}.metrics{gap:12px}.metrics strong{font-size:25px}.metrics span,.metrics small{font-size:11px}.figure-head,figcaption,details{padding-left:16px;padding-right:16px}.figure-head h2{font-size:25px}.thesis{padding:18px}h2{font-size:27px}}'''
     scripts='''document.querySelectorAll('[data-export]').forEach(b=>b.addEventListener('click',()=>{const f=b.closest('figure'),s=[...f.querySelectorAll('svg')].find(s=>s.getBoundingClientRect().width>0);const text=new XMLSerializer().serializeToString(s),u=URL.createObjectURL(new Blob([text],{type:'image/svg+xml'})),a=document.createElement('a');a.href=u;a.download=document.body.dataset.issuer+'-'+document.body.dataset.period+'-'+b.dataset.export+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}));'''
-    html='<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+H(issuer['short']+'｜'+story['title'])+'</title><style>'+style+'</style><body data-issuer="'+code+'" data-period="'+issuer['fiscal_period']+'"><header><a href="/#companies">← 返回公司研究目录</a><span>FINANCIALS IN VISUALS</span></header><main><div class="eyebrow">'+H(issuer['short']+' / '+code+' / '+issuer['fiscal_period'])+'</div><h1>'+H(story['title'])+'</h1><p class="deck">'+H(story['deck'])+'</p><p class="status">来源限定研究 · '+H(issuer['audit'])+' · 原始披露、管理层解释和研究计算分列 · 独立人类二审尚未完成。</p><div class="metrics">'+metrics+'</div><nav aria-label="报告章节">'+nav+'<a href="#research">研究判断</a><a href="#notes">重大附注</a></nav><aside class="thesis"><h2>'+H(story['thesis']['title'])+'</h2><p>'+H(story['thesis']['body'])+'</p></aside>'+''.join(parts[:2])+sections+''.join(parts[2:])+'<section id="notes"><div class="eyebrow">SOURCE NOTES / COUNTEREVIDENCE</div><h2>重大附注：哪些事实会改变判断？</h2><p>逐项阅读范围及计算边界如下。源金额校验不等于审计意见或独立人类二审。</p><div class="table-scroll"><table><tr><th>主题</th><th>核查发现</th><th>影响与边界</th><th>原件</th></tr>'+notes+'</table></div></section><footer><a href="'+source['official_announcement']+'">完整原始报告 ↗</a><p>归档原件 SHA256：'+source['original_bytes_sha256']+'</p><p>本报告不提供未经来源支持的估值目标、价格预测、销量归因或行业认证，不构成投资建议。</p><a href="/#companies">返回同一公司研究目录</a></footer></main><script type="application/json" id="ledger-data">'+json.dumps(ledger,ensure_ascii=False).replace('</','<\\/')+'</script><script>'+scripts+'</script></body></html>'
-    target=Path(out) if out else ROOT/'public'/f'{code}.html';target.parent.mkdir(exist_ok=True,parents=True)
+    html='<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+H(issuer['short']+'｜'+story['title'])+'</title><style>'+style+'</style><body data-issuer="'+code+'" data-period="'+issuer['fiscal_period']+'"><header><a href="/#companies">← 返回公司研究目录</a><span>FINANCIALS IN VISUALS</span></header><main><div class="eyebrow">'+H(issuer['short']+' / '+code+' / '+issuer.get('period_label',issuer['fiscal_period']))+'</div><h1>'+title_markup(story)+'</h1><p class="deck">'+H(story['deck'])+'</p><p class="status">来源限定研究 · '+H(issuer['audit'])+' · 原始披露、管理层解释和研究计算分列 · 独立人类二审尚未完成。</p><div class="metrics">'+metrics+'</div><nav aria-label="报告章节">'+nav+'<a href="#research">研究判断</a><a href="#notes">重大附注</a></nav><aside class="thesis"><h2>'+H(story['thesis']['title'])+'</h2><p>'+H(story['thesis']['body'])+'</p></aside>'+(body+''.join(parts[2:]) if body is not None else ''.join(p+''.join(placed.get(fid,[])) for p,fid in zip(parts,figure_ids))+''.join(placed.get('end',[])))+'<section id="notes"><div class="eyebrow">SOURCE NOTES / COUNTEREVIDENCE</div><h2>重大附注：哪些事实会改变判断？</h2><p>逐项阅读范围及计算边界如下。源金额校验不等于审计意见或独立人类二审。</p><div class="table-scroll"><table><tr><th>主题</th><th>核查发现</th><th>影响与边界</th><th>原件</th></tr>'+notes+'</table></div></section><footer><a href="'+source['official_announcement']+'">完整原始报告 ↗</a><p>归档原件 SHA256：'+source['original_bytes_sha256']+'</p><p>本报告不提供未经来源支持的估值目标、价格预测、销量归因或行业认证，不构成投资建议。</p><a href="/#companies">返回同一公司研究目录</a></footer></main><script type="application/json" id="ledger-data">'+json.dumps(ledger,ensure_ascii=False).replace('</','<\\/')+'</script><script>'+scripts+'</script></body></html>'
+    route=issuer.get('route',f'/{code}.html')
+    if not re.fullmatch(r'/[0-9]{6}(-[a-z0-9]+)?\.html',route):raise ValueError('DOSSIER_INVALID_ROUTE')
+    target=Path(out) if out else ROOT/'public'/route.lstrip('/');target.parent.mkdir(exist_ok=True,parents=True)
     from publication_editorial import finalize_publication
     html=finalize_publication(code,html,period=issuer['fiscal_period']);target.write_text(html)
     (folder/'figure-briefs.json').write_text(json.dumps({'issuer':code,'report':issuer['fiscal_period'],'source_sha256':source['original_bytes_sha256'],'figure_briefs':briefs},ensure_ascii=False,indent=2)+'\n')

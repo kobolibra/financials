@@ -28,6 +28,8 @@ on:
       - 'site/research_catalog.json'
       - 'site/portal_builder.py'
       - 'public/index.html'
+      - 'public/300394-2026q3.html'
+      - 'research/editorial-20261113/**'
       - 'public/300394.html'
       - 'public/300502.html'
       - 'scripts/check_handoff.py'
@@ -101,6 +103,7 @@ jobs:
           python -m pip install --disable-pip-version-check -q pymupdf
           python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'test_*.py' -v
           python -m unittest discover -s research/shared -p 'test_source_publication.py' -v
+          python -m unittest discover -s research/shared -p 'test_period_report.py' -v
       - name: Existing unified-root generator still reproduces the homepage
         run: |
           python -m unittest discover -s site -p test_portal.py -v

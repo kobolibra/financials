@@ -13,13 +13,24 @@ from editorial_bridge import money,wrap_label
 ROOT=Path(__file__).resolve().parents[2]
 
 def amount(bundle,terms):return sum((D(bundle['facts'][k]['yuan'])*D(str(c)) for k,c in terms),D(0))
+def catalog_row(catalog,key):
+ """Resolve an issuer row by six-digit code, or a later report period by 'code@period'.
+
+ Periods other than the issuer's main catalogue edition live in `period_reports`
+ so the one-row-per-issuer invariants of the homepage stay untouched.
+ """
+ if '@' in key:
+  code,period=key.split('@',1)
+  return next((r for r in catalog.get('period_reports',[]) if r['code']==code and r['period']==period),None)
+ return next((r for r in catalog['issuers'] if r['code']==key),None)
 def load(code):
  catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
- row=next((r for r in catalog['issuers'] if r['code']==code),None)
+ row=catalog_row(catalog,code)
  if not row or not row.get('editorial_manifest'):raise ValueError('CHAIN_EXPLICIT_SOURCE_MANIFEST_REQUIRED '+code)
  path=(ROOT/row['editorial_manifest']).resolve();path.relative_to(ROOT.resolve())
  bundle=json.loads(path.read_text())
- if bundle['issuer']!=code:raise ValueError('CHAIN_SOURCE_MANIFEST_ISSUER')
+ if bundle['issuer']!=code.split('@')[0]:raise ValueError('CHAIN_SOURCE_MANIFEST_ISSUER')
+ if '@' in code and bundle['period']!=code.split('@')[1]:raise ValueError('CHAIN_SOURCE_MANIFEST_PERIOD')
  return bundle
 def compile_chain(bundle):
  if bundle['scope']!='consolidated' or bundle['currency']!='CNY' or bundle['unit']!='元':raise ValueError('CHAIN_ACCOUNTING_BASIS')

@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "code": "300394",
+  "company": "苏州天孚光通信股份有限公司",
+  "period": "20269M",
+  "release_class": "source_limited_preview",
+  "report_route": "/300394-2026q3.html",
+  "report_file": "public/300394-2026q3.html",
+  "status_label": "三季报来源限定研究 · 人类独立二审、分产品毛利率与同行估值未完成",
+  "sector_adapter": "optical",
+  "accounting_basis": "industrial_own_cost_income_quarterly_report_without_segment_cost_disclosure_group_level_profit_chain_only_no_segment_gross_profit",
+  "source_pdf": {
+    "path": "research/issuers/300394/20269M/source/300394_20269M_complete_original.pdf",
+    "sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+    "bytes": 331004,
+    "physical_pages": 12,
+    "official_original_byte_equivalence": "NOT_CHECKED"
+  },
+  "ledger_file": "research/issuers/300394/20269M/source-ledger.json",
+  "figure_briefs_file": "research/issuers/300394/20269M/figure-briefs.json",
+  "sankey": {
+    "decision": "OMITTED_WITH_SOURCE_REASON",
+    "source_scope": "三季报不披露分产品收入与成本，只有合并口径。",
+    "omission_reason": "季报第1至12页只披露合并营业收入与营业成本，没有互斥分业务收入及各自成本，业务毛利桑基无合法来源；改用从合并营业收入到归母净利润的完整利润主线。"
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/source/300394_20269M_complete_original.pdf",
+      "scope": "12页完整三季度报告字节、封面全称与年份报告类型、p1证券代码和SHA核验；公告为巨潮资讯下载。"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/qa.json",
+      "scope": "169条原始源格金额、坐标与列位置核验；折行数字与空白单元格按页面横向位置取数，主要数据表6个印刷同比百分比由入账原值精确复算。非全报告审计。"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/qa.json",
+      "scope": "33项逐元勾稽：两期利润形成、归属、直接法经营现金、投资与筹资现金、现金首尾、资产负债、权益归属、首页数据表一致、扣非桥、非经常损益分项。"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/publication.json",
+      "scope": "核心判断含证伪条件，最强替代解释与反向证据各有正文；毛利增量的规模效应与毛利率效应以会计分解给出，明确不是因果识别。"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/figure-briefs.json",
+      "scope": "8幅图加完整利润主线，各答一个独立问题；单季与累计分开，存量不称同比，季报无间接法调节表故用直接法。"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/visual-qa/result.json",
+      "scope": "执行者对桌面与手机真实中文截图逐图自评：无裁切重叠、金额与符号一致；标题已按短语单元换行。这是自评，不是独立视觉总编审稿。"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/visual-qa/result.json",
+      "scope": "本地真实中文Chromium headless 1440/768/390各9图，27次真实SVG下载与当前可见版本逐字节一致，独立矢量与几何审计通过。未做WebKit。"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "research/issuers/300394/20269M/qa.json",
+      "scope": "共享出版器从原件与账本干净重建，与public文件逐字节一致。"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "季报不含完整附注；应收账龄、存货分类、坏账准备等无法在本报告中审阅。"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "没有附注可与三表勾稽；正文中的持股比例、分红与激励计划数字来自文字披露，未做表格坐标核验。"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "巨潮下载文件与交易所官网原件的逐字节等价未核对。"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "没有8至12个季度趋势、同行比较与估值；三季度单季毛利率需半年报跨文件推算，未入账。"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "没有真实独立人类财务与视觉二审。"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "尚未合并部署；合并后需对生产站全文件字节、导航、全图下载复验。"
+    }
+  },
+  "blockers": [
+    {
+      "kind": "RESEARCH",
+      "detail": "分产品毛利率、三季度单季毛利率、同行与估值未完成；独立人类二审未做；生产站点复验待合并后。"
+    }
+  ],
+  "published_html_sha256": "5645939d88a1b2c92800349f270b4249f7f549cb0ee8432ff0c619c0d5aeb14c",
+  "live_release_fingerprint": "NOT_CHECKED_PENDING_MAIN_DEPLOY"
+}

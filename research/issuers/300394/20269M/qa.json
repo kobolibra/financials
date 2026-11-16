@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "facts": 169,
+  "accounting_identities": 33,
+  "pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+  "source_cells": "EXACT_ARCHIVED_PDF_COORDINATES_NOT_HUMAN_AUDIT",
+  "html_sha256": "5645939d88a1b2c92800349f270b4249f7f549cb0ee8432ff0c619c0d5aeb14c",
+  "figures": 9
+}

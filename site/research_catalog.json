@@ -393,7 +393,8 @@
         "research/quality/material-notes-review-20261110.json",
         "research/issuers/600690/material-notes-review.json",
         "research/issuers/300548/material-notes-review.json",
-        "research/issuers/300570/material-notes-review.json"
+        "research/issuers/300570/material-notes-review.json",
+        "research/issuers/300394/20269M/material-notes-review.json"
       ],
       "local_migration_receipt": "research/quality/editorial-20261113-local/result.json",
       "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
@@ -412,5 +413,31 @@
       "acceptance": "research/shared/profit_chain_audit.py",
       "reading_policy": "Group profit backbone first; material business/variance/risk questions retained; complete original reconciliations expandable; no product after-tax allocation or inferred causality."
     }
-  }
+  },
+  "period_reports": [
+    {
+      "code": "300394",
+      "name": "天孚通信",
+      "period": "20269M",
+      "period_label": "2026年三季报",
+      "exchange": "SZ",
+      "industry": "光通信",
+      "sub": "光器件与光连接 · 前三季度累计",
+      "story": "收入增21%、归母利润增42%，毛利率跃升能持续吗？",
+      "deck": "前三季度营业成本不增反降，毛利率升至六成；同时存货与应收各增约8亿元，经营现金占净利润的比例下降。",
+      "href": "/300394-2026q3.html",
+      "kind": "原始财报研究",
+      "stage": "source-review",
+      "note": "三季报 · 原件与计算核验 · 人类二审未完成",
+      "figures": 9,
+      "signal": "+55.30%",
+      "signal_label": "2026Q3单季归母净利润同比",
+      "source": "2026年第三季度报告（12页）",
+      "parent_href": "/300394.html",
+      "figure_quality_contract": "FULL_SOURCE_FIGURES_V1",
+      "source_publication": "research/issuers/300394/20269M",
+      "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+      "editorial_manifest": "research/editorial-20261113/300394-20269M.json"
+    }
+  ]
 }

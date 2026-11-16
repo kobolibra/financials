@@ -268,7 +268,9 @@
       "8-12 quarter trend and margin-trend exhibits",
       "TYPE B and BANK routes in source_publication.py",
       "cross-report single-quarter derivation (Q3 = 9M - H1)",
-      "multi-period routing for one issuer in the catalog"
+      "post-merge live production QA (qa_source_publication_live.py) does not yet iterate period_reports",
+      "automatic check-off of the previous period thesis in a later-period report",
+      "WebKit phone pass for period reports (local environment has Chromium headless shell only)"
     ]
   },
   "entrypoints": {
@@ -331,7 +333,20 @@
       "real_screenshots": 12,
       "route_nav": "PASS",
       "second_human_editor": "NOT_CHECKED"
-    }
+    },
+    "period_reports": [
+      {
+        "code": "300394",
+        "period": "20269M",
+        "href": "/300394-2026q3.html",
+        "status": "LOCAL_PR_CANDIDATE_NOT_MERGED_NOT_DEPLOYED",
+        "source_pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+        "gates": "research/issuers/300394/20269M/release-gates.json",
+        "local_browser_receipt": "research/issuers/300394/20269M/visual-qa/result.json",
+        "live_production": "NOT_CHECKED",
+        "independent_human_review": "NOT_CHECKED"
+      }
+    ]
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",

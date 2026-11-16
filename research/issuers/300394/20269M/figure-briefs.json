@@ -1,0 +1,220 @@
+{
+  "issuer": "300394",
+  "report": "20269M",
+  "source_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+  "figure_briefs": [
+    {
+      "id": "profit-change",
+      "family": "signed_bridge",
+      "question": "利润增速为何是收入增速的两倍？",
+      "takeaway": "营业收入增加8.33亿元，营业成本却减少1.07亿元，毛利增加9.40亿元，超过归母净利润增量6.18亿元。",
+      "identity": "上年同期归母净利润＋全部损益项目有符号差额＝本期归母净利润。",
+      "counter": "这是会计差额归因，不识别价格、销量、产品结构或汇率的因果。管理层将营业成本下降标注为“无重大变化”，没有解释，需要用年报分产品毛利核实。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9
+      ],
+      "facts": [
+        "parent_net_prior",
+        "rev",
+        "rev_prior",
+        "cogs_prior",
+        "cogs",
+        "tax_surcharge_prior",
+        "tax_surcharge",
+        "selling_prior",
+        "selling",
+        "admin_prior",
+        "admin",
+        "rd_expense_prior",
+        "rd_expense",
+        "finance_prior",
+        "finance",
+        "other_income",
+        "other_income_prior",
+        "investment_income",
+        "investment_income_prior",
+        "fair_value",
+        "fair_value_prior",
+        "credit_impairment",
+        "credit_impairment_prior",
+        "asset_impairment",
+        "asset_impairment_prior",
+        "asset_disposal",
+        "asset_disposal_prior",
+        "nonop_income",
+        "nonop_income_prior",
+        "nonop_expense_prior",
+        "nonop_expense",
+        "income_tax_prior",
+        "income_tax",
+        "nci_prior",
+        "nci",
+        "parent_net"
+      ]
+    },
+    {
+      "id": "quarter",
+      "family": "comparison",
+      "question": "三季度单季是否在加速？",
+      "takeaway": "三季度单季收入同比+31.50%、归母净利同比+55.30%，均快于前九个月的+21.25%和+42.18%。",
+      "identity": "各项均为季报首页直接披露的单季值，没有做减法推算；单季与累计分别核对。",
+      "counter": "单季增速受上年基数和确认节奏影响。三季度单季毛利率需要用前九个月减半年报才能得到，本篇没有把两份报告混合入账，该项为 NOT_CHECKED。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1
+      ],
+      "facts": [
+        "q3_rev_prior",
+        "q3_rev",
+        "q3_parent_net_prior",
+        "q3_parent_net",
+        "q3_adjusted_parent_prior",
+        "q3_adjusted_parent"
+      ]
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "question": "利润与现金是否同向？",
+      "takeaway": "归母净利润同比+42.18%，经营现金净额只增+8.75%；经营现金占合并净利润70.15%，上年同期91.71%。",
+      "identity": "各行分别比较两个报告期的原始披露值，经营现金净额与净利润使用同一合并范围。",
+      "counter": "经营现金净额仍在增长，转换率下降不等于盈利质量恶化；备货与预付属于先付现、后出货，需要后续季度验证。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1,
+        9,
+        11
+      ],
+      "facts": [
+        "parent_net_prior",
+        "parent_net",
+        "ytd_adjusted_parent_key_prior",
+        "ytd_adjusted_parent_key",
+        "net_profit_prior",
+        "net_profit",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "quality",
+      "family": "signed_bridge",
+      "question": "利润里一次性项目有多少？",
+      "takeaway": "非经常性损益净额仅0.19亿元，占归母净利润0.89%，扣非增速44.26%与归母增速42.18%接近。",
+      "identity": "归母净利润−非经常性损益净额＝扣非归母净利润；各分项减所得税影响额等于非经常性损益净额。",
+      "counter": "非经常性项目小，不等于利润可持续：汇兑损失、信用减值和研发费用都在经常性损益内变化，见增长归因图。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1,
+        2
+      ],
+      "facts": [
+        "ytd_parent_net_key",
+        "nr_grants",
+        "nr_fair",
+        "nr_disposal",
+        "nr_other",
+        "nr_tax",
+        "ytd_adjusted_parent_key"
+      ]
+    },
+    {
+      "id": "cash-direct",
+      "family": "signed_bridge",
+      "question": "经营现金从哪里来，用到哪里？",
+      "takeaway": "采购付现同比+22.27%，职工薪酬付现同比+56.01%，而营业成本同比-5.69%，付现增速明显快于成本。",
+      "identity": "销售商品收到的现金＋其他经营收款−各项经营付现＝经营现金净额。",
+      "counter": "采购付现与营业成本口径不同：付现包含存货和预付的增加，应付票据增加1.92亿元意味着部分采购尚未付现。付现增速不能直接当作存货金额。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        10,
+        11
+      ],
+      "facts": [
+        "sales_cash",
+        "tax_refund",
+        "other_op_in",
+        "purchase_cash",
+        "employee_cash",
+        "tax_paid",
+        "other_op_out",
+        "cfo"
+      ]
+    },
+    {
+      "id": "working-capital",
+      "family": "comparison",
+      "question": "增长占用了多少营运资金？",
+      "takeaway": "应收、存货和预付合计增加17.11亿元，合同负债、应付账款和应付票据合计增加7.02亿元，净占用10.08亿元。",
+      "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
+      "counter": "季报不披露账龄、坏账准备和存货分类，无法判断应收是否逾期、存货是否已进入成品。信用减值损失同比多计提0.27亿元，方向与应收增长一致，但金额不足以说明回款问题。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        6,
+        7
+      ],
+      "facts": [
+        "ar_prior",
+        "ar",
+        "inventory_prior",
+        "inventory",
+        "prepayments_prior",
+        "prepayments",
+        "contract_liabilities_prior",
+        "contract_liabilities",
+        "ap_prior",
+        "ap",
+        "notes_payable_prior",
+        "notes_payable"
+      ]
+    },
+    {
+      "id": "cash",
+      "family": "signed_bridge",
+      "question": "经营现金很强，期末现金为何骤降？",
+      "takeaway": "现金及现金等价物由28.64亿元降至9.39亿元，主因是其他投资活动付款17.02亿元，以及筹资流出10.84亿元。",
+      "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
+      "counter": "季报未披露定期存款的期限、币种明细和是否受限，货币资金中受限部分无法确认；其他投资活动付款的性质依赖管理层说明。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        11
+      ],
+      "facts": [
+        "cash_open",
+        "cfo",
+        "capex_cash",
+        "other_invest_pay",
+        "invest_recover",
+        "invest_income_cash",
+        "disposal_cash",
+        "invest_pay",
+        "cff",
+        "cash_fx",
+        "cash_close"
+      ]
+    },
+    {
+      "id": "balance",
+      "family": "balance",
+      "question": "扩张靠负债还是权益？",
+      "takeaway": "总资产较年初增加17.96亿元，其中负债增加7.22亿元，资产负债率由14.52%升至20.12%。",
+      "identity": "资产＝负债＋全部权益；全部权益＝归母权益＋少数股东权益，两个日期分别闭合。",
+      "counter": "合并资产负债表没有列示短期借款和长期借款金额，负债增加不是有息借款；资产负债率仍低，但经营性负债依赖供应商与客户信用。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        7,
+        8
+      ],
+      "facts": [
+        "assets_prior",
+        "liabilities_prior",
+        "equity_prior",
+        "assets",
+        "liabilities",
+        "equity"
+      ]
+    }
+  ]
+}
