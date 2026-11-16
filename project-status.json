@@ -268,7 +268,7 @@
       "WebKit phone pass for period reports (local environment has Chromium headless shell only)",
       "single-quarter derivation across THREE reports (Q2 alone = H1 - Q1) needs an H1 ledger for the issuer",
       "INCOME_FLOW_V3 hero on 5 source-publication reports; 10 legacy manifests still V1 (need prior-period source cells)",
-      "EDITORIAL_V2 exhibit design published for 300394 Q3 only; other reports keep the earlier body figures",
+      "EDITORIAL_V2 body design on 4 source publications (300394 Q3, 300570, 300548, 600690); 300394 Q1 and 10 legacy reports keep the earlier body figures",
       "multi-year segment trend exhibits need several archived annual ledgers",
       "income-flow V3 gains at the operating->parent step are drawn as a small ochre inflow whose label sits near the operating node; no independent human art review"
     ]
@@ -383,7 +383,10 @@
         "300394@2026Q1"
       ],
       "editorial_v2_reports": [
-        "300394@20269M"
+        "300394@20269M",
+        "300570",
+        "300548",
+        "600690"
       ],
       "local_receipt": "research/quality/aei-v3-exhibits-local/result.json",
       "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949; first post-merge run 43823304600 failed WebKit 375 on the Q3 KPI footnote, fixed in PR #87)",

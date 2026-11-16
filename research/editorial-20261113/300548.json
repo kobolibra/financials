@@ -940,24 +940,33 @@
     "figures": [
       {
         "index": 0,
-        "id": "income",
-        "title": "哪类业务把收入转化为毛利？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "id": "glance",
+        "title": "这半年最重要的六个数字是什么？",
+        "role": "secondary",
+        "rationale": "At a glance：本期六个关键数字",
         "summary": false,
         "focus": []
       },
       {
         "index": 1,
-        "id": "profit",
-        "title": "合并赚取的利润，多少属于上市公司股东？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "id": "growth",
+        "title": "哪个市场、哪一行增长最快？",
+        "role": "secondary",
+        "rationale": "地区与逐行同比",
         "summary": false,
         "focus": []
       },
       {
         "index": 2,
+        "id": "margins",
+        "title": "利润率提升有多少落到上市公司股东？",
+        "role": "secondary",
+        "rationale": "利润率与少数股东占比",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 3,
         "id": "performance",
         "title": "利润接近翻倍，现金是否同步？",
         "role": "secondary",
@@ -966,25 +975,25 @@
         "focus": []
       },
       {
-        "index": 3,
-        "id": "cfo",
-        "title": "增长的利润，被哪些项目占用了？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
-        "summary": false,
-        "focus": []
-      },
-      {
         "index": 4,
-        "id": "cash-change",
-        "title": "为什么盈利增量没有变成现金增量？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "id": "geography",
+        "title": "增长集中在哪里，汇率风险跟到哪里？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
         "summary": false,
         "focus": []
       },
       {
         "index": 5,
+        "id": "stock-delta",
+        "title": "增长把资金沉淀在哪里？",
+        "role": "secondary",
+        "rationale": "营运资本占用，取代两期对比表",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 6,
         "id": "inventory",
         "title": "期末备货，主要沉淀在哪个环节？",
         "role": "secondary",
@@ -993,25 +1002,7 @@
         "focus": []
       },
       {
-        "index": 6,
-        "id": "working-capital",
-        "title": "业务扩张所需的资金，主要由谁提供？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
         "index": 7,
-        "id": "balance",
-        "title": "扩张后的资产，由多少负债和权益支撑？",
-        "role": "reference",
-        "rationale": "保留原始结构与风险证据，正文优先经营驱动和重要资本约束",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 8,
         "id": "cash",
         "title": "经营仍有净流入，期末现金为何减少？",
         "role": "secondary",
@@ -1020,7 +1011,7 @@
         "focus": []
       },
       {
-        "index": 9,
+        "index": 8,
         "id": "capital",
         "title": "哪些现金支出属于扩张，哪些属于权益交易？",
         "role": "secondary",
@@ -1029,11 +1020,47 @@
         "focus": []
       },
       {
+        "index": 9,
+        "id": "income",
+        "title": "哪类业务把收入转化为毛利？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
         "index": 10,
-        "id": "geography",
-        "title": "增长集中在哪里，汇率风险跟到哪里？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "id": "profit",
+        "title": "合并赚取的利润，多少属于上市公司股东？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 11,
+        "id": "cfo",
+        "title": "增长的利润，被哪些项目占用了？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 12,
+        "id": "cash-change",
+        "title": "为什么盈利增量没有变成现金增量？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 13,
+        "id": "balance",
+        "title": "扩张后的资产，由多少负债和权益支撑？",
+        "role": "reference",
+        "rationale": "保留原始结构与风险证据，正文优先经营驱动和重要资本约束",
         "summary": false,
         "focus": []
       }
@@ -1044,7 +1071,8 @@
     "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
     "original_article_sha256": "f06fd593f87a99487ea1637a5c55e60f620e535241213f63d550f52c1caf5500",
     "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。",
-    "layout": "INCOME_FLOW_V3"
+    "layout": "INCOME_FLOW_V3",
+    "hero_position": "after_first"
   },
   "report_identity_page": 1,
   "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-22/1225492397.PDF",

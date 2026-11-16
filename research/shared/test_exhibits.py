@@ -82,6 +82,17 @@ class Exhibits(unittest.TestCase):
             c.text(16, 100, '每格小条：深色为本期，浅色为对比期（见各格标注），各格独立比例。', 10)
         c.text(16, 100, '小条：深色本期，浅色对比期；各格独立比例。', 10)
 
+    def test_a_negative_kpi_is_never_drawn_in_the_positive_colour(self):
+        # 300570 H1: operating cash flow turned negative; its micro bar must be red, and the audit enforces it
+        html = (ROOT / 'public/300570.html').read_text()
+        svg = next(s for s in re.findall(r'<svg\b.*?</svg>', html, flags=re.S) if 'SOURCE_KPI_BOARD_V1' in s and 'editorial-1040' in s)
+        check_editorial_svg(svg, issuer='300570', pdf_sha256=re.search(r'data-original-pdf-sha256="([a-f0-9]{64})"', svg).group(1))
+        neg = re.search(r'<rect [^>]*fill="#C2362E"[^>]*data-micro-value="-[0-9.]+"', svg)
+        self.assertIsNotNone(neg)
+        with self.assertRaisesRegex(ValueError, 'KPI_NEGATIVE_COLOUR'):
+            check_editorial_svg(svg.replace(neg.group(0), neg.group(0).replace('#C2362E', '#3F4650')), issuer='300570',
+                                pdf_sha256=re.search(r'data-original-pdf-sha256="([a-f0-9]{64})"', svg).group(1))
+
     def test_wrong_issuer_is_refused(self):
         with self.assertRaises(ValueError):
             self.audit(self.svgs[0].replace('data-issuer="300394"', 'data-issuer="300308"'))

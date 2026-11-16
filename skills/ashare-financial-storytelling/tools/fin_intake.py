@@ -467,7 +467,7 @@ HEDGE_OK = re.compile(r"(管理层|披露|原文|称|解释|可能|不能|不等
 REQUIRED_FIGURE_KEYS = ("id", "family", "nav", "question", "takeaway", "analysis", "counter", "identity", "eyebrow")
 
 
-def lint(story: dict, expanded: dict | None = None) -> list[str]:
+def lint(story: dict, expanded: dict | None = None, roles: dict | None = None) -> list[str]:
     """Editorial lint. Lengths are measured on the expanded text a reader sees;
     hand-typed numbers are detected on the authored text."""
     issues = []
@@ -514,14 +514,14 @@ def lint(story: dict, expanded: dict | None = None) -> list[str]:
     if len(story.get("metrics", [])) != 3:
         issues.append("HERO_METRICS_SHOULD_BE_3")
     if story.get("design") == "EDITORIAL_V2":
-        issues += lint_v2(figs)
+        issues += lint_v2(figs, roles)
     return issues
 
 
 TREND_FAMILIES = {"period_columns", "ratio_dumbbell", "growth_bars"}
 
 
-def lint_v2(figs) -> list:
+def lint_v2(figs, roles=None) -> list:
     """EDITORIAL_V2 (AEI earnings-post structure): at-a-glance board first, a varied exhibit mix,
     at least one trend exhibit, chaptered themes, and no parade of cumulative bridges."""
     issues = []
@@ -532,8 +532,11 @@ def lint_v2(figs) -> list:
         issues.append(f"V2_FAMILY_VARIETY_{len(set(fams))}: use at least 5 distinct exhibit families")
     if not TREND_FAMILIES & set(fams):
         issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
-    if fams.count("signed_bridge") * 2 > len(fams):
-        issues.append("V2_BRIDGE_PARADE: signed bridges exceed half of the figures; move overlapping ones to reference")
+    # body = figures the editorial manifest keeps in the main reading layer (all figures when roles are unknown)
+    body = [f for f in figs if (roles or {}).get(f.get("id")) != "reference"]
+    bridges = sum(1 for f in body if f.get("family") == "signed_bridge")
+    if bridges > 2 or bridges * 2 > len(body):
+        issues.append(f"V2_BRIDGE_PARADE_{bridges}: keep at most 2 signed bridges in the body; move the rest to reference")
     if sum(1 for f in figs if f.get("chapter")) < 3:
         issues.append("V2_TOO_FEW_CHAPTERS: group figures into 3-4 themed takeaways")
     for f in figs:
@@ -556,7 +559,9 @@ def cmd_preflight(a) -> None:
         result["source_and_accounting"] = "FAIL " + str(exc)
     try:
         from source_publication import expand_claims  # noqa: E402
-        result["editorial_lint"] = lint(story, expand_claims(story, ledger))
+        mpath = editorial_path(a.code, ledger["issuer"]["fiscal_period"], a.period)
+        roles = {f["id"]: f.get("role") for f in json.loads(mpath.read_text())["editorial"]["figures"]} if mpath.exists() else None
+        result["editorial_lint"] = lint(story, expand_claims(story, ledger), roles)
     except (ValueError, KeyError) as exc:
         result["editorial_lint"] = ["CLAIM_EXPANSION_FAILED " + str(exc)]
     used = set()

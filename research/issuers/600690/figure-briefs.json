@@ -4,6 +4,65 @@
   "source_sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
   "figure_briefs": [
     {
+      "id": "glance",
+      "family": "kpi_board",
+      "question": "这半年最重要的六个数字是什么？",
+      "takeaway": "收入-2.80%，毛利率小幅升至27.23%，归母利润-14.27%，扣非-20.54%。",
+      "identity": "各格为合并口径；流量与上年同期比较，应收为期末与年初余额比较。",
+      "counter": "扣非降幅大于归母，说明非经常性收益在托底；汇率与关税影响半年报只有定性说明。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        66,
+        70,
+        71,
+        74,
+        192
+      ],
+      "facts": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "adjusted_parent",
+        "adjusted_parent_prior",
+        "cfo",
+        "cfo_prior",
+        "ar",
+        "ar_prior"
+      ]
+    },
+    {
+      "id": "growth",
+      "family": "growth_bars",
+      "question": "哪个业务、哪个地区在增长？",
+      "takeaway": "智慧暖通+5.70%，智慧生活电器-6.04%；南亚+17.11%、欧洲+4.90%，美洲-6.65%。",
+      "identity": "各条为本期相对上年同期的同比增速，来源为半年报主营业务分产品与分地区表。",
+      "counter": "分产品与分地区是两种口径，不能交叉相乘；地区收入同比不能区分价格、销量与汇率折算。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        151,
+        172
+      ],
+      "facts": [
+        "living_rev_prior",
+        "living_rev",
+        "hvac_rev_prior",
+        "hvac_rev",
+        "ecosystem_rev_prior",
+        "ecosystem_rev",
+        "mainland_rev_prior",
+        "mainland_rev",
+        "americas_rev_prior",
+        "americas_rev",
+        "europe_rev_prior",
+        "europe_rev",
+        "southasia_rev_prior",
+        "southasia_rev"
+      ]
+    },
+    {
       "id": "income",
       "family": "income",
       "question": "收入下降时，哪类产品仍在支撑毛利？",
@@ -65,69 +124,45 @@
       ]
     },
     {
-      "id": "profit",
-      "family": "signed_bridge",
-      "question": "414.20亿元毛利，如何走到103.16亿元归母净利润？",
-      "takeaway": "销售、管理和研发的负担要与财务损益、减值和税收分别阅读，营业利润不是管理层定义的“经营利润”。",
-      "identity": "毛利减费用加各项损益=营业利润；加营业外净额减所得税及少数股东损益=归母净利润。",
-      "counter": "本图是会计形成过程，不等于现金支付；管理层经营利润排除了财务及若干收益项目，不能与法定营业利润互换。",
+      "id": "margins",
+      "family": "ratio_dumbbell",
+      "question": "毛利率稳住了，利润率为何下滑？",
+      "takeaway": "毛利率变化+0.36个百分点，销售费用率变化+0.70个百分点，营业利润率变化-1.10个百分点。",
+      "identity": "空心点为上年同期，实心点为本期；分部毛利率以各自收入为分母，其余以合并营业收入为分母。",
+      "counter": "分部毛利率为主营业务口径，不含其他业务；销售费用率上升是否与海外渠道或促销有关，半年报未量化。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
         70,
-        71
+        71,
+        151
       ],
       "facts": [
-        "rev",
-        "cogs",
-        "tax_surcharge",
+        "living_rev",
+        "living_cost",
+        "living_rev_prior",
+        "living_cost_prior",
+        "hvac_rev",
+        "hvac_cost",
+        "hvac_rev_prior",
+        "hvac_cost_prior",
+        "ecosystem_rev",
+        "ecosystem_cost",
+        "ecosystem_rev_prior",
+        "ecosystem_cost_prior",
         "selling",
-        "admin",
-        "rd_expense",
-        "finance",
-        "other_income",
-        "investment_income",
-        "fair_value",
-        "credit_impairment",
-        "asset_impairment",
-        "asset_disposal",
+        "rev",
+        "selling_prior",
+        "rev_prior",
         "operating_profit",
-        "nonop_income",
-        "nonop_expense",
-        "pretax",
-        "income_tax",
-        "net_profit",
-        "nci",
-        "parent_net"
-      ]
-    },
-    {
-      "id": "geography",
-      "family": "comparison",
-      "question": "大陆和美洲承压，欧洲与南亚能抵消多少？",
-      "takeaway": "大陆对外收入减少40.76亿元，美洲减少26.60亿元；欧洲和南亚增长只是部分对冲。",
-      "identity": "大陆收入加海外收入等于集团收入；海外子项只比较自身两期。",
-      "counter": "这些是人民币报告收入，包含汇率换算和业务组合效应；不能把变化全部归因于当地销量、份额或价格。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        172
-      ],
-      "facts": [
-        "mainland_rev_prior",
-        "mainland_rev",
-        "overseas_rev_prior",
-        "overseas_rev",
-        "americas_rev_prior",
-        "americas_rev",
-        "europe_rev_prior",
-        "europe_rev",
-        "southasia_rev_prior",
-        "southasia_rev"
+        "operating_profit_prior",
+        "parent_net",
+        "parent_net_prior"
       ]
     },
     {
       "id": "profit-change",
       "family": "signed_bridge",
-      "question": "归母净利润减少17.17亿元，主要发生在哪些项目？",
+      "question": "归母净利润减少17.17亿元，发生在哪些项目？",
       "takeaway": "收入减少与成本下降基本对冲；财务费用恶化14.54亿元、销售费用增加6.22亿元，研发费用下降提供缓冲。",
       "identity": "上期归母净利润+每项法定损益变化=本期归母净利润。",
       "counter": "会计差额不识别价格、销量、结构或汇率的独立因果；汇兑、对冲收益、现金汇兑、外币报表折算属于不同口径。",
@@ -176,64 +211,44 @@
       ]
     },
     {
-      "id": "cash-conversion",
-      "family": "signed_bridge",
-      "question": "108.76亿元净利润，为什么只形成97.52亿元经营现金？",
-      "takeaway": "经营性应收项目占用97.83亿元，存货释放11.75亿元、经营性应付增加23.70亿元，部分抵消占用。",
-      "identity": "合并净利润加全部16项原披露有符号调节=经营现金流。",
-      "counter": "年中季节性、收入下降、信用账期、外币折算等均可能影响现金；仅凭本期CFO不能断言应收恶化或长期现金能力下降。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        71,
-        74,
-        157
-      ],
-      "facts": [
-        "net_profit",
-        "asset_provision",
-        "credit_provision",
-        "depreciation",
-        "rou_amort",
-        "intangible_amort",
-        "deferred_amort",
-        "disposal_loss",
-        "fair_loss",
-        "finance_adjustment",
-        "investment_loss",
-        "dta_decrease",
-        "dtl_increase",
-        "inventory_release",
-        "operating_ar_change",
-        "operating_ap_change",
-        "cfo_other",
-        "cfo"
-      ]
-    },
-    {
-      "id": "working-capital",
-      "family": "comparison",
-      "question": "应收上升、库存下降，哪些风险需要继续追踪？",
-      "takeaway": "应收账款净额增加58.89亿元；存货净额下降15.31亿元，但存货跌价准备上升1.56亿元。",
-      "identity": "净应收=账面余额减坏账准备；净存货=账面余额减跌价准备。",
-      "counter": "2025年末至2026年中的存量变化不是同比，也不能直接代替间接现金流调节；保理终止确认会影响应收存量。",
+      "id": "stock-delta",
+      "family": "stock_delta",
+      "question": "营运资本里哪些项目在吸走现金？",
+      "takeaway": "应收增加+58.89亿元，合同负债减少18.83亿元，两者都占用现金；存货减少15.31亿元释放了一部分。",
+      "identity": "各条为期末余额减年初余额；资产增加或负债减少占用资金。",
+      "counter": "应收与合同负债有季节性，半年末与年末不完全可比；应收前五名集中度见重大附注。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
         66,
-        67,
-        118,
-        122
+        67
       ],
       "facts": [
         "ar_prior",
         "ar",
+        "contract_assets_prior",
+        "contract_assets",
         "inventory_prior",
         "inventory",
-        "ar_allowance_prior",
-        "ar_allowance",
-        "inventory_allowance_prior",
-        "inventory_allowance",
         "contract_liabilities_prior",
         "contract_liabilities"
+      ]
+    },
+    {
+      "id": "recurring",
+      "family": "signed_bridge",
+      "question": "扣非归母利润92.99亿元：哪些改善不能外推？",
+      "takeaway": "归母非经常性损益净额10.18亿元，高于上年3.31亿元；扣非归母利润同比-20.54%。",
+      "identity": "归母净利润−归母非经常性损益净额=扣非归母净利润。",
+      "counter": "美国海关退税应收款6.12亿元、税收调整影响5.12亿元和本期实际收到的退税现金不是同一个指标；不可机械互换。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        71,
+        192
+      ],
+      "facts": [
+        "parent_net",
+        "nonrecurring_net",
+        "adjusted_parent"
       ]
     },
     {
@@ -274,9 +289,79 @@
       ]
     },
     {
+      "id": "profit",
+      "family": "signed_bridge",
+      "question": "414.20亿元毛利，怎样变成103.16亿元归母利润？",
+      "takeaway": "销售、管理和研发的负担要与财务损益、减值和税收分别阅读，营业利润不是管理层定义的“经营利润”。",
+      "identity": "毛利减费用加各项损益=营业利润；加营业外净额减所得税及少数股东损益=归母净利润。",
+      "counter": "本图是会计形成过程，不等于现金支付；管理层经营利润排除了财务及若干收益项目，不能与法定营业利润互换。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        70,
+        71
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "tax_surcharge",
+        "selling",
+        "admin",
+        "rd_expense",
+        "finance",
+        "other_income",
+        "investment_income",
+        "fair_value",
+        "credit_impairment",
+        "asset_impairment",
+        "asset_disposal",
+        "operating_profit",
+        "nonop_income",
+        "nonop_expense",
+        "pretax",
+        "income_tax",
+        "net_profit",
+        "nci",
+        "parent_net"
+      ]
+    },
+    {
+      "id": "cash-conversion",
+      "family": "signed_bridge",
+      "question": "108.76亿元净利润，为何只有97.52亿元经营现金？",
+      "takeaway": "经营性应收项目占用97.83亿元，存货释放11.75亿元、经营性应付增加23.70亿元，部分抵消占用。",
+      "identity": "合并净利润加全部16项原披露有符号调节=经营现金流。",
+      "counter": "年中季节性、收入下降、信用账期、外币折算等均可能影响现金；仅凭本期CFO不能断言应收恶化或长期现金能力下降。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        71,
+        74,
+        157
+      ],
+      "facts": [
+        "net_profit",
+        "asset_provision",
+        "credit_provision",
+        "depreciation",
+        "rou_amort",
+        "intangible_amort",
+        "deferred_amort",
+        "disposal_loss",
+        "fair_loss",
+        "finance_adjustment",
+        "investment_loss",
+        "dta_decrease",
+        "dtl_increase",
+        "inventory_release",
+        "operating_ar_change",
+        "operating_ap_change",
+        "cfo_other",
+        "cfo"
+      ]
+    },
+    {
       "id": "balance",
       "family": "balance",
-      "question": "资产增加161.17亿元，融资结构发生了什么变化？",
+      "question": "资产增加161.17亿元，融资结构如何变化？",
       "takeaway": "资产3119.12亿元，负债1825.36亿元，总权益1293.75亿元；股东权益必须包含少数股东权益。",
       "identity": "同日资产=负债+全部权益；两日共享金额尺度。",
       "counter": "两期账面存量不能被画成现金流；现金、理财、受限资金、借款和租赁需分别分析，不以单一净现金指标替代偿债研究。",
@@ -297,8 +382,8 @@
     {
       "id": "cash-scope",
       "family": "signed_bridge",
-      "question": "508.59亿元货币资金，为什么不等于现金等价物？",
-      "takeaway": "保证金、受限专项户等合计9.87亿元不属于现金及现金等价物，扣除后为498.73亿元。",
+      "question": "508.59亿元货币资金，为何不等于现金等价物？",
+      "takeaway": "保证金、受限专项户等合计9.87亿元不属于现金及现金等价物，期末现金及现金等价物为498.73亿元。",
       "identity": "货币资金−不属于现金等价物的货币资金=现金及现金等价物。",
       "counter": "不属于现金等价物并非全部永久受限；本桥只解释报告的现金定义，不能替代全部期限和法律限制分析。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
@@ -311,24 +396,6 @@
         "money_funds",
         "cash_excluded",
         "cash_close"
-      ]
-    },
-    {
-      "id": "recurring",
-      "family": "signed_bridge",
-      "question": "扣非归母利润92.99亿元：哪些改善不能外推？",
-      "takeaway": "归母非经常性损益净额10.18亿元，高于上年3.31亿元；扣非归母利润同比下降20.54%。",
-      "identity": "归母净利润−归母非经常性损益净额=扣非归母净利润。",
-      "counter": "美国海关退税应收款6.12亿元、税收调整影响5.12亿元和本期实际收到的退税现金不是同一个指标；不可机械互换。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        71,
-        192
-      ],
-      "facts": [
-        "parent_net",
-        "nonrecurring_net",
-        "adjusted_parent"
       ]
     }
   ]

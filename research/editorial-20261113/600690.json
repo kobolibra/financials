@@ -978,15 +978,33 @@
     "figures": [
       {
         "index": 0,
-        "id": "income",
-        "title": "收入下降时，哪类产品仍在支撑毛利？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "id": "glance",
+        "title": "这半年最重要的六个数字是什么？",
+        "role": "secondary",
+        "rationale": "At a glance：本期六个关键数字",
         "summary": false,
         "focus": []
       },
       {
         "index": 1,
+        "id": "growth",
+        "title": "哪个业务、哪个地区在增长？",
+        "role": "secondary",
+        "rationale": "分产品与分地区同比，取代地区两期表",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
+        "id": "income",
+        "title": "收入下降时，哪类产品仍在支撑毛利？",
+        "role": "secondary",
+        "rationale": "分产品毛利来源，增长章节的金额基础",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 3,
         "id": "product-gp-change",
         "title": "毛利少了6.36亿元，哪些业务在对冲？",
         "role": "secondary",
@@ -995,36 +1013,72 @@
         "focus": []
       },
       {
-        "index": 2,
+        "index": 4,
+        "id": "margins",
+        "title": "毛利率稳住了，利润率为何下滑？",
+        "role": "secondary",
+        "rationale": "分部毛利率与费用率",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 5,
+        "id": "profit-change",
+        "title": "归母净利润减少17.17亿元，发生在哪些项目？",
+        "role": "secondary",
+        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 6,
+        "id": "stock-delta",
+        "title": "营运资本里哪些项目在吸走现金？",
+        "role": "secondary",
+        "rationale": "营运资本占用，取代两期对比表",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 7,
+        "id": "recurring",
+        "title": "扣非归母利润92.99亿元：哪些改善不能外推？",
+        "role": "reference",
+        "rationale": "EDITORIAL_V2 正文签名桥不超过两张；扣非结论已在本期一览与 KPI 看板呈现",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 8,
+        "id": "cash-close",
+        "title": "现金增加36.05亿元，为何不能只看经营现金？",
+        "role": "reference",
+        "rationale": "EDITORIAL_V2 正文签名桥不超过两张；现金首尾闭合留作核对",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 9,
+        "id": "capital",
+        "title": "经营现金扣除真实现金购建支出后，还剩多少？",
+        "role": "reference",
+        "rationale": "EDITORIAL_V2 正文签名桥不超过两张；再投资余额留作核对",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 10,
         "id": "profit",
-        "title": "414.20亿元毛利，如何走到103.16亿元归母净利润？",
+        "title": "414.20亿元毛利，怎样变成103.16亿元归母利润？",
         "role": "reference",
         "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
         "summary": false,
         "focus": []
       },
       {
-        "index": 3,
-        "id": "geography",
-        "title": "大陆和美洲承压，欧洲与南亚能抵消多少？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 4,
-        "id": "profit-change",
-        "title": "归母净利润减少17.17亿元，主要发生在哪些项目？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 5,
+        "index": 11,
         "id": "cash-conversion",
-        "title": "108.76亿元净利润，为什么只形成97.52亿元经营现金？",
+        "title": "108.76亿元净利润，为何只有97.52亿元经营现金？",
         "role": "reference",
         "rationale": "正文保留主要现金占用与反证，全部附注调节移入可展开核对层",
         "summary": true,
@@ -1035,57 +1089,21 @@
         ]
       },
       {
-        "index": 6,
-        "id": "working-capital",
-        "title": "应收上升、库存下降，哪些风险需要继续追踪？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 7,
-        "id": "cash-close",
-        "title": "现金增加36.05亿元，为何不能只看经营现金？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 8,
-        "id": "capital",
-        "title": "经营现金扣除真实现金购建支出后，还剩多少？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 9,
+        "index": 12,
         "id": "balance",
-        "title": "资产增加161.17亿元，融资结构发生了什么变化？",
+        "title": "资产增加161.17亿元，融资结构如何变化？",
         "role": "reference",
         "rationale": "保留原始结构与风险证据，正文优先经营驱动和重要资本约束",
         "summary": false,
         "focus": []
       },
       {
-        "index": 10,
+        "index": 13,
         "id": "cash-scope",
-        "title": "508.59亿元货币资金，为什么不等于现金等价物？",
+        "title": "508.59亿元货币资金，为何不等于现金等价物？",
         "role": "reference",
         "rationale": "保留原始结构与风险证据，正文优先经营驱动和重要资本约束",
         "summary": true,
-        "focus": []
-      },
-      {
-        "index": 11,
-        "id": "recurring",
-        "title": "扣非归母利润92.99亿元：哪些改善不能外推？",
-        "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
-        "summary": false,
         "focus": []
       }
     ],
@@ -1095,7 +1113,8 @@
     "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
     "original_article_sha256": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
     "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。",
-    "layout": "INCOME_FLOW_V3"
+    "layout": "INCOME_FLOW_V3",
+    "hero_position": "after_first"
   },
   "report_identity_page": 1,
   "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",

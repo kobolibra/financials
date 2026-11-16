@@ -228,5 +228,15 @@
   "production_artifact": {
     "id": 14205973883,
     "zip_sha256": "b3128bedd495b5f709ba76d50facde336a795bcd9a144d465efa53c9325001db"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "d0529d76d105ac4af17b6e93a8c5499b8661a07b043013a578ea22bf8c68e1f3",
+    "candidate_full_html_sha256": "683755dbecaee611747e398befb989957f1abb1b9f545b1b29ec2de7c791cc42",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "正文改为EDITORIAL_V2：本期一览、KPI看板、逐行/分部同比增速条、利润率哑铃、营运资本余额变动、主题章节；正文签名桥不超过两张，重叠的两期对比表移除",
+    "local_receipt": "research/quality/editorial-20261113-local/result.json",
+    "base_figure_count": 13
   }
 }
