@@ -390,7 +390,7 @@
         "300394@2026Q1"
       ],
       "local_receipt": "research/quality/aei-v3-exhibits-local/result.json",
-      "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949; first post-merge run 43823304600 failed WebKit 375 on the Q3 KPI footnote, fixed in PR #87)",
+      "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949; first post-merge run 43823304600 failed WebKit 375 on the Q3 KPI footnote, fixed in PR #87); EDITORIAL_V2 for 300570/300548/600690/300394 Q1: PASS (https://github.com/kobolibra/financials/actions/runs/43835459331)",
       "independent_human_review": "NOT_CHECKED"
     }
   },
