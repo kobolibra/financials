@@ -263,14 +263,14 @@
     },
     "archived_previous": "docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md",
     "v10_known_capability_gaps": [
-      "full_profit_chain node YoY/margin labels",
-      "profit-chain near-duplicate stage compaction and small-branch grouping",
       "8-12 quarter trend and margin-trend exhibits",
       "TYPE B and BANK routes in source_publication.py",
       "post-merge live production QA (qa_source_publication_live.py) does not yet iterate period_reports",
       "WebKit phone pass for period reports (local environment has Chromium headless shell only)",
       "single-quarter derivation across THREE reports (Q2 alone = H1 - Q1) needs an H1 ledger for the issuer",
-      "CUMULATIVE_FLOW_DIFFERENCE claims cannot yet feed a figure (text only)"
+      "CUMULATIVE_FLOW_DIFFERENCE claims cannot yet feed a figure (text only)",
+      "profit-chain layout V2 migrated for 5 source-publication reports only; 10 legacy manifests still V1 (need prior-period source cells)",
+      "profit-chain small-branch grouping and cost-node proximity"
     ]
   },
   "entrypoints": {
@@ -360,7 +360,19 @@
         "independent_human_review": "NOT_CHECKED",
         "live_receipt": "research/issuers/300394/2026Q1/live-release-receipt.json"
       }
-    ]
+    ],
+    "profit_chain_layout_v2": {
+      "status": "CANDIDATE_PR",
+      "reports": [
+        "300570",
+        "300548",
+        "600690",
+        "300394@20269M",
+        "300394@2026Q1"
+      ],
+      "local_receipt": "research/quality/profit-chain-layout-v2-local/result.json",
+      "live_production": "NOT_CHECKED"
+    }
   },
   "source_engines": {
     "optical": "skills/ashare-financial-storytelling/v7/engine/render_v7.py",

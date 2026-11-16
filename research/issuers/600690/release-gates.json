@@ -228,5 +228,14 @@
   "production_artifact": {
     "id": 14050205196,
     "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "0fe032c77c56ffd3a859dc12edcff5bf07cf907b8b07ae22b19d9613e46f260a",
+    "candidate_full_html_sha256": "92000fd49d8b9daec83cd20c12b481a00be95392f0b1c7078ee78e11fd9b1226",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "利润主图版式V2：层间距按扣减比例分配，每个利润层标利润率（含百分点变化）与同比，标注由独立审计器从上年同期原件源格重新计算",
+    "local_receipt": "research/quality/profit-chain-layout-v2-local/result.json"
   }
 }

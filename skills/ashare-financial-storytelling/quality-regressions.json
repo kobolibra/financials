@@ -882,6 +882,36 @@
       "scope": "single_issuer",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "VIS-067",
+      "root_cause": "利润主图里营业利润、税前、净利、归母四层几乎等宽，占去六成横向空间，信息量低；节点只标金额，没有利润率和同比。",
+      "correction": "版式V2：层间距按每层实际扣减比例分配（最小层距保底），每个利润层标利润率及百分点变化与同比；数据来自上年同期原件源格。",
+      "proof_file": "research/shared/test_profit_chain_layout_v2.py",
+      "assertion_marker": "test_adaptive_spacing_gives_near_duplicate_layers_less_room_than_big_steps",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-068",
+      "root_cause": "图上新增的利润率和同比文字若只是渲染器自己的输出，就不再受独立审计保护。",
+      "correction": "独立审计器从原件重新计算每个标注（半数进位到0.1），逐条比对SVG文字；上年同期金额也逐格校验并在恒等式上闭合。",
+      "proof_file": "research/shared/test_profit_chain_layout_v2.py",
+      "assertion_marker": "test_a_tampered_annotation_or_prior_amount_is_caught",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-069",
+      "root_cause": "只改了版式声明却没有上年同期源格，会出现无来源的同比数字。",
+      "correction": "V2缺少对比期源格时渲染器直接拒绝；对比期事实按与本期相同的规则逐格校验。",
+      "proof_file": "research/shared/test_profit_chain_layout_v2.py",
+      "assertion_marker": "test_layout_v2_without_prior_period_cells_is_refused_and_v1_layout_is_unchanged",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

@@ -1094,8 +1094,500 @@
     "level_component_count": 3,
     "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
     "original_article_sha256": "5c35b49a5004bbbf454b04c88bc0b7cbb5d5f9a4fa99bf6f58de819900eff8b1",
-    "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。"
+    "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。",
+    "layout": "PROFIT_CHAIN_LAYOUT_V2"
   },
   "report_identity_page": 1,
-  "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF"
+  "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225522691.PDF",
+  "comparatives": {
+    "period": "2025H1",
+    "facts": {
+      "admin_prior": {
+        "yuan": "5891046898.48",
+        "page": 71,
+        "label": "管理费用（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              451.79998779296875,
+              77.73729705810547,
+              525.1798706054688,
+              91.44770050048828
+            ],
+            "printed": "5,891,046,898.48",
+            "original_number": "5891046898.48",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "asset_disposal_prior": {
+        "yuan": "-7368037.54",
+        "page": 71,
+        "label": "资产处置收益（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              466.79998779296875,
+              377.4963073730469,
+              525.3009033203125,
+              391.2066955566406
+            ],
+            "printed": "-7,368,037.54",
+            "original_number": "-7368037.54",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "asset_impairment_prior": {
+        "yuan": "-744113044.82",
+        "page": 71,
+        "label": "资产减值损失（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              456.239990234375,
+              349.7773132324219,
+              525.30029296875,
+              363.4877014160156
+            ],
+            "printed": "-744,113,044.82",
+            "original_number": "-744113044.82",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "cogs_prior": {
+        "yuan": "114437933108.76",
+        "page": 70,
+        "label": "营业成本（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              441.3590087890625,
+              618.8173217773438,
+              525.2982788085938,
+              632.5277099609375
+            ],
+            "printed": "114,437,933,108.76",
+            "original_number": "114437933108.76",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "credit_impairment_prior": {
+        "yuan": "-71912087.85",
+        "page": 71,
+        "label": "信用减值损失（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              461.5199890136719,
+              322.0563049316406,
+              525.3005981445312,
+              335.7666931152344
+            ],
+            "printed": "-71,912,087.85",
+            "original_number": "-71912087.85",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "fair_value_prior": {
+        "yuan": "34753540.63",
+        "page": 71,
+        "label": "公允价值变动收益（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              465.0,
+              294.3373107910156,
+              525.1806030273438,
+              308.0476989746094
+            ],
+            "printed": "34,753,540.63",
+            "original_number": "34753540.63",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "finance_prior": {
+        "yuan": "-350857561.47",
+        "page": 71,
+        "label": "财务费用（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              456.239990234375,
+              105.93729400634766,
+              525.30029296875,
+              119.64769744873047
+            ],
+            "printed": "-350,857,561.47",
+            "original_number": "-350857561.47",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "income_tax_prior": {
+        "yuan": "2511940348.67",
+        "page": 71,
+        "label": "所得税费用（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              451.79998779296875,
+              468.5773010253906,
+              525.1798706054688,
+              482.2876892089844
+            ],
+            "printed": "2,511,940,348.67",
+            "original_number": "2511940348.67",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "investment_income_prior": {
+        "yuan": "917258503.36",
+        "page": 71,
+        "label": "投资收益（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              459.7200012207031,
+              162.45730590820312,
+              525.1802978515625,
+              176.16769409179688
+            ],
+            "printed": "917,258,503.36",
+            "original_number": "917258503.36",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "nci_prior": {
+        "yuan": "452119979.17",
+        "page": 71,
+        "label": "少数股东损益（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              459.7200012207031,
+              614.977294921875,
+              525.1802978515625,
+              628.6876831054688
+            ],
+            "printed": "452,119,979.17",
+            "original_number": "452119979.17",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "net_profit_prior": {
+        "yuan": "12485115799.44",
+        "page": 71,
+        "label": "净利润（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              446.6400146484375,
+              482.6173095703125,
+              525.299560546875,
+              496.32769775390625
+            ],
+            "printed": "12,485,115,799.44",
+            "original_number": "12485115799.44",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          },
+          {
+            "bbox": [
+              446.6400146484375,
+              517.6563110351562,
+              525.299560546875,
+              531.36669921875
+            ],
+            "printed": "12,485,115,799.44",
+            "original_number": "12485115799.44",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "nonop_expense_prior": {
+        "yuan": "257738776.06",
+        "page": 71,
+        "label": "营业外支出（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              459.7200012207031,
+              426.6963195800781,
+              525.1802978515625,
+              440.4067077636719
+            ],
+            "printed": "257,738,776.06",
+            "original_number": "257738776.06",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "nonop_income_prior": {
+        "yuan": "121855656.14",
+        "page": 71,
+        "label": "营业外收入（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              459.7200012207031,
+              412.53729248046875,
+              525.1802978515625,
+              426.2476806640625
+            ],
+            "printed": "121,855,656.14",
+            "original_number": "121855656.14",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "operating_profit_prior": {
+        "yuan": "15132939268.03",
+        "page": 71,
+        "label": "营业利润（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              446.6400146484375,
+              398.3773193359375,
+              525.299560546875,
+              412.08770751953125
+            ],
+            "printed": "15,132,939,268.03",
+            "original_number": "15132939268.03",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "other_income_prior": {
+        "yuan": "775214508.42",
+        "page": 71,
+        "label": "其他收益（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              459.7200012207031,
+              148.2963104248047,
+              525.1802978515625,
+              162.00669860839844
+            ],
+            "printed": "775,214,508.42",
+            "original_number": "775214508.42",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "parent_net_prior": {
+        "yuan": "12032995820.27",
+        "page": 71,
+        "label": "归属于母公司股东的净利润（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              446.6400146484375,
+              587.2562866210938,
+              525.299560546875,
+              600.9666748046875
+            ],
+            "printed": "12,032,995,820.27",
+            "original_number": "12032995820.27",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "rd_expense_prior": {
+        "yuan": "5790436804.10",
+        "page": 71,
+        "label": "研发费用（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              451.79998779296875,
+              91.89629364013672,
+              525.1798706054688,
+              105.60669708251953
+            ],
+            "printed": "5,790,436,804.10",
+            "original_number": "5790436804.10",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "rev_prior": {
+        "yuan": "156494034448.85",
+        "page": 70,
+        "label": "营业收入（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              441.3590087890625,
+              534.0963134765625,
+              525.2982788085938,
+              547.8067016601562
+            ],
+            "printed": "156,494,034,448.85",
+            "original_number": "156494034448.85",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          },
+          {
+            "bbox": [
+              441.3590087890625,
+              548.2562866210938,
+              525.2982788085938,
+              561.9666748046875
+            ],
+            "printed": "156,494,034,448.85",
+            "original_number": "156494034448.85",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "selling_prior": {
+        "yuan": "15816814510.07",
+        "page": 70,
+        "label": "销售费用（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              446.6400146484375,
+              745.8963012695312,
+              525.299560546875,
+              759.606689453125
+            ],
+            "printed": "15,816,814,510.07",
+            "original_number": "15816814510.07",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      },
+      "tax_surcharge_prior": {
+        "yuan": "679554803.08",
+        "page": 70,
+        "label": "税金及附加（比较期）",
+        "period": "2025H1",
+        "source_kind": "ledger_typed",
+        "classification": "DISCLOSED",
+        "source_cells": [
+          {
+            "bbox": [
+              459.7200012207031,
+              731.7373046875,
+              525.1802978515625,
+              745.4476928710938
+            ],
+            "printed": "679,554,803.08",
+            "original_number": "679554803.08",
+            "unit_scale": "1",
+            "normalization": "SIGNED_ORIGINAL",
+            "wrapped_number": false
+          }
+        ]
+      }
+    }
+  }
 }
