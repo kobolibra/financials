@@ -201,7 +201,13 @@ def validate(ledger,story,root=ROOT):
             for cell in cells:
                 region=doc[f['page']-1].get_textbox(pymupdf.Rect(cell['bbox'])+(-.5,-.5,.5,.5)).replace(',','')
                 if cell.get('wrapped_number') is True:region=re.sub(r'\s+','',region)
-                if not re.search(r'(?<![0-9.+-])'+re.escape(f['yuan'])+r'(?![0-9.])',region):raise ValueError('DOSSIER_SOURCE_CELL_FALSE '+k)
+                if cell.get('unit_scale'):
+                    # report printed in 千元/万元/百万元: the cell must hold the printed figure and printed x scale = yuan
+                    p=cell['printed'].strip().replace(',','');neg=p.startswith(('(','（'))
+                    shown=D(p.strip('()（）'))*(-1 if neg else 1)
+                    if cell.get('sign_flipped') is True:shown=-shown  # expense printed negative; canonical ledger stores it positive
+                    if p.strip('()（）') not in region or shown*D(cell['unit_scale'])!=D(f['yuan']):raise ValueError('DOSSIER_SOURCE_CELL_FALSE '+k)
+                elif not re.search(r'(?<![0-9.+-])'+re.escape(f['yuan'])+r'(?![0-9.])',region):raise ValueError('DOSSIER_SOURCE_CELL_FALSE '+k)
         else:raise ValueError('DOSSIER_CLASSIFICATION_UNKNOWN '+k)
     for test in story['accounting_identities']:
         if amount(ledger,test['left'])!=amount(ledger,test['right']):raise ValueError('DOSSIER_ACCOUNTING_IDENTITY '+test['name'])

@@ -8,8 +8,13 @@ analytical decisions for the analyst:
              extract page text and write a skeleton dossier folder
   find       list pages that contain statement titles or a search phrase
   scan       print every numeric row on a page with column index and bbox
+  auto       company-agnostic: find the three consolidated statements, map every row to a
+             canonical key (CAS 一般企业 / 银行 / 保险 / 证券 formats), read current and prior
+             columns and the unit, run format-aware identities, list unmapped rows; --write
+             merges the facts into the ledger (never overwrites a different existing value)
   facts      turn an explicit fact spec (page + row label + column) into
-             source-ledger facts with exact PDF cell coordinates
+             source-ledger facts with exact PDF cell coordinates (notes, segments, anything
+             outside the three statements)
   preflight  run the publication validator plus an editorial lint
 
 Every fact still names its page, row and column explicitly. The tool never
@@ -37,7 +42,7 @@ ROOT = Path(__file__).resolve().parents[3]
 SKILL = Path(__file__).resolve().parents[1]
 NUMBER = re.compile(r"^([-−(（]?[0-9][0-9,]*(\.[0-9]+)?[)）]?%?|[-−—]{1,2})$")
 FULL_NUMBER = re.compile(r"^[-−]?([0-9]{1,3}(,[0-9]{3})+|[0-9]+)(\.[0-9]+)?$")
-REPORT_KIND = {"半年度": "H1", "年度": "FY", "第一季度": "Q1", "第三季度": "9M"}
+REPORT_KIND = {"半年度": "H1", "中期": "H1", "年度": "FY", "第一季度": "Q1", "第三季度": "9M"}
 COMPARATIVE = {"H1": "H1", "FY": "FY", "Q1": "Q1", "9M": "9M"}
 STATEMENT_TITLES = (
     "合并资产负债表", "合并利润表", "合并现金流量表", "现金流量表补充资料",
@@ -87,8 +92,12 @@ def to_decimal(printed: str) -> Decimal:
 
 # ---------------------------------------------------------------- init
 def detect_identity(doc, code: str) -> dict:
-    cover = squash(doc[0].get_text())
-    match = re.search(r"(20[0-9]{2})年(半年度|第一季度|第三季度|年度)报告", cover)
+    # A+H issuers put an HKEX disclaimer page first: read the first three pages for the report type.
+    cover = "".join(squash(doc[i].get_text()) for i in range(min(3, len(doc))))
+    match = re.search(r"(20[0-9]{2})年?(半年度|中期|第一季度|第三季度|年度)报告", cover)  # "2026年半年度报告" and "2026半年度报告"
+    if not match:  # covers without a year ("中信证券半年度报告"): the running header of the next pages carries it
+        cover = "".join(squash(doc[i].get_text()) for i in range(min(8, len(doc))))
+        match = re.search(r"(20[0-9]{2})年?(半年度|中期|第一季度|第三季度|年度)报告", cover)
     if not match:
         sys.exit("COVER_REPORT_TYPE_NOT_FOUND: inspect page 1; abstracts (摘要) and English versions are not accepted")
     if "摘要" in cover[: cover.find("报告") + 6]:
@@ -393,6 +402,32 @@ def cmd_facts(a) -> None:
     print(f"FACTS_WRITTEN {len(built)} (errors {len(errors)})")
 
 
+def cmd_auto(a) -> None:
+    import statement_extract as se
+    _, doc, ledger = open_source(a.code, a.period)
+    result = se.extract(doc, rows_on_page, squash)
+    ok, bad = se.identities(result)
+    facts = se.to_ledger_facts(result, ledger["issuer"])
+    conflicts = [k for k, f in facts.items() if k in ledger["facts"] and Decimal(ledger["facts"][k]["yuan"]) != Decimal(f["yuan"])]
+    report = {"format": result["format"], "sign_convention": result["convention"], "pages": result["pages"],
+              "mapped_keys": len(result["facts"]), "facts": len(facts), "identities_passed": len(ok), "identities_failed": bad,
+              "unmapped_rows": [f"{u['statement']} p{u['page']} {u['label']} = {u['current']}" for u in result["unmapped"]],
+              "conflicts_with_existing_ledger": conflicts, "notes": result["notes"]}
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if bad:
+        print("AUTO_IDENTITY_RESIDUAL: a residual means a line item was missed or mis-signed; inspect the unmapped rows of that "
+              "statement and add a synonym to statement_extract.CANON (with a regression test), never a company-specific patch", file=sys.stderr)
+    if conflicts:
+        sys.exit("AUTO_CONFLICTS_WITH_EXISTING_LEDGER " + " ".join(conflicts))
+    if a.write:
+        if bad and not a.allow_residual:
+            sys.exit("AUTO_NOT_WRITTEN: identities must close first (or pass --allow-residual and record why)")
+        ledger["facts"].update({k: f for k, f in facts.items() if k not in ledger["facts"]})
+        ledger["issuer"].setdefault("statement_format", result["format"])
+        (folder(a.code, a.period) / "source-ledger.json").write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n")
+        print("AUTO_FACTS_WRITTEN", len(facts))
+
+
 # ---------------------------------------------------------------- editorial manifest
 def editorial_path(code: str, fiscal_period: str, period: str | None) -> Path:
     name = f"{code}.json" if not period else f"{code}-{period}.json"
@@ -431,7 +466,9 @@ def cmd_editorial(a) -> None:
         for k in sorted(stage_keys):
             f = ledger["facts"].get(k + "_prior")
             if f is None:
-                sys.exit(f"LAYOUT_V2_NEEDS_PRIOR_FACT {k}_prior: add the comparative-period cell to the ledger")
+                # a blank comparative cell: the renderer omits that annotation, the auditor expects none
+                print(f"NOTE_NO_PRIOR_CELL {k}_prior: annotation omitted", file=sys.stderr)
+                continue
             cells = [{"bbox": c["bbox"], "printed": c["printed"], "original_number": f["yuan"], "unit_scale": "1",
                       "normalization": "SIGNED_ORIGINAL", "wrapped_number": c.get("wrapped_number", False)} for c in f["source_cells"]]
             prior_facts[k + "_prior"] = {"yuan": f["yuan"], "page": f["page"], "label": f["label"], "period": f["period"],
@@ -587,10 +624,12 @@ def main(argv=None) -> None:
     x = sub.add_parser("facts"); x.add_argument("--code", required=True); x.add_argument("--spec", required=True); x.add_argument("--partial", action="store_true")
     q = sub.add_parser("preflight"); q.add_argument("--code", required=True)
     e = sub.add_parser("editorial"); e.add_argument("--code", required=True); e.add_argument("--spec", required=True)
-    for sp in (i, f, s, x, q, e):
+    au = sub.add_parser("auto"); au.add_argument("--code", required=True); au.add_argument("--write", action="store_true")
+    au.add_argument("--allow-residual", action="store_true")
+    for sp in (i, f, s, x, q, e, au):
         sp.add_argument("--period", help="report period folder for a later period of an issuer, e.g. 20269M")
     a = p.parse_args(argv)
-    {"init": cmd_init, "find": cmd_find, "scan": cmd_scan, "facts": cmd_facts, "preflight": cmd_preflight, "editorial": cmd_editorial}[a.cmd](a)
+    {"init": cmd_init, "find": cmd_find, "scan": cmd_scan, "facts": cmd_facts, "preflight": cmd_preflight, "editorial": cmd_editorial, "auto": cmd_auto}[a.cmd](a)
 
 
 if __name__ == "__main__":

@@ -26,6 +26,13 @@ python $T init --code 300570 --pdf /path/report.pdf --url https://static.cninfo.
 
 ## 2. 建账本（P2）
 
+**三张表：自动，不写规格。**
+```
+python $T auto --code <code>          # 格式（一般/银行/证券/保险）、费用符号口径、单位、恒等式、未映射行、原件异常
+python $T auto --code <code> --write  # 恒等式闭合后写入；不会覆盖账本中已有的不同值
+```
+残差、未映射行和原件异常的处理见 `playbooks/06_GENERALIZATION.md` §2。下面的手写规格只用于附注表（分部、地区、非经常性损益、现金流补充资料、应收与存货附注）。
+
 ```
 python $T find --code <code> --statements      # 定位三表、补充资料、收入成本附注、非经常损益
 python $T scan --code <code> --page 40         # 列出该页每行的数字列 [1] [2] ...

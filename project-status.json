@@ -270,8 +270,10 @@
       "INCOME_FLOW_V3 hero on 5 source-publication reports; 10 legacy manifests still V1 (need prior-period source cells)",
       "EDITORIAL_V2 body design on all 5 source publications (300394 Q3/Q1, 300570, 300548, 600690); 10 legacy V1 reports keep the earlier body figures",
       "multi-year segment trend exhibits need several archived annual ledgers",
-      "income-flow V3 gains at the operating->parent step are drawn as a small ochre inflow whose label sits near the operating node; no independent human art review"
-    ]
+      "income-flow V3 gains at the operating->parent step are drawn as a small ochre inflow whose label sits near the operating node; no independent human art review",
+      "statement_extract covers the three consolidated statements for any issuer (19/19 PDF-only probe incl. 5 blind); segment/region notes still need a facts spec; annual-report full text not yet probed"
+    ],
+    "generalization_probe": "research/quality/generalization-probe/result.json"
   },
   "entrypoints": {
     "human": "START_HERE.md",

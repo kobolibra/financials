@@ -95,7 +95,7 @@ def render_kpi_board(tiles, title, *, mobile=False, **ident):
             # headline figure: 亿 from 0.1亿 up keeps the tile short enough for a 149-wide phone tile
             shown = f"{q(D(t['value']) / D(100000000), 2)}亿" if abs(D(t['value'])) >= D(10000000) else yi(t['value'])
             delta = growth(t['value'], t['prior'])
-            dtext = (f'{t.get("delta_label", "同比")} {q(delta):+}%' if delta is not None else '上期为负或零，不计算增速')
+            dtext = (f'{t.get("delta_label", "同比")} {q(delta):+}%' if delta is not None else '上期≤0，不计增速')
             good = delta is None or delta >= 0
             if t.get('lower_is_better') and delta is not None:
                 good = delta <= 0

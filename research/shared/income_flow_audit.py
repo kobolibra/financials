@@ -38,6 +38,13 @@ def expected(b):
     def signed(groups):
         plus, minus = [], []
         for g in groups:
+            if g.get('net'):
+                v = _v(b, g['terms'])
+                if v > 0:
+                    plus.append((g['label'], g['terms']))
+                elif v < 0:
+                    minus.append((g['label'], [[k, -c] for k, c in g['terms']]))
+                continue
             p = [[k, c] for k, c in g['terms'] if _v(b, [[k, c]]) > 0]
             m = [[k, -c] for k, c in g['terms'] if _v(b, [[k, c]]) < 0]
             if p:
