@@ -20,6 +20,8 @@ def check_editorial_svg(markup,*,issuer,pdf_sha256):
         require(node.get('data-layout') in ('native-330','editorial-1040'),'LAYOUT')
         grammar=node.get('data-editorial-grammar')
         rects=list(node.iter(NS+'rect'))
+        canvas=D(330) if mobile else D(1040)
+        def inside(r):require(num(r.get('x'))>=0 and num(r.get('x'))+num(r.get('width'))<=canvas,'BAR_OUTSIDE_CANVAS')
         if grammar=='SOURCE_SEPARATE_PANELS_V1':
             children=[g for g in node if g.get('data-editorial-grammar')]
             require(bool(children),'EMPTY_PANELS')
@@ -109,5 +111,55 @@ def check_editorial_svg(markup,*,issuer,pdf_sha256):
             require(bool(items),'METRICS_EMPTY')
             for r in items:num(r.get('data-exact-value'));require(bool(r.get('data-unit')) and bool(r.get('data-source-reference')),'METRIC_UNIT_SOURCE')
             return len(items)
+        if grammar=='SOURCE_KPI_BOARD_V1':
+            micro=[r for r in rects if r.get('data-micro-value') is not None]
+            require(bool(micro) and len(micro)%2==0,'KPI_MICRO_BARS')
+            for i in range(0,len(micro),2):
+                pair=micro[i:i+2];vals=[num(r.get('data-micro-value')) for r in pair]
+                domain=max([abs(v) for v in vals]+[D(1)])
+                for r,v in zip(pair,vals):
+                    require(num(r.get('data-micro-domain'))==domain,'KPI_MICRO_DOMAIN')
+                    require(close(r.get('width'),abs(v)/domain*num(r.get('data-micro-span'))),'KPI_MICRO_WIDTH')
+            values=[t for t in node.iter(NS+'text') if t.get('data-exact-value') is not None]
+            require(len(values)*2==len(micro),'KPI_TILE_COUNT')
+            return len(values)
+        if grammar=='SOURCE_RATIO_DUMBBELL_V1':
+            dots=[c for c in node.iter(NS+'circle') if c.get('data-ratio-role')]
+            require(bool(dots) and len(dots)%2==0,'DUMBBELL_DOTS')
+            domains={c.get('data-domain-percent') for c in dots};require(len(domains)==1,'DUMBBELL_ONE_AXIS')
+            domain=num(dots[0].get('data-domain-percent'));values=[num(c.get('data-exact-percent-value')) for c in dots]
+            require(min(values)>=0 and domain>=max(values),'DUMBBELL_DOMAIN')
+            for c in dots:
+                v=num(c.get('data-exact-percent-value'));require(close(c.get('cx'),num(c.get('data-axis-left'))+v/domain*num(c.get('data-axis-span'))),'DUMBBELL_POSITION')
+            for i in range(0,len(dots),2):require([dots[i].get('data-ratio-role'),dots[i+1].get('data-ratio-role')]==['prior','current'],'DUMBBELL_PAIR')
+            return len(dots)
+        if grammar=='SOURCE_GROWTH_BARS_V1':
+            bars=[r for r in rects if r.get('data-growth-percent') is not None]
+            require(bool(bars),'GROWTH_EMPTY');domain=num(bars[0].get('data-domain-percent'))
+            for r in bars:
+                value,prior=num(r.get('data-exact-value')),num(r.get('data-exact-prior'));require(prior>0,'GROWTH_BASE')
+                g=(value/prior-1)*100;require(num(r.get('data-growth-percent'))==g and abs(g)<=domain,'GROWTH_VALUE')
+                w=abs(g)/domain*num(r.get('data-axis-half'));center=num(r.get('data-axis-center'))
+                require(close(r.get('width'),w) and close(r.get('x'),center if g>=0 else center-w),'GROWTH_GEOMETRY');inside(r)
+            return len(bars)
+        if grammar=='SOURCE_PERIOD_COLUMNS_V1':
+            bars=[r for r in rects if r.get('data-axis-base') is not None]
+            require(len(bars)>=2,'COLUMNS_EMPTY');values=[num(r.get('data-exact-value')) for r in bars];top=max(values)
+            require(min(values)>=0 and top>0,'COLUMNS_VALUES')
+            for r,v in zip(bars,values):
+                require(num(r.get('data-domain-max'))==top,'COLUMNS_DOMAIN');h=v/top*num(r.get('data-axis-height'))
+                require(close(r.get('height'),h) and close(r.get('y'),num(r.get('data-axis-base'))-h),'COLUMNS_GEOMETRY')
+            return len(bars)
+        if grammar=='SOURCE_STOCK_DELTA_V1':
+            bars=[r for r in rects if r.get('data-stock-delta') is not None]
+            require(bool(bars),'DELTA_EMPTY');deltas=[num(r.get('data-exact-value'))-num(r.get('data-exact-prior')) for r in bars]
+            m=max(abs(d) for d in deltas) or D(1)
+            for r,d in zip(bars,deltas):
+                require(num(r.get('data-stock-delta'))==d and num(r.get('data-domain-yuan'))==m,'DELTA_VALUE')
+                w=abs(d)/m*num(r.get('data-axis-half'));center=num(r.get('data-axis-center'))
+                require(close(r.get('width'),w) and close(r.get('x'),center if d>=0 else center-w),'DELTA_GEOMETRY');inside(r)
+                uses=(d>0)==(r.get('data-stock-side')=='asset') and d!=0
+                require(r.get('fill').upper()==('#C2362E' if uses else '#16824A'),'DELTA_CASH_COLOUR')
+            return len(bars)
         raise ValueError('EDITORIAL_GEOMETRY_UNKNOWN_GRAMMAR '+str(grammar))
     return {'status':'PASS','observed_source_rows':inspect(root),'grammar':root.get('data-editorial-grammar')}

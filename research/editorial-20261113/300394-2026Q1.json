@@ -785,7 +785,7 @@
     "takeaway": "一季度成本随收入同步增长，毛利率温和提升；研发、财务费用和所得税吃掉部分毛利增量，现金端的背离见后续图。",
     "counter": "季报没有分产品数据，毛利率提升的来源不能由此图识别；经营现金下降的原因见现金图。",
     "level_component_count": 3,
-    "layout": "PROFIT_CHAIN_LAYOUT_V2",
+    "layout": "INCOME_FLOW_V3",
     "full_reconciliation": "REFERENCE_EXPANDABLE_NOT_PRIMARY",
     "human_review": "NOT_CHECKED",
     "figures": [

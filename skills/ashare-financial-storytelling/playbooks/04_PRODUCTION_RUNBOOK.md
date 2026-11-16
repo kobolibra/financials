@@ -65,6 +65,8 @@ python $T facts --code <code> --spec research/issuers/<code>/fact-spec.json
 
 **跨报告引用**（后续报告检验上一期判断，或对账同一日期）：出版稿加 `external_ledgers: {别名: {path, period, pdf_sha256}}`，占位符的事实键写成 `别名:事实键`，并声明 `cross_period`：`CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR`（同年度累计流量，如 9M − Q1）、`SAME_DATE_STOCK_RECONCILIATION`（同一资产负债表日的存量）、`SINGLE_EXTERNAL_REPORT_CITATION`（全部操作数来自同一份外部报告）。外部账本按期间与原件 SHA 固定，期间相同、哈希不符、未声明模式、流量存量混用都会被拒绝。每一期报告都应有“上期判断检验”一节：引用上期写下的证伪条件，区分“被推翻的部分”和“仍成立的部分”（范例：三季报 `prior-check`）。
 
+**EDITORIAL_V2 设计**（推荐，范例 `research/issuers/300394/20269M/`）：出版稿设 `design: "EDITORIAL_V2"`、`story.glance`（6 条要点），第一张图 `family: kpi_board`；编辑清单设 `editorial.layout: "INCOME_FLOW_V3"`、`editorial.hero_position: "after_first"`。新图族 `kpi_board / period_columns / growth_bars / ratio_dumbbell / stock_delta` 的字段见 `research/shared/source_publication.py` 的 `EXHIBIT_FAMILIES` 与范例。单季同比跨两个会计年度时用 `cross_period: "YOY_OF_SAME_FISCAL_YEAR_DIFFERENCES"`（分子里的上年部分必须与分母逐项相同）。V3 需要上年同期源格（`fin_intake.py editorial` 自动从 `_prior` 事实生成 `comparatives`）。
+
 出版稿可选字段：`title_lines`（用 `|` 标注短语单元，单元内不换行）；`essays[].after`（`<figure id>` 或 `end`）把研究长文插在对应图之后，形成图文交替；占位符 `times`/`less` 计算“变动额乘比率”与“差值”。
 
 ```
@@ -88,7 +90,7 @@ python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'te
 python scripts/qa_editorial_migration.py --codes <code> --out /tmp/qa-<code>
 python scripts/check_release_contract.py && python scripts/check_handoff.py
 ```
-然后打开每张图 1440 与 390 截图，按 playbook 05 打分。写 `release-gates.json`（参照 300570 的结构：PDF_BYTES、SOURCE_ROW_COLUMN、ACCOUNTING_CORE、RESEARCH_COUNTERCASE、FIGURE_SEMANTICS、BROWSER、LIVE 等，每项 status/proof/scope）和 `material-notes-review.json`（审阅者写"AI 来源审阅，非人类二审"）。
+`qa_editorial_migration.py` 会在真实 Chromium 中逐图检查文字裁切、标签重叠、字号，并把每张导出的 SVG 交给独立审计器（利润主图 `profit_chain_audit` / `income_flow_audit`，图族 `editorial_geometry` + `source_publication_audit`）。任何 `ACTUAL_RENDER_BLOCKED` 都要看 `failure.json` 修版式，不能放宽检测。然后打开每张图 1440 与 390 截图，按 playbook 05 打分。写 `release-gates.json`（参照 300570 的结构：PDF_BYTES、SOURCE_ROW_COLUMN、ACCOUNTING_CORE、RESEARCH_COUNTERCASE、FIGURE_SEMANTICS、BROWSER、LIVE 等，每项 status/proof/scope）和 `material-notes-review.json`（审阅者写"AI 来源审阅，非人类二审"）。
 
 ## 7. 交接与发布（P7）
 

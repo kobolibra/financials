@@ -6,6 +6,7 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 from full_profit_chain import compile_chain,render,load,ROOT
 from profit_chain_audit import validate_source,check_svg
+from unified_income_sankey import render_full_profit_chain
 NS='{http://www.w3.org/2000/svg}'
 class FullProfitChainTests(unittest.TestCase):
  def test_all14_original_source_cells_and_both_actual_vectors(self):
@@ -15,7 +16,8 @@ class FullProfitChainTests(unittest.TestCase):
    b=load(code)
    with self.subTest(code=code):
     self.assertEqual(validate_source(b)['status'],'PASS')
-    for mobile in (False,True):self.assertEqual(check_svg(render(b,mobile=mobile),code,b['source_pdf']['source_sha256'])['status'],'PASS')
+    # the published dispatcher: reports that declare INCOME_FLOW_V3 render with it
+    for mobile in (False,True):self.assertEqual(check_svg(render_full_profit_chain(b,mobile=mobile),code,b['source_pdf']['source_sha256'])['status'],'PASS')
  def test_new_period_cannot_borrow_old_issuer_manifest(self):
   from publication_editorial import finalize_publication
   with self.assertRaisesRegex(ValueError,'EDITORIAL_SOURCE_PERIOD_OR_ISSUER_MISMATCH'):

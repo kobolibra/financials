@@ -1091,7 +1091,7 @@
     "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
     "original_article_sha256": "9be4b6cd9e78d9a3cb8bd23020d318fb8f3c9830bf3e2584e613da53512bb549",
     "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。",
-    "layout": "PROFIT_CHAIN_LAYOUT_V2"
+    "layout": "INCOME_FLOW_V3"
   },
   "report_identity_page": 1,
   "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475478.PDF",

@@ -109,5 +109,14 @@
   "production_artifact": {
     "id": 14201246199,
     "zip_sha256": "09e9997cd32160ef5496b4d524c13d2a8410b36e6e916bbf2b8c019c70435a00"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "17f0a51d721db567c2801740db3520042b1dd124aec2a8424e4cd67727b69ad2",
+    "candidate_full_html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "EDITORIAL_V2版面与AEI语法损益流向图（INCOME_FLOW_V3）：KPI看板、单季营收与利润柱、同比增速条、利润率哑铃、余额变动条取代累计桥列队；单季叙事按真实数据改写（二季度营收同比-0.90%）",
+    "local_receipt": "research/quality/aei-v3-exhibits-local/result.json"
   }
 }

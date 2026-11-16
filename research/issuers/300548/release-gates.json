@@ -232,5 +232,14 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "8a5ec1c8da5eb7e69bb16faf9532d205140ff9c8719c259826d701720727b332",
+    "candidate_full_html_sha256": "00269facd96473ee94f96c9b48ccd6f1698601e8e27c732e5b08ed87a5bf09ac",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "利润主图改为AEI语法损益流向图（INCOME_FLOW_V3）：费用与最终扣减拆成具名叶子并标占营收比例，利润节点标利润率与同比；去掉重复的金额构成卡片。正文其余图表字节不变。",
+    "local_receipt": "research/quality/aei-v3-exhibits-local/result.json"
+  }
 }
