@@ -166,8 +166,8 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "9.1.0",
-    "loading": "REPO_CANONICAL_V9_PRODUCTION_SKILL_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
+    "version": "10.0.0",
+    "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
       "skills/ashare-financial-storytelling/research/01_APP_ECONOMY_INSIGHTS_RESEARCH.md",
@@ -242,7 +242,34 @@
       "new_insurance_publication_engine": "research/issuers/601628/publish.py",
       "new_native_mobile_finance_renderer": "research/shared/mobile_finance.js",
       "current_source_browser_visual_certificate": "scripts/check_visual_editorial_policy.py::validate_current_published_files"
-    }
+    },
+    "playbooks": [
+      "skills/ashare-financial-storytelling/playbooks/01_REPORT_TYPES.md",
+      "skills/ashare-financial-storytelling/playbooks/02_ANALYSIS_FRAMEWORK.md",
+      "skills/ashare-financial-storytelling/playbooks/03_EXHIBIT_SYSTEM.md",
+      "skills/ashare-financial-storytelling/playbooks/04_PRODUCTION_RUNBOOK.md",
+      "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md"
+    ],
+    "intake_tool": {
+      "path": "skills/ashare-financial-storytelling/tools/fin_intake.py",
+      "tests": "skills/ashare-financial-storytelling/tools/test_fin_intake.py",
+      "commands": [
+        "init",
+        "find",
+        "scan",
+        "facts",
+        "preflight"
+      ]
+    },
+    "archived_previous": "docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md",
+    "v10_known_capability_gaps": [
+      "full_profit_chain node YoY/margin labels",
+      "profit-chain near-duplicate stage compaction and small-branch grouping",
+      "8-12 quarter trend and margin-trend exhibits",
+      "TYPE B and BANK routes in source_publication.py",
+      "cross-report single-quarter derivation (Q3 = 9M - H1)",
+      "multi-period routing for one issuer in the catalog"
+    ]
   },
   "entrypoints": {
     "human": "START_HERE.md",

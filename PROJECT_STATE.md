@@ -1,3 +1,7 @@
+# ACTIVE PROJECT STATE — Skill 10.0.0 重构（未改动任何已发布报告字节）
+
+**2026-11-16 Skill v10.0.0：** 唯一执行合同重写为无进度日志的控制面（`skills/ashare-financial-storytelling/SKILL.md`），新增五份 playbook（报告类型、分析框架、图形系统、生产手册、质量评分）、原件入库与源格账本工具 `tools/fin_intake.py`（以300570真实原件回归）、出版器对季报（无分部、三季报单季列）的泛化。14份已发布报告与首页字节未改变；300570/300548/600690 干净重建逐字节一致。图形能力缺口（节点同比/利润率、近重复利润层合并、8–12季趋势、TYPE B/BANK 新出版器路由）登记在 `project-status.json.skill.v10_known_capability_gaps`，独立人类二审仍 NOT_CHECKED。
+
 # ACTIVE PROJECT STATE — 完整利润主线已上线 · Skill 9.1.0
 
 **2026-11-13 当前已上线并实测：14家公司完整利润主线与阅读层级改版。** PR #74 已合并；148幅图、Chromium三档444次及WebKit手机148次真实下载、14份全文字节及首页往返通过主分支 Action 43448868917。来源与图证见 `research/quality/profit-chain-production-20261113/main-action-provenance.json`；当前机器依据为 `project-status.json` 与 `site/research_catalog.json`。Skill9.1.0，独立人类二审仍 NOT_CHECKED；[历史PR35](docs/ACTIVE_PR35_HANDOFF.md)只保留原版本含义。

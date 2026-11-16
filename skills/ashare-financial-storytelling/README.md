@@ -1,24 +1,20 @@
-# Financials in Visuals — canonical A-share research Skill v9.0.0
+# A股财报研究与可视化技能 · 目录说明
 
-**The sole current execution contract is [SKILL.md](SKILL.md), not this README or the historical v7 subdirectory.** The former v7 report system remains in [v7/](v7/) as a case-study and regression fixture; its releases and screenshots cannot authorize new financial research publication.
+执行合同只有一个：[SKILL.md](SKILL.md)（v10）。本 README 只说明文件布局。
 
-## Zero-memory start and authoritative sources
+| 路径 | 作用 | 何时读 |
+|---|---|---|
+| `SKILL.md` | 质量线、七阶段工作流、图形合法性、验收门、拒绝清单 | 每次 |
+| `playbooks/01_REPORT_TYPES.md` | Q1/H1/9M/FY 各自可用数据、比较期、可做的图 | 新公司/新期间 |
+| `playbooks/02_ANALYSIS_FRAMEWORK.md` | AEI 问题顺序的 A 股化、驱动式、取证清单、行业路由与实现状态 | 写研究备忘录 |
+| `playbooks/03_EXHIBIT_SYSTEM.md` | 图形清单、节点标注规范、设计 token、能力缺口、版式自评 | 选图/改图 |
+| `playbooks/04_PRODUCTION_RUNBOOK.md` | 从 PDF 到上线的逐条命令 | 生产 |
+| `playbooks/05_QUALITY_RUBRIC.md` | P0、评分表、逐图截图自评 | 发布前 |
+| `tools/fin_intake.py` | `init / find / scan / facts / preflight` 原件入库与源格账本工具 | P1–P4 |
+| `templates/` | 出版稿模板、事实规格示例、研究备忘录模板 | P2–P4 |
+| `research/01–05` | 一手来源与推理依据的背景手册 | 判断有争议时 |
+| `quality-regressions.json` | 历史真实错误的可执行回归登记 | 改进技能时 |
 
-Read the repository-root [START_HERE.md](../../START_HERE.md), [project-status.json](../../project-status.json), [PROJECT_STATE.md](../../PROJECT_STATE.md), [AGENTS.md](../../AGENTS.md) and [active PR handoff](../../docs/ACTIVE_PR35_HANDOFF.md). Recheck actual GitHub main, PR #35 head, source-original PDF SHAs, candidate HTML SHAs, browser evidence and Cloudflare live full-page bytes. Follow all five research manuals in [research/](research/): App Economy Insights method, A-share financial research, visual editorial system, forensic disclosure review and cross-sector generalization.
+历史目录（不作为现行指令）：`engine/`、`scripts/`、`v7/`、`nextlevel/`、`examples/`、`outputs/`、`qa/` 是早期出版器与回归夹具，仍被旧报告的重建流程使用，不要删除；`references/` 中的 v7 文档已移至 `docs/history/skill-references-v7/`。新报告一律走 `research/shared/source_publication.py`。
 
-A GitHub repository Skill is **not automatically installed globally in ChatGPT**. Codex operating in this repository can discover the [small .agents/skills wrapper](../../.agents/skills/ashare-financial-storytelling/SKILL.md); another ChatGPT session needs its own Skill setup or project instructions.
-
-## One finance-first publishing system
-
-- Verify original issuer PDFs, physical pages, exact Decimal-yuan evidence, same-period/grouping facts and profit/cash/stock accounting constraints. Write a company-specific falsifiable thesis and strongest source-backed countercase before drawing.
-- Use [the shared connected Sankey engine](../../research/shared/unified_income_sankey.py) through [the V10 industry adapter](../../research/rebuild-v10/unified_finance.py) for legal nonnegative conserved income flows. Do not duplicate renderers or fabricate business-level margin from company-level gross profit. Use signed honest alternatives for negative-margin cases and a distinct banking / insurance grammar.
-- Provide separate native phone and desktop SVG compositions, source-linked figures and real CJK browser screenshots; never treat passing source arithmetic or screenshot overlap gates as independent editorial-art certification.
-- Keep release gates separate: original financial evidence, analytical depth, art direction, live deployment SHA and independent review. Build and verify the **current HTML bytes**, and update machine-readable session handoff with true PASS/FAIL/NOT_CHECKED status.
-
-## Current adoption: do not overstate
-
-PR #35 now has three V10 positive Sankey issuer examples (688111, 000333, 600036) and one lawful signed exception (600519). Seven original historical issuer primary finance figures (300394, 300502, 300308, 688220, 600900, 600276, 601628) now actually use one source-typed original-yuan visual grammar for both desktop and phone. The six positive industrial/optical sources compile through the shared v9 true connected income Sankey; the insurer has a lawful separate management-old-premium 4→new/renew→total graph with shared visual tokens but NO CAS25 insurance service income bridge. All seven must retain **HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY** because the other older industry P&L/CFO/stock graphics are not yet harmonized. No issuer may silently claim all company visuals unified. All eleven companies still require full original-source design migration; the PR has not been merged to production main. Unseen-company generalization, cross-period stability and genuine independent finance/visual review are **NOT_CHECKED**. The authoritative census is [scripts/audit_unified_visual_corpus.py](../../scripts/audit_unified_visual_corpus.py).
-
-## Hardening regression
-
-The current release pipeline runs the money-flow and visual accounting suite under normal Python and `python -O`: **financial and geometric invariants must raise explicit errors even when Python assertions are optimized away.** The canonical checks and handoff procedures are in [SKILL.md](SKILL.md), not copied into another competing policy.
+技能不会自动安装到普通 ChatGPT 会话；Codex 在仓库内通过 `.agents/skills/` 入口发现它。

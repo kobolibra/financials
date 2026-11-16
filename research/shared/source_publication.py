@@ -75,9 +75,14 @@ def validate(ledger,story,root=ROOT):
     expected_kind={'H1':'半年度','FY':'年度','Q1':'第一季度','9M':'第三季度'}
     period=issuer['fiscal_period']
     if not report or report.group(1)!=period[:4] or expected_kind.get(period[4:])!=report.group(2):raise ValueError('DOSSIER_ORIGINAL_REPORT_PERIOD')
+    # Quarterly reports print extra flow columns (e.g. Q3 single quarter next to
+    # nine-month YTD). Each extra column must be declared once, explicitly.
+    extra_columns=issuer.get('flow_columns',{})
+    if not isinstance(extra_columns,dict) or any(c in {'本期/期末','上期/期初'} or not isinstance(p,str) or not re.fullmatch(r'20[0-9]{2}(Q[1-4]|H1|H2|9M|FY)',p) for c,p in extra_columns.items()):raise ValueError('DOSSIER_INVALID_EXTRA_FLOW_COLUMNS')
     for k,f in ledger['facts'].items():
         if f['type']=='flow' and f['classification']=='DISCLOSED':
-            wanted=issuer['comparative_period'] if f.get('source_column')=='上期/期初' else issuer['fiscal_period']
+            column=f.get('source_column')
+            wanted=extra_columns[column] if column in extra_columns else issuer['comparative_period'] if column=='上期/期初' else issuer['fiscal_period']
             if f['period']!=wanted:raise ValueError('DOSSIER_FLOW_PERIOD_COLUMN_MISMATCH '+k)
         if f['scope']!='consolidated' or f['currency']!='CNY' or f['unit']!='元' or not D(f['yuan']).is_finite():raise ValueError('DOSSIER_FACT_BASIS '+k)
         if type(f['page']) is not int or not 1<=f['page']<=len(doc):raise ValueError('DOSSIER_PHYSICAL_PAGE '+k)
@@ -95,7 +100,9 @@ def validate(ledger,story,root=ROOT):
         else:raise ValueError('DOSSIER_CLASSIFICATION_UNKNOWN '+k)
     for test in story['accounting_identities']:
         if amount(ledger,test['left'])!=amount(ledger,test['right']):raise ValueError('DOSSIER_ACCOUNTING_IDENTITY '+test['name'])
-    compile_disclosed_income(ledger)
+    # Quarterly reports usually omit product revenue/cost notes; the income
+    # Sankey is compiled (and fail-closed) only when the dossier asks for it.
+    if any(f['family']=='income' for f in story['figures']):compile_disclosed_income(ledger)
     ids=[f['id'] for f in story['figures']]
     for f in story['figures']:
         if f['family']=='signed_bridge':presentation_rows(f)
