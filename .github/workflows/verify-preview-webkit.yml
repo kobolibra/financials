@@ -30,7 +30,7 @@ jobs:
           from audit_delivery_matrix import MEASURE
           from playwright.sync_api import sync_playwright
           origin = os.environ['ORIGIN'].rstrip('/')
-          assert re.fullmatch(r'https://[a-z0-9-]+\.financials-in-visuals\.pages\.dev', origin), origin
+          assert re.fullmatch(r'https://([a-z0-9-]+\.)?financials-in-visuals\.pages\.dev', origin), origin  # preview or production
           cat = json.load(open('site/research_catalog.json'))
           hrefs = [r['href'] for r in cat['issuers'] + cat.get('period_reports', [])]
           bad = []
