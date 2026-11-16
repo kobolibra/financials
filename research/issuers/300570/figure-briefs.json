@@ -4,36 +4,72 @@
   "source_sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
   "figure_briefs": [
     {
-      "id": "income",
-      "family": "income",
-      "question": "光器件增长，究竟留下多少毛利？",
-      "takeaway": "光器件是收入与毛利的主要来源；三项产品采用各自披露成本，不分摊集团毛利率。",
-      "identity": "三个互斥产品收入=集团收入；各自成本=集团成本；每项收入−自身成本=自身毛利。",
-      "counter": "产品分类中的“其他”不是主营/其他业务表里的“其他业务”，不能把两者再加一次。光器件包含多种产品，不能全部称为MPO或高速光模块。",
+      "id": "glance",
+      "family": "kpi_board",
+      "question": "这半年最重要的六个数字是什么？",
+      "takeaway": "收入+20.81%，毛利率降至34.81%，归母利润只增+1.71%，经营现金转为净流出。",
+      "identity": "各格为合并口径；流量与上年同期比较，应收为期末与年初余额比较。",
+      "counter": "半年数受交付与回款节奏影响；应收增加可能来自期末集中出货，需要下一期回款验证。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
-        15,
+        35,
         40,
-        142
+        41,
+        43,
+        44
       ],
       "facts": [
         "rev",
+        "rev_prior",
         "cogs",
-        "optical_rev",
-        "optical_cost",
-        "sensor_rev",
-        "sensor_cost",
-        "other_rev",
-        "other_cost"
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "cfo",
+        "cfo_prior",
+        "sales_cash",
+        "sales_cash_prior",
+        "ar",
+        "ar_prior"
       ]
     },
     {
-      "id": "profit",
-      "family": "signed_bridge",
-      "question": "营业毛利如何变成上市股东的利润？",
-      "takeaway": "财务费用和减值侵蚀毛利，投资收益及税负变化构成另一面。",
-      "identity": "毛利加减法定损益=营业利润；营业外净额与税收后=合并净利润；再减少数权益=归母。",
-      "counter": "会计费用不等于本期现金支付；合并净利润、归母及扣非净利润需要分别比较。",
+      "id": "growth",
+      "family": "growth_bars",
+      "question": "利润表哪一行跑得最快？",
+      "takeaway": "营业成本同比+28.99%，快于收入的+20.81%，毛利只增+8.00%；营业利润同比-0.52%。",
+      "identity": "各条为本期相对上年同期的同比增速；成本费用类增加标红。",
+      "counter": "费用下降是否可持续，半年报没有拆分；成本增速快于收入也可能来自产品结构，季报和半年报都不披露分产品单价。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        40,
+        41,
+        43
+      ],
+      "facts": [
+        "rev_prior",
+        "rev",
+        "cogs_prior",
+        "cogs",
+        "rd_expense_prior",
+        "rd_expense",
+        "admin_prior",
+        "admin",
+        "operating_profit_prior",
+        "operating_profit",
+        "parent_net_prior",
+        "parent_net",
+        "sales_cash_prior",
+        "sales_cash"
+      ]
+    },
+    {
+      "id": "margins",
+      "family": "ratio_dumbbell",
+      "question": "利润率下滑来自毛利还是费用？",
+      "takeaway": "毛利率变化-4.13个百分点，营业利润率变化-4.15个百分点；研发、管理、销售费用率合计变化-3.85个百分点。",
+      "identity": "空心点为上年同期，实心点为本期；比率均以合并营业收入为分母。",
+      "counter": "毛利率下降的来源（产品结构、价格、成本）半年报没有分产品同比数据，无法区分。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
         40,
@@ -42,24 +78,18 @@
       "facts": [
         "rev",
         "cogs",
-        "tax_surcharge",
-        "selling",
-        "admin",
-        "rd_expense",
-        "finance",
-        "other_income",
-        "investment_income",
-        "fair_value",
-        "credit_impairment",
-        "asset_impairment",
+        "rev_prior",
+        "cogs_prior",
         "operating_profit",
-        "nonop_income",
-        "nonop_expense",
-        "pretax",
-        "income_tax",
-        "net_profit",
-        "nci",
-        "parent_net"
+        "operating_profit_prior",
+        "parent_net",
+        "parent_net_prior",
+        "rd_expense",
+        "rd_expense_prior",
+        "admin",
+        "admin_prior",
+        "selling",
+        "selling_prior"
       ]
     },
     {
@@ -136,45 +166,12 @@
       ]
     },
     {
-      "id": "cfo",
-      "family": "signed_bridge",
-      "question": "净利润为何未能变成经营现金？",
-      "takeaway": "存货、经营性应收及应付三项合计影响-3.57亿元；供应商及其他经营负债增长只提供部分对冲。",
-      "identity": "合并净利润+全部原始非现金及营运资本调节=经营现金净额。",
-      "counter": "应收增加不能直接称为逾期；经营性应收与应付也不能分别简化成资产负债表中的单一科目。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        41,
-        44,
-        149,
-        150
-      ],
-      "facts": [
-        "net_profit",
-        "provisions",
-        "depreciation",
-        "rou_amort",
-        "intangible_amort",
-        "deferred_amort",
-        "scrap_loss",
-        "fair_loss",
-        "finance_adjustment",
-        "investment_loss",
-        "dta_decrease",
-        "inventory_release",
-        "operating_ar_change",
-        "operating_ap_change",
-        "cfo_other",
-        "cfo"
-      ]
-    },
-    {
-      "id": "working-capital",
-      "family": "comparison",
-      "question": "增长的收入，沉淀在应收还是备货？",
-      "takeaway": "应收净额较年初增加3.54亿元，存货增加2.63亿元；两项增长远大于半年净利润。",
-      "identity": "两张资产负债表相同科目、相同合并范围比较，不把四项存量直接累计为CFO。",
-      "counter": "存量变化不是收入同比；客户集中不等于客户违约。现金流补充资料的口径须单独核对。",
+      "id": "stock-delta",
+      "family": "stock_delta",
+      "question": "增长把资金沉淀在哪里？",
+      "takeaway": "应收增加+3.54亿元、存货增加+2.63亿元；应付增加+3.56亿元，相当于前两项的57.7%。",
+      "identity": "各条为期末余额减年初余额；资产增加占用资金，负债增加提供资金。",
+      "counter": "余额变动不等于现金流量表调节项（含票据、汇率与减值影响）；应收账龄与逾期情况见重大附注。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
         35,
@@ -186,9 +183,7 @@
         "inventory_prior",
         "inventory",
         "ap_prior",
-        "ap",
-        "financial_assets_prior",
-        "financial_assets"
+        "ap"
       ]
     },
     {
@@ -235,6 +230,39 @@
       ]
     },
     {
+      "id": "cfo",
+      "family": "signed_bridge",
+      "question": "净利润为何未能变成经营现金？",
+      "takeaway": "存货、经营性应收及应付三项合计影响-3.57亿元；供应商及其他经营负债增长只提供部分对冲。",
+      "identity": "合并净利润+全部原始非现金及营运资本调节=经营现金净额。",
+      "counter": "应收增加不能直接称为逾期；经营性应收与应付也不能分别简化成资产负债表中的单一科目。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        41,
+        44,
+        149,
+        150
+      ],
+      "facts": [
+        "net_profit",
+        "provisions",
+        "depreciation",
+        "rou_amort",
+        "intangible_amort",
+        "deferred_amort",
+        "scrap_loss",
+        "fair_loss",
+        "finance_adjustment",
+        "investment_loss",
+        "dta_decrease",
+        "inventory_release",
+        "operating_ar_change",
+        "operating_ap_change",
+        "cfo_other",
+        "cfo"
+      ]
+    },
+    {
       "id": "balance",
       "family": "balance",
       "question": "资产扩张背后，负债与权益如何变化？",
@@ -253,6 +281,65 @@
         "assets",
         "liabilities",
         "equity"
+      ]
+    },
+    {
+      "id": "income",
+      "family": "income",
+      "question": "光器件增长，究竟留下多少毛利？",
+      "takeaway": "光器件是收入与毛利的主要来源；三项产品采用各自披露成本，不分摊集团毛利率。",
+      "identity": "三个互斥产品收入=集团收入；各自成本=集团成本；每项收入−自身成本=自身毛利。",
+      "counter": "产品分类中的“其他”不是主营/其他业务表里的“其他业务”，不能把两者再加一次。光器件包含多种产品，不能全部称为MPO或高速光模块。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        15,
+        40,
+        142
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "optical_rev",
+        "optical_cost",
+        "sensor_rev",
+        "sensor_cost",
+        "other_rev",
+        "other_cost"
+      ]
+    },
+    {
+      "id": "profit",
+      "family": "signed_bridge",
+      "question": "营业毛利如何变成上市股东的利润？",
+      "takeaway": "财务费用和减值侵蚀毛利，投资收益及税负变化构成另一面。",
+      "identity": "毛利加减法定损益=营业利润；营业外净额与税收后=合并净利润；再减少数权益=归母。",
+      "counter": "会计费用不等于本期现金支付；合并净利润、归母及扣非净利润需要分别比较。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        40,
+        41
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "tax_surcharge",
+        "selling",
+        "admin",
+        "rd_expense",
+        "finance",
+        "other_income",
+        "investment_income",
+        "fair_value",
+        "credit_impairment",
+        "asset_impairment",
+        "operating_profit",
+        "nonop_income",
+        "nonop_expense",
+        "pretax",
+        "income_tax",
+        "net_profit",
+        "nci",
+        "parent_net"
       ]
     },
     {

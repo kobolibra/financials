@@ -232,5 +232,15 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "00269facd96473ee94f96c9b48ccd6f1698601e8e27c732e5b08ed87a5bf09ac",
+    "candidate_full_html_sha256": "a53372c4ddc149d37e0417b07963ea271143a6bd6d2d5a70894546146c79ca40",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "change": "正文改为EDITORIAL_V2：本期一览、KPI看板、逐行/分部同比增速条、利润率哑铃、营运资本余额变动、主题章节；正文签名桥不超过两张，重叠的两期对比表移除",
+    "local_receipt": "research/quality/editorial-20261113-local/result.json",
+    "base_figure_count": 12
+  }
 }

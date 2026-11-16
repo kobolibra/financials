@@ -27,9 +27,9 @@
     },
     "300548": {
       "file": "300548-actual-browser-evidence.zip",
-      "sha256": "805c3cfa57885d94d39eb4e3d555bf7b47e4a40e3c5ab794704587c5ca464242",
-      "bytes": 5165959,
-      "original_files": 72
+      "sha256": "696f07d5610613682d310f1ee017d3c964a285750582d9c7b0c8a675f458b167",
+      "bytes": 5984503,
+      "original_files": 90
     },
     "300308": {
       "file": "300308-actual-browser-evidence.zip",
@@ -57,9 +57,9 @@
     },
     "300570": {
       "file": "300570-actual-browser-evidence.zip",
-      "sha256": "8129f5f518e56e655feacc8e524e5d8fa45e3f7dbc018a87cc0a1ef9866b91e6",
-      "bytes": 4397887,
-      "original_files": 66
+      "sha256": "01d2fc59a265774b3e072bb1948092ed660d670dfb3fccc6a52cb0260cf03fff",
+      "bytes": 5187058,
+      "original_files": 84
     },
     "300502": {
       "file": "300502-actual-browser-evidence.zip",
@@ -81,9 +81,9 @@
     },
     "600690": {
       "file": "600690-actual-browser-evidence.zip",
-      "sha256": "e78d5974209b8b537c6673384f24b4324928bb94717f9ea6c76921e48396c500",
-      "bytes": 5531924,
-      "original_files": 78
+      "sha256": "09a6cc96ac00dcbd9b6eadeeeb6ac2bbbea2d2fec1bd91bba5ff48f857a45de6",
+      "bytes": 5948460,
+      "original_files": 90
     }
   }
 }

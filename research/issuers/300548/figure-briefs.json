@@ -4,6 +4,233 @@
   "source_sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
   "figure_briefs": [
     {
+      "id": "glance",
+      "family": "kpi_board",
+      "question": "这半年最重要的六个数字是什么？",
+      "takeaway": "收入+40.72%，毛利率升至48.88%，归母利润+91.08%，经营现金只增+4.57%。",
+      "identity": "各格为合并口径；流量与上年同期比较，存货为期末与年初余额比较。",
+      "counter": "利润中有相当部分属于少数股东；存货增加可能是订单备货，也可能是需求放缓的前兆，需要下一期验证。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        45,
+        50,
+        51,
+        53,
+        135
+      ],
+      "facts": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "cfo",
+        "cfo_prior",
+        "overseas_rev",
+        "overseas_rev_prior",
+        "inventory",
+        "inventory_prior"
+      ]
+    },
+    {
+      "id": "growth",
+      "family": "growth_bars",
+      "question": "哪个市场、哪一行增长最快？",
+      "takeaway": "境外收入同比+58.76%，境内+11.26%；营业利润+100.09%，经营现金只增+4.57%。",
+      "identity": "各条为本期相对上年同期的同比增速；成本类增加标红。",
+      "counter": "境内外收入为地区分类，不对应分产品毛利；地区收入同比不能说明价格或销量变化。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        50,
+        51,
+        53,
+        135
+      ],
+      "facts": [
+        "overseas_rev_prior",
+        "overseas_rev",
+        "mainland_rev_prior",
+        "mainland_rev",
+        "rev_prior",
+        "rev",
+        "cogs_prior",
+        "cogs",
+        "rd_expense_prior",
+        "rd_expense",
+        "operating_profit_prior",
+        "operating_profit",
+        "parent_net_prior",
+        "parent_net",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "margins",
+      "family": "ratio_dumbbell",
+      "question": "利润率提升有多少落到上市公司股东？",
+      "takeaway": "毛利率变化+8.68个百分点，营业利润率变化+10.63个百分点；少数股东拿走净利润的39.19%。",
+      "identity": "空心点为上年同期，实心点为本期；利润率以合并营业收入为分母，少数股东占比以合并净利润为分母。",
+      "counter": "少数股东占比由子公司持股比例与各子公司盈利结构决定，半年报未逐家披露，无法判断占比走向。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        50,
+        51
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "rev_prior",
+        "cogs_prior",
+        "operating_profit",
+        "operating_profit_prior",
+        "net_profit",
+        "net_profit_prior",
+        "parent_net",
+        "parent_net_prior",
+        "rd_expense",
+        "rd_expense_prior",
+        "nci",
+        "nci_prior"
+      ]
+    },
+    {
+      "id": "performance",
+      "family": "comparison",
+      "question": "利润接近翻倍，现金是否同步？",
+      "takeaway": "归母利润增长91.08%，扣非归母增长94.49%，CFO仅增长4.57%。",
+      "identity": "同一项目比较2025H1与2026H1，分别保留合并净利润、归母及扣非归母口径。",
+      "counter": "短期现金滞后可能来自旺季备货和结算时点，不能单凭半年转换率认定盈利失真；扣非增长也不能替代收现验证。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        51,
+        53
+      ],
+      "facts": [
+        "net_profit_prior",
+        "net_profit",
+        "parent_net_prior",
+        "parent_net",
+        "adjusted_parent_prior",
+        "adjusted_parent",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "geography",
+      "family": "comparison",
+      "question": "增长集中在哪里，汇率风险跟到哪里？",
+      "takeaway": "其余地区主营收入同比增长58.76%；出口业务主要以美元结算，汇兑净费用0.26亿元。",
+      "identity": "大陆与其余地区对外主营收入=集团主营收入，且不与产品分类重复合计。",
+      "counter": "人民币收入增长包含汇率、产品组合和规模变化；不能据此判断当地销量或全球份额。海外增长也不直接等于境外现金可自由调回。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        135
+      ],
+      "facts": [
+        "mainland_rev_prior",
+        "mainland_rev",
+        "overseas_rev_prior",
+        "overseas_rev"
+      ]
+    },
+    {
+      "id": "stock-delta",
+      "family": "stock_delta",
+      "question": "增长把资金沉淀在哪里？",
+      "takeaway": "存货增加+3.42亿元、应收增加+2.74亿元；应付增加+3.46亿元，相当于前两项的56.2%。",
+      "identity": "各条为期末余额减年初余额；资产增加占用资金，负债增加提供资金。",
+      "counter": "余额变动不等于现金流量表调节项；存货中原材料与在产品的比例见“备货结构”图。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        45,
+        46
+      ],
+      "facts": [
+        "inventory_prior",
+        "inventory",
+        "ar_prior",
+        "ar",
+        "notes_receivable_prior",
+        "notes_receivable",
+        "ap_prior",
+        "ap",
+        "contract_liabilities_prior",
+        "contract_liabilities"
+      ]
+    },
+    {
+      "id": "inventory",
+      "family": "components",
+      "question": "期末备货，主要沉淀在哪个环节？",
+      "takeaway": "存货净额6.89亿元，较年初增加3.42亿元；原材料是主要存量。",
+      "identity": "五类期末净额=期末存货净额；存货账面余额−跌价准备=账面价值。",
+      "counter": "原材料备货可能对应真实需求，也可能在产品迭代时带来风险；没有订单明细、库龄与后续销售，不能把全部存货当作确定收入。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        45,
+        89
+      ],
+      "facts": [
+        "raw_inventory",
+        "wip_inventory",
+        "finished_inventory",
+        "shipped_inventory",
+        "outsourced_inventory",
+        "inventory"
+      ]
+    },
+    {
+      "id": "cash",
+      "family": "signed_bridge",
+      "question": "经营仍有净流入，期末现金为何减少？",
+      "takeaway": "投资与筹资净流出超过经营现金净流入；期末现金等价物为7.80亿元。",
+      "identity": "期初现金+CFO+CFI+CFF+汇率影响=期末现金。",
+      "counter": "期末交易性金融资产7.66亿元是另一个资产类别，不能直接加进现金等价物，也不代表全部可随时无损变现。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        53,
+        54
+      ],
+      "facts": [
+        "cash_open",
+        "cfo",
+        "cfi",
+        "cff",
+        "cash_fx",
+        "cash_close"
+      ]
+    },
+    {
+      "id": "capital",
+      "family": "comparison",
+      "question": "哪些现金支出属于扩张，哪些属于权益交易？",
+      "takeaway": "购建长期资产现金与投资子公司款项分列；理财及股权等投资支付与收回投资按原表呈现。",
+      "identity": "比较各现金流原始项目2025H1与2026H1；CFO减长期资产购建现金只是分析口径，不等于法定自由现金流。",
+      "counter": "投资子公司现金1.96亿元列筹资活动，收购少数股权与新增控制权不是同一种会计交易；不把两张图中同一支出重复相加。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        53,
+        54,
+        114
+      ],
+      "facts": [
+        "cash_capex_prior",
+        "cash_capex",
+        "invest_pay_prior",
+        "invest_pay",
+        "invest_return_prior",
+        "invest_return",
+        "sub_equity_pay_prior",
+        "sub_equity_pay",
+        "debt_repay_prior",
+        "debt_repay"
+      ]
+    },
+    {
       "id": "income",
       "family": "income",
       "question": "哪类业务把收入转化为毛利？",
@@ -64,30 +291,6 @@
         "net_profit",
         "nci",
         "parent_net"
-      ]
-    },
-    {
-      "id": "performance",
-      "family": "comparison",
-      "question": "利润接近翻倍，现金是否同步？",
-      "takeaway": "归母利润增长91.08%，扣非归母增长94.49%，CFO仅增长4.57%。",
-      "identity": "同一项目比较2025H1与2026H1，分别保留合并净利润、归母及扣非归母口径。",
-      "counter": "短期现金滞后可能来自旺季备货和结算时点，不能单凭半年转换率认定盈利失真；扣非增长也不能替代收现验证。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        8,
-        51,
-        53
-      ],
-      "facts": [
-        "net_profit_prior",
-        "net_profit",
-        "parent_net_prior",
-        "parent_net",
-        "adjusted_parent_prior",
-        "adjusted_parent",
-        "cfo_prior",
-        "cfo"
       ]
     },
     {
@@ -179,50 +382,6 @@
       ]
     },
     {
-      "id": "inventory",
-      "family": "components",
-      "question": "期末备货，主要沉淀在哪个环节？",
-      "takeaway": "存货净额6.89亿元，较年初增加3.42亿元；原材料是主要存量。",
-      "identity": "五类期末净额=期末存货净额；存货账面余额−跌价准备=账面价值。",
-      "counter": "原材料备货可能对应真实需求，也可能在产品迭代时带来风险；没有订单明细、库龄与后续销售，不能把全部存货当作确定收入。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        45,
-        89
-      ],
-      "facts": [
-        "raw_inventory",
-        "wip_inventory",
-        "finished_inventory",
-        "shipped_inventory",
-        "outsourced_inventory",
-        "inventory"
-      ]
-    },
-    {
-      "id": "working-capital",
-      "family": "comparison",
-      "question": "业务扩张所需的资金，主要由谁提供？",
-      "takeaway": "应收账款净额较年初增加2.74亿元；应付与合同负债也上升。",
-      "identity": "各项目只作相同时点定义的两期比较；不把四项存量相加冒充CFO。",
-      "counter": "应付账款余额与现金补充资料经营性应付不是同一个范围；应收净额增长也不直接等于逾期或坏账增长。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        45,
-        46
-      ],
-      "facts": [
-        "ar_prior",
-        "ar",
-        "inventory_prior",
-        "inventory",
-        "ap_prior",
-        "ap",
-        "contract_liabilities_prior",
-        "contract_liabilities"
-      ]
-    },
-    {
       "id": "balance",
       "family": "balance",
       "question": "扩张后的资产，由多少负债和权益支撑？",
@@ -241,71 +400,6 @@
         "assets",
         "liabilities",
         "equity"
-      ]
-    },
-    {
-      "id": "cash",
-      "family": "signed_bridge",
-      "question": "经营仍有净流入，期末现金为何减少？",
-      "takeaway": "投资与筹资净流出超过经营现金净流入；期末现金等价物为7.80亿元。",
-      "identity": "期初现金+CFO+CFI+CFF+汇率影响=期末现金。",
-      "counter": "期末交易性金融资产7.66亿元是另一个资产类别，不能直接加进现金等价物，也不代表全部可随时无损变现。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        53,
-        54
-      ],
-      "facts": [
-        "cash_open",
-        "cfo",
-        "cfi",
-        "cff",
-        "cash_fx",
-        "cash_close"
-      ]
-    },
-    {
-      "id": "capital",
-      "family": "comparison",
-      "question": "哪些现金支出属于扩张，哪些属于权益交易？",
-      "takeaway": "购建长期资产现金与投资子公司款项分列；理财及股权等投资支付与收回投资按原表呈现。",
-      "identity": "比较各现金流原始项目2025H1与2026H1；CFO减长期资产购建现金只是分析口径，不等于法定自由现金流。",
-      "counter": "投资子公司现金1.96亿元列筹资活动，收购少数股权与新增控制权不是同一种会计交易；不把两张图中同一支出重复相加。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        53,
-        54,
-        114
-      ],
-      "facts": [
-        "cash_capex_prior",
-        "cash_capex",
-        "invest_pay_prior",
-        "invest_pay",
-        "invest_return_prior",
-        "invest_return",
-        "sub_equity_pay_prior",
-        "sub_equity_pay",
-        "debt_repay_prior",
-        "debt_repay"
-      ]
-    },
-    {
-      "id": "geography",
-      "family": "comparison",
-      "question": "增长集中在哪里，汇率风险跟到哪里？",
-      "takeaway": "其余地区主营收入同比增长58.76%；出口业务主要以美元结算，汇兑净费用0.26亿元。",
-      "identity": "大陆与其余地区对外主营收入=集团主营收入，且不与产品分类重复合计。",
-      "counter": "人民币收入增长包含汇率、产品组合和规模变化；不能据此判断当地销量或全球份额。海外增长也不直接等于境外现金可自由调回。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        135
-      ],
-      "facts": [
-        "mainland_rev_prior",
-        "mainland_rev",
-        "overseas_rev_prior",
-        "overseas_rev"
       ]
     }
   ]

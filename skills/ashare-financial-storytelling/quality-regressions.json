@@ -982,6 +982,26 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-077",
+      "root_cause": "KPI 看板按绝对值画小条，经营现金转负（300570 半年报）时负值会以正常颜色出现。",
+      "correction": "负值小条一律红色，几何审计强制颜色与符号一致；KPI 金额 0.1 亿以上统一以亿显示，避免手机格内溢出。",
+      "proof_file": "research/shared/test_exhibits.py",
+      "assertion_marker": "test_a_negative_kpi_is_never_drawn_in_the_positive_colour",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDT-078",
+      "root_cause": "EDITORIAL_V2 的“正文签名桥不超过两张”按全部图计数，迁移到核对层的桥也被算进去，规则与读者实际看到的正文不符。",
+      "correction": "lint_v2 读取编辑清单角色，只统计正文（非 reference）签名桥：超过两张或超过正文一半即失败；300570/300548/600690 迁移后正文分别为 2/1/2 张。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_fin_intake.py",
+      "assertion_marker": "test_editorial_v2_lint_refuses_a_bridge_parade_and_passes_the_real_q3_story",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

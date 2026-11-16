@@ -378,9 +378,12 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                         site=record.get("live_site_origin","https://financials-in-visuals.pages.dev")
                         good_articles={site+catalog_issuer["href"],site+catalog_issuer["href"].removesuffix(".html")}
                         if catalog_issuer.get('editorial_contract') and record.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1':
-                            if any(v.get('all_source_figures')!=catalog_issuer['figures'] for v in views):errors.append('LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT '+code)
+                            # The live receipt proves the DEPLOYED bytes; an unmerged candidate may change the figure set.
+                            cand=record.get('unmerged_candidate')
+                            deployed=cand.get('base_figure_count') if isinstance(cand,dict) and type(cand.get('base_figure_count')) is int else catalog_issuer['figures']
+                            if any(v.get('all_source_figures')!=deployed for v in views):errors.append('LIVE_CAPTURE_CURRENT_COMPLETE_FIGURE_COUNT '+code)
                             wk=receipt.get('additional_webkit_checks',[])
-                            if len(wk)!=1 or wk[0].get('all_source_figures')!=catalog_issuer['figures'] or wk[0].get('real_visible_svg_exports')!='PASS':errors.append('LIVE_CAPTURE_CURRENT_ALL_FIGURES_WEBKIT '+code)
+                            if len(wk)!=1 or wk[0].get('all_source_figures')!=deployed or wk[0].get('real_visible_svg_exports')!='PASS':errors.append('LIVE_CAPTURE_CURRENT_ALL_FIGURES_WEBKIT '+code)
                         for view in views:
                             if view.get("actual_dedicated_article_final_url") not in good_articles or view.get("actual_return_to_library_url")!=site+"/#companies":
                                 errors.append(f"LIVE_CAPTURE_COMPANY_VS_HOME_ROUTE_INVALID {code}")

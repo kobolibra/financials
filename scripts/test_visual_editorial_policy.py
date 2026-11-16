@@ -51,7 +51,8 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
                         if mode=='false_download':c['figures'][0]['visible_edition_download']='FAIL'
                         if mode=='false_geometry':c['figures'][0]['source_and_actual_geometry']='FAIL'
                         if mode=='wrong_pdf':q['issuers'][code]['pdf_sha256']='0'*64
-                        if mode=='missing_primary':c['figures'][0]['grammar']='IMMUTABLE_PREEXISTING_SOURCE_V10_VECTOR'
+                        # the primary chain is not always first (EDITORIAL_V2 opens with the KPI board)
+                        if mode=='missing_primary':next(f for f in c['figures'] if f['grammar']=='FULL_PROFIT_CHAIN_V1')['grammar']='IMMUTABLE_PREEXISTING_SOURCE_V10_VECTOR'
                         if mode=='reading_layer':c['editorial_main_layer']='FAIL'
                         if mode=='wrong_png':c['figures'][0]['screenshot_sha256']='0'*64
                         return json.dumps(q)

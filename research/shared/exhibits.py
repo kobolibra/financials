@@ -92,7 +92,8 @@ def render_kpi_board(tiles, title, *, mobile=False, **ident):
         c.raw(f'<rect x="{x}" y="{y}" width="{tw}" height="{th}" rx="10" fill="#F6F7F8"/>')
         c.text(x + 14, y + 26, t['label'], 12 if mobile else 13, color=MUTED, weight=600)
         if t['kind'] == 'money':
-            shown = yi(t['value'])
+            # headline figure: 亿 from 0.1亿 up keeps the tile short enough for a 149-wide phone tile
+            shown = f"{q(D(t['value']) / D(100000000), 2)}亿" if abs(D(t['value'])) >= D(10000000) else yi(t['value'])
             delta = growth(t['value'], t['prior'])
             dtext = (f'{t.get("delta_label", "同比")} {q(delta):+}%' if delta is not None else '上期为负或零，不计算增速')
             good = delta is None or delta >= 0
@@ -114,6 +115,7 @@ def render_kpi_board(tiles, title, *, mobile=False, **ident):
         bw = D(tw - 28)
         for j, (v, colr, per) in enumerate(((t['prior'], GREY, t['prior_period']), (t['value'], DARK, t['period']))):
             w = abs(v) / top * bw
+            colr = RED if v < 0 else colr  # a negative amount is drawn by length but never in the positive colour
             c.raw(f'<rect x="{x + 14}" y="{f(y + (100 if mobile else 108) + j * 9)}" width="{f(w)}" height="6" rx="2" fill="{colr}" '
                   f'data-micro-value="{v}" data-micro-domain="{top}" data-micro-span="{bw}" data-period="{E(per, quote=True)}"/>')
     rows = (len(tiles) + cols - 1) // cols

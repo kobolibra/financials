@@ -120,6 +120,7 @@ def check_editorial_svg(markup,*,issuer,pdf_sha256):
                 for r,v in zip(pair,vals):
                     require(num(r.get('data-micro-domain'))==domain,'KPI_MICRO_DOMAIN')
                     require(close(r.get('width'),abs(v)/domain*num(r.get('data-micro-span'))),'KPI_MICRO_WIDTH')
+                    require((r.get('fill').upper()=='#C2362E')==(v<0),'KPI_NEGATIVE_COLOUR')
             values=[t for t in node.iter(NS+'text') if t.get('data-exact-value') is not None]
             require(len(values)*2==len(micro),'KPI_TILE_COUNT')
             return len(values)

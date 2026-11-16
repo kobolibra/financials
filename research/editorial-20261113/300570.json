@@ -992,24 +992,33 @@
     "figures": [
       {
         "index": 0,
-        "id": "income",
-        "title": "光器件增长，究竟留下多少毛利？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "id": "glance",
+        "title": "这半年最重要的六个数字是什么？",
+        "role": "secondary",
+        "rationale": "At a glance：本期六个关键数字",
         "summary": false,
         "focus": []
       },
       {
         "index": 1,
-        "id": "profit",
-        "title": "营业毛利如何变成上市股东的利润？",
-        "role": "reference",
-        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "id": "growth",
+        "title": "利润表哪一行跑得最快？",
+        "role": "secondary",
+        "rationale": "逐行同比，显示成本快于收入",
         "summary": false,
         "focus": []
       },
       {
         "index": 2,
+        "id": "margins",
+        "title": "利润率下滑来自毛利还是费用？",
+        "role": "secondary",
+        "rationale": "利润率与费用率的前后对比",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 3,
         "id": "profit-change",
         "title": "收入增两成，为何归母利润几乎没增长？",
         "role": "secondary",
@@ -1018,7 +1027,7 @@
         "focus": []
       },
       {
-        "index": 3,
+        "index": 4,
         "id": "earnings",
         "title": "归母微增之后，扣非与现金是否支持？",
         "role": "secondary",
@@ -1027,24 +1036,11 @@
         "focus": []
       },
       {
-        "index": 4,
-        "id": "cfo",
-        "title": "净利润为何未能变成经营现金？",
-        "role": "reference",
-        "rationale": "正文保留主要现金占用与反证，全部附注调节移入可展开核对层",
-        "summary": true,
-        "focus": [
-          "存货",
-          "经营性应收",
-          "经营性应付"
-        ]
-      },
-      {
         "index": 5,
-        "id": "working-capital",
-        "title": "增长的收入，沉淀在应收还是备货？",
+        "id": "stock-delta",
+        "title": "增长把资金沉淀在哪里？",
         "role": "secondary",
-        "rationale": "回答独立的经营、变化、风险或资本问题，保留正文",
+        "rationale": "营运资本占用，取代两期对比表",
         "summary": false,
         "focus": []
       },
@@ -1068,6 +1064,19 @@
       },
       {
         "index": 8,
+        "id": "cfo",
+        "title": "净利润为何未能变成经营现金？",
+        "role": "reference",
+        "rationale": "正文保留主要现金占用与反证，全部附注调节移入可展开核对层",
+        "summary": true,
+        "focus": [
+          "存货",
+          "经营性应收",
+          "经营性应付"
+        ]
+      },
+      {
+        "index": 9,
         "id": "balance",
         "title": "资产扩张背后，负债与权益如何变化？",
         "role": "secondary",
@@ -1076,7 +1085,25 @@
         "focus": []
       },
       {
-        "index": 9,
+        "index": 10,
+        "id": "income",
+        "title": "光器件增长，究竟留下多少毛利？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 11,
+        "id": "profit",
+        "title": "营业毛利如何变成上市股东的利润？",
+        "role": "reference",
+        "rationale": "完整利润主图已覆盖本期形成关系，原始细分及对账保留于核对层",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 12,
         "id": "geography",
         "title": "内外销结构如何影响经营与汇率风险？",
         "role": "reference",
@@ -1091,7 +1118,8 @@
     "selection_rule": "QUESTION_MATERIALITY_COUNTERCASE_AND_NONREDUNDANCY_NOT_CHART_COUNT",
     "original_article_sha256": "9be4b6cd9e78d9a3cb8bd23020d318fb8f3c9830bf3e2584e613da53512bb549",
     "attention_standard": "正文主图贯通至归母；专题须有独立问题及重要性理由；全部原始行项在可展开核对层保留，不按图数评价研究深度。",
-    "layout": "INCOME_FLOW_V3"
+    "layout": "INCOME_FLOW_V3",
+    "hero_position": "after_first"
   },
   "report_identity_page": 1,
   "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475478.PDF",
