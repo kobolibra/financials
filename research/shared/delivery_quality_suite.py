@@ -42,6 +42,8 @@ def run(out):
     from qa_editorial_migration import audit as full_figure_audit
     catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
     codes=[r['code'] for r in catalog['issuers'] if r.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1']
+    # Later report periods of an issuer are audited with the same all-figure gate, keyed code@period.
+    codes+=[r['code']+'@'+r['period'] for r in catalog.get('period_reports',[]) if r.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1']
     # Newly added issuers cannot inherit the four pre-migration V10 snapshots.
     snapshots=catalog['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['historical_exact_html_snapshots']
     missing=[r['code'] for r in catalog['issuers'] if r.get('figure_quality_contract')!='FULL_SOURCE_FIGURES_V1' and
