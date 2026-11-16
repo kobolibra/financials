@@ -4,7 +4,7 @@
   "origin": "LOCAL_FILE_SOURCE",
   "issuers": {
     "300394@20269M": {
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
       "pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
       "complete_figure_migration": "PASS_LOCAL",
       "figure_count": 13
@@ -35,459 +35,6 @@
     }
   },
   "cases": [
-    {
-      "issuer": "300394@20269M",
-      "width": 1440,
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
-      "figures": [
-        {
-          "index": 0,
-          "id": "glance",
-          "grammar": "SOURCE_KPI_BOARD_V1",
-          "vector_sha256": "dea1c6fefb3deaef4648bed19ee0229cd9ddec81e419dc34ae03822207a814ea",
-          "screenshot_sha256": "50df34367b1da6ccf859dabf45ebe99a180ce9a606d66a1bf2fa8f912c037bfa",
-          "screenshot_file": "300394@20269M-1440-figure-01.png",
-          "export_file": "300394@20269M-1440-figure-01.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 1,
-          "id": "profit-chain-overview",
-          "grammar": "FULL_PROFIT_CHAIN_V1",
-          "vector_sha256": "fbde9557cfc5c63b3f050957a9baa07cbe41176f172619cda35ea1733eb93cce",
-          "screenshot_sha256": "4884ab437d222de920ad986a0369c868e5127aa7f339c9141796022c41f6ffb3",
-          "screenshot_file": "300394@20269M-1440-figure-02.png",
-          "export_file": "300394@20269M-1440-figure-02.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 2,
-          "id": "rev-quarters",
-          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
-          "vector_sha256": "7d98fbf4c1234ee58dcd1495400dafd224eec61930fc6866da30356696a2affd",
-          "screenshot_sha256": "19ee443b56697f98cf3a1e718708e06b45c30726e4bd651ced27a6ffcf8ea951",
-          "screenshot_file": "300394@20269M-1440-figure-03.png",
-          "export_file": "300394@20269M-1440-figure-03.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 3,
-          "id": "profit-quarters",
-          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
-          "vector_sha256": "695d4c0d658bae50c4def8368af243e6f900d00cba13400c3b34921e93c54472",
-          "screenshot_sha256": "9c51c76748cc2cc3e5585d41b823e2683d42a4599959f5ea2e5f6da36d53e98e",
-          "screenshot_file": "300394@20269M-1440-figure-04.png",
-          "export_file": "300394@20269M-1440-figure-04.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 4,
-          "id": "growth",
-          "grammar": "SOURCE_GROWTH_BARS_V1",
-          "vector_sha256": "6bc076566e7855213724eb555c2683148d9839e92e4bccab35fb98321b36d4f4",
-          "screenshot_sha256": "58363094d3e47de483388284ee984438ef76623e0590bd8c8fd3bd5cfc56e04f",
-          "screenshot_file": "300394@20269M-1440-figure-05.png",
-          "export_file": "300394@20269M-1440-figure-05.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 5,
-          "id": "margins",
-          "grammar": "SOURCE_RATIO_DUMBBELL_V1",
-          "vector_sha256": "1b302f112ded726d0bb72a75741b0fa19287a1df4d958344f84d1e57368481b2",
-          "screenshot_sha256": "c1397802030d0d3e84c6774919a7d51f28cb521e60f4dbd804a8304f49111e2d",
-          "screenshot_file": "300394@20269M-1440-figure-06.png",
-          "export_file": "300394@20269M-1440-figure-06.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 6,
-          "id": "profit-change",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "bdf034e26e296f295a38190d90233a4f8d0f9c056d787d2fd676c49360e43a90",
-          "screenshot_sha256": "43085d667809798a30f879a0e0d0cd72803031c4e5fe47398415a05e2ccbfcb6",
-          "screenshot_file": "300394@20269M-1440-figure-07.png",
-          "export_file": "300394@20269M-1440-figure-07.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 7,
-          "id": "earnings",
-          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1",
-          "vector_sha256": "c72d92ac0f11ef9db64024dd19a5a8d9e1cfe36adb165f9c158506e8c7fa79ad",
-          "screenshot_sha256": "d7bc780da972b0eb8abf8383359696a8a8efc9448c79bdf73189fe669afbf893",
-          "screenshot_file": "300394@20269M-1440-figure-08.png",
-          "export_file": "300394@20269M-1440-figure-08.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 8,
-          "id": "stock-delta",
-          "grammar": "SOURCE_STOCK_DELTA_V1",
-          "vector_sha256": "45e4eb7efa6c1a737679e23f89e66d84699ff5ea181f95e4c31bdab14837ffeb",
-          "screenshot_sha256": "46ce74c0bd7a2ba7e966190bec6371ae5df1ae736f9ed424856e6555ff8fc18a",
-          "screenshot_file": "300394@20269M-1440-figure-09.png",
-          "export_file": "300394@20269M-1440-figure-09.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 9,
-          "id": "cash",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "e6292253a175898c97b2d65660fbb708be979d09852c33f2fbe5ba4ad58da661",
-          "screenshot_sha256": "405cacb63c8a29fe321c8fb485d8c93ad6012b5fdd946dffc741c6ebb14716f2",
-          "screenshot_file": "300394@20269M-1440-figure-10.png",
-          "export_file": "300394@20269M-1440-figure-10.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 10,
-          "id": "quality",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "57755e9c9458873de2312e23b6decfa82b84027e4d8fdc8bb3ddfa91416f219b",
-          "screenshot_sha256": "d4f87d878a54a9dc07a5a0ebe2a9236e350bdf610de28f1c16456f2a0adeef33",
-          "screenshot_file": "300394@20269M-1440-figure-11.png",
-          "export_file": "300394@20269M-1440-figure-11.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 11,
-          "id": "cash-direct",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "adf3038a94263ac09cc0418dfbcae1a6ad2126999cbd723053d7b515ceb49a93",
-          "screenshot_sha256": "bafe1ba0ef476fe59014bdb2b1955a4201e86461e705e6c91ae19e59f352bc85",
-          "screenshot_file": "300394@20269M-1440-figure-12.png",
-          "export_file": "300394@20269M-1440-figure-12.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 12,
-          "id": "balance",
-          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1",
-          "vector_sha256": "c15de61429f05afbd6578e0838fb3005e3f76c6e441e10367d12e34a7850d440",
-          "screenshot_sha256": "495efe5c5721c24cc53c4941aa764c857f5ef8d454de9127da834354c5f136e0",
-          "screenshot_file": "300394@20269M-1440-figure-13.png",
-          "export_file": "300394@20269M-1440-figure-13.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        }
-      ],
-      "editorial_main_layer": "PASS"
-    },
-    {
-      "issuer": "300394@20269M",
-      "width": 768,
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
-      "figures": [
-        {
-          "index": 0,
-          "id": "glance",
-          "grammar": "SOURCE_KPI_BOARD_V1",
-          "vector_sha256": "767fbe14c6134dcae4e4b2c0be84cef2fc785e1d8634147b8386a9c5f432cf8d",
-          "screenshot_sha256": "7dfe0504eb3497dd5604ce311f306d1c690f57b1f7a5a4ef0f2c59c9a42d4b97",
-          "screenshot_file": "300394@20269M-768-figure-01.png",
-          "export_file": "300394@20269M-768-figure-01.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 1,
-          "id": "profit-chain-overview",
-          "grammar": "FULL_PROFIT_CHAIN_V1",
-          "vector_sha256": "e157c5f63ef8f7770789289aa393dbba15e38dd806f51fa97c44cd786e2bac5f",
-          "screenshot_sha256": "ebaef2900c0459cca545029e6909d48afb07fb307a56427a079a37726af32610",
-          "screenshot_file": "300394@20269M-768-figure-02.png",
-          "export_file": "300394@20269M-768-figure-02.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 2,
-          "id": "rev-quarters",
-          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
-          "vector_sha256": "3b2a9f764c73aa74f324f462cc9d3cd6ece63911f6e6aee461c7d639a7bd5275",
-          "screenshot_sha256": "c9fa2b9f91e749f9d67f95b9480b57e644a4014e3a7a6edfd82d27aeaf8a65db",
-          "screenshot_file": "300394@20269M-768-figure-03.png",
-          "export_file": "300394@20269M-768-figure-03.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 3,
-          "id": "profit-quarters",
-          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
-          "vector_sha256": "94209002524ee261bb20a4eebd9dfb99458503df62fa7fe8364a6496a51ff2f8",
-          "screenshot_sha256": "31003633eb29a4ffd778b6d4f671d5a9d5341a5b9fd89b2c4d99ab7bef598ad1",
-          "screenshot_file": "300394@20269M-768-figure-04.png",
-          "export_file": "300394@20269M-768-figure-04.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 4,
-          "id": "growth",
-          "grammar": "SOURCE_GROWTH_BARS_V1",
-          "vector_sha256": "2eb1906a1fa43600012d11b23f78adbfbe653de2d9dc04771cc17b3d1a9851d3",
-          "screenshot_sha256": "dd41dbf590ede8d46915c300feb602d79add05cb844f5b91d90268bc302440d7",
-          "screenshot_file": "300394@20269M-768-figure-05.png",
-          "export_file": "300394@20269M-768-figure-05.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 5,
-          "id": "margins",
-          "grammar": "SOURCE_RATIO_DUMBBELL_V1",
-          "vector_sha256": "d9f9328c67dbee64f035af029f8e7f9279ed781c2306524e21d01062f897d797",
-          "screenshot_sha256": "04e3e2ebe4a28240ebb339e02c4b2a3421d6e518f30cebbfd158d0670e62b911",
-          "screenshot_file": "300394@20269M-768-figure-06.png",
-          "export_file": "300394@20269M-768-figure-06.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 6,
-          "id": "profit-change",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "71e7ce990c50cf4b95ce3e9b6c79b2ba9e464c8f5fdbf01ff1056926515cc024",
-          "screenshot_sha256": "ad4a29d3090d796382df1df9148f92d92869c6e0fa2508287d7c16fcad97cd0b",
-          "screenshot_file": "300394@20269M-768-figure-07.png",
-          "export_file": "300394@20269M-768-figure-07.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 7,
-          "id": "earnings",
-          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1",
-          "vector_sha256": "1b7993a46fc751623352ddcdad3d51591df8f9ffd264c8fbde5c58536c67bd36",
-          "screenshot_sha256": "cbc1bf82541c924d910c3c3d4260e70727da9d7c64a6b8620a9f0b78f7385427",
-          "screenshot_file": "300394@20269M-768-figure-08.png",
-          "export_file": "300394@20269M-768-figure-08.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 8,
-          "id": "stock-delta",
-          "grammar": "SOURCE_STOCK_DELTA_V1",
-          "vector_sha256": "48b776b3306b16fc6e930466020011f7d512bdf2c71ad92bb2827c4bedcb8943",
-          "screenshot_sha256": "f26875cb6b0d757be6753a46fdb80c14d18399ca39ca9ac60a90b09b40afbe8d",
-          "screenshot_file": "300394@20269M-768-figure-09.png",
-          "export_file": "300394@20269M-768-figure-09.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 9,
-          "id": "cash",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "6e60fcdb931dffa712d45ed827aeeb3c90b3e1728fe661cfa9b69993db986d83",
-          "screenshot_sha256": "4b1a20678f45834e79e3b7e8d7f248583df74c20df864ef9181650134a79683f",
-          "screenshot_file": "300394@20269M-768-figure-10.png",
-          "export_file": "300394@20269M-768-figure-10.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 10,
-          "id": "quality",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "83674a5ec059a2319f65295e20bd48e289b52fe1c8604f29a20296c0cd06768b",
-          "screenshot_sha256": "e2b926ed134be5b3c176f9907c85f64ae4ffddb8572c15b68fec5de84a2801d3",
-          "screenshot_file": "300394@20269M-768-figure-11.png",
-          "export_file": "300394@20269M-768-figure-11.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 11,
-          "id": "cash-direct",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "c7030ed08c61c96169175ab0f4b6c8dab7f795545cb1ac0b77cf3a435a46fc01",
-          "screenshot_sha256": "dcdf48fa2e883457cbf246deb2798bb925b66da2521bc3a4021672f5ca5887ed",
-          "screenshot_file": "300394@20269M-768-figure-12.png",
-          "export_file": "300394@20269M-768-figure-12.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 12,
-          "id": "balance",
-          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1",
-          "vector_sha256": "87133f573be614319940338975453585df85b937ca099e7683bff2de95ab67f4",
-          "screenshot_sha256": "954eeafc7c291260043a43ba55d635e8ebb6cc26674dda641794259971c88902",
-          "screenshot_file": "300394@20269M-768-figure-13.png",
-          "export_file": "300394@20269M-768-figure-13.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        }
-      ],
-      "editorial_main_layer": "PASS"
-    },
-    {
-      "issuer": "300394@20269M",
-      "width": 390,
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
-      "figures": [
-        {
-          "index": 0,
-          "id": "glance",
-          "grammar": "SOURCE_KPI_BOARD_V1",
-          "vector_sha256": "767fbe14c6134dcae4e4b2c0be84cef2fc785e1d8634147b8386a9c5f432cf8d",
-          "screenshot_sha256": "334d7ddedf7a9e35c03b92046a3d4c50460fcb0c6281638a102c63b1065e50ae",
-          "screenshot_file": "300394@20269M-390-figure-01.png",
-          "export_file": "300394@20269M-390-figure-01.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 1,
-          "id": "profit-chain-overview",
-          "grammar": "FULL_PROFIT_CHAIN_V1",
-          "vector_sha256": "e157c5f63ef8f7770789289aa393dbba15e38dd806f51fa97c44cd786e2bac5f",
-          "screenshot_sha256": "ab88ac63e791ce7b6619cc4ef6e9af551499cf5e182c03ff6c72c82b9433c48f",
-          "screenshot_file": "300394@20269M-390-figure-02.png",
-          "export_file": "300394@20269M-390-figure-02.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 2,
-          "id": "rev-quarters",
-          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
-          "vector_sha256": "3b2a9f764c73aa74f324f462cc9d3cd6ece63911f6e6aee461c7d639a7bd5275",
-          "screenshot_sha256": "d00504caa3f6180bd9e721375c079cd0d71eb535a608e051ae2f9a996f0b50a1",
-          "screenshot_file": "300394@20269M-390-figure-03.png",
-          "export_file": "300394@20269M-390-figure-03.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 3,
-          "id": "profit-quarters",
-          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
-          "vector_sha256": "94209002524ee261bb20a4eebd9dfb99458503df62fa7fe8364a6496a51ff2f8",
-          "screenshot_sha256": "ea09fc21192e60237a646b6c39851a84ff48cc53699392f09c99d069c3131114",
-          "screenshot_file": "300394@20269M-390-figure-04.png",
-          "export_file": "300394@20269M-390-figure-04.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 4,
-          "id": "growth",
-          "grammar": "SOURCE_GROWTH_BARS_V1",
-          "vector_sha256": "2eb1906a1fa43600012d11b23f78adbfbe653de2d9dc04771cc17b3d1a9851d3",
-          "screenshot_sha256": "5c0d1da4f9b44cb99f25fcd859f80b22340987173705c17c5b6d5d4effbb699e",
-          "screenshot_file": "300394@20269M-390-figure-05.png",
-          "export_file": "300394@20269M-390-figure-05.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 5,
-          "id": "margins",
-          "grammar": "SOURCE_RATIO_DUMBBELL_V1",
-          "vector_sha256": "d9f9328c67dbee64f035af029f8e7f9279ed781c2306524e21d01062f897d797",
-          "screenshot_sha256": "79ab7798192b2078ee01849e5671a384d6477ff776e8042970d7e0dcfc5d207a",
-          "screenshot_file": "300394@20269M-390-figure-06.png",
-          "export_file": "300394@20269M-390-figure-06.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 6,
-          "id": "profit-change",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "71e7ce990c50cf4b95ce3e9b6c79b2ba9e464c8f5fdbf01ff1056926515cc024",
-          "screenshot_sha256": "5833018e7ce7d85ca7bea5787a0220085beeb99035b7ab032da956c5b470ef7a",
-          "screenshot_file": "300394@20269M-390-figure-07.png",
-          "export_file": "300394@20269M-390-figure-07.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 7,
-          "id": "earnings",
-          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1",
-          "vector_sha256": "1b7993a46fc751623352ddcdad3d51591df8f9ffd264c8fbde5c58536c67bd36",
-          "screenshot_sha256": "b89f5fb662909654f3ec988c9129e2f2bb71ca843f58b34382c3d6e2d3805c10",
-          "screenshot_file": "300394@20269M-390-figure-08.png",
-          "export_file": "300394@20269M-390-figure-08.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 8,
-          "id": "stock-delta",
-          "grammar": "SOURCE_STOCK_DELTA_V1",
-          "vector_sha256": "48b776b3306b16fc6e930466020011f7d512bdf2c71ad92bb2827c4bedcb8943",
-          "screenshot_sha256": "1ef4364130b5511fa39c5e3d487a1eaa449141b3b88a44bf6840bae436f8b0ed",
-          "screenshot_file": "300394@20269M-390-figure-09.png",
-          "export_file": "300394@20269M-390-figure-09.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 9,
-          "id": "cash",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "6e60fcdb931dffa712d45ed827aeeb3c90b3e1728fe661cfa9b69993db986d83",
-          "screenshot_sha256": "92eaf03f34a1b78830896e310751f506255c446cdfe0a07cd6019e16bbf6ca71",
-          "screenshot_file": "300394@20269M-390-figure-10.png",
-          "export_file": "300394@20269M-390-figure-10.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 10,
-          "id": "quality",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "83674a5ec059a2319f65295e20bd48e289b52fe1c8604f29a20296c0cd06768b",
-          "screenshot_sha256": "d4e2150cac170749faac170cea13287c3f71630f060b05f789b4cf2ff25bc945",
-          "screenshot_file": "300394@20269M-390-figure-11.png",
-          "export_file": "300394@20269M-390-figure-11.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 11,
-          "id": "cash-direct",
-          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
-          "vector_sha256": "c7030ed08c61c96169175ab0f4b6c8dab7f795545cb1ac0b77cf3a435a46fc01",
-          "screenshot_sha256": "f335303460f1029a16b1090b15cc5d8283a196ca6b5dd4efc3b0ce64cb6c4c6b",
-          "screenshot_file": "300394@20269M-390-figure-12.png",
-          "export_file": "300394@20269M-390-figure-12.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        },
-        {
-          "index": 12,
-          "id": "balance",
-          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1",
-          "vector_sha256": "87133f573be614319940338975453585df85b937ca099e7683bff2de95ab67f4",
-          "screenshot_sha256": "f5b22747093207a8ddc4c568db30d847cf6c43f59474522095761e55e68245fc",
-          "screenshot_file": "300394@20269M-390-figure-13.png",
-          "export_file": "300394@20269M-390-figure-13.svg",
-          "source_and_actual_geometry": "PASS",
-          "visible_edition_download": "PASS"
-        }
-      ],
-      "editorial_main_layer": "PASS"
-    },
     {
       "issuer": "300548",
       "width": 1440,
@@ -1997,6 +1544,459 @@
           "screenshot_sha256": "2d6b1f50ab949048a8bfe7c3440512a1e6f0c1abba6a78b9cca46b223e5edc1f",
           "screenshot_file": "300570-390-figure-11.png",
           "export_file": "300570-390-figure-11.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        }
+      ],
+      "editorial_main_layer": "PASS"
+    },
+    {
+      "issuer": "300394@20269M",
+      "width": 1440,
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
+      "figures": [
+        {
+          "index": 0,
+          "id": "glance",
+          "grammar": "SOURCE_KPI_BOARD_V1",
+          "vector_sha256": "dea1c6fefb3deaef4648bed19ee0229cd9ddec81e419dc34ae03822207a814ea",
+          "screenshot_sha256": "50df34367b1da6ccf859dabf45ebe99a180ce9a606d66a1bf2fa8f912c037bfa",
+          "screenshot_file": "300394@20269M-1440-figure-01.png",
+          "export_file": "300394@20269M-1440-figure-01.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 1,
+          "id": "profit-chain-overview",
+          "grammar": "FULL_PROFIT_CHAIN_V1",
+          "vector_sha256": "fbde9557cfc5c63b3f050957a9baa07cbe41176f172619cda35ea1733eb93cce",
+          "screenshot_sha256": "4884ab437d222de920ad986a0369c868e5127aa7f339c9141796022c41f6ffb3",
+          "screenshot_file": "300394@20269M-1440-figure-02.png",
+          "export_file": "300394@20269M-1440-figure-02.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 2,
+          "id": "rev-quarters",
+          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
+          "vector_sha256": "7d98fbf4c1234ee58dcd1495400dafd224eec61930fc6866da30356696a2affd",
+          "screenshot_sha256": "19ee443b56697f98cf3a1e718708e06b45c30726e4bd651ced27a6ffcf8ea951",
+          "screenshot_file": "300394@20269M-1440-figure-03.png",
+          "export_file": "300394@20269M-1440-figure-03.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 3,
+          "id": "profit-quarters",
+          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
+          "vector_sha256": "695d4c0d658bae50c4def8368af243e6f900d00cba13400c3b34921e93c54472",
+          "screenshot_sha256": "9c51c76748cc2cc3e5585d41b823e2683d42a4599959f5ea2e5f6da36d53e98e",
+          "screenshot_file": "300394@20269M-1440-figure-04.png",
+          "export_file": "300394@20269M-1440-figure-04.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 4,
+          "id": "growth",
+          "grammar": "SOURCE_GROWTH_BARS_V1",
+          "vector_sha256": "6bc076566e7855213724eb555c2683148d9839e92e4bccab35fb98321b36d4f4",
+          "screenshot_sha256": "58363094d3e47de483388284ee984438ef76623e0590bd8c8fd3bd5cfc56e04f",
+          "screenshot_file": "300394@20269M-1440-figure-05.png",
+          "export_file": "300394@20269M-1440-figure-05.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 5,
+          "id": "margins",
+          "grammar": "SOURCE_RATIO_DUMBBELL_V1",
+          "vector_sha256": "1b302f112ded726d0bb72a75741b0fa19287a1df4d958344f84d1e57368481b2",
+          "screenshot_sha256": "c1397802030d0d3e84c6774919a7d51f28cb521e60f4dbd804a8304f49111e2d",
+          "screenshot_file": "300394@20269M-1440-figure-06.png",
+          "export_file": "300394@20269M-1440-figure-06.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 6,
+          "id": "profit-change",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "bdf034e26e296f295a38190d90233a4f8d0f9c056d787d2fd676c49360e43a90",
+          "screenshot_sha256": "43085d667809798a30f879a0e0d0cd72803031c4e5fe47398415a05e2ccbfcb6",
+          "screenshot_file": "300394@20269M-1440-figure-07.png",
+          "export_file": "300394@20269M-1440-figure-07.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 7,
+          "id": "earnings",
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1",
+          "vector_sha256": "c72d92ac0f11ef9db64024dd19a5a8d9e1cfe36adb165f9c158506e8c7fa79ad",
+          "screenshot_sha256": "d7bc780da972b0eb8abf8383359696a8a8efc9448c79bdf73189fe669afbf893",
+          "screenshot_file": "300394@20269M-1440-figure-08.png",
+          "export_file": "300394@20269M-1440-figure-08.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 8,
+          "id": "stock-delta",
+          "grammar": "SOURCE_STOCK_DELTA_V1",
+          "vector_sha256": "45e4eb7efa6c1a737679e23f89e66d84699ff5ea181f95e4c31bdab14837ffeb",
+          "screenshot_sha256": "46ce74c0bd7a2ba7e966190bec6371ae5df1ae736f9ed424856e6555ff8fc18a",
+          "screenshot_file": "300394@20269M-1440-figure-09.png",
+          "export_file": "300394@20269M-1440-figure-09.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 9,
+          "id": "cash",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "e6292253a175898c97b2d65660fbb708be979d09852c33f2fbe5ba4ad58da661",
+          "screenshot_sha256": "405cacb63c8a29fe321c8fb485d8c93ad6012b5fdd946dffc741c6ebb14716f2",
+          "screenshot_file": "300394@20269M-1440-figure-10.png",
+          "export_file": "300394@20269M-1440-figure-10.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 10,
+          "id": "quality",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "57755e9c9458873de2312e23b6decfa82b84027e4d8fdc8bb3ddfa91416f219b",
+          "screenshot_sha256": "d4f87d878a54a9dc07a5a0ebe2a9236e350bdf610de28f1c16456f2a0adeef33",
+          "screenshot_file": "300394@20269M-1440-figure-11.png",
+          "export_file": "300394@20269M-1440-figure-11.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 11,
+          "id": "cash-direct",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "adf3038a94263ac09cc0418dfbcae1a6ad2126999cbd723053d7b515ceb49a93",
+          "screenshot_sha256": "bafe1ba0ef476fe59014bdb2b1955a4201e86461e705e6c91ae19e59f352bc85",
+          "screenshot_file": "300394@20269M-1440-figure-12.png",
+          "export_file": "300394@20269M-1440-figure-12.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 12,
+          "id": "balance",
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1",
+          "vector_sha256": "c15de61429f05afbd6578e0838fb3005e3f76c6e441e10367d12e34a7850d440",
+          "screenshot_sha256": "495efe5c5721c24cc53c4941aa764c857f5ef8d454de9127da834354c5f136e0",
+          "screenshot_file": "300394@20269M-1440-figure-13.png",
+          "export_file": "300394@20269M-1440-figure-13.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        }
+      ],
+      "editorial_main_layer": "PASS"
+    },
+    {
+      "issuer": "300394@20269M",
+      "width": 768,
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
+      "figures": [
+        {
+          "index": 0,
+          "id": "glance",
+          "grammar": "SOURCE_KPI_BOARD_V1",
+          "vector_sha256": "ca6bf4a7707c746060d3a59c3523ad6e751937a1d9cb538235c53490faeb1f54",
+          "screenshot_sha256": "628c55d868fae64c845a50175856c37f330026ebd483a47ad6492d0fd6f137d6",
+          "screenshot_file": "300394@20269M-768-figure-01.png",
+          "export_file": "300394@20269M-768-figure-01.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 1,
+          "id": "profit-chain-overview",
+          "grammar": "FULL_PROFIT_CHAIN_V1",
+          "vector_sha256": "e157c5f63ef8f7770789289aa393dbba15e38dd806f51fa97c44cd786e2bac5f",
+          "screenshot_sha256": "ebaef2900c0459cca545029e6909d48afb07fb307a56427a079a37726af32610",
+          "screenshot_file": "300394@20269M-768-figure-02.png",
+          "export_file": "300394@20269M-768-figure-02.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 2,
+          "id": "rev-quarters",
+          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
+          "vector_sha256": "3b2a9f764c73aa74f324f462cc9d3cd6ece63911f6e6aee461c7d639a7bd5275",
+          "screenshot_sha256": "c9fa2b9f91e749f9d67f95b9480b57e644a4014e3a7a6edfd82d27aeaf8a65db",
+          "screenshot_file": "300394@20269M-768-figure-03.png",
+          "export_file": "300394@20269M-768-figure-03.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 3,
+          "id": "profit-quarters",
+          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
+          "vector_sha256": "94209002524ee261bb20a4eebd9dfb99458503df62fa7fe8364a6496a51ff2f8",
+          "screenshot_sha256": "31003633eb29a4ffd778b6d4f671d5a9d5341a5b9fd89b2c4d99ab7bef598ad1",
+          "screenshot_file": "300394@20269M-768-figure-04.png",
+          "export_file": "300394@20269M-768-figure-04.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 4,
+          "id": "growth",
+          "grammar": "SOURCE_GROWTH_BARS_V1",
+          "vector_sha256": "2eb1906a1fa43600012d11b23f78adbfbe653de2d9dc04771cc17b3d1a9851d3",
+          "screenshot_sha256": "dd41dbf590ede8d46915c300feb602d79add05cb844f5b91d90268bc302440d7",
+          "screenshot_file": "300394@20269M-768-figure-05.png",
+          "export_file": "300394@20269M-768-figure-05.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 5,
+          "id": "margins",
+          "grammar": "SOURCE_RATIO_DUMBBELL_V1",
+          "vector_sha256": "d9f9328c67dbee64f035af029f8e7f9279ed781c2306524e21d01062f897d797",
+          "screenshot_sha256": "04e3e2ebe4a28240ebb339e02c4b2a3421d6e518f30cebbfd158d0670e62b911",
+          "screenshot_file": "300394@20269M-768-figure-06.png",
+          "export_file": "300394@20269M-768-figure-06.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 6,
+          "id": "profit-change",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "71e7ce990c50cf4b95ce3e9b6c79b2ba9e464c8f5fdbf01ff1056926515cc024",
+          "screenshot_sha256": "ad4a29d3090d796382df1df9148f92d92869c6e0fa2508287d7c16fcad97cd0b",
+          "screenshot_file": "300394@20269M-768-figure-07.png",
+          "export_file": "300394@20269M-768-figure-07.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 7,
+          "id": "earnings",
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1",
+          "vector_sha256": "1b7993a46fc751623352ddcdad3d51591df8f9ffd264c8fbde5c58536c67bd36",
+          "screenshot_sha256": "cbc1bf82541c924d910c3c3d4260e70727da9d7c64a6b8620a9f0b78f7385427",
+          "screenshot_file": "300394@20269M-768-figure-08.png",
+          "export_file": "300394@20269M-768-figure-08.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 8,
+          "id": "stock-delta",
+          "grammar": "SOURCE_STOCK_DELTA_V1",
+          "vector_sha256": "48b776b3306b16fc6e930466020011f7d512bdf2c71ad92bb2827c4bedcb8943",
+          "screenshot_sha256": "f26875cb6b0d757be6753a46fdb80c14d18399ca39ca9ac60a90b09b40afbe8d",
+          "screenshot_file": "300394@20269M-768-figure-09.png",
+          "export_file": "300394@20269M-768-figure-09.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 9,
+          "id": "cash",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "6e60fcdb931dffa712d45ed827aeeb3c90b3e1728fe661cfa9b69993db986d83",
+          "screenshot_sha256": "4b1a20678f45834e79e3b7e8d7f248583df74c20df864ef9181650134a79683f",
+          "screenshot_file": "300394@20269M-768-figure-10.png",
+          "export_file": "300394@20269M-768-figure-10.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 10,
+          "id": "quality",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "83674a5ec059a2319f65295e20bd48e289b52fe1c8604f29a20296c0cd06768b",
+          "screenshot_sha256": "e2b926ed134be5b3c176f9907c85f64ae4ffddb8572c15b68fec5de84a2801d3",
+          "screenshot_file": "300394@20269M-768-figure-11.png",
+          "export_file": "300394@20269M-768-figure-11.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 11,
+          "id": "cash-direct",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "c7030ed08c61c96169175ab0f4b6c8dab7f795545cb1ac0b77cf3a435a46fc01",
+          "screenshot_sha256": "dcdf48fa2e883457cbf246deb2798bb925b66da2521bc3a4021672f5ca5887ed",
+          "screenshot_file": "300394@20269M-768-figure-12.png",
+          "export_file": "300394@20269M-768-figure-12.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 12,
+          "id": "balance",
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1",
+          "vector_sha256": "87133f573be614319940338975453585df85b937ca099e7683bff2de95ab67f4",
+          "screenshot_sha256": "954eeafc7c291260043a43ba55d635e8ebb6cc26674dda641794259971c88902",
+          "screenshot_file": "300394@20269M-768-figure-13.png",
+          "export_file": "300394@20269M-768-figure-13.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        }
+      ],
+      "editorial_main_layer": "PASS"
+    },
+    {
+      "issuer": "300394@20269M",
+      "width": 390,
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
+      "figures": [
+        {
+          "index": 0,
+          "id": "glance",
+          "grammar": "SOURCE_KPI_BOARD_V1",
+          "vector_sha256": "ca6bf4a7707c746060d3a59c3523ad6e751937a1d9cb538235c53490faeb1f54",
+          "screenshot_sha256": "4c938cb9ca6c849040fe668959fdfe0e9c66756772195752366d2583791df979",
+          "screenshot_file": "300394@20269M-390-figure-01.png",
+          "export_file": "300394@20269M-390-figure-01.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 1,
+          "id": "profit-chain-overview",
+          "grammar": "FULL_PROFIT_CHAIN_V1",
+          "vector_sha256": "e157c5f63ef8f7770789289aa393dbba15e38dd806f51fa97c44cd786e2bac5f",
+          "screenshot_sha256": "ab88ac63e791ce7b6619cc4ef6e9af551499cf5e182c03ff6c72c82b9433c48f",
+          "screenshot_file": "300394@20269M-390-figure-02.png",
+          "export_file": "300394@20269M-390-figure-02.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 2,
+          "id": "rev-quarters",
+          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
+          "vector_sha256": "3b2a9f764c73aa74f324f462cc9d3cd6ece63911f6e6aee461c7d639a7bd5275",
+          "screenshot_sha256": "d00504caa3f6180bd9e721375c079cd0d71eb535a608e051ae2f9a996f0b50a1",
+          "screenshot_file": "300394@20269M-390-figure-03.png",
+          "export_file": "300394@20269M-390-figure-03.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 3,
+          "id": "profit-quarters",
+          "grammar": "SOURCE_PERIOD_COLUMNS_V1",
+          "vector_sha256": "94209002524ee261bb20a4eebd9dfb99458503df62fa7fe8364a6496a51ff2f8",
+          "screenshot_sha256": "ea09fc21192e60237a646b6c39851a84ff48cc53699392f09c99d069c3131114",
+          "screenshot_file": "300394@20269M-390-figure-04.png",
+          "export_file": "300394@20269M-390-figure-04.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 4,
+          "id": "growth",
+          "grammar": "SOURCE_GROWTH_BARS_V1",
+          "vector_sha256": "2eb1906a1fa43600012d11b23f78adbfbe653de2d9dc04771cc17b3d1a9851d3",
+          "screenshot_sha256": "5c0d1da4f9b44cb99f25fcd859f80b22340987173705c17c5b6d5d4effbb699e",
+          "screenshot_file": "300394@20269M-390-figure-05.png",
+          "export_file": "300394@20269M-390-figure-05.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 5,
+          "id": "margins",
+          "grammar": "SOURCE_RATIO_DUMBBELL_V1",
+          "vector_sha256": "d9f9328c67dbee64f035af029f8e7f9279ed781c2306524e21d01062f897d797",
+          "screenshot_sha256": "79ab7798192b2078ee01849e5671a384d6477ff776e8042970d7e0dcfc5d207a",
+          "screenshot_file": "300394@20269M-390-figure-06.png",
+          "export_file": "300394@20269M-390-figure-06.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 6,
+          "id": "profit-change",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "71e7ce990c50cf4b95ce3e9b6c79b2ba9e464c8f5fdbf01ff1056926515cc024",
+          "screenshot_sha256": "5833018e7ce7d85ca7bea5787a0220085beeb99035b7ab032da956c5b470ef7a",
+          "screenshot_file": "300394@20269M-390-figure-07.png",
+          "export_file": "300394@20269M-390-figure-07.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 7,
+          "id": "earnings",
+          "grammar": "SOURCE_TWO_PERIOD_COMPARISON_V1",
+          "vector_sha256": "1b7993a46fc751623352ddcdad3d51591df8f9ffd264c8fbde5c58536c67bd36",
+          "screenshot_sha256": "b89f5fb662909654f3ec988c9129e2f2bb71ca843f58b34382c3d6e2d3805c10",
+          "screenshot_file": "300394@20269M-390-figure-08.png",
+          "export_file": "300394@20269M-390-figure-08.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 8,
+          "id": "stock-delta",
+          "grammar": "SOURCE_STOCK_DELTA_V1",
+          "vector_sha256": "48b776b3306b16fc6e930466020011f7d512bdf2c71ad92bb2827c4bedcb8943",
+          "screenshot_sha256": "1ef4364130b5511fa39c5e3d487a1eaa449141b3b88a44bf6840bae436f8b0ed",
+          "screenshot_file": "300394@20269M-390-figure-09.png",
+          "export_file": "300394@20269M-390-figure-09.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 9,
+          "id": "cash",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "6e60fcdb931dffa712d45ed827aeeb3c90b3e1728fe661cfa9b69993db986d83",
+          "screenshot_sha256": "92eaf03f34a1b78830896e310751f506255c446cdfe0a07cd6019e16bbf6ca71",
+          "screenshot_file": "300394@20269M-390-figure-10.png",
+          "export_file": "300394@20269M-390-figure-10.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 10,
+          "id": "quality",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "83674a5ec059a2319f65295e20bd48e289b52fe1c8604f29a20296c0cd06768b",
+          "screenshot_sha256": "d4e2150cac170749faac170cea13287c3f71630f060b05f789b4cf2ff25bc945",
+          "screenshot_file": "300394@20269M-390-figure-11.png",
+          "export_file": "300394@20269M-390-figure-11.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 11,
+          "id": "cash-direct",
+          "grammar": "SOURCE_SIGNED_BRIDGE_V1",
+          "vector_sha256": "c7030ed08c61c96169175ab0f4b6c8dab7f795545cb1ac0b77cf3a435a46fc01",
+          "screenshot_sha256": "f335303460f1029a16b1090b15cc5d8283a196ca6b5dd4efc3b0ce64cb6c4c6b",
+          "screenshot_file": "300394@20269M-390-figure-12.png",
+          "export_file": "300394@20269M-390-figure-12.svg",
+          "source_and_actual_geometry": "PASS",
+          "visible_edition_download": "PASS"
+        },
+        {
+          "index": 12,
+          "id": "balance",
+          "grammar": "SOURCE_EQUAL_STOCK_BALANCE_V1",
+          "vector_sha256": "87133f573be614319940338975453585df85b937ca099e7683bff2de95ab67f4",
+          "screenshot_sha256": "f5b22747093207a8ddc4c568db30d847cf6c43f59474522095761e55e68245fc",
+          "screenshot_file": "300394@20269M-390-figure-13.png",
+          "export_file": "300394@20269M-390-figure-13.svg",
           "source_and_actual_geometry": "PASS",
           "visible_edition_download": "PASS"
         }

@@ -4,7 +4,7 @@
   "origin": "LOCAL_FILE_SOURCE",
   "issuers": {
     "300394@20269M": {
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
       "pdf_sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
       "complete_figure_migration": "PASS_LOCAL",
       "figure_count": 13
@@ -14,7 +14,7 @@
     {
       "issuer": "300394@20269M",
       "width": 1440,
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
       "figures": [
         {
           "index": 0,
@@ -165,14 +165,14 @@
     {
       "issuer": "300394@20269M",
       "width": 768,
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
       "figures": [
         {
           "index": 0,
           "id": "glance",
           "grammar": "SOURCE_KPI_BOARD_V1",
-          "vector_sha256": "767fbe14c6134dcae4e4b2c0be84cef2fc785e1d8634147b8386a9c5f432cf8d",
-          "screenshot_sha256": "7dfe0504eb3497dd5604ce311f306d1c690f57b1f7a5a4ef0f2c59c9a42d4b97",
+          "vector_sha256": "ca6bf4a7707c746060d3a59c3523ad6e751937a1d9cb538235c53490faeb1f54",
+          "screenshot_sha256": "628c55d868fae64c845a50175856c37f330026ebd483a47ad6492d0fd6f137d6",
           "screenshot_file": "300394@20269M-768-figure-01.png",
           "export_file": "300394@20269M-768-figure-01.svg",
           "source_and_actual_geometry": "PASS",
@@ -316,14 +316,14 @@
     {
       "issuer": "300394@20269M",
       "width": 390,
-      "html_sha256": "66807991c457e37a8130fcbc0c4271249db96c44e981a713a0a0d682459c2224",
+      "html_sha256": "e1120394760c45b13602e886a6f442007165cc02b8545435c422978c88131d9f",
       "figures": [
         {
           "index": 0,
           "id": "glance",
           "grammar": "SOURCE_KPI_BOARD_V1",
-          "vector_sha256": "767fbe14c6134dcae4e4b2c0be84cef2fc785e1d8634147b8386a9c5f432cf8d",
-          "screenshot_sha256": "334d7ddedf7a9e35c03b92046a3d4c50460fcb0c6281638a102c63b1065e50ae",
+          "vector_sha256": "ca6bf4a7707c746060d3a59c3523ad6e751937a1d9cb538235c53490faeb1f54",
+          "screenshot_sha256": "4c938cb9ca6c849040fe668959fdfe0e9c66756772195752366d2583791df979",
           "screenshot_file": "300394@20269M-390-figure-01.png",
           "export_file": "300394@20269M-390-figure-01.svg",
           "source_and_actual_geometry": "PASS",

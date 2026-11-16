@@ -53,6 +53,12 @@ class Canvas:
         self.width = 330 if mobile else 1040
 
     def text(self, x, y, t, size=12, anchor='start', color=INK, weight=500, **attrs):
+        # Conservative width estimate (CJK and full-width = 1em, other glyphs 0.62em, bold +4%).
+        # Browsers differ (WebKit renders CJK wider than Chromium), so refuse text that cannot fit.
+        em = sum(1 if ord(ch) > 0x2E7F else 0.62 for ch in str(t)) * size * (1.04 if int(weight) >= 600 else 1)
+        lo = {'start': D(x), 'middle': D(x) - D(str(em)) / 2, 'end': D(x) - D(str(em))}[anchor]
+        if lo < 0 or lo + D(str(em)) > self.width:
+            raise ValueError(f'EXHIBIT_TEXT_EXCEEDS_CANVAS {t}')
         extra = ''.join(f' data-{k.replace("_", "-")}="{E(str(v), quote=True)}"' for k, v in attrs.items())
         self.out.append(f'<text x="{f(x)}" y="{f(y)}" fill="{color}" font-size="{size}" style="font-size:{size}px" '
                         f'font-family="{FONT}" text-anchor="{anchor}" font-weight="{weight}"{extra}>{E(t)}</text>')
@@ -112,7 +118,8 @@ def render_kpi_board(tiles, title, *, mobile=False, **ident):
                   f'data-micro-value="{v}" data-micro-domain="{top}" data-micro-span="{bw}" data-period="{E(per, quote=True)}"/>')
     rows = (len(tiles) + cols - 1) // cols
     h = y0 + rows * (th + gap) + 18
-    c.text(x0, h - 8, '每格小条：深色为本期，浅色为对比期（见各格标注），各格独立比例。', 10 if mobile else 11, color=MUTED)
+    # phone: 330 wide at 10px leaves ~28 CJK characters once WebKit metrics are counted
+    c.text(x0, h - 8, '小条：深色本期，浅色对比期；各格独立比例。' if mobile else '每格小条：深色为本期，浅色为对比期（见各格标注），各格独立比例。', 10 if mobile else 11, color=MUTED)
     return c.svg(h)
 
 

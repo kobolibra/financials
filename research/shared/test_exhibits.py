@@ -74,6 +74,14 @@ class Exhibits(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'BAR_OUTSIDE_CANVAS'):
             self.audit(bad)
 
+    def test_phone_text_that_cannot_fit_is_refused_at_render_time(self):
+        # WebKit 375 clipped this exact 32-character footnote on the live Q3 page (run 43823304600)
+        from exhibits import Canvas
+        c = Canvas('SOURCE_KPI_BOARD_V1', 't', mobile=True, issuer='300394', period='20269M', pdf_sha256='0' * 64)
+        with self.assertRaisesRegex(ValueError, 'EXHIBIT_TEXT_EXCEEDS_CANVAS'):
+            c.text(16, 100, '每格小条：深色为本期，浅色为对比期（见各格标注），各格独立比例。', 10)
+        c.text(16, 100, '小条：深色本期，浅色对比期；各格独立比例。', 10)
+
     def test_wrong_issuer_is_refused(self):
         with self.assertRaises(ValueError):
             self.audit(self.svgs[0].replace('data-issuer="300394"', 'data-issuer="300308"'))

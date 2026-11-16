@@ -972,6 +972,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-076",
+      "root_cause": "Chromium 本地三档通过，但生产站 WebKit 375 裁切了手机 KPI 看板的32字脚注：WebKit 的中文字宽大于 Chromium。",
+      "correction": "图族渲染器对每行文字做保守宽度估计（中文1em、其他0.62em、粗体+4%），放不进画布就在出版时报错；手机脚注缩短。",
+      "proof_file": "research/shared/test_exhibits.py",
+      "assertion_marker": "test_phone_text_that_cannot_fit_is_refused_at_render_time",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
