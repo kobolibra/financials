@@ -19,6 +19,14 @@ class LiveRouteEvidenceTests(unittest.TestCase):
         for bad_route in ('https://evil.com/688111.html','//evil.com/688111.html','/../688111.html','/research/600036.html'):
             with self.assertRaises(AssertionError):verify_issuer_article_url(ORIGIN+route,code='688111',origin=ORIGIN,report_route=bad_route)
 
+    def test_later_period_report_route_is_bound_to_issuer_and_period_token(self):
+        route='/300394-2026q3.html'
+        for path in (route,route[:-5]):
+            self.assertEqual(verify_issuer_article_url(ORIGIN+path,code='300394',origin=ORIGIN,report_route=route),ORIGIN+path)
+        with self.assertRaises(AssertionError):verify_issuer_article_url(ORIGIN+'/300394',code='300394',origin=ORIGIN,report_route=route)
+        for bad_route in ('/300394-copy.html','/300394-2026x9.html','/300570-2026q3.html'):
+            with self.assertRaises(AssertionError):verify_issuer_article_url(ORIGIN+bad_route[:-5],code='300394',origin=ORIGIN,report_route=bad_route)
+
     def test_legacy_html_route_also_is_true_company(self):
         self.assertEqual(verify_issuer_article_url(f"{ORIGIN}/601628.html",code="601628",origin=ORIGIN),
             f"{ORIGIN}/601628.html")

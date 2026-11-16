@@ -19,7 +19,7 @@ def verify_issuer_article_url(url: str, *, code: str, origin: str, report_route:
         raise AssertionError(f"ARTICLE_ORIGIN_MISMATCH:{url}")
     route=report_route or f"/{code}.html"
     r=urlsplit(route)
-    if r.scheme or r.netloc or r.query or r.fragment or not route.startswith('/') or not route.endswith('/'+code+'.html') or '..' in route.split('/'):
+    if r.scheme or r.netloc or r.query or r.fragment or not route.startswith('/') or not re.search(r'/'+code+r'(?:-20[0-9]{2}(?:q[1-4]|h1|9m|fy))?\.html$',route) or '..' in route.split('/'):
         raise AssertionError('INVALID_CANONICAL_ISSUER_ROUTE')
     if u.path not in (route,route[:-5]):
         raise AssertionError(f"ARTICLE_ROUTE_INCORRECT_OR_HOME_REDIRECT:{url}")
