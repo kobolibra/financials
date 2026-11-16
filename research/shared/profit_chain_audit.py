@@ -8,14 +8,20 @@ from decimal import Decimal as D
 import hashlib,json,re,xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[2];NS='{http://www.w3.org/2000/svg}'
 def bundle_for(code):
- # Resolve independently of the rendering loader.
+ # Resolve independently of the rendering loader. 'code@period' selects a later report period.
  catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
- row=next((r for r in catalog['issuers'] if r['code']==code),None)
+ if '@' in code:
+  c,period=code.split('@',1);row=next((r for r in catalog.get('period_reports',[]) if r['code']==c and r['period']==period),None)
+ else:row=next((r for r in catalog['issuers'] if r['code']==code),None)
  if not row or not row.get('editorial_manifest'):raise ValueError('CHAIN_AUDIT_MANIFEST_REQUIRED')
  path=(ROOT/row['editorial_manifest']).resolve();path.relative_to(ROOT.resolve())
  result=json.loads(path.read_text())
- if result['issuer']!=code:raise ValueError('CHAIN_AUDIT_MANIFEST_ISSUER')
+ if result['issuer']!=code.split('@')[0]:raise ValueError('CHAIN_AUDIT_MANIFEST_ISSUER')
  return result
+def key_for(code,period):
+ """Catalogue key for a report: 'code@period' when the period lives in period_reports, else the bare code."""
+ catalog=json.loads((ROOT/'site/research_catalog.json').read_text())
+ return code+'@'+period if any(r['code']==code and r['period']==period for r in catalog.get('period_reports',[])) else code
 def value(b,terms):return sum((D(b['facts'][k]['yuan'])*D(str(c)) for k,c in terms),D(0))
 def validate_source(b):
  import pymupdf
@@ -65,7 +71,7 @@ def check_svg(markup,code,pdf_sha):
   if not ok:raise ValueError('PROFIT_CHAIN_'+why)
  def close(a,c):return abs(D(a)-D(c))<D('.00001')
  need(root.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1','GRAMMAR')
- need(root.get('data-issuer')==code and root.get('data-period')==b['period'],'ISSUER_PERIOD')
+ need(root.get('data-issuer')==code.split('@')[0] and root.get('data-period')==b['period'],'ISSUER_PERIOD')
  need(root.get('data-original-pdf-sha256')==pdf_sha==b['source_pdf']['source_sha256'],'PDF')
  expected={};links={}
  def node(id,terms,role):expected[id]=(value(b,terms),terms,role)

@@ -5,7 +5,7 @@ No issuer renderer whitelist. CLI selects the explicitly requested migration
 scope; future issuers must provide the same source archive and real evidence.
 """
 from pathlib import Path
-import argparse,hashlib,json,re,sys
+import argparse,hashlib,json,os,re,sys
 from decimal import Decimal as D
 import xml.etree.ElementTree as ET
 ROOT=Path(__file__).resolve().parents[1]
@@ -19,6 +19,7 @@ def check_vector(markup,issuer,pdf_sha):
     if svg.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1':
         from profit_chain_audit import check_svg
         return check_svg(markup,issuer,pdf_sha)
+    issuer=issuer.split('@')[0]  # 'code@period' keys name later report periods of the same issuer
     if svg.get('data-editorial-grammar'):return check_editorial_svg(markup,issuer=issuer,pdf_sha256=pdf_sha)
     grammar=svg.get('data-chart-grammar') or svg.get('data-signed-statement-grammar')
     def require(test,why):
@@ -61,13 +62,16 @@ def _audit_sequential(codes,out,origin=None):
     from playwright.sync_api import sync_playwright
     catalog_data=json.loads((ROOT/'site/research_catalog.json').read_text())
     catalog=catalog_data['issuers'];by_code={r['code']:r for r in catalog}
+    by_code.update({r['code']+'@'+r['period']:r for r in catalog_data.get('period_reports',[])})
     sources=catalog_data['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['source_review_indices']
     notes={}
     for index in sources:notes.update(json.loads((ROOT/index).read_text())['issuers'])
     out.mkdir(parents=True,exist_ok=True)
     result={'schema':'financials.complete_figure_migration.v1','scope':'ACTUAL_FULL_ARTICLE_FIGURES_NOT_HUMAN_ART_CERTIFICATION','origin':origin or 'LOCAL_FILE_SOURCE','issuers':{},'cases':[],'status':'IN_PROGRESS'}
     with sync_playwright() as p:
-        browser=p.chromium.launch(headless=True)
+        # FINANCIALS_CHROMIUM_EXECUTABLE lets sandboxes without Playwright's own browser use a local headless shell.
+        exe=os.environ.get('FINANCIALS_CHROMIUM_EXECUTABLE')
+        browser=p.chromium.launch(headless=True,**({'executable_path':exe,'args':['--no-sandbox','--disable-gpu','--disable-dev-shm-usage']} if exe else {}))
         for code in codes:
             row=by_code[code];path=ROOT/'public'/row['href'].lstrip('/');raw=path.read_bytes();sha=hashlib.sha256(raw).hexdigest()
             dossier=json.loads((ROOT/row['source_publication']/'source-ledger.json').read_text()) if row.get('source_publication') else None

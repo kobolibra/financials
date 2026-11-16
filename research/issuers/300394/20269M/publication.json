@@ -1,0 +1,2830 @@
+{
+ "title": "收入增{{rev_growth0}}%、归母利润增{{parent_growth0}}%，毛利率跃升能持续吗？",
+ "deck": "天孚通信2026年前三季度：营业成本不增反降，毛利率升至{{margin}}%；同时存货和应收各增约8亿元，经营现金占净利润的比例降至{{cfo_ratio}}%。把“赚得更多”和“收得回来”分开验证。",
+ "thesis": {
+  "title": "核心判断：增长质量的关键在毛利率，而不在收入规模",
+  "body": "前九个月营业收入同比+{{rev_growth}}%，营业成本反而同比{{cogs_growth}}%，毛利率由{{prior_margin}}%升至{{margin}}%，毛利增加{{gp_delta_yi}}亿元，超过归母净利润增量{{parent_delta_yi}}亿元。季报没有分产品数据，无法区分这是产品结构、价格、成本下降还是上年基数造成。同时存货增加{{inv_delta_yi}}亿元、应收增加{{ar_delta_yi}}亿元，经营现金占净利润由{{cfo_ratio_prior}}%降至{{cfo_ratio}}%。若年报的分产品毛利率不能解释这一提升，或收入放缓后存货继续上升，这一判断即被推翻。"
+ },
+ "metrics": [
+  {
+   "label": "营业收入 / 前三季度",
+   "value": "{{rev_yi}} 亿",
+   "context": "同比 +{{rev_growth}}% · 三季度单季 +{{q3_rev_growth}}%"
+  },
+  {
+   "label": "归母净利润",
+   "value": "{{parent_yi}} 亿",
+   "context": "同比 +{{parent_growth}}% · 三季度单季 +{{q3_parent_growth}}%"
+  },
+  {
+   "label": "经营现金净额",
+   "value": "{{cfo_yi}} 亿",
+   "context": "同比 +{{cfo_growth}}% · 占净利润 {{cfo_ratio}}%"
+  }
+ ],
+ "figures": [
+  {
+   "id": "profit-change",
+   "family": "signed_bridge",
+   "nav": "增长归因",
+   "eyebrow": "SIGNED MONEY BRIDGE",
+   "question": "利润增速为何是收入增速的两倍？",
+   "takeaway": "营业收入增加{{rev_delta_yi}}亿元，营业成本却减少{{cogs_drop_yi}}亿元，毛利增加{{gp_delta_yi}}亿元，超过归母净利润增量{{parent_delta_yi}}亿元。",
+   "analysis": "新增收入没有带来成本增加，是利润增速高于收入增速的算术原因。研发费用多{{rd_delta_yi}}亿元，财务费用多{{finance_delta_yi}}亿元（利息外部分由{{other_fin_prior_yi}}亿元升至{{other_fin_yi}}亿元，管理层称主要是汇兑损失），所得税多{{tax_delta_yi}}亿元，抵消了毛利增量的一部分。",
+   "counter": "这是会计差额归因，不识别价格、销量、产品结构或汇率的因果。管理层将营业成本下降标注为“无重大变化”，没有解释，需要用年报分产品毛利核实。",
+   "identity": "上年同期归母净利润＋全部损益项目有符号差额＝本期归母净利润。",
+   "rows": [
+    [
+     "2025年前三季度归母净利润",
+     "parent_net_prior",
+     "start"
+    ],
+    [
+     "营业收入变化",
+     [
+      [
+       "rev",
+       1
+      ],
+      [
+       "rev_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "营业成本变化",
+     [
+      [
+       "cogs_prior",
+       1
+      ],
+      [
+       "cogs",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "税金及附加变化",
+     [
+      [
+       "tax_surcharge_prior",
+       1
+      ],
+      [
+       "tax_surcharge",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "销售费用变化",
+     [
+      [
+       "selling_prior",
+       1
+      ],
+      [
+       "selling",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "管理费用变化",
+     [
+      [
+       "admin_prior",
+       1
+      ],
+      [
+       "admin",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "研发费用变化",
+     [
+      [
+       "rd_expense_prior",
+       1
+      ],
+      [
+       "rd_expense",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "财务费用变化",
+     [
+      [
+       "finance_prior",
+       1
+      ],
+      [
+       "finance",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "其他收益变化",
+     [
+      [
+       "other_income",
+       1
+      ],
+      [
+       "other_income_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "投资收益变化",
+     [
+      [
+       "investment_income",
+       1
+      ],
+      [
+       "investment_income_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "公允价值变动收益变化",
+     [
+      [
+       "fair_value",
+       1
+      ],
+      [
+       "fair_value_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "信用减值损失变化",
+     [
+      [
+       "credit_impairment",
+       1
+      ],
+      [
+       "credit_impairment_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "资产减值损失变化",
+     [
+      [
+       "asset_impairment",
+       1
+      ],
+      [
+       "asset_impairment_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "资产处置收益变化",
+     [
+      [
+       "asset_disposal",
+       1
+      ],
+      [
+       "asset_disposal_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "营业外收入变化",
+     [
+      [
+       "nonop_income",
+       1
+      ],
+      [
+       "nonop_income_prior",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "营业外支出变化",
+     [
+      [
+       "nonop_expense_prior",
+       1
+      ],
+      [
+       "nonop_expense",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "所得税费用变化",
+     [
+      [
+       "income_tax_prior",
+       1
+      ],
+      [
+       "income_tax",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "少数股东损益变化",
+     [
+      [
+       "nci_prior",
+       1
+      ],
+      [
+       "nci",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "2026年前三季度归母净利润",
+     "parent_net",
+     "total"
+    ]
+   ],
+   "editorial_groups": [
+    {
+     "label": "营业收入与营业成本变化（毛利）",
+     "indices": [
+      1,
+      2
+     ]
+    },
+    {
+     "label": "研发费用变化",
+     "indices": [
+      6
+     ]
+    },
+    {
+     "label": "财务费用变化",
+     "indices": [
+      7
+     ]
+    },
+    {
+     "label": "所得税费用变化",
+     "indices": [
+      16
+     ]
+    },
+    {
+     "label": "信用与资产减值变化",
+     "indices": [
+      11,
+      12
+     ]
+    },
+    {
+     "label": "销售、管理费用及税金附加变化",
+     "indices": [
+      3,
+      4,
+      5
+     ]
+    },
+    {
+     "label": "其余损益、营业外及少数股东变化",
+     "indices": [
+      8,
+      9,
+      10,
+      13,
+      14,
+      15,
+      17
+     ]
+    }
+   ]
+  },
+  {
+   "id": "quarter",
+   "family": "comparison",
+   "nav": "单季加速",
+   "eyebrow": "COMPARABLE BASES",
+   "question": "三季度单季是否在加速？",
+   "takeaway": "三季度单季收入同比+{{q3_rev_growth}}%、归母净利同比+{{q3_parent_growth}}%，均快于前九个月的+{{rev_growth}}%和+{{parent_growth}}%。",
+   "analysis": "单季数取自季报首页的主要财务数据表，上年同期取调整后口径，收入与利润在调整前后相同。三季度单季归母净利润占收入{{q3_net_margin}}%，上年同期{{q3_net_margin_prior}}%。",
+   "counter": "单季增速受上年基数和确认节奏影响。三季度单季毛利率需要用前九个月减半年报才能得到，本篇没有把两份报告混合入账，该项为 NOT_CHECKED。",
+   "identity": "各项均为季报首页直接披露的单季值，没有做减法推算；单季与累计分别核对。",
+   "periods": [
+    "2025Q3单季",
+    "2026Q3单季"
+   ],
+   "pairs": [
+    [
+     "营业收入",
+     "q3_rev_prior",
+     "q3_rev"
+    ],
+    [
+     "归母净利润",
+     "q3_parent_net_prior",
+     "q3_parent_net"
+    ],
+    [
+     "扣非归母净利润",
+     "q3_adjusted_parent_prior",
+     "q3_adjusted_parent"
+    ]
+   ]
+  },
+  {
+   "id": "earnings",
+   "family": "comparison",
+   "nav": "利润与现金",
+   "eyebrow": "COMPARABLE BASES",
+   "question": "利润与现金是否同向？",
+   "takeaway": "归母净利润同比+{{parent_growth}}%，经营现金净额只增+{{cfo_growth}}%；经营现金占合并净利润{{cfo_ratio}}%，上年同期{{cfo_ratio_prior}}%。",
+   "analysis": "销售商品收到的现金占营业收入{{sales_cash_ratio}}%，上年同期{{sales_cash_ratio_prior}}%，回款相对收入的比例基本稳定。现金转换率下降的算术原因在付现端，见下图。",
+   "counter": "经营现金净额仍在增长，转换率下降不等于盈利质量恶化；备货与预付属于先付现、后出货，需要后续季度验证。",
+   "identity": "各行分别比较两个报告期的原始披露值，经营现金净额与净利润使用同一合并范围。",
+   "periods": [
+    "2025年前三季度",
+    "2026年前三季度"
+   ],
+   "pairs": [
+    [
+     "归母净利润",
+     "parent_net_prior",
+     "parent_net"
+    ],
+    [
+     "扣非归母净利润",
+     "ytd_adjusted_parent_key_prior",
+     "ytd_adjusted_parent_key"
+    ],
+    [
+     "合并净利润",
+     "net_profit_prior",
+     "net_profit"
+    ],
+    [
+     "经营现金净额",
+     "cfo_prior",
+     "cfo"
+    ]
+   ]
+  },
+  {
+   "id": "quality",
+   "family": "signed_bridge",
+   "nav": "利润质量",
+   "eyebrow": "SIGNED MONEY BRIDGE",
+   "question": "利润里一次性项目有多少？",
+   "takeaway": "非经常性损益净额仅{{nonrecurring_yi}}亿元，占归母净利润{{nonrecurring_share}}%，扣非增速{{adjusted_growth}}%与归母增速{{parent_growth}}%接近。",
+   "analysis": "从归母净利润扣除非经常性收益、加回非经常性损失，并加回这些项目的所得税影响，得到扣非归母净利润。政府补助{{nr_grants_yi}}亿元是最大的一项。",
+   "counter": "非经常性项目小，不等于利润可持续：汇兑损失、信用减值和研发费用都在经常性损益内变化，见增长归因图。",
+   "identity": "归母净利润−非经常性损益净额＝扣非归母净利润；各分项减所得税影响额等于非经常性损益净额。",
+   "rows": [
+    [
+     "归母净利润",
+     "ytd_parent_net_key",
+     "start"
+    ],
+    [
+     "扣除：政府补助",
+     [
+      [
+       "nr_grants",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "扣除：金融资产公允价值及处置收益",
+     [
+      [
+       "nr_fair",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "加回：资产处置损失",
+     [
+      [
+       "nr_disposal",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "加回：其他营业外净支出",
+     [
+      [
+       "nr_other",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "加回：非经常损益所得税影响",
+     [
+      [
+       "nr_tax",
+       1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "扣非归母净利润",
+     "ytd_adjusted_parent_key",
+     "total"
+    ]
+   ]
+  },
+  {
+   "id": "cash-direct",
+   "family": "signed_bridge",
+   "nav": "经营现金",
+   "eyebrow": "SIGNED MONEY BRIDGE",
+   "question": "经营现金从哪里来，用到哪里？",
+   "takeaway": "采购付现同比+{{purchase_growth}}%，职工薪酬付现同比+{{employee_growth}}%，而营业成本同比{{cogs_growth}}%，付现增速明显快于成本。",
+   "analysis": "季报只披露直接法现金流，没有净利润到经营现金的调节表，因此按直接法逐项拆解。销售收现的增长大部分被采购和人工付现吸收。",
+   "counter": "采购付现与营业成本口径不同：付现包含存货和预付的增加，应付票据增加{{notes_delta_yi}}亿元意味着部分采购尚未付现。付现增速不能直接当作存货金额。",
+   "identity": "销售商品收到的现金＋其他经营收款−各项经营付现＝经营现金净额。",
+   "rows": [
+    [
+     "销售商品、提供劳务收到的现金",
+     "sales_cash",
+     "start"
+    ],
+    [
+     "税费返还及其他经营收款",
+     [
+      [
+       "tax_refund",
+       1
+      ],
+      [
+       "other_op_in",
+       1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "购买商品、接受劳务付现",
+     [
+      [
+       "purchase_cash",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "支付给职工及为职工支付",
+     [
+      [
+       "employee_cash",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "支付的各项税费",
+     [
+      [
+       "tax_paid",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "其他经营付现",
+     [
+      [
+       "other_op_out",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "经营活动现金净额",
+     "cfo",
+     "total"
+    ]
+   ]
+  },
+  {
+   "id": "working-capital",
+   "family": "comparison",
+   "nav": "营运资金",
+   "eyebrow": "COMPARABLE BASES",
+   "question": "增长占用了多少营运资金？",
+   "takeaway": "应收、存货和预付合计增加{{tieup_yi}}亿元，合同负债、应付账款和应付票据合计增加{{funding_delta_yi}}亿元，净占用{{net_tie_yi}}亿元。",
+   "analysis": "管理层称存货增加主要是战略性备货带来的原材料增加，应收增加主要是销售增长，预付增加主要是预付材料款，合同负债增加主要是预收客户款项。应收账款相当于三季度单季收入的{{ar_q3_pct}}%。",
+   "counter": "季报不披露账龄、坏账准备和存货分类，无法判断应收是否逾期、存货是否已进入成品。信用减值损失同比多计提{{credit_delta_yi}}亿元，方向与应收增长一致，但金额不足以说明回款问题。",
+   "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
+   "periods": [
+    "2025-12-31",
+    "2026-09-30"
+   ],
+   "pairs": [
+    [
+     "应收账款",
+     "ar_prior",
+     "ar"
+    ],
+    [
+     "存货",
+     "inventory_prior",
+     "inventory"
+    ],
+    [
+     "预付款项",
+     "prepayments_prior",
+     "prepayments"
+    ],
+    [
+     "合同负债",
+     "contract_liabilities_prior",
+     "contract_liabilities"
+    ],
+    [
+     "应付账款",
+     "ap_prior",
+     "ap"
+    ],
+    [
+     "应付票据",
+     "notes_payable_prior",
+     "notes_payable"
+    ]
+   ]
+  },
+  {
+   "id": "cash",
+   "family": "signed_bridge",
+   "nav": "现金去向",
+   "eyebrow": "SIGNED MONEY BRIDGE",
+   "question": "经营现金很强，期末现金为何骤降？",
+   "takeaway": "现金及现金等价物由{{cash_open_yi}}亿元降至{{cash_close_yi}}亿元，主因是其他投资活动付款{{other_invest_pay_yi}}亿元，以及筹资流出{{cff_out_yi}}亿元。",
+   "analysis": "管理层称投资现金流出增加主要是购入美元定期存款。定期存款不属于现金等价物，因此货币资金仍有{{money_funds_yi}}亿元，现金等价物下降不等于可动用资金同等减少。分红与利息支付{{dividend_cash_yi}}亿元，相当于归母净利润的{{dividend_ratio}}%；汇率变动使现金减少{{cash_fx_abs_yi}}亿元。",
+   "counter": "季报未披露定期存款的期限、币种明细和是否受限，货币资金中受限部分无法确认；其他投资活动付款的性质依赖管理层说明。",
+   "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
+   "rows": [
+    [
+     "期初现金及现金等价物",
+     "cash_open",
+     "start"
+    ],
+    [
+     "经营活动现金净额",
+     "cfo",
+     "step"
+    ],
+    [
+     "购建长期资产付现",
+     [
+      [
+       "capex_cash",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "其他投资活动付款",
+     [
+      [
+       "other_invest_pay",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "理财及其他投资净额",
+     [
+      [
+       "invest_recover",
+       1
+      ],
+      [
+       "invest_income_cash",
+       1
+      ],
+      [
+       "disposal_cash",
+       1
+      ],
+      [
+       "invest_pay",
+       -1
+      ]
+     ],
+     "step"
+    ],
+    [
+     "筹资活动现金净额",
+     "cff",
+     "step"
+    ],
+    [
+     "汇率变动影响",
+     "cash_fx",
+     "step"
+    ],
+    [
+     "期末现金及现金等价物",
+     "cash_close",
+     "total"
+    ]
+   ]
+  },
+  {
+   "id": "balance",
+   "family": "balance",
+   "nav": "资本结构",
+   "eyebrow": "STOCKS, NOT FLOWS",
+   "question": "扩张靠负债还是权益？",
+   "takeaway": "总资产较年初增加{{assets_delta_yi}}亿元，其中负债增加{{liabilities_delta_yi}}亿元，资产负债率由{{liab_ratio_prior}}%升至{{liab_ratio}}%。",
+   "analysis": "负债增加集中在应付账款、应付票据和合同负债等经营性负债；权益增加来自利润留存，同时分红与外币折算差额使其他综合收益减少。",
+   "counter": "合并资产负债表没有列示短期借款和长期借款金额，负债增加不是有息借款；资产负债率仍低，但经营性负债依赖供应商与客户信用。",
+   "identity": "资产＝负债＋全部权益；全部权益＝归母权益＋少数股东权益，两个日期分别闭合。",
+   "dates": [
+    [
+     "2025-12-31",
+     "assets_prior",
+     "liabilities_prior",
+     "equity_prior"
+    ],
+    [
+     "2026-09-30",
+     "assets",
+     "liabilities",
+     "equity"
+    ]
+   ]
+  }
+ ],
+ "accounting_identities": [
+  {
+   "name": "法定利润形成",
+   "left": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ],
+    [
+     "tax_surcharge",
+     -1
+    ],
+    [
+     "selling",
+     -1
+    ],
+    [
+     "admin",
+     -1
+    ],
+    [
+     "rd_expense",
+     -1
+    ],
+    [
+     "finance",
+     -1
+    ],
+    [
+     "other_income",
+     1
+    ],
+    [
+     "investment_income",
+     1
+    ],
+    [
+     "fair_value",
+     1
+    ],
+    [
+     "credit_impairment",
+     1
+    ],
+    [
+     "asset_impairment",
+     1
+    ],
+    [
+     "asset_disposal",
+     1
+    ]
+   ],
+   "right": "operating_profit"
+  },
+  {
+   "name": "税前利润",
+   "left": [
+    [
+     "operating_profit",
+     1
+    ],
+    [
+     "nonop_income",
+     1
+    ],
+    [
+     "nonop_expense",
+     -1
+    ]
+   ],
+   "right": "pretax"
+  },
+  {
+   "name": "净利润",
+   "left": [
+    [
+     "pretax",
+     1
+    ],
+    [
+     "income_tax",
+     -1
+    ]
+   ],
+   "right": "net_profit"
+  },
+  {
+   "name": "净利及归属",
+   "left": "net_profit",
+   "right": [
+    [
+     "parent_net",
+     1
+    ],
+    [
+     "nci",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "直接法经营现金",
+   "left": [
+    [
+     "sales_cash",
+     1
+    ],
+    [
+     "tax_refund",
+     1
+    ],
+    [
+     "other_op_in",
+     1
+    ],
+    [
+     "purchase_cash",
+     -1
+    ],
+    [
+     "employee_cash",
+     -1
+    ],
+    [
+     "tax_paid",
+     -1
+    ],
+    [
+     "other_op_out",
+     -1
+    ]
+   ],
+   "right": "cfo"
+  },
+  {
+   "name": "经营现金流入",
+   "left": [
+    [
+     "sales_cash",
+     1
+    ],
+    [
+     "tax_refund",
+     1
+    ],
+    [
+     "other_op_in",
+     1
+    ]
+   ],
+   "right": "op_inflow"
+  },
+  {
+   "name": "资产负债",
+   "left": "assets",
+   "right": [
+    [
+     "liabilities",
+     1
+    ],
+    [
+     "equity",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "权益归属",
+   "left": "equity",
+   "right": [
+    [
+     "parent_equity",
+     1
+    ],
+    [
+     "nci_equity",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "资产负债表双重披露",
+   "left": "assets",
+   "right": "liabilities_equity"
+  },
+  {
+   "name": "法定利润形成_prior",
+   "left": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ],
+    [
+     "tax_surcharge_prior",
+     -1
+    ],
+    [
+     "selling_prior",
+     -1
+    ],
+    [
+     "admin_prior",
+     -1
+    ],
+    [
+     "rd_expense_prior",
+     -1
+    ],
+    [
+     "finance_prior",
+     -1
+    ],
+    [
+     "other_income_prior",
+     1
+    ],
+    [
+     "investment_income_prior",
+     1
+    ],
+    [
+     "fair_value_prior",
+     1
+    ],
+    [
+     "credit_impairment_prior",
+     1
+    ],
+    [
+     "asset_impairment_prior",
+     1
+    ],
+    [
+     "asset_disposal_prior",
+     1
+    ]
+   ],
+   "right": "operating_profit_prior"
+  },
+  {
+   "name": "税前利润_prior",
+   "left": [
+    [
+     "operating_profit_prior",
+     1
+    ],
+    [
+     "nonop_income_prior",
+     1
+    ],
+    [
+     "nonop_expense_prior",
+     -1
+    ]
+   ],
+   "right": "pretax_prior"
+  },
+  {
+   "name": "净利润_prior",
+   "left": [
+    [
+     "pretax_prior",
+     1
+    ],
+    [
+     "income_tax_prior",
+     -1
+    ]
+   ],
+   "right": "net_profit_prior"
+  },
+  {
+   "name": "净利及归属_prior",
+   "left": "net_profit_prior",
+   "right": [
+    [
+     "parent_net_prior",
+     1
+    ],
+    [
+     "nci_prior",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "直接法经营现金_prior",
+   "left": [
+    [
+     "sales_cash_prior",
+     1
+    ],
+    [
+     "tax_refund_prior",
+     1
+    ],
+    [
+     "other_op_in_prior",
+     1
+    ],
+    [
+     "purchase_cash_prior",
+     -1
+    ],
+    [
+     "employee_cash_prior",
+     -1
+    ],
+    [
+     "tax_paid_prior",
+     -1
+    ],
+    [
+     "other_op_out_prior",
+     -1
+    ]
+   ],
+   "right": "cfo_prior"
+  },
+  {
+   "name": "经营现金流入_prior",
+   "left": [
+    [
+     "sales_cash_prior",
+     1
+    ],
+    [
+     "tax_refund_prior",
+     1
+    ],
+    [
+     "other_op_in_prior",
+     1
+    ]
+   ],
+   "right": "op_inflow_prior"
+  },
+  {
+   "name": "资产负债_prior",
+   "left": "assets_prior",
+   "right": [
+    [
+     "liabilities_prior",
+     1
+    ],
+    [
+     "equity_prior",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "权益归属_prior",
+   "left": "equity_prior",
+   "right": [
+    [
+     "parent_equity_prior",
+     1
+    ],
+    [
+     "nci_equity_prior",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "资产负债表双重披露_prior",
+   "left": "assets_prior",
+   "right": "liabilities_equity_prior"
+  },
+  {
+   "name": "投资现金",
+   "left": [
+    [
+     "invest_recover",
+     1
+    ],
+    [
+     "invest_income_cash",
+     1
+    ],
+    [
+     "disposal_cash",
+     1
+    ],
+    [
+     "capex_cash",
+     -1
+    ],
+    [
+     "invest_pay",
+     -1
+    ],
+    [
+     "other_invest_pay",
+     -1
+    ]
+   ],
+   "right": "cfi"
+  },
+  {
+   "name": "投资现金_prior",
+   "left": [
+    [
+     "invest_recover_prior",
+     1
+    ],
+    [
+     "invest_income_cash_prior",
+     1
+    ],
+    [
+     "disposal_cash_prior",
+     1
+    ],
+    [
+     "capex_cash_prior",
+     -1
+    ],
+    [
+     "invest_pay_prior",
+     -1
+    ]
+   ],
+   "right": "cfi_prior"
+  },
+  {
+   "name": "筹资现金",
+   "left": [
+    [
+     "equity_raise",
+     1
+    ],
+    [
+     "dividend_cash",
+     -1
+    ],
+    [
+     "other_fin_pay",
+     -1
+    ]
+   ],
+   "right": "cff"
+  },
+  {
+   "name": "筹资现金_prior",
+   "left": [
+    [
+     "equity_raise_prior",
+     1
+    ],
+    [
+     "debt_repay_prior",
+     -1
+    ],
+    [
+     "dividend_cash_prior",
+     -1
+    ],
+    [
+     "other_fin_pay_prior",
+     -1
+    ]
+   ],
+   "right": "cff_prior"
+  },
+  {
+   "name": "现金首尾",
+   "left": [
+    [
+     "cash_open",
+     1
+    ],
+    [
+     "cfo",
+     1
+    ],
+    [
+     "cfi",
+     1
+    ],
+    [
+     "cff",
+     1
+    ],
+    [
+     "cash_fx",
+     1
+    ]
+   ],
+   "right": "cash_close"
+  },
+  {
+   "name": "现金首尾_prior",
+   "left": [
+    [
+     "cash_open_prior",
+     1
+    ],
+    [
+     "cfo_prior",
+     1
+    ],
+    [
+     "cfi_prior",
+     1
+    ],
+    [
+     "cff_prior",
+     1
+    ],
+    [
+     "cash_fx_prior",
+     1
+    ]
+   ],
+   "right": "cash_close_prior"
+  },
+  {
+   "name": "收入与首页主要数据一致",
+   "left": "rev",
+   "right": "rev_key"
+  },
+  {
+   "name": "收入与首页主要数据一致_prior",
+   "left": "rev_prior",
+   "right": "rev_key_prior"
+  },
+  {
+   "name": "归母与首页主要数据一致",
+   "left": "parent_net",
+   "right": "ytd_parent_net_key"
+  },
+  {
+   "name": "归母与首页主要数据一致_prior",
+   "left": "parent_net_prior",
+   "right": "ytd_parent_net_key_prior"
+  },
+  {
+   "name": "经营现金与首页主要数据一致",
+   "left": "cfo",
+   "right": "cfo_key"
+  },
+  {
+   "name": "经营现金与首页主要数据一致_prior",
+   "left": "cfo_prior",
+   "right": "cfo_key_prior"
+  },
+  {
+   "name": "扣非归母桥",
+   "left": "ytd_parent_net_key",
+   "right": [
+    [
+     "ytd_adjusted_parent_key",
+     1
+    ],
+    [
+     "nonrecurring_net",
+     1
+    ]
+   ]
+  },
+  {
+   "name": "非经常性损益分项",
+   "left": [
+    [
+     "nr_disposal",
+     1
+    ],
+    [
+     "nr_grants",
+     1
+    ],
+    [
+     "nr_fair",
+     1
+    ],
+    [
+     "nr_other",
+     1
+    ],
+    [
+     "nr_tax",
+     -1
+    ]
+   ],
+   "right": "nonrecurring_net"
+  },
+  {
+   "name": "三季度扣非归母桥",
+   "left": "q3_parent_net",
+   "right": [
+    [
+     "q3_adjusted_parent",
+     1
+    ],
+    [
+     "q3_nonrecurring_net",
+     1
+    ]
+   ]
+  }
+ ],
+ "quantified_claims": {
+  "rev_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "rev_prior_yi": {
+   "expression": [
+    [
+     "rev_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cogs_yi": {
+   "expression": [
+    [
+     "cogs",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "parent_yi": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "parent_prior_yi": {
+   "expression": [
+    [
+     "parent_net_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "adjusted_yi": {
+   "expression": [
+    [
+     "ytd_adjusted_parent_key",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cfo_yi": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cfo_prior_yi": {
+   "expression": [
+    [
+     "cfo_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "q3_rev_yi": {
+   "expression": [
+    [
+     "q3_rev",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "q3_parent_yi": {
+   "expression": [
+    [
+     "q3_parent_net",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "gp_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "gp_prior_yi": {
+   "expression": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "gp_delta_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ],
+    [
+     "rev_prior",
+     -1
+    ],
+    [
+     "cogs_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "rev_delta_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "rev_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cogs_drop_yi": {
+   "expression": [
+    [
+     "cogs_prior",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "parent_delta_yi": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ],
+    [
+     "parent_net_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "rd_delta_yi": {
+   "expression": [
+    [
+     "rd_expense",
+     1
+    ],
+    [
+     "rd_expense_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "finance_delta_yi": {
+   "expression": [
+    [
+     "finance",
+     1
+    ],
+    [
+     "finance_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "tax_delta_yi": {
+   "expression": [
+    [
+     "income_tax",
+     1
+    ],
+    [
+     "income_tax_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "credit_delta_yi": {
+   "expression": [
+    [
+     "credit_impairment_prior",
+     1
+    ],
+    [
+     "credit_impairment",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "credit_yi": {
+   "expression": [
+    [
+     "credit_impairment",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "absolute": true
+  },
+  "finance_yi": {
+   "expression": [
+    [
+     "finance",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "finance_prior_yi": {
+   "expression": [
+    [
+     "finance_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "other_fin_yi": {
+   "expression": [
+    [
+     "finance",
+     1
+    ],
+    [
+     "interest_expense",
+     -1
+    ],
+    [
+     "interest_income",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "other_fin_prior_yi": {
+   "expression": [
+    [
+     "finance_prior",
+     1
+    ],
+    [
+     "interest_expense_prior",
+     -1
+    ],
+    [
+     "interest_income_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "nonrecurring_yi": {
+   "expression": [
+    [
+     "nonrecurring_net",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "nr_grants_yi": {
+   "expression": [
+    [
+     "nr_grants",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "capex_yi": {
+   "expression": [
+    [
+     "capex_cash",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "fcf_yi": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ],
+    [
+     "capex_cash",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "fcf_prior_yi": {
+   "expression": [
+    [
+     "cfo_prior",
+     1
+    ],
+    [
+     "capex_cash_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "ar_yi": {
+   "expression": [
+    [
+     "ar",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "inv_yi": {
+   "expression": [
+    [
+     "inventory",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "ar_delta_yi": {
+   "expression": [
+    [
+     "ar",
+     1
+    ],
+    [
+     "ar_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "inv_delta_yi": {
+   "expression": [
+    [
+     "inventory",
+     1
+    ],
+    [
+     "inventory_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "tieup_yi": {
+   "expression": [
+    [
+     "ar",
+     1
+    ],
+    [
+     "ar_prior",
+     -1
+    ],
+    [
+     "inventory",
+     1
+    ],
+    [
+     "inventory_prior",
+     -1
+    ],
+    [
+     "prepayments",
+     1
+    ],
+    [
+     "prepayments_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "funding_delta_yi": {
+   "expression": [
+    [
+     "contract_liabilities",
+     1
+    ],
+    [
+     "contract_liabilities_prior",
+     -1
+    ],
+    [
+     "ap",
+     1
+    ],
+    [
+     "ap_prior",
+     -1
+    ],
+    [
+     "notes_payable",
+     1
+    ],
+    [
+     "notes_payable_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "net_tie_yi": {
+   "expression": [
+    [
+     "ar",
+     1
+    ],
+    [
+     "ar_prior",
+     -1
+    ],
+    [
+     "inventory",
+     1
+    ],
+    [
+     "inventory_prior",
+     -1
+    ],
+    [
+     "prepayments",
+     1
+    ],
+    [
+     "prepayments_prior",
+     -1
+    ],
+    [
+     "contract_liabilities",
+     -1
+    ],
+    [
+     "contract_liabilities_prior",
+     1
+    ],
+    [
+     "ap",
+     -1
+    ],
+    [
+     "ap_prior",
+     1
+    ],
+    [
+     "notes_payable",
+     -1
+    ],
+    [
+     "notes_payable_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "notes_delta_yi": {
+   "expression": [
+    [
+     "notes_payable",
+     1
+    ],
+    [
+     "notes_payable_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cash_open_yi": {
+   "expression": [
+    [
+     "cash_open",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cash_close_yi": {
+   "expression": [
+    [
+     "cash_close",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "money_funds_yi": {
+   "expression": [
+    [
+     "money_funds",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "other_invest_pay_yi": {
+   "expression": [
+    [
+     "other_invest_pay",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cff_out_yi": {
+   "expression": [
+    [
+     "cff",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "absolute": true
+  },
+  "dividend_cash_yi": {
+   "expression": [
+    [
+     "dividend_cash",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "cash_fx_abs_yi": {
+   "expression": [
+    [
+     "cash_fx",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "absolute": true
+  },
+  "assets_delta_yi": {
+   "expression": [
+    [
+     "assets",
+     1
+    ],
+    [
+     "assets_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "liabilities_delta_yi": {
+   "expression": [
+    [
+     "liabilities",
+     1
+    ],
+    [
+     "liabilities_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "rev_growth": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "rev_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ]
+  },
+  "rev_growth0": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "rev_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 0,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ]
+  },
+  "parent_growth": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ],
+    [
+     "parent_net_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "parent_net_prior",
+     1
+    ]
+   ]
+  },
+  "parent_growth0": {
+   "expression": [
+    [
+     "parent_net",
+     1
+    ],
+    [
+     "parent_net_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 0,
+   "denominator": [
+    [
+     "parent_net_prior",
+     1
+    ]
+   ]
+  },
+  "adjusted_growth": {
+   "expression": [
+    [
+     "ytd_adjusted_parent_key",
+     1
+    ],
+    [
+     "ytd_adjusted_parent_key_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "ytd_adjusted_parent_key_prior",
+     1
+    ]
+   ]
+  },
+  "cogs_growth": {
+   "expression": [
+    [
+     "cogs",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "cogs_prior",
+     1
+    ]
+   ]
+  },
+  "cfo_growth": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ],
+    [
+     "cfo_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "cfo_prior",
+     1
+    ]
+   ]
+  },
+  "q3_rev_growth": {
+   "expression": [
+    [
+     "q3_rev",
+     1
+    ],
+    [
+     "q3_rev_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "q3_rev_prior",
+     1
+    ]
+   ]
+  },
+  "q3_parent_growth": {
+   "expression": [
+    [
+     "q3_parent_net",
+     1
+    ],
+    [
+     "q3_parent_net_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "q3_parent_net_prior",
+     1
+    ]
+   ]
+  },
+  "q3_adjusted_growth": {
+   "expression": [
+    [
+     "q3_adjusted_parent",
+     1
+    ],
+    [
+     "q3_adjusted_parent_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "q3_adjusted_parent_prior",
+     1
+    ]
+   ]
+  },
+  "margin": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ]
+  },
+  "prior_margin": {
+   "expression": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ]
+  },
+  "prior_margin_raw": {
+   "expression": [
+    [
+     "rev_prior",
+     1
+    ],
+    [
+     "cogs_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "1",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ]
+  },
+  "margin_pp": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ],
+   "less": "prior_margin_raw"
+  },
+  "scale_effect_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "rev_prior",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "times": {
+    "expression": [
+     [
+      "rev_prior",
+      1
+     ],
+     [
+      "cogs_prior",
+      -1
+     ]
+    ],
+    "denominator": [
+     [
+      "rev_prior",
+      1
+     ]
+    ]
+   }
+  },
+  "margin_effect_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "cogs",
+     -1
+    ],
+    [
+     "rev_prior",
+     -1
+    ],
+    [
+     "cogs_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "less": "scale_effect_yi"
+  },
+  "rd_growth": {
+   "expression": [
+    [
+     "rd_expense",
+     1
+    ],
+    [
+     "rd_expense_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rd_expense_prior",
+     1
+    ]
+   ]
+  },
+  "q3_net_margin": {
+   "expression": [
+    [
+     "q3_parent_net",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "q3_rev",
+     1
+    ]
+   ]
+  },
+  "q3_net_margin_prior": {
+   "expression": [
+    [
+     "q3_parent_net_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "q3_rev_prior",
+     1
+    ]
+   ]
+  },
+  "cfo_ratio": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "net_profit",
+     1
+    ]
+   ]
+  },
+  "cfo_ratio_prior": {
+   "expression": [
+    [
+     "cfo_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "net_profit_prior",
+     1
+    ]
+   ]
+  },
+  "sales_cash_ratio": {
+   "expression": [
+    [
+     "sales_cash",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev",
+     1
+    ]
+   ]
+  },
+  "sales_cash_ratio_prior": {
+   "expression": [
+    [
+     "sales_cash_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "rev_prior",
+     1
+    ]
+   ]
+  },
+  "purchase_growth": {
+   "expression": [
+    [
+     "purchase_cash",
+     1
+    ],
+    [
+     "purchase_cash_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "purchase_cash_prior",
+     1
+    ]
+   ]
+  },
+  "employee_growth": {
+   "expression": [
+    [
+     "employee_cash",
+     1
+    ],
+    [
+     "employee_cash_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "employee_cash_prior",
+     1
+    ]
+   ]
+  },
+  "ar_growth": {
+   "expression": [
+    [
+     "ar",
+     1
+    ],
+    [
+     "ar_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "ar_prior",
+     1
+    ]
+   ]
+  },
+  "inv_growth": {
+   "expression": [
+    [
+     "inventory",
+     1
+    ],
+    [
+     "inventory_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "inventory_prior",
+     1
+    ]
+   ]
+  },
+  "prepay_growth": {
+   "expression": [
+    [
+     "prepayments",
+     1
+    ],
+    [
+     "prepayments_prior",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "prepayments_prior",
+     1
+    ]
+   ]
+  },
+  "ar_q3_pct": {
+   "expression": [
+    [
+     "ar",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 0,
+   "denominator": [
+    [
+     "q3_rev",
+     1
+    ]
+   ]
+  },
+  "nonrecurring_share": {
+   "expression": [
+    [
+     "nonrecurring_net",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "parent_net",
+     1
+    ]
+   ]
+  },
+  "dividend_ratio": {
+   "expression": [
+    [
+     "dividend_cash",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 0,
+   "denominator": [
+    [
+     "parent_net",
+     1
+    ]
+   ]
+  },
+  "liab_ratio": {
+   "expression": [
+    [
+     "liabilities",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "assets",
+     1
+    ]
+   ]
+  },
+  "liab_ratio_prior": {
+   "expression": [
+    [
+     "liabilities_prior",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 2,
+   "denominator": [
+    [
+     "assets_prior",
+     1
+    ]
+   ]
+  },
+  "share_capital_yi": {
+   "expression": [
+    [
+     "share_capital",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "share_capital_prior_yi": {
+   "expression": [
+    [
+     "share_capital_prior",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  }
+ },
+ "essays": [
+  {
+   "id": "research",
+   "after": "profit-change",
+   "eyebrow": "BUSINESS MODEL / FALSIFIABLE THESIS",
+   "title": "毛利率跃升，是结构改善还是一次性便利？",
+   "paragraphs": [
+    "披露事实：前九个月营业收入{{rev_yi}}亿元，营业成本{{cogs_yi}}亿元，毛利率{{margin}}%，比上年同期高{{margin_pp}}个百分点。收入增加{{rev_delta_yi}}亿元的同时成本减少{{cogs_drop_yi}}亿元。毛利增量{{gp_delta_yi}}亿元可以分解为：按上年毛利率计算的规模效应{{scale_effect_yi}}亿元，加毛利率提升的效应{{margin_effect_yi}}亿元。这是会计分解，不是价格与销量的因果识别。",
+    "管理层解释：收入增长归因于全球人工智能行业加速发展与数据中心建设，带动高速光器件需求；营业成本变动被标为“无重大变化”，没有给出原因。本季报不披露分产品收入与成本，无法检验结构变化。",
+    "最强替代解释：毛利率跃升未必是可持续的结构改善。可能的替代解释包括上年同期成本偏高的基数效应、高毛利产品短期集中交付，以及产能利用率提高摊薄单位固定成本。区分它们需要年报的分产品毛利率与产销量，以及半年报与三季度的逐季毛利率。",
+    "反向证据：存货增加{{inv_delta_yi}}亿元，管理层称为战略性备货。已发生的生产与采购成本在售出前留在存货中，不进入营业成本，所以毛利率只反映已售出的商品，库存的盈利性要等出货与跌价测试来检验。"
+   ]
+  },
+  {
+   "id": "cash-risk",
+   "after": "working-capital",
+   "eyebrow": "EARNINGS QUALITY / CASH CONVERSION",
+   "title": "增长是否已经变成可回收的资产？",
+   "paragraphs": [
+    "盈利拆解：归母净利润同比增加{{parent_delta_yi}}亿元，小于毛利增量{{gp_delta_yi}}亿元。研发费用多{{rd_delta_yi}}亿元（同比+{{rd_growth}}%），财务费用多{{finance_delta_yi}}亿元，所得税多{{tax_delta_yi}}亿元，信用减值多计提{{credit_delta_yi}}亿元，合计吃掉了毛利增量的相当一部分。",
+    "现金转换：经营现金净额{{cfo_yi}}亿元，占合并净利润{{cfo_ratio}}%，上年同期{{cfo_ratio_prior}}%。扣除购建长期资产付现{{capex_yi}}亿元后，简单自由现金流（分析师口径，经营现金净额减购建长期资产付现）为{{fcf_yi}}亿元，上年同期{{fcf_prior_yi}}亿元。",
+    "最强替代解释：存货与应收增加若是为已有订单提前备货和客户账期所致，应在后续季度随出货转化为销售收现；若收入增速回落而存货继续上升，风险会转向跌价与坏账。",
+    "反向证据：销售商品收到的现金占营业收入{{sales_cash_ratio}}%，与上年同期的{{sales_cash_ratio_prior}}%接近，回款本身没有明显变慢，转换率下降主要出现在采购与人工付现端。这削弱了“应收回款变慢”这一单一解释。"
+   ]
+  },
+  {
+   "id": "follow-up",
+   "after": "end",
+   "eyebrow": "NEXT DISCLOSURE / DECISION TESTS",
+   "title": "下一次披露，用三组证据验证判断",
+   "paragraphs": [
+    "一，盈利：2026年年报的分产品收入、成本与毛利率。若产品结构不能解释前九个月{{margin_pp}}个百分点的毛利率提升，判断被推翻。用半年报与本季报相减得到三季度单季毛利率，本篇没有入账，为 NOT_CHECKED。",
+    "二，现金：四季度存货与应收的变动方向，以及经营现金净额占净利润的比例是否回到上年同期{{cfo_ratio_prior}}%附近。",
+    "三，资本：美元定期存款的期限与受限情况；股本由{{share_capital_prior_yi}}亿股增至{{share_capital_yi}}亿股，上年同期每股收益在调整前后不同，幅度与股本扩大相当，但季报只写明“其他原因”，调整原因为 NOT_CHECKED；港股上市费用资本化和子公司购置土地带来的资本开支。",
+    "本篇是三季报的来源限定研究：没有8–12季度趋势、同行比较与估值，也没有经过独立人类二审。"
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "theme": "主要财务数据与调整口径",
+   "pages": [
+    1,
+    2
+   ],
+   "finding": "单季与年初至报告期末两套口径同时列示，上年同期标注“调整前/调整后”。收入、净利润、扣非调整前后相同；每股收益因股本变化而调整。",
+   "boundary": "追溯调整原因只标注“其他原因”，季报没有展开。"
+  },
+  {
+   "theme": "收入与毛利率",
+   "pages": [
+    3,
+    8,
+    9
+   ],
+   "finding": "营业收入同比+{{rev_growth}}%，营业成本同比{{cogs_growth}}%，毛利率{{prior_margin}}%→{{margin}}%。管理层把收入增长归因于人工智能与数据中心需求。",
+   "boundary": "没有分产品、分地区数据；成本下降无管理层解释，不能检验结构变化。"
+  },
+  {
+   "theme": "应收与信用",
+   "pages": [
+    3,
+    6,
+    9
+   ],
+   "finding": "应收账款较年初+{{ar_growth}}%至{{ar_yi}}亿元，信用减值损失{{credit_yi}}亿元，同比多计提{{credit_delta_yi}}亿元。",
+   "boundary": "没有账龄、坏账准备明细和前五大客户信息，不能判断逾期。"
+  },
+  {
+   "theme": "存货与预付",
+   "pages": [
+    3,
+    6
+   ],
+   "finding": "存货较年初+{{inv_growth}}%至{{inv_yi}}亿元，管理层称主要是战略性备货带来的原材料增加；预付款项+{{prepay_growth}}%，管理层称主要是预付材料款。",
+   "boundary": "没有存货分类和跌价准备，不能判断备货是否已进入成品，也不能评估减值风险。"
+  },
+  {
+   "theme": "非经常性损益",
+   "pages": [
+    2
+   ],
+   "finding": "非经常性损益净额{{nonrecurring_yi}}亿元，占归母净利润{{nonrecurring_share}}%，其中政府补助{{nr_grants_yi}}亿元。",
+   "boundary": "按公司披露的分类使用，没有独立复核其“经常性”界定。"
+  },
+  {
+   "theme": "现金流与投资",
+   "pages": [
+    4,
+    10,
+    11
+   ],
+   "finding": "经营现金净额{{cfo_yi}}亿元；投资活动现金流出{{other_invest_pay_yi}}亿元其他投资付款，管理层称主要是购入美元定期存款；分红与利息付现{{dividend_cash_yi}}亿元。",
+   "boundary": "季报没有净利润到经营现金的调节表；定期存款的期限、币种和受限情况未披露。"
+  },
+  {
+   "theme": "汇兑与财务费用",
+   "pages": [
+    3,
+    9,
+    11
+   ],
+   "finding": "财务费用由{{finance_prior_yi}}亿元变为{{finance_yi}}亿元；扣除利息费用并加回利息收入后的部分由{{other_fin_prior_yi}}亿元升至{{other_fin_yi}}亿元，管理层称主要是汇兑损失；汇率变动使现金减少{{cash_fx_abs_yi}}亿元。",
+   "boundary": "利润表没有单列汇兑损益，“利息外财务费用”是由三个披露值计算得到的，含汇兑与手续费等。"
+  },
+  {
+   "theme": "股东、分红与资本事项",
+   "pages": [
+    4,
+    5,
+    6
+   ],
+   "finding": "第一大股东持股37.47%；2026年半年度每10股派现5.00元，合计5.45亿元；2026年限制性股票激励向740名对象授予227.69万股，授予价119.5元/股；其他流动资产增加主要是已发生且应资本化的港股上市费用。",
+   "boundary": "股本增加的原因、回购与子公司购置土地等事项属于其他公告，本篇没有入账；本行中的持股比例、分红与激励计划数字来自正文文字，未做表格源格坐标核验。"
+  }
+ ],
+ "title_lines": [
+  "收入增{{rev_growth0}}%、|归母利润增{{parent_growth0}}%，",
+  "毛利率跃升|能持续吗？"
+ ]
+}

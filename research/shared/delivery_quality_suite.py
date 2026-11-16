@@ -20,11 +20,13 @@ def run(out):
     from profit_chain_audit import validate_source, bundle_for
     for issuer in catalog['issuers']:
         if issuer.get('editorial_contract'):validate_source(bundle_for(issuer['code']))
+    for issuer in catalog.get('period_reports',[]):
+        if issuer.get('editorial_contract'):validate_source(bundle_for(issuer['code']+'@'+issuer['period']))
     from source_publication import publish
-    for issuer in catalog['issuers']:
+    for issuer in catalog['issuers']+catalog.get('period_reports',[]):
         if issuer.get('source_publication'):
             original=ROOT/'public'/issuer['href'].lstrip('/')
-            rebuilt=Path(out)/('rebuilt-'+issuer['code']+'.html')
+            rebuilt=Path(out)/('rebuilt-'+Path(issuer['href']).stem+'.html')
             publish(ROOT/issuer['source_publication'],rebuilt)
             if rebuilt.read_bytes()!=original.read_bytes():raise ValueError('NEW_DOSSIER_CLEAN_REBUILD_DRIFT '+issuer['code'])
     checks=[['-m','unittest','discover','-s','scripts','-p','test_parallel_figure_audit.py'],['-O','-m','unittest','discover','-s','research/shared','-p','test_signed_period_generalization.py'],['-O','-m','unittest','discover','-s','research/shared','-p','test_editorial_bridge.py'],['-m','unittest','discover','-s','research/quality/historical-peer-evidence','-p','test_evidence.py'],['-m','unittest','discover','-s','research/shared','-p','test_*.py'],

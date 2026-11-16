@@ -732,6 +732,106 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "ACCOUNTING_CORE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "QTR-001",
+      "root_cause": "季报主要财务数据表把数字折成两行（1,923,161 与 ,156.63），按词取数会把半个数字当成事实或整行丢失。",
+      "correction": "merge_wrapped 只在同列右对齐、纵向相邻且拼接后为合法数字时合并，并标记 wrapped_number，由发布校验用空白归一后的完整单元核对。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_fin_intake.py",
+      "assertion_marker": "test_wrapped_headline_cells_are_rejoined_and_reproduce_printed_growth",
+      "scope": "single_issuer",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "QTR-002",
+      "root_cause": "现金流量表“偿还债务支付的现金”只有上年同期有数，按“该行第几个数”取列会把上年的4000万当成本期。",
+      "correction": "列号按表块内数字右边缘的页面位置确定；空白单元格取数直接报错，不用相邻列填充，也不当作披露零。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_fin_intake.py",
+      "assertion_marker": "test_blank_current_cell_is_not_filled_from_prior_year",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "QTR-003",
+      "root_cause": "破折号“-”表示不适用，被当作数字或被丢弃都会让同一表其余列错位。",
+      "correction": "破折号保留其列位置但不能作为事实；取数时报 COLUMN_IS_DASH_PLACEHOLDER。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_fin_intake.py",
+      "assertion_marker": "test_dash_placeholder_is_not_zero_and_short_labels_are_refused",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "QTR-004",
+      "root_cause": "表块被高间距隔开的孤立首行（如现金流第一行）没有同块邻行可参考，列号丢失。",
+      "correction": "孤立行向同页最近的表块借用列几何，且仅当右边缘与其某一列对齐时才采用。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_fin_intake.py",
+      "assertion_marker": "test_lone_table_row_borrows_columns_from_neighbouring_block",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "QTR-005",
+      "root_cause": "三季报同时给出单季与年初至今两组列，声明不清会把单季数当成累计数。",
+      "correction": "issuer.flow_columns 显式声明额外流量列的期间；未声明的列与期间不符即拒绝出版。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_flow_column_must_match_declared_period",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "PER-001",
+      "root_cause": "同一公司后续报告期若复用公司代码，会覆盖旧报告的路由、编辑清单或审计器解析。",
+      "correction": "后续报告期登记在目录 period_reports，以 code@period 解析编辑清单和审计；旧期路由不变；重复或覆盖路由由发布合同拒绝。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_h1_and_q3_resolve_to_different_manifests",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "OFFLINE_REBUILD",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "PER-002",
+      "root_cause": "读者标签“2026年前三季度”与账本期间码不同，矢量审计若按字面比较会误拒，若放行则标签可被错配。",
+      "correction": "期间名只通过账本自己声明的 period_names 映射到期间码；未映射的标签按字面比较，对调的标签仍失败。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_reader_period_labels_map_to_ledger_codes_and_swaps_are_caught",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "CLM-001",
+      "root_cause": "规模效应与毛利率效应需要“变动额乘上年毛利率”，线性占位符无法表达，作者会手打舍入数。",
+      "correction": "占位符支持 times（第二个比率）与 less（减去另一条声明的原值），均为精确小数；循环引用被拒绝。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_claims_engine_scale_and_margin_effects_sum_to_gross_profit_change",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "RESEARCH_COUNTERCASE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-040",
+      "root_cause": "手机标题在词中间换行或留下单字孤行，机器检查不会发现。",
+      "correction": "标题按作者标注的短语单元换行，单元内不拆；title_lines 必须还原为原标题。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_title_lines_must_reassemble_the_title_and_never_split_inside_a_unit",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDT-040",
+      "root_cause": "利润质量图把“扣除的收益”和“加回的损失”都显示成同样的正负条，读者无法判断方向。",
+      "correction": "桥的行标签必须写明扣除或加回，方向由标签而非颜色单独表达。",
+      "proof_file": "research/shared/test_period_report.py",
+      "assertion_marker": "test_published_report_rebuilds_byte_for_byte_on_its_own_route",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "NEW_CONTRACT"
     }
   ]
 }
