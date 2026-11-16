@@ -2705,6 +2705,205 @@
    "scale": "100000000",
    "multiplier": "1",
    "decimals": 2
+  },
+  "q23_sales_ratio": {
+   "expression": [
+    [
+     "sales_cash",
+     1
+    ],
+    [
+     "qone:sales_cash",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 1,
+   "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR",
+   "denominator": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "qone:rev",
+     -1
+    ]
+   ]
+  },
+  "q1_sales_ratio": {
+   "expression": [
+    [
+     "qone:sales_cash",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 1,
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION",
+   "denominator": [
+    [
+     "qone:rev",
+     1
+    ]
+   ]
+  },
+  "q23_cfo_ratio": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ],
+    [
+     "qone:cfo",
+     -1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 1,
+   "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR",
+   "denominator": [
+    [
+     "net_profit",
+     1
+    ],
+    [
+     "qone:net_profit",
+     -1
+    ]
+   ]
+  },
+  "q1_cfo_ratio": {
+   "expression": [
+    [
+     "qone:cfo",
+     1
+    ]
+   ],
+   "scale": "1",
+   "multiplier": "100",
+   "decimals": 1,
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION",
+   "denominator": [
+    [
+     "qone:net_profit",
+     1
+    ]
+   ]
+  },
+  "q23_sales_yi": {
+   "expression": [
+    [
+     "sales_cash",
+     1
+    ],
+    [
+     "qone:sales_cash",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+  },
+  "q23_rev_yi": {
+   "expression": [
+    [
+     "rev",
+     1
+    ],
+    [
+     "qone:rev",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+  },
+  "q23_cfo_yi": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ],
+    [
+     "qone:cfo",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+  },
+  "q23_ni_yi": {
+   "expression": [
+    [
+     "net_profit",
+     1
+    ],
+    [
+     "qone:net_profit",
+     -1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR"
+  },
+  "q1_rf_yi": {
+   "expression": [
+    [
+     "qone:receivable_financing",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION"
+  },
+  "rf_now_yi": {
+   "expression": [
+    [
+     "receivable_financing",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2
+  },
+  "q1_rev_yi": {
+   "expression": [
+    [
+     "qone:rev",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION"
+  },
+  "q1_cfo_yi": {
+   "expression": [
+    [
+     "qone:cfo",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "multiplier": "1",
+   "decimals": 2,
+   "cross_period": "SINGLE_EXTERNAL_REPORT_CITATION"
   }
  },
  "essays": [
@@ -2718,6 +2917,17 @@
     "管理层解释：收入增长归因于全球人工智能行业加速发展与数据中心建设，带动高速光器件需求；营业成本变动被标为“无重大变化”，没有给出原因。本季报不披露分产品收入与成本，无法检验结构变化。",
     "最强替代解释：毛利率跃升未必是可持续的结构改善。可能的替代解释包括上年同期成本偏高的基数效应、高毛利产品短期集中交付，以及产能利用率提高摊薄单位固定成本。区分它们需要年报的分产品毛利率与产销量，以及半年报与三季度的逐季毛利率。",
     "反向证据：存货增加{{inv_delta_yi}}亿元，管理层称为战略性备货。已发生的生产与采购成本在售出前留在存货中，不进入营业成本，所以毛利率只反映已售出的商品，库存的盈利性要等出货与跌价测试来检验。"
+   ]
+  },
+  {
+   "id": "prior-check",
+   "after": "earnings",
+   "eyebrow": "PRIOR THESIS CHECK / 2026Q1",
+   "title": "上一期的判断，兑现了吗？",
+   "paragraphs": [
+    "上一期（2026年一季报）写下的可证伪判断是：若二季度销售收现占收入回到100%附近、同时应收款项融资回落，则“增长的一部分垫在资产负债表上”这一判断被推翻；若销售收现继续落后于收入，则增长的现金成本高于利润表显示的水平。",
+    "检验方式：三季报是累计数，减去一季报得到第二、第三季度合计（同一会计年度、均为合并口径的披露值，两份原件均按哈希固定）。第二、第三季度合计，营业收入{{q23_rev_yi}}亿元，销售收现{{q23_sales_yi}}亿元，占比{{q23_sales_ratio}}%，一季度为{{q1_sales_ratio}}%；经营现金净额{{q23_cfo_yi}}亿元，占同期合并净利润{{q23_cfo_ratio}}%，一季度为{{q1_cfo_ratio}}%。应收款项融资由一季度末的{{q1_rf_yi}}亿元降到三季度末的{{rf_now_yi}}亿元。",
+    "结论：两个条件基本兑现，判断在这个意义上被推翻：一季度的销售收现缺口在后续季度大部分收回，更像节奏而不是趋势。但被推翻的只是“持续占用”，前九个月累计的经营现金占净利润仍只有{{cfo_ratio}}%，低于上年同期的{{cfo_ratio_prior}}%，差额与存货、应收的净增加方向一致，见下文。第二、第三季度合计无法再拆成两个单季：半年报账本没有入账，本篇不做该拆分。"
    ]
   },
   {
@@ -2826,5 +3036,12 @@
  "title_lines": [
   "收入增{{rev_growth0}}%、|归母利润增{{parent_growth0}}%，",
   "毛利率跃升|能持续吗？"
- ]
+ ],
+ "external_ledgers": {
+  "qone": {
+   "path": "research/issuers/300394/2026Q1/source-ledger.json",
+   "period": "2026Q1",
+   "pdf_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e"
+  }
+ }
 }

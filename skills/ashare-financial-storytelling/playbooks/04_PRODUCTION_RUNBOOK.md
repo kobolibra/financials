@@ -63,6 +63,8 @@ python $T facts --code <code> --spec research/issuers/<code>/fact-spec.json
 
 编辑清单：写一个小的 `editorial-spec.json`（`sources`、`stages`、`editorial` 的问题与结论、每图 `role/rationale`，范例 `research/issuers/300394/20269M/editorial-spec.json`），然后 `python $T editorial --code <code> [--period P] --spec …` 生成清单；事实、源格和重大附注都从账本与出版稿复制，不手抄。`material-notes-review.json` 由出版稿 `notes` 展开生成。账本 `issuer` 里补 `period_label`（读者看到的期间名）、`period_names`（期间码到图中标签的映射）、`route`。
 
+**跨报告引用**（后续报告检验上一期判断，或对账同一日期）：出版稿加 `external_ledgers: {别名: {path, period, pdf_sha256}}`，占位符的事实键写成 `别名:事实键`，并声明 `cross_period`：`CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR`（同年度累计流量，如 9M − Q1）、`SAME_DATE_STOCK_RECONCILIATION`（同一资产负债表日的存量）、`SINGLE_EXTERNAL_REPORT_CITATION`（全部操作数来自同一份外部报告）。外部账本按期间与原件 SHA 固定，期间相同、哈希不符、未声明模式、流量存量混用都会被拒绝。每一期报告都应有“上期判断检验”一节：引用上期写下的证伪条件，区分“被推翻的部分”和“仍成立的部分”（范例：三季报 `prior-check`）。
+
 出版稿可选字段：`title_lines`（用 `|` 标注短语单元，单元内不换行）；`essays[].after`（`<figure id>` 或 `end`）把研究长文插在对应图之后，形成图文交替；占位符 `times`/`less` 计算“变动额乘比率”与“差值”。
 
 ```

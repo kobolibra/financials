@@ -11,10 +11,74 @@ from editorial_bridge import render_bridge,render_comparison,render_balance,rend
 from source_income_adapter import render_sector_income,compile_disclosed_income
 ROOT=Path(__file__).resolve().parents[2]
 def read(p):return json.loads(p.read_text())
+def fact_of(ledger,key):
+    """A fact of this dossier, or of a declared external dossier written 'alias:key'."""
+    if ':' in key:
+        alias,name=key.split(':',1)
+        return ledger['_external'][alias]['facts'][name]
+    return ledger['facts'][key]
 def amount(ledger,expr):
-    if isinstance(expr,str):return D(ledger['facts'][expr]['yuan'])
+    if isinstance(expr,str):return D(fact_of(ledger,expr)['yuan'])
     if not isinstance(expr,list) or not expr:raise ValueError('EXPLICIT_FACT_EXPRESSION_REQUIRED')
-    return sum((D(str(coef))*D(ledger['facts'][key]['yuan']) for key,coef in expr),D(0))
+    return sum((D(str(coef))*D(fact_of(ledger,key)['yuan']) for key,coef in expr),D(0))
+def with_externals(ledger,story,root=None):
+    """Attach declared sibling dossiers (read-only) for cross-period claims.
+
+    The attached copy is only used to evaluate claims; it never enters the
+    published ledger. Each external dossier is pinned by issuer, fiscal period and
+    original PDF SHA, so a changed source cannot silently change a published number.
+    """
+    specs=story.get('external_ledgers',{})
+    if not specs:return ledger
+    root=root or ROOT;external={}
+    if not isinstance(specs,dict):raise ValueError('DOSSIER_EXTERNAL_LEDGERS_INVALID')
+    for alias,spec in specs.items():
+        if not re.fullmatch('[a-z][a-z0-9]*',alias):raise ValueError('DOSSIER_EXTERNAL_ALIAS_INVALID')
+        path=(root/spec['path']).resolve();path.relative_to(root.resolve())
+        other=json.loads(path.read_text())
+        if (other['issuer']['code']!=ledger['issuer']['code'] or other['issuer']['fiscal_period']!=spec['period']
+            or other['source']['original_bytes_sha256']!=spec['pdf_sha256'] or other['issuer']['fiscal_period']==ledger['issuer']['fiscal_period']):
+            raise ValueError('DOSSIER_EXTERNAL_LEDGER_IDENTITY '+alias)
+        external[alias]=other
+    return {**ledger,'_external':external}
+CROSS_PERIOD='CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR'
+SAME_DATE='SAME_DATE_STOCK_RECONCILIATION'
+CITATION='SINGLE_EXTERNAL_REPORT_CITATION'
+def check_cross_period_claims(ledger,story):
+    """Claims that read another report period must declare the lawful mode and obey it.
+
+    CUMULATIVE_FLOW_DIFFERENCE_SAME_FISCAL_YEAR: disclosed consolidated flows of ONE fiscal year
+    (e.g. nine months minus first quarter). SAME_DATE_STOCK_RECONCILIATION: disclosed consolidated
+    stocks that share one balance date, used to compare what two reports say about that date.
+    SINGLE_EXTERNAL_REPORT_CITATION: a value or ratio computed entirely inside one other report.
+    """
+    lg=with_externals(ledger,story)
+    def keys_of(spec):
+        out=[]
+        for part in (spec.get('expression'),spec.get('denominator'),(spec.get('times') or {}).get('expression'),(spec.get('times') or {}).get('denominator')):
+            if part is None:continue
+            out+=[part] if isinstance(part,str) else [k for k,c in part]
+        return out
+    for name,spec in story.get('quantified_claims',{}).items():
+        keys=keys_of(spec);mode=spec.get('cross_period')
+        if not any(':' in k for k in keys):
+            if mode:raise ValueError('DOSSIER_CROSS_PERIOD_DECLARED_WITHOUT_EXTERNAL_FACT '+name)
+            continue
+        if mode not in (CROSS_PERIOD,SAME_DATE,CITATION):raise ValueError('DOSSIER_CROSS_PERIOD_CLAIM_NOT_DECLARED '+name)
+        facts=[fact_of(lg,k) for k in keys]
+        if any(f['scope']!='consolidated' or f['classification']!='DISCLOSED' for f in facts):raise ValueError('DOSSIER_CROSS_PERIOD_ONLY_DISCLOSED_CONSOLIDATED_FACTS '+name)
+        if mode==CROSS_PERIOD:
+            if any(f['type']!='flow' for f in facts) or len({f['period'][:4] for f in facts})!=1:raise ValueError('DOSSIER_CROSS_PERIOD_MIXED_FISCAL_YEARS_OR_NONFLOW '+name)
+        elif mode==SAME_DATE:
+            if any(f['type']!='stock' for f in facts) or len({f['period'] for f in facts})!=1:raise ValueError('DOSSIER_CROSS_PERIOD_STOCKS_MUST_SHARE_ONE_DATE '+name)
+        else:
+            # Citation: every operand comes from ONE external report, so the arithmetic is
+            # exactly what that report's own validated ledger supports (flows of one year, or stocks of one date).
+            if any(':' not in k for k in keys) or len({k.split(':',1)[0] for k in keys})!=1:raise ValueError('DOSSIER_CITATION_MUST_USE_ONE_EXTERNAL_REPORT '+name)
+            if not (all(f['type']=='flow' for f in facts) and len({f['period'] for f in facts})==1) and not (all(f['type']=='stock' for f in facts) and len({f['period'] for f in facts})==1):
+                raise ValueError('DOSSIER_CITATION_MIXED_TYPES_OR_PERIODS '+name)
+        for k in keys:
+            if ':' in k and k.split(':',1)[0] not in story['external_ledgers']:raise ValueError('DOSSIER_CROSS_PERIOD_UNKNOWN_ALIAS '+name)
 def reference(expr):return expr if isinstance(expr,str) else json.dumps(expr,separators=(',',':'),ensure_ascii=False)
 def dependencies(expr):return [expr] if isinstance(expr,str) else [k for k,c in expr]
 def presentation_rows(figure):
@@ -39,7 +103,7 @@ def expand_claims(story,ledger):
     exact Decimals before unit scaling, so a scale/margin split such as
     (rev - rev_prior) * prior_margin is computed, never retyped.
     """
-    claims=story.get('quantified_claims',{})
+    claims=story.get('quantified_claims',{});ledger=with_externals(ledger,story)
     def ratio(expr,den):
         value=amount(ledger,expr)
         if den is not None:
@@ -76,7 +140,7 @@ def expand_claims(story,ledger):
         return value
     return walk(story)
 def validate(ledger,story,root=ROOT):
-    expand_claims(story,ledger)
+    expand_claims(story,ledger);check_cross_period_claims(ledger,story)
     source=ledger['source'];issuer=ledger['issuer'];path=(root/source['source_path']).resolve();path.relative_to(root.resolve())
     if not re.fullmatch(r'[0-9]{6}',issuer['code']):raise ValueError('DOSSIER_INVALID_ISSUER_CODE')
     from urllib.parse import urlsplit

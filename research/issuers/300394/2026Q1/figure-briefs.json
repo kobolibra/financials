@@ -1,0 +1,177 @@
+{
+  "issuer": "300394",
+  "report": "2026Q1",
+  "source_sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
+  "figure_briefs": [
+    {
+      "id": "profit-change",
+      "family": "signed_bridge",
+      "question": "利润增速为何略快于收入？",
+      "takeaway": "营业收入增加3.86亿元，营业成本增加1.34亿元，毛利增加2.52亿元，归母净利润增加1.55亿元。",
+      "identity": "上年同期归母净利润＋全部损益项目有符号差额＝本期归母净利润。",
+      "counter": "这是会计差额归因，不识别价格、销量、产品结构或汇率的因果。管理层称营业成本增加主要是销售增长带来的同步增加，本季报没有分产品数据，无法检验毛利率提升的来源。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9
+      ],
+      "facts": [
+        "parent_net_prior",
+        "rev",
+        "rev_prior",
+        "cogs_prior",
+        "cogs",
+        "tax_surcharge_prior",
+        "tax_surcharge",
+        "selling_prior",
+        "selling",
+        "admin_prior",
+        "admin",
+        "rd_expense_prior",
+        "rd_expense",
+        "finance_prior",
+        "finance",
+        "other_income",
+        "other_income_prior",
+        "investment_income",
+        "investment_income_prior",
+        "fair_value",
+        "fair_value_prior",
+        "credit_impairment",
+        "credit_impairment_prior",
+        "asset_impairment",
+        "asset_impairment_prior",
+        "asset_disposal",
+        "asset_disposal_prior",
+        "nonop_income",
+        "nonop_income_prior",
+        "nonop_expense_prior",
+        "nonop_expense",
+        "income_tax_prior",
+        "income_tax",
+        "nci_prior",
+        "nci",
+        "parent_net"
+      ]
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "question": "利润与现金为何背离？",
+      "takeaway": "归母净利润同比+45.79%，经营现金净额同比-37.92%；经营现金占合并净利润37.03%，上年同期86.94%。",
+      "identity": "各行分别比较两个报告期的原始披露值，经营现金净额与净利润使用同一合并范围。",
+      "counter": "一季度现金流受回款与付款时点影响大，单季背离不等于全年趋势；本报告也没有披露应收账龄，不能判断回款质量。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        1,
+        9,
+        10
+      ],
+      "facts": [
+        "parent_net_prior",
+        "parent_net",
+        "adjusted_parent_prior",
+        "adjusted_parent",
+        "net_profit_prior",
+        "net_profit",
+        "cfo_prior",
+        "cfo"
+      ]
+    },
+    {
+      "id": "cash-direct",
+      "family": "signed_bridge",
+      "question": "经营现金少了1亿，差在哪里？",
+      "takeaway": "销售收现多1.88亿元，被采购付现多1.89亿元基本抵消；税费付现增加叠加税费返还减少，使经营现金再少0.92亿元，占降幅的83%。",
+      "identity": "销售商品收到的现金＋其他经营收款−各项经营付现＝经营现金净额。",
+      "counter": "季报只披露直接法现金流，没有净利润到经营现金的调节表。税费付现随利润增长是增长的成本，税费返还减少属于时点因素，本报告无法拆分。销售收现低于收入，可能是回款以票据形式持有（见下图应收款项融资），也可能是账期拉长，本报告无法区分。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        10
+      ],
+      "facts": [
+        "sales_cash",
+        "tax_refund",
+        "other_op_in",
+        "purchase_cash",
+        "employee_cash",
+        "tax_paid",
+        "other_op_out",
+        "cfo"
+      ]
+    },
+    {
+      "id": "working-capital",
+      "family": "comparison",
+      "question": "增长占用了哪些资产？",
+      "takeaway": "应收账款与应收款项融资合计增加2.40亿元，其中应收款项融资+714%；预付款项+365%，应付票据+158%。",
+      "identity": "各行均为合并资产负债表同一科目的年初与期末余额；存量变动不等于现金流调节项目。",
+      "counter": "应收款项融资通常是可贴现或背书的银行承兑汇票，信用风险与应收账款不同，但本报告没有披露票据承兑人构成，也没有账龄与坏账准备。存货仅增加0.81亿元，一季度的备货压力不在存货上。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        6,
+        7
+      ],
+      "facts": [
+        "ar_prior",
+        "ar",
+        "receivable_financing_prior",
+        "receivable_financing",
+        "prepayments_prior",
+        "prepayments",
+        "inventory_prior",
+        "inventory",
+        "notes_payable_prior",
+        "notes_payable",
+        "ap_prior",
+        "ap"
+      ]
+    },
+    {
+      "id": "fx",
+      "family": "comparison",
+      "question": "汇率从哪几个渠道冲击？",
+      "takeaway": "汇率在三个口径上同时不利：财务费用由上年同期的净收益0.11亿元变为净费用0.24亿元，汇率对现金的影响-0.47亿元，计入其他综合收益-0.27亿元。",
+      "identity": "三项分别取自合并利润表（财务费用取负）、现金流量表和利润表其他综合收益，各自两个报告期比较，不求和。",
+      "counter": "本报告没有披露外币资产敞口、套期保值安排和汇兑损益明细；折算差额来自境外子公司报表，是否与财务费用中的汇兑损失同源无法判断。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        8,
+        9,
+        11
+      ],
+      "facts": [
+        "finance_prior",
+        "finance",
+        "cash_fx_prior",
+        "cash_fx",
+        "oci_translation_prior",
+        "oci_translation"
+      ]
+    },
+    {
+      "id": "cash",
+      "family": "signed_bridge",
+      "question": "现金余额为何基本没动？",
+      "takeaway": "现金及现金等价物由29.40亿元增至29.62亿元：经营现金1.82亿元，被购建长期资产付现1.23亿元和汇率影响-0.47亿元大部分抵消。",
+      "identity": "期初现金＋经营＋投资＋筹资＋汇率影响＝期末现金；两个比较期分别逐元闭合。",
+      "counter": "期初现金及现金等价物29.40亿元，与同一日期在三季报中的28.64亿元不同，详见重大附注。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        10,
+        11
+      ],
+      "facts": [
+        "cash_open",
+        "cfo",
+        "capex_cash",
+        "invest_recover",
+        "invest_income_cash",
+        "invest_pay",
+        "cff",
+        "cash_fx",
+        "cash_close"
+      ]
+    }
+  ]
+}

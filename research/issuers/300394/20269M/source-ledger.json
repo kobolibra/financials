@@ -4259,6 +4259,56 @@
       ],
       "source_row_label": "六、期末现金及现金等价物余额",
       "source_column": "上期/期初"
+    },
+    "receivable_financing": {
+      "yuan": "5498335.62",
+      "label": "应收款项融资",
+      "page": 6,
+      "type": "stock",
+      "period": "2026-09-30",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            318.580322265625,
+            648.180908203125,
+            372.6724853515625,
+            657.1812744140625
+          ],
+          "printed": "5,498,335.62",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应收款项融资",
+      "source_column": "本期/期末"
+    },
+    "receivable_financing_prior": {
+      "yuan": "16802959.69",
+      "label": "应收款项融资（上年度末）",
+      "page": 6,
+      "type": "stock",
+      "period": "2025-12-31",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            474.72003173828125,
+            648.180908203125,
+            533.3123779296875,
+            657.1812744140625
+          ],
+          "printed": "16,802,959.69",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "应收款项融资",
+      "source_column": "上期/期初"
     }
   },
   "segments": [],
