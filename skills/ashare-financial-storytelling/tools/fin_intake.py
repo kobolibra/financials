@@ -408,11 +408,15 @@ def cmd_auto(a) -> None:
     result = se.extract(doc, rows_on_page, squash)
     ok, bad = se.identities(result)
     facts = se.to_ledger_facts(result, ledger["issuer"])
+    import notes_extract as ne
+    note_facts, segments, partition, notes_report = ne.extract_notes(doc, rows_on_page, squash, se.unit_of, se.norm, facts)
+    facts.update({k: f for k, f in note_facts.items() if k not in facts})
     conflicts = [k for k, f in facts.items() if k in ledger["facts"] and Decimal(ledger["facts"][k]["yuan"]) != Decimal(f["yuan"])]
     report = {"format": result["format"], "sign_convention": result["convention"], "pages": result["pages"],
               "mapped_keys": len(result["facts"]), "facts": len(facts), "identities_passed": len(ok), "identities_failed": bad,
               "unmapped_rows": [f"{u['statement']} p{u['page']} {u['label']} = {u['current']}" for u in result["unmapped"]],
-              "conflicts_with_existing_ledger": conflicts, "notes": result["notes"]}
+              "conflicts_with_existing_ledger": conflicts, "notes": result["notes"],
+              "source_anomalies": result.get("source_anomalies", []), "notes_tables": notes_report}
     print(json.dumps(report, ensure_ascii=False, indent=2))
     if bad:
         print("AUTO_IDENTITY_RESIDUAL: a residual means a line item was missed or mis-signed; inspect the unmapped rows of that "
@@ -424,6 +428,8 @@ def cmd_auto(a) -> None:
             sys.exit("AUTO_NOT_WRITTEN: identities must close first (or pass --allow-residual and record why)")
         ledger["facts"].update({k: f for k, f in facts.items() if k not in ledger["facts"]})
         ledger["issuer"].setdefault("statement_format", result["format"])
+        if partition and not ledger.get("segments"):
+            ledger["segments"], ledger["income_partition"] = segments, partition
         (folder(a.code, a.period) / "source-ledger.json").write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n")
         print("AUTO_FACTS_WRITTEN", len(facts))
 

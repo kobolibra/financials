@@ -31,7 +31,7 @@ python $T init --code 300570 --pdf /path/report.pdf --url https://static.cninfo.
 python $T auto --code <code>          # 格式（一般/银行/证券/保险）、费用符号口径、单位、恒等式、未映射行、原件异常
 python $T auto --code <code> --write  # 恒等式闭合后写入；不会覆盖账本中已有的不同值
 ```
-残差、未映射行和原件异常的处理见 `playbooks/06_GENERALIZATION.md` §2。下面的手写规格只用于附注表（分部、地区、非经常性损益、现金流补充资料、应收与存货附注）。
+残差、未映射行和原件异常的处理见 `playbooks/06_GENERALIZATION.md` §2。`auto` 同时抽取附注：主营业务/其他业务、分产品/分行业/分地区/分销售模式、现金流量表补充资料、扣非，见 `playbooks/06_GENERALIZATION.md` §1b。下面的手写规格只用于 `auto` 报告无法证明的表格，以及应收账龄、存货构成、非经常性损益明细等其他附注。
 
 ```
 python $T find --code <code> --statements      # 定位三表、补充资料、收入成本附注、非经常损益

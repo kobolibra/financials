@@ -1052,6 +1052,36 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "ACCOUNTING_CORE",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-084",
+      "root_cause": "分部、地区、补充资料要逐格写规格；表头写法各家不同（10% 表、营业收入构成、分解信息、主营/其他），按表头取列在没见过的公司上会取错。",
+      "correction": "notes_extract：每一列的含义都由报告自身合计证明（等于营业收入/营业成本/上期数），完整维度按合计切分，补充资料以净利润和经营现金闭合，扣非沿用归母行已证明的列；不能证明的表格报出而不使用，读不回原件的单元格整表丢弃。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_notes_extract.py",
+      "assertion_marker": "test_segment_partition_closes_on_revenue_and_cost_against_the_statements",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "GEN-085",
+      "root_cause": "年报全文从未跑过通用链条。",
+      "correction": "11 份 2025 年报加入只给 PDF 的探针；营业利润(亏损)、三行折行标签两个变体以通用规则修复，30/30 通过。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_notes_extract.py",
+      "assertion_marker": "test_cash_flow_reconciliation_closes_and_matches_the_hand_ledgers",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-086",
+      "root_cause": "含负毛利行的维度（茅台年报“其他业务”）若进入业务毛利桑基，会把负数画成正向流。",
+      "correction": "有负毛利行的维度不生成 income_partition，自动改用下一个完整维度（茅台改用国内/国外）。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_notes_extract.py",
+      "assertion_marker": "test_a_partial_or_negative_partition_is_refused",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

@@ -43,8 +43,11 @@ def norm(label: str) -> str:
         return ''
     if re.search(r'[一-龥]', s):
         # note column glued to the label: 营业收入七、48 / 营业收入四(46),十七(3) / 投资收益附注五、12
-        ref = r'(?:附注)?(?:[一二三四五六七八九十]+(?:[、.．][0-9]+|[（(][0-9]+[)）])|[（(][一二三四五六七八九十]+[)）][0-9]+)(?:[（(][0-9]+[)）])?'
+        ref = r'(?:附注)?(?:[一二三四五六七八九十]+(?:[、.．][0-9]+|[（(][0-9]+[)）])|[（(][一二三四五六七八九十]+[)）][0-9]+)(?:[（(][0-9a-z]+[)）])*'
         s = re.sub(r'(?<=[一-龥）)])' + ref + r'(?:[,，、]' + ref + r')*$', '', s)
+        # loss hints on subtotals: 营业利润(亏损) / 利润总额(亏损总额) / 净利润(净亏损)
+        s = re.sub(r'[（(](?:净)?亏损(?:总额)?[)）]', '', s)
+        s = re.sub(r'[（(](?:转回|损失|收益)以负号列示[)）]', '', s)
         # sign hints: 财务(费用)/收入, 公允价值变动收益/(损失), 资产处置(损失)/收益
         s = re.sub(r'[（(](费用|损失|收益|亏损|收入)[)）]', r'\1', s)
         s = re.sub(r'/(费用|损失|收益|亏损|收入)$', '', s)
@@ -54,6 +57,7 @@ def norm(label: str) -> str:
     while prev != s:
         prev, s = s, PREFIX.sub('', s)
     s = NOTE.sub('', s)
+    s = re.sub(r'[（(][^（）()]*(以|填)[^（）()]*$', '', s)  # a fill-in note cut off by a line wrap: 固定资产报废损失（收益以
     return s.strip('：:')
 
 
@@ -315,18 +319,34 @@ def amount_columns(rows):
     return [(min(c) - 4, max(c) + 4) for c in big]
 
 
-def labelled_rows(rows):
-    """Numeric rows whose label was wrapped onto the lines above/below get it back."""
+def labelled_rows(rows, statement=None):
+    """Numeric rows whose label was wrapped onto the lines above/below get it back.
+
+    A label can wrap over two or three short lines above its number row (中信证券 annual:
+    "归属于母公司股东的净" / "利润" / numbers). The shortest join of preceding text lines that names a
+    canonical line item wins; otherwise the nearest line is used."""
     out = []
     for i, r in enumerate(rows):
         if not r['numbers']:
             continue
         label = r['label']
         if len(norm(label)) < 2:
-            above = rows[i - 1] if i and not rows[i - 1]['numbers'] and r['y'] - rows[i - 1]['y'] <= 10 else None
+            own = '' if NOTE_REF.fullmatch(re.sub(r'\s+', '', label)) else label
+            ups, j, y = [], i - 1, r['y']
+            while j >= 0 and len(ups) < 3 and not rows[j]['numbers'] and y - rows[j]['y'] <= 22:
+                ups.insert(0, rows[j]['label']); y = rows[j]['y']; j -= 1
             below = rows[i + 1] if i + 1 < len(rows) and not rows[i + 1]['numbers'] and rows[i + 1]['y'] - r['y'] <= 10 else None
-            own = '' if NOTE_REF.fullmatch(re.sub(r'\s+', '', label)) else label  # a lone note reference (七、55 / 56) is not label text
-            label = (above['label'] if above else '') + own + (below['label'] if below else '')
+            tail = own + (below['label'] if below else '')
+            chosen = None
+            for n in range(1, len(ups) + 1):
+                cand = ''.join(ups[-n:]) + tail
+                if any(rx.match(norm(cand)) for _, st, rx, _ in CANON_RE if statement in (None, st)):
+                    chosen = cand
+                    break
+            if chosen is None:
+                near = [u for k, u in enumerate(ups) if k == len(ups) - 1 and r['y'] - rows[i - 1]['y'] <= 10] if ups else []
+                chosen = ''.join(near) + tail
+            label = chosen
         out.append(dict(r, label=label))
     return out
 
@@ -360,7 +380,7 @@ def extract(doc, rows_on_page, squash):
             cols = amount_columns(rows) or amount_columns(rows_on_page(doc[p - 1]))
             if cols is None:
                 continue
-            for r in labelled_rows(rows):
+            for r in labelled_rows(rows, st):
                 cells = [None, None]
                 for n in r['numbers']:
                     t = n['printed'].strip()
