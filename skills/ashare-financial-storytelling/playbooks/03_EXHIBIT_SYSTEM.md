@@ -47,7 +47,7 @@ AEI 的财报图之所以一眼可读，靠的不是配色本身，而是几条�
 4. 利润率主题：`ratio_dumbbell`（毛利率、营业利润率、归母净利率、主要费用率）。
 5. 现金与资本占用主题：`stock_delta` + 至多两张 `signed_bridge`（现金形成、利润→现金）。
 6. 其余桥、两期表、资产负债：进核对层（`role: reference`）。
-7. 当前工业报告的编辑 lint：不同图族 ≥ 5、正文签名桥不超过一半、至少一种可比较趋势图、3–4 个章节。**这是既有排版多样性检查，不是财务信息的合法性证明**；未来要根据能力编译器条件化配额。证据不足时必须放弃图种并标明限制，绝不倒推数据满足图数。`fin_intake.py preflight` 仍会执行 `lint_v2`，不得绕过失败直接发布。
+7. **更新后的分层 lint：** 既有历史 EDITORIAL_V2 报告继续保留原始五图族/趋势检查，以免对未重新认证的旧出版物追认新标准。**正式生成的新版 V2** 必须附带当次原账本编译的 `financials.research_capabilities.v1` 和已核验研究证据回执：逐图检查真实来源许可，拒绝已标 `OMIT_SOURCE_OR_ADAPTER_LIMITED` 的图种；全文少于三种独立财务关系只能标来源受限，**不强迫凑齐五种图，也不强画无可比来源的趋势图**。正文签名桥仍不可占据主体，章节问题和反证、几何、源金额仍需全部通过。`fin_intake.py preflight --require-research-evidence` 会从**当前** source-ledger 和 research-brief 重新核对能力与 SHA，拒绝过期或伪造回执；旧稿标为 `NOT_CHECKED_LEGACY` 不能冒充新标准。
 
 ## 2. 节点标注规范
 
