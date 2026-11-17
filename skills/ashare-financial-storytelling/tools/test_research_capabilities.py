@@ -207,10 +207,11 @@ class ResearchCapabilities(unittest.TestCase):
             base = Path(tmp)
             (base / 'v2-draft.json').write_text(json.dumps({
                 'generation_scope': 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION'}))
+            (base / 'publication.json').write_text(json.dumps({'figures': []}))
             with patch.object(vb, 'load', return_value=(base, industrial(), {'figures': []})):
                 with self.assertRaisesRegex(SystemExit, 'V2_SOURCE_PROBE_NOT_PUBLISHABLE'):
                     vb.cmd_apply(SimpleNamespace(code='999999', period=None))
-            self.assertFalse((base / 'publication.json').exists())
+            self.assertEqual(json.loads((base / 'publication.json').read_text()), {'figures': []})
 
     def test_capability_cli_works_before_publication_json_exists(self):
         from tempfile import TemporaryDirectory
