@@ -127,6 +127,62 @@ class ResearchCapabilities(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, 'V2_SECTOR_OR_SOURCE_CAPABILITY_NOT_READY'):
             rc.require_editorial_v2(d)
 
+    def test_industrial_group_with_financial_subsidiary_is_not_misrouted_as_bank(self):
+        d = industrial()
+        d['issuer']['accounting_format'] = 'general'
+        d['facts']['deposits'] = fact(200, 'stock', '2026-06-30')
+        d['facts']['nii'] = fact(30)
+        plan = rc.assess(d)
+        self.assertEqual(plan['sector_route'], 'industrial')
+        self.assertIn('INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED',
+                      plan['blockers'])
+        self.assertEqual(plan['publication_route'], 'SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED')
+        self.assertTrue(all(v['status'] == 'OMIT_SOURCE_OR_ADAPTER_LIMITED'
+                            for v in plan['visual_candidates']))
+        with self.assertRaisesRegex(SystemExit, 'V2_SECTOR_OR_SOURCE_CAPABILITY_NOT_READY'):
+            rc.require_editorial_v2(d)
+
+    def test_one_regulated_line_does_not_reclassify_generic_industrial_company(self):
+        d = industrial()
+        d['issuer'].pop('industry')
+        d['issuer'].pop('accounting_route')
+        d['facts']['deposits'] = fact(300, 'stock', '2026-06-30')
+        self.assertEqual(rc.sector_of(d), 'industrial')
+        self.assertIn('INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED',
+                      rc.assess(d)['blockers'])
+
+        d['facts']['insurance_revenue'] = fact(50)
+        self.assertEqual(rc.sector_of(d), 'industrial')
+        self.assertIn('INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED',
+                      rc.assess(d)['blockers'])
+
+    def test_original_statement_format_overrides_metadata_but_blocks_conflict(self):
+        d = industrial()
+        d['issuer']['accounting_format'] = 'bank'
+        plan = rc.assess(d)
+        self.assertEqual(plan['sector_route'], 'bank')
+        self.assertIn('ISSUER_MODEL_CONFLICTS_WITH_ORIGINAL_STATEMENT_FORMAT',
+                      plan['blockers'])
+        self.assertEqual(plan['publication_route'], 'SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED')
+
+        d = industrial()
+        d['issuer']['industry'] = 'life_insurance'
+        d['issuer']['accounting_route'] = None
+        d['issuer']['accounting_format'] = 'general'
+        plan = rc.assess(d)
+        self.assertEqual(plan['sector_route'], 'insurance')
+        self.assertIn('FINANCIAL_ISSUER_WITH_GENERAL_STATEMENT_FORMAT_NEEDS_REVIEW',
+                      plan['blockers'])
+        self.assertTrue(all(v['status'] == 'OMIT_SOURCE_OR_ADAPTER_LIMITED'
+                            for v in plan['visual_candidates']))
+
+    def test_unrecognized_source_format_does_not_get_industrial_publication(self):
+        d = industrial()
+        d['issuer']['accounting_format'] = 'unverified_legacy_bank'
+        plan = rc.assess(d)
+        self.assertIn('UNRECOGNIZED_SOURCE_STATEMENT_FORMAT', plan['blockers'])
+        self.assertEqual(plan['publication_route'], 'SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED')
+
     def test_unsupported_sectors_need_specific_adapters_not_generic_visual_quotas(self):
         cases = [('bank', {'industry': 'retail_bank'}, {'nii': fact(20), 'deposits': fact(30, 'stock', '2026-06-30')}),
                  ('insurance', {'industry': 'life_insurance'}, {'premium_total': fact(50), 'service_revenue': fact(40)}),
