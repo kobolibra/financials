@@ -68,7 +68,9 @@ REGION_WORDS = ('mainland', 'overseas', 'domestic', 'export', 'americas', 'europ
 
 def load(code, period):
     base = fi.folder(code, period)
-    return base, json.loads((base / 'source-ledger.json').read_text()), json.loads((base / 'publication.json').read_text())
+    pub = base / 'publication.json'
+    return base, json.loads((base / 'source-ledger.json').read_text()), (
+        json.loads(pub.read_text()) if pub.exists() else {'figures': []})
 
 
 def val(facts, expr):
@@ -139,14 +141,11 @@ def text_block(**extra):
 
 
 def cmd_scaffold(a):
-    base = fi.folder(a.code, a.period)
-    ledger = json.loads((base / 'source-ledger.json').read_text())
+    base, ledger, story = load(a.code, a.period)
     plan = rc.assess(ledger)
     source_probe = bool(getattr(a, 'source_probe', False))
     if not source_probe:
         rc.require_editorial_v2(ledger)  # inspect sector/period BEFORE depending on any publication
-    pub = base / 'publication.json'
-    story = json.loads(pub.read_text()) if pub.exists() else {'figures': []}
     f = ledger['facts']
     names = ledger['issuer'].get('period_names', {})
     periods = [names.get(ledger['issuer']['comparative_period'], ledger['issuer']['comparative_period']),
@@ -562,6 +561,8 @@ def cmd_apply(a):
     from source_publication import expand_claims  # noqa: E402
     base, ledger, story = load(a.code, a.period)
     rc.require_editorial_v2(ledger)  # fail before touching publication or editorial manifest
+    if not (base / 'publication.json').exists():
+        raise SystemExit('V2_APPLY_NEEDS_PUBLICATION: create publication skeleton before applying edits')
     draft = json.loads((base / 'v2-draft.json').read_text())
     if draft.get('generation_scope') == 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION':
         raise SystemExit('V2_SOURCE_PROBE_NOT_PUBLISHABLE: generate a normal, evidence-screened editorial draft')
