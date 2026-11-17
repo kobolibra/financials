@@ -110,6 +110,20 @@ class V2Builder(unittest.TestCase):
         self.assertIn('常规同比增速不适用', item['text'])
         self.assertNotIn('[g:adjusted_parent]', item['text'])
 
+    def test_directional_macro_rounding_to_zero_fails_closed(self):
+        fact = lambda x: {'yuan': str(x)}
+        small_balance = {'inventory': fact(11_000_000), 'inventory_prior': fact(10_700_000)}
+        claims = vb.Claims({'quantified_claims': {}}, small_balance)
+        with self.assertRaisesRegex(SystemExit, 'V2_DIRECTION_ROUNDS_TO_ZERO'):
+            claims.expand('存货较年初增加[D:inventory]亿元')
+        self.assertEqual(claims.expand('存货较年初[d:inventory]亿元'), '存货较年初{{v2d_inventory}}亿元')
+
+        zero_growth = {'rev': fact(100), 'rev_prior': fact(100)}
+        claims = vb.Claims({'quantified_claims': {}}, zero_growth)
+        with self.assertRaisesRegex(SystemExit, 'V2_DIRECTION_ROUNDS_TO_ZERO'):
+            claims.expand('收入增长[G:rev]%')
+        self.assertEqual(claims.expand('收入同比[g:rev]%'), '收入同比{{v2g_rev}}%')
+
     def test_revenue_down_profit_up_is_not_called_a_smaller_decline(self):
         fact = lambda x: {'yuan': str(x)}
         facts = {'rev': fact(80), 'rev_prior': fact(100),
