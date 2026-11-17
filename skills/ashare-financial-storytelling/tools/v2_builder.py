@@ -154,10 +154,11 @@ def cmd_scaffold(a):
                  dict(label='营业利润率', kind='ratio', num='operating_profit', den='rev', prior_num='operating_profit_prior', prior_den='rev_prior'))
     tiles.append(dict(label='归母净利润', kind='money', value='parent_net', prior='parent_net_prior'))
     for lab, k in (('经营现金净额', 'cfo'), ('销售商品收到的现金', 'sales_cash'), ('扣非归母净利润', 'adjusted_parent')):
-        if has(f, k) and len(tiles) < 5:
+        if has(f, k) and len(tiles) < 5 and (source_probe or rc.pair_ok(ledger, k)):
             tiles.append(dict(label=lab, kind='money', value=k, prior=k + '_prior'))
     for lab, side, k in WC_ITEMS:
-        if side == 'asset' and has(f, k) and len(tiles) < 6:
+        if side == 'asset' and has(f, k) and len(tiles) < 6 and (
+                source_probe or rc.pair_ok(ledger, k, 'stock')):
             tiles.append(dict(label=lab + '（期末余额）', kind='money', value=k, prior=k + '_prior', delta_label='较年初',
                               prior_period=f[k + '_prior']['period'], lower_is_better=True))
     segs = [s for s in segments(f) if rc.pair_ok(ledger, s + '_rev')] if not source_probe else segments(f)
@@ -176,7 +177,8 @@ def cmd_scaffold(a):
             rows.insert(1, dict(label=labels(f, s) + '毛利率', num=[[s + '_rev', 1], [s + '_cost', -1]], den=s + '_rev',
                                 prior_num=[[s + '_rev_prior', 1], [s + '_cost_prior', -1]], prior_den=s + '_rev_prior'))
     for lab, k in (('研发费用率', 'rd_expense'), ('销售费用率', 'selling'), ('管理费用率', 'admin')):
-        if has(f, k) and len(rows) < 7 and val(f, k) >= 0 and val(f, k + '_prior') >= 0:
+        if has(f, k) and len(rows) < 7 and val(f, k) >= 0 and val(f, k + '_prior') >= 0 and (
+                source_probe or rc.pair_ok(ledger, k)):
             rows.append(dict(label=lab, num=k, den='rev', prior_num=k + '_prior', prior_den='rev_prior', lower_is_better=True))
     # a dumbbell shows non-negative ratios only (loss makers: margins below zero go to the bridge instead)
     rows = [r for r in rows if val(f, r['num']) >= 0 and val(f, r['prior_num']) >= 0 and val(f, E(r['den'])) > 0 and val(f, E(r['prior_den'])) > 0]
