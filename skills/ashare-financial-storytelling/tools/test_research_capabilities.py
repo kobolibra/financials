@@ -182,8 +182,11 @@ class ResearchCapabilities(unittest.TestCase):
         for k in ('ar', 'inventory', 'ap'):
             d['facts'][k + '_prior']['period'] = '2025-06-30'  # not previous year-end
         with TemporaryDirectory() as tmp:
-            target = Path(tmp) / 'draft.json'
-            with patch.object(vb, 'load', return_value=(Path(tmp), d, {'figures': []})):
+            base = Path(tmp)
+            target = base / 'draft.json'
+            (base / 'source-ledger.json').write_text(json.dumps(d))
+            self.assertFalse((base / 'publication.json').exists())
+            with patch.object(vb.fi, 'folder', return_value=base):
                 vb.cmd_scaffold(SimpleNamespace(code='999999', period=None, out=str(target)))
             draft = json.loads(target.read_text())
             self.assertEqual({f['family'] for f in draft['new_figures']},
