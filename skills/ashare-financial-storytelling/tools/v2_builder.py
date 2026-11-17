@@ -353,34 +353,40 @@ def findings(f):
     gc = growth_of(f, 'cogs') if has(f, 'cogs') else None
     if gr is not None and gc is not None:
         pp = ratio_pp(f, GP)
-        add('cost_vs_revenue', abs(gc - gr), f"营业收入同比[g:rev]%，营业成本同比[g:cogs]%，毛利率{up(pp)}[P:gm]个百分点。")
+        # The publication renders pp to two decimals: never claim a 0.00pp decline.
+        if pp is not None and abs(pp) >= D('0.005'):
+            add('cost_vs_revenue', abs(gc - gr), f"营业收入同比[g:rev]%，营业成本同比[g:cogs]%，毛利率{up(pp)}[P:gm]个百分点。")
     go = growth_of(f, 'operating_profit') if has(f, 'operating_profit') else None
-    if gr is not None and go is not None:
-        if gr >= 0:
-            tail = '利润增速高于收入，经营杠杆为正' if go > gr else '收入增长没有带来同等的营业利润增长'
+    if gr is not None and go is not None and abs(go - gr) >= D('0.01'):
+        if gr > 0:
+            tail = '营业利润同比增速高于收入，原因仍需核对费用及非经营项目' if go > gr else '营业利润同比增速低于收入，需核对成本、费用及减值'
+        elif gr < 0:
+            tail = '收入下降时营业利润降幅更大' if go < gr else '收入下降而营业利润降幅较小'
         else:
-            tail = '收入下降时营业利润降得更多' if go < gr else '收入下降，营业利润降幅小于收入'
+            tail = '收入同比持平而营业利润增长' if go > 0 else '收入同比持平而营业利润下降'
         add('operating_leverage', abs(go - gr) / 2, f"营业利润同比[g:operating_profit]%，营业收入同比[g:rev]%：{tail}。")
     if has(f, 'cfo') and has(f, 'net_profit') and val(f, 'net_profit') > 0 and val(f, 'net_profit_prior') > 0:
         cur, pr = val(f, 'cfo') / val(f, 'net_profit') * 100, val(f, 'cfo_prior') / val(f, 'net_profit_prior') * 100
-        add('cash_conversion', abs(cur - pr) / 5, f"经营现金净额相当于净利润的[r:cfo_np]%（上年同期[r:cfo_np_p]%），利润的现金含量{up(cur - pr, '提高', '下降')}。")
+        # A sub-0.01pp difference cannot justify a direction when both ratios print to two decimals.
+        if abs(cur - pr) >= D('0.01'):
+            add('cash_conversion', abs(cur - pr) / 5, f"经营现金净额相当于净利润的[r:cfo_np]%（上年同期[r:cfo_np_p]%），利润的现金含量{up(cur - pr, '提高', '下降')}。")
     # Balance-sheet comparisons are end-date vs previous year-end snapshots, not Y/Y
     # flow growth. Never rank or narrate an AR-vs-revenue "growth gap" across these bases.
     if has(f, 'ar') and val(f, 'ar_prior') > 0:
         ga = (val(f, 'ar') / val(f, 'ar_prior') - 1) * 100
-        if ga:
+        if ga and abs(val(f, 'ar') - val(f, 'ar_prior')) > YI / 200:
             add('receivables', abs(ga) / 4,
                 f"应收账款较年初{up(ga, '增加', '减少')}[D:ar]亿元；余额变化本身不能证明回款效率改善或恶化，需结合账龄、销售收现及可比期间收入核验。")
     if has(f, 'inventory') and val(f, 'inventory_prior') > 0:
         gi = (val(f, 'inventory') / val(f, 'inventory_prior') - 1) * 100
-        if gi:
+        if gi and abs(val(f, 'inventory') - val(f, 'inventory_prior')) > YI / 200:
             add('inventory', abs(gi) / 4,
                 f"存货较年初{up(gi, '增加', '减少')}[D:inventory]亿元；余额变化本身不能证明备货或去库存原因，需结合存货构成、跌价准备及周转核验。")
     for k, lab in (('selling', '销售费用率'), ('admin', '管理费用率'), ('rd_expense', '研发费用率')):
         pp = ratio_pp(f, k)
         if pp is not None and abs(pp) >= 0.3:
             add('ratio_' + k, abs(pp), f"{lab}{up(pp)}[P:{k}]个百分点。")
-    if has(f, 'finance') and (val(f, 'finance') > 0) != (val(f, 'finance_prior') > 0):
+    if has(f, 'finance') and val(f, 'finance') * val(f, 'finance_prior') < 0:
         add('finance_swing', abs(ratio_pp(f, 'finance') or 0), f"财务费用由上年同期的{'净收益转为净支出' if val(f, 'finance') > 0 else '净支出转为净收益'}，本期为[y:finance]亿元。")
     imp = [k for k in ('credit_impairment', 'asset_impairment') if has(f, k)]
     if imp and has(f, 'rev'):
@@ -394,7 +400,11 @@ def findings(f):
     if has(f, 'adjusted_parent') and has(f, 'parent_net') and val(f, 'parent_net') > 0:
         gap = (val(f, 'parent_net') - val(f, 'adjusted_parent')) / val(f, 'parent_net') * 100
         if abs(gap) >= 5:
-            add('nonrecurring', abs(gap) / 3, f"非经常性损益使归母净利润{'高于' if gap > 0 else '低于'}扣非利润；扣非同比[g:adjusted_parent]%，归母同比[g:parent_net]%。")
+            tail = ('；扣非同比[g:adjusted_parent]%，归母同比[g:parent_net]%。'
+                    if val(f, 'adjusted_parent_prior') > 0 and val(f, 'parent_net_prior') > 0
+                    else '；比较期利润基数非正，常规同比增速不适用。')
+            add('nonrecurring', abs(gap) / 3,
+                f"非经常性损益使归母净利润{'高于' if gap > 0 else '低于'}扣非利润{tail}")
     if has(f, 'liabilities') and has(f, 'assets'):
         pp = (val(f, 'liabilities') / val(f, 'assets') - val(f, 'liabilities_prior') / val(f, 'assets_prior')) * 100
         if abs(pp) >= 1:
@@ -454,6 +464,8 @@ class Claims:
         if kind == 'g':
             e = GP if key == 'gm' else expr_of(key)
             self._need(e)
+            if val(self.f, prior(e)) <= 0:
+                raise SystemExit('V2_GROWTH_NONPOSITIVE_COMPARATIVE ' + key)
             return self._put('v2g_' + key, {'expression': diff(e, prior(e)), 'denominator': prior(e), 'scale': '1', 'multiplier': '100', 'decimals': 2, 'signed': True})
         if kind == 'y':
             e = expr_of(key)
