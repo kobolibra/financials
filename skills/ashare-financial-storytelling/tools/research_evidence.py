@@ -79,6 +79,7 @@ def evaluate_calculation(ledger, calc):
     if not isinstance(terms, list) or not terms:
         raise ValueError('RESEARCH_CALC_EMPTY ' + ident)
     used, visited = set(), set()
+    paired = {}  # base accounting fact -> {'current': Decimal factor, 'prior': Decimal factor}
     total = D(0)
     for term in terms:
         if not isinstance(term, list) or len(term) != 2 or not isinstance(term[0], str):
@@ -91,14 +92,31 @@ def evaluate_calculation(ledger, calc):
         if not factor:
             raise ValueError('RESEARCH_ZERO_FACTOR ' + ident + ':' + key)
         v, period = _fact(ledger, key, ftype, periods, ident)
+        if contrast:
+            # A legal Y/Y or year-opening delta is a difference between *the same*
+            # accounting facts. Merely mentioning two different periods is not enough.
+            side = 'prior' if key.endswith('_prior') else 'current'
+            expected_period = basis[previous if side == 'prior' else current]
+            if period != expected_period:
+                raise ValueError('RESEARCH_CALC_COMPARATIVE_SIDE_MISMATCH ' + ident + ':' + key)
+            base = key[:-6] if side == 'prior' else key
+            if not base:
+                raise ValueError('RESEARCH_CALC_UNPAIRED_ACCOUNTING_FACT ' + ident + ':' + key)
+            paired.setdefault(base, {})[side] = factor
         total += v * factor
         visited.add(period)
     if visited != periods:
         raise ValueError('RESEARCH_CALC_CROSS_PERIOD_INCOMPLETE ' + ident)
+    if contrast:
+        for base, sides in paired.items():
+            if (set(sides) != {'current', 'prior'}
+                    or sides['current'] != -sides['prior']):
+                raise ValueError('RESEARCH_CALC_UNPAIRED_ACCOUNTING_FACT ' + ident + ':' + base)
     reported = _number(calc.get('expected_yuan'), ident + ':expected_yuan')
     if total != reported:
         raise ValueError('RESEARCH_CALC_NOT_EXACT_YUAN ' + ident)
-    return {'id': ident, 'basis': kind, 'exact_yuan': str(total), 'source_keys': sorted(used)}
+    return {'id': ident, 'basis': kind, 'exact_yuan': str(total),
+            'source_keys': sorted(used), 'paired_accounting_facts': sorted(paired) if contrast else []}
 
 
 def _validate_claim(ledger, claim):

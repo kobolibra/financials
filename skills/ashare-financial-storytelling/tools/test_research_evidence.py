@@ -107,6 +107,47 @@ class ResearchEvidence(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, expected):
                     ev.validate(d, b)
 
+    def test_yoy_and_year_opening_deltas_require_same_fact_and_opposite_signs(self):
+        from decimal import Decimal as D
+
+        d = ledger()
+        valid = {'id': 'revenue-yoy', 'type': 'FLOW_YOY_DELTA',
+                 'terms': [['rev', '1'], ['rev_prior', '-1']],
+                 'expected_yuan': '200'}
+        result = ev.evaluate_calculation(d, valid)
+        self.assertEqual(result['paired_accounting_facts'], ['rev'])
+
+        # Both source facts can be individually disclosed, correctly typed, same
+        # scope, and dated in the proper two periods -- yet NOT comparable.
+        for name, terms in (
+            ('revenue-versus-prior-cost', [['rev', '1'], ['cogs_prior', '-1']]),
+            ('unbalanced-prior-weight', [['rev', '1'], ['rev_prior', '-2']]),
+            ('same-direction-addition', [['rev', '1'], ['rev_prior', '1']]),
+            ('unpaired-extra-current', [['rev', '1'], ['rev_prior', '-1'], ['cogs', '-1']]),
+        ):
+            with self.subTest(name=name):
+                amount = sum(D(d['facts'][k]['yuan']) * D(weight) for k, weight in terms)
+                with self.assertRaisesRegex(ValueError, 'RESEARCH_CALC_UNPAIRED_ACCOUNTING_FACT'):
+                    ev.evaluate_calculation(d, {'id': 'cross-metric', 'type': 'FLOW_YOY_DELTA',
+                                                'terms': terms, 'expected_yuan': str(amount)})
+
+        # This is a *stock* example with two valid dates. Comparing unrelated
+        # asset accounts across those dates is still not a balance change.
+        d['facts']['inventory_prior'] = fact(180, 'stock', '2025-12-31', 'inventory_prior')
+        with self.assertRaisesRegex(ValueError, 'RESEARCH_CALC_UNPAIRED_ACCOUNTING_FACT'):
+            ev.evaluate_calculation(d, {'id': 'cross-stock', 'type': 'STOCK_SINCE_YEAR_START',
+                                        'terms': [['ar', '1'], ['inventory_prior', '-1']],
+                                        'expected_yuan': '120'})
+
+        # Same accounting key with misleading current/prior *names* must still
+        # be rejected if their source periods have been reversed.
+        d['facts']['ar']['period'] = '2025-12-31'
+        d['facts']['ar_prior']['period'] = '2026-06-30'
+        with self.assertRaisesRegex(ValueError, 'RESEARCH_CALC_COMPARATIVE_SIDE_MISMATCH'):
+            ev.evaluate_calculation(d, {'id': 'reversed-dates', 'type': 'STOCK_SINCE_YEAR_START',
+                                        'terms': [['ar', '1'], ['ar_prior', '-1']],
+                                        'expected_yuan': '110'})
+
     def test_competing_explanation_discriminator_and_future_falsifier_are_mandatory(self):
         cases = [
             ('same-alternative', lambda b: b['theses'][0].update(
