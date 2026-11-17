@@ -135,6 +135,22 @@ class Exhibits(unittest.TestCase):
                            {'issuer': '300394', 'pdf_sha256': self.sha},
                            fg['question'], self.ledger['issuer']['fiscal_period'])
 
+    def test_native_kpi_refuses_unreadable_numbers_instead_of_overlapping_a_neighbor(self):
+        from decimal import Decimal as D
+        from exhibits import render_kpi_board
+        tile = {'label': '营业收入', 'kind': 'money',
+                'value': D(10) ** 130, 'prior': D(10) ** 129,
+                'value_ref': 'rev', 'prior_ref': 'rev_prior',
+                'period': '2026H1', 'prior_period': '2025H1'}
+        with self.assertRaisesRegex(ValueError, 'KPI_TILE_VALUE_UNREADABLE'):
+            render_kpi_board([tile], '本期重要财务指标', mobile=True,
+                             adaptive_layout='KPI_TILE_WRAP_V2',
+                             issuer='300394', period='2026H1', pdf_sha256=self.sha)
+        with self.assertRaisesRegex(ValueError, 'KPI_UNKNOWN_ADAPTIVE_LAYOUT'):
+            render_kpi_board([tile], '本期重要财务指标', mobile=True,
+                             adaptive_layout='UNSUPPORTED_MODE',
+                             issuer='300394', period='2026H1', pdf_sha256=self.sha)
+
     def test_legacy_kpi_does_not_change_its_svg_without_explicit_opt_in(self):
         from source_publication import render_exhibit
         fg = copy.deepcopy(next(f for f in self.story['figures'] if f['family'] == 'kpi_board'))
