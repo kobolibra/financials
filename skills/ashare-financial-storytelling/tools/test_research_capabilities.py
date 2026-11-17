@@ -155,6 +155,19 @@ class ResearchCapabilities(unittest.TestCase):
                 with self.assertRaisesRegex(SystemExit, 'V2_SECTOR_OR_SOURCE_CAPABILITY_NOT_READY'):
                     rc.require_editorial_v2(d)
 
+    def test_capability_cli_works_before_publication_json_exists(self):
+        from tempfile import TemporaryDirectory
+        from unittest.mock import patch
+        with TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            (base / 'source-ledger.json').write_text(json.dumps(industrial()))
+            self.assertFalse((base / 'publication.json').exists())
+            out = base / 'capabilities.json'
+            with patch.object(vb.fi, 'folder', return_value=base):
+                vb.main(['capabilities', '--code', '999999', '--out', str(out)])
+            self.assertEqual(json.loads(out.read_text())['publication_route'],
+                             'INDUSTRIAL_V2_AUTHORING_CANDIDATE')
+
     def test_real_industrial_and_insurance_ledgers_keep_distinct_routes(self):
         for code, per, sector in [('300570', None, 'industrial'),
                                   ('300394', '20269M', 'industrial'),
