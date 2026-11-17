@@ -139,11 +139,14 @@ def text_block(**extra):
 
 
 def cmd_scaffold(a):
-    base, ledger, story = load(a.code, a.period)
+    base = fi.folder(a.code, a.period)
+    ledger = json.loads((base / 'source-ledger.json').read_text())
     plan = rc.assess(ledger)
     source_probe = bool(getattr(a, 'source_probe', False))
     if not source_probe:
-        rc.require_editorial_v2(ledger)  # a diagnostic scaffold is not a publishing adapter
+        rc.require_editorial_v2(ledger)  # inspect sector/period BEFORE depending on any publication
+    pub = base / 'publication.json'
+    story = json.loads(pub.read_text()) if pub.exists() else {'figures': []}
     f = ledger['facts']
     names = ledger['issuer'].get('period_names', {})
     periods = [names.get(ledger['issuer']['comparative_period'], ledger['issuer']['comparative_period']),
