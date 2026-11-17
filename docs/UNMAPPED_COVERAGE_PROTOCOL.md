@@ -8,7 +8,17 @@ This protocol governs `scripts/generalization_probe.py --coverage-queue ...`. It
 python scripts/generalization_probe.py --coverage-queue /tmp/financials-unmapped-review.json
 ```
 
-No company-specific extraction hints are supplied. All archived complete report PDFs are processed. The standard source/audit tests regenerate this queue in CI, and the `Verify financial research Skill and new-chat handoff` workflow uploads it as the `financials-unmapped-coverage-review` artifact.
+No company-specific extraction hints are supplied. **Only original PDF bytes actually available to the run are processed.** The standard source/audit tests regenerate this checkout-scoped queue in CI, and the `Verify financial research Skill and new-chat handoff` workflow uploads it as the `financials-unmapped-coverage-review` artifact.
+
+**Dated reproducibility gap (2026-11-17):** the historical `research/quality/generalization-probe/result.json` cites **30 PDF reports and 838 unmapped rows**, but the current Git repository tracks only **10** of those original PDFs under `research/issuers/`. The actual CI source run covered **10 reports / 183 unmapped rows**, not 30 / 838. The new `reference_corpus` section matches exact PDF SHA-256 digests against the historical receipt and lists the **20 missing source originals** plus their historical unmapped-row counts. The missing bytes must be acquired and reverified before a full 30-report benchmark can be claimed.
+
+To enforce complete source availability rather than accept a scoped test, run:
+
+```bash
+python scripts/generalization_probe.py --require-reference-corpus --coverage-queue /tmp/financials-unmapped-review.json
+```
+
+This deliberately exits nonzero while any historical PDF SHA is missing. A source-complete result still does **not** approve accounting materiality, independent research, or visual aesthetics.
 
 The queue carries the source PDF SHA, issuer and reporting period, statement type, **physical PDF page**, vertical location, printed label, both current and comparative printed amounts, preceding canonical key (diagnostic only), and an ID anchored to the immutable source bytes. The ID intentionally does not depend on which canonical key preceded the item: reordering the extraction rules must not hide a previously unreviewed monetary row.
 
