@@ -115,9 +115,19 @@ class RealReports(unittest.TestCase):
 
 class Probe(unittest.TestCase):
     def test_pdf_only_chain_passes_for_every_archived_report(self):
+        import tempfile
         sys.path.insert(0, str(ROOT / 'scripts'))
         import generalization_probe as gp
-        self.assertEqual(gp.main(PDFS), 0)
+        with tempfile.TemporaryDirectory() as tmp:
+            review_path = Path(tmp) / 'unmapped-review.json'
+            self.assertEqual(gp.main(['--coverage-queue', str(review_path), *PDFS]), 0)
+            queue = json.loads(review_path.read_text())
+            self.assertEqual(queue['reports'], len(PDFS))
+            self.assertEqual(queue['materiality_and_completeness'], 'NOT_CHECKED')
+            self.assertEqual(queue['unmapped_rows_total'], sum(r['reported_unmapped_rows'] for r in queue['rows']))
+            self.assertGreater(queue['unmapped_rows_total'], 0)
+            self.assertTrue(all(item['classification'] == 'NOT_CHECKED' and item['materiality'] == 'NOT_CHECKED'
+                                for r in queue['rows'] for item in r['items']))
 
 
 if __name__ == '__main__':
