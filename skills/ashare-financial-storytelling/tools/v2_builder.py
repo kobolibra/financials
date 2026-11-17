@@ -507,9 +507,12 @@ class Claims:
             from source_publication import expand_claims  # noqa: E402
             shown = expand_claims({'quantified_claims': self.c, 'p': '{{' + name + '}}'}, {'facts': self.f, 'issuer': {}, 'source': {}})['p']
             neg = shown.startswith('-')
-            if kind.isupper() and not (self.UP.search(head) or self.DOWN.search(head)):
+            up, down = self.UP.search(head), self.DOWN.search(head)
+            if kind.isupper() and not (up or down):
                 raise SystemExit(f'V2_ABSOLUTE_MACRO_NEEDS_DIRECTION_WORD: “{head[-12:]}{m.group(0)}”')
-            if self.UP.search(head) and neg or self.DOWN.search(head) and not neg and shown not in ('+0.00', '0.00'):
+            if (up or down) and shown.lstrip('+-') in ('0.00', '0.0', '0'):
+                raise SystemExit(f'V2_DIRECTION_ROUNDS_TO_ZERO: “{head[-12:]}{m.group(0)}”')
+            if (up and neg) or (down and not neg):
                 raise SystemExit(f'V2_DIRECTION_CONTRADICTS_DATA: “{head[-12:]}{m.group(0)}” but the value is {shown}')
 
     def expand(self, text):
