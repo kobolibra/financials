@@ -52,21 +52,52 @@ SECTOR_TOPICS = {
 }
 
 
-def sector_of(ledger):
-    issuer, facts = ledger.get('issuer', {}), ledger.get('facts', {})
-    hint = ' '.join(str(issuer.get(k) or '').lower() for k in
-                    ('industry', 'sector_adapter', 'accounting_route', 'accounting_format'))
-    if any(x in hint for x in ('insurance', 'insur', '寿险', '财险', '保险')) or {'service_revenue', 'insurance_revenue', 'premium_total'} & facts.keys():
+STATEMENT_FORMAT_SECTOR = {'bank': 'bank', 'insurance': 'insurance', 'securities': 'securities'}
+FINANCIAL_SUBSIDIARY_FACTS = frozenset({
+    'nii', 'deposits', 'fin_interest_income', 'fin_interest_expense',
+    'insurance_revenue', 'service_revenue', 'earned_premium',
+    'brokerage_fee', 'brokerage_payable',
+})
+
+
+def declared_business_model(issuer):
+    """Issuer economics exclude statement format; a subsidiary line cannot reclassify a group."""
+    hint = ' '.join(str(issuer.get(k) or '').lower()
+                    for k in ('industry', 'sector_adapter', 'accounting_route'))
+    if any(x in hint for x in ('insurance', 'insur', '寿险', '财险', '保险')):
         return 'insurance'
     if any(x in hint for x in ('real_estate', 'property_developer', '房地产', '地产')):
         return 'real_estate'
     if any(x in hint for x in ('securities', 'security_broker', 'broker_dealer', '证券', '券商')):
         return 'securities'
-    if any(x in hint for x in ('commercial_bank', 'banking', 'bank', '银行')) or {'nii', 'deposits'} & facts.keys():
+    if any(x in hint for x in ('commercial_bank', 'banking', 'bank', '银行')):
         return 'bank'
-    if issuer.get('accounting_route') == 'industrial_own_cost_income' or (
-            'rev' in facts and 'cogs' in facts):
+    if issuer.get('accounting_route') == 'industrial_own_cost_income' or any(
+            x in hint for x in ('manufacturing', 'industrial', 'appliance', 'hydropower', 'semiconductor')):
         return 'industrial'
+    return None
+
+
+def sector_of(ledger):
+    issuer, facts = ledger.get('issuer', {}), ledger.get('facts', {})
+    # Consolidated three-statement format is stronger evidence than the *presence*
+    # of a line from a regulated subsidiary inside an industrial conglomerate.
+    actual_format = str(issuer.get('accounting_format') or '').lower()
+    if actual_format in STATEMENT_FORMAT_SECTOR:
+        return STATEMENT_FORMAT_SECTOR[actual_format]
+    business = declared_business_model(issuer)
+    if business:
+        return business
+    if 'rev' in facts and 'cogs' in facts:
+        return 'industrial'
+    if actual_format == 'general':
+        return 'unknown'  # financial-sector notes do not override a general statement
+    if {'insurance_revenue', 'service_revenue'} & facts.keys():
+        return 'insurance'
+    if 'nii' in facts and {'deposits', 'fin_interest_income'} & facts.keys():
+        return 'bank'
+    if 'brokerage_fee' in facts and 'brokerage_payable' in facts:
+        return 'securities'
     return 'unknown'
 
 
@@ -176,6 +207,19 @@ def assess(ledger):
         needs.append('SOURCE_PDF_SHA256_NOT_RECORDED')
     if sector != SUPPORTED_PUBLISHER:
         needs.append('SECTOR_SPECIFIC_EDITORIAL_ADAPTER_NOT_PROVEN')
+    fmt = str(issuer.get('accounting_format') or '').lower()
+    business_model = declared_business_model(issuer)
+    if fmt and fmt not in ('general', *STATEMENT_FORMAT_SECTOR):
+        needs.append('UNRECOGNIZED_SOURCE_STATEMENT_FORMAT')
+    if (fmt in STATEMENT_FORMAT_SECTOR and business_model
+            and business_model != STATEMENT_FORMAT_SECTOR[fmt]):
+        needs.append('ISSUER_MODEL_CONFLICTS_WITH_ORIGINAL_STATEMENT_FORMAT')
+    if fmt == 'general' and business_model in ('bank', 'insurance', 'securities'):
+        needs.append('FINANCIAL_ISSUER_WITH_GENERAL_STATEMENT_FORMAT_NEEDS_REVIEW')
+    mixed_subsidiary = sector == 'industrial' and bool(
+        FINANCIAL_SUBSIDIARY_FACTS & facts.keys())
+    if mixed_subsidiary:
+        needs.append('INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED')
     required = [k for k in PROFIT_CHAIN if pair_ok(ledger, k)]
     chain = sector == 'industrial' and len(required) == len(PROFIT_CHAIN)
     if sector == 'industrial' and not chain:
@@ -218,6 +262,16 @@ def assess(ledger):
                    'At least three distinct, independently sourced single quarters are needed',
                    sector == 'industrial' and len(quarter_keys) >= 3),
     ]
+    source_conflict = any(n in needs for n in (
+        'INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED',
+        'ISSUER_MODEL_CONFLICTS_WITH_ORIGINAL_STATEMENT_FORMAT',
+        'FINANCIAL_ISSUER_WITH_GENERAL_STATEMENT_FORMAT_NEEDS_REVIEW',
+        'UNRECOGNIZED_SOURCE_STATEMENT_FORMAT'))
+    if source_conflict:
+        for visual in visuals:
+            if visual['status'] == 'ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT':
+                visual['status'] = 'OMIT_SOURCE_OR_ADAPTER_LIMITED'
+                visual['rationale'] += '; consolidated financial business-model scope unresolved'
     questions = []
     for name, alternatives, warning in SECTOR_TOPICS[sector]:
         matched = [key for key in alternatives if key in facts]
