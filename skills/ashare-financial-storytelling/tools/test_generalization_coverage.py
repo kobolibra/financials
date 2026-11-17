@@ -13,7 +13,8 @@ class UnmappedCoverage(unittest.TestCase):
 
     def raw(self):
         return {'statement': 'is', 'page': 17, 'y': 132.12345,
-                'label': '其他收益（待复核）', 'current': '1,234.56', 'after': 'rev'}
+                'label': '其他收益（待复核）', 'current': '1,234.56',
+                'prior': '1,111.11', 'after': 'rev'}
 
     def test_stable_source_identity_does_not_depend_on_previous_mapped_key(self):
         first = gp.unmapped_review_items([self.raw()], self.SOURCE)[0]
@@ -22,10 +23,11 @@ class UnmappedCoverage(unittest.TestCase):
         self.assertEqual(first['id'], second['id'])
         self.assertNotEqual(first['preceding_canonical_key'], second['preceding_canonical_key'])
         for name, new_value in (('statement', 'bs'), ('page', 18), ('y', 132.4),
-                                ('label', '其他应收'), ('current', '1,234.57')):
+                                ('label', '其他应收'), ('current', '1,234.57'), ('prior', '1,111.12')):
             other = dict(self.raw(), **{name: new_value})
             self.assertNotEqual(first['id'], gp.unmapped_review_items([other], self.SOURCE)[0]['id'])
         self.assertNotEqual(first['id'], gp.unmapped_review_items([self.raw()], 'b' * 64)[0]['id'])
+        self.assertEqual(first['printed_comparative'], '1,111.11')
         self.assertEqual(first['classification'], 'NOT_CHECKED')
         self.assertEqual(first['materiality'], 'NOT_CHECKED')
         self.assertIsNone(first['review_evidence'])
