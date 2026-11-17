@@ -49,7 +49,7 @@ class V2Builder(unittest.TestCase):
 
     def test_stock_findings_never_compare_snapshot_change_with_yoy_flow(self):
         def fact(x):
-            return {'yuan': str(x)}
+            return {'yuan': str(x * vb.YI)}
         base = {'ar': fact(150), 'ar_prior': fact(100),
                 'inventory': fact(80), 'inventory_prior': fact(100),
                 'rev': fact(200), 'rev_prior': fact(100)}
@@ -74,6 +74,63 @@ class V2Builder(unittest.TestCase):
         ids = {x['id'] for x in vb.findings(flat)}
         self.assertNotIn('receivables', ids)
         self.assertNotIn('inventory', ids)
+
+    def test_findings_avoid_equal_growth_zero_direction_and_unrenderable_stock_delta(self):
+        fact = lambda x: {'yuan': str(x)}
+        flat = {'rev': fact(100), 'rev_prior': fact(100),
+                'cogs': fact(60), 'cogs_prior': fact(60),
+                'operating_profit': fact(20), 'operating_profit_prior': fact(20),
+                'net_profit': fact(15), 'net_profit_prior': fact(15),
+                'cfo': fact(15), 'cfo_prior': fact(15)}
+        ids = {x['id'] for x in vb.findings(flat)}
+        for invalid in ('cost_vs_revenue', 'operating_leverage', 'cash_conversion'):
+            self.assertNotIn(invalid, ids)
+
+        tiny = {'ar': fact(12_400_000), 'ar_prior': fact(12_100_000),
+                'inventory': fact(20_100_000), 'inventory_prior': fact(20_000_000)}
+        ids = {x['id'] for x in vb.findings(tiny)}
+        self.assertNotIn('receivables', ids)
+        self.assertNotIn('inventory', ids)
+
+        zero_finance = {'finance': fact(0), 'finance_prior': fact(1)}
+        self.assertNotIn('finance_swing', {x['id'] for x in vb.findings(zero_finance)})
+        reversed_finance = {'finance': fact(1), 'finance_prior': fact(-1)}
+        self.assertIn('finance_swing', {x['id'] for x in vb.findings(reversed_finance)})
+
+    def test_growth_claim_refuses_zero_or_negative_prior_and_nonrecurring_degrades(self):
+        fact = lambda x: {'yuan': str(x)}
+        for bad_base in (0, -10):
+            with self.subTest(base=bad_base):
+                claims = vb.Claims({'quantified_claims': {}}, {'rev': fact(20), 'rev_prior': fact(bad_base)})
+                with self.assertRaisesRegex(SystemExit, 'V2_GROWTH_NONPOSITIVE_COMPARATIVE'):
+                    claims.expand('收入[g:rev]%')
+        nonrecurring = {'parent_net': fact(20), 'parent_net_prior': fact(15),
+                        'adjusted_parent': fact(10), 'adjusted_parent_prior': fact(-2)}
+        item = next(x for x in vb.findings(nonrecurring) if x['id'] == 'nonrecurring')
+        self.assertIn('常规同比增速不适用', item['text'])
+        self.assertNotIn('[g:adjusted_parent]', item['text'])
+
+    def test_directional_macro_rounding_to_zero_fails_closed(self):
+        fact = lambda x: {'yuan': str(x)}
+        small_balance = {'inventory': fact(11_000_000), 'inventory_prior': fact(10_700_000)}
+        claims = vb.Claims({'quantified_claims': {}}, small_balance)
+        with self.assertRaisesRegex(SystemExit, 'V2_DIRECTION_ROUNDS_TO_ZERO'):
+            claims.expand('存货较年初增加[D:inventory]亿元')
+        self.assertEqual(claims.expand('存货较年初[d:inventory]亿元'), '存货较年初{{v2d_inventory}}亿元')
+
+        zero_growth = {'rev': fact(100), 'rev_prior': fact(100)}
+        claims = vb.Claims({'quantified_claims': {}}, zero_growth)
+        with self.assertRaisesRegex(SystemExit, 'V2_DIRECTION_ROUNDS_TO_ZERO'):
+            claims.expand('收入增长[G:rev]%')
+        self.assertEqual(claims.expand('收入同比[g:rev]%'), '收入同比{{v2g_rev}}%')
+
+    def test_revenue_down_profit_up_is_not_called_a_smaller_decline(self):
+        fact = lambda x: {'yuan': str(x)}
+        facts = {'rev': fact(80), 'rev_prior': fact(100),
+                 'operating_profit': fact(21), 'operating_profit_prior': fact(20)}
+        item = next(x for x in vb.findings(facts) if x['id'] == 'operating_leverage')
+        self.assertIn('收入同比下降而营业利润增长', item['text'])
+        self.assertNotIn('降幅较小', item['text'])
 
     def test_apply_refuses_todo_and_hand_typed_numbers_and_expands_macros(self):
         _, ledger, story = vb.load('300570', None)
