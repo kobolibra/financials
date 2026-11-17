@@ -42,7 +42,7 @@
 
 年报的三张表格式与半年报相同，比较期为上年末（存量）和上一年度（流量），`stock_dates` 已处理。2025 年报 11 份（天孚、茅台、万科、宁德时代、中国人寿、中信证券、海尔、太辰光、牧原、三一、金山办公）首轮 9/11 通过。暴露的两个变体（`营业利润(亏损)`；项目名折成三行）用通用规则修复后 11/11。
 
-## 2. 标准流程（任何公司都一样）
+## 2. 标准流程（任何公司都先能力识别，再走对应行业）
 
 ```
 T=skills/ashare-financial-storytelling/tools
@@ -50,7 +50,8 @@ python $T/fin_intake.py init --code C --pdf report.pdf --url <巨潮链接>     
 python $T/fin_intake.py auto --code C            # 三张表 → 标准账本；报告格式、恒等式、未映射行、原件异常
 python $T/fin_intake.py auto --code C --write    # 恒等式闭合后才写入账本
 python $T/fin_intake.py facts --code C --spec …  # 只用于附注：分部、地区、非经常性损益、现金流补充资料
-python $T/v2_builder.py findings --code C        # 通用分析规则，按重要性排序，方向已核对
+python $T/v2_builder.py capabilities --code C    # 先判断经济模型、期间、研究问题和合法图种；不能出版时拒绝
+python $T/v2_builder.py findings --code C        # 仅适用工业通用发现；金融/地产需要专用研究适配器
 python $T/v2_builder.py flowspec --code C        # 损益流向图的阶段定义（逐元闭合）
 python $T/v2_builder.py numbers|scaffold|apply …  # 见 SKILL.md §2
 python scripts/generalization_probe.py <pdf>     # 只给 PDF 的端到端自检
@@ -90,7 +91,7 @@ python scripts/generalization_probe.py <pdf>     # 只给 PDF 的端到端自检
 
 ## 5. 证据与边界
 
-- `research/quality/generalization-probe/result.json`：当前技术探针基线为 **30 份原件、18 家发行人、4 种报表格式、包含 Q1/H1/9M/FY**。30/30 指三表抽取、会计校验、被支持的图形和自动发现的**已覆盖技术阶段**，不是完整研究、人工审稿、独立视觉验收或全部金额行映射证明。探针报告 `unmapped_rows` 汇总仍有 838 条记录，必须按上述分类流程审查（记录数不等于重大错误数）；不可将其忽略。
+- `research/quality/generalization-probe/result.json`：**历史技术探针**记录 30 份原件、18 家发行人、4 种报表格式、Q1/H1/9M/FY；但当前仓库只保留其中 10 份可复验原始 PDF，缺失 20 份（包含所有历史银行、证券与年报样本）。最新 CI 的 10/10 仅对应可用原件，**不等于当前可复验 30/30**。历史总计 838 条 `unmapped_rows`，当前可复验 183 条，其余须恢复原字节并逐项审查；详见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`。这些都不是完整研究、人工审稿、独立视觉验收或全部金额行映射证明。
 - `tools/test_statement_extract.py`：仓库内全部原件的恒等式闭合；抽取结果与人工账本逐值一致（> 600 个值）；单元格可从 PDF 读回；漏掉一个行项时会报残差。
 - 30 份原件（含 11 份年报）的附注覆盖：业务毛利桑基 16 份（其余没有能闭合到营业收入和营业成本的完整维度）；现金流量表补充资料 27 份应有披露，闭合 22 份（宁德半年报差 173 千元、中信年报、两份保险报告未通过，全部报出、不使用）；扣非 26/30。
 - 仍不在范围内：银行、证券、保险的附注（净息差、分业务手续费、新业务价值）；研究判断和人工审稿不能由工具代替。
