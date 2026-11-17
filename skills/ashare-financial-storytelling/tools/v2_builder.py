@@ -600,7 +600,9 @@ def cmd_apply(a):
 
 
 def cmd_capabilities(a):
-    _, ledger, _ = load(a.code, a.period)
+    # Available immediately after source-ledger extraction; a publication.json must NOT exist yet.
+    base = fi.folder(a.code, a.period)
+    ledger = json.loads((base / 'source-ledger.json').read_text())
     report = rc.assess(ledger)
     shown = json.dumps(report, ensure_ascii=False, indent=2) + '\n'
     if getattr(a, 'out', None):
