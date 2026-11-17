@@ -61,6 +61,8 @@ def _fact(ledger, key, kind, allowed_periods, issue):
 
 
 def evaluate_calculation(ledger, calc):
+    if not isinstance(calc, dict):
+        raise ValueError('RESEARCH_CALC_RECORD_INVALID')
     ident = str(calc.get('id') or '')
     if not re.fullmatch('[a-z][a-z0-9_-]*', ident):
         raise ValueError('RESEARCH_CALC_ID_INVALID')
@@ -100,6 +102,8 @@ def evaluate_calculation(ledger, calc):
 
 
 def _validate_claim(ledger, claim):
+    if not isinstance(claim, dict):
+        raise ValueError('RESEARCH_THESIS_RECORD_INVALID')
     ident = str(claim.get('id') or '')
     if not re.fullmatch('[a-z][a-z0-9_-]*', ident):
         raise ValueError('RESEARCH_THESIS_ID_INVALID')
@@ -127,9 +131,24 @@ def _validate_claim(ledger, claim):
     if not math_keys.issubset(set(supporting)):
         raise ValueError('RESEARCH_CALC_NOT_LINKED_TO_CLAIM ' + ident)
     f = ledger['facts']
+    basis = rc.periods(ledger.get('issuer', {}))
+    if not basis:
+        raise ValueError('RESEARCH_UNVERIFIED_PERIOD_BASIS')
     for key in supporting:
-        if key not in f or f[key].get('scope') != 'consolidated' or not f[key].get('page'):
+        item = f.get(key)
+        if not isinstance(item, dict) or not isinstance(item.get('page'), int):
             raise ValueError('RESEARCH_UNVERIFIED_SOURCE_REFERENCE ' + ident + ':' + key)
+        ftype = item.get('type')
+        if ftype not in ('flow', 'stock'):
+            raise ValueError('RESEARCH_UNVERIFIED_SOURCE_REFERENCE ' + ident + ':' + key)
+        allowed = {basis[ftype + '_current'], basis[ftype + '_prior']}
+        if ftype == 'flow':
+            columns = ledger.get('issuer', {}).get('flow_columns') or {}
+            allowed |= set(columns.values())  # e.g. 9M statement separately discloses 2026Q3/2025Q3
+            if item.get('period') not in {basis['flow_current'], basis['flow_prior']}:
+                if columns.get(item.get('source_column')) != item.get('period'):
+                    raise ValueError('RESEARCH_EXTRA_FLOW_COLUMN_NOT_DECLARED ' + ident + ':' + key)
+        _fact(ledger, key, ftype, allowed, ident)
     discriminator = claim.get('discriminating_evidence')
     if not isinstance(discriminator, dict):
         raise ValueError('RESEARCH_DISCRIMINATOR_REQUIRED ' + ident)
@@ -158,11 +177,15 @@ def _validate_claim(ledger, claim):
 
 
 def validate(ledger, brief):
+    if not isinstance(brief, dict) or not isinstance(ledger, dict):
+        raise ValueError('RESEARCH_BRIEF_OBJECT_REQUIRED')
     if brief.get('schema') != SCHEMA:
         raise ValueError('RESEARCH_BRIEF_SCHEMA_INVALID')
     issuer = ledger.get('issuer', {})
     source = ledger.get('source', {})
-    if (brief.get('issuer') != issuer.get('code')
+    if (not re.fullmatch('[0-9]{6}', str(issuer.get('code') or ''))
+            or not re.fullmatch('[0-9a-f]{64}', str(source.get('original_bytes_sha256') or ''))
+            or brief.get('issuer') != issuer.get('code')
             or brief.get('fiscal_period') != issuer.get('fiscal_period')
             or brief.get('source_pdf_sha256') != source.get('original_bytes_sha256')):
         raise ValueError('RESEARCH_BRIEF_WRONG_ISSUER_PERIOD_OR_SOURCE_SHA')
