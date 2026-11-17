@@ -55,7 +55,7 @@ python $T/v2_builder.py capabilities --code <新公司代码> --out /tmp/capabil
 
 ## 5. 研究判断的六部分证据链
 
-**新增可执行研究证据合同**：每份新报告在正式 `apply` 前必须创建 `research-brief.json`（模板：`templates/research-brief.template.json`），运行 `python skills/ashare-financial-storytelling/tools/research_evidence.py --code <代码> [--period P]`。`financials.research_evidence.v1` 针对每项核心研究问题要求：论点、公司经济机制、最强替代解释、准确来源事实键、同口径可复算 Decimal 算式、区分证据或明确的未披露限制、以及未来报告的证伪条件。系统核验当次发行人/原 PDF SHA/期间/行业路由、事实源格、流量与存量合法期间、精确算术，禁止零或伪造比较、混用存量与流量、数字手写和虚构反证。
+**新增可执行研究证据合同**：每份新报告在正式 `apply` 前必须创建 `research-brief.json`（模板：`templates/research-brief.template.json`），运行 `python skills/ashare-financial-storytelling/tools/research_evidence.py --code <代码> [--period P]`。`financials.research_evidence.v1` 针对每项核心研究问题要求：论点、公司经济机制、最强替代解释、准确来源事实键、同口径可复算 Decimal 算式、区分证据或明确的未披露限制、以及未来报告的证伪条件。系统核验当次发行人/原 PDF SHA/期间/行业路由、事实源格、流量与存量合法期间、精确算术，禁止零或伪造比较、混用存量与流量、数字手写和虚构反证。`FLOW_YOY_DELTA` 和 `STOCK_SINCE_YEAR_START` 还必须对**同一个事实键**采用本期与 `_prior` 两个来源值以及相反的 Decimal 系数；不能用“本期收入－上年成本”、跨科目余额或符号不对称的线性组合冒充同比或较年初变动。确需跨项目分析时，应另列可审计的同期水平算式，不得误标“同比差额”。
 
 机器结果仅为 `PASS_MACHINE_SOURCE_MATH_AND_STRUCTURAL_EVIDENCE_ONLY`；专业归因判断、最强反解释的经济真实性和人类视觉编审继续标 `NOT_CHECKED`，不允许用机器通过代替顶级研究认证。研究证据与图形可视化是两层独立的门禁。
 
