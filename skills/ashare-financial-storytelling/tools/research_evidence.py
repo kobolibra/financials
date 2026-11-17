@@ -91,12 +91,12 @@ def evaluate_calculation(ledger, calc):
         v, period = _fact(ledger, key, ftype, periods, ident)
         total += v * factor
         visited.add(period)
-    if contrast and visited != periods or not contrast and visited != periods:
+    if visited != periods:
         raise ValueError('RESEARCH_CALC_CROSS_PERIOD_INCOMPLETE ' + ident)
     reported = _number(calc.get('expected_yuan'), ident + ':expected_yuan')
     if total != reported:
         raise ValueError('RESEARCH_CALC_NOT_EXACT_YUAN ' + ident)
-    return {'id': ident, 'basis': kind, 'exact_yuan': str(total), 'source_keys': list(used)}
+    return {'id': ident, 'basis': kind, 'exact_yuan': str(total), 'source_keys': sorted(used)}
 
 
 def _validate_claim(ledger, claim):
