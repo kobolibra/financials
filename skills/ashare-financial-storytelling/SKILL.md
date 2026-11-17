@@ -27,7 +27,7 @@ Contract version: 10.0.0
 
 | 场景 | 必读 |
 |---|---|
-| 新公司 / 新报告期 / 新行业 | `playbooks/06_GENERALIZATION.md`（先读：任意公司的通用流程与降级规则）、`playbooks/01_REPORT_TYPES.md`、`playbooks/02_ANALYSIS_FRAMEWORK.md`、`playbooks/03_EXHIBIT_SYSTEM.md`、`playbooks/04_PRODUCTION_RUNBOOK.md`、`playbooks/05_QUALITY_RUBRIC.md` |
+| 新公司 / 新报告期 / 新行业 | `playbooks/06_GENERALIZATION.md` + `playbooks/07_EVIDENCE_TO_EDITORIAL.md`（先编译能力再设计研究问题和合法图种）、`playbooks/01_REPORT_TYPES.md`、`playbooks/02_ANALYSIS_FRAMEWORK.md`、`playbooks/03_EXHIBIT_SYSTEM.md`、`playbooks/04_PRODUCTION_RUNBOOK.md`、`playbooks/05_QUALITY_RUBRIC.md` |
 | 只改图形/版式 | `playbooks/03_EXHIBIT_SYSTEM.md`、`docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md`、`docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md` |
 | 银行/保险/券商/地产 | `playbooks/02_ANALYSIS_FRAMEWORK.md` 第5节 + `research/05_CROSS_SECTOR_GENERALIZATION.md` |
 | 发布/验收 | `docs/REPORT_RELEASE_CHECKLIST.md`、`docs/HANDOFF_PROTOCOL.md`、`playbooks/05_QUALITY_RUBRIC.md` |
@@ -49,7 +49,8 @@ Contract version: 10.0.0
 
 效率原则：P1–P2 用 `fin_intake.py init → auto --write`，三张表**不写任何公司规格**；只有附注（分部、地区、补充资料）用 `find / scan / facts`。出现残差或未映射行时，按 `playbooks/06_GENERALIZATION.md` §2 处理：加通用同义词并补回归测试，不写公司补丁；**未映射金额行必须先分类与核实重大性，不能由恒等式闭合推定全量覆盖**。P3 是唯一不能省的人工判断环节；P5–P6 用现有共享出版器与审计器，不另写。
 
-**P4 标准做法（EDITORIAL_V2，每份报告都用）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
+**P4 标准做法（EDITORIAL_V2，已证明适用的工业会计模型）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
+0. **先检查** `python $T2 capabilities --code <c> [--period P]`：类型化事实、同比/余额期间、行业路由、候选图种和欠缺的研究证据逐项列出。新金融/地产出版器未实现时拒绝通用工业出版；`scaffold --source-probe` 只作原件技术诊断，永远不能直接发布。详细见 Playbook 07。
 1. `python $T2 numbers --code <c> [--period P]`：打印每行同比、占收入比例、分部/地区增速与毛利率、营运资本余额变动。**叙事只按这里的方向写**。
 2. `python $T2 scaffold …`：生成 `v2-draft.json`，含 KPI 看板、增速条（有上年同期源格的分部与地区自动入选）、利润率哑铃（含分部毛利率）、余额变动四张图的数据定义，文字留 TODO。
 3. 只写文字：结论、趋势、重点、反证、章节、本期一览。数字一律写宏：`[g:rev]` 同比、`[r:gm]` 比率、`[p:gm]` 百分点变化、`[y:parent_net]` 亿元、`[d:ar]` 余额变动。正文签名桥 ≤2，其余在 `roles` 设为 reference；与新图重复的两期表放进 `remove`。
@@ -152,9 +153,9 @@ CI 会对目录中声明 `source_publication` 的公司自动干净重建并跑�
 
 ## 8. 跨期、跨公司稳定性的边界
 
-- 新期间：出版器从原报告读取 `fiscal_period`（`2026Q1`、`2026H1`、`20269M`、`2026FY`），三季报的单季列通过 `issuer.flow_columns` 显式声明；不得借用旧期图证。Q1/H1/9M/FY 均已有真实原件进入 PDF-only 泛化技术探针（当前 30 份），**但这不等于四个期间均已完成独立研究、浏览器和生产验收**；缺少完整出版回执的期间必须单独标 `NOT_CHECKED`。
+- 新期间：从原报告读取 `fiscal_period`（Q1/H1/9M/FY），单季列按真实 `issuer.flow_columns` 声明；不得借用旧期图证。历史 PDF-only 泛化探针记录 30 份（包含 Q1/H1/9M/FY），但**当前仓库只能复验其中 10 份 PDF**：年报、银行和证券的缺失原件尚未恢复，详见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`；当前 10/10 不可说成可复现 30/30。完整出版/人类审稿分别标 `NOT_CHECKED`。
 - 同一公司的后续期间登记在目录 `period_reports`，以 `code@period` 解析，旧路由与旧字节不变（playbook 01 §5）。
-- 新行业：先判路由（`industrial_own_cost_income` 或专门适配器）；没有适配器的金融行业不能套工业出版器（详见 playbook 02 §5 的实现状态表）。
+- 新行业：先运行 `v2_builder.py capabilities`（`tools/research_capabilities.py`），从报告本身的财务事实和行业口径判能力。只有工业已有通用 EDITORIAL_V2 作者路由；银行、保险、证券、地产在新出版器适配、对抗测试前仍为 `SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED`，不可套工业模板（Playbook 02 §5、Playbook 07）。
 - 能力分级：L0 仅描述；L1 一家真实原件通过；L2 同类两家真实原件+完整三表/附注+浏览器；L3 跨行业对抗回归+独立编辑+部署验证。只宣称实际达到的级别。合成样例只测机制，不证明未见真实财报的理解能力。
 
 ## 9. 交接与技能进化

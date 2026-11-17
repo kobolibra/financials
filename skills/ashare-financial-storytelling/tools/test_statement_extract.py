@@ -122,7 +122,14 @@ class Probe(unittest.TestCase):
             import os
             review_path = Path(os.environ.get('FINANCIALS_COVERAGE_QUEUE_OUT',
                                               str(Path(tmp) / 'unmapped-review.json')))
-            self.assertEqual(gp.main(['--coverage-queue', str(review_path), *PDFS]), 0)
+            technical = Path(tmp) / 'scope.json'
+            self.assertEqual(gp.main(['--coverage-queue', str(review_path), '--out', str(technical), *PDFS]), 0)
+            receipt = json.loads(technical.read_text())
+            for row in receipt['rows']:
+                if row.get('format') in ('bank', 'insurance', 'securities'):
+                    with self.subTest(sector=row['format'], pdf=row['pdf']):
+                        self.assertEqual(row['publisher_capability'], 'SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED')
+                        self.assertTrue(row['stages']['findings'].startswith('REFUSED_AS_DESIGNED_SECTOR_RESEARCH_REQUIRED'))
             queue = json.loads(review_path.read_text())
             self.assertEqual(queue['reports'], len(PDFS))
             self.assertEqual(queue['materiality_and_completeness'], 'NOT_CHECKED')

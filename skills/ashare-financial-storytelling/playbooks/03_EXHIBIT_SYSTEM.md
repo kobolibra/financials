@@ -37,7 +37,9 @@ AEI 的财报图之所以一眼可读，靠的不是配色本身，而是几条�
 
 每个新图族都有两道独立审计：`editorial_geometry.check_editorial_svg`（画出的长度、位置由声明的精确值复算，条形必须留在画布内）与 `source_publication_audit.check_exhibit_values`（声明的每个值、对比值和 KPI 文字从账本原件格重算）。测试：`research/shared/test_exhibits.py`、`test_income_flow_v3.py`。
 
-### 选图算法（EDITORIAL_V2）
+### 选图算法（EDITORIAL_V2，先有证据再有图）
+
+**前置门禁：** 先运行 `v2_builder.py capabilities --code <code> [--period P]`，检查 `visual_candidates` 的 `ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT`、缺证据原因与行业路由。以下是**工业公司证据足够时的编辑候选顺序**，不是任何行业都硬画的四到六图套餐。数据不足就用明确的未证/省略状态，不得因配额制造假信息。其他行业要先实现可独立审计的新适配器，见 Playbook 07。
 
 1. 第一张：`kpi_board`，6 格：营收、毛利率、归母、经营现金、本期最能说明问题的单季或分部数、最大风险存量（如存货/应收）。
 2. 损益流向图（E2）紧随其后（`editorial.hero_position = "after_first"`）。
@@ -45,7 +47,7 @@ AEI 的财报图之所以一眼可读，靠的不是配色本身，而是几条�
 4. 利润率主题：`ratio_dumbbell`（毛利率、营业利润率、归母净利率、主要费用率）。
 5. 现金与资本占用主题：`stock_delta` + 至多两张 `signed_bridge`（现金形成、利润→现金）。
 6. 其余桥、两期表、资产负债：进核对层（`role: reference`）。
-7. 检查：不同图族 ≥ 5；签名桥不超过一半；至少一张趋势图；3–4 个章节（`chapter: {kicker,title,summary}`）。`fin_intake.py preflight` 对 `design = "EDITORIAL_V2"` 自动执行这些检查（`lint_v2`）。
+7. 当前工业报告的编辑 lint：不同图族 ≥ 5、正文签名桥不超过一半、至少一种可比较趋势图、3–4 个章节。**这是既有排版多样性检查，不是财务信息的合法性证明**；未来要根据能力编译器条件化配额。证据不足时必须放弃图种并标明限制，绝不倒推数据满足图数。`fin_intake.py preflight` 仍会执行 `lint_v2`，不得绕过失败直接发布。
 
 ## 2. 节点标注规范
 

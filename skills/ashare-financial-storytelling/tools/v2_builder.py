@@ -37,6 +37,7 @@ ROOT = Path(__file__).resolve().parents[3]
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import fin_intake as fi  # noqa: E402
+import research_capabilities as rc  # noqa: E402
 
 YI = D(100000000)
 E = lambda k: [[k, 1]] if isinstance(k, str) else k
@@ -67,7 +68,9 @@ REGION_WORDS = ('mainland', 'overseas', 'domestic', 'export', 'americas', 'europ
 
 def load(code, period):
     base = fi.folder(code, period)
-    return base, json.loads((base / 'source-ledger.json').read_text()), json.loads((base / 'publication.json').read_text())
+    pub = base / 'publication.json'
+    return base, json.loads((base / 'source-ledger.json').read_text()), (
+        json.loads(pub.read_text()) if pub.exists() else {'figures': []})
 
 
 def val(facts, expr):
@@ -139,6 +142,10 @@ def text_block(**extra):
 
 def cmd_scaffold(a):
     base, ledger, story = load(a.code, a.period)
+    plan = rc.assess(ledger)
+    source_probe = bool(getattr(a, 'source_probe', False))
+    if not source_probe:
+        rc.require_editorial_v2(ledger)  # inspect sector/period BEFORE depending on any publication
     f = ledger['facts']
     names = ledger['issuer'].get('period_names', {})
     periods = [names.get(ledger['issuer']['comparative_period'], ledger['issuer']['comparative_period']),
@@ -149,32 +156,40 @@ def cmd_scaffold(a):
                  dict(label='营业利润率', kind='ratio', num='operating_profit', den='rev', prior_num='operating_profit_prior', prior_den='rev_prior'))
     tiles.append(dict(label='归母净利润', kind='money', value='parent_net', prior='parent_net_prior'))
     for lab, k in (('经营现金净额', 'cfo'), ('销售商品收到的现金', 'sales_cash'), ('扣非归母净利润', 'adjusted_parent')):
-        if has(f, k) and len(tiles) < 5:
+        if has(f, k) and len(tiles) < 5 and (source_probe or rc.pair_ok(ledger, k)):
             tiles.append(dict(label=lab, kind='money', value=k, prior=k + '_prior'))
     for lab, side, k in WC_ITEMS:
-        if side == 'asset' and has(f, k) and len(tiles) < 6:
+        if side == 'asset' and has(f, k) and len(tiles) < 6 and (
+                source_probe or rc.pair_ok(ledger, k, 'stock')):
             tiles.append(dict(label=lab + '（期末余额）', kind='money', value=k, prior=k + '_prior', delta_label='较年初',
                               prior_period=f[k + '_prior']['period'], lower_is_better=True))
-    segs = segments(f)
+    segs = [s for s in segments(f) if rc.pair_ok(ledger, s + '_rev')] if not source_probe else segments(f)
     lines = PL_LINES if general else FIN_LINES
     pairs = [[lab, prior(expr_of(k)) if k == 'gp' else k + '_prior', expr_of(k)] + ([{'lower_is_better': True}] if low else [])
-             for lab, k, low in lines if has(f, expr_of(k)) and val(f, prior(expr_of(k))) > 0 and k not in ('adjusted_parent',)][:8]
+             for lab, k, low in lines if has(f, expr_of(k)) and val(f, prior(expr_of(k))) > 0
+             and (source_probe or all(rc.pair_ok(ledger, key) for key, _ in E(expr_of(k))))
+             and k not in ('adjusted_parent',)][:8]
     seg_pairs = [[labels(f, s), s + '_rev_prior', s + '_rev'] for s in segs if val(f, s + '_rev_prior') > 0][:8]
     rows = [dict(label='毛利率', num=GP, den='rev', prior_num=prior(GP), prior_den='rev_prior')] if general else []
     for lab, k in (('营业利润率', 'operating_profit'), ('归母净利率', 'parent_net')):
         rows.append(dict(label=lab, num=k, den='rev', prior_num=k + '_prior', prior_den='rev_prior'))
     for s in segs:
-        if s + '_cost' in f and s + '_cost_prior' in f and len(rows) < 6:
+        if s + '_cost' in f and s + '_cost_prior' in f and len(rows) < 6 and (
+                source_probe or rc.pair_ok(ledger, s + '_cost')):
             rows.insert(1, dict(label=labels(f, s) + '毛利率', num=[[s + '_rev', 1], [s + '_cost', -1]], den=s + '_rev',
                                 prior_num=[[s + '_rev_prior', 1], [s + '_cost_prior', -1]], prior_den=s + '_rev_prior'))
     for lab, k in (('研发费用率', 'rd_expense'), ('销售费用率', 'selling'), ('管理费用率', 'admin')):
-        if has(f, k) and len(rows) < 7 and val(f, k) >= 0 and val(f, k + '_prior') >= 0:
+        if has(f, k) and len(rows) < 7 and val(f, k) >= 0 and val(f, k + '_prior') >= 0 and (
+                source_probe or rc.pair_ok(ledger, k)):
             rows.append(dict(label=lab, num=k, den='rev', prior_num=k + '_prior', prior_den='rev_prior', lower_is_better=True))
     # a dumbbell shows non-negative ratios only (loss makers: margins below zero go to the bridge instead)
     rows = [r for r in rows if val(f, r['num']) >= 0 and val(f, r['prior_num']) >= 0 and val(f, E(r['den'])) > 0 and val(f, E(r['prior_den'])) > 0]
-    items = [[lab, side, k + '_prior', k] for lab, side, k in (WC_ITEMS if general else FIN_BS_ITEMS) if has(f, k)]
+    items = [[lab, side, k + '_prior', k] for lab, side, k in (WC_ITEMS if general else FIN_BS_ITEMS)
+             if has(f, k) and (source_probe or rc.pair_ok(ledger, k, 'stock'))]
     dates = sorted({f[k[2]]['period'] for k in items} | {f[k[3]]['period'] for k in items}) if items else []
     draft = {
+        'capability_plan': plan,  # evidence-candidate only; source, human and graphics audits remain separate
+        'generation_scope': 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION' if source_probe else 'EDITORIAL_AUTHORING_CANDIDATE',
         'glance': [TODO] * 6,
         'new_figures': [
             dict(id='glance', family='kpi_board', nav='本期一览', eyebrow='AT A GLANCE', periods=periods, tiles=tiles,
@@ -192,6 +207,20 @@ def cmd_scaffold(a):
         'notes': 'Edit texts; reorder `order` (references may sit anywhere, they move to the reconciliation layer); '
                  'keep at most 2 signed bridges in the body (set others to reference in `roles`); macros: [g:key] [r:key] [p:key] [y:key] [d:key].',
     }
+    if not source_probe:
+        qualified = {v['family'] for v in plan['visual_candidates']
+                     if v['status'] == 'ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT'}
+        # Do not manufacture source-limited chart types just to satisfy EDITORIAL_V2's
+        # historical variety quota. Missing evidence must remain an explicit omission.
+        rejected = [x for x in draft['new_figures'] if x['family'] not in qualified]
+        dropped_ids = {x['id'] for x in rejected}
+        draft['omitted_for_evidence'] = [
+            {'id': x['id'], 'family': x['family'], 'reason': next(
+                (v['rationale'] for v in plan['visual_candidates'] if v['family'] == x['family']),
+                'No admissible exhibit capability')} for x in rejected]
+        draft['new_figures'] = [x for x in draft['new_figures'] if x['id'] not in dropped_ids]
+        draft['order'] = [i for i in draft['order'] if i not in dropped_ids]
+        draft['roles'] = {k: v for k, v in draft['roles'].items() if k not in dropped_ids}
     out = Path(a.out) if getattr(a, 'out', None) else base / 'v2-draft.json'
     out.write_text(json.dumps(draft, ensure_ascii=False, indent=1) + '\n')
     print('V2_DRAFT_WRITTEN', out, 'figures', len(draft['new_figures']), 'segments', len(segs), 'wc', len(items))
@@ -424,6 +453,9 @@ def findings(f):
 
 def cmd_findings(a):
     _, ledger, story = load(a.code, a.period)
+    if rc.sector_of(ledger) != 'industrial':
+        print('SECTOR_RESEARCH_ADAPTER_REQUIRED ' + rc.sector_of(ledger) + ': generic industrial findings refused')
+        return
     C = Claims({'quantified_claims': {}}, ledger['facts'])
     sys.path.insert(0, str(ROOT / 'research' / 'shared'))
     from source_publication import expand_claims  # noqa: E402
@@ -528,7 +560,12 @@ def cmd_apply(a):
     sys.path.insert(0, str(ROOT / 'research' / 'shared'))
     from source_publication import expand_claims  # noqa: E402
     base, ledger, story = load(a.code, a.period)
+    rc.require_editorial_v2(ledger)  # fail before touching publication or editorial manifest
+    if not (base / 'publication.json').exists():
+        raise SystemExit('V2_APPLY_NEEDS_PUBLICATION: create publication skeleton before applying edits')
     draft = json.loads((base / 'v2-draft.json').read_text())
+    if draft.get('generation_scope') == 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION':
+        raise SystemExit('V2_SOURCE_PROBE_NOT_PUBLISHABLE: generate a normal, evidence-screened editorial draft')
     C = Claims(story, ledger['facts'])
     walk = lambda v: C.expand(v) if isinstance(v, str) else [walk(x) for x in v] if isinstance(v, list) else {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
     TEXT = ('question', 'takeaway', 'trend', 'analysis', 'counter', 'chapter')
@@ -588,15 +625,32 @@ def cmd_apply(a):
     print('V2_APPLIED', a.code, a.period or '', len(figs), 'figures; next: publish, set catalogue figures = qa.json figures, browser QA')
 
 
+def cmd_capabilities(a):
+    # Available immediately after source-ledger extraction; a publication.json must NOT exist yet.
+    base = fi.folder(a.code, a.period)
+    ledger = json.loads((base / 'source-ledger.json').read_text())
+    report = rc.assess(ledger)
+    shown = json.dumps(report, ensure_ascii=False, indent=2) + '\n'
+    if getattr(a, 'out', None):
+        Path(a.out).write_text(shown)
+        print('RESEARCH_CAPABILITIES_WRITTEN', a.out)
+    else:
+        print(shown, end='')
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
-    for name in ('numbers', 'scaffold', 'apply', 'flowspec', 'findings'):
+    for name in ('numbers', 'scaffold', 'apply', 'flowspec', 'findings', 'capabilities'):
         s = sub.add_parser(name); s.add_argument('--code', required=True); s.add_argument('--period')
-        if name in ('scaffold', 'flowspec'):
+        if name in ('scaffold', 'flowspec', 'capabilities'):
             s.add_argument('--out', help='draft path (default <folder>/v2-draft.json)')
+        if name == 'scaffold':
+            s.add_argument('--source-probe', action='store_true',
+                           help='diagnostic-only technical exhibits; never authorizes sector publication')
     a = p.parse_args(argv)
-    {'numbers': cmd_numbers, 'scaffold': cmd_scaffold, 'apply': cmd_apply, 'flowspec': cmd_flowspec, 'findings': cmd_findings}[a.cmd](a)
+    {'numbers': cmd_numbers, 'scaffold': cmd_scaffold, 'apply': cmd_apply, 'flowspec': cmd_flowspec,
+     'findings': cmd_findings, 'capabilities': cmd_capabilities}[a.cmd](a)
 
 
 if __name__ == '__main__':
