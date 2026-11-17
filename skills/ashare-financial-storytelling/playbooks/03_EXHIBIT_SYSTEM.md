@@ -89,3 +89,9 @@ AEI 的财报图之所以一眼可读，靠的不是配色本身，而是几条�
 - `summary: true` + `focus`：在正文留一张阅读卡，只展示 focus 中列出的关键行，并链接到完整原图。
 
 选择标准见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`：重要性同时看金额、占利润比例、同比贡献、方向变化与特殊风险，不用固定 Top3 或图表配额。
+
+## 原生手机 KPI 卡片排版（新出版稿 opt-in）
+
+新建的 EDITORIAL_V2 KPI 图由 `v2_builder.py scaffold` 写入 `adaptive_layout: KPI_TILE_WRAP_V2`。共享 `render_kpi_board` 使用每格独立的文字边界，而不是仅检查整张 330px 画布：长中英文标签保留全文并在至多两行之间平衡折行；数值与同比/较年初标注按容器宽度有限缩字，不能容纳则以 `KPI_TILE_LABEL_UNREADABLE` 或 `KPI_TILE_VALUE_UNREADABLE` 明确拒绝，交由编辑选择合适的短标签/单位。**不可用截断/省略号抹掉会计口径**。两行标题时所有格统一增加纵向空间，保证标题、主值、比较说明和微条各自有明确间距。
+
+此模式只对显式声明的新稿生效；历史图未带 `adaptive_layout` 时，输出 SVG 不变，仍按原有 SHA、独立 source/geometry audit 和真实浏览器验收管理。新模式的自动几何审计和 per-tile 字宽预估只是必要条件，Chromium、WebKit、390px 真机级别的清晰度与视觉焦点仍要逐图人工审阅。
