@@ -1,0 +1,40 @@
+{
+  "schema": "financials.research_evidence.v1",
+  "issuer": "TODO_6_DIGIT_CODE",
+  "fiscal_period": "TODO_SOURCE_REPORT_PERIOD",
+  "source_pdf_sha256": "TODO_ORIGINAL_PDF_SHA256",
+  "sector_route": "TODO_CAPABILITY_PLANNER_ROUTE",
+  "theses": [
+    {
+      "id": "profit-quality",
+      "question": "这份报告的利润质量有什么值得验证的变化？",
+      "conclusion": "TODO：写真实、可被推翻的结论；数字使用账本事实与宏，不手写舍入数字。",
+      "mechanism": "TODO：解释哪条真实经营链路可能造成变化，区分会计拆解与经营因果。",
+      "strongest_alternative": "TODO：给出最强替代解释，并指出哪类证据能区分两种机制。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": ["rev", "rev_prior", "cogs", "cogs_prior"],
+      "calculations": [
+        {
+          "id": "gross-profit-yoy",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            ["rev", "1"],
+            ["cogs", "-1"],
+            ["rev_prior", "-1"],
+            ["cogs_prior", "1"]
+          ],
+          "expected_yuan": "TODO_EXACT_DECIMAL_SOURCE_CALCULATION"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "NOT_DISCLOSED",
+        "limitation": "TODO：给出具体缺失的分产品/销量/价格/成本/现金或其他证据，不随意推断原因。"
+      },
+      "next_disclosure_test": {
+        "period": "TODO_LATER_Q1_H1_9M_OR_FY",
+        "metric": "TODO：下一次披露必须获得的指标及其会计口径",
+        "falsifies_when": "TODO：具体说出什么观察结果会推翻当前主要判断"
+      }
+    }
+  ]
+}
