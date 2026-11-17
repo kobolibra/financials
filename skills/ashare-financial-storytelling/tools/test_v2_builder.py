@@ -47,6 +47,34 @@ class V2Builder(unittest.TestCase):
         q3 = next(f for f in self.draft('300394', '20269M')['new_figures'] if f['id'] == 'growth')
         self.assertNotIn('q3', json.dumps(q3['pairs']))  # a single quarter is not a segment
 
+    def test_stock_findings_never_compare_snapshot_change_with_yoy_flow(self):
+        def fact(x):
+            return {'yuan': str(x)}
+        base = {'ar': fact(150), 'ar_prior': fact(100),
+                'inventory': fact(80), 'inventory_prior': fact(100),
+                'rev': fact(200), 'rev_prior': fact(100)}
+        for revenue, previous in ((200, 100), (50, 100), (100, 100)):
+            with self.subTest(revenue=revenue):
+                facts = {**base, 'rev': fact(revenue), 'rev_prior': fact(previous)}
+                found = {x['id']: x for x in vb.findings(facts)}
+                self.assertIn('receivables', found)
+                self.assertIn('inventory', found)
+                ar = found['receivables']['text']
+                inv = found['inventory']['text']
+                self.assertIn('[D:ar]', ar)
+                self.assertIn('[D:inventory]', inv)
+                self.assertNotIn('[g:rev]', ar)
+                self.assertNotIn('应收增速', ar)
+                self.assertNotIn('备货在增加', inv)
+                self.assertNotIn('库存在释放', inv)
+                self.assertIn('不能证明', ar)
+                self.assertIn('不能证明', inv)
+                self.assertEqual(found['receivables']['score'], 12.5)
+        flat = {**base, 'ar': fact(100), 'inventory': fact(100)}
+        ids = {x['id'] for x in vb.findings(flat)}
+        self.assertNotIn('receivables', ids)
+        self.assertNotIn('inventory', ids)
+
     def test_apply_refuses_todo_and_hand_typed_numbers_and_expands_macros(self):
         _, ledger, story = vb.load('300570', None)
         c = vb.Claims({'quantified_claims': {}}, ledger['facts'])

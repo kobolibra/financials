@@ -364,13 +364,18 @@ def findings(f):
     if has(f, 'cfo') and has(f, 'net_profit') and val(f, 'net_profit') > 0 and val(f, 'net_profit_prior') > 0:
         cur, pr = val(f, 'cfo') / val(f, 'net_profit') * 100, val(f, 'cfo_prior') / val(f, 'net_profit_prior') * 100
         add('cash_conversion', abs(cur - pr) / 5, f"经营现金净额相当于净利润的[r:cfo_np]%（上年同期[r:cfo_np_p]%），利润的现金含量{up(cur - pr, '提高', '下降')}。")
-    if has(f, 'ar') and gr is not None and val(f, 'ar_prior') > 0:
+    # Balance-sheet comparisons are end-date vs previous year-end snapshots, not Y/Y
+    # flow growth. Never rank or narrate an AR-vs-revenue "growth gap" across these bases.
+    if has(f, 'ar') and val(f, 'ar_prior') > 0:
         ga = (val(f, 'ar') / val(f, 'ar_prior') - 1) * 100
-        tail = ('收入下降而应收增加，回款条件需要下一期验证' if gr < 0 and ga > 0 else '应收增速快于收入，回款需要下一期验证' if ga > gr else '应收增速没有超过收入')
-        add('receivables', max(0, ga - gr) / 3, f"应收账款较年初{up(ga, '增加', '减少')}[D:ar]亿元，营业收入同比[g:rev]%：{tail}。")
+        if ga:
+            add('receivables', abs(ga) / 4,
+                f"应收账款较年初{up(ga, '增加', '减少')}[D:ar]亿元；余额变化本身不能证明回款效率改善或恶化，需结合账龄、销售收现及可比期间收入核验。")
     if has(f, 'inventory') and val(f, 'inventory_prior') > 0:
         gi = (val(f, 'inventory') / val(f, 'inventory_prior') - 1) * 100
-        add('inventory', abs(gi) / 4, f"存货较年初{up(gi, '增加', '减少')}[D:inventory]亿元，{'备货在增加' if gi > 0 else '库存在释放'}。")
+        if gi:
+            add('inventory', abs(gi) / 4,
+                f"存货较年初{up(gi, '增加', '减少')}[D:inventory]亿元；余额变化本身不能证明备货或去库存原因，需结合存货构成、跌价准备及周转核验。")
     for k, lab in (('selling', '销售费用率'), ('admin', '管理费用率'), ('rd_expense', '研发费用率')):
         pp = ratio_pp(f, k)
         if pp is not None and abs(pp) >= 0.3:
