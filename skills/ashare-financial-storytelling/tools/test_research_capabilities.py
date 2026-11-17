@@ -49,6 +49,24 @@ def industrial():
 
 
 class ResearchCapabilities(unittest.TestCase):
+    def test_all_four_reporting_periods_have_correct_stock_and_flow_dates(self):
+        for period, expected_end, prior in (
+                ('2026Q1', '2026-03-31', '2025Q1'),
+                ('2026H1', '2026-06-30', '2025H1'),
+                ('20269M', '2026-09-30', '20259M'),
+                ('2025FY', '2025-12-31', '2024FY')):
+            with self.subTest(period=period):
+                p = rc.periods({'fiscal_period': period, 'comparative_period': prior})
+                self.assertEqual(p['flow_current'], period)
+                self.assertEqual(p['flow_prior'], prior)
+                self.assertEqual(p['stock_current'], expected_end)
+                self.assertEqual(p['stock_prior'], f"{int(period[:4]) - 1}-12-31")
+                self.assertEqual(p['stock_comparison'],
+                                 'REPORT_END_VS_PREVIOUS_YEAR_END_NOT_YOY')
+        self.assertIsNone(rc.periods({'fiscal_period': '20269M',
+                                      'comparative_period': '2025H1'}))
+        self.assertIsNone(rc.periods({'fiscal_period': '2026Q4'}))
+
     def test_industrial_source_legal_exhibits_are_only_pending_audit(self):
         plan = rc.assess(industrial())
         self.assertEqual(plan['sector_route'], 'industrial')
