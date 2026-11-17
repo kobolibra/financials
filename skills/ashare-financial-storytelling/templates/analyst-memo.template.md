@@ -33,6 +33,7 @@
 - 机制：
 - 最强替代解释及区分证据（页码）：
 - 下一次披露的三组检验（盈利 / 现金 / 资本）：
+- **结构化证明（新公司强制）**：另建同目录 `research-brief.json`（格式见 `templates/research-brief.template.json`），把每条核心判断绑定到 `source-ledger.json` 的真实事实键、准确期间和范围、精确 Decimal 算式、竞争解释、证伪指标。执行 `python skills/ashare-financial-storytelling/tools/research_evidence.py --code <code> [--period P]`；机器证明只覆盖源数学和论证结构，真实因果与独立人类研究总编仍为 `NOT_CHECKED`。
 
 ## 8. 图序（问题 → family → 角色）
 | # | 问题 | family | 角色 primary/secondary/reference | 理由 |
