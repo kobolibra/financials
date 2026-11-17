@@ -510,7 +510,8 @@ HEDGE_OK = re.compile(r"(管理层|披露|原文|称|解释|可能|不能|不等
 REQUIRED_FIGURE_KEYS = ("id", "family", "nav", "question", "takeaway", "analysis", "counter", "identity", "eyebrow")
 
 
-def lint(story: dict, expanded: dict | None = None, roles: dict | None = None) -> list[str]:
+def lint(story: dict, expanded: dict | None = None, roles: dict | None = None,
+         capabilities: dict | None = None) -> list[str]:
     """Editorial lint. Lengths are measured on the expanded text a reader sees;
     hand-typed numbers are detected on the authored text."""
     issues = []
@@ -557,24 +558,46 @@ def lint(story: dict, expanded: dict | None = None, roles: dict | None = None) -
     if len(story.get("metrics", [])) != 3:
         issues.append("HERO_METRICS_SHOULD_BE_3")
     if story.get("design") == "EDITORIAL_V2":
-        issues += lint_v2(figs, roles)
+        issues += lint_v2(figs, roles, capabilities)
     return issues
 
 
 TREND_FAMILIES = {"period_columns", "ratio_dumbbell", "growth_bars"}
 
 
-def lint_v2(figs, roles=None) -> list:
-    """EDITORIAL_V2 (AEI earnings-post structure): at-a-glance board first, a varied exhibit mix,
-    at least one trend exhibit, chaptered themes, and no parade of cumulative bridges."""
+def lint_v2(figs, roles=None, capabilities=None) -> list:
+    """V2 editorial audit: preserve legacy receipts, but make new figure choices evidence-led.
+
+    A chart family is not a goal. For new source-bound reports, reject families whose
+    actual source proof is absent and require independent research relationships.
+    Legacy published dossiers retain their original five-family editorial test until
+    they are explicitly regenerated with the auditable research capability contract.
+    """
     issues = []
     fams = [f.get("family") for f in figs]
     if not figs or fams[0] != "kpi_board":
         issues.append("V2_FIRST_FIGURE_MUST_BE_KPI_BOARD: open with the at-a-glance numbers")
-    if len(set(fams)) < 5:
-        issues.append(f"V2_FAMILY_VARIETY_{len(set(fams))}: use at least 5 distinct exhibit families")
-    if not TREND_FAMILIES & set(fams):
-        issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
+    if capabilities is None:
+        if len(set(fams)) < 5:
+            issues.append(f"V2_FAMILY_VARIETY_{len(set(fams))}: use at least 5 distinct exhibit families")
+        if not TREND_FAMILIES & set(fams):
+            issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
+    else:
+        if (capabilities.get("schema") != "financials.research_capabilities.v1"
+                or capabilities.get("publication_route") != "INDUSTRIAL_V2_AUTHORING_CANDIDATE"):
+            issues.append("V2_UNVERIFIED_SECTOR_OR_SOURCE_CAPABILITY")
+        status = {v["family"]: v["status"] for v in capabilities.get("visual_candidates", [])}
+        for f in figs:
+            family = f.get("family")
+            if (family in status
+                    and status[family] != "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT"):
+                issues.append(f"V2_SOURCE_INELIGIBLE_FIGURE_{f.get('id')}:{family}")
+        # Distinct research relationships are a minimum quality requirement, not
+        # a demand to manufacture five graphic types from absent evidence.
+        if len(set(fams)) < 3:
+            issues.append("V2_SOURCE_LIMITED_RELATIONSHIPS: fewer than three distinct audited financial views")
+        # Omit trends when no comparable single-period or ratio evidence exists.
+        # An eligible trend is a candidate, not a mandate to draw a redundant chart.
     # body = figures the editorial manifest keeps in the main reading layer (all figures when roles are unknown)
     body = [f for f in figs if (roles or {}).get(f.get("id")) != "reference"]
     bridges = sum(1 for f in body if f.get("family") == "signed_bridge")
