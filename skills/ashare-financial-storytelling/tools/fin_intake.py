@@ -618,7 +618,38 @@ def cmd_preflight(a) -> None:
     base = folder(a.code, a.period)
     ledger = json.loads((base / "source-ledger.json").read_text())
     story = json.loads((base / "publication.json").read_text())
-    result = {"source_and_accounting": "NOT_RUN", "editorial_lint": []}
+    result = {"source_and_accounting": "NOT_RUN", "editorial_lint": [],
+              "research_evidence": "NOT_CHECKED_LEGACY", "source_capability": "NOT_CHECKED_LEGACY"}
+    capabilities = None
+    if story.get("design") == "EDITORIAL_V2":
+        if story.get("research_evidence_gate") is not None:
+            try:
+                import research_evidence as ev
+                import research_capabilities as rc
+                path = base / "research-brief.json"
+                review = ev.validate_file(ledger, path)
+                capabilities = rc.assess(ledger)
+                expected = {
+                    "status": review["status"],
+                    "brief_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                    "source_pdf_sha256": review["source_pdf_sha256"],
+                    "professional_causal_inference": review["professional_causal_inference"],
+                    "independent_financial_reviewer": review["independent_financial_reviewer"],
+                    "independent_visual_editor": review["independent_visual_editor"],
+                    "release_authorization": review["release_authorization"],
+                }
+                if story["research_evidence_gate"] != expected:
+                    raise ValueError("RESEARCH_EVIDENCE_RECEIPT_NOT_CURRENT")
+                if story.get("capability_plan") != capabilities:
+                    raise ValueError("CAPABILITY_PLAN_NOT_CURRENT_LEDGER")
+                result["research_evidence"] = "PASS_MACHINE_PROOF_ONLY_HUMAN_NOT_CHECKED"
+                result["source_capability"] = capabilities["publication_route"]
+            except (ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+                result["research_evidence"] = "FAIL " + str(exc)
+        elif getattr(a, "require_research_evidence", False):
+            result["research_evidence"] = "FAIL NEW_V2_RESEARCH_BRIEF_REQUIRED"
+    elif getattr(a, "require_research_evidence", False):
+        result["research_evidence"] = "FAIL RESEARCH_GATE_ONLY_DEFINED_FOR_EDITORIAL_V2"
     try:
         result["source_and_accounting"] = validate(ledger, story)
     except (ValueError, KeyError) as exc:
@@ -627,7 +658,8 @@ def cmd_preflight(a) -> None:
         from source_publication import expand_claims  # noqa: E402
         mpath = editorial_path(a.code, ledger["issuer"]["fiscal_period"], a.period)
         roles = {f["id"]: f.get("role") for f in json.loads(mpath.read_text())["editorial"]["figures"]} if mpath.exists() else None
-        result["editorial_lint"] = lint(story, expand_claims(story, ledger), roles)
+        result["editorial_lint"] = lint(story, expand_claims(story, ledger), roles,
+                                        capabilities=capabilities)
     except (ValueError, KeyError) as exc:
         result["editorial_lint"] = ["CLAIM_EXPANSION_FAILED " + str(exc)]
     used = set()
@@ -638,7 +670,9 @@ def cmd_preflight(a) -> None:
     result["facts_unused"] = sorted(set(ledger["facts"]) - used)[:40]
     result["editorial_manifest"] = editorial_path(a.code, ledger["issuer"]["fiscal_period"], a.period).exists()
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    ok = isinstance(result["source_and_accounting"], dict) and not result["editorial_lint"] and result["editorial_manifest"]
+    ok = (isinstance(result["source_and_accounting"], dict)
+          and not result["editorial_lint"] and result["editorial_manifest"]
+          and not result["research_evidence"].startswith("FAIL"))
     print("PREFLIGHT_PASS" if ok else "PREFLIGHT_NOT_READY")
     sys.exit(0 if ok else 1)
 
@@ -652,6 +686,8 @@ def main(argv=None) -> None:
     s = sub.add_parser("scan"); s.add_argument("--code", required=True); s.add_argument("--page", type=int, required=True); s.add_argument("--all", action="store_true")
     x = sub.add_parser("facts"); x.add_argument("--code", required=True); x.add_argument("--spec", required=True); x.add_argument("--partial", action="store_true")
     q = sub.add_parser("preflight"); q.add_argument("--code", required=True)
+    q.add_argument("--require-research-evidence", action="store_true",
+                   help="strict for new V2 editions; legacy reports retain explicit NOT_CHECKED status")
     e = sub.add_parser("editorial"); e.add_argument("--code", required=True); e.add_argument("--spec", required=True)
     au = sub.add_parser("auto"); au.add_argument("--code", required=True); au.add_argument("--write", action="store_true")
     au.add_argument("--allow-residual", action="store_true")
