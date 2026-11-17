@@ -141,6 +141,58 @@ class ResearchEvidence(unittest.TestCase):
                 'id': 'gross-profit-yoy', 'type': 'FLOW_YOY_DELTA',
                 'terms': [['rev', '1'], ['rev_prior', '-1']], 'expected_yuan': '200'})
 
+    def test_real_industrial_gross_profit_bridge_from_physical_ledger(self):
+        from decimal import Decimal as D
+        source = vb.ROOT / 'research/issuers/300570/source-ledger.json'
+        d = json.loads(source.read_text())
+        f = d['facts']
+        exact = D(f['rev']['yuan']) - D(f['cogs']['yuan']) - D(f['rev_prior']['yuan']) + D(f['cogs_prior']['yuan'])
+        note = thesis()
+        note['source_fact_keys'] = ['rev', 'rev_prior', 'cogs', 'cogs_prior']
+        note['calculations'] = [{'id': 'gross-profit-contribution', 'type': 'FLOW_YOY_DELTA',
+                                 'terms': [['rev', '1'], ['cogs', '-1'], ['rev_prior', '-1'],
+                                           ['cogs_prior', '1']], 'expected_yuan': str(exact)}]
+        note['discriminating_evidence'] = {'status': 'NOT_DISCLOSED',
+                                          'limitation': '汇率与产品量价没有可独立闭合的季度来源拆解。'}
+        b = {'schema': ev.SCHEMA, 'issuer': d['issuer']['code'],
+             'fiscal_period': d['issuer']['fiscal_period'], 'sector_route': 'industrial',
+             'source_pdf_sha256': d['source']['original_bytes_sha256'], 'theses': [note]}
+        proof = ev.validate(d, b)
+        self.assertEqual(proof['theses'][0]['calculations'][0]['exact_yuan'], str(exact))
+        self.assertEqual(proof['independent_financial_reviewer'], 'NOT_CHECKED')
+
+    def test_quarterly_source_reference_only_if_extra_column_is_declared(self):
+        source = vb.ROOT / 'research/issuers/300394/20269M/source-ledger.json'
+        d = json.loads(source.read_text())
+        self.assertEqual(d['facts']['q3_rev']['period'], '2026Q3')
+        self.assertEqual(d['issuer']['flow_columns'][d['facts']['q3_rev']['source_column']],
+                         '2026Q3')
+        b = {'schema': ev.SCHEMA, 'issuer': d['issuer']['code'],
+             'fiscal_period': d['issuer']['fiscal_period'], 'sector_route': 'industrial',
+             'source_pdf_sha256': d['source']['original_bytes_sha256'],
+             'theses': [{
+                 'id': 'quarterly-difference', 'question': '三季度独立披露的业务增量是多少？',
+                 'conclusion': '三季度单季收入需要与前三季度累计期间分开分析，不能混算同比。',
+                 'mechanism': '只用同一累计期间的本期和上年数据观察收入差额，不直接归因为价格。',
+                 'strongest_alternative': '单季放量也可能是季节性收货节奏而非持续性的客户需求上行。',
+                 'evidence_status': 'OBSERVATION',
+                 'source_fact_keys': ['rev', 'rev_prior', 'q3_rev', 'q3_rev_prior'],
+                 'calculations': [{'id': 'cumulative-revenue-increase', 'type': 'FLOW_YOY_DELTA',
+                                   'terms': [['rev', '1'], ['rev_prior', '-1']],
+                                   'expected_yuan': str(
+                                       __import__('decimal').Decimal(d['facts']['rev']['yuan'])
+                                       - __import__('decimal').Decimal(d['facts']['rev_prior']['yuan']))}],
+                 'discriminating_evidence': {'status': 'SOURCE_FACTS',
+                                             'source_fact_keys': ['q3_rev', 'q3_rev_prior']},
+                 'next_disclosure_test': {'period': '2026FY', 'metric': '年度收入与分季度增长趋势',
+                                          'falsifies_when': '第四季度收入同比转负且三季度增量不持续。'},
+             }]}
+        self.assertEqual(ev.validate(d, b)['status'],
+                         'PASS_MACHINE_SOURCE_MATH_AND_STRUCTURAL_EVIDENCE_ONLY')
+        d['issuer']['flow_columns'] = {}
+        with self.assertRaisesRegex(ValueError, 'RESEARCH_EXTRA_FLOW_COLUMN_NOT_DECLARED'):
+            ev.validate(d, b)
+
     def test_v2_apply_requires_evidence_brief_before_any_write(self):
         d = ledger()
         with tempfile.TemporaryDirectory() as tmp:
