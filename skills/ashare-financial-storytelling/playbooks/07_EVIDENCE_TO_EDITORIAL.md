@@ -55,6 +55,10 @@ python $T/v2_builder.py capabilities --code <新公司代码> --out /tmp/capabil
 
 ## 5. 研究判断的六部分证据链
 
+**新增可执行研究证据合同**：每份新报告在正式 `apply` 前必须创建 `research-brief.json`（模板：`templates/research-brief.template.json`），运行 `python skills/ashare-financial-storytelling/tools/research_evidence.py --code <代码> [--period P]`。`financials.research_evidence.v1` 针对每项核心研究问题要求：论点、公司经济机制、最强替代解释、准确来源事实键、同口径可复算 Decimal 算式、区分证据或明确的未披露限制、以及未来报告的证伪条件。系统核验当次发行人/原 PDF SHA/期间/行业路由、事实源格、流量与存量合法期间、精确算术，禁止零或伪造比较、混用存量与流量、数字手写和虚构反证。
+
+机器结果仅为 `PASS_MACHINE_SOURCE_MATH_AND_STRUCTURAL_EVIDENCE_ONLY`；专业归因判断、最强反解释的经济真实性和人类视觉编审继续标 `NOT_CHECKED`，不允许用机器通过代替顶级研究认证。研究证据与图形可视化是两层独立的门禁。
+
 每个重要判断必须包含“可证伪论点 → 原始事实和页码 → 量化算式 → 最强替代解释 → 区分假说的证据 → 下一次报告的明确证伪指标”。标明 DISCLOSED / DERIVED / MANAGEMENT / HYPOTHESIS / UNKNOWN。同比/同环比、存量/流量、合并/母公司、会计/监管统计必须明确比较前提。没有数据的盈利驱动、价格/销量/渠道因果不允许自动成立。
 
 ## 6. 真正的盲测与当前尚未实现的能力
@@ -63,4 +67,4 @@ python $T/v2_builder.py capabilities --code <新公司代码> --out /tmp/capabil
 
 截至2026-11-17，历史30份原件/838条未映射记录的技术快照仅有**当前Git仓库可复验10份原件/183条记录**，另20份原始PDF缺失；这不意味着其余20份以前的记录被推翻，只意味着无法在当前干净环境复验。详见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`，完整强制原件运行 `generalization_probe.py --require-reference-corpus` 必须阻断缺件。
 
-**未完成重点**：20份源原件恢复；TYPE B、银行、保险、券商和地产的通用出版适配器；结构化并可自动审查的研究假设与反证合同；依据真实中文字宽的响应式布局求解器；独立财经和视觉总编盲审；不同公司、周期和行业的大样本无人干预生产级验收。新的能力编译器是质量拒绝与编辑决策基础设施，绝不能据此宣称这些缺口已经完成。
+**未完成重点**：20份源原件恢复；TYPE B、银行、保险、券商和地产的通用出版适配器；研究证据合同虽已能机检源数学与必要的反论证结构，但**尚不能机器判断假说是否真正解释商业模式**；依据真实中文字宽的响应式布局求解器；独立财经和视觉总编盲审；不同公司、周期和行业的大样本无人干预生产级验收。新的能力编译器是质量拒绝与编辑决策基础设施，绝不能据此宣称这些缺口已经完成。

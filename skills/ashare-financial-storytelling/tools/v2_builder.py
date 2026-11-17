@@ -27,6 +27,7 @@ np / parent / opex3 / fin.  `apply` refuses any TODO, hand-typed decimal amount,
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -38,6 +39,7 @@ TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import fin_intake as fi  # noqa: E402
 import research_capabilities as rc  # noqa: E402
+import research_evidence as ev  # noqa: E402
 
 YI = D(100000000)
 E = lambda k: [[k, 1]] if isinstance(k, str) else k
@@ -566,6 +568,11 @@ def cmd_apply(a):
     draft = json.loads((base / 'v2-draft.json').read_text())
     if draft.get('generation_scope') == 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION':
         raise SystemExit('V2_SOURCE_PROBE_NOT_PUBLISHABLE: generate a normal, evidence-screened editorial draft')
+    brief_path = base / 'research-brief.json'
+    try:
+        evidence_review = ev.validate_file(ledger, brief_path)
+    except (ValueError, KeyError, json.JSONDecodeError) as exc:
+        raise SystemExit('V2_RESEARCH_BRIEF_NOT_READY ' + str(exc)) from exc
     C = Claims(story, ledger['facts'])
     walk = lambda v: C.expand(v) if isinstance(v, str) else [walk(x) for x in v] if isinstance(v, list) else {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
     TEXT = ('question', 'takeaway', 'trend', 'analysis', 'counter', 'chapter')
@@ -589,6 +596,15 @@ def cmd_apply(a):
         raise SystemExit('V2_ORDER_MISSING ' + ','.join(sorted(missing)))
     story['figures'] = [new.get(i) or old[i] for i in order if i in new or i in old]
     story['design'] = 'EDITORIAL_V2'
+    story['research_evidence_gate'] = {
+        'status': evidence_review['status'],
+        'brief_sha256': hashlib.sha256(brief_path.read_bytes()).hexdigest(),
+        'source_pdf_sha256': evidence_review['source_pdf_sha256'],
+        'professional_causal_inference': evidence_review['professional_causal_inference'],
+        'independent_financial_reviewer': evidence_review['independent_financial_reviewer'],
+        'independent_visual_editor': evidence_review['independent_visual_editor'],
+        'release_authorization': evidence_review['release_authorization'],
+    }
     story['glance'] = walk(draft['glance'])
     for e in story.get('essays', []):
         if e.get('after') in draft.get('remove', []):
