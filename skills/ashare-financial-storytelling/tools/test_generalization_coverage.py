@@ -46,6 +46,27 @@ class UnmappedCoverage(unittest.TestCase):
         self.assertEqual(queue['rows'][0]['source_pdf_sha256'], self.SOURCE)
         self.assertNotIn('unmapped_review_items', summary)  # compact technical receipt remains compact
 
+    def test_historical_reference_sha_corpus_exposes_missing_originals(self):
+        historical = [{'sha256': 'a' * 64, 'code': '300570', 'fiscal_period': '2026H1',
+                       'pdf': 'a.pdf', 'unmapped_rows': 5},
+                      {'sha256': 'b' * 64, 'code': '600519', 'fiscal_period': '2025FY',
+                       'pdf': 'b.pdf', 'unmapped_rows': 7}]
+        report = gp.reference_corpus_coverage([{'sha256': 'a' * 64}], historical)
+        self.assertEqual(report['status'], 'INCOMPLETE_REFERENCE_CORPUS')
+        self.assertEqual(report['reference_reports'], 2)
+        self.assertEqual(report['matched_reference_reports'], 1)
+        self.assertEqual(report['missing_reference_reports'], 1)
+        self.assertEqual(report['missing_historical_unmapped_rows'], 7)
+        self.assertEqual(report['missing_originals'][0]['source_pdf_sha256'], 'b' * 64)
+
+        complete = gp.reference_corpus_coverage([{'sha256': 'a' * 64}, {'sha256': 'b' * 64}], historical)
+        self.assertEqual(complete['status'], 'ALL_HISTORICAL_SOURCE_BYTES_PRESENT')
+        self.assertEqual(complete['missing_reference_reports'], 0)
+
+        # SHA matches count original documents, not just distinct digest strings.
+        duplicated = gp.reference_corpus_coverage([{'sha256': 'a' * 64}], historical[:1] * 2)
+        self.assertEqual(duplicated['missing_reference_reports'], 1)
+
     def test_queue_refuses_any_missing_row(self):
         item = gp.unmapped_review_items([self.raw()], self.SOURCE)
         with self.assertRaisesRegex(SystemExit, 'COVERAGE_QUEUE_ROW_COUNT_MISMATCH'):
