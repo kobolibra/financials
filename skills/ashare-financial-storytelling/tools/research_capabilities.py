@@ -178,6 +178,8 @@ def assess(ledger):
         needs.append('SECTOR_SPECIFIC_EDITORIAL_ADAPTER_NOT_PROVEN')
     required = [k for k in PROFIT_CHAIN if pair_ok(ledger, k)]
     chain = sector == 'industrial' and len(required) == len(PROFIT_CHAIN)
+    if sector == 'industrial' and not all(pair_ok(ledger, k) for k in ('rev', 'parent_net', 'cfo')):
+        needs.append('MINIMUM_CONSOLIDATED_FLOW_PAIRS_NOT_VERIFIED')
     bus, bus_reason = partition_evidence(ledger)
     growth_keys = available(ledger, ('rev', 'cogs', 'operating_profit', 'parent_net'))
     money = all(pair_ok(ledger, k) for k in ('rev', 'parent_net'))
