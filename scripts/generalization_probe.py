@@ -34,6 +34,7 @@ sys.path.insert(0, str(ROOT / 'research/shared'))
 import fin_intake as fi  # noqa: E402
 import statement_extract as se  # noqa: E402
 import v2_builder as vb  # noqa: E402
+import research_capabilities as rc  # noqa: E402
 
 FAMILIES = ('kpi_board', 'growth_bars', 'ratio_dumbbell', 'stock_delta')
 
@@ -170,6 +171,7 @@ def probe(pdf: Path, include_unmapped_review=False):
     issuer = {'code': code, 'fiscal_period': ident['fiscal_period'], 'comparative_period': ident['comparative_period']}
     row.update(fiscal_period=ident['fiscal_period'], comparative_period=ident['comparative_period'])
     result = se.extract(doc, fi.rows_on_page, fi.squash)
+    issuer['accounting_format'] = result['format']  # do not confuse source-only sector charts with publisher support
     ok, bad = se.identities(result)
     facts = se.to_ledger_facts(result, issuer)
     row.update(source_anomalies=result.get('source_anomalies', []))
@@ -188,6 +190,7 @@ def probe(pdf: Path, include_unmapped_review=False):
     false_cells = reread(doc, facts)
     row['stages']['ledger'] = ('PASS' + (' 原件异常已列出' if result.get('source_anomalies') else '')) if not bad and not false_cells and not result['notes'] else f'FAIL identities={bad} cells={false_cells[:5]} {result["notes"]}'
     ledger = {'issuer': issuer, 'facts': facts, 'source': {'original_bytes_sha256': sha}, 'segments': segments, 'income_partition': partition or {}}
+    row['publisher_capability'] = rc.assess(ledger)['publication_route']
     # revenue -> gross profit Sankey by business, only when the notes proved a complete partition
     if partition:
         try:
@@ -243,22 +246,27 @@ def probe(pdf: Path, include_unmapped_review=False):
         row['stages']['exhibits'] = 'PASS ' + '/'.join(fams)
     except Exception as e:  # noqa: BLE001
         row['stages']['exhibits'] = 'FAIL ' + type(e).__name__ + ' ' + str(e)[:200]
-    # findings
-    try:
-        C = vb.Claims({'quantified_claims': {}}, facts)
-        fl = vb.findings(facts)
-        shown = [expand_claims({'quantified_claims': C.c, 'p': C.expand(x['text'])}, ledger)['p'] for x in fl[:5]]
-        row['findings_top5'] = shown
-        row['stages']['findings'] = f'PASS {len(fl)}'
-    except (Exception, SystemExit) as e:  # noqa: BLE001
-        row['stages']['findings'] = 'FAIL ' + str(e)[:200]
+    # Generic industry-neutral arithmetic is NOT an investment thesis for a financial issuer.
+    # Explicitly refuse generic findings until a sector research adapter exists.
+    if rc.sector_of(ledger) != 'industrial':
+        row['stages']['findings'] = 'REFUSED_AS_DESIGNED_SECTOR_RESEARCH_REQUIRED ' + rc.sector_of(ledger)
+    else:
+        try:
+            C = vb.Claims({'quantified_claims': {}}, facts)
+            fl = vb.findings(facts)
+            shown = [expand_claims({'quantified_claims': C.c, 'p': C.expand(x['text'])}, ledger)['p'] for x in fl[:5]]
+            row['findings_top5'] = shown
+            row['stages']['findings'] = f'PASS {len(fl)}'
+        except (Exception, SystemExit) as e:  # noqa: BLE001
+            row['stages']['findings'] = 'FAIL ' + str(e)[:200]
     return row
 
 
 def scaffold_from(ledger, tmp):
     """v2_builder.scaffold on an in-memory ledger (no dossier folder needed)."""
     class A: pass
-    a = A(); a.code = ledger['issuer']['code']; a.period = None; a.out = str(Path(tmp) / 'draft.json')
+    a = A(); a.code = ledger['issuer']['code']; a.period = None
+    a.out = str(Path(tmp) / 'draft.json'); a.source_probe = True  # diagnostic rendering only
     orig = vb.load
     vb.load = lambda code, period: (Path(tmp), ledger, {'figures': []})
     try:
@@ -296,7 +304,7 @@ def main(argv=None):
         print('UNMAPPED_COVERAGE_QUEUE', queue['unmapped_rows_total'], 'all NOT_CHECKED', path)
     passed = sum(1 for r in rows if r.get('stages', {}).get('ledger', '').startswith('PASS') and r['stages'].get('exhibits', '').startswith('PASS')
                  and (r['stages'].get('income_flow_v3') == 'PASS' or r['stages'].get('income_flow_v3', '').startswith('REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS'))
-                 and r['stages'].get('findings', '').startswith('PASS')
+                 and (r['stages'].get('findings', '').startswith('PASS') or r['stages'].get('findings', '').startswith('REFUSED_AS_DESIGNED_SECTOR_RESEARCH_REQUIRED'))
                  and not r['stages'].get('business_sankey', '').startswith('FAIL'))
     out = {'schema': 'financials.generalization_probe.v1', 'company_specific_input': 'NONE', 'reports': len(rows), 'all_stages_pass': passed,
            'scope': 'STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe',
