@@ -119,7 +119,9 @@ class Probe(unittest.TestCase):
         sys.path.insert(0, str(ROOT / 'scripts'))
         import generalization_probe as gp
         with tempfile.TemporaryDirectory() as tmp:
-            review_path = Path(tmp) / 'unmapped-review.json'
+            import os
+            review_path = Path(os.environ.get('FINANCIALS_COVERAGE_QUEUE_OUT',
+                                              str(Path(tmp) / 'unmapped-review.json')))
             self.assertEqual(gp.main(['--coverage-queue', str(review_path), *PDFS]), 0)
             queue = json.loads(review_path.read_text())
             self.assertEqual(queue['reports'], len(PDFS))
