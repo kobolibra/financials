@@ -63,11 +63,14 @@ def build_coverage_queue(rows):
     """Keep the unreviewed row-level audit separate from the compact technical probe."""
     reports = []
     for r in rows:
+        items = r.pop('unmapped_review_items', [])
+        if r.get('unmapped_rows') is not None and len(items) != r['unmapped_rows']:
+            raise SystemExit('COVERAGE_QUEUE_ROW_COUNT_MISMATCH ' + str(r.get('pdf')))
         reports.append({'pdf': r.get('pdf'), 'source_pdf_sha256': r.get('sha256'),
                         'issuer': r.get('code'), 'fiscal_period': r.get('fiscal_period'),
                         'reported_unmapped_rows': r.get('unmapped_rows'),
                         'review_status': 'NOT_CHECKED',
-                        'items': r.pop('unmapped_review_items', []),
+                        'items': items,
                         'error': r.get('crash') or r.get('stages', {}).get('identity')})
     count = sum(len(r['items']) for r in reports)
     return {'schema': 'financials.unmapped_coverage_review.v1', 'reports': len(reports),
