@@ -401,7 +401,8 @@ def extract(doc, rows_on_page, squash):
                         break
                 if key is None:
                     unmapped.append({'statement': st, 'page': p, 'label': lab, 'y': r['y'], 'after': last,
-                                     'current': cells[0]['printed'] if cells[0] else None})
+                                     'current': cells[0]['printed'] if cells[0] else None,
+                                     'prior': cells[1]['printed'] if cells[1] else None})
                     continue
                 used.add(key)
                 last = key
