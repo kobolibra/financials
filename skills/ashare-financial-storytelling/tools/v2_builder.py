@@ -140,6 +140,10 @@ def text_block(**extra):
 
 def cmd_scaffold(a):
     base, ledger, story = load(a.code, a.period)
+    plan = rc.assess(ledger)
+    source_probe = bool(getattr(a, 'source_probe', False))
+    if not source_probe:
+        rc.require_editorial_v2(ledger)  # a diagnostic scaffold is not a publishing adapter
     f = ledger['facts']
     names = ledger['issuer'].get('period_names', {})
     periods = [names.get(ledger['issuer']['comparative_period'], ledger['issuer']['comparative_period']),
@@ -176,7 +180,8 @@ def cmd_scaffold(a):
     items = [[lab, side, k + '_prior', k] for lab, side, k in (WC_ITEMS if general else FIN_BS_ITEMS) if has(f, k)]
     dates = sorted({f[k[2]]['period'] for k in items} | {f[k[3]]['period'] for k in items}) if items else []
     draft = {
-        'capability_plan': rc.assess(ledger),  # evidence-candidate only; source, human and graphics audits remain separate
+        'capability_plan': plan,  # evidence-candidate only; source, human and graphics audits remain separate
+        'generation_scope': 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION' if source_probe else 'EDITORIAL_AUTHORING_CANDIDATE',
         'glance': [TODO] * 6,
         'new_figures': [
             dict(id='glance', family='kpi_board', nav='本期一览', eyebrow='AT A GLANCE', periods=periods, tiles=tiles,
@@ -426,6 +431,9 @@ def findings(f):
 
 def cmd_findings(a):
     _, ledger, story = load(a.code, a.period)
+    if rc.sector_of(ledger) != 'industrial':
+        print('SECTOR_RESEARCH_ADAPTER_REQUIRED ' + rc.sector_of(ledger) + ': generic industrial findings refused')
+        return
     C = Claims({'quantified_claims': {}}, ledger['facts'])
     sys.path.insert(0, str(ROOT / 'research' / 'shared'))
     from source_publication import expand_claims  # noqa: E402
@@ -609,6 +617,9 @@ def main(argv=None):
         s = sub.add_parser(name); s.add_argument('--code', required=True); s.add_argument('--period')
         if name in ('scaffold', 'flowspec', 'capabilities'):
             s.add_argument('--out', help='draft path (default <folder>/v2-draft.json)')
+        if name == 'scaffold':
+            s.add_argument('--source-probe', action='store_true',
+                           help='diagnostic-only technical exhibits; never authorizes sector publication')
     a = p.parse_args(argv)
     {'numbers': cmd_numbers, 'scaffold': cmd_scaffold, 'apply': cmd_apply, 'flowspec': cmd_flowspec,
      'findings': cmd_findings, 'capabilities': cmd_capabilities}[a.cmd](a)
