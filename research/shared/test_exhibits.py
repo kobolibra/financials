@@ -143,7 +143,7 @@ class Exhibits(unittest.TestCase):
         from decimal import Decimal as D
         from exhibits import render_kpi_board
         tile = {'label': '营业收入', 'kind': 'money',
-                'value': D(10) ** 130, 'prior': D(10) ** 129,
+                'value': D(10) ** 20, 'prior': D(10) ** 19,
                 'value_ref': 'rev', 'prior_ref': 'rev_prior',
                 'period': '2026H1', 'prior_period': '2025H1'}
         with self.assertRaisesRegex(ValueError, 'KPI_TILE_VALUE_UNREADABLE'):
