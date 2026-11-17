@@ -184,7 +184,9 @@ def assess(ledger):
     growth_keys = available(ledger, ('rev', 'cogs', 'operating_profit', 'parent_net'))
     money = all(pair_ok(ledger, k) for k in ('rev', 'parent_net'))
     margin = all(pair_ok(ledger, k) for k in ('rev', 'cogs')) and (
-        D(facts['rev']['yuan']) > 0 and D(facts['rev_prior']['yuan']) > 0)
+        D(facts['rev']['yuan']) > 0 and D(facts['rev_prior']['yuan']) > 0
+        and D(facts['rev']['yuan']) >= D(facts['cogs']['yuan'])
+        and D(facts['rev_prior']['yuan']) >= D(facts['cogs_prior']['yuan']))
     wc = available(ledger, WORKING_CAPITAL, 'stock') if sector == 'industrial' else []
     quarter_keys = [key for key in ('q1_rev', 'q2_rev', 'q3_rev', 'q4_rev') if (
         fact_ok(facts, key, 'flow', f"{str(issuer.get('fiscal_period', ''))[:4]}Q{key[1]}")
