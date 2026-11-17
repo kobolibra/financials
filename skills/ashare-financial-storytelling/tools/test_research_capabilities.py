@@ -83,6 +83,18 @@ class ResearchCapabilities(unittest.TestCase):
                 visual = {x['family']: x for x in rc.assess(d)['visual_candidates']}
                 self.assertEqual(visual['income']['status'], 'OMIT_SOURCE_OR_ADAPTER_LIMITED')
 
+    def test_negative_gross_margin_is_not_drawn_on_positive_only_ratio_axis(self):
+        d = industrial()
+        d['facts']['cogs']['yuan'] = '2100'
+        plan = rc.assess(d)
+        visual = {x['family']: x for x in plan['visual_candidates']}
+        self.assertEqual(visual['ratio_dumbbell']['status'], 'OMIT_SOURCE_OR_ADAPTER_LIMITED')
+        self.assertEqual(visual['income']['status'], 'OMIT_SOURCE_OR_ADAPTER_LIMITED')
+
+    def test_sector_specific_scaffold_refuses_without_diagnostic_explicit_mode(self):
+        with self.assertRaisesRegex(SystemExit, 'V2_SECTOR_OR_SOURCE_CAPABILITY_NOT_READY'):
+            vb.main(['scaffold', '--code', '601628'])
+
     def test_wrong_stock_date_flow_period_or_scope_is_never_eligible(self):
         d = industrial()
         d['facts']['rev_prior']['period'] = '2025FY'
