@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
-from decimal import Decimal as D, InvalidOperation, ROUND_HALF_UP
+from decimal import Decimal as D, InvalidOperation
 from pathlib import Path
 
 import research_capabilities as rc
