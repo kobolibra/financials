@@ -160,16 +160,19 @@ def cmd_scaffold(a):
         if side == 'asset' and has(f, k) and len(tiles) < 6:
             tiles.append(dict(label=lab + '（期末余额）', kind='money', value=k, prior=k + '_prior', delta_label='较年初',
                               prior_period=f[k + '_prior']['period'], lower_is_better=True))
-    segs = segments(f)
+    segs = [s for s in segments(f) if rc.pair_ok(ledger, s + '_rev')] if not source_probe else segments(f)
     lines = PL_LINES if general else FIN_LINES
     pairs = [[lab, prior(expr_of(k)) if k == 'gp' else k + '_prior', expr_of(k)] + ([{'lower_is_better': True}] if low else [])
-             for lab, k, low in lines if has(f, expr_of(k)) and val(f, prior(expr_of(k))) > 0 and k not in ('adjusted_parent',)][:8]
+             for lab, k, low in lines if has(f, expr_of(k)) and val(f, prior(expr_of(k))) > 0
+             and (source_probe or all(rc.pair_ok(ledger, key) for key, _ in E(expr_of(k))))
+             and k not in ('adjusted_parent',)][:8]
     seg_pairs = [[labels(f, s), s + '_rev_prior', s + '_rev'] for s in segs if val(f, s + '_rev_prior') > 0][:8]
     rows = [dict(label='毛利率', num=GP, den='rev', prior_num=prior(GP), prior_den='rev_prior')] if general else []
     for lab, k in (('营业利润率', 'operating_profit'), ('归母净利率', 'parent_net')):
         rows.append(dict(label=lab, num=k, den='rev', prior_num=k + '_prior', prior_den='rev_prior'))
     for s in segs:
-        if s + '_cost' in f and s + '_cost_prior' in f and len(rows) < 6:
+        if s + '_cost' in f and s + '_cost_prior' in f and len(rows) < 6 and (
+                source_probe or rc.pair_ok(ledger, s + '_cost')):
             rows.insert(1, dict(label=labels(f, s) + '毛利率', num=[[s + '_rev', 1], [s + '_cost', -1]], den=s + '_rev',
                                 prior_num=[[s + '_rev_prior', 1], [s + '_cost_prior', -1]], prior_den=s + '_rev_prior'))
     for lab, k in (('研发费用率', 'rd_expense'), ('销售费用率', 'selling'), ('管理费用率', 'admin')):
@@ -177,7 +180,8 @@ def cmd_scaffold(a):
             rows.append(dict(label=lab, num=k, den='rev', prior_num=k + '_prior', prior_den='rev_prior', lower_is_better=True))
     # a dumbbell shows non-negative ratios only (loss makers: margins below zero go to the bridge instead)
     rows = [r for r in rows if val(f, r['num']) >= 0 and val(f, r['prior_num']) >= 0 and val(f, E(r['den'])) > 0 and val(f, E(r['prior_den'])) > 0]
-    items = [[lab, side, k + '_prior', k] for lab, side, k in (WC_ITEMS if general else FIN_BS_ITEMS) if has(f, k)]
+    items = [[lab, side, k + '_prior', k] for lab, side, k in (WC_ITEMS if general else FIN_BS_ITEMS)
+             if has(f, k) and (source_probe or rc.pair_ok(ledger, k, 'stock'))]
     dates = sorted({f[k[2]]['period'] for k in items} | {f[k[3]]['period'] for k in items}) if items else []
     draft = {
         'capability_plan': plan,  # evidence-candidate only; source, human and graphics audits remain separate
@@ -199,6 +203,20 @@ def cmd_scaffold(a):
         'notes': 'Edit texts; reorder `order` (references may sit anywhere, they move to the reconciliation layer); '
                  'keep at most 2 signed bridges in the body (set others to reference in `roles`); macros: [g:key] [r:key] [p:key] [y:key] [d:key].',
     }
+    if not source_probe:
+        qualified = {v['family'] for v in plan['visual_candidates']
+                     if v['status'] == 'ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT'}
+        # Do not manufacture source-limited chart types just to satisfy EDITORIAL_V2's
+        # historical variety quota. Missing evidence must remain an explicit omission.
+        rejected = [x for x in draft['new_figures'] if x['family'] not in qualified]
+        dropped_ids = {x['id'] for x in rejected}
+        draft['omitted_for_evidence'] = [
+            {'id': x['id'], 'family': x['family'], 'reason': next(
+                (v['rationale'] for v in plan['visual_candidates'] if v['family'] == x['family']),
+                'No admissible exhibit capability')} for x in rejected]
+        draft['new_figures'] = [x for x in draft['new_figures'] if x['id'] not in dropped_ids]
+        draft['order'] = [i for i in draft['order'] if i not in dropped_ids]
+        draft['roles'] = {k: v for k, v in draft['roles'].items() if k not in dropped_ids}
     out = Path(a.out) if getattr(a, 'out', None) else base / 'v2-draft.json'
     out.write_text(json.dumps(draft, ensure_ascii=False, indent=1) + '\n')
     print('V2_DRAFT_WRITTEN', out, 'figures', len(draft['new_figures']), 'segments', len(segs), 'wc', len(items))
