@@ -54,7 +54,7 @@ Contract version: 10.0.0
 1. `python $T2 numbers --code <c> [--period P]`：打印每行同比、占收入比例、分部/地区增速与毛利率、营运资本余额变动。**叙事只按这里的方向写**。
 2. `python $T2 scaffold …`：生成经过能力筛选的 `v2-draft.json`；只有证据足够的图才保留候选，原因写入 `omitted_for_evidence`。分析师先完成 `research-brief.json`，再根据核心问题筛选图形与图序。
 3. 只写文字：结论、趋势、重点、反证、章节、本期一览。数字一律写宏：`[g:rev]` 同比、`[r:gm]` 比率、`[p:gm]` 百分点变化、`[y:parent_net]` 亿元、`[d:ar]` 余额变动。正文签名桥 ≤2，其余在 `roles` 设为 reference；与新图重复的两期表放进 `remove`。
-4. **研究证据门禁：** `python $T/research_evidence.py --code <c> [--period P]` 校验独立于绘图的源事实、精确算式、反解释和下一期证伪；这是**机器证据合同**，并非独立人类审稿。`python $T2 apply …` 在写 `publication.json` 前强制验证 `research-brief.json`；同时拒绝 TODO、手写金额、未知宏或错期，跑编辑 lint，同步编辑清单。
+4. **研究证据门禁：** `python skills/ashare-financial-storytelling/tools/research_evidence.py --code <c> [--period P]` 校验独立于绘图的源事实、精确算式、反解释和下一期证伪；这是**机器证据合同**，并非独立人类审稿。`python $T2 apply …` 在写 `publication.json` 前强制验证 `research-brief.json`；同时拒绝 TODO、手写金额、未知宏或错期，跑编辑 lint，同步编辑清单。
 5. 出版 → 目录 `figures` 改为 `qa.json` 的图数 → 浏览器验收（§6）。
 
 ## 3. 研究必须先于画图
