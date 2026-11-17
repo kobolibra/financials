@@ -560,6 +560,8 @@ def cmd_apply(a):
     base, ledger, story = load(a.code, a.period)
     rc.require_editorial_v2(ledger)  # fail before touching publication or editorial manifest
     draft = json.loads((base / 'v2-draft.json').read_text())
+    if draft.get('generation_scope') == 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION':
+        raise SystemExit('V2_SOURCE_PROBE_NOT_PUBLISHABLE: generate a normal, evidence-screened editorial draft')
     C = Claims(story, ledger['facts'])
     walk = lambda v: C.expand(v) if isinstance(v, str) else [walk(x) for x in v] if isinstance(v, list) else {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
     TEXT = ('question', 'takeaway', 'trend', 'analysis', 'counter', 'chapter')
