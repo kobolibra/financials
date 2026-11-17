@@ -57,7 +57,7 @@ permissions:
 jobs:
   handoff-source-of-truth:
     runs-on: ubuntu-latest
-    timeout-minutes: 7
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - name: Validate exact main state, five manuals, dynamic issuer routes and actual source-gated live release
@@ -110,6 +110,18 @@ jobs:
           python -m unittest discover -s research/shared -p 'test_income_flow_v3.py' -v
           python -m unittest discover -s research/shared -p 'test_exhibits.py' -v
           python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'test_v2_builder.py' -v
+      - name: Independently rerun FY Q1 and 9M new-company original PDF sources
+        run: |
+          python -m unittest scripts/test_independent_period_generalization.py -v
+          python scripts/check_independent_period_generalization.py --out "${{ runner.temp }}/independent-period-holdout.json"
+      - name: Archive separate FY/Q1/9M source-bound holdout with all failures visible
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: independent-original-fy-q1-9m-generalization
+          path: ${{ runner.temp }}/independent-period-holdout.json
+          if-no-files-found: warn
+          retention-days: 30
       - name: Archive all PDF-anchored unmapped amount rows for independent review
         uses: actions/upload-artifact@v4
         with:
