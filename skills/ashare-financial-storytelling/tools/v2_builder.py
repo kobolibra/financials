@@ -361,7 +361,12 @@ def findings(f):
         if gr > 0:
             tail = '营业利润同比增速高于收入，原因仍需核对费用及非经营项目' if go > gr else '营业利润同比增速低于收入，需核对成本、费用及减值'
         elif gr < 0:
-            tail = '收入下降时营业利润降幅更大' if go < gr else '收入下降而营业利润降幅较小'
+            if go > 0:
+                tail = '收入同比下降而营业利润增长，需核对非主营、费用及减值项目'
+            elif go == 0:
+                tail = '收入同比下降而营业利润基本持平'
+            else:
+                tail = '两者同比均下降，营业利润降幅更大' if go < gr else '两者同比均下降，营业利润降幅较小'
         else:
             tail = '收入同比持平而营业利润增长' if go > 0 else '收入同比持平而营业利润下降'
         add('operating_leverage', abs(go - gr) / 2, f"营业利润同比[g:operating_profit]%，营业收入同比[g:rev]%：{tail}。")
