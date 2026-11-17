@@ -39,6 +39,43 @@ def code_of(path: Path) -> str:
     raise SystemExit('PROBE_NEEDS_SIX_DIGIT_CODE_IN_PATH ' + str(path))
 
 
+def unmapped_review_items(unmapped, source_sha256):
+    """Make every unrecognized amount row independently reviewable, never auto-clear it.
+
+    The ID is bound to the original PDF bytes and physical row, not to which canonical
+    key happened to precede it; mapping-rule changes must not silently erase a review.
+    """
+    items = []
+    for u in unmapped:
+        anchor = [source_sha256, u['statement'], u['page'], round(float(u['y']), 2),
+                  u['label'], u.get('current')]
+        stable_id = hashlib.sha256(json.dumps(anchor, ensure_ascii=False,
+                                              separators=(',', ':')).encode('utf-8')).hexdigest()[:24]
+        items.append({'id': stable_id, 'statement': u['statement'], 'physical_page': u['page'],
+                      'position_y': round(float(u['y']), 2), 'printed_label': u['label'],
+                      'printed_current': u.get('current'), 'preceding_canonical_key': u.get('after'),
+                      'classification': 'NOT_CHECKED', 'materiality': 'NOT_CHECKED',
+                      'review_evidence': None})
+    return items
+
+
+def build_coverage_queue(rows):
+    """Keep the unreviewed row-level audit separate from the compact technical probe."""
+    reports = []
+    for r in rows:
+        reports.append({'pdf': r.get('pdf'), 'source_pdf_sha256': r.get('sha256'),
+                        'issuer': r.get('code'), 'fiscal_period': r.get('fiscal_period'),
+                        'reported_unmapped_rows': r.get('unmapped_rows'),
+                        'review_status': 'NOT_CHECKED',
+                        'items': r.pop('unmapped_review_items', []),
+                        'error': r.get('crash') or r.get('stages', {}).get('identity')})
+    count = sum(len(r['items']) for r in reports)
+    return {'schema': 'financials.unmapped_coverage_review.v1', 'reports': len(reports),
+            'unmapped_rows_total': count, 'materiality_and_completeness': 'NOT_CHECKED',
+            'instructions': 'Review every physical amount row with the original PDF; do not treat equation closure or an empty queue as independent completeness signoff.',
+            'rows': reports}
+
+
 def reread(doc, facts):
     """Independent cell check, same rule as the publication validator."""
     import pymupdf
@@ -71,7 +108,7 @@ def bundle_for(code, issuer, facts, sha):
             'editorial': {'layout': 'INCOME_FLOW_V3', 'primary_question': '收入如何变成归母净利润？', 'income_basis': '营业收入起点'}}
 
 
-def probe(pdf: Path):
+def probe(pdf: Path, include_unmapped_review=False):
     from income_flow_v3 import render as render_v3
     from income_flow_audit import check as audit_v3
     from source_publication import render_exhibit, expand_claims
@@ -98,6 +135,8 @@ def probe(pdf: Path):
     # This requires a separately evidenced review; a PDF-only probe never grants it.
     row['coverage_review'] = {'status': 'NOT_CHECKED', 'unmapped_rows': len(result['unmapped']),
                               'reason': 'Materiality and completeness of unmapped amount rows not independently reviewed'}
+    if include_unmapped_review:
+        row['unmapped_review_items'] = unmapped_review_items(result['unmapped'], sha)
     import notes_extract as ne
     note_facts, segments, partition, notes_report = ne.extract_notes(doc, fi.rows_on_page, fi.squash, se.unit_of, se.norm, facts)
     facts.update({k: f for k, f in note_facts.items() if k not in facts})
@@ -188,16 +227,23 @@ def scaffold_from(ledger, tmp):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('pdfs', nargs='*'); p.add_argument('--out')
+    p.add_argument('--coverage-queue', help='Write every unmapped monetary row with source-stable review ID; never auto-classify')
     a = p.parse_args(argv)
     pdfs = [Path(x).resolve() for x in a.pdfs] or sorted(Path(x).resolve() for x in glob.glob(str(ROOT / 'research/issuers/**/*.pdf'), recursive=True))
     rows = []
     for pdf in pdfs:
         try:
-            rows.append(probe(pdf))
+            rows.append(probe(pdf, include_unmapped_review=bool(a.coverage_queue)))
         except Exception:  # noqa: BLE001
             rows.append({'pdf': str(pdf), 'crash': traceback.format_exc()[-600:]})
         r = rows[-1]
         print(r.get('code'), r.get('fiscal_period'), r.get('format'), json.dumps(r.get('stages', r.get('crash')), ensure_ascii=False), flush=True)
+    if a.coverage_queue:
+        queue = build_coverage_queue(rows)
+        path = Path(a.coverage_queue)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(queue, ensure_ascii=False, indent=1) + '\n')
+        print('UNMAPPED_COVERAGE_QUEUE', queue['unmapped_rows_total'], 'all NOT_CHECKED', path)
     passed = sum(1 for r in rows if r.get('stages', {}).get('ledger', '').startswith('PASS') and r['stages'].get('exhibits', '').startswith('PASS')
                  and (r['stages'].get('income_flow_v3') == 'PASS' or r['stages'].get('income_flow_v3', '').startswith('REFUSED_AS_DESIGNED→SIGNED_BRIDGE_PASS'))
                  and r['stages'].get('findings', '').startswith('PASS')
