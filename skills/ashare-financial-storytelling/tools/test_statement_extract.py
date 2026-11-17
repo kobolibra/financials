@@ -126,6 +126,13 @@ class Probe(unittest.TestCase):
             queue = json.loads(review_path.read_text())
             self.assertEqual(queue['reports'], len(PDFS))
             self.assertEqual(queue['materiality_and_completeness'], 'NOT_CHECKED')
+            reference = queue['reference_corpus']
+            self.assertEqual(reference['matched_reference_reports'] + reference['missing_reference_reports'],
+                             reference['reference_reports'])
+            self.assertEqual(len(reference['missing_originals']), reference['missing_reference_reports'])
+            self.assertLessEqual(reference['matched_reference_reports'], len(PDFS))
+            if reference['missing_reference_reports']:
+                self.assertEqual(reference['status'], 'INCOMPLETE_REFERENCE_CORPUS')
             self.assertEqual(queue['unmapped_rows_total'], sum(r['reported_unmapped_rows'] for r in queue['rows']))
             self.assertGreater(queue['unmapped_rows_total'], 0)
             self.assertTrue(all(item['classification'] == 'NOT_CHECKED' and item['materiality'] == 'NOT_CHECKED'
