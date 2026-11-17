@@ -37,6 +37,7 @@ ROOT = Path(__file__).resolve().parents[3]
 TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import fin_intake as fi  # noqa: E402
+import research_capabilities as rc  # noqa: E402
 
 YI = D(100000000)
 E = lambda k: [[k, 1]] if isinstance(k, str) else k
@@ -175,6 +176,7 @@ def cmd_scaffold(a):
     items = [[lab, side, k + '_prior', k] for lab, side, k in (WC_ITEMS if general else FIN_BS_ITEMS) if has(f, k)]
     dates = sorted({f[k[2]]['period'] for k in items} | {f[k[3]]['period'] for k in items}) if items else []
     draft = {
+        'capability_plan': rc.assess(ledger),  # evidence-candidate only; source, human and graphics audits remain separate
         'glance': [TODO] * 6,
         'new_figures': [
             dict(id='glance', family='kpi_board', nav='本期一览', eyebrow='AT A GLANCE', periods=periods, tiles=tiles,
@@ -528,6 +530,7 @@ def cmd_apply(a):
     sys.path.insert(0, str(ROOT / 'research' / 'shared'))
     from source_publication import expand_claims  # noqa: E402
     base, ledger, story = load(a.code, a.period)
+    rc.require_editorial_v2(ledger)  # fail before touching publication or editorial manifest
     draft = json.loads((base / 'v2-draft.json').read_text())
     C = Claims(story, ledger['facts'])
     walk = lambda v: C.expand(v) if isinstance(v, str) else [walk(x) for x in v] if isinstance(v, list) else {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
@@ -588,15 +591,27 @@ def cmd_apply(a):
     print('V2_APPLIED', a.code, a.period or '', len(figs), 'figures; next: publish, set catalogue figures = qa.json figures, browser QA')
 
 
+def cmd_capabilities(a):
+    _, ledger, _ = load(a.code, a.period)
+    report = rc.assess(ledger)
+    shown = json.dumps(report, ensure_ascii=False, indent=2) + '\n'
+    if getattr(a, 'out', None):
+        Path(a.out).write_text(shown)
+        print('RESEARCH_CAPABILITIES_WRITTEN', a.out)
+    else:
+        print(shown, end='')
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
-    for name in ('numbers', 'scaffold', 'apply', 'flowspec', 'findings'):
+    for name in ('numbers', 'scaffold', 'apply', 'flowspec', 'findings', 'capabilities'):
         s = sub.add_parser(name); s.add_argument('--code', required=True); s.add_argument('--period')
-        if name in ('scaffold', 'flowspec'):
+        if name in ('scaffold', 'flowspec', 'capabilities'):
             s.add_argument('--out', help='draft path (default <folder>/v2-draft.json)')
     a = p.parse_args(argv)
-    {'numbers': cmd_numbers, 'scaffold': cmd_scaffold, 'apply': cmd_apply, 'flowspec': cmd_flowspec, 'findings': cmd_findings}[a.cmd](a)
+    {'numbers': cmd_numbers, 'scaffold': cmd_scaffold, 'apply': cmd_apply, 'flowspec': cmd_flowspec,
+     'findings': cmd_findings, 'capabilities': cmd_capabilities}[a.cmd](a)
 
 
 if __name__ == '__main__':
