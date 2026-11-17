@@ -178,6 +178,19 @@ class ResearchCapabilities(unittest.TestCase):
                                  for f in draft['new_figures'] if f['family'] == 'kpi_board'
                                  for t in f['tiles']))
 
+    def test_source_diagnostic_scaffold_cannot_be_applied_as_research(self):
+        from tempfile import TemporaryDirectory
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        with TemporaryDirectory() as tmp:
+            base = Path(tmp)
+            (base / 'v2-draft.json').write_text(json.dumps({
+                'generation_scope': 'SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION'}))
+            with patch.object(vb, 'load', return_value=(base, industrial(), {'figures': []})):
+                with self.assertRaisesRegex(SystemExit, 'V2_SOURCE_PROBE_NOT_PUBLISHABLE'):
+                    vb.cmd_apply(SimpleNamespace(code='999999', period=None))
+            self.assertFalse((base / 'publication.json').exists())
+
     def test_capability_cli_works_before_publication_json_exists(self):
         from tempfile import TemporaryDirectory
         from unittest.mock import patch
