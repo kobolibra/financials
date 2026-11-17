@@ -94,6 +94,10 @@ def probe(pdf: Path):
     row.update(source_anomalies=result.get('source_anomalies', []))
     row.update(format=result['format'], sign_convention=result['convention'], statement_pages=result['pages'], canonical_facts=len(facts),
                unmapped_rows=len(result['unmapped']), identities_passed=len(ok), identities_failed=bad)
+    # Identities passing cannot certify every material disclosure was mapped.
+    # This requires a separately evidenced review; a PDF-only probe never grants it.
+    row['coverage_review'] = {'status': 'NOT_CHECKED', 'unmapped_rows': len(result['unmapped']),
+                              'reason': 'Materiality and completeness of unmapped amount rows not independently reviewed'}
     import notes_extract as ne
     note_facts, segments, partition, notes_report = ne.extract_notes(doc, fi.rows_on_page, fi.squash, se.unit_of, se.norm, facts)
     facts.update({k: f for k, f in note_facts.items() if k not in facts})
@@ -199,7 +203,10 @@ def main(argv=None):
                  and r['stages'].get('findings', '').startswith('PASS')
                  and not r['stages'].get('business_sankey', '').startswith('FAIL'))
     out = {'schema': 'financials.generalization_probe.v1', 'company_specific_input': 'NONE', 'reports': len(rows), 'all_stages_pass': passed,
-           'scope': 'STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe', 'rows': rows}
+           'scope': 'STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe',
+           'unmapped_rows_total': sum(r.get('unmapped_rows', 0) for r in rows),
+           'completeness_review': 'NOT_CHECKED', 'research_and_human_editorial_review': 'NOT_CHECKED',
+           'rows': rows}
     if a.out:
         Path(a.out).parent.mkdir(parents=True, exist_ok=True)
         Path(a.out).write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
