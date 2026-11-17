@@ -24,6 +24,7 @@ original report remains mandatory before any completeness claim.
 A failure is reported per report and per stage; nothing is patched for a specific issuer.
 """
 import argparse, glob, hashlib, json, re, sys, traceback
+from collections import Counter
 from decimal import Decimal as D
 from pathlib import Path
 
@@ -66,7 +67,39 @@ def unmapped_review_items(unmapped, source_sha256):
     return items
 
 
-def build_coverage_queue(rows):
+def reference_corpus_coverage(rows, reference_rows=None):
+    """Check exact original PDF SHA availability against the historical 30-report receipt.
+
+    The reference is a historical snapshot, NOT proof that current code has re-tested it.
+    Missing source bytes must stay visible rather than silently shrinking 30 to 10.
+    """
+    if reference_rows is None:
+        receipt = ROOT / 'research/quality/generalization-probe/result.json'
+        if not receipt.exists():
+            return {'status': 'REFERENCE_RECEIPT_MISSING', 'reference_receipt': str(receipt),
+                    'tested_reports': len(rows), 'missing_reference_reports': None}
+        reference_rows = json.loads(receipt.read_text())['rows']
+    available = Counter(r.get('sha256') for r in rows if r.get('sha256'))
+    missing = []
+    matched = 0
+    for r in reference_rows:
+        sha = r.get('sha256')
+        if sha and available[sha] > 0:
+            available[sha] -= 1
+            matched += 1
+        else:
+            missing.append({'issuer': r.get('code'), 'fiscal_period': r.get('fiscal_period'),
+                            'historical_pdf': r.get('pdf'), 'source_pdf_sha256': sha,
+                            'historical_unmapped_rows': r.get('unmapped_rows')})
+    return {'status': 'INCOMPLETE_REFERENCE_CORPUS' if missing else 'ALL_HISTORICAL_SOURCE_BYTES_PRESENT',
+            'reference_type': 'HISTORICAL_PDF_SHA_SNAPSHOT_NOT_CURRENT_TEST_RECEIPT',
+            'reference_reports': len(reference_rows), 'tested_reports': len(rows),
+            'matched_reference_reports': matched, 'missing_reference_reports': len(missing),
+            'missing_historical_unmapped_rows': sum(r.get('historical_unmapped_rows') or 0 for r in missing),
+            'missing_originals': missing}
+
+
+def build_coverage_queue(rows, reference_corpus=None):
     """Keep the unreviewed row-level audit separate from the compact technical probe."""
     reports = []
     for r in rows:
@@ -81,7 +114,8 @@ def build_coverage_queue(rows):
                         'error': r.get('crash') or r.get('stages', {}).get('identity')})
     count = sum(len(r['items']) for r in reports)
     return {'schema': 'financials.unmapped_coverage_review.v1', 'reports': len(reports),
-            'unmapped_rows_total': count, 'materiality_and_completeness': 'NOT_CHECKED',
+            'unmapped_rows_total': count, 'reference_corpus': reference_corpus or {'status': 'NOT_CHECKED'},
+            'materiality_and_completeness': 'NOT_CHECKED',
             'instructions': 'Review every physical amount row with the original PDF; do not treat equation closure or an empty queue as independent completeness signoff.',
             'rows': reports}
 
@@ -237,7 +271,9 @@ def scaffold_from(ledger, tmp):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument('pdfs', nargs='*'); p.add_argument('--out')
-    p.add_argument('--coverage-queue', help='Write every unmapped monetary row with source-stable review ID; never auto-classify')
+    p.add_argument('--coverage-queue', help='Write every available unmapped monetary row with source-stable ID')
+    p.add_argument('--require-reference-corpus', action='store_true',
+                   help='Fail if any original PDF SHA from the historical reference receipt is missing')
     a = p.parse_args(argv)
     pdfs = [Path(x).resolve() for x in a.pdfs] or sorted(Path(x).resolve() for x in glob.glob(str(ROOT / 'research/issuers/**/*.pdf'), recursive=True))
     rows = []
@@ -248,8 +284,12 @@ def main(argv=None):
             rows.append({'pdf': str(pdf), 'crash': traceback.format_exc()[-600:]})
         r = rows[-1]
         print(r.get('code'), r.get('fiscal_period'), r.get('format'), json.dumps(r.get('stages', r.get('crash')), ensure_ascii=False), flush=True)
+    reference = reference_corpus_coverage(rows)
+    print('REFERENCE_CORPUS', reference.get('matched_reference_reports'), '/',
+          reference.get('reference_reports'), 'missing', reference.get('missing_reference_reports'),
+          'status', reference['status'])
     if a.coverage_queue:
-        queue = build_coverage_queue(rows)
+        queue = build_coverage_queue(rows, reference)
         path = Path(a.coverage_queue)
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(queue, ensure_ascii=False, indent=1) + '\n')
@@ -262,12 +302,12 @@ def main(argv=None):
            'scope': 'STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe',
            'unmapped_rows_total': sum(r.get('unmapped_rows', 0) for r in rows),
            'completeness_review': 'NOT_CHECKED', 'research_and_human_editorial_review': 'NOT_CHECKED',
-           'rows': rows}
+           'reference_corpus': reference, 'rows': rows}
     if a.out:
         Path(a.out).parent.mkdir(parents=True, exist_ok=True)
         Path(a.out).write_text(json.dumps(out, ensure_ascii=False, indent=1) + '\n')
     print('GENERALIZATION_PROBE', passed, '/', len(rows))
-    return 0 if passed == len(rows) else 1
+    return 0 if passed == len(rows) and (not a.require_reference_corpus or reference['status'] == 'ALL_HISTORICAL_SOURCE_BYTES_PRESENT') else 1
 
 
 if __name__ == '__main__':
