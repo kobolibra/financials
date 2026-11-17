@@ -25,8 +25,9 @@ def fact(value, kind, period, key):
 def ledger():
     f = {}
     for key, current, previous in [
-        ('rev', 1000, 800), ('cogs', 600, 500), ('net_profit', 200, 150),
-        ('cfo', 90, 100), ('parent_net', 190, 145)]:
+        ('rev', 1000, 800), ('cogs', 600, 500),
+        ('operating_profit', 230, 180), ('pretax', 220, 170),
+        ('net_profit', 200, 150), ('cfo', 90, 100), ('parent_net', 190, 145)]:
         f[key] = fact(current, 'flow', '2026H1', key)
         f[key + '_prior'] = fact(previous, 'flow', '2025H1', key)
     f['ar'] = fact(300, 'stock', '2026-06-30', 'ar')
