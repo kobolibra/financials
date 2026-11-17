@@ -41,7 +41,7 @@ Contract version: 10.0.0
 |---|---|---|
 | P1 来源 | `source/…complete_original.pdf`、`extracted/pNNN.txt`、骨架账本 | 完整报告（非摘要/英文版）；封面年份+报告类型；全称+证券代码页；SHA、物理页数 |
 | P2 账本 | `source-ledger.json` 事实 | 三表由 `fin_intake.py auto` 自动抽取为标准键（任意公司、四种报表格式），恒等式两期全部闭合；附注事实用 `facts` 规格；每个事实有 bbox 源格 |
-| P3 研究 | `analyst-memo.md`（模板见 `templates/`） | 核心判断、驱动式、最强替代解释、证伪条件、利润质量、现金/资本约束、NOT_CHECKED 清单全部写完，**在画图之前** |
+| P3 研究 | `analyst-memo.md` + `research-brief.json`（见 `templates/research-brief.template.json`） | 先写公司特有的主要假说；每一论点绑定源事实与精确 Decimal 算式、最强替代解释、区分证据、下一披露的证伪条件。`research_evidence.py` 必须校验后才能 `v2_builder.apply`；独立人工财经判断仍 `NOT_CHECKED` |
 | P4 图序 | `publication.json` figures + 编辑清单 `research/editorial-20261113/<code>.json` | 每图一个问题、一句答案、一个反证；图种由关系决定（§4）；故事顺序先于图数 |
 | P5 出版 | `public/<code>.html`、`figure-briefs.json`、`qa.json` | 共享出版器生成；无公司专用绘图代码；干净重建逐字节一致 |
 | P6 验收 | 截图、矢量审计、`release-gates.json` | §6 全部适用门槛有证据；逐图截图自评（rubric）无 P0 |
@@ -52,9 +52,9 @@ Contract version: 10.0.0
 **P4 标准做法（EDITORIAL_V2，已证明适用的工业会计模型）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
 0. **先检查** `python $T2 capabilities --code <c> [--period P]`：类型化事实、同比/余额期间、行业路由、候选图种和欠缺的研究证据逐项列出。新金融/地产出版器未实现时拒绝通用工业出版；`scaffold --source-probe` 只作原件技术诊断，永远不能直接发布。详细见 Playbook 07。
 1. `python $T2 numbers --code <c> [--period P]`：打印每行同比、占收入比例、分部/地区增速与毛利率、营运资本余额变动。**叙事只按这里的方向写**。
-2. `python $T2 scaffold …`：生成 `v2-draft.json`，含 KPI 看板、增速条（有上年同期源格的分部与地区自动入选）、利润率哑铃（含分部毛利率）、余额变动四张图的数据定义，文字留 TODO。
+2. `python $T2 scaffold …`：生成经过能力筛选的 `v2-draft.json`；只有证据足够的图才保留候选，原因写入 `omitted_for_evidence`。分析师先完成 `research-brief.json`，再根据核心问题筛选图形与图序。
 3. 只写文字：结论、趋势、重点、反证、章节、本期一览。数字一律写宏：`[g:rev]` 同比、`[r:gm]` 比率、`[p:gm]` 百分点变化、`[y:parent_net]` 亿元、`[d:ar]` 余额变动。正文签名桥 ≤2，其余在 `roles` 设为 reference；与新图重复的两期表放进 `remove`。
-4. `python $T2 apply …`：拒绝 TODO、手写小数金额、未知宏，以及没有上年同期源格的宏；跑完整编辑 lint；同步编辑清单的角色、主图位置和展开后的标题。
+4. **研究证据门禁：** `python $T/research_evidence.py --code <c> [--period P]` 校验独立于绘图的源事实、精确算式、反解释和下一期证伪；这是**机器证据合同**，并非独立人类审稿。`python $T2 apply …` 在写 `publication.json` 前强制验证 `research-brief.json`；同时拒绝 TODO、手写金额、未知宏或错期，跑编辑 lint，同步编辑清单。
 5. 出版 → 目录 `figures` 改为 `qa.json` 的图数 → 浏览器验收（§6）。
 
 ## 3. 研究必须先于画图
@@ -67,7 +67,7 @@ Contract version: 10.0.0
 4. **持续性与约束**：利润质量（扣非、公允价值、补贴、减值）、现金转换（CFO/净利、营运资本）、再投资（现金资本开支、负债、分红）。
 5. **未验证项**：缺失的8–12季、同行、量价、估值、管理层指引；不能伪造，写 NOT_CHECKED。
 
-数字叙述一律用 `quantified_claims` 占位符从源表达式生成（含比率分母与单位倍数）；正文不得手打舍入数。归因前先比较每项毛利变化，不能把"增长最快的业务"默认成"利润改善的来源"。会计差额归因不是价格/销量/结构因果，必须在图下写明。
+数字叙述一律用 `quantified_claims` 占位符从源表达式生成（含比率分母与单位倍数）；正文不得手打舍入数。新发布的 `research-brief.json` 按 `financials.research_evidence.v1` 写每个核心假说的逐元表达式、源事实ID与日期，要求最强替代解释、区分证据和明确的下一期证伪；`research_evidence.py` 只有机器源数学签证权，不得把它写成已证明行业因果或完成独立分析师审稿。归因前先比较每项毛利变化，不能把"增长最快的业务"默认成"利润改善的来源"。会计差额归因不是价格/销量/结构因果，必须在图下写明。
 
 ## 4. 图形语法：关系决定图形，会计决定合法性
 
