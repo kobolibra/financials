@@ -155,6 +155,29 @@ class ResearchCapabilities(unittest.TestCase):
                 with self.assertRaisesRegex(SystemExit, 'V2_SECTOR_OR_SOURCE_CAPABILITY_NOT_READY'):
                     rc.require_editorial_v2(d)
 
+    def test_scaffold_omits_unsupported_graph_families_instead_of_filling_quota(self):
+        from tempfile import TemporaryDirectory
+        from types import SimpleNamespace
+        from unittest.mock import patch
+        d = industrial()
+        d['facts']['cogs']['yuan'] = '2100'  # no legal positive gross-margin dumbbell
+        for k in ('ar', 'inventory', 'ap'):
+            d['facts'][k + '_prior']['period'] = '2025-06-30'  # not previous year-end
+        with TemporaryDirectory() as tmp:
+            target = Path(tmp) / 'draft.json'
+            with patch.object(vb, 'load', return_value=(Path(tmp), d, {'figures': []})):
+                vb.cmd_scaffold(SimpleNamespace(code='999999', period=None, out=str(target)))
+            draft = json.loads(target.read_text())
+            self.assertEqual({f['family'] for f in draft['new_figures']},
+                             {'kpi_board', 'growth_bars'})
+            self.assertEqual({x['family'] for x in draft['omitted_for_evidence']},
+                             {'ratio_dumbbell', 'stock_delta'})
+            self.assertNotIn('stock-delta', draft['order'])
+            self.assertNotIn('margins', draft['roles'])
+            self.assertFalse(any(t.get('value') == 'ar'
+                                 for f in draft['new_figures'] if f['family'] == 'kpi_board'
+                                 for t in f['tiles']))
+
     def test_capability_cli_works_before_publication_json_exists(self):
         from tempfile import TemporaryDirectory
         from unittest.mock import patch
