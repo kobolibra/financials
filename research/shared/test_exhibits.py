@@ -120,6 +120,10 @@ class Exhibits(unittest.TestCase):
                                          float(rect.get('x')) + float(rect.get('width')) - 17,
                                          (mobile, t.text, ET.tostring(t, encoding='unicode')))
                 wrapped = [t for t in texts if t.get('data-full-label')]
+                if mobile:
+                    english = [t.text for t in wrapped
+                               if t.get('data-full-label') == 'Accounts Receivable Balance']
+                    self.assertEqual(' '.join(english), 'Accounts Receivable Balance')
                 for label in (fg['tiles'][0]['label'], fg['tiles'][1]['label']):
                     segments = [t.text for t in wrapped if t.get('data-full-label') == label]
                     if segments:
