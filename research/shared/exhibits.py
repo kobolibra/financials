@@ -105,8 +105,11 @@ def _tile_label_lines(value, content_width, nominal):
             left, right = label[:cut].rstrip(), label[cut:].lstrip()
             if not left or not right:
                 continue
-            if (left[-1].isascii() and left[-1].isalpha()
-                    and right[0].isascii() and right[0].isalpha()):
+            # Inspect the *raw* boundary before trim: a space is a legal word break.
+            # Looking at stripped tokens misclassifies "Accounts | Receivable" as
+            # splitting a Latin word and rejects otherwise readable captions.
+            if (label[cut - 1].isascii() and label[cut - 1].isalpha()
+                    and label[cut].isascii() and label[cut].isalpha()):
                 continue  # never break an English word inside a finance label
             a, b = _estimated_text_px(left, size, 600), _estimated_text_px(right, size, 600)
             if a > content_width or b > content_width:
