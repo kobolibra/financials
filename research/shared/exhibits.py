@@ -78,19 +78,80 @@ def growth(cur, prior):
 
 
 # ---------------------------------------------------------------- KPI board
-def render_kpi_board(tiles, title, *, mobile=False, **ident):
+def _estimated_text_px(value, size, weight=500):
+    """The same conservative CJK/Latin width envelope used by Canvas.text."""
+    return sum(1 if ord(ch) > 0x2E7F else 0.62 for ch in str(value)) * size * (
+        1.04 if int(weight) >= 600 else 1)
+
+
+def _tile_value_size(value, content_width, nominal, minimum, kind):
+    """Fit within *one KPI cell*, not merely within the entire 330px canvas."""
+    for size in range(nominal, minimum - 1, -1):
+        if _estimated_text_px(value, size, 700) <= content_width:
+            return size
+    raise ValueError('KPI_TILE_' + kind + '_UNREADABLE: choose a shorter unit or editorial label')
+
+
+def _tile_label_lines(value, content_width, nominal):
+    """Balance at most two CJK/word-aware lines; never truncate or split a Latin word."""
+    label = str(value)
+    if _estimated_text_px(label, nominal, 600) <= content_width:
+        return [label], nominal
+    punctuation_start = set('，。；：、）》】')
+    punctuation_end = set('（《【')
+    for size in (nominal, nominal - 1, nominal - 2):
+        options = []
+        for cut in range(1, len(label)):
+            left, right = label[:cut].rstrip(), label[cut:].lstrip()
+            if not left or not right:
+                continue
+            # Inspect the *raw* boundary before trim: a space is a legal word break.
+            # Looking at stripped tokens misclassifies "Accounts | Receivable" as
+            # splitting a Latin word and rejects otherwise readable captions.
+            if (label[cut - 1].isascii() and label[cut - 1].isalpha()
+                    and label[cut].isascii() and label[cut].isalpha()):
+                continue  # never break an English word inside a finance label
+            a, b = _estimated_text_px(left, size, 600), _estimated_text_px(right, size, 600)
+            if a > content_width or b > content_width:
+                continue
+            penalty = (150 if right[0] in punctuation_start else 0) + (
+                150 if left[-1] in punctuation_end else 0)
+            options.append((abs(a - b) + penalty, cut, left, right))
+        if options:
+            _, _, left, right = min(options)
+            return [left, right], size
+    raise ValueError('KPI_TILE_LABEL_UNREADABLE: label needs a deliberate editorial short form')
+
+
+def render_kpi_board(tiles, title, *, mobile=False, adaptive_layout=None, **ident):
     """tiles: dicts {label, kind: money|ratio, value, prior, value_ref, prior_ref, period, prior_period}.
     money: value/prior are exact yuan.  ratio: value/prior are exact percentages (already num/den*100),
     with value_ref/prior_ref = {"num": expr, "den": expr}."""
     c = Canvas('SOURCE_KPI_BOARD_V1', title, mobile=mobile, **ident)
+    if adaptive_layout not in (None, 'KPI_TILE_WRAP_V2'):
+        raise ValueError('KPI_UNKNOWN_ADAPTIVE_LAYOUT')
+    adaptive = adaptive_layout == 'KPI_TILE_WRAP_V2'
     cols = 2 if mobile else 3
     tw, th, gap = ((149, 126, 16) if mobile else (320, 132, 20))
     x0, y0 = (16, 8) if mobile else (20, 8)
+    content_width = tw - 32  # symmetrical 14px inset plus 4px CJK rendering tolerance
+    labels = ([_tile_label_lines(t['label'], content_width, 12 if mobile else 13)
+               for t in tiles] if adaptive else [])
+    extra = 18 if adaptive and any(len(lines) > 1 for lines, _ in labels) else 0
+    th += extra
+    if adaptive:
+        c.meta += ' data-kpi-tile-layout="KPI_TILE_WRAP_V2"'
     for i, t in enumerate(tiles):
         col, row = i % cols, i // cols
         x, y = x0 + col * (tw + gap), y0 + row * (th + gap)
         c.raw(f'<rect x="{x}" y="{y}" width="{tw}" height="{th}" rx="10" fill="#F6F7F8"/>')
-        c.text(x + 14, y + 26, t['label'], 12 if mobile else 13, color=MUTED, weight=600)
+        if adaptive:
+            lines, label_size = labels[i]
+            for line_num, line in enumerate(lines):
+                c.text(x + 14, y + 26 + 15 * line_num, line, label_size, color=MUTED, weight=600,
+                       kpi_label_line=line_num + 1, full_label=t['label'])
+        else:
+            c.text(x + 14, y + 26, t['label'], 12 if mobile else 13, color=MUTED, weight=600)
         if t['kind'] == 'money':
             # headline figure: 亿 from 0.1亿 up keeps the tile short enough for a 149-wide phone tile
             shown = f"{q(D(t['value']) / D(100000000), 2)}亿" if abs(D(t['value'])) >= D(10000000) else yi(t['value'])
@@ -104,10 +165,14 @@ def render_kpi_board(tiles, title, *, mobile=False, **ident):
             delta = t['value'] - t['prior']
             dtext = f'{t.get("delta_label", "同比")} {q(delta):+}pp'
             good = delta >= 0 if not t.get('lower_is_better') else delta <= 0
-        c.text(x + 14, y + (64 if mobile else 70), shown, 22 if mobile else 30, color=INK, weight=700,
+        shown_size = (_tile_value_size(shown, content_width, 22 if mobile else 30,
+                                       16 if mobile else 22, 'VALUE') if adaptive else (22 if mobile else 30))
+        c.text(x + 14, y + (64 if mobile else 70) + extra, shown, shown_size, color=INK, weight=700,
                exact_value=t['value'], source_reference=json.dumps(t['value_ref'], ensure_ascii=False, separators=(',', ':')),
                kpi_kind=t['kind'], period=t['period'], unit='元' if t['kind'] == 'money' else '%')
-        c.text(x + 14, y + (88 if mobile else 98), dtext, 11 if mobile else 13, color=GREEN if good else RED, weight=700,
+        delta_size = (_tile_value_size(dtext, content_width, 11 if mobile else 13,
+                                       9 if mobile else 10, 'DELTA') if adaptive else (11 if mobile else 13))
+        c.text(x + 14, y + (88 if mobile else 98) + extra, dtext, delta_size, color=GREEN if good else RED, weight=700,
                delta_label=t.get('delta_label', '同比'), exact_prior=t['prior'], prior_reference=json.dumps(t['prior_ref'], ensure_ascii=False, separators=(',', ':')),
                prior_period=t['prior_period'])
         # two-period micro bars, own scale per tile (stated in the legend line)
@@ -116,7 +181,7 @@ def render_kpi_board(tiles, title, *, mobile=False, **ident):
         for j, (v, colr, per) in enumerate(((t['prior'], GREY, t['prior_period']), (t['value'], DARK, t['period']))):
             w = abs(v) / top * bw
             colr = RED if v < 0 else colr  # a negative amount is drawn by length but never in the positive colour
-            c.raw(f'<rect x="{x + 14}" y="{f(y + (100 if mobile else 108) + j * 9)}" width="{f(w)}" height="6" rx="2" fill="{colr}" '
+            c.raw(f'<rect x="{x + 14}" y="{f(y + (100 if mobile else 108) + extra + j * 9)}" width="{f(w)}" height="6" rx="2" fill="{colr}" '
                   f'data-micro-value="{v}" data-micro-domain="{top}" data-micro-span="{bw}" data-period="{E(per, quote=True)}"/>')
     rows = (len(tiles) + cols - 1) // cols
     h = y0 + rows * (th + gap) + 18

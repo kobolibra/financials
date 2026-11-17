@@ -245,7 +245,8 @@ def render_exhibit(ledger,figure,mobile,kw,title,period):
             elif t['kind']=='ratio':
                 tiles.append(dict(label=t['label'],kind='ratio',value=ratio_of(ledger,t['num'],t['den']),prior=ratio_of(ledger,t['prior_num'],t['prior_den']),value_ref={'num':t['num'],'den':t['den']},prior_ref={'num':t['prior_num'],'den':t['prior_den']},period=periods[1],prior_period=periods[0],lower_is_better=t.get('lower_is_better',False)))
             else:raise ValueError('DOSSIER_KPI_KIND '+str(t.get('kind')))
-        return X.render_kpi_board(tiles,title,mobile=mobile,**ident)
+        return X.render_kpi_board(tiles,title,mobile=mobile,
+                                  adaptive_layout=figure.get('adaptive_layout'),**ident)
     if family=='ratio_dumbbell':
         rows=[dict(label=r['label'],value=ratio_of(ledger,r['num'],r['den']),prior=ratio_of(ledger,r['prior_num'],r['prior_den']),value_ref={'num':r['num'],'den':r['den']},prior_ref={'num':r['prior_num'],'den':r['prior_den']},lower_is_better=r.get('lower_is_better',False)) for r in figure['rows']]
         return X.render_ratio_dumbbell(rows,title,periods=periods,mobile=mobile,**ident)

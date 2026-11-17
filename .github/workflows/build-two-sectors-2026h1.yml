@@ -55,6 +55,16 @@ jobs:
           fc-list :lang=zh family | grep -qi 'Noto'
           python -m pip install -q playwright
           python -m playwright install --with-deps chromium webkit
+      - name: Genuine Chromium and WebKit native 330/390 CJK KPI-tile collision audit
+        run: python research/shared/qa_native_kpi_tile.py
+      - name: Archive CJK and long-number KPI browser glyph QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-kpi-long-label-chromium-webkit
+          path: ${{ runner.temp }}/native-kpi-tile/
+          retention-days: 30
+          if-no-files-found: warn
       - name: Real original 8-figure finance SVG geometry / 1440 768 390 / exports
         run: |
           python research/shared/qa_two_sector_browser.py --code 600900

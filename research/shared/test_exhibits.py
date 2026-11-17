@@ -82,6 +82,90 @@ class Exhibits(unittest.TestCase):
             c.text(16, 100, '每格小条：深色为本期，浅色为对比期（见各格标注），各格独立比例。', 10)
         c.text(16, 100, '小条：深色本期，浅色对比期；各格独立比例。', 10)
 
+    def test_new_native_kpi_labels_and_numbers_fit_each_cell_without_truncation(self):
+        from xml.etree import ElementTree as ET
+        from source_publication import render_exhibit
+        from exhibits import _estimated_text_px
+        fg = copy.deepcopy(next(f for f in self.story['figures'] if f['family'] == 'kpi_board'))
+        fg['adaptive_layout'] = 'KPI_TILE_WRAP_V2'
+        fg['tiles'][0]['label'] = '本期销售商品和提供劳务收到的全部现金'
+        fg['tiles'][1]['label'] = '归属于上市公司普通股股东的净利润'
+        fg['tiles'][2]['label'] = 'Accounts Receivable Balance'
+        for mobile in (True, False):
+            with self.subTest(mobile=mobile):
+                svg = render_exhibit(self.ledger, fg, mobile,
+                                     {'issuer': '300394', 'pdf_sha256': self.sha},
+                                     fg['question'], self.ledger['issuer']['fiscal_period'])
+                self.audit(svg)  # existing independent exact-source and SVG geometry checks
+                self.assertIn('data-kpi-tile-layout="KPI_TILE_WRAP_V2"', svg)
+                root = ET.fromstring(svg)
+                ns = {'s': 'http://www.w3.org/2000/svg'}
+                tiles = [x for x in root.findall('s:rect', ns) if x.get('fill') == '#F6F7F8']
+                texts = root.findall('s:text', ns)
+                self.assertEqual(len(tiles), len(fg['tiles']))
+                if mobile:
+                    self.assertGreater(sum(t.get('data-kpi-label-line') == '2' for t in texts), 0)
+                for t in texts:
+                    if not any(k in t.attrib for k in ('data-kpi-label-line', 'data-exact-value', 'data-delta-label')):
+                        continue
+                    x, y = float(t.get('x')), float(t.get('y'))
+                    matches = [rect for rect in tiles
+                               if abs(float(rect.get('x')) + 14 - x) < 0.01
+                               and float(rect.get('y')) < y < float(rect.get('y')) + float(rect.get('height'))]
+                    self.assertEqual(len(matches), 1, ET.tostring(t, encoding='unicode'))
+                    rect = matches[0]
+                    width = _estimated_text_px(t.text or '', float(t.get('font-size')),
+                                               int(t.get('font-weight')))
+                    self.assertLessEqual(x + width,
+                                         float(rect.get('x')) + float(rect.get('width')) - 17,
+                                         (mobile, t.text, ET.tostring(t, encoding='unicode')))
+                wrapped = [t for t in texts if t.get('data-full-label')]
+                if mobile:
+                    english = [t.text for t in wrapped
+                               if t.get('data-full-label') == 'Accounts Receivable Balance']
+                    self.assertEqual(' '.join(english), 'Accounts Receivable Balance')
+                for label in (fg['tiles'][0]['label'], fg['tiles'][1]['label']):
+                    segments = [t.text for t in wrapped if t.get('data-full-label') == label]
+                    if segments:
+                        self.assertEqual(''.join(segments), label)
+
+    def test_native_kpi_rejects_unreadable_editorial_labels_instead_of_overflow(self):
+        from source_publication import render_exhibit
+        fg = copy.deepcopy(next(f for f in self.story['figures'] if f['family'] == 'kpi_board'))
+        fg['adaptive_layout'] = 'KPI_TILE_WRAP_V2'
+        fg['tiles'][0]['label'] = '未能缩短的财务指标名称' * 12
+        with self.assertRaisesRegex(ValueError, 'KPI_TILE_LABEL_UNREADABLE'):
+            render_exhibit(self.ledger, fg, True,
+                           {'issuer': '300394', 'pdf_sha256': self.sha},
+                           fg['question'], self.ledger['issuer']['fiscal_period'])
+
+    def test_native_kpi_refuses_unreadable_numbers_instead_of_overlapping_a_neighbor(self):
+        from decimal import Decimal as D
+        from exhibits import render_kpi_board
+        tile = {'label': '营业收入', 'kind': 'money',
+                'value': D(10) ** 20, 'prior': D(10) ** 19,
+                'value_ref': 'rev', 'prior_ref': 'rev_prior',
+                'period': '2026H1', 'prior_period': '2025H1'}
+        with self.assertRaisesRegex(ValueError, 'KPI_TILE_VALUE_UNREADABLE'):
+            render_kpi_board([tile], '本期重要财务指标', mobile=True,
+                             adaptive_layout='KPI_TILE_WRAP_V2',
+                             issuer='300394', period='2026H1', pdf_sha256=self.sha)
+        with self.assertRaisesRegex(ValueError, 'KPI_UNKNOWN_ADAPTIVE_LAYOUT'):
+            render_kpi_board([tile], '本期重要财务指标', mobile=True,
+                             adaptive_layout='UNSUPPORTED_MODE',
+                             issuer='300394', period='2026H1', pdf_sha256=self.sha)
+
+    def test_legacy_kpi_does_not_change_its_svg_without_explicit_opt_in(self):
+        from source_publication import render_exhibit
+        fg = copy.deepcopy(next(f for f in self.story['figures'] if f['family'] == 'kpi_board'))
+        identity = {'issuer': '300394', 'pdf_sha256': self.sha}
+        baseline = render_exhibit(self.ledger, fg, True, identity,
+                                  fg['question'], self.ledger['issuer']['fiscal_period'])
+        fg['adaptive_layout'] = None
+        self.assertEqual(render_exhibit(self.ledger, fg, True, identity,
+                                        fg['question'], self.ledger['issuer']['fiscal_period']), baseline)
+        self.assertNotIn('KPI_TILE_WRAP_V2', baseline)
+
     def test_a_negative_kpi_is_never_drawn_in_the_positive_colour(self):
         # 300570 H1: operating cash flow turned negative; its micro bar must be red, and the audit enforces it
         html = (ROOT / 'public/300570.html').read_text()

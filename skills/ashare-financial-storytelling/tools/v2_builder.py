@@ -195,6 +195,7 @@ def cmd_scaffold(a):
         'glance': [TODO] * 6,
         'new_figures': [
             dict(id='glance', family='kpi_board', nav='本期一览', eyebrow='AT A GLANCE', periods=periods, tiles=tiles,
+                 adaptive_layout='KPI_TILE_WRAP_V2',
                  chapter=dict(kicker='01 / 本期一览', title=TODO, summary=TODO), **text_block()),
             dict(id='growth', family='growth_bars', nav='增速对比', eyebrow='GROWTH', periods=periods,
                  pairs=(seg_pairs + pairs)[:8] if seg_pairs else pairs, chapter=dict(kicker='02 / 增长与盈利', title=TODO, summary=TODO), **text_block()),
