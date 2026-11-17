@@ -14,6 +14,12 @@ runs the Skill's generic chain and nothing else:
   ranked generic findings (v2_builder.findings), every number an audited claim
 
     python scripts/generalization_probe.py [--out research/quality/generalization-probe/result.json] [pdf ...]
+    python scripts/generalization_probe.py --coverage-queue /tmp/unmapped-review.json [pdf ...]
+
+The optional review queue lists every unmapped monetary row with a stable ID tied to the
+original PDF SHA, physical page, row position and printed amount. Classification and materiality
+start at NOT_CHECKED. It is a triage input, NOT a clearance receipt. Human review against the
+original report remains mandatory before any completeness claim.
 
 A failure is reported per report and per stage; nothing is patched for a specific issuer.
 """
