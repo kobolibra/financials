@@ -76,6 +76,33 @@ class QuarterlyGeneralization(unittest.TestCase):
         for code in ("V2_FIRST_FIGURE_MUST_BE_KPI_BOARD", "V2_FAMILY_VARIETY", "V2_NO_TREND_EXHIBIT", "V2_BRIDGE_PARADE", "V2_TOO_FEW_CHAPTERS"):
             self.assertIn(code, issues)
 
+    def test_new_v2_chooses_evidence_based_figures_not_a_five_family_quota(self):
+        import research_capabilities as rc
+        from test_research_capabilities import industrial
+        d = industrial()
+        plan = rc.assess(d)
+        families = ['kpi_board', 'income_flow_v3', 'signed_bridge', 'stock_delta']
+        figs = [dict(id='f' + str(i), family=fam,
+                     chapter={'kicker': str(i), 'title': '审阅主题', 'summary': '来源与反证须分别核对'})
+                for i, fam in enumerate(families)]
+        self.assertIn('V2_FAMILY_VARIETY', ' '.join(fi.lint_v2(figs)))
+        self.assertIn('V2_NO_TREND_EXHIBIT', ' '.join(fi.lint_v2(figs)))
+        # A real, verified capability plan means that deliberately omitting a
+        # redundant trend is legal: four diverse, source-backed views suffice.
+        self.assertEqual(fi.lint_v2(figs, capabilities=plan), [])
+
+        sparse = figs[:2]
+        self.assertIn('V2_SOURCE_LIMITED_RELATIONSHIPS',
+                      ' '.join(fi.lint_v2(sparse, capabilities=plan)))
+        # Deliberately make a gross-margin ratio unusable; no amount of
+        # visual 'variety' can legitimate that chart.
+        d['facts']['cogs']['yuan'] = '2100'
+        limited = rc.assess(d)
+        altered = [dict(fig) for fig in figs]
+        altered[1]['family'] = 'ratio_dumbbell'
+        self.assertIn('V2_SOURCE_INELIGIBLE_FIGURE_f1:ratio_dumbbell',
+                      ' '.join(fi.lint_v2(altered, capabilities=limited)))
+
     def test_nine_month_report_declares_single_quarter_columns(self):
         class Page:
             def __init__(self, t): self.t = t

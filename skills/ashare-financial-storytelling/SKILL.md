@@ -121,7 +121,7 @@ Contract version: 10.0.0
 ## 6. 验收门槛（对**当前字节**执行，不继承昨天的结果）
 
 本地必跑：
-- `python skills/ashare-financial-storytelling/tools/fin_intake.py preflight --code <code>`（源格、恒等式、编辑 lint）
+- **新建 / 重编 EDITORIAL_V2：** `python skills/ashare-financial-storytelling/tools/fin_intake.py preflight --code <code> --require-research-evidence`（原件、恒等式、按当前账本重新判定合法图种、独立研究证据稿与 SHA、编辑 lint）。缺失 `research-brief.json` 或篡改旧证据回执时必须失败；未重编的历史发布稿仅可记 `NOT_CHECKED_LEGACY`，不能据此宣称已满足新的研究证据门禁。
 - `python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'test_*.py'`
 - `python -m unittest discover -s research/shared -p 'test_*.py'`（需要 CI 下载的历史 PDF 的用例在本地缺件时会报 FileNotFoundError，属环境缺件，须在 CI 结果中核对）
 - `python research/shared/source_publication.py research/issuers/<code> /tmp/<code>.html && cmp /tmp/<code>.html public/<code>.html`

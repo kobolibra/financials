@@ -510,7 +510,8 @@ HEDGE_OK = re.compile(r"(管理层|披露|原文|称|解释|可能|不能|不等
 REQUIRED_FIGURE_KEYS = ("id", "family", "nav", "question", "takeaway", "analysis", "counter", "identity", "eyebrow")
 
 
-def lint(story: dict, expanded: dict | None = None, roles: dict | None = None) -> list[str]:
+def lint(story: dict, expanded: dict | None = None, roles: dict | None = None,
+         capabilities: dict | None = None) -> list[str]:
     """Editorial lint. Lengths are measured on the expanded text a reader sees;
     hand-typed numbers are detected on the authored text."""
     issues = []
@@ -557,24 +558,46 @@ def lint(story: dict, expanded: dict | None = None, roles: dict | None = None) -
     if len(story.get("metrics", [])) != 3:
         issues.append("HERO_METRICS_SHOULD_BE_3")
     if story.get("design") == "EDITORIAL_V2":
-        issues += lint_v2(figs, roles)
+        issues += lint_v2(figs, roles, capabilities)
     return issues
 
 
 TREND_FAMILIES = {"period_columns", "ratio_dumbbell", "growth_bars"}
 
 
-def lint_v2(figs, roles=None) -> list:
-    """EDITORIAL_V2 (AEI earnings-post structure): at-a-glance board first, a varied exhibit mix,
-    at least one trend exhibit, chaptered themes, and no parade of cumulative bridges."""
+def lint_v2(figs, roles=None, capabilities=None) -> list:
+    """V2 editorial audit: preserve legacy receipts, but make new figure choices evidence-led.
+
+    A chart family is not a goal. For new source-bound reports, reject families whose
+    actual source proof is absent and require independent research relationships.
+    Legacy published dossiers retain their original five-family editorial test until
+    they are explicitly regenerated with the auditable research capability contract.
+    """
     issues = []
     fams = [f.get("family") for f in figs]
     if not figs or fams[0] != "kpi_board":
         issues.append("V2_FIRST_FIGURE_MUST_BE_KPI_BOARD: open with the at-a-glance numbers")
-    if len(set(fams)) < 5:
-        issues.append(f"V2_FAMILY_VARIETY_{len(set(fams))}: use at least 5 distinct exhibit families")
-    if not TREND_FAMILIES & set(fams):
-        issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
+    if capabilities is None:
+        if len(set(fams)) < 5:
+            issues.append(f"V2_FAMILY_VARIETY_{len(set(fams))}: use at least 5 distinct exhibit families")
+        if not TREND_FAMILIES & set(fams):
+            issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
+    else:
+        if (capabilities.get("schema") != "financials.research_capabilities.v1"
+                or capabilities.get("publication_route") != "INDUSTRIAL_V2_AUTHORING_CANDIDATE"):
+            issues.append("V2_UNVERIFIED_SECTOR_OR_SOURCE_CAPABILITY")
+        status = {v["family"]: v["status"] for v in capabilities.get("visual_candidates", [])}
+        for f in figs:
+            family = f.get("family")
+            if (family in status
+                    and status[family] != "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT"):
+                issues.append(f"V2_SOURCE_INELIGIBLE_FIGURE_{f.get('id')}:{family}")
+        # Distinct research relationships are a minimum quality requirement, not
+        # a demand to manufacture five graphic types from absent evidence.
+        if len(set(fams)) < 3:
+            issues.append("V2_SOURCE_LIMITED_RELATIONSHIPS: fewer than three distinct audited financial views")
+        # Omit trends when no comparable single-period or ratio evidence exists.
+        # An eligible trend is a candidate, not a mandate to draw a redundant chart.
     # body = figures the editorial manifest keeps in the main reading layer (all figures when roles are unknown)
     body = [f for f in figs if (roles or {}).get(f.get("id")) != "reference"]
     bridges = sum(1 for f in body if f.get("family") == "signed_bridge")
@@ -595,7 +618,38 @@ def cmd_preflight(a) -> None:
     base = folder(a.code, a.period)
     ledger = json.loads((base / "source-ledger.json").read_text())
     story = json.loads((base / "publication.json").read_text())
-    result = {"source_and_accounting": "NOT_RUN", "editorial_lint": []}
+    result = {"source_and_accounting": "NOT_RUN", "editorial_lint": [],
+              "research_evidence": "NOT_CHECKED_LEGACY", "source_capability": "NOT_CHECKED_LEGACY"}
+    capabilities = None
+    if story.get("design") == "EDITORIAL_V2":
+        if story.get("research_evidence_gate") is not None:
+            try:
+                import research_evidence as ev
+                import research_capabilities as rc
+                path = base / "research-brief.json"
+                review = ev.validate_file(ledger, path)
+                capabilities = rc.assess(ledger)
+                expected = {
+                    "status": review["status"],
+                    "brief_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                    "source_pdf_sha256": review["source_pdf_sha256"],
+                    "professional_causal_inference": review["professional_causal_inference"],
+                    "independent_financial_reviewer": review["independent_financial_reviewer"],
+                    "independent_visual_editor": review["independent_visual_editor"],
+                    "release_authorization": review["release_authorization"],
+                }
+                if story["research_evidence_gate"] != expected:
+                    raise ValueError("RESEARCH_EVIDENCE_RECEIPT_NOT_CURRENT")
+                if story.get("capability_plan") != capabilities:
+                    raise ValueError("CAPABILITY_PLAN_NOT_CURRENT_LEDGER")
+                result["research_evidence"] = "PASS_MACHINE_PROOF_ONLY_HUMAN_NOT_CHECKED"
+                result["source_capability"] = capabilities["publication_route"]
+            except (ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+                result["research_evidence"] = "FAIL " + str(exc)
+        elif getattr(a, "require_research_evidence", False):
+            result["research_evidence"] = "FAIL NEW_V2_RESEARCH_BRIEF_REQUIRED"
+    elif getattr(a, "require_research_evidence", False):
+        result["research_evidence"] = "FAIL RESEARCH_GATE_ONLY_DEFINED_FOR_EDITORIAL_V2"
     try:
         result["source_and_accounting"] = validate(ledger, story)
     except (ValueError, KeyError) as exc:
@@ -604,7 +658,8 @@ def cmd_preflight(a) -> None:
         from source_publication import expand_claims  # noqa: E402
         mpath = editorial_path(a.code, ledger["issuer"]["fiscal_period"], a.period)
         roles = {f["id"]: f.get("role") for f in json.loads(mpath.read_text())["editorial"]["figures"]} if mpath.exists() else None
-        result["editorial_lint"] = lint(story, expand_claims(story, ledger), roles)
+        result["editorial_lint"] = lint(story, expand_claims(story, ledger), roles,
+                                        capabilities=capabilities)
     except (ValueError, KeyError) as exc:
         result["editorial_lint"] = ["CLAIM_EXPANSION_FAILED " + str(exc)]
     used = set()
@@ -615,7 +670,9 @@ def cmd_preflight(a) -> None:
     result["facts_unused"] = sorted(set(ledger["facts"]) - used)[:40]
     result["editorial_manifest"] = editorial_path(a.code, ledger["issuer"]["fiscal_period"], a.period).exists()
     print(json.dumps(result, ensure_ascii=False, indent=2))
-    ok = isinstance(result["source_and_accounting"], dict) and not result["editorial_lint"] and result["editorial_manifest"]
+    ok = (isinstance(result["source_and_accounting"], dict)
+          and not result["editorial_lint"] and result["editorial_manifest"]
+          and not result["research_evidence"].startswith("FAIL"))
     print("PREFLIGHT_PASS" if ok else "PREFLIGHT_NOT_READY")
     sys.exit(0 if ok else 1)
 
@@ -629,6 +686,8 @@ def main(argv=None) -> None:
     s = sub.add_parser("scan"); s.add_argument("--code", required=True); s.add_argument("--page", type=int, required=True); s.add_argument("--all", action="store_true")
     x = sub.add_parser("facts"); x.add_argument("--code", required=True); x.add_argument("--spec", required=True); x.add_argument("--partial", action="store_true")
     q = sub.add_parser("preflight"); q.add_argument("--code", required=True)
+    q.add_argument("--require-research-evidence", action="store_true",
+                   help="strict for new V2 editions; legacy reports retain explicit NOT_CHECKED status")
     e = sub.add_parser("editorial"); e.add_argument("--code", required=True); e.add_argument("--spec", required=True)
     au = sub.add_parser("auto"); au.add_argument("--code", required=True); au.add_argument("--write", action="store_true")
     au.add_argument("--allow-residual", action="store_true")

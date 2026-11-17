@@ -562,7 +562,7 @@ def cmd_apply(a):
     sys.path.insert(0, str(ROOT / 'research' / 'shared'))
     from source_publication import expand_claims  # noqa: E402
     base, ledger, story = load(a.code, a.period)
-    rc.require_editorial_v2(ledger)  # fail before touching publication or editorial manifest
+    capability_plan = rc.require_editorial_v2(ledger)  # fail before touching publication or editorial manifest
     if not (base / 'publication.json').exists():
         raise SystemExit('V2_APPLY_NEEDS_PUBLICATION: create publication skeleton before applying edits')
     draft = json.loads((base / 'v2-draft.json').read_text())
@@ -596,6 +596,7 @@ def cmd_apply(a):
         raise SystemExit('V2_ORDER_MISSING ' + ','.join(sorted(missing)))
     story['figures'] = [new.get(i) or old[i] for i in order if i in new or i in old]
     story['design'] = 'EDITORIAL_V2'
+    story['capability_plan'] = capability_plan  # verified from the ledger, NOT the editable draft
     story['research_evidence_gate'] = {
         'status': evidence_review['status'],
         'brief_sha256': hashlib.sha256(brief_path.read_bytes()).hexdigest(),
@@ -625,7 +626,7 @@ def cmd_apply(a):
         r.update(index=i, id=f['id'], title=shown[f['id']])
         figs.append({k: r[k] for k in ('index', 'id', 'title', 'role', 'rationale', 'summary', 'focus') if k in r})
     roles = {f['id']: f['role'] for f in figs}
-    issues = fi.lint(story, expand_claims(story, ledger), roles)
+    issues = fi.lint(story, expand_claims(story, ledger), roles, capabilities=capability_plan)
     if issues:
         raise SystemExit('V2_LINT ' + json.dumps(issues, ensure_ascii=False))
     (base / 'publication.json').write_text(json.dumps(story, ensure_ascii=False, indent=1) + '\n')
