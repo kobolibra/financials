@@ -79,7 +79,8 @@ class RealReports(unittest.TestCase):
                 if base not in side:
                     continue
                 want = D(f['yuan'])
-                if se.flipped(r, base):  # legacy ledgers kept printed negative expenses; canonical is positive
+                if se.flipped(r, base) and f.get('extraction') != 'STATEMENT_EXTRACT_CANON_V1':
+                    # Only legacy hand-built ledgers retain the printed sign.
                     want = -want
                 with self.subTest(pdf=Path(pdf).name, key=k):
                     self.assertEqual(side[base], want)
