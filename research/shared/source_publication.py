@@ -159,13 +159,75 @@ def expand_claims(story,ledger):
         if isinstance(value,dict):return {k:walk(v) for k,v in value.items()}
         return value
     return walk(story)
+def validate_offline_comparisons(ledger, story):
+    """Enforce the same comparison contract for the figures, prose and evidence rows."""
+    tools = ROOT / 'skills' / 'ashare-financial-storytelling' / 'tools'
+    if str(tools) not in sys.path:
+        sys.path.insert(0, str(tools))
+    from comparison_basis import require_growth_base, require_pair
+    from coverage_review import check_dependencies
+    facts = ledger['facts']
+
+    def expression(keys):
+        check_dependencies(ledger, keys)
+        periods = {facts[key]['period'] for key in keys}
+        if len(periods) > 1:
+            for key in keys:
+                current = key.removesuffix('_prior')
+                require_pair(ledger, current, current + '_prior')
+                if current not in keys or current + '_prior' not in keys:
+                    raise ValueError('OFFLINE_UNPAIRED_CROSS_PERIOD_EXPRESSION ' + key)
+        archived = [key for key in keys if facts[key].get('disclosure_version') == 'original_before_restatement']
+        if archived and len(keys) != 1:
+            raise ValueError('OFFLINE_ARCHIVE_FACT_IN_COMPARATIVE_EXPRESSION')
+
+    for name, claim in story.get('quantified_claims', {}).items():
+        keys = dependencies(claim['expression'])
+        expression(keys)
+        den = claim.get('denominator')
+        if den is not None:
+            den_keys = dependencies(den)
+            expression(den_keys)
+            if amount(ledger, den) <= 0:
+                raise ValueError('OFFLINE_NONPOSITIVE_DENOMINATOR ' + name)
+            pnum = {facts[k]['period'] for k in keys}
+            pden = {facts[k]['period'] for k in den_keys}
+            if pnum != pden:
+                if len(pnum) != 2 or not set(den_keys) <= set(keys) or any(not k.endswith('_prior') for k in den_keys):
+                    raise ValueError('OFFLINE_DENOMINATOR_PERIOD_MISMATCH ' + name)
+                require_growth_base(amount(ledger, den), name)
+        if name.startswith('v2p_'):
+            for key in keys + dependencies(den):
+                require_pair(ledger, key, key + '_prior')
+
+    for figure in story['figures']:
+        family = figure['family']
+        check_dependencies(ledger, cited(figure))
+        if family == 'comparison':
+            for _, prior, current in figure['pairs']:
+                basis = require_pair(ledger, current, prior)
+                periods = [facts[prior]['period'] + ('（重述后）' if basis == 'restated' else ''),
+                           facts[current]['period']]
+                if figure['periods'] != periods:
+                    raise ValueError('OFFLINE_COMPARISON_LEGEND_MISMATCH ' + figure['id'])
+        elif family == 'signed_bridge':
+            for _, expr, _ in figure['rows']:
+                expression(dependencies(expr))
+        else:
+            raise ValueError('OFFLINE_EXHIBIT_ADAPTER_UNVERIFIED ' + family)
+
 def validate(ledger,story,root=ROOT):
     expand_claims(story,ledger);check_cross_period_claims(ledger,story)
     source=ledger['source'];issuer=ledger['issuer'];path=(root/source['source_path']).resolve();path.relative_to(root.resolve())
     if not re.fullmatch(r'[0-9]{6}',issuer['code']):raise ValueError('DOSSIER_INVALID_ISSUER_CODE')
     from urllib.parse import urlsplit
-    url=urlsplit(source['official_announcement'])
-    if url.scheme!='https' or not url.hostname or url.username or url.password:raise ValueError('DOSSIER_SOURCE_REQUIRES_HTTPS_URL')
+    offline = story.get('composition') == 'OFFLINE_RESEARCH_CANDIDATE_V1'
+    if offline:
+        if not issuer.get('offline_candidate') or story.get('design') != 'EDITORIAL_V2':
+            raise ValueError('OFFLINE_CANDIDATE_INTAKE_AND_DESIGN_REQUIRED')
+        validate_offline_comparisons(ledger, story)
+    url=urlsplit(source['official_announcement'] or '')
+    if (not offline or source['official_announcement']) and (url.scheme!='https' or not url.hostname or url.username or url.password):raise ValueError('DOSSIER_SOURCE_REQUIRES_HTTPS_URL')
     data=path.read_bytes()
     if hashlib.sha256(data).hexdigest()!=source['original_bytes_sha256'] or not data.startswith(b'%PDF'):raise ValueError('DOSSIER_ORIGINAL_PDF_BYTES_DRIFT')
     import pymupdf
@@ -201,7 +263,18 @@ def validate(ledger,story,root=ROOT):
             for cell in cells:
                 region=doc[f['page']-1].get_textbox(pymupdf.Rect(cell['bbox'])+(-.5,-.5,.5,.5)).replace(',','')
                 if cell.get('wrapped_number') is True:region=re.sub(r'\s+','',region)
-                if cell.get('unit_scale'):
+                if offline:
+                    from fin_intake import to_decimal
+                    printed = cell['printed'].strip()
+                    token = re.escape(printed.replace(',', ''))
+                    if not re.search(r'(?<![0-9.+−(（-])' + token + r'(?![0-9.])', region):
+                        raise ValueError('DOSSIER_SOURCE_CELL_FALSE ' + k)
+                    signed = to_decimal(printed) * D(cell.get('unit_scale', '1'))
+                    if cell.get('sign_flipped'):
+                        signed = -signed
+                    if signed != D(f['yuan']):
+                        raise ValueError('DOSSIER_SOURCE_CELL_FALSE ' + k)
+                elif cell.get('unit_scale'):
                     # report printed in 千元/万元/百万元: the cell must hold the printed figure and printed x scale = yuan
                     p=cell['printed'].strip().replace(',','');neg=p.startswith(('(','（'))
                     shown=D(p.strip('()（）'))*(-1 if neg else 1)
@@ -290,6 +363,20 @@ def title_markup(story):
 def ids_of(story):return [f['id'] for f in story['figures']]
 def publish(folder,out=None):
     folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);story=expand_claims(story,ledger);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
+    offline = story.get('composition') == 'OFFLINE_RESEARCH_CANDIDATE_V1'
+    if offline:
+        if out is None or (ROOT / 'public').resolve() in Path(out).resolve().parents:
+            raise ValueError('OFFLINE_CANDIDATE_REQUIRES_EXPLICIT_NON_PUBLIC_OUTPUT')
+        manifest = read(folder / 'editorial-manifest.json')
+        decisions = manifest['editorial']['figures']
+        if (manifest['issuer'] != code or manifest['period'] != issuer['fiscal_period']
+                or manifest['source_sha256'] != source['original_bytes_sha256']
+                or [(f['id'], f['question']) for f in story['figures']] != [(f['id'], f['title']) for f in decisions]
+                or [f['role'] for f in decisions].count('primary') != 1
+                or decisions[0]['role'] != 'primary'):
+            raise ValueError('OFFLINE_EDITORIAL_MANIFEST_DRIFT')
+        if not source['official_announcement']:
+            source = {**source, 'official_announcement': '#original-source'}
     lx=with_externals(ledger,story)
     def source_row(k):
         if ':' not in k:return None
@@ -307,6 +394,9 @@ def publish(folder,out=None):
             trend=('<p><b>趋势</b>'+H(f['trend'])+'</p>') if f.get('trend') else ''
             parts.append(lead+f'<figure id="{f["id"]}" class="v2"><div class="figure-head"><span>图 {i+1:02d}</span><h2>{H(f["question"])}</h2><p>{H(f["takeaway"])}</p></div><div class="desktop-art">{chart(lx,f,False)}</div><div class="native-art">{chart(lx,f,True)}</div><figcaption>{trend}<p><b>重点</b>{H(f["analysis"])}</p><p><b>反证</b>{H(f["counter"])}</p><span>来源：原始披露报告 · 物理页 '+', '.join(map(str,pages))+' · 人民币原始元；图中金额适度舍入。<button type="button" data-export="{f["id"]}">导出当前图 SVG ↗</button></span></figcaption><details><summary>核对原始数据与计算口径</summary><div class="table-scroll"><table><thead><tr><th>原始项目</th><th>期间/时点</th><th>人民币元</th><th>性质</th><th>来源</th></tr></thead><tbody>'+table+'</tbody></table></div></details></figure>')
         else:parts.append(f'<figure id="{f["id"]}"><div class="figure-head"><span>FIGURE / {i+1:02d} · {H(f["eyebrow"])}</span><h2>{H(f["question"])}</h2><p>{H(f["takeaway"])}</p><button type="button" data-export="{f["id"]}">导出当前图 SVG ↗</button></div><div class="desktop-art">{chart(lx,f,False)}</div><div class="native-art">{chart(lx,f,True)}</div><figcaption><b>读图结论</b> / {H(f["analysis"])}<br><b>反证与边界</b> / {H(f["counter"])}<br><span>来源：原始披露报告 · 物理页 '+', '.join(map(str,pages))+' · 人民币原始元；图中金额适度舍入。</span></figcaption><details><summary>核对原始数据与计算口径</summary><div class="table-scroll"><table><thead><tr><th>原始项目</th><th>期间/时点</th><th>人民币元</th><th>性质</th><th>来源</th></tr></thead><tbody>'+table+'</tbody></table></div></details></figure>')
+        if offline:
+            parts[-1] = parts[-1].replace('<figure ', '<figure data-editorial-role="' + decisions[i]['role'] + '" ', 1)
+            parts[-1] = parts[-1].replace('</figcaption>', '<p>' + H(f['identity']) + '</p></figcaption>', 1)
         if f.get('editorial_groups'):
             full_rows=''.join('<tr><td>'+H(label)+'</td><td>'+H(str(amount(ledger,expr)))+'</td><td>'+H(role)+'</td></tr>' for label,expr,role in f['rows'])
             parts[-1]=parts[-1].replace('</figure>','<details><summary>展开完整原始变动逐项对账（人民币元）</summary><div class="table-scroll"><table><tr><th>原始变动项目</th><th>精确金额</th><th>会计角色</th></tr>'+full_rows+'</table></div></details></figure>')
@@ -334,7 +424,14 @@ def publish(folder,out=None):
     if not re.fullmatch(r'/[0-9]{6}(-[a-z0-9]+)?\.html',route):raise ValueError('DOSSIER_INVALID_ROUTE')
     target=Path(out) if out else ROOT/'public'/route.lstrip('/');target.parent.mkdir(exist_ok=True,parents=True)
     from publication_editorial import finalize_publication
-    html=finalize_publication(code,html,period=issuer['fiscal_period']);target.write_text(html)
+    if offline:
+        html = html.replace('<a href="/#companies">← 返回公司研究目录</a>', '<a href="#notes">核对原始披露</a>')
+        html = html.replace('<a href="/#companies">返回同一公司研究目录</a>', '')
+        html = html.replace('<footer>', '<footer id="original-source">', 1)
+        html = html.replace('<header class="chapter"', '<div class="chapter"').replace('</p></header>', '</p></div>')
+    else:
+        html = finalize_publication(code, html, period=issuer['fiscal_period'])
+    target.write_text(html)
     (folder/'figure-briefs.json').write_text(json.dumps({'issuer':code,'report':issuer['fiscal_period'],'source_sha256':source['original_bytes_sha256'],'figure_briefs':briefs},ensure_ascii=False,indent=2)+'\n')
-    qa.update(html_sha256=hashlib.sha256(target.read_bytes()).hexdigest(),figures=len(briefs)+1);(folder/'qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2)+'\n');print('SOURCE_DOSSIER_PUBLISHED',code,len(briefs),qa['html_sha256']);return target
+    qa.update(html_sha256=hashlib.sha256(target.read_bytes()).hexdigest(),figures=len(briefs) + (0 if offline else 1));(folder/'qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2)+'\n');print('SOURCE_DOSSIER_PUBLISHED',code,len(briefs),qa['html_sha256']);return target
 if __name__=='__main__':publish(ROOT/sys.argv[1],sys.argv[2] if len(sys.argv)>2 else None)

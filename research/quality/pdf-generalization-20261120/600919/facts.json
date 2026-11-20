@@ -1,0 +1,11 @@
+{
+  "average_earning_assets": {
+    "page": 15,
+    "label": "总生息资产",
+    "column": 1,
+    "expect": "3,846,610,474",
+    "type": "flow",
+    "row": "^总生息资产$",
+    "unit_scale": 1000
+  }
+}

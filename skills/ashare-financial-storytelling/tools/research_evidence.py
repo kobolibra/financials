@@ -15,6 +15,8 @@ from decimal import Decimal as D, InvalidOperation
 from pathlib import Path
 
 import research_capabilities as rc
+from comparison_basis import require_pair
+from coverage_review import check_dependencies
 
 SCHEMA = 'financials.research_evidence.v1'
 FORMULAS = {
@@ -112,6 +114,7 @@ def evaluate_calculation(ledger, calc):
             if (set(sides) != {'current', 'prior'}
                     or sides['current'] != -sides['prior']):
                 raise ValueError('RESEARCH_CALC_UNPAIRED_ACCOUNTING_FACT ' + ident + ':' + base)
+            require_pair(ledger, base, base + '_prior')
     reported = _number(calc.get('expected_yuan'), ident + ':expected_yuan')
     if total != reported:
         raise ValueError('RESEARCH_CALC_NOT_EXACT_YUAN ' + ident)
@@ -148,6 +151,7 @@ def _validate_claim(ledger, claim):
     math_keys = {k for c in calculations for k in c['source_keys']}
     if not math_keys.issubset(set(supporting)):
         raise ValueError('RESEARCH_CALC_NOT_LINKED_TO_CLAIM ' + ident)
+    check_dependencies(ledger, supporting)
     f = ledger['facts']
     basis = rc.periods(ledger.get('issuer', {}))
     if not basis:
