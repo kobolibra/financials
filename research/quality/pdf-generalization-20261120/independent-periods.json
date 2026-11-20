@@ -1,0 +1,268 @@
+{
+  "schema": "financials.independent_period_holdout.v1",
+  "scope": "PINNED_2025FY_2026Q1_20269M_ORIGINAL_PDFS_NOT_HISTORICAL_30",
+  "company_specific_extraction_input": "NONE",
+  "reports": 3,
+  "technical_pass": 3,
+  "technical_fail": 0,
+  "observed_period_counts": {
+    "2025FY": 1,
+    "2026Q1": 1,
+    "20269M": 1
+  },
+  "original_pdf_bytes_verification": "GIT_BLOB_SHA1_PER_INPUT_AND_SHA256_RECEIPT",
+  "original_30_reference_corpus": "SEPARATE_UNCHANGED_UNDER_REVIEW",
+  "material_unmapped_fact_coverage": "NOT_CHECKED",
+  "human_financial_research": "NOT_CHECKED",
+  "independent_aesthetic_editor": "NOT_CHECKED",
+  "production_browser_release": "NOT_CHECKED",
+  "rows": [
+    {
+      "path": "research/quality/historical-peer-evidence/600900_2025FY.pdf",
+      "expected_period": "2025FY",
+      "git_blob_sha1_expected": "e77d1673c70279a4e21f0150722290de5b903adc",
+      "business_model": "utilities",
+      "materiality_review": "NOT_CHECKED",
+      "independent_human_finance_and_art_review": "NOT_CHECKED",
+      "git_blob_sha1_actual": "e77d1673c70279a4e21f0150722290de5b903adc",
+      "pdf_sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+      "report": {
+        "pdf": "research/quality/historical-peer-evidence/600900_2025FY.pdf",
+        "sha256": "aa0cdb92e3aad81b1e6454594a64cacbcfeb9013b10dd31f47a93a94e7a70f91",
+        "code": "600900",
+        "pages": 259,
+        "stages": {
+          "ledger": "PASS",
+          "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+          "income_flow_v3": "PASS",
+          "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+          "findings": "PASS 7"
+        },
+        "fiscal_period": "2025FY",
+        "comparative_period": "2024FY",
+        "source_anomalies": [],
+        "format": "general",
+        "sign_convention": "expenses_positive",
+        "statement_pages": {
+          "bs": [
+            80,
+            81,
+            82
+          ],
+          "is": [
+            84,
+            85,
+            86
+          ],
+          "cf": [
+            87,
+            88,
+            89
+          ]
+        },
+        "canonical_facts": 212,
+        "unmapped_rows": 23,
+        "identities_passed": 22,
+        "identities_failed": [],
+        "coverage_review": {
+          "status": "NOT_CHECKED",
+          "unmapped_rows": 23,
+          "reason": "Materiality and completeness of unmapped amount rows not independently reviewed"
+        },
+        "notes": {
+          "dimensions": [],
+          "unproven_segment_tables": [
+            "p6 plain",
+            "p7 plain",
+            "p9 plain",
+            "p12 plain",
+            "p13 plain",
+            "p15 plain",
+            "p23 plain",
+            "p77 plain",
+            "p84 plain",
+            "p86 plain",
+            "p186 plain",
+            "p208 plain"
+          ],
+          "cash_reconciliation": {
+            "page": 192,
+            "status": "CLOSED",
+            "lines": 17,
+            "prior_closed": true,
+            "unmapped_lines": []
+          },
+          "adjusted_parent": true,
+          "income_partition": null,
+          "dropped_unreadable_cells": []
+        },
+        "publisher_capability": "INDUSTRIAL_V2_AUTHORING_CANDIDATE",
+        "findings_top5": [
+          "存货较年初增加1.95亿元；余额变化本身不能证明备货或去库存原因，需结合存货构成、跌价准备及周转核验。",
+          "营业收入同比+2.07%，营业成本同比-4.26%，毛利率上升2.53个百分点。",
+          "应收账款较年初减少20.75亿元；余额变化本身不能证明回款效率改善或恶化，需结合账龄、销售收现及可比期间收入核验。",
+          "营业利润同比+7.45%，营业收入同比+2.07%：营业利润同比增速高于收入，原因仍需核对费用及非经营项目。",
+          "资产负债率较年初下降2.53个百分点。"
+        ]
+      },
+      "stage_errors": [],
+      "technical_status": "PASS_PDF_ONLY"
+    },
+    {
+      "path": "research/quality/historical-peer-evidence/600276_2026Q1.pdf",
+      "expected_period": "2026Q1",
+      "git_blob_sha1_expected": "8c0088700a0b0193dd84005c3f513abe92ce84f6",
+      "business_model": "pharmaceuticals",
+      "materiality_review": "NOT_CHECKED",
+      "independent_human_finance_and_art_review": "NOT_CHECKED",
+      "git_blob_sha1_actual": "8c0088700a0b0193dd84005c3f513abe92ce84f6",
+      "pdf_sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+      "report": {
+        "pdf": "research/quality/historical-peer-evidence/600276_2026Q1.pdf",
+        "sha256": "a19485e9e1990141c43602db54efa7675a10dbb0a83a5e13a25324da45d4837e",
+        "code": "600276",
+        "pages": 11,
+        "stages": {
+          "ledger": "PASS",
+          "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+          "income_flow_v3": "PASS",
+          "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+          "findings": "PASS 11"
+        },
+        "fiscal_period": "2026Q1",
+        "comparative_period": "2025Q1",
+        "source_anomalies": [],
+        "format": "general",
+        "sign_convention": "expenses_positive",
+        "statement_pages": {
+          "bs": [
+            7,
+            8
+          ],
+          "is": [
+            8,
+            9,
+            10
+          ],
+          "cf": [
+            10,
+            11
+          ]
+        },
+        "canonical_facts": 189,
+        "unmapped_rows": 13,
+        "identities_passed": 22,
+        "identities_failed": [],
+        "coverage_review": {
+          "status": "NOT_CHECKED",
+          "unmapped_rows": 13,
+          "reason": "Materiality and completeness of unmapped amount rows not independently reviewed"
+        },
+        "notes": {
+          "dimensions": [],
+          "unproven_segment_tables": [
+            "p1 plain",
+            "p4 plain",
+            "p8 plain"
+          ],
+          "cash_reconciliation": {
+            "status": "NOT_FOUND"
+          },
+          "adjusted_parent": true,
+          "income_partition": null,
+          "dropped_unreadable_cells": []
+        },
+        "publisher_capability": "INDUSTRIAL_V2_AUTHORING_CANDIDATE",
+        "findings_top5": [
+          "营业收入同比+12.98%，营业成本同比+2.09%，毛利率上升1.43个百分点。",
+          "营业利润同比+25.00%，营业收入同比+12.98%：营业利润同比增速高于收入，原因仍需核对费用及非经营项目。",
+          "资产负债率较年初下降1.53个百分点。",
+          "财务费用由上年同期的净收益转为净支出，本期为0.23亿元。",
+          "研发费用率下降1.00个百分点。"
+        ]
+      },
+      "stage_errors": [],
+      "technical_status": "PASS_PDF_ONLY"
+    },
+    {
+      "path": "research/quality/historical-peer-evidence/688220_2026Q3.pdf",
+      "expected_period": "20269M",
+      "git_blob_sha1_expected": "d0dd38fca4607cc0e8f39de203cf3b78f197e1ea",
+      "business_model": "semiconductors",
+      "materiality_review": "NOT_CHECKED",
+      "independent_human_finance_and_art_review": "NOT_CHECKED",
+      "git_blob_sha1_actual": "d0dd38fca4607cc0e8f39de203cf3b78f197e1ea",
+      "pdf_sha256": "e7a56ad1303933c502acbb855c7bcdbc1e0fb4d0569ad8e4ed042f3bca5d6887",
+      "report": {
+        "pdf": "research/quality/historical-peer-evidence/688220_2026Q3.pdf",
+        "sha256": "e7a56ad1303933c502acbb855c7bcdbc1e0fb4d0569ad8e4ed042f3bca5d6887",
+        "code": "688220",
+        "pages": 14,
+        "stages": {
+          "ledger": "PASS",
+          "business_sankey": "NOT_AVAILABLE no complete revenue+cost partition proven in the notes",
+          "income_flow_v3": "PASS",
+          "exhibits": "PASS kpi_board/growth_bars/ratio_dumbbell/stock_delta",
+          "findings": "PASS 7"
+        },
+        "fiscal_period": "20269M",
+        "comparative_period": "20259M",
+        "source_anomalies": [],
+        "format": "general",
+        "sign_convention": "expenses_positive",
+        "statement_pages": {
+          "bs": [
+            7,
+            8,
+            9,
+            10
+          ],
+          "is": [
+            10,
+            11,
+            12
+          ],
+          "cf": [
+            12,
+            13,
+            14
+          ]
+        },
+        "canonical_facts": 191,
+        "unmapped_rows": 16,
+        "identities_passed": 18,
+        "identities_failed": [],
+        "coverage_review": {
+          "status": "NOT_CHECKED",
+          "unmapped_rows": 16,
+          "reason": "Materiality and completeness of unmapped amount rows not independently reviewed"
+        },
+        "notes": {
+          "dimensions": [],
+          "unproven_segment_tables": [
+            "p1 plain",
+            "p2 plain",
+            "p5 plain",
+            "p10 plain"
+          ],
+          "cash_reconciliation": {
+            "status": "NOT_FOUND"
+          },
+          "adjusted_parent": false,
+          "income_partition": null,
+          "dropped_unreadable_cells": []
+        },
+        "publisher_capability": "INDUSTRIAL_V2_AUTHORING_CANDIDATE",
+        "findings_top5": [
+          "存货较年初增加9.09亿元；余额变化本身不能证明备货或去库存原因，需结合存货构成、跌价准备及周转核验。",
+          "应收账款较年初增加1.56亿元；余额变化本身不能证明回款效率改善或恶化，需结合账龄、销售收现及可比期间收入核验。",
+          "研发费用率下降11.19个百分点。",
+          "营业收入同比+32.43%，营业成本同比+22.81%，毛利率上升5.42个百分点。",
+          "资产负债率较年初上升7.27个百分点。"
+        ]
+      },
+      "stage_errors": [],
+      "technical_status": "PASS_PDF_ONLY"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "source_sha256": "cafc1ba7af05aefc62ed796b7ed05b737925e2f3736414d23ecbdfb9ae8755df",
+  "decisions": {
+    "3e928a8f07d14296717f035f": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "合并及公司表比较列的期间标题数字，不是金额。",
+      "affected_keys": [],
+      "affected_conclusions": "无金额受影响，需核对合并与本行列顺序。"
+    },
+    "18c5d108383e39ede8bdf697": {
+      "classification": "COVERED",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "物理第16页排在投资收益及其中项之下，保留投资收益合计，避免重复加总。",
+      "affected_keys": [
+        "investment_income"
+      ],
+      "affected_conclusions": "营收会计分解应按投资收益小计。"
+    },
+    "95078835fffc1531f43a84fd": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "合并及公司表比较列的期间标题数字，不是金额。",
+      "affected_keys": [],
+      "affected_conclusions": "无金额受影响，需核对合并与本行列顺序。"
+    },
+    "1a429d48132281dc1c023a2b": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "原页计量是每股人民币元，属于每股指标，不能计入利润表金额。",
+      "affected_keys": [],
+      "affected_conclusions": "首图及净利润绝对量无影响。"
+    },
+    "d5fb6005d2f7d7d0ced046d1": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "合并及公司表比较列的期间标题数字，不是金额。",
+      "affected_keys": [],
+      "affected_conclusions": "无金额受影响，需核对合并与本行列顺序。"
+    }
+  }
+}

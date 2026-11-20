@@ -1,0 +1,149 @@
+{
+  "issuer": "600036",
+  "report": "2026Q1",
+  "source_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+  "figure_briefs": [
+    {
+      "id": "nii-change",
+      "family": "signed_bridge",
+      "question": "利息少收了，净利息为何还在增长？",
+      "takeaway": "利息支出同比少 56.08 亿元，抵消了利息收入下降 29.62 亿元。",
+      "identity": "上期净利息收入＋利息收入变化－利息支出变化＝本期净利息收入。",
+      "counter": "这条桥解释收支差额；规模和率的估算另用平均余额，无法独立分离资产结构影响。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        17
+      ],
+      "facts": [
+        "nii_prior",
+        "fin_interest_income",
+        "fin_interest_income_prior",
+        "fin_interest_expense",
+        "fin_interest_expense_prior",
+        "nii"
+      ],
+      "source_expressions": {
+        "rows": [
+          [
+            "上年同期净利息收入",
+            "nii_prior",
+            "start"
+          ],
+          [
+            "利息收入减少",
+            [
+              [
+                "fin_interest_income",
+                1
+              ],
+              [
+                "fin_interest_income_prior",
+                -1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "利息支出减少",
+            [
+              [
+                "fin_interest_expense",
+                -1
+              ],
+              [
+                "fin_interest_expense_prior",
+                1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "本期净利息收入",
+            "nii",
+            "total"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "question": "多少利息增量转成了归母利润？",
+      "takeaway": "归母净利润增加 5.66 亿元，信用减值损益同比变化 -20.09 亿元。",
+      "identity": "按图例所列期间核对相同项目。",
+      "counter": "贷款减值需和贷款风险组合匹配，银行整体减值不能直接当作新增贷款违约率。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        17
+      ],
+      "facts": [
+        "fee_net_prior",
+        "fee_net",
+        "credit_impairment_prior",
+        "credit_impairment",
+        "parent_net_prior",
+        "parent_net"
+      ],
+      "source_expressions": {
+        "periods": [
+          "2025Q1",
+          "2026Q1"
+        ],
+        "pairs": [
+          [
+            "手续费及佣金净收入",
+            "fee_net_prior",
+            "fee_net"
+          ],
+          [
+            "信用减值损益",
+            "credit_impairment_prior",
+            "credit_impairment"
+          ],
+          [
+            "归母净利润",
+            "parent_net_prior",
+            "parent_net"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "balances",
+      "family": "comparison",
+      "question": "贷款和存款的账面余额怎样变？",
+      "takeaway": "法定报表的两项期末余额均高于上年末。",
+      "identity": "按图例所列期间核对相同项目。",
+      "counter": "余额变化包含应计利息等会计项目。平均生息资产比较见利率分析表。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        13,
+        14
+      ],
+      "facts": [
+        "loans_prior",
+        "loans",
+        "deposits_prior",
+        "deposits"
+      ],
+      "source_expressions": {
+        "periods": [
+          "2025-12-31",
+          "2026-03-31"
+        ],
+        "pairs": [
+          [
+            "发放贷款及垫款账面额",
+            "loans_prior",
+            "loans"
+          ],
+          [
+            "吸收存款账面额",
+            "deposits_prior",
+            "deposits"
+          ]
+        ]
+      }
+    }
+  ]
+}

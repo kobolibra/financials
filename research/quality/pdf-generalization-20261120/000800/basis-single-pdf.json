@@ -1,0 +1,130 @@
+{
+  "rev": {
+    "status": "restated",
+    "reason": "主要会计数据披露同一控制下企业合并追溯重述，调整前后金额不同。",
+    "evidence_pages": [
+      10,
+      234
+    ],
+    "original": {
+      "page": 10,
+      "label": "营业收入",
+      "column": 2,
+      "expect": "63,904,532,477.03",
+      "type": "flow",
+      "row": "^营业收入$",
+      "prior": true,
+      "unit_scale": 1,
+      "y": [
+        212.0,
+        212.6
+      ]
+    }
+  },
+  "parent_net": {
+    "status": "restated",
+    "reason": "主要会计数据披露同一控制下企业合并追溯重述，调整前后金额不同。",
+    "evidence_pages": [
+      10,
+      234
+    ],
+    "original": {
+      "page": 10,
+      "label": "归母净利润",
+      "column": 2,
+      "expect": "763,024,957.14",
+      "type": "flow",
+      "row": "^归母净利润$",
+      "prior": true,
+      "unit_scale": 1,
+      "y": [
+        238.9,
+        239.5
+      ]
+    }
+  },
+  "cfo": {
+    "status": "restated",
+    "reason": "主要会计数据披露同一控制下企业合并追溯重述，调整前后金额不同。",
+    "evidence_pages": [
+      10,
+      234
+    ],
+    "original": {
+      "page": 10,
+      "label": "经营现金净额",
+      "column": 2,
+      "expect": "4,201,717,721.52",
+      "type": "flow",
+      "row": "^经营现金净额$",
+      "prior": true,
+      "unit_scale": 1,
+      "y": [
+        322.5,
+        323.1
+      ]
+    }
+  },
+  "assets": {
+    "status": "restated",
+    "reason": "主要会计数据披露同一控制下企业合并追溯重述，调整前后金额不同。",
+    "evidence_pages": [
+      10,
+      234
+    ],
+    "original": {
+      "page": 10,
+      "label": "总资产",
+      "column": 2,
+      "expect": "65,873,387,927.31",
+      "type": "stock",
+      "row": "^总资产$",
+      "prior": true,
+      "unit_scale": 1,
+      "y": [
+        471.3,
+        471.9
+      ],
+      "period": "2023-12-31"
+    }
+  },
+  "parent_equity": {
+    "status": "restated",
+    "reason": "主要会计数据披露同一控制下企业合并追溯重述，调整前后金额不同。",
+    "evidence_pages": [
+      10,
+      234
+    ],
+    "original": {
+      "page": 10,
+      "label": "归母净资产",
+      "column": 2,
+      "expect": "24,486,759,369.40",
+      "type": "stock",
+      "row": "^归母净资产$",
+      "prior": true,
+      "unit_scale": 1,
+      "y": [
+        498.2,
+        499.0
+      ],
+      "period": "2023-12-31"
+    }
+  },
+  "adjusted_parent": {
+    "status": "unchanged",
+    "reason": "财报在扣非归母一行的上年调整前及调整后列披露相同负值。",
+    "evidence_pages": [
+      10
+    ]
+  },
+  "cogs": {
+    "status": "unconfirmed",
+    "reason": "本报告 p.130 给出比较期营业成本，但未定位同表披露的调整前营业成本。原披露差额待用前期完整原件核对。",
+    "evidence_pages": [
+      10,
+      130,
+      234
+    ]
+  }
+}

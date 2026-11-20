@@ -1,0 +1,51 @@
+{
+  "source_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+  "decisions": {
+    "1c4c1c7cb0d69d23c3e682ee": {
+      "classification": "COVERED",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "物理第90页是投资收益下的其中项，集团投资收益已入账。",
+      "affected_keys": [
+        "investment_income"
+      ],
+      "affected_conclusions": "保留毛利和现金研究，投资收益完整子类另核。"
+    },
+    "d44d925330fd01525e705fe4": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "原页计量是每股人民币元，属于每股指标，不能计入利润表金额。",
+      "affected_keys": [],
+      "affected_conclusions": "首图及净利润绝对量无影响。"
+    },
+    "ea3cfcdb8f2c6e6b5a6a7d3a": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "原页计量是每股人民币元，属于每股指标，不能计入利润表金额。",
+      "affected_keys": [],
+      "affected_conclusions": "首图及净利润绝对量无影响。"
+    },
+    "826d90825ebb063e511b0870": {
+      "classification": "PENDING",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "其他流动资产是重大余额，明细尚未纳入这一页复核。",
+      "affected_keys": [
+        "current_assets"
+      ],
+      "affected_conclusions": "资产流动性全分项仍待复验，现金桥可继续。"
+    },
+    "f81d984b7113d5c3e781b620": {
+      "classification": "MATERIAL_OMISSION",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "为筹资流入的独立大额明细，CFF 总数已披露，但构成未完整重建。",
+      "affected_keys": [
+        "cff"
+      ],
+      "affected_conclusions": "禁止形成筹资现金来源完整对账，经营现金调节不受影响。"
+    }
+  }
+}

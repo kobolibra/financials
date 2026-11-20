@@ -1,6 +1,16 @@
 {
   "schema_version": 1,
   "updated_date": "2026-11-13",
+  "offline_pdf_research_candidate_20261120": {
+    "scope": "CATALOG_CANDIDATE_PENDING_LIVE",
+    "evidence": "research/quality/pdf-generalization-20261120/README.md",
+    "historical_original_sha_verified": 30,
+    "studies": [
+      "600036@2026Q1",
+      "600206@2025FY"
+    ],
+    "independent_review": "NOT_CHECKED"
+  },
   "current_release_provenance_20261109": {
     "scope": "HISTORICAL_EXACT_MAIN_SOURCE_PROOF_NOT_FUTURE_UNCONDITIONAL_LIVE",
     "source_main_sha": "b72e6074795bc0cb9aabe0b312c79f1decf567f4",
@@ -289,7 +299,7 @@
     "catalog": "site/research_catalog.json",
     "builder": "site/portal_builder.py",
     "root_html": "public/index.html",
-    "company_count": 14,
+    "company_count": 15,
     "company_codes": [
       "300394",
       "300308",
@@ -304,7 +314,8 @@
       "601628",
       "600690",
       "300548",
-      "300570"
+      "300570",
+      "600206"
     ],
     "topic": "/optical-2026h1.html",
     "new_issuer_policy": "ONE_CANONICAL_HOMEPAGE_DYNAMIC_COMPANY_CATALOG_AND_INDEPENDENT_SOURCE_GATES_NO_HARDCODED_ISSUER_COUNT",
@@ -361,6 +372,13 @@
         "live_production": "PASS (https://github.com/kobolibra/financials/actions/runs/43825339949)",
         "independent_human_review": "NOT_CHECKED",
         "live_receipt": "research/issuers/300394/2026Q1/live-release-receipt.json"
+      },
+      {
+        "code": "600036",
+        "period": "2026Q1",
+        "href": "/600036-2026q1.html",
+        "status": "CANDIDATE_PENDING_LIVE",
+        "gates": "research/issuers/600036/2026Q1/release-gates.json"
       }
     ],
     "profit_chain_layout_v2": {

@@ -2,6 +2,19 @@
 
 This protocol governs `scripts/generalization_probe.py --coverage-queue ...`. It is a **manual evidence-review lane**, not an automatic completeness certificate.
 
+## 恢复历史原件
+
+2026-11-20 按历史 SHA 恢复缺失的 20 份，复跑历史 30 份。保留仓库的按哈希回下载安装方式。原件进入忽略目录 `work/`，同名异字节用 SHA 分开。
+
+```bash
+python scripts/restore_probe_originals.py --out work/restored-probe
+python scripts/generalization_probe.py --require-reference-corpus \
+  --coverage-queue work/restored-coverage.json --out work/restored-probe.json \
+  work/restored-probe/*_original.pdf
+```
+
+在离线作者入口，`fin_intake.py coverage` 读取同一行 ID 的队列；`--spec` 绑定复核结论及受影响的指标。依赖受阻指标的图、表达式和研究论点退出失败。未提交复核的项目保留待查。
+
 ## 1. Generate the full queue
 
 ```bash

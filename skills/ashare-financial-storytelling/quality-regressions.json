@@ -1082,6 +1082,36 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-033",
+      "root_cause": "兰州银行合并及公司同表按期间交错排列，旧比较列错误选中本行本期。",
+      "correction": "识别本集团与本行重复顺序，选每期间合并列，发布重放已提取报表源格。",
+      "assertion_marker": "test_bank_group_titles_and_evidence_route",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_offline_candidate.py",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "FIN-033",
+      "root_cause": "季度与累计或原披露与重述值进入同一同比图。",
+      "correction": "使用指标级期间和重述合同，比较、研究和图例走同一判定。",
+      "assertion_marker": "test_restatement_requires_archived_cell_and_correct_legend",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_offline_candidate.py",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "SRC-034",
+      "root_cause": "有研新材封面使用公司代码，原无参数入口无法识别。",
+      "correction": "识别封面公司代码并校验财报期和全称。",
+      "assertion_marker": "公司代码",
+      "proof_file": "skills/ashare-financial-storytelling/tools/start_report.py",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_ISSUER_ONLY"
     }
   ]
 }

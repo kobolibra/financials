@@ -1,0 +1,127 @@
+{
+  "schema": "financials.research_evidence.v1",
+  "issuer": "600206",
+  "fiscal_period": "2025FY",
+  "source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+  "sector_route": "industrial",
+  "editorial_selection": {
+    "candidates": [
+      "毛利修复为何没有转成现金",
+      "利润增长中产品结构和减值贡献谁更重要"
+    ],
+    "lead_question": "毛利修复为何没有转成现金",
+    "deciding_pages": [
+      21,
+      90,
+      194
+    ],
+    "deciding_fact": "现金流附注显示存货与经营性应收的大额调节，改变首图及标题。",
+    "prior_research": "仓库中未发现该发行人上期成稿；对照2024原报。"
+  },
+  "theses": [
+    {
+      "id": "thesis-1",
+      "question": "毛利修复为何没有转成经营现金？",
+      "conclusion": "存货和经营性应收是净利润转正后现金仍承压的直接会计调节项。",
+      "mechanism": "经营现金调节表列示三项营运资金调整及全部非现金调整。",
+      "strongest_alternative": "库存可能为后续发货所备，应收变动也可能是正常结算节奏，需检查后续回收。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": [
+        "cfo",
+        "cfo_prior",
+        "cogs",
+        "cogs_prior",
+        "inventory_release",
+        "net_profit",
+        "net_profit_prior",
+        "operating_ap_change",
+        "operating_ar_change",
+        "rev",
+        "rev_prior"
+      ],
+      "calculations": [
+        {
+          "id": "gross-profit-change",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "rev",
+              1
+            ],
+            [
+              "cogs",
+              -1
+            ],
+            [
+              "rev_prior",
+              -1
+            ],
+            [
+              "cogs_prior",
+              1
+            ]
+          ],
+          "expected_yuan": "321459568.72"
+        },
+        {
+          "id": "cfo-change",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "cfo",
+              1
+            ],
+            [
+              "cfo_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-24287316.15"
+        },
+        {
+          "id": "inventory-receivables",
+          "type": "CURRENT_FLOW_LEVEL",
+          "terms": [
+            [
+              "inventory_release",
+              1
+            ],
+            [
+              "operating_ar_change",
+              1
+            ]
+          ],
+          "expected_yuan": "-671335159.07"
+        },
+        {
+          "id": "net-change",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "net_profit",
+              1
+            ],
+            [
+              "net_profit_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "276812005.40"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "SOURCE_FACTS",
+        "source_fact_keys": [
+          "inventory_release",
+          "operating_ar_change",
+          "operating_ap_change"
+        ]
+      },
+      "next_disclosure_test": {
+        "period": "2026Q1",
+        "metric": "库存及经营性应收变化、现金转换",
+        "falsifies_when": "若存货与应收回收，同时毛利率改善，则资金占用主要属于阶段性节奏。"
+      }
+    }
+  ]
+}

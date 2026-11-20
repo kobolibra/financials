@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import sys
@@ -64,7 +65,11 @@ def folder(code: str, period: str | None = None) -> Path:
     has a dossier lives in research/issuers/<code>/<period>/ (e.g. 20269M)."""
     if not re.fullmatch(r"[0-9]{6}", code):
         sys.exit("issuer code must be six digits")
-    base = ROOT / "research" / "issuers" / code
+    override = os.environ.get("FINANCIALS_DOSSIER_ROOT")
+    directory = (ROOT / override).resolve() if override else ROOT / "research" / "issuers"
+    if override and ROOT / "work" not in directory.parents and directory != ROOT / "work":
+        sys.exit("FINANCIALS_DOSSIER_ROOT must be under the repository work directory")
+    base = directory / code
     if period:
         if not re.fullmatch(r"20[0-9]{2}(Q[1-4]|H1|9M|FY)", period):
             sys.exit("period must look like 2026Q1, 2026H1, 20269M or 2026FY")
@@ -131,6 +136,16 @@ def cmd_init(a) -> None:
     sha = hashlib.sha256(data).hexdigest()
     doc = m.open(pdf)
     ident = detect_identity(doc, a.code)
+    ledger_path = base / "source-ledger.json"
+    if getattr(a, "candidate", False):
+        if a.period and a.period != ident["fiscal_period"]:
+            sys.exit("DOSSIER_FOLDER_PERIOD_MISMATCH")
+        if ledger_path.exists():
+            existing = json.loads(ledger_path.read_text())
+            if existing["source"]["original_bytes_sha256"] != sha or not existing["issuer"].get("offline_candidate"):
+                sys.exit("CANDIDATE_DOSSIER_ALREADY_BOUND: use an unused period dossier")
+    elif not a.url:
+        sys.exit("SOURCE_URL_REQUIRED_FOR_CATALOG_PUBLICATION")
     (base / "source").mkdir(parents=True, exist_ok=True)
     (base / "extracted").mkdir(exist_ok=True)
     target = base / "source" / f"{a.code}_{ident['fiscal_period']}_complete_original.pdf"
@@ -147,6 +162,12 @@ def cmd_init(a) -> None:
                   "industry": "", "sector_adapter": "", "accounting_route": "",
                   "fiscal_period": ident["fiscal_period"], "comparative_period": ident["comparative_period"],
                   "base_unit": "人民币元", "audit": ident["audit"], "income_figure_title": ""}
+        if getattr(a, "candidate", False):
+            issuer["offline_candidate"] = True
+            text = squash("".join(page.get_text() for page in list(doc)[:30]))
+            issuer["restatement_review_required"] = (
+                "调整前" in text and "调整后" in text
+                and any(word in text for word in ("追溯调整", "重述")))
         if ident["flow_columns"]:
             issuer["flow_columns"] = ident["flow_columns"]
         if a.route:
@@ -362,11 +383,14 @@ def build_fact(doc, ledger: dict, key: str, spec: dict) -> dict:
     if re.fullmatch(r"[-−—]{1,2}", cell["printed"].strip()):
         raise ValueError(f"COLUMN_IS_DASH_PLACEHOLDER {key}: '-' means not applicable, not zero")
     printed = to_decimal(cell["printed"])
+    scale = Decimal(str(spec.get("unit_scale", "1")))
+    if scale not in (1, 1000, 10000, 1000000):
+        raise ValueError(f"INVALID_SOURCE_UNIT_SCALE {key}")
     if spec.get("unit", "元") != "元" or "sign" in spec:
         # The publication validator re-reads the printed cell and requires the
         # stored yuan string to appear there with its original sign.
         raise ValueError(f"STORE_PRINTED_YUAN_AS_IS {key}: keep the original sign and 元 unit; apply accounting signs with -1 coefficients in expressions")
-    yuan = printed
+    yuan = printed * scale
     if spec.get("expect") is not None and to_decimal(str(spec["expect"])) != printed:
         raise ValueError(f"EXPECTED_VALUE_MISMATCH {key}: printed {cell['printed']}")
     issuer = ledger["issuer"]
@@ -381,7 +405,54 @@ def build_fact(doc, ledger: dict, key: str, spec: dict) -> dict:
             "classification": "DISCLOSED", "unit": "元", "currency": "CNY",
             "source_cells": [{"bbox": cell["bbox"], "printed": cell["printed"], "wrapped_number": bool(cell["wrapped"])}],
             "source_row_label": row["label"], "source_column": column_role}
+    if spec.get("denominator_definition"):
+        fact["denominator_definition"] = spec["denominator_definition"]
+    if scale != 1 or cell["printed"].startswith(("(", "（")):
+        fact["source_cells"][0]["unit_scale"] = str(scale)
     return fact
+
+
+def cmd_basis(a) -> None:
+    """Bind each reviewed comparative to a source page and, if restated, to its original value."""
+    _, doc, ledger = open_source(a.code, a.period)
+    from comparison_basis import require_pair
+    rules = json.loads(Path(a.spec).read_text())
+    for key, entry in rules.items():
+        status = entry["status"]
+        if status not in ("unchanged", "restated", "unconfirmed"):
+            raise ValueError("UNKNOWN_COMPARISON_BASIS " + key)
+        if (not entry.get("reason") or not entry.get("evidence_pages")
+                or any(type(p) is not int or not 1 <= p <= len(doc) for p in entry["evidence_pages"])):
+            raise ValueError("COMPARISON_REVIEW_PAGE_OR_REASON_REQUIRED " + key)
+        rule = {k: entry[k] for k in ("status", "reason", "evidence_pages")}
+        if status == "restated":
+            oldkey = key + "_original"
+            archive_spec = entry["original"]
+            external = archive_spec.get("external")
+            archive_doc = doc
+            if external:
+                base = folder(a.code, a.period)
+                path = (base / "source" / external["filename"]).resolve()
+                path.relative_to((base / "source").resolve())
+                if hashlib.sha256(path.read_bytes()).hexdigest() != external["sha256"]:
+                    raise ValueError("COMPARISON_ORIGINAL_BYTES_DRIFT " + key)
+                archive_doc = pymupdf().open(path)
+                expected_period = ledger["issuer"]["comparative_period"]
+                if detect_identity(archive_doc, a.code)["fiscal_period"] != expected_period:
+                    raise ValueError("COMPARISON_ARCHIVE_PERIOD_MISMATCH " + key)
+                evidence = {**external, "path": str(path.relative_to(ROOT)), "period": expected_period,
+                            "physical_pages": len(archive_doc), "printed_column": "本期/期末"}
+            original = build_fact(archive_doc, ledger, oldkey, {**archive_spec, "prior": True})
+            if external:
+                original["archival_source"] = evidence
+            original["disclosure_version"] = "original_before_restatement"
+            ledger["facts"][oldkey] = original
+            ledger["facts"][key + "_prior"]["disclosure_version"] = "restated"
+            rule["original_fact"] = oldkey
+        ledger.setdefault("comparison_basis", {})[key] = rule
+        if status != "unconfirmed":
+            require_pair(ledger, key, key + "_prior")
+    (folder(a.code, a.period) / "source-ledger.json").write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n")
 
 
 def cmd_facts(a) -> None:
@@ -400,6 +471,31 @@ def cmd_facts(a) -> None:
     ledger["facts"].update(built)
     (folder(a.code, a.period) / "source-ledger.json").write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n")
     print(f"FACTS_WRITTEN {len(built)} (errors {len(errors)})")
+
+
+def cmd_coverage(a) -> None:
+    base = folder(a.code, a.period)
+    path = base / "source-ledger.json"
+    ledger = json.loads(path.read_text())
+    review = ledger["unmapped_review"]
+    if not a.spec:
+        print(json.dumps(review, ensure_ascii=False, indent=2))
+        return
+    spec = json.loads(Path(a.spec).read_text())
+    if spec["source_sha256"] != review["source_sha256"]:
+        raise ValueError("UNMAPPED_REVIEW_SOURCE_DRIFT")
+    records = {row["id"]: row for row in review["items"]}
+    for ident, item in spec["decisions"].items():
+        row = records[ident]
+        classification = item["classification"]
+        if classification not in ("DUPLICATE_SUBTOTAL", "NON_AMOUNT", "COVERED", "NONMATERIAL", "MATERIAL_OMISSION", "PENDING"):
+            raise ValueError("UNMAPPED_REVIEW_CLASSIFICATION " + ident)
+        if not all(item.get(field) for field in ("reviewer", "date", "reason", "affected_conclusions")):
+            raise ValueError("UNMAPPED_REVIEW_EVIDENCE_REQUIRED " + ident)
+        if classification in ("MATERIAL_OMISSION", "PENDING") and not item.get("affected_keys"):
+            raise ValueError("UNMAPPED_REVIEW_AFFECTED_KEYS_REQUIRED " + ident)
+        row.update(classification=classification, materiality=classification, review_evidence=item)
+    path.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n")
 
 
 def cmd_auto(a) -> None:
@@ -424,10 +520,19 @@ def cmd_auto(a) -> None:
     if conflicts:
         sys.exit("AUTO_CONFLICTS_WITH_EXISTING_LEDGER " + " ".join(conflicts))
     if a.write:
+        if not result["facts"]:
+            sys.exit("AUTO_NOT_WRITTEN: no consolidated statement facts found")
         if bad and not a.allow_residual:
             sys.exit("AUTO_NOT_WRITTEN: identities must close first (or pass --allow-residual and record why)")
         ledger["facts"].update({k: f for k, f in facts.items() if k not in ledger["facts"]})
-        ledger["issuer"].setdefault("statement_format", result["format"])
+        ledger["issuer"]["statement_format"] = result["format"]
+        if ledger["issuer"].get("offline_candidate"):
+            from coverage_review import unmapped_review_items
+            sha = ledger["source"]["original_bytes_sha256"]
+            items = unmapped_review_items(result["unmapped"], sha)
+            previous = ledger.get("unmapped_review", {})
+            reviewed = {row["id"]: row for row in previous.get("items", [])} if previous.get("source_sha256") == sha else {}
+            ledger["unmapped_review"] = {"source_sha256": sha, "items": [reviewed.get(row["id"], row) for row in items]}
         if partition and not ledger.get("segments"):
             ledger["segments"], ledger["income_partition"] = segments, partition
         (folder(a.code, a.period) / "source-ledger.json").write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + "\n")
@@ -437,6 +542,9 @@ def cmd_auto(a) -> None:
 # ---------------------------------------------------------------- editorial manifest
 def editorial_path(code: str, fiscal_period: str, period: str | None) -> Path:
     name = f"{code}.json" if not period else f"{code}-{period}.json"
+    candidate = folder(code, period) / "editorial-manifest.json"
+    if candidate.exists():
+        return candidate
     return ROOT / "research" / "editorial-20261113" / name
 
 
@@ -517,11 +625,12 @@ def lint(story: dict, expanded: dict | None = None, roles: dict | None = None,
     issues = []
     figs = story.get("figures", [])
     shown = {f["id"]: f for f in (expanded or story).get("figures", [])}
-    if not 4 <= len(figs) <= 14:
+    candidate = story.get("composition") == "OFFLINE_RESEARCH_CANDIDATE_V1"
+    if not (1 if candidate else 4) <= len(figs) <= 14:
         issues.append(f"FIGURE_COUNT_{len(figs)}: a full report usually needs 6-12 analytically distinct figures")
     families = {f.get("family") for f in figs}
     for need in ("signed_bridge",):
-        if need not in families:
+        if need not in families and not candidate:
             issues.append("MISSING_SIGNED_BRIDGE: profit or cash formation needs a signed waterfall")
     questions = [f.get("question", "") for f in figs]
     if len(set(questions)) != len(questions):
@@ -553,19 +662,19 @@ def lint(story: dict, expanded: dict | None = None, roles: dict | None = None,
     for term in ("替代解释", "下一"):
         if term not in essays:
             issues.append(f"ESSAY_MISSING_{term}: strongest alternative and next-disclosure falsifier are required")
-    if len(story.get("notes", [])) < 6:
+    if len(story.get("notes", [])) < (1 if candidate else 6):
         issues.append("MATERIAL_NOTES_FEWER_THAN_6: review revenue, AR, inventory, CFO, debt/cash, nonrecurring at minimum")
-    if len(story.get("metrics", [])) != 3:
+    if len(story.get("metrics", [])) != 3 and not candidate:
         issues.append("HERO_METRICS_SHOULD_BE_3")
     if story.get("design") == "EDITORIAL_V2":
-        issues += lint_v2(figs, roles, capabilities)
+        issues += lint_v2(figs, roles, capabilities, candidate=candidate)
     return issues
 
 
 TREND_FAMILIES = {"period_columns", "ratio_dumbbell", "growth_bars"}
 
 
-def lint_v2(figs, roles=None, capabilities=None) -> list:
+def lint_v2(figs, roles=None, capabilities=None, *, candidate=False) -> list:
     """V2 editorial audit: preserve legacy receipts, but make new figure choices evidence-led.
 
     A chart family is not a goal. For new source-bound reports, reject families whose
@@ -575,7 +684,7 @@ def lint_v2(figs, roles=None, capabilities=None) -> list:
     """
     issues = []
     fams = [f.get("family") for f in figs]
-    if not figs or fams[0] != "kpi_board":
+    if not candidate and (not figs or fams[0] != "kpi_board"):
         issues.append("V2_FIRST_FIGURE_MUST_BE_KPI_BOARD: open with the at-a-glance numbers")
     if capabilities is None:
         if len(set(fams)) < 5:
@@ -584,7 +693,7 @@ def lint_v2(figs, roles=None, capabilities=None) -> list:
             issues.append("V2_NO_TREND_EXHIBIT: add quarterly columns, a margin dumbbell or growth bars")
     else:
         if (capabilities.get("schema") != "financials.research_capabilities.v1"
-                or capabilities.get("publication_route") != "INDUSTRIAL_V2_AUTHORING_CANDIDATE"):
+                or capabilities.get("publication_route") not in ("INDUSTRIAL_V2_AUTHORING_CANDIDATE", "BANK_V2_AUTHORING_CANDIDATE")):
             issues.append("V2_UNVERIFIED_SECTOR_OR_SOURCE_CAPABILITY")
         status = {v["family"]: v["status"] for v in capabilities.get("visual_candidates", [])}
         for f in figs:
@@ -594,16 +703,16 @@ def lint_v2(figs, roles=None, capabilities=None) -> list:
                 issues.append(f"V2_SOURCE_INELIGIBLE_FIGURE_{f.get('id')}:{family}")
         # Distinct research relationships are a minimum quality requirement, not
         # a demand to manufacture five graphic types from absent evidence.
-        if len(set(fams)) < 3:
+        if not candidate and len(set(fams)) < 3:
             issues.append("V2_SOURCE_LIMITED_RELATIONSHIPS: fewer than three distinct audited financial views")
         # Omit trends when no comparable single-period or ratio evidence exists.
         # An eligible trend is a candidate, not a mandate to draw a redundant chart.
     # body = figures the editorial manifest keeps in the main reading layer (all figures when roles are unknown)
     body = [f for f in figs if (roles or {}).get(f.get("id")) != "reference"]
     bridges = sum(1 for f in body if f.get("family") == "signed_bridge")
-    if bridges > 2 or bridges * 2 > len(body):
+    if bridges > 2 or (not candidate and bridges * 2 > len(body)):
         issues.append(f"V2_BRIDGE_PARADE_{bridges}: keep at most 2 signed bridges in the body; move the rest to reference")
-    if sum(1 for f in figs if f.get("chapter")) < 3:
+    if not candidate and sum(1 for f in figs if f.get("chapter")) < 3:
         issues.append("V2_TOO_FEW_CHAPTERS: group figures into 3-4 themed takeaways")
     for f in figs:
         ch = f.get("chapter")
@@ -681,20 +790,22 @@ def main(argv=None) -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     i = sub.add_parser("init"); i.add_argument("--code", required=True); i.add_argument("--pdf", required=True)
-    i.add_argument("--url", required=True); i.add_argument("--name"); i.add_argument("--short"); i.add_argument("--route"); i.add_argument("--force", action="store_true")
+    i.add_argument("--candidate", action="store_true"); i.add_argument("--url"); i.add_argument("--name"); i.add_argument("--short"); i.add_argument("--route"); i.add_argument("--force", action="store_true")
     f = sub.add_parser("find"); f.add_argument("--code", required=True); f.add_argument("--statements", action="store_true"); f.add_argument("--text")
     s = sub.add_parser("scan"); s.add_argument("--code", required=True); s.add_argument("--page", type=int, required=True); s.add_argument("--all", action="store_true")
     x = sub.add_parser("facts"); x.add_argument("--code", required=True); x.add_argument("--spec", required=True); x.add_argument("--partial", action="store_true")
+    cv = sub.add_parser("coverage"); cv.add_argument("--code", required=True); cv.add_argument("--spec")
+    b = sub.add_parser("basis"); b.add_argument("--code", required=True); b.add_argument("--spec", required=True)
     q = sub.add_parser("preflight"); q.add_argument("--code", required=True)
     q.add_argument("--require-research-evidence", action="store_true",
                    help="strict for new V2 editions; legacy reports retain explicit NOT_CHECKED status")
     e = sub.add_parser("editorial"); e.add_argument("--code", required=True); e.add_argument("--spec", required=True)
     au = sub.add_parser("auto"); au.add_argument("--code", required=True); au.add_argument("--write", action="store_true")
     au.add_argument("--allow-residual", action="store_true")
-    for sp in (i, f, s, x, q, e, au):
+    for sp in (i, f, s, x, b, cv, q, e, au):
         sp.add_argument("--period", help="report period folder for a later period of an issuer, e.g. 20269M")
     a = p.parse_args(argv)
-    {"init": cmd_init, "find": cmd_find, "scan": cmd_scan, "facts": cmd_facts, "preflight": cmd_preflight, "editorial": cmd_editorial, "auto": cmd_auto}[a.cmd](a)
+    {"init": cmd_init, "find": cmd_find, "scan": cmd_scan, "facts": cmd_facts, "basis": cmd_basis, "coverage": cmd_coverage, "preflight": cmd_preflight, "editorial": cmd_editorial, "auto": cmd_auto}[a.cmd](a)
 
 
 if __name__ == "__main__":

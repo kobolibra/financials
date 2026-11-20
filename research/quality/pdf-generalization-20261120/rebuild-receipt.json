@@ -1,0 +1,45 @@
+[
+  {
+    "issuer": "600036",
+    "period": "2026Q1",
+    "pdf_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+    "html_sha256": "966654503a45e6c09687377798866a954c782d6052c9e4a1eb8fbde3c1c087ab",
+    "seconds": {
+      "intake": 0.617,
+      "facts": 0.247,
+      "coverage": 0.085,
+      "apply": 1.308,
+      "preflight": 1.338,
+      "publish": 1.401
+    },
+    "authorship": "replay of reviewed evidence specs and article"
+  },
+  {
+    "issuer": "600206",
+    "period": "2025FY",
+    "pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+    "html_sha256": "7e0b81ba16453f6c1eecb8eeef0d32e0fa860f52003cb4298de71f29cb41e1d0",
+    "seconds": {
+      "intake": 1.713,
+      "coverage": 0.046,
+      "apply": 2.514,
+      "preflight": 2.56,
+      "publish": 2.611
+    },
+    "authorship": "replay of reviewed evidence specs and article"
+  },
+  {
+    "issuer": "600919",
+    "period": "2025H1",
+    "pdf_sha256": "a5136fb013db4b301aac6a5c423570afb7ca45ca7ee9384f7dc160d00dc887df",
+    "html_sha256": "12f04f1f56b08548c9b7a7065cce919acfe5f83f65b47a6be1ffed55ac150532",
+    "seconds": {
+      "intake": 1.355,
+      "facts": 0.152,
+      "apply": 4.03,
+      "preflight": 3.847,
+      "publish": 3.648
+    },
+    "authorship": "replay of reviewed evidence specs and article"
+  }
+]

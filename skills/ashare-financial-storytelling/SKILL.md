@@ -9,6 +9,15 @@ Contract version: 10.0.0
 
 本文件是**唯一的执行合同**：怎么做、做到什么程度、什么必须拒绝。它不记录项目进度。当前发布状态、公司清单与证据只看 `project-status.json`、`site/research_catalog.json` 和各发行人 `research/issuers/<code>/release-gates.json`；历史 PR35 来源见 `docs/ACTIVE_PR35_HANDOFF.md`（只是历史证据，不是当前部署依据）。v8.8 与 v9.1 的长版说明分别归档在 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md` 与 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md`，其中的公司特例仍适用于对应旧出版器，但不授权任何新发布。
 
+## 单份 PDF 的启动入口
+
+```bash
+T=skills/ashare-financial-storytelling/tools
+python "$T/start_report.py" /absolute/path/filing.pdf
+```
+
+打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。
+
 ## 0. 交付目标与质量线
 
 每份报告是一篇**独立、可离线打开的中文财经研究长文**，同时满足三条互不替代的标准：
@@ -49,7 +58,7 @@ Contract version: 10.0.0
 
 效率原则：P1–P2 用 `fin_intake.py init → auto --write`，三张表**不写任何公司规格**；只有附注（分部、地区、补充资料）用 `find / scan / facts`。出现残差或未映射行时，按 `playbooks/06_GENERALIZATION.md` §2 处理：加通用同义词并补回归测试，不写公司补丁；**未映射金额行必须先分类与核实重大性，不能由恒等式闭合推定全量覆盖**。P3 是唯一不能省的人工判断环节；P5–P6 用现有共享出版器与审计器，不另写。
 
-**P4 标准做法（EDITORIAL_V2，已证明适用的工业会计模型）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
+**目录报告的 P4 标准做法（EDITORIAL_V2）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
 0. **先检查** `python $T2 capabilities --code <c> [--period P]`：类型化事实、同比/余额期间、行业路由、候选图种和欠缺的研究证据逐项列出。新金融/地产出版器未实现时拒绝通用工业出版；`scaffold --source-probe` 只作原件技术诊断，永远不能直接发布。详细见 Playbook 07。
 1. `python $T2 numbers --code <c> [--period P]`：打印每行同比、占收入比例、分部/地区增速与毛利率、营运资本余额变动。**叙事只按这里的方向写**。
 2. `python $T2 scaffold …`：生成经过能力筛选的 `v2-draft.json`；只有证据足够的图才保留候选，原因写入 `omitted_for_evidence`。分析师先完成 `research-brief.json`，再根据核心问题筛选图形与图序。
@@ -153,7 +162,7 @@ CI 会对目录中声明 `source_publication` 的公司自动干净重建并跑�
 
 ## 8. 跨期、跨公司稳定性的边界
 
-- 新期间：从原报告读取 `fiscal_period`（Q1/H1/9M/FY），单季列按真实 `issuer.flow_columns` 声明；不得借用旧期图证。历史 PDF-only 泛化探针记录 30 份（包含 Q1/H1/9M/FY），但**当前仓库只能复验其中 10 份 PDF**：年报、银行和证券的缺失原件尚未恢复，详见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`；当前 10/10 不可说成可复现 30/30。完整出版/人类审稿分别标 `NOT_CHECKED`。
+- 新期间：从原报告读取 `fiscal_period`（Q1/H1/9M/FY），单季列按真实 `issuer.flow_columns` 声明；不得借用旧期图证。历史 PDF-only 泛化探针记录 30 份（包含 Q1/H1/9M/FY），其中 20 份由公开披露按 SHA 恢复，30 份全部可复跑；恢复命令和历次状态见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`。完整出版/人类审稿分别标 `NOT_CHECKED`。
 - 同一公司的后续期间登记在目录 `period_reports`，以 `code@period` 解析，旧路由与旧字节不变（playbook 01 §5）。
 - 新行业：先运行 `v2_builder.py capabilities`（`tools/research_capabilities.py`），从报告本身的财务事实和行业口径判能力。只有工业已有通用 EDITORIAL_V2 作者路由；银行、保险、证券、地产在新出版器适配、对抗测试前仍为 `SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED`，不可套工业模板（Playbook 02 §5、Playbook 07）。
 - 能力分级：L0 仅描述；L1 一家真实原件通过；L2 同类两家真实原件+完整三表/附注+浏览器；L3 跨行业对抗回归+独立编辑+部署验证。只宣称实际达到的级别。合成样例只测机制，不证明未见真实财报的理解能力。

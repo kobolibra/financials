@@ -307,6 +307,19 @@ def validate_current_published_files(root, audit, debt):
             errors.append(f"VISUAL_CHANGED_ISSUER_REQUIRES_ACTUAL_NEW_BROWSER_CENSUS {code}")
             continue
         d=json.loads(receipt.read_text(encoding="utf8"))
+        if d.get("browser") == "chromium" and "viewports" in d:
+            views = d["viewports"]
+            if (d.get("sha256") != sha or len(views) != 3
+                    or {view.get("width") for view in views} != WIDTHS
+                    or any(len(view.get("figures", [])) != issuer.get("figures")
+                           or any(figure.get("issues") or figure.get("overlap") or not figure.get("values")
+                                  for figure in view["figures"])
+                           for view in views)):
+                errors.append(f"VISUAL_CATALOG_SOURCE_BROWSER_EVIDENCE_INVALID {code}")
+                continue
+            fixed.append({"code": code, "source_html_sha256": sha,
+                          "mobile_original_money_grammar": "PASS_REAL_CHROMIUM_AND_SOURCE_GEOMETRY"})
+            continue
         three=d.get("actual_3_viewport_checks",[])
         widths={x.get("width") for x in three}
         valid=(

@@ -1,0 +1,285 @@
+{
+  "generation_scope": "EDITORIAL_AUTHORING_CANDIDATE",
+  "capability_plan": {
+    "schema": "financials.research_capabilities.v1",
+    "issuer": "600919",
+    "fiscal_period": "2025H1",
+    "sector_route": "bank",
+    "period_basis": {
+      "flow_current": "2025H1",
+      "flow_prior": "2024H1",
+      "stock_current": "2025-06-30",
+      "stock_prior": "2024-12-31",
+      "flow_comparison": "SAME_CUMULATIVE_PERIOD_YOY",
+      "stock_comparison": "REPORT_END_VS_PREVIOUS_YEAR_END_NOT_YOY"
+    },
+    "source_pdf_sha256": "a5136fb013db4b301aac6a5c423570afb7ca45ca7ee9384f7dc160d00dc887df",
+    "source_gate": "HASH_RECORDED_BYTES_NOT_REVERIFIED",
+    "publication_route": "BANK_V2_AUTHORING_CANDIDATE",
+    "blockers": [],
+    "visual_candidates": [
+      {
+        "family": "comparison",
+        "question": "净利息、非息及信用成本如何分化？",
+        "evidence": [
+          "nii",
+          "rev",
+          "parent_net",
+          "fee_net",
+          "credit_impairment",
+          "admin_fin",
+          "fin_interest_income",
+          "fin_interest_expense",
+          "loans",
+          "deposits",
+          "assets",
+          "equity"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Comparable income periods and separately dated balance snapshots"
+      },
+      {
+        "family": "signed_bridge",
+        "question": "利息收入和支出如何形成净利息收入？",
+        "evidence": [
+          "nii",
+          "rev",
+          "parent_net",
+          "fee_net",
+          "credit_impairment",
+          "admin_fin",
+          "fin_interest_income",
+          "fin_interest_expense"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Source-closed signed bridge with no duplicate interest expense"
+      }
+    ],
+    "research_questions": [
+      {
+        "id": "NET_INTEREST_ECONOMICS",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "nii"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "NII is not interest income; NIM needs average earning assets"
+      },
+      {
+        "id": "ASSET_QUALITY",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "loans"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Nonperforming ratio, provisioning and writeoffs require own disclosures"
+      },
+      {
+        "id": "FUNDING_AND_CAPITAL",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "deposits"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Deposit structure, LCR and regulatory capital require separate disclosure"
+      }
+    ],
+    "independent_financial_and_visual_review": "NOT_CHECKED",
+    "complete_footnote_materiality_review": "NOT_CHECKED",
+    "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
+  },
+  "article": {
+    "title": "利息净收入上行，税前利润为何仍承压？",
+    "deck": "江苏银行上半年净利息收入比上年同期多 [d:nii] 亿元。信用减值和非息收入收缩压低税前利润，所得税减少改变了归母利润的方向。",
+    "thesis": {
+      "title": "核心判断",
+      "body": "利息净收入增加 [d:nii] 亿元，但税前利润变化 [d:pretax] 亿元。利润端应先区分营收结构、信用减值与所得税。平均余额和净息差口径已披露，本篇可解释利息收支的会计变化，同时保留跨期量价归因的不确定性。"
+    },
+    "metrics": [],
+    "essays": [
+      {
+        "id": "research",
+        "eyebrow": "研究判断",
+        "title": "利润增量主要留在哪一层？",
+        "paragraphs": [
+          "利息收入变化 [d:fin_interest_income] 亿元，利息支出变化 [d:fin_interest_expense] 亿元。两者相减得到净利息收入的变化。",
+          "替代解释是单靠规模扩张形成净利息增量。物理第十五至十六页确认本期生息资产使用日均余额，并为净息差还原以公允价值计量的持有收益。若直接把会计净利息收入除以该余额，会和披露净息差的分子定义不同。",
+          "信用减值损益同比变化 [d:credit_impairment] 亿元。第十二页将增加列为管理层说明。本篇将其视作会计拖累，贷款信用成本还需贷款专项减值和对应平均贷款分母。"
+        ],
+        "after": "performance"
+      },
+      {
+        "id": "follow-up",
+        "eyebrow": "下一次披露",
+        "title": "后续检验税前盈利是否改善",
+        "paragraphs": [
+          "下一次披露复核两期同定义的平均生息资产、收益率及计息负债成本。若净利息增长递减且税前利润继续走弱，盈利修复需重新判断。",
+          "同时取得贷款拨备期初期末调节，区分新计提、核销、转回及合并范围变化。"
+        ],
+        "after": "end"
+      }
+    ],
+    "notes": [
+      {
+        "theme": "利息收支",
+        "pages": [
+          15,
+          16,
+          93
+        ],
+        "finding": "本期平均生息资产为 [y:average_earning_assets] 亿元。",
+        "boundary": "披露净息差使用还原分子，报告期财务净利息收入可独立复算。"
+      },
+      {
+        "theme": "信用质量",
+        "pages": [
+          33,
+          34,
+          93
+        ],
+        "finding": "监管五级分类与会计信用减值分别披露。",
+        "boundary": "总信用减值覆盖多类资产，贷款信用成本需要单项分母。"
+      },
+      {
+        "theme": "合并范围",
+        "pages": [
+          12
+        ],
+        "finding": "管理层披露收购产生商誉。",
+        "boundary": "余额变化包含合并范围影响，本文仅比较合并报告列示金额。"
+      },
+      {
+        "theme": "监管资本",
+        "pages": [
+          13
+        ],
+        "finding": "资本和风险加权资产按监管口径列示。",
+        "boundary": "会计权益与监管资本的分子不同。"
+      }
+    ],
+    "accounting_identities": [
+      {
+        "name": "资产=负债+全部权益",
+        "left": "assets",
+        "right": [
+          [
+            "liabilities",
+            1
+          ],
+          [
+            "equity",
+            1
+          ]
+        ]
+      }
+    ],
+    "quantified_claims": {}
+  },
+  "glance": [],
+  "new_figures": [
+    {
+      "id": "performance",
+      "family": "comparison",
+      "nav": "损益与盈利",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2024H1",
+        "2025H1"
+      ],
+      "pairs": [
+        [
+          "净利息收入",
+          "nii_prior",
+          "nii"
+        ],
+        [
+          "信用减值损益",
+          "credit_impairment_prior",
+          "credit_impairment"
+        ],
+        [
+          "营业收入",
+          "rev_prior",
+          "rev"
+        ],
+        [
+          "归母净利润",
+          "parent_net_prior",
+          "parent_net"
+        ]
+      ],
+      "question": "哪笔新增收入被信用减值抵消？",
+      "takeaway": "净利息是营收增量的主要来源，同期信用减值损益恶化。",
+      "analysis": "对照各项会计金额，信用减值损益变化 [d:credit_impairment] 亿元。",
+      "counter": "贷款、债权投资等资产共同进入会计信用减值，需用附注明确组成。"
+    },
+    {
+      "id": "interest-formation",
+      "family": "signed_bridge",
+      "nav": "净利息形成",
+      "eyebrow": "利息收支",
+      "rows": [
+        [
+          "利息收入",
+          "fin_interest_income",
+          "start"
+        ],
+        [
+          "利息支出",
+          [
+            [
+              "fin_interest_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "净利息收入",
+          "nii",
+          "total"
+        ]
+      ],
+      "question": "本期利息收支怎样形成净利息收入？",
+      "takeaway": "资产利息与资金利息相抵形成净利息收入。",
+      "analysis": "桥反映本期会计分解，原始金额见图下。",
+      "counter": "平均资产和利率要保持合并范围、计时和还原口径一致。"
+    },
+    {
+      "id": "balances",
+      "family": "comparison",
+      "nav": "期末余额",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2024-12-31",
+        "2025-06-30"
+      ],
+      "pairs": [
+        [
+          "发放贷款及垫款账面额",
+          "loans_prior",
+          "loans"
+        ],
+        [
+          "吸收存款账面额",
+          "deposits_prior",
+          "deposits"
+        ]
+      ],
+      "question": "贷款与存款账面余额如何变化？",
+      "takeaway": "贷款与存款对应不同的资产和资金约束。",
+      "analysis": "按财报合并列示的时点余额比较。",
+      "counter": "账户余额含会计调整，并且不能代替日均余额。"
+    }
+  ],
+  "order": [
+    "performance",
+    "interest-formation",
+    "balances"
+  ],
+  "roles": {
+    "performance": "primary",
+    "interest-formation": "secondary",
+    "balances": "secondary"
+  }
+}

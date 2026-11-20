@@ -39,6 +39,7 @@ TOOLS = Path(__file__).resolve().parent
 sys.path.insert(0, str(TOOLS))
 import fin_intake as fi  # noqa: E402
 import research_capabilities as rc  # noqa: E402
+from comparison_basis import require_growth_base, require_pair
 import research_evidence as ev  # noqa: E402
 
 YI = D(100000000)
@@ -142,12 +143,73 @@ def text_block(**extra):
     return dict(question='TODO？', takeaway=TODO, trend=TODO, analysis=TODO, counter=TODO, **extra)
 
 
+def offline_figures(ledger, plan):
+    """Start from sector-specific relationships that the current PDF can support."""
+    facts, issuer = ledger['facts'], ledger['issuer']
+    bank = plan['sector_route'] == 'bank'
+    periods = [issuer['comparative_period'], issuer['fiscal_period']]
+    flow = [('净利息收入', 'nii'), ('手续费及佣金净收入', 'fee_net'), ('信用减值损益', 'credit_impairment'),
+            ('营业收入', 'rev'), ('归母净利润', 'parent_net')] if bank else [
+            ('营业收入', 'rev'), ('营业成本', 'cogs'), ('归母净利润', 'parent_net'), ('经营现金净额', 'cfo')]
+    stock = [('发放贷款及垫款账面额', 'loans'), ('吸收存款账面额', 'deposits')] if bank else [
+             ('应收账款', 'ar'), ('存货', 'inventory')]
+    figures = []
+    for ident, label, metrics, kind in (('performance', '损益与盈利', flow, 'flow'),
+                                       ('balances', '期末余额', stock, 'stock')):
+        pairs = [[name, key + '_prior', key] for name, key in metrics if rc.pair_ok(ledger, key, kind)]
+        if not pairs:
+            continue
+        comparison_periods = periods
+        if kind == 'stock':
+            _, previous, current = pairs[0]
+            comparison_periods = [facts[previous]['period'], facts[current]['period']]
+        if any(facts[previous].get('disclosure_version') == 'restated' for _, previous, _ in pairs):
+            # On a mixed chart, the prior labels are metric-local. Keep different bases in distinct exhibits.
+            figures.extend(dict(id=ident + '-' + key.replace('_', '-'), family='comparison', nav=name,
+                                eyebrow='两期对照', periods=[
+                                    comparison_periods[0] + ('（重述后）' if facts[previous].get('disclosure_version') == 'restated' else ''),
+                                    comparison_periods[1]], pairs=[[name, previous, key]], **text_block())
+                           for name, previous, key in pairs)
+        else:
+            figures.append(dict(id=ident, family='comparison', nav=label, eyebrow='两期对照',
+                                periods=comparison_periods, pairs=pairs, **text_block()))
+    if bank and all(key in facts for key in ('fin_interest_income', 'fin_interest_expense', 'nii')):
+        if val(facts, diff('fin_interest_income', 'fin_interest_expense')) == val(facts, 'nii'):
+            figures.append(dict(id='interest-formation', family='signed_bridge', nav='净利息形成',
+                                eyebrow='利息收支', rows=[
+                                    ['利息收入', 'fin_interest_income', 'start'],
+                                    ['利息支出', [['fin_interest_expense', -1]], 'step'],
+                                    ['净利息收入', 'nii', 'total']], **text_block()))
+    return figures
+
+
+def offline_draft(ledger, plan):
+    figures = offline_figures(ledger, plan)
+    order = [figure['id'] for figure in figures]
+    return {
+        'generation_scope': 'EDITORIAL_AUTHORING_CANDIDATE',
+        'capability_plan': plan,
+        'article': {
+            'title': TODO, 'deck': TODO, 'thesis': {'title': TODO, 'body': TODO},
+            'metrics': [], 'essays': [], 'notes': [], 'accounting_identities': [],
+        },
+        'glance': [], 'new_figures': figures, 'order': order,
+        'roles': {key: 'primary' if key == order[0] else 'secondary' for key in order},
+    }
+
+
 def cmd_scaffold(a):
     base, ledger, story = load(a.code, a.period)
     plan = rc.assess(ledger)
     source_probe = bool(getattr(a, 'source_probe', False))
     if not source_probe:
         rc.require_editorial_v2(ledger)  # inspect sector/period BEFORE depending on any publication
+    if ledger['issuer'].get('offline_candidate') and not source_probe:
+        draft = offline_draft(ledger, plan)
+        out = Path(a.out) if a.out else base / 'v2-draft.json'
+        out.write_text(json.dumps(draft, ensure_ascii=False, indent=2) + '\n')
+        print('V2_DRAFT_WRITTEN', out, 'figures', len(draft['new_figures']))
+        return
     f = ledger['facts']
     names = ledger['issuer'].get('period_names', {})
     periods = [names.get(ledger['issuer']['comparative_period'], ledger['issuer']['comparative_period']),
@@ -472,8 +534,9 @@ MACRO = re.compile(r'\[([grpydGPD]):([a-z0-9_]+)\]')  # upper case = absolute va
 
 
 class Claims:
-    def __init__(self, story, facts):
+    def __init__(self, story, facts, ledger=None):
         self.c, self.f = story.setdefault('quantified_claims', {}), facts
+        self.ledger = ledger
 
     def _put(self, name, spec):
         if name in self.c and self.c[name] != spec:
@@ -506,6 +569,8 @@ class Claims:
             self._need(e)
             if val(self.f, prior(e)) <= 0:
                 raise SystemExit('V2_GROWTH_NONPOSITIVE_COMPARATIVE ' + key)
+            if self.ledger:
+                require_growth_base(val(self.f, prior(e)), key)
             return self._put('v2g_' + key, {'expression': diff(e, prior(e)), 'denominator': prior(e), 'scale': '1', 'multiplier': '100', 'decimals': 2, 'signed': True})
         if kind == 'y':
             e = expr_of(key)
@@ -525,6 +590,8 @@ class Claims:
         for k, _ in E(e):
             if k not in self.f or k + '_prior' not in self.f:
                 raise SystemExit(f'V2_MACRO_NEEDS_PRIOR_CELL {k}')
+            if self.ledger:
+                require_pair(self.ledger, k, k + '_prior')
 
     UP = re.compile(r'(增长|增加|上升|提高|扩大|改善|回升|提速|加速)[^，。；、]{0,6}$')
     DOWN = re.compile(r'(下降|减少|下滑|降低|收缩|恶化|放缓|回落)[^，。；、]{0,6}$')
@@ -574,8 +641,17 @@ def cmd_apply(a):
         evidence_review = ev.validate_file(ledger, brief_path)
     except (ValueError, KeyError, json.JSONDecodeError) as exc:
         raise SystemExit('V2_RESEARCH_BRIEF_NOT_READY ' + str(exc)) from exc
-    C = Claims(story, ledger['facts'])
+    offline = ledger['issuer'].get('offline_candidate')
+    if offline:
+        article = draft['article']
+        story = {'figures': [], 'composition': 'OFFLINE_RESEARCH_CANDIDATE_V1',
+                 'quantified_claims': article.get('quantified_claims', {})}
+    C = Claims(story, ledger['facts'], ledger if offline else None)
     walk = lambda v: C.expand(v) if isinstance(v, str) else [walk(x) for x in v] if isinstance(v, list) else {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
+    if offline:
+        for field in ('title', 'deck', 'thesis', 'metrics', 'essays', 'notes'):
+            story[field] = walk(article[field])
+        story['accounting_identities'] = article['accounting_identities']
     TEXT = ('question', 'takeaway', 'trend', 'analysis', 'counter', 'chapter')
     old = {f['id']: f for f in story['figures']}
     new = {}
@@ -584,7 +660,9 @@ def cmd_apply(a):
         for k in TEXT:
             if k in fg:
                 fg[k] = walk(fg[k])
-        fg.setdefault('identity', {'kpi_board': '各格为合并口径；流量与上年同期比较，余额与年初比较。', 'growth_bars': '各条为本期相对上年同期的同比增速；成本费用类增加标红。',
+        fg.setdefault('identity', {'comparison': '按图例所列期间核对相同项目。',
+                                   'signed_bridge': '起点加有符号变动等于终点。',
+                                   'kpi_board': '各格为合并口径；流量与上年同期比较，余额与年初比较。', 'growth_bars': '各条为本期相对上年同期的同比增速；成本费用类增加标红。',
                                    'ratio_dumbbell': '空心点为上年同期，实心点为本期。', 'stock_delta': '各条为期末余额减年初余额；资产增加或负债减少占用资金。'}[fg['family']])
         new[fg['id']] = fg
     for fid, ch in draft.get('existing_chapters', {}).items():
@@ -612,8 +690,9 @@ def cmd_apply(a):
         if e.get('after') in draft.get('remove', []):
             e['after'] = 'stock-delta'
     # manifest roles, hero position, expanded titles
-    mpath = fi.editorial_path(a.code, ledger['issuer']['fiscal_period'], a.period)
-    m = json.loads(mpath.read_text())
+    mpath = (base / 'editorial-manifest.json' if offline else
+             fi.editorial_path(a.code, ledger['issuer']['fiscal_period'], a.period))
+    m = {'editorial': {'figures': []}} if offline else json.loads(mpath.read_text())
     shown = {f['id']: f['question'] for f in expand_claims(story, ledger)['figures']}
     before = {f['id']: f for f in m['editorial']['figures']}
     figs = []
@@ -630,9 +709,18 @@ def cmd_apply(a):
     issues = fi.lint(story, expand_claims(story, ledger), roles, capabilities=capability_plan)
     if issues:
         raise SystemExit('V2_LINT ' + json.dumps(issues, ensure_ascii=False))
+    if offline:
+        from source_publication import validate
+        validate(ledger, story)
+        if set(draft['roles'].values()) - {'primary', 'secondary'} or figs[0]['role'] != 'primary' or sum(
+                f['role'] == 'primary' for f in figs) != 1:
+            raise SystemExit('OFFLINE_EDITORIAL_PRIMARY_FIGURE_REQUIRED')
+        m.update(issuer=a.code, period=ledger['issuer']['fiscal_period'],
+                 source_sha256=ledger['source']['original_bytes_sha256'],
+                 schema='financials.offline_editorial.v1')
     (base / 'publication.json').write_text(json.dumps(story, ensure_ascii=False, indent=1) + '\n')
     m['editorial']['figures'] = figs
-    m['editorial']['hero_position'] = 'after_first'
+    m['editorial']['hero_position'] = 'first' if offline else 'after_first'
     mpath.write_text(json.dumps(m, ensure_ascii=False, indent=2) + '\n')
     spec = base / 'editorial-spec.json'  # period reports regenerate the manifest from the spec: keep it in step
     if spec.exists():

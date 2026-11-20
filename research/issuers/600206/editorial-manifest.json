@@ -1,0 +1,38 @@
+{
+  "editorial": {
+    "figures": [
+      {
+        "index": 0,
+        "id": "cash-formation",
+        "title": "利润为何没变成经营现金？",
+        "role": "primary",
+        "rationale": "EDITORIAL_V2 图族：现金转换",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 1,
+        "id": "earnings",
+        "title": "毛利改善是否传到了扣非利润？",
+        "role": "secondary",
+        "rationale": "EDITORIAL_V2 图族：利润修复",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
+        "id": "balances",
+        "title": "哪两项营运资产同步扩张？",
+        "role": "secondary",
+        "rationale": "EDITORIAL_V2 图族：期末余额",
+        "summary": false,
+        "focus": []
+      }
+    ],
+    "hero_position": "first"
+  },
+  "issuer": "600206",
+  "period": "2025FY",
+  "source_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+  "schema": "financials.offline_editorial.v1"
+}

@@ -1,0 +1,100 @@
+{
+  "rev": {
+    "status": "unchanged",
+    "reason": "主要会计数据表同时列出调整前、调整后，披露值相等。",
+    "evidence_pages": [
+      7
+    ]
+  },
+  "operating_profit": {
+    "status": "unchanged",
+    "reason": "附注列示保证类质保由销售费用等额转入营业成本，对营业利润合并小计的影响为零。此判断用于隔离该项会计政策；合并范围变化需单独复核。",
+    "evidence_pages": [
+      124
+    ]
+  },
+  "pretax": {
+    "status": "unconfirmed",
+    "reason": "同一控制下并入子公司为净利润差异来源，当前演示将该项标为未确认，报告不比较利润总额。",
+    "evidence_pages": [
+      7,
+      124
+    ]
+  },
+  "cogs": {
+    "status": "restated",
+    "reason": "保证类质量保证由销售费用追溯转入营业成本，附注并列调整前后。",
+    "evidence_pages": [
+      124
+    ],
+    "original": {
+      "page": 124,
+      "label": "营业成本",
+      "column": 2,
+      "expect": "4,689,290,336.44",
+      "type": "flow",
+      "row": "^营业成本$",
+      "y": [
+        693.8,
+        694.0
+      ]
+    }
+  },
+  "selling": {
+    "status": "restated",
+    "reason": "保证类质量保证由销售费用追溯转入营业成本，附注并列调整前后。",
+    "evidence_pages": [
+      124
+    ],
+    "original": {
+      "page": 124,
+      "label": "销售费用",
+      "column": 2,
+      "expect": "135,602,421.82",
+      "type": "flow",
+      "row": "^销售费用$",
+      "y": [
+        676.7,
+        677.0
+      ]
+    }
+  },
+  "parent_net": {
+    "status": "restated",
+    "reason": "主要会计数据表并列调整前后，公司披露同一控制下合并和会计政策变更。",
+    "evidence_pages": [
+      7
+    ],
+    "original": {
+      "page": 7,
+      "label": "归母净利润",
+      "column": 2,
+      "expect": "619,329,416.51",
+      "type": "flow",
+      "row": "^归母净利润$",
+      "y": [
+        490.0,
+        490.4
+      ]
+    }
+  },
+  "cfo": {
+    "status": "restated",
+    "reason": "主要会计数据表并列调整前后，按本年报告调整后比较。",
+    "evidence_pages": [
+      7
+    ],
+    "original": {
+      "page": 7,
+      "label": "经营现金净额",
+      "column": 2,
+      "expect": "1,050,171,264.84",
+      "type": "flow",
+      "row": "^经营现金净额$",
+      "y": [
+        594.5,
+        594.9
+      ]
+    }
+  }
+}

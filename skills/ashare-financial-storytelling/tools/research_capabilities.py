@@ -12,6 +12,8 @@ import json
 import re
 from decimal import Decimal as D
 
+from comparison_basis import require_pair
+
 
 STOCK_KEYS = frozenset({
     'ar', 'inventory', 'ap', 'contract_assets', 'contract_liabilities',
@@ -20,7 +22,8 @@ STOCK_KEYS = frozenset({
 })
 WORKING_CAPITAL = ('ar', 'inventory', 'ap', 'contract_assets', 'contract_liabilities')
 PROFIT_CHAIN = ('rev', 'cogs', 'operating_profit', 'pretax', 'net_profit', 'parent_net')
-SUPPORTED_PUBLISHER = 'industrial'
+AUTHORING_ROUTES = {'industrial': 'INDUSTRIAL_V2_AUTHORING_CANDIDATE',
+                    'bank': 'BANK_V2_AUTHORING_CANDIDATE'}
 SECTOR_TOPICS = {
     'industrial': (
         ('BUSINESS_ECONOMICS', ('rev', 'cogs'), 'Product/channel economics: require a proven mutually exclusive partition'),
@@ -82,7 +85,7 @@ def sector_of(ledger):
     issuer, facts = ledger.get('issuer', {}), ledger.get('facts', {})
     # Consolidated three-statement format is stronger evidence than the *presence*
     # of a line from a regulated subsidiary inside an industrial conglomerate.
-    actual_format = str(issuer.get('accounting_format') or '').lower()
+    actual_format = str(issuer.get('accounting_format') or issuer.get('statement_format') or '').lower()
     if actual_format in STATEMENT_FORMAT_SECTOR:
         return STATEMENT_FORMAT_SECTOR[actual_format]
     business = declared_business_model(issuer)
@@ -140,8 +143,14 @@ def pair_ok(ledger, key, kind='flow'):
     if not p:
         return False
     f = ledger.get('facts', {})
-    return fact_ok(f, key, kind, p[kind + '_current']) and fact_ok(
-        f, key + '_prior', kind, p[kind + '_prior'])
+    if not (fact_ok(f, key, kind, p[kind + '_current'])
+            and fact_ok(f, key + '_prior', kind, p[kind + '_prior'])):
+        return False
+    try:
+        require_pair(ledger, key, key + '_prior')
+    except ValueError:
+        return False
+    return True
 
 
 def available(ledger, keys, kind='flow'):
@@ -205,9 +214,9 @@ def assess(ledger):
         needs.append('MISSING_OR_INCOHERENT_FISCAL_AND_COMPARATIVE_PERIOD')
     if not source_metadata:
         needs.append('SOURCE_PDF_SHA256_NOT_RECORDED')
-    if sector != SUPPORTED_PUBLISHER:
+    if sector not in AUTHORING_ROUTES or sector == 'bank' and not issuer.get('offline_candidate'):
         needs.append('SECTOR_SPECIFIC_EDITORIAL_ADAPTER_NOT_PROVEN')
-    fmt = str(issuer.get('accounting_format') or '').lower()
+    fmt = str(issuer.get('accounting_format') or issuer.get('statement_format') or '').lower()
     business_model = declared_business_model(issuer)
     if fmt and fmt not in ('general', *STATEMENT_FORMAT_SECTOR):
         needs.append('UNRECOGNIZED_SOURCE_STATEMENT_FORMAT')
@@ -222,10 +231,16 @@ def assess(ledger):
         needs.append('INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED')
     required = [k for k in PROFIT_CHAIN if pair_ok(ledger, k)]
     chain = sector == 'industrial' and len(required) == len(PROFIT_CHAIN)
-    if sector == 'industrial' and not chain:
+    if sector == 'industrial' and not chain and not issuer.get('offline_candidate'):
         needs.append('INDUSTRIAL_PROFIT_CHAIN_NOT_VERIFIED')
     if sector == 'industrial' and not all(pair_ok(ledger, k) for k in ('rev', 'parent_net', 'cfo')):
         needs.append('MINIMUM_CONSOLIDATED_FLOW_PAIRS_NOT_VERIFIED')
+    bank = sector == 'bank'
+    bank_pairs = available(ledger, ('nii', 'rev', 'parent_net', 'fee_net',
+                                   'credit_impairment', 'admin_fin', 'fin_interest_income', 'fin_interest_expense'))
+    bank_stocks = available(ledger, ('loans', 'deposits', 'assets', 'equity'), 'stock') if bank else []
+    if bank and (fmt != 'bank' or not {'nii', 'rev', 'parent_net'} <= set(bank_pairs)):
+        needs.append('BANK_CONSOLIDATED_FORMAT_OR_CORE_PAIRS_NOT_VERIFIED')
     bus, bus_reason = partition_evidence(ledger)
     growth_keys = available(ledger, ('rev', 'cogs', 'operating_profit', 'parent_net'))
     money = all(pair_ok(ledger, k) for k in ('rev', 'parent_net'))
@@ -262,6 +277,14 @@ def assess(ledger):
                    'At least three distinct, independently sourced single quarters are needed',
                    sector == 'industrial' and len(quarter_keys) >= 3),
     ]
+    if bank and issuer.get('offline_candidate'):
+        visuals = [
+            _candidate('comparison', '净利息、非息及信用成本如何分化？', bank_pairs + bank_stocks,
+                       'Comparable income periods and separately dated balance snapshots', bool(bank_pairs)),
+            _candidate('signed_bridge', '利息收入和支出如何形成净利息收入？', bank_pairs,
+                       'Source-closed signed bridge with no duplicate interest expense',
+                       {'nii', 'fin_interest_income', 'fin_interest_expense'} <= set(bank_pairs)),
+        ]
     source_conflict = any(n in needs for n in (
         'INDUSTRIAL_GROUP_FINANCIAL_SUBSIDIARY_SCOPE_NOT_SEGREGATED',
         'ISSUER_MODEL_CONFLICTS_WITH_ORIGINAL_STATEMENT_FORMAT',
@@ -284,7 +307,7 @@ def assess(ledger):
             'sector_route': sector, 'period_basis': p,
             'source_pdf_sha256': source_sha or None,
             'source_gate': 'HASH_RECORDED_BYTES_NOT_REVERIFIED' if source_metadata else 'MISSING_SHA',
-            'publication_route': 'INDUSTRIAL_V2_AUTHORING_CANDIDATE' if sector == 'industrial' and not needs
+            'publication_route': AUTHORING_ROUTES[sector] if sector in AUTHORING_ROUTES and not needs
                                  else 'SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED',
             'blockers': needs, 'visual_candidates': visuals,
             'research_questions': questions,
@@ -296,7 +319,7 @@ def assess(ledger):
 def require_editorial_v2(ledger):
     """Fail closed before writing EDITORIAL_V2 for an unsupported sector or invalid source basis."""
     plan = assess(ledger)
-    if plan['publication_route'] != 'INDUSTRIAL_V2_AUTHORING_CANDIDATE':
+    if plan['publication_route'] not in AUTHORING_ROUTES.values():
         raise SystemExit('V2_SECTOR_OR_SOURCE_CAPABILITY_NOT_READY ' + json.dumps(
             {'route': plan['sector_route'], 'blockers': plan['blockers']}, ensure_ascii=False))
     return plan

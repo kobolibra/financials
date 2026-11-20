@@ -1,0 +1,118 @@
+{
+  "schema": "financials.research_evidence.v1",
+  "issuer": "600919",
+  "fiscal_period": "2025H1",
+  "source_pdf_sha256": "a5136fb013db4b301aac6a5c423570afb7ca45ca7ee9384f7dc160d00dc887df",
+  "sector_route": "bank",
+  "editorial_selection": {
+    "candidates": [
+      "净利息改善能否传导到税前盈利",
+      "贷款和存款扩张是否挤压监管资本"
+    ],
+    "lead_question": "净利息改善能否传导到税前盈利",
+    "deciding_pages": [
+      12,
+      15,
+      16,
+      93
+    ],
+    "deciding_fact": "损益表信用减值及所得税的反向变化，比存量扩张更能解释当期利润落差。",
+    "prior_research": "NOT_CHECKED"
+  },
+  "theses": [
+    {
+      "id": "thesis-1",
+      "question": "利息净收入能否转化为税前盈利？",
+      "conclusion": "利息净收入同比改善，同期税前利润仍承压。",
+      "mechanism": "信用减值和非息收入抵消了部分净利息增量，税后方向又受税费变化影响。",
+      "strongest_alternative": "账面利润改善或许代表核心盈利修复，税前利润和营业利润提供不同的检验。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": [
+        "average_earning_assets",
+        "credit_impairment",
+        "credit_impairment_prior",
+        "income_tax",
+        "income_tax_prior",
+        "nii",
+        "nii_prior",
+        "operating_profit",
+        "pretax",
+        "pretax_prior"
+      ],
+      "calculations": [
+        {
+          "id": "nii",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "nii",
+              1
+            ],
+            [
+              "nii_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "5282983000"
+        },
+        {
+          "id": "pretax",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "pretax",
+              1
+            ],
+            [
+              "pretax_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-1011966000"
+        },
+        {
+          "id": "impairment",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "credit_impairment",
+              1
+            ],
+            [
+              "credit_impairment_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-3515313000"
+        },
+        {
+          "id": "tax",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "income_tax",
+              1
+            ],
+            [
+              "income_tax_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-2660462000"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "SOURCE_FACTS",
+        "source_fact_keys": [
+          "operating_profit",
+          "average_earning_assets"
+        ]
+      },
+      "next_disclosure_test": {
+        "period": "20259M",
+        "metric": "净利息收入、税前利润与还原净息差",
+        "falsifies_when": "若税前利润转为改善并伴随信用减值收窄，则上半年的约束已缓和。"
+      }
+    }
+  ]
+}

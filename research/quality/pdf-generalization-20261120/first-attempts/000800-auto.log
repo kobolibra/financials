@@ -1,0 +1,140 @@
+{
+  "format": "general",
+  "sign_convention": "expenses_positive",
+  "pages": {
+    "bs": [
+      125,
+      126,
+      127,
+      128
+    ],
+    "is": [
+      130,
+      131,
+      132
+    ],
+    "cf": [
+      133,
+      134
+    ]
+  },
+  "mapped_keys": 103,
+  "facts": 250,
+  "identities_passed": 22,
+  "identities_failed": [],
+  "unmapped_rows": [
+    "is p130  = None",
+    "is p131 归属母公司所有者的其他综合收益的税后净额 = 30,279,772.76",
+    "is p131 不能重分类进损益的其他综合收益 = 27,627,126.17",
+    "is p131 重新计量设定受益计划变动额 = -49,140,000.00",
+    "is p131 权益法下不能转损益的其他综合收益 = 17,480,598.17",
+    "is p131 其他权益工具投资公允价值变动 = 59,286,528.00",
+    "is p131 将重分类进损益的其他综合收益 = 2,652,646.59",
+    "is p131 权益法下可转损益的其他综合收益 = -5,729,510.11",
+    "is p131 外币财务报表折算差额 = 8,382,156.70",
+    "is p131  = None",
+    "is p132 归属于少数股东的其他综合收益的税后净额 = 3,424,175.30",
+    "is p132 归属于母公司所有者的综合收益总额 = 652,707,472.41",
+    "is p132 归属于少数股东的综合收益总额 = 40,267,627.94",
+    "is p132 基本每股收益 = 0.1266",
+    "is p132 稀释每股收益 = 0.1266",
+    "bs p125 应收股利 = 157,707,661.77",
+    "bs p126 一年内到期的非流动资产 = 377,668,442.06",
+    "bs p126 其他流动资产 = 1,413,638,174.22",
+    "bs p126 长期应收款 = 110,911,235.61",
+    "bs p126 其他非流动资产 = 2,644,193,586.72",
+    "bs p127 应付股利 = 171,500.02",
+    "bs p127 其他流动负债 = 217,767,924.33",
+    "bs p127 长期应付职工薪酬 = 692,790,054.95",
+    "bs p128 专项储备 = 277,345,883.15",
+    "cf p134 支付其他与投资活动有关的现金 = 2,400,000,000.00",
+    "cf p134 收到其他与筹资活动有关的现金 = None",
+    "cf p134 子公司支付给少数股东的股利、利润 = 20,000,000.00"
+  ],
+  "conflicts_with_existing_ledger": [],
+  "notes": [],
+  "source_anomalies": [],
+  "notes_tables": {
+    "dimensions": [
+      {
+        "dimension": "region",
+        "scope": "main_rev",
+        "table": "margin",
+        "page": 24,
+        "rows": 2,
+        "with_prior": false,
+        "with_cost": 2,
+        "roles": [
+          "cost",
+          "rev"
+        ],
+        "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+        "labels": [
+          "国内",
+          "国外"
+        ]
+      },
+      {
+        "dimension": "unlabelled",
+        "scope": "rev",
+        "table": "plain",
+        "page": 11,
+        "rows": 2,
+        "with_prior": true,
+        "with_cost": 0,
+        "roles": [
+          "rev",
+          "rev_prior"
+        ],
+        "cost_proof": null,
+        "labels": [
+          "营业收入扣除金额（元）",
+          "营业收入扣除后金额（元）"
+        ]
+      },
+      {
+        "dimension": "product",
+        "scope": "rev",
+        "table": "composition",
+        "page": 23,
+        "rows": 2,
+        "with_prior": true,
+        "with_cost": 0,
+        "roles": [
+          "rev",
+          "rev_prior"
+        ],
+        "cost_proof": null,
+        "labels": [
+          "商用车",
+          "备品及其他"
+        ]
+      }
+    ],
+    "unproven_segment_tables": [
+      "p9 plain",
+      "p10 plain",
+      "p11 plain",
+      "p23 composition",
+      "p23 margin",
+      "p24 composition",
+      "p24 margin",
+      "p24 plain",
+      "p30 plain",
+      "p31 plain",
+      "p38 plain",
+      "p39 plain"
+    ],
+    "cash_reconciliation": {
+      "page": 228,
+      "status": "CLOSED",
+      "lines": 15,
+      "prior_closed": true,
+      "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+  }
+}
+AUTO_FACTS_WRITTEN 250

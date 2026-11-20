@@ -1,0 +1,494 @@
+{
+  "generation_scope": "EDITORIAL_AUTHORING_CANDIDATE",
+  "capability_plan": {
+    "schema": "financials.research_capabilities.v1",
+    "issuer": "600206",
+    "fiscal_period": "2025FY",
+    "sector_route": "industrial",
+    "period_basis": {
+      "flow_current": "2025FY",
+      "flow_prior": "2024FY",
+      "stock_current": "2025-12-31",
+      "stock_prior": "2024-12-31",
+      "flow_comparison": "SAME_CUMULATIVE_PERIOD_YOY",
+      "stock_comparison": "REPORT_END_VS_PREVIOUS_YEAR_END_NOT_YOY"
+    },
+    "source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+    "source_gate": "HASH_RECORDED_BYTES_NOT_REVERIFIED",
+    "publication_route": "INDUSTRIAL_V2_AUTHORING_CANDIDATE",
+    "blockers": [],
+    "visual_candidates": [
+      {
+        "family": "kpi_board",
+        "question": "这一期可比较的核心指标是什么？",
+        "evidence": [
+          "rev",
+          "parent_net"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Both flow years and balance dates must be explicit"
+      },
+      {
+        "family": "income_flow_v3",
+        "question": "法定收入如何逐层形成归母利润？",
+        "evidence": [
+          "rev",
+          "cogs",
+          "operating_profit",
+          "pretax",
+          "net_profit",
+          "parent_net"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "All six consolidated source lines required; V3 can still refuse negative layouts"
+      },
+      {
+        "family": "income",
+        "question": "哪些互斥业务真实留下毛利？",
+        "evidence": [
+          "region1_rev",
+          "region2_rev",
+          "other_business_rev"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Source-declared partition numerically closes; still requires the independent SVG audit"
+      },
+      {
+        "family": "growth_bars",
+        "question": "在同一累计期间，哪些损益项目增速分化？",
+        "evidence": [
+          "rev",
+          "cogs",
+          "operating_profit",
+          "parent_net"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Require comparable positive reference-year flow values; this does not imply a quarterly trend"
+      },
+      {
+        "family": "ratio_dumbbell",
+        "question": "利润率和费用率如何变化？",
+        "evidence": [
+          "rev",
+          "cogs"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Negative ratios must fall back to signed bridges, not positive-only dumbbells"
+      },
+      {
+        "family": "stock_delta",
+        "question": "资产和负债余额相对年初怎样变化？",
+        "evidence": [
+          "ar",
+          "inventory",
+          "ap",
+          "contract_liabilities"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Balance changes are snapshots, not CFO components or Y/Y flow growth"
+      },
+      {
+        "family": "period_columns",
+        "question": "单季走势是在加速还是放缓？",
+        "evidence": [],
+        "status": "OMIT_SOURCE_OR_ADAPTER_LIMITED",
+        "rationale": "At least three distinct, independently sourced single quarters are needed"
+      }
+    ],
+    "research_questions": [
+      {
+        "id": "BUSINESS_ECONOMICS",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "rev",
+          "cogs"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Product/channel economics: require a proven mutually exclusive partition"
+      },
+      {
+        "id": "PROFIT_QUALITY",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "parent_net",
+          "adjusted_parent"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Reconcile exceptional gains, tax and minority interest"
+      },
+      {
+        "id": "CASH_CONVERSION",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "net_profit",
+          "cfo"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Use full CFO reconciliation if disclosed; never infer causality from stocks"
+      },
+      {
+        "id": "CAPITAL_INTENSITY",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "assets",
+          "liabilities"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Investigate working capital, capex and restricted cash"
+      }
+    ],
+    "independent_financial_and_visual_review": "NOT_CHECKED",
+    "complete_footnote_materiality_review": "NOT_CHECKED",
+    "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
+  },
+  "article": {
+    "title": "毛利回升，现金去了哪？",
+    "deck": "有研新材全年营业毛利增加 {{gp_delta}} 亿元，合并净利润转正。存货和经营性应收吸收现金，经营现金净流量仍为负。",
+    "thesis": {
+      "title": "核心判断",
+      "body": "本年的利润修复来自毛利增加及减值压力减轻。现金流附注把判断推进了一步：存货和经营性应收合计占用 {{wc_usage}} 亿元。先确认利润确有修复，再看这笔资金何时回到公司。"
+    },
+    "metrics": [],
+    "essays": [
+      {
+        "id": "research",
+        "eyebrow": "研究判断",
+        "title": "利润修复有多实在？",
+        "paragraphs": [
+          "毛利率从 {{gm_prior}}% 升至 [r:gm]%，较上年提高 [P:gm] 个百分点。年报披露薄膜材料收入增长，稀土金属冶炼毛利率明显回升；这两条证据使用产品、行业两种分类，不能相加为集团贡献。",
+          "替代解释是终端需求改善促使公司提前备货并给客户更多结算时间，现金转弱只是节奏。财报的库存增量与经营性应收调整支持资金占用，但不足以识别订单覆盖、账期变化及客户回款。",
+          "减值损失的收窄同样影响利润。扣非归母改善 [D:adjusted_parent] 亿元，仍应跟踪减值和产销的后续表现。"
+        ],
+        "after": "earnings"
+      },
+      {
+        "id": "follow-up",
+        "eyebrow": "下一次披露",
+        "title": "追踪库存去向和客户回款",
+        "paragraphs": [
+          "下一次披露重点查存货结构、在手订单、经营性应收回收和关联企业结算。如果上述两项占用收窄且毛利率维持改善，现金承压属时点效应的解释会增强。",
+          "若毛利继续改善而应收和存货连续吸收现金，则应提高对回款质量和库存减值的关注。"
+        ],
+        "after": "end"
+      }
+    ],
+    "notes": [
+      {
+        "theme": "审计与收入确认",
+        "pages": [
+          2,
+          82,
+          83
+        ],
+        "finding": "审计意见为标准无保留意见，销售收入确认被列为关键审计事项。",
+        "boundary": "关键审计事项不构成单项审计意见。"
+      },
+      {
+        "theme": "主营业务分类",
+        "pages": [
+          21,
+          22,
+          184
+        ],
+        "finding": "薄膜材料属于产品层，稀土金属冶炼属于行业层。",
+        "boundary": "不同分类重叠。原件给出的舍入增速不能反推出精确可加总的上期产品毛利。"
+      },
+      {
+        "theme": "非经常性损益",
+        "pages": [
+          7,
+          9,
+          10,
+          231,
+          232
+        ],
+        "finding": "归母净利润与扣非归母净利润差额可复算。",
+        "boundary": "政策补助、投资或资产处置的持续性需逐项判断。"
+      },
+      {
+        "theme": "经营现金调节",
+        "pages": [
+          94,
+          194
+        ],
+        "finding": "存货、经营性应收及经营性应付是明确披露的调整项。",
+        "boundary": "会计调节额不直接证明主动备货、订单位移或延迟回款。"
+      },
+      {
+        "theme": "筹资与现金",
+        "pages": [
+          94,
+          95,
+          195
+        ],
+        "finding": "期末现金增加同时经营现金为负。",
+        "boundary": "筹资现金与经营盈利能力分别判断。"
+      },
+      {
+        "theme": "比较数核对",
+        "pages": [
+          7,
+          90,
+          91,
+          94
+        ],
+        "finding": "关键指标采用本期原件披露的上期数。",
+        "boundary": "另取上一年完整原件复核，十项核心比较金额相同。"
+      }
+    ],
+    "accounting_identities": [
+      {
+        "name": "资产=负债+全部权益",
+        "left": "assets",
+        "right": [
+          [
+            "liabilities",
+            1
+          ],
+          [
+            "equity",
+            1
+          ]
+        ]
+      }
+    ],
+    "quantified_claims": {
+      "gp_delta": {
+        "expression": [
+          [
+            "rev",
+            1
+          ],
+          [
+            "cogs",
+            -1
+          ],
+          [
+            "rev_prior",
+            -1
+          ],
+          [
+            "cogs_prior",
+            1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2
+      },
+      "gm_prior": {
+        "expression": [
+          [
+            "rev_prior",
+            1
+          ],
+          [
+            "cogs_prior",
+            -1
+          ]
+        ],
+        "scale": "1",
+        "decimals": 2,
+        "denominator": "rev_prior",
+        "multiplier": "100"
+      },
+      "wc_usage": {
+        "expression": [
+          [
+            "inventory_release",
+            -1
+          ],
+          [
+            "operating_ar_change",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2
+      }
+    }
+  },
+  "glance": [],
+  "new_figures": [
+    {
+      "id": "cash-formation",
+      "nav": "现金转换",
+      "family": "signed_bridge",
+      "eyebrow": "净利润到经营现金",
+      "rows": [
+        [
+          "合并净利润",
+          "net_profit",
+          "start"
+        ],
+        [
+          "折旧摊销减值及其他调节",
+          [
+            [
+              "provisions",
+              1
+            ],
+            [
+              "credit_provision",
+              1
+            ],
+            [
+              "depreciation",
+              1
+            ],
+            [
+              "rou_amort",
+              1
+            ],
+            [
+              "intangible_amort",
+              1
+            ],
+            [
+              "deferred_amort",
+              1
+            ],
+            [
+              "disposal_loss",
+              1
+            ],
+            [
+              "scrap_loss",
+              1
+            ],
+            [
+              "fair_loss",
+              1
+            ],
+            [
+              "finance_adjustment",
+              1
+            ],
+            [
+              "investment_loss",
+              1
+            ],
+            [
+              "dta_decrease",
+              1
+            ],
+            [
+              "dtl_increase",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "存货变动",
+          "inventory_release",
+          "step"
+        ],
+        [
+          "经营性应收变动",
+          "operating_ar_change",
+          "step"
+        ],
+        [
+          "经营性应付变动",
+          "operating_ap_change",
+          "step"
+        ],
+        [
+          "经营现金净额",
+          "cfo",
+          "total"
+        ]
+      ],
+      "question": "利润为何没变成经营现金？",
+      "takeaway": "存货和经营性应收合计吸收 {{wc_usage}} 亿元，经营现金净额为 [y:cfo] 亿元。",
+      "analysis": "现金流附注将利润与现金的背离落到了两个已披露调节项目。折旧、减值、投资损益等其他调节在下方原始数据区逐项列出。",
+      "counter": "调节表说明资金占用落点。要判断新增占用是否会回收，需要库存形成原因、订单覆盖和应收账龄。",
+      "identity": "合并净利润加上物理第194页全部列示调节项，等于合并经营现金净额。"
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "nav": "利润修复",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2024FY",
+        "2025FY"
+      ],
+      "pairs": [
+        [
+          "营业毛利",
+          [
+            [
+              "rev_prior",
+              1
+            ],
+            [
+              "cogs_prior",
+              -1
+            ]
+          ],
+          [
+            [
+              "rev",
+              1
+            ],
+            [
+              "cogs",
+              -1
+            ]
+          ]
+        ],
+        [
+          "归母净利润",
+          "parent_net_prior",
+          "parent_net"
+        ],
+        [
+          "扣非归母净利润",
+          "adjusted_parent_prior",
+          "adjusted_parent"
+        ]
+      ],
+      "question": "毛利改善是否传到了扣非利润？",
+      "takeaway": "营业毛利增加 {{gp_delta}} 亿元，扣非归母净利润也增加。",
+      "analysis": "集团毛利率和扣非利润均改善。现金图揭示了利润指标没有回答的营运资金问题。",
+      "counter": "集团会计毛利变动无法单独识别产品价格、销量和原料成本。"
+    },
+    {
+      "id": "balances",
+      "family": "comparison",
+      "nav": "期末余额",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2024-12-31",
+        "2025-12-31"
+      ],
+      "pairs": [
+        [
+          "应收账款",
+          "ar_prior",
+          "ar"
+        ],
+        [
+          "存货",
+          "inventory_prior",
+          "inventory"
+        ]
+      ],
+      "question": "哪两项营运资产同步扩张？",
+      "takeaway": "应收账款和存货期末账面余额均高于上年末。",
+      "analysis": "期末余额印证年末资金沉淀在哪里，和现金流调整项定义不同。",
+      "counter": "余额净额受到减值、结算方式及汇兑影响，不能替代现金流附注的经营性应收变动。"
+    }
+  ],
+  "order": [
+    "cash-formation",
+    "earnings",
+    "balances"
+  ],
+  "roles": {
+    "cash-formation": "primary",
+    "earnings": "secondary",
+    "balances": "secondary"
+  }
+}

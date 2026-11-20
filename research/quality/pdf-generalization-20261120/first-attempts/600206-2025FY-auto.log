@@ -1,0 +1,116 @@
+{
+  "format": "general",
+  "sign_convention": "expenses_positive",
+  "pages": {
+    "bs": [
+      85,
+      86,
+      87,
+      88
+    ],
+    "is": [
+      90,
+      91,
+      92
+    ],
+    "cf": [
+      93,
+      94,
+      95
+    ]
+  },
+  "mapped_keys": 98,
+  "facts": 244,
+  "identities_passed": 22,
+  "identities_failed": [],
+  "unmapped_rows": [
+    "is p90 以摊余成本计量的金融资产终止确认收益 = 14,968,374.97",
+    "is p91 归属母公司所有者的其他综合收益的税后净额 = 699,720.94",
+    "is p91 不能重分类进损益的其他综合收益 = 699,720.94",
+    "is p91 其他权益工具投资公允价值变动 = 699,720.94",
+    "is p91 归属于少数股东的其他综合收益的税后净额 = 855,214.49",
+    "is p91 归属于母公司所有者的综合收益总额 = 265,489,303.09",
+    "is p91 归属于少数股东的综合收益总额 = -19,725,977.54",
+    "is p91 基本每股收益(元/股) = 0.313",
+    "is p91 稀释每股收益(元/股) = 0.313",
+    "bs p86 一年内到期的非流动资产 = 259,243.86",
+    "bs p86 其他流动资产 = 711,345,203.59",
+    "bs p86 长期应收款 = 1,441,274.91",
+    "bs p86 长期待摊费用 = 50,514,460.27",
+    "bs p86 其他非流动资产 = 39,998,074.82",
+    "bs p87 其他流动负债 = 13,683,286.65",
+    "bs p87 长期应付款 = 161,235,443.04",
+    "bs p87 专项储备 = 7,635,887.34",
+    "cf p95 子公司吸收少数股东投资收到的现金 = 338,710,000.00",
+    "cf p95 收到其他与筹资活动有关的现金 = 200,000,000.00",
+    "cf p95 子公司支付给少数股东的股利、利润 = 108,813.20"
+  ],
+  "conflicts_with_existing_ledger": [],
+  "notes": [],
+  "source_anomalies": [],
+  "notes_tables": {
+    "dimensions": [
+      {
+        "dimension": "region",
+        "scope": "main_rev",
+        "table": "plain",
+        "page": 21,
+        "rows": 2,
+        "with_prior": false,
+        "with_cost": 2,
+        "roles": [
+          "cost",
+          "rev"
+        ],
+        "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+        "labels": [
+          "境内",
+          "境外"
+        ]
+      },
+      {
+        "dimension": "channel",
+        "scope": "main_rev",
+        "table": "plain",
+        "page": 22,
+        "rows": 2,
+        "with_prior": false,
+        "with_cost": 2,
+        "roles": [
+          "cost",
+          "rev"
+        ],
+        "cost_proof": "SUM_EQUALS_STATEMENT_TOTAL",
+        "labels": [
+          "直销",
+          "分销"
+        ]
+      }
+    ],
+    "unproven_segment_tables": [
+      "p7 plain",
+      "p8 plain",
+      "p10 plain",
+      "p20 plain",
+      "p21 plain",
+      "p22 plain",
+      "p23 plain",
+      "p24 plain",
+      "p25 plain",
+      "p26 plain",
+      "p34 plain",
+      "p35 plain"
+    ],
+    "cash_reconciliation": {
+      "page": 194,
+      "status": "CLOSED",
+      "lines": 16,
+      "prior_closed": true,
+      "unmapped_lines": []
+    },
+    "adjusted_parent": true,
+    "income_partition": "disclosed_region_axis",
+    "dropped_unreadable_cells": []
+  }
+}
+AUTO_FACTS_WRITTEN 244

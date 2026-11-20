@@ -27,7 +27,8 @@ from decimal import Decimal as D
 
 # prefix: enumeration, a date / period phrase, "年半年度" (digits split away), "未经审计"; never a sentence (的/中/在/，)
 TITLE = re.compile(r'^(?:[0-9一二三四五六七八九十]+[、.．]|[（(][0-9一二三四五六七八九十]+[)）]|[^的中在：:，,。]{0,24}?)?'
-                   r'(合并及公司|合并及母公司|合并|母公司|公司)(?:年初到报告期末|本报告期)?(资产负债表|利润表|现金流量表|所有者权益变动表|股东权益变动表)(?:（续）|\(续\))?$')
+                   r'(合并及公司|合并及母公司|合并及银行|合并|母公司|公司)(?:年初到报告期末|本报告期)?(资产负债表|利润表|现金流量表|所有者权益变动表|股东权益变动表)(?:（续）|\(续\)|[-－—]续)?$')
+PARENT_UNAUDITED_TITLE = re.compile(r'^未经审计(资产负债表|利润表|现金流量表)(?:[（(]续[）)])?$')
 STATEMENTS = {'资产负债表': 'bs', '利润表': 'is', '现金流量表': 'cf', '所有者权益变动表': 'eq', '股东权益变动表': 'eq'}
 UNITS = [('百万元', D(1000000)), ('千元', D(1000)), ('万元', D(10000)), ('元', D(1))]
 PREFIX = re.compile(r'^(?:[一二三四五六七八九十]+[、.．]|[（(][一二三四五六七八九十0-9]+[)）]|[0-9]+[.、．]|其中[:：]|加[:：]|减[:：]|：)+')
@@ -102,7 +103,7 @@ CANON = [
     ('income_tax', 'is', r'^所得税费用$', None),
     ('net_profit', 'is', r'^净利润$', None),
     ('continuing_profit', 'is', r'^持续经营净利润$', None),
-    ('parent_net', 'is', r'^(归属于)?(母公司|本行|本公司)(股东|所有者)的净利润$', None),
+    ('parent_net', 'is', r'^(归属于)?(母公司|本行|本公司)(股东|所有者)(的)?净利润$', None),
     ('nci', 'is', r'^(少数股东损益|少数股东的净利润)$', None),
     ('oci_net', 'is', r'^其他综合收益的税后净额$', None),
     ('comprehensive', 'is', r'^综合收益总额$', None),
@@ -141,7 +142,7 @@ CANON = [
     ('inventory', 'bs', r'^存货$', None),
     ('contract_assets', 'bs', r'^合同资产$', None),
     ('current_assets', 'bs', r'^流动资产合计$', None),
-    ('loans', 'bs', r'^发放贷款(和|及)垫款$', None),
+    ('loans', 'bs', r'^(发放)?贷款(和|及)垫款$', None),
     ('reverse_repo', 'bs', r'^买入返售金融资产$', None),
     ('term_deposits', 'bs', r'^定期存款$', None),
     ('debt_investments', 'bs', r'^债权投资$', None),
@@ -164,7 +165,7 @@ CANON = [
     ('ap', 'bs', r'^应付账款$', None),
     ('advances', 'bs', r'^预收款项$', None),
     ('contract_liabilities', 'bs', r'^合同负债$', None),
-    ('deposits', 'bs', r'^吸收存款$', None),
+    ('deposits', 'bs', r'^(吸收存款|客户存款)$', None),
     ('brokerage_payable', 'bs', r'^代理买卖证券款$', None),
     ('repo', 'bs', r'^卖出回购金融资产款$', None),
     ('trading_liabilities', 'bs', r'^交易性金融负债$', None),
@@ -265,6 +266,11 @@ def segments(doc, rows_on_page, squash):
         rows = cache.get(p) or rows_on_page(doc[p - 1])
         for r in rows:
             m = TITLE.match(squash(r['label']))
+            parent = PARENT_UNAUDITED_TITLE.fullmatch(squash(r['label']))
+            if parent and ctx and ctx[0] == '合并' and STATEMENTS[parent.group(1)] == ctx[1]:
+                done.add(ctx)
+                ctx = ('公司', ctx[1])
+                continue
             if m:
                 scope, st = ('合并' if m.group(1).startswith('合并') else m.group(1)), STATEMENTS[m.group(2)]
                 # a title only closes a statement that actually collected numeric rows: an audit opinion
@@ -292,7 +298,7 @@ def unit_of(text: str, strict=True):
     return dict(UNITS)[m.group(1)]
 
 
-def amount_columns(rows):
+def amount_columns(rows, column_indices=(0, 1)):
     """Two value columns of a statement page: current (left) and prior (right).
 
     Right edges of clear amounts (comma, decimals or parentheses) are clustered; parenthesised
@@ -313,10 +319,10 @@ def amount_columns(rows):
     if not clusters:
         return None
     top = max(len(c) for c in clusters)
-    big = sorted((c for c in clusters if len(c) >= max(3, top * 0.25)), key=min)[:2]  # leftmost two: 合并及公司 prints the group first
-    if len(big) < 2:
+    big = sorted((c for c in clusters if len(c) >= max(3, top * 0.25)), key=min)
+    if len(big) <= max(column_indices):
         return None
-    return [(min(c) - 4, max(c) + 4) for c in big]
+    return [(min(big[index]) - 4, max(big[index]) + 4) for index in column_indices]
 
 
 def labelled_rows(rows, statement=None):
@@ -372,12 +378,20 @@ def extract(doc, rows_on_page, squash):
             notes.append('STATEMENT_NOT_FOUND ' + st)
             continue
         used, last = set(), None
+        column_indices = (0, 1)
         for p in sorted(segs[st]):
             rows = segs[st][p]
             # the unit is read once per statement (header line under the title) and carried to its
             # continuation pages; a page-level text search would pick up a neighbouring note's unit
             scale = units.get(st) or doc_unit or unit_of(squash(doc[p - 1].get_text()))
-            cols = amount_columns(rows) or amount_columns(rows_on_page(doc[p - 1]))
+            # Combined statements can be ordered by entity (group 2 periods,
+            # company 2 periods) or by period (group and company within each).
+            for row in rows:
+                header = squash(row['label'])
+                if re.search(r'(本集团|合并)(本行|公司|母公司)(本集团|合并)(本行|公司|母公司)', header):
+                    column_indices = (0, 2)
+                    break
+            cols = amount_columns(rows, column_indices) or amount_columns(rows_on_page(doc[p - 1]), column_indices)
             if cols is None:
                 continue
             for r in labelled_rows(rows, st):

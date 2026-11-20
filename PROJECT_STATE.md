@@ -1,5 +1,10 @@
 # ACTIVE PROJECT STATE — Skill 10.0.0 + 天孚通信 2026 一季报/三季报（已上线并验证）
 
+**2026-11-20 正式目录候选**。招商银行 2026Q1 位于 `/600036-2026q1.html`，有研新材 2025FY 位于 `/600206.html`。线上状态以生产检查的完整字节和浏览器回执为准。
+历史发布回执见 [PR35 历史交接](docs/ACTIVE_PR35_HANDOFF.md)。
+
+**2026-11-20 离线研究候选**。招商银行 2026Q1、有研新材 2025FY 走共用取证和出版入口。历史探针缺失的 20 份已按 SHA 恢复。按阶段评估见 `research/quality/pdf-generalization-20261120/README.md`。
+
 **2026-11-16 附注与年报泛化（候选）：** `fin_intake.py auto` 同时抽取主营/其他业务、分产品/分行业/分地区/分销售模式、现金流量表补充资料和扣非，每一列的含义都由报告自身合计证明，读不回原件的表格整表丢弃。只给 PDF 的探针扩展到 30 份（新增 11 份 2025 年报），30/30 通过；业务毛利桑基 16 份可证明，补充资料闭合 22/27，扣非 26/30，其余如实报出。见 playbook 06 §1b–1c、`research/quality/generalization-probe/result.json`。
 
 **2026-11-16 泛化引擎（候选）：** `fin_intake.py auto` 不写公司规格，自动从任意 A 股完整报告抽取三张合并报表到标准账本（一般/银行/证券/保险四种格式、元/千元/百万元、两种费用符号口径、附注列、折行、续页、合并及公司同表），两期恒等式闭合，残差和原件异常照实报出。端到端探针只给 PDF：19 份原件 18 家公司全部通过，其中 5 份盲测（中信证券、万科A、宁德时代、三一三季报、牧原）。见 `skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md`、`research/quality/generalization-probe/result.json`。
