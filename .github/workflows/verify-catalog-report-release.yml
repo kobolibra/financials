@@ -1,0 +1,58 @@
+name: Verify new catalog reports and real reader routes
+on:
+  pull_request:
+    paths:
+      - 'public/600036-2026q1.html'
+      - 'public/600206.html'
+      - 'public/index.html'
+      - 'research/shared/source_publication.py'
+      - 'scripts/qa_offline_candidate.py'
+      - '.github/workflows/verify-catalog-report-release.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'public/600036-2026q1.html'
+      - 'public/600206.html'
+      - 'public/index.html'
+      - '.github/workflows/verify-catalog-report-release.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate release contracts and shared publisher byte equality
+        run: |
+          python -m pip install pymupdf==1.26.6 playwright==1.65.2
+          python scripts/check_release_contract.py
+          python scripts/check_handoff.py
+          python research/shared/source_publication.py research/issuers/600036/2026Q1 /tmp/600036.html --catalog-report
+          python research/shared/source_publication.py research/issuers/600206 /tmp/600206.html --catalog-report
+          cmp /tmp/600036.html public/600036-2026q1.html
+          cmp /tmp/600206.html public/600206.html
+      - name: Install browsers and Chinese fonts
+        run: |
+          python -m playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Verify homepage links, return routes, full HTML bytes and each SVG
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = pull_request ]; then
+            python -m http.server 8765 --bind 127.0.0.1 --directory public &
+            origin=http://127.0.0.1:8765
+          else
+            origin=https://financials-in-visuals.pages.dev
+          fi
+          for report in 600036-2026q1 600206; do
+            for engine in chromium webkit; do
+              python scripts/qa_offline_candidate.py "public/$report.html" --origin "$origin" --engine "$engine" --out "work/catalog-qa/$report/$engine"
+            done
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: catalog-report-navigation-and-browser-evidence
+          path: work/catalog-qa/

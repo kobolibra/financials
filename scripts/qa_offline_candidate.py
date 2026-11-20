@@ -6,22 +6,43 @@ from pathlib import Path
 from xml.etree import ElementTree
 import json
 import shutil
+from time import sleep
+from urllib.request import urlopen
 
 from playwright.sync_api import sync_playwright
 
 
-def audit(html, out, engine, widths, executable=None):
+def audit(html, out, engine, widths, executable=None, origin=None):
+    if origin:
+        homepage = html.parent / 'index.html'
+        route = '/' + html.name
+        for remote, local in (('/', homepage), (route, html)):
+            for attempt in range(30):
+                try:
+                    with urlopen(origin + remote, timeout=15) as response:
+                        if response.read() == local.read_bytes():
+                            break
+                except OSError:
+                    pass
+                if attempt == 29:
+                    raise ValueError(f'RELEASE_HTML_BYTES_MISMATCH {origin}{remote}')
+                sleep(5)
     out.mkdir(parents=True, exist_ok=True)
     with sync_playwright() as playwright:
         executable = executable or (shutil.which('chromium') if engine == 'chromium' else None)
         browser = getattr(playwright, engine).launch(executable_path=executable)
         receipt = {'browser': engine, 'version': browser.version, 'sha256': sha256(html.read_bytes()).hexdigest(), 'viewports': []}
         for width in widths:
-            context = browser.new_context(viewport={'width': width, 'height': 950}, offline=True, accept_downloads=True)
+            context = browser.new_context(viewport={'width': width, 'height': 950}, offline=origin is None, accept_downloads=True)
             page = context.new_page()
             errors = []
             page.on('pageerror', lambda e: errors.append(str(e)))
-            page.goto(html.resolve().as_uri(), wait_until='load')
+            if origin:
+                page.goto(origin + '/', wait_until='load')
+                page.locator(f'a[href="{route}"]').first.click()
+                assert page.url in (origin + route, origin + route.removesuffix('.html')), page.url
+            else:
+                page.goto(html.resolve().as_uri(), wait_until='load')
             page.evaluate('document.fonts.ready')
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'{width} document overflow'
             assert page.locator('h1').inner_text()
@@ -72,8 +93,15 @@ def audit(html, out, engine, widths, executable=None):
                 doc = ElementTree.parse(path).getroot()
                 assert doc.get('data-original-pdf-sha256') == svg.get_attribute('data-original-pdf-sha256')
                 figures.append({'id': name, 'role': figure.get_attribute('data-editorial-role'), **findings})
+            view = {'width': width, 'figures': figures}
+            if origin:
+                view['article_url'] = page.url
+                page.locator('header a[href="/#companies"]').click()
+                assert page.url == origin + '/#companies', page.url
+                view['directory_url'] = page.url
+                page.screenshot(path=out / f'{width}-directory.png', animations='disabled')
             assert not errors, errors
-            receipt['viewports'].append({'width': width, 'figures': figures})
+            receipt['viewports'].append(view)
             context.close()
         browser.close()
     (out / 'browser.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
@@ -85,5 +113,6 @@ if __name__ == '__main__':
     parser.add_argument('--out', type=Path, required=True)
     parser.add_argument('--engine', default='chromium', choices=('chromium', 'webkit'))
     parser.add_argument('--executable')
+    parser.add_argument('--origin', help='HTTP site whose homepage and report must match checked-in bytes')
     args = parser.parse_args()
-    audit(args.html, args.out, args.engine, (1440, 768, 390) if args.engine == 'chromium' else (375,), args.executable)
+    audit(args.html, args.out, args.engine, (1440, 768, 390) if args.engine == 'chromium' else (375,), args.executable, args.origin.rstrip('/') if args.origin else None)

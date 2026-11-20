@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "code": "600036",
+  "company": "招商银行股份有限公司",
+  "period": "2026Q1",
+  "release_class": "source_limited_preview",
+  "report_route": "/600036-2026q1.html",
+  "report_file": "public/600036-2026q1.html",
+  "status_label": "来源限定研究 · 独立二审未完成",
+  "sector_adapter": "bank",
+  "accounting_basis": "bank_net_interest_signed_bridge_and_average_assets",
+  "source_pdf": {
+    "path": "research/issuers/600036/2026Q1/source/600036_2026Q1_complete_original.pdf",
+    "sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+    "bytes": 438715,
+    "physical_pages": 25,
+    "official_original_byte_equivalence": "NOT_CHECKED"
+  },
+  "ledger_file": "research/issuers/600036/2026Q1/source-ledger.json",
+  "figure_briefs_file": "research/issuers/600036/2026Q1/figure-briefs.json",
+  "sankey": {
+    "decision": "OMITTED_WITH_SOURCE_REASON",
+    "omission_reason": "研究问题由合并银行利息收支或经营现金调节回答，原件金额以有符号桥展示，未构造不相称的部门资金流。"
+  },
+  "gates": {
+    "PDF_BYTES": {
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/source/600036_2026Q1_complete_original.pdf",
+      "scope": "完整原件和财报身份、物理页、SHA 核验。"
+    },
+    "SOURCE_ROW_COLUMN": {
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/qa.json",
+      "scope": "合并三表原件列重放，账本与物理源格逐项验证。"
+    },
+    "ACCOUNTING_CORE": {
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/qa.json",
+      "scope": "原件会计勾稽、账本及展示金额复验。"
+    },
+    "RESEARCH_COUNTERCASE": {
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/publication.json",
+      "scope": "作者研究与最强替代解释已写入正文，并给出下一次披露的检验。"
+    },
+    "CHART_SEMANTICS": {
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/figure-briefs.json",
+      "scope": "签名桥与两期对照使用相应金额、期间和符号。"
+    },
+    "VISUAL_EDITORIAL_SELF": {
+      "status": "PASS",
+      "proof": "research/quality/pdf-generalization-20261120/600036/browser.json",
+      "scope": "候选正文与图表的真实截图经作者自评。"
+    },
+    "BROWSER_LOCAL": {
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/44705628587",
+      "scope": "同一正文及三图通过 Chromium 三档与 WebKit 375 验收，目录整合另核。"
+    },
+    "OFFLINE_REBUILD": {
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/qa.json",
+      "scope": "共享出版器从完整 PDF 对应的版本化证据重建。"
+    },
+    "MAJOR_NOTES_COMPLETE": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "已核本稿引用的重大附注，完整附注独立审查待核。"
+    },
+    "REPORTED_NOTE_TIES": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "限定本文所列源格，完整附注勾稽待核。"
+    },
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "已核巨潮原件，未与交易所判断是否逐字节一致。"
+    },
+    "HISTORICAL_PEERS_VALUATION": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "本次报道依据指定完整原件，估值及完整历史同业对照待核。"
+    },
+    "INDEPENDENT_HUMAN_REVIEW": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "第二位独立人类研究和视觉审阅待核。"
+    },
+    "CLOUDFLARE_LIVE": {
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "等待主分支展开首页及文章线上字节和浏览器核验。"
+    }
+  },
+  "published_html_sha256": "9cdcfdd76ffed043ac39737783151b3fa435c619a60478e96ac9b2efce269c64"
+}

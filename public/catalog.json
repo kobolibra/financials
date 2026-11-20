@@ -1,7 +1,7 @@
 {
   "edition": "2026H1",
   "primary_home": "/",
-  "published_issuer_count": 14,
+  "published_issuer_count": 15,
   "unified_directory": true,
   "issuers": [
     {
@@ -303,7 +303,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 13,
+      "figures": 15,
       "signal": "−14.27%",
       "signal_label": "2026H1归母净利润同比",
       "source": "2026H1完整原始中报",
@@ -333,7 +333,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 12,
+      "figures": 15,
       "signal": "+91.08%",
       "signal_label": "2026H1归母净利润同比",
       "source": "2026H1完整原始中报",
@@ -363,7 +363,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 人类二审未完成",
-      "figures": 11,
+      "figures": 14,
       "signal": "−2.55%",
       "signal_label": "2026H1扣非归母同比",
       "source": "2026H1完整原始中报",
@@ -380,6 +380,28 @@
       "source_publication": "research/issuers/300570",
       "editorial_contract": "FULL_PROFIT_CHAIN_V1",
       "editorial_manifest": "research/editorial-20261113/300570.json"
+    },
+    {
+      "code": "600206",
+      "name": "有研新材",
+      "period": "2025FY",
+      "period_label": "2025年年报",
+      "exchange": "SH",
+      "industry": "新材料",
+      "sub": "薄膜材料、稀土与经营现金",
+      "story": "毛利回升，现金去了哪？",
+      "deck": "存货与经营性应收吸收资金。沿现金流附注核对利润修复与现金兑现的落差。",
+      "href": "/600206.html",
+      "kind": "原始财报研究",
+      "stage": "source-review",
+      "note": "原件与计算核验 · 独立二审未完成",
+      "figures": 3,
+      "signal": "−0.79亿元",
+      "signal_label": "全年经营现金净额",
+      "source": "2025年年报完整原件",
+      "rank": 15,
+      "spark": [],
+      "spark_names": []
     }
   ],
   "topic": {
@@ -430,7 +452,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "三季报 · 原件与计算核验 · 人类二审未完成",
-      "figures": 9,
+      "figures": 13,
       "signal": "+55.30%",
       "signal_label": "2026Q3单季归母净利润同比",
       "source": "2026年第三季度报告（12页）",
@@ -454,7 +476,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "一季报 · 原件与计算核验 · 人类二审未完成",
-      "figures": 7,
+      "figures": 10,
       "signal": "−37.92%",
       "signal_label": "2026Q1经营现金净额同比",
       "source": "2026年第一季度报告（11页）",
@@ -463,6 +485,26 @@
       "source_publication": "research/issuers/300394/2026Q1",
       "editorial_contract": "FULL_PROFIT_CHAIN_V1",
       "editorial_manifest": "research/editorial-20261113/300394-2026Q1.json"
+    },
+    {
+      "code": "600036",
+      "name": "招商银行",
+      "period": "2026Q1",
+      "period_label": "2026年一季报",
+      "exchange": "SH",
+      "industry": "银行",
+      "sub": "利息收支与信用减值",
+      "story": "少付利息撑起净利息增长",
+      "deck": "利息支出少付的幅度超过利息收入降幅。结合两期平均余额，核对规模、成本与信用减值。",
+      "href": "/600036-2026q1.html",
+      "kind": "原始财报研究",
+      "stage": "source-review",
+      "note": "原件与计算核验 · 独立二审未完成",
+      "figures": 3,
+      "signal": "+26.46亿元",
+      "signal_label": "净利息收入同比增加",
+      "source": "2026年一季报完整原件",
+      "parent_href": "/research/2026-h1-v10/600036.html"
     }
   ]
 }

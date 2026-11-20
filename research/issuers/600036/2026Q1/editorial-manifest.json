@@ -1,0 +1,38 @@
+{
+  "editorial": {
+    "figures": [
+      {
+        "index": 0,
+        "id": "nii-change",
+        "title": "利息少收了，净利息为何还在增长？",
+        "role": "primary",
+        "rationale": "EDITORIAL_V2 图族：净利息收入",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 1,
+        "id": "earnings",
+        "title": "多少利息增量转成了归母利润？",
+        "role": "secondary",
+        "rationale": "EDITORIAL_V2 图族：利润与减值",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
+        "id": "balances",
+        "title": "贷款和存款的账面余额怎样变？",
+        "role": "secondary",
+        "rationale": "EDITORIAL_V2 图族：期末余额",
+        "summary": false,
+        "focus": []
+      }
+    ],
+    "hero_position": "first"
+  },
+  "issuer": "600036",
+  "period": "2026Q1",
+  "source_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+  "schema": "financials.offline_editorial.v1"
+}

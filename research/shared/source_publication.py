@@ -406,11 +406,13 @@ def title_markup(story):
     if not isinstance(lines,list) or not 2<=len(lines)<=3 or ''.join(lines).replace('|','')!=story['title']:raise ValueError('DOSSIER_TITLE_LINES_MUST_SPLIT_TITLE')
     return ''.join('<span style="display:block">'+''.join('<span style="display:inline-block">'+H(u)+'</span>' for u in line.split('|') if u)+'</span>' for line in lines)
 def ids_of(story):return [f['id'] for f in story['figures']]
-def publish(folder,out=None):
+def publish(folder,out=None,*,catalog_report=False):
     folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);story=expand_claims(story,ledger);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
     offline = story.get('composition') == 'OFFLINE_RESEARCH_CANDIDATE_V1'
+    if catalog_report and not offline:
+        raise ValueError('CATALOG_REPORT_REQUIRES_OFFLINE_COMPOSITION')
     if offline:
-        if out is None or (ROOT / 'public').resolve() in Path(out).resolve().parents:
+        if out is None or (not catalog_report and (ROOT / 'public').resolve() in Path(out).resolve().parents):
             raise ValueError('OFFLINE_CANDIDATE_REQUIRES_EXPLICIT_NON_PUBLIC_OUTPUT')
         manifest = read(folder / 'editorial-manifest.json')
         decisions = manifest['editorial']['figures']
@@ -467,7 +469,7 @@ def publish(folder,out=None):
     style='''*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f6f1;color:#17393d;font:16px/1.85 "Noto Sans CJK SC","PingFang SC",sans-serif}a{color:inherit}header{border-bottom:1px solid #ced8cf;padding:18px 5vw;display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em}main{max-width:1180px;margin:auto;padding:50px 28px}h1,h2{font-family:"Noto Serif CJK SC","Songti SC",serif;font-weight:550;line-height:1.4}h1{font-size:clamp(34px,4.5vw,62px);max-width:1000px;margin:22px 0}h2{font-size:30px}.eyebrow,.figure-head>span{font-size:11px;letter-spacing:.15em;font-weight:700;color:#087f68}.deck{font-size:21px;max-width:900px}.status{font-size:13px;color:#617875;max-width:950px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:1px solid #cbd8ce;border-bottom:1px solid #cbd8ce;padding:28px 0;margin:38px 0}.metrics span,.metrics small{display:block;font-size:13px;color:#617875}.metrics strong{font-size:36px;font-weight:500}nav{display:flex;flex-wrap:wrap;gap:12px 22px;padding:0 0 35px;font-size:13px}.essay{max-width:860px;margin:55px 0}.essay p{margin:18px 0}.thesis{border-left:3px solid #087f68;padding:20px 28px;background:#eeeee6;margin:40px 0}.thesis h2{font-size:25px;margin-top:0}figure{margin:65px 0 90px;background:#fffefb;border-top:1px solid #b7cac0}.figure-head{padding:28px 30px 12px}.figure-head h2{font-size:29px;margin:12px 0}.figure-head p{max-width:930px;color:#536e6b}button{background:transparent;border:1px solid #b9cec2;color:#087f68;padding:10px 15px;font:inherit;font-size:12px;cursor:pointer}svg{display:block;width:100%;height:auto}.desktop-art{padding:12px 20px}.native-art{display:none}figcaption{padding:24px 30px;font-size:14px;border-top:1px solid #e2e7df}figcaption span{display:block;color:#647c73;font-size:12px;margin-top:12px}details{border-top:1px solid #d5dfd5;padding:16px 30px;font-size:13px}summary{cursor:pointer;color:#087f68}.table-scroll{overflow-x:auto}table{width:100%;border-collapse:collapse;margin-top:20px;font-size:12px}th,td{border-bottom:1px solid #d8e0d5;padding:12px 10px;text-align:left;vertical-align:top}td.number{font-variant-numeric:tabular-nums;white-space:nowrap}footer{overflow-wrap:anywhere;border-top:1px solid #becfc3;margin-top:65px;padding:30px 0;color:#617875;font-size:12px}#notes table{min-width:650px}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #087f68;outline-offset:3px}@media(max-width:850px){main{padding:35px 18px}.desktop-art{display:none}.native-art{display:block;padding:20px 0}h1{font-size:36px}.deck{font-size:18px}.metrics{gap:12px}.metrics strong{font-size:25px}.metrics span,.metrics small{font-size:11px}.figure-head,figcaption,details{padding-left:16px;padding-right:16px}.figure-head h2{font-size:25px}.thesis{padding:18px}h2{font-size:27px}}'''
     scripts='''document.querySelectorAll('[data-export]').forEach(b=>b.addEventListener('click',()=>{const f=b.closest('figure'),s=[...f.querySelectorAll('svg')].find(s=>s.getBoundingClientRect().width>0);const text=new XMLSerializer().serializeToString(s),u=URL.createObjectURL(new Blob([text],{type:'image/svg+xml'})),a=document.createElement('a');a.href=u;a.download=document.body.dataset.issuer+'-'+document.body.dataset.period+'-'+b.dataset.export+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}));'''
     embedded_ledger = ledger
-    if offline:
+    if offline and not catalog_report:
         # The offline reader has the source identity and cells; its bytes must not
         # depend on where the local checkout staged archived PDFs.
         embedded_ledger = {**ledger, 'source': {**source, 'source_path': Path(source['source_path']).name},
@@ -503,8 +505,9 @@ def publish(folder,out=None):
         html = html.replace('</style>', '@media(max-width:850px){.deck{margin:12px 0}.status{margin:10px 0}'
             'nav{margin:12px 0}.thesis{margin:20px 0}.thesis h2{font-size:20px}'
             'figure.v2{margin-top:26px}}</style>', 1)
-        html = html.replace('<a href="/#companies">← 返回公司研究目录</a>', '<a href="#notes">核对原始披露</a>')
-        html = html.replace('<a href="/#companies">返回同一公司研究目录</a>', '')
+        if not catalog_report:
+            html = html.replace('<a href="/#companies">← 返回公司研究目录</a>', '<a href="#notes">核对原始披露</a>')
+            html = html.replace('<a href="/#companies">返回同一公司研究目录</a>', '')
         html = html.replace('<footer>', '<footer id="original-source">', 1)
         html = html.replace('<header class="chapter"', '<div class="chapter"').replace('</p></header>', '</p></div>')
     else:
@@ -512,4 +515,11 @@ def publish(folder,out=None):
     target.write_text(html)
     (folder/'figure-briefs.json').write_text(json.dumps({'issuer':code,'report':issuer['fiscal_period'],'source_sha256':source['original_bytes_sha256'],'figure_briefs':briefs},ensure_ascii=False,indent=2)+'\n')
     qa.update(html_sha256=hashlib.sha256(target.read_bytes()).hexdigest(),figures=len(briefs) + (0 if offline else 1));(folder/'qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2)+'\n');print('SOURCE_DOSSIER_PUBLISHED',code,len(briefs),qa['html_sha256']);return target
-if __name__=='__main__':publish(ROOT/sys.argv[1],sys.argv[2] if len(sys.argv)>2 else None)
+if __name__ == '__main__':
+    from argparse import ArgumentParser
+    parser = ArgumentParser(description=__doc__)
+    parser.add_argument('folder', type=Path)
+    parser.add_argument('out', nargs='?')
+    parser.add_argument('--catalog-report', action='store_true')
+    args = parser.parse_args()
+    publish(ROOT / args.folder, args.out, catalog_report=args.catalog_report)
