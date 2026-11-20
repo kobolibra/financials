@@ -30,7 +30,7 @@
 ## 干净环境复现
 
 ```bash
-python -m pip install pymupdf==1.26.6 playwright==1.58.2
+python -m pip install pymupdf==1.26.6 playwright==1.65.2
 python scripts/rebuild_offline_examples.py --out work/candidates --codes 600036 600206 600919
 python scripts/qa_offline_candidate.py work/candidates/600036.html --out work/screens/600036
 python scripts/qa_offline_candidate.py work/candidates/600206.html --out work/screens/600206

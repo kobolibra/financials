@@ -89,7 +89,7 @@
     "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
   },
   "article": {
-    "title": "负债降息撑起净利息增长",
+    "title": "少付利息撑起净利息增长",
     "deck": "招商银行一季度净利息收入同比增加 [D:nii] 亿元，而利息收入下降 [D:fin_interest_income] 亿元。资金利息支出的下降超过资产利息收入降幅。",
     "thesis": {
       "title": "核心判断",
@@ -306,10 +306,7 @@
       }
     }
   },
-  "glance": [
-    "同一季度净利息收入同比增加 [D:nii] 亿元。",
-    "信用减值损益同比变化 [d:credit_impairment] 亿元。"
-  ],
+  "glance": [],
   "new_figures": [
     {
       "id": "nii-change",

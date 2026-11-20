@@ -500,6 +500,9 @@ def publish(folder,out=None):
                      '<th>原始项目</th><th>期间</th><th>调整前（元）</th><th>调整后（元）</th>'
                      '<th>原因和源格</th></tr></thead><tbody>' + ''.join(comparison) + '</tbody></table></div></section>')
             html = html.replace('<footer>', table + '<footer>', 1)
+        html = html.replace('</style>', '@media(max-width:850px){.deck{margin:12px 0}.status{margin:10px 0}'
+            'nav{margin:12px 0}.thesis{margin:20px 0}.thesis h2{font-size:20px}'
+            'figure.v2{margin-top:26px}}</style>', 1)
         html = html.replace('<a href="/#companies">← 返回公司研究目录</a>', '<a href="#notes">核对原始披露</a>')
         html = html.replace('<a href="/#companies">返回同一公司研究目录</a>', '')
         html = html.replace('<footer>', '<footer id="original-source">', 1)

@@ -142,7 +142,7 @@
     "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
   },
   "article": {
-    "title": "毛利回升，为何还没换来经营现金？",
+    "title": "毛利回升，现金去了哪？",
     "deck": "有研新材全年营业毛利增加 {{gp_delta}} 亿元，合并净利润转正。存货和经营性应收吸收现金，经营现金净流量仍为负。",
     "thesis": {
       "title": "核心判断",
@@ -307,10 +307,7 @@
       }
     }
   },
-  "glance": [
-    "营业毛利增加 {{gp_delta}} 亿元。",
-    "经营现金净额为 [y:cfo] 亿元。"
-  ],
+  "glance": [],
   "new_figures": [
     {
       "id": "cash-formation",

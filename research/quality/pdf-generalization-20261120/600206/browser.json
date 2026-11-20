@@ -1,7 +1,7 @@
 {
   "browser": "chromium",
   "version": "145.0.7632.6",
-  "sha256": "ecce7f095d18b80229fbb7c05dcccb80f6613e82904fa9c6df04c498817b7d7c",
+  "sha256": "7e0b81ba16453f6c1eecb8eeef0d32e0fa860f52003cb4298de71f29cb41e1d0",
   "viewports": [
     {
       "width": 1440,
