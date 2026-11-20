@@ -28,7 +28,8 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
             if source_hash!=self.debt["legacy_source_frozen_allowlist_for_preexisting_only"][code]:
                 expected.add(code)
         catalog=json.loads((ROOT/"site/research_catalog.json").read_text())
-        expected.update(r["code"] for r in catalog["issuers"] if r.get("source_publication"))
+        expected.update(r["code"] for r in catalog["issuers"] if r.get("source_publication") or
+                        (ROOT / "research/issuers" / r["code"] / "visual-qa/result.json").is_file())
         self.assertEqual({x["code"] for x in fixed},expected)
         self.assertEqual(set(stale),
             (v10-expected) | ({"688220"} if "688220" not in expected else set()))
@@ -37,6 +38,8 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
         proof=catalog['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['local_migration_receipt']
         original=Path.read_text
         for issuer in catalog['issuers']:
+            if issuer.get('editorial_contract') != 'FULL_PROFIT_CHAIN_V1':
+                continue
             for mode in ('sha','missing_phone','hidden_original','false_download','false_geometry','wrong_pdf','missing_primary','reading_layer','wrong_png'):
                 def corrupt(path,*args,**kwargs):
                     raw=original(path,*args,**kwargs)
@@ -60,6 +63,23 @@ class VisualPublicationPolicyRedTeam(unittest.TestCase):
                 with self.subTest(code=issuer['code'],mode=mode),mock.patch.object(Path,'read_text',corrupt):
                     errors,_,_=validate_current_published_files(ROOT,self.census,self.debt)
                     self.assertIn('VISUAL_CURRENT_FULL_PROFIT_CHAIN_COMPLETE_PROOF_REQUIRED '+issuer['code'],errors)
+    def test_catalog_browser_evidence_cannot_reuse_changed_html_or_omit_phone(self):
+        for mode in ('sha', 'phone'):
+            original = Path.read_text
+            def corrupt(path, *args, **kwargs):
+                raw = original(path, *args, **kwargs)
+                if path.as_posix().endswith('600206/visual-qa/result.json'):
+                    result = json.loads(raw)
+                    if mode == 'sha':
+                        result['sha256'] = '0' * 64
+                    else:
+                        result['viewports'] = [view for view in result['viewports'] if view['width'] != 390]
+                    return json.dumps(result)
+                return raw
+            with self.subTest(mode=mode), mock.patch.object(Path, 'read_text', corrupt):
+                errors, _, _ = validate_current_published_files(ROOT, self.census, self.debt)
+                self.assertIn('VISUAL_CATALOG_SOURCE_BROWSER_EVIDENCE_INVALID 600206', errors)
+
     def test_changed_current_html_cannot_inherit_current_receipt(self):
         original=Path.read_bytes
         def changed(path):
