@@ -405,6 +405,8 @@ def build_fact(doc, ledger: dict, key: str, spec: dict) -> dict:
             "classification": "DISCLOSED", "unit": "元", "currency": "CNY",
             "source_cells": [{"bbox": cell["bbox"], "printed": cell["printed"], "wrapped_number": bool(cell["wrapped"])}],
             "source_row_label": row["label"], "source_column": column_role}
+    if spec.get("denominator_definition"):
+        fact["denominator_definition"] = spec["denominator_definition"]
     if scale != 1 or cell["printed"].startswith(("(", "（")):
         fact["source_cells"][0]["unit_scale"] = str(scale)
     return fact
@@ -425,7 +427,24 @@ def cmd_basis(a) -> None:
         rule = {k: entry[k] for k in ("status", "reason", "evidence_pages")}
         if status == "restated":
             oldkey = key + "_original"
-            original = build_fact(doc, ledger, oldkey, {**entry["original"], "prior": True})
+            archive_spec = entry["original"]
+            external = archive_spec.get("external")
+            archive_doc = doc
+            if external:
+                base = folder(a.code, a.period)
+                path = (base / "source" / external["filename"]).resolve()
+                path.relative_to((base / "source").resolve())
+                if hashlib.sha256(path.read_bytes()).hexdigest() != external["sha256"]:
+                    raise ValueError("COMPARISON_ORIGINAL_BYTES_DRIFT " + key)
+                archive_doc = pymupdf().open(path)
+                expected_period = ledger["issuer"]["comparative_period"]
+                if detect_identity(archive_doc, a.code)["fiscal_period"] != expected_period:
+                    raise ValueError("COMPARISON_ARCHIVE_PERIOD_MISMATCH " + key)
+                evidence = {**external, "path": str(path.relative_to(ROOT)), "period": expected_period,
+                            "physical_pages": len(archive_doc), "printed_column": "本期/期末"}
+            original = build_fact(archive_doc, ledger, oldkey, {**archive_spec, "prior": True})
+            if external:
+                original["archival_source"] = evidence
             original["disclosure_version"] = "original_before_restatement"
             ledger["facts"][oldkey] = original
             ledger["facts"][key + "_prior"]["disclosure_version"] = "restated"

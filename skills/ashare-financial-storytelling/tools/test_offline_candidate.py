@@ -32,7 +32,7 @@ class OfflineCandidateTests(unittest.TestCase):
         self.ledger['facts']['rev_prior']['period'] = '2023Q3'
         with self.assertRaisesRegex(ValueError, 'FLOW_INTERVAL_MISMATCH'):
             validate_offline_comparisons(self.ledger, self.story)
-        with self.assertRaisesRegex(ValueError, 'PERIOD'):
+        with self.assertRaisesRegex(ValueError, 'RESEARCH_FACT_BASIS_MISMATCH'):
             ev.evaluate_calculation(self.ledger, dict(id='rev', type='FLOW_YOY_DELTA',
                 terms=[['rev', 1], ['rev_prior', -1]], expected_yuan='0'))
 

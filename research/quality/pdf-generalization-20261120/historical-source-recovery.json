@@ -1,0 +1,242 @@
+[
+  {
+    "issuer": "300308",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+    "expected": "e0ecd7c365c65e90b1fa4b4616ba3f4649449d64451e0ba0b1b78ba9ce3170bf",
+    "url": null
+  },
+  {
+    "issuer": "300548",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+    "expected": "608a736329019a6bf08d499980b18c640cf9607f0d2afe02cc0103b710a225c5",
+    "url": null
+  },
+  {
+    "issuer": "300570",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+    "expected": "5323a0839637da4b12baa2b8c38d4c4a37dca933a6a0840f9cca63eced5ce2b2",
+    "url": null
+  },
+  {
+    "issuer": "600276",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+    "expected": "ff6910663a9726acb889aa061a8bab1433f58890d81ebea013b8c637a097a7aa",
+    "url": null
+  },
+  {
+    "issuer": "600690",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
+    "expected": "fe5814830fac441f9f71b77472c1090ee451d2cf411ad3ce0da469ffb898ed97",
+    "url": null
+  },
+  {
+    "issuer": "600900",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+    "expected": "738de3b36a31646f344cefaf90b4f149d653c3f68e89f4f8d14bdf02fc9c65a2",
+    "url": null
+  },
+  {
+    "issuer": "601628",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+    "expected": "b094bf337309e30564dda86ff4b3c4d66aeeb37ce0357a3568e246569f0e2943",
+    "url": null
+  },
+  {
+    "issuer": "688220",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+    "expected": "9d276876a4341bc3c8d2735be43c7f70cb5dc0f4e7c669b16e96a11a814d1bdc",
+    "url": null
+  },
+  {
+    "issuer": "300394",
+    "period": "20269M",
+    "status": "SHA_MATCH",
+    "sha256": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+    "expected": "2177f16eabe6026395de9fc77fff8126735130e4fdcca92b07f0ee7ebbffe7e5",
+    "url": null
+  },
+  {
+    "issuer": "300394",
+    "period": "2026Q1",
+    "status": "SHA_MATCH",
+    "sha256": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
+    "expected": "aa54ebf3c8e86f64eb7782d7d049819b769a4d2f7daf4e0496cc7afe4c97c73e",
+    "url": null
+  },
+  {
+    "issuer": "600036",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+    "expected": "0194f5122575ee8576dbce941fcc10fb171e0cd17c627dd63330da952c52b57c",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225531453.PDF"
+  },
+  {
+    "issuer": "000333",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+    "expected": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+    "url": "https://disc.static.szse.cn/disc/disk03/finalpage/2026-08-29/df25443f-d67a-4cc5-8bd6-6c3e681a9575.PDF"
+  },
+  {
+    "issuer": "600519",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+    "expected": "0e10aa26be46b1cf3cd03f06e834c7fb98d5dd0d661b96f8fddd4af7e846a4f6",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-15/1225475868.PDF"
+  },
+  {
+    "issuer": "688111",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+    "expected": "ec2322dc3a4461eef43045361391c0efe5673794302e329d03c7bbb8a3ad15a4",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-20/1225482678.PDF"
+  },
+  {
+    "issuer": "000002",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "50813d4f08f812bab70d14fc257638b46d1b5ae138b91db7d11b1845f31c649a",
+    "expected": "50813d4f08f812bab70d14fc257638b46d1b5ae138b91db7d11b1845f31c649a",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225521951.PDF"
+  },
+  {
+    "issuer": "002714",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "06f3f6284318122399c6cf1156f5a142c9b9abd8157c669ccd37bdb298002c53",
+    "expected": "06f3f6284318122399c6cf1156f5a142c9b9abd8157c669ccd37bdb298002c53",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-21/1225485220.PDF"
+  },
+  {
+    "issuer": "300750",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+    "expected": "d96b5d49ae75bec5913d032de781873565f5405bf99fd8b011eab152549862b9",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-07-25/1225441586.PDF"
+  },
+  {
+    "issuer": "600030",
+    "period": "2026H1",
+    "status": "SHA_MATCH",
+    "sha256": "df83d43874a9173a3100e4f5296be06e877ed4107b98aabdb2b2f120f5f30fc7",
+    "expected": "df83d43874a9173a3100e4f5296be06e877ed4107b98aabdb2b2f120f5f30fc7",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-08-21/1225486473.PDF"
+  },
+  {
+    "issuer": "600031",
+    "period": "20269M",
+    "status": "SHA_MATCH",
+    "sha256": "a0d1b4814e0ddcdb865ed22cace6e3719e77bb31e7e79dd7fae945347002e235",
+    "expected": "a0d1b4814e0ddcdb865ed22cace6e3719e77bb31e7e79dd7fae945347002e235",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-10-30/1225639954.PDF"
+  },
+  {
+    "issuer": "000002",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "b2befc9da2a9e09c798702c351e6af65a4b148e32baa07737b941edc2caf1eba",
+    "expected": "b2befc9da2a9e09c798702c351e6af65a4b148e32baa07737b941edc2caf1eba",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-04-01/1225067794.PDF"
+  },
+  {
+    "issuer": "002714",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "aa44a1f4244a6efbc6e54e7dbd4307235d39117bb4ff4d9590f386b02b0d9a04",
+    "expected": "aa44a1f4244a6efbc6e54e7dbd4307235d39117bb4ff4d9590f386b02b0d9a04",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-28/1225042507.PDF"
+  },
+  {
+    "issuer": "300394",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "969e5142ee753b68e1f01c26e25215310d643dda43e4a25ae72bcc01f1265268",
+    "expected": "969e5142ee753b68e1f01c26e25215310d643dda43e4a25ae72bcc01f1265268",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-04-08/1225082705.PDF"
+  },
+  {
+    "issuer": "300570",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "380dfdf72e08fdfe531a63f856d2f928aba0f3bcef24e432e9894fd2d3438def",
+    "expected": "380dfdf72e08fdfe531a63f856d2f928aba0f3bcef24e432e9894fd2d3438def",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-31/1225061015.PDF"
+  },
+  {
+    "issuer": "300750",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "c15272977147dee7e6935a38ea0e4fd6855370aabb106f54cfe20f7cf6048ec9",
+    "expected": "c15272977147dee7e6935a38ea0e4fd6855370aabb106f54cfe20f7cf6048ec9",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-10/1225002214.PDF"
+  },
+  {
+    "issuer": "600030",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "438f2a53dcf4bf0569b6783b51674aae25076d23d53198b08cf7b539e14003c2",
+    "expected": "438f2a53dcf4bf0569b6783b51674aae25076d23d53198b08cf7b539e14003c2",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-27/1225036081.PDF"
+  },
+  {
+    "issuer": "600031",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "d3f470600ec7d03ff9eb6257a74d1a07486406e02beb55b1f2bab5aaabb173e5",
+    "expected": "d3f470600ec7d03ff9eb6257a74d1a07486406e02beb55b1f2bab5aaabb173e5",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-31/1225061378.PDF"
+  },
+  {
+    "issuer": "600519",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "474905deeaf0f875fc0a1b097a626c0c7852c427faadc5d7fc7816cbf45ea288",
+    "expected": "474905deeaf0f875fc0a1b097a626c0c7852c427faadc5d7fc7816cbf45ea288",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-04-17/1225114741.PDF"
+  },
+  {
+    "issuer": "600690",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "14186f9f9b47f687c527ba14825664f3b09e51759d581636cddcc248f26e3660",
+    "expected": "14186f9f9b47f687c527ba14825664f3b09e51759d581636cddcc248f26e3660",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-27/1225038336.PDF"
+  },
+  {
+    "issuer": "601628",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "575a833fd7b83ad3568483273645236eddb751a92ab89f7e1c09105d92cedb27",
+    "expected": "575a833fd7b83ad3568483273645236eddb751a92ab89f7e1c09105d92cedb27",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-26/1225030448.PDF"
+  },
+  {
+    "issuer": "688111",
+    "period": "2025FY",
+    "status": "SHA_MATCH",
+    "sha256": "bf6ade124527896edb1c1be6af04a7d6b4c0eb964de42a96a77db7dbc6cee281",
+    "expected": "bf6ade124527896edb1c1be6af04a7d6b4c0eb964de42a96a77db7dbc6cee281",
+    "url": "https://static.cninfo.com.cn/finalpage/2026-03-26/1225032227.PDF"
+  }
+]

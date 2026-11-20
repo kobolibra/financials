@@ -1,0 +1,217 @@
+{
+  "generation_scope": "EDITORIAL_AUTHORING_CANDIDATE",
+  "capability_plan": {
+    "schema": "financials.research_capabilities.v1",
+    "issuer": "000800",
+    "fiscal_period": "2024FY",
+    "sector_route": "industrial",
+    "period_basis": {
+      "flow_current": "2024FY",
+      "flow_prior": "2023FY",
+      "stock_current": "2024-12-31",
+      "stock_prior": "2023-12-31",
+      "flow_comparison": "SAME_CUMULATIVE_PERIOD_YOY",
+      "stock_comparison": "REPORT_END_VS_PREVIOUS_YEAR_END_NOT_YOY"
+    },
+    "source_pdf_sha256": "72a6f07c67693a60f14d5573135f5056575578bfba93b1f6f0bc21984d3039be",
+    "source_gate": "HASH_RECORDED_BYTES_NOT_REVERIFIED",
+    "publication_route": "INDUSTRIAL_V2_AUTHORING_CANDIDATE",
+    "blockers": [],
+    "visual_candidates": [
+      {
+        "family": "kpi_board",
+        "question": "这一期可比较的核心指标是什么？",
+        "evidence": [
+          "rev",
+          "parent_net"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Both flow years and balance dates must be explicit"
+      },
+      {
+        "family": "income_flow_v3",
+        "question": "法定收入如何逐层形成归母利润？",
+        "evidence": [
+          "rev",
+          "parent_net"
+        ],
+        "status": "OMIT_SOURCE_OR_ADAPTER_LIMITED",
+        "rationale": "All six consolidated source lines required; V3 can still refuse negative layouts"
+      },
+      {
+        "family": "income",
+        "question": "哪些互斥业务真实留下毛利？",
+        "evidence": [],
+        "status": "OMIT_SOURCE_OR_ADAPTER_LIMITED",
+        "rationale": "Missing separate segment rows or paired parent statement amounts"
+      },
+      {
+        "family": "growth_bars",
+        "question": "在同一累计期间，哪些损益项目增速分化？",
+        "evidence": [
+          "rev",
+          "parent_net"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Require comparable positive reference-year flow values; this does not imply a quarterly trend"
+      },
+      {
+        "family": "ratio_dumbbell",
+        "question": "利润率和费用率如何变化？",
+        "evidence": [],
+        "status": "OMIT_SOURCE_OR_ADAPTER_LIMITED",
+        "rationale": "Negative ratios must fall back to signed bridges, not positive-only dumbbells"
+      },
+      {
+        "family": "stock_delta",
+        "question": "资产和负债余额相对年初怎样变化？",
+        "evidence": [],
+        "status": "OMIT_SOURCE_OR_ADAPTER_LIMITED",
+        "rationale": "Balance changes are snapshots, not CFO components or Y/Y flow growth"
+      },
+      {
+        "family": "period_columns",
+        "question": "单季走势是在加速还是放缓？",
+        "evidence": [],
+        "status": "OMIT_SOURCE_OR_ADAPTER_LIMITED",
+        "rationale": "At least three distinct, independently sourced single quarters are needed"
+      }
+    ],
+    "research_questions": [
+      {
+        "id": "BUSINESS_ECONOMICS",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "rev",
+          "cogs"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Product/channel economics: require a proven mutually exclusive partition"
+      },
+      {
+        "id": "PROFIT_QUALITY",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "parent_net",
+          "adjusted_parent"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Reconcile exceptional gains, tax and minority interest"
+      },
+      {
+        "id": "CASH_CONVERSION",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "net_profit",
+          "cfo"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Use full CFO reconciliation if disclosed; never infer causality from stocks"
+      },
+      {
+        "id": "CAPITAL_INTENSITY",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "assets",
+          "liabilities"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Investigate working capital, capex and restricted cash"
+      }
+    ],
+    "independent_financial_and_visual_review": "NOT_CHECKED",
+    "complete_footnote_materiality_review": "NOT_CHECKED",
+    "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
+  },
+  "article": {
+    "title": "TODO",
+    "deck": "TODO",
+    "thesis": {
+      "title": "TODO",
+      "body": "TODO"
+    },
+    "metrics": [],
+    "essays": [],
+    "notes": [],
+    "accounting_identities": []
+  },
+  "glance": [],
+  "new_figures": [
+    {
+      "id": "performance-rev",
+      "family": "comparison",
+      "nav": "营业收入",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2023FY（重述后）",
+        "2024FY"
+      ],
+      "pairs": [
+        [
+          "营业收入",
+          "rev_prior",
+          "rev"
+        ]
+      ],
+      "question": "TODO？",
+      "takeaway": "TODO",
+      "trend": "TODO",
+      "analysis": "TODO",
+      "counter": "TODO"
+    },
+    {
+      "id": "performance-parent-net",
+      "family": "comparison",
+      "nav": "归母净利润",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2023FY（重述后）",
+        "2024FY"
+      ],
+      "pairs": [
+        [
+          "归母净利润",
+          "parent_net_prior",
+          "parent_net"
+        ]
+      ],
+      "question": "TODO？",
+      "takeaway": "TODO",
+      "trend": "TODO",
+      "analysis": "TODO",
+      "counter": "TODO"
+    },
+    {
+      "id": "performance-cfo",
+      "family": "comparison",
+      "nav": "经营现金净额",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2023FY（重述后）",
+        "2024FY"
+      ],
+      "pairs": [
+        [
+          "经营现金净额",
+          "cfo_prior",
+          "cfo"
+        ]
+      ],
+      "question": "TODO？",
+      "takeaway": "TODO",
+      "trend": "TODO",
+      "analysis": "TODO",
+      "counter": "TODO"
+    }
+  ],
+  "order": [
+    "performance-rev",
+    "performance-parent-net",
+    "performance-cfo"
+  ],
+  "roles": {
+    "performance-rev": "primary",
+    "performance-parent-net": "secondary",
+    "performance-cfo": "secondary"
+  }
+}

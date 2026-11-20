@@ -1,0 +1,433 @@
+{
+  "generation_scope": "EDITORIAL_AUTHORING_CANDIDATE",
+  "capability_plan": {
+    "schema": "financials.research_capabilities.v1",
+    "issuer": "600036",
+    "fiscal_period": "2026Q1",
+    "sector_route": "bank",
+    "period_basis": {
+      "flow_current": "2026Q1",
+      "flow_prior": "2025Q1",
+      "stock_current": "2026-03-31",
+      "stock_prior": "2025-12-31",
+      "flow_comparison": "SAME_CUMULATIVE_PERIOD_YOY",
+      "stock_comparison": "REPORT_END_VS_PREVIOUS_YEAR_END_NOT_YOY"
+    },
+    "source_pdf_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+    "source_gate": "HASH_RECORDED_BYTES_NOT_REVERIFIED",
+    "publication_route": "BANK_V2_AUTHORING_CANDIDATE",
+    "blockers": [],
+    "visual_candidates": [
+      {
+        "family": "comparison",
+        "question": "净利息、非息及信用成本如何分化？",
+        "evidence": [
+          "nii",
+          "rev",
+          "parent_net",
+          "fee_net",
+          "credit_impairment",
+          "admin_fin",
+          "fin_interest_income",
+          "fin_interest_expense",
+          "loans",
+          "deposits",
+          "assets",
+          "equity"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Comparable income periods and separately dated balance snapshots"
+      },
+      {
+        "family": "signed_bridge",
+        "question": "利息收入和支出如何形成净利息收入？",
+        "evidence": [
+          "nii",
+          "rev",
+          "parent_net",
+          "fee_net",
+          "credit_impairment",
+          "admin_fin",
+          "fin_interest_income",
+          "fin_interest_expense"
+        ],
+        "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+        "rationale": "Source-closed signed bridge with no duplicate interest expense"
+      }
+    ],
+    "research_questions": [
+      {
+        "id": "NET_INTEREST_ECONOMICS",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "nii"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "NII is not interest income; NIM needs average earning assets"
+      },
+      {
+        "id": "ASSET_QUALITY",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "loans"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Nonperforming ratio, provisioning and writeoffs require own disclosures"
+      },
+      {
+        "id": "FUNDING_AND_CAPITAL",
+        "status": "REQUIRES_ANALYST_REVIEW",
+        "available_fact_keys": [
+          "deposits"
+        ],
+        "unavailable_fact_keys": [],
+        "source_caveat": "Deposit structure, LCR and regulatory capital require separate disclosure"
+      }
+    ],
+    "independent_financial_and_visual_review": "NOT_CHECKED",
+    "complete_footnote_materiality_review": "NOT_CHECKED",
+    "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
+  },
+  "article": {
+    "title": "负债降息撑起净利息增长",
+    "deck": "招商银行一季度净利息收入同比增加 [D:nii] 亿元，而利息收入下降 [D:fin_interest_income] 亿元。资金利息支出的下降超过资产利息收入降幅。",
+    "thesis": {
+      "title": "核心判断",
+      "body": "净利息收入增长主要来自负债端成本缓解。原件的平均余额表显示生息资产和计息负债均在扩张，资产端平均收益下降、负债端平均成本下降。贷款减值增加，令净利息增量向利润的传导打折。"
+    },
+    "metrics": [],
+    "essays": [
+      {
+        "id": "research",
+        "eyebrow": "研究判断",
+        "title": "平均余额揭示利息收入为何下滑",
+        "paragraphs": [
+          "按上期实际季度利率计算，本期平均生息资产扩张对应 {{earning_volume}} 亿元增量，收益率与结构的合并变化对应 {{earning_rate}} 亿元。计息负债扩张对应增加 {{funding_volume}} 亿元利息支出，平均成本率与结构的合并变化对应 {{funding_rate}} 亿元。",
+          "替代解释是净利息增长主要靠放量。资产端放量确实有正贡献，但仍被收益率和结构的合并效应抵消。负债端支出降幅是净利息收入增长的直接来源。分解采用两期原始收支除以各自平均余额的实际季度比率，以前期比率计量规模项。残余项同时吸收利率、结构与交互变化。",
+          "此前仓库的半年报研究也将净息差承压和净利息增长并列。一季报的资产端和负债端方向支持该机制，半年报包含一季度，不能当作独立重复验证。"
+        ],
+        "after": "nii-change"
+      },
+      {
+        "id": "follow-up",
+        "eyebrow": "下一次披露",
+        "title": "信用成本和资本决定增长含金量",
+        "paragraphs": [
+          "信用减值损益同比变化 [d:credit_impairment] 亿元。原件已将贷款与其他资产及表外业务的变化分列，下一次披露可核查贷款风险迁徙、核销、回收和行业分布，再判断拨备压力的持续性。",
+          "若同口径平均资金成本不再下降，而净利息收入仍扩张，且原件能将改善归到资产收益恢复或结构变化，则应降低对负债端缓冲的强调。"
+        ],
+        "after": "end"
+      }
+    ],
+    "notes": [
+      {
+        "theme": "利率与平均余额",
+        "pages": [
+          5,
+          6,
+          17
+        ],
+        "finding": "两期的生息资产、计息负债平均余额和收支可复算。",
+        "boundary": "原件年化利率已舍入，研究分解基于原值季度收益和成本。"
+      },
+      {
+        "theme": "信用减值",
+        "pages": [
+          6,
+          17
+        ],
+        "finding": "贷款减值增加，非贷款减值的同比增量也有贡献。",
+        "boundary": "总信用减值除以期末贷款余额会把分子和分母错配。"
+      },
+      {
+        "theme": "资产质量",
+        "pages": [
+          5,
+          8,
+          9
+        ],
+        "finding": "不良率持平，不良余额增加，拨备覆盖率下降。",
+        "boundary": "不良率、存量准备和当期信用减值各有定义。"
+      },
+      {
+        "theme": "监管资本",
+        "pages": [
+          10,
+          11,
+          12
+        ],
+        "finding": "集团同时披露高级法与权重法资本充足率。",
+        "boundary": "两种计量法分别比较，且不能与母行或账面股东权益混用。"
+      },
+      {
+        "theme": "财富管理",
+        "pages": [
+          6
+        ],
+        "finding": "财富管理、托管增量与银行卡手续费下降并存。",
+        "boundary": "分类变化和代销解释以报告披露为限。"
+      },
+      {
+        "theme": "存贷款",
+        "pages": [
+          5,
+          7,
+          13,
+          14
+        ],
+        "finding": "管理层存贷款数据与资产负债表账面余额口径不同。",
+        "boundary": "图中采用合并法定报表账面金额，附注的管理口径保留原定义。"
+      }
+    ],
+    "accounting_identities": [
+      {
+        "name": "资产=负债+全部权益",
+        "left": "assets",
+        "right": [
+          [
+            "liabilities",
+            1
+          ],
+          [
+            "equity",
+            1
+          ]
+        ]
+      }
+    ],
+    "quantified_claims": {
+      "earning_volume": {
+        "expression": [
+          [
+            "average_earning_assets",
+            1
+          ],
+          [
+            "average_earning_assets_prior",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2,
+        "times": {
+          "expression": "fin_interest_income_prior",
+          "denominator": "average_earning_assets_prior"
+        }
+      },
+      "funding_volume": {
+        "expression": [
+          [
+            "average_interest_bearing_liabilities",
+            1
+          ],
+          [
+            "average_interest_bearing_liabilities_prior",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2,
+        "times": {
+          "expression": "fin_interest_expense_prior",
+          "denominator": "average_interest_bearing_liabilities_prior"
+        }
+      },
+      "interest_income_change": {
+        "expression": [
+          [
+            "fin_interest_income",
+            1
+          ],
+          [
+            "fin_interest_income_prior",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2
+      },
+      "interest_expense_change": {
+        "expression": [
+          [
+            "fin_interest_expense",
+            1
+          ],
+          [
+            "fin_interest_expense_prior",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2
+      },
+      "earning_rate": {
+        "expression": [
+          [
+            "fin_interest_income",
+            1
+          ],
+          [
+            "fin_interest_income_prior",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2,
+        "less": "earning_volume"
+      },
+      "funding_rate": {
+        "expression": [
+          [
+            "fin_interest_expense",
+            1
+          ],
+          [
+            "fin_interest_expense_prior",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2,
+        "less": "funding_volume"
+      },
+      "cost_relief": {
+        "expression": [
+          [
+            "fin_interest_expense_prior",
+            1
+          ],
+          [
+            "fin_interest_expense",
+            -1
+          ]
+        ],
+        "scale": "100000000",
+        "decimals": 2
+      }
+    }
+  },
+  "glance": [
+    "同一季度净利息收入同比增加 [D:nii] 亿元。",
+    "信用减值损益同比变化 [d:credit_impairment] 亿元。"
+  ],
+  "new_figures": [
+    {
+      "id": "nii-change",
+      "nav": "净利息收入",
+      "family": "signed_bridge",
+      "eyebrow": "利息收支 · 合并口径",
+      "rows": [
+        [
+          "上年同期净利息收入",
+          "nii_prior",
+          "start"
+        ],
+        [
+          "利息收入减少",
+          [
+            [
+              "fin_interest_income",
+              1
+            ],
+            [
+              "fin_interest_income_prior",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "利息支出减少",
+          [
+            [
+              "fin_interest_expense",
+              -1
+            ],
+            [
+              "fin_interest_expense_prior",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "本期净利息收入",
+          "nii",
+          "total"
+        ]
+      ],
+      "question": "利息少收了，净利息为何还在增长？",
+      "takeaway": "利息支出同比少 {{cost_relief}} 亿元，抵消了利息收入下降 [D:fin_interest_income] 亿元。",
+      "analysis": "三项金额全部来自合并利润表，两期利息收支均与管理层利率分析表勾稽。",
+      "counter": "这条桥解释收支差额；规模和率的估算另用平均余额，无法独立分离资产结构影响。",
+      "identity": "上期净利息收入＋利息收入变化－利息支出变化＝本期净利息收入。"
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "nav": "利润与减值",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2025Q1",
+        "2026Q1"
+      ],
+      "pairs": [
+        [
+          "手续费及佣金净收入",
+          "fee_net_prior",
+          "fee_net"
+        ],
+        [
+          "信用减值损益",
+          "credit_impairment_prior",
+          "credit_impairment"
+        ],
+        [
+          "归母净利润",
+          "parent_net_prior",
+          "parent_net"
+        ]
+      ],
+      "question": "多少利息增量转成了归母利润？",
+      "takeaway": "归母净利润增加 [D:parent_net] 亿元，信用减值损益同比变化 [d:credit_impairment] 亿元。",
+      "analysis": "手续费收入增加与信用减值扩大是两股相反的力量。各条独立零轴只比较本行的两期金额。",
+      "counter": "贷款减值需和贷款风险组合匹配，银行整体减值不能直接当作新增贷款违约率。"
+    },
+    {
+      "id": "balances",
+      "family": "comparison",
+      "nav": "期末余额",
+      "eyebrow": "两期对照",
+      "periods": [
+        "2025-12-31",
+        "2026-03-31"
+      ],
+      "pairs": [
+        [
+          "发放贷款及垫款账面额",
+          "loans_prior",
+          "loans"
+        ],
+        [
+          "吸收存款账面额",
+          "deposits_prior",
+          "deposits"
+        ]
+      ],
+      "question": "贷款和存款的账面余额怎样变？",
+      "takeaway": "法定报表的两项期末余额均高于上年末。",
+      "analysis": "贷款账面余额与客户存款余额单列，用作资产扩张和负债来源背景。",
+      "counter": "余额变化包含应计利息等会计项目。平均生息资产比较见利率分析表。"
+    }
+  ],
+  "order": [
+    "nii-change",
+    "earnings",
+    "balances"
+  ],
+  "roles": {
+    "nii-change": "primary",
+    "earnings": "secondary",
+    "balances": "secondary"
+  }
+}

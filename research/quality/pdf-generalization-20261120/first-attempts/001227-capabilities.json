@@ -1,0 +1,88 @@
+{
+  "schema": "financials.research_capabilities.v1",
+  "issuer": "001227",
+  "fiscal_period": "2025Q1",
+  "sector_route": "bank",
+  "period_basis": {
+    "flow_current": "2025Q1",
+    "flow_prior": "2024Q1",
+    "stock_current": "2025-03-31",
+    "stock_prior": "2024-12-31",
+    "flow_comparison": "SAME_CUMULATIVE_PERIOD_YOY",
+    "stock_comparison": "REPORT_END_VS_PREVIOUS_YEAR_END_NOT_YOY"
+  },
+  "source_pdf_sha256": "cafc1ba7af05aefc62ed796b7ed05b737925e2f3736414d23ecbdfb9ae8755df",
+  "source_gate": "HASH_RECORDED_BYTES_NOT_REVERIFIED",
+  "publication_route": "BANK_V2_AUTHORING_CANDIDATE",
+  "blockers": [],
+  "visual_candidates": [
+    {
+      "family": "comparison",
+      "question": "净利息、非息及信用成本如何分化？",
+      "evidence": [
+        "nii",
+        "rev",
+        "parent_net",
+        "fee_net",
+        "credit_impairment",
+        "admin_fin",
+        "fin_interest_income",
+        "fin_interest_expense",
+        "loans",
+        "deposits",
+        "assets",
+        "equity"
+      ],
+      "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+      "rationale": "Comparable income periods and separately dated balance snapshots"
+    },
+    {
+      "family": "signed_bridge",
+      "question": "利息收入和支出如何形成净利息收入？",
+      "evidence": [
+        "nii",
+        "rev",
+        "parent_net",
+        "fee_net",
+        "credit_impairment",
+        "admin_fin",
+        "fin_interest_income",
+        "fin_interest_expense"
+      ],
+      "status": "ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT",
+      "rationale": "Source-closed signed bridge with no duplicate interest expense"
+    }
+  ],
+  "research_questions": [
+    {
+      "id": "NET_INTEREST_ECONOMICS",
+      "status": "REQUIRES_ANALYST_REVIEW",
+      "available_fact_keys": [
+        "nii"
+      ],
+      "unavailable_fact_keys": [],
+      "source_caveat": "NII is not interest income; NIM needs average earning assets"
+    },
+    {
+      "id": "ASSET_QUALITY",
+      "status": "REQUIRES_ANALYST_REVIEW",
+      "available_fact_keys": [
+        "loans"
+      ],
+      "unavailable_fact_keys": [],
+      "source_caveat": "Nonperforming ratio, provisioning and writeoffs require own disclosures"
+    },
+    {
+      "id": "FUNDING_AND_CAPITAL",
+      "status": "REQUIRES_ANALYST_REVIEW",
+      "available_fact_keys": [
+        "deposits"
+      ],
+      "unavailable_fact_keys": [],
+      "source_caveat": "Deposit structure, LCR and regulatory capital require separate disclosure"
+    }
+  ],
+  "independent_financial_and_visual_review": "NOT_CHECKED",
+  "complete_footnote_materiality_review": "NOT_CHECKED",
+  "production_source_byte_and_browser_acceptance": "NOT_CHECKED"
+}

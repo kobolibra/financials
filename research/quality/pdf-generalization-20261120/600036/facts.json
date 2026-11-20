@@ -1,0 +1,58 @@
+{
+  "average_earning_assets": {
+    "page": 5,
+    "label": "平均生息资产",
+    "column": 1,
+    "expect": "12,302,083",
+    "type": "flow",
+    "y": [
+      721.6,
+      722.3
+    ],
+    "unit_scale": 1000000,
+    "prior": false,
+    "denominator_definition": "合并利率分析表内的当期平均余额"
+  },
+  "average_earning_assets_prior": {
+    "page": 5,
+    "label": "平均生息资产",
+    "column": 4,
+    "expect": "11,264,198",
+    "type": "flow",
+    "y": [
+      721.6,
+      722.3
+    ],
+    "unit_scale": 1000000,
+    "prior": true,
+    "denominator_definition": "合并利率分析表内的当期平均余额"
+  },
+  "average_interest_bearing_liabilities": {
+    "page": 6,
+    "label": "平均计息负债",
+    "column": 1,
+    "expect": "11,517,054",
+    "type": "flow",
+    "y": [
+      193.7,
+      194.4
+    ],
+    "unit_scale": 1000000,
+    "prior": false,
+    "denominator_definition": "合并利率分析表内的当期平均余额"
+  },
+  "average_interest_bearing_liabilities_prior": {
+    "page": 6,
+    "label": "平均计息负债",
+    "column": 4,
+    "expect": "10,518,110",
+    "type": "flow",
+    "y": [
+      193.7,
+      194.4
+    ],
+    "unit_scale": 1000000,
+    "prior": true,
+    "denominator_definition": "合并利率分析表内的当期平均余额"
+  }
+}

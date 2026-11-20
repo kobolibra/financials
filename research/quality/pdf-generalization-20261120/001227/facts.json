@@ -1,0 +1,214 @@
+{
+  "npl_balance": {
+    "page": 7,
+    "label": "不良贷款",
+    "column": 2,
+    "expect": "4,907,685",
+    "type": "stock",
+    "row": "^不良贷款$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      317.0,
+      317.6
+    ],
+    "period": "2025-03-31"
+  },
+  "npl_balance_prior": {
+    "page": 7,
+    "label": "不良贷款",
+    "column": 6,
+    "expect": "4,648,107",
+    "type": "stock",
+    "row": "^不良贷款$",
+    "prior": true,
+    "unit_scale": 1000,
+    "y": [
+      317.0,
+      317.6
+    ],
+    "period": "2024-12-31"
+  },
+  "loss_loans": {
+    "page": 7,
+    "label": "损失类贷款",
+    "column": 2,
+    "expect": "1,898,360",
+    "type": "stock",
+    "row": "^损失类贷款$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      372.4,
+      373.0
+    ],
+    "period": "2025-03-31"
+  },
+  "loss_loans_prior": {
+    "page": 7,
+    "label": "损失类贷款",
+    "column": 6,
+    "expect": "1,373,880",
+    "type": "stock",
+    "row": "^损失类贷款$",
+    "prior": true,
+    "unit_scale": 1000,
+    "y": [
+      372.4,
+      373.0
+    ],
+    "period": "2024-12-31"
+  },
+  "gross_loans": {
+    "page": 7,
+    "label": "发放贷款及垫款总额",
+    "column": 2,
+    "expect": "271,179,666",
+    "type": "stock",
+    "row": "^发放贷款及垫款总额$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      390.8,
+      391.4
+    ],
+    "period": "2025-03-31",
+    "denominator_definition": "监管五级分类贷款总额，人民币千元"
+  },
+  "gross_loans_prior": {
+    "page": 7,
+    "label": "发放贷款及垫款总额",
+    "column": 6,
+    "expect": "253,408,763",
+    "type": "stock",
+    "row": "^发放贷款及垫款总额$",
+    "prior": true,
+    "unit_scale": 1000,
+    "y": [
+      390.8,
+      391.4
+    ],
+    "period": "2024-12-31",
+    "denominator_definition": "监管五级分类贷款总额，人民币千元"
+  },
+  "cet1": {
+    "page": 6,
+    "label": "核心一级资本净额",
+    "column": 2,
+    "expect": "30,126,681",
+    "type": "stock",
+    "row": "^核心一级资本净额$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      519.2,
+      520.0
+    ],
+    "period": "2025-03-31"
+  },
+  "cet1_prior": {
+    "page": 6,
+    "label": "核心一级资本净额",
+    "column": 4,
+    "expect": "30,609,109",
+    "type": "stock",
+    "row": "^核心一级资本净额$",
+    "prior": true,
+    "unit_scale": 1000,
+    "y": [
+      519.2,
+      520.0
+    ],
+    "period": "2024-12-31"
+  },
+  "rwa": {
+    "page": 6,
+    "label": "风险加权资产",
+    "column": 2,
+    "expect": "359,954,239",
+    "type": "stock",
+    "row": "^风险加权资产$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      574.5,
+      575.3
+    ],
+    "period": "2025-03-31",
+    "denominator_definition": "资本充足率表的风险加权资产，人民币千元"
+  },
+  "rwa_prior": {
+    "page": 6,
+    "label": "风险加权资产",
+    "column": 4,
+    "expect": "350,537,217",
+    "type": "stock",
+    "row": "^风险加权资产$",
+    "prior": true,
+    "unit_scale": 1000,
+    "y": [
+      574.5,
+      575.3
+    ],
+    "period": "2024-12-31",
+    "denominator_definition": "资本充足率表的风险加权资产，人民币千元"
+  },
+  "amortised_provision": {
+    "page": 7,
+    "label": "摊余成本贷款计提或回拨",
+    "column": 1,
+    "expect": "776,890",
+    "type": "flow",
+    "row": "^摊余成本贷款计提或回拨$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      515.7,
+      516.2
+    ]
+  },
+  "amortised_writeoff": {
+    "page": 7,
+    "label": "摊余成本贷款转让或核销",
+    "column": 1,
+    "expect": "-384,617",
+    "type": "flow",
+    "row": "^摊余成本贷款转让或核销$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      534.1,
+      534.7
+    ]
+  },
+  "amortised_allowance_open": {
+    "page": 7,
+    "label": "摊余成本贷款减值准备年初数",
+    "column": 1,
+    "expect": "9,359,742",
+    "type": "stock",
+    "row": "^摊余成本贷款减值准备年初数$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      497.3,
+      497.9
+    ],
+    "period": "2024-12-31"
+  },
+  "amortised_allowance_close": {
+    "page": 7,
+    "label": "摊余成本贷款减值准备期末数",
+    "column": 1,
+    "expect": "9,809,205",
+    "type": "stock",
+    "row": "^摊余成本贷款减值准备期末数$",
+    "prior": false,
+    "unit_scale": 1000,
+    "y": [
+      589.5,
+      590.2
+    ],
+    "period": "2025-03-31"
+  }
+}

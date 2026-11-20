@@ -2,6 +2,16 @@
 
 本文件为新公司、新报告期和新行业的强制步骤。在 `SKILL.md` / Playbook 06 之后先编译能力再写研究与画图。目标不是图的数量，而是每个新结论都由同口径源证据支持，每个图都合法、可读、必要；未知时必须拒绝。
 
+## 0. 从单份 PDF 到离线成稿
+
+1. 用 `start_report.py PDF` 启动。后续命令统一在仓库根目录运行，设置 `FINANCIALS_DOSSIER_ROOT=work/dossiers`，传入入口识别的 `--code` 和 `--period`。签名桥和两期对照属于当前离线适配范围。按问题选择首图。
+2. 查阅 `fin_intake.py coverage`，在原页确认遗漏行影响；用 `coverage --spec` 写入以源 SHA 和行 ID 绑定的复核。用 `scan / facts` 绑定附注的源格和单位倍数。重大遗漏须列受影响键，校验会阻断依赖它的观点或图。没有逐项复核的行继续显示待查。
+3. 重述发生时用 `fin_intake.py basis --spec` 写指标级比较决定。每项附原因和物理页。重述项同时保留原披露源格、重述比较源格。前期原件补齐时记录 URL、SHA、获取日期和物理页。缺少分部或成本的原披露时把该指标标为未确认。
+4. 写 `research-brief.json`。列出两个竞争问题及决定首屏的附注或事实，给出最强替代解释、区分证据和下一披露检验。已有研究时对照其判断。再填写 `v2-draft.json`。正文宏、精确表达式、图、数据区都使用账本键。银行的利息分解需要两期平均余额与相匹配的收益或成本，有则复算，无则保留收支变化及证据限制。
+5. 运行 `v2_builder.py apply`、`fin_intake.py preflight --require-research-evidence` 和 `python research/shared/source_publication.py work/dossiers/<code>/<period> work/reports/<code>.html`。离线输出路径需要显式指定。用 `scripts/qa_offline_candidate.py` 在断网浏览器验收，逐张看实图，记录作者自评、独立 AI 和真人审阅。编辑时记录阶段耗时、干预与返工。
+
+下面的目录发布合同仍适用于既有生产路径。其旧技术状态按注明时间读取。
+
 ## 1. 五层互不替代的质量合同
 
 | 层 | 必须检查 | 禁止等价替代 |
@@ -29,7 +39,7 @@ python $T/v2_builder.py capabilities --code <新公司代码> --out /tmp/capabil
 - `period_basis`：同长度累计流量同比、期末与上年末存量（非同比）；
 - `visual_candidates`：对应研究问题、精确来源事实、许可条件及拒绝原因；`ELIGIBLE_PENDING_SOURCE_AND_VISUAL_AUDIT` 不是图形验收PASS；
 - `research_questions`：各行业的重要证据线索，始终 `REQUIRES_ANALYST_REVIEW`，不自动宣称研究结论；
-- `publication_route`：只有已证明的工业类通用路径可以成为作者候选，其余一律 `SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED`；
+- `publication_route`：合并银行报表在离线流程可得到 `BANK_V2_AUTHORING_CANDIDATE`；目录发布与独立编辑门禁单独核验；
 - 来源哈希只说明记录了哈希，原件可用性、重大性、人工财经与视觉评审、生产字节都必须另外证明。
 
 `v2_builder.py scaffold` 将该能力报告写入草稿，工业新报告仍需人工选题和图序。未实现的金融或地产新出版路由，正常 `scaffold` 和 `apply` 直接失败；用于 PDF 技术烟测的 `scaffold --source-probe` 生成 `SOURCE_DIAGNOSTIC_ONLY_NOT_FOR_PUBLICATION` 草稿，**不能通过 apply 转为正式报告**。`findings` 对非工业模型拒绝输出通用工业结论。
@@ -69,4 +79,4 @@ python $T/v2_builder.py capabilities --code <新公司代码> --out /tmp/capabil
 
 截至2026-11-17，历史30份原件/838条未映射记录的技术快照仅有**当前Git仓库可复验10份原件/183条记录**，另20份原始PDF缺失；这不意味着其余20份以前的记录被推翻，只意味着无法在当前干净环境复验。详见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`，完整强制原件运行 `generalization_probe.py --require-reference-corpus` 必须阻断缺件。
 
-**未完成重点**：20份源原件恢复；TYPE B、银行、保险、券商和地产的通用出版适配器；研究证据合同虽已能机检源数学与必要的反论证结构，但**尚不能机器判断假说是否真正解释商业模式**；依据真实中文字宽的响应式布局求解器；独立财经和视觉总编盲审；不同公司、周期和行业的大样本无人干预生产级验收。新的能力编译器是质量拒绝与编辑决策基础设施，绝不能据此宣称这些缺口已经完成。
+**未完成重点**：银行图种和披露版式扩大后的独立复验；TYPE B、保险、券商和地产的离线出版适配器；研究证据合同虽已能机检源数学与必要的反论证结构，但**尚不能机器判断假说是否真正解释商业模式**；依据真实中文字宽的响应式布局求解器；独立财经和视觉总编盲审；不同公司、周期和行业的大样本无人干预生产级验收。新的能力编译器是质量拒绝与编辑决策基础设施，绝不能据此宣称这些缺口已经完成。

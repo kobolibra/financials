@@ -1,0 +1,35 @@
+{
+  "source_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+  "decisions": {
+    "4dab769d315a43a6ac224253": {
+      "classification": "DUPLICATE_SUBTOTAL",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "原页重复小计或独立报表首行重列；净利润已相同金额映射，其他净收入由净收入类别合计。",
+      "affected_keys": [
+        "rev",
+        "net_profit"
+      ],
+      "affected_conclusions": "首图利息拆解、归母利润对照无影响。"
+    },
+    "bbe4e50d0902eb4a9e2a6552": {
+      "classification": "NON_AMOUNT",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "原页计量是每股人民币元，属于每股指标，不能计入利润表金额。",
+      "affected_keys": [],
+      "affected_conclusions": "首图及净利润绝对量无影响。"
+    },
+    "a83bc1a762026d6a52855516": {
+      "classification": "DUPLICATE_SUBTOTAL",
+      "reviewer": "本轮报告作者，原页复核",
+      "date": "2026-11-20",
+      "reason": "原页重复小计或独立报表首行重列；净利润已相同金额映射，其他净收入由净收入类别合计。",
+      "affected_keys": [
+        "rev",
+        "net_profit"
+      ],
+      "affected_conclusions": "首图利息拆解、归母利润对照无影响。"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+name: Verify offline research candidates
+on:
+  pull_request:
+    paths:
+      - 'skills/ashare-financial-storytelling/**'
+      - 'research/quality/pdf-generalization-20261120/**'
+      - 'research/shared/**'
+      - 'scripts/*offline*.py'
+      - '.github/workflows/verify-offline-research-candidates.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-source-and-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pymupdf==1.26.6 playwright==1.58.2
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk
+          python -m playwright install --with-deps chromium webkit
+      - run: python scripts/rebuild_offline_examples.py --out work/candidates --codes 600036 600206 600919
+      - run: |
+          for code in 600036 600206 600919; do
+            python scripts/qa_offline_candidate.py work/candidates/"$code".html --out work/screens/"$code"/chromium
+            python scripts/qa_offline_candidate.py work/candidates/"$code".html --out work/screens/"$code"/webkit --engine webkit
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: offline-research-checks
+          path: |
+            work/candidates/*.log
+            work/candidates/*.html
+            work/candidates/rebuild.json
+            work/screens/

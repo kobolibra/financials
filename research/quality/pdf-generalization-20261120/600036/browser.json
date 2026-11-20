@@ -1,0 +1,556 @@
+{
+  "browser": "chromium",
+  "version": "145.0.7632.6",
+  "sha256": "bb9c5a18f7a4915e21a47b376ce5a2d576150d2bf3c6fbc62b7db4131c62c3b7",
+  "viewports": [
+    {
+      "width": 1440,
+      "figures": [
+        {
+          "id": "nii-change",
+          "role": "primary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "52996000000",
+              "min": null,
+              "max": null,
+              "source": "nii_prior",
+              "width": 438.12515725531074,
+              "scale": "120960869.5652173913043478261",
+              "before": "0",
+              "after": "52996000000"
+            },
+            {
+              "period": null,
+              "value": "-2962000000",
+              "min": null,
+              "max": null,
+              "source": "[[\"fin_interest_income\",1],[\"fin_interest_income_prior\",-1]]",
+              "width": 24.487257826821466,
+              "scale": "120960869.5652173913043478261",
+              "before": "52996000000",
+              "after": "50034000000"
+            },
+            {
+              "period": null,
+              "value": "5608000000",
+              "min": null,
+              "max": null,
+              "source": "[[\"fin_interest_expense\",-1],[\"fin_interest_expense_prior\",1]]",
+              "width": 46.36210057151073,
+              "scale": "120960869.5652173913043478261",
+              "before": "50034000000",
+              "after": "55642000000"
+            },
+            {
+              "period": null,
+              "value": "55642000000",
+              "min": null,
+              "max": null,
+              "source": "nii",
+              "width": 460,
+              "scale": "120960869.5652173913043478261",
+              "before": "0",
+              "after": "55642000000"
+            }
+          ]
+        },
+        {
+          "id": "earnings",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025Q1",
+              "value": "19696000000",
+              "min": "0",
+              "max": "20656000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"fee_net_prior\",\"current\":\"fee_net\"}",
+              "width": 457.69171185,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "20656000000",
+              "min": "0",
+              "max": "20656000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"fee_net_prior\",\"current\":\"fee_net\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025Q1",
+              "value": "-12837000000",
+              "min": "-14846000000",
+              "max": "0",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"credit_impairment_prior\",\"current\":\"credit_impairment\"}",
+              "width": 415.04513,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "-14846000000",
+              "min": "-14846000000",
+              "max": "0",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"credit_impairment_prior\",\"current\":\"credit_impairment\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025Q1",
+              "value": "37286000000",
+              "min": "0",
+              "max": "37852000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"parent_net_prior\",\"current\":\"parent_net\"}",
+              "width": 472.82257212,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "37852000000",
+              "min": "0",
+              "max": "37852000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"parent_net_prior\",\"current\":\"parent_net\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        },
+        {
+          "id": "balances",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025-12-31",
+              "value": "7004238000000",
+              "min": "0",
+              "max": "7206321000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"loans_prior\",\"current\":\"loans\"}",
+              "width": 466.53961709,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026-03-31",
+              "value": "7206321000000",
+              "min": "0",
+              "max": "7206321000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"loans_prior\",\"current\":\"loans\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025-12-31",
+              "value": "9924558000000",
+              "min": "0",
+              "max": "10042123000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"deposits_prior\",\"current\":\"deposits\"}",
+              "width": 474.38055081,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026-03-31",
+              "value": "10042123000000",
+              "min": "0",
+              "max": "10042123000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"deposits_prior\",\"current\":\"deposits\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "figures": [
+        {
+          "id": "nii-change",
+          "role": "primary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "52996000000",
+              "min": null,
+              "max": null,
+              "source": "nii_prior",
+              "width": 283.8289062219187,
+              "scale": "186718120.8053691275167785235",
+              "before": "0",
+              "after": "52996000000"
+            },
+            {
+              "period": null,
+              "value": "-2962000000",
+              "min": null,
+              "max": null,
+              "source": "[[\"fin_interest_income\",1],[\"fin_interest_income_prior\",-1]]",
+              "width": 15.86348441824521,
+              "scale": "186718120.8053691275167785235",
+              "before": "52996000000",
+              "after": "50034000000"
+            },
+            {
+              "period": null,
+              "value": "5608000000",
+              "min": null,
+              "max": null,
+              "source": "[[\"fin_interest_expense\",-1],[\"fin_interest_expense_prior\",1]]",
+              "width": 30.034578196326517,
+              "scale": "186718120.8053691275167785235",
+              "before": "50034000000",
+              "after": "55642000000"
+            },
+            {
+              "period": null,
+              "value": "55642000000",
+              "min": null,
+              "max": null,
+              "source": "nii",
+              "width": 298,
+              "scale": "186718120.8053691275167785235",
+              "before": "0",
+              "after": "55642000000"
+            }
+          ]
+        },
+        {
+          "id": "earnings",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025Q1",
+              "value": "19696000000",
+              "min": "0",
+              "max": "20656000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"fee_net_prior\",\"current\":\"fee_net\"}",
+              "width": 284.15027111,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "20656000000",
+              "min": "0",
+              "max": "20656000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"fee_net_prior\",\"current\":\"fee_net\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025Q1",
+              "value": "-12837000000",
+              "min": "-14846000000",
+              "max": "0",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"credit_impairment_prior\",\"current\":\"credit_impairment\"}",
+              "width": 257.67385154,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "-14846000000",
+              "min": "-14846000000",
+              "max": "0",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"credit_impairment_prior\",\"current\":\"credit_impairment\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025Q1",
+              "value": "37286000000",
+              "min": "0",
+              "max": "37852000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"parent_net_prior\",\"current\":\"parent_net\"}",
+              "width": 293.54401353,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "37852000000",
+              "min": "0",
+              "max": "37852000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"parent_net_prior\",\"current\":\"parent_net\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        },
+        {
+          "id": "balances",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025-12-31",
+              "value": "7004238000000",
+              "min": "0",
+              "max": "7206321000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"loans_prior\",\"current\":\"loans\"}",
+              "width": 289.64334561,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026-03-31",
+              "value": "7206321000000",
+              "min": "0",
+              "max": "7206321000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"loans_prior\",\"current\":\"loans\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025-12-31",
+              "value": "9924558000000",
+              "min": "0",
+              "max": "10042123000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"deposits_prior\",\"current\":\"deposits\"}",
+              "width": 294.51125863,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026-03-31",
+              "value": "10042123000000",
+              "min": "0",
+              "max": "10042123000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"deposits_prior\",\"current\":\"deposits\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "figures": [
+        {
+          "id": "nii-change",
+          "role": "primary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "52996000000",
+              "min": null,
+              "max": null,
+              "source": "nii_prior",
+              "width": 283.8289062219187,
+              "scale": "186718120.8053691275167785235",
+              "before": "0",
+              "after": "52996000000"
+            },
+            {
+              "period": null,
+              "value": "-2962000000",
+              "min": null,
+              "max": null,
+              "source": "[[\"fin_interest_income\",1],[\"fin_interest_income_prior\",-1]]",
+              "width": 15.86348441824521,
+              "scale": "186718120.8053691275167785235",
+              "before": "52996000000",
+              "after": "50034000000"
+            },
+            {
+              "period": null,
+              "value": "5608000000",
+              "min": null,
+              "max": null,
+              "source": "[[\"fin_interest_expense\",-1],[\"fin_interest_expense_prior\",1]]",
+              "width": 30.034578196326517,
+              "scale": "186718120.8053691275167785235",
+              "before": "50034000000",
+              "after": "55642000000"
+            },
+            {
+              "period": null,
+              "value": "55642000000",
+              "min": null,
+              "max": null,
+              "source": "nii",
+              "width": 298,
+              "scale": "186718120.8053691275167785235",
+              "before": "0",
+              "after": "55642000000"
+            }
+          ]
+        },
+        {
+          "id": "earnings",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025Q1",
+              "value": "19696000000",
+              "min": "0",
+              "max": "20656000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"fee_net_prior\",\"current\":\"fee_net\"}",
+              "width": 284.15027111,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "20656000000",
+              "min": "0",
+              "max": "20656000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"fee_net_prior\",\"current\":\"fee_net\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025Q1",
+              "value": "-12837000000",
+              "min": "-14846000000",
+              "max": "0",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"credit_impairment_prior\",\"current\":\"credit_impairment\"}",
+              "width": 257.67385154,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "-14846000000",
+              "min": "-14846000000",
+              "max": "0",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"credit_impairment_prior\",\"current\":\"credit_impairment\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025Q1",
+              "value": "37286000000",
+              "min": "0",
+              "max": "37852000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"parent_net_prior\",\"current\":\"parent_net\"}",
+              "width": 293.54401353,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026Q1",
+              "value": "37852000000",
+              "min": "0",
+              "max": "37852000000",
+              "source": "{\"periods\":[\"2025Q1\",\"2026Q1\"],\"prior\":\"parent_net_prior\",\"current\":\"parent_net\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        },
+        {
+          "id": "balances",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025-12-31",
+              "value": "7004238000000",
+              "min": "0",
+              "max": "7206321000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"loans_prior\",\"current\":\"loans\"}",
+              "width": 289.64334561,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026-03-31",
+              "value": "7206321000000",
+              "min": "0",
+              "max": "7206321000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"loans_prior\",\"current\":\"loans\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025-12-31",
+              "value": "9924558000000",
+              "min": "0",
+              "max": "10042123000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"deposits_prior\",\"current\":\"deposits\"}",
+              "width": 294.51125863,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2026-03-31",
+              "value": "10042123000000",
+              "min": "0",
+              "max": "10042123000000",
+              "source": "{\"periods\":[\"2025-12-31\",\"2026-03-31\"],\"prior\":\"deposits_prior\",\"current\":\"deposits\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "reports": 30,
+  "issuer_count": 18,
+  "accounting_formats": [
+    "bank",
+    "general",
+    "insurance",
+    "securities"
+  ],
+  "format_counts": {
+    "insurance": 2,
+    "securities": 2,
+    "general": 25,
+    "bank": 1
+  },
+  "period_counts": {
+    "9M": 2,
+    "H1": 16,
+    "FY": 11,
+    "Q1": 1
+  },
+  "all_stages_pass": 30,
+  "unmapped_rows": 838,
+  "reference_corpus": {
+    "status": "ALL_HISTORICAL_SOURCE_BYTES_PRESENT",
+    "reference_type": "HISTORICAL_PDF_SHA_SNAPSHOT_NOT_CURRENT_TEST_RECEIPT",
+    "reference_reports": 30,
+    "tested_reports": 30,
+    "matched_reference_reports": 30,
+    "missing_reference_reports": 0,
+    "missing_historical_unmapped_rows": 0,
+    "missing_originals": []
+  },
+  "different_byte_variant": {
+    "source_url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225533135.PDF",
+    "status": "DIFFERENT_BYTES",
+    "expected_sha256": "576dd80e353e53296a800b03e9889a9cbb2e8b91fa2ab3c1dace7c10159179b8",
+    "observed_sha256": "e0238eba2ab4912d4d2fb829b4f06afeaa4a5019272eb8e007f708be555cfbb5"
+  }
+}

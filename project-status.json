@@ -1,6 +1,16 @@
 {
   "schema_version": 1,
   "updated_date": "2026-11-13",
+  "offline_pdf_research_candidate_20261120": {
+    "scope": "DRAFT_BRANCH_OFFLINE_RESEARCH_ONLY",
+    "evidence": "research/quality/pdf-generalization-20261120/README.md",
+    "historical_original_sha_verified": 30,
+    "studies": [
+      "600036@2026Q1",
+      "600206@2025FY"
+    ],
+    "independent_review": "NOT_CHECKED"
+  },
   "current_release_provenance_20261109": {
     "scope": "HISTORICAL_EXACT_MAIN_SOURCE_PROOF_NOT_FUTURE_UNCONDITIONAL_LIVE",
     "source_main_sha": "b72e6074795bc0cb9aabe0b312c79f1decf567f4",
