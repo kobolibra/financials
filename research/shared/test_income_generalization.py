@@ -120,4 +120,29 @@ class IncomeGeneralizationTests(unittest.TestCase):
                                     f'{code} {stage}: crossed ribbon {i} vs {j}')
 
 
+    def test_published_html_cannot_keep_old_crossed_sankey(self):
+        """Actual reader-facing SVGs, not just newly generated Python output."""
+        for code in ('600206','600690','300548','688220'):
+            html=(ROOT/f'public/{code}.html').read_text()
+            svgs=re.findall(
+                r'<svg\\b[^>]*data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"[^>]*>.*?</svg>',
+                html,re.S)
+            self.assertGreaterEqual(len(svgs),2,(code,'NO_PUBLISHED_DESKTOP_AND_PHONE_SVG'))
+            for svg in svgs:
+                ribbons=[]
+                for tag in re.findall(r'<path\\b[^>]*data-stage="revenue-to-outcome"[^>]*/>',svg):
+                    d=re.search(r'\\sd="([^"]+)"',tag)
+                    self.assertIsNotNone(d)
+                    xy=[D(x) for x in re.findall(r'-?\\d+(?:\\.\\d+)?',d.group(1))]
+                    self.assertEqual(len(xy),16)
+                    ribbons.append(((xy[1]+xy[15])/2,(xy[7]+xy[9])/2))
+                self.assertGreater(len(ribbons),1)
+                for i in range(len(ribbons)):
+                    for j in range(i+1,len(ribbons)):
+                        self.assertGreaterEqual(
+                            (ribbons[i][0]-ribbons[j][0]) *
+                            (ribbons[i][1]-ribbons[j][1]),D('-0.00001'),
+                            f'{code}: published SVG still braids {i} with {j}')
+
+
 if __name__=="__main__":unittest.main()
