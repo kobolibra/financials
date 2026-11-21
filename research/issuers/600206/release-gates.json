@@ -50,9 +50,9 @@
       "scope": "逐图使用对应的来源金额、期间和会计关系。"
     },
     "VISUAL_EDITORIAL_SELF": {
-      "status": "NOT_CHECKED",
-      "proof": "",
-      "scope": "候选稿已重建，等待实际桌面/手机整页独立编辑自审；不得沿用四图版 PASS"
+      "status": "PASS",
+      "proof": "research/issuers/600206/editorial-self-review.json",
+      "scope": "执行者按实际1440/768/390 Chromium及375 WebKit整页与逐图做11项R/V自评，所有维度>=2、均分>=2.5且无P0；不代表独立人类研究/艺术二审。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
