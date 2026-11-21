@@ -217,5 +217,86 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
             self.assertEqual(cmd.call_args.kwargs["check"], True)
 
 
+    def test_dossier_source_and_browser_changes_trigger_reaudit(self):
+        with patch("autonomous_editorial_audit.subprocess.run") as cmd:
+            cmd.return_value.stdout = (
+                "research/issuers/600206/source/600206_2025FY_complete_original.pdf\n"
+                "research/issuers/600036/2026Q1/visual-qa/result.json\n"
+                "research/issuers/600690/extracted/p087.txt\n"
+            )
+            self.assertEqual(changed_issuers(ROOT, "origin/main"),
+                             ["600036@2026Q1", "600206", "600690"])
+
+    def test_uncataloged_public_report_is_a_hard_error(self):
+        with patch("autonomous_editorial_audit.subprocess.run") as cmd:
+            for unpublished in ("public/123456.html", "public/research/v10/123456.html"):
+                cmd.return_value.stdout = unpublished + "\n"
+                with self.subTest(unpublished=unpublished):
+                    with self.assertRaisesRegex(ValueError, "UNCATALOGED_PUBLISHED_ISSUER_ROUTE"):
+                        changed_issuers(ROOT, "origin/main")
+
+    def test_invalid_research_thesis_is_blocking_not_merely_a_chart_warning(self):
+        args = original()
+        args[5] = copy.deepcopy(args[5])
+        args[5]["source_pdf_sha256"] = "0" * 64
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("RESEARCH_EVIDENCE_INVALID", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_research_claim_math_is_a_required_editorial_precondition(self):
+        args = original()
+        args[5] = copy.deepcopy(args[5])
+        args[5]["theses"][0]["calculations"][0]["expected_yuan"] = "1"
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("RESEARCH_EVIDENCE_INVALID", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_mismatched_source_identity_cannot_be_published(self):
+        args = original()
+        args[3] = copy.deepcopy(args[3])
+        args[3]["issuer"]["code"] = "123456"
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("REPORT_ISSUER_MISMATCH", codes(out))
+
+
+    def test_browser_receipt_must_be_current_html_sha(self):
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        args[6]["browser_evidence"]["current_html_sha256"] = "0" * 64
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("BROWSER_PROOF_STALE", codes(out))
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        args[6]["browser_evidence"]["chromium_receipt"] = "research/issuers/does-not-exist.json"
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("BROWSER_RECEIPT_MISSING", codes(out))
+
+    def test_browser_review_requires_all_native_viewports(self):
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        args[6]["required_viewports"] = [{"browser": "chromium", "width": 1440}]
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("BROWSER_VIEWPORT_COVERAGE_MISSING", codes(out))
+
+
+    def test_original_pdf_bytes_must_match_ledger_even_if_html_is_unchanged(self):
+        args = original()
+        args[3] = copy.deepcopy(args[3])
+        args[3]["source"]["original_bytes_sha256"] = "0" * 64
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("SOURCE_PDF_BYTES_CHANGED", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_original_pdf_must_not_be_a_missing_or_escaped_path(self):
+        for source_path in ("research/issuers/600206/source/missing.pdf",
+                            "../../etc/passwd"):
+            args = original()
+            args[3] = copy.deepcopy(args[3])
+            args[3]["source"]["source_path"] = source_path
+            out = audit(*args[:8], html_sha=args[8], strict=True)
+            with self.subTest(source_path=source_path):
+                self.assertIn("SOURCE_PDF_NOT_ARCHIVED", codes(out))
+
+
 if __name__ == "__main__":
     unittest.main()
