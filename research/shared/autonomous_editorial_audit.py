@@ -413,6 +413,72 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
     }
 
 
+def audit_legacy_current_full_source(root, code, issuer, catalog, *, strict=False):
+    """Legacy HTML without a new-era research-brief/release-gates contract.
+
+    The evidence is narrower than a modern full-research review: only an
+    existing financially source-bound article, every visible original SVG,
+    native three-viewport capture, real export and cryptographic proof may
+    pass. It MUST NOT be misrepresented as a newly complete research review.
+    """
+    import sys
+    from hashlib import sha256 as _sha
+    scripts = str(root / "scripts")
+    shared = str(root / "research/shared")
+    for location in (scripts, shared):
+        if location not in sys.path:
+            sys.path.insert(0, location)
+    from audit_unified_visual_corpus import verified_complete_migration
+    from browser_evidence_archive import EvidenceReader
+    from qa_editorial_migration import check_vector
+    html = root / "public" / issuer["href"].lstrip("/")
+    if not html.is_file() or issuer.get("figure_quality_contract") != "FULL_SOURCE_FIGURES_V1":
+        raise ValueError("LEGACY_CHANGED_REPORT_REQUIRES_SOURCE_FIGURE_CONTRACT " + code)
+    current = _sha(html.read_bytes()).hexdigest()
+    profile = catalog["figure_quality_contracts"]["FULL_SOURCE_FIGURES_V1"]
+    proof = (root / profile["local_migration_receipt"]).resolve()
+    proof.relative_to(root.resolve())
+    receipt = _json(proof)
+    if not verified_complete_migration(receipt, code, current):
+        raise ValueError("LEGACY_CHANGED_REPORT_CURRENT_BROWSER_PROOF_MISSING " + code)
+    source = {}
+    for path in profile["source_review_indices"]:
+        source.update(_json(root / path).get("issuers", {}))
+    pdf_sha = source.get(code, {}).get("source_sha256")
+    if receipt["issuers"][code]["pdf_sha256"] != pdf_sha:
+        raise ValueError("LEGACY_CHANGED_REPORT_PDF_SHA_MISMATCH " + code)
+    evidence = EvidenceReader(root, proof)
+    views = [x for x in receipt["cases"] if x["issuer"] == code]
+    if len(views) != 3:
+        raise ValueError("LEGACY_CHANGED_REPORT_MISSING_THREE_NATIVE_VIEWS " + code)
+    for view in views:
+        if len(view["figures"]) != issuer["figures"]:
+            raise ValueError("LEGACY_CHANGED_REPORT_OMITTED_FINANCE_FIGURE " + code)
+        for figure in view["figures"]:
+            for key, digest in (("screenshot_file","screenshot_sha256"),
+                                ("export_file","vector_sha256")):
+                raw = evidence.read(figure[key], code)
+                if _sha(raw).hexdigest() != figure[digest]:
+                    raise ValueError("LEGACY_CHANGED_REPORT_BROWSER_EVIDENCE_DRIFT " + code)
+                if key == "export_file":
+                    check_vector(raw.decode("utf8"), code, pdf_sha)
+    return {
+        "schema": "financials.autonomous_editorial_audit.v1",
+        "issuer": code, "period": issuer.get("period"),
+        "issuer_period": code + "@" + str(issuer.get("period")),
+        "original_pdf_sha256": pdf_sha, "html_sha256": current,
+        "source_topics": [], "source_coverage_count": 0,
+        "source_opportunities": 0, "suggested_peers": [],
+        "issues": [], "blocker_count": 0, "revision_count": 0,
+        "verdict": "LEGACY_ALL_FIGURES_SOURCE_VERIFIED_NOT_NEW_EDITORIAL_CERTIFIED",
+        "independent_human_review": "NOT_CHECKED",
+        "strict_requested": bool(strict),
+        "claim_boundary": "All current-source financial SVGs, screenshots, "
+                          "native device viewports and PDF identities verified. "
+                          "NOT a new-source research thesis, artistic or human signoff."
+    }
+
+
 def audit_issuer(root, code, *, strict=False):
     catalog = _json(root / "site/research_catalog.json")
     if "@" in code:
@@ -431,6 +497,8 @@ def audit_issuer(root, code, *, strict=False):
         folder = root / "research/issuers" / code
     if issuer is None:
         raise ValueError("UNKNOWN_ISSUER_OR_PERIOD " + code)
+    if not (folder / "release-gates.json").is_file():
+        return audit_legacy_current_full_source(root, code, issuer, catalog, strict=strict)
     record = _json(folder / "release-gates.json")
     ledger = _json(folder / "source-ledger.json")
     pub = _json(folder / "publication.json")
