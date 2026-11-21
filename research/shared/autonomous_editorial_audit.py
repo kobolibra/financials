@@ -395,7 +395,7 @@ def changed_issuers(root, since):
             found.add(m.group(1) + ("@" + m.group(2) if m.group(2) else ""))
         if path in routes:
             found.add(routes[path])
-        elif re.fullmatch(r"public/[0-9]{6}(?:-[0-9]{4}(?:q[1-4]|h1|fy))?\\.html", path):
+        elif re.fullmatch(r"public/[0-9]{6}(?:-[0-9]{4}(?:q[1-4]|h1|fy))?\.html", path):
             raise ValueError("UNCATALOGED_PUBLISHED_ISSUER_ROUTE " + path)
     if "site/research_catalog.json" in paths:
         base = subprocess.run(["git", "show", since + ":site/research_catalog.json"],
