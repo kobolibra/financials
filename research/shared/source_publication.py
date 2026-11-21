@@ -174,7 +174,11 @@ def product_rows(ledger, figure):
                     or fact['scope'] != 'consolidated' or fact['unit'] != '元'
                     or fact['classification'] != 'DISCLOSED' or not fact.get('source_cells')):
                 raise ValueError('PRODUCT_CURRENT_DISCLOSED_FLOW_REQUIRED')
-        rows.append((label, amount(ledger, revenue), amount(ledger, cost), reference([revenue, cost])))
+        # The revenue and gross-profit marks are DIFFERENT economic values.
+        # Give each mark its own reproducible expression, never the same pair
+        # of fact names (which cannot be independently checked by a reader).
+        refs={'收入':revenue,'毛利':reference([[revenue,1],[cost,-1]])}
+        rows.append((label, amount(ledger, revenue), amount(ledger, cost), refs))
     return rows
 
 

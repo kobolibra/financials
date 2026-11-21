@@ -274,7 +274,7 @@ def render_product_economics(rows, title, *, issuer, period, pdf_sha256, mobile=
             out.append(f'<rect x="{min(x(value),x(D(0))):.8f}" y="{bar_y}" height="9" '
                        f'width="{abs(x(value)-x(D(0))):.8f}" fill="{P["cost"] if value < 0 else color}" '
                        f'data-exact-value="{value}" data-domain-min="{low}" data-domain-max="{high}" '
-                       f'data-period="{E(period,quote=True)}" data-source-reference="{E(source,quote=True)}"/>')
+                       f'data-period="{E(period,quote=True)}" data-source-reference="{E(source[kind],quote=True)}"/>')
             y += 43 if mobile else 27
         y += 15
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {y}" role="img" '
