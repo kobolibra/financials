@@ -4,9 +4,9 @@ on:
     branches: ['fix/sankey-uncrossed-source-flows-20261122']
     paths:
       - '.github/workflows/recertify-sankey-portfolio.yml'
-      - 'public/**'
-      - 'research/shared/unified_income_sankey.py'
-      - 'scripts/qa_editorial_migration.py'
+concurrency:
+  group: financials-sankey-recertify
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -20,6 +20,22 @@ jobs:
           python -m pip install --disable-pip-version-check playwright==1.65.2 pymupdf==1.26.6
           python -m playwright install --with-deps chromium
           sudo apt-get install -y -qq fonts-noto-cjk
+      - name: Restore frozen original v10 source PDFs by exact SHA
+        run: python research/rebuild-v10/download_originals.py
+      - name: Rebuild canonical optical pages from original v7 ledgers
+        run: |
+          V7=skills/ashare-financial-storytelling/v7
+          python "$V7/engine/render_v7.py" --ledger "$V7/engine/sample-ledger.json" --memo "$V7/engine/sample-memo.json" --out public/300394.html --qa /tmp/300394-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/xinyisheng-2026H1-ledger.json" --memo "$V7/examples/xinyisheng-2026H1-memo.json" --out public/300502.html --qa /tmp/300502-qa.json
+          python "$V7/engine/render_v7.py" --ledger "$V7/examples/zhongji-2026H1-ledger.json" --memo "$V7/examples/zhongji-2026H1-memo.json" --out public/300308.html --qa /tmp/300308-qa.json
+          for code in 300394 300502 300308; do
+            cp "public/$code.html" "public/$code/2026-H1/index.html"
+          done
+      - name: Rebuild canonical shared industry source dossiers with current Sankey
+        run: |
+          for code in 600206 600690 300548 300570; do
+            python research/shared/source_publication.py "research/issuers/$code" "public/$code.html" --catalog-report
+          done
       - name: Recheck ALL source-ledger facts and current HTML figure exports with real Chromium
         run: |
           python scripts/qa_editorial_migration.py --codes 300394 300308 300502 688111 000333 688220 600690 300548 300570 --out work/current-sankey-portfolio
@@ -36,9 +52,29 @@ jobs:
       - name: Bind QA manifest to actual current HTML SHA but never invent human approval
         run: |
           cp work/current-sankey-portfolio/result.json research/quality/editorial-20261113-local/result.json
+          python - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          import json
+          for code in ('600206','600690','300548','300570','688220'):
+              report=Path('research/issuers')/code/'release-gates.json'
+              record=json.loads(report.read_text())
+              candidate=record.get('unmerged_candidate')
+              if not candidate or candidate.get('promotion_status')!='UNMERGED_NOT_DEPLOYED':
+                  raise ValueError('SANKKEY_RELEASE_CANDIDATE_MISSING '+code)
+              candidate['candidate_full_html_sha256']=sha256((Path('public')/(code+'.html')).read_bytes()).hexdigest()
+              candidate['current_sha_browser_proof']='LOCAL_ONLY'
+              candidate['browser_proof_scope']='Real native Chromium full-article figures in the current recertification artifact; does not constitute independent human art review or production deployment.'
+              report.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\\n')
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add research/quality/editorial-20261113-local/result.json
+          git add public/300394.html public/300502.html public/300308.html
+          git add public/300394/2026-H1/index.html public/300502/2026-H1/index.html public/300308/2026-H1/index.html
+          git add public/600206.html public/600690.html public/300548.html public/300570.html
+          git add research/issuers/{600206,600690,300548,300570}/{qa.json,figure-briefs.json}
+          git add research/issuers/{600206,600690,300548,300570,688220}/release-gates.json
           if ! git diff --cached --quiet; then
             git commit -m "qa: current nine-issuer full-figure native browser SHA receipts"
             git push origin HEAD:fix/sankey-uncrossed-source-flows-20261122
