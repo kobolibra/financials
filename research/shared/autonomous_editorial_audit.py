@@ -263,6 +263,13 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
             _issue(issues, "PEER_CALIBRATION_STALE_OR_VAGUE", "REVISION",
                    "Peer byte fingerprint or research/visual difference is unproved.",
                    "Reopen the current peer page and document specific comparative improvements.")
+        else:
+            texts = [(x["research_delta"].strip(), x["visual_delta"].strip())
+                     for x in chosen if isinstance(x, dict)]
+            if len(set(texts)) < 2:
+                _issue(issues, "PEER_CALIBRATION_COPYPASTE", "REVISION",
+                       "All peers have identical generic research/visual comparisons.",
+                       "Describe distinct insights from each current peer's actual figures and essays.")
     chart_reviews = review.get("chart_reviews", {})
     if not isinstance(chart_reviews, dict):
         chart_reviews = {}
@@ -281,6 +288,13 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
                 _issue(issues, "CHART_REVIEW_INCOMPLETE_" + str(fid), "REVISION",
                        "Source and visual semantics are not documented per figure.",
                        "Read the actual source/desktop/mobile exhibit and complete every test.")
+        if len(ids) >= 4:
+            answers = [str(chart_reviews.get(fid, {}).get("five_second_answer", "")).strip()
+                       if isinstance(chart_reviews.get(fid), dict) else "" for fid in ids]
+            if len(set(answers)) < max(3, len(ids) // 2):
+                _issue(issues, "CHART_REVIEW_COPYPASTE", "REVISION",
+                       "Most charts share an identical generic five-second answer.",
+                       "Read each specific rendering and state its distinct accounting finding.")
     if not peers:
         _issue(issues, "CALIBRATION_PEERS_UNAVAILABLE", "REVISION",
                "No directly comparable peer reports could be read from the current repository.",
