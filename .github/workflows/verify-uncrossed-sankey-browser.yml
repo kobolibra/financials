@@ -7,6 +7,7 @@ on:
       - 'public/research/**/*.html'
       - 'research/shared/unified_income_sankey.py'
       - 'research/shared/test_income_generalization.py'
+      - 'scripts/qa_current_sankey_browser.py'
       - '.github/workflows/verify-uncrossed-sankey-browser.yml'
 permissions:
   contents: read
@@ -23,24 +24,17 @@ jobs:
           python -m pip install pymupdf==1.26.6 playwright==1.65.2
           python -m playwright install --with-deps chromium webkit
           sudo apt-get install -y -qq fonts-noto-cjk
-      - name: Audit desktop and mobile financial SVGs on real CJK browsers
+      - name: Audit actual published source Sankey SVG in native Chromium and WebKit
         run: |
-          for code in 600206 600690 300548 300570; do
-            python scripts/qa_offline_candidate.py "public/$code.html" --engine chromium --out "work/uncrossed/$code/chromium"
-            python scripts/qa_offline_candidate.py "public/$code.html" --engine webkit --out "work/uncrossed/$code/webkit"
-          done
+          python scripts/qa_current_sankey_browser.py --out work/uncrossed
           python - <<'PY'
-          import hashlib,json,pathlib
-          for code in ('600206','600690','300548','300570'):
-              p=pathlib.Path('public')/(code+'.html')
-              sha=hashlib.sha256(p.read_bytes()).hexdigest()
-              for engine,widths in (('chromium',{1440,768,390}),('webkit',{375})):
-                  doc=json.loads((pathlib.Path('work/uncrossed')/code/engine/'browser.json').read_text())
-                  assert doc['sha256']==sha,(code,engine,'SHA_MISMATCH')
-                  assert {v['width'] for v in doc['viewports']}==widths,(code,engine,'VIEWPORT_GAP')
-                  for view in doc['viewports']:
-                      assert all(not f['issues'] and not f['overlap'] for f in view['figures']),(code,engine,'SVG_VISUAL_BLOCK')
-                  print('UNCROSSED_NATIVE_BROWSER_AND_SOURCE_SHA_PASS',code,engine,sha,flush=True)
+          import json,pathlib
+          receipt=json.loads(pathlib.Path('work/uncrossed/receipt.json').read_text())
+          routes={r['route'] for r in receipt['routes']}
+          assert len(routes)==11,(len(routes),routes)
+          assert all(r['status']=='SOURCE_GEOMETRY_PASS' and r['geometry_crossings']==0 for r in receipt['routes'])
+          assert receipt['independent_art_and_financial_review']=='NOT_CHECKED'
+          print('CURRENT_FULL_PORTFOLIO_TRUE_BROWSER_SCREENSHOTS_COLLECTED',len(receipt['routes']))
           PY
       - name: Verify canonically generated source dossier pages remain reproducible
         run: |
