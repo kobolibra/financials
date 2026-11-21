@@ -257,6 +257,54 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
         _issue(issues, "REVIEW_STALE_PDF", "BLOCK",
                "Review is not bound to the original PDF source fingerprint.",
                "Redo review using the original archived PDF identity.")
+    # A self-described viewport list cannot substitute a matching machine
+    # receipt from the *same build*. Bind existing Chromium QA to every figure.
+    browser = review.get("browser_evidence", {})
+    if not isinstance(browser, dict) or browser.get("current_html_sha256") != html_sha:
+        _issue(issues, "BROWSER_PROOF_STALE", "BLOCK",
+               "Self-review browser evidence is absent or refers to another HTML SHA.",
+               "Capture the current HTML in Chromium and WebKit before release.")
+        browser = {}
+    declared_views = review.get("required_viewports", [])
+    required_views = {("chromium", 1440), ("chromium", 768),
+                      ("chromium", 390), ("webkit", 375)}
+    actual_views = {(v.get("browser"), v.get("width")) for v in declared_views
+                    if isinstance(v, dict)} if isinstance(declared_views, list) else set()
+    if not required_views.issubset(actual_views):
+        _issue(issues, "BROWSER_VIEWPORT_COVERAGE_MISSING", "BLOCK",
+               "The author review omits one or more required native viewport checks.",
+               "Review desktop/tablet/mobile Chromium and native WebKit at 375.")
+    receipt = browser.get("chromium_receipt")
+    if not isinstance(receipt, str) or not receipt.startswith("research/issuers/"):
+        _issue(issues, "BROWSER_RECEIPT_MISSING", "BLOCK",
+               "No local Chromium figure-level QA receipt was declared.",
+               "Attach current SHA-bound browser evidence.")
+    else:
+        proof = (root / receipt).resolve()
+        if not proof.is_relative_to(root.resolve()) or not proof.is_file():
+            _issue(issues, "BROWSER_RECEIPT_MISSING", "BLOCK",
+                   "The declared figure QA receipt is missing or escapes the repository.",
+                   "Archive current-article figure-level QA evidence.")
+        else:
+            try:
+                qa = _json(proof)
+                if qa.get("sha256") != html_sha:
+                    _issue(issues, "BROWSER_RECEIPT_STALE", "BLOCK",
+                           "Figure-level QA was captured from another HTML build.",
+                           "Rebuild and recapture the current HTML SHA.")
+                observed = {v.get("width"): v for v in qa.get("viewports", [])
+                            if isinstance(v, dict)}
+                expected = set(ids)
+                for width in (1440, 768, 390):
+                    seen = {x.get("id") for x in observed.get(width, {}).get("figures", [])
+                            if isinstance(x, dict)}
+                    if not expected.issubset(seen):
+                        _issue(issues, "BROWSER_FIGURES_NOT_ALL_VERIFIED", "BLOCK",
+                               "Viewport " + str(width) + " omits current article figures.",
+                               "Test every chart in all three Chromium viewport sizes.")
+            except (ValueError, KeyError, TypeError) as exc:
+                _issue(issues, "BROWSER_RECEIPT_INVALID", "BLOCK", str(exc),
+                       "Recreate a readable current figure QA receipt.")
     if record.get("gates", {}).get("INDEPENDENT_HUMAN_REVIEW", {}).get("status") == "PASS":
         _issue(issues, "HUMAN_REVIEW_UNVERIFIED", "BLOCK",
                "Automated author self-review cannot establish independent human approval.",
