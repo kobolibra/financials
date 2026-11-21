@@ -257,5 +257,25 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         self.assertIn("REPORT_ISSUER_MISMATCH", codes(out))
 
 
+    def test_browser_receipt_must_be_current_html_sha(self):
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        args[6]["browser_evidence"]["current_html_sha256"] = "0" * 64
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("BROWSER_PROOF_STALE", codes(out))
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        args[6]["browser_evidence"]["chromium_receipt"] = "research/issuers/does-not-exist.json"
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("BROWSER_RECEIPT_MISSING", codes(out))
+
+    def test_browser_review_requires_all_native_viewports(self):
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        args[6]["required_viewports"] = [{"browser": "chromium", "width": 1440}]
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("BROWSER_VIEWPORT_COVERAGE_MISSING", codes(out))
+
+
 if __name__ == "__main__":
     unittest.main()
