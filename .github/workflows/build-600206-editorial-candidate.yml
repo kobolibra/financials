@@ -5,6 +5,8 @@ on:
     branches:
       - editorial/600206-full-research-rebuild-20261121
     paths:
+      - research/issuers/600206/source-ledger.json
+      - research/issuers/600206/research-brief.json
       - research/issuers/600206/publication.json
       - research/issuers/600206/editorial-manifest.json
       - research/shared/source_publication.py
