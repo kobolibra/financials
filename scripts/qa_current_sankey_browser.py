@@ -24,7 +24,7 @@ ROUTES = (
 )
 
 def decimal_coords(d):
-    return [D(v) for v in re.findall(r"-?\\d+(?:\\.\\d+)?", d)]
+    return [D(v) for v in re.findall(r"-?\d+(?:\.\d+)?", d)]
 
 def audit_svg(svg, route):
     import xml.etree.ElementTree as E
@@ -105,7 +105,7 @@ def run(root, out):
                               "screenshots",screenshot_count,"sha",expected,flush=True)
             finally:
                 browser.close()
-    (out/"receipt.json").write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\\n")
+    (out/"receipt.json").write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+"\n")
     return receipt
 
 if __name__=="__main__":
