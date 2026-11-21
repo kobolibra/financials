@@ -243,27 +243,36 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
     sink_offsets={sid:yy for sid,_,_,_,yy,_ in sink_nodes}
     if plan.allocations:
         by_source={(s,o):yuan(v) for s,o,v in plan.allocations}
-        for sid,_,value,_,_ in src_nodes:
-            seg_start,thick=src_center[sid]
-            row_offset=seg_start
-            for oid,_,val,role,yy,_ in sink_nodes:
+        # A single revenue trunk is a *mixing node*, not a succession of
+        # individual source pipes. All cost ribbons must leave the trunk
+        # together, followed by all profit ribbons (the sink order), with
+        # sources in the same stable order inside each outcome. The old
+        # source-major ordering (A-cost, A-profit, B-cost, B-profit) forced
+        # A-profit to cross B-cost on its way to two grouped sinks. It
+        # conserved yuan but produced a visually false braided Sankey.
+        outbound_cursor=mid_base
+        for oid,_,outcome_value,role,_,_ in sink_nodes:
+            sink_cursor=sink_offsets[oid]
+            for sid,_,source_value,_,_ in src_nodes:
                 v=by_source.get((sid,oid),D(0))
                 if v==0:
                     continue
-                target=sink_offsets[oid]
+                h=v/scale
                 color=PALETTE["profit"] if role=="profit" else PALETTE["cost"]
-                # Additional audit hooks preserve exactly which own product
-                # COGS/GP made each branch, never group-average attribution.
-                own_cost=sum((by_source.get((sid,k),D(0)) for k,_,_,r in plan.outcomes if r=="cost"),D(0))
-                own_gp=sum((by_source.get((sid,k),D(0)) for k,_,_,r in plan.outcomes if r=="profit"),D(0))
-                out.append(path(xrev+rev_width,row_offset,row_offset+v/scale,
-                                xout,target,target+v/scale,color,v,scale,sid,
-                                "revenue-to-outcome", revenue_yuan=value,
+                own_cost=sum((by_source.get((sid,k),D(0))
+                              for k,_,_,r in plan.outcomes if r=="cost"),D(0))
+                own_gp=sum((by_source.get((sid,k),D(0))
+                            for k,_,_,r in plan.outcomes if r=="profit"),D(0))
+                out.append(path(xrev+rev_width,outbound_cursor,outbound_cursor+h,
+                                xout,sink_cursor,sink_cursor+h,color,v,scale,sid,
+                                "revenue-to-outcome",revenue_yuan=source_value,
                                 cost_yuan=own_cost,gp_yuan=own_gp,outcome_id=oid))
-                row_offset+=v/scale
-                sink_offsets[oid]+=v/scale
-            if abs(row_offset-(seg_start+thick))>D(".00000001"):
-                raise ValueError("SOURCE_RIBBON_NOT_CONSERVED_GEOMETRICALLY")
+                outbound_cursor+=h
+                sink_cursor+=h
+            if abs(sink_cursor-(sink_offsets[oid]+outcome_value/scale))>D(".00000001"):
+                raise ValueError("SANKEY_OUTCOME_PORT_NOT_CONSERVED")
+        if abs(outbound_cursor-(mid_base+HVAL))>D(".00000001"):
+            raise ValueError("SANKEY_REVENUE_OUTPUT_PORT_NOT_CONSERVED")
     else:
         cursor=mid_base
         for oid,name,value,role,sy,thick in sink_nodes:
