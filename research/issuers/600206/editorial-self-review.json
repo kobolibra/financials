@@ -4,7 +4,7 @@
   "fiscal_period": "2025FY",
   "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
   "executor": "assistant_editorial_self_assessment; not independent human reviewer",
-  "reviewed_html_sha256": "b62ff84a72a026e421960c654ef7e58b97a8e8ac881ead0988404abd036d37ea",
+  "reviewed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
   "reviewed_figures": 12,
   "required_viewports": [
     {
@@ -25,11 +25,11 @@
     }
   ],
   "browser_evidence": {
-    "run": 44894645652,
-    "url": "https://github.com/kobolibra/financials/actions/runs/44894645652",
-    "current_html_sha256": "b62ff84a72a026e421960c654ef7e58b97a8e8ac881ead0988404abd036d37ea",
+    "run": 44896543805,
+    "url": "https://github.com/kobolibra/financials/actions/runs/44896543805",
+    "current_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
     "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
-    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44894645652/artifacts/14703755401",
+    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44896543805",
     "figure_count_each_view": 12,
     "source_value_nodes_each_view": 75,
     "text_outside_svg": 0,
@@ -105,6 +105,12 @@
       "issue": "原图曾对收入与毛利绑定同一模糊来源表达式",
       "resolution": "每一个收入/毛利条都有不同原始元金额公式并有负面注入测试",
       "retest": "source_publication_audit and editorial_geometry per two editions pass"
+    },
+    {
+      "figure": "growth-bars",
+      "issue": "跨公司回归发现共享增速图的行距被一次误替换，不兼容海尔旧报告",
+      "resolution": "恢复标准增速图52/40行距；长营运资金标签仍按长度单独分层，不改变其他公司增速图或图中金额",
+      "retest": "本轮44896543805 Chromium/WebKit 当前HTML逐图执行；另需十条跨公司回归通过"
     }
   ],
   "remaining_unverified": [
