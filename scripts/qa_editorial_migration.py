@@ -40,6 +40,20 @@ def check_vector(markup,issuer,pdf_sha):
             coords=[D(x) for x in re.findall(r'-?\d+(?:\.\d+)?',p.get('d'))]
             require(len(coords)==16 and amount>=0,'PATH_STRUCTURE')
             require(abs(abs(coords[15]-coords[1])-expected)<D('.0002') and abs(abs(coords[9]-coords[7])-expected)<D('.0002'),'RIBBON_ACTUAL_MONEY_WIDTH')
+        if grammar == 'SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY':
+            # Source->trunk accounting may balance while the trunk->sinks
+            # is braided (an early source GP crossing a later source COGS).
+            # Reject this visual/semantic falsehood in the generic browser
+            # evidence pipeline, not just in a single issuer's test suite.
+            outbound=[p for p in ribbons if p.get('data-stage')=='revenue-to-outcome']
+            centers=[]
+            for p in outbound:
+                xy=[D(x) for x in re.findall(r'-?\\d+(?:\\.\\d+)?',p.get('d'))]
+                centers.append(((xy[1]+xy[15])/2,(xy[7]+xy[9])/2))
+            for i,a in enumerate(centers):
+                for b in centers[i+1:]:
+                    require((a[0]-b[0])*(a[1]-b[1])>=D('-.00001'),
+                            'CROSSING_COST_AND_GROSS_PROFIT_RIBBONS')
         if grammar.startswith('INSURANCE_'):require(svg.get('data-accounting-basis')=='MANAGEMENT_LEGACY_PREMIUM_STATISTICS_NOT_CAS25','PREMIUM_NOT_CAS25')
         return {'status':'PASS','grammar':grammar,'observed_source_rows':len(nodes)+len(ribbons)}
     if grammar=='FINANCIALS_TYPED_FULL_PNL_SIGNED_V1':
