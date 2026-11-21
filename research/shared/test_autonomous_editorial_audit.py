@@ -143,6 +143,24 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         self.assertRegex(out["html_sha256"], "^[a-f0-9]{64}$")
         self.assertIn("CASH_CLOSE", {v["topic"] for v in out["source_topics"]})
 
+    def test_period_issuer_is_not_silently_aliased_to_primary_period(self):
+        result = audit_issuer(ROOT, "600036@2026Q1")
+        self.assertEqual(result["period"], "2026Q1")
+        self.assertEqual(result["issuer_period"], "600036@2026Q1")
+        self.assertIn("SECTOR_OR_PERIOD_COVERAGE_NOT_ESTABLISHED", codes(result))
+        self.assertNotEqual(result["verdict"], "READY_FOR_HUMAN_INDEPENDENT_REVIEW_NOT_CERTIFIED")
+
+    def test_changed_period_dossier_and_explicit_catalog_route_discovered(self):
+        with patch("autonomous_editorial_audit.subprocess.run") as cmd:
+            cmd.return_value.stdout = (
+                "research/issuers/600036/2026Q1/publication.json\n"
+                "research/issuers/600206/figure-briefs.json\n"
+                "public/600206.html\n"
+            )
+            self.assertEqual(changed_issuers(ROOT, "origin/main"),
+                             ["600036@2026Q1", "600206"])
+
+
     def test_modified_real_issuer_files_are_detected_not_skill_docs(self):
         with patch("autonomous_editorial_audit.subprocess.run") as cmd:
             cmd.return_value.stdout = (
