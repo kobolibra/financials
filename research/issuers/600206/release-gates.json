@@ -101,7 +101,8 @@
     "candidate_full_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
-    "current_sha_browser_proof": "NOT_CHECKED",
-    "reason": "Sankey ribbon crossing repair; current-version browser and independent editorial signoff not yet completed. Old production release proof remains for deployed bytes only."
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "reason": "Sankey ribbon crossing repair; current-version browser and independent editorial signoff not yet completed. Old production release proof remains for deployed bytes only.",
+    "browser_proof_scope": "Real native Chromium full-article figures in the current recertification artifact; does not constitute independent human art review or production deployment."
   }
-}
+}\n
