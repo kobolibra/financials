@@ -79,8 +79,6 @@ jobs:
           gate.write_text(json.dumps(g,ensure_ascii=False,indent=2)+'\n')
           print('CANDIDATE_CHART_COUNT',len(story['figures']),'HTML_SHA',sha,'EDITORIAL_NOT_CHECKED',flush=True)
           PY
-      - name: Prove full original filing cannot regress to a four-chart first-pass synopsis
-        run: python -m unittest discover -s research/shared -p 'test_editorial_peer_parity.py' -v
       - name: Reject forged product gross-profit source, geometry, and identity
         run: python -m unittest discover -s research/shared -p 'test_product_figure_source_contract.py' -v
       - name: Independently check all twelve source vectors and actual finance geometry
@@ -125,6 +123,8 @@ jobs:
           j['gates']['BROWSER_LOCAL']['scope']='候选全文双浏览器、原始元及当前HTML SHA的重新验收；独立编辑自审未完成'
           p.write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\n')
           PY
+      - name: Prove full original filing cannot regress to a four-chart first-pass synopsis
+        run: python -m unittest discover -s research/shared -p 'test_editorial_peer_parity.py' -v
       - name: Verify real visual receipts against current author self-review without claiming independent human judgment
         run: |
           python - <<'PY'
