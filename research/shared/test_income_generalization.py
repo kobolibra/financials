@@ -122,13 +122,26 @@ class IncomeGeneralizationTests(unittest.TestCase):
 
     def test_published_html_cannot_keep_old_crossed_sankey(self):
         """Actual reader-facing SVGs, not just newly generated Python output."""
-        for code in ('600206','600690','300548','688220'):
-            html=(ROOT/f'public/{code}.html').read_text()
+        routes=(
+            ('600206','600206.html',2),
+            ('600690','600690.html',2),
+            ('300548','300548.html',2),
+            ('688220','688220.html',1),  # separate native desktop figure
+            ('300394','300394.html',2),
+            ('300502','300502.html',2),
+            ('300308','300308.html',2),
+            ('300570','300570.html',2),
+            ('688111','research/2026-h1-v10/688111.html',2),
+            ('000333','research/2026-h1-v10/000333.html',2),
+            ('600036','research/2026-h1-v10/600036.html',2),  # bank group-only
+        )
+        for code,route,expected_figure_count in routes:
+            html=(ROOT/'public'/route).read_text()
             svgs=re.findall(
                 r'<svg\b[^>]*data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"[^>]*>.*?</svg>',
                 html,re.S)
-            self.assertGreaterEqual(len(svgs),1 if code=='688220' else 2,
-                                    (code,'PUBLISHED_SANKKEY_SVG_MISSING'))
+            self.assertEqual(len(svgs),expected_figure_count,
+                             (code,'PUBLISHED_SANKKEY_SVG_MISSING'))
             for svg in svgs:
                 ribbons=[]
                 for tag in re.findall(r'<path\b[^>]*data-stage="revenue-to-outcome"[^>]*/>',svg):
