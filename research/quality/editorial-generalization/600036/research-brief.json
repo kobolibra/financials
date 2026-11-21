@@ -1,0 +1,187 @@
+{
+  "schema": "financials.research_evidence.v1",
+  "issuer": "600036",
+  "fiscal_period": "2026Q1",
+  "source_pdf_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+  "sector_route": "bank",
+  "editorial_selection": {
+    "candidates": [
+      "净利息增加来自规模还是负债成本",
+      "信用成本是否拖累当期利润转换"
+    ],
+    "lead_question": "净利息增加来自规模还是负债成本",
+    "deciding_pages": [
+      5,
+      6,
+      17
+    ],
+    "deciding_fact": "两期利息收支及平均余额表使规模假说可检验，因此先展示收支变化再谈减值。",
+    "prior_research": "research/cases/600036/README.md；2026H1与2026Q1重叠，机制同向，独立时间验证待后续。"
+  },
+  "theses": [
+    {
+      "id": "thesis-1",
+      "question": "净利息收入增长来自哪一侧？",
+      "conclusion": "净利息收入增加的直接来源是资金利息支出缩减。",
+      "mechanism": "资产利息降低但资金利息下降更多，原件的两期平均余额可检验放量假说。",
+      "strongest_alternative": "平均生息资产扩张可能主导净利息增量，需要同时核对两端利率与平均余额。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": [
+        "average_earning_assets",
+        "average_earning_assets_prior",
+        "average_interest_bearing_liabilities",
+        "average_interest_bearing_liabilities_prior",
+        "fin_interest_expense",
+        "fin_interest_expense_prior",
+        "fin_interest_income",
+        "fin_interest_income_prior",
+        "nii",
+        "nii_prior"
+      ],
+      "calculations": [
+        {
+          "id": "nii",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "nii",
+              1
+            ],
+            [
+              "nii_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "2646000000"
+        },
+        {
+          "id": "interest-income",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "fin_interest_income",
+              1
+            ],
+            [
+              "fin_interest_income_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-2962000000"
+        },
+        {
+          "id": "interest-expense",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "fin_interest_expense",
+              1
+            ],
+            [
+              "fin_interest_expense_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-5608000000"
+        },
+        {
+          "id": "avg-earning",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "average_earning_assets",
+              1
+            ],
+            [
+              "average_earning_assets_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "1037885000000"
+        },
+        {
+          "id": "avg-liability",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "average_interest_bearing_liabilities",
+              1
+            ],
+            [
+              "average_interest_bearing_liabilities_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "998944000000"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "SOURCE_FACTS",
+        "source_fact_keys": [
+          "average_earning_assets",
+          "average_interest_bearing_liabilities"
+        ]
+      },
+      "next_disclosure_test": {
+        "period": "2026H1",
+        "metric": "同口径平均资产收益率及平均资金成本率",
+        "falsifies_when": "若资金成本降幅消失而净息差与净利息收入同时改善，负债成本缓解的解释须下调。"
+      }
+    },
+    {
+      "id": "thesis-2",
+      "question": "信用减值是否抵消部分利润改善？",
+      "conclusion": "信用减值增加削弱了收入增量向利润的传导。",
+      "mechanism": "管理层按贷款与其他资产及表外信用风险分列减值变化。",
+      "strongest_alternative": "信用减值增量可能来自新增规模和风险覆盖，未必代表全行不良迁徙恶化。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": [
+        "credit_impairment",
+        "credit_impairment_prior",
+        "parent_net",
+        "parent_net_prior"
+      ],
+      "calculations": [
+        {
+          "id": "credit",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "credit_impairment",
+              1
+            ],
+            [
+              "credit_impairment_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "-2009000000"
+        },
+        {
+          "id": "parent",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "parent_net",
+              1
+            ],
+            [
+              "parent_net_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "566000000"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "NOT_DISCLOSED",
+        "limitation": "原件缺少按新发放贷款批次匹配的迁徙及信用成本。"
+      },
+      "next_disclosure_test": {
+        "period": "2026H1",
+        "metric": "贷款减值、阶段迁徙和核销变动",
+        "falsifies_when": "若阶段迁徙继续好转且贷款减值回落，则本期减值增量更可能偏阶段性的覆盖。"
+      }
+    }
+  ]
+}

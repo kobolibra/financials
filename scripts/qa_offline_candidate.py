@@ -33,7 +33,11 @@ def audit(html, out, engine, widths, executable=None, origin=None):
         browser = getattr(playwright, engine).launch(executable_path=executable)
         receipt = {'browser': engine, 'version': browser.version, 'sha256': sha256(html.read_bytes()).hexdigest(), 'viewports': []}
         for width in widths:
-            context = browser.new_context(viewport={'width': width, 'height': 950}, offline=origin is None, accept_downloads=True)
+            context = browser.new_context(viewport={'width': width, 'height': 950}, offline=origin is None and engine != 'webkit', accept_downloads=True)
+            if origin is None and engine == 'webkit':
+                # WebKit blocks file: navigations in offline mode on macOS.
+                # Permit the local document while denying every HTTP(S) request.
+                context.route('http**/*', lambda route: route.abort())
             page = context.new_page()
             errors = []
             page.on('pageerror', lambda e: errors.append(str(e)))
@@ -46,6 +50,16 @@ def audit(html, out, engine, widths, executable=None, origin=None):
             page.evaluate('document.fonts.ready')
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'{width} document overflow'
             assert page.locator('h1').inner_text()
+            visible_copy = page.locator('main').inner_text()
+            for marker in ('核对意见类型', 'TODO', '待填写'):
+                if marker in visible_copy:
+                    raise ValueError('READER_VISIBLE_AUTHOR_NOTE ' + marker)
+            for figure in page.locator('figure').all():
+                question = figure.locator('.figure-head h2').inner_text()
+                svg = figure.locator('svg:visible')
+                if (svg.get_attribute('data-scale-policy') == 'INDEPENDENT_PER_PAIR'
+                        and '多少' in question and '转成' in question):
+                    raise ValueError('UNSUPPORTED_CONVERSION_QUESTION ' + question)
             assert page.locator('figure[data-editorial-role=primary]').count() == 1
             page.screenshot(path=out / f'{width}-full.png', full_page=True, animations='disabled')
             figures = []

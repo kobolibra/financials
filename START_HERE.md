@@ -14,6 +14,8 @@ T=skills/ashare-financial-storytelling/tools
 python "$T/start_report.py" /absolute/path/filing.pdf
 ```
 
+编稿前读 [研究与主编决策](skills/ashare-financial-storytelling/playbooks/08_EDITORIAL_DECISIONS.md)，其中包含候选图选择、报告期和行业分流、实图退稿标准。
+
 入口在 `work/dossiers/<六位代码>/<报告期>/` 保留原件、页文本、账本、能力计划和可用的撰稿草案。继续按 [离线报告流程](skills/ashare-financial-storytelling/playbooks/07_EVIDENCE_TO_EDITORIAL.md#0-从单份-pdf-到离线成稿) 完成证据复核、研究和验收。本轮复测规格、结果、已知边界和准确命令见 [复验记录](research/quality/pdf-generalization-20261120/README.md)。
 
 新会话从 `START_HERE.md` 启动。独立财务、视觉审阅和正式部署按各自证据登记，缺项为 `NOT_CHECKED`。

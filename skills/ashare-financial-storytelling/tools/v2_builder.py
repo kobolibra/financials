@@ -185,7 +185,6 @@ def offline_figures(ledger, plan):
 
 def offline_draft(ledger, plan):
     figures = offline_figures(ledger, plan)
-    order = [figure['id'] for figure in figures]
     return {
         'generation_scope': 'EDITORIAL_AUTHORING_CANDIDATE',
         'capability_plan': plan,
@@ -193,8 +192,8 @@ def offline_draft(ledger, plan):
             'title': TODO, 'deck': TODO, 'thesis': {'title': TODO, 'body': TODO},
             'metrics': [], 'essays': [], 'notes': [], 'accounting_identities': [],
         },
-        'glance': [], 'new_figures': figures, 'order': order,
-        'roles': {key: 'primary' if key == order[0] else 'secondary' for key in order},
+        'glance': [], 'figure_candidates': figures,
+        'new_figures': [], 'order': [], 'roles': {},
     }
 
 
@@ -208,7 +207,8 @@ def cmd_scaffold(a):
         draft = offline_draft(ledger, plan)
         out = Path(a.out) if a.out else base / 'v2-draft.json'
         out.write_text(json.dumps(draft, ensure_ascii=False, indent=2) + '\n')
-        print('V2_DRAFT_WRITTEN', out, 'figures', len(draft['new_figures']))
+        print('V2_DRAFT_WRITTEN', out, 'candidate_figures', len(draft['figure_candidates']),
+              'Read the material notes and research brief before selecting order and primary figure.')
         return
     f = ledger['facts']
     names = ledger['issuer'].get('period_names', {})
@@ -643,6 +643,11 @@ def cmd_apply(a):
         raise SystemExit('V2_RESEARCH_BRIEF_NOT_READY ' + str(exc)) from exc
     offline = ledger['issuer'].get('offline_candidate')
     if offline:
+        ids = [f['id'] for f in draft['new_figures']]
+        order = draft['order']
+        if (not order or len(set(ids)) != len(ids) or len(order) != len(set(order))
+                or set(ids) != set(order) or set(draft['roles']) != set(ids)):
+            raise SystemExit('OFFLINE_SELECT_FIGURES_AND_ORDER_AFTER_RESEARCH')
         article = draft['article']
         story = {'figures': [], 'composition': 'OFFLINE_RESEARCH_CANDIDATE_V1',
                  'quantified_claims': article.get('quantified_claims', {})}
@@ -651,6 +656,8 @@ def cmd_apply(a):
     if offline:
         for field in ('title', 'deck', 'thesis', 'metrics', 'essays', 'notes'):
             story[field] = walk(article[field])
+        if article.get('title_lines'):
+            story['title_lines'] = article['title_lines']
         story['accounting_identities'] = article['accounting_identities']
     TEXT = ('question', 'takeaway', 'trend', 'analysis', 'counter', 'chapter')
     old = {f['id']: f for f in story['figures']}
@@ -662,6 +669,8 @@ def cmd_apply(a):
                 fg[k] = walk(fg[k])
         fg.setdefault('identity', {'comparison': '按图例所列期间核对相同项目。',
                                    'signed_bridge': '起点加有符号变动等于终点。',
+                                   'product_economics': '产品毛利等于其自身收入减去成本。',
+                                   'volume_rate': '规模影响按上期实际比率估算，其余变动含比率、结构及交互影响。',
                                    'kpi_board': '各格为合并口径；流量与上年同期比较，余额与年初比较。', 'growth_bars': '各条为本期相对上年同期的同比增速；成本费用类增加标红。',
                                    'ratio_dumbbell': '空心点为上年同期，实心点为本期。', 'stock_delta': '各条为期末余额减年初余额；资产增加或负债减少占用资金。'}[fg['family']])
         new[fg['id']] = fg
