@@ -131,9 +131,9 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                       return Math.min(u.right,v.right)-Math.max(u.left,v.left)>2 &&
                         Math.min(u.bottom,v.bottom)-Math.max(u.top,v.top)>3;
                     }).map(b=>[a.textContent,b.textContent]);
-                  }), values: Array.from(s.querySelectorAll('[data-exact-value],[data-signed-yuan],[data-exact-percent-value]')).map(n=>({
-                    period:n.dataset.period, value:n.dataset.exactValue ?? n.dataset.signedYuan ?? n.dataset.exactPercentValue,
-                    min:n.dataset.domainMin, max:n.dataset.domainMax, source:n.dataset.sourceReference ?? n.dataset.valueReference ?? n.dataset.ratioReference,
+                  }), values: Array.from(s.querySelectorAll('[data-exact-value],[data-signed-yuan],[data-exact-percent-value],[data-node-yuan]')).map(n=>({
+                    period:n.dataset.period, value:n.dataset.exactValue ?? n.dataset.signedYuan ?? n.dataset.exactPercentValue ?? n.dataset.nodeYuan,
+                    min:n.dataset.domainMin, max:n.dataset.domainMax, source:n.dataset.sourceReference ?? n.dataset.valueReference ?? n.dataset.ratioReference ?? n.dataset.nodeId,
                     width:Number(n.getAttribute('width')), scale:n.dataset.scaleYuanPerUnit,
                     before:n.dataset.beforeYuan, after:n.dataset.afterYuan
                   }))};
