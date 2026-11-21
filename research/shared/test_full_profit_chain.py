@@ -10,7 +10,7 @@ from unified_income_sankey import render_full_profit_chain
 NS='{http://www.w3.org/2000/svg}'
 class FullProfitChainTests(unittest.TestCase):
  def test_all14_original_source_cells_and_both_actual_vectors(self):
-  codes=[r['code'] for r in json.loads((ROOT/'site/research_catalog.json').read_text())['issuers']]
+  codes=[r['code'] for r in json.loads((ROOT/'site/research_catalog.json').read_text())['issuers'] if r.get('editorial_contract')=='FULL_PROFIT_CHAIN_V1']
   self.assertTrue({'300394','300308','300502','600036','688111','600519','000333','688220','600900','600276','601628','600690','300548','300570'}.issubset(codes))
   for code in codes:
    b=load(code)

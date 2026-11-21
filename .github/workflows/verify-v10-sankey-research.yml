@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
     paths:
+      - 'research/issuers/**/visual-qa/result.json'
+      - 'scripts/check_visual_editorial_policy.py'
       - '.github/workflows/verify-v10-sankey-research.yml'
       - 'research/rebuild-v10/**'
       - 'public/research/2026-h1-v10/**'
