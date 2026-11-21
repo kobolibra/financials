@@ -105,7 +105,7 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         args[6] = copy.deepcopy(args[6])
         ids = [f["id"] for f in args[4]["figures"]]
         args[6]["chart_reviews"] = {
-            fid: {field: "Detailed source-bound five-second reading and improvement."
+            fid: {field: "For " + fid + ": source-bound five-second finding, period, and layout."
                   for field in SELF_REVIEW_FIELDS} for fid in ids
         }
         out = audit(*args[:8], html_sha=args[8])
@@ -114,6 +114,30 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         args[6]["chart_reviews"][ids[0]]["mobile_readability"] = ""
         out = audit(*args[:8], html_sha=args[8])
         self.assertIn("CHART_REVIEW_INCOMPLETE_" + ids[0], codes(out))
+
+    def test_copy_paste_visual_praise_cannot_clear_the_review_queue(self):
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        ids = [f["id"] for f in args[4]["figures"]]
+        args[6]["chart_reviews"] = {
+            fid: {field: "This generic page is beautiful and readable for everyone."
+                  for field in SELF_REVIEW_FIELDS} for fid in ids
+        }
+        result = audit(*args[:8], html_sha=args[8])
+        self.assertIn("CHART_REVIEW_COPYPASTE", codes(result))
+
+    def test_same_peer_praise_repeated_does_not_prove_calibration(self):
+        args = original()
+        args[6] = copy.deepcopy(args[6])
+        peers = _peer_candidates(args[0], args[1], args[2], args[7])
+        generic = ("Both examples are well designed and analyzed, so this report "
+                   "now has excellent visual and financial quality.")
+        args[6]["peer_calibration"] = {"peers": [
+            {"code": p["code"], "html_sha256": p["html_sha256"],
+             "research_delta": generic, "visual_delta": generic}
+            for p in peers[:2]]}
+        result = audit(*args[:8], html_sha=args[8])
+        self.assertIn("PEER_CALIBRATION_COPYPASTE", codes(result))
 
     def test_same_research_question_repeated_demands_revision(self):
         args = original()
