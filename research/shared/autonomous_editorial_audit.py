@@ -107,6 +107,8 @@ def _peer_candidates(root, issuer, record, catalog, limit=3):
             continue
         page = root / "public" / str(item.get("href", "")).lstrip("/")
         folder = root / "research/issuers" / item.get("code", "")
+        if item.get("period") and (folder / item["period"]).is_dir():
+            folder = folder / item["period"]
         story = folder / "publication.json"
         release = folder / "release-gates.json"
         if not story.is_file() or not release.is_file() or not page.is_file():
@@ -311,11 +313,22 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
 
 def audit_issuer(root, code, *, strict=False):
     catalog = _json(root / "site/research_catalog.json")
-    issuer = next((i for i in catalog.get("issuers", []) +
-                   catalog.get("period_reports", []) if i.get("code") == code), None)
+    if "@" in code:
+        company, period = code.split("@", 1)
+        if not re.fullmatch(r"[0-9]{6}", company) or not re.fullmatch(
+                r"20[0-9]{2}(?:Q1|H1|9M|FY)", period):
+            raise ValueError("INVALID_COMPANY_PERIOD " + code)
+        issuer = next((i for i in catalog.get("period_reports", [])
+                       if i.get("code") == company and i.get("period") == period), None)
+        folder = root / "research/issuers" / company / period
+    else:
+        if not re.fullmatch(r"[0-9]{6}", code):
+            raise ValueError("INVALID_COMPANY " + code)
+        issuer = next((i for i in catalog.get("issuers", [])
+                       if i.get("code") == code), None)
+        folder = root / "research/issuers" / code
     if issuer is None:
-        raise ValueError("UNKNOWN_ISSUER " + code)
-    folder = root / "research/issuers" / code
+        raise ValueError("UNKNOWN_ISSUER_OR_PERIOD " + code)
     record = _json(folder / "release-gates.json")
     ledger = _json(folder / "source-ledger.json")
     pub = _json(folder / "publication.json")
@@ -323,8 +336,10 @@ def audit_issuer(root, code, *, strict=False):
     review_path = folder / "editorial-self-review.json"
     review = _json(review_path) if review_path.is_file() else {}
     html = root / "public" / issuer["href"].lstrip("/")
-    return audit(root, issuer, record, ledger, pub, brief, review, catalog,
-                 strict=strict, html_sha=sha256(html.read_bytes()).hexdigest())
+    result = audit(root, issuer, record, ledger, pub, brief, review, catalog,
+                   strict=strict, html_sha=sha256(html.read_bytes()).hexdigest())
+    result["issuer_period"] = record.get("code", code.split("@", 1)[0]) + "@" + str(record.get("period"))
+    return result
 
 
 def changed_issuers(root, since):
@@ -332,14 +347,19 @@ def changed_issuers(root, since):
     r = subprocess.run(["git", "diff", "--name-only", since, "HEAD"],
                        cwd=root, check=True, text=True, capture_output=True)
     found = set()
+    catalog = _json(root / "site/research_catalog.json")
+    routes = {"public/" + str(i.get("href", "")).lstrip("/"):
+              i["code"] + ("@" + i["period"] if i in catalog.get("period_reports", []) else "")
+              for i in catalog.get("issuers", []) + catalog.get("period_reports", [])}
     for path in r.stdout.splitlines():
-        m = re.fullmatch(r"research/issuers/([0-9]{6})/(?:publication\.json|"
-                         r"research-brief\.json|source-ledger\.json|editorial-self-review\.json)", path)
+        m = re.fullmatch(r"research/issuers/([0-9]{6})/"
+                         r"(?:(20[0-9]{2}(?:Q1|H1|9M|FY))/)?"
+                         r"(?:publication|research-brief|source-ledger|editorial-self-review|"
+                         r"release-gates|figure-briefs)\.json", path)
         if m:
-            found.add(m.group(1))
-        m = re.fullmatch(r"public/([0-9]{6})\.html", path)
-        if m:
-            found.add(m.group(1))
+            found.add(m.group(1) + ("@" + m.group(2) if m.group(2) else ""))
+        if path in routes:
+            found.add(routes[path])
     return sorted(found)
 
 
@@ -351,12 +371,38 @@ def main():
     parser.add_argument("--strict", action="store_true",
                         help="Fail closed if any blocker or unfinished editor review")
     parser.add_argument("--out", type=Path, help="Write machine-readable audit JSON")
+    parser.add_argument("--review-template", type=Path,
+                        help="Scaffold author tasks from current facts; does NOT fill the review")
     a = parser.parse_args()
     if bool(a.code) == bool(a.since):
         parser.error("Choose exactly one of --code and --since")
     root = a.root.resolve()
     codes = [a.code] if a.code else changed_issuers(root, a.since)
     results = [audit_issuer(root, c, strict=a.strict) for c in codes]
+    if a.review_template:
+        if len(codes) != 1:
+            parser.error("--review-template requires exactly one report")
+        report = results[0]
+        real = (root / "research/issuers" / codes[0].replace("@", "/")
+                / "publication.json")
+        figure_ids = [x["id"] for x in _json(real)["figures"]]
+        template = {
+            "status": "NOT_CHECKED",
+            "reviewed_html_sha256": report["html_sha256"],
+            "reviewed_source_pdf_sha256": report["original_pdf_sha256"],
+            "peer_calibration": {"peers": [
+                {"code": p["code"], "html_sha256": p["html_sha256"],
+                 "research_delta": "NOT_CHECKED", "visual_delta": "NOT_CHECKED"}
+                for p in report["suggested_peers"][:2]]},
+            "chart_reviews": {fid: {k: "NOT_CHECKED" for k in SELF_REVIEW_FIELDS}
+                              for fid in figure_ids},
+            "independent_human_review": "NOT_CHECKED",
+            "warning": "This is an incomplete author task list. It must not be inserted "
+                       "as PASS, and no screenshot is certified by these placeholders.",
+        }
+        a.review_template.parent.mkdir(parents=True, exist_ok=True)
+        a.review_template.write_text(json.dumps(template, ensure_ascii=False, indent=2)
+                                     + "\n", encoding="utf8")
     payload = {"schema": "financials.autonomous_editorial_batch.v1",
                "count": len(results), "reports": results}
     if a.out:
