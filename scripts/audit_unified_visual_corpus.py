@@ -168,6 +168,7 @@ def inspect(catalog:dict,pages:dict[str,bytes],migration_evidence=None)->dict:
     old=[x["issuer"] for x in rows if x["visual_grammar_status"]=="LEGACY_NOT_UNIFIED"]
     partial=[x["issuer"] for x in rows if x["visual_grammar_status"]=="HERO_SANKEY_UNIFIED_OTHER_FIGURES_LEGACY"]
     failures=[x["issuer"] for x in rows if x["visual_grammar_status"].startswith("FAIL_")]
+    full_catalog_status='PASS' if not old and not partial and not failures else 'NOT_ESTABLISHED'
     return {"schema":"financials.visual_unification_census.v1",
             "scope":"CURRENT_REPOSITORY_ARTICLE_HTML_SHA_ONLY",
             "canonical_issuer_count":len(rows),
@@ -176,7 +177,8 @@ def inspect(catalog:dict,pages:dict[str,bytes],migration_evidence=None)->dict:
             "lawful_signed_exception_issuers":legitimate_signed,
             "legacy_not_unified":old,
             "partial_hero_only_unified_remaining_art_legacy":partial,
-            "strict_all_11_visual_unification":"PASS" if not old and not partial and not failures else "NOT_ESTABLISHED",
+            "strict_full_catalog_visual_unification":full_catalog_status,
+            "strict_all_11_visual_unification":full_catalog_status,  # historical key; scoped to current catalog
             "failed_new_grammar":failures,
             "independent_visual_art_director":"NOT_CHECKED",
             "all_11_original_source_PDF_verified_and_in_same_renderer":"NOT_ESTABLISHED",

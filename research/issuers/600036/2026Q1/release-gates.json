@@ -49,9 +49,9 @@
       "scope": "逐图使用对应的来源金额、期间和会计关系。"
     },
     "VISUAL_EDITORIAL_SELF": {
-      "status": "NOT_CHECKED",
-      "proof": "",
-      "scope": "本次目录版按实际报告字节重新核验。"
+      "status": "PASS",
+      "proof": "research/issuers/600036/2026Q1/visual-qa/result.json",
+      "scope": "作者复核两篇正式版首屏与全部四图的中文标注、金额方向、证据范围与窄屏构图。目录版截图对应同一 HTML SHA。独立人类二审仍未完成。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",

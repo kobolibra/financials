@@ -7,6 +7,12 @@ description: Deep, source-true research and AEI-grade editorial visualisation of
 
 Contract version: 10.0.0
 
+### 泛化与质量门禁的新增约束
+
+新增公司或期间不得继承历史固定数量（原 11 家）的视觉认证：发布目录以当前 site/research_catalog.json 的动态集合为唯一分母。区分已具备全部当前源图证据的 FULL_SOURCE_FIGURES_V1、旧 HTML SHA 不变的冻结证据和来源限定的新编稿。第三类必须重新验证本期原件/账本、研究反证、当前完整 HTML SHA、全部图形的三档 Chromium 与 WebKit 手机读图/导出；证据不全则阻断发布，不能降级质量检查以追求 CI 绿灯。
+
+所有新公司/新期间的分析测试与浏览器门禁必须在未启用 Python -O 优化的解释器中运行，保证原始 assert 有效。全库迁移比例、通用解析覆盖、独立研究审稿和独立艺术总监复核应分别记录 PASS / FAIL / NOT_CHECKED，不得把任何已知样本的机器 PASS 外推为未知行业全覆盖。
+
 本文件是**唯一的执行合同**：怎么做、做到什么程度、什么必须拒绝。它不记录项目进度。当前发布状态、公司清单与证据只看 `project-status.json`、`site/research_catalog.json` 和各发行人 `research/issuers/<code>/release-gates.json`；历史 PR35 来源见 `docs/ACTIVE_PR35_HANDOFF.md`（只是历史证据，不是当前部署依据）。v8.8 与 v9.1 的长版说明分别归档在 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md` 与 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md`，其中的公司特例仍适用于对应旧出版器，但不授权任何新发布。
 
 ## 新会话的主编职责

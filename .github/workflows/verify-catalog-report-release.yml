@@ -2,6 +2,9 @@ name: Verify new catalog reports and real reader routes
 on:
   pull_request:
     paths:
+      - 'scripts/check_release_contract.py'
+      - 'research/issuers/600036/2026Q1/release-gates.json'
+      - 'research/issuers/600206/release-gates.json'
       - 'public/600036-2026q1.html'
       - 'public/600206.html'
       - 'public/index.html'
@@ -11,6 +14,9 @@ on:
   push:
     branches: [main]
     paths:
+      - 'scripts/check_release_contract.py'
+      - 'research/issuers/600036/2026Q1/release-gates.json'
+      - 'research/issuers/600206/release-gates.json'
       - 'public/600036-2026q1.html'
       - 'public/600206.html'
       - 'public/index.html'

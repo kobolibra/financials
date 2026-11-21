@@ -211,7 +211,11 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
                     accepted_scopes.add("issuer_regulatory")
                 if fact.get("scope") not in accepted_scopes:
                     errors.append(f"LEDGER_FACT_SCOPE_INVALID {code}/{key}")
-                if len(str(fact.get("label") or "")) < 3:
+                label = str(fact.get("label") or "").strip()
+                short_source_name = (len(label) == 2 and label.isalpha()
+                                     and str(fact.get("source_row_label", "")).startswith(label)
+                                     and bool(fact.get("source_cells")))
+                if len(label) < 3 and not short_source_name:
                     errors.append(f"LEDGER_FACT_ROW_LABEL_MISSING {code}/{key}")
                 kind = fact.get("type")
                 if kind in ("stock", "flow"):

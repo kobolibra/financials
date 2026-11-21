@@ -34,7 +34,14 @@ class VisualMigrationEvidenceTests(unittest.TestCase):
         receipt=catalog['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']['local_migration_receipt']
         evidence=json.loads((ROOT/receipt).read_text())
         complete=inspect(catalog,pages,evidence)
-        self.assertEqual(complete['strict_all_11_visual_unification'],'PASS')
+        # The current catalog is larger than the original eleven issuers:
+        # full migration of contracted reports cannot certify a new company.
+        uncontracted={r['code'] for r in catalog['issuers']
+                      if r.get('figure_quality_contract')!='FULL_SOURCE_FIGURES_V1'}
+        expected='NOT_ESTABLISHED' if uncontracted else 'PASS'
+        self.assertEqual(complete['strict_full_catalog_visual_unification'],expected)
+        self.assertEqual(complete['strict_all_11_visual_unification'],expected)
+        self.assertTrue(uncontracted.issubset(set(complete['legacy_not_unified'])))
         self.assertEqual(set(complete['fully_migrated_source_article_issuers']),{r['code'] for r in catalog['issuers'] if r.get('figure_quality_contract')=='FULL_SOURCE_FIGURES_V1'})
         for kind in ('stale_html','missing_width','missing_figure','unproved_download','unknown_grammar'):
             poisoned=copy.deepcopy(evidence)

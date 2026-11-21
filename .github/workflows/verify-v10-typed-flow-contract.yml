@@ -103,11 +103,19 @@ jobs:
               assert len(cases)==3 and {c['width'] for c in cases}=={390,768,1440}
               assert all(c.get('editorial_main_layer')=='PASS' and sum(f['grammar']=='FULL_PROFIT_CHAIN_V1' for f in c['figures'])==1 for c in cases)
 
+          # Source-limited new issuer research must not be misrepresented as
+          # fully migrated. The strict source figures gate still applies to
+          # every issuer explicitly carrying FULL_SOURCE_FIGURES_V1.
+          preview={r['code'] for r in catalog['issuers']
+                   if r.get('figure_quality_contract')!='FULL_SOURCE_FIGURES_V1'}
           assert not v["partial_hero_only_unified_remaining_art_legacy"]
-          assert not v["legacy_not_unified"] and not v["failed_new_grammar"]
-          assert v["strict_all_11_visual_unification"]=="PASS"
+          assert set(v["legacy_not_unified"])==preview
+          assert not v["failed_new_grammar"]
+          expected='NOT_ESTABLISHED' if preview else 'PASS'
+          assert v["strict_full_catalog_visual_unification"]==expected
+          assert v["strict_all_11_visual_unification"]==expected
           assert v["independent_visual_art_director"]=="NOT_CHECKED"
-          print("DYNAMIC_CATALOG_ALL_SOURCE_FIGURES_VERIFIED_HUMAN_SIGNOFF_NOT_CLAIMED")
+          print("FULL_SOURCE_FIGURES_CONTRACT_PASS_SOURCE_LIMITED_REPORTS_NOT_MISLABELED",sorted(full),sorted(preview))
           PY
           python scripts/check_release_contract.py
           python scripts/check_visual_editorial_policy.py

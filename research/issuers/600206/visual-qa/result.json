@@ -1,7 +1,7 @@
 {
   "browser": "chromium",
-  "version": "145.0.7632.6",
-  "sha256": "b18f30bc1b3ec897b6edcbf1bb56f875db89ece21903a9a470be55fe35e6b11c",
+  "version": "157.0.8103.80",
+  "sha256": "ab5db1fb9e72e8ab72601da3cfba4613a8f2afde93006473e739c975b60c1723",
   "viewports": [
     {
       "width": 1440,
@@ -77,6 +77,80 @@
               "scale": "1459424.258847826086956521739",
               "before": "0",
               "after": "-78811719.57"
+            }
+          ]
+        },
+        {
+          "id": "product-profit",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025FY",
+              "value": "3992088824.40",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "65104995.45",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "width": 7.82808179,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2287633485.23",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"film_rev\",\"film_cost\"]",
+              "width": 275.06003028,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "426296709.53",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"film_rev\",\"film_cost\"]",
+              "width": 51.25698089,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2367114832.64",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "width": 284.61669308,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "199550729.50",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "width": 23.99354182,
+              "scale": null,
+              "before": null,
+              "after": null
             }
           ]
         },
@@ -207,8 +281,8 @@
           ]
         }
       ],
-      "article_url": "http://127.0.0.1:8765/600206.html",
-      "directory_url": "http://127.0.0.1:8765/#companies"
+      "article_url": "http://127.0.0.1:18760/600206.html",
+      "directory_url": "http://127.0.0.1:18760/#companies"
     },
     {
       "width": 768,
@@ -288,6 +362,80 @@
           ]
         },
         {
+          "id": "product-profit",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025FY",
+              "value": "3992088824.40",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "65104995.45",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "width": 4.85993411,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2287633485.23",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"film_rev\",\"film_cost\"]",
+              "width": 170.76643546,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "426296709.53",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"film_rev\",\"film_cost\"]",
+              "width": 31.8220423,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2367114832.64",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "width": 176.69953028,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "199550729.50",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "width": 14.89599055,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        },
+        {
           "id": "earnings",
           "role": "secondary",
           "issues": [],
@@ -414,8 +562,8 @@
           ]
         }
       ],
-      "article_url": "http://127.0.0.1:8765/600206.html",
-      "directory_url": "http://127.0.0.1:8765/#companies"
+      "article_url": "http://127.0.0.1:18760/600206.html",
+      "directory_url": "http://127.0.0.1:18760/#companies"
     },
     {
       "width": 390,
@@ -495,6 +643,80 @@
           ]
         },
         {
+          "id": "product-profit",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2025FY",
+              "value": "3992088824.40",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "65104995.45",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "width": 4.85993411,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2287633485.23",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"film_rev\",\"film_cost\"]",
+              "width": 170.76643546,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "426296709.53",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"film_rev\",\"film_cost\"]",
+              "width": 31.8220423,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2367114832.64",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "width": 176.69953028,
+              "scale": null,
+              "before": null,
+              "after": null
+            },
+            {
+              "period": "2025FY",
+              "value": "199550729.50",
+              "min": "0",
+              "max": "3992088824.40",
+              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "width": 14.89599055,
+              "scale": null,
+              "before": null,
+              "after": null
+            }
+          ]
+        },
+        {
           "id": "earnings",
           "role": "secondary",
           "issues": [],
@@ -621,8 +843,8 @@
           ]
         }
       ],
-      "article_url": "http://127.0.0.1:8765/600206.html",
-      "directory_url": "http://127.0.0.1:8765/#companies"
+      "article_url": "http://127.0.0.1:18760/600206.html",
+      "directory_url": "http://127.0.0.1:18760/#companies"
     }
   ]
 }
