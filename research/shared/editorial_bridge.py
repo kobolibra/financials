@@ -279,4 +279,6 @@ def render_product_economics(rows, title, *, issuer, period, pdf_sha256, mobile=
         y += 15
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {y}" role="img" '
             f'data-original-pdf-sha256="{pdf_sha256}" data-editorial-grammar="PRODUCT_ECONOMICS" '
+            f'data-issuer="{E(issuer,quote=True)}" data-period="{E(period,quote=True)}" '
+            f'data-design-system="FINANCIALS_UNIFIED_STORY_V1" data-layout="{"native-330" if mobile else "editorial-1040"}" '
             f'aria-label="{E(title,quote=True)}"><title>{E(title)}</title>' + ''.join(out) + '</svg>')
