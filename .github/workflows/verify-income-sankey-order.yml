@@ -1,0 +1,36 @@
+name: Verify source-bound Sankey port ordering and financial geometry
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/test_income_generalization.py'
+      - 'research/shared/test_source_income_adapter.py'
+      - 'research/issuers/**/source-ledger.json'
+      - 'skills/ashare-financial-storytelling/**'
+      - '.github/workflows/verify-income-sankey-order.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'research/shared/unified_income_sankey.py'
+      - 'research/shared/source_income_adapter.py'
+      - 'research/shared/test_income_generalization.py'
+      - 'research/shared/test_source_income_adapter.py'
+      - 'research/issuers/**/source-ledger.json'
+      - '.github/workflows/verify-income-sankey-order.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-finance-and-uncrossed-sankey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source attribution, no crossing, mobile and profit-chain
+        run: |
+          python -m unittest discover -s research/shared -p 'test_income_generalization.py' -v
+          python -m unittest discover -s research/shared -p 'test_source_income_adapter.py' -v
+          python -m unittest discover -s research/shared -p 'test_income_flow_v3.py' -v
+          echo 'SOURCE_BOUND_SIX_ISSUER_TWO_VIEWPORT_UNCROSSED_SANKEY_PASS'
