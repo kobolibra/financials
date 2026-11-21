@@ -135,7 +135,8 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                     period:n.dataset.period, value:n.dataset.exactValue ?? n.dataset.signedYuan ?? n.dataset.exactPercentValue ?? n.dataset.nodeYuan ?? n.dataset.exactYuan,
                     min:n.dataset.domainMin, max:n.dataset.domainMax, source:n.dataset.sourceReference ?? n.dataset.valueReference ?? n.dataset.ratioReference ?? n.dataset.nodeId,
                     width:Number(n.getAttribute('width')), scale:n.dataset.scaleYuanPerUnit,
-                    before:n.dataset.beforeYuan, after:n.dataset.afterYuan
+                    before:n.dataset.beforeYuan, after:n.dataset.afterYuan,
+                    stock_role:n.dataset.stockRole
                   }))};
                 }""")
                 assert not findings['issues'] and not findings['overlap'], (width, name, findings)
@@ -147,7 +148,19 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                         expected = abs(float(value['value'])) * (298 if width <= 850 else 480) / span if span else 0
                         assert abs(expected - value['width']) < 1e-5, (name, value, expected)
                     elif value.get('scale') and value['scale'] != 'ZERO_ONLY':
-                        expected = abs(float(value['after']) - float(value['before'])) / float(value['scale'])
+                        # A money bridge scales a before/after delta. A balance
+                        # stock scales its exact yuan amount, not an invented
+                        # before/after flow. Both are fail-closed and audited
+                        # again independently in editorial_geometry.py.
+                        scale = float(value['scale'])
+                        assert scale > 0, (name, value, 'nonpositive yuan/px')
+                        if value.get('before') is not None and value.get('after') is not None:
+                            expected = abs(float(value['after']) - float(value['before'])) / scale
+                        elif value.get('stock_role') in ('assets', 'liabilities', 'equity'):
+                            expected = float(value['value']) / scale
+                            assert expected >= 0, (name, value, 'negative stock')
+                        else:
+                            raise ValueError('UNPROVEN_FINANCIAL_SCALE_SOURCE ' + str((name, value)))
                         assert abs(expected - value['width']) < 1e-5, (name, value, expected)
                 figure.screenshot(path=out / f'{width}-{name}.png', animations='disabled')
                 with page.expect_download() as event:
