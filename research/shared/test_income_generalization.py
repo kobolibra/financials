@@ -125,15 +125,15 @@ class IncomeGeneralizationTests(unittest.TestCase):
         for code in ('600206','600690','300548','688220'):
             html=(ROOT/f'public/{code}.html').read_text()
             svgs=re.findall(
-                r'<svg\\b[^>]*data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"[^>]*>.*?</svg>',
+                r'<svg\b[^>]*data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"[^>]*>.*?</svg>',
                 html,re.S)
             self.assertGreaterEqual(len(svgs),2,(code,'NO_PUBLISHED_DESKTOP_AND_PHONE_SVG'))
             for svg in svgs:
                 ribbons=[]
-                for tag in re.findall(r'<path\\b[^>]*data-stage="revenue-to-outcome"[^>]*/>',svg):
-                    d=re.search(r'\\sd="([^"]+)"',tag)
+                for tag in re.findall(r'<path\b[^>]*data-stage="revenue-to-outcome"[^>]*/>',svg):
+                    d=re.search(r'\sd="([^"]+)"',tag)
                     self.assertIsNotNone(d)
-                    xy=[D(x) for x in re.findall(r'-?\\d+(?:\\.\\d+)?',d.group(1))]
+                    xy=[D(x) for x in re.findall(r'-?\d+(?:\.\d+)?',d.group(1))]
                     self.assertEqual(len(xy),16)
                     ribbons.append(((xy[1]+xy[15])/2,(xy[7]+xy[9])/2))
                 self.assertGreater(len(ribbons),1)
