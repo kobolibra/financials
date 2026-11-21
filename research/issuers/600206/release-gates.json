@@ -95,5 +95,13 @@
       "scope": "等待主分支展开首页及文章线上字节和浏览器核验。"
     }
   },
-  "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166"
+  "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+    "candidate_full_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "NOT_CHECKED",
+    "reason": "Sankey ribbon crossing repair; current-version browser and independent editorial signoff not yet completed. Old production release proof remains for deployed bytes only."
+  }
 }
