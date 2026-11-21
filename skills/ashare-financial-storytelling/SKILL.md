@@ -13,6 +13,12 @@ Contract version: 10.0.0
 
 所有新公司/新期间的分析测试与浏览器门禁必须在未启用 Python -O 优化的解释器中运行，保证原始 assert 有效。全库迁移比例、通用解析覆盖、独立研究审稿和独立艺术总监复核应分别记录 PASS / FAIL / NOT_CHECKED，不得把任何已知样本的机器 PASS 外推为未知行业全覆盖。
 
+### 新公司全篇报告的同级研究完整度门禁（防止「技术通过、作品缩水」）
+
+在首份新公司完整年度/半年度原报具备充分来源事实时，**不允许仅凭浏览器能打开、会计勾稽闭合、4张图无重叠，就把初级摘要冒充与正式目录同级的完整研究**。在发布前独立检查 `research-brief.json` 的可证伪判断与替代解释、`publication.json` 的经营经济性/利润形成/利润质量/现金转换/资本结构/持续性风险是否围绕公司独有事实展开。逐项对照现有目录真实长文，不得按固定数量机械凑图；但若源事实已支持某一重要分析问题，却没有合适图种或研究结论，必须说明有页码和源键的证据不足/遗漏原因，否则阻止升级为同级正式交付。**`source_limited_preview` 只说明披露来源仍有边界，不能为明显缺失的现成、可证明研究维度开豁免。**
+
+P6 除真实 Chromium/WebKit 原生截图与金额守恒外，必须交付可追溯的作者 **R1–R5/V1–V6** 逐项评分（`playbooks/05_QUALITY_RUBRIC.md`）：每项≥2，平均≥2.5，无任何P0，说明被拒绝的候选图、未核重大附注与为什么不能做量价/季度趋势。评分绑定本次完整HTML SHA、原始PDF SHA及各视口截图证据。**作者自评可记 `VISUAL_EDITORIAL_SELF=PASS`，独立人类财经/艺术二审仍保持 `INDEPENDENT_HUMAN_REVIEW=NOT_CHECKED`，两者永不混用。** 新报告当前SHA没有这些证据，就应保持草稿，不准因为其他公司CI为绿而合并。
+
 本文件是**唯一的执行合同**：怎么做、做到什么程度、什么必须拒绝。它不记录项目进度。当前发布状态、公司清单与证据只看 `project-status.json`、`site/research_catalog.json` 和各发行人 `research/issuers/<code>/release-gates.json`；历史 PR35 来源见 `docs/ACTIVE_PR35_HANDOFF.md`（只是历史证据，不是当前部署依据）。v8.8 与 v9.1 的长版说明分别归档在 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md` 与 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md`，其中的公司特例仍适用于对应旧出版器，但不授权任何新发布。
 
 ## 新会话的主编职责
