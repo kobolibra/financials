@@ -82,11 +82,11 @@ jobs:
           old['status']='PASS_LOCAL'
           old['svg_exports']=sum(len(x['figures']) for x in old['cases'])
           old['independent_human_art_review']='NOT_CHECKED'
-          (target/'result.json').write_text(json.dumps(old,ensure_ascii=False,indent=2)+'\\n')
+          (target/'result.json').write_text(json.dumps(old,ensure_ascii=False,indent=2)+'\n')
           index=json.loads((target/'archive-index.json').read_text())
           index_new=json.loads((candidate/'archive-index.json').read_text())
           index['issuers'].update(index_new['issuers'])
-          (target/'archive-index.json').write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\\n')
+          (target/'archive-index.json').write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\n')
           for name in index_new['issuers'].values():
               shutil.copyfile(candidate/name['file'],target/name['file'])
           print('SOURCE_FULL_BROWSER_CRYPTO_EVIDENCE_ARCHIVED',len(changed),old['svg_exports'])
@@ -104,7 +104,7 @@ jobs:
               candidate['candidate_full_html_sha256']=sha256((Path('public')/(code+'.html')).read_bytes()).hexdigest()
               candidate['current_sha_browser_proof']='LOCAL_ONLY'
               candidate['browser_proof_scope']='Real native Chromium full-article figures in the current recertification artifact; does not constitute independent human art review or production deployment.'
-              report.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\\n')
+              report.write_text(json.dumps(record,ensure_ascii=False,indent=2)+'\n')
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
