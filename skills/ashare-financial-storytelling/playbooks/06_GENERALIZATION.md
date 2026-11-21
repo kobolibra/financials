@@ -91,7 +91,7 @@ python scripts/generalization_probe.py <pdf>     # 只给 PDF 的端到端自检
 
 ## 5. 证据与边界
 
-- `research/quality/generalization-probe/result.json`：**历史技术探针**记录 30 份原件、18 家发行人、4 种报表格式、Q1/H1/9M/FY；但当前仓库只保留其中 10 份可复验原始 PDF，缺失 20 份（包含所有历史银行、证券与年报样本）。最新 CI 的 10/10 仅对应可用原件，**不等于当前可复验 30/30**。历史总计 838 条 `unmapped_rows`，当前可复验 183 条，其余须恢复原字节并逐项审查；详见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`。这些都不是完整研究、人工审稿、独立视觉验收或全部金额行映射证明。
+- `research/quality/generalization-probe/result.json`：**历史技术探针**记录 30 份原件、18 家发行人、4 种报表格式、Q1/H1/9M/FY。必须区分两种分母：干净仓库原先仅含 10/30 份原始 PDF（183 条未映射行）；截至 2026-11-20 的恢复工程已从公开披露按记录 SHA 恢复另 20 份，完整恢复后重新核对 SHA 30/30、技术探针 30/30（历史合计 838 条未映射行）。**30/30 是按恢复脚本与冻结原件可重跑的技术探针，不意味着 30 份 PDF 都已提交至仓库、未映射行全部审查、完成深度研究、浏览器视觉审稿或独立人类复核。**干净 checkout 应先执行 `python research/rebuild-v10/download_originals.py`，再运行全语料探针；恢复命令、冻结身份与局限详见 `research/quality/pdf-generalization-20261120/README.md` 以及 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`。
 - `tools/test_statement_extract.py`：仓库内全部原件的恒等式闭合；抽取结果与人工账本逐值一致（> 600 个值）；单元格可从 PDF 读回；漏掉一个行项时会报残差。
 - 30 份原件（含 11 份年报）的附注覆盖：业务毛利桑基 16 份（其余没有能闭合到营业收入和营业成本的完整维度）；现金流量表补充资料 27 份应有披露，闭合 22 份（宁德半年报差 173 千元、中信年报、两份保险报告未通过，全部报出、不使用）；扣非 26/30。
 - 仍不在范围内：银行、证券、保险的附注（净息差、分业务手续费、新业务价值）；研究判断和人工审稿不能由工具代替。
