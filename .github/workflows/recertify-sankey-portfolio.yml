@@ -18,7 +18,7 @@ jobs:
       - name: Install full Chinese browser and finance source inspection prerequisites
         run: |
           python -m pip install --disable-pip-version-check playwright==1.65.2 pymupdf==1.26.6
-          python -m playwright install --with-deps chromium
+          python -m playwright install --with-deps chromium webkit
           sudo apt-get install -y -qq fonts-noto-cjk
       - name: Restore frozen original v10 source PDFs by exact SHA
         run: python research/rebuild-v10/download_originals.py
@@ -47,9 +47,50 @@ jobs:
           assert result["independent_human_art_review"]=="NOT_CHECKED"
           print("ACTUAL_NINE_ISSUER_SOURCE_FINANCIAL_AND_BROWSER_PROOF_PASS",result["svg_exports"])
           PY
+      - name: Capture current 600206 source-original figures in Chromium and WebKit
+        run: |
+          python scripts/qa_offline_candidate.py public/600206.html --engine chromium --out work/600206-visual-current/chromium
+          python scripts/qa_offline_candidate.py public/600206.html --engine webkit --out work/600206-visual-current/webkit
+          cp work/600206-visual-current/chromium/browser.json research/issuers/600206/visual-qa/result.json
+          python - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          sha=hashlib.sha256(Path('public/600206.html').read_bytes()).hexdigest()
+          for engine,expected in [('chromium',{1440,768,390}),('webkit',{375})]:
+              p=Path('work/600206-visual-current')/engine/'browser.json'
+              d=json.loads(p.read_text())
+              assert d['sha256']==sha
+              assert {v['width'] for v in d['viewports']}==expected
+              assert all(len(v['figures'])==12 for v in d['viewports'])
+              assert all(not f['issues'] and not f['overlap'] for v in d['viewports'] for f in v['figures'])
+              print('CURRENT_600206_FULL_NATIVE_PDF_SOURCE_AND_BROWSER_RECEIPT_PASS',engine,sha)
+          PY
       - name: Bind QA manifest to actual current HTML SHA but never invent human approval
         run: |
-          cp work/current-sankey-portfolio/result.json research/quality/editorial-20261113-local/result.json
+          python - <<'PY'
+          import json,shutil
+          from pathlib import Path
+          from research.shared.browser_evidence_archive import pack
+          candidate=Path('work/current-sankey-portfolio')
+          pack(candidate/'result.json')
+          target=Path('research/quality/editorial-20261113-local')
+          new=json.loads((candidate/'result.json').read_text())
+          old=json.loads((target/'result.json').read_text())
+          old['issuers'].update(new['issuers'])
+          changed=set(new['issuers'])
+          old['cases']=[x for x in old['cases'] if x['issuer'] not in changed]+new['cases']
+          old['status']='PASS_LOCAL'
+          old['svg_exports']=sum(len(x['figures']) for x in old['cases'])
+          old['independent_human_art_review']='NOT_CHECKED'
+          (target/'result.json').write_text(json.dumps(old,ensure_ascii=False,indent=2)+'\\n')
+          index=json.loads((target/'archive-index.json').read_text())
+          index_new=json.loads((candidate/'archive-index.json').read_text())
+          index['issuers'].update(index_new['issuers'])
+          (target/'archive-index.json').write_text(json.dumps(index,ensure_ascii=False,indent=2)+'\\n')
+          for name in index_new['issuers'].values():
+              shutil.copyfile(candidate/name['file'],target/name['file'])
+          print('SOURCE_FULL_BROWSER_CRYPTO_EVIDENCE_ARCHIVED',len(changed),old['svg_exports'])
+          PY
           python - <<'PY'
           from pathlib import Path
           from hashlib import sha256
@@ -67,7 +108,9 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add research/quality/editorial-20261113-local/result.json
+          git add research/quality/editorial-20261113-local/result.json research/quality/editorial-20261113-local/archive-index.json
+          git add research/quality/editorial-20261113-local/*-actual-browser-evidence.zip
+          git add research/issuers/600206/visual-qa/result.json
           git add public/300394.html public/300502.html public/300308.html
           git add public/300394/2026-H1/index.html public/300502/2026-H1/index.html public/300308/2026-H1/index.html
           git add public/600206.html public/600690.html public/300548.html public/300570.html
@@ -82,6 +125,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: finance-current-sankey-native-current-html-full-portfolio
-          path: work/current-sankey-portfolio/
+          path: |
+            work/current-sankey-portfolio/
+            work/600206-visual-current/
           retention-days: 30
           if-no-files-found: warn
