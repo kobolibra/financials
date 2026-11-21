@@ -8,7 +8,7 @@
 
 独立研读上市公司原始披露与重大附注，精确勾稽三大报表，形成公司特有商业模式和反证分析，再采用受 [App Economy Insights](https://www.appeconomyinsights.com/) 和 FT 等公开方法启发的**原创**财务视觉叙事。严格执行 [完整 Skill](skills/ashare-financial-storytelling/SKILL.md) 及 [01–05 研究规范](skills/ashare-financial-storytelling/research/)；账户记忆不能代替实际读取这些文件。
 
-目前**单一统一公司研究目录为十一家**：天孚通信 300394、中际旭创 300308、新易盛 300502、招商银行 600036、金山办公 688111、贵州茅台 600519、美的集团 000333、翱捷科技-U 688220、长江电力 600900、恒瑞医药 600276、**中国人寿 601628**。唯一机器权威目录是 `site/research_catalog.json`。11家主金额图已经在候选 PR #35 采用统一语义规范：V10 三个合法正向桑基＋一个签名替代、七个历史发行商真实源主图迁移（保险旧合同统计保费使用独立合法 4→2→1 桑基）。**七家其余原财务图尚未全面统一，严禁声称完整11家顶级审美已完成**。生产站点历史截图与当前候选 HTML SHA 不可混用。原始公司专题不是第十二家公司；旧实验分站不能冒充主入口。
+公司数、公司与报告期路由及正式 HTML 的唯一实时来源是 `site/research_catalog.json`（2026-11-21 时主目录 15 家，另有跨期报告）。历史 11 家、旧 V10 与 PR #35 的图形状态属于历史记录，**不能作为今天的全库审美或研究深度认证**。本库现有 [自主主编闭环](skills/ashare-financial-storytelling/playbooks/09_SELF_DIRECTED_DELIVERY.md) 和 [证据驱动编辑审计](research/shared/autonomous_editorial_audit.py)：新增报告应主动核对重大研究问题、两份同库现时优秀报告、每张真实桌面/手机图及跨公司 SHA 回归，不需要用户替系统逐项查漏。独立人类财经、视觉二审仍是 NOT_CHECKED；不要把机器通过或 12 张图称为全部行业的顶级质量。
 
 ## 第一次加入公司 / 新对话继续工作
 

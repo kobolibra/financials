@@ -5,7 +5,17 @@ description: Deep, source-true research and AEI-grade editorial visualisation of
 
 # A股财报深度研究与可视化 · 统一生产技能
 
-Contract version: 10.0.0
+Contract version: 10.1.0
+
+### 必须先走自主主编闭环：不用用户反复指出漏项
+
+**所有首次编稿与新增报告期均先执行 [Playbook 09 · 自驱研究与审美返工闭环](playbooks/09_SELF_DIRECTED_DELIVERY.md)。** 自动盘点源事实所支持的重大问题，运行 `research/shared/autonomous_editorial_audit.py` 获取事实覆盖、现行同库参照、逐图视觉复核和需要主动返工的缺口。编辑自己查看真实桌面/手机截图、跟至少两份成熟作品对照后修改；不能拿图表数量、字数、分数、自信措辞或 CI 全绿代替论证深度/审美判断。作者自评与独立研究审稿必须分开。新稿如审稿未完成保持草稿，不等待用户充当审稿员。
+
+```bash
+python research/shared/autonomous_editorial_audit.py --code <code> \
+  --out work/editorial/issues.json --review-template work/editorial/author-tasks.json
+python research/shared/autonomous_editorial_audit.py --code <code> --strict
+```
 
 ### 泛化与质量门禁的新增约束
 

@@ -1,3 +1,9 @@
+# ACTIVE PROJECT STATE — Skill 10.1.0 · 2026-11-21 自主研究与审美返工门禁
+
+**技能合同 v10.1.0（当前改进候选，非先验顶级认证）**：继有研新材 2025FY 先以 4 图短稿发布、后增加到 12 图仍反复发现适配、原始标记、手机排版与跨公司回归缺陷之后，新增 [Playbook 09](skills/ashare-financial-storytelling/playbooks/09_SELF_DIRECTED_DELIVERY.md)、`research/shared/autonomous_editorial_audit.py` 与 [自动测试工作流](.github/workflows/verify-autonomous-editorial-skill.yml)。它会从真实来源键生成重大问题覆盖与缺漏报告，选当前同库实际 HTML 字节的成熟参照，要求逐图真实桌面/手机与视觉编辑反思，不让 family 字段、CI 绿灯或自评分冒充研究与审美。对新/变更公司和报告期严格检查；历史存量页面只做校准与技术回归，不能回溯认定已全部合格。**独立人类财经与审美二审、未知行业/年度 L3 泛化仍然 NOT_CHECKED / NOT_ESTABLISHED**。PR、CI、合并与线上生产应分别存证；以 `project-status.json`、当前目录和 SHA 为实时状态权威。
+
+---
+
 # ACTIVE PROJECT STATE — Skill 10.0.0 + 天孚通信 2026 一季报/三季报（已上线并验证）
 
 **2026-11-20 正式目录候选**。招商银行 2026Q1 位于 `/600036-2026q1.html`，有研新材 2025FY 位于 `/600206.html`。线上状态以生产检查的完整字节和浏览器回执为准。

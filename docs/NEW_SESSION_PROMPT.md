@@ -1,10 +1,10 @@
 # 开新 ChatGPT 对话时的启动指令（可直接复制）
 
-现行 Skill v9.0.0 是紧凑执行控制，而非旧历史 125 KB 日志；新接手还必须读 docs/UNIFIED_FINANCIALS_VISUAL_STANDARD.md 和 docs/ACTIVE_PR35_HANDOFF.md。正向财务桑基必须统一由 research/shared/unified_income_sankey.py 连接来源→一处总收入→合法成本利润；不可用孤立矩形带叫桑基。四家公司新图须重编原始 PDF 并验证当期 HTML SHA，其他七家公司仍属于 LEGACY_NOT_UNIFIED，不得误称全部统一。
+现行执行合同为 Skill v10.1.0。**首先读取 Playbook 09 自主研究/视觉审美返工流程**，用原始 PDF 和当前目录自己识别有证据的重要研究问题，对照两份成熟同库作品的实际桌面/手机截图，生成并修完逐图审稿清单。CI 源数学、浏览器和部署通过不是顶级研究或审美认证。v9 和历史 PR35 的“十一家”或迁移结论均是过去快照，今天只以 main、当前 catalog、现时原件和 SHA 为准。
 
 
 
-**重要候选接续（2026-11-07）：** 如果目标是 financials PR #35、财务拆解深度、AEI 信息设计或桑基图稳定产出，必须在确认最新 main 与 PR 真实 HEAD 后阅读 docs/ACTIVE_PR35_HANDOFF.md、research/quality/active-pr35.json 和 docs/AEI_RESEARCH_EDITORIAL_SCORECARD.md；执行 python scripts/check_pr35_quality_handoff.py。旧 main 的“V10 四家公司 390 失败”是生产真旧状态，PR 改造是独立候选状态，不能混写。新 WPS 桑基/茅台负毛利放大图不能使用此前旧 SHA 通过截图；独立机构级人类财经和视觉评审尚 NOT_CHECKED。
+**新会话执行顺序**：完整读取当前 Skill/Playbook 09、现行原件、两份同领域同库对照；主动把原件支持的毛利、费用、分部、现金与资本质量逐项核对并编成研究后再设计；从真实四视口/每图截图发现自己应修的审美缺口，不要求用户替你逐项排查。PR35 相关历史仅在核对当时版本时读取，不再用于今天的真实发布判断。独立专家二审仍 NOT_CHECKED。
 
 
 
@@ -19,7 +19,8 @@ https://github.com/kobolibra/financials
 3. `AGENTS.md` + `docs/HANDOFF_PROTOCOL.md` + `docs/REPORT_RELEASE_CHECKLIST.md`
 4. `skills/ashare-financial-storytelling/SKILL.md` **全文**
 5. 该 Skill 的 `research/01`、`02`、`03`、`04`、`05` **五份全文**
-6. `site/research_catalog.json`、最相关的原有真实公司报告、数据账本、最新 GitHub Actions 和 Cloudflare 实际状态
+6. `site/research_catalog.json`、两份最相关的现时完整公司报告与桌面/手机截图、数据账本、最新 GitHub Actions 和 Cloudflare 实际状态
+7. `skills/ashare-financial-storytelling/playbooks/09_SELF_DIRECTED_DELIVERY.md` 和 `research/shared/autonomous_editorial_audit.py`，完成自主缺口识别及返工
 
 **不要假设 `SKILL.md` 已经装成 ChatGPT 全局 Skill。读不了就明确指出；绝不可说“我已经严格按 Skill”但实际上没读。**
 

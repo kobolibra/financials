@@ -1,0 +1,81 @@
+name: Self-directed financial research editorial preflight
+
+on:
+  pull_request:
+    paths:
+      - 'research/shared/autonomous_editorial_audit.py'
+      - 'research/shared/test_autonomous_editorial_audit.py'
+      - 'research/shared/editorial_peer_parity.py'
+      - 'research/issuers/**/publication.json'
+      - 'research/issuers/**/research-brief.json'
+      - 'research/issuers/**/source-ledger.json'
+      - 'research/issuers/**/editorial-self-review.json'
+      - 'public/*.html'
+      - 'skills/ashare-financial-storytelling/**'
+      - '.github/workflows/verify-autonomous-editorial-skill.yml'
+  push:
+    branches: [main, 'quality/**']
+    paths:
+      - 'research/shared/autonomous_editorial_audit.py'
+      - 'research/shared/test_autonomous_editorial_audit.py'
+      - 'research/shared/editorial_peer_parity.py'
+      - 'research/issuers/**/publication.json'
+      - 'research/issuers/**/research-brief.json'
+      - 'research/issuers/**/source-ledger.json'
+      - 'research/issuers/**/editorial-self-review.json'
+      - 'public/*.html'
+      - 'skills/ashare-financial-storytelling/**'
+      - '.github/workflows/verify-autonomous-editorial-skill.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-silent-low-quality-approval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Test source-backed editorial depth, per-figure calibration and negative examples
+        run: |
+          python - <<'PY'
+          import sys
+          assert sys.flags.optimize == 0, "PYTHON_OPTIMIZATION_MUST_NOT_DISABLE_ASSERTS"
+          PY
+          python -m unittest discover -s research/shared -p 'test_autonomous_editorial_audit.py' -v
+          python -m unittest discover -s research/shared -p 'test_editorial_peer_parity.py' -v
+      - name: Inspect reference report without claiming independent aesthetic certification
+        run: |
+          mkdir -p work/editorial-autonomy
+          python research/shared/autonomous_editorial_audit.py --code 600206 \
+            --out work/editorial-autonomy/reference.json
+          python - <<'PY'
+          import json
+          d=json.load(open('work/editorial-autonomy/reference.json'))
+          r=d['reports'][0]
+          assert r['issuer']=='600206' and r['source_opportunities']>=7
+          assert r['independent_human_review']=='NOT_CHECKED'
+          assert r['verdict']!='PASS_TOP_TIER', 'AUTOMATION_IS_NOT_AESTHETIC_SIGNOFF'
+          PY
+      - name: Reject unreviewed, source-rich issuer/report changes before merge
+        if: github.event_name == 'pull_request'
+        run: |
+          python research/shared/autonomous_editorial_audit.py \
+            --since origin/${{ github.base_ref }} --strict \
+            --out work/editorial-autonomy/changed-reports.json
+      - name: Reverify amended reports after main push
+        if: github.event_name == 'push'
+        run: |
+          python research/shared/autonomous_editorial_audit.py \
+            --since HEAD^ --strict \
+            --out work/editorial-autonomy/changed-reports.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-backed-editorial-revision-plan
+          path: work/editorial-autonomy/*.json
+          if-no-files-found: ignore
+          retention-days: 14

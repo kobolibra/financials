@@ -2,7 +2,7 @@
 
 **Source of truth for state:** `project-status.json` (current release, evidence links, open gates) and `site/research_catalog.json` (the issuer list and routes). Every other document's dated status text is history. Re-query GitHub `main` HEAD before editing. Historical PR35 provenance lives in `docs/ACTIVE_PR35_HANDOFF.md` and is not current deployment authority. Earlier versions of this file are archived at `docs/history/AGENTS_ARCHIVE_2026-11-16.md`.
 
-**Source of truth for method:** the canonical Skill `skills/ashare-financial-storytelling/SKILL.md` (contract v10) and its playbooks `skills/ashare-financial-storytelling/playbooks/01`–`05`. Read the Skill completely before research, rendering or release work; load the playbooks the task needs. The five background manuals `skills/ashare-financial-storytelling/research/01..05` hold first-party evidence for disputed judgements. Start-of-session human overview: `START_HERE.md`.
+**Source of truth for method:** the canonical Skill `skills/ashare-financial-storytelling/SKILL.md` (contract v10.1) and its playbooks `skills/ashare-financial-storytelling/playbooks/01`–`09`. Read the Skill completely before research, rendering or release work; load the playbooks the task needs. The five background manuals `skills/ashare-financial-storytelling/research/01..05` hold first-party evidence for disputed judgements. Start-of-session human overview: `START_HERE.md`.
 
 ## Product
 
@@ -13,8 +13,10 @@ One production library at https://financials-in-visuals.pages.dev/ (`public/inde
 1. Intake the complete original PDF with `skills/ashare-financial-storytelling/tools/fin_intake.py` (SHA, report type, identity page, page text, source-cell facts).
 2. Write the analyst memo (thesis, driver equation, strongest alternative, falsifier, NOT_CHECKED list) before choosing any figure.
 3. Author `publication.json` and the editorial manifest; publish only through `research/shared/source_publication.py` and the shared renderers. No issuer-specific SVG code.
-4. Run preflight, tests, clean rebuild, browser QA at 1440/768/390 plus WebKit phone, and a per-figure screenshot self-review against `playbooks/05_QUALITY_RUBRIC.md`.
-5. Record gate results in `research/issuers/<code>/release-gates.json` and follow `docs/REPORT_RELEASE_CHECKLIST.md` and `docs/HANDOFF_PROTOCOL.md`.
+4. Apply Playbook 09: generate source-supported opportunity matrix and two same-sector/period current-byte peer comparisons, independently inspect every real browser figure for information design, revise before seeking the user's QA.
+5. Run `python research/shared/autonomous_editorial_audit.py --code <code> --out work/editorial/issues.json --review-template work/editorial/tasks.json`, then repeat after filling honest peer and per-figure review evidence until `--strict` finds no outstanding revision.
+6. Run preflight, tests, clean rebuild, browser QA at 1440/768/390 plus WebKit phone, and a per-figure screenshot self-review against `playbooks/05_QUALITY_RUBRIC.md`.
+7. Record gate results in `research/issuers/<code>/release-gates.json` and follow `docs/REPORT_RELEASE_CHECKLIST.md` and `docs/HANDOFF_PROTOCOL.md`.
 
 ## Release honesty
 
