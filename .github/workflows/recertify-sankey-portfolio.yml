@@ -20,6 +20,11 @@ jobs:
           python -m pip install --disable-pip-version-check playwright==1.65.2 pymupdf==1.26.6
           python -m playwright install --with-deps chromium webkit
           sudo apt-get install -y -qq fonts-noto-cjk
+      - name: Fail immediately if any release candidate contract is malformed
+        run: |
+          for code in 600206 600690 300548 300570 688220; do
+            python -m json.tool "research/issuers/$code/release-gates.json" >/dev/null
+          done
       - name: Restore frozen original v10 source PDFs by exact SHA
         run: python research/rebuild-v10/download_originals.py
       - name: Rebuild canonical optical pages from original v7 ledgers
