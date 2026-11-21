@@ -15,6 +15,9 @@ on:
       - research/shared/editorial_geometry.py
       - research/shared/exhibits.py
       - research/shared/test_product_figure_source_contract.py
+      - research/shared/editorial_peer_parity.py
+      - research/shared/test_editorial_peer_parity.py
+      - scripts/check_release_contract.py
       - scripts/qa_offline_candidate.py
       - .github/workflows/build-600206-editorial-candidate.yml
 
@@ -76,6 +79,8 @@ jobs:
           gate.write_text(json.dumps(g,ensure_ascii=False,indent=2)+'\n')
           print('CANDIDATE_CHART_COUNT',len(story['figures']),'HTML_SHA',sha,'EDITORIAL_NOT_CHECKED',flush=True)
           PY
+      - name: Prove full original filing cannot regress to a four-chart first-pass synopsis
+        run: python -m unittest discover -s research/shared -p 'test_editorial_peer_parity.py' -v
       - name: Reject forged product gross-profit source, geometry, and identity
         run: python -m unittest discover -s research/shared -p 'test_product_figure_source_contract.py' -v
       - name: Independently check all twelve source vectors and actual finance geometry
