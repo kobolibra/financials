@@ -277,7 +277,7 @@ def render_growth_bars(rows, title, *, periods, mobile=False, **ident):
         else:
             lx = (x0 + w + 6) if g >= 0 else (x0 - 6)
             c.text(lx, by + 14, f'{q(g):+}%', 13, 'start' if g >= 0 else 'end', colr, 700)
-        y += 64 if mobile else 40
+        y += 64 if mobile else 56
     return c.svg(y + 6)
 
 
@@ -322,7 +322,7 @@ def render_stock_delta(rows, title, *, dates, mobile=False, **ident):
     center, half = _axis(deltas, mobile, (D(560), D(300)))
     c.text(16 if mobile else 24, 18, f'{dates[0]} → {dates[1]}　红=占用 绿=提供' if mobile else f'{dates[0]} → {dates[1]} 余额变化　红=占用资金　绿=提供资金', 11, color=MUTED, weight=600)
     y = 46
-    total_h = len(rows) * (64 if mobile else 40) + 40
+    total_h = len(rows) * (64 if mobile else 56) + 40
     c.raw(f'<line x1="{center}" x2="{center}" y1="30" y2="{total_h}" stroke="{DARK}" stroke-width="1.5"/>')
     for r, d in zip(rows, deltas):
         uses_cash = (d > 0) == (r['side'] == 'asset') and d != 0
@@ -339,7 +339,10 @@ def render_stock_delta(rows, title, *, dates, mobile=False, **ident):
         else:
             c.text(24, y + 13, r['label'], 14, weight=700)
             c.text(370, y + 13, '资产' if r['side'] == 'asset' else '负债', 11, color=MUTED, weight=600)
-            by = y
+            # Separate the classifier/long CJK label from the signed delta lane.
+            # For a negative bar the value label lives left of x0; it must
+            # never collide with the asset/liability side marker.
+            by = y + 22
         c.raw(f'<rect x="{f(x0)}" y="{by}" width="{f(w)}" height="18" rx="3" fill="{colr}" fill-opacity=".85" '
               f'data-stock-delta="{d}" data-stock-side="{r["side"]}" data-exact-value="{r["value"]}" data-exact-prior="{r["prior"]}" '
               f'data-value-reference="{ref(r["value_ref"])}" data-prior-reference="{ref(r["prior_ref"])}" '
