@@ -193,6 +193,25 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
         _issue(issues, "REPORT_PERIOD_MISMATCH", "BLOCK",
                "Release and source-ledger fiscal periods disagree.",
                "Correct the source identity before publication.")
+    # A source-file edit must never be green if the old ledger, research and
+    # visual receipts still describe a previous original PDF.
+    source_meta = ledger.get("source", {})
+    pdf_rel = source_meta.get("source_path")
+    pdf_sha = source_meta.get("original_bytes_sha256")
+    if not isinstance(pdf_rel, str) or not isinstance(pdf_sha, str):
+        _issue(issues, "SOURCE_PDF_IDENTITY_MISSING", "BLOCK",
+               "The complete original PDF path/hash is not present in the source ledger.",
+               "Attach the actual original source and a SHA-bound ledger.")
+    else:
+        pdf = (root / pdf_rel).resolve()
+        if not pdf.is_relative_to(root.resolve()) or not pdf.is_file():
+            _issue(issues, "SOURCE_PDF_NOT_ARCHIVED", "BLOCK",
+                   "The original PDF is missing or outside the repository.",
+                   "Archive the complete source PDF before reporting a verified analysis.")
+        elif sha256(pdf.read_bytes()).hexdigest() != pdf_sha:
+            _issue(issues, "SOURCE_PDF_BYTES_CHANGED", "BLOCK",
+                   "The actual archived PDF differs from the ledger source SHA.",
+                   "Re-extract original cells, rebuild research and recapture current visual evidence.")
     if not isinstance(figures, list):
         figures = []
     source_by_id = {
