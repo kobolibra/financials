@@ -4,6 +4,425 @@
   "source_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
   "figure_briefs": [
     {
+      "id": "glance",
+      "family": "kpi_board",
+      "question": "利润修复后，最不一致的六项数字是什么？",
+      "takeaway": "集团毛利改善 3.21 亿元，归母与扣非利润增长，但经营现金流持续为负，购建长期资产付现进一步增加。",
+      "identity": "同一合并口径，2025FY 与 2024FY 六项对比；毛利率按收入减营业成本后除以收入。",
+      "counter": "毛利增长不等于产品议价改善，经营现金为负也不能独立推出客户违约；后续按产品和现金附注分别复核。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        7,
+        90,
+        91,
+        94
+      ],
+      "facts": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "adjusted_parent",
+        "adjusted_parent_prior",
+        "cfo",
+        "cfo_prior",
+        "cash_capex",
+        "cash_capex_prior"
+      ],
+      "source_expressions": {
+        "periods": [
+          "2024FY",
+          "2025FY"
+        ]
+      }
+    },
+    {
+      "id": "gross-profit-bridge",
+      "family": "signed_bridge",
+      "question": "集团毛利增加，收入与成本分别贡献多少？",
+      "takeaway": "收入较上期增加 3.96 亿元，成本只增加 0.75 亿元；两者共同形成 3.21 亿元的集团毛利增量。",
+      "identity": "上期毛利 + 收入同比增加 − 成本同比增加 = 本期毛利。",
+      "counter": "报告没有同口径的逐产品上一年精确收入与成本源格就不能推出哪个产品驱动全部集团毛利增量；需要重新取得可比披露。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        90
+      ],
+      "facts": [
+        "rev_prior",
+        "cogs_prior",
+        "rev",
+        "cogs"
+      ],
+      "source_expressions": {
+        "rows": [
+          [
+            "上期营业毛利",
+            [
+              [
+                "rev_prior",
+                1
+              ],
+              [
+                "cogs_prior",
+                -1
+              ]
+            ],
+            "start"
+          ],
+          [
+            "收入增加",
+            [
+              [
+                "rev",
+                1
+              ],
+              [
+                "rev_prior",
+                -1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "营业成本增加",
+            [
+              [
+                "cogs_prior",
+                1
+              ],
+              [
+                "cogs",
+                -1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "本期营业毛利",
+            [
+              [
+                "rev",
+                1
+              ],
+              [
+                "cogs",
+                -1
+              ]
+            ],
+            "total"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "margins",
+      "family": "ratio_dumbbell",
+      "question": "改善后的毛利率，有多少传到了利润率？",
+      "takeaway": "集团毛利率改善，但研发和管理费用率也要一起看；比较的是同一收入分母下不同层级的利润和费用。",
+      "identity": "各比率分子与分母均采用同期间合并口径，并对上一年相同定义重算。",
+      "counter": "研发投入规模与产品研发周期、资本化政策均可能影响费用率意义，需要结合研发附注及未来商业化观察。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        7,
+        90,
+        91
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "rev_prior",
+        "cogs_prior",
+        "parent_net",
+        "parent_net_prior",
+        "adjusted_parent",
+        "adjusted_parent_prior",
+        "rd_expense",
+        "rd_expense_prior",
+        "admin",
+        "admin_prior"
+      ],
+      "source_expressions": {
+        "periods": [
+          "2024FY",
+          "2025FY"
+        ],
+        "rows": [
+          {
+            "label": "综合毛利率",
+            "num": [
+              [
+                "rev",
+                1
+              ],
+              [
+                "cogs",
+                -1
+              ]
+            ],
+            "den": "rev",
+            "prior_num": [
+              [
+                "rev_prior",
+                1
+              ],
+              [
+                "cogs_prior",
+                -1
+              ]
+            ],
+            "prior_den": "rev_prior"
+          },
+          {
+            "label": "归母净利率",
+            "num": "parent_net",
+            "den": "rev",
+            "prior_num": "parent_net_prior",
+            "prior_den": "rev_prior"
+          },
+          {
+            "label": "扣非归母净利率",
+            "num": "adjusted_parent",
+            "den": "rev",
+            "prior_num": "adjusted_parent_prior",
+            "prior_den": "rev_prior"
+          },
+          {
+            "label": "研发费用率",
+            "num": "rd_expense",
+            "den": "rev",
+            "prior_num": "rd_expense_prior",
+            "prior_den": "rev_prior",
+            "lower_is_better": true
+          },
+          {
+            "label": "管理费用率",
+            "num": "admin",
+            "den": "rev",
+            "prior_num": "admin_prior",
+            "prior_den": "rev_prior",
+            "lower_is_better": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "growth-bars",
+      "family": "growth_bars",
+      "question": "收入、成本、研发和股东利润的增速为什么不一致？",
+      "takeaway": "集团毛利改善 3.21 亿元，但研发费用也增加 0.78 亿元；应同时检查费用扩张和减值变化。",
+      "identity": "各指标均为2025FY相对2024FY相同损益项目的同比。",
+      "counter": "若上年存在低基数或一次性因素，较高增速不能独立证明盈利质量；需分开核验扣非和减值项目。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        7,
+        90,
+        91
+      ],
+      "facts": [
+        "rev_prior",
+        "rev",
+        "cogs_prior",
+        "cogs",
+        "rd_expense_prior",
+        "rd_expense",
+        "selling_prior",
+        "selling",
+        "admin_prior",
+        "admin",
+        "parent_net_prior",
+        "parent_net",
+        "adjusted_parent_prior",
+        "adjusted_parent"
+      ],
+      "source_expressions": {
+        "periods": [
+          "2024FY",
+          "2025FY"
+        ],
+        "pairs": [
+          [
+            "营业收入",
+            "rev_prior",
+            "rev"
+          ],
+          [
+            "营业成本",
+            "cogs_prior",
+            "cogs",
+            {
+              "lower_is_better": true
+            }
+          ],
+          [
+            "研发费用",
+            "rd_expense_prior",
+            "rd_expense",
+            {
+              "lower_is_better": true
+            }
+          ],
+          [
+            "销售费用",
+            "selling_prior",
+            "selling",
+            {
+              "lower_is_better": true
+            }
+          ],
+          [
+            "管理费用",
+            "admin_prior",
+            "admin",
+            {
+              "lower_is_better": true
+            }
+          ],
+          [
+            "归母净利润",
+            "parent_net_prior",
+            "parent_net"
+          ],
+          [
+            "扣非归母净利润",
+            "adjusted_parent_prior",
+            "adjusted_parent"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "product-profit",
+      "family": "product_economics",
+      "question": "三类产品谁收入高、谁毛利高？",
+      "takeaway": "铂族收入在所列产品中最高，薄膜材料留下的毛利最多。",
+      "identity": "本年各产品毛利＝同一产品披露收入－同一产品披露成本。",
+      "counter": "图中选取三类产品，展示本年水平。集团经营性应收和存货的现金调节未按产品拆分。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        21
+      ],
+      "facts": [
+        "platinum_rev",
+        "platinum_cost",
+        "film_rev",
+        "film_cost",
+        "rare_rev",
+        "rare_cost"
+      ],
+      "source_expressions": {
+        "products": [
+          [
+            "铂族",
+            "platinum_rev",
+            "platinum_cost"
+          ],
+          [
+            "薄膜材料",
+            "film_rev",
+            "film_cost"
+          ],
+          [
+            "稀土材料",
+            "rare_rev",
+            "rare_cost"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "region-income",
+      "family": "income",
+      "question": "地区收入如何分别形成成本与毛利？",
+      "takeaway": "境内、境外和其他业务的收入与各自成本可以在同一披露分类下闭合至集团收入与营业成本。",
+      "identity": "三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。",
+      "counter": "地区收入差异无法独立识别汇率、品种和定价；其他业务在图内单列，且产品分类与地区分类重叠，不得跨图重复相加。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        21,
+        22,
+        90,
+        184
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "region1_rev",
+        "region1_cost",
+        "region2_rev",
+        "region2_cost",
+        "other_business_rev",
+        "other_business_cost"
+      ],
+      "source_expressions": {}
+    },
+    {
+      "id": "earnings",
+      "family": "comparison",
+      "question": "毛利改善是否传到了扣非利润？",
+      "takeaway": "营业毛利增加 3.21 亿元，扣非归母净利润也增加。",
+      "identity": "按图例所列期间核对相同项目。",
+      "counter": "集团会计毛利变动无法单独识别产品价格、销量和原料成本。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        7,
+        90,
+        91
+      ],
+      "facts": [
+        "rev_prior",
+        "cogs_prior",
+        "rev",
+        "cogs",
+        "parent_net_prior",
+        "parent_net",
+        "adjusted_parent_prior",
+        "adjusted_parent"
+      ],
+      "source_expressions": {
+        "periods": [
+          "2024FY",
+          "2025FY"
+        ],
+        "pairs": [
+          [
+            "营业毛利",
+            [
+              [
+                "rev_prior",
+                1
+              ],
+              [
+                "cogs_prior",
+                -1
+              ]
+            ],
+            [
+              [
+                "rev",
+                1
+              ],
+              [
+                "cogs",
+                -1
+              ]
+            ]
+          ],
+          [
+            "归母净利润",
+            "parent_net_prior",
+            "parent_net"
+          ],
+          [
+            "扣非归母净利润",
+            "adjusted_parent_prior",
+            "adjusted_parent"
+          ]
+        ]
+      }
+    },
+    {
       "id": "cash-formation",
       "family": "signed_bridge",
       "question": "利润为何没变成经营现金？",
@@ -125,66 +544,21 @@
       }
     },
     {
-      "id": "product-profit",
-      "family": "product_economics",
-      "question": "三类产品谁收入高、谁毛利高？",
-      "takeaway": "铂族收入在所列产品中最高，薄膜材料留下的毛利最多。",
-      "identity": "本年各产品毛利＝同一产品披露收入－同一产品披露成本。",
-      "counter": "图中选取三类产品，展示本年水平。集团经营性应收和存货的现金调节未按产品拆分。",
-      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
-      "source_pages": [
-        21
-      ],
-      "facts": [
-        "platinum_rev",
-        "platinum_cost",
-        "film_rev",
-        "film_cost",
-        "rare_rev",
-        "rare_cost"
-      ],
-      "source_expressions": {
-        "products": [
-          [
-            "铂族",
-            "platinum_rev",
-            "platinum_cost"
-          ],
-          [
-            "薄膜材料",
-            "film_rev",
-            "film_cost"
-          ],
-          [
-            "稀土材料",
-            "rare_rev",
-            "rare_cost"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "earnings",
+      "id": "cash-and-capex",
       "family": "comparison",
-      "question": "毛利改善是否传到了扣非利润？",
-      "takeaway": "营业毛利增加 3.21 亿元，扣非归母净利润也增加。",
-      "identity": "按图例所列期间核对相同项目。",
-      "counter": "集团会计毛利变动无法单独识别产品价格、销量和原料成本。",
+      "question": "经营现金扣除真实资本开支，还剩多少？",
+      "takeaway": "经营现金净额为 -0.79 亿元，购建长期资产付现 2.09 亿元，简化现金结余为 -2.88 亿元。",
+      "identity": "简化现金结余 = 经营现金净额 − 现金流量表购建长期资产支付；两期逐项复算。",
+      "counter": "可能存在出售长期资产、资本化研发、受限资金或支付时间差，不能据此单独断言实际项目投资回报。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
-        7,
-        90,
-        91
+        94
       ],
       "facts": [
-        "rev_prior",
-        "cogs_prior",
-        "rev",
-        "cogs",
-        "parent_net_prior",
-        "parent_net",
-        "adjusted_parent_prior",
-        "adjusted_parent"
+        "cfo_prior",
+        "cfo",
+        "cash_capex_prior",
+        "cash_capex"
       ],
       "source_expressions": {
         "periods": [
@@ -193,77 +567,146 @@
         ],
         "pairs": [
           [
-            "营业毛利",
+            "经营现金净额",
+            "cfo_prior",
+            "cfo"
+          ],
+          [
+            "现金资本开支",
+            "cash_capex_prior",
+            "cash_capex"
+          ],
+          [
+            "经营现金扣资本开支",
             [
               [
-                "rev_prior",
+                "cfo_prior",
                 1
               ],
               [
-                "cogs_prior",
+                "cash_capex_prior",
                 -1
               ]
             ],
             [
               [
-                "rev",
+                "cfo",
                 1
               ],
               [
-                "cogs",
+                "cash_capex",
                 -1
               ]
             ]
-          ],
-          [
-            "归母净利润",
-            "parent_net_prior",
-            "parent_net"
-          ],
-          [
-            "扣非归母净利润",
-            "adjusted_parent_prior",
-            "adjusted_parent"
           ]
         ]
       }
     },
     {
-      "id": "balances",
-      "family": "comparison",
-      "question": "哪两项营运资产同步扩张？",
-      "takeaway": "应收账款和存货期末账面余额均高于上年末。",
-      "identity": "按图例所列期间核对相同项目。",
-      "counter": "余额净额受到减值、结算方式及汇兑影响，不能替代现金流附注的经营性应收变动。",
+      "id": "working-capital",
+      "family": "stock_delta",
+      "question": "营运资产扩张由哪些项目与融资项目共同承担？",
+      "takeaway": "应收账款增加 2.29 亿元，存货增加 2.37 亿元；同时，一年内到期的非流动负债上升 3.96 亿元。",
+      "identity": "期末−年初的法定存量余额；融资项目与营运项目并列但不相加为经营现金。",
+      "counter": "应收账款减值、受限资金、长期债务重分类、应收结算方式都可能改变余额解释；不能仅凭余额差得出客户延期付款事实。",
       "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
       "source_pages": [
         85,
-        86
+        86,
+        87
       ],
       "facts": [
         "ar_prior",
         "ar",
         "inventory_prior",
-        "inventory"
+        "inventory",
+        "ap_prior",
+        "ap",
+        "contract_liabilities_prior",
+        "contract_liabilities",
+        "short_debt_prior",
+        "short_debt",
+        "current_debt_prior",
+        "current_debt"
+      ],
+      "source_expressions": {}
+    },
+    {
+      "id": "cash-closure",
+      "family": "signed_bridge",
+      "question": "经营现金为负时，为什么期末现金反而增加？",
+      "takeaway": "经营现金仍为负，但筹资现金净流入 7.08 亿元；期末现金及等价物较期初增加 3.50 亿元。",
+      "identity": "期初现金及等价物 + 经营现金 + 投资现金 + 筹资现金 + 汇率影响 = 期末现金及等价物。",
+      "counter": "筹资净流入不能自动证明可持续现金创造，现金及等价物也不能无条件等同于资产负债表货币资金或全部可用资金。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        94,
+        95
+      ],
+      "facts": [
+        "cash_open",
+        "cfo",
+        "cfi",
+        "cff",
+        "cash_fx",
+        "cash_close"
       ],
       "source_expressions": {
-        "periods": [
-          "2024-12-31",
-          "2025-12-31"
-        ],
-        "pairs": [
+        "rows": [
           [
-            "应收账款",
-            "ar_prior",
-            "ar"
+            "期初现金及现金等价物",
+            "cash_open",
+            "start"
           ],
           [
-            "存货",
-            "inventory_prior",
-            "inventory"
+            "经营活动净现金",
+            "cfo",
+            "step"
+          ],
+          [
+            "投资活动净现金",
+            "cfi",
+            "step"
+          ],
+          [
+            "筹资活动净现金（汇总）",
+            "cff",
+            "step"
+          ],
+          [
+            "汇率影响",
+            "cash_fx",
+            "step"
+          ],
+          [
+            "期末现金及现金等价物",
+            "cash_close",
+            "total"
           ]
         ]
       }
+    },
+    {
+      "id": "funding-balance",
+      "family": "balance",
+      "question": "资产扩张究竟由负债还是权益承担？",
+      "takeaway": "期末资产扩张与负债、权益变化必须在同日闭合；进一步关注短期和一年内到期融资规模，而不止看资产总额。",
+      "identity": "每个年末，资产=负债+所有者权益，均为合并口径同日余额。",
+      "counter": "重大其他流动资产明细和部分筹资现金组成仍待复核，现金可使用性与资产质量不应仅按总量作乐观判断。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        86,
+        87
+      ],
+      "facts": [
+        "assets_prior",
+        "liabilities_prior",
+        "equity_prior",
+        "assets",
+        "liabilities",
+        "equity"
+      ],
+      "source_expressions": {}
     }
   ]
 }
