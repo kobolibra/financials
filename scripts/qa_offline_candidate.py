@@ -7,27 +7,77 @@ from xml.etree import ElementTree
 import json
 import shutil
 from time import sleep
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
 
 from playwright.sync_api import sync_playwright
 
 
+# Match the explicit production-lock HTTP request contract: Python's default
+# urllib User-Agent can receive a different CDN/edge response from a real browser.
+# Keep exact original-byte comparison: alternate HTML is NEVER accepted as PASS.
+RELEASE_HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (compatible; OriginalFinancePreviewReleaseQA/1.0)',
+    'Cache-Control': 'no-cache',
+    'Accept': 'text/html,*/*',
+}
+
+
+def verify_remote_bytes(url, expected, *, retries=30, interval_seconds=5, observations=None):
+    """Fail closed on exact bytes, recording what the edge returned each try."""
+    observations = [] if observations is None else observations
+    wanted = sha256(expected).hexdigest()
+    for number in range(1, retries + 1):
+        row = {'attempt': number}
+        try:
+            request = Request(url, headers=RELEASE_HEADERS)
+            with urlopen(request, timeout=15) as response:
+                data = response.read()
+                status = response.status
+                row.update(http_status=status, actual_sha256=sha256(data).hexdigest(),
+                           actual_bytes=len(data), content_type=response.headers.get('Content-Type'),
+                           cache_status=response.headers.get('CF-Cache-Status'))
+                if status == 200 and data == expected:
+                    row['result'] = 'PASS_EXACT_BYTES'
+                    observations.append(row)
+                    return row
+                row['result'] = 'MISMATCH'
+        except Exception as exc:
+            row['error'] = f'{type(exc).__name__}: {exc}'
+            row['result'] = 'FETCH_FAILED'
+        observations.append(row)
+        print('RELEASE_EXACT_BYTE_PREFLIGHT_PENDING',
+              url, number, 'expected_sha256=' + wanted, row, flush=True)
+        if number < retries:
+            sleep(interval_seconds)
+    raise ValueError(f'RELEASE_HTML_BYTES_MISMATCH {url} expected_sha256={wanted} '
+                     f'expected_bytes={len(expected)} last_observation={observations[-1]}')
+
+
 def audit(html, out, engine, widths, executable=None, origin=None):
+    out.mkdir(parents=True, exist_ok=True)
     if origin:
         homepage = html.parent / 'index.html'
         route = '/' + html.name
+        preflight = {'schema': 'financials.catalog_exact_live_bytes.v1',
+                     'origin': origin, 'checks': []}
         for remote, local in (('/', homepage), (route, html)):
-            for attempt in range(30):
-                try:
-                    with urlopen(origin + remote, timeout=15) as response:
-                        if response.read() == local.read_bytes():
-                            break
-                except OSError:
-                    pass
-                if attempt == 29:
-                    raise ValueError(f'RELEASE_HTML_BYTES_MISMATCH {origin}{remote}')
-                sleep(5)
-    out.mkdir(parents=True, exist_ok=True)
+            events = []
+            target = origin + remote
+            expected = local.read_bytes()
+            row = {'route': remote, 'expected_sha256': sha256(expected).hexdigest(),
+                   'expected_bytes': len(expected), 'observations': events}
+            preflight['checks'].append(row)
+            try:
+                verify_remote_bytes(target, expected, observations=events)
+                row['result'] = 'PASS_EXACT_BYTES'
+            except Exception:
+                row['result'] = 'FAIL_CLOSED'
+                raise
+            finally:
+                # Keep a machine-readable receipt even when CDN bytes mismatch.
+                (out / 'release-byte-preflight.json').write_text(
+                    json.dumps(preflight, ensure_ascii=False, indent=2) + '\n',
+                    encoding='utf8')
     with sync_playwright() as playwright:
         executable = executable or (shutil.which('chromium') if engine == 'chromium' else None)
         browser = getattr(playwright, engine).launch(executable_path=executable)
