@@ -10,6 +10,7 @@ on:
       - research/issuers/600206/publication.json
       - research/issuers/600206/editorial-manifest.json
       - research/shared/source_publication.py
+      - research/shared/editorial_bridge.py
       - scripts/qa_offline_candidate.py
       - .github/workflows/build-600206-editorial-candidate.yml
 
