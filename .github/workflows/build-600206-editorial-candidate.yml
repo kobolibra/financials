@@ -12,6 +12,7 @@ on:
       - research/shared/source_publication.py
       - research/shared/editorial_bridge.py
       - research/shared/editorial_geometry.py
+      - research/shared/exhibits.py
       - research/shared/test_product_figure_source_contract.py
       - scripts/qa_offline_candidate.py
       - .github/workflows/build-600206-editorial-candidate.yml
