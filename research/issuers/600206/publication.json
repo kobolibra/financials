@@ -1379,7 +1379,7 @@
   },
   "research_evidence_gate": {
     "status": "PASS_MACHINE_SOURCE_MATH_AND_STRUCTURAL_EVIDENCE_ONLY",
-    "brief_sha256": "dd03b460dd3b2be764fffbe88362a499dc9b70578c076f3b1a65d06a061c6def",
+    "brief_sha256": "638a2e5e8e5e0d002f980a8145c7cc8506e8da3c6f9bad708c1b4fccb4130ede",
     "source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
     "professional_causal_inference": "NOT_CHECKED",
     "independent_financial_reviewer": "NOT_CHECKED",

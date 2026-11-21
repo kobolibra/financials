@@ -6,16 +6,21 @@
   "sector_route": "industrial",
   "editorial_selection": {
     "candidates": [
-      "毛利修复为何没有转成现金",
-      "利润增长中产品结构和减值贡献谁更重要"
+      "集团毛利增量中收入与成本各贡献多少",
+      "产品当期毛利结构是否可与地区轴严格区分",
+      "利润、经营现金与资本开支为什么背离",
+      "应收存货占用和短期债务约束如何变化"
     ],
-    "lead_question": "毛利修复为何没有转成现金",
+    "lead_question": "毛利修复、扣非利润改善为何没有同步兑现经营现金？",
     "deciding_pages": [
       21,
+      88,
       90,
+      94,
+      95,
       194
     ],
-    "deciding_fact": "现金流附注显示存货与经营性应收的大额调节，改变首图及标题。",
+    "deciding_fact": "已复算集团毛利增量、各产品当期毛利、经营现金扣现金资本开支及期末营运资产与到期债务变化，全部作为可证伪的来源论证。",
     "prior_research": "仓库中未发现该发行人上期成稿；对照2024原报。"
   },
   "theses": [
@@ -121,6 +126,276 @@
         "period": "2026Q1",
         "metric": "库存及经营性应收变化、现金转换",
         "falsifies_when": "若存货与应收回收，同时毛利率改善，则资金占用主要属于阶段性节奏。"
+      }
+    },
+    {
+      "id": "gross-profit-structure",
+      "question": "集团营业毛利增加，究竟是收入增加还是成本增长较慢？",
+      "conclusion": "收入同比增加而成本只小幅上升，两者的会计差额带来集团毛利增量；不能据此判断价格或销量单项贡献。",
+      "mechanism": "把同口径营业收入和营业成本分别做同比差额，随后将两项差额合成集团毛利同比变化，全部逐元可复算。",
+      "strongest_alternative": "采购价格变化、产品组合变化和生产成本结构可能同时存在，现有同口径披露不能独立拆出量价因果。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": [
+        "rev",
+        "rev_prior",
+        "cogs",
+        "cogs_prior"
+      ],
+      "calculations": [
+        {
+          "id": "revenue-increase",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "rev",
+              1
+            ],
+            [
+              "rev_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "396341943.69"
+        },
+        {
+          "id": "gross-profit-increase",
+          "type": "FLOW_YOY_DELTA",
+          "terms": [
+            [
+              "rev",
+              1
+            ],
+            [
+              "cogs",
+              -1
+            ],
+            [
+              "rev_prior",
+              -1
+            ],
+            [
+              "cogs_prior",
+              1
+            ]
+          ],
+          "expected_yuan": "321459568.72"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "NOT_DISCLOSED",
+        "limitation": "没有完整逐产品同口径两期销量、单价及自身成本；不得编制虚假的量价及产品贡献桥。"
+      },
+      "next_disclosure_test": {
+        "period": "2026FY",
+        "metric": "相同产品分类的年度收入、成本与价格数量对照",
+        "falsifies_when": "如果集团毛利回落且产品自身毛利同比无法延续，则当期改善并非已被证明的持续量价竞争优势。"
+      }
+    },
+    {
+      "id": "product-current-gross-profit",
+      "question": "三类披露产品哪一种实际留下更多当年毛利？",
+      "conclusion": "薄膜材料当期毛利绝对额较高，但这只是当年同口径收入减成本的金额，不能当作集团年度毛利增长归因。",
+      "mechanism": "分别用铂族、薄膜材料和稀土材料披露的本期自身收入减自身营业成本，量化当年产品盈利，不混加地区轴。",
+      "strongest_alternative": "跨产品价差可能受材料单价、商业模式和毛利率分母差异驱动；缺乏严格可比上年产品成本不能推断成长来源。",
+      "evidence_status": "OBSERVATION",
+      "source_fact_keys": [
+        "platinum_rev",
+        "platinum_cost",
+        "film_rev",
+        "film_cost",
+        "rare_rev",
+        "rare_cost"
+      ],
+      "calculations": [
+        {
+          "id": "platinum-current-gp",
+          "type": "CURRENT_FLOW_LEVEL",
+          "terms": [
+            [
+              "platinum_rev",
+              1
+            ],
+            [
+              "platinum_cost",
+              -1
+            ]
+          ],
+          "expected_yuan": "65104995.45"
+        },
+        {
+          "id": "film-current-gp",
+          "type": "CURRENT_FLOW_LEVEL",
+          "terms": [
+            [
+              "film_rev",
+              1
+            ],
+            [
+              "film_cost",
+              -1
+            ]
+          ],
+          "expected_yuan": "426296709.53"
+        },
+        {
+          "id": "rare-current-gp",
+          "type": "CURRENT_FLOW_LEVEL",
+          "terms": [
+            [
+              "rare_rev",
+              1
+            ],
+            [
+              "rare_cost",
+              -1
+            ]
+          ],
+          "expected_yuan": "199550729.50"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "NOT_DISCLOSED",
+        "limitation": "已验证的是2025FY产品当期收入减成本，缺少完整可比2024FY产品成本，不足以区分同比贡献及价格销量结构。"
+      },
+      "next_disclosure_test": {
+        "period": "2026FY",
+        "metric": "2026FY同口径各产品收入、成本和毛利率",
+        "falsifies_when": "若当前高毛利产品后续自身毛利缩减且集团毛利减弱，就不能继续以单年毛利规模支持竞争壁垒提升。"
+      }
+    },
+    {
+      "id": "cash-vs-investment",
+      "question": "经营现金为负，资本开支仍然增加，股东能分配的现金如何观察？",
+      "conclusion": "经营现金净额与现金资本开支相减后的简化现金结余仍为负，不应把正利润或融资净流入误写为经营现金创造。",
+      "mechanism": "将本期经营活动净现金扣除购建固定资产、无形资产和其他长期资产支付现金，另外独立复算现金表各类净流量之和。",
+      "strongest_alternative": "如果资本开支对应未来产能并已锁定优质订单，其短期现金拖累可能具有投资回报；但现有账本不能证明项目回报率。",
+      "evidence_status": "ACCOUNTING_ATTRIBUTION",
+      "source_fact_keys": [
+        "cfo",
+        "cash_capex",
+        "cfi",
+        "cff",
+        "cash_fx"
+      ],
+      "calculations": [
+        {
+          "id": "operating-cash-after-capex",
+          "type": "CURRENT_FLOW_LEVEL",
+          "terms": [
+            [
+              "cfo",
+              1
+            ],
+            [
+              "cash_capex",
+              -1
+            ]
+          ],
+          "expected_yuan": "-287778758.06"
+        },
+        {
+          "id": "cash-reconciliation-flow-change",
+          "type": "CURRENT_FLOW_LEVEL",
+          "terms": [
+            [
+              "cfo",
+              1
+            ],
+            [
+              "cfi",
+              1
+            ],
+            [
+              "cff",
+              1
+            ],
+            [
+              "cash_fx",
+              1
+            ]
+          ],
+          "expected_yuan": "350220749.76"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "SOURCE_FACTS",
+        "source_fact_keys": [
+          "cfo",
+          "cash_capex",
+          "cfi",
+          "cff",
+          "cash_fx"
+        ]
+      },
+      "next_disclosure_test": {
+        "period": "2026FY",
+        "metric": "2026FY经营现金净额、资本性购建支出及投资项目兑现情况",
+        "falsifies_when": "若投资现金支出持续高而经营现金未转正，且筹资收支压力增加，则短期现金缺口并未被可持续经营回款弥合。"
+      }
+    },
+    {
+      "id": "stocks-and-debt",
+      "question": "存货和应收增长，与短期偿债负担同步变化了多少？",
+      "conclusion": "两项主要经营资产期末余额增加，同时一年内到期债务增量明显；它们是不同报表期末存量而非现金流调节项。",
+      "mechanism": "对应两年末相同合并资产负债表行分别相减，营运资产变化与一年内到期负债变化并列研究，不把存量变化机械加成经营现金。",
+      "strongest_alternative": "正常扩张与季节性备货也可能推高存货应收；债务到期可被续借或内部资金安排覆盖，不能仅凭余额推定流动性危机。",
+      "evidence_status": "OBSERVATION",
+      "source_fact_keys": [
+        "ar",
+        "ar_prior",
+        "inventory",
+        "inventory_prior",
+        "current_debt",
+        "current_debt_prior"
+      ],
+      "calculations": [
+        {
+          "id": "ar-inventory-stock-change",
+          "type": "STOCK_SINCE_YEAR_START",
+          "terms": [
+            [
+              "ar",
+              1
+            ],
+            [
+              "ar_prior",
+              -1
+            ],
+            [
+              "inventory",
+              1
+            ],
+            [
+              "inventory_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "466652216.73"
+        },
+        {
+          "id": "near-term-debt-stock-change",
+          "type": "STOCK_SINCE_YEAR_START",
+          "terms": [
+            [
+              "current_debt",
+              1
+            ],
+            [
+              "current_debt_prior",
+              -1
+            ]
+          ],
+          "expected_yuan": "396439694.23"
+        }
+      ],
+      "discriminating_evidence": {
+        "status": "NOT_DISCLOSED",
+        "limitation": "尚未覆盖全部应收账龄、存货周转项目及短期债务到期细表，不能识别正常备货与回款恶化的因果分量。"
+      },
+      "next_disclosure_test": {
+        "period": "2026FY",
+        "metric": "2026FY应收账龄、存货周转和一年内到期债务及现金筹资覆盖",
+        "falsifies_when": "若应收存货占用持续增加且到期负债不能由经营现金与可使用资金覆盖，则阶段性周转解释被削弱。"
       }
     }
   ]
