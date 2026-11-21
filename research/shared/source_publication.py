@@ -174,7 +174,11 @@ def product_rows(ledger, figure):
                     or fact['scope'] != 'consolidated' or fact['unit'] != '元'
                     or fact['classification'] != 'DISCLOSED' or not fact.get('source_cells')):
                 raise ValueError('PRODUCT_CURRENT_DISCLOSED_FLOW_REQUIRED')
-        rows.append((label, amount(ledger, revenue), amount(ledger, cost), reference([revenue, cost])))
+        # The revenue and gross-profit marks are DIFFERENT economic values.
+        # Give each mark its own reproducible expression, never the same pair
+        # of fact names (which cannot be independently checked by a reader).
+        refs={'收入':revenue,'毛利':reference([[revenue,1],[cost,-1]])}
+        rows.append((label, amount(ledger, revenue), amount(ledger, cost), refs))
     return rows
 
 
@@ -285,6 +289,104 @@ def validate_offline_comparisons(ledger, story):
         elif family == 'signed_bridge':
             for _, expr, _ in figure['rows']:
                 expression(dependencies(expr))
+        elif family == 'income':
+            # A source-declared mutually exclusive revenue/cost partition is mandatory.
+            # The shared compiler independently checks source, cost and gross-profit ties.
+            compile_disclosed_income(ledger)
+        elif family in {'kpi_board', 'growth_bars', 'ratio_dumbbell', 'stock_delta', 'balance'}:
+            # Newer common renderers already exist. Validate their source periods
+            # instead of treating them as an unsupported company-specific adapter.
+            # This check must fail closed before any SVG is rendered.
+            def terms(expr):
+                if isinstance(expr, str):
+                    return [[expr, 1]]
+                if not isinstance(expr, list) or not expr:
+                    raise ValueError('OFFLINE_EXHIBIT_EXPRESSION_REQUIRED ' + figure['id'])
+                return expr
+
+            def same_metric(current, previous, *, expected_type=None):
+                c, p = terms(current), terms(previous)
+                if p != [[key + '_prior', coef] for key, coef in c]:
+                    raise ValueError('OFFLINE_EXHIBIT_COMPARISON_DIFFERENT_METRIC ' + figure['id'])
+                for key, _ in c:
+                    require_pair(ledger, key, key + '_prior')
+                    if expected_type and facts[key]['type'] != expected_type:
+                        raise ValueError('OFFLINE_EXHIBIT_FACT_TYPE_MISMATCH ' + figure['id'])
+                curr_periods = {facts[key]['period'] for key, _ in c}
+                prev_periods = {facts[key]['period'] for key, _ in p}
+                if len(curr_periods) != 1 or len(prev_periods) != 1:
+                    raise ValueError('OFFLINE_EXHIBIT_MIXED_PERIODS ' + figure['id'])
+                return next(iter(prev_periods)), next(iter(curr_periods))
+
+            def ensure_legend(prev, curr):
+                declared = figure.get('periods')
+                if declared != [prev, curr]:
+                    raise ValueError('OFFLINE_EXHIBIT_LEGEND_PERIOD_MISMATCH ' + figure['id'])
+
+            if family == 'kpi_board':
+                if not figure.get('tiles'):
+                    raise ValueError('OFFLINE_KPI_TILES_REQUIRED ' + figure['id'])
+                for tile in figure['tiles']:
+                    if tile.get('kind') == 'money':
+                        prev, curr = same_metric(tile['value'], tile['prior'])
+                        if facts[dependencies(tile['value'])[0]]['type'] == 'stock':
+                            if (tile.get('period') != curr or
+                                    tile.get('prior_period') != prev or
+                                    tile.get('delta_label') != '较年初'):
+                                raise ValueError('OFFLINE_KPI_STOCK_DATE_REQUIRED ' + figure['id'])
+                        else:
+                            ensure_legend(prev, curr)
+                    elif tile.get('kind') == 'ratio':
+                        prev_n, curr_n = same_metric(tile['num'], tile['prior_num'])
+                        prev_d, curr_d = same_metric(tile['den'], tile['prior_den'])
+                        if (prev_n, curr_n) != (prev_d, curr_d):
+                            raise ValueError('OFFLINE_KPI_RATIO_MIXED_PERIODS ' + figure['id'])
+                        if ({facts[k]['type'] for k in
+                             dependencies(tile['num']) + dependencies(tile['den'])} != {'flow'} or
+                                amount(ledger, tile['den']) <= 0 or
+                                amount(ledger, tile['prior_den']) <= 0):
+                            raise ValueError('OFFLINE_KPI_RATIO_INVALID_BASIS ' + figure['id'])
+                        ensure_legend(prev_n, curr_n)
+                    else:
+                        raise ValueError('OFFLINE_KPI_KIND_UNSUPPORTED ' + figure['id'])
+            elif family == 'growth_bars':
+                if not figure.get('pairs'):
+                    raise ValueError('OFFLINE_GROWTH_PAIRS_REQUIRED ' + figure['id'])
+                for row in figure['pairs']:
+                    prev, curr = same_metric(row[2], row[1], expected_type='flow')
+                    ensure_legend(prev, curr)
+                    require_growth_base(amount(ledger, row[1]), figure['id'])
+            elif family == 'ratio_dumbbell':
+                if not figure.get('rows'):
+                    raise ValueError('OFFLINE_RATIO_ROWS_REQUIRED ' + figure['id'])
+                for row in figure['rows']:
+                    pn, cn = same_metric(row['num'], row['prior_num'], expected_type='flow')
+                    pd, cd = same_metric(row['den'], row['prior_den'], expected_type='flow')
+                    if (pn, cn) != (pd, cd):
+                        raise ValueError('OFFLINE_RATIO_MIXED_PERIODS ' + figure['id'])
+                    ensure_legend(pn, cn)
+                    if (amount(ledger, row['den']) <= 0 or
+                            amount(ledger, row['prior_den']) <= 0 or
+                            amount(ledger, row['num']) < 0 or
+                            amount(ledger, row['prior_num']) < 0):
+                        raise ValueError('OFFLINE_RATIO_INVALID_POSITIVE_GRAMMAR ' + figure['id'])
+            elif family == 'stock_delta':
+                if not figure.get('items'):
+                    raise ValueError('OFFLINE_STOCK_ITEMS_REQUIRED ' + figure['id'])
+                for label, side, prior, current in figure['items']:
+                    if side not in {'asset', 'liability'}:
+                        raise ValueError('OFFLINE_STOCK_SIDE_INVALID ' + figure['id'])
+                    prev, curr = same_metric(current, prior, expected_type='stock')
+                    if figure.get('dates') != [prev, curr]:
+                        raise ValueError('OFFLINE_STOCK_DATE_MISMATCH ' + figure['id'])
+            elif family == 'balance':
+                if len(figure.get('dates', [])) != 2:
+                    raise ValueError('OFFLINE_BALANCE_TWO_DATES_REQUIRED ' + figure['id'])
+                for date, assets, liabilities, equity in figure['dates']:
+                    if (any(facts[k]['type'] != 'stock' or facts[k]['period'] != date
+                            for k in (assets, liabilities, equity)) or
+                            amount(ledger, assets) != amount(ledger, liabilities) + amount(ledger, equity)):
+                        raise ValueError('OFFLINE_BALANCE_IDENTITY_OR_DATE_INVALID ' + figure['id'])
         else:
             raise ValueError('OFFLINE_EXHIBIT_ADAPTER_UNVERIFIED ' + family)
 
@@ -412,7 +514,7 @@ def render_exhibit(ledger,figure,mobile,kw,title,period):
         tiles=[]
         for t in figure['tiles']:
             if t['kind']=='money':
-                tiles.append(dict(label=t['label'],kind='money',value=amount(ledger,t['value']),prior=amount(ledger,t['prior']),value_ref=t['value'],prior_ref=t['prior'],period=periods[1],prior_period=t.get('prior_period',periods[0]),lower_is_better=t.get('lower_is_better',False),delta_label=t.get('delta_label','同比')))
+                tiles.append(dict(label=t['label'],kind='money',value=amount(ledger,t['value']),prior=amount(ledger,t['prior']),value_ref=t['value'],prior_ref=t['prior'],period=t.get('period',periods[1]),prior_period=t.get('prior_period',periods[0]),lower_is_better=t.get('lower_is_better',False),delta_label=t.get('delta_label','同比')))
             elif t['kind']=='ratio':
                 tiles.append(dict(label=t['label'],kind='ratio',value=ratio_of(ledger,t['num'],t['den']),prior=ratio_of(ledger,t['prior_num'],t['prior_den']),value_ref={'num':t['num'],'den':t['den']},prior_ref={'num':t['prior_num'],'den':t['prior_den']},period=periods[1],prior_period=periods[0],lower_is_better=t.get('lower_is_better',False)))
             else:raise ValueError('DOSSIER_KPI_KIND '+str(t.get('kind')))

@@ -1,82 +1,364 @@
 {
   "browser": "chromium",
-  "version": "157.0.8103.80",
-  "sha256": "ab5db1fb9e72e8ab72601da3cfba4613a8f2afde93006473e739c975b60c1723",
+  "version": "157.0.8103.0",
+  "sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
   "viewports": [
     {
       "width": 1440,
       "figures": [
         {
-          "id": "cash-formation",
+          "id": "glance",
           "role": "primary",
           "issues": [],
           "overlap": [],
           "values": [
             {
-              "period": null,
-              "value": "244208390.12",
+              "period": "2025FY",
+              "value": "9542126753.98",
               "min": null,
               "max": null,
-              "source": "net_profit",
-              "width": 167.33200687838064,
-              "scale": "1459424.258847826086956521739",
-              "before": "0",
-              "after": "244208390.12"
+              "source": "\"rev\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "294841288.45",
+              "period": "2025FY",
+              "value": "9.006580209821024517926501282",
               "min": null,
               "max": null,
-              "source": "[[\"provisions\",1],[\"credit_provision\",1],[\"depreciation\",1],[\"rou_amort\",1],[\"intangible_amort\",1],[\"deferred_amort\",1],[\"disposal_loss\",1],[\"scrap_loss\",1],[\"fair_loss\",1],[\"finance_adjustment\",1],[\"investment_loss\",1],[\"dta_decrease\",1],[\"dtl_increase\",1]]",
-              "width": 202.02575547344185,
-              "scale": "1459424.258847826086956521739",
-              "before": "244208390.12",
-              "after": "539049678.57"
+              "source": "{\"num\":[[\"rev\",1],[\"cogs\",-1]],\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "-302797994.24",
+              "period": "2025FY",
+              "value": "264789582.15",
               "min": null,
               "max": null,
-              "source": "inventory_release",
-              "width": 207.4777038988309,
-              "scale": "1459424.258847826086956521739",
-              "before": "539049678.57",
-              "after": "236251684.33"
+              "source": "\"parent_net\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "-368537164.83",
+              "period": "2025FY",
+              "value": "214582738.60",
               "min": null,
               "max": null,
-              "source": "operating_ar_change",
-              "width": 252.5222961011691,
-              "scale": "1459424.258847826086956521739",
-              "before": "236251684.33",
-              "after": "-132285480.50"
+              "source": "\"adjusted_parent\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "53473760.93",
-              "min": null,
-              "max": null,
-              "source": "operating_ap_change",
-              "width": 36.640312510781484,
-              "scale": "1459424.258847826086956521739",
-              "before": "-132285480.50",
-              "after": "-78811719.57"
-            },
-            {
-              "period": null,
+              "period": "2025FY",
               "value": "-78811719.57",
               "min": null,
               "max": null,
-              "source": "cfo",
-              "width": 54.001925137396036,
-              "scale": "1459424.258847826086956521739",
+              "source": "\"cfo\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "208967038.49",
+              "min": null,
+              "max": null,
+              "source": "\"cash_capex\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "gross-profit-bridge",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "537959731.10",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev_prior\",1],[\"cogs_prior\",-1]]",
+              "width": 264.86249889429035,
+              "scale": "2031090.597369565217391304348",
               "before": "0",
-              "after": "-78811719.57"
+              "after": "537959731.10",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "396341943.69",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"rev_prior\",-1]]",
+              "width": 195.13750110570965,
+              "scale": "2031090.597369565217391304348",
+              "before": "537959731.10",
+              "after": "934301674.79",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-74882374.97",
+              "min": null,
+              "max": null,
+              "source": "[[\"cogs_prior\",1],[\"cogs\",-1]]",
+              "width": 36.86806244240362,
+              "scale": "2031090.597369565217391304348",
+              "before": "934301674.79",
+              "after": "859419299.82",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"cogs\",-1]]",
+              "width": 423.13193755759636,
+              "scale": "2031090.597369565217391304348",
+              "before": "0",
+              "after": "859419299.82",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "margins",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2024FY",
+              "value": "5.882051046015613087298898760",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":[[\"rev_prior\",1],[\"cogs_prior\",-1]],\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "9.006580209821024517926501282",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":[[\"rev\",1],[\"cogs\",-1]],\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.614838844927043142946106283",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"parent_net_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.774953519031350636193888796",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"parent_net\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.246485962273424523197447381",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"adjusted_parent_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.248793629894908003922528711",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"adjusted_parent\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "2.264899174939496443199995434",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"rd_expense_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.986907447033451778536358461",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"rd_expense\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.593256647871857764835947550",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"admin_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "1.745099874831834789678233685",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"admin\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "growth-bars",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "9542126753.98",
+              "min": null,
+              "max": null,
+              "source": "\"rev\"",
+              "width": 13.000807,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "8682707454.16",
+              "min": null,
+              "max": null,
+              "source": "\"cogs\"",
+              "width": 2.609801,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "285014494.62",
+              "min": null,
+              "max": null,
+              "source": "\"rd_expense\"",
+              "width": 112.779717,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "48565020.00",
+              "min": null,
+              "max": null,
+              "source": "\"selling\"",
+              "width": 28.54231,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "166519642.04",
+              "min": null,
+              "max": null,
+              "source": "\"admin\"",
+              "width": 42.830937,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "264789582.15",
+              "min": null,
+              "max": null,
+              "source": "\"parent_net\"",
+              "width": 237.863387,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "214582738.60",
+              "min": null,
+              "max": null,
+              "source": "\"adjusted_parent\"",
+              "width": 264.686841,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             }
           ]
         },
@@ -91,66 +373,152 @@
               "value": "3992088824.40",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "source": "platinum_rev",
               "width": 480,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "65104995.45",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "source": "[[\"platinum_rev\",1],[\"platinum_cost\",-1]]",
               "width": 7.82808179,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "2287633485.23",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"film_rev\",\"film_cost\"]",
+              "source": "film_rev",
               "width": 275.06003028,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "426296709.53",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"film_rev\",\"film_cost\"]",
+              "source": "[[\"film_rev\",1],[\"film_cost\",-1]]",
               "width": 51.25698089,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "2367114832.64",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "source": "rare_rev",
               "width": 284.61669308,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "199550729.50",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "source": "[[\"rare_rev\",1],[\"rare_cost\",-1]]",
               "width": 23.99354182,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "region-income",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "8920846861.33",
+              "min": null,
+              "max": null,
+              "source": "region1_rev",
+              "width": 12,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "596420989.93",
+              "min": null,
+              "max": null,
+              "source": "region2_rev",
+              "width": 12,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "24858902.72",
+              "min": null,
+              "max": null,
+              "source": "other_business_rev",
+              "width": 12,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "9542126753.98",
+              "min": null,
+              "max": null,
+              "source": "revenue-total",
+              "width": 16,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "8682707454.16",
+              "min": null,
+              "max": null,
+              "source": "group_cogs",
+              "width": 12,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "group_gp",
+              "width": 12,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             }
           ]
         },
@@ -169,7 +537,8 @@
               "width": 300.45947418,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -180,7 +549,8 @@
               "width": 480,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2024FY",
@@ -191,7 +561,8 @@
               "width": 267.72597548,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -202,7 +573,8 @@
               "width": 480,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2024FY",
@@ -213,7 +585,8 @@
               "width": 255.00859846,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -224,140 +597,769 @@
               "width": 480,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             }
           ]
         },
         {
-          "id": "balances",
+          "id": "cash-formation",
           "role": "secondary",
           "issues": [],
           "overlap": [],
           "values": [
             {
-              "period": "2024-12-31",
-              "value": "804276241.12",
-              "min": "0",
-              "max": "1033503613.34",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"ar_prior\",\"current\":\"ar\"}",
-              "width": 373.537732,
-              "scale": null,
-              "before": null,
-              "after": null
+              "period": null,
+              "value": "244208390.12",
+              "min": null,
+              "max": null,
+              "source": "net_profit",
+              "width": 167.33200687838064,
+              "scale": "1459424.258847826086956521739",
+              "before": "0",
+              "after": "244208390.12",
+              "stock_role": null
             },
             {
-              "period": "2025-12-31",
+              "period": null,
+              "value": "294841288.45",
+              "min": null,
+              "max": null,
+              "source": "[[\"provisions\",1],[\"credit_provision\",1],[\"depreciation\",1],[\"rou_amort\",1],[\"intangible_amort\",1],[\"deferred_amort\",1],[\"disposal_loss\",1],[\"scrap_loss\",1],[\"fair_loss\",1],[\"finance_adjustment\",1],[\"investment_loss\",1],[\"dta_decrease\",1],[\"dtl_increase\",1]]",
+              "width": 202.02575547344185,
+              "scale": "1459424.258847826086956521739",
+              "before": "244208390.12",
+              "after": "539049678.57",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-302797994.24",
+              "min": null,
+              "max": null,
+              "source": "inventory_release",
+              "width": 207.4777038988309,
+              "scale": "1459424.258847826086956521739",
+              "before": "539049678.57",
+              "after": "236251684.33",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-368537164.83",
+              "min": null,
+              "max": null,
+              "source": "operating_ar_change",
+              "width": 252.5222961011691,
+              "scale": "1459424.258847826086956521739",
+              "before": "236251684.33",
+              "after": "-132285480.50",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "53473760.93",
+              "min": null,
+              "max": null,
+              "source": "operating_ap_change",
+              "width": 36.640312510781484,
+              "scale": "1459424.258847826086956521739",
+              "before": "-132285480.50",
+              "after": "-78811719.57",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-78811719.57",
+              "min": null,
+              "max": null,
+              "source": "cfo",
+              "width": 54.001925137396036,
+              "scale": "1459424.258847826086956521739",
+              "before": "0",
+              "after": "-78811719.57",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "cash-and-capex",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2024FY",
+              "value": "-54524403.42",
+              "min": "-78811719.57",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cfo_prior\",\"current\":\"cfo\"}",
+              "width": 332.07895709,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "-78811719.57",
+              "min": "-78811719.57",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cfo_prior\",\"current\":\"cfo\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "97053952.22",
+              "min": "0",
+              "max": "208967038.49",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cash_capex_prior\",\"current\":\"cash_capex\"}",
+              "width": 222.9341881,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "208967038.49",
+              "min": "0",
+              "max": "208967038.49",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cash_capex_prior\",\"current\":\"cash_capex\"}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "-151578355.64",
+              "min": "-287778758.06",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":[[\"cfo_prior\",1],[\"cash_capex_prior\",-1]],\"current\":[[\"cfo\",1],[\"cash_capex\",-1]]}",
+              "width": 252.82481305,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "-287778758.06",
+              "min": "-287778758.06",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":[[\"cfo_prior\",1],[\"cash_capex_prior\",-1]],\"current\":[[\"cfo\",1],[\"cash_capex\",-1]]}",
+              "width": 480,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "working-capital",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
               "value": "1033503613.34",
-              "min": "0",
-              "max": "1033503613.34",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"ar_prior\",\"current\":\"ar\"}",
-              "width": 480,
+              "min": null,
+              "max": null,
+              "source": "\"ar\"",
+              "width": 173.464496,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": "2024-12-31",
-              "value": "1026190372.12",
-              "min": "0",
-              "max": "1263615216.63",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"inventory_prior\",\"current\":\"inventory\"}",
-              "width": 389.81121162,
-              "scale": null,
-              "before": null,
-              "after": null
-            },
-            {
-              "period": "2025-12-31",
+              "period": null,
               "value": "1263615216.63",
-              "min": "0",
-              "max": "1263615216.63",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"inventory_prior\",\"current\":\"inventory\"}",
-              "width": 480,
+              "min": null,
+              "max": null,
+              "source": "\"inventory\"",
+              "width": 179.667814,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "278063688.03",
+              "min": null,
+              "max": null,
+              "source": "\"ap\"",
+              "width": 26.478221,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "100991727.66",
+              "min": null,
+              "max": null,
+              "source": "\"contract_liabilities\"",
+              "width": 52.12003,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "546365482.28",
+              "min": null,
+              "max": null,
+              "source": "\"short_debt\"",
+              "width": 124.916572,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "619051195.61",
+              "min": null,
+              "max": null,
+              "source": "\"current_debt\"",
+              "width": 300,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "cash-closure",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "1809546949.92",
+              "min": null,
+              "max": null,
+              "source": "cash_open",
+              "width": 385.05033045336046,
+              "scale": "4699507.5885",
+              "before": "0",
+              "after": "1809546949.92",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-78811719.57",
+              "min": null,
+              "max": null,
+              "source": "cfo",
+              "width": 16.770207960267452,
+              "scale": "4699507.5885",
+              "before": "1809546949.92",
+              "after": "1730735230.35",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-277014010.88",
+              "min": null,
+              "max": null,
+              "source": "cfi",
+              "width": 58.94532685889715,
+              "scale": "4699507.5885",
+              "before": "1730735230.35",
+              "after": "1453721219.47",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "708052271.24",
+              "min": null,
+              "max": null,
+              "source": "cff",
+              "width": 150.66520436580416,
+              "scale": "4699507.5885",
+              "before": "1453721219.47",
+              "after": "2161773490.71",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-2005791.03",
+              "min": null,
+              "max": null,
+              "source": "cash_fx",
+              "width": 0.42680876500940246,
+              "scale": "4699507.5885",
+              "before": "2161773490.71",
+              "after": "2159767699.68",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "2159767699.68",
+              "min": null,
+              "max": null,
+              "source": "cash_close",
+              "width": 459.5731912349906,
+              "scale": "4699507.5885",
+              "before": "0",
+              "after": "2159767699.68",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "funding-balance",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "6503356155.69",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 638.33955416,
+              "scale": "10187926.02358288770053475936",
+              "before": null,
+              "after": null,
+              "stock_role": "assets"
+            },
+            {
+              "period": null,
+              "value": "2032886426.31",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 199.5387895,
+              "scale": "10187926.02358288770053475936",
+              "before": null,
+              "after": null,
+              "stock_role": "liabilities"
+            },
+            {
+              "period": null,
+              "value": "4470469729.38",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 438.80076465,
+              "scale": "10187926.02358288770053475936",
+              "before": null,
+              "after": null,
+              "stock_role": "equity"
+            },
+            {
+              "period": null,
+              "value": "7620568665.64",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 748,
+              "scale": "10187926.02358288770053475936",
+              "before": null,
+              "after": null,
+              "stock_role": "assets"
+            },
+            {
+              "period": null,
+              "value": "2656652771.31",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 260.76482742,
+              "scale": "10187926.02358288770053475936",
+              "before": null,
+              "after": null,
+              "stock_role": "liabilities"
+            },
+            {
+              "period": null,
+              "value": "4963915894.33",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 487.23517258,
+              "scale": "10187926.02358288770053475936",
+              "before": null,
+              "after": null,
+              "stock_role": "equity"
             }
           ]
         }
-      ],
-      "article_url": "http://127.0.0.1:18760/600206.html",
-      "directory_url": "http://127.0.0.1:18760/#companies"
+      ]
     },
     {
       "width": 768,
       "figures": [
         {
-          "id": "cash-formation",
+          "id": "glance",
           "role": "primary",
           "issues": [],
           "overlap": [],
           "values": [
             {
-              "period": null,
-              "value": "244208390.12",
+              "period": "2025FY",
+              "value": "9542126753.98",
               "min": null,
               "max": null,
-              "source": "net_profit",
-              "width": 108.40203923860311,
-              "scale": "2252802.547214765100671140940",
-              "before": "0",
-              "after": "244208390.12"
+              "source": "\"rev\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "294841288.45",
+              "period": "2025FY",
+              "value": "9.006580209821024517926501282",
               "min": null,
               "max": null,
-              "source": "[[\"provisions\",1],[\"credit_provision\",1],[\"depreciation\",1],[\"rou_amort\",1],[\"intangible_amort\",1],[\"deferred_amort\",1],[\"disposal_loss\",1],[\"scrap_loss\",1],[\"fair_loss\",1],[\"finance_adjustment\",1],[\"investment_loss\",1],[\"dta_decrease\",1],[\"dtl_increase\",1]]",
-              "width": 130.87755463279493,
-              "scale": "2252802.547214765100671140940",
-              "before": "244208390.12",
-              "after": "539049678.57"
+              "source": "{\"num\":[[\"rev\",1],[\"cogs\",-1]],\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "-302797994.24",
+              "period": "2025FY",
+              "value": "264789582.15",
               "min": null,
               "max": null,
-              "source": "inventory_release",
-              "width": 134.4094690475035,
-              "scale": "2252802.547214765100671140940",
-              "before": "539049678.57",
-              "after": "236251684.33"
+              "source": "\"parent_net\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "-368537164.83",
+              "period": "2025FY",
+              "value": "214582738.60",
               "min": null,
               "max": null,
-              "source": "operating_ar_change",
-              "width": 163.5905309524965,
-              "scale": "2252802.547214765100671140940",
-              "before": "236251684.33",
-              "after": "-132285480.50"
+              "source": "\"adjusted_parent\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "53473760.93",
-              "min": null,
-              "max": null,
-              "source": "operating_ap_change",
-              "width": 23.73655027872366,
-              "scale": "2252802.547214765100671140940",
-              "before": "-132285480.50",
-              "after": "-78811719.57"
-            },
-            {
-              "period": null,
+              "period": "2025FY",
               "value": "-78811719.57",
               "min": null,
               "max": null,
-              "source": "cfo",
-              "width": 34.9838558498783,
-              "scale": "2252802.547214765100671140940",
+              "source": "\"cfo\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "208967038.49",
+              "min": null,
+              "max": null,
+              "source": "\"cash_capex\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "gross-profit-bridge",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "537959731.10",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev_prior\",1],[\"cogs_prior\",-1]]",
+              "width": 171.58483624021417,
+              "scale": "3135240.519429530201342281879",
               "before": "0",
-              "after": "-78811719.57"
+              "after": "537959731.10",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "396341943.69",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"rev_prior\",-1]]",
+              "width": 126.41516375978581,
+              "scale": "3135240.519429530201342281879",
+              "before": "537959731.10",
+              "after": "934301674.79",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-74882374.97",
+              "min": null,
+              "max": null,
+              "source": "[[\"cogs_prior\",1],[\"cogs\",-1]]",
+              "width": 23.88409262573104,
+              "scale": "3135240.519429530201342281879",
+              "before": "934301674.79",
+              "after": "859419299.82",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"cogs\",-1]]",
+              "width": 274.11590737426894,
+              "scale": "3135240.519429530201342281879",
+              "before": "0",
+              "after": "859419299.82",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "margins",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2024FY",
+              "value": "5.882051046015613087298898760",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":[[\"rev_prior\",1],[\"cogs_prior\",-1]],\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "9.006580209821024517926501282",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":[[\"rev\",1],[\"cogs\",-1]],\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.614838844927043142946106283",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"parent_net_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.774953519031350636193888796",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"parent_net\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.246485962273424523197447381",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"adjusted_parent_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.248793629894908003922528711",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"adjusted_parent\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "2.264899174939496443199995434",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"rd_expense_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.986907447033451778536358461",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"rd_expense\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.593256647871857764835947550",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"admin_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "1.745099874831834789678233685",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"admin\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "growth-bars",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "9542126753.98",
+              "min": null,
+              "max": null,
+              "source": "\"rev\"",
+              "width": 12.914135,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "8682707454.16",
+              "min": null,
+              "max": null,
+              "source": "\"cogs\"",
+              "width": 2.592403,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "285014494.62",
+              "min": null,
+              "max": null,
+              "source": "\"rd_expense\"",
+              "width": 112.027853,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "48565020.00",
+              "min": null,
+              "max": null,
+              "source": "\"selling\"",
+              "width": 28.352028,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "166519642.04",
+              "min": null,
+              "max": null,
+              "source": "\"admin\"",
+              "width": 42.545397,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "264789582.15",
+              "min": null,
+              "max": null,
+              "source": "\"parent_net\"",
+              "width": 236.277631,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "214582738.60",
+              "min": null,
+              "max": null,
+              "source": "\"adjusted_parent\"",
+              "width": 262.922262,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             }
           ]
         },
@@ -372,66 +1374,152 @@
               "value": "3992088824.40",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "source": "platinum_rev",
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "65104995.45",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "source": "[[\"platinum_rev\",1],[\"platinum_cost\",-1]]",
               "width": 4.85993411,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "2287633485.23",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"film_rev\",\"film_cost\"]",
+              "source": "film_rev",
               "width": 170.76643546,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "426296709.53",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"film_rev\",\"film_cost\"]",
+              "source": "[[\"film_rev\",1],[\"film_cost\",-1]]",
               "width": 31.8220423,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "2367114832.64",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "source": "rare_rev",
               "width": 176.69953028,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "199550729.50",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "source": "[[\"rare_rev\",1],[\"rare_cost\",-1]]",
               "width": 14.89599055,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "region-income",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "8920846861.33",
+              "min": null,
+              "max": null,
+              "source": "region1_rev",
+              "width": 6,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "596420989.93",
+              "min": null,
+              "max": null,
+              "source": "region2_rev",
+              "width": 6,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "24858902.72",
+              "min": null,
+              "max": null,
+              "source": "other_business_rev",
+              "width": 6,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "9542126753.98",
+              "min": null,
+              "max": null,
+              "source": "revenue-total",
+              "width": 10,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "8682707454.16",
+              "min": null,
+              "max": null,
+              "source": "group_cogs",
+              "width": 9,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "group_gp",
+              "width": 9,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             }
           ]
         },
@@ -450,7 +1538,8 @@
               "width": 186.53525689,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -461,7 +1550,8 @@
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2024FY",
@@ -472,7 +1562,8 @@
               "width": 166.21320978,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -483,7 +1574,8 @@
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2024FY",
@@ -494,7 +1586,8 @@
               "width": 158.31783821,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -505,140 +1598,769 @@
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             }
           ]
         },
         {
-          "id": "balances",
+          "id": "cash-formation",
           "role": "secondary",
           "issues": [],
           "overlap": [],
           "values": [
             {
-              "period": "2024-12-31",
-              "value": "804276241.12",
-              "min": "0",
-              "max": "1033503613.34",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"ar_prior\",\"current\":\"ar\"}",
-              "width": 231.90467528,
-              "scale": null,
-              "before": null,
-              "after": null
+              "period": null,
+              "value": "244208390.12",
+              "min": null,
+              "max": null,
+              "source": "net_profit",
+              "width": 108.40203923860311,
+              "scale": "2252802.547214765100671140940",
+              "before": "0",
+              "after": "244208390.12",
+              "stock_role": null
             },
             {
-              "period": "2025-12-31",
+              "period": null,
+              "value": "294841288.45",
+              "min": null,
+              "max": null,
+              "source": "[[\"provisions\",1],[\"credit_provision\",1],[\"depreciation\",1],[\"rou_amort\",1],[\"intangible_amort\",1],[\"deferred_amort\",1],[\"disposal_loss\",1],[\"scrap_loss\",1],[\"fair_loss\",1],[\"finance_adjustment\",1],[\"investment_loss\",1],[\"dta_decrease\",1],[\"dtl_increase\",1]]",
+              "width": 130.87755463279493,
+              "scale": "2252802.547214765100671140940",
+              "before": "244208390.12",
+              "after": "539049678.57",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-302797994.24",
+              "min": null,
+              "max": null,
+              "source": "inventory_release",
+              "width": 134.4094690475035,
+              "scale": "2252802.547214765100671140940",
+              "before": "539049678.57",
+              "after": "236251684.33",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-368537164.83",
+              "min": null,
+              "max": null,
+              "source": "operating_ar_change",
+              "width": 163.5905309524965,
+              "scale": "2252802.547214765100671140940",
+              "before": "236251684.33",
+              "after": "-132285480.50",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "53473760.93",
+              "min": null,
+              "max": null,
+              "source": "operating_ap_change",
+              "width": 23.73655027872366,
+              "scale": "2252802.547214765100671140940",
+              "before": "-132285480.50",
+              "after": "-78811719.57",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-78811719.57",
+              "min": null,
+              "max": null,
+              "source": "cfo",
+              "width": 34.9838558498783,
+              "scale": "2252802.547214765100671140940",
+              "before": "0",
+              "after": "-78811719.57",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "cash-and-capex",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2024FY",
+              "value": "-54524403.42",
+              "min": "-78811719.57",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cfo_prior\",\"current\":\"cfo\"}",
+              "width": 206.16568586,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "-78811719.57",
+              "min": "-78811719.57",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cfo_prior\",\"current\":\"cfo\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "97053952.22",
+              "min": "0",
+              "max": "208967038.49",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cash_capex_prior\",\"current\":\"cash_capex\"}",
+              "width": 138.40497511,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "208967038.49",
+              "min": "0",
+              "max": "208967038.49",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cash_capex_prior\",\"current\":\"cash_capex\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "-151578355.64",
+              "min": "-287778758.06",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":[[\"cfo_prior\",1],[\"cash_capex_prior\",-1]],\"current\":[[\"cfo\",1],[\"cash_capex\",-1]]}",
+              "width": 156.96207144,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "-287778758.06",
+              "min": "-287778758.06",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":[[\"cfo_prior\",1],[\"cash_capex_prior\",-1]],\"current\":[[\"cfo\",1],[\"cash_capex\",-1]]}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "working-capital",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
               "value": "1033503613.34",
-              "min": "0",
-              "max": "1033503613.34",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"ar_prior\",\"current\":\"ar\"}",
-              "width": 298,
+              "min": null,
+              "max": null,
+              "source": "\"ar\"",
+              "width": 80.950098,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": "2024-12-31",
-              "value": "1026190372.12",
-              "min": "0",
-              "max": "1263615216.63",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"inventory_prior\",\"current\":\"inventory\"}",
-              "width": 242.00779388,
-              "scale": null,
-              "before": null,
-              "after": null
-            },
-            {
-              "period": "2025-12-31",
+              "period": null,
               "value": "1263615216.63",
-              "min": "0",
-              "max": "1263615216.63",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"inventory_prior\",\"current\":\"inventory\"}",
-              "width": 298,
+              "min": null,
+              "max": null,
+              "source": "\"inventory\"",
+              "width": 83.84498,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "278063688.03",
+              "min": null,
+              "max": null,
+              "source": "\"ap\"",
+              "width": 12.356503,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "100991727.66",
+              "min": null,
+              "max": null,
+              "source": "\"contract_liabilities\"",
+              "width": 24.322681,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "546365482.28",
+              "min": null,
+              "max": null,
+              "source": "\"short_debt\"",
+              "width": 58.2944,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "619051195.61",
+              "min": null,
+              "max": null,
+              "source": "\"current_debt\"",
+              "width": 140,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "cash-closure",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "1809546949.92",
+              "min": null,
+              "max": null,
+              "source": "cash_open",
+              "width": 249.44564885891612,
+              "scale": "7254273.458758389261744966443",
+              "before": "0",
+              "after": "1809546949.92",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-78811719.57",
+              "min": null,
+              "max": null,
+              "source": "cfo",
+              "width": 10.864178200347176,
+              "scale": "7254273.458758389261744966443",
+              "before": "1809546949.92",
+              "after": "1730735230.35",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-277014010.88",
+              "min": null,
+              "max": null,
+              "source": "cfi",
+              "width": 38.186320443372495,
+              "scale": "7254273.458758389261744966443",
+              "before": "1730735230.35",
+              "after": "1453721219.47",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "708052271.24",
+              "min": null,
+              "max": null,
+              "source": "cff",
+              "width": 97.60484978480356,
+              "scale": "7254273.458758389261744966443",
+              "before": "1453721219.47",
+              "after": "2161773490.71",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-2005791.03",
+              "min": null,
+              "max": null,
+              "source": "cash_fx",
+              "width": 0.2764978521147868,
+              "scale": "7254273.458758389261744966443",
+              "before": "2161773490.71",
+              "after": "2159767699.68",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "2159767699.68",
+              "min": null,
+              "max": null,
+              "source": "cash_close",
+              "width": 297.7235021478852,
+              "scale": "7254273.458758389261744966443",
+              "before": "0",
+              "after": "2159767699.68",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "funding-balance",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "6503356155.69",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 254.31174751,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "assets"
+            },
+            {
+              "period": null,
+              "value": "2032886426.31",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 79.4954001,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "liabilities"
+            },
+            {
+              "period": null,
+              "value": "4470469729.38",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 174.81634742,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "equity"
+            },
+            {
+              "period": null,
+              "value": "7620568665.64",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 298,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "assets"
+            },
+            {
+              "period": null,
+              "value": "2656652771.31",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 103.88759167,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "liabilities"
+            },
+            {
+              "period": null,
+              "value": "4963915894.33",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 194.11240833,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "equity"
             }
           ]
         }
-      ],
-      "article_url": "http://127.0.0.1:18760/600206.html",
-      "directory_url": "http://127.0.0.1:18760/#companies"
+      ]
     },
     {
       "width": 390,
       "figures": [
         {
-          "id": "cash-formation",
+          "id": "glance",
           "role": "primary",
           "issues": [],
           "overlap": [],
           "values": [
             {
-              "period": null,
-              "value": "244208390.12",
+              "period": "2025FY",
+              "value": "9542126753.98",
               "min": null,
               "max": null,
-              "source": "net_profit",
-              "width": 108.40203923860311,
-              "scale": "2252802.547214765100671140940",
-              "before": "0",
-              "after": "244208390.12"
+              "source": "\"rev\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "294841288.45",
+              "period": "2025FY",
+              "value": "9.006580209821024517926501282",
               "min": null,
               "max": null,
-              "source": "[[\"provisions\",1],[\"credit_provision\",1],[\"depreciation\",1],[\"rou_amort\",1],[\"intangible_amort\",1],[\"deferred_amort\",1],[\"disposal_loss\",1],[\"scrap_loss\",1],[\"fair_loss\",1],[\"finance_adjustment\",1],[\"investment_loss\",1],[\"dta_decrease\",1],[\"dtl_increase\",1]]",
-              "width": 130.87755463279493,
-              "scale": "2252802.547214765100671140940",
-              "before": "244208390.12",
-              "after": "539049678.57"
+              "source": "{\"num\":[[\"rev\",1],[\"cogs\",-1]],\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "-302797994.24",
+              "period": "2025FY",
+              "value": "264789582.15",
               "min": null,
               "max": null,
-              "source": "inventory_release",
-              "width": 134.4094690475035,
-              "scale": "2252802.547214765100671140940",
-              "before": "539049678.57",
-              "after": "236251684.33"
+              "source": "\"parent_net\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "-368537164.83",
+              "period": "2025FY",
+              "value": "214582738.60",
               "min": null,
               "max": null,
-              "source": "operating_ar_change",
-              "width": 163.5905309524965,
-              "scale": "2252802.547214765100671140940",
-              "before": "236251684.33",
-              "after": "-132285480.50"
+              "source": "\"adjusted_parent\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": null,
-              "value": "53473760.93",
-              "min": null,
-              "max": null,
-              "source": "operating_ap_change",
-              "width": 23.73655027872366,
-              "scale": "2252802.547214765100671140940",
-              "before": "-132285480.50",
-              "after": "-78811719.57"
-            },
-            {
-              "period": null,
+              "period": "2025FY",
               "value": "-78811719.57",
               "min": null,
               "max": null,
-              "source": "cfo",
-              "width": 34.9838558498783,
-              "scale": "2252802.547214765100671140940",
+              "source": "\"cfo\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "208967038.49",
+              "min": null,
+              "max": null,
+              "source": "\"cash_capex\"",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "gross-profit-bridge",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "537959731.10",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev_prior\",1],[\"cogs_prior\",-1]]",
+              "width": 171.58483624021417,
+              "scale": "3135240.519429530201342281879",
               "before": "0",
-              "after": "-78811719.57"
+              "after": "537959731.10",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "396341943.69",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"rev_prior\",-1]]",
+              "width": 126.41516375978581,
+              "scale": "3135240.519429530201342281879",
+              "before": "537959731.10",
+              "after": "934301674.79",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-74882374.97",
+              "min": null,
+              "max": null,
+              "source": "[[\"cogs_prior\",1],[\"cogs\",-1]]",
+              "width": 23.88409262573104,
+              "scale": "3135240.519429530201342281879",
+              "before": "934301674.79",
+              "after": "859419299.82",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"cogs\",-1]]",
+              "width": 274.11590737426894,
+              "scale": "3135240.519429530201342281879",
+              "before": "0",
+              "after": "859419299.82",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "margins",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2024FY",
+              "value": "5.882051046015613087298898760",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":[[\"rev_prior\",1],[\"cogs_prior\",-1]],\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "9.006580209821024517926501282",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":[[\"rev\",1],[\"cogs\",-1]],\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.614838844927043142946106283",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"parent_net_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.774953519031350636193888796",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"parent_net\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.246485962273424523197447381",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"adjusted_parent_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.248793629894908003922528711",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"adjusted_parent\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "2.264899174939496443199995434",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"rd_expense_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "2.986907447033451778536358461",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"rd_expense\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "1.593256647871857764835947550",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"admin_prior\",\"den\":\"rev_prior\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "1.745099874831834789678233685",
+              "min": null,
+              "max": null,
+              "source": "{\"num\":\"admin\",\"den\":\"rev\"}",
+              "width": 0,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "growth-bars",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "9542126753.98",
+              "min": null,
+              "max": null,
+              "source": "\"rev\"",
+              "width": 12.914135,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "8682707454.16",
+              "min": null,
+              "max": null,
+              "source": "\"cogs\"",
+              "width": 2.592403,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "285014494.62",
+              "min": null,
+              "max": null,
+              "source": "\"rd_expense\"",
+              "width": 112.027853,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "48565020.00",
+              "min": null,
+              "max": null,
+              "source": "\"selling\"",
+              "width": 28.352028,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "166519642.04",
+              "min": null,
+              "max": null,
+              "source": "\"admin\"",
+              "width": 42.545397,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "264789582.15",
+              "min": null,
+              "max": null,
+              "source": "\"parent_net\"",
+              "width": 236.277631,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "214582738.60",
+              "min": null,
+              "max": null,
+              "source": "\"adjusted_parent\"",
+              "width": 262.922262,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             }
           ]
         },
@@ -653,66 +2375,152 @@
               "value": "3992088824.40",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "source": "platinum_rev",
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "65104995.45",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"platinum_rev\",\"platinum_cost\"]",
+              "source": "[[\"platinum_rev\",1],[\"platinum_cost\",-1]]",
               "width": 4.85993411,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "2287633485.23",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"film_rev\",\"film_cost\"]",
+              "source": "film_rev",
               "width": 170.76643546,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "426296709.53",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"film_rev\",\"film_cost\"]",
+              "source": "[[\"film_rev\",1],[\"film_cost\",-1]]",
               "width": 31.8220423,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "2367114832.64",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "source": "rare_rev",
               "width": 176.69953028,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
               "value": "199550729.50",
               "min": "0",
               "max": "3992088824.40",
-              "source": "[\"rare_rev\",\"rare_cost\"]",
+              "source": "[[\"rare_rev\",1],[\"rare_cost\",-1]]",
               "width": 14.89599055,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "region-income",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "8920846861.33",
+              "min": null,
+              "max": null,
+              "source": "region1_rev",
+              "width": 6,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "596420989.93",
+              "min": null,
+              "max": null,
+              "source": "region2_rev",
+              "width": 6,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "24858902.72",
+              "min": null,
+              "max": null,
+              "source": "other_business_rev",
+              "width": 6,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "9542126753.98",
+              "min": null,
+              "max": null,
+              "source": "revenue-total",
+              "width": 10,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "8682707454.16",
+              "min": null,
+              "max": null,
+              "source": "group_cogs",
+              "width": 9,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "group_gp",
+              "width": 9,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
             }
           ]
         },
@@ -731,7 +2539,8 @@
               "width": 186.53525689,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -742,7 +2551,8 @@
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2024FY",
@@ -753,7 +2563,8 @@
               "width": 166.21320978,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -764,7 +2575,8 @@
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2024FY",
@@ -775,7 +2587,8 @@
               "width": 158.31783821,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
               "period": "2025FY",
@@ -786,65 +2599,412 @@
               "width": 298,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             }
           ]
         },
         {
-          "id": "balances",
+          "id": "cash-formation",
           "role": "secondary",
           "issues": [],
           "overlap": [],
           "values": [
             {
-              "period": "2024-12-31",
-              "value": "804276241.12",
-              "min": "0",
-              "max": "1033503613.34",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"ar_prior\",\"current\":\"ar\"}",
-              "width": 231.90467528,
-              "scale": null,
-              "before": null,
-              "after": null
+              "period": null,
+              "value": "244208390.12",
+              "min": null,
+              "max": null,
+              "source": "net_profit",
+              "width": 108.40203923860311,
+              "scale": "2252802.547214765100671140940",
+              "before": "0",
+              "after": "244208390.12",
+              "stock_role": null
             },
             {
-              "period": "2025-12-31",
+              "period": null,
+              "value": "294841288.45",
+              "min": null,
+              "max": null,
+              "source": "[[\"provisions\",1],[\"credit_provision\",1],[\"depreciation\",1],[\"rou_amort\",1],[\"intangible_amort\",1],[\"deferred_amort\",1],[\"disposal_loss\",1],[\"scrap_loss\",1],[\"fair_loss\",1],[\"finance_adjustment\",1],[\"investment_loss\",1],[\"dta_decrease\",1],[\"dtl_increase\",1]]",
+              "width": 130.87755463279493,
+              "scale": "2252802.547214765100671140940",
+              "before": "244208390.12",
+              "after": "539049678.57",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-302797994.24",
+              "min": null,
+              "max": null,
+              "source": "inventory_release",
+              "width": 134.4094690475035,
+              "scale": "2252802.547214765100671140940",
+              "before": "539049678.57",
+              "after": "236251684.33",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-368537164.83",
+              "min": null,
+              "max": null,
+              "source": "operating_ar_change",
+              "width": 163.5905309524965,
+              "scale": "2252802.547214765100671140940",
+              "before": "236251684.33",
+              "after": "-132285480.50",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "53473760.93",
+              "min": null,
+              "max": null,
+              "source": "operating_ap_change",
+              "width": 23.73655027872366,
+              "scale": "2252802.547214765100671140940",
+              "before": "-132285480.50",
+              "after": "-78811719.57",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-78811719.57",
+              "min": null,
+              "max": null,
+              "source": "cfo",
+              "width": 34.9838558498783,
+              "scale": "2252802.547214765100671140940",
+              "before": "0",
+              "after": "-78811719.57",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "cash-and-capex",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": "2024FY",
+              "value": "-54524403.42",
+              "min": "-78811719.57",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cfo_prior\",\"current\":\"cfo\"}",
+              "width": 206.16568586,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "-78811719.57",
+              "min": "-78811719.57",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cfo_prior\",\"current\":\"cfo\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "97053952.22",
+              "min": "0",
+              "max": "208967038.49",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cash_capex_prior\",\"current\":\"cash_capex\"}",
+              "width": 138.40497511,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "208967038.49",
+              "min": "0",
+              "max": "208967038.49",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":\"cash_capex_prior\",\"current\":\"cash_capex\"}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2024FY",
+              "value": "-151578355.64",
+              "min": "-287778758.06",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":[[\"cfo_prior\",1],[\"cash_capex_prior\",-1]],\"current\":[[\"cfo\",1],[\"cash_capex\",-1]]}",
+              "width": 156.96207144,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": "2025FY",
+              "value": "-287778758.06",
+              "min": "-287778758.06",
+              "max": "0",
+              "source": "{\"periods\":[\"2024FY\",\"2025FY\"],\"prior\":[[\"cfo_prior\",1],[\"cash_capex_prior\",-1]],\"current\":[[\"cfo\",1],[\"cash_capex\",-1]]}",
+              "width": 298,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "working-capital",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
               "value": "1033503613.34",
-              "min": "0",
-              "max": "1033503613.34",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"ar_prior\",\"current\":\"ar\"}",
-              "width": 298,
+              "min": null,
+              "max": null,
+              "source": "\"ar\"",
+              "width": 80.950098,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
             },
             {
-              "period": "2024-12-31",
-              "value": "1026190372.12",
-              "min": "0",
-              "max": "1263615216.63",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"inventory_prior\",\"current\":\"inventory\"}",
-              "width": 242.00779388,
-              "scale": null,
-              "before": null,
-              "after": null
-            },
-            {
-              "period": "2025-12-31",
+              "period": null,
               "value": "1263615216.63",
-              "min": "0",
-              "max": "1263615216.63",
-              "source": "{\"periods\":[\"2024-12-31\",\"2025-12-31\"],\"prior\":\"inventory_prior\",\"current\":\"inventory\"}",
-              "width": 298,
+              "min": null,
+              "max": null,
+              "source": "\"inventory\"",
+              "width": 83.84498,
               "scale": null,
               "before": null,
-              "after": null
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "278063688.03",
+              "min": null,
+              "max": null,
+              "source": "\"ap\"",
+              "width": 12.356503,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "100991727.66",
+              "min": null,
+              "max": null,
+              "source": "\"contract_liabilities\"",
+              "width": 24.322681,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "546365482.28",
+              "min": null,
+              "max": null,
+              "source": "\"short_debt\"",
+              "width": 58.2944,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "619051195.61",
+              "min": null,
+              "max": null,
+              "source": "\"current_debt\"",
+              "width": 140,
+              "scale": null,
+              "before": null,
+              "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "cash-closure",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "1809546949.92",
+              "min": null,
+              "max": null,
+              "source": "cash_open",
+              "width": 249.44564885891612,
+              "scale": "7254273.458758389261744966443",
+              "before": "0",
+              "after": "1809546949.92",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-78811719.57",
+              "min": null,
+              "max": null,
+              "source": "cfo",
+              "width": 10.864178200347176,
+              "scale": "7254273.458758389261744966443",
+              "before": "1809546949.92",
+              "after": "1730735230.35",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-277014010.88",
+              "min": null,
+              "max": null,
+              "source": "cfi",
+              "width": 38.186320443372495,
+              "scale": "7254273.458758389261744966443",
+              "before": "1730735230.35",
+              "after": "1453721219.47",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "708052271.24",
+              "min": null,
+              "max": null,
+              "source": "cff",
+              "width": 97.60484978480356,
+              "scale": "7254273.458758389261744966443",
+              "before": "1453721219.47",
+              "after": "2161773490.71",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-2005791.03",
+              "min": null,
+              "max": null,
+              "source": "cash_fx",
+              "width": 0.2764978521147868,
+              "scale": "7254273.458758389261744966443",
+              "before": "2161773490.71",
+              "after": "2159767699.68",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "2159767699.68",
+              "min": null,
+              "max": null,
+              "source": "cash_close",
+              "width": 297.7235021478852,
+              "scale": "7254273.458758389261744966443",
+              "before": "0",
+              "after": "2159767699.68",
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "funding-balance",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "6503356155.69",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 254.31174751,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "assets"
+            },
+            {
+              "period": null,
+              "value": "2032886426.31",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 79.4954001,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "liabilities"
+            },
+            {
+              "period": null,
+              "value": "4470469729.38",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets_prior\",\"liabilities\":\"liabilities_prior\",\"equity\":\"equity_prior\"}",
+              "width": 174.81634742,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "equity"
+            },
+            {
+              "period": null,
+              "value": "7620568665.64",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 298,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "assets"
+            },
+            {
+              "period": null,
+              "value": "2656652771.31",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 103.88759167,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "liabilities"
+            },
+            {
+              "period": null,
+              "value": "4963915894.33",
+              "min": null,
+              "max": null,
+              "source": "{\"assets\":\"assets\",\"liabilities\":\"liabilities\",\"equity\":\"equity\"}",
+              "width": 194.11240833,
+              "scale": "25572378.07261744966442953020",
+              "before": null,
+              "after": null,
+              "stock_role": "equity"
             }
           ]
         }
-      ],
-      "article_url": "http://127.0.0.1:18760/600206.html",
-      "directory_url": "http://127.0.0.1:18760/#companies"
+      ]
     }
   ]
 }

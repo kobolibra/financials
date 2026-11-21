@@ -19,8 +19,9 @@
   "ledger_file": "research/issuers/600206/source-ledger.json",
   "figure_briefs_file": "research/issuers/600206/figure-briefs.json",
   "sankey": {
-    "decision": "OMITTED_WITH_SOURCE_REASON",
-    "omission_reason": "研究问题由合并银行利息收支或经营现金调节回答，原件金额以有符号桥展示，未构造不相称的部门资金流。"
+    "decision": "USED_CONSERVED",
+    "proof": "research/issuers/600206/figure-briefs.json",
+    "scope": "互斥地区轴，分组收入及自身成本闭合至集团收入、营业成本与毛利；产品轴不相加"
   },
   "gates": {
     "PDF_BYTES": {
@@ -50,13 +51,13 @@
     },
     "VISUAL_EDITORIAL_SELF": {
       "status": "PASS",
-      "proof": "research/issuers/600206/visual-qa/result.json",
-      "scope": "作者复核两篇正式版首屏与全部四图的中文标注、金额方向、证据范围与窄屏构图。目录版截图对应同一 HTML SHA。独立人类二审仍未完成。"
+      "proof": "research/issuers/600206/editorial-self-review.json",
+      "scope": "执行者按实际1440/768/390 Chromium及375 WebKit整页与逐图做11项R/V自评，所有维度>=2、均分>=2.5且无P0；不代表独立人类研究/艺术二审。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "research/quality/editorial-generalization/600206/catalog-browser.json",
-      "scope": "双引擎打开目录版，检查首页往返、各尺寸四图及 SVG 下载。"
+      "proof": "research/issuers/600206/visual-qa/result.json",
+      "scope": "新版完整HTML已在真实Chromium 1440/768/390及WebKit375核验当前SHA、原始元金额、逐图SVG与浏览器读图；执行者视觉自评已完成，独立人类研究和审美二审仍为NOT_CHECKED。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
@@ -94,5 +95,5 @@
       "scope": "等待主分支展开首页及文章线上字节和浏览器核验。"
     }
   },
-  "published_html_sha256": "ab5db1fb9e72e8ab72601da3cfba4613a8f2afde93006473e739c975b60c1723"
+  "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166"
 }

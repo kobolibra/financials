@@ -1,0 +1,126 @@
+{
+  "schema": "financials.editorial.self_review.v1",
+  "issuer": "600206",
+  "fiscal_period": "2025FY",
+  "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
+  "executor": "assistant_editorial_self_assessment; not independent human reviewer",
+  "reviewed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+  "reviewed_figures": 12,
+  "required_viewports": [
+    {
+      "browser": "chromium",
+      "width": 1440
+    },
+    {
+      "browser": "chromium",
+      "width": 768
+    },
+    {
+      "browser": "chromium",
+      "width": 390
+    },
+    {
+      "browser": "webkit",
+      "width": 375
+    }
+  ],
+  "browser_evidence": {
+    "run": 44896543805,
+    "url": "https://github.com/kobolibra/financials/actions/runs/44896543805",
+    "current_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+    "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
+    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44896543805",
+    "figure_count_each_view": 12,
+    "source_value_nodes_each_view": 75,
+    "text_outside_svg": 0,
+    "label_overlaps": 0,
+    "caveat": "机器检测仅验证已有设计标注及几何。自评根据实际整页桌面、原生390及WebKit375截图作了额外编辑审查，不代表独立人类审美二审。"
+  },
+  "rubric_version": "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md",
+  "scores": {
+    "R1": {
+      "score": 3,
+      "evidence": "围绕有研新材2025FY集团毛利改善3.2146亿元与CFO仍为负的张力组织主判断，下一财年可以通过回款、存货与利润方向反证。"
+    },
+    "R2": {
+      "score": 3,
+      "evidence": "收入同比增量/成本同比增量对毛利变化逐元闭合，单独研究产品当期毛利、费用率、净利润—CFO调节、FCF替代口径和资本结构。"
+    },
+    "R3": {
+      "score": 3,
+      "evidence": "经营性应收和库存占用的正常备货解释与回款恶化解释并列，明确下期需要的应收账龄、库存结构及现金改善证据。"
+    },
+    "R4": {
+      "score": 3,
+      "evidence": "工业制造研究同时覆盖毛利、扣非归母、减值与投资损益、经营现金、资本开支、期末应收存货及到期负债。"
+    },
+    "R5": {
+      "score": 3,
+      "evidence": "对非充分披露产品同比成本、量价归因、债务具体期限、其他流动资产和融资明细明确标记未证实；同一PDF/同一期间与计算值严格区分。"
+    },
+    "V1": {
+      "score": 2,
+      "evidence": "12图均设提问式标题及一句量化判断，但个别利润桥和地区Sankey阅读仍需配合简短文字，暂按2分自评。"
+    },
+    "V2": {
+      "score": 3,
+      "evidence": "利润增量采用有符号桥、费率采用共轴点图、流量增速采用对比条、营运存量采用期末差额、真实互斥地区收入采用守恒Sankey、资产结构采用恒等式图。"
+    },
+    "V3": {
+      "score": 2,
+      "evidence": "逐图关键金额直标、正负金额区别色彩、期间单位统一；原生390及375没有裁切/重叠，但部分图注信息密度较高，按2分处理。"
+    },
+    "V4": {
+      "score": 3,
+      "evidence": "从读者首屏三项重点、六指标总览进入利润来源、业务、利润质量、现金资本与下一期证伪，七篇主论证段落与12图相互交错。"
+    },
+    "V5": {
+      "score": 3,
+      "evidence": "来自当前HTML b62ff84的真实Chromium 1440/768/390与WebKit375逐图截图；每档12图、原始金额节点75、零文字越界/零标签重叠，可下载SVG。"
+    },
+    "V6": {
+      "score": 3,
+      "evidence": "每图回答不同会计/经营关系，合法缺少至少三单季证据时拒绝伪造季度趋势；四图旧稿未覆盖的盈利、费率、现金、存量、资本约束均得到适当图形。"
+    }
+  },
+  "score_total": 31,
+  "score_average": 2.818,
+  "min_score": 2,
+  "p0_findings": [],
+  "detailed_visual_findings": [
+    {
+      "figure": "working-capital",
+      "issue": "原稿曾在桌面发生中文长债务名称/类别以及负向数值相互重叠",
+      "resolution": "共享stock_delta组件已改为标签类别和金额图形分行，不更改原始金额/比例",
+      "retest": "current HTML Chromium 1440/768/390 plus WebKit375 no overlaps"
+    },
+    {
+      "figure": "region-income",
+      "issue": "最初未纳入真实互斥业务成本轴",
+      "resolution": "仅使用地区主营+其他业务的完整原始净成本分区，合法守恒；不与产品轴叠加",
+      "retest": "独立源节点守恒及各浏览器读图通过"
+    },
+    {
+      "figure": "product-profit",
+      "issue": "原图曾对收入与毛利绑定同一模糊来源表达式",
+      "resolution": "每一个收入/毛利条都有不同原始元金额公式并有负面注入测试",
+      "retest": "source_publication_audit and editorial_geometry per two editions pass"
+    },
+    {
+      "figure": "growth-bars",
+      "issue": "跨公司回归发现共享增速图的行距被一次误替换，不兼容海尔旧报告",
+      "resolution": "恢复标准增速图52/40行距；长营运资金标签仍按长度单独分层，不改变其他公司增速图或图中金额",
+      "retest": "本轮44896543805 Chromium/WebKit 当前HTML逐图执行；另需十条跨公司回归通过"
+    }
+  ],
+  "remaining_unverified": [
+    "OFFICIAL_PDF_BYTE_EQUIVALENCE=NOT_CHECKED; do not claim official-bytes equivalence.",
+    "HISTORICAL_PEERS_VALUATION=NOT_CHECKED; not a time-series or valuation report.",
+    "MAJOR_NOTES_COMPLETE and REPORTED_NOTE_TIES=NOT_CHECKED; especially other current assets and funding detail.",
+    "INDEPENDENT_HUMAN_REVIEW=NOT_CHECKED; this author self review cannot substitute it.",
+    "Production Cloudflare byte-equality not checked for candidate; no live deployment certification until merged."
+  ],
+  "release_scope": "source_limited_preview only; all limitations must remain visible; no assertion of independent top-tier certification",
+  "result_reason": "无硬门禁P0，R1–R5/V1–V6按真实整页和原生浏览器截图自评，每项>=2，平均>=2.5。",
+  "reviewed_source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b"
+}
