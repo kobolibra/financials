@@ -57,7 +57,7 @@
     "BROWSER_LOCAL": {
       "status": "PASS",
       "proof": "research/issuers/600206/visual-qa/result.json",
-      "scope": "候选全文双浏览器、原始元及当前HTML SHA的重新验收；独立编辑自审未完成"
+      "scope": "新版完整HTML已在真实Chromium 1440/768/390及WebKit375核验当前SHA、原始元金额、逐图SVG与浏览器读图；执行者视觉自评已完成，独立人类研究和审美二审仍为NOT_CHECKED。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
