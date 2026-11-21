@@ -1,0 +1,86 @@
+name: Build 600206 source-bound editorial candidate (not production promotion)
+
+on:
+  push:
+    branches:
+      - editorial/600206-full-research-rebuild-20261121
+    paths:
+      - research/issuers/600206/publication.json
+      - research/issuers/600206/editorial-manifest.json
+      - research/shared/source_publication.py
+      - .github/workflows/build-600206-editorial-candidate.yml
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild-with-real-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Install source PDF and browser dependencies
+        run: |
+          python -m pip install --disable-pip-version-check pymupdf==1.26.6 playwright==1.65.2
+      - name: Compile all finance figures and source-backed research to current exact bytes
+        run: |
+          python research/shared/source_publication.py research/issuers/600206 public/600206.html --catalog-report
+          python - <<'PY'
+          import json, pathlib, hashlib
+          root=pathlib.Path('.')
+          cat=root/'site/research_catalog.json'
+          d=json.loads(cat.read_text())
+          issuer=next(r for r in d['issuers'] if r['code']=='600206')
+          story=json.loads((root/'research/issuers/600206/publication.json').read_text())
+          issuer['figures']=len(story['figures'])
+          cat.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          html=(root/'public/600206.html').read_bytes()
+          sha=hashlib.sha256(html).hexdigest()
+          gate=root/'research/issuers/600206/release-gates.json'
+          g=json.loads(gate.read_text())
+          g['published_html_sha256']=sha
+          g['sankey']={'decision':'USED_CONSERVED','proof':'research/issuers/600206/figure-briefs.json','scope':'互斥地区轴，分组收入及自身成本闭合至集团收入、营业成本与毛利；产品轴不相加'}
+          g['gates']['VISUAL_EDITORIAL_SELF']['status']='NOT_CHECKED'
+          g['gates']['VISUAL_EDITORIAL_SELF']['proof']=''
+          g['gates']['VISUAL_EDITORIAL_SELF']['scope']='候选稿已重建，等待实际桌面/手机整页独立编辑自审；不得沿用四图版 PASS'
+          g['gates']['BROWSER_LOCAL']['status']='NOT_CHECKED'
+          g['gates']['BROWSER_LOCAL']['proof']=''
+          gate.write_text(json.dumps(g,ensure_ascii=False,indent=2)+'\n')
+          print('CANDIDATE_CHART_COUNT',len(story['figures']),'HTML_SHA',sha,'EDITORIAL_NOT_CHECKED',flush=True)
+          PY
+      - name: Install real Chromium WebKit and Chinese fonts
+        run: |
+          python -m playwright install --with-deps chromium webkit
+          sudo apt-get install -y fonts-noto-cjk
+      - name: Capture native 1440/768/390 Chromium and 375 WebKit, verify original amounts
+        run: |
+          python scripts/qa_offline_candidate.py public/600206.html --engine chromium --out work/600206-visual/chromium
+          python scripts/qa_offline_candidate.py public/600206.html --engine webkit --out work/600206-visual/webkit
+          cp work/600206-visual/chromium/browser.json research/issuers/600206/visual-qa/result.json
+          cp work/600206-visual/chromium/browser.json research/quality/editorial-generalization/600206/catalog-browser.json
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('research/issuers/600206/release-gates.json')
+          j=json.loads(p.read_text())
+          j['gates']['BROWSER_LOCAL']['status']='PASS'
+          j['gates']['BROWSER_LOCAL']['proof']='research/issuers/600206/visual-qa/result.json'
+          j['gates']['BROWSER_LOCAL']['scope']='候选全文双浏览器、原始元及当前HTML SHA的重新验收；独立编辑自审未完成'
+          p.write_text(json.dumps(j,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Commit generated candidate and source evidence without promoting publication
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/600206.html site/research_catalog.json research/issuers/600206/qa.json research/issuers/600206/figure-briefs.json research/issuers/600206/release-gates.json research/issuers/600206/visual-qa/result.json research/quality/editorial-generalization/600206/catalog-browser.json
+          git diff --cached --stat
+          git commit -m "build: regenerate 600206 twelve-chart research candidate with source and browser evidence"
+          git push origin HEAD:editorial/600206-full-research-rebuild-20261121
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 600206-editorial-rebuild-real-desktop-and-mobile
+          path: work/600206-visual/
+          retention-days: 14
+          if-no-files-found: warn
