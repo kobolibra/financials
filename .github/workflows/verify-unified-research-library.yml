@@ -108,7 +108,18 @@ jobs:
                 import sys
                 sys.path.insert(0,str(pathlib.Path('research/shared').resolve()))
                 from profit_chain_audit import check_reader
-                check_reader(page);check_reader(page,expanded=True)
+                row=next(r for r in catalog if r['code']==ticker)
+                if row.get('editorial_contract') == 'FULL_PROFIT_CHAIN_V1':
+                  check_reader(page);check_reader(page,expanded=True)
+                else:
+                  assert page.locator('body').get_attribute('data-issuer')==ticker
+                  assert page.locator('figure[data-editorial-role=primary]').count()==1
+                  figures=page.locator('figure[data-editorial-role]')
+                  assert figures.count()==row['figures'] and figures.count()>0
+                  for figure in figures.all():
+                    assert figure.locator('svg:visible').count()==1
+                    assert figure.locator('details table tr').count()>1
+                    assert figure.locator('button[data-export]').count()==1
                 assert page.locator('figure').count()>=(6 if ticker in old or ticker in initial_new else 1),(ticker,'report figures; finance/editorial gate is independent')
                 if ticker in old:
                   # V9 replaced the legacy .money-ribbon hero; test the
