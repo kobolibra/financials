@@ -98,6 +98,26 @@ def check_editorial_svg(markup,*,issuer,pdf_sha256):
                     require(close(r.get('width'),expected),'COMPARISON_WIDTH')
                     require(close(r.get('x'),left+(min(D(0),value)-low)/(high-low)*(right-left) if high!=low else left),'COMPARISON_POSITION')
             return len(bars)
+        if grammar=='PRODUCT_ECONOMICS':
+            # One original-yuan axis for each product's disclosed revenue and
+            # its *own* revenue-minus-cost gross profit. Refuse fake bars,
+            # independent per-row rescaling, or omitted source expressions.
+            bars=[r for r in rects if r.get('data-exact-value') is not None]
+            require(bool(bars) and len(bars)>=4 and len(bars)%2==0,'PRODUCT_REVENUE_GP_PAIRS')
+            values=[num(r.get('data-exact-value')) for r in bars]
+            low=min([D(0)]+values);high=max([D(0)]+values)
+            require(high>low,'PRODUCT_INVALID_DOMAIN')
+            left,span=(D(16),D(298)) if mobile else (D(260),D(480))
+            for r,v in zip(bars,values):
+                require(num(r.get('data-domain-min'))==low and num(r.get('data-domain-max'))==high,'PRODUCT_COMMON_AXIS')
+                expected_width=abs(v)/(high-low)*span
+                expected_x=left+(min(D(0),v)-low)/(high-low)*span
+                require(close(r.get('width'),expected_width),'PRODUCT_WIDTH')
+                require(close(r.get('x'),expected_x),'PRODUCT_POSITION')
+                require(bool(r.get('data-source-reference')),'PRODUCT_SOURCE')
+                require(r.get('data-period')==node.get('data-period'),'PRODUCT_PERIOD')
+                inside(r)
+            return len(bars)
         if grammar=='SOURCE_REPORTED_RATIO_V1':
             bars=[r for r in rects if r.get('data-exact-percent') is not None]
             span=D(298) if mobile else D(976)
