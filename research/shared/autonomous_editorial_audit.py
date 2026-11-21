@@ -454,11 +454,16 @@ def main():
         a.review_template.write_text(json.dumps(template, ensure_ascii=False, indent=2)
                                      + "\n", encoding="utf8")
     payload = {"schema": "financials.autonomous_editorial_batch.v1",
-               "count": len(results), "reports": results}
+               "count": len(results), "reports": results,
+               "scope": ("CHANGED_REPORTS_AUDITED" if results
+                         else "NO_REPORT_CHANGED_NOT_AN_EDITORIAL_CERTIFICATION")}
     if a.out:
         a.out.parent.mkdir(parents=True, exist_ok=True)
         a.out.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
                          encoding="utf8")
+    if not results:
+        print("EDITORIAL_AUTOPILOT_SCOPE ZERO_CHANGED_REPORTS; "
+              "this green step does not certify report depth or visual quality")
     for r in results:
         print("EDITORIAL_AUTOPILOT", r["issuer"], r["verdict"],
               "coverage", str(r["source_coverage_count"]) + "/" + str(r["source_opportunities"]))
