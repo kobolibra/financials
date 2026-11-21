@@ -3,6 +3,7 @@ from dataclasses import replace
 from decimal import Decimal as D
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 import unittest
@@ -75,6 +76,48 @@ class IncomeGeneralizationTests(unittest.TestCase):
                         self.assertLess(abs(abs(coords[15]-coords[1])-expected),D('.001'))
                         self.assertLess(abs(abs(coords[9]-coords[7])-expected),D('.001'))
                 self.assertNotIn('NaN',ET.tostring(tree,encoding='unicode'))
+
+
+    def test_real_source_profit_and_cost_ribbons_never_cross(self):
+        """Independent SVG geometry test. Yuan conservation alone misses braiding.
+
+        Previous source-major edge order crossed an earlier source's profit
+        with a later source's COGS even with exact ledger-perfect totals.
+        Exercise old and new issuers and every native canvas.
+        """
+        from source_income_adapter import compile_disclosed_income
+        for code in ('600206','600690','300548','688220','600900','600276'):
+            ledger=json.loads((ROOT/f'research/issuers/{code}/source-ledger.json').read_text())
+            p=compile_disclosed_income(ledger)
+            own={(s,o):D(v) for s,o,v in p.allocations}
+            for mobile in (False,True):
+                with self.subTest(code=code,mobile=mobile):
+                    root=ET.fromstring(render_income_sankey(
+                        p,mobile=mobile,embedded=True,readable_source_rows=mobile))
+                    for stage in ('source-to-revenue','revenue-to-outcome'):
+                        ribbons=[]
+                        for path in root.iter('{http://www.w3.org/2000/svg}path'):
+                            if path.get('data-stage')!=stage:
+                                continue
+                            xy=[D(v) for v in re.findall(
+                                r'-?\\d+(?:\\.\\d+)?',path.get('d'))]
+                            self.assertEqual(len(xy),16)
+                            # The centre of every strip must be ordered the
+                            # same at both endpoints: a true no-crossings test.
+                            src=(xy[1]+xy[15])/2
+                            dst=(xy[7]+xy[9])/2
+                            ribbons.append((src,dst))
+                            if stage=='revenue-to-outcome':
+                                key=(path.get('data-source-id'),
+                                     path.get('data-outcome-id'))
+                                self.assertEqual(D(path.get('data-ribbon-yuan')),own[key])
+                        self.assertGreater(len(ribbons),1)
+                        for i in range(len(ribbons)):
+                            for j in range(i+1,len(ribbons)):
+                                self.assertGreaterEqual(
+                                    (ribbons[i][0]-ribbons[j][0]) *
+                                    (ribbons[i][1]-ribbons[j][1]),D('-0.00001'),
+                                    f'{code} {stage}: crossed ribbon {i} vs {j}')
 
 
 if __name__=="__main__":unittest.main()
