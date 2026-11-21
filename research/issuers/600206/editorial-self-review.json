@@ -115,5 +115,6 @@
     "Production Cloudflare byte-equality not checked for candidate; no live deployment certification until merged."
   ],
   "release_scope": "source_limited_preview only; all limitations must remain visible; no assertion of independent top-tier certification",
-  "result_reason": "无硬门禁P0，R1–R5/V1–V6按真实整页和原生浏览器截图自评，每项>=2，平均>=2.5。"
+  "result_reason": "无硬门禁P0，R1–R5/V1–V6按真实整页和原生浏览器截图自评，每项>=2，平均>=2.5。",
+  "reviewed_source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b"
 }
