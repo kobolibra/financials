@@ -229,9 +229,11 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
 
     def test_uncataloged_public_report_is_a_hard_error(self):
         with patch("autonomous_editorial_audit.subprocess.run") as cmd:
-            cmd.return_value.stdout = "public/123456.html\n"
-            with self.assertRaisesRegex(ValueError, "UNCATALOGED_PUBLISHED_ISSUER_ROUTE"):
-                changed_issuers(ROOT, "origin/main")
+            for unpublished in ("public/123456.html", "public/research/v10/123456.html"):
+                cmd.return_value.stdout = unpublished + "\n"
+                with self.subTest(unpublished=unpublished):
+                    with self.assertRaisesRegex(ValueError, "UNCATALOGED_PUBLISHED_ISSUER_ROUTE"):
+                        changed_issuers(ROOT, "origin/main")
 
     def test_invalid_research_thesis_is_blocking_not_merely_a_chart_warning(self):
         args = original()
