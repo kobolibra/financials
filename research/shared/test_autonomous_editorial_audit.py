@@ -161,6 +161,25 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         out = audit(*args[:8], html_sha=args[8])
         self.assertIn("SECTOR_OR_PERIOD_COVERAGE_NOT_ESTABLISHED", codes(out))
 
+    def test_review_task_template_has_not_checked_not_a_fake_pass(self):
+        from autonomous_editorial_audit import main
+        with tempfile.TemporaryDirectory() as dirname:
+            tmp = Path(dirname)
+            with patch("sys.argv", [
+                "autonomous_editorial_audit.py", "--code", "600206",
+                "--root", str(ROOT), "--out", str(tmp / "audit.json"),
+                "--review-template", str(tmp / "todo.json"),
+            ]):
+                self.assertEqual(main(), 0)
+            tasks = json.loads((tmp / "todo.json").read_text())
+            audit_report = json.loads((tmp / "audit.json").read_text())["reports"][0]
+            self.assertEqual(tasks["status"], "NOT_CHECKED")
+            self.assertEqual(tasks["reviewed_html_sha256"], audit_report["html_sha256"])
+            self.assertEqual(len(tasks["chart_reviews"]), 12)
+            self.assertTrue(all(v["five_second_answer"] == "NOT_CHECKED"
+                                for v in tasks["chart_reviews"].values()))
+            self.assertEqual(tasks["independent_human_review"], "NOT_CHECKED")
+
     def test_current_issuer_cli_loader_is_source_grounded(self):
         out = audit_issuer(ROOT, "600206")
         self.assertRegex(out["original_pdf_sha256"], "^[a-f0-9]{64}$")
