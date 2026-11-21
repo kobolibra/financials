@@ -1,0 +1,53 @@
+name: Re-certify current financial Sankey reader art against real source ledgers
+on:
+  push:
+    branches: ['fix/sankey-uncrossed-source-flows-20261122']
+    paths:
+      - '.github/workflows/recertify-sankey-portfolio.yml'
+      - 'public/**'
+      - 'research/shared/unified_income_sankey.py'
+      - 'scripts/qa_editorial_migration.py'
+permissions:
+  contents: write
+jobs:
+  current-full-article-browser-receipts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install full Chinese browser and finance source inspection prerequisites
+        run: |
+          python -m pip install --disable-pip-version-check playwright==1.65.2 pymupdf==1.26.6
+          python -m playwright install --with-deps chromium
+          sudo apt-get install -y -qq fonts-noto-cjk
+      - name: Recheck ALL source-ledger facts and current HTML figure exports with real Chromium
+        run: |
+          python scripts/qa_editorial_migration.py --codes 300394 300308 300502 688111 000333 688220 600690 300548 300570 --out work/current-sankey-portfolio
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result=json.loads(Path("work/current-sankey-portfolio/result.json").read_text())
+          assert result["status"]=="PASS_LOCAL",result.get("status")
+          assert len(result["issuers"])==9 and len(result["cases"])==27
+          assert all(i["complete_figure_migration"]=="PASS_LOCAL" for i in result["issuers"].values())
+          assert result["independent_human_art_review"]=="NOT_CHECKED"
+          print("ACTUAL_NINE_ISSUER_SOURCE_FINANCIAL_AND_BROWSER_PROOF_PASS",result["svg_exports"])
+          PY
+      - name: Bind QA manifest to actual current HTML SHA but never invent human approval
+        run: |
+          cp work/current-sankey-portfolio/result.json research/quality/editorial-20261113-local/result.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add research/quality/editorial-20261113-local/result.json
+          if ! git diff --cached --quiet; then
+            git commit -m "qa: current nine-issuer full-figure native browser SHA receipts"
+            git push origin HEAD:fix/sankey-uncrossed-source-flows-20261122
+          fi
+      - name: Archive actual screenshots and original-finance source SVG downloads
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: finance-current-sankey-native-current-html-full-portfolio
+          path: work/current-sankey-portfolio/
+          retention-days: 30
+          if-no-files-found: warn
