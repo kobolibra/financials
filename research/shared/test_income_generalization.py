@@ -100,7 +100,7 @@ class IncomeGeneralizationTests(unittest.TestCase):
                             if path.get('data-stage')!=stage:
                                 continue
                             xy=[D(v) for v in re.findall(
-                                r'-?\\d+(?:\\.\\d+)?',path.get('d'))]
+                                r'-?\d+(?:\.\d+)?',path.get('d'))]
                             self.assertEqual(len(xy),16)
                             # The centre of every strip must be ordered the
                             # same at both endpoints: a true no-crossings test.
