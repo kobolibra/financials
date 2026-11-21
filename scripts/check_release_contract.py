@@ -301,6 +301,13 @@ def validate_release(root: Path, catalog_issuer: dict, record: dict,
     for key in sorted(GATES & gates.keys()):
         errors += validate_proof(root, f"{code}/{key}", gates[key])
     if record.get("release_class") == "source_limited_preview":
+        # A technically correct PDF/browser release may still be a 4-chart
+        # synopsis of a rich 200-page annual filing. Do not let source-limited
+        # class erase eligible research and visual-editorial questions. The
+        # generic criterion checks source availability, not a fixed chart count.
+        sys.path.insert(0, str(root / "research" / "shared"))
+        from editorial_peer_parity import validate_source_limited_full_research
+        errors += validate_source_limited_full_research(root, catalog_issuer, record)
         for key in sorted(PREVIEW_BLOCKERS & gates.keys()):
             if gates[key].get("status") != "PASS":
                 errors.append(f"PREVIEW_P0_BLOCKED {code}/{key}")
