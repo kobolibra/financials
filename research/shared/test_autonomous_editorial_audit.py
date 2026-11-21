@@ -220,16 +220,16 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
     def test_dossier_source_and_browser_changes_trigger_reaudit(self):
         with patch("autonomous_editorial_audit.subprocess.run") as cmd:
             cmd.return_value.stdout = (
-                "research/issuers/600206/source/600206_2025FY_complete_original.pdf\\n"
-                "research/issuers/600036/2026Q1/visual-qa/result.json\\n"
-                "research/issuers/600690/extracted/p087.txt\\n"
+                "research/issuers/600206/source/600206_2025FY_complete_original.pdf\n"
+                "research/issuers/600036/2026Q1/visual-qa/result.json\n"
+                "research/issuers/600690/extracted/p087.txt\n"
             )
             self.assertEqual(changed_issuers(ROOT, "origin/main"),
                              ["600036@2026Q1", "600206", "600690"])
 
     def test_uncataloged_public_report_is_a_hard_error(self):
         with patch("autonomous_editorial_audit.subprocess.run") as cmd:
-            cmd.return_value.stdout = "public/123456.html\\n"
+            cmd.return_value.stdout = "public/123456.html\n"
             with self.assertRaisesRegex(ValueError, "UNCATALOGED_PUBLISHED_ISSUER_ROUTE"):
                 changed_issuers(ROOT, "origin/main")
 
