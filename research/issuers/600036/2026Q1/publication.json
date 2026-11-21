@@ -1,6 +1,19 @@
 {
  "figures": [
   {
+   "id": "earning-scale",
+   "nav": "规模与收益",
+   "family": "volume_rate",
+   "eyebrow": "利息收支 · 合并口径",
+   "question": "扩表为何仍少收了利息？",
+   "takeaway": "资产放量贡献 {{earning_volume}} 亿元，收益率与结构等因素合计影响 {{earning_rate}} 亿元。",
+   "analysis": "以同期平均生息资产作为规模基数，沿同一金额轴核对从上年同期到本期的利息收入。",
+   "counter": "剩余项包含资产组合、收益率与交互变化；逐笔定价影响仍须更细披露。",
+   "identity": "上期利息收入＋平均余额变动×上期实际季度收益率＋其余变动＝本期利息收入。",
+   "flow": "fin_interest_income",
+   "average_balance": "average_earning_assets"
+  },
+  {
    "id": "nii-change",
    "nav": "净利息收入",
    "family": "signed_bridge",
@@ -77,7 +90,7 @@
      "parent_net"
     ]
    ],
-   "question": "多少利息增量转成了归母利润？",
+   "question": "手续费、减值和归母利润各变了多少？",
    "takeaway": "归母净利润增加 {{v2d_parent_net_abs}} 亿元，信用减值损益同比变化 {{v2d_credit_impairment}} 亿元。",
    "analysis": "手续费收入增加与信用减值扩大是两股相反的力量。各条独立零轴只比较本行的两期金额。",
    "counter": "贷款减值需和贷款风险组合匹配，银行整体减值不能直接当作新增贷款违约率。",
@@ -221,14 +234,14 @@
    "scale": "100000000",
    "decimals": 2
   },
-  "v2d_nii": {
+  "v2d_credit_impairment": {
    "expression": [
     [
-     "nii",
+     "credit_impairment",
      1
     ],
     [
-     "nii_prior",
+     "credit_impairment_prior",
      -1
     ]
    ],
@@ -251,21 +264,6 @@
    "decimals": 2,
    "signed": true
   },
-  "v2d_nii_abs": {
-   "expression": [
-    [
-     "nii",
-     1
-    ],
-    [
-     "nii_prior",
-     -1
-    ]
-   ],
-   "scale": "100000000",
-   "decimals": 2,
-   "absolute": true
-  },
   "v2d_fin_interest_income_abs": {
    "expression": [
     [
@@ -280,21 +278,6 @@
    "scale": "100000000",
    "decimals": 2,
    "absolute": true
-  },
-  "v2d_credit_impairment": {
-   "expression": [
-    [
-     "credit_impairment",
-     1
-    ],
-    [
-     "credit_impairment_prior",
-     -1
-    ]
-   ],
-   "scale": "100000000",
-   "decimals": 2,
-   "signed": true
   },
   "v2d_parent_net": {
    "expression": [
@@ -327,13 +310,24 @@
    "absolute": true
   }
  },
- "title": "少付利息撑起净利息增长",
- "deck": "招商银行一季度净利息收入同比增加 {{v2d_nii_abs}} 亿元，而利息收入下降 {{v2d_fin_interest_income_abs}} 亿元。资金利息支出的下降超过资产利息收入降幅。",
+ "title": "资产扩张，为何反而少收了利息？",
+ "deck": "按上期实际季度收益率估算，规模扩大本可增加利息收入。资产组合实际赚取的利息下降，负债端付息减少才使净利息收入上升。",
  "thesis": {
   "title": "核心判断",
   "body": "净利息收入增长主要来自负债端成本缓解。原件的平均余额表显示生息资产和计息负债均在扩张，资产端平均收益下降、负债端平均成本下降。贷款减值增加，令净利息增量向利润的传导打折。"
  },
- "metrics": [],
+ "metrics": [
+  {
+   "label": "资产扩张的利息收入贡献",
+   "value": "＋{{earning_volume}} 亿",
+   "context": "按上年同期季度比率估算"
+  },
+  {
+   "label": "收益率、结构与交互影响",
+   "value": "{{earning_rate}} 亿",
+   "context": "合计抵消了规模贡献"
+  }
+ ],
  "essays": [
   {
    "id": "research",
@@ -416,6 +410,10 @@
    "finding": "管理层存贷款数据与资产负债表账面余额口径不同。",
    "boundary": "图中采用合并法定报表账面金额，附注的管理口径保留原定义。"
   }
+ ],
+ "title_lines": [
+  "资产扩张，",
+  "为何反而|少收了利息？"
  ],
  "accounting_identities": [
   {

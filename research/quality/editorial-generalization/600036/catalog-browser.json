@@ -1,0 +1,40 @@
+[
+  {
+    "engine": "chromium",
+    "version": "157.0.8103.80",
+    "sha256": "e8c6b8436e9d241a435b3e2da97751ab3c5f7be10220675f685d9acbcab45acb",
+    "checked": {
+      "1440": [
+        "earning-scale",
+        "nii-change",
+        "earnings",
+        "balances"
+      ],
+      "768": [
+        "earning-scale",
+        "nii-change",
+        "earnings",
+        "balances"
+      ],
+      "390": [
+        "earning-scale",
+        "nii-change",
+        "earnings",
+        "balances"
+      ]
+    }
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "sha256": "e8c6b8436e9d241a435b3e2da97751ab3c5f7be10220675f685d9acbcab45acb",
+    "checked": {
+      "375": [
+        "earning-scale",
+        "nii-change",
+        "earnings",
+        "balances"
+      ]
+    }
+  }
+]

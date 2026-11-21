@@ -1799,7 +1799,7 @@
     },
     "goodwill": {
       "yuan": "9954000000",
-      "label": "商誉（报表科目）",
+      "label": "商誉",
       "page": 13,
       "type": "stock",
       "period": "2026-03-31",
@@ -2501,7 +2501,7 @@
     },
     "share_capital": {
       "yuan": "25220000000",
-      "label": "股本（报表科目）",
+      "label": "股本",
       "page": 14,
       "type": "stock",
       "period": "2026-03-31",

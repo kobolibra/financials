@@ -9,7 +9,7 @@
     "fiscal_period": "2025FY",
     "comparative_period": "2024FY",
     "base_unit": "人民币元",
-    "audit": "审计报告见财务报告章节（核对意见类型）",
+    "audit": "审计意见见原件审计报告",
     "income_figure_title": "",
     "offline_candidate": true,
     "restatement_review_required": false,
@@ -1828,7 +1828,7 @@
     },
     "inventory": {
       "yuan": "1263615216.63",
-      "label": "存货（报表科目）",
+      "label": "存货",
       "page": 86,
       "type": "stock",
       "period": "2025-12-31",
@@ -6375,6 +6375,168 @@
       "source_row_label": "扣除非经常性损益的净",
       "source_column": "上期/期初",
       "extraction": "NOTES_EXTRACT_V1"
+    },
+    "platinum_rev": {
+      "yuan": "3992088824.40",
+      "label": "铂族收入",
+      "page": 21,
+      "type": "flow",
+      "period": "2025FY",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            163.32000732421875,
+            496.6802978515625,
+            233.2108612060547,
+            509.7347106933594
+          ],
+          "printed": "3,992,088,824.40",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "铂族",
+      "source_column": "本期/期末",
+      "product": "铂族",
+      "measure": "revenue"
+    },
+    "platinum_cost": {
+      "yuan": "3926983828.95",
+      "label": "铂族成本",
+      "page": 21,
+      "type": "flow",
+      "period": "2025FY",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            255.47999572753906,
+            496.6802978515625,
+            325.3708801269531,
+            509.7347106933594
+          ],
+          "printed": "3,926,983,828.95",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "铂族",
+      "source_column": "本期/期末",
+      "product": "铂族",
+      "measure": "cost"
+    },
+    "film_rev": {
+      "yuan": "2287633485.23",
+      "label": "薄膜材料收入",
+      "page": 21,
+      "type": "flow",
+      "period": "2025FY",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            163.32000732421875,
+            523.080322265625,
+            233.2108612060547,
+            536.1347045898438
+          ],
+          "printed": "2,287,633,485.23",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "薄膜材料",
+      "source_column": "本期/期末",
+      "product": "薄膜材料",
+      "measure": "revenue"
+    },
+    "film_cost": {
+      "yuan": "1861336775.70",
+      "label": "薄膜材料成本",
+      "page": 21,
+      "type": "flow",
+      "period": "2025FY",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            255.47999572753906,
+            523.080322265625,
+            325.3708801269531,
+            536.1347045898438
+          ],
+          "printed": "1,861,336,775.70",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "薄膜材料",
+      "source_column": "本期/期末",
+      "product": "薄膜材料",
+      "measure": "cost"
+    },
+    "rare_rev": {
+      "yuan": "2367114832.64",
+      "label": "稀土材料收入",
+      "page": 21,
+      "type": "flow",
+      "period": "2025FY",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            163.32000732421875,
+            590.8803100585938,
+            233.2108612060547,
+            603.9346923828125
+          ],
+          "printed": "2,367,114,832.64",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "稀土材料",
+      "source_column": "本期/期末",
+      "product": "稀土材料",
+      "measure": "revenue"
+    },
+    "rare_cost": {
+      "yuan": "2167564103.14",
+      "label": "稀土材料成本",
+      "page": 21,
+      "type": "flow",
+      "period": "2025FY",
+      "scope": "consolidated",
+      "classification": "DISCLOSED",
+      "unit": "元",
+      "currency": "CNY",
+      "source_cells": [
+        {
+          "bbox": [
+            255.47999572753906,
+            590.8803100585938,
+            325.3708801269531,
+            603.9346923828125
+          ],
+          "printed": "2,167,564,103.14",
+          "wrapped_number": false
+        }
+      ],
+      "source_row_label": "稀土材料",
+      "source_column": "本期/期末",
+      "product": "稀土材料",
+      "measure": "cost"
     }
   },
   "segments": [

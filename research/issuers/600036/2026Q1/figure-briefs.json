@@ -4,6 +4,29 @@
   "source_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
   "figure_briefs": [
     {
+      "id": "earning-scale",
+      "family": "volume_rate",
+      "question": "扩表为何仍少收了利息？",
+      "takeaway": "资产放量贡献 82.07 亿元，收益率与结构等因素合计影响 -111.69 亿元。",
+      "identity": "上期利息收入＋平均余额变动×上期实际季度收益率＋其余变动＝本期利息收入。",
+      "counter": "剩余项包含资产组合、收益率与交互变化；逐笔定价影响仍须更细披露。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        5,
+        17
+      ],
+      "facts": [
+        "fin_interest_income",
+        "fin_interest_income_prior",
+        "average_earning_assets",
+        "average_earning_assets_prior"
+      ],
+      "source_expressions": {
+        "flow": "fin_interest_income",
+        "average_balance": "average_earning_assets"
+      }
+    },
+    {
       "id": "nii-change",
       "family": "signed_bridge",
       "question": "利息少收了，净利息为何还在增长？",
@@ -68,7 +91,7 @@
     {
       "id": "earnings",
       "family": "comparison",
-      "question": "多少利息增量转成了归母利润？",
+      "question": "手续费、减值和归母利润各变了多少？",
       "takeaway": "归母净利润增加 5.66 亿元，信用减值损益同比变化 -20.09 亿元。",
       "identity": "按图例所列期间核对相同项目。",
       "counter": "贷款减值需和贷款风险组合匹配，银行整体减值不能直接当作新增贷款违约率。",

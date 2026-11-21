@@ -12,6 +12,15 @@
       },
       {
         "index": 1,
+        "id": "product-profit",
+        "title": "三类产品谁收入高、谁毛利高？",
+        "role": "secondary",
+        "rationale": "EDITORIAL_V2 图族：产品经济性",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
         "id": "earnings",
         "title": "毛利改善是否传到了扣非利润？",
         "role": "secondary",
@@ -20,7 +29,7 @@
         "focus": []
       },
       {
-        "index": 2,
+        "index": 3,
         "id": "balances",
         "title": "哪两项营运资产同步扩张？",
         "role": "secondary",
