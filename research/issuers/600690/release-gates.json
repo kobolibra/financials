@@ -228,5 +228,13 @@
   "production_artifact": {
     "id": 14210872027,
     "zip_sha256": "283ac507d3615c4c15d83b5e6383c1755236aa8cb53abe3718b73486cffda9c0"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "683755dbecaee611747e398befb989957f1abb1b9f545b1b29ec2de7c791cc42",
+    "candidate_full_html_sha256": "f18f8b301718d708b080c6c84671a70851c2c654ca7edda90d2bc792b368da11",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "NOT_CHECKED",
+    "reason": "Sankey ribbon crossing repair; current-version browser and independent editorial signoff not yet completed. Old production release proof remains for deployed bytes only."
   }
 }
