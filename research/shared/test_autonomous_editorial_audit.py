@@ -277,5 +277,24 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         self.assertIn("BROWSER_VIEWPORT_COVERAGE_MISSING", codes(out))
 
 
+    def test_original_pdf_bytes_must_match_ledger_even_if_html_is_unchanged(self):
+        args = original()
+        args[3] = copy.deepcopy(args[3])
+        args[3]["source"]["original_bytes_sha256"] = "0" * 64
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("SOURCE_PDF_BYTES_CHANGED", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_original_pdf_must_not_be_a_missing_or_escaped_path(self):
+        for source_path in ("research/issuers/600206/source/missing.pdf",
+                            "../../etc/passwd"):
+            args = original()
+            args[3] = copy.deepcopy(args[3])
+            args[3]["source"]["source_path"] = source_path
+            out = audit(*args[:8], html_sha=args[8], strict=True)
+            with self.subTest(source_path=source_path):
+                self.assertIn("SOURCE_PDF_NOT_ARCHIVED", codes(out))
+
+
 if __name__ == "__main__":
     unittest.main()
