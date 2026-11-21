@@ -326,9 +326,11 @@ def render_stock_delta(rows, title, *, dates, mobile=False, **ident):
     # Only a genuinely long source label needs a separate classification and
     # amount/bar lane; no company-code-specific layout exception.
     long_label_lane = any(len(str(r["label"])) >= 8 for r in rows)
-    row_step = ((64 if mobile else 56) if long_label_lane
-                else (52 if mobile else 40))
-    total_h = len(rows) * row_step + 40
+    # Preserve the exact prior row positions for both old short-label and
+    # already source-verified long-label articles. Give only the long-label
+    # guide-rule extra tail space; the text/bar lanes themselves do not move.
+    row_step = 52 if mobile else 40
+    total_h = len(rows) * ((64 if mobile else 56) if long_label_lane else row_step) + 40
     c.raw(f'<line x1="{center}" x2="{center}" y1="30" y2="{total_h}" stroke="{DARK}" stroke-width="1.5"/>')
     for r, d in zip(rows, deltas):
         uses_cash = (d > 0) == (r['side'] == 'asset') and d != 0
