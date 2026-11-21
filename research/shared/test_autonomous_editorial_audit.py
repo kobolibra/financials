@@ -298,5 +298,23 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
                 self.assertIn("SOURCE_PDF_NOT_ARCHIVED", codes(out))
 
 
+    def test_legacy_changed_article_requires_all_current_source_browser_proof(self):
+        # A legacy issuer has no new publisher dossier. It is eligible only
+        # because nine real current screenshots/exports and the original PDF
+        # are cryptographically archived under the current HTML fingerprint.
+        out = audit_issuer(ROOT, "000333", strict=True)
+        self.assertEqual(
+            out["verdict"],
+            "LEGACY_ALL_FIGURES_SOURCE_VERIFIED_NOT_NEW_EDITORIAL_CERTIFIED")
+        self.assertEqual(out["independent_human_review"], "NOT_CHECKED")
+        self.assertEqual(out["blocker_count"], 0)
+        self.assertEqual(out["source_opportunities"], 0)
+        with patch("audit_unified_visual_corpus.verified_complete_migration",
+                   return_value=False):
+            with self.assertRaisesRegex(
+                    ValueError, "LEGACY_CHANGED_REPORT_CURRENT_BROWSER_PROOF_MISSING"):
+                audit_issuer(ROOT, "000333", strict=True)
+
+
 if __name__ == "__main__":
     unittest.main()
