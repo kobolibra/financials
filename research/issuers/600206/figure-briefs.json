@@ -423,6 +423,110 @@
       }
     },
     {
+      "id": "profit-to-parent",
+      "family": "signed_bridge",
+      "question": "8.59亿集团毛利，为什么最后留下2.65亿归母净利润？",
+      "takeaway": "从集团毛利逐层到营业利润、税前、合并净利润及归母，使用完整带符号差额；少数股东亏损允许归母高于合并净利润。",
+      "identity": "收入-营业成本+营业内净调节+营业外净调节+所得税影响+归母少数股东调整=归母。",
+      "counter": "会计级次桥不允许把营业内净调节宣称为单项产品毛利流失，更不能归因于销量或价格；必须对照费用和投资附注。",
+      "mobile": "桌面1040与手机330独立生成带符号逐元金额条、零轴与全部图例，不人为放大薄小来源；当前原件截图和导出 SVG 必须重新审核。",
+      "source_pages": [
+        90,
+        91
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "operating_profit",
+        "pretax",
+        "net_profit",
+        "parent_net"
+      ],
+      "source_expressions": {
+        "rows": [
+          [
+            "集团营业毛利",
+            [
+              [
+                "rev",
+                1
+              ],
+              [
+                "cogs",
+                -1
+              ]
+            ],
+            "start"
+          ],
+          [
+            "营业费用及营业内其他项目净影响",
+            [
+              [
+                "operating_profit",
+                1
+              ],
+              [
+                "rev",
+                -1
+              ],
+              [
+                "cogs",
+                1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "营业外收支净影响",
+            [
+              [
+                "pretax",
+                1
+              ],
+              [
+                "operating_profit",
+                -1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "所得税费用影响",
+            [
+              [
+                "net_profit",
+                1
+              ],
+              [
+                "pretax",
+                -1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "少数股东损益归母调整",
+            [
+              [
+                "parent_net",
+                1
+              ],
+              [
+                "net_profit",
+                -1
+              ]
+            ],
+            "step"
+          ],
+          [
+            "归母净利润",
+            "parent_net",
+            "total"
+          ]
+        ]
+      }
+    },
+    {
       "id": "cash-formation",
       "family": "signed_bridge",
       "question": "利润为何没变成经营现金？",
