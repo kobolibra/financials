@@ -4,7 +4,7 @@
   "fiscal_period": "2025FY",
   "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
   "executor": "assistant_editorial_self_assessment; not independent human reviewer",
-  "reviewed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+  "reviewed_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
   "reviewed_figures": 12,
   "required_viewports": [
     {
@@ -25,16 +25,16 @@
     }
   ],
   "browser_evidence": {
-    "run": 44896543805,
-    "url": "https://github.com/kobolibra/financials/actions/runs/44896543805",
-    "current_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+    "run": 44928973439,
+    "url": "https://github.com/kobolibra/financials/actions/runs/44928973439",
+    "current_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
     "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
-    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44896543805",
+    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44928973439",
     "figure_count_each_view": 12,
     "source_value_nodes_each_view": 75,
     "text_outside_svg": 0,
     "label_overlaps": 0,
-    "caveat": "机器检测仅验证已有设计标注及几何。自评根据实际整页桌面、原生390及WebKit375截图作了额外编辑审查，不代表独立人类审美二审。"
+    "caveat": "Current SHA-native Chromium 1440/768/390 and WebKit375 full-article source/browser audit; the assistant separately inspected the actual desktop/phone screenshots. Cost/GP crossing gone. Small source line and red cost area remain editorial limitations; V1/V3 only 2. Independent human art review NOT_CHECKED."
   },
   "rubric_version": "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md",
   "scores": {
@@ -60,7 +60,7 @@
     },
     "V1": {
       "score": 2,
-      "evidence": "12图均设提问式标题及一句量化判断，但个别利润桥和地区Sankey阅读仍需配合简短文字，暂按2分自评。"
+      "evidence": "Current graph 06 outgoing costs/profits no longer cross, issuer-specific accounting relations remain readable. The large red COGS area dominates and tiny source needs explanatory text, so visual editorial score remains 2 rather than top-tier."
     },
     "V2": {
       "score": 3,
@@ -68,7 +68,7 @@
     },
     "V3": {
       "score": 2,
-      "evidence": "逐图关键金额直标、正负金额区别色彩、期间单位统一；原生390及375没有裁切/重叠，但部分图注信息密度较高，按2分处理。"
+      "evidence": "True 1440/768/390 Chromium and 375 WebKit screenshots preserve native labels and monetary proportions. Mobile narrative remains dense; score stays 2 pending external art review."
     },
     "V4": {
       "score": 3,
@@ -76,7 +76,7 @@
     },
     "V5": {
       "score": 3,
-      "evidence": "来自当前HTML b62ff84的真实Chromium 1440/768/390与WebKit375逐图截图；每档12图、原始金额节点75、零文字越界/零标签重叠，可下载SVG。"
+      "evidence": "Current HTML 93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a recaptured in Chromium 1440/768/390 and WebKit375 with 12 finance figures each and no machine-detected overlap or clipping. The author also visually inspected the current desktop and two phone screenshots; independent reviewer NOT_CHECKED."
     },
     "V6": {
       "score": 3,
@@ -111,6 +111,12 @@
       "issue": "跨公司回归发现共享增速图的行距被一次误替换，不兼容海尔旧报告",
       "resolution": "恢复标准增速图52/40行距；长营运资金标签仍按长度单独分层，不改变其他公司增速图或图中金额",
       "retest": "本轮44896543805 Chromium/WebKit 当前HTML逐图执行；另需十条跨公司回归通过"
+    },
+    {
+      "figure": "region-income",
+      "issue": "Earlier source-major mixing node paths caused physically crossed product/region cost versus gross-profit bands despite exact-yuan conservation.",
+      "resolution": "Shared outcome-major ribbon routing and canonical source-ledger rebuild remove crossings without artificial minimum-width source lines or altered accounting.",
+      "retest": "New current SHA desktop/phone browser screenshots and six-issuer no-crossing SVG regression, current action 44928973439"
     }
   ],
   "remaining_unverified": [
@@ -121,6 +127,6 @@
     "Production Cloudflare byte-equality not checked for candidate; no live deployment certification until merged."
   ],
   "release_scope": "source_limited_preview only; all limitations must remain visible; no assertion of independent top-tier certification",
-  "result_reason": "无硬门禁P0，R1–R5/V1–V6按真实整页和原生浏览器截图自评，每项>=2，平均>=2.5。",
+  "result_reason": "Self-review only: exact original data, all full-article Chromium/WebKit current build screenshots, no P0 ribbon crossing. V1/V3 retain 2/3 due red cost dominance, small-source legibility and editorial density; independent financial/art human signoff remains NOT_CHECKED.",
   "reviewed_source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b"
 }

@@ -249,7 +249,7 @@
   },
   "unmerged_candidate": {
     "base_deployed_html_sha256": "7cf612e57fe67de8d83e70ec8f1313e1309af932334e1babc5f37115b80ace62",
-    "candidate_full_html_sha256": "09c83e3f62994fb5c8c77017e97ce9ce87d7b25a5f0b1f6a7acc7c60329341ec",
+    "candidate_full_html_sha256": "ec7c221a2a5b1df0fa4dc78785beb35d265eef19627b383f5f2de0fa96d93334",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
