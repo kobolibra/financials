@@ -48,3 +48,11 @@
 - `research-preview`：P0 清零，自评达标，源与会计门 PASS，浏览器门 PASS，独立人类二审 NOT_CHECKED（当前所有报告的状态）。
 - `source_limited_preview`：存在已披露但未解决的原件矛盾或缺少关键附注，文中显式说明。
 - 不存在"顶级""机构认证"等自授标签。只有真实独立财务与视觉审稿记录存在时，才可在 `project-status.json` 的 `review_evidence` 中登记。
+
+## 5. 降低用户干预的自主审美复核证据
+
+对每一个当前 `publication.json` figure 记录：读者五秒内读到的独立结论、真实原始金额与图形语义、层级/留白与颜色语义、真实390及WebKit375可读性、为什么不用更简单的图/替代解释、与至少两份现时同库优秀作品的**具体视觉差距**、本次修订或者保留理由。执行者必须实际打开截图；仅靠几何检测没有资格给 V1/V3/V4 满分。
+
+`editorial-self-review.json` 额外记录 `peer_calibration.peers` 每项的公司代码、当前 HTML SHA、`research_delta` 与 `visual_delta`，以及 `chart_reviews` 的逐图七项说明，供 `research/shared/autonomous_editorial_audit.py --strict` 拒绝泛化稿未完成的自审。该脚本产生修订需求而非视觉美学评分。没有合适的行业/报告期对照时诚实标 `NOT_ESTABLISHED`；不能写虚假同行 benchmark。作者审美自评、其他 AI 独立意见和真实人类二审分别登记。
+
+任何视图/源表改动都使旧 HTML SHA 下的阅读证据失效。每次修订至少比较首屏、主图、完整图序及手机整页；不把图多、文字多、自评分高或没有越界当作顶级审美。历史已发布报告可以作为校准样本，但不继承他们的当前 SHA、研究结论或缺陷。

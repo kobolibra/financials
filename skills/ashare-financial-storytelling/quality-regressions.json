@@ -1112,6 +1112,56 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_ISSUER_ONLY"
+    },
+    {
+      "id": "EDIT-101",
+      "root_cause": "年报拥有大量已披露源事实，但只输出四张图和极少分析，仍能以发布CI全绿进入正式目录。",
+      "correction": "按源键识别合法的利润、现金、营运资本、资本结构重要问题；发现来源充足但图形/论证缺失就要求编辑返工。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_four_chart_synopsis_does_not_get_credit_for_available_economics",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDIT-102",
+      "root_cause": "以图形family或问题标题字符串代替真实源值参与，错误把source-limited短稿认证为已覆盖全部经济关系。",
+      "correction": "来源字段逐元素核对精确账本键；标题里写cfo/cash_close、无源键空收入图必须失败。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_display_words_or_family_labels_cannot_replace_exact_fact_operands",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDIT-103",
+      "root_cause": "有截图、数字及作者总分，却未与同行真样本逐图盲读、未记录每图可读性问题；仍被误称顶级美学。",
+      "correction": "两份当前HTML指纹的同库成熟作品比较 + 每图真实桌面/手机视觉自审；缺失为修订债而非顶级认证。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_peer_benchmark_requires_current_bytes_and_real_comparison",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "VISUAL_EDITORIAL_SELF",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDIT-104",
+      "root_cause": "跨行业、跨期的旧图与新图可能被混用；新增季度稿无法证明工业年度模板的通用性。",
+      "correction": "代码@报告期精确选定独立dossier；未支持行业仅给NOT_ESTABLISHED，不外推制造业样本。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_new_period_beyond_industrial_basis_is_not_auto_certified",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "RESEARCH_COUNTERCASE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "EDIT-105",
+      "root_cause": "修改研究或视觉稿后仍沿用旧PDF/HTML作者审阅签名，数据正确也不能证明实际阅读设计。",
+      "correction": "在当前HTML与原PDF的两个SHA上绑定自评，逐图分析与来源回归；改动任何相关字节必须重新审。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_stale_pdf_and_html_are_blockers",
+      "scope": "cross_issuer_process",
+      "transfer_gate": "BROWSER_LOCAL",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
