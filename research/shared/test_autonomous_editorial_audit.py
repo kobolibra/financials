@@ -217,5 +217,45 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
             self.assertEqual(cmd.call_args.kwargs["check"], True)
 
 
+    def test_dossier_source_and_browser_changes_trigger_reaudit(self):
+        with patch("autonomous_editorial_audit.subprocess.run") as cmd:
+            cmd.return_value.stdout = (
+                "research/issuers/600206/source/600206_2025FY_complete_original.pdf\\n"
+                "research/issuers/600036/2026Q1/visual-qa/result.json\\n"
+                "research/issuers/600690/extracted/p087.txt\\n"
+            )
+            self.assertEqual(changed_issuers(ROOT, "origin/main"),
+                             ["600036@2026Q1", "600206", "600690"])
+
+    def test_uncataloged_public_report_is_a_hard_error(self):
+        with patch("autonomous_editorial_audit.subprocess.run") as cmd:
+            cmd.return_value.stdout = "public/123456.html\\n"
+            with self.assertRaisesRegex(ValueError, "UNCATALOGED_PUBLISHED_ISSUER_ROUTE"):
+                changed_issuers(ROOT, "origin/main")
+
+    def test_invalid_research_thesis_is_blocking_not_merely_a_chart_warning(self):
+        args = original()
+        args[5] = copy.deepcopy(args[5])
+        args[5]["source_pdf_sha256"] = "0" * 64
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("RESEARCH_EVIDENCE_INVALID", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_research_claim_math_is_a_required_editorial_precondition(self):
+        args = original()
+        args[5] = copy.deepcopy(args[5])
+        args[5]["theses"][0]["calculations"][0]["expected_yuan"] = "1"
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("RESEARCH_EVIDENCE_INVALID", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_mismatched_source_identity_cannot_be_published(self):
+        args = original()
+        args[3] = copy.deepcopy(args[3])
+        args[3]["issuer"]["code"] = "123456"
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("REPORT_ISSUER_MISMATCH", codes(out))
+
+
 if __name__ == "__main__":
     unittest.main()
