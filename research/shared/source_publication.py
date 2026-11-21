@@ -7,7 +7,7 @@ from pathlib import Path
 from decimal import Decimal as D
 from html import escape as H
 import hashlib,json,re,sys
-from editorial_bridge import render_bridge,render_comparison,render_balance,render_components
+from editorial_bridge import render_product_economics,render_bridge,render_comparison,render_balance,render_components
 from source_income_adapter import render_sector_income,compile_disclosed_income
 ROOT=Path(__file__).resolve().parents[2]
 def read(p):return json.loads(p.read_text())
@@ -159,6 +159,53 @@ def expand_claims(story,ledger):
         if isinstance(value,dict):return {k:walk(v) for k,v in value.items()}
         return value
     return walk(story)
+def product_rows(ledger, figure):
+    rows = []
+    seen = set()
+    for label, revenue, cost in figure['products']:
+        if revenue == cost or {revenue, cost} & seen:
+            raise ValueError('PRODUCT_DUPLICATE_SOURCE')
+        seen.update((revenue, cost))
+        for key, measure in ((revenue, 'revenue'), (cost, 'cost')):
+            fact = ledger['facts'][key]
+            if fact.get('product') != label or fact.get('measure') != measure:
+                raise ValueError('PRODUCT_ROW_OR_MEASURE_MISMATCH ' + key)
+            if (fact['period'] != ledger['issuer']['fiscal_period'] or fact['type'] != 'flow'
+                    or fact['scope'] != 'consolidated' or fact['unit'] != '元'
+                    or fact['classification'] != 'DISCLOSED' or not fact.get('source_cells')):
+                raise ValueError('PRODUCT_CURRENT_DISCLOSED_FLOW_REQUIRED')
+        rows.append((label, amount(ledger, revenue), amount(ledger, cost), reference([revenue, cost])))
+    return rows
+
+
+def volume_rate_rows(ledger, figure):
+    """Decompose a monetary flow using disclosed, comparable average balances."""
+    from comparison_basis import require_pair
+    flow, base = figure['flow'], figure['average_balance']
+    facts = ledger['facts']
+    if flow == base:
+        raise ValueError('VOLUME_RATE_DISTINCT_MEASURES_REQUIRED')
+    for key in (flow, base):
+        require_pair(ledger, key, key + '_prior')
+        if facts[key]['type'] != 'flow' or facts[key]['scope'] != 'consolidated':
+            raise ValueError('VOLUME_RATE_PERIOD_FLOW_REQUIRED')
+        if (facts[key]['period'] != ledger['issuer']['fiscal_period']
+                or facts[key + '_prior']['period'] != ledger['issuer']['comparative_period']):
+            raise ValueError('VOLUME_RATE_REPORT_PERIOD_REQUIRED')
+    if '平均' not in facts[base].get('denominator_definition', ''):
+        raise ValueError('VOLUME_RATE_DISCLOSED_AVERAGE_REQUIRED')
+    old, now = (amount(ledger, k) for k in (flow + '_prior', flow))
+    previous, current = (amount(ledger, k) for k in (base + '_prior', base))
+    if min(previous, current) <= 0:
+        raise ValueError('VOLUME_RATE_POSITIVE_BALANCE_REQUIRED')
+    volume = ((current - previous) * old / previous).quantize(D('0.01'))
+    source = reference([flow, flow + '_prior', base, base + '_prior'])
+    return [('上期' + facts[flow]['label'], old, 'start', flow + '_prior'),
+            ('平均规模变化', volume, 'step', source),
+            ('比率、结构及交互变化', now - old - volume, 'step', source),
+            ('本期' + facts[flow]['label'], now, 'total', flow)]
+
+
 def validate_offline_comparisons(ledger, story):
     """Enforce the same comparison contract for the figures, prose and evidence rows."""
     tools = ROOT / 'skills' / 'ashare-financial-storytelling' / 'tools'
@@ -231,6 +278,10 @@ def validate_offline_comparisons(ledger, story):
                            current_periods.pop()]
                 if figure['periods'] != periods:
                     raise ValueError('OFFLINE_COMPARISON_LEGEND_MISMATCH ' + figure['id'])
+        elif family == 'product_economics':
+            product_rows(ledger, figure)
+        elif family == 'volume_rate':
+            volume_rate_rows(ledger, figure)
         elif family == 'signed_bridge':
             for _, expr, _ in figure['rows']:
                 expression(dependencies(expr))
@@ -339,6 +390,8 @@ def validate(ledger,story,root=ROOT):
     return {'status':'PASS','facts':len(ledger['facts']),'accounting_identities':len(story['accounting_identities']),'pdf_sha256':source['original_bytes_sha256'],'source_cells':'EXACT_ARCHIVED_PDF_COORDINATES_NOT_HUMAN_AUDIT'}
 def chart(ledger,figure,mobile):
     issuer=ledger['issuer'];kw=dict(issuer=issuer['code'],pdf_sha256=ledger['source']['original_bytes_sha256'],mobile=mobile);period=issuer['fiscal_period'];title=figure['question'];v=lambda e:amount(ledger,e);family=figure['family']
+    if family=='product_economics':return render_product_economics(product_rows(ledger,figure),title,period=period,**kw)
+    if family=='volume_rate':return render_bridge(volume_rate_rows(ledger,figure),title,period=period,**kw)
     if family=='income':return render_sector_income(ledger,mobile=mobile)
     if family=='signed_bridge':return render_bridge([(l,v(e),role,reference(e)) for l,e,role in presentation_rows(figure)],title,period=figure.get('period',period),**kw)
     if family=='comparison':return render_comparison([(l,v(p),v(n),json.dumps({'periods':figure['periods'],'prior':p,'current':n},ensure_ascii=False,separators=(',',':'))) for l,p,n in figure['pairs']],title,periods=figure['periods'],**kw)
@@ -380,6 +433,10 @@ def render_exhibit(ledger,figure,mobile,kw,title,period):
         return X.render_stock_delta(rows,title,dates=figure['dates'],mobile=mobile,**ident)
     raise ValueError('DOSSIER_UNKNOWN_FINANCIAL_GRAMMAR '+family)
 def cited(figure):
+    if figure.get('family') == 'product_economics':
+        return [key for _, revenue, cost in figure['products'] for key in (revenue, cost)]
+    if figure.get('family') == 'volume_rate':
+        return [key for k in (figure['flow'], figure['average_balance']) for key in (k, k + '_prior')]
     if 'facts' in figure:return figure['facts']
     expr=[]
     for l,e,role in (figure.get('rows',[]) if figure.get('family')=='signed_bridge' else []):expr+=dependencies(e)
@@ -406,6 +463,19 @@ def title_markup(story):
     if not isinstance(lines,list) or not 2<=len(lines)<=3 or ''.join(lines).replace('|','')!=story['title']:raise ValueError('DOSSIER_TITLE_LINES_MUST_SPLIT_TITLE')
     return ''.join('<span style="display:block">'+''.join('<span style="display:inline-block">'+H(u)+'</span>' for u in line.split('|') if u)+'</span>' for line in lines)
 def ids_of(story):return [f['id'] for f in story['figures']]
+CSS_OPENING = """
+main{padding-top:0}.opening{--paper:#f2ede2;--ink:#322e28;--accent:#84502d;background:var(--paper);color:var(--ink);
+padding:clamp(32px,5vw,80px) clamp(22px,5vw,76px);margin:0 -28px 22px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(200px,.65fr);gap:6%;align-items:center}
+.opening.bank{--paper:#102f36;--ink:#f6f5eb;--accent:#a7ddce}
+.opening .eyebrow,.opening .metrics strong{color:var(--accent)}.opening h1{font-size:clamp(34px,4.3vw,62px);line-height:1.22;text-wrap:balance;margin:20px 0}
+.opening .deck{color:var(--ink);font-size:clamp(16px,1.5vw,20px);line-height:1.7;margin:0}
+.opening .metrics{display:grid;gap:24px;border-left:1px solid currentColor;padding-left:24px}
+.opening .metrics span,.opening .metrics small{display:block;font-size:13px}.opening .metrics strong{display:block;font:600 clamp(30px,3vw,44px)/1.17 Georgia,serif;font-variant-numeric:tabular-nums}
+.opening .metrics small{margin-top:3px}.opening~nav a{border:0;border-radius:0;border-bottom:1px solid #bdccc7;padding:3px 2px}.opening~nav{gap:10px 18px}
+@media(max-width:850px){.opening{margin:0 -18px 14px;grid-template-columns:1fr;gap:24px;padding:32px 18px}.opening h1{margin:18px 0 14px}.opening .metrics{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-left:0;border-top:1px solid currentColor;padding:16px 0 0;gap:12px}}
+"""
+
+
 def publish(folder,out=None,*,catalog_report=False):
     folder=Path(folder);ledger=read(folder/'source-ledger.json');story=read(folder/'publication.json');qa=validate(ledger,story);story=expand_claims(story,ledger);issuer=ledger['issuer'];code=issuer['code'];source=ledger['source'];parts=[];briefs=[]
     offline = story.get('composition') == 'OFFLINE_RESEARCH_CANDIDATE_V1'
@@ -449,7 +519,7 @@ def publish(folder,out=None,*,catalog_report=False):
             parts[-1]=parts[-1].replace('</figure>','<details><summary>展开完整原始变动逐项对账（人民币元）</summary><div class="table-scroll"><table><tr><th>原始变动项目</th><th>精确金额</th><th>会计角色</th></tr>'+full_rows+'</table></div></details></figure>')
         briefs.append({'id':f['id'],'family':f['family'],'question':f['question'],'takeaway':f['takeaway'],'identity':f['identity'],'counter':f['counter'],'mobile':'桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。','source_pages':pages,'facts':keys})
         if offline:
-            briefs[-1]['source_expressions'] = {k: f[k] for k in ('periods', 'pairs', 'rows') if k in f}
+            briefs[-1]['source_expressions'] = {k: f[k] for k in ('periods', 'pairs', 'rows', 'flow', 'average_balance', 'products') if k in f}
     def essay(s):return '<section id="'+s['id']+'" class="essay"><div class="eyebrow">'+H(s['eyebrow'])+'</div><h2>'+H(s['title'])+'</h2>'+''.join('<p>'+H(p)+'</p>' for p in s['paragraphs'])+'</section>'
     # Essays without `after` keep the original position (after the second figure).
     # `after: <figure id>` or `after: end` interleaves prose with figures for reading rhythm.
@@ -483,6 +553,19 @@ def publish(folder,out=None,*,catalog_report=False):
     target=Path(out) if out else ROOT/'public'/route.lstrip('/');target.parent.mkdir(exist_ok=True,parents=True)
     from publication_editorial import finalize_publication
     if offline:
+        if story['metrics']:
+            # Compose an opening spread from the article's own evidence.
+            # Keep the verification and navigation in the reading column.
+            hero_start = html.index('<main>') + len('<main>')
+            status_start = html.index('<p class="status">', hero_start)
+            metrics_start = html.index('<div class="metrics">', status_start)
+            metrics_end = html.index('</div></div>', metrics_start) + len('</div></div>')
+            hero = ('<section class="opening"><div class="opening-copy">' + html[hero_start:status_start]
+                    + '</div>' + html[metrics_start:metrics_end] + '</section>')
+            html = html[:hero_start] + hero + html[status_start:metrics_start] + html[metrics_end:]
+            tone = 'bank' if story.get('capability_plan', {}).get('sector_route') == 'bank' else 'enterprise'
+            html = html.replace('<section class="opening">', f'<section class="opening {tone}">', 1)
+            html = html.replace('</style>', CSS_OPENING + '</style>', 1)
         comparison = []
         for key, basis in ledger.get('comparison_basis', {}).items():
             if basis['status'] != 'restated':

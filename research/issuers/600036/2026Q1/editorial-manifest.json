@@ -3,24 +3,33 @@
     "figures": [
       {
         "index": 0,
-        "id": "nii-change",
-        "title": "利息少收了，净利息为何还在增长？",
+        "id": "earning-scale",
+        "title": "扩表为何仍少收了利息？",
         "role": "primary",
-        "rationale": "EDITORIAL_V2 图族：净利息收入",
+        "rationale": "EDITORIAL_V2 图族：规模与收益",
         "summary": false,
         "focus": []
       },
       {
         "index": 1,
+        "id": "nii-change",
+        "title": "利息少收了，净利息为何还在增长？",
+        "role": "secondary",
+        "rationale": "EDITORIAL_V2 图族：净利息收入",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
         "id": "earnings",
-        "title": "多少利息增量转成了归母利润？",
+        "title": "手续费、减值和归母利润各变了多少？",
         "role": "secondary",
         "rationale": "EDITORIAL_V2 图族：利润与减值",
         "summary": false,
         "focus": []
       },
       {
-        "index": 2,
+        "index": 3,
         "id": "balances",
         "title": "贷款和存款的账面余额怎样变？",
         "role": "secondary",

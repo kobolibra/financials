@@ -1,0 +1,40 @@
+[
+  {
+    "engine": "chromium",
+    "version": "157.0.8103.80",
+    "sha256": "ab5db1fb9e72e8ab72601da3cfba4613a8f2afde93006473e739c975b60c1723",
+    "checked": {
+      "1440": [
+        "cash-formation",
+        "product-profit",
+        "earnings",
+        "balances"
+      ],
+      "768": [
+        "cash-formation",
+        "product-profit",
+        "earnings",
+        "balances"
+      ],
+      "390": [
+        "cash-formation",
+        "product-profit",
+        "earnings",
+        "balances"
+      ]
+    }
+  },
+  {
+    "engine": "webkit",
+    "version": "26.0",
+    "sha256": "ab5db1fb9e72e8ab72601da3cfba4613a8f2afde93006473e739c975b60c1723",
+    "checked": {
+      "375": [
+        "cash-formation",
+        "product-profit",
+        "earnings",
+        "balances"
+      ]
+    }
+  }
+]

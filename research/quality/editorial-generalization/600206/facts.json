@@ -1,0 +1,62 @@
+{
+  "platinum_rev": {
+    "page": 21,
+    "label": "铂族收入",
+    "column": 1,
+    "expect": "3,992,088,824.40",
+    "type": "flow",
+    "row": "^铂族$",
+    "product": "铂族",
+    "measure": "revenue"
+  },
+  "platinum_cost": {
+    "page": 21,
+    "label": "铂族成本",
+    "column": 2,
+    "expect": "3,926,983,828.95",
+    "type": "flow",
+    "row": "^铂族$",
+    "product": "铂族",
+    "measure": "cost"
+  },
+  "film_rev": {
+    "page": 21,
+    "label": "薄膜材料收入",
+    "column": 1,
+    "expect": "2,287,633,485.23",
+    "type": "flow",
+    "row": "^薄膜材料$",
+    "product": "薄膜材料",
+    "measure": "revenue"
+  },
+  "film_cost": {
+    "page": 21,
+    "label": "薄膜材料成本",
+    "column": 2,
+    "expect": "1,861,336,775.70",
+    "type": "flow",
+    "row": "^薄膜材料$",
+    "product": "薄膜材料",
+    "measure": "cost"
+  },
+  "rare_rev": {
+    "page": 21,
+    "label": "稀土材料收入",
+    "column": 1,
+    "expect": "2,367,114,832.64",
+    "type": "flow",
+    "row": "^稀土材料$",
+    "product": "稀土材料",
+    "measure": "revenue"
+  },
+  "rare_cost": {
+    "page": 21,
+    "label": "稀土材料成本",
+    "column": 2,
+    "expect": "2,167,564,103.14",
+    "type": "flow",
+    "row": "^稀土材料$",
+    "product": "稀土材料",
+    "measure": "cost"
+  }
+}

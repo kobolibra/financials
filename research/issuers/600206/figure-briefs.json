@@ -125,6 +125,45 @@
       }
     },
     {
+      "id": "product-profit",
+      "family": "product_economics",
+      "question": "三类产品谁收入高、谁毛利高？",
+      "takeaway": "铂族收入在所列产品中最高，薄膜材料留下的毛利最多。",
+      "identity": "本年各产品毛利＝同一产品披露收入－同一产品披露成本。",
+      "counter": "图中选取三类产品，展示本年水平。集团经营性应收和存货的现金调节未按产品拆分。",
+      "mobile": "桌面1040/1100与手机330独立绘制；全部金额与来源可见并可下载当前版本。",
+      "source_pages": [
+        21
+      ],
+      "facts": [
+        "platinum_rev",
+        "platinum_cost",
+        "film_rev",
+        "film_cost",
+        "rare_rev",
+        "rare_cost"
+      ],
+      "source_expressions": {
+        "products": [
+          [
+            "铂族",
+            "platinum_rev",
+            "platinum_cost"
+          ],
+          [
+            "薄膜材料",
+            "film_rev",
+            "film_cost"
+          ],
+          [
+            "稀土材料",
+            "rare_rev",
+            "rare_cost"
+          ]
+        ]
+      }
+    },
+    {
       "id": "earnings",
       "family": "comparison",
       "question": "毛利改善是否传到了扣非利润？",

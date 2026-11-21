@@ -46,17 +46,17 @@
     "CHART_SEMANTICS": {
       "status": "PASS",
       "proof": "research/issuers/600036/2026Q1/figure-briefs.json",
-      "scope": "签名桥与两期对照使用相应金额、期间和符号。"
+      "scope": "逐图使用对应的来源金额、期间和会计关系。"
     },
     "VISUAL_EDITORIAL_SELF": {
-      "status": "PASS",
-      "proof": "research/quality/pdf-generalization-20261120/600036/browser.json",
-      "scope": "候选正文与图表的真实截图经作者自评。"
+      "status": "NOT_CHECKED",
+      "proof": "",
+      "scope": "本次目录版按实际报告字节重新核验。"
     },
     "BROWSER_LOCAL": {
       "status": "PASS",
-      "proof": "https://github.com/kobolibra/financials/actions/runs/44705628587",
-      "scope": "同一正文及三图通过 Chromium 三档与 WebKit 375 验收，目录整合另核。"
+      "proof": "research/quality/editorial-generalization/600036/catalog-browser.json",
+      "scope": "双引擎打开目录版，检查首页往返、各尺寸四图及 SVG 下载。"
     },
     "OFFLINE_REBUILD": {
       "status": "PASS",
@@ -94,5 +94,5 @@
       "scope": "等待主分支展开首页及文章线上字节和浏览器核验。"
     }
   },
-  "published_html_sha256": "9cdcfdd76ffed043ac39737783151b3fa435c619a60478e96ac9b2efce269c64"
+  "published_html_sha256": "e8c6b8436e9d241a435b3e2da97751ab3c5f7be10220675f685d9acbcab45acb"
 }

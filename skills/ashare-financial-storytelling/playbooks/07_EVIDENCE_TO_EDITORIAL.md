@@ -4,7 +4,7 @@
 
 ## 0. 从单份 PDF 到离线成稿
 
-1. 用 `start_report.py PDF` 启动。后续命令统一在仓库根目录运行，设置 `FINANCIALS_DOSSIER_ROOT=work/dossiers`，传入入口识别的 `--code` 和 `--period`。签名桥和两期对照属于当前离线适配范围。按问题选择首图。
+1. 用 `start_report.py PDF` 启动。后续命令统一在仓库根目录运行，设置 `FINANCIALS_DOSSIER_ROOT=work/dossiers`，传入入口识别的 `--code` 和 `--period`。按 [研究与主编决策](08_EDITORIAL_DECISIONS.md) 选题。草案只预填候选关系，作者确定主图和图序。离线路径支持两期对照、签名桥、平均规模与比率分解、同口径产品收入与毛利。
 2. 查阅 `fin_intake.py coverage`，在原页确认遗漏行影响；用 `coverage --spec` 写入以源 SHA 和行 ID 绑定的复核。用 `scan / facts` 绑定附注的源格和单位倍数。重大遗漏须列受影响键，校验会阻断依赖它的观点或图。没有逐项复核的行继续显示待查。
 3. 重述发生时用 `fin_intake.py basis --spec` 写指标级比较决定。每项附原因和物理页。重述项同时保留原披露源格、重述比较源格。前期原件补齐时记录 URL、SHA、获取日期和物理页。缺少分部或成本的原披露时把该指标标为未确认。
 4. 写 `research-brief.json`。列出两个竞争问题及决定首屏的附注或事实，给出最强替代解释、区分证据和下一披露检验。已有研究时对照其判断。再填写 `v2-draft.json`。正文宏、精确表达式、图、数据区都使用账本键。银行的利息分解需要两期平均余额与相匹配的收益或成本，有则复算，无则保留收支变化及证据限制。

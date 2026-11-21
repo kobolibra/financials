@@ -247,3 +247,36 @@ def render_shares(entries,title,*,issuer,period,pdf_sha256,mobile=False):
         for line in wrap_label('分母：'+denominator,24 if mobile else 68):out.append(txt(left,y,line,12));y+=18
         y+=30
     return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {y}" role="img" aria-label="{E(title,quote=True)}" data-editorial-grammar="SOURCE_REPORTED_RATIO_V1" data-design-system="FINANCIALS_UNIFIED_STORY_V1" data-issuer="{E(issuer,quote=True)}" data-period="{E(period,quote=True)}" data-original-pdf-sha256="{pdf_sha256}" data-layout="{"native-330" if mobile else "editorial-1040"}"><title>{E(title)}</title>'+''.join(out)+'</svg>'
+
+
+def render_product_economics(rows, title, *, issuer, period, pdf_sha256, mobile=False):
+    """Revenue and gross profit on one signed monetary axis for selected products."""
+    check_identity(issuer, period, pdf_sha256, title)
+    if not rows:
+        raise ValueError('PRODUCT_ROWS_REQUIRED')
+    values = [v for _, rev, cost, _ in rows for v in (rev, rev - cost)]
+    low, high = min(D(0), min(values)), max(D(0), max(values))
+    width, left, span = (330, 16, 298) if mobile else (1040, 260, 480)
+    def x(value):
+        return D(left) + (value - low) * span / (high - low) if high > low else D(left)
+    def label(x, y, text, size=14, anchor='start'):
+        return f'<text x="{x}" y="{y}" text-anchor="{anchor}" font-size="{size}" fill="{P["ink"]}">{E(text)}</text>'
+    out = [label(16, 23, '产品收入与毛利 · 同一金额刻度'),
+           label(16, 46, period + ' · 毛利按各产品收入减成本计算', 12)]
+    y = 80
+    for name, revenue, cost, source in rows:
+        for line in wrap_label(name, 20 if mobile else 28):
+            out.append(label(16, y, line, 16))
+            y += 22
+        for kind, value, color in [('收入', revenue, P['source']), ('毛利', revenue - cost, P['profit'])]:
+            out.append(label(left if mobile else 790, y + 6, kind + '  ' + money(value)))
+            bar_y = y + 14 if mobile else y - 5
+            out.append(f'<rect x="{min(x(value),x(D(0))):.8f}" y="{bar_y}" height="9" '
+                       f'width="{abs(x(value)-x(D(0))):.8f}" fill="{P["cost"] if value < 0 else color}" '
+                       f'data-exact-value="{value}" data-domain-min="{low}" data-domain-max="{high}" '
+                       f'data-period="{E(period,quote=True)}" data-source-reference="{E(source,quote=True)}"/>')
+            y += 43 if mobile else 27
+        y += 15
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {y}" role="img" '
+            f'data-original-pdf-sha256="{pdf_sha256}" data-editorial-grammar="PRODUCT_ECONOMICS" '
+            f'aria-label="{E(title,quote=True)}"><title>{E(title)}</title>' + ''.join(out) + '</svg>')

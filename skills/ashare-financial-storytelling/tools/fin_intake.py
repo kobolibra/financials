@@ -117,7 +117,7 @@ def detect_identity(doc, code: str) -> dict:
     if re.search(r"(半年度|季度)报告(是否)?(未经|未)审计|财务报告未经审计|未经审计", text):
         audited = "未经审计"
     elif "标准无保留意见" in text or kind == "FY":
-        audited = "审计报告见财务报告章节（核对意见类型）"
+        audited = "审计意见见原件审计报告"
     prior = str(int(year) - 1) + COMPARATIVE[kind]
     extra = {}
     if kind == "9M":
@@ -405,6 +405,10 @@ def build_fact(doc, ledger: dict, key: str, spec: dict) -> dict:
             "classification": "DISCLOSED", "unit": "元", "currency": "CNY",
             "source_cells": [{"bbox": cell["bbox"], "printed": cell["printed"], "wrapped_number": bool(cell["wrapped"])}],
             "source_row_label": row["label"], "source_column": column_role}
+    if "product" in spec or "measure" in spec:
+        if not spec.get("product") or spec.get("measure") not in ("revenue", "cost"):
+            raise ValueError("PRODUCT_SOURCE_TAGS_REQUIRED " + key)
+        fact.update(product=spec["product"], measure=spec["measure"])
     if spec.get("denominator_definition"):
         fact["denominator_definition"] = spec["denominator_definition"]
     if scale != 1 or cell["printed"].startswith(("(", "（")):

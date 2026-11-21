@@ -97,6 +97,34 @@
    "identity": "合并净利润加上物理第194页全部列示调节项，等于合并经营现金净额。"
   },
   {
+   "id": "product-profit",
+   "family": "product_economics",
+   "products": [
+    [
+     "铂族",
+     "platinum_rev",
+     "platinum_cost"
+    ],
+    [
+     "薄膜材料",
+     "film_rev",
+     "film_cost"
+    ],
+    [
+     "稀土材料",
+     "rare_rev",
+     "rare_cost"
+    ]
+   ],
+   "question": "三类产品谁收入高、谁毛利高？",
+   "takeaway": "铂族收入在所列产品中最高，薄膜材料留下的毛利最多。",
+   "nav": "产品经济性",
+   "eyebrow": "收入与成本",
+   "analysis": "薄膜材料本年毛利 {{film_gp}} 亿元。按管理层解释，靶材销量和部分贵金属价格上升支持收入增长。稀土材料还受技术转让收入影响，不能把毛利率改善全归给产品涨价。",
+   "counter": "图中选取三类产品，展示本年水平。集团经营性应收和存货的现金调节未按产品拆分。",
+   "identity": "本年各产品毛利＝同一产品披露收入－同一产品披露成本。"
+  },
+  {
    "id": "earnings",
    "family": "comparison",
    "nav": "利润修复",
@@ -228,6 +256,29 @@
    "scale": "100000000",
    "decimals": 2
   },
+  "film_gp": {
+   "expression": [
+    [
+     "film_rev",
+     1
+    ],
+    [
+     "film_cost",
+     -1
+    ]
+   ],
+   "scale": "100000000"
+  },
+  "v2y_cfo": {
+   "expression": [
+    [
+     "cfo",
+     1
+    ]
+   ],
+   "scale": "100000000",
+   "decimals": 2
+  },
   "v2b_gm": {
    "expression": [
     [
@@ -345,25 +396,26 @@
    "scale": "100000000",
    "decimals": 2,
    "absolute": true
-  },
-  "v2y_cfo": {
-   "expression": [
-    [
-     "cfo",
-     1
-    ]
-   ],
-   "scale": "100000000",
-   "decimals": 2
   }
  },
- "title": "毛利回升，现金去了哪？",
- "deck": "有研新材全年营业毛利增加 {{gp_delta}} 亿元，合并净利润转正。存货和经营性应收吸收现金，经营现金净流量仍为负。",
+ "title": "薄膜材料撑起毛利，现金仍被占用",
+ "deck": "铂族收入高于薄膜材料，留下的毛利却更少。回到集团账上，存货和经营性应收吸收资金，全年经营现金净额仍为负。",
  "thesis": {
   "title": "核心判断",
   "body": "本年的利润修复来自毛利增加及减值压力减轻。现金流附注把判断推进了一步：存货和经营性应收合计占用 {{wc_usage}} 亿元。先确认利润确有修复，再看这笔资金何时回到公司。"
  },
- "metrics": [],
+ "metrics": [
+  {
+   "label": "薄膜材料本年毛利",
+   "value": "{{film_gp}} 亿",
+   "context": "产品收入减自身营业成本"
+  },
+  {
+   "label": "集团经营现金净额",
+   "value": "{{v2y_cfo}} 亿",
+   "context": "全年合并口径"
+  }
+ ],
  "essays": [
   {
    "id": "research",
@@ -450,6 +502,10 @@
    "finding": "关键指标采用本期原件披露的上期数。",
    "boundary": "另取上一年完整原件复核，十项核心比较金额相同。"
   }
+ ],
+ "title_lines": [
+  "薄膜材料|撑起毛利，",
+  "现金仍被占用"
  ],
  "accounting_identities": [
   {

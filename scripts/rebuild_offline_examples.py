@@ -24,7 +24,7 @@ SPECS = {
 }
 
 
-def rebuild(code, input_dir, out):
+def rebuild(code, input_dir, out, proof=PROOF):
     period, short, endpoint, expected = SPECS[code]
     url = 'https://static.cninfo.com.cn/finalpage/' + endpoint + '.PDF'
     pdf = input_dir / f'{code}-{period}.pdf'
@@ -50,11 +50,11 @@ def rebuild(code, input_dir, out):
 
     run('intake', TOOLS / 'start_report.py', pdf, '--url', url, '--short', short, '--work-root', dossier_root)
     for name, command in (('facts', 'facts'), ('coverage', 'coverage')):
-        spec = PROOF / code / (name + '.json')
+        spec = proof / code / (name + '.json')
         if (ROOT / spec).exists():
             run(name, TOOLS / 'fin_intake.py', command, *args, '--spec', spec)
     for name in ('v2-draft.json', 'research-brief.json'):
-        shutil.copyfile(ROOT / PROOF / code / name, ROOT / base / name)
+        shutil.copyfile(ROOT / proof / code / name, ROOT / base / name)
     run('apply', TOOLS / 'v2_builder.py', 'apply', *args)
     run('preflight', TOOLS / 'fin_intake.py', 'preflight', *args, '--require-research-evidence')
     html = out / f'{code}.html'
@@ -66,6 +66,7 @@ def rebuild(code, input_dir, out):
 if __name__ == '__main__':
     parser = ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument('--specs', type=Path, default=PROOF, help='Directory containing reviewed issuer specifications')
     parser.add_argument('--inputs', type=Path, default=ROOT / 'work' / 'example-inputs')
     parser.add_argument('--codes', nargs='+', choices=SPECS, default=['600036', '600206'])
     a = parser.parse_args()
@@ -74,5 +75,5 @@ if __name__ == '__main__':
         parser.error('--out must use a new directory under the repository work/')
     out.mkdir(parents=True, exist_ok=True)
     inputs.mkdir(parents=True, exist_ok=True)
-    receipt = [rebuild(code, inputs, out) for code in a.codes]
+    receipt = [rebuild(code, inputs, out, a.specs) for code in a.codes]
     (out / 'rebuild.json').write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')

@@ -9,6 +9,10 @@ Contract version: 10.0.0
 
 本文件是**唯一的执行合同**：怎么做、做到什么程度、什么必须拒绝。它不记录项目进度。当前发布状态、公司清单与证据只看 `project-status.json`、`site/research_catalog.json` 和各发行人 `research/issuers/<code>/release-gates.json`；历史 PR35 来源见 `docs/ACTIVE_PR35_HANDOFF.md`（只是历史证据，不是当前部署依据）。v8.8 与 v9.1 的长版说明分别归档在 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V8_8_ARCHIVE.md` 与 `docs/history/ASHARE_FINANCIAL_STORYTELLING_SKILL_V9_1_ARCHIVE.md`，其中的公司特例仍适用于对应旧出版器，但不授权任何新发布。
 
+## 新会话的主编职责
+
+每份新稿先读 [研究与主编决策](playbooks/08_EDITORIAL_DECISIONS.md)。让核心问题决定源表、主图和证据顺序。完成验收时同时交付成稿、实际桌面与手机图证和未解决的研究边界。复验既有作者稿和空白会话首次编稿分别报告。
+
 ## 单份 PDF 的启动入口
 
 ```bash
@@ -56,7 +60,7 @@ python "$T/start_report.py" /absolute/path/filing.pdf
 | P6 验收 | 截图、矢量审计、`release-gates.json` | §6 全部适用门槛有证据；逐图截图自评（rubric）无 P0 |
 | P7 交接 | 目录条目、首页、状态文件、PR | 合并后对生产全文件字节、导航、下载复验；未做的写 NOT_CHECKED |
 
-效率原则：P1–P2 用 `fin_intake.py init → auto --write`，三张表**不写任何公司规格**；只有附注（分部、地区、补充资料）用 `find / scan / facts`。出现残差或未映射行时，按 `playbooks/06_GENERALIZATION.md` §2 处理：加通用同义词并补回归测试，不写公司补丁；**未映射金额行必须先分类与核实重大性，不能由恒等式闭合推定全量覆盖**。P3 是唯一不能省的人工判断环节；P5–P6 用现有共享出版器与审计器，不另写。
+效率原则：P1–P2 用 `fin_intake.py init → auto --write`，三张表**不写任何公司规格**；只有附注（分部、地区、补充资料）用 `find / scan / facts`。出现残差或未映射行时，按 `playbooks/06_GENERALIZATION.md` §2 处理：加通用同义词并补回归测试，不写公司补丁；**未映射金额行必须先分类与核实重大性，不能由恒等式闭合推定全量覆盖**。P3 核实研究判断，P4 决定图形，P6 打开最终实图独立审视阅读质量；P5–P6 用现有共享出版器与审计器，不另写。
 
 **目录报告的 P4 标准做法（EDITORIAL_V2）**：`T2=skills/ashare-financial-storytelling/tools/v2_builder.py`
 0. **先检查** `python $T2 capabilities --code <c> [--period P]`：类型化事实、同比/余额期间、行业路由、候选图种和欠缺的研究证据逐项列出。新金融/地产出版器未实现时拒绝通用工业出版；`scaffold --source-probe` 只作原件技术诊断，永远不能直接发布。详细见 Playbook 07。
@@ -87,7 +91,7 @@ python "$T/start_report.py" /absolute/path/filing.pdf
 - **BANK**：净利息收入（已扣利息支出）+净手续费+其他净收入 → 营业收入 → 业务管理费/信用减值/营业利润；不称"毛利"，不重复扣利息。
 - **保险**：管理层保费、CAS25 保险服务收入、保费收现、CSM 存量四者不互接；保费构成可用专用 4→2→1 图，法定利润用签名桥。
 - **TYPE C / 不合法**：分类重叠、负业务毛利、存量与流量混合、不同单位/期间 → 不画正向桑基，记录 `FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON`，改用有符号瀑布、真比例对比或两时点存量。
-- **完整利润主线**（默认主图）：同口径合法时从法定收入贯通到归母净利，`unified_income_sankey.py.render_full_profit_chain` 调用 `full_profit_chain.py`；原披露小计保持原值，收益以流入汇合，少数亏损以归属调整流入表达。规则见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。
+- **完整利润主线**（旧目录出版合同的默认主图；单 PDF 新稿由研究选题决定）：同口径合法时从法定收入贯通到归母净利，`unified_income_sankey.py.render_full_profit_chain` 调用 `full_profit_chain.py`；原披露小计保持原值，收益以流入汇合，少数亏损以归属调整流入表达。规则见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。
 
 **其他关系的图种**（共享出版器 `research/shared/source_publication.py` 的 family）：
 
@@ -111,7 +115,7 @@ python "$T/start_report.py" /absolute/path/filing.pdf
 
 ## 5. 版式与阅读层级（AEI 方法的 A 股化）
 
-文章两种阅读速度：**90秒**（标题判断 + 3个指标 + 完整利润主图 + 一个最大矛盾 + 反证）与**20分钟**（逐章图文、重大附注、完整对账、原页链接）。默认顺序：
+文章两种阅读速度：**90秒**（标题判断 + 3个指标 + 完整利润主图 + 一个最大矛盾 + 反证）与**20分钟**（逐章图文、重大附注、完整对账、原页链接）。以下顺序用于既有完整利润主线版。单 PDF 新稿按 Playbook 08 决定首屏、图序及阅读层次。
 
 1. 标题 = 一个可被回答的问题；导语给出答案方向；3个首屏指标（含同比或口径）。
 2. 核心判断卡（thesis）。
