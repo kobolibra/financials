@@ -67,6 +67,14 @@ python research/shared/autonomous_editorial_audit.py --since origin/main --stric
 
 **合并前**：至少审计当前候选与原版差异、两家对标源图、全部受影响旧公司逐字节重建、负例测试、双浏览器截图。改变共享 SVG 代码不能修改历史短标签图的输出，除非同时对旧报告显式重建并重新审稿；修复不能靠降低质量阈值。**合并后**：Cloudflare 线上首页及报告完整 HTML SHA、真实导航和 SVG 下载必须独立成功。PR 绿灯、线上一致、自评分数各自有证据，不得相互代替。
 
+## 6a. 真实泛化与门禁适用范围：不得把绿灯当认证
+
+1. 主编自主分析必须同时通过 `research_evidence.validate`（原件 SHA、期间、行业、同科目可比与 Decimal 逐元算式）和 `autonomous_editorial_audit`（事实机会、图形、作者复核、同库参照）；研究简报仅存在、结论写得漂亮或会计恒等式闭合都不代表研究通过。
+2. 对财报 `source/` 原件、`extracted/` 逐页材料、`visual-qa/` 图证及其他发行人档案的修改，按“报告需要重新审稿”处理；目录新增报告亦然。不得只根据 `publication.json` 是否改动判断需要复验。
+3. 若本次提交只改共享审计器或 Skill，而 `--since` 得出 `count=0`，只能称 `NO_REPORT_CHANGED_NOT_AN_EDITORIAL_CERTIFICATION`；仍须运行恶意负例/已知样本测试，不能写“全公司分析及美学已通过”。共用渲染/来源工具变化必须通过其依赖公司回归后才能准入。
+4. 作者宣称四档截图齐全时，至少要求当前 HTML SHA 的真实 Chromium 数值/逐图 receipt；WebKit 375 的实测证据另行查验，不能把自填的 `required_viewports` 视作已运行浏览器。
+5. 工业 FY/H1、金融 Q1、保险 CAS25 等须保留分行业适配与实际盲测范围说明。源数据通过、审稿完成、网页发布、独立专业二审是四种不同证据；后者没有发生就必须是 `NOT_CHECKED`。
+
 ## 7. 将每次纠错变成跨公司能力
 
 | 此次真实问题 | 下一次自动拒绝/主动预防 |
