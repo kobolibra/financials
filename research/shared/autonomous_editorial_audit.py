@@ -386,15 +386,30 @@ def changed_issuers(root, since):
     routes = {"public/" + str(i.get("href", "")).lstrip("/"):
               i["code"] + ("@" + i["period"] if i in catalog.get("period_reports", []) else "")
               for i in catalog.get("issuers", []) + catalog.get("period_reports", [])}
-    for path in r.stdout.splitlines():
-        m = re.fullmatch(r"research/issuers/([0-9]{6})/"
-                         r"(?:(20[0-9]{2}(?:Q1|H1|9M|FY))/)?"
-                         r"(?:publication|research-brief|source-ledger|editorial-self-review|"
-                         r"release-gates|figure-briefs)\.json", path)
+    paths = r.stdout.splitlines()
+    for path in paths:
+        # Source PDFs, notes, review receipts and report assets are material too.
+        m = re.match(r"^research/issuers/([0-9]{6})/"
+                     r"(?:(20[0-9]{2}(?:Q1|H1|9M|FY))/)?", path)
         if m:
             found.add(m.group(1) + ("@" + m.group(2) if m.group(2) else ""))
         if path in routes:
             found.add(routes[path])
+        elif re.fullmatch(r"public/[0-9]{6}(?:-[0-9]{4}(?:q[1-4]|h1|fy))?\\.html", path):
+            raise ValueError("UNCATALOGED_PUBLISHED_ISSUER_ROUTE " + path)
+    if "site/research_catalog.json" in paths:
+        base = subprocess.run(["git", "show", since + ":site/research_catalog.json"],
+                              cwd=root, check=True, text=True, capture_output=True)
+        before = json.loads(base.stdout)
+        def entries(d):
+            return {x["code"] + ("@" + x["period"] if x in d.get("period_reports", []) else ""):
+                    x.get("href") for x in d.get("issuers", []) + d.get("period_reports", [])}
+        previous, current = entries(before), entries(catalog)
+        removed = set(previous) - set(current)
+        if removed:
+            raise ValueError("CATALOG_ISSUER_REMOVAL_NEEDS_EXPLICIT_REVIEW "
+                             + ",".join(sorted(removed)))
+        found.update(x for x, href in current.items() if previous.get(x) != href)
     return sorted(found)
 
 
