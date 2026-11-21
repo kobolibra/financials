@@ -48,7 +48,7 @@ def check_vector(markup,issuer,pdf_sha):
             outbound=[p for p in ribbons if p.get('data-stage')=='revenue-to-outcome']
             centers=[]
             for p in outbound:
-                xy=[D(x) for x in re.findall(r'-?\\d+(?:\\.\\d+)?',p.get('d'))]
+                xy=[D(x) for x in re.findall(r'-?\d+(?:\.\d+)?',p.get('d'))]
                 centers.append(((xy[1]+xy[15])/2,(xy[7]+xy[9])/2))
             for i,a in enumerate(centers):
                 for b in centers[i+1:]:
