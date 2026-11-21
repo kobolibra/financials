@@ -10,6 +10,7 @@ on:
       - research/issuers/600206/publication.json
       - research/issuers/600206/editorial-manifest.json
       - research/shared/source_publication.py
+      - scripts/qa_offline_candidate.py
       - .github/workflows/build-600206-editorial-candidate.yml
 
 permissions:
@@ -51,6 +52,29 @@ jobs:
           g['gates']['BROWSER_LOCAL']['proof']=''
           gate.write_text(json.dumps(g,ensure_ascii=False,indent=2)+'\n')
           print('CANDIDATE_CHART_COUNT',len(story['figures']),'HTML_SHA',sha,'EDITORIAL_NOT_CHECKED',flush=True)
+          PY
+      - name: Independently check all twelve source vectors and actual finance geometry
+        run: |
+          PYTHONPATH=research/shared python - <<'PY'
+          import json,pathlib
+          from source_publication import chart
+          from source_publication_audit import check_vector_source
+          from editorial_geometry import check_editorial_svg
+          d=pathlib.Path('research/issuers/600206')
+          ledger=json.loads((d/'source-ledger.json').read_text())
+          publication=json.loads((d/'publication.json').read_text())
+          total=0
+          for fig in publication['figures']:
+              for mobile in (False,True):
+                  rendered=chart(ledger,fig,mobile)
+                  result=check_vector_source(rendered,ledger)
+                  assert result['original_source_vector_values']=='PASS'
+                  if fig['family']!='income':
+                      geo=check_editorial_svg(rendered,issuer='600206',pdf_sha256=ledger['source']['original_bytes_sha256'])
+                      assert geo['status']=='PASS', (fig['id'],mobile,geo)
+                  total+=1
+          assert total==24,('UNEXPECTED_FIGURES',total)
+          print('ALL_12_FIGURES_24_NATIVE_FINANCIAL_VECTORS_SOURCE_AND_GEOMETRY_PASS',total,flush=True)
           PY
       - name: Install real Chromium WebKit and Chinese fonts
         run: |
