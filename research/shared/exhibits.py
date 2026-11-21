@@ -277,7 +277,7 @@ def render_growth_bars(rows, title, *, periods, mobile=False, **ident):
         else:
             lx = (x0 + w + 6) if g >= 0 else (x0 - 6)
             c.text(lx, by + 14, f'{q(g):+}%', 13, 'start' if g >= 0 else 'end', colr, 700)
-        y += 64 if mobile else 56
+        y += 52 if mobile else 40
     return c.svg(y + 6)
 
 
