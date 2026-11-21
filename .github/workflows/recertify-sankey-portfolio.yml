@@ -31,9 +31,10 @@ jobs:
           for code in 300394 300502 300308; do
             cp "public/$code.html" "public/$code/2026-H1/index.html"
           done
-      - name: Rebuild canonical annual dossier without altering separately published V2 articles
+      - name: Rebuild canonical annual and semiconductor sources with both true SVG editions
         run: |
           python research/shared/source_publication.py research/issuers/600206 public/600206.html --catalog-report
+          python research/issuers/688220/publish.py --out public/688220.html --qa research/issuers/688220/qa.json
       - name: Recheck ALL source-ledger facts and current HTML figure exports with real Chromium
         run: |
           python scripts/qa_editorial_migration.py --codes 300394 300308 300502 688111 000333 688220 600690 300548 300570 --out work/current-sankey-portfolio
@@ -113,7 +114,8 @@ jobs:
           git add research/issuers/600206/visual-qa/result.json
           git add public/300394.html public/300502.html public/300308.html
           git add public/300394/2026-H1/index.html public/300502/2026-H1/index.html public/300308/2026-H1/index.html
-          git add public/600206.html public/600690.html public/300548.html public/300570.html
+          git add public/600206.html public/600690.html public/300548.html public/300570.html public/688220.html
+          git add research/issuers/688220/qa.json
           git add research/issuers/600206/qa.json research/issuers/600206/figure-briefs.json
           git add research/issuers/{600206,600690,300548,300570,688220}/release-gates.json
           if ! git diff --cached --quiet; then
