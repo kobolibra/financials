@@ -15,8 +15,14 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
+# Reuse the existing strict source/period/Decimal research verifier.
+TOOLS_DIR = str(ROOT / "skills/ashare-financial-storytelling/tools")
+if TOOLS_DIR not in sys.path:
+    sys.path.insert(0, TOOLS_DIR)
+from research_evidence import validate as validate_research_brief
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 FIGURE_SOURCE_FIELDS = {
     "income": ("facts",),
@@ -172,6 +178,21 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
     known = set(facts)
     figures = publication.get("figures", [])
     issues = []
+    # Editorial readiness must include genuine verified research, not only figures.
+    try:
+        validate_research_brief(ledger, brief)
+    except (ValueError, KeyError, TypeError, ArithmeticError) as exc:
+        _issue(issues, "RESEARCH_EVIDENCE_INVALID", "BLOCK",
+               str(exc), "Rebuild exact-PDF source-bound theses and Decimal calculations.")
+    if ledger.get("issuer", {}).get("code") != code:
+        _issue(issues, "REPORT_ISSUER_MISMATCH", "BLOCK",
+               "Catalog issuer and source-ledger issuer disagree.",
+               "Reconcile report identity against the original PDF.")
+    if (record.get("period") and ledger.get("issuer", {}).get("fiscal_period")
+            and record["period"] != ledger["issuer"]["fiscal_period"]):
+        _issue(issues, "REPORT_PERIOD_MISMATCH", "BLOCK",
+               "Release and source-ledger fiscal periods disagree.",
+               "Correct the source identity before publication.")
     if not isinstance(figures, list):
         figures = []
     source_by_id = {
