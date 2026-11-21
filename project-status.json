@@ -67,10 +67,10 @@
     "current_cloudflare_live_candidate_proof_action": "NOT_VALID_UNTIL_REAL_HTTPS_SHA_MATCHES",
     "candidate_source_bound_preview_validation_scope": "NOT_CHECKED_NEW_SHA",
     "current_new_visual_candidate_html_sha256": {
-      "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
       "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
-      "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005",
-      "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a"
+      "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
+      "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
     },
     "historical_verified_prior_sha_only": [
       "https://github.com/kobolibra/financials/actions/runs/42344600791",
@@ -176,7 +176,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "10.0.0",
+    "version": "10.1.0",
     "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -251,14 +251,19 @@
       "new_insurance_qa": "research/issuers/601628/qa_browser.py",
       "new_insurance_publication_engine": "research/issuers/601628/publish.py",
       "new_native_mobile_finance_renderer": "research/shared/mobile_finance.js",
-      "current_source_browser_visual_certificate": "scripts/check_visual_editorial_policy.py::validate_current_published_files"
+      "current_source_browser_visual_certificate": "scripts/check_visual_editorial_policy.py::validate_current_published_files",
+      "autonomous_editorial_audit": "research/shared/autonomous_editorial_audit.py",
+      "autonomous_editorial_workflow": ".github/workflows/verify-autonomous-editorial-skill.yml",
+      "editorial_review_playbook": "skills/ashare-financial-storytelling/playbooks/09_SELF_DIRECTED_DELIVERY.md",
+      "autonomous_quality_scope": "CURRENT_SOURCE_BOUNDED_INDUSTRIAL_FY_H1_AND_REPORT_CHANGED_STRICT_REVIEW__NOT_INDEPENDENT_HUMAN_OR_UNSEEN_INDUSTRY_L3_CERTIFICATION"
     },
     "playbooks": [
       "skills/ashare-financial-storytelling/playbooks/01_REPORT_TYPES.md",
       "skills/ashare-financial-storytelling/playbooks/02_ANALYSIS_FRAMEWORK.md",
       "skills/ashare-financial-storytelling/playbooks/03_EXHIBIT_SYSTEM.md",
       "skills/ashare-financial-storytelling/playbooks/04_PRODUCTION_RUNBOOK.md",
-      "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md"
+      "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md",
+      "skills/ashare-financial-storytelling/playbooks/09_SELF_DIRECTED_DELIVERY.md"
     ],
     "intake_tool": {
       "path": "skills/ashare-financial-storytelling/tools/fin_intake.py",
@@ -1640,12 +1645,12 @@
     "browser_blockers": [],
     "new_economics_svg_export_checks": 9,
     "tablet_below_10px_labels_before_after": {
-      "600900": [
-        112,
-        0
-      ],
       "600276": [
         114,
+        0
+      ],
+      "600900": [
+        112,
         0
       ],
       "601628": [
