@@ -90,19 +90,28 @@
       "scope": "第二位独立人类研究和视觉审阅待核。"
     },
     "CLOUDFLARE_LIVE": {
-      "status": "NOT_CHECKED",
-      "proof": "",
-      "scope": "等待主分支展开首页及文章线上字节和浏览器核验。"
+      "status": "PASS",
+      "proof": "https://github.com/kobolibra/financials/actions/runs/45013647789",
+      "scope": "合并版本与生产首页及有研新材全文逐字节一致。Chromium 三档、WebKit 375 实图、导航和 SVG 导出已核。独立人类审核待核。"
     }
   },
-  "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+  "published_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+  "live_release_fingerprint": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+  "actual_main_release_commit": "a44d8f8a3ff512beddbce71699202c515e2d4edf",
+  "actual_directory_fingerprint": "9ff7846c6ecf348c377beeefadb8f3b7053c8145052bd88cf195e5e572aefa46",
+  "live_receipt_file": "research/issuers/600206/live-release-receipt.json",
+  "production_artifact": {
+    "id": 14751211847,
+    "zip_sha256": "d70d51c845d90744464bd047775830cc839dee4f207ae8c0938f35dc3bec2907"
+  },
   "unmerged_candidate": {
-    "base_deployed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
-    "candidate_full_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+    "base_deployed_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+    "candidate_full_html_sha256": "b30f2da5906c4be45a6b075fba2bf56d7fb3bde306cd6c5ab4eaf1d0c088795f",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
-    "reason": "源件重建后的候选页面，原生产回执对应此前正式字节。",
-    "browser_proof_scope": "当前同一 HTML 的四视口、13 图及可见 SVG 导出。流带逐条与原金额坐标比对。"
+    "base_figure_count": 13,
+    "reason": "同库完整利润主图贯通归母，原地区图保留为毛利专题。",
+    "browser_proof_scope": "当前原件两期小计、实际图形坐标及四视口导出已复验。"
   }
 }

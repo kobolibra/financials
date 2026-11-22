@@ -268,6 +268,30 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         self.assertIn("RESEARCH_EVIDENCE_INVALID", codes(out))
         self.assertEqual(out["verdict"], "BLOCK")
 
+    def test_legal_industrial_sankey_must_reach_parent_and_lead(self):
+        args = original()
+        story = args[4]
+        primary = story["figures"].pop(0)
+        self.assertEqual(primary["family"], "income_flow_v3")
+        story["figures"].append(primary)
+        out = audit(*args[:8], html_sha=args[8], strict=True)
+        self.assertIn("COMPLETE_PROFIT_SANKEY_NOT_PRIMARY", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
+    def test_rendered_complete_profit_flow_reconciles_original_subtotals(self):
+        from source_publication import chart
+        from source_publication_audit import check_vector_source
+        args = original()
+        ledger, story = args[3], args[4]
+        for mobile in (False, True):
+            markup = chart(ledger, story["figures"][0], mobile)
+            self.assertIn('data-chain-node="parent"', markup)
+            self.assertEqual(check_vector_source(markup, ledger)["status"], "PASS")
+            self.assertIn("税前利润 2.87亿 · 合并净利润 2.44亿", markup)
+            forged = markup.replace("合并净利润 2.44亿", "合并净利润 2.65亿")
+            with self.assertRaisesRegex(ValueError, "DISCLOSED_SUBTOTAL_LABEL_MISSING_OR_FALSE"):
+                check_vector_source(forged, ledger)
+
     def test_signed_bridge_subtotal_must_equal_original_row(self):
         args = original()
         f = next(row for row in args[4]["figures"] if row["id"] == "profit-to-parent")

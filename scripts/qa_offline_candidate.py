@@ -131,9 +131,9 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                       return Math.min(u.right,v.right)-Math.max(u.left,v.left)>2 &&
                         Math.min(u.bottom,v.bottom)-Math.max(u.top,v.top)>3;
                     }).map(b=>[a.textContent,b.textContent]);
-                  }), values: Array.from(s.querySelectorAll('[data-exact-value],[data-signed-yuan],[data-exact-percent-value],[data-node-yuan],[data-exact-yuan]')).map(n=>({
-                    period:n.dataset.period, value:n.dataset.exactValue ?? n.dataset.signedYuan ?? n.dataset.exactPercentValue ?? n.dataset.nodeYuan ?? n.dataset.exactYuan,
-                    min:n.dataset.domainMin, max:n.dataset.domainMax, source:n.dataset.sourceReference ?? n.dataset.valueReference ?? n.dataset.ratioReference ?? n.dataset.nodeId,
+                  }), values: Array.from(s.querySelectorAll('[data-exact-value],[data-signed-yuan],[data-exact-percent-value],[data-node-yuan],[data-exact-yuan],[data-chain-node-yuan],[data-chain-leaf-yuan]')).map(n=>({
+                    period:n.dataset.period, value:n.dataset.exactValue ?? n.dataset.signedYuan ?? n.dataset.exactPercentValue ?? n.dataset.nodeYuan ?? n.dataset.exactYuan ?? n.dataset.chainNodeYuan ?? n.dataset.chainLeafYuan,
+                    min:n.dataset.domainMin, max:n.dataset.domainMax, source:n.dataset.sourceReference ?? n.dataset.valueReference ?? n.dataset.ratioReference ?? n.dataset.nodeId ?? n.dataset.chainTerms ?? n.dataset.chainLeaf,
                     width:Number(n.getAttribute('width')), scale:n.dataset.scaleYuanPerUnit,
                     before:n.dataset.beforeYuan, after:n.dataset.afterYuan,
                     stock_role:n.dataset.stockRole
@@ -169,6 +169,15 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                 event.value.save_as(path)
                 doc = ElementTree.parse(path).getroot()
                 assert doc.get('data-original-pdf-sha256') == svg.get_attribute('data-original-pdf-sha256')
+                assert path.read_text() == svg.evaluate('s => new XMLSerializer().serializeToString(s)')
+                if doc.get('data-dossier-profit-chain') == 'true':
+                    import sys
+                    shared = str(Path(__file__).resolve().parents[1] / 'research/shared')
+                    if shared not in sys.path:
+                        sys.path.insert(0, shared)
+                    from source_publication_audit import check_vector_source
+                    ledger = json.loads(page.locator('#ledger-data').text_content())
+                    check_vector_source(path.read_text(), ledger)
                 figures.append({'id': name, 'role': figure.get_attribute('data-editorial-role'), **findings})
             view = {'width': width, 'figures': figures}
             if origin:

@@ -1,6 +1,284 @@
 {
   "figures": [
     {
+      "id": "profit-to-parent",
+      "nav": "完整利润主图",
+      "family": "income_flow_v3",
+      "eyebrow": "原件损益逐元桥",
+      "period": "2025FY",
+      "rows": [
+        [
+          "集团营业毛利",
+          [
+            [
+              "rev",
+              1
+            ],
+            [
+              "cogs",
+              -1
+            ]
+          ],
+          "start"
+        ],
+        [
+          "税金及附加",
+          [
+            [
+              "tax_surcharge",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "销售费用",
+          [
+            [
+              "selling",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "管理费用",
+          [
+            [
+              "admin",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "研发费用",
+          [
+            [
+              "rd_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "财务费用",
+          [
+            [
+              "finance",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "其他收益",
+          [
+            [
+              "other_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "投资收益",
+          [
+            [
+              "investment_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "公允价值变动收益",
+          [
+            [
+              "fair_value",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "信用减值损失",
+          [
+            [
+              "credit_impairment",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产减值损失",
+          [
+            [
+              "asset_impairment",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产处置收益",
+          [
+            [
+              "asset_disposal",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "营业外收入",
+          [
+            [
+              "nonop_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "营业外支出",
+          [
+            [
+              "nonop_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "所得税费用",
+          [
+            [
+              "income_tax",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "少数股东损益",
+          [
+            [
+              "nci",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "归母净利润",
+          "parent_net",
+          "total"
+        ]
+      ],
+      "question": "收入怎样变成归母净利润？",
+      "takeaway": "营业收入 {{gp_revenue}} 亿元，形成营业毛利 {{gp_now}} 亿元，最终归母净利润 {{v2y_parent_net}} 亿元。",
+      "analysis": "研发费用 {{annual_rd}} 亿元是最大单项期间费用。营业利润 {{annual_op}} 亿元，营业外净支出后税前利润为 {{annual_pretax}} 亿元，扣税后合并净利润为 {{annual_net}} 亿元。少数股东承担亏损，归母因此高出合并净利润 {{annual_nci_addback}} 亿元。",
+      "counter": "左侧分地区和其他业务汇总至合并营业收入。集团费用、税项和股东归属按集团披露进入主线，各地区税后利润没有独立披露。",
+      "identity": "合并口径本年逐项对账：毛利加减各营业项目得营业利润，再计入营业外收支、所得税和少数股东损益，得到归母净利润。",
+      "editorial_groups": [
+        {
+          "label": "税金与四项费用",
+          "indices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "label": "其他营业损益净额",
+          "indices": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "label": "营业外收支净额",
+          "indices": [
+            12,
+            13
+          ]
+        },
+        {
+          "label": "所得税费用",
+          "indices": [
+            14
+          ]
+        },
+        {
+          "label": "少数股东亏损转归属",
+          "indices": [
+            15
+          ]
+        }
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "operating_profit",
+        "pretax",
+        "net_profit",
+        "parent_net",
+        "tax_surcharge",
+        "selling",
+        "admin",
+        "rd_expense",
+        "finance",
+        "other_income",
+        "investment_income",
+        "fair_value",
+        "credit_impairment",
+        "asset_impairment",
+        "asset_disposal",
+        "nonop_income",
+        "nonop_expense",
+        "income_tax",
+        "nci",
+        "other_business_rev",
+        "region1_rev",
+        "region2_rev",
+        "admin_prior",
+        "asset_disposal_prior",
+        "asset_impairment_prior",
+        "cogs_prior",
+        "credit_impairment_prior",
+        "fair_value_prior",
+        "finance_prior",
+        "income_tax_prior",
+        "investment_income_prior",
+        "nci_prior",
+        "net_profit_prior",
+        "nonop_expense_prior",
+        "nonop_income_prior",
+        "operating_profit_prior",
+        "other_income_prior",
+        "parent_net_prior",
+        "pretax_prior",
+        "rd_expense_prior",
+        "rev_prior",
+        "selling_prior",
+        "tax_surcharge_prior",
+        "other_business_rev_prior"
+      ],
+      "source_checkpoints": {
+        "11": "operating_profit",
+        "13": "pretax",
+        "14": "net_profit"
+      }
+    },
+    {
       "id": "glance",
       "nav": "本期一览",
       "family": "kpi_board",
@@ -321,7 +599,7 @@
     },
     {
       "id": "region-income",
-      "nav": "收入成本流向",
+      "nav": "地区毛利专题",
       "family": "income",
       "eyebrow": "DISCLOSED REGION INCOME",
       "facts": [
@@ -334,8 +612,8 @@
         "other_business_rev",
         "other_business_cost"
       ],
-      "question": "收入如何分流到成本和毛利？",
-      "takeaway": "境内贡献大部分收入，境外毛利率更高。三类披露与集团收入、成本逐项勾稽。",
+      "question": "哪些地区留下更多毛利？",
+      "takeaway": "境外毛利率高于境内，但营收以境内为主。这张专题图追踪地区收入和直接成本，集团费用、税项和归母净利见全文主图。",
       "analysis": "境内与境外的毛利率差异值得追踪。年报未交叉披露地区与产品的收入成本，无法区分产品组合、汇率和定价各自的作用。",
       "counter": "地区与产品是同一集团收入的两种拆法。其他业务另列，不能将地区、产品和其他业务跨图相加。",
       "identity": "三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。",
@@ -390,259 +668,6 @@
       "analysis": "集团毛利率和扣非利润均改善。现金图揭示了利润指标没有回答的营运资金问题。",
       "counter": "集团会计毛利变动无法单独识别产品价格、销量和原料成本。",
       "identity": "按图例所列期间核对相同项目。"
-    },
-    {
-      "id": "profit-to-parent",
-      "nav": "完整利润链",
-      "family": "signed_bridge",
-      "eyebrow": "原件损益逐元桥",
-      "period": "2025FY",
-      "rows": [
-        [
-          "集团营业毛利",
-          [
-            [
-              "rev",
-              1
-            ],
-            [
-              "cogs",
-              -1
-            ]
-          ],
-          "start"
-        ],
-        [
-          "税金及附加",
-          [
-            [
-              "tax_surcharge",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "销售费用",
-          [
-            [
-              "selling",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "管理费用",
-          [
-            [
-              "admin",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "研发费用",
-          [
-            [
-              "rd_expense",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "财务费用",
-          [
-            [
-              "finance",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "其他收益",
-          [
-            [
-              "other_income",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "投资收益",
-          [
-            [
-              "investment_income",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "公允价值变动收益",
-          [
-            [
-              "fair_value",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "信用减值损失",
-          [
-            [
-              "credit_impairment",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "资产减值损失",
-          [
-            [
-              "asset_impairment",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "资产处置收益",
-          [
-            [
-              "asset_disposal",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "营业外收入",
-          [
-            [
-              "nonop_income",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "营业外支出",
-          [
-            [
-              "nonop_expense",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "所得税费用",
-          [
-            [
-              "income_tax",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "少数股东损益",
-          [
-            [
-              "nci",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "归母净利润",
-          "parent_net",
-          "total"
-        ]
-      ],
-      "question": "毛利经过哪些项目变成归母净利润？",
-      "takeaway": "集团毛利 {{gp_now}} 亿元。税金与四项费用合计扣减 {{annual_operating_cost_net}} 亿元，其他营业损益净额为 {{annual_other_operating_net}} 亿元。",
-      "analysis": "研发费用 {{annual_rd}} 亿元，是图中最大单项费用。少数股东承担亏损，使归母净利润比合并净利润高 {{annual_nci_addback}} 亿元。展开下表可复算原始项目。",
-      "counter": "这张图解释本年利润如何归属。要解释同比修复的持续性，还要核对研发投入回报、资产减值变化和投资损益的来源。",
-      "identity": "合并口径本年逐项对账：毛利加减各营业项目得营业利润，再计入营业外收支、所得税和少数股东损益，得到归母净利润。",
-      "editorial_groups": [
-        {
-          "label": "税金与四项费用",
-          "indices": [
-            1,
-            2,
-            3,
-            4,
-            5
-          ]
-        },
-        {
-          "label": "其他营业损益净额",
-          "indices": [
-            6,
-            7,
-            8,
-            9,
-            10,
-            11
-          ]
-        },
-        {
-          "label": "营业外收支净额",
-          "indices": [
-            12,
-            13
-          ]
-        },
-        {
-          "label": "所得税费用",
-          "indices": [
-            14
-          ]
-        },
-        {
-          "label": "少数股东亏损转归属",
-          "indices": [
-            15
-          ]
-        }
-      ],
-      "facts": [
-        "rev",
-        "cogs",
-        "operating_profit",
-        "pretax",
-        "net_profit",
-        "parent_net",
-        "tax_surcharge",
-        "selling",
-        "admin",
-        "rd_expense",
-        "finance",
-        "other_income",
-        "investment_income",
-        "fair_value",
-        "credit_impairment",
-        "asset_impairment",
-        "asset_disposal",
-        "nonop_income",
-        "nonop_expense",
-        "income_tax",
-        "nci"
-      ],
-      "source_checkpoints": {
-        "11": "operating_profit",
-        "13": "pretax",
-        "14": "net_profit"
-      }
     },
     {
       "id": "cash-formation",
@@ -1342,6 +1367,31 @@
           -1
         ]
       ],
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "gp_revenue": {
+      "expression": "rev",
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "v2y_parent_net": {
+      "expression": "parent_net",
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "annual_op": {
+      "expression": "operating_profit",
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "annual_pretax": {
+      "expression": "pretax",
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "annual_net": {
+      "expression": "net_profit",
       "scale": "100000000",
       "decimals": 2
     }

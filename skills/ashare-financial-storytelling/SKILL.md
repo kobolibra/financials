@@ -5,7 +5,7 @@ description: Research A-share periodic reports from original PDFs, reconcile sou
 
 # A股财报深度研究与可视化 · 统一生产技能
 
-Contract version: 10.2.0
+Contract version: 10.3.0
 
 ### 必须先走自主主编闭环：不用用户反复指出漏项
 
@@ -116,7 +116,7 @@ python "$T/start_report.py" /absolute/path/filing.pdf
 - **BANK**：净利息收入（已扣利息支出）+净手续费+其他净收入 → 营业收入 → 业务管理费/信用减值/营业利润；不称"毛利"，不重复扣利息。
 - **保险**：管理层保费、CAS25 保险服务收入、保费收现、CSM 存量四者不互接；保费构成可用专用 4→2→1 图，法定利润用签名桥。
 - **TYPE C / 不合法**：分类重叠、负业务毛利、存量与流量混合、不同单位/期间 → 不画正向桑基，记录 `FINANCIAL_SANKEY_OMITTED_WITH_SOURCE_REASON`，改用有符号瀑布、真比例对比或两时点存量。
-- **完整利润主线**（旧目录出版合同的默认主图；单 PDF 新稿由研究选题决定）：同口径合法时从法定收入贯通到归母净利，`unified_income_sankey.py.render_full_profit_chain` 调用 `full_profit_chain.py`；原披露小计保持原值，收益以流入汇合，少数亏损以归属调整流入表达。规则见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。
+- **完整利润主线**：工业合并利润表披露齐全、金额为合法正向流且逐层闭合时，第一张财务主图必须从营业收入贯通至归母净利润。营业成本、费用和减值、营业外与税项、少数股东归属均逐项取原始披露。税前与合并净利润要可直接读出，并保存完整复算。结束在成本和毛利的图只承担产品或地区经济性专题。单 PDF 走 `dossier_profit_chain.py` 与 `INCOME_FLOW_V3`；若亏损、源表缺项或口径使正向流不成立，保留完整签名利润桥并写出原因。规则见 `docs/PROFIT_CHAIN_EDITORIAL_STANDARD.md`。
 
 **其他关系的图种**（共享出版器 `research/shared/source_publication.py` 的 family）：
 
@@ -144,7 +144,7 @@ python "$T/start_report.py" /absolute/path/filing.pdf
 
 1. 标题 = 一个可被回答的问题；导语给出答案方向；3个首屏指标（含同比或口径）。
 2. 核心判断卡（thesis）。
-3. 完整利润主线（主图）。EDITORIAL_V2：本期一览与 KPI 看板在前，损益流向图第二，之后按 3–4 个主题章节组织（增长 → 盈利 → 现金与资本 → 资产负债），正文签名桥不超过两张，见 `playbooks/02_ANALYSIS_FRAMEWORK.md` §1b。
+3. 完整利润主线（主图）。原件允许时，单 PDF 新稿以完整损益流向作主图。前置的关键数字可用简短文字或指标摘要，也可另设 KPI 专题。既有 EDITORIAL_V2 样式允许 KPI 看板先呈现，完整利润仍必须有自己的主图角色。之后按增长、盈利、现金与资本等重要问题组织。
 4. 同比变化桥：为何利润与收入增速不同。
 5. 利润质量：扣非 vs 归母 vs 合并 vs CFO。
 6. 现金：净利→CFO 全部间接调节（季报无补充资料时用直接法主要收支），期初→期末现金。

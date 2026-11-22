@@ -240,13 +240,25 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
             continue
         figure_id = str(figure.get("id"))
         refs = figure_source_refs(figure, known)
-        if figure.get("family") == "signed_bridge" and figure.get("source_checkpoints"):
+        if figure.get("family") in {"signed_bridge", "income_flow_v3"} and figure.get("source_checkpoints"):
             try:
                 refs.update(signed_bridge_checkpoints(ledger, figure))
             except (ArithmeticError, ValueError, KeyError, TypeError) as exc:
                 _issue(issues, "SIGNED_BRIDGE_CHECKPOINT_INVALID", "BLOCK", str(exc),
                        "Reconcile the cumulative bridge against the original disclosed subtotals.")
         source_by_id[figure_id] = refs
+    if _eligible_industrial_fy(record, ledger):
+        from dossier_profit_chain import build
+        try:
+            build(ledger)
+        except (ValueError, KeyError, TypeError, ArithmeticError):
+            pass  # Signed full bridge retains the separate source-completeness gate.
+        else:
+            primary = figures[0] if figures else {}
+            if primary.get("family") != "income_flow_v3":
+                _issue(issues, "COMPLETE_PROFIT_SANKEY_NOT_PRIMARY", "BLOCK",
+                       "The legal primary flow must continue to consolidated and parent profit.",
+                       "Build the source-bound full income flow; use the gross-only Sankey as a business exhibit.")
     covered = []
     is_bank = ledger.get("issuer", {}).get("statement_format") == "bank"
     topics = [(label, required, families, required, priority)

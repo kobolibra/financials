@@ -4,7 +4,7 @@
   "fiscal_period": "2025FY",
   "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
   "executor": "assistant_editorial_self_assessment; not independent human reviewer",
-  "reviewed_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+  "reviewed_html_sha256": "b30f2da5906c4be45a6b075fba2bf56d7fb3bde306cd6c5ab4eaf1d0c088795f",
   "reviewed_figures": 13,
   "required_viewports": [
     {
@@ -25,7 +25,7 @@
     }
   ],
   "browser_evidence": {
-    "current_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+    "current_html_sha256": "b30f2da5906c4be45a6b075fba2bf56d7fb3bde306cd6c5ab4eaf1d0c088795f",
     "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
     "webkit_receipt": "research/issuers/600206/visual-qa/webkit.json",
     "figure_count_each_view": 13,
@@ -57,7 +57,7 @@
     },
     "V1": {
       "score": 2,
-      "evidence": "总营收及成本、毛利占比已进入视线，在手机和桌面直接可读。色块重量仍按实际金额严格保留。"
+      "evidence": "原件完整利润链放到第一张财务图。真实红绿带显示大额成本和净利差距，地区经营性专题在后。"
     },
     "V2": {
       "score": 3,
@@ -65,7 +65,7 @@
     },
     "V3": {
       "score": 2,
-      "evidence": "手机短标题无尾字孤行。去掉来源序号，按来源名与金额、毛利率分行，成本毛利用深色金额标签。"
+      "evidence": "同一源值在桌面横向、手机纵向真图可读，源金额与同比独立分行，手机收益调整与归母标题分开。"
     },
     "V4": {
       "score": 3,
@@ -73,7 +73,7 @@
     },
     "V5": {
       "score": 3,
-      "evidence": "当前 HTML 的 13 图均通过四视口源值、文本和导出核对，有研桑基与已有公司逐图对照。独立二审尚未完成。"
+      "evidence": "最新13图在四视口通过源值、可见 SVG 导出、文字边界与相邻图审，独立二审待查。"
     },
     "V6": {
       "score": 3,
@@ -179,7 +179,7 @@
       "mobile_readability": "总营收在中间主干上方直标，成本和毛利金额及占比在流带下对齐显示。",
       "alternative_and_why_this_graph": "仅地区完整互斥收入与自身成本适用真实线性源到成本/毛利桑基，不能混入产品轴。 最强替代解释及局限：地区收入差异无法独立识别汇率、品种和定价；其他业务在图内单列，且产品分类与地区分类重叠，不得跨图重复相加。",
       "peer_design_delta": "与海尔智家四来源大成本图对照，当前地区轴仅三组且极小其他业务需要独立直标；借鉴长芯博创更平衡的绿色毛利出口，但绝不挪用它的产品分类。",
-      "revision_decision": "并排对照海尔、长芯、长江电力后补齐手机合计及两个去向占比，缩短标题。"
+      "revision_decision": "第二套地区收入图承担毛利率比较，导航和图上导语与完整利润主线的职责清楚区分。"
     },
     "earnings": {
       "five_second_answer": "营业毛利、归母和扣非均改善，但这是三个不同利润层级，尚未回答现金转换。",
@@ -191,13 +191,13 @@
       "revision_decision": "保留 earnings 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
     },
     "profit-to-parent": {
-      "five_second_answer": "营业毛利 8.59 亿元，税金与四项费用合计扣减 5.63 亿元，归母 2.65 亿元。",
-      "source_and_grammar": "物理页90–91逐项取原值，营业项目、营业外、税项和少数归属用符号明确连接。",
-      "visual_hierarchy": "较长费用分组缩为短标签，先显示税金与四项费用，归母仍是明确终点。",
-      "mobile_readability": "手机看五步精简桥，原始行、人民币元和比较边界放在图后折叠核对。",
-      "alternative_and_why_this_graph": "费用、减值和其他收益有正负，带符号累计桥支持逐项复核并避免分配假毛利。",
-      "peer_design_delta": "海尔的核心桥解释归母同比下滑；本图只解释本期毛利到归母的层级和归属。",
-      "revision_decision": "以十五个原件项目替换总差额，正文单列研发费用与少数股东承担亏损的含义。"
+      "five_second_answer": "95.42亿元收入留下8.59亿元毛利，营业利润2.87亿元，最终归母净利润2.65亿元。",
+      "source_and_grammar": "年报物理页21、22、90、91及184，合并报表两期原始行和小计逐元勾稽。原始披露费用及少数股东损益均按会计符号进入。",
+      "visual_hierarchy": "读者从灰色地区来源进入收入主干，红色分出成本和费用，绿色连续到营业利润和归母，赭色标出收益及归属调整。",
+      "mobile_readability": "手机真实330原生版纵向阅读，费用细分放在右标注和下部列表。税前及合并净利润直接列在主图内。当前WebKit375查看完成。",
+      "alternative_and_why_this_graph": "原件四个可读主节点与两档披露小计能逐元闭合，且金额为合法正向，因此采用同库完整流向语法。",
+      "peer_design_delta": "沿用海尔和长芯的营业收入到归母主线。桌面来源的长金额和同比拆行，手机收益调整标签与归母标题分开。",
+      "revision_decision": "首张图采用完整利润主线，并将独立收入毛利披露作为后文专题。研发费用、管理费用和费用项的完整原始带符号行可展开。"
     },
     "cash-formation": {
       "five_second_answer": "存货和经营性应收合计吞噬约6.71亿，合并利润为正但经营现金仍-0.79亿。",

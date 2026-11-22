@@ -2,7 +2,7 @@
 
 **Source of truth for state:** `project-status.json` (current release, evidence links, open gates) and `site/research_catalog.json` (the issuer list and routes). Every other document's dated status text is history. Re-query GitHub `main` HEAD before editing. Historical PR35 provenance lives in `docs/ACTIVE_PR35_HANDOFF.md` and is not current deployment authority. Earlier versions of this file are archived at `docs/history/AGENTS_ARCHIVE_2026-11-16.md`.
 
-**Source of truth for method:** the canonical Skill `skills/ashare-financial-storytelling/SKILL.md` (contract v10.2) and its playbooks `skills/ashare-financial-storytelling/playbooks/01`–`09`. Read the Skill completely before research, rendering or release work; load the playbooks the task needs. The five background manuals `skills/ashare-financial-storytelling/research/01..05` hold first-party evidence for disputed judgements. Start-of-session human overview: `START_HERE.md`.
+**Source of truth for method:** the canonical Skill `skills/ashare-financial-storytelling/SKILL.md` (contract v10.3) and its playbooks `skills/ashare-financial-storytelling/playbooks/01`–`09`. Read the Skill completely before research, rendering or release work; load the playbooks the task needs. The five background manuals `skills/ashare-financial-storytelling/research/01..05` hold first-party evidence for disputed judgements. Start-of-session human overview: `START_HERE.md`.
 
 ## Product
 

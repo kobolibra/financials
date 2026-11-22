@@ -1202,6 +1202,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-092",
+      "root_cause": "把合法的地区收入成本、毛利专题当作整篇唯一损益桑基，未画到股东归属。",
+      "correction": "工业原表闭合且可用正向流时，从营业收入贯通归母净利润并直接展示税前及合并披露小计。独立核对图的端点、实际流带和中间披露金额。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_legal_industrial_sankey_must_reach_parent_and_lead",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

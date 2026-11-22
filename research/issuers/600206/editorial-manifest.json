@@ -3,15 +3,24 @@
     "figures": [
       {
         "index": 0,
-        "id": "glance",
-        "title": "利润修复后，最不一致的六项数字是什么？",
+        "id": "profit-to-parent",
+        "title": "收入怎样变成归母净利润？",
         "role": "primary",
-        "rationale": "独立研究问题与源事实驱动：本期一览",
+        "rationale": "依照合并损益表，从各收入来源贯通营业收入、成本毛利、营业利润、税前及合并利润、归母净利润。",
         "summary": false,
         "focus": []
       },
       {
         "index": 1,
+        "id": "glance",
+        "title": "利润修复后，最不一致的六项数字是什么？",
+        "role": "secondary",
+        "rationale": "独立研究问题与源事实驱动：本期一览",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 2,
         "id": "gross-profit-bridge",
         "title": "集团毛利增加，收入与成本分别贡献多少？",
         "role": "secondary",
@@ -20,7 +29,7 @@
         "focus": []
       },
       {
-        "index": 2,
+        "index": 3,
         "id": "margins",
         "title": "改善后的毛利率，有多少传到了利润率？",
         "role": "secondary",
@@ -29,7 +38,7 @@
         "focus": []
       },
       {
-        "index": 3,
+        "index": 4,
         "id": "growth-bars",
         "title": "收入、成本、研发和股东利润的增速为什么不一致？",
         "role": "secondary",
@@ -38,7 +47,7 @@
         "focus": []
       },
       {
-        "index": 4,
+        "index": 5,
         "id": "product-profit",
         "title": "三类产品谁收入高、谁毛利高？",
         "role": "secondary",
@@ -47,29 +56,20 @@
         "focus": []
       },
       {
-        "index": 5,
+        "index": 6,
         "id": "region-income",
-        "title": "收入如何分流到成本和毛利？",
+        "title": "哪些地区留下更多毛利？",
         "role": "secondary",
         "rationale": "独立研究问题与源事实驱动：收入成本流向",
         "summary": false,
         "focus": []
       },
       {
-        "index": 6,
+        "index": 7,
         "id": "earnings",
         "title": "毛利改善是否传到了扣非利润？",
         "role": "secondary",
         "rationale": "独立研究问题与源事实驱动：利润修复",
-        "summary": false,
-        "focus": []
-      },
-      {
-        "index": 7,
-        "id": "profit-to-parent",
-        "title": "毛利经过哪些项目变成归母净利润？",
-        "role": "secondary",
-        "rationale": "解释毛利改善如何经过费用、非经营项目、税与少数股东权益传递至归母净利润。",
         "summary": false,
         "focus": []
       },

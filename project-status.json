@@ -176,7 +176,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "10.2.0",
+    "version": "10.3.0",
     "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -1842,6 +1842,24 @@
       "catalog_sankey": "13 routes x four native viewports",
       "bank_600036_2026Q1": "four mechanical source topics covered; full author receipt absent"
     },
+    "independent_human_review": "NOT_CHECKED"
+  },
+  "sankey_production_20261122": {
+    "main_commit": "a44d8f8a3ff512beddbce71699202c515e2d4edf",
+    "pr": 113,
+    "tested_pr_ci": "13/13 PASS",
+    "production_report": "https://financials-in-visuals.pages.dev/600206.html",
+    "catalog_production_action": "https://github.com/kobolibra/financials/actions/runs/45013647789",
+    "report_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+    "visual_scope": "600206 all 13 figures in Chromium 1440/768/390 and WebKit 375 with current-source downloads",
+    "independent_human_review": "NOT_CHECKED",
+    "full_catalog_production_action": "https://github.com/kobolibra/financials/actions/runs/45013647725",
+    "full_catalog_production_result": "PASS"
+  },
+  "complete_named_profit_primary_20261122": {
+    "scope": "PENDING_RELEASE",
+    "company": "600206",
+    "developed_from": "current same-library full income flow V3",
     "independent_human_review": "NOT_CHECKED"
   }
 }
