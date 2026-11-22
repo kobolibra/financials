@@ -154,6 +154,18 @@ def offline_figures(ledger, plan):
     stock = [('发放贷款及垫款账面额', 'loans'), ('吸收存款账面额', 'deposits')] if bank else [
              ('应收账款', 'ar'), ('存货', 'inventory')]
     figures = []
+    if not bank and issuer.get('statement_format') == 'general':
+        sys.path.insert(0, str(ROOT / 'research/shared'))
+        from dossier_profit_chain import build
+        try:
+            complete = build(ledger)
+        except (KeyError, ValueError, TypeError, ArithmeticError):
+            pass  # No positive-flow exhibit for an incomplete or nonconserving statement.
+        else:
+            figure = text_block(id='profit-formation', family='income_flow_v3',
+                                nav='完整利润主图', eyebrow='合并损益',
+                                facts=list(complete['facts']) + list(complete['comparatives']['facts']))
+            figures.append(figure)
     for ident, label, metrics, kind in (('performance', '损益与盈利', flow, 'flow'),
                                        ('balances', '期末余额', stock, 'stock')):
         pairs = [[name, key + '_prior', key] for name, key in metrics if rc.pair_ok(ledger, key, kind)]
@@ -669,6 +681,7 @@ def cmd_apply(a):
                 fg[k] = walk(fg[k])
         fg.setdefault('identity', {'comparison': '按图例所列期间核对相同项目。',
                                    'signed_bridge': '起点加有符号变动等于终点。',
+                                   'income_flow_v3': '营业收入减成本，计入营业损益、税项及归属后，与披露归母净利润闭合。',
                                    'product_economics': '产品毛利等于其自身收入减去成本。',
                                    'volume_rate': '规模影响按上期实际比率估算，其余变动含比率、结构及交互影响。',
                                    'kpi_board': '各格为合并口径；流量与上年同期比较，余额与年初比较。', 'growth_bars': '各条为本期相对上年同期的同比增速；成本费用类增加标红。',

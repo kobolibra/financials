@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "issuer": "600206",
+  "period": "2025FY",
+  "status": "PASS",
+  "verified_git_commit": "a44d8f8a3ff512beddbce71699202c515e2d4edf",
+  "pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+  "actual_publication_action": "https://github.com/kobolibra/financials/actions/runs/45013647789",
+  "execution_provenance": "LOCAL_REAL_PUBLIC_BROWSER_AND_SEPARATE_GITHUB_ACTIONS_CATALOG_CHECK",
+  "actual_full_content_sha256_equals_repository_main_600206": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+  "actual_full_content_sha256_equals_repository_main_index": "9ff7846c6ecf348c377beeefadb8f3b7053c8145052bd88cf195e5e572aefa46",
+  "real_chromium_viewports": [
+    {
+      "width": 1440,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600206",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 13
+    },
+    {
+      "width": 768,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600206",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 13
+    },
+    {
+      "width": 390,
+      "actual_dedicated_article_final_url": "https://financials-in-visuals.pages.dev/600206",
+      "actual_return_to_library_url": "https://financials-in-visuals.pages.dev/#companies",
+      "back_to_same_home": "PASS",
+      "no_page_horizontal_overflow": "PASS",
+      "real_live_screenshots": "PASS",
+      "all_source_figures": 13
+    }
+  ],
+  "additional_webkit_checks": [
+    {
+      "engine": "webkit",
+      "width": 375,
+      "all_source_figures": 13,
+      "real_visible_svg_exports": "PASS",
+      "text_bounds": "PASS",
+      "screenshot_sha256": "d4e3ad5d3847beccda34b2c2719db1644d817d945e7ee4f765771eacb7a3f14c"
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "live_600206_1440.png",
+      "sha256": "0696931e4cf179e1a2f103c695cd66306c69a8630c41c3b4f791ab2b91e89064",
+      "bytes": 3209509
+    },
+    {
+      "name": "live_directory_1440.png",
+      "sha256": "7782958c43db26a3c8fc99f80627d5ac464abd7cad1b0c3c1b259a49ae269c4a",
+      "bytes": 158452
+    },
+    {
+      "name": "live_600206_768.png",
+      "sha256": "f31a2ce31f815bf18a9704de9563d08a973dade1e925dac7206d83cc28396429",
+      "bytes": 3441863
+    },
+    {
+      "name": "live_directory_768.png",
+      "sha256": "da3d848942cb434217449024a0390bf3ab0d6063f7cfc34b042c8adb8354e298",
+      "bytes": 129307
+    },
+    {
+      "name": "live_600206_390.png",
+      "sha256": "bb4ade82994700f040159b589650a424a0a611a589f7f3be99d2b94f8a899052",
+      "bytes": 2821245
+    },
+    {
+      "name": "live_directory_390.png",
+      "sha256": "4c4566148a405b31eb2beb2574489886429a5098366bda797be19958e4f98248",
+      "bytes": 96217
+    }
+  ],
+  "independent_human_finance_and_art": "NOT_CHECKED"
+}

@@ -210,6 +210,17 @@ def check(markup, b):
     allowed = {w for ws in lines.values() for w in ws}
     printed = [p for t in texts for p in re.findall(r'(?:毛利率|营业利润率|归母净利率) [-0-9.]+%（[+-][0-9.]+pp）|同比 [+-][0-9.]+%|占营收 [0-9.]+%(?:（[+-][0-9.]+pp）)?', t)]
     need(all(p in allowed for p in printed), 'ANNOTATION_NOT_RECOMPUTED')
+    if b.get('editorial', {}).get('show_disclosed_checkpoints'):
+        stages = {stage['id']: stage for stage in b['stages']}
+        def check_amount(key):
+            v = _v(b, stages[key]['terms'])
+            if abs(v) >= D('100000000'):
+                return f"{v / D('100000000'):,.2f}亿"
+            if abs(v) >= D('10000'):
+                return f"{v / D('10000'):,.2f}万"
+            return f"{v:,.2f}元"
+        label = '税前利润 ' + check_amount('pretax') + ' · 合并净利润 ' + check_amount('net')
+        need(label in texts, 'DISCLOSED_SUBTOTAL_LABEL_MISSING_OR_FALSE')
     if phone:
         bars = {r.get('data-chain-leaf'): r for r in root.iter(NS + 'rect') if r.get('data-chain-leaf')}
         need(set(bars) == set(leaves), 'PHONE_LEAF_SET')

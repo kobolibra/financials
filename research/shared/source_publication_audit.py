@@ -66,6 +66,14 @@ def check_vector_source(markup,ledger):
         if root.get('data-issuer')!=ledger['issuer']['code']:raise ValueError('DOSSIER_VECTOR_WRONG_ISSUER')
         return check_exhibit_values(root,ledger)
     if root.get('data-chart-grammar')=='FULL_PROFIT_CHAIN_V1':
+        if root.get('data-dossier-profit-chain') == 'true':
+            from dossier_profit_chain import build
+            from income_flow_audit import check
+            bundle = build(ledger)
+            if (root.get('data-issuer') != bundle['issuer'] or root.get('data-period') != bundle['period']
+                    or root.get('data-original-pdf-sha256') != bundle['source_pdf']['source_sha256']):
+                raise ValueError('DOSSIER_PROFIT_CHAIN_VECTOR_WRONG_IDENTITY')
+            return check(markup,bundle)
         from profit_chain_audit import check_svg,key_for
         return check_svg(markup,key_for(ledger['issuer']['code'],ledger['issuer']['fiscal_period']),ledger['source']['original_bytes_sha256'])
     if root.get('data-issuer')!=ledger['issuer']['code']:raise ValueError('DOSSIER_VECTOR_WRONG_ISSUER')

@@ -9,6 +9,7 @@ from html import escape as H
 import hashlib,json,re,sys
 from editorial_bridge import render_product_economics,render_bridge,render_comparison,render_balance,render_components
 from source_income_adapter import render_sector_income,compile_disclosed_income
+from dossier_profit_chain import build as build_profit_chain
 ROOT=Path(__file__).resolve().parents[2]
 def read(p):return json.loads(p.read_text())
 def fact_of(ledger,key):
@@ -318,6 +319,11 @@ def validate_offline_comparisons(ledger, story):
         elif family == 'signed_bridge':
             for _, expr, _ in figure['rows']:
                 expression(dependencies(expr))
+        elif family == 'income_flow_v3':
+            bundle = build_profit_chain(ledger)
+            if not set(bundle['facts']) <= set(cited(figure)):
+                raise ValueError('DOSSIER_PROFIT_CHAIN_MISSING_SOURCE_TABLE_ROWS')
+            signed_bridge_checkpoints(ledger, figure)
         elif family == 'income':
             # A source-declared mutually exclusive revenue/cost partition is mandatory.
             # The shared compiler independently checks source, cost and gross-profit ties.
@@ -528,6 +534,10 @@ def chart(ledger,figure,mobile):
     if family=='income':
         return render_sector_income(ledger,mobile=mobile,
                                     show_income_shares=figure.get('show_income_shares') is True)
+    if family=='income_flow_v3':
+        from income_flow_v3 import render
+        return render(build_profit_chain(ledger), mobile=mobile).replace(
+            '<svg ', '<svg data-dossier-profit-chain="true" ', 1)
     if family=='signed_bridge':return render_bridge([(l,v(e),role,reference(e)) for l,e,role in presentation_rows(figure)],title,period=figure.get('period',period),**kw)
     if family=='comparison':return render_comparison([(l,v(p),v(n),json.dumps({'periods':figure['periods'],'prior':p,'current':n},ensure_ascii=False,separators=(',',':'))) for l,p,n in figure['pairs']],title,periods=figure['periods'],**kw)
     if family=='balance':return render_balance([(date,v(a),v(l),v(e),json.dumps({'assets':a,'liabilities':l,'equity':e},separators=(',',':'))) for date,a,l,e in figure['dates']],title,**kw)
@@ -633,6 +643,8 @@ def publish(folder,out=None,*,catalog_report=False):
         roles = [f['role'] for f in decisions]
         if not roles or roles[0] != 'primary' or roles.count('primary') != 1:
             raise ValueError('OFFLINE_EDITORIAL_MANIFEST_DRIFT: expected one primary first figure')
+        if any(f['family'] == 'income_flow_v3' for f in story['figures']) and story['figures'][0]['family'] != 'income_flow_v3':
+            raise ValueError('DOSSIER_COMPLETE_PROFIT_SANKEY_MUST_BE_PRIMARY')
         if not source['official_announcement']:
             source = {**source, 'official_announcement': '#original-source'}
     lx=with_externals(ledger,story)

@@ -368,7 +368,10 @@ def render_phone(bundle):
     for g in ('gain-op', 'gain-final'):
         if g in nodes:
             n = nodes[g]
-            text(left + span, n['y'] + 24, '加：' + n['label'] + '　' + yi(n['value']), 11, 'end', COL['gain'][0], 700)
+            gain_label_y = n['y'] + 24
+            if g == 'gain-final' and bundle.get('editorial', {}).get('show_disclosed_checkpoints'):
+                gain_label_y = n['y'] - 12
+            text(left + span, gain_label_y, '加：' + n['label'] + '　' + yi(n['value']), 11, 'end', COL['gain'][0], 700)
     finals = [k for k in nodes if k.startswith('final-')]
     y = max(n['y'] + n['h'] for n in nodes.values()) + 46 + 32 * len(finals)
     if leaves:
@@ -384,6 +387,9 @@ def render_phone(bundle):
             text(left + D(138), y + 12, yi(l['value']) + (' ' + notes[l['id']]['lines'][0] if notes[l['id']]['lines'] else ''), 10, 'start', MUTED, 500)
             y += 8
     height = int(y + 46)
+    if bundle.get('editorial', {}).get('show_disclosed_checkpoints'):
+        height += 27
+        text(left, height - 40, disclosed_checkpoint_label(bundle), 11, 'start', INK, 600)
     text(left, height - 16, '宽度按人民币原始元同一比例；会计形成关系，非现金流。', 10, 'start', MUTED, 500)
     head = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 {height}" role="img" aria-label="利润表流向图" '
             f'data-chart-grammar="FULL_PROFIT_CHAIN_V1" data-chain-layout="{GRAMMAR_LAYOUT}" data-design-system="FINANCIALS_UNIFIED_STORY_V1" '
@@ -391,6 +397,12 @@ def render_phone(bundle):
             f'data-original-pdf-sha256="{bundle["source_pdf"]["source_sha256"]}" data-chain-axis="width" data-chain-scale="{scale}">'
             f'<title>利润表流向：收入、成本、利润与股东归属</title>')
     return head + ''.join(out) + '</svg>'
+
+
+def disclosed_checkpoint_label(bundle):
+    stages = {stage['id']: stage for stage in bundle['stages']}
+    return ('税前利润 ' + yi(amount(bundle, stages['pretax']['terms']))
+            + ' · 合并净利润 ' + yi(amount(bundle, stages['net']['terms'])))
 
 
 def render(bundle, mobile=False):
@@ -464,11 +476,19 @@ def render(bundle, mobile=False):
             x = n['x'] - 12
             y = n['y'] + n['h'] / 2
             text(x, y - 8, n['label'], 13, 'end', INK, 700)
-            text(x, y + 9, yi(n['value']) + ('　' + lines[0] if lines else ''), 12, 'end', MUTED, 500)
+            if bundle.get('editorial', {}).get('show_disclosed_checkpoints'):
+                text(x, y + 9, yi(n['value']), 12, 'end', MUTED, 500)
+                if lines:
+                    text(x, y + 26, lines[0], 11, 'end', MUTED, 500)
+            else:
+                text(x, y + 9, yi(n['value']) + ('　' + lines[0] if lines else ''), 12, 'end', MUTED, 500)
         elif n['role'] == 'gain':
             x = n['x'] - 8
             text(x, n['y'] + n['h'] + 16, '加：' + n['label'], 12, 'end', COL['gain'][0], 700)
             text(x, n['y'] + n['h'] + 32, yi(n['value']), 12, 'end', COL['gain'][0], 700)
+    if bundle.get('editorial', {}).get('show_disclosed_checkpoints'):
+        height += 30
+        text(24, height - 54, disclosed_checkpoint_label(bundle), 14, 'start', INK, 600)
     text(24, height - 26, '图形宽度按人民币原始元同一比例；会计形成关系，不是现金流。完整科目与来源见下方核对表。', 12, 'start', MUTED, 500)
     head = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 {height}" role="img" aria-label="利润表流向图" '
             f'data-chart-grammar="FULL_PROFIT_CHAIN_V1" data-chain-layout="{GRAMMAR_LAYOUT}" data-design-system="FINANCIALS_UNIFIED_STORY_V1" '
