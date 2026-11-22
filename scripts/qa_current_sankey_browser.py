@@ -15,13 +15,28 @@ from decimal import Decimal as D
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-ROUTES = (
-    "600206.html","600690.html","300548.html","300570.html",
-    "688220.html","300394.html","300502.html","300308.html",
-    "research/2026-h1-v10/688111.html",
-    "research/2026-h1-v10/000333.html",
-    "research/2026-h1-v10/600036.html",
-)
+import sys
+SHARED = Path(__file__).resolve().parents[1] / "research/shared"
+sys.path.insert(0, str(SHARED))
+from profit_chain_audit import check_reader
+
+GRAMMAR = "SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"
+
+
+def catalog_routes(root):
+    """Pick canonical routes with a typed graph, including JSON-embedded SVG."""
+    catalog = json.loads((root / "site/research_catalog.json").read_text())
+    marker = f'data-chart-grammar="{GRAMMAR}"'
+    routes = []
+    for entry in catalog["issuers"] + catalog.get("period_reports", []):
+        route = entry["href"].lstrip("/")
+        html = (root / "public" / route).read_text()
+        if marker in html or marker.replace('"', chr(92) + '"') in html:
+            routes.append(route)
+    if not routes or len(routes) != len(set(routes)):
+        raise ValueError("INVALID_SOURCE_SANKEY_CATALOG_SCOPE")
+    return routes
+
 
 def decimal_coords(d):
     return [D(v) for v in re.findall(r"-?\d+(?:\.\d+)?", d)]
@@ -59,11 +74,13 @@ def run(root, out):
              "status":"MACHINE_SOURCE_GEOMETRY_ONLY",
              "independent_art_and_financial_review":"NOT_CHECKED",
              "routes":[]}
+    routes = catalog_routes(root)
+    receipt["expected_routes"] = routes
     with sync_playwright() as p:
         for browser_name,viewports in (("chromium",(1440,768,390)),("webkit",(375,))):
             browser=getattr(p,browser_name).launch(headless=True)
             try:
-                for route in ROUTES:
+                for route in routes:
                     path=root/"public"/route
                     raw=path.read_bytes()
                     expected=hashlib.sha256(raw).hexdigest()
@@ -73,13 +90,15 @@ def run(root, out):
                         page=ctx.new_page()
                         errors=[]
                         page.on("pageerror",lambda exc:errors.append(str(exc)))
-                        page.goto(path.resolve().as_uri(),wait_until="domcontentloaded",timeout=30000)
-                        locator=page.locator('svg[data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"]')
+                        page.goto(path.resolve().as_uri(),wait_until="load",timeout=30000)
+                        if page.locator("#editorial-composition-ready").count() or page.locator("details.editorial-reference").count():
+                            check_reader(page)
+                            check_reader(page, expanded=True)
+                        page.evaluate("document.fonts.ready")
+                        locator=page.locator(f'svg[data-chart-grammar="{GRAMMAR}"]')
                         count=locator.count()
-                        if route.endswith("600036.html"):
-                            assert count>=1,(route,"BANK_GRAPH_MISSING")
-                        else:
-                            assert count>=1,(route,"SOURCE_GRAPH_MISSING")
+                        if count == 0:
+                            raise ValueError("SOURCE_GRAPH_MISSING " + route)
                         screenshot_count=0
                         for i in range(count):
                             svg=locator.nth(i)

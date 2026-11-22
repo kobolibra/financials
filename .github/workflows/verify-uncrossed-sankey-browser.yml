@@ -5,6 +5,8 @@ on:
     paths:
       - 'public/*.html'
       - 'public/research/**/*.html'
+      - 'site/research_catalog.json'
+      - 'research/shared/profit_chain_audit.py'
       - 'research/shared/unified_income_sankey.py'
       - 'research/shared/test_income_generalization.py'
       - 'scripts/qa_current_sankey_browser.py'
@@ -30,8 +32,10 @@ jobs:
           python - <<'PY'
           import json,pathlib
           receipt=json.loads(pathlib.Path('work/uncrossed/receipt.json').read_text())
+          required={('chromium', 1440), ('chromium', 768), ('chromium', 390), ('webkit', 375)}
           routes={r['route'] for r in receipt['routes']}
-          assert len(routes)==11,(len(routes),routes)
+          assert routes==set(receipt["expected_routes"]),(routes,receipt["expected_routes"])
+          assert all({(r['engine'], r['viewport_width']) for r in receipt['routes'] if r['route']==route}==required for route in routes)
           assert all(r['status']=='SOURCE_GEOMETRY_PASS' and r['geometry_crossings']==0 for r in receipt['routes'])
           assert receipt['independent_art_and_financial_review']=='NOT_CHECKED'
           print('CURRENT_FULL_PORTFOLIO_TRUE_BROWSER_SCREENSHOTS_COLLECTED',len(receipt['routes']))

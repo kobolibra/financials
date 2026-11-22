@@ -3,7 +3,7 @@
 Extends the already authorized source/browser validation job; no new workflow
 or new token scope is required. Never executes while imported.
 """
-import json,hashlib
+import json,hashlib,re
 from pathlib import Path
 import subprocess,sys,os
 ROOT=Path(__file__).resolve().parents[2]
@@ -22,7 +22,15 @@ def source_preview_evidence_errors(issuer, html_sha, record, receipt, *, engine=
             or record.get('report_route') != issuer.get('href')
             or record.get('report_file') != 'public/' + issuer['href'].lstrip('/')):
         errors.append('NEW_SOURCE_PREVIEW_IDENTITY_OR_RELEASE_CLASS')
-    if record.get('published_html_sha256') != html_sha:
+    deployed = record.get('published_html_sha256')
+    candidate = record.get('unmerged_candidate')
+    if deployed != html_sha and not (
+            isinstance(candidate, dict)
+            and isinstance(deployed, str) and re.fullmatch(r'[a-f0-9]{64}', deployed)
+            and candidate.get('base_deployed_html_sha256') == deployed
+            and candidate.get('candidate_full_html_sha256') == html_sha
+            and candidate.get('promotion_status') == 'UNMERGED_NOT_DEPLOYED'
+            and candidate.get('independent_finance_and_art_review') == 'NOT_CHECKED'):
         errors.append('NEW_SOURCE_PREVIEW_STALE_HTML_SHA')
     required = ('PDF_BYTES', 'SOURCE_ROW_COLUMN', 'ACCOUNTING_CORE',
                 'RESEARCH_COUNTERCASE', 'CHART_SEMANTICS', 'VISUAL_EDITORIAL_SELF',

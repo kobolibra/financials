@@ -235,11 +235,11 @@
   "editorial_contract": "FULL_PROFIT_CHAIN_V1",
   "unmerged_candidate": {
     "base_deployed_html_sha256": "a53372c4ddc149d37e0417b07963ea271143a6bd6d2d5a70894546146c79ca40",
-    "candidate_full_html_sha256": "cc1c9d674ab27cd8a5feff7fcea8a26b52e4be80c1d3502b0d8ceb84902e2626",
+    "candidate_full_html_sha256": "cfb24fcbd9b7861b6226870d0eb9394c16daa6d2c74b4d4c0d83eca5d103a739",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
-    "reason": "Sankey ribbon crossing repair; current-version browser and independent editorial signoff not yet completed. Old production release proof remains for deployed bytes only.",
-    "browser_proof_scope": "Real native Chromium full-article figures in the current recertification artifact; does not constitute independent human art review or production deployment."
+    "reason": "共用图形修正后由原件可重复生成，并复验三视口全图。",
+    "browser_proof_scope": "当前候选 HTML 的三视口全图、源值、截图与可见 SVG 导出。"
   }
 }

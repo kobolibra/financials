@@ -4,7 +4,7 @@
   "fiscal_period": "2025FY",
   "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
   "executor": "assistant_editorial_self_assessment; not independent human reviewer",
-  "reviewed_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
+  "reviewed_html_sha256": "700d5d848d418cff8daf057af569ce15d7b706cd11cbbfa6c50a80066fab899c",
   "reviewed_figures": 13,
   "required_viewports": [
     {
@@ -25,16 +25,13 @@
     }
   ],
   "browser_evidence": {
-    "run": 44928973439,
-    "url": "https://github.com/kobolibra/financials/actions/runs/44928973439",
-    "current_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
+    "current_html_sha256": "700d5d848d418cff8daf057af569ce15d7b706cd11cbbfa6c50a80066fab899c",
     "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
-    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44928973439",
-    "figure_count_each_view": 12,
-    "source_value_nodes_each_view": 75,
+    "webkit_receipt": "research/issuers/600206/visual-qa/webkit.json",
+    "figure_count_each_view": 13,
     "text_outside_svg": 0,
     "label_overlaps": 0,
-    "caveat": "Current SHA-native Chromium 1440/768/390 and WebKit375 full-article source/browser audit; the assistant separately inspected the actual desktop/phone screenshots. Cost/GP crossing gone. Small source line and red cost area remain editorial limitations; V1/V3 only 2. Independent human art review NOT_CHECKED."
+    "caveat": "本地真实 Chromium 1440/768/390 与 WebKit 375 对本次完整 HTML 检查。"
   },
   "rubric_version": "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md",
   "scores": {
@@ -60,7 +57,7 @@
     },
     "V1": {
       "score": 2,
-      "evidence": "Current graph 06 outgoing costs/profits no longer cross, issuer-specific accounting relations remain readable. The large red COGS area dominates and tiny source needs explanatory text, so visual editorial score remains 2 rather than top-tier."
+      "evidence": "手机图中境内成本仍为最大的真实金额色块，境外更高的毛利率需要直接标注和图下解释。保留线性几何与小额其他业务。"
     },
     "V2": {
       "score": 3,
@@ -68,15 +65,15 @@
     },
     "V3": {
       "score": 2,
-      "evidence": "True 1440/768/390 Chromium and 375 WebKit screenshots preserve native labels and monetary proportions. Mobile narrative remains dense; score stays 2 pending external art review."
+      "evidence": "缩短首屏导语、移除速览重复，费用桥用短组名直标。手机可以读到各步金额，细项与公式仍需展开核对。"
     },
     "V4": {
       "score": 3,
-      "evidence": "从读者首屏三项重点、六指标总览进入利润来源、业务、利润质量、现金资本与下一期证伪，七篇主论证段落与12图相互交错。"
+      "evidence": "首屏三项对立指标后进入产品、地区、费用、现金、资本与下一期证伪；13 图按各自会计问题与正文交错。"
     },
     "V5": {
       "score": 3,
-      "evidence": "Current HTML 93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a recaptured in Chromium 1440/768/390 and WebKit375 with 12 finance figures each and no machine-detected overlap or clipping. The author also visually inspected the current desktop and two phone screenshots; independent reviewer NOT_CHECKED."
+      "evidence": "当前 HTML 的 13 张图均通过四视口源值、标签和导出核对。独立财经与审美复核尚未完成。"
     },
     "V6": {
       "score": 3,
@@ -127,7 +124,7 @@
     "Production Cloudflare byte-equality not checked for candidate; no live deployment certification until merged."
   ],
   "release_scope": "source_limited_preview only; all limitations must remain visible; no assertion of independent top-tier certification",
-  "result_reason": "Self-review only: exact original data, all full-article Chromium/WebKit current build screenshots, no P0 ribbon crossing. V1/V3 retain 2/3 due red cost dominance, small-source legibility and editorial density; independent financial/art human signoff remains NOT_CHECKED.",
+  "result_reason": "财报原件、逐项目利润桥、四视口机验和作者实图对照完成。地区图仍由真比例成本占主导，独立财经与艺术二审未完成。",
   "reviewed_source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
   "chart_reviews": {
     "glance": {
@@ -176,13 +173,13 @@
       "revision_decision": "保留 product-profit 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
     },
     "region-income": {
-      "five_second_answer": "境内收入89.21亿、境外5.96亿、其他0.25亿汇入95.42亿集团收入后依法分成成本与毛利。",
+      "five_second_answer": "境内收入最多，境外毛利率更高。其他业务按同一披露分类单列。",
       "source_and_grammar": "图 region-income，类别 income；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。",
       "visual_hierarchy": "主要境内业务流明显主导收入，营业成本红色面积大；分组后的毛利绿色出口不交叉，薄小来源不加宽。",
       "mobile_readability": "当前 region-income 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
       "alternative_and_why_this_graph": "仅地区完整互斥收入与自身成本适用真实线性源到成本/毛利桑基，不能混入产品轴。 最强替代解释及局限：地区收入差异无法独立识别汇率、品种和定价；其他业务在图内单列，且产品分类与地区分类重叠，不得跨图重复相加。",
       "peer_design_delta": "与海尔智家四来源大成本图对照，当前地区轴仅三组且极小其他业务需要独立直标；借鉴长芯博创更平衡的绿色毛利出口，但绝不挪用它的产品分类。",
-      "revision_decision": "本次真实修正全部来源成本/毛利出线次序，消除交叉；红色成本占大视觉面积与薄业务源值需继续编辑优化，评分不超过2。"
+      "revision_decision": "图前直给地区比较，保持成本和毛利的线性尺度，图下约束跨产品轴与地区轴的归因。"
     },
     "earnings": {
       "five_second_answer": "营业毛利、归母和扣非均改善，但这是三个不同利润层级，尚未回答现金转换。",
@@ -194,13 +191,13 @@
       "revision_decision": "保留 earnings 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
     },
     "profit-to-parent": {
-      "five_second_answer": "8.59亿营业毛利扣除约5.72亿营业内净影响、税费并调整少数股东归属，最终归母约2.65亿。",
-      "source_and_grammar": "图 profit-to-parent，类别 signed_bridge；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：集团毛利（收入−成本）＋（营业利润−集团毛利）＋（利润总额−营业利润）＋（合并净利润−利润总额）＋（归母−合并净利润）＝归母净利润。",
-      "visual_hierarchy": "新增完整有符号累计桥从营业毛利走到归母净利润；中间负向净影响不画成绿色正向利润。",
-      "mobile_readability": "当前 profit-to-parent 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
-      "alternative_and_why_this_graph": "带符号桥用于满足原件恒等式的逐项累计，桑基正向色带会掩盖负值和不合法因果。 最强替代解释及局限：这是同一期间的会计算术分解，不等于已识别价格、销量、汇率、研发投资回报或一次性项目的经营因果。仍需逐项核对费用、减值、投资损益附注；不得把净影响差额命名为纯经营成本。",
-      "peer_design_delta": "海尔和长芯现有产品成本/毛利桑基只说明业务毛利，不能回答有研毛利到股东净利的会计传导；本稿必须以新增带符号桥补齐。",
-      "revision_decision": "在审稿揭示利润归母层级空白后新增合法完整带符号桥；下一次原件/浏览器审稿必须逐元复验中间净影响的方向。"
+      "five_second_answer": "营业毛利 8.59 亿元，税金与四项费用合计扣减 5.63 亿元，归母 2.65 亿元。",
+      "source_and_grammar": "物理页90–91逐项取原值，营业项目、营业外、税项和少数归属用符号明确连接。",
+      "visual_hierarchy": "较长费用分组缩为短标签，先显示税金与四项费用，归母仍是明确终点。",
+      "mobile_readability": "手机看五步精简桥，原始行、人民币元和比较边界放在图后折叠核对。",
+      "alternative_and_why_this_graph": "费用、减值和其他收益有正负，带符号累计桥支持逐项复核并避免分配假毛利。",
+      "peer_design_delta": "海尔的核心桥解释归母同比下滑；本图只解释本期毛利到归母的层级和归属。",
+      "revision_decision": "以十五个原件项目替换总差额，正文单列研发费用与少数股东承担亏损的含义。"
     },
     "cash-formation": {
       "five_second_answer": "存货和经营性应收合计吞噬约6.71亿，合并利润为正但经营现金仍-0.79亿。",
@@ -252,13 +249,13 @@
     "peers": [
       {
         "code": "600690",
-        "html_sha256": "f18f8b301718d708b080c6c84671a70851c2c654ca7edda90d2bc792b368da11",
+        "html_sha256": "a806fbf6bd02a07969cd22e9d1a27b5aaa2f3276e2bc7d5a54a1594bcea2a133",
         "research_delta": "海尔智家2026H1四类互斥产品来源拆出了自身成本和毛利，图示收入1521亿与毛利414亿；有研则因产品年度可比披露有限，必须区分地区互斥收入桑基与当期产品毛利，不虚构产品增长因果。",
         "visual_delta": "实际1440截图中海尔的收入灰色主干和红色成本占视觉主导，四来源最后小来源极细；有研三来源同样应保留真比例并改善薄来源直标，还需独立利润到归母的带符号桥。"
       },
       {
         "code": "300548",
-        "html_sha256": "cc1c9d674ab27cd8a5feff7fcea8a26b52e4be80c1d3502b0d8ceb84902e2626",
+        "html_sha256": "cfb24fcbd9b7861b6226870d0eb9394c16daa6d2c74b4d4c0d83eca5d103a739",
         "research_delta": "长芯博创2026H1数通/消费/工业互联14.80亿收入在16.88亿中占大头，集团毛利8.25亿接近成本8.63亿，和有研境内地区收入主导但利润现金背离的逻辑不是一类行业结论。",
         "visual_delta": "长芯实际1440图红绿成本毛利带接近均衡、数通来源厚重明显；有研95.42亿收入中营业成本占极高比重，不能模仿长芯均衡配色去夸大绿色毛利面积，也不能把地区轴替换成产品轴。"
       }

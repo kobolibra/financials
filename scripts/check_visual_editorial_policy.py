@@ -134,7 +134,10 @@ def validate_current_published_files(root, audit, debt):
                             if name=='export_file':
                                 check_vector(raw.decode('utf8'),code,expected_pdf)
             except (OSError,ValueError,KeyError,TypeError,ImportError,AttributeError):
-                errors.append('VISUAL_CURRENT_SOURCE_COMPLETE_AND_UNCROSSED_BROWSER_PROOF_REQUIRED '+code)
+                error = ('VISUAL_CURRENT_FULL_PROFIT_CHAIN_COMPLETE_PROOF_REQUIRED'
+                         if issuer.get('editorial_contract') else
+                         'VISUAL_CURRENT_SOURCE_COMPLETE_AND_UNCROSSED_BROWSER_PROOF_REQUIRED')
+                errors.append(error + ' ' + code)
                 continue
             fixed.append({'code':code,'source_html_sha256':sha,
                          'mobile_original_money_grammar':

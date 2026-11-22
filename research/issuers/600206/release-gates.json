@@ -98,11 +98,11 @@
   "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
   "unmerged_candidate": {
     "base_deployed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
-    "candidate_full_html_sha256": "93a7b4048beca92f46e963312f759474ac2107697bf9099f0ea256aecde65d6a",
+    "candidate_full_html_sha256": "700d5d848d418cff8daf057af569ce15d7b706cd11cbbfa6c50a80066fab899c",
     "promotion_status": "UNMERGED_NOT_DEPLOYED",
     "independent_finance_and_art_review": "NOT_CHECKED",
     "current_sha_browser_proof": "LOCAL_ONLY",
-    "reason": "Sankey ribbon crossing repair; current-version browser and independent editorial signoff not yet completed. Old production release proof remains for deployed bytes only.",
-    "browser_proof_scope": "Real native Chromium full-article figures in the current recertification artifact; does not constitute independent human art review or production deployment."
+    "reason": "源件重建后的候选页面，原生产回执对应此前正式字节。",
+    "browser_proof_scope": "600206 四视口全图；600900 和 600276 三视口全图以及四视口桑基。"
   }
 }

@@ -284,5 +284,14 @@
   "production_artifact": {
     "id": 14050205196,
     "zip_sha256": "ef3eda8526a8e4849c9cd89cc28b4007e2beef75d2a1b8a00f384b3eb64e7b06"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "d341db36c3375368bddcbbaa545b6fd7bc64a69718f17b2a5d6b93bc1ca2486b",
+    "candidate_full_html_sha256": "e7ad138f568be53371f704da418f9f574ea82f45deeb1a20ca8ddf2d0aa0b6a0",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "reason": "源件重建后的候选页面，原生产回执对应此前正式字节。",
+    "browser_proof_scope": "600206 四视口全图；600900 和 600276 三视口全图以及四视口桑基。"
   }
 }
