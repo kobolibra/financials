@@ -4,7 +4,7 @@
   "fiscal_period": "2025FY",
   "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
   "executor": "assistant_editorial_self_assessment; not independent human reviewer",
-  "reviewed_html_sha256": "700d5d848d418cff8daf057af569ce15d7b706cd11cbbfa6c50a80066fab899c",
+  "reviewed_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
   "reviewed_figures": 13,
   "required_viewports": [
     {
@@ -25,7 +25,7 @@
     }
   ],
   "browser_evidence": {
-    "current_html_sha256": "700d5d848d418cff8daf057af569ce15d7b706cd11cbbfa6c50a80066fab899c",
+    "current_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
     "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
     "webkit_receipt": "research/issuers/600206/visual-qa/webkit.json",
     "figure_count_each_view": 13,
@@ -57,7 +57,7 @@
     },
     "V1": {
       "score": 2,
-      "evidence": "手机图中境内成本仍为最大的真实金额色块，境外更高的毛利率需要直接标注和图下解释。保留线性几何与小额其他业务。"
+      "evidence": "总营收及成本、毛利占比已进入视线，在手机和桌面直接可读。色块重量仍按实际金额严格保留。"
     },
     "V2": {
       "score": 3,
@@ -65,7 +65,7 @@
     },
     "V3": {
       "score": 2,
-      "evidence": "缩短首屏导语、移除速览重复，费用桥用短组名直标。手机可以读到各步金额，细项与公式仍需展开核对。"
+      "evidence": "手机短标题无尾字孤行。去掉来源序号，按来源名与金额、毛利率分行，成本毛利用深色金额标签。"
     },
     "V4": {
       "score": 3,
@@ -73,7 +73,7 @@
     },
     "V5": {
       "score": 3,
-      "evidence": "当前 HTML 的 13 张图均通过四视口源值、标签和导出核对。独立财经与审美复核尚未完成。"
+      "evidence": "当前 HTML 的 13 图均通过四视口源值、文本和导出核对，有研桑基与已有公司逐图对照。独立二审尚未完成。"
     },
     "V6": {
       "score": 3,
@@ -173,13 +173,13 @@
       "revision_decision": "保留 product-profit 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
     },
     "region-income": {
-      "five_second_answer": "境内收入最多，境外毛利率更高。其他业务按同一披露分类单列。",
+      "five_second_answer": "总营收 95.42 亿元，成本占 91.0%，留毛利 9.0%。境外毛利率 18.5%，高于境内 8.4%。",
       "source_and_grammar": "图 region-income，类别 income；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。",
-      "visual_hierarchy": "主要境内业务流明显主导收入，营业成本红色面积大；分组后的毛利绿色出口不交叉，薄小来源不加宽。",
-      "mobile_readability": "当前 region-income 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "visual_hierarchy": "去掉编号和重复颜色说明，用深色金额标注分层。小额来源保留可读文字及原始金额带宽。",
+      "mobile_readability": "总营收在中间主干上方直标，成本和毛利金额及占比在流带下对齐显示。",
       "alternative_and_why_this_graph": "仅地区完整互斥收入与自身成本适用真实线性源到成本/毛利桑基，不能混入产品轴。 最强替代解释及局限：地区收入差异无法独立识别汇率、品种和定价；其他业务在图内单列，且产品分类与地区分类重叠，不得跨图重复相加。",
       "peer_design_delta": "与海尔智家四来源大成本图对照，当前地区轴仅三组且极小其他业务需要独立直标；借鉴长芯博创更平衡的绿色毛利出口，但绝不挪用它的产品分类。",
-      "revision_decision": "图前直给地区比较，保持成本和毛利的线性尺度，图下约束跨产品轴与地区轴的归因。"
+      "revision_decision": "并排对照海尔、长芯、长江电力后补齐手机合计及两个去向占比，缩短标题。"
     },
     "earnings": {
       "five_second_answer": "营业毛利、归母和扣非均改善，但这是三个不同利润层级，尚未回答现金转换。",

@@ -525,7 +525,9 @@ def chart(ledger,figure,mobile):
     issuer=ledger['issuer'];kw=dict(issuer=issuer['code'],pdf_sha256=ledger['source']['original_bytes_sha256'],mobile=mobile);period=issuer['fiscal_period'];title=figure['question'];v=lambda e:amount(ledger,e);family=figure['family']
     if family=='product_economics':return render_product_economics(product_rows(ledger,figure),title,period=period,**kw)
     if family=='volume_rate':return render_bridge(volume_rate_rows(ledger,figure),title,period=period,**kw)
-    if family=='income':return render_sector_income(ledger,mobile=mobile)
+    if family=='income':
+        return render_sector_income(ledger,mobile=mobile,
+                                    show_income_shares=figure.get('show_income_shares') is True)
     if family=='signed_bridge':return render_bridge([(l,v(e),role,reference(e)) for l,e,role in presentation_rows(figure)],title,period=figure.get('period',period),**kw)
     if family=='comparison':return render_comparison([(l,v(p),v(n),json.dumps({'periods':figure['periods'],'prior':p,'current':n},ensure_ascii=False,separators=(',',':'))) for l,p,n in figure['pairs']],title,periods=figure['periods'],**kw)
     if family=='balance':return render_balance([(date,v(a),v(l),v(e),json.dumps({'assets':a,'liabilities':l,'equity':e},separators=(',',':'))) for date,a,l,e in figure['dates']],title,**kw)

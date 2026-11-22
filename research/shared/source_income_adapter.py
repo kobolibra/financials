@@ -118,7 +118,8 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
     plan.check()
     return plan
 
-def render_sector_income(ledger:dict, *,mobile:bool=False,embedded:bool=True)->str:
+def render_sector_income(ledger:dict, *,mobile:bool=False,embedded:bool=True,
+                         show_income_shares:bool=False)->str:
     plan=compile_disclosed_income(ledger)
     # For two/three exclusive business sources, use native phone editorial
     # source-name and money rows. This is a data-structure driven layout
@@ -127,4 +128,5 @@ def render_sector_income(ledger:dict, *,mobile:bool=False,embedded:bool=True)->s
     # layout until they are deliberately rebuilt and re-verified.
     readable=bool(mobile and (2<=len(plan.sources)<=3 or ledger["issuer"].get("accounting_route")=="industrial_own_cost_income"))
     return render_income_sankey(plan,mobile=mobile,embedded=embedded,
-                                readable_source_rows=readable)
+                                readable_source_rows=readable or (mobile and show_income_shares),
+                                show_income_shares=show_income_shares)

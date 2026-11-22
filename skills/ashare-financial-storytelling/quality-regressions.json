@@ -1192,6 +1192,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "OFFLINE_REBUILD",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "VIS-091",
+      "root_cause": "手机收入桑基漏标营业收入合计，成本和毛利占比需读者自行计算。",
+      "correction": "披露各业务自身成本时，同时直标合计收入和集团两项去向的占营收比例，保持每条原始金额流带的坐标。",
+      "proof_file": "research/shared/test_source_income_adapter.py",
+      "assertion_marker": "test_income_shares_add_group_readouts_without_rescaling_ribbons",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

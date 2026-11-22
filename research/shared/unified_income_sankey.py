@@ -147,8 +147,16 @@ class FlowPlan:
             raise ValueError("UNSOURCED_OR_CONTEXTLESS_FINANCE")
         return total
 
-def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=False, readable_source_rows:bool=False):
+def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=False,
+                       readable_source_rows:bool=False, show_income_shares:bool=False):
     total=plan.check()
+    if show_income_shares and plan.kind != "TYPE_A_SOURCE_OWN_COST_GP":
+        raise ValueError("INCOME_SHARES_REQUIRE_DISCLOSED_SOURCE_COST_AND_GROSS_PROFIT")
+    # Use a darker ink for financial labels while retaining the original
+    # ribbon palette and geometry. Percentages use the same revenue denominator.
+    label_ink = {"cost": "#9A4B4C", "profit": "#126A54"}
+    def share_label(value):
+        return f"{fmt(value)} · {value / total * 100:.1f}%"
     W=D(330 if mobile else 1100)
     HVAL=D(142 if mobile else 286)
     scale=total/HVAL
@@ -196,7 +204,10 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
         if not embedded:
             out.append(text(12,24,title[:23],title_size,weight=700))
         out.append(text(12,43,f'{plan.period} · 人民币亿元 · 金额按同一比例',11.5,PALETTE["muted"]))
-        out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",11.5,PALETTE["muted"]))
+        if show_income_shares:
+            out.append('<path d="M12 63H315" stroke="#DCE1DD" fill="none"/>')
+        else:
+            out.append(text(12,64,"灰色：收入来源    红色：成本    绿色：利润",11.5,PALETTE["muted"]))
         for i,(sid,name,v,_,__) in enumerate(src_nodes):
             leg_y=D(89+i*(44 if readable_source_rows else 21))
             # Genuine CJK glyph bbox is often ~16px tall at 11 SVG font-size.
@@ -205,25 +216,36 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
             # source/ribbon money scales remain completely unchanged.
             # Own line for the source and own line for money: never collide
             # with long Chinese names or the directly readable gross margin.
-            out.append(text(12,leg_y,f'{i+1:02d}  {name}',12 if readable_source_rows else 10,PALETTE["ink"],600,role="source-summary"))
+            name_label = name if show_income_shares else f'{i+1:02d}  {name}'
+            out.append(text(12,leg_y,name_label,12 if readable_source_rows else 10,PALETTE["ink"],600,role="source-summary"))
             label=fmt(v)
             if plan.allocations:
                 own_gp=sum((yuan(value) for source,outcome,value in plan.allocations
                             if source==sid and any(key==outcome and role=="profit"
                                                    for key,_,_,role in plan.outcomes)),D(0))
-                label+=(f' · 毛利{own_gp/v*100:.1f}%' if v else ' · 毛利率不适用')
+                margin_name = "毛利率" if show_income_shares else "毛利"
+                label+=(f' · {margin_name}{own_gp/v*100:.1f}%' if v else ' · 毛利率不适用')
             if readable_source_rows:
-                out.append(text(28,leg_y+D(20),label,12,PALETTE["source_dark"],600,role="source-summary"))
+                out.append(text(12 if show_income_shares else 28,leg_y+D(20),label,12,
+                                PALETTE["muted"] if show_income_shares else PALETTE["source_dark"],
+                                600,role="source-summary"))
             else:
                 out.append(text(315,leg_y,label,9,PALETTE["source_dark"],600,"end",role="source-summary"))
         out.append(text(12,top-D(16),"来源",11.5,PALETTE["muted"],600,role="source-stage-header"))
-        out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",11.5,PALETTE["muted"],600,"middle",role="total-stage-header"))
+        if show_income_shares:
+            out.append(text(xrev+rev_width/2,top-D(16),f"总收入 {fmt(total)}",12,
+                            PALETTE["ink"],700,"middle",role="total-stage-header"))
+        else:
+            out.append(text(xrev,top-D(16),"净收入合计" if plan.kind=="BANK_NET_INCOME_TO_OPERATING_PROFIT" else "总收入",11.5,PALETTE["muted"],600,"middle",role="total-stage-header"))
         out.append(text(xout,top-D(16),"去向",11.5,PALETTE["muted"],600,"middle"))
     else:
         if not embedded:
             out.append(text(26,46,title,28,PALETTE["ink"],700))
         out.append(text(26,76,f'{plan.period}  ·  CNY 亿元  ·  真实原始元面积守恒',15,PALETTE["muted"]))
-        out.append(text(26,103,"收入来源汇总到一个总收入节点，然后流向合法的成本与利润去向；色带不设置虚假的最小金额宽度",12,PALETTE["muted"]))
+        if show_income_shares:
+            out.append(text(26,103,"成本与毛利的百分比均以合并营业收入为分母",14,PALETTE["muted"]))
+        else:
+            out.append(text(26,103,"收入来源汇总到一个总收入节点，然后流向合法的成本与利润去向；色带不设置虚假的最小金额宽度",12,PALETTE["muted"]))
         out.append(text(xsrc,160,plan.source_label,17,PALETTE["ink"],700,"middle"))
         out.append(text(xrev+rev_width/2,160,"合计收入",17,PALETTE["ink"],700,"middle"))
         out.append(text(xout,160,plan.outcome_label,17,PALETTE["ink"],700,"middle"))
@@ -304,23 +326,27 @@ def render_income_sankey(plan:FlowPlan, *, mobile:bool=False, embedded:bool=Fals
                         f'data-node-id="{esc(oid)}" data-node-yuan="{esc(v)}" data-node-role="{role}"'))
         if not mobile:
             out.append(text(xout+29,sy+17,name,17,PALETTE["ink"],700))
-            out.append(text(xout+29,sy+39,fmt(v),17,color,700))
+            out.append(text(xout+29,sy+39,share_label(v) if show_income_shares else fmt(v),17,
+                            label_ink[role] if show_income_shares else color,700,
+                            role="outcome-value" if show_income_shares else ""))
         else:
             short=name.replace("营业","").replace("及管理","")
             if len(short)>4: short=short[:4]
-            out.append(text(274,sy+10,short,11.5 if readable_source_rows else 9,color,700))
+            out.append(text(274,sy+10,short,11.5 if readable_source_rows else 9,
+                            label_ink[role] if show_income_shares else color,700))
     if mobile:
         # The financial outcome list, accounting warning and source note are
         # stacked using ACTUAL row count, never fixed H offsets (which caused
         # the CMB amount + bank caveat + source note to overlap).
         footer=chart_bottom+D(27)
-        out.append(text(12,footer,"成本与利润 · 对应原报表",11,PALETTE["ink"],700,role="outcome-list-title"))
+        outcome_heading = "集团成本与毛利 · 占营业收入" if show_income_shares else "成本与利润 · 对应原报表"
+        out.append(text(12,footer,outcome_heading,11,PALETTE["ink"],700,role="outcome-list-title"))
         for i,(oid,name,v,role,_,__) in enumerate(sink_nodes):
             ypos=footer+D(20+i*20)
             out.append(text(12,ypos,name,12,PALETTE["ink"],500,role="outcome-value"))
-            out.append(text(315,ypos,fmt(v),12,
-                            PALETTE["profit"] if role=="profit" else PALETTE["cost"],
-                            700,"end",role="outcome-value"))
+            accent = label_ink[role] if show_income_shares else PALETTE["profit" if role=="profit" else "cost"]
+            out.append(text(315,ypos,share_label(v) if show_income_shares else fmt(v),12,
+                            accent,700,"end",role="outcome-value"))
         last_value_y=footer+D(20+(len(sink_nodes)-1)*20)
         hint_y=last_value_y+D(28)
         source_y=hint_y+D(20)
