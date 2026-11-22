@@ -109,5 +109,14 @@
   "production_artifact": {
     "id": 14210872027,
     "zip_sha256": "283ac507d3615c4c15d83b5e6383c1755236aa8cb53abe3718b73486cffda9c0"
+  },
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "c39ab7e4067f4d011d6ceaf92b66c710ef98ebf3ca8a568f38ed4677e489be18",
+    "candidate_full_html_sha256": "3031b58ecdff647b241d263cf6bb397cfc2f81f9e40c221ff166383d809cf435",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "reason": "共用图形修正后由原件可重复生成，并复验三视口全图。",
+    "browser_proof_scope": "当前候选 HTML 的三视口全图、源值、截图与可见 SVG 导出。"
   }
 }

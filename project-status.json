@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-13",
+  "updated_date": "2026-11-22",
   "offline_pdf_research_candidate_20261120": {
     "scope": "CATALOG_CANDIDATE_PENDING_LIVE",
     "evidence": "research/quality/pdf-generalization-20261120/README.md",
@@ -176,7 +176,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "10.1.0",
+    "version": "10.2.0",
     "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -1831,6 +1831,17 @@
     "actual_chromium_svg_downloads": 444,
     "actual_webkit_svg_downloads": 148,
     "skill_version": "9.1.0",
+    "independent_human_review": "NOT_CHECKED"
+  },
+  "editorial_quality_candidate_20261122": {
+    "scope": "LOCAL_CANDIDATE_NOT_PRODUCTION",
+    "base_pr": 113,
+    "base_commit": "9fe8c18371cc24f29437122f7c8ced3b429f9e89",
+    "verified_locally": {
+      "600206": "13 figures x four native browser viewports; nine source-supported editorial topics",
+      "catalog_sankey": "13 routes x four native viewports",
+      "bank_600036_2026Q1": "four mechanical source topics covered; full author receipt absent"
+    },
     "independent_human_review": "NOT_CHECKED"
   }
 }

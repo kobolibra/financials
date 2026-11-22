@@ -43,6 +43,21 @@ class NewSourcePreviewFigureContractTests(unittest.TestCase):
             with self.subTest(poison=kind):
                 self.assertTrue(source_preview_evidence_errors(issuer,expected,r,q),kind)
 
+    def test_candidate_browser_proof_cannot_claim_production(self):
+        issuer, sha, record, receipt = current_source_preview()
+        deployed = "a" * 64
+        record["published_html_sha256"] = deployed
+        record["unmerged_candidate"] = {
+            "base_deployed_html_sha256": deployed,
+            "candidate_full_html_sha256": sha,
+            "promotion_status": "UNMERGED_NOT_DEPLOYED",
+            "independent_finance_and_art_review": "NOT_CHECKED",
+        }
+        self.assertEqual(source_preview_evidence_errors(issuer, sha, record, receipt), [])
+        record["unmerged_candidate"]["promotion_status"] = "LIVE"
+        self.assertIn("NEW_SOURCE_PREVIEW_STALE_HTML_SHA",
+                      source_preview_evidence_errors(issuer, sha, record, receipt))
+
     def test_fresh_browser_must_match_its_own_engine_and_widths(self):
         issuer,sha,record,receipt=current_source_preview()
         self.assertIn('NEW_SOURCE_PREVIEW_BROWSER_SOURCE_SHA_DRIFT',

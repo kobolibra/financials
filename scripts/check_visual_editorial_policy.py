@@ -88,6 +88,61 @@ def validate_current_published_files(root, audit, debt):
         if baseline=={sha}:
             if code in old:unresolved.append(code)
             continue
+        # One *actual* current-source proof may now certify any FULL_SOURCE
+        # issuer irrespective of renderer family. The previous implementation
+        # required bespoke stale screenshot schemas per sector; changes to
+        # fully evidenced figures then failed even if every real exported SVG
+        # and native screenshot was rechecked. This unifies the evidence
+        # without weakening it: original PDF identity, all figures, three
+        # native viewports, archived screenshot and SVG bytes, exact source
+        # geometry and no crossing all remain mandatory.
+        if issuer.get('figure_quality_contract') == 'FULL_SOURCE_FIGURES_V1':
+            try:
+                import sys
+                sys.path.insert(0,str(root/'research/shared'))
+                from audit_unified_visual_corpus import verified_complete_migration
+                from browser_evidence_archive import EvidenceReader
+                from qa_editorial_migration import check_vector
+                profile=json.loads((root/'site/research_catalog.json').read_text())['figure_quality_contracts']['FULL_SOURCE_FIGURES_V1']
+                proof=(root/profile['local_migration_receipt']).resolve()
+                proof.relative_to(root.resolve())
+                q=json.loads(proof.read_text())
+                if not verified_complete_migration(q,code,sha):
+                    raise ValueError('CURRENT_FULL_FIGURE_PROOF_MISSING_OR_STALE')
+                expected_pdf=q['issuers'][code]['pdf_sha256']
+                indices={}
+                for source_index in profile['source_review_indices']:
+                    d=json.loads((root/source_index).read_text())
+                    indices.update(d['issuers'])
+                if indices[code]['source_sha256']!=expected_pdf:
+                    raise ValueError('CURRENT_PDF_SOURCE_PROOF_MISMATCH')
+                reader=EvidenceReader(root,proof)
+                for case in (x for x in q['cases'] if x['issuer']==code):
+                    if len(case['figures'])!=issuer['figures']:
+                        raise ValueError('CURRENT_ALL_FINANCIAL_FIGURES_REQUIRED')
+                    if issuer.get('editorial_contract'):
+                        if case.get('editorial_main_layer')!='PASS' or sum(
+                                f['grammar']=='FULL_PROFIT_CHAIN_V1'
+                                for f in case['figures'])!=1:
+                            raise ValueError('CURRENT_COMPLETE_PROFIT_CHAIN_REQUIRED')
+                    for figure in case['figures']:
+                        for name,hashkey in (('screenshot_file','screenshot_sha256'),
+                                             ('export_file','vector_sha256')):
+                            raw=reader.read(figure[name],code)
+                            if hashlib.sha256(raw).hexdigest()!=figure[hashkey]:
+                                raise ValueError('CURRENT_REAL_BROWSER_BYTES_DRIFT')
+                            if name=='export_file':
+                                check_vector(raw.decode('utf8'),code,expected_pdf)
+            except (OSError,ValueError,KeyError,TypeError,ImportError,AttributeError):
+                error = ('VISUAL_CURRENT_FULL_PROFIT_CHAIN_COMPLETE_PROOF_REQUIRED'
+                         if issuer.get('editorial_contract') else
+                         'VISUAL_CURRENT_SOURCE_COMPLETE_AND_UNCROSSED_BROWSER_PROOF_REQUIRED')
+                errors.append(error + ' ' + code)
+                continue
+            fixed.append({'code':code,'source_html_sha256':sha,
+                         'mobile_original_money_grammar':
+                         'PASS_REAL_ALL_FIGURE_3_VIEWPORT_SOURCE_PROVEN_NO_CROSSINGS_HUMAN_NOT_CHECKED'})
+            continue
         if issuer.get('editorial_contract'):
             try:
                 import sys

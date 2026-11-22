@@ -381,7 +381,7 @@ def render_phone(bundle):
             out.append(f'<rect x="{f(left)}" y="{f(y - 9)}" width="{f(bw)}" height="8" fill="{COL["cost"][1]}" '
                        f'data-chain-leaf="{l["id"]}" data-chain-leaf-yuan="{l["value"]}" data-chain-leaf-scale="{top_leaf / D(130)}"/>')
             text(left + D(138), y - 2, l['label'], 11, 'start', COL['cost'][0], 700)
-            text(left + D(138), y + 12, yi(l['value']) + ('　' + notes[l['id']]['lines'][0] if notes[l['id']]['lines'] else ''), 10, 'start', MUTED, 500)
+            text(left + D(138), y + 12, yi(l['value']) + (' ' + notes[l['id']]['lines'][0] if notes[l['id']]['lines'] else ''), 10, 'start', MUTED, 500)
             y += 8
     height = int(y + 46)
     text(left, height - 16, '宽度按人民币原始元同一比例；会计形成关系，非现金流。', 10, 'start', MUTED, 500)
@@ -457,7 +457,9 @@ def render(bundle, mobile=False):
             y = n['y'] + min(n['h'], D(12)) / 2 + 2
             faint = n['value'] / rev < D('0.001')  # no visible bar: keep the line, mute the colour
             text(x, y - 6, n['label'], 12 if faint else 13, 'start', MUTED if faint else COL['cost'][0], 600 if faint else 700)
-            text(x, y + 11, '（' + yi(n['value']) + '）' + ('　' + lines[0] if lines else ''), 11, 'start', MUTED, 500)
+            # The narrow right column needs a word space; some CJK fallback
+            # fonts render the ideographic space at a full em beyond the canvas.
+            text(x, y + 11, '（' + yi(n['value']) + '）' + (' ' + lines[0] if lines else ''), 11, 'start', MUTED, 500)
         elif n['role'] == 'source':
             x = n['x'] - 12
             y = n['y'] + n['h'] / 2

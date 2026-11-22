@@ -1,11 +1,11 @@
 ---
 name: ashare-financial-storytelling
-description: Deep, source-true research and AEI-grade editorial visualisation of any A-share listed company's periodic report (Q1 季报, H1 半年报, 9M 三季报, FY 年报). Use for reading and reconciling original PDFs, building typed source ledgers, writing a falsifiable analyst thesis, choosing lawful financial exhibits (income Sankey, full profit chain, signed bridges, cash, balance, working capital, trends), publishing standalone offline HTML into the Financials in Visuals library, running release gates, and improving this Skill. Also triggers for kobolibra/financials continuation across sessions.
+description: Research A-share periodic reports from original PDFs, reconcile source facts, develop company-specific and falsifiable financial analysis, and publish native desktop/mobile visuals as standalone HTML. Use for Q1, H1, 9M and FY reports, or for maintaining the kobolibra/financials publication workflow.
 ---
 
 # A股财报深度研究与可视化 · 统一生产技能
 
-Contract version: 10.1.0
+Contract version: 10.2.0
 
 ### 必须先走自主主编闭环：不用用户反复指出漏项
 
@@ -18,6 +18,8 @@ python research/shared/autonomous_editorial_audit.py --code <code> --strict
 ```
 
 ### 泛化与质量门禁的新增约束
+
+**同一版本走完整交付。** 图表增删、排序或主图改变后，先核对出版稿和编辑清单的实际图 ID、顺序与角色，再做确定性重建。以同一份成稿采集四视口图证，完成作者图审并核对发布目录。共用渲染器改动时，由目录和实际图语法发现受影响的网页，包含可展开核对层及按原件构建的旧报告。用 Playbook 09 的顺序消除过期证明和重复返工。
 
 新增公司或期间不得继承历史固定数量（原 11 家）的视觉认证：发布目录以当前 site/research_catalog.json 的动态集合为唯一分母。区分已具备全部当前源图证据的 FULL_SOURCE_FIGURES_V1、旧 HTML SHA 不变的冻结证据和来源限定的新编稿。第三类必须重新验证本期原件/账本、研究反证、当前完整 HTML SHA、全部图形的三档 Chromium 与 WebKit 手机读图/导出；证据不全则阻断发布，不能降级质量检查以追求 CI 绿灯。
 
@@ -109,6 +111,7 @@ python "$T/start_report.py" /absolute/path/filing.pdf
 **收入/利润流向的合法性（先分类再画形状）**：完整源字节+物理页 → Decimal 原始元事实 → 互斥性/期间/合并口径/符号 → 流向类型。共享类型合同在 `research/shared/editorial_financial_flow.py`。
 
 - **TYPE A**（逐业务收入+各自披露成本）：来源 → **一个**收入合计节点 → 各自成本/毛利 → 合计成本/毛利。逐业务毛利真实。生成器 `research/shared/source_income_adapter.py` → `research/shared/unified_income_sankey.py`。
+- **TYPE A 桑基的不可交叉端口规范**：共享总收入节点的左侧按来源排列；右侧**先按去向（成本、毛利）成组，再在每组内维持来源顺序**。严禁按“来源 A 成本→来源 A 毛利→来源 B 成本→来源 B 毛利”交错出线导致红绿流带交叉；即使金额、节点和带宽全部守恒，也必须判作视觉结构 FAIL。每张图保留统一线性金额比例、真实极细流带及源值标签，不准用假最低线宽掩饰小额来源。以 `test_income_generalization.py` 的真实六公司双端无交叉测试和浏览器实图共同验收。
 - **TYPE B**（互斥收入+仅集团成本）：来源 → 合计 → 集团成本/毛利；图中直写"无法倒推分部毛利"。只有真实缺成本时使用。
 - **BANK**：净利息收入（已扣利息支出）+净手续费+其他净收入 → 营业收入 → 业务管理费/信用减值/营业利润；不称"毛利"，不重复扣利息。
 - **保险**：管理层保费、CAS25 保险服务收入、保费收现、CSM 存量四者不互接；保费构成可用专用 4→2→1 图，法定利润用签名桥。

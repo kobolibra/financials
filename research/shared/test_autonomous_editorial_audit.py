@@ -36,6 +36,8 @@ def codes(report):
 class AutonomousEditorialAuditTest(unittest.TestCase):
     def test_full_year_reports_missing_author_peer_review_as_debt_not_excellence(self):
         args = original()
+        args[6].pop("peer_calibration", None)
+        args[6].pop("chart_reviews", None)
         out = audit(*args[:8], html_sha=args[8], strict=True)
         self.assertGreaterEqual(out["source_opportunities"], 7)
         self.assertEqual(out["schema"], "financials.autonomous_editorial_audit.v1")
@@ -175,7 +177,8 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
             audit_report = json.loads((tmp / "audit.json").read_text())["reports"][0]
             self.assertEqual(tasks["status"], "NOT_CHECKED")
             self.assertEqual(tasks["reviewed_html_sha256"], audit_report["html_sha256"])
-            self.assertEqual(len(tasks["chart_reviews"]), 12)
+            expected_ids = {figure["id"] for figure in original()[4]["figures"]}
+            self.assertEqual(set(tasks["chart_reviews"]), expected_ids)
             self.assertTrue(all(v["five_second_answer"] == "NOT_CHECKED"
                                 for v in tasks["chart_reviews"].values()))
             self.assertEqual(tasks["independent_human_review"], "NOT_CHECKED")
@@ -190,8 +193,12 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         result = audit_issuer(ROOT, "600036@2026Q1")
         self.assertEqual(result["period"], "2026Q1")
         self.assertEqual(result["issuer_period"], "600036@2026Q1")
-        self.assertIn("SECTOR_OR_PERIOD_COVERAGE_NOT_ESTABLISHED", codes(result))
+        self.assertNotIn("SECTOR_OR_PERIOD_COVERAGE_NOT_ESTABLISHED", codes(result))
         self.assertNotEqual(result["verdict"], "READY_FOR_HUMAN_INDEPENDENT_REVIEW_NOT_CERTIFIED")
+        topics = {topic["topic"]: topic["status"] for topic in result["source_topics"]}
+        self.assertEqual(topics["BANK_NET_INTEREST_BRIDGE"], "COVERED_WITH_SOURCE_KEYS")
+        self.assertEqual(topics["BANK_AVERAGE_EARNING_ASSETS"], "COVERED_WITH_SOURCE_KEYS")
+        self.assertNotIn("CASH_CLOSE", topics)
 
     def test_changed_period_dossier_and_explicit_catalog_route_discovered(self):
         with patch("autonomous_editorial_audit.subprocess.run") as cmd:
@@ -227,6 +234,16 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
             self.assertEqual(changed_issuers(ROOT, "origin/main"),
                              ["600036@2026Q1", "600206", "600690"])
 
+    def test_catalog_figure_count_change_reaudits_without_route_change(self):
+        before = original()[7]
+        next(x for x in before["issuers"] if x["code"] == "600206")["figures"] -= 1
+        with patch("autonomous_editorial_audit.subprocess.run") as cmd:
+            cmd.side_effect = [
+                type("Diff", (), {"stdout": "site/research_catalog.json\n"})(),
+                type("Base", (), {"stdout": json.dumps(before)})(),
+            ]
+            self.assertEqual(changed_issuers(ROOT, "origin/main"), ["600206"])
+
     def test_uncataloged_public_report_is_a_hard_error(self):
         with patch("autonomous_editorial_audit.subprocess.run") as cmd:
             for unpublished in ("public/123456.html", "public/research/v10/123456.html"):
@@ -251,6 +268,15 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         self.assertIn("RESEARCH_EVIDENCE_INVALID", codes(out))
         self.assertEqual(out["verdict"], "BLOCK")
 
+    def test_signed_bridge_subtotal_must_equal_original_row(self):
+        args = original()
+        f = next(row for row in args[4]["figures"] if row["id"] == "profit-to-parent")
+        self.assertNotIn("MISSING_PROFIT_TO_PARENT_CHAIN", codes(audit(*args[:8], html_sha=args[8])))
+        f["source_checkpoints"]["11"] = "pretax"
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("SIGNED_BRIDGE_CHECKPOINT_INVALID", codes(out))
+        self.assertEqual(out["verdict"], "BLOCK")
+
     def test_mismatched_source_identity_cannot_be_published(self):
         args = original()
         args[3] = copy.deepcopy(args[3])
@@ -270,6 +296,15 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
         args[6]["browser_evidence"]["chromium_receipt"] = "research/issuers/does-not-exist.json"
         out = audit(*args[:8], html_sha=args[8])
         self.assertIn("BROWSER_RECEIPT_MISSING", codes(out))
+
+    def test_declared_webkit_view_is_not_a_native_receipt(self):
+        args = original()
+        args[6]["browser_evidence"].pop("webkit_receipt", None)
+        out = audit(*args[:8], html_sha=args[8])
+        missing = [issue for issue in out["issues"]
+                   if issue["code"] == "BROWSER_RECEIPT_MISSING"]
+        self.assertTrue(any("webkit" in issue["detail"] for issue in missing))
+        self.assertEqual(out["verdict"], "BLOCK")
 
     def test_browser_review_requires_all_native_viewports(self):
         args = original()
@@ -296,6 +331,24 @@ class AutonomousEditorialAuditTest(unittest.TestCase):
             out = audit(*args[:8], html_sha=args[8], strict=True)
             with self.subTest(source_path=source_path):
                 self.assertIn("SOURCE_PDF_NOT_ARCHIVED", codes(out))
+
+
+    def test_legacy_changed_article_requires_all_current_source_browser_proof(self):
+        # A legacy issuer has no new publisher dossier. It is eligible only
+        # because nine real current screenshots/exports and the original PDF
+        # are cryptographically archived under the current HTML fingerprint.
+        out = audit_issuer(ROOT, "000333", strict=True)
+        self.assertEqual(
+            out["verdict"],
+            "LEGACY_ALL_FIGURES_SOURCE_VERIFIED_NOT_NEW_EDITORIAL_CERTIFIED")
+        self.assertEqual(out["independent_human_review"], "NOT_CHECKED")
+        self.assertEqual(out["blocker_count"], 0)
+        self.assertEqual(out["source_opportunities"], 0)
+        with patch("audit_unified_visual_corpus.verified_complete_migration",
+                   return_value=False):
+            with self.assertRaisesRegex(
+                    ValueError, "LEGACY_CHANGED_REPORT_CURRENT_BROWSER_PROOF_MISSING"):
+                audit_issuer(ROOT, "000333", strict=True)
 
 
 if __name__ == "__main__":

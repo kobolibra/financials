@@ -95,5 +95,14 @@
       "scope": "等待主分支展开首页及文章线上字节和浏览器核验。"
     }
   },
-  "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166"
+  "published_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+    "candidate_full_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "reason": "源件重建后的候选页面，原生产回执对应此前正式字节。",
+    "browser_proof_scope": "当前同一 HTML 的四视口、13 图及可见 SVG 导出。流带逐条与原金额坐标比对。"
+  }
 }

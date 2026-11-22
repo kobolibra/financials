@@ -232,5 +232,14 @@
       "current_complete_browser_evidence": "research/quality/editorial-20261113-local/result.json"
     }
   },
-  "editorial_contract": "FULL_PROFIT_CHAIN_V1"
+  "editorial_contract": "FULL_PROFIT_CHAIN_V1",
+  "unmerged_candidate": {
+    "base_deployed_html_sha256": "a53372c4ddc149d37e0417b07963ea271143a6bd6d2d5a70894546146c79ca40",
+    "candidate_full_html_sha256": "cfb24fcbd9b7861b6226870d0eb9394c16daa6d2c74b4d4c0d83eca5d103a739",
+    "promotion_status": "UNMERGED_NOT_DEPLOYED",
+    "independent_finance_and_art_review": "NOT_CHECKED",
+    "current_sha_browser_proof": "LOCAL_ONLY",
+    "reason": "共用图形修正后由原件可重复生成，并复验三视口全图。",
+    "browser_proof_scope": "当前候选 HTML 的三视口全图、源值、截图与可见 SVG 导出。"
+  }
 }

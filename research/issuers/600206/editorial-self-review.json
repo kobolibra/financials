@@ -4,8 +4,8 @@
   "fiscal_period": "2025FY",
   "status": "PASS_EXECUTOR_SELF_REVIEW_ONLY",
   "executor": "assistant_editorial_self_assessment; not independent human reviewer",
-  "reviewed_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
-  "reviewed_figures": 12,
+  "reviewed_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
+  "reviewed_figures": 13,
   "required_viewports": [
     {
       "browser": "chromium",
@@ -25,16 +25,13 @@
     }
   ],
   "browser_evidence": {
-    "run": 44896543805,
-    "url": "https://github.com/kobolibra/financials/actions/runs/44896543805",
-    "current_html_sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+    "current_html_sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
     "chromium_receipt": "research/issuers/600206/visual-qa/result.json",
-    "original_source_svg_artifact": "https://github.com/kobolibra/financials/actions/runs/44896543805",
-    "figure_count_each_view": 12,
-    "source_value_nodes_each_view": 75,
+    "webkit_receipt": "research/issuers/600206/visual-qa/webkit.json",
+    "figure_count_each_view": 13,
     "text_outside_svg": 0,
     "label_overlaps": 0,
-    "caveat": "机器检测仅验证已有设计标注及几何。自评根据实际整页桌面、原生390及WebKit375截图作了额外编辑审查，不代表独立人类审美二审。"
+    "caveat": "本地真实 Chromium 1440/768/390 与 WebKit 375 对本次完整 HTML 检查。"
   },
   "rubric_version": "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md",
   "scores": {
@@ -60,7 +57,7 @@
     },
     "V1": {
       "score": 2,
-      "evidence": "12图均设提问式标题及一句量化判断，但个别利润桥和地区Sankey阅读仍需配合简短文字，暂按2分自评。"
+      "evidence": "总营收及成本、毛利占比已进入视线，在手机和桌面直接可读。色块重量仍按实际金额严格保留。"
     },
     "V2": {
       "score": 3,
@@ -68,15 +65,15 @@
     },
     "V3": {
       "score": 2,
-      "evidence": "逐图关键金额直标、正负金额区别色彩、期间单位统一；原生390及375没有裁切/重叠，但部分图注信息密度较高，按2分处理。"
+      "evidence": "手机短标题无尾字孤行。去掉来源序号，按来源名与金额、毛利率分行，成本毛利用深色金额标签。"
     },
     "V4": {
       "score": 3,
-      "evidence": "从读者首屏三项重点、六指标总览进入利润来源、业务、利润质量、现金资本与下一期证伪，七篇主论证段落与12图相互交错。"
+      "evidence": "首屏三项对立指标后进入产品、地区、费用、现金、资本与下一期证伪；13 图按各自会计问题与正文交错。"
     },
     "V5": {
       "score": 3,
-      "evidence": "来自当前HTML b62ff84的真实Chromium 1440/768/390与WebKit375逐图截图；每档12图、原始金额节点75、零文字越界/零标签重叠，可下载SVG。"
+      "evidence": "当前 HTML 的 13 图均通过四视口源值、文本和导出核对，有研桑基与已有公司逐图对照。独立二审尚未完成。"
     },
     "V6": {
       "score": 3,
@@ -111,6 +108,12 @@
       "issue": "跨公司回归发现共享增速图的行距被一次误替换，不兼容海尔旧报告",
       "resolution": "恢复标准增速图52/40行距；长营运资金标签仍按长度单独分层，不改变其他公司增速图或图中金额",
       "retest": "本轮44896543805 Chromium/WebKit 当前HTML逐图执行；另需十条跨公司回归通过"
+    },
+    {
+      "figure": "region-income",
+      "issue": "Earlier source-major mixing node paths caused physically crossed product/region cost versus gross-profit bands despite exact-yuan conservation.",
+      "resolution": "Shared outcome-major ribbon routing and canonical source-ledger rebuild remove crossings without artificial minimum-width source lines or altered accounting.",
+      "retest": "New current SHA desktop/phone browser screenshots and six-issuer no-crossing SVG regression, current action 44928973439"
     }
   ],
   "remaining_unverified": [
@@ -121,6 +124,141 @@
     "Production Cloudflare byte-equality not checked for candidate; no live deployment certification until merged."
   ],
   "release_scope": "source_limited_preview only; all limitations must remain visible; no assertion of independent top-tier certification",
-  "result_reason": "无硬门禁P0，R1–R5/V1–V6按真实整页和原生浏览器截图自评，每项>=2，平均>=2.5。",
-  "reviewed_source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b"
+  "result_reason": "财报原件、逐项目利润桥、四视口机验和作者实图对照完成。地区图仍由真比例成本占主导，独立财经与艺术二审未完成。",
+  "reviewed_source_pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+  "chart_reviews": {
+    "glance": {
+      "five_second_answer": "毛利修复3.21亿，但经营现金仍为负0.79亿，利润与现金分离是整篇主问题。",
+      "source_and_grammar": "图 glance，类别 kpi_board；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：同一合并口径，2025FY 与 2024FY 六项对比；毛利率按收入减营业成本后除以收入。",
+      "visual_hierarchy": "六项原件核验 KPI 强调现金红色警示，首屏收入/毛利/净利必须服从利润与现金背离主线。",
+      "mobile_readability": "当前 glance 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "KPI 并列用于先识别冲突，趋势/桑基无法在同一首屏有序显示六个独立指标。 最强替代解释及局限：毛利增长不等于产品议价改善，经营现金为负也不能独立推出客户违约；后续按产品和现金附注分别复核。",
+      "peer_design_delta": "海尔智家产品收入规模更大但毛利色块占比较低；长芯毛利块接近成本块；有研必须以利润与负经营现金的对照构成自己的首屏悬念。",
+      "revision_decision": "保留 glance 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "gross-profit-bridge": {
+      "five_second_answer": "收入同比增加3.96亿，营业成本同比增加0.75亿，共同形成3.21亿集团毛利增量。",
+      "source_and_grammar": "图 gross-profit-bridge，类别 signed_bridge；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：上期毛利 + 收入同比增加 − 成本同比增加 = 本期毛利。",
+      "visual_hierarchy": "分段横向带符号桥将收入增加与成本增加拆开，保留上年到当年毛利两端。",
+      "mobile_readability": "当前 gross-profit-bridge 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "带符号桥用于满足原件恒等式的逐项累计，桑基正向色带会掩盖负值和不合法因果。 最强替代解释及局限：报告没有同口径的逐产品上一年精确收入与成本源格就不能推出哪个产品驱动全部集团毛利增量；需要重新取得可比披露。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 gross-profit-bridge 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 gross-profit-bridge 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "margins": {
+      "five_second_answer": "集团毛利率从5.88%到9.01%，但研发等费用率上升，毛利率不等于最终净利率。",
+      "source_and_grammar": "图 margins，类别 ratio_dumbbell；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：各比率分子与分母均采用同期间合并口径，并对上一年相同定义重算。",
+      "visual_hierarchy": "同分母共轴两期率点不应将财务费用占比与净利率作错误正向因果连接。",
+      "mobile_readability": "当前 margins 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "点轴可显示毛利率、净利率与费用率的同分母比较，独立横条长短容易产生假可比。 最强替代解释及局限：研发投入规模与产品研发周期、资本化政策均可能影响费用率意义，需要结合研发附注及未来商业化观察。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 margins 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 margins 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "growth-bars": {
+      "five_second_answer": "收入、成本与研发增速不一致；利润低基数增长不能被当作需求增长速度。",
+      "source_and_grammar": "图 growth-bars，类别 growth_bars；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：各指标均为2025FY相对2024FY相同损益项目的同比。",
+      "visual_hierarchy": "共轴增长条呈现收入增速与扣非利润低基数变化，不靠增加夸张条长制造景气假象。",
+      "mobile_readability": "当前 growth-bars 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "真实共轴变动条适合各项目同比正负方向，不把盈利改善和营收景气混为一种原因。 最强替代解释及局限：若上年存在低基数或一次性因素，较高增速不能独立证明盈利质量；需分开核验扣非和减值项目。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 growth-bars 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 growth-bars 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "product-profit": {
+      "five_second_answer": "薄膜材料本期毛利4.26亿最大，稀土约2.00亿，铂族0.65亿；不是同比增长归因。",
+      "source_and_grammar": "图 product-profit，类别 product_economics；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：本年各产品毛利＝同一产品披露收入－同一产品披露成本。",
+      "visual_hierarchy": "同一产品自身营业收入和毛利分别直标，禁止把毛利金额当作业务同比贡献。",
+      "mobile_readability": "当前 product-profit 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "只对每个产品展示当期自身收入与自身成本差额，比假设缺失上年成本的同比桥更诚实。 最强替代解释及局限：图中选取三类产品，展示本年水平。集团经营性应收和存货的现金调节未按产品拆分。",
+      "peer_design_delta": "海尔智家四类业务和长芯博创三类互斥业务图有各自不同利润率；有研本稿产品轴披露不足以覆盖全年同比，因此产品图保留当期毛利而不嫁接地区桑基。",
+      "revision_decision": "保留 product-profit 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "region-income": {
+      "five_second_answer": "总营收 95.42 亿元，成本占 91.0%，留毛利 9.0%。境外毛利率 18.5%，高于境内 8.4%。",
+      "source_and_grammar": "图 region-income，类别 income；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。",
+      "visual_hierarchy": "去掉编号和重复颜色说明，用深色金额标注分层。小额来源保留可读文字及原始金额带宽。",
+      "mobile_readability": "总营收在中间主干上方直标，成本和毛利金额及占比在流带下对齐显示。",
+      "alternative_and_why_this_graph": "仅地区完整互斥收入与自身成本适用真实线性源到成本/毛利桑基，不能混入产品轴。 最强替代解释及局限：地区收入差异无法独立识别汇率、品种和定价；其他业务在图内单列，且产品分类与地区分类重叠，不得跨图重复相加。",
+      "peer_design_delta": "与海尔智家四来源大成本图对照，当前地区轴仅三组且极小其他业务需要独立直标；借鉴长芯博创更平衡的绿色毛利出口，但绝不挪用它的产品分类。",
+      "revision_decision": "并排对照海尔、长芯、长江电力后补齐手机合计及两个去向占比，缩短标题。"
+    },
+    "earnings": {
+      "five_second_answer": "营业毛利、归母和扣非均改善，但这是三个不同利润层级，尚未回答现金转换。",
+      "source_and_grammar": "图 earnings，类别 comparison；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：按图例所列期间核对相同项目。",
+      "visual_hierarchy": "毛利、归母、扣非逐层对比，按两期并列，不能强画成同比产品利润归因。",
+      "mobile_readability": "当前 earnings 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "同指标两期金额比较能保留历史基期，不支持当期成本按产品重编或未经证实的驱动分解。 最强替代解释及局限：集团会计毛利变动无法单独识别产品价格、销量和原料成本。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 earnings 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 earnings 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "profit-to-parent": {
+      "five_second_answer": "营业毛利 8.59 亿元，税金与四项费用合计扣减 5.63 亿元，归母 2.65 亿元。",
+      "source_and_grammar": "物理页90–91逐项取原值，营业项目、营业外、税项和少数归属用符号明确连接。",
+      "visual_hierarchy": "较长费用分组缩为短标签，先显示税金与四项费用，归母仍是明确终点。",
+      "mobile_readability": "手机看五步精简桥，原始行、人民币元和比较边界放在图后折叠核对。",
+      "alternative_and_why_this_graph": "费用、减值和其他收益有正负，带符号累计桥支持逐项复核并避免分配假毛利。",
+      "peer_design_delta": "海尔的核心桥解释归母同比下滑；本图只解释本期毛利到归母的层级和归属。",
+      "revision_decision": "以十五个原件项目替换总差额，正文单列研发费用与少数股东承担亏损的含义。"
+    },
+    "cash-formation": {
+      "five_second_answer": "存货和经营性应收合计吞噬约6.71亿，合并利润为正但经营现金仍-0.79亿。",
+      "source_and_grammar": "图 cash-formation，类别 signed_bridge；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：合并净利润加上物理第194页全部列示调节项，等于合并经营现金净额。",
+      "visual_hierarchy": "净利润到经营现金逐项分解；存货、经营性应收负向带必须比灰色非现金调整更受关注。",
+      "mobile_readability": "当前 cash-formation 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "带符号桥用于满足原件恒等式的逐项累计，桑基正向色带会掩盖负值和不合法因果。 最强替代解释及局限：调节表说明资金占用落点。要判断新增占用是否会回收，需要库存形成原因、订单覆盖和应收账龄。",
+      "peer_design_delta": "海尔的桑基重心是产品毛利，长芯图更突出数通毛利；有研主线需要先显示经营现金为负的附注现金桥，不能只突出产品增长。",
+      "revision_decision": "保留 cash-formation 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "cash-and-capex": {
+      "five_second_answer": "CFO约-0.79亿，现金资本支出约2.09亿，简化经营现金扣资本开支约-2.88亿。",
+      "source_and_grammar": "图 cash-and-capex，类别 comparison；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：简化现金结余 = 经营现金净额 − 现金流量表购建长期资产支付；两期逐项复算。",
+      "visual_hierarchy": "将经营现金与资本开支两个现金口径并排，资本开支不是营业成本且不得相加为会计净利。",
+      "mobile_readability": "当前 cash-and-capex 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "同指标两期金额比较能保留历史基期，不支持当期成本按产品重编或未经证实的驱动分解。 最强替代解释及局限：可能存在出售长期资产、资本化研发、受限资金或支付时间差，不能据此单独断言实际项目投资回报。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 cash-and-capex 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 cash-and-capex 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "working-capital": {
+      "five_second_answer": "应收与存货期末余额较年初合计增加4.67亿，一年内到期负债也增加约3.96亿。",
+      "source_and_grammar": "图 working-capital，类别 stock_delta；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：期末−年初的法定存量余额；融资项目与营运项目并列但不相加为经营现金。",
+      "visual_hierarchy": "存量差额保留负债融资与应收存货各自的独立轴，数值标签错位避免重复堆叠。",
+      "mobile_readability": "当前 working-capital 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "期末减年初的存量条适合应收、存货及短债，不允许同期间现金流与余额混合。 最强替代解释及局限：应收账款减值、受限资金、长期债务重分类、应收结算方式都可能改变余额解释；不能仅凭余额差得出客户延期付款事实。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 working-capital 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 working-capital 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "cash-closure": {
+      "five_second_answer": "经营现金为负却有筹资净流入，现金及等价物较年初净增约3.50亿，并非经营自动造血。",
+      "source_and_grammar": "图 cash-closure，类别 signed_bridge；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：期初现金及等价物 + 经营现金 + 投资现金 + 筹资现金 + 汇率影响 = 期末现金及等价物。",
+      "visual_hierarchy": "现金从期初到期末的真实流量闭合，经营负流入由筹资抵消，强调经营/融资两类性质。",
+      "mobile_readability": "当前 cash-closure 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "带符号桥用于满足原件恒等式的逐项累计，桑基正向色带会掩盖负值和不合法因果。 最强替代解释及局限：筹资净流入不能自动证明可持续现金创造，现金及等价物也不能无条件等同于资产负债表货币资金或全部可用资金。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 cash-closure 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 cash-closure 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    },
+    "funding-balance": {
+      "five_second_answer": "资产＝负债＋所有者权益仍闭合，关键观察短期偿债期限与真实可用现金而非规模。",
+      "source_and_grammar": "图 funding-balance，类别 balance；使用2025FY与明确可比来源，按原件源格、期间与合并口径核对。会计恒等式：每个年末，资产=负债+所有者权益，均为合并口径同日余额。",
+      "visual_hierarchy": "资产来源以负债和权益同日精确相加，一眼标出总资产不是可支配现金。",
+      "mobile_readability": "当前 funding-balance 原生 390px 图的实际图证以本次完整重建 SHA 绑定，另外检查 WebKit375；不得仅依赖缩小桌面截图，文字密度高的注释保留阅读债务。",
+      "alternative_and_why_this_graph": "资产＝负债＋权益是同一时点库存恒等式，不是现金流或损益收入桑基。 最强替代解释及局限：重大其他流动资产明细和部分筹资现金组成仍待复核，现金可使用性与资产质量不应仅按总量作乐观判断。",
+      "peer_design_delta": "与海尔智家产品收入成本桑基、长芯博创高毛利产品桑基的实际 1440px 图对照，本图 funding-balance 回答不同的会计问题，不随意换用正向分流或混合类别；坚持相同标签层级与准确金额比例。",
+      "revision_decision": "保留 funding-balance 图种与来源绑定，不伪造新增产品数据；机器几何/金额验收不替代独立人类财经与美术审阅。"
+    }
+  },
+  "peer_calibration": {
+    "peers": [
+      {
+        "code": "600690",
+        "html_sha256": "a806fbf6bd02a07969cd22e9d1a27b5aaa2f3276e2bc7d5a54a1594bcea2a133",
+        "research_delta": "海尔智家2026H1四类互斥产品来源拆出了自身成本和毛利，图示收入1521亿与毛利414亿；有研则因产品年度可比披露有限，必须区分地区互斥收入桑基与当期产品毛利，不虚构产品增长因果。",
+        "visual_delta": "实际1440截图中海尔的收入灰色主干和红色成本占视觉主导，四来源最后小来源极细；有研三来源同样应保留真比例并改善薄来源直标，还需独立利润到归母的带符号桥。"
+      },
+      {
+        "code": "300548",
+        "html_sha256": "cfb24fcbd9b7861b6226870d0eb9394c16daa6d2c74b4d4c0d83eca5d103a739",
+        "research_delta": "长芯博创2026H1数通/消费/工业互联14.80亿收入在16.88亿中占大头，集团毛利8.25亿接近成本8.63亿，和有研境内地区收入主导但利润现金背离的逻辑不是一类行业结论。",
+        "visual_delta": "长芯实际1440图红绿成本毛利带接近均衡、数通来源厚重明显；有研95.42亿收入中营业成本占极高比重，不能模仿长芯均衡配色去夸大绿色毛利面积，也不能把地区轴替换成产品轴。"
+      }
+    ]
+  }
 }

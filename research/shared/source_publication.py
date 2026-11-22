@@ -100,6 +100,35 @@ def check_cross_period_claims(ledger,story):
             if ':' in k and k.split(':',1)[0] not in story['external_ledgers']:raise ValueError('DOSSIER_CROSS_PERIOD_UNKNOWN_ALIAS '+name)
 def reference(expr):return expr if isinstance(expr,str) else json.dumps(expr,separators=(',',':'),ensure_ascii=False)
 def dependencies(expr):return [expr] if isinstance(expr,str) else [k for k,c in expr]
+def signed_bridge_checkpoints(ledger, figure):
+    """Verify disclosed subtotals against cumulative signed source rows."""
+    checkpoints = figure.get('source_checkpoints', {})
+    if not checkpoints:
+        return set()
+    rows = figure['rows']
+    start = rows[0]
+    if start[2] != 'start':
+        raise ValueError('SIGNED_BRIDGE_CHECKPOINT_REQUIRES_START')
+    total = amount(ledger, start[1])
+    proven = set()
+    for index, (_, expression, role) in enumerate(rows[1:-1], 1):
+        if role != 'step':
+            raise ValueError('SIGNED_BRIDGE_CHECKPOINT_REQUIRES_STEPS')
+        total += amount(ledger, expression)
+        key = checkpoints.get(str(index))
+        if key is not None:
+            fact = fact_of(ledger, key)
+            if (fact['type'] != 'flow' or fact['scope'] != 'consolidated'
+                    or fact['classification'] != 'DISCLOSED'
+                    or fact['period'] != ledger['issuer']['fiscal_period']
+                    or amount(ledger, key) != total or key in proven):
+                raise ValueError('SIGNED_BRIDGE_CHECKPOINT_DRIFT ' + key)
+            proven.add(key)
+    if len(proven) != len(checkpoints):
+        raise ValueError('SIGNED_BRIDGE_CHECKPOINT_NOT_IN_ROWS')
+    return proven
+
+
 def presentation_rows(figure):
     rows=figure['rows'];groups=figure.get('editorial_groups')
     if groups is None:return rows
@@ -487,14 +516,18 @@ def validate(ledger,story,root=ROOT):
     if any(f['family']=='income' for f in story['figures']):compile_disclosed_income(ledger)
     ids=[f['id'] for f in story['figures']]
     for f in story['figures']:
-        if f['family']=='signed_bridge':presentation_rows(f)
+        if f['family']=='signed_bridge':
+            presentation_rows(f)
+            signed_bridge_checkpoints(ledger, f)
     if len(ids)!=len(set(ids)) or any(not re.fullmatch('[a-z][a-z0-9-]*',i) for i in ids):raise ValueError('DOSSIER_DUPLICATE_OR_UNSAFE_FIGURE')
     return {'status':'PASS','facts':len(ledger['facts']),'accounting_identities':len(story['accounting_identities']),'pdf_sha256':source['original_bytes_sha256'],'source_cells':'EXACT_ARCHIVED_PDF_COORDINATES_NOT_HUMAN_AUDIT'}
 def chart(ledger,figure,mobile):
     issuer=ledger['issuer'];kw=dict(issuer=issuer['code'],pdf_sha256=ledger['source']['original_bytes_sha256'],mobile=mobile);period=issuer['fiscal_period'];title=figure['question'];v=lambda e:amount(ledger,e);family=figure['family']
     if family=='product_economics':return render_product_economics(product_rows(ledger,figure),title,period=period,**kw)
     if family=='volume_rate':return render_bridge(volume_rate_rows(ledger,figure),title,period=period,**kw)
-    if family=='income':return render_sector_income(ledger,mobile=mobile)
+    if family=='income':
+        return render_sector_income(ledger,mobile=mobile,
+                                    show_income_shares=figure.get('show_income_shares') is True)
     if family=='signed_bridge':return render_bridge([(l,v(e),role,reference(e)) for l,e,role in presentation_rows(figure)],title,period=figure.get('period',period),**kw)
     if family=='comparison':return render_comparison([(l,v(p),v(n),json.dumps({'periods':figure['periods'],'prior':p,'current':n},ensure_ascii=False,separators=(',',':'))) for l,p,n in figure['pairs']],title,periods=figure['periods'],**kw)
     if family=='balance':return render_balance([(date,v(a),v(l),v(e),json.dumps({'assets':a,'liabilities':l,'equity':e},separators=(',',':'))) for date,a,l,e in figure['dates']],title,**kw)
@@ -589,11 +622,17 @@ def publish(folder,out=None,*,catalog_report=False):
         manifest = read(folder / 'editorial-manifest.json')
         decisions = manifest['editorial']['figures']
         if (manifest['issuer'] != code or manifest['period'] != issuer['fiscal_period']
-                or manifest['source_sha256'] != source['original_bytes_sha256']
-                or [(f['id'], f['question']) for f in story['figures']] != [(f['id'], f['title']) for f in decisions]
-                or [f['role'] for f in decisions].count('primary') != 1
-                or decisions[0]['role'] != 'primary'):
-            raise ValueError('OFFLINE_EDITORIAL_MANIFEST_DRIFT')
+                or manifest['source_sha256'] != source['original_bytes_sha256']):
+            raise ValueError('OFFLINE_EDITORIAL_MANIFEST_DRIFT: issuer, period or original PDF')
+        planned = [(f['id'], f['question']) for f in story['figures']]
+        approved = [(f['id'], f['title']) for f in decisions]
+        if planned != approved:
+            raise ValueError(
+                f'OFFLINE_EDITORIAL_MANIFEST_DRIFT: current figures {planned!r}; '
+                f'editorial manifest {approved!r}')
+        roles = [f['role'] for f in decisions]
+        if not roles or roles[0] != 'primary' or roles.count('primary') != 1:
+            raise ValueError('OFFLINE_EDITORIAL_MANIFEST_DRIFT: expected one primary first figure')
         if not source['official_announcement']:
             source = {**source, 'official_announcement': '#original-source'}
     lx=with_externals(ledger,story)

@@ -1,7 +1,7 @@
 {
   "browser": "chromium",
-  "version": "157.0.8103.0",
-  "sha256": "343d5ca5f4541b8d74183277134f10a26d917479ad610a7fb27f4f9b57cb8166",
+  "version": "140.0.7339.16",
+  "sha256": "4d10dfe74e2139fa48ceb2714f3b3ca4396ca30095745cdb49dfa2ce61e82a31",
   "viewports": [
     {
       "width": 1440,
@@ -598,6 +598,98 @@
               "scale": null,
               "before": null,
               "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "profit-to-parent",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"cogs\",-1]]",
+              "width": 460,
+              "scale": "1868302.825695652173913043478",
+              "before": "0",
+              "after": "859419299.82",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-563087954.66",
+              "min": null,
+              "max": null,
+              "source": "[[\"tax_surcharge\",-1],[\"selling\",-1],[\"admin\",-1],[\"rd_expense\",-1],[\"finance\",-1]]",
+              "width": 301.3900888633176,
+              "scale": "1868302.825695652173913043478",
+              "before": "859419299.82",
+              "after": "296331345.16",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-9020840.93",
+              "min": null,
+              "max": null,
+              "source": "[[\"other_income\",1],[\"investment_income\",1],[\"fair_value\",1],[\"credit_impairment\",1],[\"asset_impairment\",1],[\"asset_disposal\",1]]",
+              "width": 4.828361230273867,
+              "scale": "1868302.825695652173913043478",
+              "before": "296331345.16",
+              "after": "287310504.23",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-614659.56",
+              "min": null,
+              "max": null,
+              "source": "[[\"nonop_income\",1],[\"nonop_expense\",-1]]",
+              "width": 0.3289935397764733,
+              "scale": "1868302.825695652173913043478",
+              "before": "287310504.23",
+              "after": "286695844.67",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-42487454.55",
+              "min": null,
+              "max": null,
+              "source": "[[\"income_tax\",-1]]",
+              "width": 22.74120338825695,
+              "scale": "1868302.825695652173913043478",
+              "before": "286695844.67",
+              "after": "244208390.12",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "20581192.03",
+              "min": null,
+              "max": null,
+              "source": "[[\"nci\",-1]]",
+              "width": 11.015982926823819,
+              "scale": "1868302.825695652173913043478",
+              "before": "244208390.12",
+              "after": "264789582.15",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "264789582.15",
+              "min": null,
+              "max": null,
+              "source": "parent_net",
+              "width": 141.7273359051989,
+              "scale": "1868302.825695652173913043478",
+              "before": "0",
+              "after": "264789582.15",
               "stock_role": null
             }
           ]
@@ -1604,6 +1696,98 @@
           ]
         },
         {
+          "id": "profit-to-parent",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"cogs\",-1]]",
+              "width": 298,
+              "scale": "2883957.381946308724832214765",
+              "before": "0",
+              "after": "859419299.82",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-563087954.66",
+              "min": null,
+              "max": null,
+              "source": "[[\"tax_surcharge\",-1],[\"selling\",-1],[\"admin\",-1],[\"rd_expense\",-1],[\"finance\",-1]]",
+              "width": 195.2483619158014,
+              "scale": "2883957.381946308724832214765",
+              "before": "859419299.82",
+              "after": "296331345.16",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-9020840.93",
+              "min": null,
+              "max": null,
+              "source": "[[\"other_income\",1],[\"investment_income\",1],[\"fair_value\",1],[\"credit_impairment\",1],[\"asset_impairment\",1],[\"asset_disposal\",1]]",
+              "width": 3.127938362220896,
+              "scale": "2883957.381946308724832214765",
+              "before": "296331345.16",
+              "after": "287310504.23",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-614659.56",
+              "min": null,
+              "max": null,
+              "source": "[[\"nonop_income\",1],[\"nonop_expense\",-1]]",
+              "width": 0.2131305975073675,
+              "scale": "2883957.381946308724832214765",
+              "before": "287310504.23",
+              "after": "286695844.67",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-42487454.55",
+              "min": null,
+              "max": null,
+              "source": "[[\"income_tax\",-1]]",
+              "width": 14.732344803696893,
+              "scale": "2883957.381946308724832214765",
+              "before": "286695844.67",
+              "after": "244208390.12",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "20581192.03",
+              "min": null,
+              "max": null,
+              "source": "[[\"nci\",-1]]",
+              "width": 7.136441113464126,
+              "scale": "2883957.381946308724832214765",
+              "before": "244208390.12",
+              "after": "264789582.15",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "264789582.15",
+              "min": null,
+              "max": null,
+              "source": "parent_net",
+              "width": 91.81466543423755,
+              "scale": "2883957.381946308724832214765",
+              "before": "0",
+              "after": "264789582.15",
+              "stock_role": null
+            }
+          ]
+        },
+        {
           "id": "cash-formation",
           "role": "secondary",
           "issues": [],
@@ -2600,6 +2784,98 @@
               "scale": null,
               "before": null,
               "after": null,
+              "stock_role": null
+            }
+          ]
+        },
+        {
+          "id": "profit-to-parent",
+          "role": "secondary",
+          "issues": [],
+          "overlap": [],
+          "values": [
+            {
+              "period": null,
+              "value": "859419299.82",
+              "min": null,
+              "max": null,
+              "source": "[[\"rev\",1],[\"cogs\",-1]]",
+              "width": 298,
+              "scale": "2883957.381946308724832214765",
+              "before": "0",
+              "after": "859419299.82",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-563087954.66",
+              "min": null,
+              "max": null,
+              "source": "[[\"tax_surcharge\",-1],[\"selling\",-1],[\"admin\",-1],[\"rd_expense\",-1],[\"finance\",-1]]",
+              "width": 195.2483619158014,
+              "scale": "2883957.381946308724832214765",
+              "before": "859419299.82",
+              "after": "296331345.16",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-9020840.93",
+              "min": null,
+              "max": null,
+              "source": "[[\"other_income\",1],[\"investment_income\",1],[\"fair_value\",1],[\"credit_impairment\",1],[\"asset_impairment\",1],[\"asset_disposal\",1]]",
+              "width": 3.127938362220896,
+              "scale": "2883957.381946308724832214765",
+              "before": "296331345.16",
+              "after": "287310504.23",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-614659.56",
+              "min": null,
+              "max": null,
+              "source": "[[\"nonop_income\",1],[\"nonop_expense\",-1]]",
+              "width": 0.2131305975073675,
+              "scale": "2883957.381946308724832214765",
+              "before": "287310504.23",
+              "after": "286695844.67",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "-42487454.55",
+              "min": null,
+              "max": null,
+              "source": "[[\"income_tax\",-1]]",
+              "width": 14.732344803696893,
+              "scale": "2883957.381946308724832214765",
+              "before": "286695844.67",
+              "after": "244208390.12",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "20581192.03",
+              "min": null,
+              "max": null,
+              "source": "[[\"nci\",-1]]",
+              "width": 7.136441113464126,
+              "scale": "2883957.381946308724832214765",
+              "before": "244208390.12",
+              "after": "264789582.15",
+              "stock_role": null
+            },
+            {
+              "period": null,
+              "value": "264789582.15",
+              "min": null,
+              "max": null,
+              "source": "parent_net",
+              "width": 91.81466543423755,
+              "scale": "2883957.381946308724832214765",
+              "before": "0",
+              "after": "264789582.15",
               "stock_role": null
             }
           ]

@@ -334,11 +334,12 @@
         "other_business_rev",
         "other_business_cost"
       ],
-      "question": "地区收入如何分别形成成本与毛利？",
-      "takeaway": "境内、境外和其他业务的收入与各自成本可以在同一披露分类下闭合至集团收入与营业成本。",
-      "analysis": "采用年报披露的互斥地区轴，不把产品分类叠加进同一桑基；节点宽度来自原始元金额。图中展示的是披露会计构成，不是订单流或现金流。",
-      "counter": "地区收入差异无法独立识别汇率、品种和定价；其他业务在图内单列，且产品分类与地区分类重叠，不得跨图重复相加。",
-      "identity": "三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。"
+      "question": "收入如何分流到成本和毛利？",
+      "takeaway": "境内贡献大部分收入，境外毛利率更高。三类披露与集团收入、成本逐项勾稽。",
+      "analysis": "境内与境外的毛利率差异值得追踪。年报未交叉披露地区与产品的收入成本，无法区分产品组合、汇率和定价各自的作用。",
+      "counter": "地区与产品是同一集团收入的两种拆法。其他业务另列，不能将地区、产品和其他业务跨图相加。",
+      "identity": "三组同一分类轴的收入及自身成本严格加总为集团收入、成本与毛利。",
+      "show_income_shares": true
     },
     {
       "id": "earnings",
@@ -389,6 +390,259 @@
       "analysis": "集团毛利率和扣非利润均改善。现金图揭示了利润指标没有回答的营运资金问题。",
       "counter": "集团会计毛利变动无法单独识别产品价格、销量和原料成本。",
       "identity": "按图例所列期间核对相同项目。"
+    },
+    {
+      "id": "profit-to-parent",
+      "nav": "完整利润链",
+      "family": "signed_bridge",
+      "eyebrow": "原件损益逐元桥",
+      "period": "2025FY",
+      "rows": [
+        [
+          "集团营业毛利",
+          [
+            [
+              "rev",
+              1
+            ],
+            [
+              "cogs",
+              -1
+            ]
+          ],
+          "start"
+        ],
+        [
+          "税金及附加",
+          [
+            [
+              "tax_surcharge",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "销售费用",
+          [
+            [
+              "selling",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "管理费用",
+          [
+            [
+              "admin",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "研发费用",
+          [
+            [
+              "rd_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "财务费用",
+          [
+            [
+              "finance",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "其他收益",
+          [
+            [
+              "other_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "投资收益",
+          [
+            [
+              "investment_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "公允价值变动收益",
+          [
+            [
+              "fair_value",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "信用减值损失",
+          [
+            [
+              "credit_impairment",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产减值损失",
+          [
+            [
+              "asset_impairment",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "资产处置收益",
+          [
+            [
+              "asset_disposal",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "营业外收入",
+          [
+            [
+              "nonop_income",
+              1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "营业外支出",
+          [
+            [
+              "nonop_expense",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "所得税费用",
+          [
+            [
+              "income_tax",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "少数股东损益",
+          [
+            [
+              "nci",
+              -1
+            ]
+          ],
+          "step"
+        ],
+        [
+          "归母净利润",
+          "parent_net",
+          "total"
+        ]
+      ],
+      "question": "毛利经过哪些项目变成归母净利润？",
+      "takeaway": "集团毛利 {{gp_now}} 亿元。税金与四项费用合计扣减 {{annual_operating_cost_net}} 亿元，其他营业损益净额为 {{annual_other_operating_net}} 亿元。",
+      "analysis": "研发费用 {{annual_rd}} 亿元，是图中最大单项费用。少数股东承担亏损，使归母净利润比合并净利润高 {{annual_nci_addback}} 亿元。展开下表可复算原始项目。",
+      "counter": "这张图解释本年利润如何归属。要解释同比修复的持续性，还要核对研发投入回报、资产减值变化和投资损益的来源。",
+      "identity": "合并口径本年逐项对账：毛利加减各营业项目得营业利润，再计入营业外收支、所得税和少数股东损益，得到归母净利润。",
+      "editorial_groups": [
+        {
+          "label": "税金与四项费用",
+          "indices": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "label": "其他营业损益净额",
+          "indices": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "label": "营业外收支净额",
+          "indices": [
+            12,
+            13
+          ]
+        },
+        {
+          "label": "所得税费用",
+          "indices": [
+            14
+          ]
+        },
+        {
+          "label": "少数股东亏损转归属",
+          "indices": [
+            15
+          ]
+        }
+      ],
+      "facts": [
+        "rev",
+        "cogs",
+        "operating_profit",
+        "pretax",
+        "net_profit",
+        "parent_net",
+        "tax_surcharge",
+        "selling",
+        "admin",
+        "rd_expense",
+        "finance",
+        "other_income",
+        "investment_income",
+        "fair_value",
+        "credit_impairment",
+        "asset_impairment",
+        "asset_disposal",
+        "nonop_income",
+        "nonop_expense",
+        "income_tax",
+        "nci"
+      ],
+      "source_checkpoints": {
+        "11": "operating_profit",
+        "13": "pretax",
+        "14": "net_profit"
+      }
     },
     {
       "id": "cash-formation",
@@ -1009,10 +1263,91 @@
       ],
       "scale": "100000000",
       "decimals": 2
+    },
+    "annual_rd": {
+      "expression": "rd_expense",
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "annual_other_operating_net": {
+      "expression": [
+        [
+          "other_income",
+          1
+        ],
+        [
+          "investment_income",
+          1
+        ],
+        [
+          "fair_value",
+          1
+        ],
+        [
+          "credit_impairment",
+          1
+        ],
+        [
+          "asset_impairment",
+          1
+        ],
+        [
+          "asset_disposal",
+          1
+        ]
+      ],
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "annual_nci_addback": {
+      "expression": [
+        [
+          "nci",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "annual_operating_cost_net": {
+      "expression": [
+        [
+          "tax_surcharge",
+          1
+        ],
+        [
+          "selling",
+          1
+        ],
+        [
+          "admin",
+          1
+        ],
+        [
+          "rd_expense",
+          1
+        ],
+        [
+          "finance",
+          1
+        ]
+      ],
+      "scale": "100000000",
+      "decimals": 2
+    },
+    "wc_cfo_outflow": {
+      "expression": [
+        [
+          "cfo",
+          -1
+        ]
+      ],
+      "scale": "100000000",
+      "decimals": 2
     }
   },
   "title": "毛利修复，经营现金为何仍为负？",
-  "deck": "集团毛利增加 {{gp_delta}} 亿元、扣非归母利润改善，经营现金仍为负；把产品毛利、地区收入结构、费用扩张、营运资金和筹资现金放在各自正确的会计口径下重新核验。",
+  "deck": "集团毛利同比增加 {{gp_delta}} 亿元，经营现金净流出 {{wc_cfo_outflow}} 亿元。产品、费用和营运资金三条线索，解释利润为什么先修复，现金为什么还没跟上。",
   "thesis": {
     "title": "核心判断：利润修复与现金兑现是两张不同的账",
     "body": "集团毛利改善来自收入增加和成本增长较慢的算术组合；扣非归母利润增长，但经营现金没有同步改善。经营性应收和存货的现金流调整共同形成 {{wc_usage}} 亿元资金占用，期末资产负债表又显示应收与存货上升。与此同时，资本开支扩大，期末现金增加主要需要检查筹资现金汇总与资产余额变化。仅靠当期收入改善，不能断言产品价格或需求已经形成可持续拐点。"
@@ -1387,10 +1722,8 @@
     "release_authorization": "NOT_GRANTED_BY_THIS_GATE"
   },
   "glance": [
-    "营业收入与营业成本之差形成 {{gp_now}} 亿元集团毛利，较上年增加 {{gp_delta}} 亿元。",
     "收入较上年增加 {{rev_delta}} 亿元，营业成本增加 {{cogs_delta}} 亿元；这是毛利变化算术来源而非价格/销量归因。",
     "归母净利润与扣非归母净利润均改善，但研发费用增加 {{rd_delta}} 亿元，盈利传导不能只看毛利。",
-    "经营现金净额 {{v2y_cfo}} 亿元，经营现金扣现金资本开支后为 {{fcf_current}} 亿元。",
     "存货与应收账款年末余额分别较上年末增加 {{inventory_delta}} 亿元和 {{ar_delta}} 亿元；这不是现金流调整额。",
     "筹资现金净流入为 {{cff_now}} 亿元，期末现金增加不等于主营业务回款改善。"
   ]

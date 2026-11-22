@@ -87,6 +87,21 @@ class OriginalThreeSectorMoneyCompiler(unittest.TestCase):
                 self.assertEqual([font[i] for i in range(1,len(font),2)],[D(9)]*len(plan.sources))
             self.assertEqual(D(root.get("data-revenue-yuan")),plan.check())
 
+    def test_income_shares_add_group_readouts_without_rescaling_ribbons(self):
+        ledger = read("600206")
+        for mobile in (False, True):
+            before = ET.fromstring(render_sector_income(ledger, mobile=mobile))
+            after = ET.fromstring(render_sector_income(ledger, mobile=mobile, show_income_shares=True))
+            def paths(svg):
+                return [p.attrib for p in svg.iter(SVG+"path") if p.get("data-ribbon-yuan")]
+            self.assertEqual(paths(before), paths(after))
+            values = [t.text for t in after.iter(SVG+"text")
+                      if t.get("data-editorial-role")=="outcome-value"]
+            self.assertIn("86.83亿 · 91.0%", values)
+            self.assertIn("8.59亿 · 9.0%", values)
+            if mobile:
+                self.assertTrue(any(t.text=="总收入 95.42亿" for t in after.iter(SVG+"text")))
+
     def test_real_desktop_micro_business_labels_never_collide(self):
         # The 688220 last two source values are tiny on a 24.51-yi
         # common scale; their THREE textual rows must not be overprinted.

@@ -49,7 +49,7 @@
       {
         "index": 5,
         "id": "region-income",
-        "title": "地区收入如何分别形成成本与毛利？",
+        "title": "收入如何分流到成本和毛利？",
         "role": "secondary",
         "rationale": "独立研究问题与源事实驱动：收入成本流向",
         "summary": false,
@@ -66,6 +66,15 @@
       },
       {
         "index": 7,
+        "id": "profit-to-parent",
+        "title": "毛利经过哪些项目变成归母净利润？",
+        "role": "secondary",
+        "rationale": "解释毛利改善如何经过费用、非经营项目、税与少数股东权益传递至归母净利润。",
+        "summary": false,
+        "focus": []
+      },
+      {
+        "index": 8,
         "id": "cash-formation",
         "title": "利润为何没变成经营现金？",
         "role": "secondary",
@@ -74,7 +83,7 @@
         "focus": []
       },
       {
-        "index": 8,
+        "index": 9,
         "id": "cash-and-capex",
         "title": "经营现金扣除真实资本开支，还剩多少？",
         "role": "secondary",
@@ -83,7 +92,7 @@
         "focus": []
       },
       {
-        "index": 9,
+        "index": 10,
         "id": "working-capital",
         "title": "营运资产扩张由哪些项目与融资项目共同承担？",
         "role": "secondary",
@@ -92,7 +101,7 @@
         "focus": []
       },
       {
-        "index": 10,
+        "index": 11,
         "id": "cash-closure",
         "title": "经营现金为负时，为什么期末现金反而增加？",
         "role": "secondary",
@@ -101,7 +110,7 @@
         "focus": []
       },
       {
-        "index": 11,
+        "index": 12,
         "id": "funding-balance",
         "title": "资产扩张究竟由负债还是权益承担？",
         "role": "secondary",

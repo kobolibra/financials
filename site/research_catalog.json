@@ -395,7 +395,7 @@
       "kind": "原始财报研究",
       "stage": "source-review",
       "note": "原件与计算核验 · 独立二审未完成",
-      "figures": 12,
+      "figures": 13,
       "signal": "−0.79亿元",
       "signal_label": "全年经营现金净额",
       "source": "2025年年报完整原件",
@@ -423,8 +423,8 @@
       "policy": "Every current source financial figure, 1440/768/390, original PDF archive SHA, independent actual geometry and visible-edition SVG downloads. A profile flag alone is not a pass.",
       "historical_exact_html_snapshots": {
         "600036": "ead45ab0ec5ddc5f8744f466ca89105542d3912fe0f257fa0b9b3a6961f7598a",
-        "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
         "600519": "13c1db1ffe3287e373cac4496e4f147a509416b98b7949b60c5a97909359610c",
+        "688111": "65132bc7cee6ba24b327f2307cf6638e3587ec49bcebe398204885cc70639756",
         "000333": "4d3243c427e48afa7f62144f8d64363805430dc58c25a7b319e5ee0bc211c005"
       },
       "production_migration_receipt": "research/quality/profit-chain-production-20261113/result.json"

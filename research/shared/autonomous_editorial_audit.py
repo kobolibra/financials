@@ -23,6 +23,7 @@ TOOLS_DIR = str(ROOT / "skills/ashare-financial-storytelling/tools")
 if TOOLS_DIR not in sys.path:
     sys.path.insert(0, TOOLS_DIR)
 from research_evidence import validate as validate_research_brief
+from source_publication import cited, signed_bridge_checkpoints
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 FIGURE_SOURCE_FIELDS = {
     "income": ("facts",),
@@ -35,7 +36,7 @@ FIGURE_SOURCE_FIELDS = {
     "stock_delta": ("items",),
     "balance": ("dates",),
     "period_columns": ("periods", "series"),
-    "volume_rate": ("inputs", "rows"),
+    "volume_rate": ("inputs", "rows", "flow", "average_balance"),
     "components": ("rows", "items"),
     "income_flow_v3": ("facts", "sources", "stages"),
 }
@@ -63,6 +64,22 @@ TOPICS = (
      ("income_flow_v3", "signed_bridge"),
      ("rev", "cogs", "operating_profit", "pretax", "net_profit", "parent_net"),
      "P1"),
+)
+BANK_TOPICS = (
+    ("BANK_NET_INTEREST_BRIDGE",
+     ("nii", "nii_prior", "fin_interest_income", "fin_interest_income_prior",
+      "fin_interest_expense", "fin_interest_expense_prior"),
+     ("signed_bridge",), "P0"),
+    ("BANK_AVERAGE_EARNING_ASSETS",
+     ("fin_interest_income", "average_earning_assets", "average_earning_assets_prior"),
+     ("volume_rate",), "P1"),
+    ("BANK_LOAN_DEPOSIT_BASIS",
+     ("loans", "loans_prior", "deposits", "deposits_prior"),
+     ("comparison", "stock_delta"), "P1"),
+    ("BANK_FEES_CREDIT_AND_PROFIT",
+     ("fee_net", "fee_net_prior", "credit_impairment", "credit_impairment_prior",
+      "parent_net", "parent_net_prior"),
+     ("comparison", "signed_bridge"), "P1"),
 )
 SELF_REVIEW_FIELDS = ("five_second_answer", "source_and_grammar",
                       "visual_hierarchy", "mobile_readability",
@@ -94,6 +111,9 @@ def _source_refs(obj, known):
 
 def figure_source_refs(figure, known):
     fam = figure.get("family")
+    if fam == "volume_rate" and all(isinstance(figure.get(key), str)
+                                    for key in ("flow", "average_balance")):
+        return set(cited(figure)) & known
     return _source_refs([figure.get(k) for k in FIGURE_SOURCE_FIELDS.get(fam, ())], known)
 
 
@@ -214,12 +234,24 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
                    "Re-extract original cells, rebuild research and recapture current visual evidence.")
     if not isinstance(figures, list):
         figures = []
-    source_by_id = {
-        str(f.get("id")): figure_source_refs(f, known)
-        for f in figures if isinstance(f, dict)
-    }
+    source_by_id = {}
+    for figure in figures:
+        if not isinstance(figure, dict):
+            continue
+        figure_id = str(figure.get("id"))
+        refs = figure_source_refs(figure, known)
+        if figure.get("family") == "signed_bridge" and figure.get("source_checkpoints"):
+            try:
+                refs.update(signed_bridge_checkpoints(ledger, figure))
+            except (ArithmeticError, ValueError, KeyError, TypeError) as exc:
+                _issue(issues, "SIGNED_BRIDGE_CHECKPOINT_INVALID", "BLOCK", str(exc),
+                       "Reconcile the cumulative bridge against the original disclosed subtotals.")
+        source_by_id[figure_id] = refs
     covered = []
-    for label, required, families, operands, priority in TOPICS:
+    is_bank = ledger.get("issuer", {}).get("statement_format") == "bank"
+    topics = [(label, required, families, required, priority)
+              for label, required, families, priority in BANK_TOPICS] if is_bank else TOPICS
+    for label, required, families, operands, priority in topics:
         if not set(required).issubset(known):
             continue
         matching = [f.get("id") for f in figures if isinstance(f, dict)
@@ -293,37 +325,38 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
         _issue(issues, "BROWSER_VIEWPORT_COVERAGE_MISSING", "BLOCK",
                "The author review omits one or more required native viewport checks.",
                "Review desktop/tablet/mobile Chromium and native WebKit at 375.")
-    receipt = browser.get("chromium_receipt")
-    if not isinstance(receipt, str) or not receipt.startswith("research/issuers/"):
-        _issue(issues, "BROWSER_RECEIPT_MISSING", "BLOCK",
-               "No local Chromium figure-level QA receipt was declared.",
-               "Attach current SHA-bound browser evidence.")
-    else:
-        proof = (root / receipt).resolve()
-        if not proof.is_relative_to(root.resolve()) or not proof.is_file():
+    for engine, widths in (("chromium", {1440, 768, 390}), ("webkit", {375})):
+        receipt = browser.get(engine + "_receipt")
+        proof = ((root / receipt).resolve() if isinstance(receipt, str)
+                 and receipt.startswith("research/issuers/") else None)
+        if proof is None or not proof.is_relative_to(root.resolve()) or not proof.is_file():
             _issue(issues, "BROWSER_RECEIPT_MISSING", "BLOCK",
-                   "The declared figure QA receipt is missing or escapes the repository.",
+                   f"The {engine} receipt is missing or outside the repository.",
                    "Archive current-article figure-level QA evidence.")
-        else:
-            try:
-                qa = _json(proof)
-                if qa.get("sha256") != html_sha:
-                    _issue(issues, "BROWSER_RECEIPT_STALE", "BLOCK",
-                           "Figure-level QA was captured from another HTML build.",
-                           "Rebuild and recapture the current HTML SHA.")
-                observed = {v.get("width"): v for v in qa.get("viewports", [])
-                            if isinstance(v, dict)}
-                expected = set(ids)
-                for width in (1440, 768, 390):
-                    seen = {x.get("id") for x in observed.get(width, {}).get("figures", [])
-                            if isinstance(x, dict)}
-                    if not expected.issubset(seen):
-                        _issue(issues, "BROWSER_FIGURES_NOT_ALL_VERIFIED", "BLOCK",
-                               "Viewport " + str(width) + " omits current article figures.",
-                               "Test every chart in all three Chromium viewport sizes.")
-            except (ValueError, KeyError, TypeError) as exc:
-                _issue(issues, "BROWSER_RECEIPT_INVALID", "BLOCK", str(exc),
-                       "Recreate a readable current figure QA receipt.")
+            continue
+        try:
+            qa = _json(proof)
+            if qa.get("sha256") != html_sha:
+                _issue(issues, "BROWSER_RECEIPT_STALE", "BLOCK",
+                       f"The {engine} receipt describes another HTML build.",
+                       "Rebuild and recapture the current HTML SHA.")
+            views = qa.get("viewports", [])
+            observed = {view.get("width"): view for view in views}
+            if qa.get("browser") != engine or len(views) != len(widths) or set(observed) != widths:
+                _issue(issues, "BROWSER_RECEIPT_INVALID", "BLOCK",
+                       f"Expected one {engine} measurement per width {sorted(widths)}.",
+                       "Capture the native viewports again.")
+            for width in sorted(widths):
+                figures = observed.get(width, {}).get("figures", [])
+                if ([figure.get("id") for figure in figures] != ids
+                        or any(figure.get("issues") or figure.get("overlap")
+                               or not figure.get("values") for figure in figures)):
+                    _issue(issues, "BROWSER_FIGURES_NOT_ALL_VERIFIED", "BLOCK",
+                           f"{engine} at {width}px does not show the exact reviewed figures cleanly.",
+                           "Test each current chart in this native viewport.")
+        except (ValueError, KeyError, TypeError, AttributeError) as exc:
+            _issue(issues, "BROWSER_RECEIPT_INVALID", "BLOCK", str(exc),
+                   "Recreate a readable current figure QA receipt.")
     if record.get("gates", {}).get("INDEPENDENT_HUMAN_REVIEW", {}).get("status") == "PASS":
         _issue(issues, "HUMAN_REVIEW_UNVERIFIED", "BLOCK",
                "Automated author self-review cannot establish independent human approval.",
@@ -387,11 +420,13 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
         _issue(issues, "CALIBRATION_PEERS_UNAVAILABLE", "REVISION",
                "No directly comparable peer reports could be read from the current repository.",
                "Document the absence; do not infer a relative visual quality score.")
-    if not _eligible_industrial_fy(record, ledger):
+    bank_basis = (is_bank and record.get("sector_adapter") == "bank"
+                  and _period_kind(record.get("period")) != "UNKNOWN"
+                  and any(topic["topic"] == "BANK_NET_INTEREST_BRIDGE" for topic in covered))
+    if not (bank_basis or _eligible_industrial_fy(record, ledger)):
         _issue(issues, "SECTOR_OR_PERIOD_COVERAGE_NOT_ESTABLISHED", "REVISION",
-               "This automated source-topic dictionary covers rich industrial FY/H1 only.",
-               "Use a sector-specific adapter and genuine new-sector/period blind test, "
-               "never a manufacturing-template PASS.")
+               "The original statement and disclosed keys do not establish a supported research basis.",
+               "Use the relevant sector and period evidence, then run a separate blind test.")
     blockers = [x for x in issues if x["severity"] == "BLOCK"]
     revisions = [x for x in issues if x["severity"] == "REVISION"]
     return {
@@ -413,6 +448,80 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
     }
 
 
+def audit_legacy_current_full_source(root, code, issuer, catalog, *, strict=False):
+    """Legacy HTML without a new-era research-brief/release-gates contract.
+
+    The evidence is narrower than a modern full-research review: only an
+    existing financially source-bound article, every visible original SVG,
+    native three-viewport capture, real export and cryptographic proof may
+    pass. It MUST NOT be misrepresented as a newly complete research review.
+    """
+    import sys
+    from hashlib import sha256 as _sha
+    scripts = str(root / "scripts")
+    shared = str(root / "research/shared")
+    for location in (scripts, shared):
+        if location not in sys.path:
+            sys.path.insert(0, location)
+    from audit_unified_visual_corpus import verified_complete_migration
+    from browser_evidence_archive import EvidenceReader
+    from qa_editorial_migration import check_vector
+    html = root / "public" / issuer["href"].lstrip("/")
+    if not html.is_file() or issuer.get("figure_quality_contract") != "FULL_SOURCE_FIGURES_V1":
+        raise ValueError("LEGACY_CHANGED_REPORT_REQUIRES_SOURCE_FIGURE_CONTRACT " + code)
+    current = _sha(html.read_bytes()).hexdigest()
+    profile = catalog["figure_quality_contracts"]["FULL_SOURCE_FIGURES_V1"]
+    proof = (root / profile["local_migration_receipt"]).resolve()
+    proof.relative_to(root.resolve())
+    receipt = _json(proof)
+    if not verified_complete_migration(receipt, code, current):
+        raise ValueError("LEGACY_CHANGED_REPORT_CURRENT_BROWSER_PROOF_MISSING " + code)
+    source = {}
+    for path in profile["source_review_indices"]:
+        source.update(_json(root / path).get("issuers", {}))
+    source_entry = source.get(code, {})
+    pdf_sha = source_entry.get("source_sha256")
+    pdf_path = (root / source_entry["source_path"]).resolve()
+    pdf_path.relative_to(root.resolve())
+    # V10 exchange originals are restored by the independent CI rebuild.
+    # All tracked research originals must match the archived PDF fingerprint.
+    if (pdf_path.is_file() or not source_entry["source_path"].startswith("work/")) and (
+            not pdf_path.is_file() or _sha(pdf_path.read_bytes()).hexdigest() != pdf_sha):
+        raise ValueError("LEGACY_CHANGED_REPORT_ORIGINAL_PDF_BYTES_DRIFT " + code)
+    if receipt["issuers"][code]["pdf_sha256"] != pdf_sha:
+        raise ValueError("LEGACY_CHANGED_REPORT_PDF_SHA_MISMATCH " + code)
+    evidence = EvidenceReader(root, proof)
+    views = [x for x in receipt["cases"] if x["issuer"] == code]
+    if len(views) != 3:
+        raise ValueError("LEGACY_CHANGED_REPORT_MISSING_THREE_NATIVE_VIEWS " + code)
+    for view in views:
+        if len(view["figures"]) != issuer["figures"]:
+            raise ValueError("LEGACY_CHANGED_REPORT_OMITTED_FINANCE_FIGURE " + code)
+        for figure in view["figures"]:
+            for key, digest in (("screenshot_file","screenshot_sha256"),
+                                ("export_file","vector_sha256")):
+                raw = evidence.read(figure[key], code)
+                if _sha(raw).hexdigest() != figure[digest]:
+                    raise ValueError("LEGACY_CHANGED_REPORT_BROWSER_EVIDENCE_DRIFT " + code)
+                if key == "export_file":
+                    check_vector(raw.decode("utf8"), code, pdf_sha)
+    return {
+        "schema": "financials.autonomous_editorial_audit.v1",
+        "issuer": code, "period": issuer.get("period"),
+        "issuer_period": code + "@" + str(issuer.get("period")),
+        "original_pdf_sha256": pdf_sha, "html_sha256": current,
+        "source_topics": [], "source_coverage_count": 0,
+        "source_opportunities": 0, "suggested_peers": [],
+        "issues": [], "blocker_count": 0, "revision_count": 0,
+        "verdict": "LEGACY_ALL_FIGURES_SOURCE_VERIFIED_NOT_NEW_EDITORIAL_CERTIFIED",
+        "independent_human_review": "NOT_CHECKED",
+        "strict_requested": bool(strict),
+        "claim_boundary": "All current-source financial SVGs, screenshots, "
+                          "native device viewports and PDF identities verified. "
+                          "NOT a new-source research thesis, artistic or human signoff."
+    }
+
+
 def audit_issuer(root, code, *, strict=False):
     catalog = _json(root / "site/research_catalog.json")
     if "@" in code:
@@ -431,7 +540,14 @@ def audit_issuer(root, code, *, strict=False):
         folder = root / "research/issuers" / code
     if issuer is None:
         raise ValueError("UNKNOWN_ISSUER_OR_PERIOD " + code)
+    if not (folder / "release-gates.json").is_file():
+        return audit_legacy_current_full_source(root, code, issuer, catalog, strict=strict)
     record = _json(folder / "release-gates.json")
+    if (not (folder / "research-brief.json").is_file()
+            and issuer.get("figure_quality_contract") == "FULL_SOURCE_FIGURES_V1"
+            and (folder / "live-release-receipt.json").is_file()
+            and record.get("release_class") == "source_limited_preview"):
+        return audit_legacy_current_full_source(root, code, issuer, catalog, strict=strict)
     ledger = _json(folder / "source-ledger.json")
     pub = _json(folder / "publication.json")
     brief = _json(folder / "research-brief.json")
@@ -470,13 +586,13 @@ def changed_issuers(root, since):
         before = json.loads(base.stdout)
         def entries(d):
             return {x["code"] + ("@" + x["period"] if x in d.get("period_reports", []) else ""):
-                    x.get("href") for x in d.get("issuers", []) + d.get("period_reports", [])}
+                    x for x in d.get("issuers", []) + d.get("period_reports", [])}
         previous, current = entries(before), entries(catalog)
         removed = set(previous) - set(current)
         if removed:
             raise ValueError("CATALOG_ISSUER_REMOVAL_NEEDS_EXPLICIT_REVIEW "
                              + ",".join(sorted(removed)))
-        found.update(x for x, href in current.items() if previous.get(x) != href)
+        found.update(code for code, entry in current.items() if previous.get(code) != entry)
     return sorted(found)
 
 

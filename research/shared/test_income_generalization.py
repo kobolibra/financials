@@ -3,6 +3,7 @@ from dataclasses import replace
 from decimal import Decimal as D
 import hashlib
 import json
+import re
 from pathlib import Path
 import sys
 import unittest
@@ -75,6 +76,87 @@ class IncomeGeneralizationTests(unittest.TestCase):
                         self.assertLess(abs(abs(coords[15]-coords[1])-expected),D('.001'))
                         self.assertLess(abs(abs(coords[9]-coords[7])-expected),D('.001'))
                 self.assertNotIn('NaN',ET.tostring(tree,encoding='unicode'))
+
+
+    def test_real_source_profit_and_cost_ribbons_never_cross(self):
+        """Independent SVG geometry test. Yuan conservation alone misses braiding.
+
+        Previous source-major edge order crossed an earlier source's profit
+        with a later source's COGS even with exact ledger-perfect totals.
+        Exercise old and new issuers and every native canvas.
+        """
+        from source_income_adapter import compile_disclosed_income
+        for code in ('600206','600690','300548','688220','600900','600276'):
+            ledger=json.loads((ROOT/f'research/issuers/{code}/source-ledger.json').read_text())
+            p=compile_disclosed_income(ledger)
+            own={(s,o):D(v) for s,o,v in p.allocations}
+            for mobile in (False,True):
+                with self.subTest(code=code,mobile=mobile):
+                    root=ET.fromstring(render_income_sankey(
+                        p,mobile=mobile,embedded=True,readable_source_rows=mobile))
+                    for stage in ('source-to-revenue','revenue-to-outcome'):
+                        ribbons=[]
+                        for path in root.iter('{http://www.w3.org/2000/svg}path'):
+                            if path.get('data-stage')!=stage:
+                                continue
+                            xy=[D(v) for v in re.findall(
+                                r'-?\d+(?:\.\d+)?',path.get('d'))]
+                            self.assertEqual(len(xy),16)
+                            # The centre of every strip must be ordered the
+                            # same at both endpoints: a true no-crossings test.
+                            src=(xy[1]+xy[15])/2
+                            dst=(xy[7]+xy[9])/2
+                            ribbons.append((src,dst))
+                            if stage=='revenue-to-outcome':
+                                key=(path.get('data-source-id'),
+                                     path.get('data-outcome-id'))
+                                self.assertEqual(D(path.get('data-ribbon-yuan')),own[key])
+                        self.assertGreater(len(ribbons),1)
+                        for i in range(len(ribbons)):
+                            for j in range(i+1,len(ribbons)):
+                                self.assertGreaterEqual(
+                                    (ribbons[i][0]-ribbons[j][0]) *
+                                    (ribbons[i][1]-ribbons[j][1]),D('-0.00001'),
+                                    f'{code} {stage}: crossed ribbon {i} vs {j}')
+
+
+    def test_published_html_cannot_keep_old_crossed_sankey(self):
+        """Actual reader-facing SVGs, not just newly generated Python output."""
+        routes=(
+            ('600206','600206.html',2),
+            ('600690','600690.html',2),
+            ('300548','300548.html',2),
+            ('688220','688220.html',1),  # separate native desktop figure
+            ('300394','300394.html',2),
+            ('300502','300502.html',2),
+            ('300308','300308.html',2),
+            ('300570','300570.html',2),
+            ('688111','research/2026-h1-v10/688111.html',2),
+            ('000333','research/2026-h1-v10/000333.html',2),
+            ('600036','research/2026-h1-v10/600036.html',2),  # bank group-only
+        )
+        for code,route,expected_figure_count in routes:
+            html=(ROOT/'public'/route).read_text()
+            svgs=re.findall(
+                r'<svg\b[^>]*data-chart-grammar="SOURCE_REVENUE_OUTCOME_CONNECTED_SANKEY"[^>]*>.*?</svg>',
+                html,re.S)
+            self.assertEqual(len(svgs),expected_figure_count,
+                             (code,'PUBLISHED_SANKKEY_SVG_MISSING'))
+            for svg in svgs:
+                ribbons=[]
+                for tag in re.findall(r'<path\b[^>]*data-stage="revenue-to-outcome"[^>]*/>',svg):
+                    d=re.search(r'\sd="([^"]+)"',tag)
+                    self.assertIsNotNone(d)
+                    xy=[D(x) for x in re.findall(r'-?\d+(?:\.\d+)?',d.group(1))]
+                    self.assertEqual(len(xy),16)
+                    ribbons.append(((xy[1]+xy[15])/2,(xy[7]+xy[9])/2))
+                self.assertGreater(len(ribbons),1)
+                for i in range(len(ribbons)):
+                    for j in range(i+1,len(ribbons)):
+                        self.assertGreaterEqual(
+                            (ribbons[i][0]-ribbons[j][0]) *
+                            (ribbons[i][1]-ribbons[j][1]),D('-0.00001'),
+                            f'{code}: published SVG still braids {i} with {j}')
 
 
 if __name__=="__main__":unittest.main()
