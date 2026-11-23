@@ -176,7 +176,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "10.4.0",
+    "version": "10.5.0",
     "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -1877,5 +1877,19 @@
     "held_out_editorial_protocol": "skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md",
     "paired_blind_editorial_evaluation": "NOT_CHECKED",
     "independent_human_review": "NOT_CHECKED"
+  },
+  "editorial_evaluation_20261123": {
+    "scope": "SKILL_EVALUATION_UPDATE",
+    "basis_main_sha": "1e6496d355693293d866e08e6f00a656201fae60",
+    "evaluation_packet": "scripts/editorial_review_packet.py",
+    "paired_blind_editorial_evaluation": "NOT_CHECKED",
+    "probe": {
+      "issuer": "600196",
+      "period": "2025H1",
+      "source_page": 96,
+      "capex_yuan": "2073906530.23",
+      "capex_prior_yuan": "2093357052.05",
+      "scope": "AUTHOR_TECHNICAL_DIAGNOSTIC"
+    }
   }
 }

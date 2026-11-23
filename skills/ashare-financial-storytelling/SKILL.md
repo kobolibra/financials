@@ -5,7 +5,7 @@ description: Research A-share periodic reports from original PDFs, reconcile sou
 
 # A股财报深度研究与可视化 · 统一生产技能
 
-Contract version: 10.4.0
+Contract version: 10.5.0
 
 ### 必须先走自主主编闭环：不用用户反复指出漏项
 
@@ -190,6 +190,8 @@ CI 会对目录中声明 `source_publication` 的公司自动干净重建并跑�
 完整可执行回归在 `skills/ashare-financial-storytelling/quality-regressions.json`；运行 `python scripts/check_release_contract.py`。
 
 ## 8. 跨期、跨公司稳定性的边界
+
+改动研究选题、主视觉或审稿流程后，按 [Playbook 06 的陌生公司比较](playbooks/06_GENERALIZATION.md#6-用陌生公司的成品评价技能改动) 保留同原件首稿及改稿，使用版本盲化评审包。记录弱样本和首个阻断步骤。
 
 - 新期间：从原报告读取 `fiscal_period`（Q1/H1/9M/FY），单季列按真实 `issuer.flow_columns` 声明；不得借用旧期图证。历史 PDF-only 泛化探针记录 30 份（包含 Q1/H1/9M/FY），其中 20 份由公开披露按 SHA 恢复，30 份全部可复跑；恢复命令和历次状态见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`。完整出版/人类审稿分别标 `NOT_CHECKED`。
 - 同一公司的后续期间登记在目录 `period_reports`，以 `code@period` 解析，旧路由与旧字节不变（playbook 01 §5）。

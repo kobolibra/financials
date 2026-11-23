@@ -11,7 +11,7 @@ import statement_extract as se
 from coverage_review import check_dependencies
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / 'research' / 'shared'))
-from source_publication import validate_offline_comparisons
+from source_publication import has_source_amount, validate_offline_comparisons
 
 
 def fact(period, amount='3000000'):
@@ -19,6 +19,13 @@ def fact(period, amount='3000000'):
                 currency='CNY', unit='元', source_cells=[{'printed': amount}],
                 classification='DISCLOSED')
 
+
+
+class SourceAmountTokenTest(unittest.TestCase):
+    def test_spaced_accounting_brackets_keep_the_negative_sign(self):
+        self.assertTrue(has_source_amount("( 48596693.14 )", "(48,596,693.14)"))
+        self.assertFalse(has_source_amount("( 48596693.14 )", "48,596,693.14"))
+        self.assertFalse(has_source_amount("48596693.14", "(48,596,693.14)"))
 
 class OfflineCandidateTests(unittest.TestCase):
     def setUp(self):

@@ -107,3 +107,15 @@ python scripts/generalization_probe.py <pdf>     # 只给 PDF 的端到端自检
 4. **看最差样本和改稿差距。** 分行业、报告期、源复杂度报告首稿与返工结果，列明分母。出现重大会计错误、关键披露漏判或核心视觉误导时，回到对应环节修复，并在另一个未见样本复测。记录真正可迁移的修复，保留模型、自评、独立模型及人类评审各自的身份和范围。
 
 每例记录：`PDF SHA / 期间与会计格式 / 版本与会话 / 首稿 HTML SHA / 终稿 HTML SHA / 批评与原件定位 / 桌面及手机图证 / 处理与耗时 / 阻断与归因 / 匿名优劣 / 评审身份`。未完成任何一环，按实际结果登记。技术探针通过、已知案例回放和匿名首稿成品评审分别报告。
+
+### 制作可送审的匿名材料
+
+为基线版和候选版分别保留 `first/` 与 `final/`，每阶段放同一次构建的 `report.html`、桌面全页 `desktop.png`、手机全页 `mobile.png`。先完成浏览器验收，再用下列命令绑定原件、匿名标记和材料版本。评估负责人负责保管映射。封存前检查截图或可见标题中没有版本标记。作者首稿没有返工时可以如实保留相同阶段字节并注明原因。
+
+```bash
+python scripts/editorial_review_packet.py prepare --source original.pdf \
+  --baseline work/old --candidate work/new --out work/editorial-evaluation/issuer
+python scripts/editorial_review_packet.py assess work/editorial-evaluation/issuer
+```
+
+给评审者提供 `reviewer/`，密钥留在负责人目录。先看截图，再浏览正文和原件。各位评审在 `review.json` 单独填财务与视觉的首稿、返工稿偏好，并写可定位的源页或图形证据。负责人收齐后执行 `assess`。工具核对所有文件指纹和评审记录，评审身份与独立性由负责人核实。结论按所有预先登记的案例报告，阻断案例仍进入分母。单个评审包只代表对应原件的比较结果。
