@@ -425,6 +425,13 @@ def validate_offline_comparisons(ledger, story):
         else:
             raise ValueError('OFFLINE_EXHIBIT_ADAPTER_UNVERIFIED ' + family)
 
+def has_source_amount(region, printed):
+    """Match a signed money token when PDF text separates accounting brackets."""
+    region = re.sub(r'(?<=[(（])[^\S\r\n]+(?=\d)|(?<=\d)[^\S\r\n]+(?=[)）])', '', region)
+    token = re.escape(printed.replace(',', ''))
+    return re.search(r'(?<![0-9.+−(（-])' + token + r'(?![0-9.])', region) is not None
+
+
 def validate(ledger,story,root=ROOT):
     expand_claims(story,ledger);check_cross_period_claims(ledger,story)
     source=ledger['source'];issuer=ledger['issuer'];path=(root/source['source_path']).resolve();path.relative_to(root.resolve())
@@ -499,8 +506,7 @@ def validate(ledger,story,root=ROOT):
                 if offline:
                     from fin_intake import to_decimal
                     printed = cell['printed'].strip()
-                    token = re.escape(printed.replace(',', ''))
-                    if not re.search(r'(?<![0-9.+−(（-])' + token + r'(?![0-9.])', region):
+                    if not has_source_amount(region, printed):
                         raise ValueError('DOSSIER_SOURCE_CELL_FALSE ' + k)
                     signed = to_decimal(printed) * D(cell.get('unit_scale', '1'))
                     if cell.get('sign_flipped'):

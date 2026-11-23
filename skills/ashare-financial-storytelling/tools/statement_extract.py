@@ -326,34 +326,42 @@ def amount_columns(rows, column_indices=(0, 1)):
 
 
 def labelled_rows(rows, statement=None):
-    """Numeric rows whose label was wrapped onto the lines above/below get it back.
+    """For ambiguous amount rows, recover nearby wrapped canonical labels."""
+    patterns = [rx for _, st, rx, _ in CANON_RE if statement in (None, st)]
 
-    A label can wrap over two or three short lines above its number row (中信证券 annual:
-    "归属于母公司股东的净" / "利润" / numbers). The shortest join of preceding text lines that names a
-    canonical line item wins; otherwise the nearest line is used."""
+    def canonical(label):
+        return any(rx.fullmatch(label) for rx in patterns)
+
     out = []
-    for i, r in enumerate(rows):
-        if not r['numbers']:
+    for i, row in enumerate(rows):
+        if not row['numbers']:
             continue
-        label = r['label']
-        if len(norm(label)) < 2:
+        label = row['label']
+        normalized = norm(label)
+        short = len(normalized) < 2
+        if short or not canonical(normalized):
             own = '' if NOTE_REF.fullmatch(re.sub(r'\s+', '', label)) else label
-            ups, j, y = [], i - 1, r['y']
-            while j >= 0 and len(ups) < 3 and not rows[j]['numbers'] and y - rows[j]['y'] <= 22:
-                ups.insert(0, rows[j]['label']); y = rows[j]['y']; j -= 1
-            below = rows[i + 1] if i + 1 < len(rows) and not rows[i + 1]['numbers'] and rows[i + 1]['y'] - r['y'] <= 10 else None
-            tail = own + (below['label'] if below else '')
-            chosen = None
-            for n in range(1, len(ups) + 1):
-                cand = ''.join(ups[-n:]) + tail
-                if any(rx.match(norm(cand)) for _, st, rx, _ in CANON_RE if statement in (None, st)):
-                    chosen = cand
+            above = []
+            y = row['y']
+            for preceding in reversed(rows[max(0, i - 3):i]):
+                if preceding['numbers'] or y - preceding['y'] > 22:
                     break
-            if chosen is None:
-                near = [u for k, u in enumerate(ups) if k == len(ups) - 1 and r['y'] - rows[i - 1]['y'] <= 10] if ups else []
-                chosen = ''.join(near) + tail
-            label = chosen
-        out.append(dict(r, label=label))
+                above.insert(0, preceding['label'])
+                y = preceding['y']
+            following = rows[i + 1] if i + 1 < len(rows) else None
+            below = (following['label'] if following and not following['numbers']
+                     and following['y'] - row['y'] <= 10 else '')
+            reconstructed = next(
+                (candidate for n in range(len(above) + 1)
+                 for tail in ((own + below, own) if short else (own, own + below))
+                 if (candidate := ''.join(above[len(above) - n:]) + tail)
+                 and canonical(norm(candidate))), None)
+            if reconstructed is not None:
+                label = reconstructed
+            elif short:
+                near = above[-1] if above and row['y'] - rows[i - 1]['y'] <= 10 else ''
+                label = near + own + below
+        out.append(dict(row, label=label))
     return out
 
 

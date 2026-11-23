@@ -1242,6 +1242,26 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-096",
+      "root_cause": "现金流表跨行长科目残片未变成标准项，试算闭合仍可能漏现金资本开支。",
+      "correction": "仅恢复在对应报表规则内能拼成标准科目的临近连续文本。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_statement_extract.py",
+      "assertion_marker": "test_long_cash_capex_label_is_recovered_only_with_its_canonical_prefix",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-097",
+      "root_cause": "PDF框选回读在负数尾括号旁有独立空格，导致实际负数源格被拒。",
+      "correction": "回读消除括号内与数字相邻的横向空白，保持金额符号及边界。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_offline_candidate.py",
+      "assertion_marker": "test_spaced_accounting_brackets_keep_the_negative_sign",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

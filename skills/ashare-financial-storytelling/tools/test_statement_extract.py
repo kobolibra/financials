@@ -37,6 +37,20 @@ class LabelsAndTitles(unittest.TestCase):
         for raw, want in cases.items():
             self.assertEqual(se.norm(raw), want, raw)
 
+    def test_long_cash_capex_label_is_recovered_only_with_its_canonical_prefix(self):
+        amount = {"printed": "2,073,906,530.23"}
+        label = "期资产支付的现金"
+        prefix = {"y": 100, "label": "购建固定资产、无形资产和其他长", "numbers": []}
+        row = {"y": 114, "label": label, "numbers": [amount]}
+        expected = prefix["label"] + label
+        fixed, = se.labelled_rows([prefix, row], "cf")
+        self.assertEqual(fixed["label"], expected)
+        self.assertEqual(fixed["numbers"], [amount])
+        isolated, = se.labelled_rows([dict(prefix, y=80), row], "cf")
+        self.assertEqual(isolated["label"], label)
+        outside_scope, = se.labelled_rows([prefix, row], "is")
+        self.assertEqual(outside_scope["label"], label)
+
     def test_statement_titles_in_every_layout_seen(self):
         for t in ('1、合并资产负债表', '2、合并年初到报告期末利润表', '2026年6月30日合并资产负债表（续）', '截至2026年6月30日止6个月期间合并利润表',
                   '年半年度合并及公司利润表', '未经审计合并现金流量表', '合并及母公司资产负债表'):
