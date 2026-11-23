@@ -164,6 +164,8 @@ def cmd_init(a) -> None:
                   "base_unit": "人民币元", "audit": ident["audit"], "income_figure_title": ""}
         if getattr(a, "candidate", False):
             issuer["offline_candidate"] = True
+            if (version := getattr(a, "editorial_selection_version", None)) is not None:
+                issuer["editorial_selection_version"] = version
             text = squash("".join(page.get_text() for page in list(doc)[:30]))
             issuer["restatement_review_required"] = (
                 "调整前" in text and "调整后" in text
@@ -234,6 +236,23 @@ def merge_wrapped(words: list) -> list:
     return out
 
 
+def join_accounting_parentheses(words):
+    """Keep a detached closing parenthesis inside the amount's source cell."""
+    result = []
+    for word in words:
+        glyph = word[4].strip()
+        if result and glyph in (")", "）"):
+            previous = result[-1]
+            amount = previous[4].strip()
+            opening = "(" if glyph == ")" else "（"
+            if amount.startswith(opening) and FULL_NUMBER.fullmatch(amount[1:]) and 0 <= word[0] - previous[2] <= 2:
+                result[-1] = (previous[0], min(previous[1], word[1]), word[2],
+                              max(previous[3], word[3]), amount + glyph, previous[5])
+                continue
+        result.append(word)
+    return result
+
+
 def rows_on_page(page) -> list[dict]:
     """Group words into visual rows; numeric tokens become indexed columns.
 
@@ -258,7 +277,7 @@ def rows_on_page(page) -> list[dict]:
     dash = re.compile(r"[-−—]{1,2}")
     out = []
     for mid, ws in rows:
-        ws.sort(key=lambda w: w[0])
+        ws = join_accounting_parentheses(sorted(ws, key=lambda w: w[0]))
         label = "".join(w[4] for w in ws if not NUMBER.match(w[4].strip()))
         nums = [{"printed": w[4], "bbox": [w[0], w[1], w[2], w[3]], "wrapped": w[5] == "wrapped", "col": -1}
                 for w in ws if NUMBER.match(w[4].strip())]

@@ -650,7 +650,10 @@ def cmd_apply(a):
         raise SystemExit('V2_SOURCE_PROBE_NOT_PUBLISHABLE: generate a normal, evidence-screened editorial draft')
     brief_path = base / 'research-brief.json'
     try:
-        evidence_review = ev.validate_file(ledger, brief_path)
+        if not brief_path.is_file():
+            raise ValueError('RESEARCH_BRIEF_REQUIRED ' + str(brief_path))
+        brief = json.loads(brief_path.read_text())
+        evidence_review = ev.validate(ledger, brief)
     except (ValueError, KeyError, json.JSONDecodeError) as exc:
         raise SystemExit('V2_RESEARCH_BRIEF_NOT_READY ' + str(exc)) from exc
     offline = ledger['issuer'].get('offline_candidate')
@@ -696,6 +699,10 @@ def cmd_apply(a):
     if missing:
         raise SystemExit('V2_ORDER_MISSING ' + ','.join(sorted(missing)))
     story['figures'] = [new.get(i) or old[i] for i in order if i in new or i in old]
+    try:
+        ev.validate_editorial_selection(ledger, brief, figures=story['figures'])
+    except ValueError as exc:
+        raise SystemExit('V2_EDITORIAL_DECISION_NOT_READY ' + str(exc)) from exc
     story['design'] = 'EDITORIAL_V2'
     story['capability_plan'] = capability_plan  # verified from the ledger, NOT the editable draft
     story['research_evidence_gate'] = {

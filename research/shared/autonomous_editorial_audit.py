@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TOOLS_DIR = str(ROOT / "skills/ashare-financial-storytelling/tools")
 if TOOLS_DIR not in sys.path:
     sys.path.insert(0, TOOLS_DIR)
-from research_evidence import validate as validate_research_brief
+from research_evidence import validate as validate_research_brief, validate_editorial_selection
 from source_publication import cited, signed_bridge_checkpoints
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 FIGURE_SOURCE_FIELDS = {
@@ -129,7 +129,7 @@ def _peer_candidates(root, issuer, record, catalog, limit=3):
     current_sector = record.get("sector_adapter")
     current_period = _period_kind(record.get("period"))
     for item in catalog.get("issuers", []) + catalog.get("period_reports", []):
-        if item.get("code") == issuer["code"] and item.get("period") == issuer.get("period"):
+        if item.get("code") == issuer["code"]:
             continue
         page = root / "public" / str(item.get("href", "")).lstrip("/")
         folder = root / "research/issuers" / item.get("code", "")
@@ -147,13 +147,15 @@ def _peer_candidates(root, issuer, record, catalog, limit=3):
             figures = pub.get("figures") or []
             if not isinstance(figures, list) or not figures:
                 continue
-            same_sector = peer.get("sector_adapter") == current_sector
+            same_industry = bool(issuer.get("industry")) and item.get("industry") == issuer["industry"]
+            same_sector = bool(current_sector) and peer.get("sector_adapter") == current_sector
             same_period = _period_kind(peer.get("period")) == current_period
             choices.append({
                 "code": item["code"], "period": peer.get("period"),
                 "href": item.get("href"),
                 "sector": peer.get("sector_adapter"),
-                "same_sector": same_sector, "same_period_kind": same_period,
+                "same_industry": same_industry, "same_sector": same_sector,
+                "same_period_kind": same_period,
                 "figure_count": len(figures),
                 "research_paragraph_count": sum(
                     len(x.get("paragraphs", [])) for x in pub.get("essays", [])
@@ -164,17 +166,18 @@ def _peer_candidates(root, issuer, record, catalog, limit=3):
             })
         except (ValueError, KeyError, TypeError):
             continue
-    choices.sort(key=lambda x: (not x["same_sector"], not x["same_period_kind"],
-                                -x["research_paragraph_count"], -x["figure_count"], x["code"]))
-    distinct = []
-    seen = set()
-    for item in choices:
-        if item["code"] not in seen:
-            distinct.append(item)
-            seen.add(item["code"])
+    choices.sort(key=lambda x: (not x["same_industry"], not x["same_sector"],
+                                not x["same_period_kind"], x["code"], x["href"]))
+    return choices if limit is None else _distinct_peers(choices, limit)
+
+
+def _distinct_peers(choices, limit):
+    distinct = {}
+    for peer in choices:
+        distinct.setdefault(peer["code"], peer)
         if len(distinct) == limit:
             break
-    return distinct
+    return list(distinct.values())
 
 
 def _issue(issues, code, severity, detail, action):
@@ -199,8 +202,10 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
     figures = publication.get("figures", [])
     issues = []
     # Editorial readiness must include genuine verified research, not only figures.
+    selection = None
     try:
         validate_research_brief(ledger, brief)
+        selection = validate_editorial_selection(ledger, brief, figures=figures)
     except (ValueError, KeyError, TypeError, ArithmeticError) as exc:
         _issue(issues, "RESEARCH_EVIDENCE_INVALID", "BLOCK",
                str(exc), "Rebuild exact-PDF source-bound theses and Decimal calculations.")
@@ -247,6 +252,12 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
                 _issue(issues, "SIGNED_BRIDGE_CHECKPOINT_INVALID", "BLOCK", str(exc),
                        "Reconcile the cumulative bridge against the original disclosed subtotals.")
         source_by_id[figure_id] = refs
+    if selection and (lead_figure := selection["lead_exhibit"]["figure_id"]):
+        lead_thesis = next(t for t in brief["theses"] if t["id"] == selection["lead_thesis_id"])
+        if not set(lead_thesis["source_fact_keys"]).intersection(source_by_id.get(lead_figure, set())):
+            _issue(issues, "EDITORIAL_LEAD_EXHIBIT_MISSING_THESIS_OPERANDS", "BLOCK",
+                   "The selected exhibit does not render a source operand from the lead thesis.",
+                   "Use the actual thesis exhibit or state and justify a text-led treatment.")
     if _eligible_industrial_fy(record, ledger):
         from dossier_profit_chain import build
         try:
@@ -373,11 +384,12 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
         _issue(issues, "HUMAN_REVIEW_UNVERIFIED", "BLOCK",
                "Automated author self-review cannot establish independent human approval.",
                "Attach real independent reviewer proof or restore NOT_CHECKED.")
-    peers = _peer_candidates(root, issuer, record, catalog)
+    eligible_peers = _peer_candidates(root, issuer, record, catalog, limit=None)
+    peers = _distinct_peers(eligible_peers, 3)
     calibration = review.get("peer_calibration", {})
     if not isinstance(calibration, dict):
         calibration = {}
-    verified_peer_codes = {p["code"] for p in peers}
+    verified_peer_codes = {p["code"] for p in eligible_peers}
     chosen = calibration.get("peers", [])
     if not isinstance(chosen, list):
         chosen = []
@@ -385,10 +397,10 @@ def audit(root, issuer, record, ledger, publication, brief, review, catalog,
     if len(chosen_codes & verified_peer_codes) < 2:
         _issue(issues, "PEER_CALIBRATION_MISSING", "REVISION",
                "No current-byte side-by-side comparison with two valid library exemplars.",
-               "Use the suggested same-sector/same-period peers; compare story thesis, figures, "
+               "Select peers for the economic mechanism or visual reading task; compare story thesis, figures, "
                "hero hierarchy, mobile reading, and explain concrete strengths and gaps.")
     else:
-        if not all(x.get("html_sha256") in {p["html_sha256"] for p in peers
+        if not all(x.get("html_sha256") in {p["html_sha256"] for p in eligible_peers
                                               if p["code"] == x.get("code")}
                    and len(str(x.get("research_delta", ""))) >= 30
                    and len(str(x.get("visual_delta", ""))) >= 30
