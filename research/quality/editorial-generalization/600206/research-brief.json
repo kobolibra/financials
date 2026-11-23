@@ -6,8 +6,25 @@
   "sector_route": "industrial",
   "editorial_selection": {
     "candidates": [
-      "毛利修复为何没有转成现金",
-      "利润增长中产品结构和减值贡献谁更重要"
+      {
+        "question": "毛利修复为何没有转成经营现金？",
+        "decision": "lead",
+        "source_fact_keys": [
+          "cfo",
+          "operating_ar_change",
+          "inventory_release"
+        ],
+        "rationale": "现金调节表量化存货和经营性应收影响。"
+      },
+      {
+        "question": "集团毛利修复是否来自产品结构？",
+        "decision": "support",
+        "source_fact_keys": [
+          "rev",
+          "cogs"
+        ],
+        "rationale": "集团两期毛利可闭合，产品图给出当年毛利结构。缺可比产品成本时不能归因同比变化。"
+      }
     ],
     "lead_question": "毛利修复为何没有转成现金",
     "deciding_pages": [
@@ -16,7 +33,15 @@
       194
     ],
     "deciding_fact": "现金流附注显示存货与经营性应收的大额调节，改变首图及标题。",
-    "prior_research": "仓库中未发现该发行人上期成稿；对照2024原报。"
+    "prior_research": "仓库中未发现该发行人上期成稿；对照2024原报。",
+    "version": 2,
+    "lead_thesis_id": "thesis-1",
+    "lead_exhibit": {
+      "figure_id": "cash-formation",
+      "answer": "辨认集团净利润到经营现金之间影响最大的调节。",
+      "alternative": "并列比较归母利润与经营现金。",
+      "tradeoff": "现金桥用同一合并范围显示各项调节，可以定位占用。"
+    }
   },
   "theses": [
     {

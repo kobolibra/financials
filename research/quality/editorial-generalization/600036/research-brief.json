@@ -6,8 +6,24 @@
   "sector_route": "bank",
   "editorial_selection": {
     "candidates": [
-      "净利息增加来自规模还是负债成本",
-      "信用成本是否拖累当期利润转换"
+      {
+        "question": "平均生息资产扩大，为何利息收入下降？",
+        "decision": "lead",
+        "source_fact_keys": [
+          "average_earning_assets",
+          "fin_interest_income"
+        ],
+        "rationale": "同一利率分析表给出可比平均余额和利息，可直接检验规模解释。"
+      },
+      {
+        "question": "信用减值是否抵消部分盈利改善？",
+        "decision": "support",
+        "source_fact_keys": [
+          "credit_impairment",
+          "parent_net"
+        ],
+        "rationale": "减值影响利润质量，放在利息收支机制之后。"
+      }
     ],
     "lead_question": "净利息增加来自规模还是负债成本",
     "deciding_pages": [
@@ -16,7 +32,15 @@
       17
     ],
     "deciding_fact": "两期利息收支及平均余额表使规模假说可检验，因此先展示收支变化再谈减值。",
-    "prior_research": "research/cases/600036/README.md；2026H1与2026Q1重叠，机制同向，独立时间验证待后续。"
+    "prior_research": "research/cases/600036/README.md；2026H1与2026Q1重叠，机制同向，独立时间验证待后续。",
+    "version": 2,
+    "lead_thesis_id": "thesis-1",
+    "lead_exhibit": {
+      "figure_id": "earning-scale",
+      "answer": "规模贡献为正，收益率、组合及交互的剩余影响更大且为负。",
+      "alternative": "并列比较利息收入和平均生息资产的两期金额。",
+      "tradeoff": "金额桥直接显示规模和剩余影响的方向与量级。"
+    }
   },
   "theses": [
     {
