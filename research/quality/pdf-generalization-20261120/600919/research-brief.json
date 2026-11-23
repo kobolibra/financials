@@ -6,8 +6,24 @@
   "sector_route": "bank",
   "editorial_selection": {
     "candidates": [
-      "净利息改善能否传导到税前盈利",
-      "贷款和存款扩张是否挤压监管资本"
+      {
+        "question": "净利息收入能有多少转成税前盈利？",
+        "decision": "lead",
+        "source_fact_keys": [
+          "nii",
+          "credit_impairment",
+          "pretax"
+        ],
+        "rationale": "合并利润表支持复算净利息、减值和税前利润的变化。"
+      },
+      {
+        "question": "扩表的规模、定价和结构能否独立归因？",
+        "decision": "defer",
+        "source_fact_keys": [
+          "average_earning_assets"
+        ],
+        "rationale": "需要能进行完整分解的同口径收益率与细分平均余额。"
+      }
     ],
     "lead_question": "净利息改善能否传导到税前盈利",
     "deciding_pages": [
@@ -17,7 +33,15 @@
       93
     ],
     "deciding_fact": "损益表信用减值及所得税的反向变化，比存量扩张更能解释当期利润落差。",
-    "prior_research": "NOT_CHECKED"
+    "prior_research": "NOT_CHECKED",
+    "version": 2,
+    "lead_thesis_id": "thesis-1",
+    "lead_exhibit": {
+      "figure_id": "performance",
+      "answer": "读出净利息与税前利润的两期差额以及减值方向。",
+      "alternative": "将净利息与税前利润画成连续损益桥。",
+      "tradeoff": "逐项比较，避免把未展示的其他收入和费用混入单一残差。"
+    }
   },
   "theses": [
     {

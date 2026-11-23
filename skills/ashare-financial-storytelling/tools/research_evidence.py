@@ -198,6 +198,61 @@ def _validate_claim(ledger, claim):
             'needs_independent_financial_judgment': True}
 
 
+def validate_editorial_selection(ledger, brief, *, required=False, figures=None):
+    """Check the research decision's bindings while leaving its merit to readers."""
+    selection = brief.get('editorial_selection', {})
+    if not isinstance(selection, dict):
+        raise ValueError('EDITORIAL_SELECTION_OBJECT_REQUIRED')
+    if selection.get('version') != 2:
+        if required or 'version' in selection:
+            raise ValueError('EDITORIAL_SELECTION_V2_REQUIRED')
+        return None
+
+    candidates = selection.get('candidates')
+    if not isinstance(candidates, list) or len(candidates) < 2:
+        raise ValueError('EDITORIAL_SELECTION_NEEDS_COMPETING_QUESTIONS')
+    facts = ledger['facts']
+    questions = set()
+    selected = []
+    for candidate in candidates:
+        if not isinstance(candidate, dict):
+            raise ValueError('EDITORIAL_CANDIDATE_OBJECT_REQUIRED')
+        question = candidate.get('question')
+        rationale = candidate.get('rationale')
+        if not isinstance(question, str) or not question.strip() or not isinstance(rationale, str) or not rationale.strip():
+            raise ValueError('EDITORIAL_CANDIDATE_NEEDS_QUESTION_AND_REASON')
+        normalized = re.sub(r'[\W_]+', '', question).casefold()
+        if not normalized or normalized in questions:
+            raise ValueError('EDITORIAL_CANDIDATE_DUPLICATE_QUESTION')
+        questions.add(normalized)
+        decision = candidate.get('decision')
+        if decision not in ('lead', 'support', 'defer'):
+            raise ValueError('EDITORIAL_CANDIDATE_INVALID_DECISION')
+        keys = candidate.get('source_fact_keys')
+        if not isinstance(keys, list) or any(not isinstance(key, str) or key not in facts for key in keys):
+            raise ValueError('EDITORIAL_CANDIDATE_UNKNOWN_SOURCE_FACTS')
+        if decision != 'defer' and not keys:
+            raise ValueError('EDITORIAL_CANDIDATE_NEEDS_SOURCE_FACTS')
+        if decision == 'lead':
+            selected.append(set(keys))
+    thesis = next((t for t in brief['theses'] if t['id'] == selection.get('lead_thesis_id')), None)
+    if len(selected) != 1 or not thesis or not selected[0].intersection(thesis['source_fact_keys']):
+        raise ValueError('EDITORIAL_LEAD_MUST_LINK_TO_SOURCE_BACKED_THESIS')
+    exhibit = selection.get('lead_exhibit')
+    fields = ('answer', 'alternative', 'tradeoff')
+    if not isinstance(exhibit, dict) or any(
+            not isinstance(exhibit.get(key), str) or not exhibit[key].strip() for key in fields):
+        raise ValueError('EDITORIAL_EXHIBIT_NEEDS_ANSWER_AND_DESIGN_TRADEOFF')
+    figure_id = exhibit.get('figure_id')
+    if 'figure_id' not in exhibit or (figure_id is not None and (
+            not isinstance(figure_id, str) or not figure_id.strip())):
+        raise ValueError('EDITORIAL_EXHIBIT_INVALID_FIGURE_ID')
+    if figures is not None and figure_id is not None and not any(
+            isinstance(f, dict) and f.get('id') == figure_id for f in figures):
+        raise ValueError('EDITORIAL_EXHIBIT_NOT_IN_PUBLICATION')
+    return selection
+
+
 def validate(ledger, brief):
     if not isinstance(brief, dict) or not isinstance(ledger, dict):
         raise ValueError('RESEARCH_BRIEF_OBJECT_REQUIRED')
@@ -219,6 +274,7 @@ def validate(ledger, brief):
     reviewed = [_validate_claim(ledger, c) for c in claims]
     if len({r['id'] for r in reviewed}) != len(reviewed):
         raise ValueError('RESEARCH_DUPLICATE_THESIS_ID')
+    validate_editorial_selection(ledger, brief, required=issuer.get("editorial_selection_version") == 2)
     return {'schema': 'financials.research_evidence_review.v1',
             'status': 'PASS_MACHINE_SOURCE_MATH_AND_STRUCTURAL_EVIDENCE_ONLY',
             'issuer': brief['issuer'], 'fiscal_period': brief['fiscal_period'],

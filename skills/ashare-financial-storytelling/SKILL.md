@@ -5,7 +5,7 @@ description: Research A-share periodic reports from original PDFs, reconcile sou
 
 # A股财报深度研究与可视化 · 统一生产技能
 
-Contract version: 10.3.0
+Contract version: 10.4.0
 
 ### 必须先走自主主编闭环：不用用户反复指出漏项
 
@@ -35,7 +35,7 @@ P6 除真实 Chromium/WebKit 原生截图与金额守恒外，必须交付可追
 
 ## 新会话的主编职责
 
-每份新稿先读 [研究与主编决策](playbooks/08_EDITORIAL_DECISIONS.md)。让核心问题决定源表、主图和证据顺序。完成验收时同时交付成稿、实际桌面与手机图证和未解决的研究边界。复验既有作者稿和空白会话首次编稿分别报告。
+每份新稿先读 [研究与主编决策](playbooks/08_EDITORIAL_DECISIONS.md)。用原件线索找竞争性选题，选题与图形取舍记录在研究简报的 `editorial_selection`。按适用规则安排完整利润图，同时让首屏和最早一张论证图回答核心问题。完成验收时同时交付成稿、实际桌面与手机图证和未解决的研究边界。复验既有作者稿和空白会话首次编稿分别报告。
 
 ## 单份 PDF 的启动入口
 
@@ -44,7 +44,7 @@ T=skills/ashare-financial-storytelling/tools
 python "$T/start_report.py" /absolute/path/filing.pdf
 ```
 
-打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。
+从 `editorial-opportunities.json` 打开值得回读的原件物理页。打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。
 
 ## 0. 交付目标与质量线
 

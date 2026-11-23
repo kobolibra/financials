@@ -176,7 +176,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "10.3.0",
+    "version": "10.4.0",
     "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -263,6 +263,8 @@
       "skills/ashare-financial-storytelling/playbooks/03_EXHIBIT_SYSTEM.md",
       "skills/ashare-financial-storytelling/playbooks/04_PRODUCTION_RUNBOOK.md",
       "skills/ashare-financial-storytelling/playbooks/05_QUALITY_RUBRIC.md",
+      "skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md",
+      "skills/ashare-financial-storytelling/playbooks/08_EDITORIAL_DECISIONS.md",
       "skills/ashare-financial-storytelling/playbooks/09_SELF_DIRECTED_DELIVERY.md"
     ],
     "intake_tool": {
@@ -1860,6 +1862,15 @@
     "scope": "PENDING_RELEASE",
     "company": "600206",
     "developed_from": "current same-library full income flow V3",
+    "independent_human_review": "NOT_CHECKED"
+  },
+  "editorial_generalization_candidate_20261123": {
+    "scope": "SKILL_CHANGE_CANDIDATE",
+    "baseline_main_sha": "e37a48cdac3bfcfa275380e1eaf071136e186ba3",
+    "original_page_discovery": "skills/ashare-financial-storytelling/tools/editorial_discovery.py",
+    "research_selection": "skills/ashare-financial-storytelling/playbooks/08_EDITORIAL_DECISIONS.md",
+    "held_out_editorial_protocol": "skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md",
+    "paired_blind_editorial_evaluation": "NOT_CHECKED",
     "independent_human_review": "NOT_CHECKED"
   }
 }

@@ -53,6 +53,7 @@ jobs:
           PY
           python -m unittest discover -s research/shared -p 'test_autonomous_editorial_audit.py' -v
           python -m unittest discover -s research/shared -p 'test_editorial_peer_parity.py' -v
+          python -m unittest discover -s skills/ashare-financial-storytelling/tools -p 'test_editorial_discovery.py' -v
       - name: Inspect reference report without claiming independent aesthetic certification
         run: |
           mkdir -p work/editorial-autonomy

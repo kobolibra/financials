@@ -34,6 +34,47 @@ def codes(report):
 
 
 class AutonomousEditorialAuditTest(unittest.TestCase):
+    def test_peer_ranking_prefers_actual_industry_and_excludes_the_same_issuer(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "public").mkdir()
+            catalog = {"issuers": []}
+            for code, industry, length in (("100001", "manufacturing", 40),
+                                           ("100002", "pharma", 1),
+                                           ("100003", "pharma", 80)):
+                folder = root / "research/issuers" / code
+                folder.mkdir(parents=True)
+                (folder / "release-gates.json").write_text(json.dumps({
+                    "sector_adapter": "industrial", "period": "2025FY"}))
+                (folder / "publication.json").write_text(json.dumps({
+                    "figures": [{"family": "comparison"}] * length}))
+                (root / "public" / f"{code}.html").write_text(code)
+                catalog["issuers"].append({"code": code, "industry": industry,
+                                           "href": f"/{code}.html"})
+            subject = {"code": "100003", "industry": "pharma", "period": "2026H1"}
+            record = {"sector_adapter": "industrial", "period": "2026H1"}
+            peers = _peer_candidates(root, subject, record, catalog)
+        self.assertEqual([p["code"] for p in peers], ["100002", "100001"])
+
+    def test_selected_exhibit_must_carry_a_real_thesis_operand(self):
+        args = original()
+        lead, runner_up = args[5]["theses"][:2]
+        args[5]["editorial_selection"] = {
+            "version": 2,
+            "lead_thesis_id": lead["id"],
+            "candidates": [
+                {"question": lead["question"], "source_fact_keys": lead["source_fact_keys"],
+                 "decision": "lead", "rationale": "Lead evidence from the original filing."},
+                {"question": runner_up["question"], "source_fact_keys": runner_up["source_fact_keys"],
+                 "decision": "support", "rationale": "A separate lead supported by the same filing."},
+            ],
+            "lead_exhibit": {"figure_id": "empty-proof", "answer": lead["conclusion"],
+                             "alternative": "Text and a source table", "tradeoff": "Readability"},
+        }
+        args[4]["figures"].append({"id": "empty-proof", "family": "comparison", "pairs": []})
+        out = audit(*args[:8], html_sha=args[8])
+        self.assertIn("EDITORIAL_LEAD_EXHIBIT_MISSING_THESIS_OPERANDS", codes(out))
+
     def test_full_year_reports_missing_author_peer_review_as_debt_not_excellence(self):
         args = original()
         args[6].pop("peer_calibration", None)

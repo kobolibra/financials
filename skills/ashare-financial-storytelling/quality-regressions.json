@@ -1212,6 +1212,36 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "CHART_SEMANTICS",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-093",
+      "root_cause": "原件封面名称含括号时不能自动识别完整主体，原件研读提前终止。",
+      "correction": "优先识别独立封面名称行，识别规范中英文括号内的合法名称组成部分。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_editorial_discovery.py",
+      "assertion_marker": "test_issuer_identity_keeps_parentheses_in_the_complete_cover_name",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "PDF_BYTES",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "RSH-094",
+      "root_cause": "可比同库作品仅因图数与段落更多获得优先，续期可能把同公司旧稿算作跨公司对标。",
+      "correction": "推荐按实际行业、会计适配与期间排序，跨公司校准排除本公司，同时校验所有可用当前参照的实际字节。",
+      "proof_file": "research/shared/test_autonomous_editorial_audit.py",
+      "assertion_marker": "test_peer_ranking_prefers_actual_industry_and_excludes_the_same_issuer",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "RESEARCH_COUNTERCASE",
+      "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "SRC-095",
+      "root_cause": "原件一行的负数合并括号被拆成多个词，尾括号混入科目名称，遗漏金额导致营业利润残差。",
+      "correction": "按同行紧邻字形合并完整金额和尾括号，保留合并后的符号与原单元格坐标。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_editorial_discovery.py",
+      "assertion_marker": "test_detached_closing_parenthesis_stays_in_the_negative_source_cell",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "SOURCE_ROW_COLUMN",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }
