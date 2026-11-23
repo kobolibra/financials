@@ -1,6 +1,6 @@
-# ACTIVE PROJECT STATE — Skill 10.4.0 候选 · 2026-11-23
+# ACTIVE PROJECT STATE — Skill 10.4.0 主分支发布 · 2026-11-23
 
-技能候选基于主分支 `e37a48c`。原报入口生成按物理页索引的候选阅读线索，编稿器核对竞争选题与主论点、实际证据图的联系。发布审计检查论证图的源键，校准优先匹配实际行业、会计适配和报告期。版本对照与冷启动成品评审方法见 [Playbook 06](skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md)。跨公司成品盲评和独立财经/视觉二审仍为 `NOT_CHECKED`。当前上线报告和发布回执见目录与 `project-status.json`。
+Skill 10.4.0 已由 [PR #115](https://github.com/kobolibra/financials/pull/115) 合入主分支，发布提交为 [`c30ecb1`](https://github.com/kobolibra/financials/commit/c30ecb1705eafdfc875c8071966c872bdd8158a3)。最终候选 10 项检查通过，招商银行、有研新材、江苏银行三个已知案例通过 [双浏览器离线回放](https://github.com/kobolibra/financials/actions/runs/45127420653)。原报入口生成按物理页索引的候选阅读线索，编稿器核对竞争选题与主论点、实际证据图的联系。发布审计检查论证图的源键，校准优先匹配实际行业、会计适配和报告期。版本对照与冷启动成品评审方法见 [Playbook 06](skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md)。跨公司成品盲评和独立财经/视觉二审仍为 `NOT_CHECKED`。当前上线报告和发布回执见目录与 `project-status.json`。
 
 ## 2026-11-22 · 完整利润主图复验
 

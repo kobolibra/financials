@@ -1864,8 +1864,13 @@
     "developed_from": "current same-library full income flow V3",
     "independent_human_review": "NOT_CHECKED"
   },
-  "editorial_generalization_candidate_20261123": {
-    "scope": "SKILL_CHANGE_CANDIDATE",
+  "editorial_generalization_release_20261123": {
+    "scope": "SKILL_RELEASED_ON_MAIN",
+    "skill_release_pr": "https://github.com/kobolibra/financials/pull/115",
+    "skill_release_main_sha": "c30ecb1705eafdfc875c8071966c872bdd8158a3",
+    "verified_pr_candidate_sha": "4f0a5eeee244dda437585309b278b2a945ccb44a",
+    "github_candidate_checks_passed": 10,
+    "offline_dual_browser_replay": "https://github.com/kobolibra/financials/actions/runs/45127420653",
     "baseline_main_sha": "e37a48cdac3bfcfa275380e1eaf071136e186ba3",
     "original_page_discovery": "skills/ashare-financial-storytelling/tools/editorial_discovery.py",
     "research_selection": "skills/ashare-financial-storytelling/playbooks/08_EDITORIAL_DECISIONS.md",
