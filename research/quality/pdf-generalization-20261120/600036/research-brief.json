@@ -6,8 +6,25 @@
   "sector_route": "bank",
   "editorial_selection": {
     "candidates": [
-      "净利息增加来自规模还是负债成本",
-      "信用成本是否拖累当期利润转换"
+      {
+        "question": "净利息收入为何在资产利息减少时上升？",
+        "decision": "lead",
+        "source_fact_keys": [
+          "nii",
+          "fin_interest_income",
+          "fin_interest_expense"
+        ],
+        "rationale": "两期合并利息收入与支出可分别匹配净利息收入。"
+      },
+      {
+        "question": "信用减值是否抵消部分盈利改善？",
+        "decision": "support",
+        "source_fact_keys": [
+          "credit_impairment",
+          "parent_net"
+        ],
+        "rationale": "减值影响利润质量，放在利息收支机制之后。"
+      }
     ],
     "lead_question": "净利息增加来自规模还是负债成本",
     "deciding_pages": [
@@ -16,7 +33,15 @@
       17
     ],
     "deciding_fact": "两期利息收支及平均余额表使规模假说可检验，因此先展示收支变化再谈减值。",
-    "prior_research": "research/cases/600036/README.md；2026H1与2026Q1重叠，机制同向，独立时间验证待后续。"
+    "prior_research": "research/cases/600036/README.md；2026H1与2026Q1重叠，机制同向，独立时间验证待后续。",
+    "version": 2,
+    "lead_thesis_id": "thesis-1",
+    "lead_exhibit": {
+      "figure_id": "nii-change",
+      "answer": "读者能直接比较利息收入下降和利息支出减少的贡献。",
+      "alternative": "只列两期净利息收入。",
+      "tradeoff": "收支桥能看出负债成本对冲多少资产收入下降。"
+    }
   },
   "theses": [
     {
