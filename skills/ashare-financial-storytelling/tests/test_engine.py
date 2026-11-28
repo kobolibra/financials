@@ -51,7 +51,7 @@ class TestGenericPipeline(unittest.TestCase):
   self.assertEqual(h.count('class="ribbon"'),4)
   self.assertIn('研究草稿',h)
  def test_pdf_intake_underapproval(self):
-  src=Path('/mnt/data/788b066c-b687-4f11-8ae4-c6197f019370.pdf')
+  src=Path(__file__).resolve().parents[3]/'research/quality/historical-peer-evidence/300394_2026H1.pdf'
   if not src.exists():self.skipTest('source PDF not distributed with skill')
   r=page_index(src,4)
   self.assertEqual(r['page_count'],185)

@@ -29,12 +29,21 @@ def compile_disclosed_income(ledger: dict) -> FlowPlan:
     source=ledger.get("source",{})
     code=issuer.get("code")
     period=issuer.get('fiscal_period')
-    legacy_profile=code in SECTOR_DIMENSIONS and not issuer.get('accounting_route')
+    legacy_profile=code in SECTOR_DIMENSIONS and not issuer.get('accounting_route') and not issuer.get('offline_candidate')
     partition=ledger.get('income_partition',{})
     if not legacy_profile:
-        if (issuer.get('accounting_route')!='industrial_own_cost_income'
-            or issuer.get('sector_adapter') not in {'manufacturing','software','consumer','utility','pharma','semiconductor','energy','services'}
-            or partition.get('completeness')!='SOURCE_EXHAUSTIVE_MUTUALLY_EXCLUSIVE'
+        declared = (issuer.get('accounting_route') == 'industrial_own_cost_income'
+                    and issuer.get('sector_adapter') in {'manufacturing','software','consumer','utility','pharma','semiconductor','energy','services'})
+        if issuer.get('offline_candidate') and not issuer.get('sector_adapter') and not issuer.get('accounting_route'):
+            # A fresh single-PDF dossier has no curated sector label. Use the
+            # same consolidated-format and financial-subsidiary gates as intake.
+            tools = str(Path(__file__).resolve().parents[2] / 'skills/ashare-financial-storytelling/tools')
+            if tools not in sys.path:
+                sys.path.insert(0, tools)
+            from research_capabilities import assess, AUTHORING_ROUTES
+            declared = (issuer.get('statement_format') == 'general'
+                        and assess(ledger)['publication_route'] == AUTHORING_ROUTES['industrial'])
+        if (not declared or partition.get('completeness')!='SOURCE_EXHAUSTIVE_MUTUALLY_EXCLUSIVE'
             or partition.get('period')!=period or partition.get('scope')!='consolidated'
             or not isinstance(partition.get('axis'),str) or not partition['axis'].strip()):
             raise ValueError("SECTOR_CANNOT_REUSE_INDUSTRIAL_GROSS_FLOW")

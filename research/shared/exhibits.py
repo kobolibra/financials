@@ -194,28 +194,36 @@ def render_kpi_board(tiles, title, *, mobile=False, adaptive_layout=None, **iden
 def render_ratio_dumbbell(rows, title, *, periods, mobile=False, **ident):
     """rows: dicts {label, value, prior (percent), value_ref, prior_ref ({num,den}), lower_is_better}."""
     c = Canvas('SOURCE_RATIO_DUMBBELL_V1', title, mobile=mobile, **ident)
-    hi = max([r['value'] for r in rows] + [r['prior'] for r in rows] + [D(1)])
+    hi = max([r['value'] for r in rows] + [r['prior'] for r in rows] + [D(0)])
     lo = min([r['value'] for r in rows] + [r['prior'] for r in rows] + [D(0)])
     if lo < 0:
         raise ValueError('RATIO_DUMBBELL_NEGATIVE_RATIO_USE_SIGNED_CHART')
-    domain = (int(hi * D('1.12') / 10) + 1) * 10
+    precision = 1
+    if 0 < hi < 1:
+        step = D(1).scaleb(hi.adjusted())
+        domain = (int(hi / step) + 1) * step
+        ticks = [step * i for i in range(int(domain / step) + 1)]
+        precision = 1 - hi.adjusted()
+    else:
+        domain = (int(hi * D('1.12') / 10) + 1) * 10
+        ticks = range(0, domain + 1, 10 if domain <= 60 else 20)
     left, right = (D(16), D(300)) if mobile else (D(300), D(880))
     span = right - left
     x = lambda v: left + v / domain * span
     y = 40
     c.text(16 if mobile else 24, 18, f'○ {periods[0]}　● {periods[1]}　横轴 0–{domain}%', 11, color=MUTED, weight=600)
-    for k in range(0, domain + 1, 10 if domain <= 60 else 20):
+    for k in ticks:
         c.raw(f'<line x1="{f(x(D(k)))}" x2="{f(x(D(k)))}" y1="32" y2="{32 + len(rows) * (70 if mobile else 54)}" stroke="{GRID}" stroke-width="1"/>')
     for r in rows:
         better = (r['value'] >= r['prior']) != bool(r.get('lower_is_better'))
         colr = GREEN if better else RED
         if mobile:
             c.text(16, y + 4, r['label'], 13, weight=700)
-            c.text(314, y + 4, f'{q(r["prior"])}% → {q(r["value"])}%（{q(r["value"] - r["prior"]):+}pp）', 12, 'end', colr, 700)
+            c.text(314, y + 4, f'{q(r["prior"], precision)}% → {q(r["value"], precision)}%（{q(r["value"] - r["prior"], precision):+}pp）', 12, 'end', colr, 700)
             cy = y + 26
         else:
             c.text(24, y + 5, r['label'], 14, weight=700)
-            c.text(1016, y + 5, f'{q(r["prior"])}% → {q(r["value"])}%（{q(r["value"] - r["prior"]):+}pp）', 13, 'end', colr, 700)
+            c.text(1016, y + 5, f'{q(r["prior"], precision)}% → {q(r["value"], precision)}%（{q(r["value"] - r["prior"], precision):+}pp）', 13, 'end', colr, 700)
             cy = y
         a, b = sorted((x(r['prior']), x(r['value'])))
         c.raw(f'<line x1="{f(a)}" x2="{f(b)}" y1="{cy}" y2="{cy}" stroke="{colr}" stroke-width="4" stroke-opacity=".45"/>')

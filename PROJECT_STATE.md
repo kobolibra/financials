@@ -1,3 +1,7 @@
+# ACTIVE PROJECT STATE — Skill 10.6.0 · 2026-11-28
+
+单 PDF 入口按合并报表和来源分区验证完整利润桑基，按原件生成现金调节、毛利变化和银行利息分析候选。银行期间比率的小数精度和共同比例尺随数值确定。招商银行与有研新材的离线重建、四视口逐图验收及华能水电冷启动边界见[本轮复验记录](research/quality/editorial-generalization/verification-10.6.json)。独立人工财经与视觉审稿为 NOT_CHECKED。
+
 # ACTIVE PROJECT STATE — Skill 10.5.0 · 2026-11-23
 
 为跨公司成稿加入 [版本盲化评审包](skills/ashare-financial-storytelling/playbooks/06_GENERALIZATION.md)，保留原件、首稿、返工稿和桌面手机实图的指纹。复星医药 2025H1 原件第 96 页回放恢复了跨行现金购建支出，修复了披露金额括号的回读。独立成品盲评继续记为 `NOT_CHECKED`。

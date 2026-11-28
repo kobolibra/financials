@@ -1,0 +1,143 @@
+{
+  "version": "10.6.0",
+  "baseline": "eb10923f827379202e2c1c2b7d754cf539bea0e0",
+  "scope": "Repository review of current single-PDF authoring, source extraction, audited renderers, historical tests and release contracts. Legacy and archived implementations retain separate contracts.",
+  "replay_command": "python scripts/rebuild_offline_examples.py --specs research/quality/editorial-generalization --out work/candidates",
+  "examples": [
+    {
+      "issuer": "600036",
+      "period": "2026Q1",
+      "pdf_sha256": "2802004753a3bf4899ebebd55a8bd80d0704390cb791775d528565009d99802d",
+      "html_sha256": "fe9b0a27fe61614072340852f31cdbf198eb47a8b99213b8160bc5b33ea22f13",
+      "authorship": "replay of reviewed evidence specs and article",
+      "browser": {
+        "chromium": {
+          "version": "156.0.8078.108",
+          "svg_export_sha256_by_viewport": {
+            "1440": {
+              "earning-scale": "f54ef5d1d42bcb758bceb96f2d43b4efee2432b9ef681a6413b8a4a9f891d80c",
+              "interest-rates": "42b380670accb325778682854d0083b3f59c5f88d3a6c361590a66495fb7c990",
+              "nii-change": "c90d2bfb24b414a7f5c853be4b091aab4c9f0236abb96bbfa808338ef225d188",
+              "earnings": "61732b93426ff4fd732bfd6852c2eb5b93acd2ca4293af74d1804f6ce72b522c",
+              "balances": "f16b05cbf5a7248c0f216eba7bba82655168df1b96d012fb1948c4e79807fee9"
+            },
+            "768": {
+              "earning-scale": "3a72828f394c7bcd6bf66595ccbd7304d707e8733c8ca9a53e75bcf5c910dd11",
+              "interest-rates": "8bd5440f77fa293ed17603d7d22d74f6fa1804a9c36986f8b7c930d0c756d467",
+              "nii-change": "bbabb8c5130e3100842c19b71a3f2afd6325f2829d6c25707c74a1c3579315a3",
+              "earnings": "98f3537325ca0d16ca893a1b1ac03f3a255543ac4ea4b0bec79bf95b5a8f4627",
+              "balances": "ec6c487b3556fe26f074816f64f4805b24d8c8fad6150fa86770c961af9f3871"
+            },
+            "390": {
+              "earning-scale": "3a72828f394c7bcd6bf66595ccbd7304d707e8733c8ca9a53e75bcf5c910dd11",
+              "interest-rates": "8bd5440f77fa293ed17603d7d22d74f6fa1804a9c36986f8b7c930d0c756d467",
+              "nii-change": "bbabb8c5130e3100842c19b71a3f2afd6325f2829d6c25707c74a1c3579315a3",
+              "earnings": "98f3537325ca0d16ca893a1b1ac03f3a255543ac4ea4b0bec79bf95b5a8f4627",
+              "balances": "ec6c487b3556fe26f074816f64f4805b24d8c8fad6150fa86770c961af9f3871"
+            }
+          }
+        },
+        "webkit": {
+          "version": "26.5",
+          "svg_export_sha256_by_viewport": {
+            "375": {
+              "earning-scale": "3a72828f394c7bcd6bf66595ccbd7304d707e8733c8ca9a53e75bcf5c910dd11",
+              "interest-rates": "8bd5440f77fa293ed17603d7d22d74f6fa1804a9c36986f8b7c930d0c756d467",
+              "nii-change": "bbabb8c5130e3100842c19b71a3f2afd6325f2829d6c25707c74a1c3579315a3",
+              "earnings": "98f3537325ca0d16ca893a1b1ac03f3a255543ac4ea4b0bec79bf95b5a8f4627",
+              "balances": "ec6c487b3556fe26f074816f64f4805b24d8c8fad6150fa86770c961af9f3871"
+            }
+          }
+        }
+      }
+    },
+    {
+      "issuer": "600206",
+      "period": "2025FY",
+      "pdf_sha256": "eded66de7b33183bd34917268852bf862b322e7f7f0d7d35d94b97f003e9df0b",
+      "html_sha256": "b4a1b1af2a1f787c35ab6fb1d79010243a4507db0e30af9625fc6d11c226c622",
+      "authorship": "replay of reviewed evidence specs and article",
+      "browser": {
+        "chromium": {
+          "version": "156.0.8078.108",
+          "svg_export_sha256_by_viewport": {
+            "1440": {
+              "profit-formation": "d37a88704eb16a68ac8234b2b9107583b06f15bcc64540dac4e93f1a0c8bbcc7",
+              "cash-formation": "4282e830d9b3a410240f20b9b129df6fc485afac5ab409a5b47d10d057f8547c",
+              "product-profit": "631205ba76c1535e57c3484b0bf3753262d964266149308e401061a5ed65f2ad",
+              "earnings": "2a0816f6603fe0170c89edcb116e8ee90e961a29d01a20e160beb6627484cd78",
+              "balances": "d76b0e5f5bdcc8fa02bf989fc44d1d74e39b0f0b134b8cfa1804c07f71a7191d"
+            },
+            "768": {
+              "profit-formation": "96ffe767b11393823cd0d46cd78ae6b48f41574b2cfef53f05d0c9dad5d2eaf1",
+              "cash-formation": "1888dd80774c1767401f4e5a65fac5a314259ece59cf00a435de95f47877f2ce",
+              "product-profit": "a8ff91e7865516fe8d141e6cc267c55b877de104d0739d3c210bd5cecb0d9802",
+              "earnings": "31eb1c7356cefd0aeb8329a129d2d137d3606ce4be85032bbb9fd2545e9a229b",
+              "balances": "c2a62d84b42fbc762f314a4fb98acefca47d4b80edc174437058daae379f4672"
+            },
+            "390": {
+              "profit-formation": "96ffe767b11393823cd0d46cd78ae6b48f41574b2cfef53f05d0c9dad5d2eaf1",
+              "cash-formation": "1888dd80774c1767401f4e5a65fac5a314259ece59cf00a435de95f47877f2ce",
+              "product-profit": "a8ff91e7865516fe8d141e6cc267c55b877de104d0739d3c210bd5cecb0d9802",
+              "earnings": "31eb1c7356cefd0aeb8329a129d2d137d3606ce4be85032bbb9fd2545e9a229b",
+              "balances": "c2a62d84b42fbc762f314a4fb98acefca47d4b80edc174437058daae379f4672"
+            }
+          }
+        },
+        "webkit": {
+          "version": "26.5",
+          "svg_export_sha256_by_viewport": {
+            "375": {
+              "profit-formation": "96ffe767b11393823cd0d46cd78ae6b48f41574b2cfef53f05d0c9dad5d2eaf1",
+              "cash-formation": "1888dd80774c1767401f4e5a65fac5a314259ece59cf00a435de95f47877f2ce",
+              "product-profit": "a8ff91e7865516fe8d141e6cc267c55b877de104d0739d3c210bd5cecb0d9802",
+              "earnings": "31eb1c7356cefd0aeb8329a129d2d137d3606ce4be85032bbb9fd2545e9a229b",
+              "balances": "c2a62d84b42fbc762f314a4fb98acefca47d4b80edc174437058daae379f4672"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "case_review": {
+    "600036": "资产规模贡献约82.07亿元，收益率、结构和交互的剩余影响约−111.69亿元。负债端利息支出少56.08亿元，净利息收入因此增加26.46亿元。手机初稿把0.34%和0.26%都标成0.3%；改稿共用0–0.8%比例尺，逐项显示两位小数。期间比率未年化。",
+    "600206": "物理页194经营性应收与存货两项合计吸收6.71亿元。主图从营业收入贯通至归母；现金桥改用合并净利润作起点。按绝对值单列主要调节，其余同号汇总，核对层保留全部16项。产品当期毛利不能倒推出各产品同比贡献。"
+  },
+  "independent_model_source_read": {
+    "issuer": "600025",
+    "period": "2026H1",
+    "pdf_sha256": "9e26512d5899d8738e81c6a6d258dfbfa03924d34c9e44883d6da6541bcbc48b",
+    "pages": [
+      5,
+      6,
+      9,
+      92,
+      155,
+      156,
+      157,
+      166
+    ],
+    "facts": 237,
+    "unmapped": 25,
+    "gross_profit_bridge_yuan": [
+      "7775051850.90",
+      "188476928.07",
+      "-444649280.48",
+      "7518879498.49"
+    ],
+    "candidate_ids_after_revision": [
+      "performance",
+      "balances",
+      "gross-profit-change",
+      "cash-formation"
+    ],
+    "limit": "Current product-by-region matrix on pp.156–157 requires supplementary cell mapping. Separate first reading; no full edited report or independent human signoff."
+  },
+  "pdf_probe": {
+    "reports": 30,
+    "all_stages_pass": 30,
+    "scope": "STATEMENTS_TO_AUDITED_EXHIBITS; segment notes, narrative and human review are outside this probe",
+    "command": "python scripts/restore_probe_originals.py --out work/probe-originals && python scripts/generalization_probe.py work/probe-originals/*.pdf --require-reference-corpus --out work/audit/probe.json"
+  },
+  "independent_human_review": "NOT_CHECKED"
+}

@@ -326,66 +326,24 @@
     {
       "id": "earning-scale",
       "nav": "规模与收益",
-      "family": "volume_rate",
       "eyebrow": "利息收支 · 合并口径",
       "question": "扩表为何仍少收了利息？",
       "takeaway": "资产放量贡献 {{earning_volume}} 亿元，收益率与结构等因素合计影响 {{earning_rate}} 亿元。",
       "analysis": "以同期平均生息资产作为规模基数，沿同一金额轴核对从上年同期到本期的利息收入。",
       "counter": "剩余项包含资产组合、收益率与交互变化；逐笔定价影响仍须更细披露。",
       "identity": "上期利息收入＋平均余额变动×上期实际季度收益率＋其余变动＝本期利息收入。",
-      "flow": "fin_interest_income",
-      "average_balance": "average_earning_assets"
+      "from_candidate": "earning-scale"
     },
     {
       "id": "nii-change",
       "nav": "净利息收入",
-      "family": "signed_bridge",
       "eyebrow": "利息收支 · 合并口径",
-      "rows": [
-        [
-          "上年同期净利息收入",
-          "nii_prior",
-          "start"
-        ],
-        [
-          "利息收入减少",
-          [
-            [
-              "fin_interest_income",
-              1
-            ],
-            [
-              "fin_interest_income_prior",
-              -1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "利息支出减少",
-          [
-            [
-              "fin_interest_expense",
-              -1
-            ],
-            [
-              "fin_interest_expense_prior",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "本期净利息收入",
-          "nii",
-          "total"
-        ]
-      ],
       "question": "利息少收了，净利息为何还在增长？",
       "takeaway": "利息支出同比少 {{cost_relief}} 亿元，抵消了利息收入下降 [D:fin_interest_income] 亿元。",
       "analysis": "三项金额全部来自合并利润表，两期利息收支均与管理层利率分析表勾稽。",
       "counter": "这条桥解释收支差额；规模和率的估算另用平均余额，无法独立分离资产结构影响。",
-      "identity": "上期净利息收入＋利息收入变化－利息支出变化＝本期净利息收入。"
+      "identity": "上期净利息收入＋利息收入变化－利息支出变化＝本期净利息收入。",
+      "from_candidate": "nii-change"
     },
     {
       "id": "earnings",
@@ -443,10 +401,19 @@
       "takeaway": "法定报表的两项期末余额均高于上年末。",
       "analysis": "贷款账面余额与客户存款余额单列，用作资产扩张和负债来源背景。",
       "counter": "余额变化包含应计利息等会计项目。平均生息资产比较见利率分析表。"
+    },
+    {
+      "id": "interest-rates",
+      "from_candidate": "interest-rates",
+      "question": "每百元平均余额，收息和付息各少了多少？",
+      "takeaway": "同口径比较，两端每百元平均余额的季度收付息都减少。资产收益率的降幅更大。",
+      "analysis": "计息负债扩张按上期实际成本率应多付 {{funding_volume}} 亿元；成本率、负债结构及交互合计影响 {{funding_rate}} 亿元。两者相抵，实际支出少了 {{cost_relief}} 亿元。",
+      "counter": "图中分母分别为平均生息资产和平均计息负债；比较的是未年化季度比率。计算净息差还须统一到生息资产分母，并确认年化口径。"
     }
   ],
   "order": [
     "earning-scale",
+    "interest-rates",
     "nii-change",
     "earnings",
     "balances"
@@ -455,6 +422,7 @@
     "nii-change": "secondary",
     "earnings": "secondary",
     "balances": "secondary",
-    "earning-scale": "primary"
+    "earning-scale": "primary",
+    "interest-rates": "secondary"
   }
 }

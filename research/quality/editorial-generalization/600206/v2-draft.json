@@ -340,98 +340,13 @@
     {
       "id": "cash-formation",
       "nav": "现金转换",
-      "family": "signed_bridge",
       "eyebrow": "净利润到经营现金",
-      "rows": [
-        [
-          "合并净利润",
-          "net_profit",
-          "start"
-        ],
-        [
-          "折旧摊销减值及其他调节",
-          [
-            [
-              "provisions",
-              1
-            ],
-            [
-              "credit_provision",
-              1
-            ],
-            [
-              "depreciation",
-              1
-            ],
-            [
-              "rou_amort",
-              1
-            ],
-            [
-              "intangible_amort",
-              1
-            ],
-            [
-              "deferred_amort",
-              1
-            ],
-            [
-              "disposal_loss",
-              1
-            ],
-            [
-              "scrap_loss",
-              1
-            ],
-            [
-              "fair_loss",
-              1
-            ],
-            [
-              "finance_adjustment",
-              1
-            ],
-            [
-              "investment_loss",
-              1
-            ],
-            [
-              "dta_decrease",
-              1
-            ],
-            [
-              "dtl_increase",
-              1
-            ]
-          ],
-          "step"
-        ],
-        [
-          "存货变动",
-          "inventory_release",
-          "step"
-        ],
-        [
-          "经营性应收变动",
-          "operating_ar_change",
-          "step"
-        ],
-        [
-          "经营性应付变动",
-          "operating_ap_change",
-          "step"
-        ],
-        [
-          "经营现金净额",
-          "cfo",
-          "total"
-        ]
-      ],
       "question": "利润为何没变成经营现金？",
       "takeaway": "存货和经营性应收合计吸收 {{wc_usage}} 亿元，经营现金净额为 [y:cfo] 亿元。",
       "analysis": "现金流附注将利润与现金的背离落到了两个已披露调节项目。折旧、减值、投资损益等其他调节在下方原始数据区逐项列出。",
       "counter": "调节表说明资金占用落点。要判断新增占用是否会回收，需要库存形成原因、订单覆盖和应收账龄。",
-      "identity": "合并净利润加上物理第194页全部列示调节项，等于合并经营现金净额。"
+      "identity": "合并净利润加上物理第194页全部列示调节项，等于合并经营现金净额。",
+      "from_candidate": "cash-formation"
     },
     {
       "id": "earnings",
@@ -535,18 +450,28 @@
       "analysis": "薄膜材料本年毛利 {{film_gp}} 亿元。按管理层解释，靶材销量和部分贵金属价格上升支持收入增长。稀土材料还受技术转让收入影响，不能把毛利率改善全归给产品涨价。",
       "counter": "图中选取三类产品，展示本年水平。集团经营性应收和存货的现金调节未按产品拆分。",
       "identity": "本年各产品毛利＝同一产品披露收入－同一产品披露成本。"
+    },
+    {
+      "id": "profit-formation",
+      "from_candidate": "profit-formation",
+      "question": "营业收入经过哪些扣减成为归母利润？",
+      "takeaway": "本年收入 [y:rev] 亿元，扣除营业成本后形成毛利 [y:gp] 亿元。所得税及少数股东归属调整后，归母净利润为 [y:parent_net] 亿元。",
+      "analysis": "集团营业利润包含研发费用、资产减值及投资损益。少数股东本年承担亏损，使归母利润高于合并净利润。下一图从合并净利润出发，核对各项现金调节。",
+      "counter": "各地区收入汇总后，研发、减值和税项按集团披露。由集团归母利润无法倒推出各产品税后贡献。"
     }
   ],
   "order": [
+    "profit-formation",
     "cash-formation",
     "product-profit",
     "earnings",
     "balances"
   ],
   "roles": {
-    "cash-formation": "primary",
+    "cash-formation": "secondary",
     "earnings": "secondary",
     "balances": "secondary",
-    "product-profit": "secondary"
+    "product-profit": "secondary",
+    "profit-formation": "primary"
   }
 }

@@ -5,7 +5,7 @@ description: Research A-share periodic reports from original PDFs, reconcile sou
 
 # A股财报深度研究与可视化 · 统一生产技能
 
-Contract version: 10.5.0
+Contract version: 10.6.0
 
 ### 必须先走自主主编闭环：不用用户反复指出漏项
 
@@ -44,7 +44,7 @@ T=skills/ashare-financial-storytelling/tools
 python "$T/start_report.py" /absolute/path/filing.pdf
 ```
 
-从 `editorial-opportunities.json` 打开值得回读的原件物理页。打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。
+从 `editorial-opportunities.json` 打开值得回读的物理页。把两个竞争解释带到原件里：先选能区分它们的观察，再决定哪张图值得占据首屏。单 PDF 草稿里的 `figure_candidates` 已按本期原值编制可用的毛利变动、经营现金调节、银行收付息分解及期间收益率对照。选中后以 `from_candidate` 引用，补入调查结论、替代解释及原件边界；编译时重读当前账本。见 [选题与编稿示例](playbooks/08_EDITORIAL_DECISIONS.md#从已验证的关系编稿)。打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。
 
 ## 0. 交付目标与质量线
 
@@ -195,7 +195,7 @@ CI 会对目录中声明 `source_publication` 的公司自动干净重建并跑�
 
 - 新期间：从原报告读取 `fiscal_period`（Q1/H1/9M/FY），单季列按真实 `issuer.flow_columns` 声明；不得借用旧期图证。历史 PDF-only 泛化探针记录 30 份（包含 Q1/H1/9M/FY），其中 20 份由公开披露按 SHA 恢复，30 份全部可复跑；恢复命令和历次状态见 `docs/UNMAPPED_COVERAGE_PROTOCOL.md`。完整出版/人类审稿分别标 `NOT_CHECKED`。
 - 同一公司的后续期间登记在目录 `period_reports`，以 `code@period` 解析，旧路由与旧字节不变（playbook 01 §5）。
-- 新行业：先运行 `v2_builder.py capabilities`（`tools/research_capabilities.py`），从报告本身的财务事实和行业口径判能力。只有工业已有通用 EDITORIAL_V2 作者路由；银行、保险、证券、地产在新出版器适配、对抗测试前仍为 `SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED`，不可套工业模板（Playbook 02 §5、Playbook 07）。
+- 新行业：先运行 `v2_builder.py capabilities`（`tools/research_capabilities.py`），从报告本身的财务事实和行业口径判能力。工业和满足合并银行核心源格的单 PDF 档案已有作者路由；保险、证券、地产缺少对应新编稿适配时仍为 `SECTOR_ADAPTER_OR_EVIDENCE_REQUIRED`，不可套工业模板（Playbook 02 §5、Playbook 07）。
 - 能力分级：L0 仅描述；L1 一家真实原件通过；L2 同类两家真实原件+完整三表/附注+浏览器；L3 跨行业对抗回归+独立编辑+部署验证。只宣称实际达到的级别。合成样例只测机制，不证明未见真实财报的理解能力。
 
 ## 9. 交接与技能进化
