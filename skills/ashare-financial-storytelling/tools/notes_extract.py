@@ -512,6 +512,65 @@ def key_figures(doc, rows_on_page, squash, unit_of, facts, norm):
 UNIT_NAMES = [('百万元', D(1000000)), ('千元', D(1000)), ('万元', D(10000)), ('元', D(1))]
 
 
+def bank_average_balances(doc, rows_on_page, squash, facts):
+    """Recover matched group average balances from a two-period interest analysis table.
+
+    Both period headers, the six column roles, currency unit, table perimeter
+    and both interest amounts must be identified. Ambiguous layouts need review.
+    """
+    results = {}
+    specs = (
+        ('fin_interest_income', '平均生息资产', 'average_earning_assets', '生息资产', '利息收入', '收益率'),
+        ('fin_interest_expense', '平均计息负债', 'average_interest_bearing_liabilities', '计息负债', '利息支出', '成本率'),
+    )
+    for flow, label, key, group, interest, rate in specs:
+        if flow not in facts or flow + '_prior' not in facts:
+            continue
+        now, old = facts[flow], facts[flow + '_prior']
+        months = {'Q1': 3, 'H1': 6, '9M': 9, 'FY': 12}
+        period = now['period']
+        end = months.get(period[4:])
+        if not end or old['period'] != str(int(period[:4]) - 1) + period[4:]:
+            continue
+        periods = ''.join(f"{f['period'][:4]}年1-{end}月" for f in (now, old))
+        headers = ('平均余额' + interest + rate + '%') * 2
+        matches = []
+        for page_no, page in enumerate(doc, 1):
+            text = squash(page.get_text())
+            if '平均余额' not in text or group not in text or interest not in text:
+                continue
+            rows = rows_on_page(page)
+            for i, r in enumerate(rows):
+                title = squash(r['label'])
+                unit = re.fullmatch(r'[（(]人民币(元|千元|万元|百万元)[，,]百分比除外[）)]' + headers, title)
+                if (not unit or not any(squash(x['label']) == '本集团' + periods for x in rows[max(0,i-3):i])
+                        or i + 1 >= len(rows) or squash(rows[i+1]['label']) != group):
+                    continue
+                scale = {'元': 1, '千元': 1000, '万元': 10000, '百万元': 1000000}[unit[1]]
+                # Stop at the first non-detail row. Never borrow a total from
+                # the following table if this table spans another page.
+                for row in rows[i+2:]:
+                    cells = row['numbers']
+                    if len(cells) != 6:
+                        break
+                    if squash(row['label']) != '合计':
+                        continue
+                    if all(num(cells[j]['printed']) * scale == D(f['yuan'])
+                           for j, f in ((1, now), (4, old))):
+                        pair = {}
+                        for j, f, suffix in ((0, now, ''), (3, old, '_prior')):
+                            value = _fact(cells[j], scale, label, page_no, f['period'], bool(suffix), '合计')
+                            value['denominator_definition'] = '合并利率分析表内的当期平均余额'
+                            if num(cells[j]['printed']) > 0 and rereads(doc, value):
+                                pair[key + suffix] = value
+                        if len(pair) == 2:
+                            matches.append(pair)
+                    break
+        if len(matches) == 1:
+            results.update(matches[0])
+    return results
+
+
 # ---------------------------------------------------------------- one call for intake
 PREFER = ('product', 'industry', 'region', 'channel', 'unlabelled')
 AXIS = {'product': 'disclosed_product_axis', 'industry': 'disclosed_industry_axis', 'region': 'disclosed_region_axis',
@@ -534,6 +593,10 @@ def extract_notes(doc, rows_on_page, squash, unit_of, norm, facts):
         out = {k: v for k, v in out.items() if k not in bad and not any(re.match(p + r'[0-9]+_', k) for p in prefixes)
                and not (k.startswith('adjusted_parent') and any(b.startswith('adjusted_parent') for b in bad))}
         summary = [x for x in summary if not any(e['key'].startswith(tuple(prefixes)) for e in x['entries'])]
+    # Preserve the exact current-column membership, including unmapped but
+    # disclosed rows. A rounding tail or a dropped cell cannot license a bridge.
+    if rec_status and rec_status['status'] == 'CLOSED' and not rec_status.get('rounding_tail') and not (rec.keys() & bad):
+        rec_status['current_keys'] = [k for k in rec if not k.endswith('_prior')]
     dropped = sorted(bad)
     segments, partition = [], None
     for s in sorted(summary, key=lambda x: PREFER.index(x['dimension'])):

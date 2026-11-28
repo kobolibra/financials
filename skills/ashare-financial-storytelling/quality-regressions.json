@@ -1262,6 +1262,16 @@
       "scope": "cross_issuer_mechanism",
       "transfer_gate": "SOURCE_ROW_COLUMN",
       "status": "TESTED_GENERIC_MECHANISM"
+    },
+    {
+      "id": "FIN-110",
+      "root_cause": "单 PDF 入库有合并三表和互斥分区，仍因无人工行业标签丢失合法利润主图；现金调节、银行平均规模只能重抄个案。",
+      "correction": "依据工业合并口径和分区守恒验证来源；按实取现金补充表、集团平均余额和两期利息动态编制可复算候选图。",
+      "proof_file": "skills/ashare-financial-storytelling/tools/test_editorial_decisions.py",
+      "assertion_marker": "test_new_pdf_disclosed_partition_without_curated_industry",
+      "scope": "cross_issuer_mechanism",
+      "transfer_gate": "CHART_SEMANTICS",
+      "status": "TESTED_GENERIC_MECHANISM"
     }
   ]
 }

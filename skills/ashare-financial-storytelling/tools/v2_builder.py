@@ -115,24 +115,35 @@ def cmd_numbers(a):
     f = ledger['facts']
     pct = lambda x: f'{x:+.1f}%'
     print(f"== {ledger['issuer']['name']} {ledger['issuer']['fiscal_period']} vs {ledger['issuer']['comparative_period']}")
-    for lab, k, _ in PL_LINES:
+    def percent(numerator, denominator):
+        return f'{numerator / denominator * 100:.2f}%' if denominator > 0 else '分母非正'
+
+    lines = PL_LINES if rc.sector_of(ledger) == 'industrial' else [
+        (f[k]['label'], k, False) for k in ('nii', 'fee_net', 'fin_interest_income',
+        'fin_interest_expense', 'credit_impairment', 'operating_profit', 'parent_net') if k in f]
+    for lab, k, _ in lines:
         e = expr_of(k)
-        if not has(f, e):
+        if not all(rc.pair_ok(ledger, key) for key, _ in E(e)):
             continue
         cur, pr = val(f, e), val(f, prior(e))
-        g = pct((cur / pr - 1) * 100) if pr > 0 else '上期≤0'
-        print(f'  {lab:<10} {cur / YI:>10.2f}亿  上期 {pr / YI:>10.2f}亿  同比 {g:>8}  占收入 {cur / val(f, "rev") * 100:6.2f}% → 上期 {pr / val(f, "rev_prior") * 100:6.2f}%')
+        growth = pct((cur / pr - 1) * 100) if pr > 0 else '上期≤0'
+        share = ''
+        if rc.pair_ok(ledger, 'rev'):
+            share = '  占收入 ' + percent(cur, val(f, 'rev')) + ' ← 上期 ' + percent(pr, val(f, 'rev_prior'))
+        print(f'  {lab:<10} {cur / YI:>10.2f}亿  上期 {pr / YI:>10.2f}亿  同比 {growth:>8}{share}')
     for s in segments(f):
+        if not rc.pair_ok(ledger, s + '_rev'):
+            continue
         cur, pr = val(f, s + '_rev'), val(f, s + '_rev_prior')
         gm = ''
-        if s + '_cost' in f and s + '_cost_prior' in f:
-            gm = f'  毛利率 {(1 - val(f, s + "_cost") / cur) * 100:.1f}% ← {(1 - val(f, s + "_cost_prior") / pr) * 100:.1f}%'
+        if rc.pair_ok(ledger, s + '_cost'):
+            gm = '  毛利率 ' + percent(cur - val(f, s + '_cost'), cur) + ' ← ' + percent(pr - val(f, s + '_cost_prior'), pr)
         kind = '地区' if s.startswith(REGION_WORDS) else '分部'
         print(f'  [{kind}] {labels(f, s):<12} {cur / YI:>10.2f}亿  同比 {pct((cur / pr - 1) * 100) if pr > 0 else "上期≤0":>8}{gm}')
     for lab, side, k in WC_ITEMS:
-        if has(f, k):
+        if rc.pair_ok(ledger, k, 'stock'):
             d = val(f, k) - val(f, k + '_prior')
-            print(f'  [余额] {lab:<8} {val(f, k) / YI:>9.2f}亿  较{f[k + "_prior"]["period"]} {d / YI:+.2f}亿  {"占用" if (d > 0) == (side == "asset") and d else "提供"}资金')
+            print(f'  [余额] {lab:<8} {val(f, k) / YI:>9.2f}亿  较{f[k + "_prior"]["period"]} {d / YI:+.2f}亿  ')
 
 
 # ---------------------------------------------------------------- scaffold
@@ -192,7 +203,28 @@ def offline_figures(ledger, plan):
                                     ['利息收入', 'fin_interest_income', 'start'],
                                     ['利息支出', [['fin_interest_expense', -1]], 'step'],
                                     ['净利息收入', 'nii', 'total']], **text_block()))
+    sys.path.insert(0, str(ROOT / 'research/shared'))
+    from mechanism_exhibits import candidates
+    for figure in candidates(ledger, plan['sector_route']):
+        figures.append({**text_block(), **figure})
     return figures
+
+
+def resolve_candidate(figure, candidates):
+    candidate_id = figure.get('from_candidate')
+    if candidate_id is None:
+        return dict(figure)
+    if candidate_id not in candidates:
+        raise ValueError('EXHIBIT_EVIDENCE_UNAVAILABLE ' + str(candidate_id))
+    # Source operands and presentation groups come from the current ledger.
+    # An author can choose the visual, its name, placement and interpretation.
+    editable = {'id', 'nav', 'chapter', 'eyebrow', 'question', 'takeaway', 'analysis',
+                'trend', 'counter', 'identity', 'from_candidate'}
+    if figure.keys() - editable:
+        raise ValueError('EXHIBIT_SOURCE_OVERRIDE ' + str(candidate_id))
+    resolved = {k: v for k, v in candidates[candidate_id].items() if v not in (TODO, 'TODO？')}
+    resolved.update({k: v for k, v in figure.items() if k != 'from_candidate'})
+    return resolved
 
 
 def offline_draft(ledger, plan):
@@ -500,7 +532,7 @@ def findings(f):
     if has(f, 'finance') and val(f, 'finance') * val(f, 'finance_prior') < 0:
         add('finance_swing', abs(ratio_pp(f, 'finance') or 0), f"财务费用由上年同期的{'净收益转为净支出' if val(f, 'finance') > 0 else '净支出转为净收益'}，本期为[y:finance]亿元。")
     imp = [k for k in ('credit_impairment', 'asset_impairment') if has(f, k)]
-    if imp and has(f, 'rev'):
+    if imp and has(f, 'rev') and val(f, 'rev') > 0:
         cur = sum(val(f, k) for k in imp); pr = sum(val(f, k + '_prior') for k in imp)
         if cur < pr:
             add('impairment', abs(cur - pr) / val(f, 'rev') * 100, '信用及资产减值损失合计比上年同期增加。')
@@ -516,7 +548,7 @@ def findings(f):
                     else '；比较期利润基数非正，常规同比增速不适用。')
             add('nonrecurring', abs(gap) / 3,
                 f"非经常性损益使归母净利润{'高于' if gap > 0 else '低于'}扣非利润{tail}")
-    if has(f, 'liabilities') and has(f, 'assets'):
+    if has(f, 'liabilities') and has(f, 'assets') and min(val(f, 'assets'), val(f, 'assets_prior')) > 0:
         pp = (val(f, 'liabilities') / val(f, 'assets') - val(f, 'liabilities_prior') / val(f, 'assets_prior')) * 100
         if abs(pp) >= 1:
             add('leverage', abs(pp), f"资产负债率较年初{up(pp)}[P:leverage]个百分点。")
@@ -530,6 +562,18 @@ def findings(f):
 
 def cmd_findings(a):
     _, ledger, story = load(a.code, a.period)
+    if rc.sector_of(ledger) == 'bank' and ledger['issuer'].get('offline_candidate'):
+        plan = rc.require_editorial_v2(ledger)
+        sys.path.insert(0, str(ROOT / 'research/shared'))
+        from mechanism_exhibits import candidates
+        from source_publication import cited, volume_rate_rows
+        for fig in candidates(ledger, plan['sector_route']):
+            if fig['family'] == 'volume_rate':
+                print(fig['question'], '（本报告期间，元）')
+                for label, amount, _, _ in volume_rate_rows(ledger, fig):
+                    print(' ', label, amount)
+                print('  原件物理页', sorted({ledger['facts'][k]['page'] for k in cited(fig)}))
+        return
     if rc.sector_of(ledger) != 'industrial':
         print('SECTOR_RESEARCH_ADAPTER_REQUIRED ' + rc.sector_of(ledger) + ': generic industrial findings refused')
         return
@@ -677,13 +721,19 @@ def cmd_apply(a):
     TEXT = ('question', 'takeaway', 'trend', 'analysis', 'counter', 'chapter')
     old = {f['id']: f for f in story['figures']}
     new = {}
+    templates = {}
+    if offline and any('from_candidate' in fg for fg in draft['new_figures']):
+        templates = {f['id']: f for f in offline_figures(ledger, capability_plan)}
     for fg in draft['new_figures']:
-        fg = dict(fg)
+        fg = resolve_candidate(fg, templates)
         for k in TEXT:
             if k in fg:
                 fg[k] = walk(fg[k])
         fg.setdefault('identity', {'comparison': '按图例所列期间核对相同项目。',
                                    'signed_bridge': '起点加有符号变动等于终点。',
+                                   'income': '同一收入分区加总至集团收入，各项成本与披露营业成本勾稽。',
+                                   'balance': '各报告日资产等于负债加所有者权益。',
+                                   'components': '同一口径下各披露项目加总至合计。',
                                    'income_flow_v3': '营业收入减成本，计入营业损益、税项及归属后，与披露归母净利润闭合。',
                                    'product_economics': '产品毛利等于其自身收入减去成本。',
                                    'volume_rate': '规模影响按上期实际比率估算，其余变动含比率、结构及交互影响。',

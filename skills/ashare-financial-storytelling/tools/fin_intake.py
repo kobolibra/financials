@@ -529,6 +529,8 @@ def cmd_auto(a) -> None:
     facts = se.to_ledger_facts(result, ledger["issuer"])
     import notes_extract as ne
     note_facts, segments, partition, notes_report = ne.extract_notes(doc, rows_on_page, squash, se.unit_of, se.norm, facts)
+    if result["format"] == 'bank' and ledger['issuer'].get('offline_candidate'):
+        note_facts.update(ne.bank_average_balances(doc, rows_on_page, squash, facts))
     facts.update({k: f for k, f in note_facts.items() if k not in facts})
     conflicts = [k for k, f in facts.items() if k in ledger["facts"] and Decimal(ledger["facts"][k]["yuan"]) != Decimal(f["yuan"])]
     report = {"format": result["format"], "sign_convention": result["convention"], "pages": result["pages"],
@@ -550,6 +552,11 @@ def cmd_auto(a) -> None:
         ledger["facts"].update({k: f for k, f in facts.items() if k not in ledger["facts"]})
         ledger["issuer"]["statement_format"] = result["format"]
         if ledger["issuer"].get("offline_candidate"):
+            keys = (notes_report.get('cash_reconciliation') or {}).get('current_keys')
+            if keys:
+                ledger['cash_reconciliation_keys'] = keys
+            else:
+                ledger.pop('cash_reconciliation_keys', None)
             from coverage_review import unmapped_review_items
             sha = ledger["source"]["original_bytes_sha256"]
             items = unmapped_review_items(result["unmapped"], sha)

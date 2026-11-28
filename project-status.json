@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-22",
+  "updated_date": "2026-11-28",
   "offline_pdf_research_candidate_20261120": {
     "scope": "CATALOG_CANDIDATE_PENDING_LIVE",
     "evidence": "research/quality/pdf-generalization-20261120/README.md",
@@ -176,7 +176,7 @@
   "editorial_product_type": "SOURCE_LIMITED_EQUITY_RESEARCH_PREVIEWS_NOT_COMPLETE_INSTITUTIONAL_CERTIFICATION",
   "skill": {
     "path": "skills/ashare-financial-storytelling/SKILL.md",
-    "version": "10.5.0",
+    "version": "10.6.0",
     "loading": "REPO_CANONICAL_V10_CONTROL_PLANE_WITH_PLAYBOOKS_NOT_AUTOMATIC_CHATGPT_INSTALLED_SKILL",
     "read_required": true,
     "required_manuals": [
@@ -1891,5 +1891,10 @@
       "capex_prior_yuan": "2093357052.05",
       "scope": "AUTHOR_TECHNICAL_DIAGNOSTIC"
     }
+  },
+  "evidence_led_exhibits_20261128": {
+    "evidence": "research/quality/editorial-generalization/verification-10.6.json",
+    "scope": "Single-PDF industrial and bank candidate authoring, 600036 2026Q1 and 600206 2025FY replay, separate hydro source reading",
+    "independent_human_review": "NOT_CHECKED"
   }
 }

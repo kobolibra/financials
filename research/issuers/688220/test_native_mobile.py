@@ -28,12 +28,12 @@ class SourceNativeASR(unittest.TestCase):
         from decimal import Decimal as D
         x=fake["cfo_indirect"]["parts"][3]
         x["yuan"]=str(D(x["yuan"])+D(".02"))
-        with self.assertRaisesRegex(AssertionError,"MOBILE_CAS_SIGNED_BRIDGE_ERROR"):make(fake)
+        with self.assertRaisesRegex(ValueError,"BRIDGE_CHECKPOINT_NOT_CLOSED"):make(fake)
     def test_same_date_balance_wrong_one_cent_rejected(self):
         fake=copy.deepcopy(L)
         from decimal import Decimal as D
         fake["facts"]["equity"]["yuan"]=str(D(fake["facts"]["equity"]["yuan"])+D(".01"))
-        with self.assertRaises(AssertionError):make(fake)
+        with self.assertRaisesRegex(ValueError,"BALANCE_POSITIVE_STOCK_IDENTITY_REQUIRED"):make(fake)
     def test_unreviewed_original_ar_denominator_unchanged(self):
         self.assertIsNotNone(L["facts"]["ar_top5_ratio"])
         self.assertEqual(L["issuer"]["code"],"688220")
