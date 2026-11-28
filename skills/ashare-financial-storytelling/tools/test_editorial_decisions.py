@@ -101,6 +101,33 @@ class EditorialDecisions(unittest.TestCase):
         self.assertIn('0.34% → 0.27%', svg)
         self.assertIn('data-domain-percent="0.4"', svg)
 
+    def test_bank_parent_profit_bridge_requires_two_closed_profit_chains(self):
+        from mechanism_exhibits import bank_parent_profit_change, require_bank_profit_coverage
+        from source_publication import amount
+
+        root = Path(__file__).resolve().parents[3]
+        folder = root / 'research/issuers/600036/2026Q1'
+        ledger = json.loads((folder / 'source-ledger.json').read_text())
+        ledger['issuer']['statement_format'] = 'bank'
+        old_figures = json.loads((folder / 'publication.json').read_text())['figures']
+        with self.assertRaisesRegex(ValueError, 'BANK_PARENT_PROFIT_BRIDGE_MISSING'):
+            require_bank_profit_coverage(ledger, old_figures)
+        bridge = bank_parent_profit_change(ledger)
+        start, *steps, end = bridge['rows']
+        self.assertEqual(amount(ledger, start[1]) + sum(amount(ledger, r[1]) for r in steps),
+                         amount(ledger, end[1]))
+        require_bank_profit_coverage(ledger, [bridge])
+        reordered = deepcopy(bridge)
+        reordered['rows'] = [start, *reversed(steps), end]
+        reordered['rows'][1][0] = '可按论证需要调整图序与名称'
+        require_bank_profit_coverage(ledger, [reordered])
+        altered = deepcopy(bridge)
+        altered['rows'].pop(3)
+        with self.assertRaisesRegex(ValueError, 'BANK_PARENT_PROFIT_BRIDGE_MISSING'):
+            require_bank_profit_coverage(ledger, [altered])
+        ledger['facts']['pretax_prior']['yuan'] = '1'
+        self.assertIsNone(bank_parent_profit_change(ledger))
+
     def test_volume_and_residual_reconcile(self):
         rows = volume_rate_rows(self.ledger, self.figure)
         self.assertEqual([r[1] for r in rows], list(map(Decimal, ['90','10','-15','85'])))

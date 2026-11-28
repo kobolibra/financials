@@ -119,7 +119,18 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                 assert svg.count() == 1, (width, name, 'visible SVG')
                 findings = svg.evaluate("""s => {
                   const rect = s.getBoundingClientRect(), texts = Array.from(s.querySelectorAll('text'));
-                  return {issues: texts.filter(t => {
+                  const points = [...s.querySelectorAll('circle[data-ratio-role]')];
+                  const pointLabelOverlap = points.flatMap(point => {
+                    const p = point.getBoundingClientRect();
+                    return texts.filter(t => {
+                      const r = t.getBoundingClientRect();
+                      const x = (p.left + p.right) / 2, y = (p.top + p.bottom) / 2;
+                      const dx = x - Math.max(r.left, Math.min(x, r.right));
+                      const dy = y - Math.max(r.top, Math.min(y, r.bottom));
+                      return Math.hypot(dx, dy) < p.width / 2;
+                    }).map(t => [point.dataset.ratioRole, t.textContent]);
+                  });
+                  return {pointLabelOverlap, issues: texts.filter(t => {
                     const p=t.getBoundingClientRect();
                     return (p.left<rect.left-1 || p.right>rect.right+1 ||
                       p.top<rect.top-1 || p.bottom>rect.bottom+1 ||
@@ -139,6 +150,7 @@ def audit(html, out, engine, widths, executable=None, origin=None):
                     stock_role:n.dataset.stockRole
                   }))};
                 }""")
+                assert not findings['pointLabelOverlap'], ('RATIO_POINT_OVER_LABEL', width, name, findings['pointLabelOverlap'])
                 assert not findings['issues'] and not findings['overlap'], (width, name, findings)
                 assert findings['values'], (width, name, 'source values')
                 for value in findings['values']:

@@ -1,4 +1,5 @@
 """Construct optional explanatory exhibits from verified relationships in one dossier."""
+from collections import Counter
 from decimal import Decimal
 
 from coverage_review import check_dependencies
@@ -96,10 +97,71 @@ def bank_exhibits(ledger):
                    ['本期净利息收入', net, 'total']])
 
 
+def bank_parent_profit_change(ledger):
+    """Reconcile each period before attributing the change in parent profit."""
+    required = ('nii', 'fee_net', 'rev', 'credit_impairment', 'opex_total',
+                'operating_profit', 'nonop_income', 'nonop_expense', 'pretax',
+                'income_tax', 'net_profit', 'nci', 'parent_net')
+    if not _current(ledger, required) or not all(pair_ok(ledger, k) for k in required):
+        return None
+
+    for suffix in ('', '_prior'):
+        v = {k: _amount(ledger, k + suffix) for k in required}
+        if (v['rev'] - v['opex_total'] != v['operating_profit']
+                or v['operating_profit'] + v['nonop_income'] - v['nonop_expense'] != v['pretax']
+                or v['pretax'] - v['income_tax'] != v['net_profit']
+                or v['net_profit'] - v['nci'] != v['parent_net']):
+            return None
+
+    groups = [
+        ('净利息收入', [('nii', 1)]),
+        ('手续费及佣金净收入', [('fee_net', 1)]),
+        ('其余非息收入', [('rev', 1), ('nii', -1), ('fee_net', -1)]),
+        ('信用减值损益', [('credit_impairment', 1)]),
+        ('其余营业支出', [('opex_total', -1), ('credit_impairment', -1)]),
+        ('营业外收支', [('nonop_income', 1), ('nonop_expense', -1)]),
+        ('所得税', [('income_tax', -1)]),
+        ('少数股东损益', [('nci', -1)]),
+    ]
+    rows = [['上期归母净利润', 'parent_net_prior', 'start']]
+    for label, terms in groups:
+        change = [[key, coefficient] for key, coefficient in terms]
+        change.extend([[key + '_prior', -coefficient] for key, coefficient in terms])
+        rows.append([label, change, 'step'])
+    rows.append(['本期归母净利润', 'parent_net', 'total'])
+    return dict(id='parent-profit-change', family='signed_bridge', nav='归母利润桥',
+                eyebrow='两期合并利润表', question='净利息增量如何传导至归母利润？', rows=rows)
+
+
+def require_bank_profit_coverage(ledger, figures):
+    """Require the reconciled numerical bridge when the original supports it."""
+    if ledger['issuer'].get('statement_format') != 'bank':
+        return
+    candidate = bank_parent_profit_change(ledger)
+    if not candidate:
+        return
+
+    def signature(rows):
+        start, *steps, total = rows
+        return (tuple(start[1:]), tuple(total[1:]), Counter(
+            (role, tuple(sorted(map(tuple, expression))))
+            for _, expression, role in steps))
+
+    expected = signature(candidate['rows'])
+    for figure in figures:
+        if figure.get('family') != 'signed_bridge' or len(figure.get('rows', [])) != len(candidate['rows']):
+            continue
+        try:
+            if signature(figure['rows']) == expected:
+                return
+        except (TypeError, ValueError):
+            continue
+    raise ValueError('BANK_PARENT_PROFIT_BRIDGE_MISSING: reconcile both periods through parent profit')
+
 def candidates(ledger, sector):
     from source_publication import cited
     if sector == 'bank':
-        figures = bank_exhibits(ledger)
+        figures = [*bank_exhibits(ledger), bank_parent_profit_change(ledger)]
     elif sector == 'industrial':
         figures = [gross_profit_change(ledger), cash_reconciliation(ledger)]
     else:

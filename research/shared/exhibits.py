@@ -224,7 +224,7 @@ def render_ratio_dumbbell(rows, title, *, periods, mobile=False, **ident):
         else:
             c.text(24, y + 5, r['label'], 14, weight=700)
             c.text(1016, y + 5, f'{q(r["prior"], precision)}% → {q(r["value"], precision)}%（{q(r["value"] - r["prior"], precision):+}pp）', 13, 'end', colr, 700)
-            cy = y
+            cy = y + 19 if hi < 1 and hi > 0 else y
         a, b = sorted((x(r['prior']), x(r['value'])))
         c.raw(f'<line x1="{f(a)}" x2="{f(b)}" y1="{cy}" y2="{cy}" stroke="{colr}" stroke-width="4" stroke-opacity=".45"/>')
         for v, refv, kind in ((r['prior'], r['prior_ref'], 'prior'), (r['value'], r['value_ref'], 'current')):

@@ -44,7 +44,7 @@ T=skills/ashare-financial-storytelling/tools
 python "$T/start_report.py" /absolute/path/filing.pdf
 ```
 
-从 `editorial-opportunities.json` 打开值得回读的物理页。把两个竞争解释带到原件里：先选能区分它们的观察，再决定哪张图值得占据首屏。单 PDF 草稿里的 `figure_candidates` 已按本期原值编制可用的毛利变动、经营现金调节、银行收付息分解及期间收益率对照。选中后以 `from_candidate` 引用，补入调查结论、替代解释及原件边界；编译时重读当前账本。见 [选题与编稿示例](playbooks/08_EDITORIAL_DECISIONS.md#从已验证的关系编稿)。打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。
+从 `editorial-opportunities.json` 打开值得回读的物理页。把两个竞争解释带到原件里：先选能区分它们的观察，再决定哪张图值得占据首屏。单 PDF 草稿里的 `figure_candidates` 已按本期原值编制可用的毛利变动、经营现金调节、银行收付息分解及期间收益率对照。选中后以 `from_candidate` 引用，补入调查结论、替代解释及原件边界；编译时重读当前账本。见 [选题与编稿示例](playbooks/08_EDITORIAL_DECISIONS.md#从已验证的关系编稿)。打开能力计划，按 Playbook 07 的离线流程完成原页复核、研究简报、图序和验收。独立成稿支持合并工业报表和具备核心源格的银行报表。需要识别无法自动确认的封面时，从原页读取代码或全称并传入 `--code` 或 `--name`。金融行业仍需专门分析，保险、券商和地产保留现有适配边界。既有目录报告继续使用其发布合同。 当前成稿的离线编译执行 `v2_builder.py apply --require-editorial-coverage`。完整银行损益可勾稽时，该入口要求数值利润归因桥。离线回放与正式交付的验收证据分别记录。
 
 ## 0. 交付目标与质量线
 

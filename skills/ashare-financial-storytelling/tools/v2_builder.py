@@ -682,6 +682,31 @@ class Claims:
         return MACRO.sub(lambda m: self.macro(m.group(1), m.group(2)), text)
 
 
+SOURCE_QUOTE = re.compile(r'\[quote:([a-z0-9_]+)\]')
+
+
+def source_quotes(code, period, specs):
+    """Verify verbatim PDF excerpts for disclosed text and non-monetary measures."""
+    if not specs:
+        return {}
+    from fin_intake import folder, pymupdf
+    ledger = json.loads((folder(code, period) / 'source-ledger.json').read_text())
+    source = ledger['source']
+    original = ROOT / source['source_path']
+    if hashlib.sha256(original.read_bytes()).hexdigest() != source['original_bytes_sha256']:
+        raise ValueError('SOURCE_QUOTE_PDF_BYTES_MISMATCH')
+    quotes = {}
+    with pymupdf().open(original) as document:
+        for key, spec in specs.items():
+            page, excerpt = spec['page'], ' '.join(spec['text'].split())
+            if type(page) is not int or not 1 <= page <= len(document):
+                raise ValueError('SOURCE_QUOTE_INVALID_PAGE ' + key)
+            original = ' '.join(document[page - 1].get_text().split())
+            if len(excerpt) < 12 or excerpt not in original:
+                raise ValueError('SOURCE_QUOTE_NOT_IN_ORIGINAL ' + key)
+            quotes[key] = f'「{excerpt}」（原件第 {page} 页）'
+    return quotes
+
 def cmd_apply(a):
     sys.path.insert(0, str(ROOT / 'research' / 'shared'))
     from source_publication import expand_claims  # noqa: E402
@@ -711,7 +736,16 @@ def cmd_apply(a):
         story = {'figures': [], 'composition': 'OFFLINE_RESEARCH_CANDIDATE_V1',
                  'quantified_claims': article.get('quantified_claims', {})}
     C = Claims(story, ledger['facts'], ledger if offline else None)
-    walk = lambda v: C.expand(v) if isinstance(v, str) else [walk(x) for x in v] if isinstance(v, list) else {k: walk(x) for k, x in v.items()} if isinstance(v, dict) else v
+    quotes = source_quotes(a.code, a.period, article.get('source_quotes', {})) if offline else {}
+
+    def walk(value):
+        if isinstance(value, str):
+            return SOURCE_QUOTE.sub(lambda m: quotes[m.group(1)], C.expand(value))
+        if isinstance(value, list):
+            return [walk(item) for item in value]
+        if isinstance(value, dict):
+            return {key: walk(item) for key, item in value.items()}
+        return value
     if offline:
         for field in ('title', 'deck', 'thesis', 'metrics', 'essays', 'notes'):
             story[field] = walk(article[field])
@@ -753,6 +787,12 @@ def cmd_apply(a):
         ev.validate_editorial_selection(ledger, brief, figures=story['figures'])
     except ValueError as exc:
         raise SystemExit('V2_EDITORIAL_DECISION_NOT_READY ' + str(exc)) from exc
+    if getattr(a, 'require_editorial_coverage', False):
+        from mechanism_exhibits import require_bank_profit_coverage
+        try:
+            require_bank_profit_coverage(ledger, story['figures'])
+        except ValueError as exc:
+            raise SystemExit(str(exc)) from exc
     story['design'] = 'EDITORIAL_V2'
     story['capability_plan'] = capability_plan  # verified from the ledger, NOT the editable draft
     story['research_evidence_gate'] = {
@@ -833,6 +873,9 @@ def main(argv=None):
         if name == 'scaffold':
             s.add_argument('--source-probe', action='store_true',
                            help='diagnostic-only technical exhibits; never authorizes sector publication')
+        if name == 'apply':
+            s.add_argument('--require-editorial-coverage', action='store_true',
+                           help='enforce supported research coverage for current deliverables')
     a = p.parse_args(argv)
     {'numbers': cmd_numbers, 'scaffold': cmd_scaffold, 'apply': cmd_apply, 'flowspec': cmd_flowspec,
      'findings': cmd_findings, 'capabilities': cmd_capabilities}[a.cmd](a)
